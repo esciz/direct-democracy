@@ -1,0 +1,428 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+import { CommunityEventCard } from "@/components/domain/community-event-card";
+import { DebateCard } from "@/components/domain/debate-card";
+import { ActionLabel, ThumbsDownIcon, ThumbsUpIcon } from "@/components/ui/action-icons";
+import { FormSubmitButton } from "@/components/ui/form-submit-button";
+import { PageIntro } from "@/components/ui/page-intro";
+import { SectionHeading } from "@/components/ui/section-heading";
+import {
+  approveOrganizationMembership,
+  createOrganizationAnnouncement,
+  createOrganizationPlatformItem,
+  removeOrganizationEndorsement,
+  requestOrganizationMembership,
+  saveOrganizationEndorsement,
+  voteOnOrganizationPlatformItem,
+} from "@/lib/organizations/actions";
+import { getCurrentUser } from "@/lib/server/auth-session";
+import { getOrganizationById, getOrganizationCampaignOptions } from "@/lib/organizations/store";
+
+type OrganizationDetailPageProps = {
+  params: Promise<{
+    orgId: string;
+  }>;
+  searchParams?: Promise<{
+    org?: string;
+    orgError?: string;
+  }>;
+};
+
+function getOrganizationTypeLabel(type: "campus_org" | "coalition") {
+  return type === "campus_org" ? "Campus Org" : "Coalition";
+}
+
+export default async function OrganizationDetailPage({ params, searchParams }: OrganizationDetailPageProps) {
+  const { orgId } = await params;
+  const user = await getCurrentUser();
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const [organization, campaignOptions] = await Promise.all([
+    getOrganizationById(orgId, user),
+    getOrganizationCampaignOptions(orgId),
+  ]);
+
+  if (!organization) {
+    notFound();
+  }
+
+  const pendingMemberships = organization.memberships.filter((entry) => entry.state === "pending");
+  const returnPath = `/organizations/${organization.id}`;
+  const campusMembershipRestricted = organization.organizationType === "campus_org" && !organization.viewerMembershipState;
+
+  return (
+    <div className="space-y-6 py-8">
+      <PageIntro
+        eyebrow={getOrganizationTypeLabel(organization.organizationType)}
+        title={organization.name}
+        description={organization.description}
+        meta={
+          <>
+            <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
+              {organization.memberCount} members
+            </span>
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+              {organization.jurisdictionName}
+            </span>
+          </>
+        }
+        actions={
+          <div className="flex flex-wrap gap-3">
+            {!organization.viewerMembershipState && !campusMembershipRestricted ? (
+              <form action={requestOrganizationMembership}>
+                <input type="hidden" name="organizationId" value={organization.id} />
+                <input type="hidden" name="returnPath" value={returnPath} />
+                <FormSubmitButton
+                  idleLabel="Request to join"
+                  pendingLabel="Sending..."
+                  className="rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                />
+              </form>
+            ) : null}
+            {campusMembershipRestricted ? (
+              <span className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700">
+                Student-Verified users can request to join
+              </span>
+            ) : null}
+            {organization.viewerMembershipState === "pending" ? (
+              <span className="rounded-full bg-orange-50 px-4 py-3 text-sm font-semibold text-orange-700">
+                Membership pending
+              </span>
+            ) : null}
+            {organization.canManage ? (
+              <Link
+                href={`/events/create?communityId=${organization.communityId}&organizationId=${organization.id}`}
+                className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+              >
+                Create event
+              </Link>
+            ) : null}
+            {organization.canManage ? (
+              <Link
+                href={`/debates/new?issueId=&organizationId=${organization.id}`}
+                className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+              >
+                Start debate
+              </Link>
+            ) : null}
+            {organization.canManage && organization.organizationType === "coalition" ? (
+              <Link
+                href={`/petitions/create?organizationId=${organization.id}`}
+                className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+              >
+                Create petition
+              </Link>
+            ) : null}
+          </div>
+        }
+      />
+
+      {resolvedSearchParams?.org ? (
+        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
+          {resolvedSearchParams.org === "created" && "Organization created."}
+          {resolvedSearchParams.org === "approved" && "Organization request approved and published."}
+          {resolvedSearchParams.org === "membership-requested" && "Your join request was sent to the org admins."}
+          {resolvedSearchParams.org === "membership-approved" && "Membership approved."}
+          {resolvedSearchParams.org === "membership-exists" && "You already have a membership request or active membership here."}
+          {resolvedSearchParams.org === "announcement-sent" && "Announcement sent to members."}
+          {resolvedSearchParams.org === "platform-saved" && "Platform item saved."}
+          {resolvedSearchParams.org === "vote-saved" && "Your member vote was recorded."}
+          {resolvedSearchParams.org === "endorsement-saved" && "Organization endorsement saved."}
+          {resolvedSearchParams.org === "endorsement-removed" && "Organization endorsement removed."}
+        </section>
+      ) : null}
+      {resolvedSearchParams?.orgError ? (
+        <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-sm text-orange-900 shadow-card">
+          {resolvedSearchParams.orgError === "manage" && "Only organization founders or admins can do that."}
+          {resolvedSearchParams.orgError === "announcement" && "Add a short title and a clearer announcement body."}
+          {resolvedSearchParams.orgError === "platform" && "Platform items need a title, description, issue tag, and valid status."}
+          {resolvedSearchParams.orgError === "endorsement" && "Pick a valid candidate campaign to endorse."}
+          {resolvedSearchParams.orgError === "vote" && "Only approved members can vote on platform items."}
+          {resolvedSearchParams.orgError === "membership" && "That membership request could not be found."}
+          {resolvedSearchParams.orgError === "campus-membership" &&
+            "Campus org membership is limited to Student-Verified users associated with this campus community."}
+          {resolvedSearchParams.orgError === "approval" && "You do not have permission to approve that request."}
+        </section>
+      ) : null}
+
+      <section className="grid gap-6 xl:grid-cols-[1fr_0.95fr]">
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+          <SectionHeading
+            eyebrow="Profile"
+            title="Organization profile"
+            description="Structured org profiles combine membership, issue focus, platform items, events, debates, petitions, endorsements, and announcements."
+          />
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-3xl bg-slate-50 p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Founder</p>
+              <p className="mt-2 text-sm font-semibold text-ink">{organization.founderName}</p>
+            </div>
+            <div className="rounded-3xl bg-slate-50 p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Admins</p>
+              <p className="mt-2 text-sm font-semibold text-ink">{organization.adminNames.join(" · ")}</p>
+            </div>
+          </div>
+          {organization.organizationType === "campus_org" ? (
+            <div className="mt-4 rounded-3xl border border-civic-200 bg-civic-50 p-4 text-sm text-civic-900">
+              This campus org is publicly viewable, but membership and campus-specific management actions are limited to Student-Verified users tied to this campus community.
+            </div>
+          ) : null}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {organization.issueTags.map((tag) => (
+              <span key={tag} className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+          <SectionHeading
+            eyebrow="Announcements"
+            title="Member announcements"
+            description="Announcements are one-to-many broadcasts for members, not chat threads."
+          />
+          {organization.canManage ? (
+            <form action={createOrganizationAnnouncement} className="mt-5 grid gap-3 rounded-3xl bg-slate-50 p-4">
+              <input type="hidden" name="organizationId" value={organization.id} />
+              <input type="hidden" name="returnPath" value={returnPath} />
+              <input name="title" placeholder="Announcement title" className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              <textarea name="body" rows={4} placeholder="Share a concise announcement with members." className="rounded-3xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              <FormSubmitButton idleLabel="Send announcement" pendingLabel="Sending..." className="w-fit rounded-full bg-civic-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-civic-700" />
+            </form>
+          ) : null}
+          <div className="mt-5 grid gap-3">
+            {organization.announcements.length ? (
+              organization.announcements.map((announcement) => (
+                <article key={announcement.id} className="rounded-3xl bg-slate-50 p-4">
+                  <p className="text-sm font-semibold text-ink">{announcement.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{announcement.body}</p>
+                  <p className="mt-3 text-xs uppercase tracking-[0.16em] text-slate-500">
+                    {announcement.createdByUserName} · {new Date(announcement.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                  </p>
+                </article>
+              ))
+            ) : (
+              <div className="rounded-3xl bg-slate-50 p-4 text-sm text-slate-600">No announcements yet.</div>
+            )}
+          </div>
+        </section>
+      </section>
+
+      <section className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+          <div className="flex items-end justify-between gap-4">
+            <SectionHeading
+              eyebrow="Platform"
+              title="Platform and action items"
+              description="Organizations can define platform items, run internal member voting, and highlight adopted positions."
+            />
+          </div>
+          {organization.canManage ? (
+            <form action={createOrganizationPlatformItem} className="mt-5 grid gap-3 rounded-3xl bg-slate-50 p-4">
+              <input type="hidden" name="organizationId" value={organization.id} />
+              <input type="hidden" name="returnPath" value={returnPath} />
+              <input name="title" placeholder="Platform item title" className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              <textarea name="description" rows={4} placeholder="Describe the policy, platform point, or action item." className="rounded-3xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              <div className="grid gap-3 md:grid-cols-2">
+                <input name="issueTag" placeholder="Issue tag" className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+                <select name="status" defaultValue="active" className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500">
+                  <option value="draft">Draft</option>
+                  <option value="active">Active</option>
+                  <option value="adopted">Adopted</option>
+                </select>
+              </div>
+              <FormSubmitButton idleLabel="Save platform item" pendingLabel="Saving..." className="w-fit rounded-full bg-civic-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-civic-700" />
+            </form>
+          ) : null}
+
+          <div className="mt-5 grid gap-4">
+            {organization.platformItems.length ? (
+              organization.platformItems.map((item) => (
+                <article key={item.id} className="rounded-3xl bg-slate-50 p-5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">{item.issueTag}</span>
+                    <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
+                      {item.status}
+                    </span>
+                  </div>
+                  <h3 className="mt-3 text-lg font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+                  <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-600">
+                    <span>{item.supportCount} support</span>
+                    <span>{item.opposeCount} oppose</span>
+                  </div>
+                  {organization.viewerMembershipRole ? (
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      <form action={voteOnOrganizationPlatformItem}>
+                        <input type="hidden" name="organizationId" value={organization.id} />
+                        <input type="hidden" name="platformItemId" value={item.id} />
+                        <input type="hidden" name="choice" value="support" />
+                        <input type="hidden" name="returnPath" value={returnPath} />
+                        <FormSubmitButton
+                          idleLabel={<ActionLabel icon={<ThumbsUpIcon className="h-4 w-4" />}>{item.viewerVote === "support" ? "Supporting" : "Support"}</ActionLabel>}
+                          pendingLabel={<ActionLabel icon={<ThumbsUpIcon className="h-4 w-4" />}>Saving...</ActionLabel>}
+                          className={item.viewerVote === "support" ? "rounded-full bg-civic-500 px-4 py-2 text-sm font-semibold text-white" : "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"}
+                        />
+                      </form>
+                      <form action={voteOnOrganizationPlatformItem}>
+                        <input type="hidden" name="organizationId" value={organization.id} />
+                        <input type="hidden" name="platformItemId" value={item.id} />
+                        <input type="hidden" name="choice" value="oppose" />
+                        <input type="hidden" name="returnPath" value={returnPath} />
+                        <FormSubmitButton
+                          idleLabel={<ActionLabel icon={<ThumbsDownIcon className="h-4 w-4" />}>{item.viewerVote === "oppose" ? "Opposing" : "Oppose"}</ActionLabel>}
+                          pendingLabel={<ActionLabel icon={<ThumbsDownIcon className="h-4 w-4" />}>Saving...</ActionLabel>}
+                          className={item.viewerVote === "oppose" ? "rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white" : "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-orange-300 hover:text-orange-700"}
+                        />
+                      </form>
+                    </div>
+                  ) : null}
+                </article>
+              ))
+            ) : (
+              <div className="rounded-3xl bg-slate-50 p-5 text-sm text-slate-600">No platform items yet.</div>
+            )}
+          </div>
+        </section>
+
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+          <SectionHeading
+            eyebrow="Membership"
+            title="Members and approvals"
+            description="Membership stays structured. Users request to join and admins approve."
+          />
+          <div className="mt-5 grid gap-3">
+            {organization.memberships.filter((entry) => entry.state === "approved").map((membership) => (
+              <article key={membership.id} className="rounded-3xl bg-slate-50 p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-semibold text-ink">{membership.userName}</p>
+                  <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">{membership.role}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+          {organization.canManage && pendingMemberships.length ? (
+            <div className="mt-5 space-y-3">
+              <p className="text-sm font-semibold text-ink">Pending join requests</p>
+              {pendingMemberships.map((membership) => (
+                <article key={membership.id} className="rounded-3xl bg-orange-50 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-sm font-semibold text-ink">{membership.userName}</p>
+                    <form action={approveOrganizationMembership}>
+                      <input type="hidden" name="membershipId" value={membership.id} />
+                      <input type="hidden" name="returnPath" value={returnPath} />
+                      <button type="submit" className="rounded-full bg-civic-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-civic-700">
+                        Approve
+                      </button>
+                    </form>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : null}
+        </section>
+      </section>
+
+      <section className="grid gap-6 xl:grid-cols-[1fr_1fr]">
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+          <SectionHeading
+            eyebrow="Endorsements"
+            title="Candidate endorsements"
+            description="Organization endorsements stay clearly labeled as either Campus Org Endorsements or Coalition Endorsements."
+          />
+          {organization.canManage ? (
+            <form action={saveOrganizationEndorsement} className="mt-5 grid gap-3 rounded-3xl bg-slate-50 p-4">
+              <input type="hidden" name="organizationId" value={organization.id} />
+              <input type="hidden" name="returnPath" value={returnPath} />
+              <select name="candidateCampaignId" defaultValue="" className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500">
+                <option value="">Choose candidate campaign</option>
+                {campaignOptions.map((campaign) => (
+                  <option key={campaign.id} value={campaign.id}>
+                    {campaign.candidateName} · {campaign.officeSought}
+                  </option>
+                ))}
+              </select>
+              <textarea name="statement" rows={3} placeholder="Optional endorsement note" className="rounded-3xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              <FormSubmitButton idleLabel="Save endorsement" pendingLabel="Saving..." className="w-fit rounded-full bg-civic-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-civic-700" />
+            </form>
+          ) : null}
+          <div className="mt-5 grid gap-3">
+            {organization.endorsements.length ? (
+              organization.endorsements.map((endorsement) => (
+                <article key={endorsement.id} className="rounded-3xl bg-slate-50 p-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <p className="text-sm font-semibold text-ink">{endorsement.candidateName}</p>
+                      <p className="mt-1 text-sm text-slate-600">{endorsement.officeSought} · {endorsement.electionTitle}</p>
+                    </div>
+                    <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
+                      {organization.organizationType === "campus_org" ? "Campus Org Endorsement" : "Coalition Endorsement"}
+                    </span>
+                  </div>
+                  {endorsement.statement ? <p className="mt-3 text-sm leading-6 text-slate-600">{endorsement.statement}</p> : null}
+                  {organization.canManage ? (
+                    <form action={removeOrganizationEndorsement} className="mt-3">
+                      <input type="hidden" name="endorsementId" value={endorsement.id} />
+                      <input type="hidden" name="returnPath" value={returnPath} />
+                      <FormSubmitButton idleLabel="Remove endorsement" pendingLabel="Removing..." className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700" />
+                    </form>
+                  ) : null}
+                </article>
+              ))
+            ) : (
+              <div className="rounded-3xl bg-slate-50 p-4 text-sm text-slate-600">No endorsements yet.</div>
+            )}
+          </div>
+        </section>
+
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+          <SectionHeading
+            eyebrow="Petitions"
+            title="Organization-linked petitions"
+            description="Coalitions can act collectively around petitions while keeping the org layer separate from donations or PAC activity."
+          />
+          <div className="mt-5 grid gap-3">
+            {organization.relatedPetitions.length ? (
+              organization.relatedPetitions.map((petition) => (
+                <article key={petition.id} className="rounded-3xl bg-slate-50 p-4">
+                  <Link href={`/petitions/${petition.id}`} className="text-sm font-semibold text-ink hover:text-civic-700">
+                    {petition.title}
+                  </Link>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{petition.summary}</p>
+                </article>
+              ))
+            ) : (
+              <div className="rounded-3xl bg-slate-50 p-4 text-sm text-slate-600">No organization petitions linked yet.</div>
+            )}
+          </div>
+        </section>
+      </section>
+
+      <section className="grid gap-6 xl:grid-cols-2">
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+          <SectionHeading eyebrow="Events" title="Organization events" description="Organizations can host events and appear across campus, community, and Explore surfaces." />
+          <div className="mt-5 grid gap-4">
+            {organization.relatedEvents.length ? (
+              organization.relatedEvents.map((event) => (
+                <CommunityEventCard key={event.id} event={event} returnPath={returnPath} />
+              ))
+            ) : (
+              <div className="rounded-3xl bg-slate-50 p-4 text-sm text-slate-600">No organization events linked yet.</div>
+            )}
+          </div>
+        </section>
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+          <SectionHeading eyebrow="Debates" title="Organization debates" description="Organizations can launch issue-based debates through the existing structured debate flow." />
+          <div className="mt-5 grid gap-4">
+            {organization.relatedDebates.length ? (
+              organization.relatedDebates.map((debate) => <DebateCard key={debate.id} debate={debate} />)
+            ) : (
+              <div className="rounded-3xl bg-slate-50 p-4 text-sm text-slate-600">No organization debates linked yet.</div>
+            )}
+          </div>
+        </section>
+      </section>
+    </div>
+  );
+}
