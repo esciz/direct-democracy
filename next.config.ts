@@ -6,10 +6,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
-  experimental: {
-    devtoolSegmentExplorer: false,
-  },
-  async redirects() {
+    async redirects() {
     return [
       {
         source: "/vote",
