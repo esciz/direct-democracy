@@ -7,3 +7,5 @@ coverage
 build-next/
 .next/
 node_modules/
+.vercel
+.env*.local

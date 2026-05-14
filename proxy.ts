@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { MOCK_AUTH_COOKIE, PUBLIC_POST_CREATOR_ROLES } from "@/lib/auth/constants";
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   if (!request.nextUrl.pathname.startsWith("/feed/create") && !request.nextUrl.pathname.startsWith("/posts/create")) {
     return NextResponse.next();
   }
