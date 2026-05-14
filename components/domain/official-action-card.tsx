@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { reactToOfficialAction } from "@/lib/officials/action-reactions";
 import type { OfficialActionSummary } from "@/types/domain";
 
@@ -128,13 +129,30 @@ export function OfficialActionCard({ action, returnPath, compact = false, viewer
       }
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{formatActionType(action.actionType)}</p>
-          <h3 className={compact ? "mt-1.5 text-base font-semibold leading-snug text-ink" : "mt-2 text-xl font-semibold text-ink"}>{action.title}</h3>
-          <div className={compact ? "mt-2 flex flex-wrap items-center gap-x-3 gap-y-1" : "mt-2"}>
-            <p className="text-sm font-medium text-slate-600">{action.officialName}</p>
-            {compact ? (
-              <p className="text-sm text-slate-500">
+        <div className="flex min-w-0 items-start gap-3">
+          <CivicAvatar
+            name={action.officialName}
+            entityType={action.sourceType === "media" ? "media" : action.sourceType === "citizen" ? "publicAccountability" : "official"}
+            size={compact ? "sm" : "md"}
+            verified={action.verificationStatus === "verified" || action.sourceType === "official"}
+          />
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{formatActionType(action.actionType)}</p>
+            <h3 className={compact ? "mt-1.5 text-base font-semibold leading-snug text-ink" : "mt-2 text-xl font-semibold text-ink"}>{action.title}</h3>
+            <div className={compact ? "mt-2 flex flex-wrap items-center gap-x-3 gap-y-1" : "mt-2"}>
+              <p className="text-sm font-medium text-slate-600">{action.officialName}</p>
+              {compact ? (
+                <p className="text-sm text-slate-500">
+                  {new Date(action.actionDate).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </p>
+              ) : null}
+            </div>
+            {!compact ? (
+              <p className="mt-2 text-sm text-slate-500">
                 {new Date(action.actionDate).toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
@@ -142,19 +160,10 @@ export function OfficialActionCard({ action, returnPath, compact = false, viewer
                 })}
               </p>
             ) : null}
-          </div>
-          {!compact ? (
-            <p className="mt-2 text-sm text-slate-500">
-              {new Date(action.actionDate).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              })}
+            <p className={compact ? "mt-2.5 text-sm leading-6 text-slate-600" : "mt-4 text-sm leading-7 text-slate-600"}>
+              {action.summary}
             </p>
-          ) : null}
-          <p className={compact ? "mt-2.5 text-sm leading-6 text-slate-600" : "mt-4 text-sm leading-7 text-slate-600"}>
-            {action.summary}
-          </p>
+          </div>
         </div>
         <span className={verificationClassName(action.verificationStatus)}>{formatVerificationStatus(action.verificationStatus)}</span>
       </div>

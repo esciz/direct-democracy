@@ -9,11 +9,11 @@ import { getAllPublicProfiles } from "@/lib/server/elections-context";
 const TIER_EXPLANATIONS = [
   {
     tier: "Highly Trusted",
-    description: "A strong public record with consistently constructive signals and relatively few negative patterns.",
+    description: "A strong civic record with consistently constructive signals and relatively few negative patterns.",
   },
   {
     tier: "Trusted",
-    description: "A generally credible public record with more positive signals than negative ones.",
+    description: "A generally credible civic record with more positive signals than negative ones.",
   },
   {
     tier: "Mixed Reliability",

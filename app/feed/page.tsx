@@ -966,7 +966,7 @@ export default async function FeedPage({ searchParams }: FeedPageProps) {
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">A simpler way to read the civic feed</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
               Treat this as a running answer to three questions: what changed, why it matters, and what you can do next. The deeper post threads, debates,
-              evidence, and public record stay available after that first layer.
+              evidence, and case history stay available after that first layer.
             </p>
             <div className="mt-5 grid gap-3 md:grid-cols-3">
               <div className="rounded-2xl bg-slate-50 p-4">
@@ -992,7 +992,7 @@ export default async function FeedPage({ searchParams }: FeedPageProps) {
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Participation ladder</p>
             <h2 className="mt-3 text-xl font-semibold tracking-tight text-ink">Move from casual to deeper engagement</h2>
             <div className="mt-4 space-y-2">
-              {["Read the brief", "Vote on one public decision", "See both sides on one issue", "Follow an issue", "Open the deeper public record"].map((step) => (
+              {["Read the brief", "Vote on one public decision", "See both sides on one issue", "Follow an issue", "Open the related cases"].map((step) => (
                 <div key={step} className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
                   {step}
                 </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { VoteCard } from "@/components/domain/vote-card";
 import type { ProfileSentimentSummary } from "@/lib/votes/profile-sentiment";
 
@@ -29,18 +30,6 @@ function SentimentHistoryGraph({ summary }: { summary: ProfileSentimentSummary }
     return null;
   }
 
-  const buildPoints = (key: "supportPercent" | "mixedPercent" | "opposePercent") =>
-    safeHistory
-      .map((point, index) => {
-        const x = (index / Math.max(safeHistory.length - 1, 1)) * 100;
-        const y = 92 - point[key] * 0.84;
-        return `${x},${y}`;
-      })
-      .join(" ");
-
-  const supportPoints = buildPoints("supportPercent");
-  const mixedPoints = buildPoints("mixedPercent");
-  const opposePoints = buildPoints("opposePercent");
   const highest = safeHistory.reduce((best, point) => (point.supportPercent > best.supportPercent ? point : best), safeHistory[0]);
   const lowest = safeHistory.reduce((best, point) => (point.supportPercent < best.supportPercent ? point : best), safeHistory[0]);
   const latest = safeHistory.at(-1) ?? safeHistory[safeHistory.length - 1];
@@ -59,20 +48,18 @@ function SentimentHistoryGraph({ summary }: { summary: ProfileSentimentSummary }
         </div>
       </div>
 
-      <div className="mt-4 rounded-[1.1rem] bg-white px-3 py-4 shadow-sm">
-        <svg viewBox="0 0 100 100" className="h-40 w-full overflow-visible" aria-hidden="true">
-          {[20, 40, 60, 80].map((value) => {
-            const y = 92 - value * 0.84;
-            return <line key={value} x1="0" x2="100" y1={y} y2={y} stroke="rgba(148,163,184,0.24)" strokeWidth="0.7" />;
-          })}
-          <polyline fill="none" stroke="#10b981" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" points={supportPoints} />
-          <polyline fill="none" stroke="#94a3b8" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" points={mixedPoints} />
-          <polyline fill="none" stroke="#f43f5e" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" points={opposePoints} />
-        </svg>
-        <div className="mt-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-          <span>{safeHistory[0]?.label}</span>
-          <span>{safeHistory.at(-1)?.label}</span>
-        </div>
+      <div className="mt-4">
+        <SentimentHistoryChart
+          data={safeHistory.map((point) => ({
+            label: point.label,
+            date: point.label,
+            supportPercent: point.supportPercent,
+            opposePercent: point.opposePercent,
+            undecidedPercent: point.mixedPercent,
+          }))}
+          title="Sentiment over time"
+          currentValue={latest.supportPercent}
+        />
       </div>
 
       {summary.historyTakeaway ? <p className="mt-4 text-sm leading-6 text-slate-600">{summary.historyTakeaway}</p> : null}

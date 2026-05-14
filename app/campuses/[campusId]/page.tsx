@@ -21,6 +21,7 @@ import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getCommunityHero } from "@/lib/community/place-data";
 import { getFeedDebatePreviews, type DebateFeedPreview } from "@/lib/debates/store";
 import { getCampusElectionVoteState } from "@/lib/elections/campus-voting";
+import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getElectionSummaries } from "@/lib/server/elections-context";
 import { getOrganizationPreviewsForCommunity } from "@/lib/organizations/store";
 import { getTopServicesForCommunity } from "@/lib/services/store";
@@ -407,7 +408,7 @@ export default async function CampusPage({ params }: CampusPageProps) {
               <article key={organization.id} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 shadow-sm">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
-                    {organization.organizationType === "campus_org" ? "Campus Org" : "Coalition"}
+                    {getOrganizationTypeLabel(organization.organizationType)}
                   </span>
                   <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
                     {organization.memberCount} member{organization.memberCount === 1 ? "" : "s"}

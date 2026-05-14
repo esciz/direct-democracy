@@ -30,7 +30,7 @@ function isVisiblePublicCitizen(userId: string, isAnonymousPublic: boolean, over
 
 function IssueChip({ issue }: { issue: string }) {
   return (
-    <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
+    <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-200">
       {issue}
     </span>
   );
@@ -41,23 +41,23 @@ async function PublicCitizenActivitySection({ userId }: { userId: string }) {
 
   if (!summary) {
     return (
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Civic Activity</p>
-        <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">Recent public activity</h2>
-        <p className="mt-3 text-sm text-slate-600">Public activity could not be loaded right now, but the main profile is still available.</p>
+      <section className="dd-panel-muted rounded-[1.75rem] p-6">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-200">Civic Activity</p>
+        <h2 className="mt-2 text-xl font-semibold tracking-tight text-slate-50">Recent public activity</h2>
+        <p className="mt-3 text-sm text-slate-400">Public activity could not be loaded right now, but the main profile is still available.</p>
       </section>
     );
   }
 
   return (
-    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+    <section className="dd-panel-muted rounded-[1.75rem] p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Civic Activity</p>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">Recent public activity</h2>
-          <p className="mt-2 text-sm text-slate-600">A lightweight summary of public work, kept preview-first so the route stays fast.</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-200">Civic Activity</p>
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-slate-50">Recent public activity</h2>
+          <p className="mt-2 text-sm text-slate-400">A lightweight summary of public work, kept preview-first so the route stays fast.</p>
         </div>
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+        <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-200">
           {summary.counts.post + summary.counts.debate + summary.counts.petition + summary.counts.event + summary.counts.interview} recent contributions
         </span>
       </div>
@@ -102,10 +102,10 @@ async function PublicCitizenActivitySection({ userId }: { userId: string }) {
 
 function PublicCitizenActivityFallback() {
   return (
-    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Civic Activity</p>
-      <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">Recent public activity</h2>
-      <p className="mt-3 text-sm text-slate-600">Loading a lightweight public activity summary.</p>
+    <section className="dd-panel-muted rounded-[1.75rem] p-6">
+      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-200">Civic Activity</p>
+      <h2 className="mt-2 text-xl font-semibold tracking-tight text-slate-50">Recent public activity</h2>
+      <p className="mt-3 text-sm text-slate-400">Loading a lightweight public activity summary.</p>
     </section>
   );
 }

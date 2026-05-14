@@ -1,8 +1,10 @@
 import { ExploreResultCard } from "@/components/domain/explore-result-card";
+import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { PageIntro } from "@/components/ui/page-intro";
 import { PreserveScrollQueryForm } from "@/components/ui/preserve-scroll-query-form";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { slugifyIssueText } from "@/lib/issues/utils";
+import { buildSentimentHistory } from "@/lib/sentiment/history";
 import { getIssueDirectoryForUser, getIssueSummary } from "@/lib/server/issues";
 import type { TopIssueSummary } from "@/types/domain";
 
@@ -68,6 +70,19 @@ export default async function IssuesIndexPage({ searchParams }: IssuesIndexPageP
                 href={`/issues/${slugifyIssueText(issue.issueText)}`}
                 ctaLabel="Open issue"
                 badges={renderIssueBadges(issue)}
+                avatar={{
+                  name: issue.issueText,
+                  entityType: "issue",
+                }}
+                chart={
+                  <SentimentHistoryChart
+                    data={buildSentimentHistory(`issue-${issue.id}`, Math.min(82, Math.max(30, 38 + issue.upvoteCount * 6)), { points: 6, opposeBias: 24 })}
+                    title="Public sentiment"
+                    currentValue={Math.min(82, Math.max(30, 38 + issue.upvoteCount * 6))}
+                    compact
+                    showLegend={false}
+                  />
+                }
                 favorite={{ targetType: "issue", targetId: issue.id }}
               />
             ))

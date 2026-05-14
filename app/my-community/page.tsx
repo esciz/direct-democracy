@@ -472,7 +472,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
         returnPath="/my-community"
       />
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-card backdrop-blur sm:p-8">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
             eyebrow="Upcoming Elections"
@@ -485,7 +485,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
         </div>
       </section>
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-card backdrop-blur sm:p-8">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
             eyebrow="Favorites"
@@ -494,7 +494,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
           />
           <Link
             href={`/explore?communityId=${selectedCommunityId}`}
-            className="text-sm font-semibold text-civic-700 hover:text-civic-900"
+            className="text-sm font-semibold text-cyan-200 hover:text-cyan-100"
           >
             View all
           </Link>
@@ -503,16 +503,16 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
         {favoriteItems.length ? (
           <div className="mt-6 space-y-3">
             {favoriteItems.map((item) => (
-              <article key={item.id} className="rounded-[1.35rem] border border-slate-200 bg-slate-50/85 p-4">
+              <article key={item.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{item.label}</p>
-                    <h3 className="mt-2 text-base font-semibold text-ink">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{item.label}</p>
+                    <h3 className="mt-2 text-base font-semibold text-slate-50">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{item.summary}</p>
                   </div>
                   <Link
                     href={item.href}
-                    className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                    className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
                   >
                     View
                   </Link>
@@ -521,13 +521,13 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
             ))}
           </div>
         ) : (
-          <div className="mt-6 rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">
+          <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
             Save communities, issues, officials, or petitions to see them here.
           </div>
         )}
       </section>
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-card backdrop-blur sm:p-8">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading
           eyebrow="Summary & Trending"
           title="Summary & Trending"
@@ -537,16 +537,16 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
         {trendingItems.length ? (
           <div className="mt-6 space-y-3">
             {trendingItems.map((item) => (
-              <article key={item.id} className="rounded-[1.35rem] border border-slate-200 bg-slate-50/85 p-4">
+              <article key={item.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{item.label}</p>
-                    <h3 className="mt-2 text-base font-semibold text-ink">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{item.label}</p>
+                    <h3 className="mt-2 text-base font-semibold text-slate-50">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{item.summary}</p>
                   </div>
                   <Link
                     href={item.href}
-                    className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                    className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
                   >
                     {item.ctaLabel}
                   </Link>
@@ -555,7 +555,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
             ))}
           </div>
         ) : (
-          <div className="mt-6 rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">
+          <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
             Nothing major is trending in your area yet.
           </div>
         )}

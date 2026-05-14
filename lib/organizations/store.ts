@@ -100,7 +100,7 @@ const seededOrganizations: SeedOrganization[] = [
     id: "org_carson_budget_transparency_coalition",
     name: "Carson Budget Transparency Coalition",
     slug: "carson-budget-transparency-coalition",
-    description: "A local coalition focused on budget clarity, public records, and easier-to-follow city decisions.",
+    description: "A local coalition focused on budget clarity, accountability materials, and easier-to-follow city decisions.",
     organizationType: "coalition",
     communityId: "carson-city",
     jurisdictionName: "Carson City, Nevada",
@@ -125,6 +125,96 @@ const seededOrganizations: SeedOrganization[] = [
     linkedDebateIds: ["debate_nevada_cost_groups"],
     linkedPetitionIds: ["petition_north_valley_zoning"],
     createdAt: "2026-03-17T18:00:00.000Z",
+  },
+  {
+    id: "org_washoe_service_workers_union",
+    name: "Washoe Service Workers Union",
+    slug: "washoe-service-workers-union",
+    description: "A labor organization focused on public-sector staffing, worker retention, and service reliability across Washoe County.",
+    organizationType: "labor",
+    communityId: "washoe-county",
+    jurisdictionName: "Washoe County, Nevada",
+    founderUserId: "user_trusted_citizen_hannah_cho",
+    issueTags: ["Teacher pay", "Public staffing", "Collective bargaining"],
+    linkedEventIds: [],
+    linkedDebateIds: [],
+    linkedPetitionIds: [],
+    createdAt: "2026-03-16T18:00:00.000Z",
+  },
+  {
+    id: "org_nevada_open_government_project",
+    name: "Nevada Open Government Project",
+    slug: "nevada-open-government-project",
+    description: "A public-interest group tracking access, ethics, records, and government accountability across Nevada jurisdictions.",
+    organizationType: "public_interest",
+    communityId: "nevada",
+    jurisdictionName: "Nevada",
+    founderUserId: "user_trusted_citizen_marco_silva",
+    issueTags: ["Government transparency", "Ethics", "Meeting access"],
+    linkedEventIds: [],
+    linkedDebateIds: [],
+    linkedPetitionIds: ["petition_carson_meeting_archives"],
+    createdAt: "2026-03-15T18:00:00.000Z",
+  },
+  {
+    id: "org_carson_neighborhood_council",
+    name: "Carson Neighborhood Council",
+    slug: "carson-neighborhood-council",
+    description: "A neighborhood association focused on public safety, downtown growth, sidewalks, and everyday city follow-through.",
+    organizationType: "neighborhood",
+    communityId: "carson-city",
+    jurisdictionName: "Carson City, Nevada",
+    founderUserId: "user_citizen_alicia_hart",
+    issueTags: ["Sidewalk safety", "Downtown growth", "Neighborhood quality of life"],
+    linkedEventIds: [],
+    linkedDebateIds: [],
+    linkedPetitionIds: [],
+    createdAt: "2026-03-19T18:00:00.000Z",
+  },
+  {
+    id: "org_reno_faith_and_service_network",
+    name: "Reno Faith and Service Network",
+    slug: "reno-faith-and-service-network",
+    description: "A religious-community network coordinating service projects, housing relief, and family-support advocacy across Reno.",
+    organizationType: "religious",
+    communityId: "reno",
+    jurisdictionName: "Reno, Nevada",
+    founderUserId: "user_citizen_miles_reed",
+    issueTags: ["Housing affordability", "Food access", "Family services"],
+    linkedEventIds: [],
+    linkedDebateIds: [],
+    linkedPetitionIds: [],
+    createdAt: "2026-03-14T18:00:00.000Z",
+  },
+  {
+    id: "org_nevada_small_business_council",
+    name: "Nevada Small Business Council",
+    slug: "nevada-small-business-council",
+    description: "A business association organizing around permits, workforce pipelines, street access, and practical regulatory feedback.",
+    organizationType: "business",
+    communityId: "nevada",
+    jurisdictionName: "Nevada",
+    founderUserId: "user_candidate_noah_brooks",
+    issueTags: ["Permits", "Workforce", "Downtown access"],
+    linkedEventIds: [],
+    linkedDebateIds: [],
+    linkedPetitionIds: [],
+    createdAt: "2026-03-13T18:00:00.000Z",
+  },
+  {
+    id: "org_northern_nevada_tenants_network",
+    name: "Northern Nevada Tenants Network",
+    slug: "northern-nevada-tenants-network",
+    description: "An issue advocacy group helping renters compare policy tradeoffs, organize testimony, and coordinate housing action.",
+    organizationType: "advocacy",
+    communityId: "reno",
+    jurisdictionName: "Northern Nevada",
+    founderUserId: "user_trusted_citizen_hannah_cho",
+    issueTags: ["Housing affordability", "Renter protections", "Zoning / permits"],
+    linkedEventIds: [],
+    linkedDebateIds: ["debate_nevada_cost_groups"],
+    linkedPetitionIds: ["petition_north_valley_zoning"],
+    createdAt: "2026-03-12T18:00:00.000Z",
   },
 ];
 
@@ -201,6 +291,114 @@ const seededMemberships: OrganizationMembershipSummary[] = [
     state: "approved",
     createdAt: "2026-03-18T18:00:00.000Z",
   },
+  {
+    id: "org_member_hannah_service_workers_founder",
+    organizationId: "org_washoe_service_workers_union",
+    userId: "user_trusted_citizen_hannah_cho",
+    userName: "Hannah Cho",
+    role: "founder",
+    state: "approved",
+    createdAt: "2026-03-16T18:00:00.000Z",
+  },
+  {
+    id: "org_member_miles_service_workers_member",
+    organizationId: "org_washoe_service_workers_union",
+    userId: "user_citizen_miles_reed",
+    userName: "Miles Reed",
+    role: "member",
+    state: "approved",
+    createdAt: "2026-03-17T18:00:00.000Z",
+  },
+  {
+    id: "org_member_marco_open_gov_founder",
+    organizationId: "org_nevada_open_government_project",
+    userId: "user_trusted_citizen_marco_silva",
+    userName: "Marco Silva",
+    role: "founder",
+    state: "approved",
+    createdAt: "2026-03-15T18:00:00.000Z",
+  },
+  {
+    id: "org_member_alicia_open_gov_member",
+    organizationId: "org_nevada_open_government_project",
+    userId: "user_citizen_alicia_hart",
+    userName: "Alicia Hart",
+    role: "member",
+    state: "approved",
+    createdAt: "2026-03-16T18:00:00.000Z",
+  },
+  {
+    id: "org_member_alicia_neighborhood_founder",
+    organizationId: "org_carson_neighborhood_council",
+    userId: "user_citizen_alicia_hart",
+    userName: "Alicia Hart",
+    role: "founder",
+    state: "approved",
+    createdAt: "2026-03-19T18:00:00.000Z",
+  },
+  {
+    id: "org_member_marco_neighborhood_member",
+    organizationId: "org_carson_neighborhood_council",
+    userId: "user_trusted_citizen_marco_silva",
+    userName: "Marco Silva",
+    role: "member",
+    state: "approved",
+    createdAt: "2026-03-20T18:00:00.000Z",
+  },
+  {
+    id: "org_member_miles_faith_founder",
+    organizationId: "org_reno_faith_and_service_network",
+    userId: "user_citizen_miles_reed",
+    userName: "Miles Reed",
+    role: "founder",
+    state: "approved",
+    createdAt: "2026-03-14T18:00:00.000Z",
+  },
+  {
+    id: "org_member_hannah_faith_member",
+    organizationId: "org_reno_faith_and_service_network",
+    userId: "user_trusted_citizen_hannah_cho",
+    userName: "Hannah Cho",
+    role: "member",
+    state: "approved",
+    createdAt: "2026-03-15T18:00:00.000Z",
+  },
+  {
+    id: "org_member_noah_business_founder",
+    organizationId: "org_nevada_small_business_council",
+    userId: "user_candidate_noah_brooks",
+    userName: "Noah Brooks",
+    role: "founder",
+    state: "approved",
+    createdAt: "2026-03-13T18:00:00.000Z",
+  },
+  {
+    id: "org_member_miles_business_member",
+    organizationId: "org_nevada_small_business_council",
+    userId: "user_citizen_miles_reed",
+    userName: "Miles Reed",
+    role: "member",
+    state: "approved",
+    createdAt: "2026-03-14T18:00:00.000Z",
+  },
+  {
+    id: "org_member_hannah_tenants_founder",
+    organizationId: "org_northern_nevada_tenants_network",
+    userId: "user_trusted_citizen_hannah_cho",
+    userName: "Hannah Cho",
+    role: "founder",
+    state: "approved",
+    createdAt: "2026-03-12T18:00:00.000Z",
+  },
+  {
+    id: "org_member_tiana_tenants_member",
+    organizationId: "org_northern_nevada_tenants_network",
+    userId: "user_citizen_tiana_moore",
+    userName: "Tiana Moore",
+    role: "member",
+    state: "approved",
+    createdAt: "2026-03-13T18:00:00.000Z",
+  },
 ];
 
 const seededAnnouncements: OrganizationAnnouncementSummary[] = [
@@ -221,6 +419,24 @@ const seededAnnouncements: OrganizationAnnouncementSummary[] = [
     createdByUserId: "user_trusted_citizen_marco_silva",
     createdByUserName: "Marco Silva",
     createdAt: "2026-04-04T17:30:00.000Z",
+  },
+  {
+    id: "org_announce_open_gov_1",
+    organizationId: "org_nevada_open_government_project",
+    title: "Records access toolkit published",
+    body: "The group shared a plain-language toolkit for residents filing records requests and tracking meeting-access follow-through.",
+    createdByUserId: "user_trusted_citizen_marco_silva",
+    createdByUserName: "Marco Silva",
+    createdAt: "2026-04-06T17:30:00.000Z",
+  },
+  {
+    id: "org_announce_tenants_1",
+    organizationId: "org_northern_nevada_tenants_network",
+    title: "Tenant testimony night",
+    body: "Members are collecting short renter testimony clips ahead of the next housing and zoning hearing.",
+    createdByUserId: "user_trusted_citizen_hannah_cho",
+    createdByUserName: "Hannah Cho",
+    createdAt: "2026-04-07T17:30:00.000Z",
   },
 ];
 
@@ -258,6 +474,39 @@ const seededPlatformItems: Array<Omit<OrganizationPlatformItemSummary, "supportC
     createdByUserName: "Hannah Cho",
     createdAt: "2026-04-03T16:00:00.000Z",
   },
+  {
+    id: "org_platform_open_data_deadlines",
+    organizationId: "org_nevada_open_government_project",
+    title: "Track records-request deadlines statewide",
+    description: "Maintain a statewide tracker showing pending, fulfilled, and overdue records and meeting-access requests.",
+    issueTag: "Government transparency",
+    status: "active",
+    createdByUserId: "user_trusted_citizen_marco_silva",
+    createdByUserName: "Marco Silva",
+    createdAt: "2026-04-04T16:00:00.000Z",
+  },
+  {
+    id: "org_platform_tenants_hearing_pack",
+    organizationId: "org_northern_nevada_tenants_network",
+    title: "Adopt a housing-hearing testimony pack",
+    description: "Package renter testimony, policy tradeoffs, and turnout asks into one member-ready action brief.",
+    issueTag: "Housing affordability",
+    status: "active",
+    createdByUserId: "user_trusted_citizen_hannah_cho",
+    createdByUserName: "Hannah Cho",
+    createdAt: "2026-04-05T16:00:00.000Z",
+  },
+  {
+    id: "org_platform_business_permits",
+    organizationId: "org_nevada_small_business_council",
+    title: "Recommend a simplified permit timeline",
+    description: "Coordinate member feedback on permit delays and propose a clearer statewide turnaround target.",
+    issueTag: "Permits",
+    status: "active",
+    createdByUserId: "user_candidate_noah_brooks",
+    createdByUserName: "Noah Brooks",
+    createdAt: "2026-04-06T16:00:00.000Z",
+  },
 ];
 
 const seededVotes: OrganizationVoteSummary[] = [
@@ -293,6 +542,38 @@ const seededVotes: OrganizationVoteSummary[] = [
     choice: "support",
     createdAt: "2026-04-01T18:05:00.000Z",
   },
+  {
+    id: "org_vote_open_gov_marco",
+    organizationId: "org_nevada_open_government_project",
+    platformItemId: "org_platform_open_data_deadlines",
+    userId: "user_trusted_citizen_marco_silva",
+    choice: "support",
+    createdAt: "2026-04-04T18:00:00.000Z",
+  },
+  {
+    id: "org_vote_open_gov_alicia",
+    organizationId: "org_nevada_open_government_project",
+    platformItemId: "org_platform_open_data_deadlines",
+    userId: "user_citizen_alicia_hart",
+    choice: "support",
+    createdAt: "2026-04-04T18:05:00.000Z",
+  },
+  {
+    id: "org_vote_tenants_hannah",
+    organizationId: "org_northern_nevada_tenants_network",
+    platformItemId: "org_platform_tenants_hearing_pack",
+    userId: "user_trusted_citizen_hannah_cho",
+    choice: "support",
+    createdAt: "2026-04-05T18:00:00.000Z",
+  },
+  {
+    id: "org_vote_tenants_tiana",
+    organizationId: "org_northern_nevada_tenants_network",
+    platformItemId: "org_platform_tenants_hearing_pack",
+    userId: "user_citizen_tiana_moore",
+    choice: "support",
+    createdAt: "2026-04-05T18:05:00.000Z",
+  },
 ];
 
 const seededEndorsements: OrganizationEndorsementSummary[] = [
@@ -324,6 +605,20 @@ const seededEndorsements: OrganizationEndorsementSummary[] = [
     isActive: true,
     createdAt: "2026-04-04T18:00:00.000Z",
   },
+  {
+    id: "org_endorse_noah",
+    organizationId: "org_nevada_small_business_council",
+    organizationName: "Nevada Small Business Council",
+    organizationType: "business",
+    candidateCampaignId: "campaign_noah_assembly_2026",
+    electionId: "election_nevada_assembly_2026",
+    electionTitle: "Nevada Assembly Election",
+    candidateName: "Noah Brooks",
+    officeSought: "Assembly District 14",
+    statement: "Backed for emphasizing clearer permit timelines and workforce coordination.",
+    isActive: true,
+    createdAt: "2026-04-08T18:00:00.000Z",
+  },
 ];
 
 function isObjectRecord(value: unknown): value is Record<string, unknown> {
@@ -331,7 +626,20 @@ function isObjectRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function isOrganizationType(value: unknown): value is OrganizationType {
-  return value === "campus_org" || value === "coalition";
+  return (
+    value === "campus_org" ||
+    value === "coalition" ||
+    value === "labor" ||
+    value === "public_interest" ||
+    value === "special_interest" ||
+    value === "religious" ||
+    value === "nonprofit" ||
+    value === "neighborhood" ||
+    value === "professional" ||
+    value === "student" ||
+    value === "business" ||
+    value === "advocacy"
+  );
 }
 
 function isOrganizationMembershipRole(value: unknown): value is OrganizationMembershipRole {
@@ -709,6 +1017,20 @@ export async function getAllOrganizations(viewer?: AuthUser): Promise<Organizati
     );
     const admins = approvedMemberships.filter((entry) => entry.role === "founder" || entry.role === "admin");
     const viewerMembership = getOrganizationMembershipRole(viewer?.id, organization.id, memberships);
+    const community = getCommunityById(organization.communityId);
+    const activePlatformItems = platformItems.filter((item) => item.organizationId === organization.id && item.status === "active");
+    const activeDebateCount = organization.linkedDebateIds.length;
+    const upcomingEventCount = organization.linkedEventIds.length;
+    const scopeLabel =
+      community?.communityType === "campus"
+        ? "Campus"
+        : community?.scope === "national"
+          ? "National"
+          : community?.scope === "state"
+            ? "State"
+            : organization.issueTags.length > 2 && organization.communityId === "nevada"
+              ? "Issue-based"
+              : "Local";
 
     return {
       id: organization.id,
@@ -719,18 +1041,24 @@ export async function getAllOrganizations(viewer?: AuthUser): Promise<Organizati
       communityId: organization.communityId,
       campusCommunityId: organization.campusCommunityId ?? null,
       jurisdictionName: organization.jurisdictionName,
+      scopeLabel,
       issueTags: canonicalizeIssueTags(organization.issueTags),
       founderUserId: organization.founderUserId,
       founderName: getSeedUserName(organization.founderUserId),
       adminUserIds: admins.map((entry) => entry.userId),
       adminNames: admins.map((entry) => entry.userName),
       memberCount: approvedMemberships.length,
+      activeDebateCount,
+      activeVoteCount: activePlatformItems.length,
       viewerMembershipRole: viewerMembership.role,
       viewerMembershipState: viewerMembership.state,
       canManage: Boolean(viewerMembership.role && (viewerMembership.role === "founder" || viewerMembership.role === "admin")),
       platformItemCount: platformItems.filter((item) => item.organizationId === organization.id).length,
       endorsementCount: endorsements.filter((item) => item.organizationId === organization.id).length,
       announcementCount: announcements.filter((item) => item.organizationId === organization.id).length,
+      upcomingEventCount,
+      petitionCount: organization.linkedPetitionIds.length,
+      statementCount: announcements.filter((item) => item.organizationId === organization.id).length,
       createdAt: organization.createdAt,
     } satisfies OrganizationSummary;
   });

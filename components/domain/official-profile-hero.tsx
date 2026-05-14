@@ -38,20 +38,20 @@ function ProfileStatCard({
   const toneClasses =
     tone === "dark"
       ? {
-          card: "border-slate-900 bg-slate-950 text-white",
+          card: "border-white/10 bg-[linear-gradient(160deg,rgba(8,15,28,0.98),rgba(3,10,20,0.94))] text-white",
           label: "text-slate-400",
           value: "text-white",
         }
       : tone === "civic"
         ? {
-            card: "border-civic-200 bg-civic-50 text-civic-950",
-            label: "text-civic-700",
-            value: "text-civic-950",
+            card: "border-emerald-300/18 bg-[linear-gradient(160deg,rgba(6,78,59,0.24),rgba(8,15,28,0.94))] text-emerald-50",
+            label: "text-emerald-200/80",
+            value: "text-emerald-50",
           }
         : {
-            card: "border-orange-200 bg-orange-50 text-orange-950",
-            label: "text-orange-700",
-            value: "text-orange-950",
+            card: "border-amber-300/18 bg-[linear-gradient(160deg,rgba(120,53,15,0.3),rgba(8,15,28,0.94))] text-amber-50",
+            label: "text-amber-200/80",
+            value: "text-amber-50",
           };
 
   return (
@@ -79,32 +79,33 @@ export async function OfficialProfileHero({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-        <div className="space-y-6">
+      <section className="dd-panel relative overflow-hidden rounded-[1.75rem] p-6 sm:p-8">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(52,211,153,0.1),transparent_30%)]" />
+        <div className="relative space-y-6">
           <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
             <div className="min-w-0 flex-1">
               <div className="flex items-start gap-5">
               <ProfileImagePlaceholder name={official.name} size="lg" imageUrl={official.profileImageUrl} />
                 <div className="min-w-0 flex-1 space-y-4">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white">
+                    <span className="rounded-full border border-cyan-300/18 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
                       {official.officeTitle}
                   </span>
                   {!official.isClaimed ? <UnclaimedProfileBadge /> : null}
-                  <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
+                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
                     {official.party}
                   </span>
                   </div>
                   <div>
-                    <h1 className="text-3xl font-semibold tracking-tight text-ink">{official.name}</h1>
-                    <p className="mt-2 text-sm text-slate-500">{official.jurisdictionName}</p>
+                    <h1 className="text-3xl font-semibold tracking-tight text-slate-50">{official.name}</h1>
+                    <p className="mt-2 text-sm text-slate-400">{official.jurisdictionName}</p>
                   </div>
-                  <p className="max-w-4xl text-sm leading-7 text-slate-700">{official.bio}</p>
+                  <p className="max-w-4xl text-sm leading-7 text-slate-300">{official.bio}</p>
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">
+                    <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">
                       {official.followerCount.toLocaleString()} followers
                     </span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">
+                    <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">
                       {official.followingCount.toLocaleString()} following
                     </span>
                   </div>

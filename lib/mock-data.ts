@@ -730,7 +730,7 @@ const representativeSentimentSeeds: RepresentativeSentimentProfileSeed[] = [
     profileId: "profile_adrian_castillo",
     subjectName: "Adrian Castillo",
     subjectHref: "/officials/profile_adrian_castillo",
-    questionText: "do you approve of Rep. Adrian Castillo's recent votes, statements, and public record",
+    questionText: "do you approve of Rep. Adrian Castillo's recent votes, statements, and accountability record",
     scope: "national",
     jurisdictionId: "united-states",
     jurisdictionName: "United States",
@@ -1995,7 +1995,7 @@ export const mockCommunityEvents: CommunityEventSummary[] = [
   {
     id: "event_washoe_meeting_access",
     title: "Hybrid Meetings Community Discussion",
-    description: "Residents compare ideas for improving remote access and archived public records.",
+    description: "Residents compare ideas for improving remote access and archived case materials.",
     purpose: "Collect practical ideas for more accessible public meetings and archives.",
     jurisdictionName: "Washoe County, Nevada",
     startsAt: "2026-04-06T18:30:00.000Z",

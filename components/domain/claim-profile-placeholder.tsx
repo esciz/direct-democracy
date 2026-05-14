@@ -30,7 +30,7 @@ export function ClaimProfilePlaceholder({
           <h2 className="text-lg font-semibold text-ink">Claiming is planned for a future version</h2>
           <p className="mt-3 text-sm leading-7 text-slate-700">
             This public profile is currently unclaimed. For MVP, admins populate candidate and official profiles so
-            elections, offices, and public records are visible even before someone joins the platform.
+            elections, offices, and civic case histories are visible even before someone joins the platform.
           </p>
           <p className="mt-3 text-sm leading-7 text-slate-700">
             A future release will support a real claim flow that links a verified platform account to the public

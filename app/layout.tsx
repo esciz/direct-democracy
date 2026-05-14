@@ -38,8 +38,8 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className="bg-slate-50 text-slate-900 antialiased">
-        <div className="app-shell mx-auto flex min-h-screen w-full max-w-6xl flex-col px-3 sm:px-6 lg:px-8">
+      <body className="bg-[#050b16] text-slate-100 antialiased">
+        <div className="app-shell mx-auto flex min-h-screen w-full max-w-7xl flex-col px-3 sm:px-5 lg:px-8">
           <MainNav />
           <main className="flex-1">{children}</main>
           <FloatingCreateMenu />

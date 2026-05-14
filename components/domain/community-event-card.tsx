@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { ShareActionMenu } from "@/components/domain/share-action-menu";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
@@ -39,29 +40,56 @@ export function CommunityEventCard({
   return (
     <article className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 shadow-sm">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white">
-            {eventLabel}
-          </span>
-          <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
-            {formatLabel}
-          </span>
-          <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
-            {event.sponsorType}
-          </span>
-          {event.issueLabel ? (
-            <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">{event.issueLabel}</span>
-          ) : null}
-          {distanceLabel ? (
-            <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-sky-700">
-              {distanceLabel}
-            </span>
-          ) : null}
-          {momentumLabel ? (
-            <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">
-              {momentumLabel}
-            </span>
-          ) : null}
+        <div className="flex min-w-0 items-start gap-3">
+          <CivicAvatar
+            name={event.sponsorName}
+            entityType={
+              event.sponsorType === "official"
+                ? "official"
+                : event.sponsorType === "candidate"
+                  ? "candidate"
+                  : event.sponsorType === "trustedCitizen"
+                    ? "trustedCitizen"
+                    : "community"
+            }
+            size="sm"
+            verified={event.sponsorType !== "community"}
+          />
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white">
+                {eventLabel}
+              </span>
+              <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
+                {formatLabel}
+              </span>
+              <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
+                {event.sponsorType}
+              </span>
+              {event.issueLabel ? (
+                <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">{event.issueLabel}</span>
+              ) : null}
+              {distanceLabel ? (
+                <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-sky-700">
+                  {distanceLabel}
+                </span>
+              ) : null}
+              {momentumLabel ? (
+                <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">
+                  {momentumLabel}
+                </span>
+              ) : null}
+            </div>
+            <h3 className="mt-3 text-lg font-semibold text-ink">
+              <Link href={`/events/${event.id}`} className="transition hover:text-civic-700">
+                {event.title}
+              </Link>
+            </h3>
+            <p className="mt-2 text-sm text-slate-500">
+              {startsAt.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })} ·{" "}
+              {startsAt.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })} · {event.jurisdictionName}
+            </p>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <FavoriteToggleControl targetType="event" targetId={event.id} />
@@ -80,15 +108,6 @@ export function CommunityEventCard({
           />
         </div>
       </div>
-      <h3 className="mt-3 text-lg font-semibold text-ink">
-        <Link href={`/events/${event.id}`} className="transition hover:text-civic-700">
-          {event.title}
-        </Link>
-      </h3>
-      <p className="mt-2 text-sm text-slate-500">
-        {startsAt.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })} ·{" "}
-        {startsAt.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })} · {event.jurisdictionName}
-      </p>
       <p className="mt-3 text-sm leading-6 text-slate-600">{event.description}</p>
       <div className="mt-4 space-y-2 text-sm text-slate-600">
         {event.eventType === "interview" && (event.interviewerName || event.interviewSubjectName) ? (

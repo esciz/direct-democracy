@@ -4,9 +4,11 @@ import Link from "next/link";
 import { CaseSupportPanel } from "@/components/domain/case-support-panel";
 import { CommunityBriefThemesSection } from "@/components/domain/community-brief-themes-section";
 import { RevealIconChip } from "@/components/domain/reveal-icon-chip";
+import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { TruthMeter } from "@/components/domain/truth-meter";
 import { VoteCard } from "@/components/domain/vote-card";
 import { canUserVote } from "@/lib/auth/guards";
+import { buildSentimentHistory } from "@/lib/sentiment/history";
 import { getTruthMeter } from "@/lib/truth/ratings";
 import { getIssueVisualToken } from "@/lib/ui/visual-tokens";
 import type { AuthUser, CaseDetail as CaseDetailType, VoteQuestionCardSummary } from "@/types/domain";
@@ -26,38 +28,44 @@ export async function CaseDetail({
   returnPath: string;
   voteQuestion?: VoteQuestionCardSummary | null;
 }) {
+  const currentSupport = Math.min(82, Math.max(28, 32 + caseItem.supportCount * 8 + caseItem.followCount * 3));
+  const history = buildSentimentHistory(`case-detail-${caseItem.id}`, currentSupport, { points: 8, opposeBias: 27 });
+
   return (
     <div className="space-y-6">
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
+          <span className="rounded-full border border-cyan-300/18 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
             {courtLabel(caseItem.courtLevel)}
           </span>
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
+          <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">
             {caseItem.stage}
           </span>
-          <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-700">
+          <span className="rounded-full border border-amber-300/18 bg-amber-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">
             {caseItem.status}
           </span>
         </div>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-ink">{caseItem.title}</h1>
-        <p className="mt-4 text-base leading-7 text-slate-700">{caseItem.summary}</p>
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-50">{caseItem.title}</h1>
+        <p className="mt-4 text-base leading-7 text-slate-300">{caseItem.summary}</p>
         <div className="mt-5 flex flex-wrap gap-2">
           {caseItem.issueTags.map((tag) => (
             <RevealIconChip key={tag} {...getIssueVisualToken(tag)} tone="civic" />
           ))}
         </div>
         <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold">
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">{caseItem.followCount} following</span>
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">{caseItem.supportCount} supporting</span>
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">{caseItem.jurisdictionName}</span>
+          <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">{caseItem.followCount} following</span>
+          <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">{caseItem.supportCount} supporting</span>
+          <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">{caseItem.jurisdictionName}</span>
+        </div>
+        <div className="mt-6">
+          <SentimentHistoryChart data={history} title="Sentiment over time" currentValue={currentSupport} />
         </div>
         {caseItem.keyDates.length ? (
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             {caseItem.keyDates.map((entry) => (
-              <div key={`${entry.label}-${entry.date}`} className="rounded-3xl bg-slate-50 p-4">
-                <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{entry.label}</p>
-                <p className="mt-2 text-sm font-semibold text-ink">
+              <div key={`${entry.label}-${entry.date}`} className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">{entry.label}</p>
+                <p className="mt-2 text-sm font-semibold text-slate-50">
                   {new Date(`${entry.date}T12:00:00Z`).toLocaleDateString("en-US", {
                     month: "long",
                     day: "numeric",
@@ -70,7 +78,7 @@ export async function CaseDetail({
         ) : null}
       </section>
 
-      <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
+      <section className="rounded-[1.75rem] border border-amber-300/16 bg-amber-500/10 p-5 text-sm text-amber-100 shadow-card">
         Public support and community input only. This page is not a legal filing, not legal advice, and not direct amicus participation.
       </section>
 

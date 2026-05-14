@@ -169,7 +169,7 @@ function RelatedOrganizationsSection({
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Organizations</p>
           <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">Organizations tied to this issue</h2>
           <p className="mt-2 text-sm text-slate-600">
-            Coalitions, campus orgs, and civic groups using {issueText} as one of their shared issue priorities.
+            Civic organizations using {issueText} as one of their shared issue priorities.
           </p>
         </div>
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
@@ -1319,7 +1319,7 @@ export default async function IssueDetailPage({ params, searchParams }: IssueDet
       <PageIntro
         eyebrow="Issue"
         title={issue.issueText}
-        description={`${getIssueSummary(issue.issueText)} Start with the plain-language summary first, then open the deeper public record only when you want it.`}
+        description={`${getIssueSummary(issue.issueText)} Start with the plain-language summary first, then open the deeper case and accountability trail only when you want it.`}
         meta={
           <>
             <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">{issue.jurisdictionName}</span>
@@ -1410,7 +1410,7 @@ async function IssueDetailContent({
               <div className="rounded-2xl bg-amber-50/80 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">One thing you can do now</p>
                 <p className="mt-2 text-sm leading-7 text-slate-700">
-                  Save the issue, read the short brief, and then choose one next step: see both sides, check related ballot items, or open the public record.
+                  Save the issue, read the short brief, and then choose one next step: see both sides, check related ballot items, or open the related cases.
                 </p>
               </div>
             </div>

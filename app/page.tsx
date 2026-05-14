@@ -477,26 +477,26 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-8 py-8">
-      <section className="relative overflow-hidden rounded-[2.1rem] border border-white/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.97),rgba(239,246,255,0.95),rgba(255,247,237,0.94))] p-6 shadow-[0_28px_65px_-36px_rgba(15,23,42,0.58)] backdrop-blur sm:p-8">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.18),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(245,158,11,0.13),transparent_30%),radial-gradient(circle_at_center_left,rgba(16,185,129,0.10),transparent_34%)]" />
+      <section className="dd-panel relative overflow-hidden rounded-[2.1rem] p-6 sm:p-8">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(129,140,248,0.13),transparent_30%),radial-gradient(circle_at_center_left,rgba(52,211,153,0.12),transparent_34%)]" />
         <div className="relative space-y-5">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-3xl">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-civic-200/70 bg-civic-50/85 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-civic-700">
+                <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
                   <span>Home</span>
                 </span>
-                <span className="inline-flex items-center gap-2 rounded-full border border-amber-200/80 bg-amber-50/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
+                <span className="inline-flex items-center gap-2 rounded-full border border-amber-300/18 bg-amber-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
                   <span>Prototype demo</span>
                 </span>
               </div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink sm:text-[2.8rem]">
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-50 sm:text-[2.8rem]">
                 Your vote is the signal.
               </h1>
-              <p className="mt-3 max-w-2xl text-base leading-7 text-slate-700">
+              <p className="mt-3 max-w-2xl text-base leading-7 text-slate-300">
                 Direct Democracy helps verified voters vote regularly, follow local issues, see what officials are doing, and build a clearer civic signal across local, state, and national life.
               </p>
-              <p className="mt-4 text-sm font-medium text-civic-700">
+              <p className="mt-4 text-sm font-medium text-emerald-200">
                 {participationMessage}
               </p>
               <p className="mt-3 text-xs leading-6 text-slate-500">
@@ -504,14 +504,14 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="rounded-[1.6rem] border border-white/80 bg-white/82 p-4 shadow-[0_22px_45px_-34px_rgba(15,23,42,0.55)] backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+            <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_22px_45px_-34px_rgba(2,8,23,0.92)] backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
                 {canVoteNow ? "Verified voting" : "Guest browse"}
               </p>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-ink">
+              <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-50">
                 {canVoteNow ? `${waitingVotes}` : "Read-only"}
               </p>
-              <p className="mt-2 max-w-[12rem] text-sm leading-6 text-slate-600">
+              <p className="mt-2 max-w-[12rem] text-sm leading-6 text-slate-400">
                 {canVoteNow
                   ? waitingVotes === 1
                     ? "vote waiting right now"
@@ -524,21 +524,21 @@ export default async function HomePage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/voting"
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_35px_-20px_rgba(15,23,42,0.65)] transition hover:-translate-y-0.5 hover:bg-slate-800"
+              className="dd-button-primary inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
             >
               {canVoteNow ? "Start Voting" : "Try the Demo"}
             </Link>
             {canVoteNow ? (
               <Link
                 href={`/my-community?communityId=${defaultCommunity.id}`}
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200 bg-white/90 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-400 hover:text-civic-700"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
               >
                 Explore My Community
               </Link>
             ) : (
               <Link
                 href="/get-started?step=account"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-200 bg-white/90 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-400 hover:text-civic-700"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
               >
                 Verify to Participate
               </Link>
@@ -546,43 +546,43 @@ export default async function HomePage() {
           </div>
 
           <div className="grid gap-3 md:grid-cols-2">
-            <div className="rounded-[1.5rem] border border-white/85 bg-white/82 p-4 shadow-[0_16px_34px_-30px_rgba(15,23,42,0.55)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Verified profile</p>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_16px_34px_-30px_rgba(2,8,23,0.88)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Verified profile</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
                 Every vote is tied to a verified voter profile, so results are harder to spam and easier to trust.
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-white/85 bg-white/82 p-4 shadow-[0_16px_34px_-30px_rgba(15,23,42,0.55)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Regular voting</p>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_16px_34px_-30px_rgba(2,8,23,0.88)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Regular voting</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
                 Regular voting builds a living civic signal, not just one election-day snapshot.
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-white/85 bg-white/82 p-4 shadow-[0_16px_34px_-30px_rgba(15,23,42,0.55)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Public signal</p>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_16px_34px_-30px_rgba(2,8,23,0.88)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Public signal</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
                 Local, statewide, and national questions stack into a clearer picture of public priorities over time.
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-white/85 bg-white/82 p-4 shadow-[0_16px_34px_-30px_rgba(15,23,42,0.55)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Officials can see it</p>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
+            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_16px_34px_-30px_rgba(2,8,23,0.88)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Officials can see it</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
                 Verified voter input makes it easier for officials and candidates to see what voters actually want.
               </p>
             </div>
           </div>
 
-          <div className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-4">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="text-sm font-semibold text-ink">My Community</p>
-                <p className="mt-1 text-sm text-slate-600">
+                <p className="text-sm font-semibold text-slate-100">My Community</p>
+                <p className="mt-1 text-sm text-slate-400">
                   See local issues, officials, events, and civic activity in your area.
                 </p>
               </div>
               <Link
                 href={`/my-community?communityId=${defaultCommunity.id}`}
-                className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
               >
                 View My Community
               </Link>
@@ -590,8 +590,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-card backdrop-blur sm:p-8">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)] xl:items-start">
+      <div className="space-y-6">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading
           eyebrow="Active Votes"
           title="Verified voters create change by voting regularly"
@@ -602,7 +603,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-card backdrop-blur sm:p-8">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading
           eyebrow="Upcoming Elections"
           title="Upcoming Elections"
@@ -612,15 +613,16 @@ export default async function HomePage() {
           <HomeUpcomingElectionsPane elections={upcomingElectionItems} />
         </div>
       </section>
-
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-card backdrop-blur sm:p-8">
+      </div>
+      <div className="space-y-6">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
             eyebrow="Favorites"
             title="Saved civic items"
             description="Keep the communities, issues, officials, petitions, and civic items you care about close at hand."
           />
-          <Link href="/explore?favorites=1" className="text-sm font-semibold text-civic-700 hover:text-civic-900">
+          <Link href="/explore?favorites=1" className="text-sm font-semibold text-cyan-200 hover:text-cyan-100">
             View all
           </Link>
         </div>
@@ -628,16 +630,16 @@ export default async function HomePage() {
         {favoriteItems.length ? (
           <div className="mt-6 space-y-3">
             {favoriteItems.map((item) => (
-              <article key={item.id} className="rounded-[1.35rem] border border-slate-200 bg-slate-50/85 p-4">
+              <article key={item.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{item.label}</p>
-                    <h3 className="mt-2 text-base font-semibold text-ink">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{item.label}</p>
+                    <h3 className="mt-2 text-base font-semibold text-slate-50">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{item.summary}</p>
                   </div>
                   <Link
                     href={item.href}
-                    className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                    className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
                   >
                     View
                   </Link>
@@ -646,13 +648,13 @@ export default async function HomePage() {
             ))}
           </div>
         ) : (
-          <div className="mt-6 rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">
+          <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
             Save communities, issues, officials, or petitions to see them here.
           </div>
         )}
       </section>
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-card backdrop-blur sm:p-8">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading
           eyebrow="Summary & Trending"
           title="What your community is talking about"
@@ -662,16 +664,16 @@ export default async function HomePage() {
         {trendingItems.length ? (
           <div className="mt-6 space-y-3">
             {trendingItems.map((item) => (
-              <article key={item.id} className="rounded-[1.35rem] border border-slate-200 bg-slate-50/85 p-4">
+              <article key={item.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{item.label}</p>
-                    <h3 className="mt-2 text-base font-semibold text-ink">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{item.summary}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{item.label}</p>
+                    <h3 className="mt-2 text-base font-semibold text-slate-50">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">{item.summary}</p>
                   </div>
                   <Link
                     href={item.href}
-                    className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                    className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
                   >
                     {item.ctaLabel}
                   </Link>
@@ -681,18 +683,20 @@ export default async function HomePage() {
             <div className="pt-2">
               <Link
                 href="/explore"
-                className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
               >
                 Explore More
               </Link>
             </div>
           </div>
         ) : (
-          <div className="mt-6 rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">
+          <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
             Nothing major is trending in your area yet.
           </div>
         )}
       </section>
+      </div>
+      </div>
     </div>
   );
 }

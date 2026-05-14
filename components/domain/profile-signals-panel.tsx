@@ -89,9 +89,9 @@ function SignalScale({ label, value }: { label: string; value: string }) {
 
   return (
     <div className="mt-4 space-y-2">
-      <div className={`relative h-2.5 rounded-full bg-gradient-to-r ${trackTone}`}>
+      <div className={`relative h-2.5 rounded-full bg-gradient-to-r ${trackTone} opacity-90`}>
         <div
-          className={`absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 ${markerTone} shadow-[0_0_0_4px_rgba(255,255,255,0.92)]`}
+          className={`absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 ${markerTone} shadow-[0_0_0_4px_rgba(8,15,28,0.88)]`}
           style={{ left: `${position}%` }}
         />
       </div>
@@ -133,13 +133,13 @@ function SignalCard({
   const scoreLabel = formatSignalScore(label, score);
 
   return (
-    <div className="flex h-full min-w-0 flex-col rounded-[1.4rem] border border-slate-200 bg-white/95 p-4 shadow-[0_10px_30px_-24px_rgba(15,23,42,0.5)]">
+    <div className="flex h-full min-w-0 flex-col rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_10px_30px_-24px_rgba(2,8,23,0.72)]">
       <div className="min-w-0">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{label}</p>
-        <p className="mt-3 text-xl font-semibold leading-tight text-ink">{value}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</p>
+        <p className="mt-3 text-xl font-semibold leading-tight text-slate-50">{value}</p>
         <SignalScale label={label} value={value} />
         {scoreLabel ? (
-          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{scoreLabel}</p>
+          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">{scoreLabel}</p>
         ) : null}
       </div>
     </div>
@@ -170,11 +170,11 @@ export function ProfileSignalsPanel({ signals, cards }: ProfileSignalsPanelProps
     signalCards.length === 1 ? "xl:grid-cols-1" : signalCards.length === 2 ? "xl:grid-cols-2" : "xl:grid-cols-3";
 
   return (
-    <div className="rounded-[1.6rem] border border-slate-200 bg-white/88 p-5 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.42)] backdrop-blur">
+    <div className="dd-panel-muted rounded-[1.6rem] p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Profile Signals</p>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">{signals.transparencyNote}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Profile Signals</p>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">{signals.transparencyNote}</p>
         </div>
       </div>
       <div className={`mt-5 grid gap-4 ${gridClass}`}>

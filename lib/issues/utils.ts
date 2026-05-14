@@ -79,7 +79,7 @@ const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
   },
   {
     title: "Public Meeting Access",
-    summary: "Meeting access, livestreams, summaries, public records, and the clarity residents need to participate meaningfully.",
+    summary: "Meeting access, livestreams, summaries, case materials, and the clarity residents need to participate meaningfully.",
     aliases: [
       "public meeting access",
       "meeting access",

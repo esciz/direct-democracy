@@ -24,7 +24,7 @@ export function PetitionCreateForm({ jurisdictionName, error, organization, issu
         </span>
         {organization ? (
           <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
-            Coalition · {organization.name}
+            Organization · {organization.name}
           </span>
         ) : null}
       </div>
@@ -83,7 +83,7 @@ export function PetitionCreateForm({ jurisdictionName, error, organization, issu
           />
           {error === "body" ? <p className="mt-2 text-sm text-orange-700">Use at least 40 characters for the body.</p> : null}
           {error === "organization" ? (
-            <p className="mt-2 text-sm text-orange-700">Only coalition admins can publish petitions on behalf of an organization.</p>
+            <p className="mt-2 text-sm text-orange-700">Only eligible organization admins can publish petitions on behalf of an organization.</p>
           ) : null}
         </div>
 

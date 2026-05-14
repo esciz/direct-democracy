@@ -1,7 +1,10 @@
 import Link from "next/link";
 
+import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { slugifyIssueText } from "@/lib/issues/utils";
+import { buildSentimentHistory } from "@/lib/sentiment/history";
 import type { PetitionSummary } from "@/types/domain";
 
 type PetitionCardProps = {
@@ -11,13 +14,23 @@ type PetitionCardProps = {
 export function PetitionCard({ petition }: PetitionCardProps) {
   const percent = Math.min(100, Math.round((petition.signatureCount / petition.signatureGoal) * 100));
   const actionLabel = petition.eligibleForCosponsorship ? "View eligibility" : "View petition";
+  const currentSupport = Math.min(84, Math.max(24, Math.round(percent * 0.72)));
+  const history = buildSentimentHistory(`petition-${petition.id}`, currentSupport, { points: 6, opposeBias: 20 });
 
   return (
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
       <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-sm font-semibold text-civic-700">{petition.jurisdictionName}</p>
-          <h2 className="mt-2 text-xl font-semibold text-ink">{petition.title}</h2>
+        <div className="flex items-start gap-3">
+          <CivicAvatar
+            name={petition.creatorName}
+            entityType={petition.organizationId ? "organization" : "petition"}
+            size="sm"
+            verified={Boolean(petition.organizationId)}
+          />
+          <div>
+            <p className="text-sm font-semibold text-civic-700">{petition.jurisdictionName}</p>
+            <h2 className="mt-2 text-xl font-semibold text-ink">{petition.title}</h2>
+          </div>
         </div>
         <div className="flex flex-col items-end gap-2">
           <FavoriteToggleControl targetType="petition" targetId={petition.id} />
@@ -54,6 +67,9 @@ export function PetitionCard({ petition }: PetitionCardProps) {
         <span className="rounded-full bg-orange-50 px-3 py-1 text-orange-700">
           {petition.eligibleForCosponsorship ? "Eligible for co-sponsorship" : "Collecting signatures"}
         </span>
+      </div>
+      <div className="mt-5">
+        <SentimentHistoryChart data={history} title="Support trend" currentValue={currentSupport} compact showLegend={false} />
       </div>
       <div className="mt-5">
         <Link

@@ -8,7 +8,7 @@ export function MessageProfileButton({ recipientUserId }: MessageProfileButtonPr
   return (
     <Link
       href={`/messages/new?recipientUserId=${recipientUserId}`}
-      className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+      className="dd-button-secondary inline-flex rounded-full px-4 py-3 text-sm font-semibold transition hover:border-cyan-300/30 hover:text-white"
     >
       Message
     </Link>

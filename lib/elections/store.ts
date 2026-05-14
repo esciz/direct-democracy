@@ -166,7 +166,7 @@ const seededPublicProfiles: PublicProfileSummary[] = [
     profileType: "official",
     jurisdictionName: "Carson City, Nevada",
     partyText: "Nonpartisan",
-    bio: "Helen Cho is a Carson City school board trustee with a public record focused on staffing and classroom support.",
+    bio: "Helen Cho is a Carson City school board trustee with a service record focused on staffing and classroom support.",
     profileImageUrl: null,
     donationUrl: "https://donate.example.com/helen-cho",
     websiteUrl: "https://campaign.example.com/helen-cho",

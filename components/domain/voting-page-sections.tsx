@@ -246,22 +246,22 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
 
   return (
     <div className="space-y-6">
-      <section className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-[linear-gradient(155deg,rgba(255,255,255,0.97),rgba(247,250,252,0.93))] p-6 shadow-[0_28px_65px_-38px_rgba(15,23,42,0.65)] backdrop-blur sm:p-8">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.12),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(245,158,11,0.08),transparent_34%)]" />
+      <section className="dd-panel relative overflow-hidden rounded-[2rem] p-6 sm:p-8">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(52,211,153,0.08),transparent_34%)]" />
         <div className="mx-auto max-w-2xl">
           <div className="relative flex flex-wrap items-start justify-between gap-3">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-civic-200/70 bg-civic-50/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
                 <span>{filterLabel}</span>
               </div>
-              <h2 className="mt-3 text-[2rem] font-semibold tracking-tight text-ink">{progressLabel}</h2>
-              <p className="mt-2 text-sm text-slate-600">{progressMessage}</p>
+              <h2 className="mt-3 text-[2rem] font-semibold tracking-tight text-slate-50">{progressLabel}</h2>
+              <p className="mt-2 text-sm text-slate-400">{progressMessage}</p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <span className="rounded-full border border-white/80 bg-white/85 px-3 py-1 text-xs font-semibold text-slate-700 shadow-[0_10px_24px_-20px_rgba(15,23,42,0.5)]">
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-200">
                 {answeredCount} answered
               </span>
-              <span className="rounded-full border border-civic-200/70 bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
+              <span className="rounded-full border border-emerald-300/18 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200">
                 {unansweredQuestions.length} remaining
               </span>
             </div>
@@ -272,9 +272,9 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
               <span>{answeredCount} of {questions.length || 0} answered</span>
               <span>{progressPercent}% complete</span>
             </div>
-            <div className="h-2.5 rounded-full bg-slate-100">
+            <div className="h-2.5 rounded-full bg-white/8">
               <div
-                className="h-2.5 rounded-full bg-[linear-gradient(90deg,#0ea5e9,#10b981)] transition-all"
+                className="h-2.5 rounded-full bg-[linear-gradient(90deg,#22d3ee,#34d399)] transition-all"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -283,27 +283,27 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
           <div className="mt-6">
             {currentQuestion ? (
               <div className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] border border-white/80 bg-white/80 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
+                <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                   <div className="flex flex-wrap gap-2">
                     <button
                       type="button"
                       onClick={() => moveToPreviousQuestion(currentQuestion.id)}
                       disabled={currentIndex <= 0}
-                      className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-civic-300 hover:text-civic-700 disabled:cursor-not-allowed disabled:opacity-45"
+                      className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-cyan-300/20 hover:text-cyan-100 disabled:cursor-not-allowed disabled:opacity-45"
                     >
                       Back
                     </button>
                     <button
                       type="button"
                       onClick={() => moveToNextQuestion(currentQuestion.id)}
-                      className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-civic-300 hover:text-civic-700"
+                      className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-cyan-300/20 hover:text-cyan-100"
                     >
                       Skip
                     </button>
                   </div>
                   <Link
                     href={`/voting/all?filter=${activeFilter}`}
-                    className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-civic-300 hover:text-civic-700"
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-cyan-300/20 hover:text-cyan-100"
                   >
                     View all
                   </Link>
@@ -320,7 +320,7 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
                 />
               </div>
             ) : (
-              <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600">
+              <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
                 No active voting questions are available for this filter yet.
               </div>
             )}
@@ -329,23 +329,23 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
       </section>
 
       {polls.length ? (
-        <section className="relative overflow-hidden rounded-[1.9rem] border border-white/70 bg-[linear-gradient(155deg,rgba(255,255,255,0.92),rgba(248,250,252,0.84))] p-6 shadow-[0_24px_54px_-40px_rgba(15,23,42,0.52)] backdrop-blur sm:p-7">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.08),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.08),transparent_30%)]" />
+        <section className="relative overflow-hidden rounded-[1.9rem] border border-white/10 bg-[linear-gradient(165deg,rgba(19,14,28,0.96),rgba(9,13,24,0.96))] p-6 shadow-[0_24px_54px_-40px_rgba(2,8,23,0.78)] backdrop-blur sm:p-7">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.1),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.08),transparent_30%)]" />
           <div className="mx-auto max-w-2xl">
             <div className="relative flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Secondary layer</p>
-                <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Citizen Polls</h3>
-                <p className="mt-2 text-sm leading-7 text-slate-600">
+                <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Citizen Polls</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-400">
                   Polls created by eligible citizens and trusted voices, tied to your communities, issues, elections, cases, or petitions.
                 </p>
-                <p className="mt-2 text-sm text-slate-600">{pollProgressLabel} · {pollProgressMessage}</p>
+                <p className="mt-2 text-sm text-slate-400">{pollProgressLabel} · {pollProgressMessage}</p>
               </div>
               <div className="flex flex-wrap gap-2">
-                <span className="rounded-full border border-white/80 bg-white/85 px-3 py-1 text-xs font-semibold text-slate-700">
+                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-200">
                   {pollAnsweredCount} answered
                 </span>
-                <span className="rounded-full border border-orange-200/70 bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">
+                <span className="rounded-full border border-orange-300/18 bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-200">
                   {unansweredPolls.length} remaining
                 </span>
               </div>
@@ -356,7 +356,7 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
                 <span>{pollAnsweredCount} of {polls.length} answered</span>
                 <span>{pollProgressPercent}% complete</span>
               </div>
-              <div className="h-2.5 rounded-full bg-slate-100">
+              <div className="h-2.5 rounded-full bg-white/8">
                 <div
                   className="h-2.5 rounded-full bg-[linear-gradient(90deg,#fb923c,#f59e0b)] transition-all"
                   style={{ width: `${pollProgressPercent}%` }}
@@ -367,89 +367,89 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
             <div className="mt-6">
               {currentPoll ? (
                 <div className="space-y-4">
-                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] border border-white/80 bg-white/80 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
+                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
                     <div className="flex flex-wrap gap-2">
                       <button
                         type="button"
                         onClick={() => moveToPreviousPoll(currentPoll.id)}
                         disabled={currentPollIndex <= 0}
-                        className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-orange-300 hover:text-orange-700 disabled:cursor-not-allowed disabled:opacity-45"
+                        className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-orange-300/24 hover:text-orange-100 disabled:cursor-not-allowed disabled:opacity-45"
                       >
                         Back
                       </button>
                       <button
                         type="button"
                         onClick={() => moveToNextPoll(currentPoll.id)}
-                        className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-orange-300 hover:text-orange-700"
+                        className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-orange-300/24 hover:text-orange-100"
                       >
                         Skip
                       </button>
                     </div>
                     <Link
                       href="/polls"
-                      className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-orange-300 hover:text-orange-700"
+                      className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-orange-300/24 hover:text-orange-100"
                       >
                       View all
                     </Link>
                   </div>
 
-                  <article className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-[linear-gradient(160deg,rgba(255,255,255,0.97),rgba(250,250,249,0.92))] p-6 shadow-[0_28px_60px_-36px_rgba(15,23,42,0.5)] backdrop-blur">
-                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,146,60,0.16),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.08),transparent_30%)]" />
+                  <article className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(165deg,rgba(26,15,22,0.98),rgba(9,13,24,0.98))] p-6 shadow-[0_28px_60px_-36px_rgba(2,8,23,0.78)] backdrop-blur">
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,146,60,0.16),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(168,85,247,0.08),transparent_30%)]" />
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#fb923c,#f59e0b,#f97316)]" />
                     <div className="relative flex flex-wrap items-center gap-2">
-                      <span className="rounded-full border border-orange-200/70 bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-700">
+                      <span className="rounded-full border border-orange-300/18 bg-orange-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-200">
                         Citizen Poll
                       </span>
                       {currentPoll.onboardingPosition && currentPoll.onboardingTotal ? (
-                        <span className="rounded-full border border-orange-200/70 bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-700">
+                        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
                           Poll {currentPoll.onboardingPosition} of {currentPoll.onboardingTotal}
                         </span>
                       ) : null}
-                      <span className="rounded-full border border-slate-200/70 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-700">
+                      <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-300">
                         {currentPoll.jurisdictionName}
                       </span>
                       {getCitizenPollContextLabels(currentPoll).map((label) => (
-                        <span key={`${currentPoll.id}-${label}`} className="rounded-full border border-orange-200/70 bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">
+                        <span key={`${currentPoll.id}-${label}`} className="rounded-full border border-orange-300/18 bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-200">
                           {label}
                         </span>
                       ))}
                     </div>
 
-                    <h4 className="relative mt-4 text-2xl font-semibold tracking-tight text-ink">{currentPoll.question}</h4>
-                    <p className="relative mt-3 text-sm font-medium text-orange-700">
+                    <h4 className="relative mt-4 text-2xl font-semibold tracking-tight text-slate-50">{currentPoll.question}</h4>
+                    <p className="relative mt-3 text-sm font-medium text-orange-200">
                       By {currentPoll.creatorName}. Citizen polls stay contextual and secondary to formal public votes.
                     </p>
                     {currentPollContextPreview ? (
-                      <div className="relative mt-4 rounded-[1.5rem] border border-orange-100/90 bg-white/78 px-4 py-4">
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-orange-700">Context</p>
-                        <p className="mt-2 text-sm leading-6 text-slate-700">{currentPollContextPreview}</p>
+                      <div className="relative mt-4 rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-orange-200">Context</p>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">{currentPollContextPreview}</p>
                       </div>
                     ) : null}
 
                     {currentPoll.viewerVote && !isEditingPollVote ? (
                       <div className="relative mt-5 space-y-3">
-                        <div className="rounded-[1.5rem] border border-orange-100 bg-[linear-gradient(135deg,rgba(255,247,237,0.95),rgba(255,255,255,0.98))] p-4 text-sm text-slate-700">
-                          <span className="font-semibold text-orange-800">Answer recorded:</span> {formatVoteLabel(currentPoll, currentPoll.viewerVote)}
+                        <div className="rounded-[1.5rem] border border-orange-300/16 bg-[linear-gradient(135deg,rgba(154,52,18,0.24),rgba(8,15,28,0.88))] p-4 text-sm text-slate-200">
+                          <span className="font-semibold text-orange-200">Answer recorded:</span> {formatVoteLabel(currentPoll, currentPoll.viewerVote)}
                           {currentPoll.viewerVoteCreatedAt ? (
-                            <span className="text-slate-500"> · Updated {new Date(currentPoll.viewerVoteCreatedAt).toLocaleDateString()}</span>
+                            <span className="text-slate-400"> · Updated {new Date(currentPoll.viewerVoteCreatedAt).toLocaleDateString()}</span>
                           ) : null}
                         </div>
                         {currentPoll.results.map((result) => (
-                          <div key={result.option} className="space-y-2">
-                            <div className="flex items-center justify-between text-sm font-medium text-slate-600">
+                          <div key={result.option} className="rounded-[1.35rem] border border-white/8 bg-white/[0.03] px-4 py-3">
+                            <div className="flex items-center justify-between text-sm font-medium text-slate-300">
                               <span>{formatVoteLabel(currentPoll, result.option)}</span>
                               <span>
                                 {result.voteCount} votes · {result.percentage}%
                               </span>
                             </div>
-                            <div className="h-2.5 rounded-full bg-slate-100">
-                              <div className="h-2.5 rounded-full bg-orange-500" style={{ width: `${result.percentage}%` }} />
+                            <div className="mt-3 h-1.5 rounded-full bg-white/8">
+                              <div className="h-1.5 rounded-full bg-orange-500" style={{ width: `${result.percentage}%` }} />
                             </div>
                           </div>
                         ))}
-                        <p className="text-xs uppercase tracking-[0.16em] text-slate-400">{currentPoll.totalVotes} total responses</p>
+                        <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{currentPoll.totalVotes} total responses</p>
                         {currentPoll.votingPeriodStatus === "closed" ? (
-                          <p className="text-sm text-slate-500">This citizen poll is closed.</p>
+                          <p className="text-sm text-slate-400">This citizen poll is closed.</p>
                         ) : null}
                         {currentPoll.canChangeVote ? (
                           <div className="pt-1">
@@ -460,7 +460,7 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
                               setPollError(null);
                               setIsEditingPollVote(true);
                             }}
-                              className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-orange-300 hover:text-orange-700"
+                              className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-orange-300/24 hover:text-orange-100"
                             >
                               Change vote
                             </button>
@@ -470,7 +470,7 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
                     ) : (
                       <div className="relative mt-5 space-y-3">
                         {isEditingPollVote ? (
-                          <div className="rounded-[1.5rem] border border-orange-100 bg-orange-50 p-4 text-sm text-orange-900">
+                          <div className="rounded-[1.5rem] border border-orange-300/16 bg-orange-500/10 p-4 text-sm text-orange-100">
                             Update your answer while this citizen poll is still open. Your previous answer will be replaced, not duplicated.
                           </div>
                         ) : null}
@@ -483,8 +483,8 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
                               onClick={() => handleCitizenPollVote(option)}
                               className={`rounded-2xl border px-4 py-3.5 text-sm font-semibold shadow-[0_14px_30px_-24px_rgba(15,23,42,0.35)] transition ${
                                 (!canVote && !currentPoll.canChangeVote) || isPollPending
-                                  ? "cursor-not-allowed border-slate-200 bg-slate-100 text-slate-500 opacity-55"
-                                  : "border-slate-200 bg-white text-slate-700 hover:-translate-y-0.5 hover:border-orange-300 hover:text-orange-700 hover:shadow-[0_18px_34px_-24px_rgba(251,146,60,0.45)]"
+                              ? "cursor-not-allowed border-white/10 bg-white/5 text-slate-500 opacity-55"
+                                  : "border-white/10 bg-white/5 text-slate-200 hover:-translate-y-0.5 hover:border-orange-300/24 hover:text-orange-100 hover:shadow-[0_18px_34px_-24px_rgba(251,146,60,0.45)]"
                               }`}
                             >
                               {formatVoteLabel(currentPoll, option)}
@@ -492,7 +492,7 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
                           ))}
                         </div>
                         {!canVote && !currentPoll.canChangeVote ? (
-                          <div className="rounded-2xl bg-slate-50 p-4 text-sm text-slate-600">
+                          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-400">
                             Browse this citizen poll now. Answering unlocks after voter verification is complete.
                           </div>
                         ) : null}
@@ -501,7 +501,7 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
                             <button
                               type="button"
                               onClick={() => setIsEditingPollVote(false)}
-                              className="rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-300"
+                              className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-white/16"
                             >
                               Cancel
                             </button>
@@ -510,14 +510,14 @@ export function VotingPageSections({ initialQuestions, citizenPolls, canVote, re
                       </div>
                     )}
 
-                    <div className="relative mt-5 rounded-3xl border border-slate-200 bg-slate-50/80">
+                    <div className="relative mt-5 rounded-3xl border border-white/10 bg-white/[0.04]">
                       <button
                         type="button"
                         onClick={() => setShowPollContext((value) => !value)}
-                        className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left text-sm font-semibold text-slate-700 transition hover:text-orange-700"
+                        className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left text-sm font-semibold text-slate-200 transition hover:text-orange-100"
                       >
                         <span>More context</span>
-                        <span className="text-xs uppercase tracking-[0.16em] text-slate-400">{showPollContext ? "Hide" : "View details"}</span>
+                        <span className="text-xs uppercase tracking-[0.16em] text-slate-500">{showPollContext ? "Hide" : "View details"}</span>
                       </button>
                       {showPollContext ? (
                         <div className="space-y-4 border-t border-slate-200 px-4 pb-4 pt-4">

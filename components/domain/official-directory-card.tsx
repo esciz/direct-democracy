@@ -1,8 +1,10 @@
 import Link from "next/link";
 
+import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { FollowButton } from "@/components/domain/follow-button";
-import { ProfileImagePlaceholder } from "@/components/domain/profile-image-placeholder";
+import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
+import { buildSentimentHistory } from "@/lib/sentiment/history";
 import type { OfficialProfileSummary } from "@/types/domain";
 
 type OfficialDirectoryCardProps = {
@@ -11,10 +13,22 @@ type OfficialDirectoryCardProps = {
 };
 
 export function OfficialDirectoryCard({ official, returnPath = "/officials" }: OfficialDirectoryCardProps) {
+  const currentSupport = Math.min(
+    82,
+    Math.max(34, Math.round(((official.followThroughScore ?? 52) + (official.truthScore?.media ?? 52)) / 2)),
+  );
+  const history = buildSentimentHistory(`official-${official.id}`, currentSupport, { points: 5, opposeBias: 24 });
+
   return (
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-3.5 shadow-card backdrop-blur">
       <div className="flex items-start gap-2.5">
-        <ProfileImagePlaceholder name={official.name} size="sm" imageUrl={official.profileImageUrl} />
+        <CivicAvatar
+          name={official.name}
+          imageUrl={official.profileImageUrl}
+          entityType="official"
+          size="sm"
+          verified
+        />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-1.5">
             <h3 className="text-base font-semibold text-ink">{official.name}</h3>
@@ -46,6 +60,9 @@ export function OfficialDirectoryCard({ official, returnPath = "/officials" }: O
           targetId={official.id}
           className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:border-civic-500 hover:text-civic-700"
         />
+      </div>
+      <div className="mt-3">
+        <SentimentHistoryChart data={history} title="Public sentiment" currentValue={currentSupport} compact showLegend={false} />
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         {official.viewerCanFollow && official.claimedByUserId ? (

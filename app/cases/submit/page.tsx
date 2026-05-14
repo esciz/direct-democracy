@@ -65,7 +65,7 @@ export default async function SubmitCasePage({ searchParams }: SubmitCasePagePro
               <input
                 type="text"
                 name="caseTitle"
-                placeholder="Example: Nevada Public Records Access v. Carson City"
+                placeholder="Example: Nevada Meeting Access v. Carson City"
                 className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
               />
             </label>

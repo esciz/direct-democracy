@@ -30,8 +30,8 @@ export default async function CreateOrganizationPage({ searchParams }: CreateOrg
     <div className="space-y-6 py-8">
       <PageIntro
         eyebrow="Create Organization"
-        title="Start a Campus Org or Coalition"
-        description="Campus Orgs are student-led and campus-tied. Coalitions are broader civic organizations with member approval, platform items, endorsements, and announcements."
+        title="Start an organization"
+        description="Campus Orgs are student-led and campus-tied. Coalitions are the current broad civic-group pathway for advocacy groups, neighborhood groups, labor-style efforts, nonprofit-style work, and other organized member action."
       />
 
       <section className="grid gap-6 xl:grid-cols-2">

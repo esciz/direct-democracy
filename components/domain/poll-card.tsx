@@ -1,8 +1,11 @@
 import Link from "next/link";
 
+import { CivicAvatar } from "@/components/domain/civic-avatar";
+import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { RoleBadge } from "@/components/domain/role-badge";
 import { promotePollToPetition, promotePollToSystemVote, voteOnPoll } from "@/lib/polls/actions";
+import { buildSentimentHistory } from "@/lib/sentiment/history";
 import type { PollSummary, UserRole } from "@/types/domain";
 
 type PollCardProps = {
@@ -14,6 +17,8 @@ type PollCardProps = {
 export function PollCard({ poll, returnPath = "/my-community", viewerRole = "citizen" }: PollCardProps) {
   const showResults = Boolean(poll.viewerVote) || !poll.canVote;
   const canPromote = viewerRole === "trustedCitizen" && poll.promotionEligible && !poll.promotedPetitionId && !poll.promotedVoteQuestionId;
+  const currentSupport = poll.results[0]?.percentage ?? Math.min(78, Math.max(30, 40 + poll.totalVotes * 4));
+  const history = buildSentimentHistory(`poll-${poll.id}`, currentSupport, { points: 5, opposeBias: 26 });
 
   return (
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
@@ -26,10 +31,21 @@ export function PollCard({ poll, returnPath = "/my-community", viewerRole = "cit
       </div>
 
       <div className="mt-4">
-        <p className="text-sm font-medium text-slate-500">
-          By {poll.creatorName} · {poll.totalVotes} vote{poll.totalVotes === 1 ? "" : "s"}
-        </p>
+        <div className="flex items-center gap-3">
+          <CivicAvatar
+            name={poll.creatorName}
+            entityType={poll.creatorRole === "media" ? "media" : poll.creatorRole === "official" ? "official" : poll.creatorRole === "candidate" ? "candidate" : poll.creatorRole === "trustedCitizen" ? "trustedCitizen" : "citizen"}
+            size="sm"
+            verified={poll.creatorRole !== "citizen"}
+          />
+          <p className="text-sm font-medium text-slate-500">
+            By {poll.creatorName} · {poll.totalVotes} vote{poll.totalVotes === 1 ? "" : "s"}
+          </p>
+        </div>
         <h3 className="mt-2 text-xl font-semibold tracking-tight text-ink">{poll.question}</h3>
+      </div>
+      <div className="mt-4">
+        <SentimentHistoryChart data={history} title="Public sentiment" currentValue={currentSupport} compact showLegend={false} />
       </div>
 
       {showResults ? (

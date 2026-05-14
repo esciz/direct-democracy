@@ -3,6 +3,7 @@ import Link from "next/link";
 import { IssuePickerField } from "@/components/domain/issue-picker-field";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { createCommunityEvent, createEventProposal } from "@/lib/community/event-actions";
+import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import type { CommunityEventType, CommunitySummary, OrganizationSummary, UserRole } from "@/types/domain";
 
 type CommunityEventFormProps = {
@@ -55,7 +56,7 @@ export function CommunityEventForm({
         </span>
         {organization ? (
           <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
-            {organization.organizationType === "campus_org" ? "Campus org" : "Coalition"} · {organization.name}
+            {getOrganizationTypeLabel(organization.organizationType)} · {organization.name}
           </span>
         ) : null}
         {isCitizen ? (

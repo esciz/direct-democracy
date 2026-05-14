@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AvatarStack } from "@/components/domain/avatar-stack";
 import type { DebateSummary } from "@/types/domain";
 
 type DebateCardProps = {
@@ -47,10 +48,20 @@ export function DebateCard({ debate }: DebateCardProps) {
       <div className="mt-4 grid gap-3 rounded-3xl bg-slate-50 p-4 sm:grid-cols-2">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Side A</p>
+          <div className="mt-2">
+            <AvatarStack
+              items={[{ id: `${debate.id}-a`, name: debate.sideAName, entityType: debate.mode === "group" ? "organization" : "citizen" }]}
+            />
+          </div>
           <p className="mt-2 text-sm font-semibold text-ink">{debate.sideAName}</p>
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Side B</p>
+          <div className="mt-2">
+            <AvatarStack
+              items={[{ id: `${debate.id}-b`, name: debate.sideBName, entityType: debate.mode === "group" ? "organization" : "citizen" }]}
+            />
+          </div>
           <p className="mt-2 text-sm font-semibold text-ink">{debate.sideBName}</p>
         </div>
       </div>
@@ -71,10 +82,19 @@ export function DebateCard({ debate }: DebateCardProps) {
         <p className="mt-4 text-sm leading-7 text-slate-700">{debate.agreedStatement}</p>
       ) : null}
       <div className="mt-5 flex items-center justify-between gap-3">
-        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-          {debate.jurisdictionName} · {debate.turnCount} official turn{debate.turnCount === 1 ? "" : "s"} · {debate.followerCount} follower
-          {debate.followerCount === 1 ? "" : "s"}
-        </span>
+        <div className="flex items-center gap-3">
+          <AvatarStack
+            size="xs"
+            items={[
+              { id: `${debate.id}-a-stack`, name: debate.sideAName, entityType: debate.mode === "group" ? "organization" : "citizen" },
+              { id: `${debate.id}-b-stack`, name: debate.sideBName, entityType: debate.mode === "group" ? "organization" : "citizen" },
+            ]}
+          />
+          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+            {debate.jurisdictionName} · {debate.turnCount} official turn{debate.turnCount === 1 ? "" : "s"} · {debate.followerCount} follower
+            {debate.followerCount === 1 ? "" : "s"}
+          </span>
+        </div>
         <Link
           href={`/debates/${debate.id}`}
           className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"

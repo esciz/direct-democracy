@@ -14,6 +14,7 @@ import { communityMatchesJurisdiction, communityMatchesMembership } from "@/lib/
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
+import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getAllPetitions } from "@/lib/petitions/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
 import { getCandidateProfiles, getElectionSummaries, getOfficials } from "@/lib/server/elections-context";
@@ -50,6 +51,24 @@ type ExplorePreviewItem = {
   href: string;
   ctaLabel: string;
   badges?: ReactNode;
+  avatar?: {
+    name?: string | null;
+    imageUrl?: string | null;
+    entityType?:
+      | "citizen"
+      | "trustedCitizen"
+      | "candidate"
+      | "official"
+      | "organization"
+      | "media"
+      | "community"
+      | "agency"
+      | "case"
+      | "publicAccountability"
+      | "petition"
+      | "issue";
+    verified?: boolean;
+  };
   favorite: {
     targetType: FavoriteTargetType;
     targetId: string;
@@ -63,7 +82,7 @@ const EXPLORE_CATEGORIES: Array<{ key: ExploreCategory; label: string }> = [
   { key: "candidates", label: "Candidates" },
   { key: "officials", label: "Officials" },
   { key: "petitions", label: "Petitions" },
-  { key: "cases", label: "Public Record" },
+  { key: "cases", label: "Cases" },
   { key: "events", label: "Events" },
   { key: "elections", label: "Elections" },
   { key: "organizations", label: "Organizations" },
@@ -130,13 +149,13 @@ function getCategoryDescription(category: ExploreCategory) {
     case "petitions":
       return "Preview signature momentum and open petition activity.";
     case "cases":
-      return "Browse the public record, evidence trails, and case-based civic receipts tied to what is happening.";
+      return "Browse legal, civic, ethics, complaint, enforcement, and public accountability cases tied to what is happening.";
     case "events":
       return "Preview upcoming civic events, meetings, and rallies near your community.";
     case "elections":
       return "Browse active and upcoming races with lightweight election previews.";
     case "organizations":
-      return "Preview campus orgs and coalitions relevant to your community.";
+      return "Preview civic organizations organizing members, debates, endorsements, petitions, events, and public action.";
   }
 }
 
@@ -208,14 +227,14 @@ function orderByFavoriteIds<T extends { id: string }>(items: T[], favoriteIds: s
 function renderBadge(label: string, tone: "slate" | "civic" | "orange" | "emerald" = "slate") {
   const styles =
     tone === "civic"
-      ? "bg-civic-50 text-civic-700"
+      ? "border-cyan-300/18 bg-cyan-500/10 text-cyan-200"
       : tone === "orange"
-        ? "bg-orange-50 text-orange-700"
+        ? "border-orange-300/18 bg-orange-500/10 text-orange-200"
         : tone === "emerald"
-          ? "bg-emerald-50 text-emerald-700"
-          : "bg-slate-100 text-slate-700";
+          ? "border-emerald-300/18 bg-emerald-500/10 text-emerald-200"
+          : "border-white/10 bg-white/6 text-slate-300";
 
-  return <span className={`rounded-full px-3 py-1 text-xs font-semibold ${styles}`}>{label}</span>;
+  return <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${styles}`}>{label}</span>;
 }
 
 function getElectionCategory(title: string, officeTitle: string, isCommunityVoteOnly: boolean) {
@@ -288,6 +307,11 @@ async function getCategoryPreviewItems({
                 : community.locationLabel ?? community.descriptor,
             href: community.communityType === "campus" ? `/campuses/${community.id}` : `/my-community?communityId=${community.id}`,
             ctaLabel: community.communityType === "campus" ? "Open campus" : "Open community",
+            avatar: {
+              name: community.shortName ?? community.name,
+              imageUrl: community.imagePath,
+              entityType: "community",
+            },
             badges: (
               <>
                 {renderBadge(community.communityType === "campus" ? "Campus" : community.scope, "civic")}
@@ -318,6 +342,12 @@ async function getCategoryPreviewItems({
             description: person.bio,
             href: `/citizens/${person.id}`,
             ctaLabel: "Open profile",
+            avatar: {
+              name: person.name,
+              imageUrl: person.profileImageUrl,
+              entityType: person.role === "trustedCitizen" ? "trustedCitizen" : "citizen",
+              verified: person.role === "trustedCitizen",
+            },
             badges: (
               <>
                 {renderBadge(person.role === "trustedCitizen" ? "Trusted Citizen" : "Citizen", "civic")}
@@ -351,6 +381,10 @@ async function getCategoryPreviewItems({
                 : "Community-written issue hub connected to related civic content.",
             href: `/issues/${slugifyIssueText(issue.issueText)}`,
             ctaLabel: "Open issue",
+            avatar: {
+              name: issue.issueText,
+              entityType: "issue",
+            },
             badges: (
               <>
                 {renderBadge(issue.scope, "civic")}
@@ -384,6 +418,12 @@ async function getCategoryPreviewItems({
             description: candidate.bio,
             href: `/candidates/${candidate.id}`,
             ctaLabel: "Open candidate",
+            avatar: {
+              name: candidate.name,
+              imageUrl: candidate.profileImageUrl,
+              entityType: "candidate",
+              verified: Boolean(candidate.isClaimed),
+            },
             badges: <>{renderBadge("Candidate", "civic")}</>,
             favorite: {
               targetType: "candidate" as const,
@@ -411,6 +451,12 @@ async function getCategoryPreviewItems({
             description: official.bio,
             href: `/officials/${official.id}`,
             ctaLabel: "Open official",
+            avatar: {
+              name: official.name,
+              imageUrl: official.profileImageUrl,
+              entityType: "official",
+              verified: true,
+            },
             badges: (
               <>
                 {renderBadge(official.party)}
@@ -443,6 +489,11 @@ async function getCategoryPreviewItems({
             description: petition.summary,
             href: `/petitions/${petition.id}`,
             ctaLabel: "View petition",
+            avatar: {
+              name: petition.creatorName,
+              entityType: petition.organizationId ? "organization" : "petition",
+              verified: Boolean(petition.organizationId),
+            },
             badges: (
               <>
                 {renderBadge(`${petition.signatureCount.toLocaleString()} signatures`, "civic")}
@@ -475,6 +526,11 @@ async function getCategoryPreviewItems({
             description: caseItem.summary,
             href: `/cases/${caseItem.id}`,
             ctaLabel: "View case",
+            avatar: {
+              name: caseItem.title,
+              entityType: caseItem.supportCount > 0 ? "publicAccountability" : "case",
+              verified: caseItem.status === "active",
+            },
             badges: (
               <>
                 {renderBadge(caseItem.status, "orange")}
@@ -513,6 +569,18 @@ async function getCategoryPreviewItems({
             description: event.description,
             href: `/events/${event.id}`,
             ctaLabel: "View event",
+            avatar: {
+              name: event.sponsorName,
+              entityType:
+                event.sponsorType === "official"
+                  ? "official"
+                  : event.sponsorType === "candidate"
+                    ? "candidate"
+                    : event.sponsorType === "trustedCitizen"
+                      ? "trustedCitizen"
+                      : "community",
+              verified: event.sponsorType !== "community",
+            },
             badges: (
               <>
                 {renderBadge(getCommunityEventTypeLabel(event.eventType), "civic")}
@@ -548,6 +616,10 @@ async function getCategoryPreviewItems({
             description: `${election.officeTitle} · ${election.electionStatus}`,
             href: `/elections/${election.id}`,
             ctaLabel: "View election",
+            avatar: {
+              name: election.title,
+              entityType: "community",
+            },
             badges: (
               <>
                 {renderBadge(getElectionCategory(election.title, election.officeTitle, Boolean(election.isCommunityVoteOnly)), "civic")}
@@ -582,9 +654,14 @@ async function getCategoryPreviewItems({
             description: organization.description,
             href: `/organizations/${organization.id}`,
             ctaLabel: "View organization",
+            avatar: {
+              name: organization.name,
+              entityType: "organization",
+              verified: organization.viewerMembershipState === "approved" || organization.canManage,
+            },
             badges: (
               <>
-                {renderBadge(organization.organizationType === "campus_org" ? "Campus Org" : "Coalition", "civic")}
+                {renderBadge(getOrganizationTypeLabel(organization.organizationType), "civic")}
                 {renderBadge(`${organization.memberCount} members`)}
               </>
             ),
@@ -698,17 +775,17 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
         description="Start with one category at a time, browse lightweight previews, and quickly spot what you can vote on before opening the deeper civic layers."
         meta={
           <>
-            <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">{currentCommunity.name}</span>
+            <span className="rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-200">{currentCommunity.name}</span>
           </>
         }
       />
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+      <section className="dd-panel rounded-[1.75rem] p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Unified search</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Search one civic category at a time</h2>
-            <p className="mt-2 text-sm text-slate-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Unified search</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Search one civic category at a time</h2>
+            <p className="mt-2 text-sm text-slate-400">
               Switch categories without changing the page structure. Results stay lightweight and preview-first.
             </p>
           </div>
@@ -716,7 +793,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
             <Link
               href={buildExploreHref({ communityId: selectedCommunityId, category: activeCategory, q: query })}
               scroll={false}
-              className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
             >
               Back to search
             </Link>
@@ -740,8 +817,8 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                 scroll={false}
                 className={
                   category.key === activeCategory
-                    ? "rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white"
-                    : "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                    ? "rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-4 py-2 text-sm font-semibold text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.75)]"
+                    : "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/20 hover:text-cyan-100"
                 }
               >
                 {category.label}
@@ -760,16 +837,16 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
             name="q"
             defaultValue={query}
             placeholder={getCategoryPlaceholder(activeCategory)}
-            className="min-w-[18rem] flex-1 rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+            className="dd-input min-w-[18rem] flex-1 rounded-full px-4 py-3 text-sm outline-none focus:border-cyan-300/30"
           />
-          <button type="submit" className="rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+          <button type="submit" className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
             Search
           </button>
         </PreserveScrollQueryForm>
       </section>
 
       {query || favoritesOnly ? (
-        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+        <section className="dd-panel rounded-[1.75rem] p-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
               eyebrow={favoritesOnly ? "Favorites view" : "Search results"}
@@ -780,12 +857,12 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
               {!favoritesOnly ? (
                 <Link
                   href={getBrowseHref(activeCategory, selectedCommunityId, query)}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
                 >
                   View all
                 </Link>
               ) : null}
-              <span className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">
+              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200">
                 {activeItems.length} item{activeItems.length === 1 ? "" : "s"}
               </span>
             </div>
@@ -803,10 +880,11 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                   ctaLabel={item.ctaLabel}
                   badges={item.badges}
                   favorite={item.favorite}
+                  avatar={item.avatar}
                 />
               ))
             ) : (
-              <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600 xl:col-span-2">
+              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400 xl:col-span-2">
                 {favoritesOnly
                   ? `No saved ${activeCategoryLabel.toLowerCase()} yet.`
                   : `No ${activeCategoryLabel.toLowerCase()} match “${query}” yet.`}
@@ -816,7 +894,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
         </section>
       ) : null}
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+      <section className="dd-panel rounded-[1.75rem] p-6">
         <SectionHeading
           eyebrow="Browse"
           title="Preview-first category browsing"
@@ -840,8 +918,8 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                 scroll={false}
                 className={
                   category.key === activeBrowseCategory
-                    ? "rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white"
-                    : "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+                    ? "rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-4 py-2 text-sm font-semibold text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.75)]"
+                    : "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/20 hover:text-cyan-100"
                 }
               >
                 {category.label}
@@ -850,16 +928,16 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           })}
         </div>
 
-        <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+        <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{activeBrowseCategoryLabel}</p>
-              <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{activeBrowseCategoryLabel} to browse</h3>
-              <p className="mt-2 text-sm text-slate-600">{getCategoryDescription(activeBrowseCategory)}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{activeBrowseCategoryLabel}</p>
+              <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{activeBrowseCategoryLabel} to browse</h3>
+              <p className="mt-2 text-sm text-slate-400">{getCategoryDescription(activeBrowseCategory)}</p>
             </div>
             <Link
               href={getBrowseHref(activeBrowseCategory, selectedCommunityId, "")}
-              className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
             >
               View all
             </Link>
@@ -880,11 +958,12 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                     ctaLabel={item.ctaLabel}
                     badges={item.badges}
                     favorite={item.favorite}
+                    avatar={item.avatar}
                   />
                 </div>
               ))
             ) : (
-              <div className="rounded-3xl bg-white p-6 text-sm text-slate-600">
+              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
                 No {activeBrowseCategoryLabel.toLowerCase()} are available for this browse preview yet.
               </div>
             )}

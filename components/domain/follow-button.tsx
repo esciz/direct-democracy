@@ -11,8 +11,8 @@ type FollowButtonProps = {
 export function FollowButton({ targetUserId, returnPath, isFollowing, className }: FollowButtonProps) {
   const action = isFollowing ? unfollowUser : followUser;
   const defaultClassName = isFollowing
-    ? "rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700 disabled:cursor-not-allowed disabled:bg-slate-100"
-    : "rounded-full bg-civic-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-civic-700 disabled:cursor-not-allowed disabled:bg-slate-300";
+    ? "dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold transition hover:border-cyan-300/30 hover:text-white disabled:cursor-not-allowed disabled:opacity-55"
+    : "dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-55";
 
   return (
     <form action={action}>

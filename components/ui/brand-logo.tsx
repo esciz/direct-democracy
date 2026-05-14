@@ -38,7 +38,7 @@ export function BrandLogo({ size = "md", darkSurface = false, className, framed 
       className={[
         "relative inline-flex shrink-0 items-center justify-center overflow-hidden",
         framed
-          ? `rounded-[1.2rem] border shadow-[0_10px_24px_-20px_rgba(15,23,42,0.6)] ${darkSurface ? "border-white/20 bg-white/92" : "border-slate-200 bg-white/92"}`
+          ? `rounded-[1.2rem] border shadow-[0_10px_24px_-20px_rgba(15,23,42,0.6)] ${darkSurface ? "border-white/10 bg-white/95" : "border-slate-200 bg-white/92"}`
           : "bg-transparent shadow-none border-transparent",
         sizing.frame,
         className ?? "",

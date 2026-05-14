@@ -95,6 +95,14 @@ export type PollOptionResult = {
   percentage: number;
 };
 
+export type SentimentHistoryPoint = {
+  label: string;
+  date: string;
+  supportPercent: number;
+  opposePercent?: number;
+  undecidedPercent?: number;
+};
+
 export type ContextAttachmentSummary = {
   type: ContextAttachmentType;
   id: string;
@@ -162,7 +170,19 @@ export type CommunityGroupType =
   | "smallBusinessGroup"
   | "faithCommunityService"
   | "professionalAssociation";
-export type OrganizationType = "campus_org" | "coalition";
+export type OrganizationType =
+  | "campus_org"
+  | "coalition"
+  | "labor"
+  | "public_interest"
+  | "special_interest"
+  | "religious"
+  | "nonprofit"
+  | "neighborhood"
+  | "professional"
+  | "student"
+  | "business"
+  | "advocacy";
 export type OrganizationMembershipRole = "founder" | "admin" | "member";
 export type OrganizationMembershipState = "pending" | "approved" | "declined";
 export type OrganizationPlatformItemStatus = "draft" | "active" | "adopted";
@@ -730,18 +750,24 @@ export type OrganizationSummary = {
   communityId: string;
   campusCommunityId?: string | null;
   jurisdictionName: string;
+  scopeLabel?: string;
   issueTags: string[];
   founderUserId: string;
   founderName: string;
   adminUserIds: string[];
   adminNames: string[];
   memberCount: number;
+  activeDebateCount?: number;
+  activeVoteCount?: number;
   viewerMembershipRole: OrganizationMembershipRole | null;
   viewerMembershipState: OrganizationMembershipState | null;
   canManage: boolean;
   platformItemCount: number;
   endorsementCount: number;
   announcementCount: number;
+  upcomingEventCount?: number;
+  petitionCount?: number;
+  statementCount?: number;
   createdAt: string;
 };
 

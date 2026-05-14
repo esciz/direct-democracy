@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import { CandidateEndorsementQuickAction } from "@/components/domain/candidate-endorsement-quick-action";
 import { ClaimProfileButton } from "@/components/domain/claim-profile-button";
+import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { DonateButton } from "@/components/domain/donate-button";
-import { ProfileImagePlaceholder } from "@/components/domain/profile-image-placeholder";
 import { UnclaimedProfileBadge } from "@/components/domain/unclaimed-profile-badge";
 import type { CandidateCampaignSummary, CandidateMatchSummary, PublicProfileSummary } from "@/types/domain";
 
@@ -19,7 +19,13 @@ export function CandidateComparisonCard({ candidate, campaign, match, viewerCanE
   return (
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
       <div className="flex items-start gap-4">
-        <ProfileImagePlaceholder name={candidate.name} imageUrl={candidate.profileImageUrl} />
+        <CivicAvatar
+          name={candidate.name}
+          imageUrl={candidate.profileImageUrl}
+          entityType="candidate"
+          size="lg"
+          verified={Boolean(candidate.isClaimed)}
+        />
         <div className="space-y-2">
           <h3 className="text-xl font-semibold text-ink">{candidate.name}</h3>
           <p className="text-sm text-slate-500">

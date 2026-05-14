@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { ClaimProfileButton } from "@/components/domain/claim-profile-button";
-import { ProfileImagePlaceholder } from "@/components/domain/profile-image-placeholder";
+import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { UnclaimedProfileBadge } from "@/components/domain/unclaimed-profile-badge";
 import type { OfficialProfileSummary } from "@/types/domain";
 
@@ -14,7 +14,7 @@ export function OfficialCard({ official }: OfficialCardProps) {
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4">
-          <ProfileImagePlaceholder name={official.name} imageUrl={official.profileImageUrl} />
+          <CivicAvatar name={official.name} imageUrl={official.profileImageUrl} entityType="official" size="lg" verified />
           <div>
             <p className="text-xl font-semibold text-ink">{official.name}</p>
             <p className="mt-2 text-sm text-slate-500">

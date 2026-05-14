@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
 import { CandidatePromisesSection } from "@/components/domain/candidate-promises-section";
 import { ProfileViewerAlignmentCard } from "@/components/domain/profile-viewer-alignment-card";
@@ -18,11 +17,12 @@ import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import { isGuestUserId } from "@/lib/auth/session";
 import { getCurrentFeedViewer, getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
 import { attachEndorsementsToCampaigns } from "@/lib/candidates/endorsements";
-import { getCandidateProfileById } from "@/lib/server/elections-context";
+import { getAllCandidateCampaigns, getAllOfficialPositions, getCandidateProfileById, getCandidateProfiles } from "@/lib/server/elections-context";
 import { getCandidateMatchSummary } from "@/lib/candidates/matching";
 import { getInterviewRequestsForPublicProfile } from "@/lib/server/interviews";
 import { getClaimActionStateForViewer, getClaimMatchForProfile, getOnboardingDraft } from "@/lib/server/onboarding";
 import { getContextualPostPreviews } from "@/lib/feed/posts";
+import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getOrganizationEndorsementsForCampaign } from "@/lib/organizations/store";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { mergeExternalLinksWithWebsite } from "@/lib/profile/external-links";
@@ -32,7 +32,7 @@ import { getCandidateViewerAlignmentSummary } from "@/lib/profile/viewer-alignme
 import { getPollsByCreator } from "@/lib/polls/store";
 import { getLightweightFollowState } from "@/lib/social/follows";
 import { getProfileSentimentSummary } from "@/lib/votes/profile-sentiment";
-import type { CandidateProfileDetail, ProfileSignalsSummary, PublicProfileInterviewsSummary, UserRole } from "@/types/domain";
+import type { CandidateProfileDetail, ProfileSignalsSummary, PublicProfileInterviewsSummary, PublicProfileSummary, UserRole } from "@/types/domain";
 
 type CandidateDetailPageProps = {
   params: Promise<{
@@ -49,18 +49,124 @@ type CandidateDetailPageProps = {
   }>;
 };
 
+function withSectionTimeout<T>(promise: Promise<T>, label: string, timeoutMs = 1800): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) => {
+      setTimeout(() => reject(new Error(`${label} timed out`)), timeoutMs);
+    }),
+  ]);
+}
+
+async function getCandidateSummaryById(candidateId: string) {
+  const candidates = await getCandidateProfiles();
+  return candidates.find((candidate) => candidate.id === candidateId) ?? null;
+}
+
+function buildFallbackCandidateDetail(
+  candidate: PublicProfileSummary,
+  campaigns: CandidateProfileDetail["campaigns"],
+  officialPositions: CandidateProfileDetail["officialPositions"],
+): CandidateProfileDetail {
+  return {
+    ...candidate,
+    campaigns,
+    officialPositions,
+    recentPosts: [],
+    campaignPromises: [],
+    followerCount: candidate.followerCount ?? 0,
+    followingCount: 0,
+    viewerIsFollowing: Boolean(candidate.viewerIsFollowing),
+    viewerCanFollow: Boolean(candidate.viewerCanFollow),
+  };
+}
+
+function CandidateUnavailableState({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
+  return (
+    <section className="rounded-[1.75rem] border border-white/10 bg-[#101624] p-8 shadow-[0_28px_90px_-55px_rgba(15,23,42,0.95)]">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300/80">Candidate profile</p>
+      <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white">{title}</h1>
+      <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">{description}</p>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link
+          href="/candidates"
+          className="inline-flex items-center rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+        >
+          Back to Candidates
+        </Link>
+        <Link
+          href="/explore"
+          className="inline-flex items-center rounded-full border border-white/12 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/50 hover:bg-white/8"
+        >
+          Explore civic profiles
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 export default async function CandidateDetailPage({ params, searchParams }: CandidateDetailPageProps) {
   const { candidateId } = await params;
-  const [viewer, sessionUser, resolvedSearchParams, candidate] = await Promise.all([
-    getCurrentFeedViewer(),
-    getCurrentSessionUser(),
+  const [viewer, sessionUser, comparisonUser, resolvedSearchParams, candidateSummary, candidateDetail, fallbackCampaigns, fallbackPositions] = await Promise.all([
+    withSectionTimeout(getCurrentFeedViewer(), "candidate viewer", 1200).catch((error) => {
+      console.error(`[candidate-detail] viewer fallback for ${candidateId}`, error);
+      return getDefaultSeedUser();
+    }),
+    withSectionTimeout(getCurrentSessionUser(), "candidate session user", 1200).catch((error) => {
+      console.error(`[candidate-detail] session user fallback for ${candidateId}`, error);
+      return null;
+    }),
+    withSectionTimeout(getCurrentUser(), "candidate comparison user", 1200).catch((error) => {
+      console.error(`[candidate-detail] comparison user fallback for ${candidateId}`, error);
+      return getDefaultSeedUser();
+    }),
     searchParams ? searchParams : Promise.resolve(undefined),
-    getCandidateProfileById(candidateId),
+    withSectionTimeout(getCandidateSummaryById(candidateId), "candidate summary", 1400).catch((error) => {
+      console.error(`[candidate-detail] summary fallback for ${candidateId}`, error);
+      return null;
+    }),
+    withSectionTimeout(getCandidateProfileById(candidateId), "candidate detail", 1600).catch((error) => {
+      console.error(`[candidate-detail] detail fallback for ${candidateId}`, error);
+      return null;
+    }),
+    withSectionTimeout(getAllCandidateCampaigns(), "candidate fallback campaigns", 1400)
+      .then((campaigns) => campaigns.filter((campaign) => campaign.publicProfileId === candidateId))
+      .catch((error) => {
+        console.error(`[candidate-detail] fallback campaigns failed for ${candidateId}`, error);
+        return [];
+      }),
+    withSectionTimeout(getAllOfficialPositions(), "candidate fallback positions", 1400)
+      .then((positions) => positions.filter((position) => position.publicProfileId === candidateId))
+      .catch((error) => {
+        console.error(`[candidate-detail] fallback positions failed for ${candidateId}`, error);
+        return [];
+      }),
   ]);
 
-  if (!candidate) {
-    notFound();
+  if (!candidateSummary && !candidateDetail) {
+    return (
+      <div className="space-y-6 py-8">
+        <CandidateUnavailableState
+          title="Candidate not found"
+          description="This candidate profile may have moved or is not available yet."
+        />
+      </div>
+    );
   }
+
+  const candidate =
+    candidateDetail ??
+    buildFallbackCandidateDetail(
+      candidateSummary!,
+      fallbackCampaigns,
+      fallbackPositions,
+    );
 
   let social: Awaited<ReturnType<typeof getLightweightFollowState>> | null = null;
 
@@ -131,7 +237,6 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
     Boolean(hydratedCandidate.claimedByUserId) &&
     hydratedCandidate.claimedByUserId !== viewer.id &&
     (viewer.role === "citizen" || viewer.role === "trustedCitizen");
-  const comparisonUser = await getCurrentUser();
   const candidateMatch = leadCampaign
     ? await getCandidateMatchSummary(comparisonUser, hydratedCandidate, leadCampaign).catch((error) => {
         console.error(`[candidate-detail] candidate match failed for ${hydratedCandidate.id}`, error);
@@ -224,7 +329,9 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
           returnPath={`/candidates/${candidate.id}`}
           canVote={canUserVote(comparisonUser)}
         />
-      ) : null}
+      ) : (
+        <ProfileSectionFallback title="Public sentiment" description="No sentiment history yet." />
+      )}
 
       {candidateViewerAlignment ? (
         <ProfileViewerAlignmentCard
@@ -282,15 +389,18 @@ const EMPTY_INTERVIEWS_SUMMARY: PublicProfileInterviewsSummary = {
 
 function ProfileSectionFallback({ title, description }: { title: string; description: string }) {
   return (
-    <section id="candidate-campaigns" className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-      <h2 className="text-2xl font-semibold tracking-tight text-ink">{title}</h2>
-      <p className="mt-2 text-sm text-slate-500">{description}</p>
+    <section id="candidate-campaigns" className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+      <h2 className="text-2xl font-semibold tracking-tight text-slate-50">{title}</h2>
+      <p className="mt-2 text-sm text-slate-400">{description}</p>
     </section>
   );
 }
 
 async function CandidateFundingSection({ candidateId }: { candidateId: string }) {
-  const candidate = await getCandidateProfileById(candidateId);
+  const candidate = await withSectionTimeout(getCandidateProfileById(candidateId), "candidate funding detail", 1500).catch((error) => {
+    console.error(`[candidate-detail] funding fallback for ${candidateId}`, error);
+    return null;
+  });
 
   if (!candidate?.campaigns[0]?.fundingBreakdown) {
     return null;
@@ -319,13 +429,23 @@ async function CandidateCampaignsSection({
   viewerId: string;
   viewerRole: UserRole;
 }) {
-  const candidate = await getCandidateProfileById(candidateId);
+  const candidate = await withSectionTimeout(getCandidateProfileById(candidateId), "candidate campaigns detail", 1500).catch((error) => {
+    console.error(`[candidate-detail] campaigns fallback for ${candidateId}`, error);
+    return null;
+  });
 
   if (!candidate) {
-    return null;
+    return <ProfileSectionFallback title="Campaigns" description="Campaign information is unavailable right now." />;
   }
 
-  const campaignsWithEndorsements = await attachEndorsementsToCampaigns(candidate.campaigns, viewerId);
+  const campaignsWithEndorsements = await withSectionTimeout(
+    attachEndorsementsToCampaigns(candidate.campaigns, viewerId),
+    "candidate campaign endorsements",
+    1500,
+  ).catch((error) => {
+    console.error(`[candidate-detail] campaign endorsements fallback for ${candidateId}`, error);
+    return candidate.campaigns;
+  });
   const viewer = getSeedUserById(viewerId) ?? getDefaultSeedUser();
   const organizationEndorsementsByCampaign = new Map(
     await Promise.all(
@@ -334,19 +454,19 @@ async function CandidateCampaignsSection({
   );
 
   return (
-    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-      <h2 className="text-2xl font-semibold tracking-tight text-ink">Campaigns</h2>
+    <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+      <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Campaigns</h2>
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         {campaignsWithEndorsements.map((campaign) => (
-          <div key={campaign.id} className="rounded-3xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">{campaign.campaignStatus}</p>
-            <h3 className="mt-2 text-xl font-semibold text-ink">{campaign.officeSought}</h3>
-            <p className="mt-2 text-sm text-slate-600">
+          <div key={campaign.id} className="rounded-3xl border border-white/10 bg-white/[0.04] p-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-200">{campaign.campaignStatus}</p>
+            <h3 className="mt-2 text-xl font-semibold text-slate-50">{campaign.officeSought}</h3>
+            <p className="mt-2 text-sm text-slate-400">
               {campaign.jurisdictionName}
               {campaign.electionTitle ? ` · ${campaign.electionTitle}` : ""}
             </p>
-            <p className="mt-4 text-sm text-slate-700">Raised: {campaign.totalRaised ?? "TBD"}</p>
-            <p className="mt-2 text-sm text-slate-700">
+            <p className="mt-4 text-sm text-slate-300">Raised: {campaign.totalRaised ?? "TBD"}</p>
+            <p className="mt-2 text-sm text-slate-300">
               Top donor categories: {campaign.topDonorCategories?.join(" · ") ?? "Not listed"}
             </p>
             <div className="mt-4">
@@ -357,20 +477,20 @@ async function CandidateCampaignsSection({
               />
             </div>
             {organizationEndorsementsByCampaign.get(campaign.id)?.length ? (
-              <div className="mt-4 rounded-2xl bg-white p-4 ring-1 ring-slate-200">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Organization endorsements</p>
+              <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Organization endorsements</p>
                 <div className="mt-3 space-y-3">
                   {organizationEndorsementsByCampaign.get(campaign.id)?.map((endorsement) => (
-                    <div key={endorsement.id} className="rounded-2xl bg-slate-50 p-3">
+                    <div key={endorsement.id} className="rounded-2xl border border-white/8 bg-white/[0.04] p-3">
                       <div className="flex flex-wrap items-center gap-2">
-                        <Link href={`/organizations/${endorsement.organizationId}`} className="text-sm font-semibold text-ink hover:text-civic-700">
+                        <Link href={`/organizations/${endorsement.organizationId}`} className="text-sm font-semibold text-slate-100 hover:text-cyan-200">
                           {endorsement.organizationName}
                         </Link>
-                        <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-700">
-                          {endorsement.organizationType === "campus_org" ? "Campus Org Endorsement" : "Coalition Endorsement"}
+                        <span className="rounded-full border border-white/10 bg-white/[0.05] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-300">
+                          {endorsement.organizationType === "campus_org" ? "Campus Org Endorsement" : `${getOrganizationTypeLabel(endorsement.organizationType)} Endorsement`}
                         </span>
                       </div>
-                      {endorsement.statement ? <p className="mt-2 text-sm text-slate-600">{endorsement.statement}</p> : null}
+                      {endorsement.statement ? <p className="mt-2 text-sm text-slate-400">{endorsement.statement}</p> : null}
                     </div>
                   ))}
                 </div>
@@ -384,23 +504,26 @@ async function CandidateCampaignsSection({
 }
 
 async function CandidateOfficialPositionsSection({ candidateId }: { candidateId: string }) {
-  const candidate = await getCandidateProfileById(candidateId);
+  const candidate = await withSectionTimeout(getCandidateProfileById(candidateId), "candidate official positions", 1500).catch((error) => {
+    console.error(`[candidate-detail] official positions fallback for ${candidateId}`, error);
+    return null;
+  });
 
   if (!candidate?.officialPositions.length) {
     return null;
   }
 
   return (
-    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-      <h2 className="text-2xl font-semibold tracking-tight text-ink">Official positions</h2>
+    <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+      <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Official positions</h2>
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         {candidate.officialPositions.map((position) => (
-          <div key={position.id} className="rounded-3xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange-700">
+          <div key={position.id} className="rounded-3xl border border-white/10 bg-white/[0.04] p-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-200">
               {position.isCurrent ? "Current office" : "Past office"}
             </p>
-            <h3 className="mt-2 text-xl font-semibold text-ink">{position.officeTitle}</h3>
-            <p className="mt-2 text-sm text-slate-600">{position.jurisdictionName}</p>
+            <h3 className="mt-2 text-xl font-semibold text-slate-50">{position.officeTitle}</h3>
+            <p className="mt-2 text-sm text-slate-400">{position.jurisdictionName}</p>
           </div>
         ))}
       </div>
@@ -417,10 +540,13 @@ async function CandidatePromisesSectionLoader({
   viewerId: string;
   viewerRole: UserRole;
 }) {
-  const candidate = await getCandidateProfileById(candidateId);
+  const candidate = await withSectionTimeout(getCandidateProfileById(candidateId), "candidate promises detail", 1500).catch((error) => {
+    console.error(`[candidate-detail] promises fallback for ${candidateId}`, error);
+    return null;
+  });
 
   if (!candidate) {
-    return null;
+    return <ProfileSectionFallback title="Promises" description="Public promises are unavailable right now." />;
   }
 
   const canEdit = viewerRole === "admin" || (candidate.claimedByUserId && candidate.claimedByUserId === viewerId);
@@ -433,7 +559,10 @@ async function CandidatePromisesSectionLoader({
 }
 
 async function CandidateInterviewsSection({ candidateId }: { candidateId: string }) {
-  const interviews = await getInterviewRequestsForPublicProfile(candidateId);
+  const interviews = await withSectionTimeout(getInterviewRequestsForPublicProfile(candidateId), "candidate interviews", 1500).catch((error) => {
+    console.error(`[candidate-detail] interviews fallback for ${candidateId}`, error);
+    return EMPTY_INTERVIEWS_SUMMARY;
+  });
   return <ProfileInterviewsSection interviews={interviews} />;
 }
 
@@ -446,13 +575,21 @@ async function CandidateRecentPollsSection({
   viewerId: string;
   viewerRole: UserRole;
 }) {
-  const candidate = await getCandidateProfileById(candidateId);
+  const candidate = await withSectionTimeout(getCandidateProfileById(candidateId), "candidate polls detail", 1500).catch((error) => {
+    console.error(`[candidate-detail] recent polls detail fallback for ${candidateId}`, error);
+    return null;
+  });
 
   if (!candidate) {
-    return null;
+    return <ProfileSectionFallback title="Recent polls" description="Recent poll context is unavailable right now." />;
   }
 
-  const recentPolls = candidate.claimedByUserId ? await getPollsByCreator(candidate.claimedByUserId, viewerId, 3) : [];
+  const recentPolls = candidate.claimedByUserId
+    ? await withSectionTimeout(getPollsByCreator(candidate.claimedByUserId, viewerId, 3), "candidate recent polls", 1500).catch((error) => {
+        console.error(`[candidate-detail] recent polls fallback for ${candidateId}`, error);
+        return [];
+      })
+    : [];
 
   return (
     <section className="space-y-4">
@@ -466,10 +603,10 @@ async function CandidateRecentPollsSection({
             <PollCard key={poll.id} poll={poll} returnPath={`/candidates/${candidate.id}`} viewerRole={viewerRole} />
           ))
         ) : (
-          <div className="rounded-[1.75rem] border border-dashed border-slate-300 bg-white/70 p-6 text-sm text-slate-500 shadow-card">
-            {candidate.isClaimed
-              ? "No citizen polls yet for this candidate."
-              : "This profile is unclaimed, so citizen polls will only appear after a future claim flow links it to a platform account."}
+            <div className="rounded-[1.75rem] border border-dashed border-white/10 bg-white/[0.03] p-6 text-sm text-slate-400 shadow-card">
+              {candidate.isClaimed
+                ? "No citizen polls yet for this candidate."
+                : "This profile is unclaimed, so citizen polls will only appear after a future claim flow links it to a platform account."}
           </div>
         )}
       </div>
@@ -486,14 +623,22 @@ async function CandidateRecentPostsSection({
   viewerId: string;
   viewerRole: UserRole;
 }) {
-  const candidate = await getCandidateProfileById(candidateId);
+  const candidate = await withSectionTimeout(getCandidateProfileById(candidateId), "candidate posts profile", 1200).catch((error) => {
+    console.error(`[candidate-detail] recent posts profile fallback for ${candidateId}`, error);
+    return null;
+  });
 
   if (!candidate) {
-    return null;
+    return <ProfileSectionFallback title="Perspectives and campaign updates" description="Recent civic briefs are unavailable right now." />;
   }
 
   const contextualPosts = candidate.claimedByUserId
-    ? (await getContextualPostPreviews({ limit: 24 })).filter((post) => post.authorId === candidate.claimedByUserId).slice(0, 3)
+    ? await withSectionTimeout(getContextualPostPreviews({ limit: 24 }), "candidate recent posts", 1200)
+        .then((posts) => posts.filter((post) => post.authorId === candidate.claimedByUserId).slice(0, 3))
+        .catch((error) => {
+          console.error(`[candidate-detail] recent posts fallback for ${candidateId}`, error);
+          return candidate.recentPosts ?? [];
+        })
     : candidate.recentPosts;
 
   return (
@@ -516,10 +661,10 @@ async function CandidateRecentPostsSection({
             />
           ))
         ) : (
-          <div className="rounded-[1.75rem] border border-dashed border-slate-300 bg-white/70 p-6 text-sm text-slate-500 shadow-card">
-            {candidate.isClaimed
-              ? "No visible perspectives yet for this candidate."
-              : "This profile is unclaimed, so posting will only appear after a future claim flow links it to a platform account."}
+            <div className="rounded-[1.75rem] border border-dashed border-white/10 bg-white/[0.03] p-6 text-sm text-slate-400 shadow-card">
+              {candidate.isClaimed
+                ? "No visible perspectives yet for this candidate."
+                : "This profile is unclaimed, so posting will only appear after a future claim flow links it to a platform account."}
           </div>
         )}
       </div>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
+import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FollowButton } from "@/components/domain/follow-button";
-import { ProfileImagePlaceholder } from "@/components/domain/profile-image-placeholder";
 import { ReputationBadges } from "@/components/domain/reputation-badges";
 import { RevealIconChip } from "@/components/domain/reveal-icon-chip";
 import { RoleBadge } from "@/components/domain/role-badge";
@@ -24,7 +24,13 @@ export function TopVoiceCard({ voice, returnPath }: TopVoiceCardProps) {
         style={{ backgroundImage: `linear-gradient(180deg, rgba(15,23,42,0.12), rgba(15,23,42,0.45)), url(/community/cc.webp)` }}
       />
       <div className="flex items-start gap-4">
-        <ProfileImagePlaceholder name={voice.name} size="lg" imageUrl={voice.profileImageUrl} />
+        <CivicAvatar
+          name={voice.name}
+          imageUrl={voice.profileImageUrl}
+          entityType={voice.role === "trustedCitizen" ? "trustedCitizen" : "citizen"}
+          size="lg"
+          verified={voice.role === "trustedCitizen"}
+        />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-lg font-semibold text-ink">{voice.name}</h3>

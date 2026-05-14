@@ -20,7 +20,7 @@ type ShareActionMenuProps = {
 function actionButtonClass(className?: string) {
   return (
     className ??
-    "inline-flex min-h-10 items-center justify-center rounded-full border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+    "dd-button-secondary inline-flex min-h-10 items-center justify-center rounded-full px-3.5 py-2 text-sm font-semibold transition hover:border-cyan-300/30 hover:text-white"
   );
 }
 
@@ -36,14 +36,14 @@ function MenuRow({
   children: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/90 p-3">
+    <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
       <div className="flex items-start gap-3">
-        <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-civic-50 text-civic-700">
+        <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cyan-300/18 bg-[linear-gradient(145deg,rgba(22,78,99,0.45),rgba(8,15,28,0.94))] text-cyan-200">
           {icon}
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-ink">{title}</p>
-          <p className="mt-1 text-xs leading-5 text-slate-500">{description}</p>
+          <p className="text-sm font-semibold text-slate-100">{title}</p>
+          <p className="mt-1 text-xs leading-5 text-slate-400">{description}</p>
           <div className="mt-3">{children}</div>
         </div>
       </div>
@@ -112,15 +112,15 @@ export function ShareActionMenu({
           <button type="button" aria-label="Close share menu" className="fixed inset-0 z-30 bg-transparent" onClick={handleClose} />
           <div
             onClick={(event) => event.stopPropagation()}
-            className={`absolute z-40 mt-2 w-[21rem] rounded-[1.5rem] border border-white/70 bg-white/95 p-3 shadow-card backdrop-blur ${
+            className={`dd-panel absolute z-40 mt-2 w-[21rem] rounded-[1.5rem] p-3 ${
               align === "right" ? "right-0" : "left-0"
             }`}
           >
             <div className="px-1 pb-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Share</p>
-              <p className="mt-1 text-sm text-slate-500">{target.title}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Share</p>
+              <p className="mt-1 text-sm text-slate-300">{target.title}</p>
               {guestMode ? (
-                <p className="mt-2 text-xs text-slate-500">Guest Browse is read-only. You can still share this externally.</p>
+                <p className="mt-2 text-xs text-slate-400">Guest Browse is read-only. You can still share this externally.</p>
               ) : null}
             </div>
             <div className="space-y-2">
@@ -133,7 +133,7 @@ export function ShareActionMenu({
                   >
                     <Link
                       href={postHref}
-                      className="text-sm font-semibold text-civic-700 hover:text-civic-900"
+                      className="text-sm font-semibold text-cyan-200 hover:text-white"
                       onClick={(event) => {
                         event.stopPropagation();
                         setOpen(false);
@@ -161,7 +161,7 @@ export function ShareActionMenu({
                           event.stopPropagation();
                           setOpen(false);
                         }}
-                        className="text-sm font-semibold text-civic-700 hover:text-civic-900"
+                        className="text-sm font-semibold text-cyan-200 hover:text-white"
                       >
                         Re-post inside Direct Democracy
                       </button>
@@ -181,12 +181,12 @@ export function ShareActionMenu({
                     event.stopPropagation();
                     void handleExternalShare();
                   }}
-                  className="text-sm font-semibold text-civic-700 hover:text-civic-900"
+                  className="text-sm font-semibold text-cyan-200 hover:text-white"
                 >
                   {typeof navigator !== "undefined" && "share" in navigator ? "Open share sheet" : "Copy link"}
                 </button>
                 {status ? (
-                  <p className="mt-2 text-xs font-medium text-slate-500">{status === "shared" ? "Share sheet opened." : "Link copied."}</p>
+                  <p className="mt-2 text-xs font-medium text-slate-400">{status === "shared" ? "Share sheet opened." : "Link copied."}</p>
                 ) : null}
               </MenuRow>
             </div>

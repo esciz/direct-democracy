@@ -157,9 +157,9 @@ const EMPTY_INTERVIEWS_SUMMARY: PublicProfileInterviewsSummary = {
 
 function ProfileSectionFallback({ title, description }: { title: string; description: string }) {
   return (
-    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-      <h2 className="text-2xl font-semibold tracking-tight text-ink">{title}</h2>
-      <p className="mt-2 text-sm text-slate-500">{description}</p>
+    <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+      <h2 className="text-2xl font-semibold tracking-tight text-slate-50">{title}</h2>
+      <p className="mt-2 text-sm text-slate-400">{description}</p>
     </section>
   );
 }
@@ -434,104 +434,104 @@ async function OfficialActionsSection({
       description: "Supports promises or platform",
       count: alignment.alignedCount,
       width: `${(alignment.alignedCount / totalActions) * 100}%`,
-      barClass: "bg-civic-600",
-      valueClass: "text-civic-700",
-      chipClass: "bg-civic-50 text-civic-700",
+      barClass: "bg-cyan-400",
+      valueClass: "text-cyan-100",
+      chipClass: "border border-cyan-300/16 bg-cyan-500/10 text-cyan-100",
     },
     {
       label: "Mixed",
       description: "Still contested or unclear",
       count: alignment.mixedCount,
       width: `${(alignment.mixedCount / totalActions) * 100}%`,
-      barClass: "bg-slate-400",
-      valueClass: "text-slate-700",
-      chipClass: "bg-slate-100 text-slate-700",
+      barClass: "bg-slate-500",
+      valueClass: "text-slate-100",
+      chipClass: "border border-white/10 bg-white/[0.05] text-slate-200",
     },
     {
       label: "Against",
       description: "In tension with commitments",
       count: alignment.againstCount,
       width: `${(alignment.againstCount / totalActions) * 100}%`,
-      barClass: "bg-orange-500",
-      valueClass: "text-orange-700",
-      chipClass: "bg-orange-50 text-orange-700",
+      barClass: "bg-amber-400",
+      valueClass: "text-amber-100",
+      chipClass: "border border-amber-300/16 bg-amber-500/10 text-amber-100",
     },
   ];
   const actionTypeCards = [
     {
       label: "Votes",
       count: actionTypes.voteCount,
-      accentClass: "bg-civic-500",
-      panelClass: "border-civic-100 bg-civic-50/80",
-      valueClass: "text-civic-800",
+      accentClass: "bg-cyan-300",
+      panelClass: "border-cyan-300/16 bg-cyan-500/10",
+      valueClass: "text-cyan-100",
     },
     {
       label: "Sponsorships",
       count: actionTypes.sponsorshipCount,
-      accentClass: "bg-indigo-500",
-      panelClass: "border-indigo-100 bg-indigo-50/80",
-      valueClass: "text-indigo-800",
+      accentClass: "bg-indigo-300",
+      panelClass: "border-indigo-300/16 bg-indigo-500/10",
+      valueClass: "text-indigo-100",
     },
     {
       label: "Statements",
       count: actionTypes.statementCount,
-      accentClass: "bg-amber-500",
-      panelClass: "border-amber-100 bg-amber-50/80",
-      valueClass: "text-amber-800",
+      accentClass: "bg-amber-300",
+      panelClass: "border-amber-300/16 bg-amber-500/10",
+      valueClass: "text-amber-100",
     },
     {
       label: "Other actions",
       count: actionTypes.implementationCount,
-      accentClass: "bg-slate-500",
-      panelClass: "border-slate-200 bg-white/90",
-      valueClass: "text-slate-800",
+      accentClass: "bg-slate-300",
+      panelClass: "border-white/10 bg-white/[0.04]",
+      valueClass: "text-slate-100",
     },
   ];
 
   return (
     <section
       id="official-actions"
-      className="rounded-[1.8rem] border border-slate-200 bg-white/90 p-5 shadow-[0_24px_50px_-38px_rgba(15,23,42,0.38)] backdrop-blur sm:p-6"
+      className="dd-panel-muted rounded-[1.8rem] p-5 sm:p-6"
     >
-      <div className="rounded-[1.6rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(248,250,252,0.92),rgba(255,255,255,0.98))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] sm:p-5">
+      <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
         <div className="grid gap-5 xl:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.95fr)] xl:items-start">
           <div>
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-civic-700">Accountability overview</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200">Accountability overview</p>
                 <div className="mt-2 flex flex-wrap items-center gap-3">
-                  <h2 className="text-2xl font-semibold tracking-tight text-ink">Actions</h2>
-                  <span className="rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
+                  <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Actions</h2>
+                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">
                     {alignment.totalCount} visible actions
                   </span>
                 </div>
               </div>
-              <div className="min-w-[150px] rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.45)]">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Action mix</p>
-                <p className="mt-2 text-2xl font-semibold tracking-tight text-ink">{alignment.alignedCount}/{alignment.totalCount}</p>
-                <p className="mt-1 text-xs text-slate-500">aligned with promises or platform</p>
+              <div className="min-w-[150px] rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Action mix</p>
+                <p className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{alignment.alignedCount}/{alignment.totalCount}</p>
+                <p className="mt-1 text-xs text-slate-400">aligned with promises or platform</p>
               </div>
             </div>
 
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-400">
               Actions are checked first against explicit promises, then platform positions, and only use party context when no direct commitment exists.
             </p>
-            <div className="mt-4 rounded-[1.35rem] border border-slate-200 bg-white/95 px-4 py-4 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.45)]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">What the record suggests</p>
-              <p className="mt-2 text-sm font-medium leading-6 text-slate-700">{alignment.summary}</p>
+            <div className="mt-4 rounded-[1.35rem] border border-white/10 bg-white/[0.05] px-4 py-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">What the record suggests</p>
+              <p className="mt-2 text-sm font-medium leading-6 text-slate-300">{alignment.summary}</p>
             </div>
 
             <div className="mt-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Action types in view</p>
-                <p className="text-xs text-slate-500">Votes remain central for higher-volume offices.</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Action types in view</p>
+                <p className="text-xs text-slate-400">Votes remain central for higher-volume offices.</p>
               </div>
               <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {actionTypeCards.map((card) => (
                   <div key={card.label} className={`rounded-2xl border px-3.5 py-3.5 ${card.panelClass}`}>
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{card.label}</p>
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">{card.label}</p>
                         <p className={`mt-2 text-2xl font-semibold tracking-tight ${card.valueClass}`}>{card.count}</p>
                       </div>
                       <span className={`mt-1 h-2.5 w-2.5 rounded-full ${card.accentClass}`} aria-hidden="true" />
@@ -543,19 +543,19 @@ async function OfficialActionsSection({
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-[1.45rem] border border-slate-200 bg-white/95 p-4 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.45)]">
+            <div className="rounded-[1.45rem] border border-white/10 bg-white/[0.05] p-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Action distribution</p>
-                  <p className="mt-1 text-sm text-slate-500">How visible actions stack up against stated commitments at a glance.</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Action distribution</p>
+                  <p className="mt-1 text-sm text-slate-400">How visible actions stack up against stated commitments at a glance.</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-semibold tracking-tight text-ink">{alignment.alignedCount}-{alignment.againstCount}</p>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">aligned vs against</p>
+                  <p className="text-2xl font-semibold tracking-tight text-slate-50">{alignment.alignedCount}-{alignment.againstCount}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">aligned vs against</p>
                 </div>
               </div>
 
-              <div className="mt-4 overflow-hidden rounded-full bg-slate-100 shadow-inner">
+              <div className="mt-4 overflow-hidden rounded-full bg-white/[0.06] shadow-inner">
                 <div className="flex h-3.5 w-full min-w-0">
                   {segments.map((segment) =>
                     segment.count ? <div key={segment.label} className={segment.barClass} style={{ width: segment.width }} /> : null,
@@ -565,13 +565,13 @@ async function OfficialActionsSection({
 
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {segments.map((segment) => (
-                  <div key={segment.label} className="rounded-2xl border border-slate-200 bg-slate-50/70 px-3 py-3">
+                  <div key={segment.label} className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3">
                     <div className="flex items-center justify-between gap-2">
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{segment.label}</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">{segment.label}</p>
                       <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${segment.chipClass}`}>{segment.count}</span>
                     </div>
                     <p className={`mt-2 text-xl font-semibold tracking-tight ${segment.valueClass}`}>{Math.round((segment.count / totalActions) * 100)}%</p>
-                    <p className="mt-1 text-xs leading-5 text-slate-500">{segment.description}</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">{segment.description}</p>
                   </div>
                 ))}
               </div>

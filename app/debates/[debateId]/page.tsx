@@ -39,8 +39,8 @@ function formatDateLabel(value: string) {
 
 function sideTone(side: "A" | "B") {
   return side === "A"
-    ? "border-civic-200 bg-civic-50"
-    : "border-orange-200 bg-orange-50";
+    ? "border-cyan-300/18 bg-cyan-500/10"
+    : "border-amber-300/18 bg-amber-500/10";
 }
 
 function turnLabel(turnType: "opening" | "response" | "closing") {
@@ -66,14 +66,14 @@ export default async function DebateDetailPage({ params, searchParams }: DebateD
         description={debate.description}
         meta={
           <>
-            <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-violet-700">
+            <span className="rounded-full border border-violet-300/18 bg-violet-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-violet-200">
               Debate
             </span>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+            <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-200">
               {formatDateLabel(debate.createdAt)}
             </span>
             {debate.issueText ? (
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+              <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-200">
                 {debate.issueText}
               </span>
             ) : null}
@@ -136,7 +136,7 @@ async function DebateDetailBody({
       {statusMessage ? (
         <section
           className={`rounded-[1.75rem] p-5 text-sm shadow-card ${
-            resolvedSearchParams?.debateError ? "border border-orange-200 bg-orange-50 text-orange-900" : "border border-civic-200 bg-civic-50 text-civic-900"
+            resolvedSearchParams?.debateError ? "border border-amber-300/16 bg-amber-500/10 text-amber-100" : "border border-cyan-300/16 bg-cyan-500/10 text-cyan-100"
           }`}
         >
           {statusMessage}
@@ -144,21 +144,21 @@ async function DebateDetailBody({
       ) : null}
 
       <section className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-[1.75rem] border border-slate-200 bg-white/90 p-6 shadow-card">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Side A</p>
-          <p className="mt-2 text-lg font-semibold text-ink">{debate.sideAName}</p>
+        <div className="dd-panel-muted rounded-[1.75rem] p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Side A</p>
+          <p className="mt-2 text-lg font-semibold text-slate-50">{debate.sideAName}</p>
         </div>
-        <div className="rounded-[1.75rem] border border-slate-200 bg-white/90 p-6 shadow-card">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Side B</p>
-          <p className="mt-2 text-lg font-semibold text-ink">{debate.sideBName}</p>
+        <div className="dd-panel-muted rounded-[1.75rem] p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Side B</p>
+          <p className="mt-2 text-lg font-semibold text-slate-50">{debate.sideBName}</p>
         </div>
       </section>
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/90 p-6 shadow-card backdrop-blur">
+      <section className="dd-panel rounded-[1.75rem] p-6">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Statements</p>
-          <h2 className="mt-2 text-2xl font-semibold text-ink">Debate record</h2>
-          <p className="mt-2 text-sm text-slate-600">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Statements</p>
+          <h2 className="mt-2 text-2xl font-semibold text-slate-50">Debate record</h2>
+          <p className="mt-2 text-sm text-slate-400">
             Statements stay in order, clearly marked by side and turn so the exchange is easy to follow.
           </p>
         </div>
@@ -168,34 +168,34 @@ async function DebateDetailBody({
             debate.statements.map((statement) => (
               <article key={statement.id} className={`rounded-[1.5rem] border p-5 ${sideTone(statement.side)}`}>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-700">
+                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-200">
                     Turn {statement.turnNumber}
                   </span>
-                  <span className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-700">
+                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-200">
                     {turnLabel(statement.turnType)}
                   </span>
-                  <span className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-700">
+                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-200">
                     Side {statement.side}
                   </span>
-                  <span className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-slate-700">
+                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold text-slate-200">
                     {statement.side === "A" ? debate.sideAName : debate.sideBName}
                   </span>
-                  <span className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-slate-700">
+                  <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold text-slate-200">
                     {formatDateLabel(statement.createdAt)}
                   </span>
                 </div>
                 <div className="mt-4 space-y-3">
-                  <p className="text-sm text-slate-500">
-                    <span className="font-semibold text-ink">{statement.createdByUserName}</span>
+                  <p className="text-sm text-slate-400">
+                    <span className="font-semibold text-slate-100">{statement.createdByUserName}</span>
                   </p>
-                  <p className="text-sm leading-7 text-slate-700">{statement.content}</p>
+                  <p className="text-sm leading-7 text-slate-200">{statement.content}</p>
                 </div>
-                <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-white/80 pt-4">
-                  <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
-                    <span className="rounded-full bg-white px-3 py-1">
+                <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-white/10 pt-4">
+                  <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+                    <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1">
                       <ActionLabel icon={<ThumbsUpIcon className="h-3.5 w-3.5" />}>{`Support ${statement.supportCount}`}</ActionLabel>
                     </span>
-                    <span className="rounded-full bg-white px-3 py-1">
+                    <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1">
                       <ActionLabel icon={<ThumbsDownIcon className="h-3.5 w-3.5" />}>{`Oppose ${statement.opposeCount}`}</ActionLabel>
                     </span>
                   </div>
@@ -210,8 +210,8 @@ async function DebateDetailBody({
                       pendingLabel={<ActionLabel icon={<ThumbsUpIcon className="h-4 w-4" />}>Saving...</ActionLabel>}
                       className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
                         statement.viewerReaction === "support"
-                          ? "bg-civic-700 text-white"
-                          : "border border-civic-200 bg-white text-civic-700 hover:border-civic-400"
+                          ? "dd-button-primary text-slate-950"
+                          : "dd-button-secondary text-cyan-100 hover:border-cyan-300/30 hover:text-white"
                       }`}
                     />
                     <FormSubmitButton
@@ -221,8 +221,8 @@ async function DebateDetailBody({
                       pendingLabel={<ActionLabel icon={<ThumbsDownIcon className="h-4 w-4" />}>Saving...</ActionLabel>}
                       className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
                         statement.viewerReaction === "oppose"
-                          ? "bg-orange-600 text-white"
-                          : "border border-orange-200 bg-white text-orange-700 hover:border-orange-400"
+                          ? "border border-amber-300/18 bg-amber-500/80 text-amber-950"
+                          : "border border-amber-300/18 bg-amber-500/10 text-amber-100 hover:border-amber-300/28"
                       }`}
                     />
                   </form>
@@ -230,7 +230,7 @@ async function DebateDetailBody({
               </article>
             ))
           ) : (
-            <div className="rounded-[1.5rem] border border-dashed border-slate-300 bg-white/70 p-5 text-sm text-slate-500">
+            <div className="rounded-[1.5rem] border border-dashed border-white/10 bg-white/[0.03] p-5 text-sm text-slate-400">
               No statements yet.
             </div>
           )}

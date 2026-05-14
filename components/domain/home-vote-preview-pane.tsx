@@ -74,7 +74,7 @@ export function HomeVotePreviewPane({ questions, canVote }: HomeVotePreviewPaneP
 
   if (!queuedQuestions.length || !currentQuestion) {
     return (
-      <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600">
+      <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
         No active votes are waiting right now.
       </div>
     );
@@ -82,9 +82,9 @@ export function HomeVotePreviewPane({ questions, canVote }: HomeVotePreviewPaneP
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] border border-civic-100 bg-white/75 px-4 py-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-3">
         <div>
-          <p className="text-sm font-semibold text-ink">
+          <p className="text-sm font-semibold text-slate-100">
             {currentQuestion.onboardingPosition && currentQuestion.onboardingTotal
               ? `Question ${currentQuestion.onboardingPosition} of ${currentQuestion.onboardingTotal}`
               : "Featured vote"}
@@ -98,7 +98,7 @@ export function HomeVotePreviewPane({ questions, canVote }: HomeVotePreviewPaneP
             type="button"
             onClick={moveToPreviousQuestion}
             disabled={currentIndex <= 0}
-            className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-300 hover:text-civic-700 disabled:cursor-not-allowed disabled:opacity-45"
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300/20 hover:text-cyan-100 disabled:cursor-not-allowed disabled:opacity-45"
           >
             Back
           </button>
@@ -106,22 +106,22 @@ export function HomeVotePreviewPane({ questions, canVote }: HomeVotePreviewPaneP
             type="button"
             onClick={moveToNextQuestion}
             disabled={currentIndex >= queuedQuestions.length - 1}
-            className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-300 hover:text-civic-700 disabled:cursor-not-allowed disabled:opacity-45"
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300/20 hover:text-cyan-100 disabled:cursor-not-allowed disabled:opacity-45"
           >
             Skip
           </button>
           <Link
             href="/voting"
-            className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-300 hover:text-civic-700"
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300/20 hover:text-cyan-100"
           >
             View all
           </Link>
         </div>
       </div>
 
-      <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+      <div className="h-2 overflow-hidden rounded-full bg-white/8">
         <div
-          className="h-full rounded-full bg-[linear-gradient(90deg,#0ea5e9,#10b981,#f59e0b)] transition-all"
+          className="h-full rounded-full bg-[linear-gradient(90deg,#22d3ee,#34d399,#818cf8)] transition-all"
           style={{ width: `${progressPercent}%` }}
         />
       </div>

@@ -30,13 +30,13 @@ export function PetitionDetail({
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
+            <span className="rounded-full border border-cyan-300/18 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
               {petition.jurisdictionName}
             </span>
-            <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white">
+            <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-100">
               {petition.status}
             </span>
           </div>
@@ -55,25 +55,25 @@ export function PetitionDetail({
           />
         </div>
 
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-ink">{petition.title}</h1>
-        <p className="mt-4 text-base leading-7 text-slate-700">{petition.summary}</p>
-        <div className="mt-6 h-3 rounded-full bg-slate-100">
-          <div className="h-3 rounded-full bg-civic-500" style={{ width: `${percent}%` }} />
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-50">{petition.title}</h1>
+        <p className="mt-4 text-base leading-7 text-slate-300">{petition.summary}</p>
+        <div className="mt-6 h-3 rounded-full bg-white/[0.08]">
+          <div className="h-3 rounded-full bg-[linear-gradient(90deg,#34d399,#22d3ee)]" style={{ width: `${percent}%` }} />
         </div>
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm font-medium text-slate-600">
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm font-medium text-slate-400">
           <span>{petition.signatureCount.toLocaleString()} valid signatures</span>
           <span>{petition.signatureGoal.toLocaleString()} needed for co-sponsorship</span>
         </div>
         <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold">
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">Created by {petition.creatorName}</span>
-          <span className="rounded-full bg-orange-50 px-3 py-1 text-orange-700">
+          <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">Created by {petition.creatorName}</span>
+          <span className="rounded-full border border-amber-300/18 bg-amber-500/10 px-3 py-1 text-amber-200">
             {petition.eligibleForCosponsorship ? "Eligible for co-sponsorship" : "Collecting signatures"}
           </span>
           {petition.issueTags?.map((tag) => (
             <Link
               key={`${petition.id}-${tag}`}
               href={`/issues/${slugifyIssueText(tag)}`}
-              className="rounded-full bg-civic-50 px-3 py-1 text-civic-700 transition hover:text-civic-900"
+              className="rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-cyan-200 transition hover:border-cyan-300/30 hover:text-white"
             >
               {tag}
             </Link>
@@ -81,8 +81,8 @@ export function PetitionDetail({
         </div>
 
         <div className="mt-8 space-y-4">
-          <h2 className="text-xl font-semibold text-ink">Petition text</h2>
-          <p className="text-sm leading-7 text-slate-700">{petition.body}</p>
+          <h2 className="text-xl font-semibold text-slate-50">Petition text</h2>
+          <p className="text-sm leading-7 text-slate-300">{petition.body}</p>
         </div>
 
         <div className="mt-8">
@@ -91,8 +91,8 @@ export function PetitionDetail({
 
         {draftLegislation ? (
           <div className="mt-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-violet-700">Draft legislation</p>
-            <h2 className="mt-2 text-xl font-semibold text-ink">This petition is already moving into a formal draft</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-violet-200">Draft legislation</p>
+            <h2 className="mt-2 text-xl font-semibold text-slate-50">This petition is already moving into a formal draft</h2>
             <div className="mt-5">
               <DraftLegislationCard legislation={draftLegislation} />
             </div>
@@ -102,13 +102,13 @@ export function PetitionDetail({
 
       <div className="space-y-6">
         {continuityMessage ? (
-          <section className="rounded-[1.75rem] border border-violet-200 bg-violet-50 p-5 text-sm text-violet-950 shadow-card">
+          <section className="rounded-[1.75rem] border border-violet-300/16 bg-violet-500/10 p-5 text-sm text-violet-100 shadow-card">
             {continuityMessage}
           </section>
         ) : null}
 
         {statusMessage ? (
-          <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
+          <section className="rounded-[1.75rem] border border-cyan-300/16 bg-cyan-500/10 p-5 text-sm text-cyan-100 shadow-card">
             {statusMessage}
           </section>
         ) : null}
@@ -132,20 +132,20 @@ export function PetitionDetail({
 
         {contactPanel ? <ContactOfficialsPanel panel={contactPanel} /> : null}
 
-        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-          <p className="text-sm font-semibold text-ink">Recent valid signatures</p>
+        <section className="dd-panel-muted rounded-[1.75rem] p-6">
+          <p className="text-sm font-semibold text-slate-50">Recent valid signatures</p>
           <div className="mt-4 space-y-3">
             {petition.recentSignatures.length ? (
               petition.recentSignatures.map((signature) => (
-                <div key={signature.id} className="rounded-2xl bg-slate-50 px-4 py-3">
-                  <p className="text-sm font-semibold text-ink">{signature.signerName}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">
+                <div key={signature.id} className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                  <p className="text-sm font-semibold text-slate-100">{signature.signerName}</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">
                     {signature.jurisdictionName}
                   </p>
                 </div>
               ))
             ) : (
-              <p className="text-sm text-slate-500">No signatures yet.</p>
+              <p className="text-sm text-slate-400">No signatures yet.</p>
             )}
           </div>
         </section>
