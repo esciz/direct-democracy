@@ -16,7 +16,7 @@ import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getAllPetitions } from "@/lib/petitions/store";
-import { seededPoliticalAds } from "@/lib/political-ads/store";
+import { POLITICAL_AD_SOURCE_LABELS, POLITICAL_AD_SPONSOR_LABELS, seededPoliticalAds } from "@/lib/political-ads/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
 import { getCandidateProfiles, getElectionSummaries, getOfficials } from "@/lib/server/elections-context";
 import { getFavoritesForUser } from "@/lib/server/favorites";
@@ -32,6 +32,7 @@ type ExploreCategory =
   | "cases"
   | "events"
   | "elections"
+  | "ads"
   | "organizations";
 
 type ExplorePageProps = {
@@ -70,7 +71,7 @@ type ExplorePreviewItem = {
       | "issue";
     verified?: boolean;
   };
-  favorite: {
+  favorite?: {
     targetType: FavoriteTargetType;
     targetId: string;
   };
@@ -86,6 +87,7 @@ const EXPLORE_CATEGORIES: Array<{ key: ExploreCategory; label: string }> = [
   { key: "cases", label: "Cases" },
   { key: "events", label: "Events" },
   { key: "elections", label: "Elections" },
+  { key: "ads", label: "Ads" },
   { key: "organizations", label: "Organizations" },
 ];
 
@@ -130,6 +132,8 @@ function getCategoryPlaceholder(category: ExploreCategory) {
       return "Search events";
     case "elections":
       return "Search elections";
+    case "ads":
+      return "Search ads";
     case "organizations":
       return "Search organizations";
   }
@@ -155,6 +159,8 @@ function getCategoryDescription(category: ExploreCategory) {
       return "Preview upcoming civic events, meetings, and rallies near your community.";
     case "elections":
       return "Browse active and upcoming races with lightweight election previews.";
+    case "ads":
+      return "Browse political ads by sponsor, source, geography, election, issue, candidate, and truth rating.";
     case "organizations":
       return "Preview civic organizations organizing members, debates, endorsements, petitions, events, and public action.";
   }
@@ -213,6 +219,8 @@ function getBrowseHref(category: ExploreCategory, communityId: string, query: st
       return `/events?communityId=${communityId}`;
     case "elections":
       return "/elections";
+    case "ads":
+      return query ? `/ads?q=${encodeURIComponent(query)}` : "/ads";
     case "organizations":
       return query
         ? `/organizations?communityId=${communityId}&q=${encodeURIComponent(query)}`
@@ -236,6 +244,18 @@ function renderBadge(label: string, tone: "slate" | "civic" | "orange" | "emeral
           : "border-white/10 bg-white/6 text-slate-300";
 
   return <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${styles}`}>{label}</span>;
+}
+
+function formatAdMetric(ad: (typeof seededPoliticalAds)[number]) {
+  if (typeof ad.totalSpend === "number" && ad.totalSpend > 0) {
+    return `$${ad.totalSpend.toLocaleString()}`;
+  }
+
+  if (typeof ad.impressions === "number" && ad.impressions > 0) {
+    return `${ad.impressions.toLocaleString()} impressions`;
+  }
+
+  return null;
 }
 
 function getElectionCategory(title: string, officeTitle: string, isCommunityVoteOnly: boolean) {
@@ -269,7 +289,7 @@ async function getCategoryPreviewItems({
   communityId: string;
   query: string;
   favoriteIds?: string[];
-}) {
+}): Promise<ExplorePreviewItem[]> {
   const limit = favoriteIds ? Math.max(favoriteIds.length, 6) : 8;
 
   switch (category) {
@@ -634,6 +654,48 @@ async function getCategoryPreviewItems({
           }) satisfies ExplorePreviewItem,
       );
     }
+    case "ads": {
+      if (favoriteIds) {
+        return [];
+      }
+
+      const filtered = query
+        ? seededPoliticalAds.filter((ad) =>
+            matchesQuery(
+              query,
+              ad.title,
+              ad.description,
+              ad.sponsorName,
+              ad.paidForBy,
+              ad.producedBy,
+              ad.geographySummary,
+              ad.electionCycle,
+              ...ad.entityRelations.map((relation) => relation.entityLabel),
+            ),
+          )
+        : seededPoliticalAds;
+
+      return filtered.slice(0, limit).map((ad) => {
+        const metricLabel = formatAdMetric(ad);
+
+        return {
+          id: ad.id,
+          title: ad.title,
+          subtitle: `${ad.sponsorName} · ${POLITICAL_AD_SOURCE_LABELS[ad.sourceType]}`,
+          description: ad.description,
+          href: `/ads/${ad.id}`,
+          ctaLabel: "View ad",
+          badges: (
+            <>
+              {renderBadge(POLITICAL_AD_SOURCE_LABELS[ad.sourceType], "civic")}
+              {renderBadge(POLITICAL_AD_SPONSOR_LABELS[ad.sponsorType])}
+              {renderBadge(ad.overallSystemRating, ad.overallSystemRating.includes("False") ? "orange" : "emerald")}
+              {metricLabel ? renderBadge(metricLabel) : null}
+            </>
+          ),
+        } satisfies ExplorePreviewItem;
+      });
+    }
     case "organizations": {
       const organizations = await getAllOrganizations(user);
       const filtered = favoriteIds
@@ -706,7 +768,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
     },
   );
 
-  const targetTypeForCategory: Record<ExploreCategory, FavoriteTargetType> = {
+  const targetTypeForCategory: Partial<Record<ExploreCategory, FavoriteTargetType>> = {
     communities: "community",
     issues: "issue",
     people: "person",
@@ -718,6 +780,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
     elections: "election",
     organizations: "organization",
   };
+  const activeFavoriteTargetType = targetTypeForCategory[activeCategory];
 
   const [activeItemsResult, browseItemsResult] = await Promise.allSettled([
     getCategoryPreviewItems({
@@ -725,7 +788,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
       user,
       communityId: selectedCommunityId,
       query: favoritesOnly ? "" : query,
-      favoriteIds: favoritesOnly ? favoriteIdsByType[targetTypeForCategory[activeCategory]] : undefined,
+      favoriteIds: favoritesOnly ? (activeFavoriteTargetType ? favoriteIdsByType[activeFavoriteTargetType] : []) : undefined,
     }),
     getCategoryPreviewItems({
       category: activeBrowseCategory,
@@ -780,140 +843,6 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           </>
         }
       />
-
-      <section className="dd-panel rounded-[1.75rem] p-5 sm:p-6">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Research archive</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Ad Repository</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
-              Browse political ads by sponsor, source, geography, election, issue, candidate, and truth rating.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-200">
-              {seededPoliticalAds.length} ads indexed
-            </span>
-            <Link href="/ads" className="dd-button-primary rounded-full px-5 py-3 text-sm font-semibold">
-              Ad Repository
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="dd-panel rounded-[1.75rem] p-6">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Unified search</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Search one civic category at a time</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Switch categories without changing the page structure. Results stay lightweight and preview-first.
-            </p>
-          </div>
-          {favoritesOnly ? (
-            <Link
-              href={buildExploreHref({ communityId: selectedCommunityId, category: activeCategory, q: query })}
-              scroll={false}
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-            >
-              Back to search
-            </Link>
-          ) : null}
-        </div>
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          {EXPLORE_CATEGORIES.map((category) => {
-            const href = buildExploreHref({
-              communityId: selectedCommunityId,
-              category: category.key,
-              browseCategory: activeBrowseCategory,
-              q: query,
-              favorites: favoritesOnly,
-            });
-
-            return (
-              <Link
-                key={category.key}
-                href={href}
-                scroll={false}
-                className={
-                  category.key === activeCategory
-                    ? "rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-4 py-2 text-sm font-semibold text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.75)]"
-                    : "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/20 hover:text-cyan-100"
-                }
-              >
-                {category.label}
-              </Link>
-            );
-          })}
-        </div>
-
-        <PreserveScrollQueryForm action="/explore" className="mt-5 flex flex-wrap gap-3">
-          <input type="hidden" name="communityId" value={selectedCommunityId} />
-          <input type="hidden" name="category" value={activeCategory} />
-          <input type="hidden" name="browseCategory" value={activeBrowseCategory} />
-          {favoritesOnly ? <input type="hidden" name="favorites" value="1" /> : null}
-          <input
-            type="search"
-            name="q"
-            defaultValue={query}
-            placeholder={getCategoryPlaceholder(activeCategory)}
-            className="dd-input min-w-[18rem] flex-1 rounded-full px-4 py-3 text-sm outline-none focus:border-cyan-300/30"
-          />
-          <button type="submit" className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
-            Search
-          </button>
-        </PreserveScrollQueryForm>
-      </section>
-
-      {query || favoritesOnly ? (
-        <section className="dd-panel rounded-[1.75rem] p-6">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading
-              eyebrow={favoritesOnly ? "Favorites view" : "Search results"}
-              title={resultsTitle}
-              description={resultsDescription}
-            />
-            <div className="flex flex-wrap gap-3">
-              {!favoritesOnly ? (
-                <Link
-                  href={getBrowseHref(activeCategory, selectedCommunityId, query)}
-                  className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-                >
-                  View all
-                </Link>
-              ) : null}
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200">
-                {activeItems.length} item{activeItems.length === 1 ? "" : "s"}
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-4 xl:grid-cols-2">
-            {activeItems.length ? (
-              activeItems.map((item) => (
-                <ExploreResultCard
-                  key={`${activeCategory}-${item.id}`}
-                  title={item.title}
-                  subtitle={item.subtitle}
-                  description={item.description}
-                  href={item.href}
-                  ctaLabel={item.ctaLabel}
-                  badges={item.badges}
-                  favorite={item.favorite}
-                  avatar={item.avatar}
-                />
-              ))
-            ) : (
-              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400 xl:col-span-2">
-                {favoritesOnly
-                  ? `No saved ${activeCategoryLabel.toLowerCase()} yet.`
-                  : `No ${activeCategoryLabel.toLowerCase()} match “${query}” yet.`}
-              </div>
-            )}
-          </div>
-        </section>
-      ) : null}
 
       <section className="dd-panel rounded-[1.75rem] p-6">
         <SectionHeading
@@ -991,6 +920,123 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           </div>
         </div>
       </section>
+
+      <section className="dd-panel rounded-[1.75rem] p-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Unified search</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Search one civic category at a time</h2>
+            <p className="mt-2 text-sm text-slate-400">
+              Switch categories without changing the page structure. Results stay lightweight and preview-first.
+            </p>
+          </div>
+          {favoritesOnly ? (
+            <Link
+              href={buildExploreHref({ communityId: selectedCommunityId, category: activeCategory, q: query })}
+              scroll={false}
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
+            >
+              Back to search
+            </Link>
+          ) : null}
+        </div>
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          {EXPLORE_CATEGORIES.map((category) => {
+            const href =
+              category.key === "ads"
+                ? getBrowseHref("ads", selectedCommunityId, query)
+                : buildExploreHref({
+                    communityId: selectedCommunityId,
+                    category: category.key,
+                    browseCategory: activeBrowseCategory,
+                    q: query,
+                    favorites: favoritesOnly,
+                  });
+
+            return (
+              <Link
+                key={category.key}
+                href={href}
+                scroll={false}
+                className={
+                  category.key === activeCategory
+                    ? "rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-4 py-2 text-sm font-semibold text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.75)]"
+                    : "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/20 hover:text-cyan-100"
+                }
+              >
+                {category.label}
+              </Link>
+            );
+          })}
+        </div>
+
+        <PreserveScrollQueryForm action={activeCategory === "ads" ? "/ads" : "/explore"} className="mt-5 flex flex-wrap gap-3">
+          <input type="hidden" name="communityId" value={selectedCommunityId} />
+          <input type="hidden" name="category" value={activeCategory} />
+          <input type="hidden" name="browseCategory" value={activeBrowseCategory} />
+          {favoritesOnly ? <input type="hidden" name="favorites" value="1" /> : null}
+          <input
+            type="search"
+            name="q"
+            defaultValue={query}
+            placeholder={getCategoryPlaceholder(activeCategory)}
+            className="dd-input min-w-[18rem] flex-1 rounded-full px-4 py-3 text-sm outline-none focus:border-cyan-300/30"
+          />
+          <button type="submit" className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
+            Search
+          </button>
+        </PreserveScrollQueryForm>
+      </section>
+
+      {query || favoritesOnly ? (
+        <section className="dd-panel rounded-[1.75rem] p-6">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <SectionHeading
+              eyebrow={favoritesOnly ? "Favorites view" : "Search results"}
+              title={resultsTitle}
+              description={resultsDescription}
+            />
+            <div className="flex flex-wrap gap-3">
+              {!favoritesOnly ? (
+                <Link
+                  href={getBrowseHref(activeCategory, selectedCommunityId, query)}
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
+                >
+                  View all
+                </Link>
+              ) : null}
+              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200">
+                {activeItems.length} item{activeItems.length === 1 ? "" : "s"}
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-4 xl:grid-cols-2">
+            {activeItems.length ? (
+              activeItems.map((item) => (
+                <ExploreResultCard
+                  key={`${activeCategory}-${item.id}`}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                  description={item.description}
+                  href={item.href}
+                  ctaLabel={item.ctaLabel}
+                  badges={item.badges}
+                  favorite={item.favorite}
+                  avatar={item.avatar}
+                />
+              ))
+            ) : (
+              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400 xl:col-span-2">
+                {favoritesOnly
+                  ? `No saved ${activeCategoryLabel.toLowerCase()} yet.`
+                  : `No ${activeCategoryLabel.toLowerCase()} match “${query}” yet.`}
+              </div>
+            )}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
