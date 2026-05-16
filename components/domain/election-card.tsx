@@ -118,6 +118,12 @@ export function ElectionCard({ election, candidates, viewer }: ElectionCardProps
           >
             View election
           </Link>
+          <Link
+            href={`/ads?electionId=${encodeURIComponent(election.id)}`}
+            className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-4 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-500/15"
+          >
+            View Ads
+          </Link>
         </div>
       </div>
 

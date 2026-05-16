@@ -9,6 +9,7 @@ import { CandidateProfileHero } from "@/components/domain/candidate-profile-hero
 import { FundingBreakdownCard } from "@/components/domain/funding-breakdown-card";
 import { PollCard } from "@/components/domain/poll-card";
 import { PollingComparisonCard } from "@/components/domain/polling-comparison-card";
+import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
 import { PostCard } from "@/components/domain/post-card";
 import { ProfileInterviewsSection } from "@/components/domain/profile-interviews-section";
 import { SummaryBriefPanel } from "@/components/domain/summary-brief-panel";
@@ -24,6 +25,7 @@ import { getClaimActionStateForViewer, getClaimMatchForProfile, getOnboardingDra
 import { getContextualPostPreviews } from "@/lib/feed/posts";
 import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getOrganizationEndorsementsForCampaign } from "@/lib/organizations/store";
+import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { mergeExternalLinksWithWebsite } from "@/lib/profile/external-links";
 import { getSafeUserProgressionSummary } from "@/lib/profile/progression";
@@ -256,6 +258,7 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
       : "No recent platform posts are visible yet, so campaign promises remain the clearest signal.",
   ].filter((value): value is string => Boolean(value));
   const candidateBriefSummary = `${hydratedCandidate.name}'s page is most useful as a quick campaign read: ${leadCampaign ? `${leadCampaign.campaignStatus.toLowerCase()} activity is centered on ${leadCampaign.officeSought.toLowerCase()} in ${leadCampaign.jurisdictionName}. ` : ""}${hydratedCandidate.campaignPromises.length ? `Public Reliability pulls campaign promises, platform commitments, endorsements, and visible activity into one accountability read, while polls and posts add extra context when you want more detail.` : `This profile is still light on structured promises, so the best next step is to scan the campaign and endorsement sections below.`}`;
+  const relatedAds = getPoliticalAdsForEntity("candidate", hydratedCandidate.id, 4);
 
   return (
     <div className="space-y-6 py-8">
@@ -320,6 +323,13 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
           ...(hydratedCandidate.campaigns.length ? [{ label: "Open campaigns", href: "#candidate-campaigns" }] : []),
           ...(hydratedCandidate.campaignPromises.length ? [{ label: "Review promises", href: "#candidate-promises" }] : []),
         ]}
+      />
+      <PoliticalAdsSection
+        title="Political ads about this candidate"
+        description="See ads by this campaign, supportive groups, opposition groups, and outside spenders. System ratings and trusted citizen ratings stay separate."
+        ads={relatedAds}
+        repositoryHref={`/ads?candidateId=${encodeURIComponent(hydratedCandidate.id)}`}
+        emptyText="No political ads are attached to this candidate yet."
       />
 
       {sentimentSummary ? (

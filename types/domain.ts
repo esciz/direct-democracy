@@ -103,6 +103,230 @@ export type SentimentHistoryPoint = {
   undecidedPercent?: number;
 };
 
+export type PoliticalAdSourceType =
+  | "print"
+  | "mailer"
+  | "podcastAd"
+  | "internetAd"
+  | "socialMediaAd"
+  | "searchAd"
+  | "displayAd"
+  | "streamingAd"
+  | "cableAd"
+  | "broadcastTvAd"
+  | "radioAd"
+  | "connectedTvAd"
+  | "textSmsAd"
+  | "emailAd"
+  | "billboardOutdoorAd"
+  | "eventHandout"
+  | "otherUnknown";
+
+export type PoliticalAdSponsorType =
+  | "candidateCampaign"
+  | "officeholderCommittee"
+  | "oppositionCandidate"
+  | "politicalParty"
+  | "pac"
+  | "superPac"
+  | "union"
+  | "nonprofitAdvocacyGroup"
+  | "corporationTradeAssociation"
+  | "ballotMeasureCommittee"
+  | "independentExpenditureGroup"
+  | "unknownUndisclosed"
+  | "other";
+
+export type PoliticalAdEntityType = "candidate" | "official" | "issue" | "ballotMeasure" | "election";
+export type PoliticalAdRelationType = "supports" | "opposes" | "mentions" | "related";
+export type PoliticalAdTruthRating = "True" | "Mostly True" | "Mostly False" | "False" | "Not Checkable" | "Needs Review";
+export type PoliticalAdRatingConfidence = "High" | "Medium" | "Low";
+export type PoliticalAdClaimType = "factual" | "opinion" | "prediction" | "notCheckable";
+export type PoliticalAdClaimImportance = "high" | "medium" | "low";
+export type PoliticalAdMediaType = "thumbnail" | "image" | "video" | "audio" | "transcript" | "ocrText" | "pdf" | "externalEmbed";
+export type PoliticalAdChallengeReason =
+  | "incorrect"
+  | "missingContext"
+  | "outdated"
+  | "sourceProblem"
+  | "misleadingClaimExtraction"
+  | "newEvidence"
+  | "other";
+export type PoliticalAdChallengeStatus = "pending" | "underReview" | "accepted" | "rejected" | "resolved";
+export type PoliticalAdStatus = "draft" | "pendingReview" | "published" | "archived" | "removed";
+
+export type PoliticalAdMedia = {
+  id: string;
+  politicalAdId: string;
+  mediaType: PoliticalAdMediaType;
+  url?: string | null;
+  textContent?: string | null;
+  altText?: string | null;
+  duration?: number | null;
+  width?: number | null;
+  height?: number | null;
+  sortOrder: number;
+  createdAt: string;
+};
+
+export type PoliticalAdEntityRelation = {
+  id: string;
+  politicalAdId: string;
+  entityType: PoliticalAdEntityType;
+  entityId: string;
+  entityLabel: string;
+  relationType: PoliticalAdRelationType;
+  createdAt: string;
+};
+
+export type PoliticalAdGeography = {
+  id: string;
+  politicalAdId: string;
+  country: string;
+  state?: string | null;
+  county?: string | null;
+  city?: string | null;
+  districtType?: string | null;
+  districtName?: string | null;
+  precinct?: string | null;
+  boundaryId?: string | null;
+  createdAt: string;
+};
+
+export type AdClaimEvidence = {
+  id: string;
+  claimId: string;
+  title: string;
+  url: string;
+  sourceType: string;
+  publisher: string;
+  publishedAt?: string | null;
+  excerpt: string;
+  supportsOrRefutes: "supports" | "refutes" | "contextualizes";
+  createdAt: string;
+};
+
+export type AdClaim = {
+  id: string;
+  politicalAdId: string;
+  claimText: string;
+  normalizedClaim: string;
+  claimType: PoliticalAdClaimType;
+  mediaTimestampStart?: string | null;
+  mediaTimestampEnd?: string | null;
+  mediaLocation?: string | null;
+  importance: PoliticalAdClaimImportance;
+  systemRating: PoliticalAdTruthRating;
+  systemConfidence: PoliticalAdRatingConfidence;
+  systemExplanation: string;
+  citizenRating?: PoliticalAdTruthRating | null;
+  citizenAgreementPercent?: number | null;
+  citizenRatingCount?: number | null;
+  evidence: AdClaimEvidence[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CitizenAdRating = {
+  id: string;
+  userId: string;
+  politicalAdId: string;
+  rating: PoliticalAdTruthRating;
+  explanation: string;
+  sourceUrl?: string | null;
+  trustWeight?: number | null;
+  status: "active" | "flagged" | "removed";
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CitizenClaimRating = {
+  id: string;
+  userId: string;
+  claimId: string;
+  rating: PoliticalAdTruthRating;
+  explanation: string;
+  sourceUrl?: string | null;
+  trustWeight?: number | null;
+  status: "active" | "flagged" | "removed";
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type AdRatingChallenge = {
+  id: string;
+  submittedByUserId: string;
+  targetType: "ad" | "claim";
+  targetId: string;
+  reason: PoliticalAdChallengeReason;
+  explanation: string;
+  evidenceUrl?: string | null;
+  status: PoliticalAdChallengeStatus;
+  resolution?: string | null;
+  reviewedByUserId?: string | null;
+  createdAt: string;
+  resolvedAt?: string | null;
+};
+
+export type PoliticalAd = {
+  id: string;
+  title: string;
+  description: string;
+  sourceType: PoliticalAdSourceType;
+  sponsorName: string;
+  sponsorType: PoliticalAdSponsorType;
+  paidForBy: string;
+  producedBy?: string | null;
+  authorizedBy?: string | null;
+  authorizationText?: string | null;
+  totalSpend?: number | null;
+  currency: string;
+  impressions?: number | null;
+  firstSeenAt: string;
+  lastSeenAt?: string | null;
+  electionCycle: string;
+  geographySummary: string;
+  platformUrl?: string | null;
+  archiveUrl?: string | null;
+  overallSystemRating: PoliticalAdTruthRating;
+  overallSystemConfidence: PoliticalAdRatingConfidence;
+  overallSystemExplanation: string;
+  overallCitizenRating?: PoliticalAdTruthRating | null;
+  citizenAgreementPercent?: number | null;
+  citizenRatingCount?: number | null;
+  status: PoliticalAdStatus;
+  media: PoliticalAdMedia[];
+  entityRelations: PoliticalAdEntityRelation[];
+  geographies: PoliticalAdGeography[];
+  claims: AdClaim[];
+  citizenRatings: CitizenAdRating[];
+  challenges: AdRatingChallenge[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PoliticalAdFilters = {
+  q?: string;
+  candidateId?: string;
+  officialId?: string;
+  issueId?: string;
+  ballotMeasureId?: string;
+  electionId?: string;
+  sponsor?: string;
+  sponsorType?: PoliticalAdSponsorType | "all";
+  sourceType?: PoliticalAdSourceType | "all";
+  relationType?: PoliticalAdRelationType | "all";
+  systemRating?: PoliticalAdTruthRating | "all";
+  citizenRating?: PoliticalAdTruthRating | "all";
+  geography?: string;
+  minSpend?: number;
+  maxSpend?: number;
+  dateFrom?: string;
+  dateTo?: string;
+  sort?: "newest" | "mostExpensive" | "mostViewed" | "mostMisleading" | "mostDisputed" | "highestCitizenParticipation";
+  page?: number;
+};
+
 export type ContextAttachmentSummary = {
   type: ContextAttachmentType;
   id: string;

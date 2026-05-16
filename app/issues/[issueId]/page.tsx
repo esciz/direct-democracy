@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { OrganizationCard } from "@/components/domain/organization-card";
+import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
 import { ProfileImagePlaceholder } from "@/components/domain/profile-image-placeholder";
 import { RoleBadge } from "@/components/domain/role-badge";
 import { ShareActionMenu } from "@/components/domain/share-action-menu";
@@ -23,6 +24,7 @@ import { valuesMatchIssueText } from "@/lib/issues/utils";
 import { getContentDetailHref } from "@/lib/news/links";
 import { getFeedMediaPreviews } from "@/lib/media/store";
 import { getAllPetitions } from "@/lib/petitions/store";
+import { getPoliticalAdsForIssue } from "@/lib/political-ads/store";
 import { getFeedPollPreviews } from "@/lib/polls/store";
 import { getElectionSummaries } from "@/lib/server/elections-context";
 import { getIssueByRouteParam, getIssueSummary, getOrganizationsForIssue, getPeopleForIssue } from "@/lib/server/issues";
@@ -1382,6 +1384,7 @@ async function IssueDetailContent({
   });
   const safeIssue = resolvedIssue ?? baseIssue;
   const guestMode = isGuestUserId(currentUser.id);
+  const relatedAds = getPoliticalAdsForIssue(safeIssue.id, safeIssue.issueText, 4);
 
   return (
     <>
@@ -1477,6 +1480,14 @@ async function IssueDetailContent({
           <IssueBattlegroundSection issue={safeIssue} currentUser={currentUser} guestMode={guestMode} />
         </div>
       </Suspense>
+
+      <PoliticalAdsSection
+        title="Political ads about this issue"
+        description="Compare ads that support, oppose, or mention this issue across sponsors, source types, geography, and truth ratings."
+        ads={relatedAds}
+        repositoryHref={`/ads?issueId=${encodeURIComponent(safeIssue.id)}`}
+        emptyText="No political ads are attached to this issue yet."
+      />
 
       <details id="issue-sourcebook" className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur" open={activeFilter !== "all"}>
         <summary className="flex cursor-pointer list-none items-center justify-between gap-4">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { HomeGuidedActionCard } from "@/components/domain/home-guided-action-card";
 import { HomeVotePreviewPane } from "@/components/domain/home-vote-preview-pane";
 import { HomeUpcomingElectionsPane } from "@/components/domain/home-upcoming-elections-pane";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -590,6 +591,12 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      <HomeGuidedActionCard
+        communityName={defaultCommunity.name}
+        communityHref={`/my-community?communityId=${defaultCommunity.id}`}
+        primaryElectionHref={upcomingElectionItems[0]?.href ?? "/elections"}
+        primaryIssueHref={topIssues[0] ? `/issues/${slugifyIssueText(topIssues[0].issueText)}` : "/issues"}
+      />
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)] xl:items-start">
       <div className="space-y-6">
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">

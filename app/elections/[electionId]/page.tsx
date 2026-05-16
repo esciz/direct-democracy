@@ -4,6 +4,7 @@ import { BallotInitiativeCard } from "@/components/domain/ballot-initiative-card
 import { CandidateMatchBreakdown } from "@/components/domain/candidate-match-breakdown";
 import { CandidateMatchCard } from "@/components/domain/candidate-match-card";
 import { CandidateComparisonCard } from "@/components/domain/candidate-comparison-card";
+import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
 import { PostCard } from "@/components/domain/post-card";
 import { SummaryBriefPanel } from "@/components/domain/summary-brief-panel";
 import { PageIntro } from "@/components/ui/page-intro";
@@ -13,6 +14,7 @@ import { getCurrentUser } from "@/lib/server/auth-session";
 import { getCandidateMatchSummary } from "@/lib/candidates/matching";
 import { voteInCampusElection } from "@/lib/elections/campus-voting-actions";
 import { canUserVoteInCampusElection, getCampusElectionVoteState } from "@/lib/elections/campus-voting";
+import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
 import { getCandidateProfileById, getCandidateProfiles, getElectionById } from "@/lib/server/elections-context";
 
 type ElectionDetailPageProps = {
@@ -171,6 +173,7 @@ async function ElectionDetailBody({
   const electionBriefSummary = topMatch && topCampaign
     ? `${election.title} is most useful right now as a comparison page: the strongest current alignment is ${topMatch.matchPercentage}% with ${topCampaign.officeSought.toLowerCase()} messaging, while ballot context and side-by-side differences are already visible below. ${election.ballotInitiatives.length ? "The ballot also carries related measures that may shape the same civic priorities." : "The clearest next step is to compare the leading candidate matches in more detail."}`
     : `${election.title} currently has ${election.candidates.length} visible candidate profile${election.candidates.length === 1 ? "" : "s"} and ${election.ballotInitiatives.length} ballot measure${election.ballotInitiatives.length === 1 ? "" : "s"} connected to this election. Use this page to compare candidates first, then drill into the most relevant race or measure below.`;
+  const electionAds = getPoliticalAdsForEntity("election", election.id, 4);
 
   return (
     <>
@@ -190,6 +193,14 @@ async function ElectionDetailBody({
           ...(validCandidateCards.length ? [{ label: "Compare candidates", href: "#candidate-comparison" }] : []),
           ...(election.ballotInitiatives[0] ? [{ label: "Open ballot measure", href: `/initiatives/${election.ballotInitiatives[0].id}` }] : []),
         ]}
+      />
+
+      <PoliticalAdsSection
+        title="Political ads in this election"
+        description="Browse campaign ads, outside group ads, ballot-measure ads, and issue ads tied to this election."
+        ads={electionAds}
+        repositoryHref={`/ads?electionId=${encodeURIComponent(election.id)}`}
+        emptyText="No political ads are attached to this election yet."
       />
 
       <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">

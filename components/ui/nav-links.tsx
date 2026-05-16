@@ -44,6 +44,7 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
       "/top-issues",
       "/issues",
       "/debates",
+      "/ads",
     ],
   },
   {
@@ -86,6 +87,7 @@ const MOBILE_NAV_ITEMS: MobileNavItem[] = [
       "/top-issues",
       "/issues",
       "/debates",
+      "/ads",
     ],
     icon: "explore",
   },

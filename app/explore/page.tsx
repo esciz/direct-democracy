@@ -16,6 +16,7 @@ import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getAllPetitions } from "@/lib/petitions/store";
+import { seededPoliticalAds } from "@/lib/political-ads/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
 import { getCandidateProfiles, getElectionSummaries, getOfficials } from "@/lib/server/elections-context";
 import { getFavoritesForUser } from "@/lib/server/favorites";
@@ -779,6 +780,26 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           </>
         }
       />
+
+      <section className="dd-panel rounded-[1.75rem] p-5 sm:p-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Research archive</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Ad Repository</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
+              Browse political ads by sponsor, source, geography, election, issue, candidate, and truth rating.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-200">
+              {seededPoliticalAds.length} ads indexed
+            </span>
+            <Link href="/ads" className="dd-button-primary rounded-full px-5 py-3 text-sm font-semibold">
+              Ad Repository
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="dd-panel rounded-[1.75rem] p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">

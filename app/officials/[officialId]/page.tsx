@@ -7,6 +7,7 @@ import { OfficialActionCard } from "@/components/domain/official-action-card";
 import { OfficialPromisesSection } from "@/components/domain/official-promises-section";
 import { OfficialProfileHero } from "@/components/domain/official-profile-hero";
 import { PollCard } from "@/components/domain/poll-card";
+import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
 import { ProfileViewerAlignmentCard } from "@/components/domain/profile-viewer-alignment-card";
 import { ProfileSentimentTracker } from "@/components/domain/profile-sentiment-tracker";
 import { OfficialRecentPosts } from "@/components/domain/official-recent-posts";
@@ -22,6 +23,7 @@ import { getOfficialActionCountByOfficialProfileId, getOfficialActionsByOfficial
 import { getOfficialPromises } from "@/lib/officials/promises";
 import { getOfficials } from "@/lib/officials/store";
 import { getDraftLegislationBySponsorId } from "@/lib/petitions/legislation";
+import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { mergeExternalLinksWithWebsite } from "@/lib/profile/external-links";
 import {
@@ -299,6 +301,7 @@ async function OfficialProfileBody({
     console.error(`[official-detail] sentiment tracker fallback for ${officialId}`, error);
     return null;
   });
+  const relatedAds = getPoliticalAdsForEntity("official", hydratedOfficial.id, 4);
 
   return (
     <>
@@ -340,6 +343,13 @@ async function OfficialProfileBody({
           canVote={canUserVote(comparisonUser)}
         />
       ) : null}
+      <PoliticalAdsSection
+        title="Political ads about this official"
+        description="Track officeholder committee ads, issue ads mentioning this official, opposition messages, and outside group spending."
+        ads={relatedAds}
+        repositoryHref={`/ads?officialId=${encodeURIComponent(hydratedOfficial.id)}`}
+        emptyText="No political ads are attached to this official yet."
+      />
       <Suspense fallback={<ProfileSectionFallback title="Funding" description="Loading funding and polling context..." />}>
         <OfficialFundingSection officialId={hydratedOfficial.id} />
       </Suspense>

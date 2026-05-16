@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 
 import { PostCard } from "@/components/domain/post-card";
+import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
 import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { PageIntro } from "@/components/ui/page-intro";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
+import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
 import { buildSentimentHistory } from "@/lib/sentiment/history";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getBallotInitiativeById, getBallotInitiativeRelatedIssues, getBallotInitiativeRelatedPosts } from "@/lib/elections/initiatives";
@@ -59,6 +61,7 @@ export default async function BallotInitiativePage({ params }: BallotInitiativeP
     points: 8,
     opposeBias: Math.max(14, initiative.communitySentiment.oppose - 10),
   });
+  const relatedAds = getPoliticalAdsForEntity("ballotMeasure", initiative.id, 4);
 
   return (
     <div className="space-y-6 py-8">
@@ -111,6 +114,14 @@ export default async function BallotInitiativePage({ params }: BallotInitiativeP
       </section>
 
       <RelatedIssuesSection initiativeId={initiative.id} initiativeRelatedIssues={initiative.relatedIssues} />
+
+      <PoliticalAdsSection
+        title="Political ads about this ballot measure"
+        description="Compare ads supporting, opposing, or mentioning this measure, including sponsor metadata and separate system and trusted citizen ratings."
+        ads={relatedAds}
+        repositoryHref={`/ads?ballotMeasureId=${encodeURIComponent(initiative.id)}`}
+        emptyText="No political ads are attached to this ballot measure yet."
+      />
 
       <RelatedDiscussionsSection initiativeId={initiative.id} />
     </div>
