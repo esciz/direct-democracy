@@ -288,12 +288,6 @@ export default async function HomePage() {
   const upcomingElectionItems = buildUpcomingElectionItems(upcomingElections, defaultCommunity, user, studentCampus);
   const canVoteNow = canUserVote(user);
   const votePreviewQuestions = dailyVotes.dailyQuestions.slice(0, 3);
-  const waitingVotes = dailyVotes.remainingQuestions;
-  const participationMessage = canVoteNow
-    ? waitingVotes
-      ? `You have ${waitingVotes} vote${waitingVotes === 1 ? "" : "s"} waiting. Keep your civic streak going.`
-      : "You’re caught up right now. Check back often to keep your civic signal current."
-    : "Guest browse is read-only. Verify your voter profile to vote, message officials, and shape results.";
 
   const favoriteItems = favoriteRecords
     .map((record): HomeFavoriteItem | null => {
@@ -478,119 +472,6 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-8 py-8">
-      <section className="dd-panel relative overflow-hidden rounded-[2.1rem] p-6 sm:p-8">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(129,140,248,0.13),transparent_30%),radial-gradient(circle_at_center_left,rgba(52,211,153,0.12),transparent_34%)]" />
-        <div className="relative space-y-5">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="max-w-3xl">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                  <span>Home</span>
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full border border-amber-300/18 bg-amber-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
-                  <span>Prototype demo</span>
-                </span>
-              </div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-50 sm:text-[2.8rem]">
-                Your vote is the signal.
-              </h1>
-              <p className="mt-3 max-w-2xl text-base leading-7 text-slate-300">
-                Direct Democracy helps verified voters vote regularly, follow local issues, see what officials are doing, and build a clearer civic signal across local, state, and national life.
-              </p>
-              <p className="mt-4 text-sm font-medium text-emerald-200">
-                {participationMessage}
-              </p>
-              <p className="mt-3 text-xs leading-6 text-slate-500">
-                This is a shareable prototype demo, not an official government voting system.
-              </p>
-            </div>
-
-            <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_22px_45px_-34px_rgba(2,8,23,0.92)] backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                {canVoteNow ? "Verified voting" : "Guest browse"}
-              </p>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-slate-50">
-                {canVoteNow ? `${waitingVotes}` : "Read-only"}
-              </p>
-              <p className="mt-2 max-w-[12rem] text-sm leading-6 text-slate-400">
-                {canVoteNow
-                  ? waitingVotes === 1
-                    ? "vote waiting right now"
-                    : "votes waiting right now"
-                  : "Verification unlocks voting, messaging, and public civic participation."}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/voting"
-              className="dd-button-primary inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
-            >
-              {canVoteNow ? "Start Voting" : "Try the Demo"}
-            </Link>
-            {canVoteNow ? (
-              <Link
-                href={`/my-community?communityId=${defaultCommunity.id}`}
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-              >
-                Explore My Community
-              </Link>
-            ) : (
-              <Link
-                href="/get-started?step=account"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-              >
-                Verify to Participate
-              </Link>
-            )}
-          </div>
-
-          <div className="grid gap-3 md:grid-cols-2">
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_16px_34px_-30px_rgba(2,8,23,0.88)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Verified profile</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                Every vote is tied to a verified voter profile, so results are harder to spam and easier to trust.
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_16px_34px_-30px_rgba(2,8,23,0.88)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Regular voting</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                Regular voting builds a living civic signal, not just one election-day snapshot.
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_16px_34px_-30px_rgba(2,8,23,0.88)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Public signal</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                Local, statewide, and national questions stack into a clearer picture of public priorities over time.
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_16px_34px_-30px_rgba(2,8,23,0.88)]">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Officials can see it</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                Verified voter input makes it easier for officials and candidates to see what voters actually want.
-              </p>
-            </div>
-          </div>
-
-          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="text-sm font-semibold text-slate-100">My Community</p>
-                <p className="mt-1 text-sm text-slate-400">
-                  See local issues, officials, events, and civic activity in your area.
-                </p>
-              </div>
-              <Link
-                href={`/my-community?communityId=${defaultCommunity.id}`}
-                className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-              >
-                View My Community
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
       <HomeGuidedActionCard
         communityName={defaultCommunity.name}
         communityHref={`/my-community?communityId=${defaultCommunity.id}`}
