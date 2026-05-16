@@ -14,6 +14,7 @@ export async function NotificationMenu({ userId }: NotificationMenuProps) {
       setTimeout(() => resolve({ notifications: [], unreadCount: 0 }), 1200);
     }),
   ]).catch(() => ({ notifications: [], unreadCount: 0 }));
+  const unreadLabel = unreadCount > 99 ? "99+" : String(unreadCount);
 
   return (
     <details className="group relative">
@@ -32,8 +33,8 @@ export async function NotificationMenu({ userId }: NotificationMenuProps) {
         </span>
         <span className="sr-only">Notifications</span>
         {unreadCount ? (
-          <span className="absolute -right-1 -top-1 rounded-full bg-civic-600 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
-            {unreadCount}
+          <span className="absolute -right-1.5 -top-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full border border-white bg-red-600 px-1 text-[10px] font-bold leading-none text-white shadow-sm ring-2 ring-slate-950/15">
+            {unreadLabel}
           </span>
         ) : null}
       </summary>
