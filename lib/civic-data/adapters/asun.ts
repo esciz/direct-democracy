@@ -7,8 +7,8 @@ import type { CivicDataAdapter, IngestionIssue } from "@/lib/civic-data/types";
 const ASUN_ELECTION_RESULTS_URL = "https://nevadaasun.com/asun-2026-elections-results/";
 
 function parseAsunElectionResults(html: string): OfficialSeedRecord[] {
-  const presidentMatch = html.match(/ASUN President-Elect \(1\)[\s\S]*?<p>([\s\S]*?)<\/p>/i);
-  const vicePresidentMatch = html.match(/ASUN Vice President-Elect \(1\)[\s\S]*?<p>([\s\S]*?)<\/p>/i);
+  const presidentMatch = html.match(/<h4>\s*ASUN President-Elect \(1\)\s*<\/h4>\s*<p>([\s\S]*?)<\/p>/i);
+  const vicePresidentMatch = html.match(/<h4>\s*ASUN Vice President-Elect \(1\)\s*<\/h4>\s*<p>([\s\S]*?)<\/p>/i);
   const baseRecord = {
     jurisdictionSlug: "asun",
     jurisdictionName: "Associated Students of the University of Nevada",

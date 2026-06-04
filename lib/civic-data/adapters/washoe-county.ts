@@ -8,7 +8,8 @@ const WASHOE_PROFILE_URL = "https://www.washoecounty.gov/bcc/profile/index.php";
 
 function toIsoDate(value: string) {
   const [month, day, year] = value.split("/");
-  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  const fullYear = year.length === 2 ? `20${year}` : year;
+  return `${fullYear}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
 }
 
 function cleanCommissionerName(value: string) {
@@ -87,4 +88,3 @@ export const washoeCountyAdapter: CivicDataAdapter = {
     });
   },
 };
-
