@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { PageIntro } from "@/components/ui/page-intro";
+import { syncNevadaOfficialsSourcesAction } from "@/lib/civic-data/actions";
 import { getAdminImportRuns } from "@/lib/civic-data/service";
 import { getCurrentUser } from "@/lib/server/auth-session";
 
@@ -11,8 +12,16 @@ function formatDate(value: Date | null) {
   return value ? new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(value) : "In progress";
 }
 
-export default async function AdminImportsPage() {
+type AdminImportsPageProps = {
+  searchParams?: Promise<{
+    error?: string;
+    synced?: string;
+  }>;
+};
+
+export default async function AdminImportsPage({ searchParams }: AdminImportsPageProps) {
   const user = await getCurrentUser();
+  const params = searchParams ? await searchParams : undefined;
 
   if (user.role !== "admin") {
     redirect("/profile");
@@ -27,11 +36,25 @@ export default async function AdminImportsPage() {
         title="Import runs"
         description="Inspect recent manual and scheduled civic data sync attempts, including record counts and parser errors."
         actions={
-          <Link href="/admin/sources" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
-            Sources
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <form action={syncNevadaOfficialsSourcesAction}>
+              <button type="submit" className="dd-button-primary rounded-full px-4 py-2.5 text-sm font-semibold">
+                Sync Officials
+              </button>
+            </form>
+            <Link href="/admin/sources" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
+              Sources
+            </Link>
+          </div>
         }
       />
+
+      {params?.synced ? (
+        <div className="rounded-2xl border border-emerald-300/20 bg-emerald-500/10 p-4 text-sm text-emerald-100">Officials source sync completed.</div>
+      ) : null}
+      {params?.error ? (
+        <div className="rounded-2xl border border-rose-300/20 bg-rose-500/10 p-4 text-sm text-rose-100">One or more source syncs failed. Review import logs below.</div>
+      ) : null}
 
       <section className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
         <div className="grid gap-3 border-b border-white/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:grid-cols-[1.1fr_0.8fr_0.8fr_0.5fr_0.5fr]">
@@ -64,4 +87,3 @@ export default async function AdminImportsPage() {
     </div>
   );
 }
-

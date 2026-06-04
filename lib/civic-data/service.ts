@@ -1,8 +1,8 @@
-import { SourceSyncStatus } from "@prisma/client";
+import { JurisdictionType, Prisma, SourceSyncStatus } from "@prisma/client";
 
 import { getCivicDataAdapter } from "@/lib/civic-data/adapters";
 import { NEVADA_BETA_SOURCE_DEFINITIONS, getSourceDefinition } from "@/lib/civic-data/source-definitions";
-import type { CivicSourceDefinition, ImportMode, IngestionIssue } from "@/lib/civic-data/types";
+import type { CivicSourceDefinition, ImportMode, IngestionIssue, NormalizedCivicData } from "@/lib/civic-data/types";
 import { prisma } from "@/lib/prisma";
 
 export type AdminSourceRow = CivicSourceDefinition & {
@@ -27,6 +27,9 @@ export type AdminImportRunRow = {
 };
 
 export type CivicDataMetrics = {
+  jurisdictions: number;
+  offices: number;
+  districts: number;
   officials: number;
   elections: number;
   bills: number;
@@ -70,6 +73,9 @@ export type AdminInitiativeRow = {
 };
 
 const emptyMetrics: CivicDataMetrics = {
+  jurisdictions: 0,
+  offices: 0,
+  districts: 0,
   officials: 0,
   elections: 0,
   bills: 0,
@@ -81,6 +87,269 @@ const emptyMetrics: CivicDataMetrics = {
 
 function serializeIssues(issues: IngestionIssue[]) {
   return issues.length > 0 ? issues.map((issue) => `[${issue.severity}] ${issue.message}`).join("\n") : null;
+}
+
+const foundationalJurisdictions: Array<{
+  slug: string;
+  name: string;
+  type: JurisdictionType;
+  parentSlug?: string;
+}> = [
+  { slug: "united-states", name: "United States", type: JurisdictionType.COUNTRY },
+  { slug: "nevada", name: "Nevada", type: JurisdictionType.STATE, parentSlug: "united-states" },
+  { slug: "washoe-county", name: "Washoe County", type: JurisdictionType.COUNTY, parentSlug: "nevada" },
+  { slug: "reno", name: "Reno", type: JurisdictionType.CITY, parentSlug: "washoe-county" },
+  { slug: "carson-city", name: "Carson City", type: JurisdictionType.CITY, parentSlug: "nevada" },
+  { slug: "unr", name: "University of Nevada, Reno", type: JurisdictionType.CAMPUS, parentSlug: "nevada" },
+  { slug: "asun", name: "Associated Students of the University of Nevada", type: JurisdictionType.STUDENT_GOVERNMENT, parentSlug: "unr" },
+] as const;
+
+function parseOptionalDate(value?: string) {
+  return value ? new Date(value) : undefined;
+}
+
+function toJsonInput(value: unknown) {
+  return value === undefined ? undefined : (value as Prisma.InputJsonValue);
+}
+
+function validateOfficialsFoundation(data: NormalizedCivicData) {
+  const issues: IngestionIssue[] = [];
+  const jurisdictionSlugs = new Set(data.jurisdictions.map((jurisdiction) => jurisdiction.slug));
+  const districtExternalIds = new Set(data.districts.map((district) => district.externalId));
+  const officeExternalIds = new Set(data.offices.map((office) => office.externalId));
+
+  const districts = data.districts.filter((district) => {
+    if (!district.externalId || !district.name || !district.jurisdictionSlug) {
+      issues.push({ severity: "error", message: "Skipped district with missing externalId, name, or jurisdiction.", externalId: district.externalId });
+      return false;
+    }
+    return true;
+  });
+
+  const offices = data.offices.filter((office) => {
+    if (!office.externalId || !office.title || !office.jurisdictionSlug) {
+      issues.push({ severity: "error", message: "Skipped office with missing externalId, title, or jurisdiction.", externalId: office.externalId });
+      return false;
+    }
+    if (office.districtExternalId && !districtExternalIds.has(office.districtExternalId)) {
+      issues.push({ severity: "error", message: `Skipped office because district ${office.districtExternalId} was not present.`, externalId: office.externalId });
+      return false;
+    }
+    return true;
+  });
+
+  const officials = data.officials.filter((official) => {
+    if (!official.externalId || !official.fullName || !official.officeExternalId || !official.jurisdictionSlug) {
+      issues.push({ severity: "error", message: "Skipped official with missing externalId, name, office, or jurisdiction.", externalId: official.externalId });
+      return false;
+    }
+    if (!officeExternalIds.has(official.officeExternalId)) {
+      issues.push({ severity: "error", message: `Skipped official because office ${official.officeExternalId} was not present.`, externalId: official.externalId });
+      return false;
+    }
+    if (official.districtExternalId && !districtExternalIds.has(official.districtExternalId)) {
+      issues.push({ severity: "error", message: `Skipped official because district ${official.districtExternalId} was not present.`, externalId: official.externalId });
+      return false;
+    }
+    return true;
+  });
+
+  for (const jurisdiction of data.jurisdictions) {
+    if (!jurisdiction.slug || !jurisdiction.name) {
+      issues.push({ severity: "error", message: "Skipped jurisdiction with missing slug or name.", externalId: jurisdiction.externalId });
+    }
+  }
+
+  return {
+    data: {
+      ...data,
+      jurisdictions: data.jurisdictions.filter((jurisdiction) => jurisdiction.slug && jurisdiction.name),
+      districts: districts.filter((district) => jurisdictionSlugs.has(district.jurisdictionSlug) || foundationalJurisdictions.some((item) => item.slug === district.jurisdictionSlug)),
+      offices: offices.filter((office) => jurisdictionSlugs.has(office.jurisdictionSlug) || foundationalJurisdictions.some((item) => item.slug === office.jurisdictionSlug)),
+      officials: officials.filter((official) => jurisdictionSlugs.has(official.jurisdictionSlug) || foundationalJurisdictions.some((item) => item.slug === official.jurisdictionSlug)),
+    },
+    issues,
+  };
+}
+
+async function ensureFoundationalJurisdictions() {
+  const idsBySlug = new Map<string, string>();
+
+  for (const jurisdiction of foundationalJurisdictions) {
+    const parentId = jurisdiction.parentSlug ? idsBySlug.get(jurisdiction.parentSlug) : undefined;
+    const upserted = await prisma.jurisdiction.upsert({
+      where: { slug: jurisdiction.slug },
+      create: {
+        name: jurisdiction.name,
+        slug: jurisdiction.slug,
+        type: jurisdiction.type,
+        parentId,
+      },
+      update: {
+        name: jurisdiction.name,
+        type: jurisdiction.type,
+        parentId,
+      },
+      select: { id: true, slug: true },
+    });
+    idsBySlug.set(upserted.slug, upserted.id);
+  }
+
+  return idsBySlug;
+}
+
+async function upsertOfficialsFoundation(sourceId: string, data: NormalizedCivicData) {
+  const jurisdictionIds = await ensureFoundationalJurisdictions();
+  let recordsChanged = 0;
+
+  for (const jurisdiction of data.jurisdictions) {
+    const parentId = jurisdiction.parentSlug ? jurisdictionIds.get(jurisdiction.parentSlug) : undefined;
+    const upserted = await prisma.jurisdiction.upsert({
+      where: { slug: jurisdiction.slug },
+      create: {
+        name: jurisdiction.name,
+        slug: jurisdiction.slug,
+        type: jurisdiction.type,
+        code: jurisdiction.code,
+        parentId,
+      },
+      update: {
+        name: jurisdiction.name,
+        type: jurisdiction.type,
+        code: jurisdiction.code,
+        parentId,
+      },
+      select: { id: true, slug: true },
+    });
+    jurisdictionIds.set(upserted.slug, upserted.id);
+    recordsChanged += 1;
+  }
+
+  const districtIds = new Map<string, string>();
+  for (const district of data.districts) {
+    const jurisdictionId = jurisdictionIds.get(district.jurisdictionSlug);
+    if (!jurisdictionId) continue;
+
+    const upserted = await prisma.district.upsert({
+      where: {
+        sourceId_externalId: {
+          sourceId,
+          externalId: district.externalId,
+        },
+      },
+      create: {
+        sourceId,
+        externalId: district.externalId,
+        jurisdictionId,
+        slug: district.slug,
+        name: district.name,
+        districtType: district.districtType,
+        code: district.code,
+        boundaryGeoJson: toJsonInput(district.boundaryGeoJson),
+      },
+      update: {
+        jurisdictionId,
+        slug: district.slug,
+        name: district.name,
+        districtType: district.districtType,
+        code: district.code,
+        boundaryGeoJson: toJsonInput(district.boundaryGeoJson),
+      },
+      select: { id: true, externalId: true },
+    });
+    districtIds.set(upserted.externalId ?? district.externalId, upserted.id);
+    recordsChanged += 1;
+  }
+
+  const officeIds = new Map<string, string>();
+  for (const office of data.offices) {
+    const jurisdictionId = jurisdictionIds.get(office.jurisdictionSlug);
+    if (!jurisdictionId) continue;
+
+    const upserted = await prisma.office.upsert({
+      where: {
+        sourceId_externalId: {
+          sourceId,
+          externalId: office.externalId,
+        },
+      },
+      create: {
+        sourceId,
+        externalId: office.externalId,
+        jurisdictionId,
+        districtId: office.districtExternalId ? districtIds.get(office.districtExternalId) : undefined,
+        slug: office.slug,
+        title: office.title,
+        level: office.level,
+        selectionMethod: office.selectionMethod,
+        termLengthYears: office.termLengthYears,
+        seats: office.seats ?? 1,
+        description: office.description,
+      },
+      update: {
+        jurisdictionId,
+        districtId: office.districtExternalId ? districtIds.get(office.districtExternalId) : null,
+        slug: office.slug,
+        title: office.title,
+        level: office.level,
+        selectionMethod: office.selectionMethod,
+        termLengthYears: office.termLengthYears,
+        seats: office.seats ?? 1,
+        description: office.description,
+      },
+      select: { id: true, externalId: true },
+    });
+    officeIds.set(upserted.externalId ?? office.externalId, upserted.id);
+    recordsChanged += 1;
+  }
+
+  for (const official of data.officials) {
+    const officeId = officeIds.get(official.officeExternalId);
+    const jurisdictionId = jurisdictionIds.get(official.jurisdictionSlug);
+    if (!officeId || !jurisdictionId) continue;
+
+    await prisma.official.upsert({
+      where: {
+        sourceId_externalId: {
+          sourceId,
+          externalId: official.externalId,
+        },
+      },
+      create: {
+        sourceId,
+        externalId: official.externalId,
+        officeId,
+        jurisdictionId,
+        districtId: official.districtExternalId ? districtIds.get(official.districtExternalId) : undefined,
+        fullName: official.fullName,
+        partyText: official.partyText,
+        email: official.email,
+        phone: official.phone,
+        websiteUrl: official.websiteUrl,
+        photoUrl: official.photoUrl,
+        status: official.status,
+        termStart: parseOptionalDate(official.termStart),
+        termEnd: parseOptionalDate(official.termEnd),
+      },
+      update: {
+        officeId,
+        jurisdictionId,
+        districtId: official.districtExternalId ? districtIds.get(official.districtExternalId) : null,
+        fullName: official.fullName,
+        partyText: official.partyText,
+        email: official.email,
+        phone: official.phone,
+        websiteUrl: official.websiteUrl,
+        photoUrl: official.photoUrl,
+        status: official.status,
+        termStart: parseOptionalDate(official.termStart),
+        termEnd: parseOptionalDate(official.termEnd),
+      },
+    });
+    recordsChanged += 1;
+  }
+
+  return recordsChanged;
 }
 
 async function upsertSourceDefinition(definition: CivicSourceDefinition) {
@@ -187,7 +456,10 @@ export async function getAdminImportRuns(): Promise<AdminImportRunRow[]> {
 
 export async function getCivicDataMetrics(): Promise<CivicDataMetrics> {
   try {
-    const [officials, elections, bills, initiatives, meetings, ads, dataSources] = await Promise.all([
+    const [jurisdictions, offices, districts, officials, elections, bills, initiatives, meetings, ads, dataSources] = await Promise.all([
+      prisma.jurisdiction.count(),
+      prisma.office.count(),
+      prisma.district.count(),
       prisma.official.count(),
       prisma.election.count(),
       prisma.legislativeBill.count(),
@@ -199,6 +471,9 @@ export async function getCivicDataMetrics(): Promise<CivicDataMetrics> {
 
     return {
       officials,
+      jurisdictions,
+      offices,
+      districts,
       elections,
       bills,
       initiatives,
@@ -323,7 +598,10 @@ export async function syncCivicSource(sourceSlug: string, mode: ImportMode = "ma
       cursor: source.syncCursor,
       requestedAt: new Date(),
     });
-    const errorLog = serializeIssues(result.issues);
+    const validation = validateOfficialsFoundation(result.data);
+    const recordsChanged = await upsertOfficialsFoundation(source.id, validation.data);
+    const issues = [...result.issues, ...validation.issues];
+    const errorLog = serializeIssues(issues);
 
     await prisma.$transaction([
       prisma.source.update({
@@ -341,7 +619,7 @@ export async function syncCivicSource(sourceSlug: string, mode: ImportMode = "ma
           completedAt: new Date(),
           status: result.status,
           recordsSeen: result.recordsSeen,
-          recordsChanged: result.recordsChanged,
+          recordsChanged,
           errorLog,
           cursorAfter: result.cursor,
         },

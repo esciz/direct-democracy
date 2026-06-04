@@ -1,5 +1,6 @@
 import { NEVADA_BETA_SOURCE_DEFINITIONS } from "@/lib/civic-data/source-definitions";
 import { syncCivicSource } from "@/lib/civic-data/service";
+import { syncNevadaOfficialsSources } from "@/lib/civic-data/import-jobs";
 
 export async function syncScheduledNevadaBetaSources() {
   const results = [];
@@ -11,3 +12,6 @@ export async function syncScheduledNevadaBetaSources() {
   return results;
 }
 
+export async function syncScheduledNevadaOfficialsSources() {
+  return syncNevadaOfficialsSources("scheduled");
+}

@@ -26,6 +26,8 @@ import type {
 
 export type CivicSourceAdapterKey =
   | "nevada-legislature"
+  | "nevada-state-government"
+  | "nevada-federal-delegation"
   | "nevada-secretary-of-state"
   | "reno"
   | "carson-city"
@@ -300,4 +302,3 @@ export type CivicDataAdapter = {
   supportsScheduled: boolean;
   sync(context: IngestionContext): Promise<IngestionResult>;
 };
-

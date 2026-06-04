@@ -22,6 +22,24 @@ export const NEVADA_BETA_SOURCE_DEFINITIONS: CivicSourceDefinition[] = [
     description: "Statewide elections, candidates, ballot questions, and campaign finance filings.",
   },
   {
+    name: "State of Nevada Constitutional Officers",
+    slug: "nevada-state-government-officials",
+    sourceType: SourceType.GOVERNMENT_PORTAL,
+    url: "https://nv.gov/",
+    adapterKey: "nevada-state-government",
+    jurisdictionSlug: "nevada",
+    description: "Nevada statewide elected executive offices and current officeholders from official state websites.",
+  },
+  {
+    name: "Nevada Federal Delegation",
+    slug: "nevada-federal-delegation",
+    sourceType: SourceType.GOVERNMENT_PORTAL,
+    url: "https://www.congress.gov/members/find-your-member",
+    adapterKey: "nevada-federal-delegation",
+    jurisdictionSlug: "nevada",
+    description: "Nevada U.S. Senators and U.S. Representatives from official congressional websites.",
+  },
+  {
     name: "City of Reno Government",
     slug: "reno-government",
     sourceType: SourceType.MUNICIPAL_PORTAL,
@@ -71,4 +89,3 @@ export const NEVADA_BETA_SOURCE_DEFINITIONS: CivicSourceDefinition[] = [
 export function getSourceDefinition(slug: string) {
   return NEVADA_BETA_SOURCE_DEFINITIONS.find((source) => source.slug === slug);
 }
-

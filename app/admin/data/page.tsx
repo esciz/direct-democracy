@@ -24,6 +24,9 @@ export default async function AdminDataPage() {
 
   const metrics = await getCivicDataMetrics();
   const metricCards = [
+    { label: "Jurisdictions", value: metrics.jurisdictions },
+    { label: "Offices", value: metrics.offices },
+    { label: "Districts", value: metrics.districts },
     { label: "Officials", value: metrics.officials },
     { label: "Elections", value: metrics.elections },
     { label: "Bills", value: metrics.bills },
@@ -69,4 +72,3 @@ export default async function AdminDataPage() {
     </div>
   );
 }
-
