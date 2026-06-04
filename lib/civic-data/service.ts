@@ -36,6 +36,39 @@ export type CivicDataMetrics = {
   dataSources: number;
 };
 
+export type AdminOfficialRow = {
+  id: string;
+  fullName: string;
+  officeTitle: string;
+  jurisdictionName: string;
+  partyText: string | null;
+  status: string;
+  sourceName: string | null;
+  updatedAt: Date;
+};
+
+export type AdminElectionRow = {
+  id: string;
+  title: string;
+  jurisdictionName: string;
+  officeTitle: string;
+  electionDate: Date;
+  electionType: string;
+  status: string;
+  sourceName: string | null;
+};
+
+export type AdminInitiativeRow = {
+  id: string;
+  title: string;
+  jurisdictionName: string;
+  electionTitle: string;
+  measureNumber: string | null;
+  status: string;
+  sourceName: string | null;
+  updatedAt: Date;
+};
+
 const emptyMetrics: CivicDataMetrics = {
   officials: 0,
   elections: 0,
@@ -178,6 +211,86 @@ export async function getCivicDataMetrics(): Promise<CivicDataMetrics> {
   }
 }
 
+export async function getAdminOfficials(): Promise<AdminOfficialRow[]> {
+  try {
+    const officials = await prisma.official.findMany({
+      include: {
+        office: { select: { title: true } },
+        jurisdiction: { select: { name: true } },
+        source: { select: { name: true } },
+      },
+      orderBy: { updatedAt: "desc" },
+      take: 100,
+    });
+
+    return officials.map((official) => ({
+      id: official.id,
+      fullName: official.fullName,
+      officeTitle: official.office.title,
+      jurisdictionName: official.jurisdiction.name,
+      partyText: official.partyText,
+      status: official.status,
+      sourceName: official.source?.name ?? null,
+      updatedAt: official.updatedAt,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export async function getAdminElections(): Promise<AdminElectionRow[]> {
+  try {
+    const elections = await prisma.election.findMany({
+      include: {
+        jurisdiction: { select: { name: true } },
+        source: { select: { name: true } },
+      },
+      orderBy: { electionDate: "desc" },
+      take: 100,
+    });
+
+    return elections.map((election) => ({
+      id: election.id,
+      title: election.title,
+      jurisdictionName: election.jurisdiction.name,
+      officeTitle: election.officeTitle,
+      electionDate: election.electionDate,
+      electionType: election.electionType,
+      status: election.status,
+      sourceName: election.source?.name ?? null,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export async function getAdminInitiatives(): Promise<AdminInitiativeRow[]> {
+  try {
+    const initiatives = await prisma.ballotInitiative.findMany({
+      include: {
+        jurisdiction: { select: { name: true } },
+        election: { select: { title: true } },
+        source: { select: { name: true } },
+      },
+      orderBy: { updatedAt: "desc" },
+      take: 100,
+    });
+
+    return initiatives.map((initiative) => ({
+      id: initiative.id,
+      title: initiative.title,
+      jurisdictionName: initiative.jurisdiction.name,
+      electionTitle: initiative.election.title,
+      measureNumber: initiative.measureNumber,
+      status: initiative.status,
+      sourceName: initiative.source?.name ?? null,
+      updatedAt: initiative.updatedAt,
+    }));
+  } catch {
+    return [];
+  }
+}
+
 export async function syncCivicSource(sourceSlug: string, mode: ImportMode = "manual") {
   const definition = getSourceDefinition(sourceSlug);
 
@@ -261,4 +374,3 @@ export async function syncCivicSource(sourceSlug: string, mode: ImportMode = "ma
     throw error;
   }
 }
-
