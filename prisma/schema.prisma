@@ -504,6 +504,7 @@ enum CandidateStatus {
   QUALIFIED
   WITHDRAWN
   DISQUALIFIED
+  NEEDS_REVIEW
   WON
   LOST
 }
@@ -645,6 +646,36 @@ enum SourceSyncStatus {
   SUCCESS
   ERROR
   PAUSED
+}
+
+enum ElectionResultStatus {
+  UNOFFICIAL
+  OFFICIAL
+  CERTIFIED
+}
+
+enum BallotQuestionType {
+  CONSTITUTIONAL_AMENDMENT
+  INITIATIVE_PETITION
+  REFERENDUM
+  ADVISORY
+  LOCAL_MEASURE
+  OTHER
+}
+
+enum PetitionLifecycleStatus {
+  FILED
+  APPROVED_FOR_CIRCULATION
+  SIGNATURE_GATHERING
+  SUBMITTED
+  SUFFICIENT
+  INSUFFICIENT
+  ON_BALLOT
+  APPROVED
+  REJECTED
+  WITHDRAWN
+  LITIGATION
+  UNKNOWN
 }
 
 model User {
@@ -989,6 +1020,8 @@ model Election {
   candidateCampaigns CandidateCampaign[]
   candidates         Candidate[]
   ballotInitiatives  BallotInitiative[]
+  results            ElectionResult[]
+  ballotQuestions    BallotQuestion[]
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
 
@@ -1077,6 +1110,8 @@ model Jurisdiction {
   officialPositions OfficialPosition[]
   candidates        Candidate[]
   ballotInitiatives BallotInitiative[]
+  electionResults   ElectionResult[]
+  ballotQuestions   BallotQuestion[]
   legislativeBills  LegislativeBill[]
   committees        Committee[]
   meetings          Meeting[]
@@ -1837,6 +1872,8 @@ model Source {
   elections      Election[]
   candidates     Candidate[]
   ballotInitiatives BallotInitiative[]
+  electionResults ElectionResult[]
+  ballotQuestions BallotQuestion[]
   legislativeBills LegislativeBill[]
   legislativeVotes LegislativeVote[]
   committees     Committee[]
@@ -1973,6 +2010,13 @@ model Candidate {
   partyText       String?
   ballotName      String?
   websiteUrl      String?
+  email           String?
+  phone           String?
+  photoUrl        String?
+  campaignStatement String?
+  socialLinks     Json?
+  sourceUrl       String?
+  filingStatus    String?
   filingDate      DateTime?
   status          CandidateStatus @default(FILED)
   isIncumbent     Boolean         @default(false)
@@ -1982,6 +2026,7 @@ model Candidate {
   district        District?       @relation(fields: [districtId], references: [id])
   publicProfile   PublicProfile?  @relation(fields: [publicProfileId], references: [id])
   source          Source?         @relation(fields: [sourceId], references: [id])
+  results         ElectionResult[]
   campaignFinanceFilings CampaignFinanceFiling[]
   politicalAdvertisements PoliticalAdvertisement[]
   createdAt       DateTime        @default(now())
@@ -2011,6 +2056,13 @@ model BallotInitiative {
   election       Election         @relation(fields: [electionId], references: [id])
   jurisdiction   Jurisdiction     @relation(fields: [jurisdictionId], references: [id])
   source         Source?          @relation(fields: [sourceId], references: [id])
+  ballotQuestion BallotQuestion?
+  petitionStatus PetitionLifecycleStatus @default(UNKNOWN)
+  resultStatus   ElectionResultStatus?
+  yesVotes       Int?
+  noVotes        Int?
+  totalVotes     Int?
+  passed         Boolean?
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
 
@@ -2019,6 +2071,69 @@ model BallotInitiative {
   @@index([jurisdictionId])
   @@index([sourceId])
   @@index([status])
+}
+
+model ElectionResult {
+  id              String               @id @default(cuid())
+  electionId      String
+  candidateId     String?
+  sourceId        String?
+  externalId      String?
+  jurisdictionId  String?
+  reportingArea   String?
+  resultStatus    ElectionResultStatus @default(OFFICIAL)
+  votes           Int
+  votePercentage  Float?
+  rank            Int?
+  isWinner        Boolean              @default(false)
+  election        Election             @relation(fields: [electionId], references: [id], onDelete: Cascade)
+  candidate       Candidate?           @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  source          Source?              @relation(fields: [sourceId], references: [id])
+  jurisdiction    Jurisdiction?        @relation(fields: [jurisdictionId], references: [id])
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+
+  @@unique([sourceId, externalId])
+  @@index([electionId])
+  @@index([candidateId])
+  @@index([jurisdictionId])
+  @@index([sourceId])
+  @@index([resultStatus])
+}
+
+model BallotQuestion {
+  id                  String                  @id @default(cuid())
+  electionId          String
+  ballotInitiativeId  String?                 @unique
+  jurisdictionId      String
+  sourceId            String?
+  externalId          String?
+  slug                String                  @unique
+  questionNumber      String?
+  title               String
+  summary             String?
+  officialText        String?
+  questionType        BallotQuestionType      @default(OTHER)
+  petitionStatus      PetitionLifecycleStatus @default(UNKNOWN)
+  resultStatus        ElectionResultStatus?
+  yesVotes            Int?
+  noVotes             Int?
+  totalVotes          Int?
+  passed              Boolean?
+  fullTextUrl         String?
+  election            Election                @relation(fields: [electionId], references: [id], onDelete: Cascade)
+  ballotInitiative    BallotInitiative?       @relation(fields: [ballotInitiativeId], references: [id])
+  jurisdiction        Jurisdiction            @relation(fields: [jurisdictionId], references: [id])
+  source              Source?                 @relation(fields: [sourceId], references: [id])
+  createdAt           DateTime                @default(now())
+  updatedAt           DateTime                @updatedAt
+
+  @@unique([sourceId, externalId])
+  @@index([electionId])
+  @@index([jurisdictionId])
+  @@index([sourceId])
+  @@index([questionType])
+  @@index([petitionStatus])
 }
 
 model LegislativeBill {

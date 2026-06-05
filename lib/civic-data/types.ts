@@ -8,6 +8,7 @@ import type {
   CommitteeType,
   DistrictType,
   ElectionStatus,
+  ElectionResultStatus,
   ElectionType,
   InitiativeStatus,
   JurisdictionType,
@@ -20,6 +21,8 @@ import type {
   OfficialStatus,
   OrganizationType,
   PoliticalAdMedium,
+  BallotQuestionType,
+  PetitionLifecycleStatus,
   SourceSyncStatus,
   SourceType,
 } from "@prisma/client";
@@ -131,9 +134,29 @@ export type NormalizedCandidate = {
   partyText?: string;
   ballotName?: string;
   websiteUrl?: string;
+  email?: string;
+  phone?: string;
+  photoUrl?: string;
+  campaignStatement?: string;
+  socialLinks?: unknown;
+  sourceUrl?: string;
+  filingStatus?: string;
   filingDate?: string;
   status: CandidateStatus;
   isIncumbent?: boolean;
+};
+
+export type NormalizedElectionResult = {
+  externalId: string;
+  electionExternalId: string;
+  candidateExternalId?: string;
+  jurisdictionSlug?: string;
+  reportingArea?: string;
+  resultStatus: ElectionResultStatus;
+  votes: number;
+  votePercentage?: number;
+  rank?: number;
+  isWinner?: boolean;
 };
 
 export type NormalizedBallotInitiative = {
@@ -146,6 +169,32 @@ export type NormalizedBallotInitiative = {
   measureNumber?: string;
   fullTextUrl?: string;
   status: InitiativeStatus;
+  petitionStatus?: PetitionLifecycleStatus;
+  resultStatus?: ElectionResultStatus;
+  yesVotes?: number;
+  noVotes?: number;
+  totalVotes?: number;
+  passed?: boolean;
+};
+
+export type NormalizedBallotQuestion = {
+  externalId: string;
+  electionExternalId: string;
+  initiativeExternalId?: string;
+  jurisdictionSlug: string;
+  slug: string;
+  questionNumber?: string;
+  title: string;
+  summary?: string;
+  officialText?: string;
+  questionType: BallotQuestionType;
+  petitionStatus?: PetitionLifecycleStatus;
+  resultStatus?: ElectionResultStatus;
+  yesVotes?: number;
+  noVotes?: number;
+  totalVotes?: number;
+  passed?: boolean;
+  fullTextUrl?: string;
 };
 
 export type NormalizedLegislativeBill = {
@@ -274,7 +323,9 @@ export type NormalizedCivicData = {
   districts: NormalizedDistrict[];
   elections: NormalizedElection[];
   candidates: NormalizedCandidate[];
+  electionResults: NormalizedElectionResult[];
   ballotInitiatives: NormalizedBallotInitiative[];
+  ballotQuestions: NormalizedBallotQuestion[];
   legislativeBills: NormalizedLegislativeBill[];
   legislativeVotes: NormalizedLegislativeVote[];
   committees: NormalizedCommittee[];

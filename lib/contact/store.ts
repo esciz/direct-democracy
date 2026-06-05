@@ -148,7 +148,7 @@ function tokenize(value: string) {
 }
 
 function sharesState(jurisdictionName: string, otherJurisdictionName: string) {
-  return jurisdictionName.includes("Nevada") && otherJurisdictionName.includes("Nevada");
+  return (jurisdictionName.includes("Nevada") || jurisdictionName === "Nevada") && (otherJurisdictionName.includes("Nevada") || otherJurisdictionName === "Nevada");
 }
 
 function methodLabel(method: ContactMethod) {
@@ -244,11 +244,7 @@ export async function getRelevantOfficialsForContact({
   return officials
     .map((official) => {
       const seededContact = seededOfficialContacts.find((entry) => entry.officialId === official.id);
-      if (!seededContact) {
-        return null;
-      }
-
-      const focusTokens = new Set(tokenize(seededContact.issueFocuses.join(" ")));
+      const focusTokens = new Set(tokenize([...(seededContact?.issueFocuses ?? []), official.officeTitle, official.jurisdictionName, official.bio ?? ""].join(" ")));
       let score = 0;
 
       if (preferredOfficialIds.includes(official.id)) {
@@ -268,11 +264,18 @@ export async function getRelevantOfficialsForContact({
       }
 
       return {
-        ...seededContact,
+        officialId: official.id,
+        name: official.name,
+        officeTitle: official.officeTitle,
+        jurisdictionName: official.jurisdictionName,
+        officialProfileHref: `/officials/${official.id}`,
+        email: official.email ?? seededContact?.email ?? null,
+        phone: official.phone ?? seededContact?.phone ?? null,
+        officialFormUrl: official.websiteUrl ?? seededContact?.officialFormUrl ?? null,
+        issueFocuses: seededContact?.issueFocuses ?? [official.officeTitle, official.jurisdictionName],
         score,
       };
     })
-    .filter((entry): entry is (OfficialContactSummary & { issueFocuses: string[]; score: number }) => Boolean(entry))
     .filter((entry) => entry.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, 4)

@@ -6,8 +6,9 @@ import { DevRoleSwitcher } from "@/components/ui/dev-role-switcher";
 import { NavLinks } from "@/components/ui/nav-links";
 import { NotificationMenu } from "@/components/ui/notification-menu";
 import { getRoleLabel } from "@/lib/auth/roles";
+import { PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { getAllSeedUsers, isGuestUser } from "@/lib/auth/session";
-import { getCurrentUser } from "@/lib/server/auth-session";
+import { getCurrentSessionUser } from "@/lib/server/auth-session";
 
 function NotificationMenuFallback() {
   return (
@@ -50,11 +51,60 @@ function MobileDevTools({
 }
 
 export async function MainNav() {
-  const currentUser = await getCurrentUser();
+  const currentSessionUser = await getCurrentSessionUser();
   const users = getAllSeedUsers();
-  const guestMode = isGuestUser(currentUser);
 
-  if (guestMode && currentUser) {
+  if (!currentSessionUser) {
+    return (
+      <header className="sticky top-0 z-20 mb-6 pt-1 sm:mb-8 sm:pt-3">
+        <div className="dd-panel flex flex-col gap-4 rounded-[1.75rem] px-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:px-5 lg:py-5">
+          <div className="flex items-center justify-between gap-5">
+            <Link href="/" className="flex items-center">
+              <Logo size="sm" darkSurface />
+            </Link>
+            <Link
+              href="/voting"
+              className="dd-button-primary inline-flex min-h-11 items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5 md:hidden"
+            >
+              Vote Now
+            </Link>
+          </div>
+
+          <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <NavLinks />
+            <div className="flex flex-col gap-3 lg:items-end">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-amber-300/20 bg-amber-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">
+                  Logged out · Public landing
+                </span>
+                <Link
+                  href="/auth"
+                  className="dd-button-primary inline-flex rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/auth"
+                  className="dd-button-secondary inline-flex rounded-full px-4 py-3 text-sm font-semibold transition hover:border-cyan-300/30 hover:text-white"
+                >
+                  Create account
+                </Link>
+              </div>
+              <p className="text-xs text-slate-400">Create an account to vote, message officials, save items, and build your civic dashboard.</p>
+              <MobileDevTools currentUserId={PUBLIC_SESSION_VALUE} users={users} />
+              <div className="hidden md:block">
+                <DevRoleSwitcher currentUserId={PUBLIC_SESSION_VALUE} users={users} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  const currentUser = currentSessionUser;
+
+  if (isGuestUser(currentUser)) {
     return (
       <header className="sticky top-0 z-20 mb-6 pt-1 sm:mb-8 sm:pt-3">
         <div className="dd-panel flex flex-col gap-4 rounded-[1.75rem] px-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:px-5 lg:py-5">
@@ -78,16 +128,16 @@ export async function MainNav() {
                   Guest Browse · Read only
                 </span>
                 <Link
-                  href="/get-started?step=account"
+                  href="/auth"
                   className="dd-button-primary inline-flex rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
                 >
-                  Get Started
+                  Sign in
                 </Link>
                 <Link
-                  href="/get-started?step=account"
+                  href="/auth"
                   className="dd-button-secondary inline-flex rounded-full px-4 py-3 text-sm font-semibold transition hover:border-cyan-300/30 hover:text-white"
                 >
-                  Verify to Participate
+                  Create account
                 </Link>
               </div>
               <p className="text-xs text-slate-400">Browsing is open. Voting, messaging, commenting, and creation require a verified account.</p>
@@ -157,9 +207,9 @@ export async function MainNav() {
                 Current role: {getRoleLabel(currentUser.role)}
               </span>
             </div>
-            <MobileDevTools currentUserId={currentUser.id} users={users} />
+            <MobileDevTools currentUserId={currentSessionUser?.id ?? currentUser.id} users={users} />
             <div className="hidden md:block">
-              <DevRoleSwitcher currentUserId={currentUser.id} users={users} />
+              <DevRoleSwitcher currentUserId={currentSessionUser?.id ?? currentUser.id} users={users} />
             </div>
           </div>
         </div>

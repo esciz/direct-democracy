@@ -8,11 +8,15 @@ import { getCurrentUser } from "@/lib/server/auth-session";
 export const dynamic = "force-dynamic";
 
 const adminLinks = [
+  { href: "/admin/data/officials-qa", label: "Officials QA" },
   { href: "/admin/sources", label: "Data Sources" },
   { href: "/admin/imports", label: "Imports" },
   { href: "/admin/officials", label: "Officials" },
   { href: "/admin/elections", label: "Elections" },
+  { href: "/admin/candidates", label: "Candidates" },
   { href: "/admin/initiatives", label: "Initiatives" },
+  { href: "/admin/ballot-measures", label: "Ballot Measures" },
+  { href: "/admin/elections/qa", label: "Elections QA" },
 ];
 
 export default async function AdminDataPage() {

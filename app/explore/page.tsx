@@ -18,7 +18,8 @@ import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getAllPetitions } from "@/lib/petitions/store";
 import { POLITICAL_AD_SOURCE_LABELS, POLITICAL_AD_SPONSOR_LABELS, seededPoliticalAds } from "@/lib/political-ads/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
-import { getCandidateProfiles, getElectionSummaries, getOfficials } from "@/lib/server/elections-context";
+import { getOfficials } from "@/lib/officials/store";
+import { getCandidateProfiles, getElectionSummaries } from "@/lib/server/elections-context";
 import { getFavoritesForUser } from "@/lib/server/favorites";
 import { getIssueDirectoryForUser } from "@/lib/server/issues";
 
@@ -481,6 +482,7 @@ async function getCategoryPreviewItems({
             badges: (
               <>
                 {renderBadge(official.party)}
+                {official.sourceLabel ? renderBadge("Imported Nevada beta data", "emerald") : null}
                 {official.followThroughScore ? renderBadge(`Follow-through ${official.followThroughScore}`, "orange") : null}
               </>
             ),

@@ -17,6 +17,7 @@ export function MyOfficialCard({ official }: MyOfficialCardProps) {
           <p className="mt-1 text-sm text-slate-500">
             {official.officeTitle} · {official.jurisdictionName}
           </p>
+          {official.sourceLabel ? <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Imported Nevada beta data</p> : null}
           <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{official.bio}</p>
         </div>
       </div>

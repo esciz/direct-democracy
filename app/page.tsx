@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { HomeGuidedActionCard } from "@/components/domain/home-guided-action-card";
 import { HomeVotePreviewPane } from "@/components/domain/home-vote-preview-pane";
@@ -10,7 +11,8 @@ import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getAllPetitions } from "@/lib/petitions/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
-import { getCurrentUser } from "@/lib/server/auth-session";
+import { getOfficials } from "@/lib/officials/store";
+import { getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
 import { getCommunityById, getDefaultCommunityForUser, seededCommunities } from "@/lib/community/communities";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
@@ -20,7 +22,8 @@ import { getDailyVoteExperience } from "@/lib/feed/quick-votes";
 import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts";
 import { getFavoritesForUser } from "@/lib/server/favorites";
 import { getIssueDirectoryForUser } from "@/lib/server/issues";
-import { getCandidateProfiles, getElectionSummaries, getOfficials } from "@/lib/server/elections-context";
+import { getCandidateProfiles, getElectionSummaries } from "@/lib/server/elections-context";
+import { formatDateUtc } from "@/lib/dates";
 import type { AuthUser, CommunitySummary, ElectionSummary } from "@/types/domain";
 
 type HomeFavoriteItem = {
@@ -41,7 +44,7 @@ type TrendingItem = {
 };
 
 function formatDateLabel(value: string) {
-  return new Date(value).toLocaleDateString("en-US", {
+  return formatDateUtc(value, {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -181,8 +184,9 @@ function buildUpcomingElectionItems(
 ) {
   return elections.map((election) => {
     const milestone = getNextElectionMilestone(election);
-    const keyRaceSummary = election.candidates.length
-      ? `${election.candidates.length} candidate${election.candidates.length === 1 ? "" : "s"} are already visible for side-by-side comparison.`
+    const candidateCount = election.candidates.length + (election.importedCandidates?.length ?? 0);
+    const keyRaceSummary = candidateCount
+      ? `${candidateCount} candidate record${candidateCount === 1 ? "" : "s"} are already visible from imported Nevada beta data and profile records.`
       : `${election.officeTitle} and the items on this ballot are the key things to watch here.`;
     const ballotMeasureNames = election.ballotInitiatives.slice(0, 3).map((initiative) => initiative.title);
 
@@ -203,6 +207,7 @@ function buildUpcomingElectionItems(
         ? ballotMeasureNames.join(" · ")
         : "No ballot measures are highlighted for this election yet.",
       href: `/elections/${election.id}`,
+      sourceLabel: election.sourceLabel ?? null,
     };
   });
 }
@@ -233,6 +238,12 @@ function getFavoriteLabel(targetType: FavoriteTargetType) {
 }
 
 export default async function HomePage() {
+  const currentSessionUser = await getCurrentSessionUser();
+
+  if (!currentSessionUser) {
+    redirect("/auth");
+  }
+
   const user = await getCurrentUser();
   const defaultCommunity = getDefaultCommunityForUser(user);
   const studentCampus =
@@ -492,11 +503,16 @@ export default async function HomePage() {
       </section>
 
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading
-          eyebrow="Upcoming Elections"
-          title="Upcoming Elections"
-          description="The next election or deadline across the jurisdictions that apply to you."
-        />
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading
+            eyebrow="Upcoming Elections"
+            title="Upcoming Elections"
+            description="The next election or deadline across the jurisdictions that apply to you."
+          />
+          <Link href="/representatives" className="text-sm font-semibold text-cyan-200 hover:text-cyan-100">
+            Who represents me?
+          </Link>
+        </div>
         <div className="mt-6">
           <HomeUpcomingElectionsPane elections={upcomingElectionItems} />
         </div>

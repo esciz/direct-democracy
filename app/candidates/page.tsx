@@ -61,6 +61,16 @@ async function sortCandidatesByRace(candidates: PublicProfileSummary[]) {
   );
 
   return [...candidates].sort((a, b) => {
+    if (a.importedCandidate || b.importedCandidate) {
+      const raceLabelA = `${a.importedCandidate?.electionTitle ?? ""} ${a.importedCandidate?.officeTitle ?? ""}`.trim();
+      const raceLabelB = `${b.importedCandidate?.electionTitle ?? ""} ${b.importedCandidate?.officeTitle ?? ""}`.trim();
+      const byImportedRace = raceLabelA.localeCompare(raceLabelB);
+
+      if (byImportedRace !== 0) {
+        return byImportedRace;
+      }
+    }
+
     const campaignA = primaryCampaignByProfileId.get(a.id);
     const campaignB = primaryCampaignByProfileId.get(b.id);
     const raceLabelA = `${campaignA?.electionTitle ?? ""} ${campaignA?.officeSought ?? ""}`.trim();
@@ -88,6 +98,7 @@ export default async function CandidatesPage({ searchParams }: CandidatesPagePro
     : `/candidates?communityId=${selectedCommunityId}&sort=${sort}`;
   const allCandidatesWithFollowState = await attachCandidateFollowState(user.id, await getCandidateProfiles());
   const allCandidates = sort === "race" ? await sortCandidatesByRace(allCandidatesWithFollowState) : allCandidatesWithFollowState;
+  const hasImportedCandidates = allCandidates.some((candidate) => candidate.isImported);
   const hierarchy = getCommunityHierarchy(selectedCommunityId);
   const stateCommunityId = hierarchy.find((entry) => entry.level === "State")?.id ?? "nevada";
   const stateCommunity = getCommunityById(stateCommunityId);
@@ -209,6 +220,27 @@ export default async function CandidatesPage({ searchParams }: CandidatesPagePro
             </div>
           </section>
         </>
+      ) : hasImportedCandidates ? (
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Imported Nevada data</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Imported candidate profiles</h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Candidate cards are backed by imported Nevada candidate records, with missing fields shown as review labels.
+              </p>
+            </div>
+            <span className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
+              {allCandidates.length} imported profile{allCandidates.length === 1 ? "" : "s"}
+            </span>
+          </div>
+
+          <div className="mt-6 grid gap-4 xl:grid-cols-2">
+            {allCandidates.map((candidate) => (
+              <CandidateDirectoryCard key={candidate.id} candidate={candidate} returnPath={returnPath} />
+            ))}
+          </div>
+        </section>
       ) : (
         <section className="space-y-6">
           <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">

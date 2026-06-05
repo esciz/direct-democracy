@@ -24,3 +24,15 @@ export async function syncNevadaOfficialsSources(mode: ImportMode = "scheduled")
   return results;
 }
 
+export const ELECTIONS_SOURCE_ADAPTER_KEYS: CivicSourceAdapterKey[] = ["nevada-secretary-of-state"];
+
+export async function syncNevadaElectionsSources(mode: ImportMode = "scheduled") {
+  const sourceSlugs = NEVADA_BETA_SOURCE_DEFINITIONS.filter((source) => ELECTIONS_SOURCE_ADAPTER_KEYS.includes(source.adapterKey)).map((source) => source.slug);
+  const results = [];
+
+  for (const sourceSlug of sourceSlugs) {
+    results.push(await syncCivicSource(sourceSlug, mode));
+  }
+
+  return results;
+}

@@ -9,6 +9,7 @@ import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getAllPetitions } from "@/lib/petitions/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
+import { getOfficials } from "@/lib/officials/store";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
 import { getCommunityById, getDefaultCommunityForUser, seededCommunities } from "@/lib/community/communities";
@@ -19,7 +20,8 @@ import { getFeedDebatePreviews } from "@/lib/debates/store";
 import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts";
 import { getFavoritesForUser } from "@/lib/server/favorites";
 import { getIssueDirectoryForUser } from "@/lib/server/issues";
-import { getCandidateProfiles, getElectionSummaries, getOfficials } from "@/lib/server/elections-context";
+import { getCandidateProfiles, getElectionSummaries } from "@/lib/server/elections-context";
+import { formatDateUtc } from "@/lib/dates";
 import type { AuthUser, CommunitySummary, ElectionSummary } from "@/types/domain";
 
 type MyCommunityPageProps = {
@@ -46,7 +48,7 @@ type TrendingItem = {
 };
 
 function formatElectionDate(value: string) {
-  return new Date(value).toLocaleDateString("en-US", {
+  return formatDateUtc(value, {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -94,7 +96,10 @@ function getNextElectionMilestone(election: ElectionSummary) {
   ];
 
   return (
-    milestones.find((milestone) => milestone.date && Date.parse(milestone.date) >= now) ?? {
+    milestones.find((milestone) => {
+      const timestamp = milestone.date ? Date.parse(milestone.date) : Number.NaN;
+      return Number.isFinite(timestamp) && timestamp >= now;
+    }) ?? {
       label: "Election day",
       date: election.electionDate,
     }
@@ -182,10 +187,14 @@ function buildUpcomingElectionItems(
 ) {
   return elections.map((election) => {
     const milestone = getNextElectionMilestone(election);
-    const keyRaceSummary = election.candidates.length
-      ? `${election.candidates.length} candidate${election.candidates.length === 1 ? "" : "s"} are already visible for side-by-side comparison.`
+    const candidates = Array.isArray(election.candidates) ? election.candidates : [];
+    const importedCandidates = Array.isArray(election.importedCandidates) ? election.importedCandidates : [];
+    const ballotInitiatives = Array.isArray(election.ballotInitiatives) ? election.ballotInitiatives : [];
+    const candidateCount = candidates.length + importedCandidates.length;
+    const keyRaceSummary = candidateCount
+      ? `${candidateCount} candidate record${candidateCount === 1 ? "" : "s"} are already visible from imported Nevada beta data and profile records.`
       : `${election.officeTitle} and the items on this ballot are the key things to watch here.`;
-    const ballotMeasureNames = election.ballotInitiatives.slice(0, 3).map((initiative) => initiative.title);
+    const ballotMeasureNames = ballotInitiatives.slice(0, 3).map((initiative) => initiative.title).filter(Boolean);
 
     return {
       id: election.id,
@@ -204,6 +213,7 @@ function buildUpcomingElectionItems(
         ? ballotMeasureNames.join(" · ")
         : "No ballot measures are highlighted for this election yet.",
       href: `/elections/${election.id}`,
+      sourceLabel: election.sourceLabel ?? null,
     };
   });
 }
@@ -233,6 +243,15 @@ function getFavoriteLabel(targetType: FavoriteTargetType) {
   }
 }
 
+async function loadCommunityDataset<T>(label: string, promise: Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await promise;
+  } catch (error) {
+    console.error(`[my-community] ${label} loader failed`, error);
+    return fallback;
+  }
+}
+
 export default async function MyCommunityPage({ searchParams }: MyCommunityPageProps) {
   const user = await getCurrentUser();
   const params = searchParams ? await searchParams : undefined;
@@ -256,24 +275,28 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
     cases,
     organizations,
   ] = await Promise.all([
-    getElectionSummaries(),
-    getFavoritesForUser(user.id),
-    getTopIssuesForUser(user, "all", selectedCommunityId),
-    getDiscoverableEventsForUser(user, { communityId: selectedCommunityId, scope: "all", limit: 8 }),
-    getContextualPostPreviews({
-      viewerUserId: user.id,
-      limit: 3,
-      attachments: [{ type: "community", id: selectedCommunityId, label: currentCommunity.name }],
-      preferredRoles: ["trustedCitizen", "official", "candidate", "media"],
-    }),
-    getFeedDebatePreviews({ jurisdictionNames: currentCommunity.jurisdictionMatches, limit: 3 }),
-    getAllPetitions(),
-    getIssueDirectoryForUser(user, { communityId: selectedCommunityId }),
-    getPublicPeopleDirectory(user),
-    getCandidateProfiles(),
-    getOfficials(),
-    getAllCases(),
-    getAllOrganizations(user),
+    loadCommunityDataset("elections", getElectionSummaries(), []),
+    loadCommunityDataset("favorites", getFavoritesForUser(user.id), []),
+    loadCommunityDataset("top issues", getTopIssuesForUser(user, "all", selectedCommunityId), []),
+    loadCommunityDataset("events", getDiscoverableEventsForUser(user, { communityId: selectedCommunityId, scope: "all", limit: 8 }), []),
+    loadCommunityDataset(
+      "posts",
+      getContextualPostPreviews({
+        viewerUserId: user.id,
+        limit: 3,
+        attachments: [{ type: "community", id: selectedCommunityId, label: currentCommunity.name }],
+        preferredRoles: ["trustedCitizen", "official", "candidate", "media"],
+      }),
+      [],
+    ),
+    loadCommunityDataset("debates", getFeedDebatePreviews({ jurisdictionNames: currentCommunity.jurisdictionMatches, limit: 3 }), []),
+    loadCommunityDataset("petitions", getAllPetitions(), []),
+    loadCommunityDataset("issue directory", getIssueDirectoryForUser(user, { communityId: selectedCommunityId }), []),
+    loadCommunityDataset("people", getPublicPeopleDirectory(user), []),
+    loadCommunityDataset("candidates", getCandidateProfiles(), []),
+    loadCommunityDataset("officials", getOfficials(), []),
+    loadCommunityDataset("cases", getAllCases(), []),
+    loadCommunityDataset("organizations", getAllOrganizations(user), []),
   ]);
 
   const upcomingElections = getUpcomingElectionsForUser(elections, currentCommunity, user, studentCampus);
@@ -479,6 +502,12 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
             title="Upcoming Elections"
             description="The next election, deadline, or ballot moment tied to your local, county, state, campus, and national civic life."
           />
+          <Link
+            href={`/representatives?community=${selectedCommunityId === "unr" || selectedCommunityId === "asun" ? "campus" : selectedCommunityId}`}
+            className="text-sm font-semibold text-cyan-200 hover:text-cyan-100"
+          >
+            Who represents me?
+          </Link>
         </div>
         <div className="mt-6">
           <HomeUpcomingElectionsPane elections={upcomingElectionItems} />

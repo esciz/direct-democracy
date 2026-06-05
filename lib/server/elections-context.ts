@@ -18,6 +18,12 @@ import {
   isStoredPublicProfile,
   type ElectionsStoreContext,
 } from "@/lib/elections/store";
+import {
+  getImportedCandidateProfileById,
+  getImportedCandidateProfiles,
+  getImportedElectionById,
+  getImportedElectionSummaries,
+} from "@/lib/elections/imported-store";
 import type {
   AdminManagedProfileSummary,
   CandidateCampaignSummary,
@@ -112,18 +118,58 @@ export async function getAllOfficialPositions(): Promise<OfficialPositionSummary
 }
 
 export async function getElectionSummaries(viewerId?: string): Promise<ElectionSummary[]> {
+  try {
+    const importedElections = await getImportedElectionSummaries();
+
+    if (importedElections.length > 0) {
+      return importedElections;
+    }
+  } catch (error) {
+    console.error("[elections-context] imported elections fallback", error);
+  }
+
   return getElectionSummariesBase(viewerId, await getElectionsStoreContext());
 }
 
 export async function getElectionById(id: string, viewerId?: string): Promise<ElectionSummary | null> {
+  try {
+    const importedElection = await getImportedElectionById(id);
+
+    if (importedElection) {
+      return importedElection;
+    }
+  } catch (error) {
+    console.error("[elections-context] imported election detail fallback", error);
+  }
+
   return getElectionByIdBase(id, viewerId, await getElectionsStoreContext());
 }
 
 export async function getCandidateProfileById(id: string): Promise<CandidateProfileDetail | null> {
+  try {
+    const importedCandidate = await getImportedCandidateProfileById(id);
+
+    if (importedCandidate) {
+      return importedCandidate;
+    }
+  } catch (error) {
+    console.error("[elections-context] imported candidate detail fallback", error);
+  }
+
   return getCandidateProfileByIdBase(id, await getElectionsStoreContext());
 }
 
 export async function getCandidateProfiles() {
+  try {
+    const importedCandidates = await getImportedCandidateProfiles();
+
+    if (importedCandidates.length > 0) {
+      return importedCandidates;
+    }
+  } catch (error) {
+    console.error("[elections-context] imported candidates fallback", error);
+  }
+
   return getCandidateProfilesBase(await getElectionsStoreContext());
 }
 

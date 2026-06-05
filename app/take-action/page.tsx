@@ -581,6 +581,7 @@ export default async function TakeActionPage() {
               description="This compact pane highlights your relevant officials and current outreach campaigns, while deeper threads stay on the messaging pages."
             />
             <div className="flex flex-wrap gap-3">
+              <ActionLink href="/representatives" label="Who Represents Me" subtle />
               <ActionLink href="/support-statements/new" label="Write Statement of Support" subtle />
               <ActionLink href="/messages" label="View All Messages / Campaigns" />
             </div>

@@ -16,6 +16,7 @@ import { SummaryBriefPanel } from "@/components/domain/summary-brief-panel";
 import { canUserVote } from "@/lib/auth/guards";
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import { isGuestUserId } from "@/lib/auth/session";
+import { formatDateUtc } from "@/lib/dates";
 import { getCurrentFeedViewer, getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
 import { attachEndorsementsToCampaigns } from "@/lib/candidates/endorsements";
 import { getAllCandidateCampaigns, getAllOfficialPositions, getCandidateProfileById, getCandidateProfiles } from "@/lib/server/elections-context";
@@ -113,6 +114,139 @@ function CandidateUnavailableState({
   );
 }
 
+function ImportedCandidateDetailPage({ candidate }: { candidate: CandidateProfileDetail }) {
+  const imported = candidate.importedCandidate;
+  const campaign = candidate.campaigns[0];
+
+  if (!imported || !campaign) {
+    return (
+      <CandidateUnavailableState
+        title="Candidate record incomplete"
+        description="This imported candidate record is missing the campaign metadata needed to render a profile."
+      />
+    );
+  }
+
+  const sourceLinks = [
+    candidate.websiteUrl ? { label: "Candidate website", href: candidate.websiteUrl } : null,
+    imported.sourceUrl ? { label: imported.sourceLabel ?? "Official source", href: imported.sourceUrl } : null,
+  ].filter((link): link is { label: string; href: string } => Boolean(link));
+  const completenessItems = [
+    { label: "Office", value: imported.officeTitle ?? "Office needs review" },
+    { label: "District", value: imported.districtName ?? "District not listed" },
+    { label: "Profile", value: candidate.bio && !candidate.bio.includes("Profile info pending") ? "Profile info present" : "Profile info pending" },
+    { label: "Source", value: imported.sourceUrl ? "Source verified" : "Source link pending" },
+  ];
+
+  return (
+    <div className="space-y-6 py-8">
+      <section className="dd-panel relative overflow-hidden rounded-[1.75rem] p-6 sm:p-8">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.12),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(34,211,238,0.1),transparent_30%)]" />
+        <div className="relative grid gap-6 lg:grid-cols-[1fr_22rem]">
+          <div>
+            <div className="flex flex-wrap gap-2">
+              <span className="rounded-full border border-emerald-300/18 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                Imported Nevada beta data
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
+                {candidate.partyText ?? "No party listed"}
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
+                {imported.candidateStatus}
+              </span>
+            </div>
+            <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{candidate.name}</h1>
+            <p className="mt-3 text-sm text-slate-400">
+              {imported.officeTitle ?? "Office needs review"} · {candidate.jurisdictionName}
+              {" · "}
+              {imported.districtName ?? "District not listed"}
+            </p>
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300">{candidate.bio ?? "Profile info pending."}</p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href={`/elections/${imported.electionId}`}
+                className="dd-button-primary inline-flex rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
+              >
+                Related election
+              </Link>
+              {sourceLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-3">
+            <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Race / Office</p>
+              <p className="mt-3 text-lg font-semibold text-slate-50">{campaign.officeSought}</p>
+            </div>
+            <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Election Date</p>
+              <p className="mt-3 text-lg font-semibold text-slate-50">
+                {formatDateUtc(imported.electionDate, { month: "long", day: "numeric", year: "numeric" })}
+              </p>
+            </div>
+            <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Filing Status</p>
+              <p className="mt-3 text-lg font-semibold text-slate-50">{imported.filingStatus ?? imported.candidateStatus ?? "Profile info pending"}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Imported candidate record</h2>
+        <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {completenessItems.map((item) => (
+            <div key={item.label} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{item.label}</p>
+              <p className="mt-3 text-sm font-semibold text-slate-100">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Related race</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{imported.electionTitle}</h2>
+            <p className="mt-2 text-sm text-slate-400">
+              {campaign.officeSought} · {candidate.jurisdictionName}
+            </p>
+          </div>
+          <Link href={`/elections/${imported.electionId}`} className="text-sm font-semibold text-cyan-200 hover:text-cyan-100">
+            Open election
+          </Link>
+        </div>
+      </section>
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Data completeness</h2>
+        {imported.dataWarnings.length ? (
+          <div className="mt-5 grid gap-3">
+            {imported.dataWarnings.map((warning) => (
+              <div key={warning} className="rounded-2xl border border-amber-300/18 bg-amber-500/10 p-4 text-sm font-semibold text-amber-100">
+                {warning}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-5 rounded-2xl border border-emerald-300/18 bg-emerald-500/10 p-4 text-sm font-semibold text-emerald-100">
+            Core imported fields are present.
+          </div>
+        )}
+      </section>
+    </div>
+  );
+}
+
 export default async function CandidateDetailPage({ params, searchParams }: CandidateDetailPageProps) {
   const { candidateId } = await params;
   const [viewer, sessionUser, comparisonUser, resolvedSearchParams, candidateSummary, candidateDetail, fallbackCampaigns, fallbackPositions] = await Promise.all([
@@ -169,6 +303,10 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
       fallbackCampaigns,
       fallbackPositions,
     );
+
+  if (candidate.isImported) {
+    return <ImportedCandidateDetailPage candidate={candidate} />;
+  }
 
   let social: Awaited<ReturnType<typeof getLightweightFollowState>> | null = null;
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ElectionCard } from "@/components/domain/election-card";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { PageIntro } from "@/components/ui/page-intro";
+import { getPublicImportedElections } from "@/lib/civic-data/public";
 import {
   getCitiesForCounty,
   getCitiesForState,
@@ -11,6 +12,7 @@ import {
   getDefaultCommunityForUser,
 } from "@/lib/community/communities";
 import { getCurrentUser } from "@/lib/server/auth-session";
+import { formatDateUtc } from "@/lib/dates";
 import { getCandidateProfiles, getElectionSummaries } from "@/lib/server/elections-context";
 import type { BallotInitiativeSummary, CommunitySummary, ElectionSummary } from "@/types/domain";
 
@@ -85,18 +87,18 @@ const US_STATE_TILES: StateTile[] = [
 ];
 
 function formatLongDate(isoDate: string) {
-  return new Intl.DateTimeFormat("en-US", {
+  return formatDateUtc(isoDate, {
     month: "long",
     day: "numeric",
     year: "numeric",
-  }).format(new Date(isoDate));
+  });
 }
 
 function formatShortDate(isoDate: string) {
-  return new Intl.DateTimeFormat("en-US", {
+  return formatDateUtc(isoDate, {
     month: "short",
     day: "numeric",
-  }).format(new Date(isoDate));
+  });
 }
 
 function getCountdownLabel(isoDate: string) {
@@ -211,6 +213,11 @@ function CompactElectionPreview({ election, communityId }: { election: ElectionS
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
           {election.candidates.length} candidate{election.candidates.length === 1 ? "" : "s"}
         </span>
+        {election.sourceLabel ? (
+          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+            Imported Nevada beta data
+          </span>
+        ) : null}
         <Link
           href={endorseCandidatesHref}
           className="rounded-full border border-civic-200 bg-white px-3 py-1 text-xs font-semibold text-civic-700 transition hover:border-civic-500"
@@ -252,6 +259,7 @@ function CompactBallotQuestionPreview({ preview }: { preview: BallotQuestionPrev
 
 export default async function ElectionsPage({ searchParams }: ElectionsPageProps) {
   const currentUser = await getCurrentUser();
+  const importedElections = await getPublicImportedElections();
   const params = searchParams ? await searchParams : undefined;
   const view = params?.view === "all" ? "all" : "my";
 
@@ -537,6 +545,41 @@ export default async function ElectionsPage({ searchParams }: ElectionsPageProps
           </Link>
         }
       />
+      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Imported Nevada data</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Election records from official sources</h2>
+          </div>
+          <Link href="/ballot-measures" className="text-sm font-semibold text-civic-700 hover:text-civic-900">
+            Ballot measures
+          </Link>
+        </div>
+        <div className="mt-5 grid gap-3 lg:grid-cols-2">
+          {importedElections.length > 0 ? (
+            importedElections.slice(0, 6).map((election) => (
+              <article key={election.id} className="rounded-2xl border border-slate-200 bg-white p-4">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="font-semibold text-ink">{election.title}</p>
+                    <p className="mt-1 text-sm text-slate-600">
+                      {election.officeTitle} · {election.jurisdiction.name}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{election.status}</span>
+                  <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Imported Nevada beta data</span>
+                </div>
+                <p className="mt-3 text-xs text-slate-500">
+                  {formatLongDate(election.electionDate.toISOString())} · {election.candidateCount} candidates · {election.ballotMeasureCount} measures · Source:{" "}
+                  {election.source?.name ?? "No source"}
+                </p>
+              </article>
+            ))
+          ) : (
+            <div className="rounded-2xl bg-slate-50 p-5 text-sm text-slate-600 lg:col-span-2">No imported elections are available yet.</div>
+          )}
+        </div>
+      </section>
       <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <div>

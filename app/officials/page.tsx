@@ -74,7 +74,8 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
   const stateCommunityId = hierarchy.find((entry) => entry.level === "State")?.id ?? "nevada";
   const stateCommunity = getCommunityById(stateCommunityId);
   const nationalCommunity = getCommunityById("united-states");
-  const allOfficials = await getOfficials()
+  const allowDemoFallback = selectedCommunityId !== "nevada";
+  const allOfficials = await getOfficials({ allowDemoFallback })
     .then((officials) => attachOfficialFollowState(user.id, officials))
     .catch((error) => {
       console.error("[officials-page] officials listing fallback", {
@@ -97,6 +98,7 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
         matchesOfficialQuery(query, official.name, official.officeTitle, official.bio ?? "", official.jurisdictionName, official.party),
       )
     : [];
+  const isImportedNevadaFeed = allOfficials.some((official) => official.sourceLabel);
 
   return (
     <div className="space-y-8 py-8">
@@ -108,13 +110,28 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
             ? `Showing official profile matches for “${query}.”`
             : `Browse public officials in ${currentCommunity.name}, then widen the view to state and national previews.`
         }
+        meta={
+          isImportedNevadaFeed ? (
+            <span className="rounded-full border border-emerald-300/20 bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-100">
+              Imported Nevada beta data
+            </span>
+          ) : null
+        }
         actions={
-          <Link
-            href={`/explore?communityId=${selectedCommunityId}`}
-            className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-          >
-            Back to Explore
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href={`/representatives?community=${selectedCommunityId === "unr" || selectedCommunityId === "asun" ? "campus" : selectedCommunityId}`}
+              className="inline-flex rounded-full bg-white px-4 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+            >
+              Who represents me?
+            </Link>
+            <Link
+              href={`/explore?communityId=${selectedCommunityId}`}
+              className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+            >
+              Back to Explore
+            </Link>
+          </div>
         }
       />
 

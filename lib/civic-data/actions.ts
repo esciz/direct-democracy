@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { syncNevadaOfficialsSources } from "@/lib/civic-data/import-jobs";
+import { syncNevadaElectionsSources, syncNevadaOfficialsSources } from "@/lib/civic-data/import-jobs";
 import { syncCivicSource } from "@/lib/civic-data/service";
 import { getCurrentUser } from "@/lib/server/auth-session";
 
@@ -51,4 +51,30 @@ export async function syncNevadaOfficialsSourcesAction() {
   revalidatePath("/admin/officials");
   revalidatePath("/imported-officials");
   redirect("/admin/imports?synced=officials");
+}
+
+export async function syncNevadaElectionsSourcesAction() {
+  const user = await getCurrentUser();
+
+  if (user.role !== "admin") {
+    redirect("/profile");
+  }
+
+  try {
+    await syncNevadaElectionsSources("manual");
+  } catch {
+    redirect("/admin/imports?error=sync-elections-failed");
+  }
+
+  revalidatePath("/admin/data");
+  revalidatePath("/admin/sources");
+  revalidatePath("/admin/imports");
+  revalidatePath("/admin/elections");
+  revalidatePath("/admin/candidates");
+  revalidatePath("/admin/ballot-measures");
+  revalidatePath("/admin/elections/qa");
+  revalidatePath("/elections");
+  revalidatePath("/candidates");
+  revalidatePath("/ballot-measures");
+  redirect("/admin/imports?synced=elections");
 }

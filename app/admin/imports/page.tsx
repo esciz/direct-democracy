@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { PageIntro } from "@/components/ui/page-intro";
-import { syncNevadaOfficialsSourcesAction } from "@/lib/civic-data/actions";
+import { syncNevadaElectionsSourcesAction, syncNevadaOfficialsSourcesAction } from "@/lib/civic-data/actions";
 import { getAdminImportRuns } from "@/lib/civic-data/service";
 import { getCurrentUser } from "@/lib/server/auth-session";
 
@@ -42,6 +42,14 @@ export default async function AdminImportsPage({ searchParams }: AdminImportsPag
                 Sync Officials
               </button>
             </form>
+            <form action={syncNevadaElectionsSourcesAction}>
+              <button type="submit" className="dd-button-primary rounded-full px-4 py-2.5 text-sm font-semibold">
+                Sync Elections
+              </button>
+            </form>
+            <Link href="/admin/imports/manual-candidates" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
+              Manual Candidates
+            </Link>
             <Link href="/admin/sources" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
               Sources
             </Link>
@@ -50,7 +58,9 @@ export default async function AdminImportsPage({ searchParams }: AdminImportsPag
       />
 
       {params?.synced ? (
-        <div className="rounded-2xl border border-emerald-300/20 bg-emerald-500/10 p-4 text-sm text-emerald-100">Officials source sync completed.</div>
+        <div className="rounded-2xl border border-emerald-300/20 bg-emerald-500/10 p-4 text-sm text-emerald-100">
+          {params.synced === "elections" ? "Election source sync completed." : "Officials source sync completed."}
+        </div>
       ) : null}
       {params?.error ? (
         <div className="rounded-2xl border border-rose-300/20 bg-rose-500/10 p-4 text-sm text-rose-100">One or more source syncs failed. Review import logs below.</div>

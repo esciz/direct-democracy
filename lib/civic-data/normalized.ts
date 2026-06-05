@@ -8,7 +8,9 @@ export function createEmptyNormalizedCivicData(): NormalizedCivicData {
     districts: [],
     elections: [],
     candidates: [],
+    electionResults: [],
     ballotInitiatives: [],
+    ballotQuestions: [],
     legislativeBills: [],
     legislativeVotes: [],
     committees: [],
@@ -19,4 +21,3 @@ export function createEmptyNormalizedCivicData(): NormalizedCivicData {
     politicalAdvertisements: [],
   };
 }
-

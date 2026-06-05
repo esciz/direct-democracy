@@ -1,7 +1,7 @@
 import { getCommunityById } from "@/lib/community/communities";
 import { getCommunityEvents } from "@/lib/community/events";
 import { getIssueTrendData } from "@/lib/community/trends";
-import { getOfficials } from "@/lib/server/elections-context";
+import { getOfficials } from "@/lib/officials/store";
 import { getFeedPosts } from "@/lib/feed/posts";
 import { getVotingLibrary } from "@/lib/feed/quick-votes";
 import { getTopIssuesForUser } from "@/lib/community/issues";

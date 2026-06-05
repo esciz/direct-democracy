@@ -394,23 +394,23 @@ function resolveResults(
     case "contact-representative":
       return [
         {
+          id: "officials",
+          title: "Find your Nevada officials",
+          description: "Browse imported Nevada beta official records by office and community before choosing an outreach route.",
+          type: "official",
+          href: "/officials",
+          actionLabel: "View officials",
+          badge: "Imported officials",
+          priority: 1,
+        },
+        {
           id: "message-flow",
           title: "Start a message to a representative",
-          description: "Choose the topic, then draft a neutral message to the right local, state, or federal office.",
+          description: "Use the message flow after you know which office you want to contact.",
           type: "message_flow",
           href: "/messages/new",
           actionLabel: "Start message",
           badge: "Message",
-          priority: 1,
-        },
-        {
-          id: "officials",
-          title: "Find your officials",
-          description: "Browse officials by office and community if you are not sure who handles the issue.",
-          type: "official",
-          href: "/officials",
-          actionLabel: "View officials",
-          badge: "Officials",
           priority: 2,
         },
         {
@@ -500,11 +500,11 @@ function resolveResults(
       return [
         {
           id: "officials-directory",
-          title: "Your officials and representatives",
-          description: "Start with the officials directory, then filter by local, state, and federal roles.",
+          title: "Who represents me?",
+          description: "Start with the Nevada beta representative lookup, grouped by federal, state, local, and campus roles.",
           type: "official",
-          href: "/officials",
-          actionLabel: "Find officials",
+          href: "/representatives",
+          actionLabel: "Find representatives",
           badge: "Representatives",
           priority: 1,
         },

@@ -2247,6 +2247,11 @@ export type OfficialProfileSummary = {
   platformSummary: string | null;
   donationUrl?: string | null;
   websiteUrl?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  districtName?: string | null;
+  sourceLabel?: string | null;
+  sourceUrl?: string | null;
   isClaimed?: boolean;
   followerCount: number;
   followThroughScore: number | null;
@@ -2290,6 +2295,23 @@ export type PublicProfileSummary = {
   followerCount?: number;
   viewerIsFollowing?: boolean;
   viewerCanFollow?: boolean;
+  isImported?: boolean;
+  sourceLabel?: string | null;
+  sourceUrl?: string | null;
+  importedCandidate?: {
+    electionId: string;
+    electionSlug: string;
+    electionTitle: string;
+    electionDate: string;
+    officeTitle?: string | null;
+    districtName?: string | null;
+    candidateStatus: string;
+    filingStatus?: string | null;
+    filingDate?: string | null;
+    sourceLabel?: string | null;
+    sourceUrl?: string | null;
+    dataWarnings: string[];
+  };
 };
 
 export type MediaProfileDetail = MediaProfileSummary & {
@@ -2329,6 +2351,12 @@ export type CandidateCampaignSummary = {
   visibleEndorsers?: VisibleCandidateEndorserSummary[];
   viewerEndorsement?: CandidateEndorsementSummary | null;
   viewerElectionEndorsementCampaignId?: string | null;
+  isImported?: boolean;
+  sourceLabel?: string | null;
+  sourceUrl?: string | null;
+  filingStatus?: string | null;
+  filingDate?: string | null;
+  districtName?: string | null;
 };
 
 export type CandidateDraftSummary = {
@@ -2409,6 +2437,40 @@ export type ElectionSummary = {
   electionStatus: ElectionStatus;
   isCommunityVoteOnly?: boolean;
   authorityLabel?: string | null;
+  sourceLabel?: string | null;
+  sourceUrl?: string | null;
+  sourceLinks?: Array<{
+    label: string;
+    url: string;
+  }>;
+  deadlineNotes?: string[];
+  isImported?: boolean;
+  importedCandidates?: Array<{
+    id: string;
+    fullName: string;
+    ballotName?: string | null;
+    partyText?: string | null;
+    officeTitle?: string | null;
+    districtName?: string | null;
+    jurisdictionName: string;
+    status: string;
+    websiteUrl?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    photoUrl?: string | null;
+    campaignStatement?: string | null;
+    sourceUrl?: string | null;
+    filingStatus?: string | null;
+    filingDate?: string | null;
+    sourceLabel?: string | null;
+  }>;
+  importedRecordsNeedingReview?: Array<{
+    id: string;
+    recordType: "candidate" | "ballotQuestion";
+    title: string;
+    reason: string;
+    sourceLabel?: string | null;
+  }>;
   candidates: CandidateCampaignSummary[];
   ballotInitiatives: BallotInitiativeSummary[];
 };

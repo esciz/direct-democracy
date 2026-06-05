@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { DEV_ONLY_AUTH_ENABLED, GUEST_BROWSE_USER_ID, MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
-import { getSeedUserById } from "@/lib/auth/mock-users";
+import { getSeedUserById, seedUsers } from "@/lib/auth/mock-users";
 import { getUserProfileContent, updateUserProfileContent } from "@/lib/profile/details";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 import { setStoredPublicProfiles, getAllPublicProfiles } from "@/lib/server/elections-context";
@@ -26,6 +26,118 @@ function getFormString(formData: FormData, key: string) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function getMockAuthCookieOptions() {
+  return {
+    httpOnly: true,
+    sameSite: "lax" as const,
+    path: "/",
+    secure: process.env.NODE_ENV === "production",
+  };
+}
+
+export type AuthFormState = {
+  status: "idle" | "error" | "success";
+  message?: string;
+  fieldErrors?: Record<string, string>;
+};
+
+const AUTH_ERROR_STATE: AuthFormState = {
+  status: "error",
+  message: "Please review the highlighted fields.",
+};
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validateEmailPassword(email: string, password: string) {
+  const fieldErrors: Record<string, string> = {};
+
+  if (!isValidEmail(email)) {
+    fieldErrors.email = "Please enter a valid email.";
+  }
+
+  if (password.length < 8) {
+    fieldErrors.password = "Password must be at least 8 characters.";
+  }
+
+  return fieldErrors;
+}
+
+export async function signInWithDemoCredentials(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
+  const email = getFormString(formData, "email").toLowerCase();
+  const password = getFormString(formData, "password");
+  const fieldErrors = validateEmailPassword(email, password);
+
+  if (Object.keys(fieldErrors).length) {
+    return { ...AUTH_ERROR_STATE, fieldErrors };
+  }
+
+  const matchedUser = seedUsers.find((user) => user.email.toLowerCase() === email && user.id !== GUEST_BROWSE_USER_ID);
+
+  if (!matchedUser) {
+    return {
+      status: "error",
+      message: "We couldn't sign you in. Check your email and password.",
+    };
+  }
+
+  const cookieStore = await cookies();
+  cookieStore.set(MOCK_AUTH_COOKIE, matchedUser.id, getMockAuthCookieOptions());
+
+  redirect("/");
+}
+
+export async function registerDemoAccount(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
+  const fullName = getFormString(formData, "fullName");
+  const email = getFormString(formData, "email").toLowerCase();
+  const password = getFormString(formData, "password");
+  const confirmPassword = getFormString(formData, "confirmPassword");
+  const fieldErrors = validateEmailPassword(email, password);
+
+  if (!fullName) {
+    fieldErrors.fullName = "Please enter your name.";
+  }
+
+  if (password !== confirmPassword) {
+    fieldErrors.confirmPassword = "Passwords do not match.";
+  }
+
+  if (Object.keys(fieldErrors).length) {
+    return { ...AUTH_ERROR_STATE, fieldErrors };
+  }
+
+  const cookieStore = await cookies();
+  cookieStore.set(MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, getMockAuthCookieOptions());
+
+  await setOnboardingDraft({
+    accountName: fullName,
+    accountEmail: email,
+    emailVerificationStatus: "unverified",
+    antiBotScreened: true,
+  });
+
+  redirect("/get-started?step=verify");
+}
+
+export async function requestDemoPasswordReset(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
+  const email = getFormString(formData, "email").toLowerCase();
+
+  if (!isValidEmail(email)) {
+    return {
+      ...AUTH_ERROR_STATE,
+      fieldErrors: {
+        email: "Please enter a valid email.",
+      },
+    };
+  }
+
+  return {
+    status: "success",
+    message: "If an account exists for that email, a reset link has been sent.",
+  };
+}
+
 export async function switchDevUser(formData: FormData) {
   if (!DEV_ONLY_AUTH_ENABLED) {
     return;
@@ -41,21 +153,16 @@ export async function switchDevUser(formData: FormData) {
   const cookieStore = await cookies();
 
   if (nextUserId === PUBLIC_SESSION_VALUE) {
-    cookieStore.set(MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE, {
-      httpOnly: true,
-      sameSite: "lax",
-      path: "/",
-    });
+    cookieStore.set(MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE, getMockAuthCookieOptions());
+    await clearOnboardingDraft();
+
+    redirect("/auth");
   } else {
     if (!getSeedUserById(nextUserId)) {
       return;
     }
 
-    cookieStore.set(MOCK_AUTH_COOKIE, nextUserId, {
-      httpOnly: true,
-      sameSite: "lax",
-      path: "/",
-    });
+    cookieStore.set(MOCK_AUTH_COOKIE, nextUserId, getMockAuthCookieOptions());
   }
 
   redirect(typeof redirectTo === "string" && redirectTo ? redirectTo : "/");
@@ -63,11 +170,7 @@ export async function switchDevUser(formData: FormData) {
 
 export async function startDemoOnboarding() {
   const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-  });
+  cookieStore.set(MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, getMockAuthCookieOptions());
 
   await clearOnboardingDraft();
   redirect("/get-started?step=account&internal=1");
@@ -75,11 +178,7 @@ export async function startDemoOnboarding() {
 
 export async function startGuestBrowsing() {
   const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, GUEST_BROWSE_USER_ID, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-  });
+  cookieStore.set(MOCK_AUTH_COOKIE, GUEST_BROWSE_USER_ID, getMockAuthCookieOptions());
 
   await clearOnboardingDraft();
   redirect("/explore");
@@ -93,11 +192,7 @@ export async function beginGuidedOnboarding(formData: FormData) {
   const seedUserId = resolveOnboardingSeedUserId(fullName);
   const cookieStore = await cookies();
 
-  cookieStore.set(MOCK_AUTH_COOKIE, seedUserId, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-  });
+  cookieStore.set(MOCK_AUTH_COOKIE, seedUserId, getMockAuthCookieOptions());
 
   await setOnboardingDraft({
     accountName: fullName,

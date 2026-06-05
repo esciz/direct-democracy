@@ -16,6 +16,7 @@ type UpcomingElectionPaneItem = {
   keyRacesSummary: string;
   ballotMeasuresSummary: string;
   href: string;
+  sourceLabel?: string | null;
 };
 
 type HomeUpcomingElectionsPaneProps = {
@@ -82,6 +83,11 @@ export function HomeUpcomingElectionsPane({ elections }: HomeUpcomingElectionsPa
             <span className="rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
               Upcoming Election
             </span>
+            {currentElection.sourceLabel ? (
+              <span className="rounded-full border border-emerald-300/18 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                Imported Nevada beta data
+              </span>
+            ) : null}
             <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-200">
               {currentElection.jurisdictionLabel}
             </span>

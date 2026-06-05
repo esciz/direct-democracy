@@ -20,6 +20,7 @@ export function OfficialCard({ official }: OfficialCardProps) {
             <p className="mt-2 text-sm text-slate-500">
               {official.officeTitle} · {official.jurisdictionName}
             </p>
+            {official.sourceLabel ? <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Imported Nevada beta data</p> : null}
             {!official.isClaimed ? <div className="mt-2"><UnclaimedProfileBadge /></div> : null}
           </div>
         </div>
@@ -51,6 +52,16 @@ export function OfficialCard({ official }: OfficialCardProps) {
           >
             View profile
           </Link>
+          {official.websiteUrl ? (
+            <a
+              href={official.websiteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+            >
+              Official site
+            </a>
+          ) : null}
           {!official.isClaimed ? <ClaimProfileButton profileId={official.id} /> : null}
         </div>
       </div>

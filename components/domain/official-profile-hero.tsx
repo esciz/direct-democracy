@@ -99,6 +99,11 @@ export async function OfficialProfileHero({
                   <div>
                     <h1 className="text-3xl font-semibold tracking-tight text-slate-50">{official.name}</h1>
                     <p className="mt-2 text-sm text-slate-400">{official.jurisdictionName}</p>
+                    {official.sourceLabel ? (
+                      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
+                        Imported Nevada beta data{official.sourceLabel ? ` · ${official.sourceLabel}` : ""}
+                      </p>
+                    ) : null}
                   </div>
                   <p className="max-w-4xl text-sm leading-7 text-slate-300">{official.bio}</p>
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
@@ -132,7 +137,23 @@ export async function OfficialProfileHero({
                       returnPath={returnPath}
                       guestMode={guestMode}
                     />
+                    {official.websiteUrl ? (
+                      <a
+                        href={official.websiteUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
+                      >
+                        Official site
+                      </a>
+                    ) : null}
                   </div>
+                  {(official.email || official.phone) ? (
+                    <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+                      {official.email ? <a href={`mailto:${official.email}`} className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">Email</a> : null}
+                      {official.phone ? <a href={`tel:${official.phone.replace(/[^+\d]/g, "")}`} className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">{official.phone}</a> : null}
+                    </div>
+                  ) : null}
                   {externalLinks.length ? <ExternalLinksRow links={externalLinks} title="External Links" compact /> : null}
                 </div>
               </div>
