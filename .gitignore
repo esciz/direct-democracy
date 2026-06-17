@@ -15,3 +15,7 @@ data/private/*
 .DS_Store
 .local/
 data/manual-sources/
+data/manual-sources/
+.local/
+.DS_Store
+*.pdf

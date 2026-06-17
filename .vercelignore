@@ -1,0 +1,4 @@
+data/manual-sources/
+.local/
+.DS_Store
+*.pdf
