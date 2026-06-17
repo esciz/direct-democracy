@@ -50,15 +50,20 @@ export default async function AdminSourcesPage({ searchParams }: AdminSourcesPag
       ) : null}
 
       <section className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
-        <div className="grid gap-4 border-b border-white/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:grid-cols-[1.3fr_0.8fr_0.8fr_0.7fr]">
+        <div className="grid gap-4 border-b border-white/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:grid-cols-[1.3fr_0.55fr_0.45fr_0.4fr_0.5fr_0.5fr_0.5fr_0.45fr_0.55fr]">
           <span>Source</span>
-          <span>Last Sync</span>
+          <span>Category</span>
+          <span>Method</span>
+          <span>Priority</span>
+          <span>Refresh</span>
+          <span>Last Check</span>
+          <span>Last Success</span>
           <span>Status</span>
           <span>Action</span>
         </div>
         <div className="divide-y divide-white/10">
           {sources.map((source) => (
-            <article key={source.slug} className="grid gap-4 px-4 py-5 md:grid-cols-[1.3fr_0.8fr_0.8fr_0.7fr] md:items-start">
+            <article key={source.slug} className="grid gap-4 px-4 py-5 md:grid-cols-[1.3fr_0.55fr_0.45fr_0.4fr_0.5fr_0.5fr_0.5fr_0.45fr_0.55fr] md:items-start">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <h2 className="font-semibold text-slate-50">{source.name}</h2>
@@ -67,12 +72,18 @@ export default async function AdminSourcesPage({ searchParams }: AdminSourcesPag
                   </span>
                 </div>
                 <p className="mt-2 text-sm leading-6 text-slate-400">{source.description}</p>
+                {source.notes ? <p className="mt-2 text-xs leading-5 text-slate-500">{source.notes}</p> : null}
                 <a href={source.url} target="_blank" rel="noreferrer" className="mt-2 inline-flex text-sm font-semibold text-cyan-200 hover:text-cyan-100">
                   {source.url}
                 </a>
                 {source.errorLog ? <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-black/25 p-3 text-xs text-rose-100">{source.errorLog}</pre> : null}
               </div>
-              <p className="text-sm text-slate-300">{formatDate(source.lastSyncAt)}</p>
+              <p className="text-sm text-slate-300">{source.dataCategory?.replaceAll("_", " ") ?? "Uncategorized"}</p>
+              <p className="text-sm text-slate-300">{source.accessMethod?.replaceAll("_", " ") ?? "html"}</p>
+              <p className="text-sm text-slate-300">{source.importPriority ?? 100}</p>
+              <p className="text-sm text-slate-300">{source.refreshFrequency?.replaceAll("_", " ") ?? "Unscheduled"}</p>
+              <p className="text-sm text-slate-300">{formatDate(source.lastCheckedAt ?? source.lastSyncAt)}</p>
+              <p className="text-sm text-slate-300">{formatDate(source.lastSuccessAt)}</p>
               <p className="text-sm font-semibold text-slate-100">{source.syncStatus.replaceAll("_", " ")}</p>
               <form action={manualSyncSourceAction}>
                 <input type="hidden" name="sourceSlug" value={source.slug} />
@@ -87,4 +98,3 @@ export default async function AdminSourcesPage({ searchParams }: AdminSourcesPag
     </div>
   );
 }
-

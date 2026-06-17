@@ -54,97 +54,9 @@ async function writeCookieArray<T>(key: string, values: T[]) {
   });
 }
 
-const seededAttendance: EventAttendanceSummary[] = [
-  {
-    id: "event_attend_interview_nora",
-    userId: "user_trusted_citizen_nora_patel",
-    eventId: "event_interview_nora_sofia_water",
-    status: "confirmed",
-    confirmedAt: "2026-04-08T19:58:00.000Z",
-    createdAt: "2026-04-03T18:30:00.000Z",
-  },
-  {
-    id: "event_attend_interview_sofia",
-    userId: "user_candidate_sofia_bennett",
-    eventId: "event_interview_nora_sofia_water",
-    status: "confirmed",
-    confirmedAt: "2026-04-08T19:59:00.000Z",
-    createdAt: "2026-04-03T18:32:00.000Z",
-  },
-  {
-    id: "event_attend_interview_alicia",
-    userId: "user_citizen_alicia_hart",
-    eventId: "event_interview_nora_sofia_water",
-    status: "attending",
-    confirmedAt: null,
-    createdAt: "2026-04-07T15:20:00.000Z",
-  },
-  {
-    id: "event_attend_interview_hannah",
-    userId: "user_trusted_citizen_hannah_cho",
-    eventId: "event_interview_hannah_david_growth",
-    status: "attending",
-    confirmedAt: null,
-    createdAt: "2026-04-06T18:10:00.000Z",
-  },
-  {
-    id: "event_attend_interview_david",
-    userId: "user_official_david_park",
-    eventId: "event_interview_hannah_david_growth",
-    status: "attending",
-    confirmedAt: null,
-    createdAt: "2026-04-06T18:11:00.000Z",
-  },
-  {
-    id: "event_attend_interview_miles",
-    userId: "user_citizen_miles_reed",
-    eventId: "event_interview_hannah_david_growth",
-    status: "maybe",
-    confirmedAt: null,
-    createdAt: "2026-04-09T16:00:00.000Z",
-  },
-  {
-    id: "event_attend_1",
-    userId: "user_citizen_alicia_hart",
-    eventId: "event_carson_teacher_rally",
-    status: "confirmed",
-    confirmedAt: "2026-04-07T16:20:00.000Z",
-    createdAt: "2026-04-07T14:00:00.000Z",
-  },
-  {
-    id: "event_attend_2",
-    userId: "user_trusted_citizen_marco_silva",
-    eventId: "event_carson_teacher_rally",
-    status: "confirmed",
-    confirmedAt: "2026-04-07T16:15:00.000Z",
-    createdAt: "2026-04-07T14:10:00.000Z",
-  },
-  {
-    id: "event_attend_3",
-    userId: "user_citizen_miles_reed",
-    eventId: "event_washoe_growth_meeting",
-    status: "maybe",
-    confirmedAt: null,
-    createdAt: "2026-04-02T13:00:00.000Z",
-  },
-];
+const seededAttendance: EventAttendanceSummary[] = [];
 
-const seededStatements: EventStatementSummary[] = [
-  {
-    id: "event_statement_1",
-    userId: "user_citizen_alicia_hart",
-    eventId: "event_carson_teacher_rally",
-    position: "support",
-    createdAt: "2026-04-07T17:10:00.000Z",
-  },
-  {
-    id: "event_statement_2",
-    userId: "user_trusted_citizen_marco_silva",
-    eventId: "event_carson_teacher_rally",
-    position: "support",
-    createdAt: "2026-04-07T17:20:00.000Z",
-  },
-];
+const seededStatements: EventStatementSummary[] = [];
 
 export async function getStoredEventAttendance() {
   return readCookieArray(EVENT_ATTENDANCE_COOKIE, isAttendance);

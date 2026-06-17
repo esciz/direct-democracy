@@ -14,6 +14,7 @@ function courtLabel(value: CaseSummary["courtLevel"]) {
 export function CaseCard({ caseItem, guestMode = false }: { caseItem: CaseSummary; guestMode?: boolean }) {
   const currentSupport = Math.min(82, Math.max(28, 32 + caseItem.supportCount * 8 + caseItem.followCount * 3));
   const history = buildSentimentHistory(`case-${caseItem.id}`, currentSupport, { points: 6, opposeBias: 27 });
+  const filingDate = caseItem.filingDate ? new Date(caseItem.filingDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : null;
 
   return (
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
@@ -36,9 +37,14 @@ export function CaseCard({ caseItem, guestMode = false }: { caseItem: CaseSummar
               <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-700">
                 {caseItem.status}
               </span>
+              {caseItem.isRealCourtRecord ? (
+                <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">
+                  Public court data
+                </span>
+              ) : null}
             </div>
             <h2 className="mt-4 text-xl font-semibold tracking-tight text-ink">{caseItem.title}</h2>
-            <p className="mt-2 text-sm text-slate-500">{caseItem.jurisdictionName}</p>
+            <p className="mt-2 text-sm text-slate-500">{caseItem.courtName ?? caseItem.jurisdictionName}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -59,20 +65,27 @@ export function CaseCard({ caseItem, guestMode = false }: { caseItem: CaseSummar
         </div>
       </div>
       <p className="mt-4 text-sm leading-7 text-slate-600">{caseItem.summary}</p>
-      <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold">
-        {caseItem.issueTags.map((tag) => (
-          <span key={tag} className="rounded-full bg-white px-3 py-1 text-slate-700 ring-1 ring-slate-200">
-            {tag}
-          </span>
-        ))}
+      <div className="mt-5 grid gap-3 text-xs font-semibold sm:grid-cols-2">
+        <span className="rounded-2xl bg-slate-50 px-3 py-2 text-slate-700 ring-1 ring-slate-200">Case number: {caseItem.caseNumber ?? "Pending"}</span>
+        <span className="rounded-2xl bg-slate-50 px-3 py-2 text-slate-700 ring-1 ring-slate-200">Type: {caseItem.caseType?.replaceAll("_", " ") ?? "Unknown"}</span>
+        <span className="rounded-2xl bg-slate-50 px-3 py-2 text-slate-700 ring-1 ring-slate-200">Filed: {filingDate ?? "Pending"}</span>
+        <span className="rounded-2xl bg-slate-50 px-3 py-2 text-slate-700 ring-1 ring-slate-200">Last checked: {caseItem.lastCheckedAt ? new Date(caseItem.lastCheckedAt).toLocaleDateString("en-US") : "Pending"}</span>
       </div>
       <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold">
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">{caseItem.followCount} following</span>
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">{caseItem.supportCount} supporting</span>
+        {caseItem.sourceUrl ? (
+          <Link href={caseItem.sourceUrl} className="rounded-full bg-white px-3 py-1 text-civic-700 ring-1 ring-civic-100">
+            Source: {caseItem.sourceName ?? "Court source"}
+          </Link>
+        ) : (
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">Source pending</span>
+        )}
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">{caseItem.reviewStatus?.replaceAll("_", " ") ?? "reviewed"}</span>
       </div>
-      <div className="mt-5">
-        <SentimentHistoryChart data={history} title="Community result" currentValue={currentSupport} compact showLegend={false} />
-      </div>
+      {!caseItem.isRealCourtRecord ? (
+        <div className="mt-5">
+          <SentimentHistoryChart data={history} title="Community result" currentValue={currentSupport} compact showLegend={false} />
+        </div>
+      ) : null}
       <div className="mt-5">
         <Link
           href={`/cases/${caseItem.id}`}

@@ -123,8 +123,7 @@ Initial Nevada Beta sources:
 - City of Reno Government: `https://www.reno.gov/government`
 - Carson City Government: `https://www.carson.org/`
 - Washoe County Government: `https://www.washoecounty.gov/`
-- University of Nevada, Reno Government Relations: `https://www.unr.edu/government`
-- ASUN Student Government: `https://nevadaasun.com/`
+- Nevada public boards and commissions
 
 ## Ingestion Architecture
 
@@ -151,8 +150,6 @@ Current adapters are registered for:
 - Reno
 - Carson City
 - Washoe County
-- UNR
-- ASUN
 
 Adapters currently return normalized empty payloads with an informational issue. This is intentional: the framework is ready for real parsers, but this phase does not create fake civic records.
 
@@ -191,4 +188,3 @@ Parser work should follow this sequence:
 6. Keep parser errors in `Source.errorLog` and `SourceSyncRun.errorLog`.
 
 Do not add mock civic records. If a parser is incomplete, return an empty normalized collection with an informational issue.
-

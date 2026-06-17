@@ -7,10 +7,9 @@ import { PreserveScrollQueryForm } from "@/components/ui/preserve-scroll-query-f
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
-import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
-import { getCommunityEventTypeLabel } from "@/lib/community/events";
 import { getCommunityById, getDefaultCommunityForUser, seededCommunities } from "@/lib/community/communities";
 import { communityMatchesJurisdiction, communityMatchesMembership } from "@/lib/community/membership";
+import { getCivicEventStatusLabel, getCivicEventTypeLabel, getCivicEventsForBrowse } from "@/lib/events/civic-events";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
@@ -157,7 +156,7 @@ function getCategoryDescription(category: ExploreCategory) {
     case "cases":
       return "Browse legal, civic, ethics, complaint, enforcement, and public accountability cases tied to what is happening.";
     case "events":
-      return "Preview upcoming civic events, meetings, and rallies near your community.";
+      return "Preview upcoming and completed civic meetings, election dates, deadlines, forums, hearings, and rallies.";
     case "elections":
       return "Browse active and upcoming races with lightweight election previews.";
     case "ads":
@@ -217,7 +216,7 @@ function getBrowseHref(category: ExploreCategory, communityId: string, query: st
     case "cases":
       return "/cases";
     case "events":
-      return `/events?communityId=${communityId}`;
+      return "/events";
     case "elections":
       return "/elections";
     case "ads":
@@ -568,46 +567,50 @@ async function getCategoryPreviewItems({
       );
     }
     case "events": {
-      const events = await getDiscoverableEventsForUser(user, {
-        communityId: favoriteIds ? undefined : query ? undefined : communityId,
-        limit,
+      const events = await getCivicEventsForBrowse(user, {
+        communityId: favoriteIds ? undefined : query ? undefined : undefined,
+        status: "all",
+        source: "all",
+        type: "all",
+        sort: "soonest",
       });
+      const orderedEvents = [
+        ...events.filter((event) => event.status === "upcoming"),
+        ...events.filter((event) => event.status === "completed"),
+      ];
       const filtered = favoriteIds
-        ? orderByFavoriteIds(events.filter((event) => favoriteIds.includes(event.id)), favoriteIds)
+        ? orderByFavoriteIds(orderedEvents.filter((event) => favoriteIds.includes(event.id)), favoriteIds)
         : query
-          ? events.filter((event) =>
-              matchesQuery(query, event.title, event.description, event.locationLabel ?? "", event.issueLabel ?? "", event.jurisdictionName),
+          ? orderedEvents.filter((event) =>
+              matchesQuery(query, event.title, event.description, event.locationName, event.hostName, event.jurisdiction, ...event.relatedIssueLabels, ...event.relatedEntityLabels),
             )
-          : events;
+          : orderedEvents;
 
       return filtered.slice(0, limit).map(
         (event) =>
           ({
             id: event.id,
             title: event.title,
-            subtitle: `${new Date(event.startsAt).toLocaleDateString("en-US", {
+            subtitle: `${event.startsAt ? new Date(event.startsAt).toLocaleString("en-US", {
               month: "short",
               day: "numeric",
-            })} · ${event.jurisdictionName}`,
+              hour: "numeric",
+              minute: "2-digit",
+            }) : "Schedule source"} · ${event.jurisdiction}`,
             description: event.description,
             href: `/events/${event.id}`,
             ctaLabel: "View event",
             avatar: {
-              name: event.sponsorName,
-              entityType:
-                event.sponsorType === "official"
-                  ? "official"
-                  : event.sponsorType === "candidate"
-                    ? "candidate"
-                    : event.sponsorType === "trustedCitizen"
-                      ? "trustedCitizen"
-                      : "community",
-              verified: event.sponsorType !== "community",
+              name: event.hostName,
+              entityType: event.hostType === "official" ? "official" : event.hostType === "candidate" ? "candidate" : "agency",
+              verified: event.isOfficialMeeting,
             },
             badges: (
               <>
-                {renderBadge(getCommunityEventTypeLabel(event.eventType), "civic")}
-                {renderBadge(`${event.attendanceCount} attending`)}
+                {renderBadge(getCivicEventTypeLabel(event.eventType), "civic")}
+                {renderBadge(getCivicEventStatusLabel(event.status), event.status === "completed" ? "slate" : "emerald")}
+                {renderBadge(event.eventMode === "in_person" ? "In-person" : event.eventMode === "hybrid" ? "Hybrid" : event.eventMode === "virtual" ? "Virtual" : "Format pending")}
+                {event.sourceUrl ? renderBadge("Source linked", "orange") : null}
               </>
             ),
             favorite: {
@@ -886,6 +889,11 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{activeBrowseCategoryLabel}</p>
               <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{activeBrowseCategoryLabel} to browse</h3>
               <p className="mt-2 text-sm text-slate-400">{getCategoryDescription(activeBrowseCategory)}</p>
+              {activeBrowseCategory === "events" ? (
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
+                  Upcoming shown first · completed events available in View all
+                </p>
+              ) : null}
             </div>
             <Link
               href={getBrowseHref(activeBrowseCategory, selectedCommunityId, "")}

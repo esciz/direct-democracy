@@ -5,6 +5,7 @@ import { CandidateMatchBreakdown } from "@/components/domain/candidate-match-bre
 import { CandidateMatchCard } from "@/components/domain/candidate-match-card";
 import { CandidateComparisonCard } from "@/components/domain/candidate-comparison-card";
 import { PostCard } from "@/components/domain/post-card";
+import { SourceExplorer, type SourceExplorerItem } from "@/components/domain/source-explorer";
 import { SummaryBriefPanel } from "@/components/domain/summary-brief-panel";
 import { PageIntro } from "@/components/ui/page-intro";
 import { isGuestUser } from "@/lib/auth/session";
@@ -109,6 +110,46 @@ async function ElectionDetailBody({
 }) {
   const importedRaceGroups = getImportedRaceGroups(election.importedCandidates ?? []);
   const hasImportedCandidates = Boolean(election.importedCandidates?.length);
+  const electionSourceItems: SourceExplorerItem[] = [
+    ...(election.sourceLinks?.length
+      ? election.sourceLinks.map((sourceLink) => ({
+          id: `${election.id}-${sourceLink.url}`,
+          sourceName: sourceLink.label,
+          sourceType: "election_source",
+          sourceUrl: sourceLink.url,
+          lastImportedAt: null,
+          fieldsDerived: ["election", "deadlines", "candidate/race context"],
+          reviewStatus: election.sourceLabel ? "imported" : "pending_review",
+          confidenceScore: election.sourceLabel ? 0.9 : 0.5,
+          notes: "Stored election source link attached to this election page.",
+        }))
+      : election.sourceUrl
+        ? [
+            {
+              id: `${election.id}-source`,
+              sourceName: election.sourceLabel ?? "Official election source",
+              sourceType: "election_source",
+              sourceUrl: election.sourceUrl,
+              lastImportedAt: null,
+              fieldsDerived: ["election", "candidate/race context"],
+              reviewStatus: "imported",
+              confidenceScore: 0.9,
+              notes: "Stored election source link attached to this election page.",
+            },
+          ]
+        : []),
+    ...(election.importedCandidates ?? []).slice(0, 6).map((candidate) => ({
+      id: `${candidate.id}-candidate-source`,
+      sourceName: candidate.sourceLabel ?? "Imported candidate source",
+      sourceType: "candidate_filing",
+      sourceUrl: candidate.sourceUrl,
+      lastImportedAt: null,
+      fieldsDerived: ["candidate", "office/race", "party", "status"],
+      reviewStatus: "imported",
+      confidenceScore: 0.85,
+      notes: `${candidate.fullName} source record for this election.`,
+    })),
+  ];
   const currentUser = await withSectionTimeout(getCurrentUser(), "election current user", 1200).catch((error) => {
     console.error(`[election-detail] current user fallback for ${election.id}`, error);
     return getDefaultSeedUser();
@@ -289,6 +330,8 @@ async function ElectionDetailBody({
           ...(election.ballotInitiatives[0] ? [{ label: "Open ballot measure", href: `/initiatives/${election.ballotInitiatives[0].id}` }] : []),
         ]}
       />
+
+      <SourceExplorer items={electionSourceItems} emptyText="Election source records are pending import." />
 
       {election.importedCandidates?.length ? (
         <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">

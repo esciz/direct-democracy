@@ -10,3 +10,8 @@ node_modules/
 .vercel
 .env*.local
 .env*
+data/private/*
+!data/private/nv-sos-cookies.example.json
+.DS_Store
+.local/
+data/manual-sources/

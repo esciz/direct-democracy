@@ -97,8 +97,8 @@ const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
   },
   {
     title: "Campus Budget Transparency",
-    summary: "Plain-language campus budgets, visible student government decisions, and clearer accountability for student-facing spending.",
-    aliases: ["plain-language student government budgets", "student org funding", "budget transparency", "student budgets", "campus accountability"],
+    summary: "Plain-language public budgets, visible board decisions, and clearer accountability for public spending.",
+    aliases: ["plain-language public budgets", "budget transparency", "public spending accountability"],
   },
   {
     title: "Government Ethics",

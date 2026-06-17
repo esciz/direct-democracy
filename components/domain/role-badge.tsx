@@ -22,6 +22,12 @@ const roleStyles: Record<UserRole, string> = {
   media: "border border-sky-200 bg-[linear-gradient(145deg,rgba(224,242,254,0.96),rgba(240,249,255,0.95))] text-sky-800",
   moderator: "border border-orange-200 bg-[linear-gradient(145deg,rgba(255,237,213,0.96),rgba(255,247,237,0.95))] text-orange-800",
   admin: "border border-violet-200 bg-[linear-gradient(145deg,rgba(237,233,254,0.96),rgba(245,243,255,0.95))] text-violet-800",
+  public_user: "border border-slate-200 bg-[linear-gradient(145deg,rgba(248,250,252,0.96),rgba(255,255,255,0.95))] text-slate-700",
+  verified_resident: "border border-civic-200 bg-[linear-gradient(145deg,rgba(224,242,254,0.96),rgba(239,246,255,0.95))] text-civic-800",
+  platform_admin: "border border-violet-200 bg-[linear-gradient(145deg,rgba(237,233,254,0.96),rgba(245,243,255,0.95))] text-violet-800",
+  government_admin: "border border-emerald-200 bg-[linear-gradient(145deg,rgba(209,250,229,0.96),rgba(236,253,245,0.95))] text-emerald-800",
+  government_staff: "border border-emerald-200 bg-[linear-gradient(145deg,rgba(209,250,229,0.9),rgba(240,253,244,0.95))] text-emerald-800",
+  government_observer: "border border-slate-200 bg-[linear-gradient(145deg,rgba(241,245,249,0.96),rgba(248,250,252,0.95))] text-slate-700",
 };
 
 const roleIcons: Record<UserRole, typeof PulseBoltIcon> = {
@@ -32,6 +38,12 @@ const roleIcons: Record<UserRole, typeof PulseBoltIcon> = {
   media: MessageStreamIcon,
   moderator: IssueSparkIcon,
   admin: TrustShieldIcon,
+  public_user: PulseBoltIcon,
+  verified_resident: TrustShieldIcon,
+  platform_admin: TrustShieldIcon,
+  government_admin: TrustShieldIcon,
+  government_staff: IssueSparkIcon,
+  government_observer: MessageStreamIcon,
 };
 
 export function RoleBadge({ role }: RoleBadgeProps) {

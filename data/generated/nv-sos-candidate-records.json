@@ -1,0 +1,62 @@
+[
+  {
+    "source_id": "nvsos-candidate-filing-list",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchUU/CertCandList.aspx",
+    "cached_path": "data/raw/nv-sos/html/nvsos-candidate-filing-list-ca8bfaf69554.html",
+    "candidate_name": null,
+    "office": null,
+    "jurisdiction": "Nevada",
+    "district": "Clark County CONFIDENTIAL 3/5/2026 Filed",
+    "party": null,
+    "election_year": 2026,
+    "filing_status": null,
+    "mailing_address": "Filed Date Filed Status",
+    "public_contact": {
+      "website": "The purpose of this website tool is to file and make available Contributions &",
+      "email": null,
+      "phone": "775-684-5705"
+    },
+    "parse_confidence": 0.3,
+    "unmatched": true
+  },
+  {
+    "source_id": "nvsos-danny-tarkanian-candidate-details",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchUU/CandidateDetails.aspx?o=tvpre0ayXF84hHcGjkZ1Fw%253d%253d",
+    "cached_path": "data/raw/nv-sos/html/nvsos-danny-tarkanian-candidate-details-de058344aad9.html",
+    "candidate_name": "Danny Tarkanian",
+    "office": "Douglas County Commissioner, District 1",
+    "jurisdiction": "Nevada",
+    "district": "1",
+    "party": "Republican Party",
+    "election_year": 2026,
+    "filing_status": null,
+    "mailing_address": null,
+    "public_contact": {
+      "website": "The purpose of this website tool is to file and make available Contributions &",
+      "email": "dannytarkanian@gmail.com",
+      "phone": "702-378-5213"
+    },
+    "parse_confidence": 0.9,
+    "unmatched": false
+  },
+  {
+    "source_id": "nvsos-joe-lombardo-candidate-details",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/cefdsearchuu/CandidateDetails.aspx?o=NZZn4mEHsNMU0L1EsD6oJg%253d%253d",
+    "cached_path": "data/raw/nv-sos/html/nvsos-joe-lombardo-candidate-details-f75223760b8b.html",
+    "candidate_name": "Joe Lombardo",
+    "office": "Governor",
+    "jurisdiction": "Nevada",
+    "district": null,
+    "party": "Republican Party",
+    "election_year": 2026,
+    "filing_status": null,
+    "mailing_address": null,
+    "public_contact": {
+      "website": "The purpose of this website tool is to file and make available Contributions &",
+      "email": null,
+      "phone": "775-684-5705"
+    },
+    "parse_confidence": 0.9,
+    "unmatched": false
+  }
+]

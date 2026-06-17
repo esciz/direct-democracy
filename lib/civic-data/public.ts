@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import type { Prisma } from "@prisma/client";
+import { getApprovedCandidateKnowledge, type PublicCandidateKnowledgeSection } from "@/lib/enrichment/candidate-knowledge";
 
 export type PublicOfficialRow = {
   id: string;
@@ -147,6 +148,22 @@ export type PublicImportedCandidateRow = {
     name: string;
     url: string;
   } | null;
+  websiteEnrichment: {
+    campaignWebsiteUrl: string | null;
+    officialWebsiteUrl: string | null;
+    headshotUrl: string | null;
+    shortBio: string | null;
+    longBioSourceUrl: string | null;
+    socialLinks: string[];
+    publicContactEmail: string | null;
+    publicContactPhone: string | null;
+    sourceName: string | null;
+    sourceUrl: string;
+    lastEnrichedAt: Date | null;
+    enrichmentStatus: string;
+    reviewStatus: string;
+  } | null;
+  knowledgeEnrichments: PublicCandidateKnowledgeSection[];
 };
 
 export type PublicBallotMeasureRow = {
@@ -231,6 +248,50 @@ export async function getPublicImportedCandidates(): Promise<PublicImportedCandi
     orderBy: [{ election: { electionDate: "desc" } }, { office: { title: "asc" } }, { fullName: "asc" }],
     take: 300,
   });
+  let enrichmentRows: Awaited<ReturnType<typeof prisma.profileWebsiteEnrichment.findMany>> = [];
+
+  if (candidates.length) {
+    try {
+      const enrichmentDelegate = (prisma as typeof prisma & {
+        profileWebsiteEnrichment?: typeof prisma.profileWebsiteEnrichment;
+      }).profileWebsiteEnrichment;
+
+      enrichmentRows = enrichmentDelegate?.findMany
+        ? await enrichmentDelegate.findMany({
+            where: {
+              targetType: "CANDIDATE",
+              targetId: { in: candidates.map((candidate) => candidate.id) },
+              reviewStatus: { in: ["APPROVED", "VERIFIED"] },
+            },
+            orderBy: [{ reviewStatus: "desc" }, { lastEnrichedAt: "desc" }, { fetchedAt: "desc" }],
+          })
+        : [];
+    } catch (error) {
+      console.warn("[civic-data] Candidate website enrichment is unavailable; rendering imported candidates without enrichment.", error);
+      enrichmentRows = [];
+    }
+  }
+  const enrichmentByCandidateId = new Map(
+    enrichmentRows.map((row) => [
+      row.targetId,
+      {
+        campaignWebsiteUrl: row.campaignWebsiteUrl,
+        officialWebsiteUrl: row.officialWebsiteUrl,
+        headshotUrl: row.headshotUrl,
+        shortBio: row.shortBio,
+        longBioSourceUrl: row.longBioSourceUrl,
+        socialLinks: Array.isArray(row.socialLinks) ? row.socialLinks.filter((link): link is string => typeof link === "string") : [],
+        publicContactEmail: row.publicContactEmail,
+        publicContactPhone: row.publicContactPhone,
+        sourceName: row.sourceName,
+        sourceUrl: row.sourceUrl,
+        lastEnrichedAt: row.lastEnrichedAt,
+        enrichmentStatus: row.enrichmentStatus,
+        reviewStatus: row.reviewStatus,
+      },
+    ]),
+  );
+  const knowledgeByCandidateId = await getApprovedCandidateKnowledge(candidates.map((candidate) => candidate.id));
 
   return candidates.map((candidate) => ({
     id: candidate.id,
@@ -255,6 +316,8 @@ export async function getPublicImportedCandidates(): Promise<PublicImportedCandi
     jurisdictionName: candidate.jurisdiction.name,
     jurisdictionSlug: candidate.jurisdiction.slug,
     source: candidate.source,
+    websiteEnrichment: enrichmentByCandidateId.get(candidate.id) ?? null,
+    knowledgeEnrichments: knowledgeByCandidateId.get(candidate.id) ?? [],
   }));
 }
 

@@ -8,6 +8,7 @@ type FavoriteToggleControlProps = {
   targetType: FavoriteTargetType;
   targetId: string;
   className?: string;
+  visibleLabel?: string;
 };
 
 function GuestHeartIcon() {
@@ -31,6 +32,7 @@ export async function FavoriteToggleControl({
   targetType,
   targetId,
   className,
+  visibleLabel,
 }: FavoriteToggleControlProps) {
   const currentUser = await getCurrentSessionUser();
 
@@ -46,6 +48,7 @@ export async function FavoriteToggleControl({
         }
       >
         <GuestHeartIcon />
+        {visibleLabel ? <span className="ml-2">{visibleLabel}</span> : null}
         <span className="sr-only">Verify to add to favorites</span>
       </a>
     );
@@ -59,6 +62,7 @@ export async function FavoriteToggleControl({
       targetId={targetId}
       initialFavorited={initialFavorited}
       className={className}
+      visibleLabel={visibleLabel}
     />
   );
 }

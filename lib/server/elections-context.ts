@@ -38,6 +38,7 @@ import type {
 const PUBLIC_PROFILES_COOKIE = "dd_public_profiles";
 const CANDIDATE_CAMPAIGNS_COOKIE = "dd_candidate_campaigns";
 const OFFICIAL_POSITIONS_COOKIE = "dd_official_positions";
+const ENABLE_DEMO_CANDIDATE_FALLBACK = process.env.ENABLE_DEMO_CANDIDATE_FALLBACK === "true";
 
 async function readCookieArray<T>(cookieName: string, guard: (value: unknown) => value is T): Promise<T[]> {
   const cookieStore = await cookies();
@@ -153,10 +154,14 @@ export async function getCandidateProfileById(id: string): Promise<CandidateProf
       return importedCandidate;
     }
   } catch (error) {
-    console.error("[elections-context] imported candidate detail fallback", error);
+    console.error("[elections-context] imported candidate detail failed", error);
   }
 
-  return getCandidateProfileByIdBase(id, await getElectionsStoreContext());
+  if (ENABLE_DEMO_CANDIDATE_FALLBACK) {
+    return getCandidateProfileByIdBase(id, await getElectionsStoreContext());
+  }
+
+  return null;
 }
 
 export async function getCandidateProfiles() {
@@ -167,10 +172,14 @@ export async function getCandidateProfiles() {
       return importedCandidates;
     }
   } catch (error) {
-    console.error("[elections-context] imported candidates fallback", error);
+    console.error("[elections-context] imported candidates failed", error);
   }
 
-  return getCandidateProfilesBase(await getElectionsStoreContext());
+  if (ENABLE_DEMO_CANDIDATE_FALLBACK) {
+    return getCandidateProfilesBase(await getElectionsStoreContext());
+  }
+
+  return [];
 }
 
 export async function getOfficials(): Promise<OfficialProfileSummary[]> {

@@ -2,6 +2,7 @@ import "server-only";
 
 import { cookies } from "next/headers";
 
+import { applyPreviewContextToUser, getActivePreviewContext } from "@/lib/admin-preview/context";
 import { MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import type { FeedViewerContext } from "@/lib/auth/session";
@@ -31,7 +32,7 @@ async function hydrateSeedUser(seededUser: AuthUser): Promise<AuthUser> {
   };
 }
 
-export async function getCurrentSessionUser(): Promise<AuthUser | null> {
+export async function getRawCurrentSessionUser(): Promise<AuthUser | null> {
   const cookieStore = await cookies();
   const userId = cookieStore.get(MOCK_AUTH_COOKIE)?.value;
 
@@ -49,24 +50,41 @@ export async function getCurrentSessionUser(): Promise<AuthUser | null> {
 }
 
 export async function getCurrentUser(): Promise<AuthUser> {
+  const previewContext = await getActivePreviewContext();
   const currentSessionUser = await getCurrentSessionUser();
 
   if (currentSessionUser) {
     return currentSessionUser;
   }
 
+  if (previewContext?.role === "public") {
+    return hydrateSeedUser(getSeedUserById("user_guest_browse") ?? getDefaultSeedUser());
+  }
+
   return hydrateSeedUser(getDefaultSeedUser());
+}
+
+export async function getCurrentSessionUser(): Promise<AuthUser | null> {
+  const [rawUser, previewContext] = await Promise.all([getRawCurrentSessionUser(), getActivePreviewContext()]);
+
+  if (!rawUser) {
+    return null;
+  }
+
+  return applyPreviewContextToUser(rawUser, previewContext);
 }
 
 export async function getCurrentFeedViewer(): Promise<FeedViewerContext> {
   const cookieStore = await cookies();
+  const previewContext = await getActivePreviewContext();
   const userId = cookieStore.get(MOCK_AUTH_COOKIE)?.value;
   const seededUser = userId && userId !== PUBLIC_SESSION_VALUE ? getSeedUserById(userId) ?? getDefaultSeedUser() : getDefaultSeedUser();
+  const previewUser = applyPreviewContextToUser(seededUser, previewContext) ?? getSeedUserById("user_guest_browse") ?? seededUser;
 
   return {
-    id: seededUser.id,
-    role: seededUser.role,
-    jurisdictionName: seededUser.jurisdictionName,
-    isVerifiedVoter: seededUser.isVerifiedVoter,
+    id: previewUser.id,
+    role: previewUser.role,
+    jurisdictionName: previewUser.jurisdictionName,
+    isVerifiedVoter: previewUser.isVerifiedVoter,
   };
 }

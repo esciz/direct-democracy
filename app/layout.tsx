@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { PropsWithChildren } from "react";
 
 import "./globals.css";
+import { AdminPreviewBanner } from "@/components/ui/admin-preview-banner";
 import { FloatingCreateMenu } from "@/components/ui/floating-create-menu";
 import { MobileBottomNav } from "@/components/ui/nav-links";
 import { MainNav } from "@/components/ui/main-nav";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className="bg-[#050b16] text-slate-100 antialiased">
         <div className="app-shell mx-auto flex min-h-screen w-full max-w-7xl flex-col px-3 sm:px-5 lg:px-8">
           <MainNav />
+          <AdminPreviewBanner />
           <main className="flex-1">{children}</main>
           <FloatingCreateMenu />
           <MobileBottomNav />

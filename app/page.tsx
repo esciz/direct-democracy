@@ -509,7 +509,7 @@ export default async function HomePage() {
             title="Upcoming Elections"
             description="The next election or deadline across the jurisdictions that apply to you."
           />
-          <Link href="/representatives" className="text-sm font-semibold text-cyan-200 hover:text-cyan-100">
+          <Link href="/who-represents-me" className="text-sm font-semibold text-cyan-200 hover:text-cyan-100">
             Who represents me?
           </Link>
         </div>

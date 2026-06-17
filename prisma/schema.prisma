@@ -15,6 +15,12 @@ enum UserRole {
   media
   moderator
   admin
+  public_user
+  verified_resident
+  platform_admin
+  government_admin
+  government_staff
+  government_observer
 }
 
 enum PublicProfileType {
@@ -67,7 +73,6 @@ enum JurisdictionType {
   CITY
   DISTRICT
   CAMPUS
-  STUDENT_GOVERNMENT
   AGENCY
 }
 
@@ -226,7 +231,6 @@ enum OrganizationType {
   legislative_body
   election_authority
   university
-  student_government
   political_committee
   advocacy_group
   civic_group
@@ -295,6 +299,46 @@ enum CaseStatus {
   closed
 }
 
+enum CourtJurisdictionLevel {
+  municipal
+  justice
+  district
+  appellate
+  federal
+}
+
+enum CourtAccessMethod {
+  public_search
+  public_portal
+  api
+  rss
+  manual_download
+  recap
+  pacer
+  pdf
+}
+
+enum CourtCaseType {
+  civil
+  criminal
+  traffic
+  family
+  probate
+  appellate
+  administrative
+  unknown
+}
+
+enum CourtCasePublicVisibilityStatus {
+  public
+  pending_privacy_review
+  sealed
+  confidential
+  juvenile
+  protected
+  non_public
+}
+
 enum ContactActionTargetType {
   issue
   petition
@@ -317,6 +361,17 @@ enum OfficialActionType {
   budgetProposal
   policyAnnouncement
   committeeAction
+  VOTE_YES
+  VOTE_NO
+  ABSTAIN
+  ABSENT
+  MOTION_MADE
+  MOTION_SECONDED
+  AGENDA_REQUEST
+  STAFF_DIRECTION
+  PUBLIC_STATEMENT
+  SPONSOR
+  CO_SPONSOR
 }
 
 enum OfficialActionSourceType {
@@ -469,7 +524,6 @@ enum OfficeLevel {
   COUNTY
   CITY
   CAMPUS
-  STUDENT_GOVERNMENT
 }
 
 enum OfficeSelectionMethod {
@@ -493,7 +547,11 @@ enum DistrictType {
   STATE_ASSEMBLY
   COUNTY_COMMISSION
   CITY_WARD
+  SCHOOL_DISTRICT
   SCHOOL_BOARD
+  JUDICIAL_DISTRICT
+  MUNICIPAL_COURT
+  JUSTICE_COURT
   CAMPUS
   AT_LARGE
   OTHER
@@ -583,7 +641,6 @@ enum MeetingType {
   COMMISSION_MEETING
   BOARD_MEETING
   COMMITTEE_MEETING
-  STUDENT_GOVERNMENT_MEETING
   PUBLIC_HEARING
   OTHER
 }
@@ -614,6 +671,17 @@ enum CampaignFinanceFilingType {
   OTHER
 }
 
+enum CampaignFinanceContributorType {
+  individual
+  business
+  pac
+  party
+  union
+  candidate_self
+  other
+  unknown
+}
+
 enum PoliticalAdMedium {
   DIGITAL
   TV
@@ -632,7 +700,6 @@ enum SourceType {
   MUNICIPAL_PORTAL
   COUNTY_PORTAL
   UNIVERSITY_PORTAL
-  STUDENT_GOVERNMENT_PORTAL
   RSS
   CSV
   HTML
@@ -646,6 +713,50 @@ enum SourceSyncStatus {
   SUCCESS
   ERROR
   PAUSED
+}
+
+enum CivicDataAccessMethod {
+  manual_download
+  csv
+  api
+  html
+  pdf
+  arcgis
+  rss
+}
+
+enum DataQualityIssueType {
+  missing_required_field
+  conflicting_source
+  stale_source
+  unmatched_district
+  duplicate_candidate
+  missing_bio
+  missing_campaign_site
+  missing_campaign_finance
+  missing_issue_positions
+  missing_meeting_data
+  unmatched_source_document
+  low_confidence_match
+  low_confidence_ocr
+  broken_source_url
+  conflicting_party
+  conflicting_office
+  conflicting_race
+}
+
+enum DataQualityIssueSeverity {
+  info
+  warning
+  error
+  critical
+}
+
+enum DataQualityIssueStatus {
+  open
+  in_review
+  resolved
+  dismissed
 }
 
 enum ElectionResultStatus {
@@ -675,6 +786,229 @@ enum PetitionLifecycleStatus {
   REJECTED
   WITHDRAWN
   LITIGATION
+  UNKNOWN
+}
+
+enum ProfileEnrichmentTargetType {
+  CANDIDATE
+  OFFICIAL
+}
+
+enum ProfileEnrichmentReviewStatus {
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  NEEDS_MORE_SOURCES
+  VERIFIED
+}
+
+enum ProfileEnrichmentStatus {
+  NOT_STARTED
+  DISCOVERED
+  FETCHED
+  ERROR
+}
+
+enum CandidateKnowledgeSourceType {
+  CAMPAIGN_WEBSITE
+  OFFICIAL_WEBSITE
+  SOS_PUBLIC_MEDIA
+  BALLOTPEDIA
+  VOTE_SMART
+  FILING_RECORD
+  CAMPAIGN_FINANCE
+  NEWS_ARTICLE
+  PRESS_RELEASE
+  LEGISLATIVE_VOTE
+  SOCIAL_PROFILE
+  OFFICIAL_SOCIAL
+  OTHER
+}
+
+enum CivicDocumentType {
+  CANDIDATE_STATEMENT
+  CANDIDATE_PUBLIC_MEDIA_FORM
+  CAMPAIGN_FINANCE_FILING
+  CANDIDACY_DECLARATION
+  BALLOT_MEASURE_DOCUMENT
+  MEETING_AGENDA
+  MEETING_MINUTES
+  PUBLIC_COMMENT
+  SCANNED_FORM
+  HANDWRITTEN_FORM
+  SAVED_HTML
+  MANIFEST_RECORD
+  OTHER
+}
+
+enum CivicDocumentUploadMethod {
+  MANUAL_UPLOAD
+  MANUAL_DOWNLOAD
+  LOCAL_IMPORT
+  MANIFEST
+  GOVCRM_UPLOAD
+}
+
+enum CivicDocumentRelatedEntityType {
+  CANDIDATE
+  OFFICIAL
+  ELECTION
+  ISSUE
+  MEETING
+  BALLOT_MEASURE
+  CAMPAIGN_FINANCE
+  JURISDICTION
+  PUBLIC_COMMENT
+  UNKNOWN
+}
+
+enum DocumentExtractionStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  NEEDS_OCR
+  NEEDS_REVIEW
+  FAILED
+}
+
+enum DocumentExtractionMethod {
+  PDF_TEXT
+  HTML_TEXT
+  PLAIN_TEXT
+  CSV_MANIFEST
+  OCR_STUB
+  MANUAL_REVIEW
+}
+
+enum DocumentFieldReviewStatus {
+  PENDING_REVIEW
+  APPROVED
+  EDITED
+  REJECTED
+  VERIFIED
+}
+
+enum DocumentReviewIssueType {
+  OCR_NEEDED
+  LOW_CONFIDENCE
+  UNMATCHED_ENTITY
+  CONFLICTING_DATA
+  MISSING_SOURCE
+  PARSE_ERROR
+  MANUAL_REVIEW_REQUIRED
+}
+
+enum DocumentReviewIssueSeverity {
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+enum DocumentReviewIssueStatus {
+  OPEN
+  IN_REVIEW
+  RESOLVED
+  DISMISSED
+}
+
+enum NewsMentionTargetType {
+  CANDIDATE
+  OFFICIAL
+  ISSUE
+  ELECTION
+  MEETING
+  CASE
+  JURISDICTION
+  BILL
+}
+
+enum NewsMentionProviderName {
+  NEWS_API_ORG
+  GOOGLE_NEWS_RSS
+  GDELT
+  LOCAL_RSS
+  CARSON_NOW
+  LOCAL_CONFIGURED
+  CUSTOM_CRAWLER
+}
+
+enum NewsSourceType {
+  local_news
+  government_newsroom
+  nonprofit_news
+  university_news
+  legal_news
+  other
+}
+
+enum NewsSourceAccessMethod {
+  rss
+  rss_or_html
+  html_index
+  search_page
+  sitemap
+  manual_urls
+  api
+}
+
+enum CivicEntityType {
+  OFFICIAL
+  CANDIDATE
+  ISSUE_POSITION
+  ELECTION
+  ELECTION_RESULT
+  BALLOT_MEASURE
+  BILL
+  LEGISLATIVE_VOTE
+  ISSUE
+  COURT_CASE
+  COURT_JURISDICTION
+  COURT_DOCKET_ENTRY
+  COURT_DOCUMENT
+  JURISDICTION
+  REGISTRATION_TURNOUT
+  CAMPAIGN_FINANCE
+  MEETING
+  AGENDA_ITEM
+  PUBLIC_COMMENT
+  CIVIC_DOCUMENT
+  SOURCE_RECORD
+}
+
+enum CivicRecordReviewStatus {
+  imported
+  pending_review
+  approved
+  rejected
+  verified
+}
+
+enum CivicQuestionType {
+  OFFICIAL_APPROVAL
+  OFFICIAL_RESPONSIVENESS
+  CANDIDATE_SUPPORT
+  CANDIDATE_ISSUE_PRIORITY
+  ISSUE_POSITION_REVIEW
+  BILL_SUPPORT
+  LEGISLATIVE_VOTE_REVIEW
+  BALLOT_MEASURE_SUPPORT
+  ELECTION_ISSUE_PRIORITY
+  REGISTRATION_POLICY
+  TURNOUT_CONCERN
+}
+
+enum IssuePositionStance {
+  SUPPORTS
+  OPPOSES
+  MIXED
+  UNKNOWN
+  CHANGED
+}
+
+enum IssuePositionDerivation {
+  OFFICIAL
+  INFERRED
   UNKNOWN
 }
 
@@ -724,6 +1058,7 @@ model User {
   communityBriefThemeSupports CommunityBriefThemeSupport[]
   communityGroupAffiliations CommunityGroupAffiliation[]
   communityEvents      CommunityEvent[]
+  districtAssignments  UserDistrictAssignment[]
   following            Follow[]           @relation("FollowFollower")
   followers            Follow[]           @relation("FollowFollowing")
   publicProfile         PublicProfile?     @relation("ClaimedPublicProfile")
@@ -829,6 +1164,127 @@ model Case {
 
   @@index([jurisdictionId])
   @@index([courtLevel, stage])
+}
+
+model CourtJurisdiction {
+  id           String                 @id @default(cuid())
+  name         String
+  level        CourtJurisdictionLevel
+  jurisdiction String
+  sourceUrl    String
+  accessMethod CourtAccessMethod
+  notes        String?
+  sourceId     String?
+  source       Source?                @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  cases        CourtCase[]
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+
+  @@unique([name, sourceUrl])
+  @@index([level])
+  @@index([jurisdiction])
+  @@index([sourceId])
+}
+
+model CourtCase {
+  id                     String                          @id @default(cuid())
+  courtJurisdictionId    String
+  sourceId               String?
+  caseNumber             String
+  caption                String
+  caseType               CourtCaseType                  @default(unknown)
+  status                 String?
+  filingDate             DateTime?
+  dispositionDate        DateTime?
+  jurisdiction           String
+  courtLevel             CourtJurisdictionLevel
+  sourceUrl              String?
+  publicVisibilityStatus CourtCasePublicVisibilityStatus @default(pending_privacy_review)
+  reviewStatus           CivicRecordReviewStatus         @default(pending_review)
+  plainEnglishSummary    String?
+  lastCheckedAt          DateTime?
+  rawData                Json?
+  courtJurisdiction      CourtJurisdiction               @relation(fields: [courtJurisdictionId], references: [id], onDelete: Cascade)
+  source                 Source?                         @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  parties                CourtCaseParty[]
+  docketEntries          CourtDocketEntry[]
+  documents              CourtDocument[]
+  createdAt              DateTime                        @default(now())
+  updatedAt              DateTime                        @updatedAt
+
+  @@unique([courtJurisdictionId, caseNumber])
+  @@index([courtJurisdictionId])
+  @@index([sourceId])
+  @@index([caseNumber])
+  @@index([caseType])
+  @@index([courtLevel])
+  @@index([reviewStatus])
+  @@index([publicVisibilityStatus])
+  @@index([filingDate])
+}
+
+model CourtCaseParty {
+  id           String                  @id @default(cuid())
+  caseId       String
+  partyName    String
+  partyRole    String?
+  isPublic     Boolean                 @default(false)
+  reviewStatus CivicRecordReviewStatus @default(pending_review)
+  case         CourtCase               @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+
+  @@index([caseId])
+  @@index([reviewStatus])
+  @@index([isPublic])
+}
+
+model CourtDocketEntry {
+  id           String                  @id @default(cuid())
+  caseId       String
+  sourceId     String?
+  entryDate    DateTime?
+  title        String
+  description  String?
+  documentUrl  String?
+  documentType String?
+  sourceUrl    String?
+  reviewStatus CivicRecordReviewStatus @default(pending_review)
+  case         CourtCase               @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  source       Source?                 @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  documents    CourtDocument[]
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @updatedAt
+
+  @@index([caseId])
+  @@index([sourceId])
+  @@index([entryDate])
+  @@index([reviewStatus])
+}
+
+model CourtDocument {
+  id                  String                  @id @default(cuid())
+  caseId              String
+  docketEntryId       String?
+  sourceId            String?
+  title               String
+  documentUrl         String?
+  localFilePath       String?
+  sourceName          String
+  sourceUrl           String?
+  documentType        String?
+  extractedTextStatus String                  @default("not_started")
+  reviewStatus        CivicRecordReviewStatus @default(pending_review)
+  case                CourtCase               @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  docketEntry         CourtDocketEntry?       @relation(fields: [docketEntryId], references: [id], onDelete: SetNull)
+  source              Source?                 @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  createdAt           DateTime                @default(now())
+  updatedAt           DateTime                @updatedAt
+
+  @@index([caseId])
+  @@index([docketEntryId])
+  @@index([sourceId])
+  @@index([reviewStatus])
 }
 
 model CaseFollow {
@@ -1127,6 +1583,10 @@ model Jurisdiction {
   signatures        PetitionSignature[]
   officialProfiles  OfficialProfile[]
   voteQuestions     VoteQuestion[]
+  civicEntityReviews CivicEntityReview[]
+  civicSentimentAggregates CivicSentimentAggregate[]
+  userDistrictAssignments UserDistrictAssignment[]
+  voterRegistrationStatistics VoterRegistrationStatistic[]
   polls             Poll[]
   communityEvents   CommunityEvent[]
   services          Service[]
@@ -1347,17 +1807,33 @@ model ContactAction {
 model OfficialAction {
   id                 String                           @id @default(cuid())
   officialProfileId  String
+  officialId         String?
+  officialNameRaw    String?
+  jurisdictionBody   String?
+  meetingId          String?
+  topicItemId        String?
   title              String
   summary            String
   actionType         OfficialActionType
+  actionText         String?
   actionDate         DateTime
   issueTags          String[]
   sourceType         OfficialActionSourceType
   sourceLink         String?
+  sourceUrl          String?
+  sourceSnippet      String?
+  confidence         Float?
+  matchConfidence    Float?
+  matchReason        String?
+  reviewStatus       String?
+  needsReview        Boolean                          @default(false)
   verificationStatus OfficialActionVerificationStatus
   createdAt          DateTime                         @default(now())
 
   @@index([officialProfileId, actionDate(sort: Desc)])
+  @@index([officialId, actionDate(sort: Desc)])
+  @@index([meetingId])
+  @@index([topicItemId])
 }
 
 model OfficialActionReaction {
@@ -1410,18 +1886,45 @@ model Petition {
 }
 
 model VoteQuestion {
-  id             String               @id @default(cuid())
-  questionText   String
-  category       VoteQuestionCategory
-  scope          VoteQuestionScope
-  jurisdictionId String
-  jurisdiction   Jurisdiction         @relation(fields: [jurisdictionId], references: [id])
-  responses      VoteResponse[]
-  createdAt      DateTime             @default(now())
-  updatedAt      DateTime             @updatedAt
+  id                   String                    @id @default(cuid())
+  questionText         String
+  category             VoteQuestionCategory
+  scope                VoteQuestionScope
+  jurisdictionId       String
+  sourceId             String?
+  sourceUrl            String?
+  sourceName           String?
+  sourceLastUpdatedAt  DateTime?
+  civicEntityType      CivicEntityType?
+  civicEntityId        String?
+  civicEntityName      String?
+  civicQuestionType    CivicQuestionType?
+  contextSummary       String?
+  yesEffectSummary     String?
+  noEffectSummary      String?
+  affectedGroups       String[]                  @default([])
+  introducedBy         String?
+  introducedByRole     String?
+  officialBody         String?
+  officialPositionSummary String?
+  officialVoteSummary  String?
+  confidenceScore      Float                     @default(0.85)
+  reviewStatus         CivicRecordReviewStatus   @default(pending_review)
+  verificationStatus   CivicRecordReviewStatus   @default(imported)
+  generatedFromRealData Boolean                   @default(false)
+  generationKey        String?
+  jurisdiction         Jurisdiction              @relation(fields: [jurisdictionId], references: [id])
+  source               Source?                   @relation(fields: [sourceId], references: [id])
+  responses            VoteResponse[]
+  createdAt            DateTime                  @default(now())
+  updatedAt            DateTime                  @updatedAt
 
   @@index([jurisdictionId])
   @@index([category])
+  @@index([sourceId])
+  @@index([reviewStatus])
+  @@index([civicEntityType, civicEntityId])
+  @@index([generationKey])
 }
 
 model VoteResponse {
@@ -1858,14 +2361,22 @@ model Source {
   url            String
   jurisdictionId String?
   adapterKey     String
+  dataCategory   String?
+  accessMethod   CivicDataAccessMethod @default(html)
+  importPriority Int              @default(100)
+  refreshFrequency String?
   isActive       Boolean          @default(true)
+  lastCheckedAt  DateTime?
+  lastSuccessAt  DateTime?
   lastSyncAt     DateTime?
   syncStatus     SourceSyncStatus @default(NEVER_SYNCED)
   errorLog       String?
+  notes          String?
   syncCursor     String?
   metadata       Json?
   jurisdiction   Jurisdiction?    @relation(fields: [jurisdictionId], references: [id])
   syncRuns       SourceSyncRun[]
+  importedRecordVersions ImportedRecordVersion[]
   offices        Office[]
   officials      Official[]
   districts      District[]
@@ -1882,11 +2393,27 @@ model Source {
   campaignFinanceFilings CampaignFinanceFiling[]
   organizations  Organization[]
   politicalAdvertisements PoliticalAdvertisement[]
+  voteQuestions VoteQuestion[]
+  courtJurisdictions CourtJurisdiction[]
+  courtCases CourtCase[]
+  courtDocketEntries CourtDocketEntry[]
+  courtDocuments CourtDocument[]
+  civicEntityReviews CivicEntityReview[]
+  userDistrictAssignments UserDistrictAssignment[]
+  voterRegistrationStatistics VoterRegistrationStatistic[]
+  issuePositions IssuePosition[]
+  dataQualityIssues DataQualityIssue[]
+  sourceRecords SourceRecord[]
+  reviewQueueItems ReviewQueueItem[]
+  sourceAttributions SourceAttribution[]
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
 
   @@index([jurisdictionId])
   @@index([sourceType])
+  @@index([dataCategory])
+  @@index([importPriority])
+  @@index([accessMethod])
   @@index([syncStatus])
 }
 
@@ -1898,13 +2425,147 @@ model SourceSyncRun {
   status         SourceSyncStatus @default(SYNCING)
   recordsSeen    Int             @default(0)
   recordsChanged Int             @default(0)
+  recordsFound   Int             @default(0)
+  recordsCreated Int             @default(0)
+  recordsUpdated Int             @default(0)
+  recordsUnchanged Int           @default(0)
+  recordsFlaggedForReview Int    @default(0)
+  checksum       String?
   errorLog       String?
   cursorBefore   String?
   cursorAfter    String?
   source         Source           @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  importedRecordVersions ImportedRecordVersion[]
+  sourceRecords  SourceRecord[]
 
   @@index([sourceId, startedAt(sort: Desc)])
   @@index([status])
+}
+
+model SourceRecord {
+  id                String                  @id @default(cuid())
+  sourceId          String
+  sourceSyncRunId   String?
+  entityType        CivicEntityType?
+  entityId          String?
+  externalId        String?
+  checksum          String
+  dedupeKey         String?
+  rawData           Json
+  normalizedData    Json?
+  reviewStatus      CivicRecordReviewStatus @default(imported)
+  importedAt        DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+  source            Source                  @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  sourceSyncRun     SourceSyncRun?          @relation(fields: [sourceSyncRunId], references: [id], onDelete: SetNull)
+  reviewQueueItems  ReviewQueueItem[]
+  sourceAttributions SourceAttribution[]
+
+  @@unique([sourceId, checksum])
+  @@index([sourceSyncRunId])
+  @@index([entityType, entityId])
+  @@index([dedupeKey])
+  @@index([reviewStatus])
+}
+
+model DataQualityIssue {
+  id             String                   @id @default(cuid())
+  sourceId       String?
+  recordType     CivicEntityType
+  recordId       String?
+  issueType      DataQualityIssueType
+  severity       DataQualityIssueSeverity @default(warning)
+  status         DataQualityIssueStatus   @default(open)
+  notes          String?
+  source         Source?                  @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  createdAt      DateTime                 @default(now())
+  resolvedAt     DateTime?
+  updatedAt      DateTime                 @updatedAt
+
+  @@index([sourceId])
+  @@index([recordType, recordId])
+  @@index([issueType])
+  @@index([severity])
+  @@index([status])
+}
+
+model ImportedRecordVersion {
+  id               String                  @id @default(cuid())
+  sourceId         String
+  sourceSyncRunId  String?
+  entityType       CivicEntityType
+  entityId         String
+  sourceExternalId String?
+  changeType       String
+  previousValues   Json?
+  newValues        Json?
+  changedFields    Json
+  reviewStatus     CivicRecordReviewStatus @default(imported)
+  recordedAt       DateTime                @default(now())
+  source           Source                  @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  sourceSyncRun    SourceSyncRun?          @relation(fields: [sourceSyncRunId], references: [id], onDelete: SetNull)
+  sourceAttributions SourceAttribution[]
+
+  @@index([sourceId, recordedAt(sort: Desc)])
+  @@index([sourceSyncRunId])
+  @@index([entityType, entityId])
+  @@index([reviewStatus])
+}
+
+model ReviewQueueItem {
+  id              String                  @id @default(cuid())
+  entityType      CivicEntityType
+  entityId        String?
+  title           String
+  summary         String?
+  sourceId        String?
+  sourceRecordId  String?
+  issueType       DataQualityIssueType?
+  reviewStatus    CivicRecordReviewStatus @default(pending_review)
+  priority        String                  @default("normal")
+  actionHint      String?
+  metadata        Json?
+  reviewedAt      DateTime?
+  reviewedByUserId String?
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+  source          Source?                 @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  sourceRecord    SourceRecord?           @relation(fields: [sourceRecordId], references: [id], onDelete: SetNull)
+
+  @@index([entityType, entityId])
+  @@index([reviewStatus])
+  @@index([sourceId])
+  @@index([sourceRecordId])
+  @@index([issueType])
+}
+
+model SourceAttribution {
+  id                      String                  @id @default(cuid())
+  entityType              CivicEntityType
+  entityId                String
+  fieldName               String
+  sourceId                String?
+  sourceRecordId          String?
+  importedRecordVersionId String?
+  sourceName              String
+  sourceUrl               String?
+  fieldsDerived           Json?
+  confidenceScore         Float                   @default(0.5)
+  reviewStatus            CivicRecordReviewStatus @default(imported)
+  lastImportedAt          DateTime?
+  verifiedAt              DateTime?
+  metadata                Json?
+  createdAt               DateTime                @default(now())
+  updatedAt               DateTime                @updatedAt
+  source                  Source?                 @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  sourceRecord            SourceRecord?           @relation(fields: [sourceRecordId], references: [id], onDelete: SetNull)
+  importedRecordVersion   ImportedRecordVersion?  @relation(fields: [importedRecordVersionId], references: [id], onDelete: SetNull)
+
+  @@unique([entityType, entityId, fieldName, sourceUrl])
+  @@index([entityType, entityId])
+  @@index([reviewStatus])
+  @@index([sourceId])
+  @@index([sourceRecordId])
 }
 
 model Office {
@@ -1961,6 +2622,8 @@ model Official {
   sponsoredBills  BillSponsor[]
   voteRecords     LegislativeVoteRecord[]
   committeeMemberships CommitteeMember[]
+  issuePositions IssuePosition[]
+  newsMentions    NewsMention[]
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 
@@ -1988,6 +2651,7 @@ model District {
   officials      Official[]
   elections      Election[]
   candidates     Candidate[]
+  userAssignments UserDistrictAssignment[]
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
 
@@ -1995,6 +2659,37 @@ model District {
   @@index([jurisdictionId])
   @@index([sourceId])
   @@index([districtType])
+}
+
+model UserDistrictAssignment {
+  id                  String       @id @default(cuid())
+  userId              String
+  jurisdictionId      String
+  districtId          String?
+  sourceId            String?
+  assignmentType      DistrictType?
+  inputLabel          String?
+  latitude            Float?
+  longitude           Float?
+  matchMethod         String
+  confidenceScore     Float        @default(0)
+  sourceName          String
+  sourceUrl           String
+  sourceLastUpdatedAt DateTime?
+  verificationStatus  String       @default("pending")
+  isActive            Boolean      @default(true)
+  user                User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jurisdiction        Jurisdiction @relation(fields: [jurisdictionId], references: [id])
+  district            District?    @relation(fields: [districtId], references: [id])
+  source              Source?      @relation(fields: [sourceId], references: [id])
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  @@index([userId, isActive])
+  @@index([jurisdictionId])
+  @@index([districtId])
+  @@index([assignmentType])
+  @@index([sourceId])
 }
 
 model Candidate {
@@ -2028,7 +2723,12 @@ model Candidate {
   source          Source?         @relation(fields: [sourceId], references: [id])
   results         ElectionResult[]
   campaignFinanceFilings CampaignFinanceFiling[]
+  campaignFinanceContributions CampaignFinanceContribution[]
+  campaignFinanceSummaries CampaignFinanceSummary[]
   politicalAdvertisements PoliticalAdvertisement[]
+  knowledgeEnrichments CandidateKnowledgeEnrichment[]
+  issuePositions IssuePosition[]
+  newsMentions    NewsMention[]
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
 
@@ -2039,6 +2739,139 @@ model Candidate {
   @@index([districtId])
   @@index([publicProfileId])
   @@index([sourceId])
+}
+
+model IssuePosition {
+  id                 String                    @id @default(cuid())
+  candidateId        String?
+  officialId         String?
+  issueText          String
+  issueSlug          String
+  stance             IssuePositionStance       @default(UNKNOWN)
+  derivation         IssuePositionDerivation   @default(UNKNOWN)
+  summary            String?
+  evidenceUrl        String?
+  evidenceTitle      String?
+  evidenceSourceName String?
+  sourceId           String?
+  confidenceScore    Float                     @default(0.5)
+  reviewStatus       CivicRecordReviewStatus   @default(pending_review)
+  verificationStatus CivicRecordReviewStatus   @default(imported)
+  positionDate       DateTime?
+  lastObservedAt     DateTime                  @default(now())
+  candidate          Candidate?                @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  official           Official?                 @relation(fields: [officialId], references: [id], onDelete: Cascade)
+  source             Source?                   @relation(fields: [sourceId], references: [id])
+  changes            IssuePositionChange[]
+  createdAt          DateTime                  @default(now())
+  updatedAt          DateTime                  @updatedAt
+
+  @@index([candidateId])
+  @@index([officialId])
+  @@index([issueSlug])
+  @@index([sourceId])
+  @@index([reviewStatus])
+  @@index([verificationStatus])
+}
+
+model NewsMention {
+  id               String                  @id @default(cuid())
+  targetType       NewsMentionTargetType
+  targetId         String
+  candidateId      String?
+  officialId       String?
+  title            String
+  sourceName       String
+  sourceDomain     String?
+  url              String
+  canonicalUrl     String?
+  publishedAt      DateTime?
+  discoveredAt     DateTime                @default(now())
+  snippetOrSummary String?
+  matchedQuery     String
+  matchedTerms     String[]
+  confidenceScore  Float                   @default(0.5)
+  provider         NewsMentionProviderName
+  reviewStatus     CivicRecordReviewStatus @default(pending_review)
+  duplicateHash    String
+  candidate        Candidate?              @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  official         Official?               @relation(fields: [officialId], references: [id], onDelete: Cascade)
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+
+  @@unique([duplicateHash])
+  @@index([targetType, targetId])
+  @@index([candidateId])
+  @@index([officialId])
+  @@index([provider])
+  @@index([reviewStatus])
+  @@index([publishedAt])
+}
+
+model NewsMentionSearchRun {
+  id             String                  @id @default(cuid())
+  provider       NewsMentionProviderName
+  targetType     NewsMentionTargetType
+  targetId       String
+  matchedQuery   String
+  queryHash      String
+  startedAt      DateTime                @default(now())
+  completedAt    DateTime?
+  status         SourceSyncStatus        @default(SYNCING)
+  requestCount   Int                     @default(0)
+  recordsFound   Int                     @default(0)
+  recordsCreated Int                     @default(0)
+  recordsUpdated Int                     @default(0)
+  recordsSkipped Int                     @default(0)
+  errorLog       String?
+
+  @@index([provider, startedAt])
+  @@index([targetType, targetId, startedAt])
+  @@index([queryHash, startedAt])
+  @@index([status])
+}
+
+model NewsSource {
+  id                String                 @id @default(cuid())
+  sourceName        String
+  sourceSlug        String                 @unique
+  sourceUrl         String
+  sourceDomain      String?
+  jurisdiction      String?
+  sourceType        NewsSourceType         @default(local_news)
+  accessMethod      NewsSourceAccessMethod @default(rss_or_html)
+  rssUrl            String?
+  searchUrlTemplate String?
+  categoryUrls      String[]
+  sitemapUrl        String?
+  defaultQueryTerms String[]
+  active            Boolean                @default(true)
+  refreshFrequency  String                 @default("daily")
+  notes             String?
+  lastCheckedAt     DateTime?
+  lastSuccessAt     DateTime?
+  lastError         String?
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+
+  @@index([active])
+  @@index([sourceType])
+  @@index([sourceDomain])
+}
+
+model IssuePositionChange {
+  id                String               @id @default(cuid())
+  issuePositionId   String
+  previousStance    IssuePositionStance?
+  nextStance        IssuePositionStance
+  previousSummary   String?
+  nextSummary       String?
+  evidenceUrl       String?
+  changedAt         DateTime             @default(now())
+  issuePosition     IssuePosition        @relation(fields: [issuePositionId], references: [id], onDelete: Cascade)
+
+  @@index([issuePositionId])
+  @@index([changedAt])
 }
 
 model BallotInitiative {
@@ -2227,6 +3060,8 @@ model Committee {
   source         Source?       @relation(fields: [sourceId], references: [id])
   members        CommitteeMember[]
   meetings       Meeting[]
+  campaignFinanceContributions CampaignFinanceContribution[]
+  campaignFinanceSummaries CampaignFinanceSummary[]
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
 
@@ -2333,6 +3168,63 @@ model CampaignFinanceFiling {
   @@index([filedAt])
 }
 
+model CampaignFinanceContribution {
+  id               String                         @id @default(cuid())
+  candidateId      String?
+  personId         String?
+  committeeId      String?
+  contributorName  String
+  contributorType  CampaignFinanceContributorType @default(unknown)
+  employer         String?
+  occupation       String?
+  industry         String?
+  amount           Decimal                        @db.Decimal(14, 2)
+  contributionDate DateTime?
+  reportId         String?
+  sourceName       String
+  sourceUrl        String
+  documentUrl      String?
+  reviewStatus     CivicRecordReviewStatus        @default(pending_review)
+  confidenceScore  Float                          @default(0.5)
+  candidate        Candidate?                     @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  committee        Committee?                     @relation(fields: [committeeId], references: [id], onDelete: SetNull)
+  createdAt        DateTime                       @default(now())
+  updatedAt        DateTime                       @updatedAt
+
+  @@index([candidateId])
+  @@index([personId])
+  @@index([committeeId])
+  @@index([reportId])
+  @@index([contributorType])
+  @@index([industry])
+  @@index([reviewStatus])
+}
+
+model CampaignFinanceSummary {
+  id              String                  @id @default(cuid())
+  candidateId     String?
+  personId        String?
+  committeeId     String?
+  totalRaised     Decimal?                @db.Decimal(14, 2)
+  totalSpent      Decimal?                @db.Decimal(14, 2)
+  cashOnHand      Decimal?                @db.Decimal(14, 2)
+  reportingPeriod String?
+  sourceName      String
+  sourceUrl       String
+  reviewStatus    CivicRecordReviewStatus @default(pending_review)
+  lastUpdated     DateTime                @default(now())
+  candidate       Candidate?              @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  committee       Committee?              @relation(fields: [committeeId], references: [id], onDelete: SetNull)
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+
+  @@index([candidateId])
+  @@index([personId])
+  @@index([committeeId])
+  @@index([reviewStatus])
+  @@index([lastUpdated])
+}
+
 model PoliticalAdvertisement {
   id             String            @id @default(cuid())
   jurisdictionId String
@@ -2363,4 +3255,235 @@ model PoliticalAdvertisement {
   @@index([organizationId])
   @@index([sourceId])
   @@index([medium])
+}
+
+model ProfileWebsiteEnrichment {
+  id              String                        @id @default(cuid())
+  targetType      ProfileEnrichmentTargetType
+  targetId        String
+  targetName      String
+  sourceUrl       String
+  sourceName      String?
+  campaignWebsiteUrl String?
+  officialWebsiteUrl String?
+  headshotUrl     String?
+  shortBio        String?
+  longBioSourceUrl String?
+  socialLinks     Json?
+  publicContactEmail String?
+  publicContactPhone String?
+  lastEnrichedAt  DateTime?
+  enrichmentStatus ProfileEnrichmentStatus      @default(NOT_STARTED)
+  fetchedAt       DateTime
+  proposedFields  Json
+  fieldSources    Json
+  confidenceScore Float
+  reviewStatus    ProfileEnrichmentReviewStatus @default(PENDING_REVIEW)
+  reviewNotes     String?
+  reviewedAt      DateTime?
+  reviewedByUserId String?
+  errorLog        String?
+  createdAt       DateTime                      @default(now())
+  updatedAt       DateTime                      @updatedAt
+
+  @@unique([targetType, targetId, sourceUrl])
+  @@index([targetType, targetId])
+  @@index([reviewStatus])
+  @@index([fetchedAt])
+}
+
+model CandidateKnowledgeEnrichment {
+  id                String                        @id @default(cuid())
+  candidateId       String
+  sourceUrl         String
+  sourceName        String
+  sourceType        CandidateKnowledgeSourceType
+  sourcePriority    Int
+  title             String?
+  aboutSummary      String?
+  ownWordsSummary   String?
+  issues            Json?
+  experienceSummary String?
+  financeContext    String?
+  newsItems         Json?
+  socialLinks       Json?
+  sourceAttribution Json
+  confidenceScore   Float                         @default(0.5)
+  reviewStatus      ProfileEnrichmentReviewStatus @default(PENDING_REVIEW)
+  reviewNotes       String?
+  fetchedAt         DateTime                       @default(now())
+  lastUpdatedAt     DateTime                       @default(now())
+  reviewedAt        DateTime?
+  reviewedByUserId  String?
+  errorLog          String?
+  candidate         Candidate                      @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  createdAt         DateTime                       @default(now())
+  updatedAt         DateTime                       @updatedAt
+
+  @@unique([candidateId, sourceUrl])
+  @@index([candidateId])
+  @@index([sourceType])
+  @@index([reviewStatus])
+  @@index([fetchedAt])
+}
+
+model CivicDocument {
+  id                String                         @id @default(cuid())
+  title             String
+  documentType      CivicDocumentType
+  sourceName        String
+  sourceUrl         String?
+  localFilePath     String?
+  jurisdiction      String?
+  electionYear      Int?
+  relatedEntityType CivicDocumentRelatedEntityType @default(UNKNOWN)
+  relatedEntityId   String?
+  uploadMethod      CivicDocumentUploadMethod      @default(LOCAL_IMPORT)
+  originalFilename  String?
+  fileHash          String?
+  pageCount         Int?
+  sourceVerified    Boolean                        @default(false)
+  sourceVerifiedAt  DateTime?
+  extractionRuns    DocumentExtractionRun[]
+  extractedFields   DocumentExtractedField[]
+  reviewIssues      DocumentReviewIssue[]
+  createdAt         DateTime                       @default(now())
+  updatedAt         DateTime                       @updatedAt
+
+  @@unique([fileHash])
+  @@index([documentType])
+  @@index([relatedEntityType, relatedEntityId])
+  @@index([sourceName])
+  @@index([createdAt])
+}
+
+model DocumentExtractionRun {
+  id               String                   @id @default(cuid())
+  civicDocumentId  String
+  startedAt        DateTime                 @default(now())
+  completedAt      DateTime?
+  status           DocumentExtractionStatus @default(PENDING)
+  extractionMethod DocumentExtractionMethod
+  pagesProcessed   Int                      @default(0)
+  confidenceScore  Float                    @default(0)
+  errorLog         String?
+  civicDocument    CivicDocument            @relation(fields: [civicDocumentId], references: [id], onDelete: Cascade)
+
+  @@index([civicDocumentId])
+  @@index([status])
+  @@index([startedAt])
+}
+
+model DocumentExtractedField {
+  id                String                    @id @default(cuid())
+  civicDocumentId   String
+  fieldName         String
+  fieldValue        String
+  normalizedValue   String?
+  confidenceScore   Float                     @default(0.5)
+  pageNumber        Int?
+  boundingBox       Json?
+  reviewStatus      DocumentFieldReviewStatus @default(PENDING_REVIEW)
+  sourceTextExcerpt String?
+  civicDocument     CivicDocument             @relation(fields: [civicDocumentId], references: [id], onDelete: Cascade)
+  createdAt         DateTime                  @default(now())
+  updatedAt         DateTime                  @updatedAt
+
+  @@index([civicDocumentId])
+  @@index([fieldName])
+  @@index([reviewStatus])
+}
+
+model DocumentReviewIssue {
+  id               String                      @id @default(cuid())
+  civicDocumentId  String
+  issueType        DocumentReviewIssueType
+  severity         DocumentReviewIssueSeverity @default(WARNING)
+  notes            String?
+  status           DocumentReviewIssueStatus   @default(OPEN)
+  civicDocument    CivicDocument               @relation(fields: [civicDocumentId], references: [id], onDelete: Cascade)
+  createdAt        DateTime                    @default(now())
+  resolvedAt       DateTime?
+
+  @@index([civicDocumentId])
+  @@index([issueType])
+  @@index([status])
+}
+
+model CivicEntityReview {
+  id                 String                  @id @default(cuid())
+  entityType         CivicEntityType
+  entityId           String
+  entityName         String
+  jurisdictionId     String?
+  sourceId           String?
+  sourceUrl          String?
+  sourceName         String?
+  summary            String?
+  confidenceScore    Float                   @default(0.85)
+  reviewStatus       CivicRecordReviewStatus @default(imported)
+  verificationStatus CivicRecordReviewStatus @default(imported)
+  reviewedAt         DateTime?
+  reviewedByUserId   String?
+  reviewNotes        String?
+  lastUpdatedAt      DateTime                @default(now())
+  createdAt          DateTime                @default(now())
+  updatedAt          DateTime                @updatedAt
+  jurisdiction       Jurisdiction?           @relation(fields: [jurisdictionId], references: [id])
+  source             Source?                 @relation(fields: [sourceId], references: [id])
+
+  @@unique([entityType, entityId])
+  @@index([jurisdictionId])
+  @@index([sourceId])
+  @@index([reviewStatus])
+  @@index([verificationStatus])
+}
+
+model CivicSentimentAggregate {
+  id                   String          @id @default(cuid())
+  entityType           CivicEntityType
+  entityId             String
+  jurisdictionId       String?
+  approveCount         Int             @default(0)
+  disapproveCount      Int             @default(0)
+  supportCount         Int             @default(0)
+  opposeCount          Int             @default(0)
+  trustScore           Float?
+  issuePriorityRanking Json?
+  responseCount        Int             @default(0)
+  lastComputedAt       DateTime        @default(now())
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+  jurisdiction         Jurisdiction?    @relation(fields: [jurisdictionId], references: [id])
+
+  @@unique([entityType, entityId, jurisdictionId])
+  @@index([entityType, entityId])
+  @@index([jurisdictionId])
+}
+
+model VoterRegistrationStatistic {
+  id                 String                  @id @default(cuid())
+  jurisdictionId     String
+  sourceId           String?
+  externalId         String?
+  reportDate         DateTime
+  party              String?
+  registeredVoters   Int
+  activeVoters       Int?
+  inactiveVoters     Int?
+  turnoutPercent     Float?
+  sourceUrl          String?
+  sourceName         String?
+  confidenceScore    Float                   @default(0.85)
+  reviewStatus       CivicRecordReviewStatus @default(imported)
+  verificationStatus CivicRecordReviewStatus @default(imported)
+  jurisdiction       Jurisdiction            @relation(fields: [jurisdictionId], references: [id])
+  source             Source?                 @relation(fields: [sourceId], references: [id])
+  createdAt          DateTime                @default(now())
+  updatedAt          DateTime                @updatedAt
+
+  @@unique([sourceId, externalId])
+  @@index([jurisdictionId, reportDate])
+  @@index([sourceId])
+  @@index([reviewStatus])
 }

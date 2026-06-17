@@ -120,7 +120,7 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
         actions={
           <div className="flex flex-wrap gap-2">
             <Link
-              href={`/representatives?community=${selectedCommunityId === "unr" || selectedCommunityId === "asun" ? "campus" : selectedCommunityId}`}
+              href={`/who-represents-me?community=${selectedCommunityId}`}
               className="inline-flex rounded-full bg-white px-4 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
             >
               Who represents me?

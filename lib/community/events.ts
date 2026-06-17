@@ -3,7 +3,6 @@ import { cache } from "react";
 
 import { getCommunityById } from "@/lib/community/communities";
 import { getAllEventAttendance } from "@/lib/community/event-participation";
-import { mockCommunityEvents } from "@/lib/mock-data";
 import type { CommunityEventSummary, CommunityEventType } from "@/types/domain";
 
 const COMMUNITY_EVENTS_COOKIE = "dd_community_events";
@@ -93,10 +92,6 @@ export async function setStoredCommunityEvents(events: CommunityEventSummary[]) 
 export const getAllCommunityEvents = cache(async () => {
   const storedEvents = await getStoredCommunityEvents();
   const merged = new Map<string, CommunityEventSummary>();
-
-  for (const event of mockCommunityEvents) {
-    merged.set(event.id, event);
-  }
 
   for (const event of storedEvents) {
     merged.set(event.id, event);

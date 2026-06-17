@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "example_cookie_name",
+      "value": "example_cookie_value",
+      "domain": ".nvsos.gov",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "notes": "Copy this shape to data/private/nv-sos-cookies.json with cookies exported from a successful browser session. Do not commit real cookies."
+}

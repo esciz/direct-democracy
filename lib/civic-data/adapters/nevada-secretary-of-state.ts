@@ -591,6 +591,27 @@ export const nevadaSecretaryOfStateAdapter: CivicDataAdapter = {
   supportsIncremental: true,
   supportsScheduled: true,
   async sync(context: IngestionContext): Promise<IngestionResult> {
+    if (
+      context.source.slug === "nevada-secretary-of-state-voter-registration-statistics" ||
+      context.source.slug === "nevada-secretary-of-state-election-results" ||
+      context.source.slug === "nevada-secretary-of-state-precinct-results"
+    ) {
+      return {
+        sourceSlug: context.source.slug,
+        status: SourceSyncStatus.SUCCESS,
+        cursor: new Date().toISOString(),
+        data: createEmptyNormalizedCivicData(),
+        issues: [
+          {
+            severity: "info",
+            message: `${context.source.name} parser is registered for scheduled checks; source data import is pending implementation.`,
+          },
+        ],
+        recordsSeen: 0,
+        recordsChanged: 0,
+      };
+    }
+
     const sourceIssues = (await Promise.all(OFFICIAL_SOURCE_CHECKS.map((url) => checkOfficialNevadaSource(url)))).filter(
       (issue): issue is IngestionIssue => Boolean(issue),
     );

@@ -10,6 +10,7 @@ type FavoriteToggleButtonProps = {
   targetId: string;
   initialFavorited: boolean;
   className?: string;
+  visibleLabel?: string;
 };
 
 function HeartIcon({ filled }: { filled: boolean }) {
@@ -34,6 +35,7 @@ export function FavoriteToggleButton({
   targetId,
   initialFavorited,
   className,
+  visibleLabel,
 }: FavoriteToggleButtonProps) {
   const [favorited, setFavorited] = useState(initialFavorited);
   const [error, setError] = useState<string | null>(null);
@@ -75,6 +77,7 @@ export function FavoriteToggleButton({
         }
       >
         <HeartIcon filled={favorited} />
+        {visibleLabel ? <span className="ml-2">{visibleLabel}</span> : null}
         <span className="sr-only">{label}</span>
       </button>
       {error ? <span className="text-xs text-orange-700">{error}</span> : null}

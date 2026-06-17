@@ -1,10 +1,12 @@
 import { cookies } from "next/headers";
+import { CivicEntityType, CivicRecordReviewStatus, CourtCasePublicVisibilityStatus, CourtJurisdictionLevel } from "@prisma/client";
 
 import { seedUsers } from "@/lib/auth/mock-users";
-import { canonicalizeIssueTags } from "@/lib/issues/utils";
+import { prisma } from "@/lib/prisma";
 import type {
   AuthUser,
   CaseDetail,
+  CaseKeyDateSummary,
   CaseSummary,
   CommunityBriefThemeSummary,
   SupportStatementSummary,
@@ -16,6 +18,37 @@ const CASE_SUPPORT_STATEMENTS_COOKIE = "dd_case_support_statements";
 const CASE_BRIEF_THEMES_COOKIE = "dd_case_brief_themes";
 const CASE_BRIEF_THEME_SUPPORTS_COOKIE = "dd_case_brief_theme_supports";
 const REMOVED_CASE_BRIEF_THEME_SUPPORTS_COOKIE = "dd_removed_case_brief_theme_supports";
+
+function mapCourtLevel(value: CourtJurisdictionLevel): CaseSummary["courtLevel"] {
+  if (value === CourtJurisdictionLevel.federal) return "federal";
+  if (value === CourtJurisdictionLevel.appellate || value === CourtJurisdictionLevel.district) return "state";
+  return "local";
+}
+
+function mapCourtStage(value: CourtJurisdictionLevel): CaseSummary["stage"] {
+  return value === CourtJurisdictionLevel.appellate ? "appeal" : "trial";
+}
+
+function mapCaseStatus(value: string | null): CaseSummary["status"] {
+  const normalized = value?.toLowerCase() ?? "";
+  if (/(closed|disposed|resolved|dismissed|decided|completed)/i.test(normalized)) return "closed";
+  if (/(pending|active|open|filed)/i.test(normalized)) return "active";
+  return "watching";
+}
+
+function parseJsonStringArray(value: unknown): string[] {
+  return Array.isArray(value) ? value.filter((entry): entry is string => typeof entry === "string") : [];
+}
+
+function sourceFields(value: unknown) {
+  return parseJsonStringArray(value);
+}
+
+function caseSummaryText(row: Awaited<ReturnType<typeof getReviewedCourtCaseRows>>[number]) {
+  if (row.plainEnglishSummary) return row.plainEnglishSummary;
+  const type = row.caseType.replaceAll("_", " ");
+  return `Reviewed public court record for ${row.caption}. Case type: ${type}. Direct Democracy displays stored public case metadata only and does not provide legal advice.`;
+}
 
 const seededCasesBase = [
   {
@@ -362,19 +395,65 @@ async function getAllBriefThemeSupports() {
   return [...merged.values()];
 }
 
-export async function getAllCases(viewer?: AuthUser): Promise<CaseSummary[]> {
-  const [follows, supportStatements] = await Promise.all([getAllCaseFollows(), getAllSupportStatements()]);
+async function getReviewedCourtCaseRows() {
+  return prisma.courtCase.findMany({
+    where: {
+      publicVisibilityStatus: CourtCasePublicVisibilityStatus.public,
+      reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] },
+    },
+    include: {
+      courtJurisdiction: true,
+      source: { select: { name: true, url: true } },
+    },
+    orderBy: [{ filingDate: "desc" }, { lastCheckedAt: "desc" }, { createdAt: "desc" }],
+    take: 100,
+  });
+}
 
-  return seededCasesBase
-    .map((entry) => ({
-      ...entry,
-      issueTags: canonicalizeIssueTags(entry.issueTags),
-      followCount: follows.filter((follow) => follow.caseId === entry.id).length,
-      supportCount: supportStatements.filter((statement) => statement.caseId === entry.id).length,
-      viewerIsFollowing: viewer ? follows.some((follow) => follow.caseId === entry.id && follow.userId === viewer.id) : false,
-      viewerSupports: viewer ? supportStatements.some((statement) => statement.caseId === entry.id && statement.userId === viewer.id) : false,
-    }))
-    .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+function mapCourtCaseToSummary(
+  row: Awaited<ReturnType<typeof getReviewedCourtCaseRows>>[number],
+  follows: CaseFollowSeed[],
+  supportStatements: SupportStatementSummary[],
+  viewer?: AuthUser,
+): CaseSummary {
+  const sourceUrl = row.sourceUrl ?? row.source?.url ?? row.courtJurisdiction.sourceUrl;
+  return {
+    id: row.id,
+    title: row.caption,
+    summary: caseSummaryText(row),
+    courtLevel: mapCourtLevel(row.courtLevel),
+    stage: mapCourtStage(row.courtLevel),
+    jurisdictionId: row.courtJurisdictionId,
+    jurisdictionName: row.jurisdiction,
+    issueTags: [],
+    keyDates: [
+      row.filingDate ? { label: "Filing date", date: row.filingDate.toISOString().slice(0, 10) } : null,
+      row.dispositionDate ? { label: "Disposition date", date: row.dispositionDate.toISOString().slice(0, 10) } : null,
+    ].filter((entry): entry is CaseKeyDateSummary => Boolean(entry)),
+    status: mapCaseStatus(row.status),
+    createdAt: row.createdAt.toISOString(),
+    followCount: follows.filter((follow) => follow.caseId === row.id).length,
+    supportCount: supportStatements.filter((statement) => statement.caseId === row.id).length,
+    viewerIsFollowing: viewer ? follows.some((follow) => follow.caseId === row.id && follow.userId === viewer.id) : false,
+    viewerSupports: viewer ? supportStatements.some((statement) => statement.caseId === row.id && statement.userId === viewer.id) : false,
+    isRealCourtRecord: true,
+    caseNumber: row.caseNumber,
+    courtName: row.courtJurisdiction.name,
+    caseType: row.caseType,
+    filingDate: row.filingDate?.toISOString() ?? null,
+    dispositionDate: row.dispositionDate?.toISOString() ?? null,
+    sourceName: row.source?.name ?? row.courtJurisdiction.name,
+    sourceUrl,
+    lastCheckedAt: row.lastCheckedAt?.toISOString() ?? null,
+    reviewStatus: row.reviewStatus,
+    publicVisibilityStatus: row.publicVisibilityStatus,
+  };
+}
+
+export async function getAllCases(viewer?: AuthUser): Promise<CaseSummary[]> {
+  const [follows, supportStatements, courtCases] = await Promise.all([getAllCaseFollows(), getAllSupportStatements(), getReviewedCourtCaseRows()]);
+
+  return courtCases.map((entry) => mapCourtCaseToSummary(entry, follows, supportStatements, viewer));
 }
 
 export async function getCaseById(caseId: string, viewer?: AuthUser): Promise<CaseDetail | null> {
@@ -385,10 +464,75 @@ export async function getCaseById(caseId: string, viewer?: AuthUser): Promise<Ca
     return null;
   }
 
+  const [row, attributions] = await Promise.all([
+    prisma.courtCase.findUnique({
+      where: { id: caseId },
+      include: {
+        parties: {
+          where: { isPublic: true, reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
+          orderBy: { partyName: "asc" },
+        },
+        docketEntries: {
+          where: { reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
+          orderBy: [{ entryDate: "desc" }, { createdAt: "desc" }],
+          take: 50,
+        },
+        documents: {
+          where: { reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
+          orderBy: { createdAt: "desc" },
+          take: 25,
+        },
+      },
+    }),
+    prisma.sourceAttribution.findMany({
+      where: { entityType: CivicEntityType.COURT_CASE, entityId: caseId },
+      orderBy: [{ reviewStatus: "desc" }, { lastImportedAt: "desc" }],
+      take: 12,
+    }),
+  ]);
+
   return {
     ...caseSummary,
     supportStatements: statements.filter((statement) => statement.caseId === caseId && statement.isPublic).slice(0, 8),
     communityBriefThemes: themes.filter((theme) => theme.caseId === caseId).slice(0, 6),
+    parties:
+      row?.parties.map((party) => ({
+        id: party.id,
+        partyName: party.partyName,
+        partyRole: party.partyRole,
+        reviewStatus: party.reviewStatus,
+      })) ?? [],
+    docketEntries:
+      row?.docketEntries.map((entry) => ({
+        id: entry.id,
+        entryDate: entry.entryDate?.toISOString() ?? null,
+        title: entry.title,
+        description: entry.description,
+        documentUrl: entry.documentUrl,
+        documentType: entry.documentType,
+        sourceUrl: entry.sourceUrl,
+        reviewStatus: entry.reviewStatus,
+      })) ?? [],
+    documents:
+      row?.documents.map((document) => ({
+        id: document.id,
+        title: document.title,
+        documentUrl: document.documentUrl,
+        localFilePath: document.localFilePath,
+        sourceName: document.sourceName,
+        sourceUrl: document.sourceUrl,
+        documentType: document.documentType,
+        extractedTextStatus: document.extractedTextStatus,
+        reviewStatus: document.reviewStatus,
+      })) ?? [],
+    sourceAttributions: attributions.map((source) => ({
+      id: source.id,
+      sourceName: source.sourceName,
+      sourceUrl: source.sourceUrl,
+      fieldsDerived: sourceFields(source.fieldsDerived),
+      reviewStatus: source.reviewStatus,
+      lastImportedAt: source.lastImportedAt?.toISOString() ?? null,
+    })),
   };
 }
 

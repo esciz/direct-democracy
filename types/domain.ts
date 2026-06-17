@@ -1,4 +1,17 @@
-export type UserRole = "citizen" | "trustedCitizen" | "candidate" | "official" | "media" | "moderator" | "admin";
+export type UserRole =
+  | "citizen"
+  | "trustedCitizen"
+  | "candidate"
+  | "official"
+  | "media"
+  | "moderator"
+  | "admin"
+  | "public_user"
+  | "verified_resident"
+  | "platform_admin"
+  | "government_admin"
+  | "government_staff"
+  | "government_observer";
 
 export type JurisdictionType = "COUNTRY" | "STATE" | "COUNTY" | "CITY" | "DISTRICT";
 
@@ -58,6 +71,19 @@ export type VoteResponseLabels = {
   yes: string;
   no: string;
   skip: string;
+};
+export type PublicQuestionType =
+  | "BALLOT_MEASURE_DECISION"
+  | "LEGISLATION_DECISION"
+  | "CANDIDATE_PERFORMANCE"
+  | "ELECTED_OFFICIAL_PERFORMANCE"
+  | "COMMUNITY_PRIORITY_POLL"
+  | "GENERAL_SENTIMENT";
+
+export type VoteQuestionContextSource = {
+  label: string;
+  url: string;
+  sourceType?: "official" | "secondary" | "supporter" | "opponent";
 };
 export type TruthRatingValue = "Accurate" | "Mostly True" | "Mixed / Unclear" | "Misleading" | "False";
 export type TrustLevel = "High Trust" | "Moderate Trust" | "Mixed" | "Low Trust";
@@ -836,11 +862,13 @@ export type TruthMeterSummary = {
 export type VoteQuestionSummary = {
   id: string;
   questionText: string;
+  questionType?: PublicQuestionType;
   category: VoteQuestionCategory;
   scope: VoteQuestionScope;
   jurisdictionId: string;
   jurisdictionName: string;
   objectType?: VoteObjectType;
+  civicEntityType?: string | null;
   issueTag?: string | null;
   voteType?: FormalVoteType;
   status?: FormalVoteStatus;
@@ -848,14 +876,25 @@ export type VoteQuestionSummary = {
   shortTitle?: string;
   subjectName?: string | null;
   subjectHref?: string | null;
+  contextSummary?: string | null;
   plainLanguageSummary?: string;
   whyItMatters?: string;
   whoIsAffected?: string;
+  affectedGroups?: string[];
   introducedBy?: string;
   introducedByRole?: string;
   officialBody?: string;
   whatYesMeans?: string;
   whatNoMeans?: string;
+  yesEffectSummary?: string | null;
+  noEffectSummary?: string | null;
+  fiscalImpactSummary?: string | null;
+  supporterArguments?: string[];
+  opponentArguments?: string[];
+  historicalContext?: string | null;
+  neutralDecisionSummary?: string | null;
+  priorityOptions?: string[];
+  sourceLinks?: VoteQuestionContextSource[];
   responseLabels?: VoteResponseLabels;
   officialPositionSummary?: string;
   officialVoteSummary?: string;
@@ -865,6 +904,13 @@ export type VoteQuestionSummary = {
   referenceCaseId?: string | null;
   weekOf?: string | null;
   graduatedFromPollId?: string | null;
+  sourceName?: string | null;
+  sourceUrl?: string | null;
+  sourceLastUpdated?: string | null;
+  confidenceScore?: number | null;
+  verificationStatus?: string | null;
+  reviewStatus?: string | null;
+  realDataBadge?: boolean;
 };
 
 export type VoteResponseSummary = {
@@ -925,6 +971,35 @@ export type VoteQuestionCardSummary = VoteQuestionSummary & {
   onboardingPosition?: number;
   onboardingTotal?: number;
   communityLabel?: string;
+};
+
+export type PublicIssuePositionSummary = {
+  id: string;
+  issueText: string;
+  issueSlug: string;
+  stance: "SUPPORTS" | "OPPOSES" | "MIXED" | "UNKNOWN" | "CHANGED";
+  derivation: "OFFICIAL" | "INFERRED" | "UNKNOWN";
+  summary?: string | null;
+  evidenceUrl?: string | null;
+  evidenceTitle?: string | null;
+  evidenceSourceName?: string | null;
+  sourceName?: string | null;
+  sourceUrl?: string | null;
+  confidenceScore: number;
+  reviewStatus: string;
+  verificationStatus: string;
+  positionDate?: string | null;
+  lastObservedAt: string;
+  subject: {
+    id: string;
+    type: "candidate" | "official";
+    name: string;
+    href: string;
+    officeTitle?: string | null;
+    partyText?: string | null;
+    jurisdictionName?: string | null;
+  };
+  changeCount: number;
 };
 
 export type FeedRenderableItem =
@@ -1634,6 +1709,17 @@ export type CaseSummary = {
   supportCount: number;
   viewerIsFollowing: boolean;
   viewerSupports: boolean;
+  isRealCourtRecord?: boolean;
+  caseNumber?: string | null;
+  courtName?: string | null;
+  caseType?: string | null;
+  filingDate?: string | null;
+  dispositionDate?: string | null;
+  sourceName?: string | null;
+  sourceUrl?: string | null;
+  lastCheckedAt?: string | null;
+  reviewStatus?: string | null;
+  publicVisibilityStatus?: string | null;
 };
 
 export type SupportStatementSummary = {
@@ -1661,6 +1747,41 @@ export type CommunityBriefThemeSummary = {
 export type CaseDetail = CaseSummary & {
   supportStatements: SupportStatementSummary[];
   communityBriefThemes: CommunityBriefThemeSummary[];
+  parties?: Array<{
+    id: string;
+    partyName: string;
+    partyRole?: string | null;
+    reviewStatus: string;
+  }>;
+  docketEntries?: Array<{
+    id: string;
+    entryDate?: string | null;
+    title: string;
+    description?: string | null;
+    documentUrl?: string | null;
+    documentType?: string | null;
+    sourceUrl?: string | null;
+    reviewStatus: string;
+  }>;
+  documents?: Array<{
+    id: string;
+    title: string;
+    documentUrl?: string | null;
+    localFilePath?: string | null;
+    sourceName: string;
+    sourceUrl?: string | null;
+    documentType?: string | null;
+    extractedTextStatus: string;
+    reviewStatus: string;
+  }>;
+  sourceAttributions?: Array<{
+    id: string;
+    sourceName: string;
+    sourceUrl?: string | null;
+    fieldsDerived: string[];
+    reviewStatus: string;
+    lastImportedAt?: string | null;
+  }>;
 };
 
 export type DraftLegislationStatus = "Drafting";
@@ -2310,6 +2431,39 @@ export type PublicProfileSummary = {
     filingDate?: string | null;
     sourceLabel?: string | null;
     sourceUrl?: string | null;
+    websiteEnrichment?: {
+      campaignWebsiteUrl?: string | null;
+      officialWebsiteUrl?: string | null;
+      headshotUrl?: string | null;
+      shortBio?: string | null;
+      longBioSourceUrl?: string | null;
+      socialLinks: string[];
+      publicContactEmail?: string | null;
+      publicContactPhone?: string | null;
+      sourceName?: string | null;
+      sourceUrl: string;
+      lastEnrichedAt?: string | null;
+      enrichmentStatus: string;
+      reviewStatus: string;
+    } | null;
+    knowledgeEnrichments?: Array<{
+      id: string;
+      sourceUrl: string;
+      sourceName: string;
+      sourceType: string;
+      sourcePriority: number;
+      title?: string | null;
+      aboutSummary?: string | null;
+      ownWordsSummary?: string | null;
+      issues: Array<{ label: string; summary: string; sourceUrl: string }>;
+      experienceSummary?: string | null;
+      financeContext?: string | null;
+      newsItems: Array<{ title: string; summary: string; sourceUrl: string; sourceName: string }>;
+      socialLinks: string[];
+      confidenceScore: number;
+      reviewStatus: string;
+      lastUpdatedAt: string;
+    }>;
     dataWarnings: string[];
   };
 };

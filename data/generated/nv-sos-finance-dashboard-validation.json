@@ -1,0 +1,168 @@
+{
+  "generated_at": "2026-06-15T03:51:58.561Z",
+  "record_count": 3,
+  "records": [
+    {
+      "candidate_name": "Joe Lombardo",
+      "report_count": 24,
+      "total_contributions_parsed": 24955336.98,
+      "total_contributions_categorized": 0,
+      "excluded_refund_adjustment_rows": 61,
+      "excluded_refund_adjustment_amount": 160105.08,
+      "valid_contribution_rows_for_tables": 0,
+      "valid_expenditure_rows_for_tables": 0,
+      "needs_review_rows": 73,
+      "top_categories_by_amount": [],
+      "top_industries_by_amount": [],
+      "top_donor_types_by_amount": [],
+      "top_organizations_by_amount": [],
+      "donor_classification_count": 43,
+      "high_confidence_classification_count": 19,
+      "medium_confidence_classification_count": 24,
+      "low_confidence_classification_count": 0,
+      "incoming_funding_rows_used_for_charts": 0,
+      "raw_contributor_rows_preserved": 61,
+      "raw_payee_rows_preserved": 12,
+      "data_status": {
+        "has_clean_itemized_contributions": false,
+        "has_refund_heavy_data": true,
+        "has_aggregate_totals": true,
+        "contribution_rows_count": 0,
+        "excluded_refund_adjustment_rows_count": 73,
+        "raw_rows_count": 73,
+        "confidence_level": "medium",
+        "voter_facing_mode": "aggregate_only"
+      },
+      "accounting_breakdown": [
+        {
+          "name": "Contributions / receipts",
+          "amount": 24955336.98,
+          "count": 0,
+          "percentage": 59.12819294591267
+        },
+        {
+          "name": "Expenditures",
+          "amount": 16813153.35,
+          "count": 0,
+          "percentage": 39.83642361170063
+        },
+        {
+          "name": "Refunds / reimbursements",
+          "amount": 436988.54,
+          "count": 73,
+          "percentage": 1.0353834423867063
+        }
+      ],
+      "fixture_checks": {
+        "refund_rows_excluded_from_largest_contribution_records": true,
+        "refund_rows_excluded_from_largest_payee_records": true,
+        "donor_chart_rows_are_clean_incoming_contributions": true,
+        "review_queue_includes_excluded_adjustments": true
+      }
+    },
+    {
+      "candidate_name": "Danny Tarkanian",
+      "report_count": 25,
+      "total_contributions_parsed": 662962.2900000002,
+      "total_contributions_categorized": 0,
+      "excluded_refund_adjustment_rows": 0,
+      "excluded_refund_adjustment_amount": 0,
+      "valid_contribution_rows_for_tables": 0,
+      "valid_expenditure_rows_for_tables": 0,
+      "needs_review_rows": 0,
+      "top_categories_by_amount": [],
+      "top_industries_by_amount": [],
+      "top_donor_types_by_amount": [],
+      "top_organizations_by_amount": [],
+      "donor_classification_count": 0,
+      "high_confidence_classification_count": 0,
+      "medium_confidence_classification_count": 0,
+      "low_confidence_classification_count": 0,
+      "incoming_funding_rows_used_for_charts": 0,
+      "raw_contributor_rows_preserved": 0,
+      "raw_payee_rows_preserved": 0,
+      "data_status": {
+        "has_clean_itemized_contributions": false,
+        "has_refund_heavy_data": false,
+        "has_aggregate_totals": true,
+        "contribution_rows_count": 0,
+        "excluded_refund_adjustment_rows_count": 0,
+        "raw_rows_count": 0,
+        "confidence_level": "medium",
+        "voter_facing_mode": "aggregate_only"
+      },
+      "accounting_breakdown": [
+        {
+          "name": "Contributions / receipts",
+          "amount": 662962.2900000002,
+          "count": 0,
+          "percentage": 77.88049006601341
+        },
+        {
+          "name": "Expenditures",
+          "amount": 188293.64000000004,
+          "count": 0,
+          "percentage": 22.1195099339866
+        }
+      ],
+      "fixture_checks": {
+        "refund_rows_excluded_from_largest_contribution_records": true,
+        "refund_rows_excluded_from_largest_payee_records": true,
+        "donor_chart_rows_are_clean_incoming_contributions": true,
+        "review_queue_includes_excluded_adjustments": true
+      }
+    },
+    {
+      "candidate_name": "Unknown candidate",
+      "report_count": 5,
+      "total_contributions_parsed": 631233.06,
+      "total_contributions_categorized": 0,
+      "excluded_refund_adjustment_rows": 0,
+      "excluded_refund_adjustment_amount": 0,
+      "valid_contribution_rows_for_tables": 0,
+      "valid_expenditure_rows_for_tables": 0,
+      "needs_review_rows": 0,
+      "top_categories_by_amount": [],
+      "top_industries_by_amount": [],
+      "top_donor_types_by_amount": [],
+      "top_organizations_by_amount": [],
+      "donor_classification_count": 0,
+      "high_confidence_classification_count": 0,
+      "medium_confidence_classification_count": 0,
+      "low_confidence_classification_count": 0,
+      "incoming_funding_rows_used_for_charts": 0,
+      "raw_contributor_rows_preserved": 0,
+      "raw_payee_rows_preserved": 4,
+      "data_status": {
+        "has_clean_itemized_contributions": false,
+        "has_refund_heavy_data": false,
+        "has_aggregate_totals": true,
+        "contribution_rows_count": 0,
+        "excluded_refund_adjustment_rows_count": 0,
+        "raw_rows_count": 0,
+        "confidence_level": "medium",
+        "voter_facing_mode": "aggregate_only"
+      },
+      "accounting_breakdown": [
+        {
+          "name": "Contributions / receipts",
+          "amount": 631233.06,
+          "count": 0,
+          "percentage": 55.64767423681651
+        },
+        {
+          "name": "Expenditures",
+          "amount": 503105.56000000006,
+          "count": 0,
+          "percentage": 44.35232576318349
+        }
+      ],
+      "fixture_checks": {
+        "refund_rows_excluded_from_largest_contribution_records": true,
+        "refund_rows_excluded_from_largest_payee_records": true,
+        "donor_chart_rows_are_clean_incoming_contributions": true,
+        "review_queue_includes_excluded_adjustments": true
+      }
+    }
+  ]
+}

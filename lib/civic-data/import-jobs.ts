@@ -9,8 +9,6 @@ export const OFFICIALS_SOURCE_ADAPTER_KEYS: CivicSourceAdapterKey[] = [
   "reno",
   "carson-city",
   "washoe-county",
-  "unr",
-  "asun",
 ];
 
 export async function syncNevadaOfficialsSources(mode: ImportMode = "scheduled") {
@@ -31,6 +29,35 @@ export async function syncNevadaElectionsSources(mode: ImportMode = "scheduled")
   const results = [];
 
   for (const sourceSlug of sourceSlugs) {
+    results.push(await syncCivicSource(sourceSlug, mode));
+  }
+
+  return results;
+}
+
+const JOB_SOURCE_SLUGS = {
+  "candidate-election-daily": [
+    "nevada-secretary-of-state-elections",
+    "nevada-secretary-of-state-election-results",
+    "nevada-secretary-of-state-precinct-results",
+    "nevada-secretary-of-state-candidate-filings",
+  ],
+  "voter-registration-monthly": ["nevada-secretary-of-state-voter-registration-statistics"],
+  "legislative-weekly": ["nevada-legislature-nelis"],
+  "county-election-daily": NEVADA_BETA_SOURCE_DEFINITIONS.filter((source) => source.adapterKey === "county-election-office").map((source) => source.slug),
+  "profile-enrichment-weekly": ["nevada-secretary-of-state-candidate-filings"],
+} as const;
+
+export type CivicImportJobKey = keyof typeof JOB_SOURCE_SLUGS;
+
+export function getCivicImportJobKeys() {
+  return Object.keys(JOB_SOURCE_SLUGS) as CivicImportJobKey[];
+}
+
+export async function syncCivicImportJob(jobKey: CivicImportJobKey, mode: ImportMode = "scheduled") {
+  const results = [];
+
+  for (const sourceSlug of JOB_SOURCE_SLUGS[jobKey]) {
     results.push(await syncCivicSource(sourceSlug, mode));
   }
 

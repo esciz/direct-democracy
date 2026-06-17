@@ -47,7 +47,13 @@ export function getVoteResponseLabels(question: Pick<VoteQuestionSummary, "objec
   return question.responseLabels ?? DEFAULT_LABELS[getVoteObjectType(question)];
 }
 
-export function getVoteObjectLabel(question: Pick<VoteQuestionSummary, "objectType" | "voteType">) {
+export function getVoteObjectLabel(question: Pick<VoteQuestionSummary, "objectType" | "voteType" | "questionType">) {
+  if (question.questionType === "BALLOT_MEASURE_DECISION") return "Ballot measure";
+  if (question.questionType === "LEGISLATION_DECISION") return "Legislation";
+  if (question.questionType === "CANDIDATE_PERFORMANCE") return "Candidate performance";
+  if (question.questionType === "ELECTED_OFFICIAL_PERFORMANCE") return "Official performance";
+  if (question.questionType === "COMMUNITY_PRIORITY_POLL") return "Priority poll";
+
   const objectType = getVoteObjectType(question);
 
   if (objectType === "representative") return "Representative vote";
@@ -56,7 +62,23 @@ export function getVoteObjectLabel(question: Pick<VoteQuestionSummary, "objectTy
   return "Decision vote";
 }
 
-export function getVoteParticipationPrompt(question: Pick<VoteQuestionSummary, "objectType" | "subjectName" | "questionText">) {
+export function getVoteParticipationPrompt(question: Pick<VoteQuestionSummary, "objectType" | "subjectName" | "questionText" | "questionType">) {
+  if (question.questionType === "COMMUNITY_PRIORITY_POLL") {
+    return "Choose the priority that best matches your concern";
+  }
+
+  if (question.questionType === "BALLOT_MEASURE_DECISION") {
+    return "Review the measure, fiscal impact, arguments, and sources before voting";
+  }
+
+  if (question.questionType === "LEGISLATION_DECISION") {
+    return "Vote on this public legislation signal";
+  }
+
+  if (question.questionType === "CANDIDATE_PERFORMANCE" || question.questionType === "ELECTED_OFFICIAL_PERFORMANCE") {
+    return question.subjectName ? `Vote on ${question.subjectName}'s public performance` : "Vote on this public performance question";
+  }
+
   const objectType = getVoteObjectType(question);
 
   if (objectType === "representative") {

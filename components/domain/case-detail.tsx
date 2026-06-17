@@ -30,6 +30,8 @@ export async function CaseDetail({
 }) {
   const currentSupport = Math.min(82, Math.max(28, 32 + caseItem.supportCount * 8 + caseItem.followCount * 3));
   const history = buildSentimentHistory(`case-detail-${caseItem.id}`, currentSupport, { points: 8, opposeBias: 27 });
+  const displayDate = (value?: string | null) =>
+    value ? new Date(value).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : "Pending";
 
   return (
     <div className="space-y-6">
@@ -44,6 +46,11 @@ export async function CaseDetail({
           <span className="rounded-full border border-amber-300/18 bg-amber-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">
             {caseItem.status}
           </span>
+          {caseItem.isRealCourtRecord ? (
+            <span className="rounded-full border border-emerald-300/18 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-100">
+              Public court data
+            </span>
+          ) : null}
         </div>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-50">{caseItem.title}</h1>
         <p className="mt-4 text-base leading-7 text-slate-300">{caseItem.summary}</p>
@@ -57,9 +64,31 @@ export async function CaseDetail({
           <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">{caseItem.supportCount} supporting</span>
           <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">{caseItem.jurisdictionName}</span>
         </div>
-        <div className="mt-6">
+        {caseItem.isRealCourtRecord ? (
+          <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Court</p>
+              <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.courtName ?? "Court pending"}</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Case number</p>
+              <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.caseNumber ?? "Pending"}</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Case type</p>
+              <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.caseType?.replaceAll("_", " ") ?? "Unknown"}</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Last checked</p>
+              <p className="mt-2 text-sm font-semibold text-slate-50">{displayDate(caseItem.lastCheckedAt)}</p>
+            </div>
+          </div>
+        ) : null}
+        {!caseItem.isRealCourtRecord ? (
+          <div className="mt-6">
           <SentimentHistoryChart data={history} title="Sentiment over time" currentValue={currentSupport} />
-        </div>
+          </div>
+        ) : null}
         {caseItem.keyDates.length ? (
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             {caseItem.keyDates.map((entry) => (
@@ -79,8 +108,97 @@ export async function CaseDetail({
       </section>
 
       <section className="rounded-[1.75rem] border border-amber-300/16 bg-amber-500/10 p-5 text-sm text-amber-100 shadow-card">
-        Public support and community input only. This page is not a legal filing, not legal advice, and not direct amicus participation.
+        Public court metadata only. This page is not a legal filing, not legal advice, and not direct amicus participation. Criminal records are displayed neutrally; charges are allegations unless a sourced disposition says otherwise.
       </section>
+
+      {caseItem.isRealCourtRecord ? (
+        <>
+          <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Timeline / docket</h2>
+            <div className="mt-5 space-y-3">
+              {caseItem.docketEntries?.length ? (
+                caseItem.docketEntries.map((entry) => (
+                  <article key={entry.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <p className="font-semibold text-slate-100">{entry.title}</p>
+                      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{displayDate(entry.entryDate)}</span>
+                    </div>
+                    {entry.description ? <p className="mt-2 text-sm leading-6 text-slate-400">{entry.description}</p> : null}
+                    {entry.documentUrl ? (
+                      <Link href={entry.documentUrl} className="mt-3 inline-flex text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                        Open public document
+                      </Link>
+                    ) : null}
+                  </article>
+                ))
+              ) : (
+                <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm text-slate-400">Docket entries pending review.</div>
+              )}
+            </div>
+          </section>
+
+          <section className="grid gap-4 lg:grid-cols-2">
+            <div className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+              <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Public parties</h2>
+              <div className="mt-5 space-y-2">
+                {caseItem.parties?.length ? (
+                  caseItem.parties.map((party) => (
+                    <div key={party.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                      <p className="text-sm font-semibold text-slate-100">{party.partyName}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">{party.partyRole ?? "Party role pending"}</p>
+                    </div>
+                  ))
+                ) : (
+                  <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm text-slate-400">Public party details pending review.</div>
+                )}
+              </div>
+            </div>
+
+            <div className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+              <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Public documents</h2>
+              <div className="mt-5 space-y-2">
+                {caseItem.documents?.length ? (
+                  caseItem.documents.map((document) => (
+                    <div key={document.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                      <p className="text-sm font-semibold text-slate-100">{document.title}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">{document.documentType ?? "Document"}</p>
+                      {document.documentUrl ? (
+                        <Link href={document.documentUrl} className="mt-3 inline-flex text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                          Open original
+                        </Link>
+                      ) : null}
+                    </div>
+                  ))
+                ) : (
+                  <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm text-slate-400">Public documents pending review.</div>
+                )}
+              </div>
+            </div>
+          </section>
+
+          <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Source explorer</h2>
+            <div className="mt-5 grid gap-3 md:grid-cols-2">
+              {caseItem.sourceAttributions?.length ? (
+                caseItem.sourceAttributions.map((source) => (
+                  <div key={source.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                    <p className="text-sm font-semibold text-slate-100">{source.sourceName}</p>
+                    <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">{source.reviewStatus.replaceAll("_", " ")}</p>
+                    {source.fieldsDerived.length ? <p className="mt-2 text-xs text-slate-400">Fields: {source.fieldsDerived.join(", ")}</p> : null}
+                    {source.sourceUrl ? (
+                      <Link href={source.sourceUrl} className="mt-3 inline-flex break-all text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                        Open source
+                      </Link>
+                    ) : null}
+                  </div>
+                ))
+              ) : (
+                <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm text-slate-400">Source attribution pending.</div>
+              )}
+            </div>
+          </section>
+        </>
+      ) : null}
 
       {voteQuestion ? (
         <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">

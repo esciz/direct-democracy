@@ -3,12 +3,14 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { IssuePositionsSection } from "@/components/domain/issue-positions-section";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { OrganizationCard } from "@/components/domain/organization-card";
 import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
 import { ProfileImagePlaceholder } from "@/components/domain/profile-image-placeholder";
 import { RoleBadge } from "@/components/domain/role-badge";
 import { ShareActionMenu } from "@/components/domain/share-action-menu";
+import { SourceExplorer, type SourceExplorerItem } from "@/components/domain/source-explorer";
 import { SummaryBriefPanel } from "@/components/domain/summary-brief-panel";
 import { PageIntro } from "@/components/ui/page-intro";
 import { isGuestUserId } from "@/lib/auth/session";
@@ -21,6 +23,7 @@ import { getCommunityEventTypeLabel } from "@/lib/community/events";
 import { getDebatesForUser } from "@/lib/debates/store";
 import { getFeedPostPreviews } from "@/lib/feed/posts";
 import { valuesMatchIssueText } from "@/lib/issues/utils";
+import { getIssuePositionsByIssue } from "@/lib/issue-positions/store";
 import { getContentDetailHref } from "@/lib/news/links";
 import { getFeedMediaPreviews } from "@/lib/media/store";
 import { getAllPetitions } from "@/lib/petitions/store";
@@ -1307,6 +1310,40 @@ async function RelatedOrganizationsSectionLoader({ issueText, currentUser }: { i
   return <RelatedOrganizationsSection issueText={issueText} organizations={organizations} guestMode={isGuestUserId(currentUser.id)} />;
 }
 
+async function IssuePositionsSectionLoader({ issueText }: { issueText: string }) {
+  const positions = await getIssuePositionsByIssue(issueText).catch((error) => {
+    console.error(`[issue-detail] issue positions fallback for ${issueText}`, error);
+    return [];
+  });
+  const sourceItems: SourceExplorerItem[] = positions
+    .filter((position) => position.sourceUrl || position.evidenceUrl)
+    .map((position) => ({
+      id: `${position.id}-issue-source`,
+      sourceName: position.sourceName ?? position.evidenceSourceName ?? "Issue position evidence",
+      sourceType: "issue_position_evidence",
+      sourceUrl: position.sourceUrl ?? position.evidenceUrl,
+      lastImportedAt: position.lastObservedAt,
+      fieldsDerived: ["issue position", position.issueText, position.subject.type],
+      reviewStatus: position.reviewStatus,
+      confidenceScore: position.confidenceScore,
+      notes: position.summary ?? position.evidenceTitle ?? `Evidence linked to ${position.subject.name}.`,
+    }));
+
+  return (
+    <>
+      <IssuePositionsSection
+        positions={positions}
+        title="Candidates and officials on this issue"
+        description="Approved, source-attributed candidate and official positions normalized to this existing issue page."
+        emptyTitle="Related positions pending"
+        emptyDescription="No approved, sourced candidate or official positions are available for this issue yet."
+        variant="light"
+      />
+      <SourceExplorer items={sourceItems} emptyText="Issue position source records are pending review." />
+    </>
+  );
+}
+
 export default async function IssueDetailPage({ params, searchParams }: IssueDetailPageProps) {
   const [{ issueId }, resolvedSearchParams] = await Promise.all([params, searchParams ?? Promise.resolve(undefined)]);
   const activeFilter = normalizeFilter(resolvedSearchParams?.filter);
@@ -1467,6 +1504,16 @@ async function IssueDetailContent({
         }
       >
         <IssueBriefSection issueId={safeIssue.id} issueText={safeIssue.issueText} currentUser={currentUser} />
+      </Suspense>
+
+      <Suspense
+        fallback={
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading sourced positions…</div>
+          </section>
+        }
+      >
+        <IssuePositionsSectionLoader issueText={safeIssue.issueText} />
       </Suspense>
 
       <Suspense

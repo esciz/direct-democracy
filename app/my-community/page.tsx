@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { CommunityHero } from "@/components/domain/community-hero";
+import { CommunityMeetingIntelligenceCard } from "@/components/domain/community-meeting-intelligence-card";
 import { CommunitySelector } from "@/components/domain/community-selector";
 import { HomeUpcomingElectionsPane } from "@/components/domain/home-upcoming-elections-pane";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -21,6 +22,7 @@ import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts"
 import { getFavoritesForUser } from "@/lib/server/favorites";
 import { getIssueDirectoryForUser } from "@/lib/server/issues";
 import { getCandidateProfiles, getElectionSummaries } from "@/lib/server/elections-context";
+import { getCommunityMeetingSummary } from "@/lib/public-meetings/public";
 import { formatDateUtc } from "@/lib/dates";
 import type { AuthUser, CommunitySummary, ElectionSummary } from "@/types/domain";
 
@@ -274,6 +276,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
     officials,
     cases,
     organizations,
+    meetingSummary,
   ] = await Promise.all([
     loadCommunityDataset("elections", getElectionSummaries(), []),
     loadCommunityDataset("favorites", getFavoritesForUser(user.id), []),
@@ -297,6 +300,16 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
     loadCommunityDataset("officials", getOfficials(), []),
     loadCommunityDataset("cases", getAllCases(), []),
     loadCommunityDataset("organizations", getAllOrganizations(user), []),
+    loadCommunityDataset("meeting records", getCommunityMeetingSummary(currentCommunity), {
+      community_name: currentCommunity.name,
+      matching_public_body_count: 0,
+      upcoming_meetings: [],
+      recent_decisions: [],
+      open_questions: [],
+      recently_approved_spending: [],
+      public_comment_opportunities: [],
+      last_updated_at: null,
+    }),
   ]);
 
   const upcomingElections = getUpcomingElectionsForUser(elections, currentCommunity, user, studentCampus);
@@ -503,7 +516,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
             description="The next election, deadline, or ballot moment tied to your local, county, state, campus, and national civic life."
           />
           <Link
-            href={`/representatives?community=${selectedCommunityId === "unr" || selectedCommunityId === "asun" ? "campus" : selectedCommunityId}`}
+            href={`/who-represents-me?community=${selectedCommunityId}`}
             className="text-sm font-semibold text-cyan-200 hover:text-cyan-100"
           >
             Who represents me?
@@ -513,6 +526,8 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
           <HomeUpcomingElectionsPane elections={upcomingElectionItems} />
         </div>
       </section>
+
+      <CommunityMeetingIntelligenceCard summary={meetingSummary} />
 
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">

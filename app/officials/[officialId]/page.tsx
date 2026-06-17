@@ -1,10 +1,18 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { DraftLegislationCard } from "@/components/domain/draft-legislation-card";
+import { CampaignFinanceSourceCard } from "@/components/domain/campaign-finance-source-card";
+import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { FundingBreakdownCard } from "@/components/domain/funding-breakdown-card";
+import { IssuePositionsSection } from "@/components/domain/issue-positions-section";
+import { NewsMentionsSection } from "@/components/domain/news-mentions-section";
 import { OfficialActionCard } from "@/components/domain/official-action-card";
+import { OfficialMeetingRecordCard } from "@/components/domain/official-meeting-record-card";
 import { OfficialPromisesSection } from "@/components/domain/official-promises-section";
+import { OfficialGovernmentSourceCard } from "@/components/domain/official-government-source-card";
+import { OfficialSourceDocumentsCard } from "@/components/domain/official-source-documents-card";
 import { OfficialProfileHero } from "@/components/domain/official-profile-hero";
 import { PollCard } from "@/components/domain/poll-card";
 import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
@@ -13,11 +21,21 @@ import { ProfileSentimentTracker } from "@/components/domain/profile-sentiment-t
 import { OfficialRecentPosts } from "@/components/domain/official-recent-posts";
 import { PollingComparisonCard } from "@/components/domain/polling-comparison-card";
 import { ProfileInterviewsSection } from "@/components/domain/profile-interviews-section";
+import { SourceExplorer, type SourceExplorerItem } from "@/components/domain/source-explorer";
 import { SummaryBriefPanel } from "@/components/domain/summary-brief-panel";
 import { canUserVote } from "@/lib/auth/guards";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { isGuestUserId } from "@/lib/auth/session";
 import { getContextualPostPreviews } from "@/lib/feed/posts";
+import { getCampaignFinanceSourceCard, type CampaignFinanceSourceCardData } from "@/lib/civic-data/profile-source-cards";
+import { getApprovedOfficialGovernmentEnrichment, type ApprovedOfficialGovernmentEnrichment } from "@/lib/incumbents/official-bio-enrichment";
+import { getOfficialIssuePositions } from "@/lib/issue-positions/store";
+import { getProfileNewsMentionCard, type ProfileNewsMentionCardData } from "@/lib/news-mentions/store";
+import { createEmptyCampaignFinanceDashboard } from "@/lib/nv-sos/finance-dashboard";
+import { getOfficialSourceDocumentsForProfile, type OfficialSourceDocumentsCardData } from "@/lib/nv-sos/public";
+import { getOfficialMeetingActionsForProfile } from "@/lib/public-meetings/official-action-store";
+import { getOfficialMeetingRecordSummary } from "@/lib/public-meetings/public";
+import type { OfficialMeetingRecordSummary } from "@/lib/public-meetings/types";
 import { getCurrentFeedViewer, getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
 import { getOfficialActionCountByOfficialProfileId, getOfficialActionsByOfficialProfileId } from "@/lib/officials/action-store";
 import { getOfficialPromises } from "@/lib/officials/promises";
@@ -40,7 +58,8 @@ import { getClaimActionStateForViewer, getClaimMatchForProfile, getOnboardingDra
 import { getPollsByCreator } from "@/lib/polls/store";
 import { getLightweightFollowState } from "@/lib/social/follows";
 import { getProfileSentimentSummary } from "@/lib/votes/profile-sentiment";
-import type { OfficialProfileDetail, PostSummary, ProfileSignalsSummary, PublicProfileInterviewsSummary, UserRole } from "@/types/domain";
+import { NewsMentionTargetType } from "@prisma/client";
+import type { OfficialProfileDetail, PostSummary, ProfileSignalsSummary, PublicIssuePositionSummary, PublicProfileInterviewsSummary, UserRole } from "@/types/domain";
 
 type OfficialDetailPageProps = {
   params: Promise<{
@@ -58,12 +77,9 @@ type OfficialDetailPageProps = {
 };
 
 function withSectionTimeout<T>(promise: Promise<T>, label: string, timeoutMs = 1800): Promise<T> {
-  return Promise.race([
-    promise,
-    new Promise<T>((_, reject) => {
-      setTimeout(() => reject(new Error(`${label} timed out`)), timeoutMs);
-    }),
-  ]);
+  void label;
+  void timeoutMs;
+  return promise;
 }
 
 async function getOfficialSummaryById(officialId: string) {
@@ -166,6 +182,238 @@ function ProfileSectionFallback({ title, description }: { title: string; descrip
   );
 }
 
+function ImportedOfficialPublicModules({
+  official,
+  issuePositions,
+  newsMentionCard,
+  showNewsDiagnostics,
+  campaignFinanceCard,
+  officialGovernmentEnrichment,
+  officialSourceDocuments,
+  officialMeetingRecordSummary,
+}: {
+  official: OfficialProfileDetail;
+  issuePositions: PublicIssuePositionSummary[];
+  newsMentionCard: ProfileNewsMentionCardData;
+  showNewsDiagnostics: boolean;
+  campaignFinanceCard: CampaignFinanceSourceCardData;
+  officialGovernmentEnrichment: ApprovedOfficialGovernmentEnrichment | null;
+  officialSourceDocuments: OfficialSourceDocumentsCardData;
+  officialMeetingRecordSummary: OfficialMeetingRecordSummary;
+}) {
+  const contactHref = official.email ? `mailto:${official.email}` : official.phone ? `tel:${official.phone.replace(/[^+\d]/g, "")}` : null;
+  const possibleSourceExplorerItems = [
+    official.sourceUrl
+      ? {
+          id: `${official.id}-official-source`,
+          sourceName: official.sourceLabel ?? "Imported Nevada official source",
+          sourceType: "official_record",
+          sourceUrl: official.sourceUrl,
+          lastImportedAt: null,
+          fieldsDerived: ["name", "office / role", "jurisdiction", "district", "public contact"],
+          reviewStatus: "imported",
+          confidenceScore: 0.9,
+          notes: "Core official fields imported from stored civic source data.",
+        }
+      : null,
+    official.websiteUrl
+      ? {
+          id: `${official.id}-website-source`,
+          sourceName: "Official website",
+          sourceType: "official_website",
+          sourceUrl: official.websiteUrl,
+          lastImportedAt: null,
+          fieldsDerived: ["website"],
+          reviewStatus: "imported",
+          confidenceScore: 0.7,
+          notes: "Stored website URL only. Profile enrichment is still pending review.",
+        }
+      : null,
+    ...issuePositions
+      .filter((position) => position.sourceUrl || position.evidenceUrl)
+      .slice(0, 6)
+      .map((position) => ({
+        id: `${position.id}-issue-source`,
+        sourceName: position.sourceName ?? position.evidenceSourceName ?? "Issue position evidence",
+        sourceType: "issue_position_evidence",
+        sourceUrl: position.sourceUrl ?? position.evidenceUrl,
+        lastImportedAt: position.lastObservedAt,
+        fieldsDerived: ["issue position", position.issueText],
+        reviewStatus: position.reviewStatus,
+        confidenceScore: position.confidenceScore,
+        notes: position.summary ?? position.evidenceTitle ?? "Sourced issue position evidence.",
+      })),
+    newsMentionCard.providerUsed || newsMentionCard.lastImportRun
+      ? {
+          id: `${official.id}-news-provider`,
+          sourceName: newsMentionCard.providerUsed ?? "News ingestion provider",
+          sourceType: "news_mentions",
+          sourceUrl: null,
+          lastImportedAt: newsMentionCard.lastImportRun?.startedAt ?? null,
+          fieldsDerived: ["news mentions"],
+          reviewStatus: newsMentionCard.verifiedCount ? "verified" : newsMentionCard.approvedCount ? "approved" : newsMentionCard.pendingCount ? "pending_review" : "imported",
+          confidenceScore: null,
+          notes: `${newsMentionCard.totalCount} stored mention${newsMentionCard.totalCount === 1 ? "" : "s"} linked to this profile.`,
+        }
+      : null,
+    campaignFinanceCard.sourceUrl
+      ? {
+          id: `${official.id}-campaign-finance-source`,
+          sourceName: campaignFinanceCard.sourceName ?? "Campaign finance source",
+          sourceType: "campaign_finance",
+          sourceUrl: campaignFinanceCard.sourceUrl,
+          lastImportedAt: campaignFinanceCard.lastCheckedAt,
+          fieldsDerived: ["campaign finance source link", campaignFinanceCard.filingSummaries.length ? "filing metadata" : null].filter((field): field is string => Boolean(field)),
+          reviewStatus: campaignFinanceCard.reviewStatus ?? "pending_review",
+          confidenceScore: null,
+          notes: `${campaignFinanceCard.filingCount} parsed filing${campaignFinanceCard.filingCount === 1 ? "" : "s"} stored. ${campaignFinanceCard.donorExtractionStatus}`,
+        }
+      : null,
+    officialGovernmentEnrichment?.headshotUrl
+      ? {
+          id: `${official.id}-profile-image-source`,
+          sourceName: officialGovernmentEnrichment.sourceName ?? "Official government source",
+          sourceType: "profile_image",
+          sourceUrl: officialGovernmentEnrichment.sourceUrl,
+          lastImportedAt: officialGovernmentEnrichment.lastEnrichedAt,
+          fieldsDerived: ["official headshot"],
+          reviewStatus: officialGovernmentEnrichment.reviewStatus,
+          confidenceScore: null,
+          notes: "Profile image source is stored and reviewed before public display.",
+        }
+      : null,
+  ];
+  const sourceExplorerItems = possibleSourceExplorerItems.filter(Boolean) as SourceExplorerItem[];
+
+  return (
+    <>
+      <section className="grid gap-4 lg:grid-cols-2">
+        <div className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Public sentiment</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Sentiment preview</h2>
+            </div>
+            <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-300">Coming soon</span>
+          </div>
+          <div className="mt-5 flex h-28 items-end gap-2" aria-hidden="true">
+            {[34, 48, 40, 56, 44, 52].map((height, index) => (
+              <span key={`official-profile-sentiment-${index}`} className="flex-1 rounded-t-xl bg-cyan-300/25" style={{ height: `${height}%` }} />
+            ))}
+          </div>
+          <p className="mt-4 text-sm leading-6 text-slate-400">Public sentiment data not collected yet.</p>
+        </div>
+
+        <div className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Community questions</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Meeting questions</h2>
+          <div className="mt-5 rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
+            {officialMeetingRecordSummary.matched_question_count
+              ? `${officialMeetingRecordSummary.matched_question_count} source-backed local question${officialMeetingRecordSummary.matched_question_count === 1 ? "" : "s"} linked to parsed meeting records.`
+              : "Official-specific community questions will appear after a verified real-data question is linked to this profile."}
+          </div>
+        </div>
+      </section>
+
+      <IssuePositionsSection
+        positions={issuePositions}
+        emptyTitle="Issue positions pending"
+        emptyDescription="No approved, sourced official issue positions are available for this imported record yet."
+        correctionHref={`/claim-profile/${official.id}`}
+      />
+
+      <NewsMentionsSection cardData={newsMentionCard} showAdminDiagnostics={showNewsDiagnostics} />
+
+      <CampaignFinanceSourceCard data={campaignFinanceCard} />
+
+      <OfficialSourceDocumentsCard data={officialSourceDocuments} />
+
+      <OfficialGovernmentSourceCard enrichment={officialGovernmentEnrichment} emptyTitle="Official government source pending review" />
+
+      <SourceExplorer items={sourceExplorerItems} emptyText="Official source records are pending review." />
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Take action</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Ways to use this profile</h2>
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-sm font-semibold text-slate-100">Follow official</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">Following opens after this imported record is linked to a claimed profile.</p>
+          </div>
+          {contactHref ? (
+            <Link href={contactHref} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+              <p className="text-sm font-semibold text-slate-100">Contact office</p>
+              <p className="mt-2 text-xs leading-5 text-slate-400">Uses stored public contact information.</p>
+            </Link>
+          ) : (
+            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-sm font-semibold text-slate-100">Contact office</p>
+              <p className="mt-2 text-xs leading-5 text-slate-400">Public contact pending.</p>
+            </div>
+          )}
+          <Link href="/elections" className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+            <p className="text-sm font-semibold text-slate-100">View related election</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">Open Nevada election context.</p>
+          </Link>
+          <Link href={`/officials?communityId=nevada&q=${encodeURIComponent(official.officeTitle)}`} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+            <p className="text-sm font-semibold text-slate-100">Compare officials</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">Review related office records.</p>
+          </Link>
+          <Link href={`/claim-profile/${official.id}`} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+            <p className="text-sm font-semibold text-slate-100">Submit correction / claim</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">Start the profile claim and review path.</p>
+          </Link>
+          <Link href={`/who-represents-me?community=${encodeURIComponent(official.jurisdictionName)}`} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+            <p className="text-sm font-semibold text-slate-100">Check my districts</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">See whether this office matches your stored district assignments.</p>
+          </Link>
+        </div>
+        <div className="mt-5">
+          <FavoriteToggleControl
+            targetType="official"
+            targetId={official.id}
+            visibleLabel="Save"
+            className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
+          />
+        </div>
+      </section>
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Bio / enrichment</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Bio source not found yet</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-400">
+          Official record imported. This page renders stored official data only while source-backed biography enrichment is reviewed.
+        </p>
+        <Link href={`/claim-profile/${official.id}`} className="mt-4 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2.5 text-sm font-semibold text-cyan-100">
+          Submit correction / source
+        </Link>
+      </section>
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Source attribution</h2>
+        <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Nevada official source</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">{official.sourceLabel ?? "Imported Nevada beta data"}</p>
+          </div>
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Official site</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">{official.websiteUrl ? "Stored website available" : "Website pending"}</p>
+          </div>
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Verification</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">{official.sourceUrl ? "Source-attributed imported record" : "Source attribution pending"}</p>
+          </div>
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Data completeness</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">{official.districtName ? "Core office fields present" : "District pending or not applicable"}</p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 async function OfficialProfileBody({
   officialId,
   fallbackOfficial,
@@ -192,7 +440,18 @@ async function OfficialProfileBody({
     console.error(`[official-detail] comparison user fallback for ${officialId}`, error);
     return fallbackViewer;
   });
-  const [actionCount, promises, recentPosts] = await Promise.all([
+  const showNewsDiagnostics = process.env.NODE_ENV !== "production" || sessionUser?.role === "admin";
+  const [
+    actionCount,
+    promises,
+    recentPosts,
+    issuePositions,
+    newsMentionCard,
+    campaignFinanceCard,
+    officialGovernmentEnrichment,
+    officialSourceDocuments,
+    officialMeetingRecordSummary,
+  ] = await Promise.all([
     withSectionTimeout(getOfficialActionCountByOfficialProfileId(officialId), "official action count", 900).catch((error) => {
       console.error(`[official-detail] action count fallback for ${officialId}`, error);
       return fallbackOfficial.officialActions.length;
@@ -204,6 +463,80 @@ async function OfficialProfileBody({
     withSectionTimeout(getOfficialRecentPostsById(officialId), "official recent posts preview", 900).catch((error) => {
       console.error(`[official-detail] recent posts preview fallback for ${officialId}`, error);
       return [];
+    }),
+    withSectionTimeout(getOfficialIssuePositions(officialId), "official issue positions", 900).catch((error) => {
+      console.error(`[official-detail] issue positions fallback for ${officialId}`, error);
+      return [];
+    }),
+    withSectionTimeout(
+      getProfileNewsMentionCard(NewsMentionTargetType.OFFICIAL, officialId, { includePending: showNewsDiagnostics }),
+      "official news mentions",
+      900,
+    ).catch((error) => {
+      console.error(`[official-detail] news mentions fallback for ${officialId}`, error);
+      return {
+        mentions: [],
+        totalCount: 0,
+        approvedCount: 0,
+        verifiedCount: 0,
+        pendingCount: 0,
+        providerUsed: null,
+        lastImportRun: null,
+      };
+    }),
+    withSectionTimeout(getCampaignFinanceSourceCard("official", officialId), "official campaign finance source", 900).catch((error) => {
+      console.error(`[official-detail] campaign finance source fallback for ${officialId}`, error);
+      return {
+        sourceName: null,
+        sourceUrl: null,
+        filingStatus: null,
+        reviewStatus: null,
+        lastCheckedAt: null,
+        filingCount: 0,
+        filingSummaries: [],
+        sourceLinks: [],
+        financeSourceCount: 0,
+        financeFilingCount: 0,
+        financeDocumentCount: 0,
+        pendingCount: 0,
+        approvedCount: 0,
+        fundingBreakdown: null,
+        campaignReportedSummary: null,
+        donorExtractionStatus: "Classification incomplete; source-backed filing summaries remain available.",
+      };
+    }),
+    withSectionTimeout(getApprovedOfficialGovernmentEnrichment("OFFICIAL", officialId), "official government enrichment", 900).catch((error) => {
+      console.error(`[official-detail] official government enrichment fallback for ${officialId}`, error);
+      return null;
+    }),
+    withSectionTimeout(getOfficialSourceDocumentsForProfile(safeOfficial.name, safeOfficial.officeTitle), "official source documents", 900).catch((error) => {
+      console.error(`[official-detail] official source documents fallback for ${officialId}`, error);
+      const campaignFinanceDashboard = createEmptyCampaignFinanceDashboard();
+      return {
+        documents: [],
+        candidateRecords: [],
+        campaignFinanceRecords: [],
+        campaignFinanceSummary: campaignFinanceDashboard.summary,
+        campaignFinanceDashboard,
+        lastFetchedAt: null,
+        blockedCount: 0,
+        blockedImportUrlCount: 0,
+        unmatchedImportRecordCount: 0,
+        sourceLinks: [],
+      };
+    }),
+    withSectionTimeout(getOfficialMeetingRecordSummary(safeOfficial.name, safeOfficial.jurisdictionName), "official meeting record", 900).catch((error) => {
+      console.error(`[official-detail] official meeting record fallback for ${officialId}`, error);
+      return {
+        official_name: safeOfficial.name,
+        matched_vote_count: 0,
+        matched_question_count: 0,
+        by_policy_area: [],
+        recent_notable_votes: [],
+        source_backed_timeline: [],
+        citizen_alignment_percent: null,
+        last_updated_at: null,
+      };
     }),
   ]);
 
@@ -318,6 +651,18 @@ async function OfficialProfileBody({
         publicActionCount={actionCount}
         externalLinks={externalLinks}
       />
+      {hydratedOfficial.sourceLabel ? (
+        <ImportedOfficialPublicModules
+          official={hydratedOfficial}
+          issuePositions={issuePositions}
+          newsMentionCard={newsMentionCard}
+          showNewsDiagnostics={showNewsDiagnostics}
+          campaignFinanceCard={campaignFinanceCard}
+          officialGovernmentEnrichment={officialGovernmentEnrichment}
+          officialSourceDocuments={officialSourceDocuments}
+          officialMeetingRecordSummary={officialMeetingRecordSummary}
+        />
+      ) : null}
       <SummaryBriefPanel
         eyebrow="Official Brief"
         title={`What to watch on ${hydratedOfficial.name}'s page`}
@@ -335,6 +680,7 @@ async function OfficialProfileBody({
           ...(promises.length ? [{ label: "Review promises", href: "#official-promises" }] : []),
         ]}
       />
+      <OfficialMeetingRecordCard summary={officialMeetingRecordSummary} />
       {sentimentSummary ? (
         <ProfileSentimentTracker
           title={`Weekly public vote on ${hydratedOfficial.name}`}
@@ -342,7 +688,18 @@ async function OfficialProfileBody({
           returnPath={`/officials/${hydratedOfficial.id}`}
           canVote={canUserVote(comparisonUser)}
         />
+      ) : hydratedOfficial.sourceLabel ? null : (
+        <ProfileSectionFallback title="Public sentiment" description="No sentiment history yet." />
+      )}
+      {!hydratedOfficial.sourceLabel ? (
+        <IssuePositionsSection
+          positions={issuePositions}
+          emptyTitle="Issue positions pending"
+          emptyDescription="No approved, sourced official issue positions are available for this profile yet."
+          correctionHref={`/claim-profile/${hydratedOfficial.id}`}
+        />
       ) : null}
+      {!hydratedOfficial.sourceLabel ? <NewsMentionsSection cardData={newsMentionCard} showAdminDiagnostics={showNewsDiagnostics} /> : null}
       <PoliticalAdsSection
         title="Political ads about this official"
         description="Track officeholder committee ads, issue ads mentioning this official, opposition messages, and outside group spending."
@@ -360,6 +717,9 @@ async function OfficialProfileBody({
           officialParty={hydratedOfficial.party}
           officialJurisdictionName={hydratedOfficial.jurisdictionName}
         />
+      </Suspense>
+      <Suspense fallback={<ProfileSectionFallback title="Actions taken" description="Loading source-backed meeting actions..." />}>
+        <OfficialMeetingActionsTakenSection officialId={hydratedOfficial.id} officialName={hydratedOfficial.name} />
       </Suspense>
       <Suspense fallback={<ProfileSectionFallback title="Draft legislation" description="Loading sponsored legislation..." />}>
         <OfficialDraftLegislationSection officialId={hydratedOfficial.id} />
@@ -701,6 +1061,71 @@ async function OfficialDraftLegislationSection({ officialId }: { officialId: str
       <div className="grid gap-4">
         {sponsoredLegislation.map((legislation) => (
           <DraftLegislationCard key={legislation.id} legislation={legislation} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+async function OfficialMeetingActionsTakenSection({ officialId, officialName }: { officialId: string; officialName: string }) {
+  const actions = await withSectionTimeout(getOfficialMeetingActionsForProfile(officialId, officialName), "official meeting actions", 1600).catch((error) => {
+    console.error(`[official-detail] meeting actions fallback for ${officialId}`, error);
+    return [];
+  });
+
+  if (!actions.length) {
+    return <ProfileSectionFallback title="Actions taken" description="No approved source-backed meeting actions are attached to this official yet." />;
+  }
+
+  const actionTypeCounts = [...new Set(actions.map((action) => action.action_type))].map((type) => ({
+    type,
+    count: actions.filter((action) => action.action_type === type).length,
+  }));
+
+  return (
+    <section className="dd-panel-muted rounded-[1.8rem] p-5 sm:p-6">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200">Source-backed meeting record</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Actions Taken</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
+            These actions come from imported public meeting records and are shown only when the official name and action are explicit enough for public display.
+          </p>
+        </div>
+        <Link href={`/admin/official-actions?status=approved`} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-cyan-100">
+          Review source records
+        </Link>
+      </div>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {actionTypeCounts.map((entry) => (
+          <div key={entry.type} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">{entry.type.replace(/_/g, " ")}</p>
+            <p className="mt-2 text-2xl font-semibold text-slate-50">{entry.count}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 space-y-3">
+        {actions.slice(0, 8).map((action) => (
+          <article key={action.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-semibold text-cyan-100">Source-backed</span>
+              {action.needs_review ? <span className="rounded-full border border-amber-300/20 bg-amber-300/10 px-2.5 py-1 text-[11px] font-semibold text-amber-100">Needs review</span> : null}
+              <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] font-semibold text-slate-300">{action.action_type.replace(/_/g, " ")}</span>
+              <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] font-semibold text-slate-300">{Math.round(action.confidence * 100)}%</span>
+            </div>
+            <h3 className="mt-3 text-base font-semibold text-slate-50">{action.item?.title ?? action.action_text}</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-400">{action.action_text}</p>
+            <p className="mt-2 text-xs text-slate-500">
+              {action.body?.name ?? action.jurisdiction_body} · {action.meeting?.meeting_date ? new Date(action.meeting.meeting_date).toLocaleDateString("en") : "Date pending"}
+            </p>
+            {action.source_url ? (
+              <Link href={action.source_url} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-sm font-semibold text-cyan-100">
+                Source
+              </Link>
+            ) : null}
+          </article>
         ))}
       </div>
     </section>

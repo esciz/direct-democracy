@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
+import type { ReactNode } from "react";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { submitQuickVoteInline } from "@/lib/feed/vote-actions";
+import { extractTaxCostContext, stripTaxCostContext } from "@/lib/public-meetings/financial-impact";
 import { getResultComparisonText, getVoteObjectLabel, getVoteParticipationPrompt, getVoteResponseLabels } from "@/lib/votes/presentation";
 import type { VoteQuestionCardSummary } from "@/types/domain";
 
@@ -68,6 +70,274 @@ function getVoteAvatarType(question: VoteQuestionCardSummary) {
   return "issue";
 }
 
+function pendingText(text = "Plain-English summary pending review.") {
+  return <span className="text-slate-500">{text}</span>;
+}
+
+function ContextItem({
+  label,
+  children,
+  tone = "default",
+}: {
+  label: string;
+  children?: ReactNode;
+  tone?: "default" | "yes" | "no" | "financial" | "neutral";
+}) {
+  const toneClasses =
+    tone === "yes"
+      ? "border-emerald-300/16 bg-emerald-500/10 text-emerald-100"
+      : tone === "no"
+        ? "border-rose-300/16 bg-rose-500/10 text-rose-100"
+        : tone === "financial"
+          ? "border-amber-300/18 bg-amber-500/10 text-amber-50"
+          : tone === "neutral"
+            ? "border-cyan-300/16 bg-cyan-500/10 text-cyan-50"
+            : "border-white/10 bg-white/[0.04] text-slate-300";
+  const labelClasses =
+    tone === "yes"
+      ? "text-emerald-200"
+      : tone === "no"
+        ? "text-rose-200"
+        : tone === "financial"
+          ? "text-amber-200"
+          : tone === "neutral"
+            ? "text-cyan-200"
+            : "text-slate-500";
+
+  return (
+    <div className={`rounded-3xl border px-4 py-4 ${toneClasses}`}>
+      <p className={`text-xs font-semibold uppercase tracking-[0.16em] ${labelClasses}`}>{label}</p>
+      <div className="mt-2 text-sm leading-6">{children ?? pendingText()}</div>
+    </div>
+  );
+}
+
+function TextList({ items, fallback }: { items?: string[]; fallback: string }) {
+  const cleanItems = items?.filter(Boolean) ?? [];
+
+  if (!cleanItems.length) {
+    return pendingText(fallback);
+  }
+
+  return (
+    <ul className="space-y-2">
+      {cleanItems.map((item) => (
+        <li key={item} className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-60" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function SourceLinks({ question }: { question: VoteQuestionCardSummary }) {
+  const sourceLinks = question.sourceLinks?.length
+    ? question.sourceLinks
+    : question.sourceUrl
+      ? [{ label: question.sourceName ?? "Imported public civic data", url: question.sourceUrl }]
+      : [];
+
+  if (!sourceLinks.length) {
+    return pendingText("Source URL pending review.");
+  }
+
+  return (
+    <div className="space-y-3">
+      <div className="flex flex-wrap gap-2">
+        {sourceLinks.map((source) => (
+          <a
+            key={`${source.label}-${source.url}`}
+            href={source.url}
+            className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1.5 text-xs font-semibold text-cyan-100 hover:text-cyan-50"
+            rel="noreferrer"
+            target="_blank"
+          >
+            {source.label}
+          </a>
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-2 text-xs text-slate-400">
+        {question.sourceLastUpdated ? <span>Updated {new Date(question.sourceLastUpdated).toLocaleDateString()}</span> : null}
+        {typeof question.confidenceScore === "number" ? <span>Confidence {(question.confidenceScore * 100).toFixed(0)}%</span> : null}
+      </div>
+    </div>
+  );
+}
+
+function getContextKind(question: VoteQuestionCardSummary) {
+  if (question.questionType === "BALLOT_MEASURE_DECISION") return "ballotMeasure";
+  if (question.questionType === "LEGISLATION_DECISION") return "legislation";
+  if (question.questionType === "CANDIDATE_PERFORMANCE" || question.questionType === "ELECTED_OFFICIAL_PERFORMANCE") return "person";
+  if (question.questionType === "COMMUNITY_PRIORITY_POLL") return "priority";
+  if (question.voteType === "ballotMeasure") return "ballotMeasure";
+  if (question.voteType === "legislation") return "legislation";
+  if (question.objectType === "representative" && question.voteType !== "publicVote") return "person";
+  return "issue";
+}
+
+function formatAnswerMeaning(label: string, fallback?: string | null) {
+  return fallback ?? pendingText(`${label} effect summary pending review.`);
+}
+
+function ContextDetails({
+  question,
+  responseLabels,
+}: {
+  question: VoteQuestionCardSummary;
+  responseLabels: ReturnType<typeof getVoteResponseLabels>;
+}) {
+  const contextKind = getContextKind(question);
+  const affectedGroups = question.affectedGroups?.length ? question.affectedGroups.join(", ") : question.whoIsAffected;
+  const taxCostImpact = extractTaxCostContext(question.contextSummary) ?? question.fiscalImpactSummary;
+  const plainContextSummary = stripTaxCostContext(question.contextSummary);
+
+  if (contextKind === "person") {
+    return (
+      <>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <ContextItem label="Current office / race">{question.officialBody ?? question.shortTitle ?? pendingText("Office or race not found in source data yet.")}</ContextItem>
+          <ContextItem label="Jurisdiction">{question.jurisdictionName}</ContextItem>
+          <ContextItem label="Plain English bio">
+            {question.contextSummary ?? question.plainLanguageSummary ?? question.subjectName ?? pendingText("Source-backed bio not found yet.")}
+          </ContextItem>
+          <ContextItem label="Key responsibilities">
+            {question.officialBody
+              ? `${question.officialBody} responsibilities affect ${question.jurisdictionName} residents through public decisions, budgets, services, and oversight.`
+              : pendingText("Office responsibilities pending source review.")}
+          </ContextItem>
+          <ContextItem label="Voting record / public actions">
+            {question.officialPositionSummary ?? question.officialVoteSummary ?? pendingText("No source-backed voting record or public action summary found yet.")}
+          </ContextItem>
+          <ContextItem label="Campaign finance / donor context">
+            {pendingText("No source-backed campaign finance summary is attached to this vote question yet.")}
+          </ContextItem>
+          <ContextItem label="News, accomplishments, and criticism">
+            {pendingText("No cited news sentiment, public controversy, or accomplishment summary is attached yet.")}
+          </ContextItem>
+          <ContextItem label="Neutral performance summary" tone="neutral">
+            {question.neutralDecisionSummary ??
+              "Use this vote to record your current performance signal. The card shows only source-backed context when available and does not rely on unexplained raw sentiment scores."}
+          </ContextItem>
+        </div>
+      </>
+    );
+  }
+
+  if (contextKind === "priority") {
+    return (
+      <>
+        <ContextItem label="Plain English summary">{question.contextSummary ?? question.plainLanguageSummary ?? pendingText()}</ContextItem>
+        <ContextItem label="Priority choices" tone="neutral">
+          <TextList items={question.priorityOptions ?? [responseLabels.yes, responseLabels.no, responseLabels.skip]} fallback="Priority options pending review." />
+        </ContextItem>
+        <ContextItem label="How to use this question">
+          This is a priority poll, not a support-or-oppose vote. Pick the issue area that best reflects what you want officials, candidates, media, and community groups to pay attention to.
+        </ContextItem>
+      </>
+    );
+  }
+
+  if (contextKind === "ballotMeasure") {
+    return (
+      <>
+        <ContextItem label="Plain English summary">{question.plainLanguageSummary ?? question.contextSummary ?? pendingText()}</ContextItem>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <ContextItem label="What voting YES would do" tone="yes">
+            {formatAnswerMeaning("YES", question.yesEffectSummary ?? question.whatYesMeans)}
+          </ContextItem>
+          <ContextItem label="What voting NO would do" tone="no">
+            {formatAnswerMeaning("NO", question.noEffectSummary ?? question.whatNoMeans)}
+          </ContextItem>
+        </div>
+        <ContextItem label="Nonpartisan financial impact" tone="financial">
+          {question.fiscalImpactSummary ?? "No official fiscal note found yet."}
+        </ContextItem>
+        <ContextItem label="Who / what is affected">{affectedGroups ?? pendingText("Affected entities pending source review.")}</ContextItem>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <ContextItem label="Arguments from supporters" tone="yes">
+            <TextList items={question.supporterArguments} fallback="No source-backed supporter arguments are attached yet." />
+          </ContextItem>
+          <ContextItem label="Arguments from opponents" tone="no">
+            <TextList items={question.opponentArguments} fallback="No source-backed opponent arguments are attached yet." />
+          </ContextItem>
+        </div>
+        <ContextItem label="Historical context">{question.historicalContext ?? pendingText("Historical context pending source review.")}</ContextItem>
+        <ContextItem label="Neutral decision summary" tone="neutral">
+          {question.neutralDecisionSummary ??
+            "Compare what changes under YES with what remains under NO, then weigh fiscal uncertainty, governance tradeoffs, and source-backed arguments."}
+        </ContextItem>
+      </>
+    );
+  }
+
+  if (contextKind === "legislation") {
+    return (
+      <>
+        <ContextItem label="Plain English summary">{question.contextSummary ?? question.plainLanguageSummary ?? pendingText("Bill summary pending source review.")}</ContextItem>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <ContextItem label="Sponsor">{question.introducedBy ?? pendingText("Sponsor not found in source data yet.")}</ContextItem>
+          <ContextItem label="Chamber / body">{question.officialBody ?? pendingText("Legislative body pending source review.")}</ContextItem>
+          <ContextItem label="Voting record / public action">
+            {question.officialVoteSummary ?? pendingText("Official vote summary not found in source data yet.")}
+          </ContextItem>
+          <ContextItem label="Who / what is affected">{affectedGroups ?? pendingText("Affected groups pending source review.")}</ContextItem>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <ContextItem label={`${responseLabels.yes} means`} tone="yes">
+            {question.yesEffectSummary ?? `A ${responseLabels.yes.toLowerCase()} answer records your platform sentiment in favor of this bill or legislative vote.`}
+          </ContextItem>
+          <ContextItem label={`${responseLabels.no} means`} tone="no">
+            {question.noEffectSummary ?? `A ${responseLabels.no.toLowerCase()} answer records your platform sentiment against this bill or legislative vote.`}
+          </ContextItem>
+        </div>
+        {question.fiscalImpactSummary ? (
+          <ContextItem label="Nonpartisan financial impact" tone="financial">
+            {question.fiscalImpactSummary}
+          </ContextItem>
+        ) : null}
+        <ContextItem label="Neutral decision summary" tone="neutral">
+          {question.neutralDecisionSummary ?? "Review what the bill does, who sponsored it, the vote record if available, affected groups, and source links before recording your signal."}
+        </ContextItem>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <ContextItem label="Plain English summary">{plainContextSummary ?? question.plainLanguageSummary ?? pendingText()}</ContextItem>
+      {taxCostImpact ? (
+        <ContextItem label="Tax / cost impact" tone="financial">
+          {taxCostImpact}
+        </ContextItem>
+      ) : null}
+      <ContextItem label="Why it matters locally">{question.whyItMatters ?? pendingText("Local impact summary pending review.")}</ContextItem>
+      <ContextItem label="Related officials / candidates / elections">
+        {[question.subjectName, question.relatedIssueLabel, affectedGroups].filter(Boolean).join(" · ") || pendingText("Related civic records pending review.")}
+      </ContextItem>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <ContextItem label={`${responseLabels.yes} means`} tone="yes">
+          {formatAnswerMeaning(responseLabels.yes, question.yesEffectSummary ?? question.whatYesMeans)}
+        </ContextItem>
+        <ContextItem label={`${responseLabels.no} means`} tone="no">
+          {formatAnswerMeaning(responseLabels.no, question.noEffectSummary ?? question.whatNoMeans)}
+        </ContextItem>
+      </div>
+    </>
+  );
+}
+
+function getOptionSubLabels(question: VoteQuestionCardSummary) {
+  if (question.questionType === "BALLOT_MEASURE_DECISION") return { yes: "yes", no: "no", skip: "undecided" };
+  if (question.questionType === "LEGISLATION_DECISION") return { yes: "support", no: "oppose", skip: "undecided" };
+  if (question.questionType === "CANDIDATE_PERFORMANCE" || question.questionType === "ELECTED_OFFICIAL_PERFORMANCE") {
+    return { yes: "approve", no: "disapprove", skip: "unsure" };
+  }
+  if (question.questionType === "COMMUNITY_PRIORITY_POLL") return { yes: "priority", no: "priority", skip: "another" };
+
+  return { yes: "support", no: "oppose", skip: "neutral" };
+}
+
 export function VoteCard({
   question,
   compact = false,
@@ -84,10 +354,10 @@ export function VoteCard({
   const [isEditingVote, setIsEditingVote] = useState(false);
   const [isPending, startTransition] = useTransition();
   const responseLabels = getVoteResponseLabels(currentQuestion);
+  const optionSubLabels = getOptionSubLabels(currentQuestion);
   const comparisonText = getResultComparisonText(currentQuestion);
   const contextPreview =
-    currentQuestion.whyItMatters ??
-    currentQuestion.whoIsAffected ??
+    currentQuestion.contextSummary ??
     currentQuestion.plainLanguageSummary ??
     currentQuestion.officialPositionSummary ??
     currentQuestion.officialVoteSummary ??
@@ -158,6 +428,11 @@ export function VoteCard({
             {currentQuestion.relatedIssueLabel}
           </span>
         ) : null}
+        {currentQuestion.realDataBadge ? (
+          <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-100">
+            Real data
+          </span>
+        ) : null}
       </div>
 
       {currentQuestion.subjectName ? (
@@ -181,6 +456,34 @@ export function VoteCard({
         {currentQuestion.questionText}
       </h2>
       <p className="relative mt-3 text-sm font-medium text-emerald-200">{getVoteParticipationPrompt(currentQuestion)}</p>
+      {(currentQuestion.sourceName || currentQuestion.sourceUrl) ? (
+        <div className="relative mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+          <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
+            Source: {currentQuestion.sourceName ?? "Imported public civic data"}
+          </span>
+          {currentQuestion.sourceLastUpdated ? (
+            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
+              Updated {new Date(currentQuestion.sourceLastUpdated).toLocaleDateString()}
+            </span>
+          ) : null}
+          <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">{currentQuestion.jurisdictionName}</span>
+          {typeof currentQuestion.confidenceScore === "number" ? (
+            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
+              Confidence {(currentQuestion.confidenceScore * 100).toFixed(0)}%
+            </span>
+          ) : null}
+          {currentQuestion.sourceUrl ? (
+            <a
+              href={currentQuestion.sourceUrl}
+              className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-cyan-100 hover:text-cyan-50"
+              rel="noreferrer"
+              target="_blank"
+            >
+              View source
+            </a>
+          ) : null}
+        </div>
+      ) : null}
       {contextPreview ? (
         <div className="relative mt-4 rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Why this matters</p>
@@ -266,7 +569,7 @@ export function VoteCard({
             >
               <span className="flex items-center justify-between gap-3">
                 <span>{responseLabels.yes}</span>
-                <span className="text-xs uppercase tracking-[0.16em] text-emerald-200/80">support</span>
+                <span className="text-xs uppercase tracking-[0.16em] text-emerald-200/80">{optionSubLabels.yes}</span>
               </span>
               <span className="mt-3 h-1.5 rounded-full bg-white/10">
                 <span className="block h-1.5 w-[72%] rounded-full bg-emerald-300/70" />
@@ -284,7 +587,7 @@ export function VoteCard({
             >
               <span className="flex items-center justify-between gap-3">
                 <span>{responseLabels.no}</span>
-                <span className="text-xs uppercase tracking-[0.16em] text-rose-200/80">oppose</span>
+                <span className="text-xs uppercase tracking-[0.16em] text-rose-200/80">{optionSubLabels.no}</span>
               </span>
               <span className="mt-3 h-1.5 rounded-full bg-white/10">
                 <span className="block h-1.5 w-[48%] rounded-full bg-rose-300/70" />
@@ -302,7 +605,7 @@ export function VoteCard({
             >
               <span className="flex items-center justify-between gap-3">
                 <span>{responseLabels.skip}</span>
-                <span className="text-xs uppercase tracking-[0.16em] text-slate-400">neutral</span>
+                <span className="text-xs uppercase tracking-[0.16em] text-slate-400">{optionSubLabels.skip}</span>
               </span>
               <span className="mt-3 h-1.5 rounded-full bg-white/10">
                 <span className="block h-1.5 w-[28%] rounded-full bg-slate-300/40" />
@@ -329,81 +632,21 @@ export function VoteCard({
       )}
 
       <div className="relative mt-5 rounded-3xl border border-white/10 bg-white/[0.04]">
-          <button
-            type="button"
-            onClick={() => setShowContext((value) => !value)}
-            className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left text-sm font-semibold text-slate-200 transition hover:text-cyan-100"
-          >
-            <span>More context</span>
-            <span className="text-xs uppercase tracking-[0.16em] text-slate-500">{showContext ? "Hide" : "View details"}</span>
-          </button>
+        <button
+          type="button"
+          onClick={() => setShowContext((value) => !value)}
+          aria-expanded={showContext}
+          className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left text-sm font-semibold text-slate-200 transition hover:text-cyan-100"
+        >
+          <span>More context</span>
+          <span className="text-xs uppercase tracking-[0.16em] text-slate-500">{showContext ? "Hide" : "View details"}</span>
+        </button>
         {showContext ? (
           <div className="space-y-4 border-t border-white/10 px-4 pb-4 pt-4">
-          {currentQuestion.plainLanguageSummary ? (
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Full summary</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">{currentQuestion.plainLanguageSummary}</p>
-            </div>
-          ) : null}
-
-          {(currentQuestion.whyItMatters || currentQuestion.whoIsAffected) ? (
-            <div className="grid gap-3 sm:grid-cols-2">
-              {currentQuestion.whyItMatters ? (
-                <div className="rounded-3xl border border-white/10 bg-white/[0.04] px-4 py-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Why it matters</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{currentQuestion.whyItMatters}</p>
-                </div>
-              ) : null}
-              {currentQuestion.whoIsAffected ? (
-                <div className="rounded-3xl border border-white/10 bg-white/[0.04] px-4 py-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Who it affects</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{currentQuestion.whoIsAffected}</p>
-                </div>
-              ) : null}
-            </div>
-          ) : null}
-
-          {(currentQuestion.whatYesMeans || currentQuestion.whatNoMeans) ? (
-            <div className="grid gap-3 sm:grid-cols-2">
-              {currentQuestion.whatYesMeans ? (
-                <div className="rounded-3xl border border-emerald-300/16 bg-emerald-500/10 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">If this passes</p>
-                  <p className="mt-2 text-sm leading-6 text-emerald-100">{currentQuestion.whatYesMeans}</p>
-                </div>
-              ) : null}
-              {currentQuestion.whatNoMeans ? (
-                <div className="rounded-3xl border border-rose-300/16 bg-rose-500/10 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-200">If this fails</p>
-                  <p className="mt-2 text-sm leading-6 text-rose-100">{currentQuestion.whatNoMeans}</p>
-                </div>
-              ) : null}
-            </div>
-          ) : null}
-
-          {(currentQuestion.introducedBy || currentQuestion.officialBody || currentQuestion.officialPositionSummary || currentQuestion.officialVoteSummary) ? (
-            <div className="space-y-3">
-              <div className="flex flex-wrap gap-3 text-xs font-medium text-slate-400">
-                {currentQuestion.introducedBy ? (
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2">
-                    Introduced by {currentQuestion.introducedBy}
-                    {currentQuestion.introducedByRole ? ` · ${currentQuestion.introducedByRole}` : ""}
-                  </span>
-                ) : null}
-                {currentQuestion.officialBody ? (
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2">{currentQuestion.officialBody}</span>
-                ) : null}
-              </div>
-
-              {currentQuestion.officialPositionSummary || currentQuestion.officialVoteSummary ? (
-                <div className="rounded-3xl border border-cyan-300/16 bg-cyan-500/10 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Official context</p>
-                  <p className="mt-2 text-sm leading-6 text-cyan-100">
-                    {currentQuestion.officialPositionSummary ?? currentQuestion.officialVoteSummary}
-                  </p>
-                </div>
-              ) : null}
-            </div>
-          ) : null}
+            <ContextDetails question={currentQuestion} responseLabels={responseLabels} />
+            <ContextItem label="Source links">
+              <SourceLinks question={currentQuestion} />
+            </ContextItem>
           </div>
         ) : null}
       </div>

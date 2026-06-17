@@ -5,25 +5,42 @@ import { CandidatePromisesSection } from "@/components/domain/candidate-promises
 import { ProfileViewerAlignmentCard } from "@/components/domain/profile-viewer-alignment-card";
 import { ProfileSentimentTracker } from "@/components/domain/profile-sentiment-tracker";
 import { CandidateEndorsementsPanel } from "@/components/domain/candidate-endorsements-panel";
+import { CampaignFinanceSourceCard } from "@/components/domain/campaign-finance-source-card";
+import { CandidateRaceContextCard } from "@/components/domain/candidate-race-context-card";
 import { CandidateProfileHero } from "@/components/domain/candidate-profile-hero";
-import { FundingBreakdownCard } from "@/components/domain/funding-breakdown-card";
+import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { IssuePositionsSection } from "@/components/domain/issue-positions-section";
+import { MissingCandidateInfoCard } from "@/components/domain/missing-candidate-info-card";
+import { NewsMentionsSection } from "@/components/domain/news-mentions-section";
+import { OfficeIntelligenceCard } from "@/components/domain/office-intelligence-card";
+import { OfficialGovernmentSourceCard } from "@/components/domain/official-government-source-card";
+import { OfficialSourceDocumentsCard } from "@/components/domain/official-source-documents-card";
 import { PollCard } from "@/components/domain/poll-card";
-import { PollingComparisonCard } from "@/components/domain/polling-comparison-card";
 import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
 import { PostCard } from "@/components/domain/post-card";
 import { ProfileInterviewsSection } from "@/components/domain/profile-interviews-section";
+import { SourceExplorer, type SourceExplorerItem } from "@/components/domain/source-explorer";
 import { SummaryBriefPanel } from "@/components/domain/summary-brief-panel";
 import { canUserVote } from "@/lib/auth/guards";
+import { addCandidateKnowledgeSourceAction } from "@/lib/enrichment/actions";
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import { isGuestUserId } from "@/lib/auth/session";
 import { formatDateUtc } from "@/lib/dates";
 import { getCurrentFeedViewer, getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
 import { attachEndorsementsToCampaigns } from "@/lib/candidates/endorsements";
+import { getOfficeIntelligence } from "@/lib/candidates/office-intelligence";
+import { getCandidateRaceContext, type CandidateRaceContext } from "@/lib/candidates/race-context";
 import { getAllCandidateCampaigns, getAllOfficialPositions, getCandidateProfileById, getCandidateProfiles } from "@/lib/server/elections-context";
 import { getCandidateMatchSummary } from "@/lib/candidates/matching";
 import { getInterviewRequestsForPublicProfile } from "@/lib/server/interviews";
 import { getClaimActionStateForViewer, getClaimMatchForProfile, getOnboardingDraft } from "@/lib/server/onboarding";
+import { getCampaignFinanceSourceCard, type CampaignFinanceSourceCardData } from "@/lib/civic-data/profile-source-cards";
 import { getContextualPostPreviews } from "@/lib/feed/posts";
+import { getCandidateIssuePositions } from "@/lib/issue-positions/store";
+import { findIncumbentOfficialMatch, getApprovedOfficialGovernmentEnrichment, type ApprovedOfficialGovernmentEnrichment, type IncumbentOfficialMatch } from "@/lib/incumbents/official-bio-enrichment";
+import { getProfileNewsMentionCard, type ProfileNewsMentionCardData } from "@/lib/news-mentions/store";
+import { createEmptyCampaignFinanceDashboard } from "@/lib/nv-sos/finance-dashboard";
+import { getOfficialSourceDocumentsForProfile, type OfficialSourceDocumentsCardData } from "@/lib/nv-sos/public";
 import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getOrganizationEndorsementsForCampaign } from "@/lib/organizations/store";
 import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
@@ -35,7 +52,8 @@ import { getCandidateViewerAlignmentSummary } from "@/lib/profile/viewer-alignme
 import { getPollsByCreator } from "@/lib/polls/store";
 import { getLightweightFollowState } from "@/lib/social/follows";
 import { getProfileSentimentSummary } from "@/lib/votes/profile-sentiment";
-import type { CandidateProfileDetail, ProfileSignalsSummary, PublicProfileInterviewsSummary, PublicProfileSummary, UserRole } from "@/types/domain";
+import { NewsMentionTargetType } from "@prisma/client";
+import type { CandidateProfileDetail, ProfileSignalsSummary, PublicIssuePositionSummary, PublicProfileInterviewsSummary, PublicProfileSummary, UserRole } from "@/types/domain";
 
 type CandidateDetailPageProps = {
   params: Promise<{
@@ -53,12 +71,9 @@ type CandidateDetailPageProps = {
 };
 
 function withSectionTimeout<T>(promise: Promise<T>, label: string, timeoutMs = 1800): Promise<T> {
-  return Promise.race([
-    promise,
-    new Promise<T>((_, reject) => {
-      setTimeout(() => reject(new Error(`${label} timed out`)), timeoutMs);
-    }),
-  ]);
+  void label;
+  void timeoutMs;
+  return promise;
 }
 
 async function getCandidateSummaryById(candidateId: string) {
@@ -114,7 +129,42 @@ function CandidateUnavailableState({
   );
 }
 
-function ImportedCandidateDetailPage({ candidate }: { candidate: CandidateProfileDetail }) {
+function sourceTypeLabel(value: string) {
+  return value.replace(/_/g, " ").toLowerCase().replace(/(^|\s)\S/g, (letter) => letter.toUpperCase());
+}
+
+function pendingKnowledgeCard(title: string, description: string) {
+  return (
+    <div className="rounded-[1.35rem] border border-dashed border-white/12 bg-white/[0.03] p-4">
+      <p className="text-sm font-semibold text-slate-100">{title}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-400">{description}</p>
+    </div>
+  );
+}
+
+function ImportedCandidateDetailPage({
+  candidate,
+  viewerRole,
+  issuePositions,
+  newsMentionCard,
+  showNewsDiagnostics,
+  campaignFinanceCard,
+  raceContext,
+  incumbentMatch,
+  officialGovernmentEnrichment,
+  officialSourceDocuments,
+}: {
+  candidate: CandidateProfileDetail;
+  viewerRole?: UserRole;
+  issuePositions: PublicIssuePositionSummary[];
+  newsMentionCard: ProfileNewsMentionCardData;
+  showNewsDiagnostics: boolean;
+  campaignFinanceCard: CampaignFinanceSourceCardData;
+  raceContext: CandidateRaceContext | null;
+  incumbentMatch: IncumbentOfficialMatch | null;
+  officialGovernmentEnrichment: ApprovedOfficialGovernmentEnrichment | null;
+  officialSourceDocuments: OfficialSourceDocumentsCardData;
+}) {
   const imported = candidate.importedCandidate;
   const campaign = candidate.campaigns[0];
 
@@ -127,16 +177,184 @@ function ImportedCandidateDetailPage({ candidate }: { candidate: CandidateProfil
     );
   }
 
+  const enrichment = imported.websiteEnrichment;
+  const knowledge = imported.knowledgeEnrichments ?? [];
+  const aboutSource = knowledge.find((entry) => entry.aboutSummary);
+  const ownWordsSource = knowledge.find((entry) => entry.ownWordsSummary);
+  const issueSources = knowledge.flatMap((entry) =>
+    entry.issues.map((issue) => ({
+      ...issue,
+      sourceName: entry.sourceName,
+      sourceType: entry.sourceType,
+    })),
+  );
+  const experienceSource = knowledge.find((entry) => entry.experienceSummary);
+  const financeSource = knowledge.find((entry) => entry.financeContext);
+  const newsItems = knowledge.flatMap((entry) => entry.newsItems);
+  const socialLinks = [...new Set([...knowledge.flatMap((entry) => entry.socialLinks), ...(enrichment?.socialLinks ?? [])])];
+  const officeIntelligence = getOfficeIntelligence(imported.officeTitle ?? campaign.officeSought, candidate.jurisdictionName);
+  const fallbackRaceContext: CandidateRaceContext = {
+    candidateId: candidate.id,
+    electionId: imported.electionId,
+    electionTitle: imported.electionTitle,
+    electionDate: imported.electionDate ?? null,
+    officeTitle: imported.officeTitle ?? campaign.officeSought,
+    jurisdictionName: candidate.jurisdictionName,
+    districtName: imported.districtName ?? null,
+    filingStatus: imported.filingStatus ?? imported.candidateStatus,
+    partyText: candidate.partyText ?? null,
+    isContested: false,
+    sourceName: imported.sourceLabel ?? "Nevada SOS candidate filing source",
+    sourceUrl: imported.sourceUrl ?? null,
+    candidates: [
+      {
+        id: candidate.id,
+        name: candidate.name,
+        partyText: candidate.partyText ?? null,
+        filingStatus: imported.filingStatus ?? imported.candidateStatus,
+        isCurrent: true,
+      },
+    ],
+    missingFields: [
+      "Candidate bio",
+      "Campaign website",
+      "Candidate statement",
+      "Issue priorities",
+      "Campaign finance",
+      "News mentions",
+      "Social links",
+    ],
+    suggestedSearchQuery: `"${candidate.name}" ${imported.officeTitle ?? campaign.officeSought} Nevada`,
+  };
+  const activeRaceContext = raceContext ?? fallbackRaceContext;
+  const lastKnowledgeUpdate = knowledge
+    .map((entry) => entry.lastUpdatedAt)
+    .sort()
+    .at(-1);
+  const maxConfidence = knowledge.length ? Math.max(...knowledge.map((entry) => entry.confidenceScore)) : null;
+  const campaignWebsiteUrl = enrichment?.campaignWebsiteUrl ?? enrichment?.officialWebsiteUrl ?? candidate.websiteUrl ?? null;
+  const contactHref = enrichment?.publicContactEmail ? `mailto:${enrichment.publicContactEmail}` : enrichment?.publicContactPhone ? `tel:${enrichment.publicContactPhone}` : null;
   const sourceLinks = [
-    candidate.websiteUrl ? { label: "Candidate website", href: candidate.websiteUrl } : null,
+    campaignWebsiteUrl ? { label: "Campaign website", href: campaignWebsiteUrl } : null,
     imported.sourceUrl ? { label: imported.sourceLabel ?? "Official source", href: imported.sourceUrl } : null,
   ].filter((link): link is { label: string; href: string } => Boolean(link));
+  const possibleSourceExplorerItems = [
+    imported.sourceUrl
+      ? {
+          id: `${candidate.id}-filing-source`,
+          sourceName: imported.sourceLabel ?? "Nevada SOS filing source",
+          sourceType: "filing_record",
+          sourceUrl: imported.sourceUrl,
+          lastImportedAt: imported.filingDate ?? null,
+          fieldsDerived: ["name", "office/race", "party", "filing status", "election"],
+          reviewStatus: "imported",
+          confidenceScore: 0.9,
+          notes: "Core candidate filing details imported from stored election source data.",
+        }
+      : null,
+    enrichment
+      ? {
+          id: `${candidate.id}-website-enrichment`,
+          sourceName: enrichment.sourceName ?? "Campaign or official website",
+          sourceType: "campaign_website",
+          sourceUrl: enrichment.sourceUrl,
+          lastImportedAt: enrichment.lastEnrichedAt ?? null,
+          fieldsDerived: [
+            enrichment.shortBio ? "bio summary" : null,
+            campaignWebsiteUrl ? "website" : null,
+            enrichment.publicContactEmail || enrichment.publicContactPhone ? "public contact" : null,
+            enrichment.socialLinks.length ? "social links" : null,
+          ].filter((field): field is string => Boolean(field)),
+          reviewStatus: enrichment.reviewStatus,
+          confidenceScore: maxConfidence ?? 0.5,
+          notes: "Stored website enrichment is reviewed before public profile fields use it.",
+        }
+      : null,
+    ...knowledge.map((entry) => ({
+      id: entry.id,
+      sourceName: entry.sourceName,
+      sourceType: entry.sourceType,
+      sourceUrl: entry.sourceUrl,
+      lastImportedAt: entry.lastUpdatedAt,
+      fieldsDerived: [
+        entry.aboutSummary ? "about / bio" : null,
+        entry.ownWordsSummary ? "candidate's own words" : null,
+        entry.issues.length ? "issues / priorities" : null,
+        entry.experienceSummary ? "experience" : null,
+        entry.financeContext ? "finance context" : null,
+        entry.newsItems.length ? "media coverage references" : null,
+        entry.socialLinks.length ? "social links" : null,
+      ].filter((field): field is string => Boolean(field)),
+      reviewStatus: entry.reviewStatus,
+      confidenceScore: entry.confidenceScore,
+      notes: entry.title ?? "Candidate knowledge source stored for review.",
+    })),
+    ...issuePositions
+      .filter((position) => position.sourceUrl || position.evidenceUrl)
+      .slice(0, 6)
+      .map((position) => ({
+        id: `${position.id}-issue-source`,
+        sourceName: position.sourceName ?? position.evidenceSourceName ?? "Issue position evidence",
+        sourceType: "issue_position_evidence",
+        sourceUrl: position.sourceUrl ?? position.evidenceUrl,
+        lastImportedAt: position.lastObservedAt,
+        fieldsDerived: ["issue position", position.issueText],
+        reviewStatus: position.reviewStatus,
+        confidenceScore: position.confidenceScore,
+        notes: position.summary ?? position.evidenceTitle ?? "Sourced issue position evidence.",
+      })),
+    newsMentionCard.providerUsed || newsMentionCard.lastImportRun
+      ? {
+          id: `${candidate.id}-news-provider`,
+          sourceName: newsMentionCard.providerUsed ?? "News ingestion provider",
+          sourceType: "news_mentions",
+          sourceUrl: null,
+          lastImportedAt: newsMentionCard.lastImportRun?.startedAt ?? null,
+          fieldsDerived: ["news mentions"],
+          reviewStatus: newsMentionCard.verifiedCount ? "verified" : newsMentionCard.approvedCount ? "approved" : newsMentionCard.pendingCount ? "pending_review" : "imported",
+          confidenceScore: null,
+          notes: `${newsMentionCard.totalCount} stored mention${newsMentionCard.totalCount === 1 ? "" : "s"} linked to this profile.`,
+        }
+      : null,
+    campaignFinanceCard.sourceUrl
+      ? {
+          id: `${candidate.id}-campaign-finance-source`,
+          sourceName: campaignFinanceCard.sourceName ?? "Campaign finance source",
+          sourceType: "campaign_finance",
+          sourceUrl: campaignFinanceCard.sourceUrl,
+          lastImportedAt: campaignFinanceCard.lastCheckedAt,
+          fieldsDerived: [
+            "campaign finance source link",
+            campaignFinanceCard.filingSummaries.length ? "filing metadata" : null,
+            campaignFinanceCard.campaignReportedSummary ? "campaign-reported finance context" : null,
+          ].filter((field): field is string => Boolean(field)),
+          reviewStatus: campaignFinanceCard.reviewStatus ?? "pending_review",
+          confidenceScore: null,
+          notes: `${campaignFinanceCard.filingCount} parsed filing${campaignFinanceCard.filingCount === 1 ? "" : "s"} stored. ${campaignFinanceCard.donorExtractionStatus}`,
+        }
+      : null,
+    officialGovernmentEnrichment?.headshotUrl
+      ? {
+          id: `${candidate.id}-profile-image-source`,
+          sourceName: officialGovernmentEnrichment.sourceName ?? "Official government source",
+          sourceType: "profile_image",
+          sourceUrl: officialGovernmentEnrichment.sourceUrl,
+          lastImportedAt: officialGovernmentEnrichment.lastEnrichedAt,
+          fieldsDerived: ["official headshot"],
+          reviewStatus: officialGovernmentEnrichment.reviewStatus,
+          confidenceScore: null,
+          notes: "Profile image source is stored and reviewed before public display.",
+        }
+      : null,
+  ];
+  const sourceExplorerItems = possibleSourceExplorerItems.filter(Boolean) as SourceExplorerItem[];
   const completenessItems = [
     { label: "Office", value: imported.officeTitle ?? "Office needs review" },
     { label: "District", value: imported.districtName ?? "District not listed" },
-    { label: "Profile", value: candidate.bio && !candidate.bio.includes("Profile info pending") ? "Profile info present" : "Profile info pending" },
+    { label: "Profile", value: candidate.bio && !candidate.bio.includes("Profile enrichment pending") ? "Profile info present" : "Profile enrichment pending" },
     { label: "Source", value: imported.sourceUrl ? "Source verified" : "Source link pending" },
   ];
+  const bioIsEnriched = Boolean(enrichment?.shortBio);
 
   return (
     <div className="space-y-6 py-8">
@@ -154,6 +372,11 @@ function ImportedCandidateDetailPage({ candidate }: { candidate: CandidateProfil
               <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
                 {imported.candidateStatus}
               </span>
+              {incumbentMatch ? (
+                <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-100">
+                  Incumbent
+                </span>
+              ) : null}
             </div>
             <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{candidate.name}</h1>
             <p className="mt-3 text-sm text-slate-400">
@@ -161,8 +384,43 @@ function ImportedCandidateDetailPage({ candidate }: { candidate: CandidateProfil
               {" · "}
               {imported.districtName ?? "District not listed"}
             </p>
-            <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300">{candidate.bio ?? "Profile info pending."}</p>
+            {incumbentMatch ? (
+              <p className="mt-3 text-sm leading-6 text-emerald-100">
+                Currently serves as {incumbentMatch.officialOffice} for {incumbentMatch.officialJurisdiction}.
+              </p>
+            ) : null}
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300">
+              {bioIsEnriched ? candidate.bio : "Candidate filing record imported. Bio source not found yet. The imported filing details below remain visible while source-backed enrichment is reviewed."}
+            </p>
+            {enrichment ? (
+              <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+                <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-emerald-100">
+                  Website enrichment {enrichment.reviewStatus.toLowerCase()}
+                </span>
+                <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
+                  Source: {enrichment.sourceName ?? "Campaign website"}
+                </span>
+                {enrichment.lastEnrichedAt ? (
+                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
+                    Enriched {formatDateUtc(enrichment.lastEnrichedAt, { month: "short", day: "numeric", year: "numeric" })}
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
             <div className="mt-5 flex flex-wrap gap-3">
+              <FavoriteToggleControl
+                targetType="candidate"
+                targetId={candidate.id}
+                visibleLabel="Save"
+                className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
+              />
+              <button
+                type="button"
+                disabled
+                className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-slate-400"
+              >
+                Follow pending
+              </button>
               <Link
                 href={`/elections/${imported.electionId}`}
                 className="dd-button-primary inline-flex rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
@@ -182,6 +440,19 @@ function ImportedCandidateDetailPage({ candidate }: { candidate: CandidateProfil
           </div>
 
           <div className="grid gap-3">
+            {candidate.profileImageUrl ? (
+              <div className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-white/[0.04]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={candidate.profileImageUrl} alt={`${candidate.name} campaign headshot`} className="aspect-[4/3] w-full object-cover" />
+              </div>
+            ) : (
+              <div className="flex aspect-[4/3] items-center justify-center rounded-[1.4rem] border border-dashed border-white/14 bg-white/[0.04] text-center">
+                <div>
+                  <p className="text-4xl font-semibold text-slate-200">{candidate.name.slice(0, 1)}</p>
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Headshot pending</p>
+                </div>
+              </div>
+            )}
             <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Race / Office</p>
               <p className="mt-3 text-lg font-semibold text-slate-50">{campaign.officeSought}</p>
@@ -194,7 +465,342 @@ function ImportedCandidateDetailPage({ candidate }: { candidate: CandidateProfil
             </div>
             <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Filing Status</p>
-              <p className="mt-3 text-lg font-semibold text-slate-50">{imported.filingStatus ?? imported.candidateStatus ?? "Profile info pending"}</p>
+              <p className="mt-3 text-lg font-semibold text-slate-50">{imported.filingStatus ?? imported.candidateStatus ?? "Profile enrichment pending"}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CandidateRaceContextCard context={activeRaceContext} />
+
+      <OfficeIntelligenceCard intelligence={officeIntelligence} />
+
+      <OfficialGovernmentSourceCard
+        enrichment={officialGovernmentEnrichment}
+        incumbentMatch={incumbentMatch}
+        emptyTitle={incumbentMatch ? "Official government source pending review" : "Incumbent official match pending"}
+      />
+
+      <section className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+        <div className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Public sentiment</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Sentiment preview</h2>
+            </div>
+            <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-300">Coming soon</span>
+          </div>
+          <div className="mt-5 flex h-28 items-end gap-2" aria-hidden="true">
+            {[30, 46, 38, 58, 44, 52].map((height, index) => (
+              <span key={`candidate-profile-sentiment-${index}`} className="flex-1 rounded-t-xl bg-cyan-300/25" style={{ height: `${height}%` }} />
+            ))}
+          </div>
+          <p className="mt-4 text-sm leading-6 text-slate-400">Public sentiment data not collected yet.</p>
+        </div>
+
+        <div className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Community questions</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Questions module pending</h2>
+          <div className="mt-5 rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
+            Candidate-specific community questions will appear after a verified real-data question is linked to this profile.
+          </div>
+        </div>
+      </section>
+
+      <IssuePositionsSection
+        positions={issuePositions}
+        emptyTitle="Issue positions pending"
+        emptyDescription="No approved, sourced candidate issue positions are available for this imported record yet."
+        correctionHref={`/claim-profile/${candidate.id}`}
+      />
+
+      <NewsMentionsSection cardData={newsMentionCard} showAdminDiagnostics={showNewsDiagnostics} />
+
+      <CampaignFinanceSourceCard data={campaignFinanceCard} />
+
+      <OfficialSourceDocumentsCard data={officialSourceDocuments} />
+
+      <MissingCandidateInfoCard
+        candidateId={candidate.id}
+        missingFields={activeRaceContext.missingFields}
+        suggestedSearchQuery={activeRaceContext.suggestedSearchQuery}
+      />
+
+      <SourceExplorer items={sourceExplorerItems} emptyText="Candidate source records are pending review." />
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Candidate knowledge</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">What voters can verify from sources</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+              Only approved or verified enrichment appears here. Candidate-provided content and media coverage are labeled separately.
+            </p>
+          </div>
+          {viewerRole === "admin" ? (
+            <form action={addCandidateKnowledgeSourceAction} className="grid min-w-72 gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+              <input type="hidden" name="candidateId" value={candidate.id} />
+              <input name="sourceUrl" className="rounded-xl border border-white/10 bg-slate-950/70 px-3 py-2 text-xs text-slate-100" placeholder="Add source URL" />
+              <button className="dd-button-secondary rounded-xl px-3 py-2 text-xs font-semibold" type="submit">
+                Add source URL
+              </button>
+            </form>
+          ) : null}
+        </div>
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {aboutSource?.aboutSummary ? (
+            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">About / bio summary</p>
+              <p className="mt-3 text-sm leading-7 text-slate-200">{aboutSource.aboutSummary}</p>
+              <Link href={aboutSource.sourceUrl} className="mt-3 block break-all text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                Source: {aboutSource.sourceName}
+              </Link>
+            </div>
+          ) : (
+            pendingKnowledgeCard("About / bio summary", "Bio source not found yet.")
+          )}
+
+          {ownWordsSource?.ownWordsSummary ? (
+            <div className="rounded-[1.35rem] border border-emerald-300/18 bg-emerald-500/10 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-100">From campaign/candidate source</p>
+              <p className="mt-3 text-sm leading-7 text-slate-100">{ownWordsSource.ownWordsSummary}</p>
+              <Link href={ownWordsSource.sourceUrl} className="mt-3 block break-all text-xs font-semibold text-emerald-100 hover:text-white">
+                Source: {ownWordsSource.sourceName}
+              </Link>
+            </div>
+          ) : (
+            pendingKnowledgeCard("Candidate's own words", "Candidate-provided source not found yet.")
+          )}
+
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Issues / priorities</p>
+            {issueSources.length ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {issueSources.map((issue) => (
+                  <Link key={`${issue.label}-${issue.sourceUrl}`} href={issue.sourceUrl} className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-xs font-semibold text-cyan-100">
+                    {issue.label}
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-3 text-sm leading-6 text-slate-400">Issue source not found yet.</p>
+            )}
+          </div>
+
+          {experienceSource?.experienceSummary ? (
+            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Experience / background</p>
+              <p className="mt-3 text-sm leading-7 text-slate-200">{experienceSource.experienceSummary}</p>
+              <Link href={experienceSource.sourceUrl} className="mt-3 block break-all text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                Source: {experienceSource.sourceName}
+              </Link>
+            </div>
+          ) : (
+            pendingKnowledgeCard("Experience / background", "Experience source not found yet.")
+          )}
+
+          {financeSource?.financeContext ? (
+            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Campaign finance/context</p>
+              <p className="mt-3 text-sm leading-7 text-slate-200">{financeSource.financeContext}</p>
+              <Link href={financeSource.sourceUrl} className="mt-3 block break-all text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                Source: {financeSource.sourceName}
+              </Link>
+            </div>
+          ) : (
+            pendingKnowledgeCard("Campaign finance/context", "Campaign finance context not imported yet.")
+          )}
+
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Public profiles / social links</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {campaignWebsiteUrl ? (
+                <Link href={campaignWebsiteUrl} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-cyan-100">
+                  Campaign website
+                </Link>
+              ) : null}
+              {socialLinks.map((url) => (
+                <Link key={url} href={url} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-cyan-100">
+                  {new URL(url).hostname.replace(/^www\./, "")}
+                </Link>
+              ))}
+              {!campaignWebsiteUrl && !socialLinks.length ? <p className="text-sm leading-6 text-slate-400">Public profile or social source not found yet.</p> : null}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Media coverage</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">In the news</h2>
+        {newsItems.length ? (
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {newsItems.map((item) => (
+              <Link key={`${item.title}-${item.sourceUrl}`} href={item.sourceUrl} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+                <p className="text-sm font-semibold text-slate-100">{item.title}</p>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Media coverage - {item.sourceName}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{item.summary}</p>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-5 rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
+            News source not found yet.
+          </div>
+        )}
+      </section>
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Take action</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Ways to use this profile</h2>
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-sm font-semibold text-slate-100">Follow candidate</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">Following opens after this imported record is linked to a claimed profile.</p>
+          </div>
+          {contactHref ? (
+            <Link href={contactHref} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+              <p className="text-sm font-semibold text-slate-100">Contact campaign</p>
+              <p className="mt-2 text-xs leading-5 text-slate-400">Uses only stored public contact information.</p>
+            </Link>
+          ) : (
+            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-sm font-semibold text-slate-100">Contact campaign</p>
+              <p className="mt-2 text-xs leading-5 text-slate-400">Public contact pending.</p>
+            </div>
+          )}
+          <Link href={`/elections/${imported.electionId}`} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+            <p className="text-sm font-semibold text-slate-100">View related election</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">{imported.electionTitle}</p>
+          </Link>
+          <Link href={`/elections/${imported.electionId}#candidates`} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+            <p className="text-sm font-semibold text-slate-100">Compare candidates</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">Open the race context for this office.</p>
+          </Link>
+          <Link href={`/claim-profile/${candidate.id}`} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+            <p className="text-sm font-semibold text-slate-100">Submit correction / claim</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">Start the profile claim and review path.</p>
+          </Link>
+          <Link href={`/who-represents-me?community=${encodeURIComponent(candidate.jurisdictionName)}`} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/24">
+            <p className="text-sm font-semibold text-slate-100">Check my districts</p>
+            <p className="mt-2 text-xs leading-5 text-slate-400">See whether this race matches your stored district assignments.</p>
+          </Link>
+        </div>
+      </section>
+
+      {enrichment ? (
+        <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Campaign website enrichment</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Reviewed public profile data</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+                This information is summarized from a public campaign or official website and remains separate from the Nevada SOS filing record.
+              </p>
+            </div>
+            {campaignWebsiteUrl ? (
+              <Link href={campaignWebsiteUrl} className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold">
+                Open campaign website
+              </Link>
+            ) : null}
+          </div>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {enrichment.shortBio ? (
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 md:col-span-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Bio summary</p>
+                <p className="mt-3 text-sm leading-7 text-slate-200">{enrichment.shortBio}</p>
+              </div>
+            ) : null}
+            {enrichment.publicContactEmail || enrichment.publicContactPhone ? (
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Public contact</p>
+                {enrichment.publicContactEmail ? <p className="mt-3 text-sm font-semibold text-slate-100">{enrichment.publicContactEmail}</p> : null}
+                {enrichment.publicContactPhone ? <p className="mt-2 text-sm font-semibold text-slate-100">{enrichment.publicContactPhone}</p> : null}
+              </div>
+            ) : null}
+            {enrichment.socialLinks.length ? (
+              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Social links</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {enrichment.socialLinks.map((url) => (
+                    <Link key={url} href={url} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-cyan-100">
+                      {new URL(url).hostname.replace(/^www\./, "")}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 md:col-span-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Enrichment source</p>
+              <Link href={enrichment.sourceUrl} className="mt-3 block break-all text-sm font-semibold text-cyan-100 hover:text-cyan-50">
+                {enrichment.sourceName ?? enrichment.sourceUrl}
+              </Link>
+              {enrichment.longBioSourceUrl ? (
+                <Link href={enrichment.longBioSourceUrl} className="mt-2 block break-all text-xs text-slate-400 hover:text-slate-200">
+                  Bio source: {enrichment.longBioSourceUrl}
+                </Link>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Bio / enrichment</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Bio source not found yet</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-400">
+            Candidate filing record imported. This page is rendering stored Nevada candidate data only. Know an official source? Submit a correction/source.
+          </p>
+          <Link href={`/claim-profile/${candidate.id}`} className="mt-4 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2.5 text-sm font-semibold text-cyan-100">
+            Submit correction / source
+          </Link>
+        </section>
+      )}
+
+      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Source attribution</h2>
+        <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Nevada filing source</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">{imported.sourceLabel ?? "Nevada SOS filing source"}</p>
+          </div>
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Campaign / official site</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">{campaignWebsiteUrl ? "Stored website available" : "Website pending"}</p>
+          </div>
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Last updated</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">
+              {lastKnowledgeUpdate
+                ? formatDateUtc(lastKnowledgeUpdate, { month: "short", day: "numeric", year: "numeric" })
+                : enrichment?.lastEnrichedAt
+                  ? formatDateUtc(enrichment.lastEnrichedAt, { month: "short", day: "numeric", year: "numeric" })
+                  : "Import timestamp pending"}
+            </p>
+          </div>
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Verification</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">
+              {knowledge.length ? `Knowledge ${knowledge[0].reviewStatus.toLowerCase()}` : imported.sourceUrl ? "Source-attributed imported record" : "Source attribution pending"}
+            </p>
+          </div>
+        </div>
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Data confidence</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">{maxConfidence === null ? "Knowledge confidence pending" : `${Math.round(maxConfidence * 100)}% reviewed-source confidence`}</p>
+          </div>
+          <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Approved sources</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {knowledge.length ? (
+                knowledge.map((entry) => (
+                  <Link key={entry.id} href={entry.sourceUrl} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-cyan-100">
+                    {sourceTypeLabel(entry.sourceType)}
+                  </Link>
+                ))
+              ) : (
+                <p className="text-sm text-slate-400">Source attribution pending review.</p>
+              )}
             </div>
           </div>
         </div>
@@ -249,7 +855,7 @@ function ImportedCandidateDetailPage({ candidate }: { candidate: CandidateProfil
 
 export default async function CandidateDetailPage({ params, searchParams }: CandidateDetailPageProps) {
   const { candidateId } = await params;
-  const [viewer, sessionUser, comparisonUser, resolvedSearchParams, candidateSummary, candidateDetail, fallbackCampaigns, fallbackPositions] = await Promise.all([
+  const [viewer, sessionUser, comparisonUser, resolvedSearchParams, candidateSummary, candidateDetail, fallbackCampaigns, fallbackPositions, issuePositions] = await Promise.all([
     withSectionTimeout(getCurrentFeedViewer(), "candidate viewer", 1200).catch((error) => {
       console.error(`[candidate-detail] viewer fallback for ${candidateId}`, error);
       return getDefaultSeedUser();
@@ -263,26 +869,30 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
       return getDefaultSeedUser();
     }),
     searchParams ? searchParams : Promise.resolve(undefined),
-    withSectionTimeout(getCandidateSummaryById(candidateId), "candidate summary", 1400).catch((error) => {
+    getCandidateSummaryById(candidateId).catch((error) => {
       console.error(`[candidate-detail] summary fallback for ${candidateId}`, error);
       return null;
     }),
-    withSectionTimeout(getCandidateProfileById(candidateId), "candidate detail", 1600).catch((error) => {
+    getCandidateProfileById(candidateId).catch((error) => {
       console.error(`[candidate-detail] detail fallback for ${candidateId}`, error);
       return null;
     }),
-    withSectionTimeout(getAllCandidateCampaigns(), "candidate fallback campaigns", 1400)
+    getAllCandidateCampaigns()
       .then((campaigns) => campaigns.filter((campaign) => campaign.publicProfileId === candidateId))
       .catch((error) => {
         console.error(`[candidate-detail] fallback campaigns failed for ${candidateId}`, error);
         return [];
       }),
-    withSectionTimeout(getAllOfficialPositions(), "candidate fallback positions", 1400)
+    getAllOfficialPositions()
       .then((positions) => positions.filter((position) => position.publicProfileId === candidateId))
       .catch((error) => {
         console.error(`[candidate-detail] fallback positions failed for ${candidateId}`, error);
         return [];
       }),
+    getCandidateIssuePositions(candidateId).catch((error) => {
+      console.error(`[candidate-detail] issue positions failed for ${candidateId}`, error);
+      return [];
+    }),
   ]);
 
   if (!candidateSummary && !candidateDetail) {
@@ -303,9 +913,93 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
       fallbackCampaigns,
       fallbackPositions,
     );
+  const showNewsDiagnostics = process.env.NODE_ENV !== "production" || sessionUser?.role === "admin";
+  const newsMentionCard = await getProfileNewsMentionCard(NewsMentionTargetType.CANDIDATE, candidateId, { includePending: showNewsDiagnostics }).catch((error) => {
+    console.error(`[candidate-detail] news mentions failed for ${candidateId}`, error);
+    return {
+      mentions: [],
+      totalCount: 0,
+      approvedCount: 0,
+      verifiedCount: 0,
+      pendingCount: 0,
+      providerUsed: null,
+      lastImportRun: null,
+    };
+  });
+  const campaignFinanceCard = await getCampaignFinanceSourceCard("candidate", candidateId).catch((error) => {
+    console.error(`[candidate-detail] campaign finance source failed for ${candidateId}`, error);
+    return {
+      sourceName: null,
+      sourceUrl: null,
+      filingStatus: null,
+      reviewStatus: null,
+      lastCheckedAt: null,
+      filingCount: 0,
+      filingSummaries: [],
+      sourceLinks: [],
+      financeSourceCount: 0,
+      financeFilingCount: 0,
+      financeDocumentCount: 0,
+      pendingCount: 0,
+      approvedCount: 0,
+      fundingBreakdown: null,
+      campaignReportedSummary: null,
+      donorExtractionStatus: "Classification incomplete; source-backed filing summaries remain available.",
+    };
+  });
+  const officialSourceDocuments = await getOfficialSourceDocumentsForProfile(
+    candidate.name,
+    candidate.campaigns[0]?.officeSought ?? candidate.importedCandidate?.officeTitle ?? null,
+  ).catch((error) => {
+    console.error(`[candidate-detail] official source documents failed for ${candidateId}`, error);
+    const campaignFinanceDashboard = createEmptyCampaignFinanceDashboard();
+    return {
+      documents: [],
+      candidateRecords: [],
+      campaignFinanceRecords: [],
+      campaignFinanceSummary: campaignFinanceDashboard.summary,
+      campaignFinanceDashboard,
+      lastFetchedAt: null,
+      blockedCount: 0,
+      blockedImportUrlCount: 0,
+      unmatchedImportRecordCount: 0,
+      sourceLinks: [],
+    };
+  });
+  const raceContext = candidate.isImported
+    ? await getCandidateRaceContext(candidateId).catch((error) => {
+        console.error(`[candidate-detail] race context failed for ${candidateId}`, error);
+        return null;
+      })
+    : null;
+  const incumbentMatch = candidate.isImported
+    ? await findIncumbentOfficialMatch(candidateId).catch((error) => {
+        console.error(`[candidate-detail] incumbent official match failed for ${candidateId}`, error);
+        return null;
+      })
+    : null;
+  const officialGovernmentEnrichment = candidate.isImported
+    ? await getApprovedOfficialGovernmentEnrichment("CANDIDATE", candidateId).catch((error) => {
+        console.error(`[candidate-detail] official government enrichment failed for ${candidateId}`, error);
+        return null;
+      })
+    : null;
 
   if (candidate.isImported) {
-    return <ImportedCandidateDetailPage candidate={candidate} />;
+    return (
+      <ImportedCandidateDetailPage
+        candidate={candidate}
+        viewerRole={sessionUser?.role}
+        issuePositions={issuePositions}
+        newsMentionCard={newsMentionCard}
+        showNewsDiagnostics={showNewsDiagnostics}
+        campaignFinanceCard={campaignFinanceCard}
+        raceContext={raceContext}
+        incumbentMatch={incumbentMatch}
+        officialGovernmentEnrichment={officialGovernmentEnrichment}
+        officialSourceDocuments={officialSourceDocuments}
+      />
+    );
   }
 
   let social: Awaited<ReturnType<typeof getLightweightFollowState>> | null = null;
@@ -494,9 +1188,15 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
         />
       ) : null}
 
-      <Suspense fallback={<ProfileSectionFallback title="Campaign funding" description="Loading campaign finance preview..." />}>
-        <CandidateFundingSection candidateId={candidate.id} />
-      </Suspense>
+      <IssuePositionsSection
+        positions={issuePositions}
+        emptyTitle="Issue positions pending"
+        emptyDescription="No approved, sourced candidate issue positions are available for this profile yet."
+        correctionHref={`/claim-profile/${candidate.id}`}
+      />
+
+      <NewsMentionsSection cardData={newsMentionCard} showAdminDiagnostics={showNewsDiagnostics} />
+
       <Suspense fallback={<ProfileSectionFallback title="Campaigns" description="Loading campaign preview..." />}>
         <CandidateCampaignsSection candidateId={candidate.id} viewerId={viewer.id} viewerRole={viewer.role} />
       </Suspense>
@@ -541,30 +1241,6 @@ function ProfileSectionFallback({ title, description }: { title: string; descrip
       <h2 className="text-2xl font-semibold tracking-tight text-slate-50">{title}</h2>
       <p className="mt-2 text-sm text-slate-400">{description}</p>
     </section>
-  );
-}
-
-async function CandidateFundingSection({ candidateId }: { candidateId: string }) {
-  const candidate = await withSectionTimeout(getCandidateProfileById(candidateId), "candidate funding detail", 1500).catch((error) => {
-    console.error(`[candidate-detail] funding fallback for ${candidateId}`, error);
-    return null;
-  });
-
-  if (!candidate?.campaigns[0]?.fundingBreakdown) {
-    return null;
-  }
-
-  return (
-    <>
-      <FundingBreakdownCard
-        title="Campaign funding breakdown"
-        items={candidate.campaigns[0].fundingBreakdown}
-        industries={candidate.campaigns[0].industryFundingBreakdown}
-      />
-      {candidate.campaigns[0].pollingComparisons?.length ? (
-        <PollingComparisonCard comparisons={candidate.campaigns[0].pollingComparisons} />
-      ) : null}
-    </>
   );
 }
 

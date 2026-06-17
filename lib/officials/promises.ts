@@ -135,46 +135,6 @@ const seededPromises: Record<string, CampaignPromiseSummary[]> = {
       category: "Community",
     },
   ],
-  profile_jasmine_kim: [
-    {
-      id: "promise_jasmine_1",
-      title: "Publish student government budget summaries",
-      description: "Turn allocation votes into short plain-language summaries students can actually follow.",
-      category: "Transparency",
-    },
-    {
-      id: "promise_jasmine_2",
-      title: "Push for later transit coordination",
-      description: "Use student government leverage to document and advocate for evening transit that better matches campus schedules.",
-      category: "Transit",
-    },
-    {
-      id: "promise_jasmine_3",
-      title: "Create a monthly affordability listening session",
-      description: "Hold recurring campus sessions on food, housing, and emergency-cost pressure for students.",
-      category: "Affordability",
-    },
-  ],
-  profile_noah_brooks: [
-    {
-      id: "promise_noah_1",
-      title: "Rework club funding updates",
-      description: "Make student organization funding decisions easier to track from proposal through allocation.",
-      category: "Student orgs",
-    },
-    {
-      id: "promise_noah_2",
-      title: "Launch clearer housing updates",
-      description: "Publish recurring campus-facing summaries on housing pressure, waitlists, and off-campus student concerns.",
-      category: "Housing",
-    },
-    {
-      id: "promise_noah_3",
-      title: "Expand open office hours",
-      description: "Hold regular in-person and virtual office hours so commuters and working students can participate.",
-      category: "Community",
-    },
-  ],
 };
 
 function isCampaignPromise(value: unknown): value is CampaignPromiseSummary {

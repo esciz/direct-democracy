@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "updated_at": null,
+  "notes": "Manual Nevada SoS donor classification overrides. Entries in this file take precedence over known donor, historical inheritance, and keyword classification.",
+  "overrides": []
+}

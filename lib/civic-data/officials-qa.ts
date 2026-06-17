@@ -50,7 +50,7 @@ export type OfficialsQaSummary = {
   sourceProblems: Array<{ sourceName: string; count: number; message: string }>;
 };
 
-export const OFFICIALS_QA_GROUPS = ["Nevada", "Federal Delegation", "Nevada Legislature", "Reno", "Washoe County", "Carson City", "UNR / ASUN", "Other"];
+export const OFFICIALS_QA_GROUPS = ["Nevada", "Federal Delegation", "Nevada Legislature", "Reno", "Washoe County", "Carson City", "Other"];
 
 export const OFFICIALS_QA_FLAG_LABELS: Record<OfficialQaFlagKey, string> = {
   missing_photo: "Missing photo",
@@ -93,7 +93,6 @@ function getQaGroup({
   if (jurisdictionSlug === "reno") return "Reno";
   if (jurisdictionSlug === "washoe-county") return "Washoe County";
   if (jurisdictionSlug === "carson-city") return "Carson City";
-  if (jurisdictionSlug === "unr" || jurisdictionSlug === "asun") return "UNR / ASUN";
   return "Other";
 }
 
@@ -259,4 +258,3 @@ export function officialsQaRowsToCsv(rows: OfficialQaRow[]) {
 
   return [headers.map(csvEscape).join(","), ...lines].join("\n");
 }
-

@@ -2,7 +2,13 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { PageIntro } from "@/components/ui/page-intro";
-import { syncNevadaElectionsSourcesAction, syncNevadaOfficialsSourcesAction } from "@/lib/civic-data/actions";
+import {
+  syncCandidateElectionDailyAction,
+  syncLegislativeWeeklyAction,
+  syncNevadaElectionsSourcesAction,
+  syncNevadaOfficialsSourcesAction,
+  syncVoterRegistrationMonthlyAction,
+} from "@/lib/civic-data/actions";
 import { getAdminImportRuns } from "@/lib/civic-data/service";
 import { getCurrentUser } from "@/lib/server/auth-session";
 
@@ -47,6 +53,21 @@ export default async function AdminImportsPage({ searchParams }: AdminImportsPag
                 Sync Elections
               </button>
             </form>
+            <form action={syncCandidateElectionDailyAction}>
+              <button type="submit" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
+                Daily Candidate/Election Job
+              </button>
+            </form>
+            <form action={syncVoterRegistrationMonthlyAction}>
+              <button type="submit" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
+                Monthly Registration Job
+              </button>
+            </form>
+            <form action={syncLegislativeWeeklyAction}>
+              <button type="submit" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
+                Weekly Legislative Job
+              </button>
+            </form>
             <Link href="/admin/imports/manual-candidates" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
               Manual Candidates
             </Link>
@@ -67,17 +88,19 @@ export default async function AdminImportsPage({ searchParams }: AdminImportsPag
       ) : null}
 
       <section className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
-        <div className="grid gap-3 border-b border-white/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:grid-cols-[1.1fr_0.8fr_0.8fr_0.5fr_0.5fr]">
+        <div className="grid gap-3 border-b border-white/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 md:grid-cols-[1.1fr_0.7fr_0.7fr_0.45fr_0.45fr_0.45fr_0.45fr]">
           <span>Source</span>
           <span>Started</span>
           <span>Completed</span>
-          <span>Seen</span>
-          <span>Changed</span>
+          <span>Found</span>
+          <span>Created</span>
+          <span>Updated</span>
+          <span>Review</span>
         </div>
         <div className="divide-y divide-white/10">
           {runs.length > 0 ? (
             runs.map((run) => (
-              <article key={run.id} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[1.1fr_0.8fr_0.8fr_0.5fr_0.5fr]">
+              <article key={run.id} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[1.1fr_0.7fr_0.7fr_0.45fr_0.45fr_0.45fr_0.45fr]">
                 <div>
                   <p className="font-semibold text-slate-50">{run.sourceName}</p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">{run.status.replaceAll("_", " ")}</p>
@@ -85,8 +108,10 @@ export default async function AdminImportsPage({ searchParams }: AdminImportsPag
                 </div>
                 <p className="text-slate-300">{formatDate(run.startedAt)}</p>
                 <p className="text-slate-300">{formatDate(run.completedAt)}</p>
-                <p className="text-slate-100">{run.recordsSeen.toLocaleString()}</p>
-                <p className="text-slate-100">{run.recordsChanged.toLocaleString()}</p>
+                <p className="text-slate-100">{run.recordsFound.toLocaleString()}</p>
+                <p className="text-slate-100">{run.recordsCreated.toLocaleString()}</p>
+                <p className="text-slate-100">{run.recordsUpdated.toLocaleString()}</p>
+                <p className="text-slate-100">{run.recordsFlaggedForReview.toLocaleString()}</p>
               </article>
             ))
           ) : (

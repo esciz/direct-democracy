@@ -33,7 +33,7 @@ function getCandidateDataWarnings(candidate: Awaited<ReturnType<typeof getPublic
   if (!candidate.districtName) warnings.push("District not listed");
   if (!candidate.partyText) warnings.push("Party not listed");
   if (!candidate.source && !candidate.sourceUrl) warnings.push("Source link missing");
-  if (!candidate.campaignStatement) warnings.push("Profile info pending");
+  if (!candidate.campaignStatement && !candidate.websiteEnrichment?.shortBio) warnings.push("Profile enrichment pending");
 
   return warnings;
 }
@@ -42,6 +42,9 @@ function mapImportedCandidateToProfile(candidate: Awaited<ReturnType<typeof getP
   const displayName = candidate.ballotName ?? candidate.fullName;
   const jurisdictionName = getDisplayJurisdictionName(candidate.jurisdictionSlug, candidate.jurisdictionName);
   const sourceUrl = candidate.sourceUrl ?? candidate.source?.url ?? null;
+  const enrichedWebsiteUrl = candidate.websiteEnrichment?.campaignWebsiteUrl ?? candidate.websiteEnrichment?.officialWebsiteUrl ?? null;
+  const enrichedBio = candidate.websiteEnrichment?.shortBio ?? null;
+  const enrichedHeadshotUrl = candidate.websiteEnrichment?.headshotUrl ?? null;
   const warnings = getCandidateDataWarnings(candidate);
 
   return {
@@ -53,11 +56,12 @@ function mapImportedCandidateToProfile(candidate: Awaited<ReturnType<typeof getP
     jurisdictionName,
     partyText: candidate.partyText,
     bio:
+      enrichedBio ??
       candidate.campaignStatement ??
-      `${displayName} is an imported Nevada candidate record for ${candidate.officeTitle ?? "Office needs review"} in ${candidate.electionTitle}. Profile info pending.`,
-    profileImageUrl: candidate.photoUrl,
+      `${displayName} is an imported Nevada candidate record for ${candidate.officeTitle ?? "Office needs review"} in ${candidate.electionTitle}. Profile enrichment pending.`,
+    profileImageUrl: enrichedHeadshotUrl ?? candidate.photoUrl,
     donationUrl: null,
-    websiteUrl: candidate.websiteUrl,
+    websiteUrl: enrichedWebsiteUrl ?? candidate.websiteUrl,
     isClaimed: false,
     source: "admin",
     claimStatus: "UNCLAIMED",
@@ -79,6 +83,41 @@ function mapImportedCandidateToProfile(candidate: Awaited<ReturnType<typeof getP
       filingDate: candidate.filingDate?.toISOString() ?? null,
       sourceLabel: candidate.source?.name ?? "Imported Nevada beta data",
       sourceUrl,
+      websiteEnrichment: candidate.websiteEnrichment
+        ? {
+            campaignWebsiteUrl: candidate.websiteEnrichment.campaignWebsiteUrl,
+            officialWebsiteUrl: candidate.websiteEnrichment.officialWebsiteUrl,
+            headshotUrl: candidate.websiteEnrichment.headshotUrl,
+            shortBio: candidate.websiteEnrichment.shortBio,
+            longBioSourceUrl: candidate.websiteEnrichment.longBioSourceUrl,
+            socialLinks: candidate.websiteEnrichment.socialLinks,
+            publicContactEmail: candidate.websiteEnrichment.publicContactEmail,
+            publicContactPhone: candidate.websiteEnrichment.publicContactPhone,
+            sourceName: candidate.websiteEnrichment.sourceName,
+            sourceUrl: candidate.websiteEnrichment.sourceUrl,
+            lastEnrichedAt: candidate.websiteEnrichment.lastEnrichedAt?.toISOString() ?? null,
+            enrichmentStatus: candidate.websiteEnrichment.enrichmentStatus,
+            reviewStatus: candidate.websiteEnrichment.reviewStatus,
+          }
+        : null,
+      knowledgeEnrichments: candidate.knowledgeEnrichments.map((entry) => ({
+        id: entry.id,
+        sourceUrl: entry.sourceUrl,
+        sourceName: entry.sourceName,
+        sourceType: entry.sourceType,
+        sourcePriority: entry.sourcePriority,
+        title: entry.title,
+        aboutSummary: entry.aboutSummary,
+        ownWordsSummary: entry.ownWordsSummary,
+        issues: entry.issues,
+        experienceSummary: entry.experienceSummary,
+        financeContext: entry.financeContext,
+        newsItems: entry.newsItems,
+        socialLinks: entry.socialLinks,
+        confidenceScore: entry.confidenceScore,
+        reviewStatus: entry.reviewStatus,
+        lastUpdatedAt: entry.lastUpdatedAt.toISOString(),
+      })),
       dataWarnings: warnings,
     },
   };
@@ -97,7 +136,7 @@ function mapImportedCandidateToCampaign(candidate: Awaited<ReturnType<typeof get
     partyText: candidate.partyText,
     campaignStatus: "ANNOUNCED",
     donationUrl: null,
-    websiteUrl: candidate.websiteUrl,
+    websiteUrl: candidate.websiteEnrichment?.campaignWebsiteUrl ?? candidate.websiteEnrichment?.officialWebsiteUrl ?? candidate.websiteUrl,
     isIncumbent: false,
     totalRaised: null,
     topDonorCategories: [],

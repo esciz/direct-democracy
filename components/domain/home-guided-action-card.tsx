@@ -501,9 +501,9 @@ function resolveResults(
         {
           id: "officials-directory",
           title: "Who represents me?",
-          description: "Start with the Nevada beta representative lookup, grouped by federal, state, local, and campus roles.",
+          description: "Start with the district-aware Nevada beta lookup, with pending states where boundaries are not imported yet.",
           type: "official",
-          href: "/representatives",
+          href: "/who-represents-me",
           actionLabel: "Find representatives",
           badge: "Representatives",
           priority: 1,

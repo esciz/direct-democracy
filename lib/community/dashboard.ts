@@ -10,7 +10,6 @@ import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getCommunityFavoritePlaces, getCommunityHero } from "@/lib/community/place-data";
 import { communityMatchesMembership } from "@/lib/community/membership";
 import { getCreditBalance } from "@/lib/engagement/credits";
-import { mockVoteQuestions, mockVoteResponses } from "@/lib/mock-data";
 import { getOfficialActionsForCommunity } from "@/lib/officials/action-store";
 import { getOrganizationsForCommunity } from "@/lib/organizations/store";
 import { getAllPetitions } from "@/lib/petitions/store";
@@ -32,17 +31,7 @@ function isRelevantJurisdiction(target: string, communityId: string) {
 }
 
 function mergeResponses(storedResponses: VoteResponseSummary[]) {
-  const merged = new Map<string, VoteResponseSummary>();
-
-  for (const response of mockVoteResponses) {
-    merged.set(`${response.questionId}:${response.userId}`, response);
-  }
-
-  for (const response of storedResponses) {
-    merged.set(`${response.questionId}:${response.userId}`, response);
-  }
-
-  return [...merged.values()];
+  return storedResponses;
 }
 
 function getPublicOpinionSnapshot(userId: string, responses: VoteResponseSummary[]) {
@@ -55,11 +44,7 @@ function getPublicOpinionSnapshot(userId: string, responses: VoteResponseSummary
   responses
     .filter((response) => response.userId === userId)
     .forEach((response) => {
-      const question = mockVoteQuestions.find((entry) => entry.id === response.questionId);
-
-      if (question) {
-        categoryCounts[question.category] += 1;
-      }
+      categoryCounts.civic += 1;
     });
 
   return categoryCounts;

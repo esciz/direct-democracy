@@ -2,6 +2,8 @@
 
 Direct Democracy is a shareable Next.js civic demo centered on recurring voting, issue exploration, petitions, debates, public profiles, and community accountability.
 
+Long term, Direct Democracy is being built as a citizen-first civic platform with a possible future nonprofit public layer and a separate for-profit GovCRM workflow layer. Both may use a shared civic graph, but public civic records must remain source-attributed, reviewable, and protected from government customer manipulation.
+
 This repo is intentionally set up as a seeded prototype:
 - no production voter-verification backend is required
 - the demo runs from mock data plus cookie-backed state
@@ -46,6 +48,18 @@ npm run build
 npm run start
 ```
 
+## Browser-assisted meeting source bootstrap
+
+For blocked public meeting providers such as Reno PrimeGov or Nevada Legislature pages, use the manual official-source cache workflow:
+
+```bash
+npm run meetings:bootstrap:sources
+npm run meetings:import:manual
+npm run meetings:report
+```
+
+Instructions are in [docs/public-meeting-browser-bootstrap.md](docs/public-meeting-browser-bootstrap.md). This workflow is only for manually saved official public records; do not bypass authentication, CAPTCHAs, hidden endpoints, or security controls.
+
 ## Demo environment variables
 
 The current demo can run without a real backend, but these values are helpful:
@@ -53,10 +67,14 @@ The current demo can run without a real backend, but these values are helpful:
 ```bash
 NEXT_PUBLIC_ENABLE_DEMO_MODE="true"
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/direct_democracy?schema=public"
+GOV_CRM_ENABLED="false"
+ADMIN_PREVIEW_ENABLED="false"
 ```
 
 Notes:
 - `NEXT_PUBLIC_ENABLE_DEMO_MODE="true"` keeps seeded demo profile switching visible in a deployed demo.
+- `GOV_CRM_ENABLED="false"` keeps the government workflow scaffold hidden and gated unless explicitly enabled.
+- `ADMIN_PREVIEW_ENABLED="false"` keeps private preview tools disabled in production by default.
 - If you are not using Prisma-backed data for this prototype run, the app still primarily relies on seeded mock data and cookie state.
 
 ## Deploy to Vercel
@@ -102,4 +120,3 @@ npm run dev
 ```
 
 If the dev server shows missing chunk or manifest errors, clear `.next` and restart before assuming the source code is broken.
-

@@ -1,0 +1,211 @@
+[
+  {
+    "providerId": "reno-city-council",
+    "sourceName": "Reno PrimeGov saved public committee member metadata",
+    "sourceUrl": "https://reno.primegov.com/public/portal",
+    "jurisdictionName": "Reno, Nevada",
+    "jurisdictionSlug": "reno",
+    "jurisdictionType": "CITY",
+    "bodyName": "Reno City Council",
+    "bodyAliases": [
+      "Reno City Council",
+      "Reno public meeting committee members",
+      "Reno boards and commissions"
+    ],
+    "officeTitle": "Reno City Council public meeting body member",
+    "officeLevel": "CITY",
+    "notes": "Seeded from saved PrimeGov metadata files under data/manual-sources/public-meetings/reno-city-council/metadata. These entries support conservative surname-only meeting-action matching and remain review-gated for public publishing.",
+    "members": [
+      {
+        "externalId": "primegov-user-1005b04b-5ed1-4613-90c1-dfe103235a6d",
+        "fullName": "Donna Keats",
+        "surname": "Keats",
+        "seatTitle": "Member",
+        "status": "CURRENT",
+        "sourceUrl": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-3-api-committeemember-list.json",
+        "aliases": ["Keats"]
+      },
+      {
+        "externalId": "primegov-user-283f9064-3250-4d29-9df4-38c1dd7e0b43",
+        "fullName": "Kristen Montan",
+        "surname": "Montan",
+        "seatTitle": "Secretary",
+        "status": "CURRENT",
+        "sourceUrl": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-3-api-committeemember-list.json",
+        "aliases": ["Montan"]
+      },
+      {
+        "externalId": "primegov-user-dc579555-e48a-45e6-98c2-b3cdf4e3c730",
+        "fullName": "Nicolas Oliver",
+        "surname": "Oliver",
+        "seatTitle": "Member",
+        "status": "CURRENT",
+        "sourceUrl": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-3-api-committeemember-list.json",
+        "aliases": ["Oliver"]
+      }
+    ]
+  },
+  {
+    "providerId": "clark-county-commission",
+    "sourceName": "Clark County Board of County Commissioners official roster",
+    "sourceUrl": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/",
+    "jurisdictionName": "Clark County, Nevada",
+    "jurisdictionSlug": "clark-county-nv",
+    "jurisdictionType": "COUNTY",
+    "bodyName": "Clark County Commission",
+    "bodyAliases": [
+      "Clark County Commission",
+      "Clark County Board of County Commissioners",
+      "Board of County Commissioners",
+      "County Commission",
+      "BCC"
+    ],
+    "officeTitle": "Clark County Commissioner",
+    "officeLevel": "COUNTY",
+    "notes": "Official county page lists the seven-member commission and district seats. Used for meeting-action surname matching; public publishing remains review-gated.",
+    "members": [
+      { "externalId": "clark-county-commission-district-a-naft", "fullName": "Michael Naft", "surname": "Naft", "seatTitle": "District A, Chairman", "status": "CURRENT", "sourceUrl": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/", "aliases": ["Naft", "Chair Naft", "Chairman Naft", "Commissioner Naft"] },
+      { "externalId": "clark-county-commission-district-b-kirkpatrick", "fullName": "Marilyn Kirkpatrick", "surname": "Kirkpatrick", "seatTitle": "District B, County Commissioner", "status": "CURRENT", "sourceUrl": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/", "aliases": ["Kirkpatrick", "Commissioner Kirkpatrick"] },
+      { "externalId": "clark-county-commission-district-c-becker", "fullName": "April Becker", "surname": "Becker", "seatTitle": "District C, County Commissioner", "status": "CURRENT", "sourceUrl": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/", "aliases": ["Becker", "Commissioner Becker"] },
+      { "externalId": "clark-county-commission-district-d-mccurdy", "fullName": "William McCurdy II", "surname": "McCurdy", "seatTitle": "District D, Vice-Chairman", "status": "CURRENT", "sourceUrl": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/", "aliases": ["McCurdy", "McCurdy II", "Vice Chair McCurdy", "Vice-Chairman McCurdy", "Commissioner McCurdy"] },
+      { "externalId": "clark-county-commission-district-e-segerblom", "fullName": "Tick Segerblom", "surname": "Segerblom", "seatTitle": "District E, County Commissioner", "status": "CURRENT", "sourceUrl": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/", "aliases": ["Segerblom", "Commissioner Segerblom"] },
+      { "externalId": "clark-county-commission-district-f-jones", "fullName": "Justin Jones", "surname": "Jones", "seatTitle": "District F, County Commissioner", "status": "CURRENT", "sourceUrl": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/", "aliases": ["Jones", "Commissioner Jones"] },
+      { "externalId": "clark-county-commission-district-g-gibson", "fullName": "James B. Gibson", "surname": "Gibson", "seatTitle": "District G, County Commissioner", "status": "CURRENT", "sourceUrl": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/", "aliases": ["Gibson", "James Gibson", "Commissioner Gibson"] }
+    ]
+  },
+  {
+    "providerId": "clark-county-school-district",
+    "sourceName": "Clark County School District Board of School Trustees official roster",
+    "sourceUrl": "https://www.ccsd.net/about/school-board",
+    "jurisdictionName": "Clark County School District, Nevada",
+    "jurisdictionSlug": "clark-county-school-district",
+    "jurisdictionType": "AGENCY",
+    "bodyName": "Clark County School District Board of Trustees",
+    "bodyAliases": [
+      "Clark County School District Board of Trustees",
+      "Clark County Board of School Trustees",
+      "CCSD Board of School Trustees",
+      "CCSD Board",
+      "Board of School Trustees"
+    ],
+    "officeTitle": "Clark County School District Trustee",
+    "officeLevel": "COUNTY",
+    "notes": "Official CCSD board page lists elected and appointed trustees, roles, and districts/municipal seats. Used for conservative meeting-action matching.",
+    "members": [
+      { "externalId": "ccsd-trustee-district-a-stevens", "fullName": "Emily Stevens", "surname": "Stevens", "seatTitle": "District A, President", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Stevens", "President Stevens", "Trustee Stevens"] },
+      { "externalId": "ccsd-trustee-district-f-bustamante-adams", "fullName": "Irene Bustamante Adams", "surname": "Adams", "seatTitle": "District F, Vice President", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Adams", "Bustamante Adams", "Bustamante-Adams", "Vice President Adams", "Trustee Adams"] },
+      { "externalId": "ccsd-trustee-district-b-dominguez", "fullName": "Lydia Dominguez", "surname": "Dominguez", "seatTitle": "District B, Clerk", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Dominguez", "Clerk Dominguez", "Trustee Dominguez"] },
+      { "externalId": "ccsd-trustee-north-las-vegas-barron", "fullName": "Isaac Barron", "surname": "Barron", "seatTitle": "North Las Vegas, Member", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Barron", "Trustee Barron"] },
+      { "externalId": "ccsd-trustee-district-e-biassotti", "fullName": "Lorena Biassotti", "surname": "Biassotti", "seatTitle": "District E, Member", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Biassotti", "Trustee Biassotti"] },
+      { "externalId": "ccsd-trustee-district-g-cavazos", "fullName": "Linda P. Cavazos", "surname": "Cavazos", "seatTitle": "District G, Member", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Cavazos", "Linda Cavazos", "Trustee Cavazos"] },
+      { "externalId": "ccsd-trustee-henderson-esparza-stoffregan", "fullName": "Ramona Esparza-Stoffregan", "surname": "Esparza-Stoffregan", "seatTitle": "Henderson, Member", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Esparza-Stoffregan", "Esparza Stoffregan", "Stoffregan", "Trustee Esparza-Stoffregan"] },
+      { "externalId": "ccsd-trustee-district-c-henry", "fullName": "Tameka Henry", "surname": "Henry", "seatTitle": "District C, Member", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Henry", "Trustee Henry"] },
+      { "externalId": "ccsd-trustee-las-vegas-johnson", "fullName": "Adam Johnson", "surname": "Johnson", "seatTitle": "Las Vegas, Member", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Johnson", "Trustee Johnson"] },
+      { "externalId": "ccsd-trustee-clark-county-satory", "fullName": "Lisa Satory", "surname": "Satory", "seatTitle": "Clark County, Member", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Satory", "Trustee Satory"] },
+      { "externalId": "ccsd-trustee-district-d-zamora", "fullName": "Brenda Zamora", "surname": "Zamora", "seatTitle": "District D, Member", "status": "CURRENT", "sourceUrl": "https://www.ccsd.net/about/school-board", "aliases": ["Zamora", "Trustee Zamora"] }
+    ]
+  },
+  {
+    "providerId": "henderson-city-council",
+    "sourceName": "City of Henderson Mayor and Council official pages",
+    "sourceUrl": "https://www.cityofhenderson.com/government/mayor-and-city-council",
+    "jurisdictionName": "Henderson, Nevada",
+    "jurisdictionSlug": "henderson-nv",
+    "jurisdictionType": "CITY",
+    "bodyName": "Henderson City Council",
+    "bodyAliases": [
+      "Henderson City Council",
+      "City of Henderson City Council",
+      "Henderson Mayor and Council",
+      "Mayor and Council"
+    ],
+    "officeTitle": "Henderson City Council Member",
+    "officeLevel": "CITY",
+    "notes": "Official Henderson Mayor and Council pages list the mayor and ward councilmembers. Terms are included only where stated by the official biography.",
+    "members": [
+      { "externalId": "henderson-mayor-romero", "fullName": "Michelle Romero", "surname": "Romero", "seatTitle": "Mayor", "termStart": "2023-01-03", "status": "CURRENT", "sourceUrl": "https://www.cityofhenderson.com/government/departments/mayor-and-council/mayor-michelle-romero", "aliases": ["Romero", "Mayor Romero", "M. Romero"] },
+      { "externalId": "henderson-ward-1-seebock", "fullName": "Jim Seebock", "surname": "Seebock", "seatTitle": "Ward I Councilman", "termStart": "2023-04-01", "status": "CURRENT", "sourceUrl": "https://www.cityofhenderson.com/government/mayor-and-city-council/council-ward-1", "aliases": ["Seebock", "Councilman Seebock", "J. Seebock"] },
+      { "externalId": "henderson-ward-2-larson", "fullName": "Monica Larson", "surname": "Larson", "seatTitle": "Ward II Councilwoman", "termStart": "2025-01-07", "status": "CURRENT", "sourceUrl": "https://www.cityofhenderson.com/government/departments/mayor-and-council/ward-ii-councilwoman-monica-larson", "aliases": ["Larson", "Dr. Larson", "Councilwoman Larson", "M. Larson"] },
+      { "externalId": "henderson-ward-3-cox", "fullName": "Carrie Cox", "surname": "Cox", "seatTitle": "Ward III Councilwoman", "termStart": "2022-11-01", "status": "CURRENT", "sourceUrl": "https://www.cityofhenderson.com/government/departments/mayor-and-council/ward-iii-carrie-cox", "aliases": ["Cox", "Councilwoman Cox", "C. Cox"] },
+      { "externalId": "henderson-ward-4-stewart", "fullName": "Dan H. Stewart", "surname": "Stewart", "seatTitle": "Ward IV Councilman", "termStart": "2017-01-01", "status": "CURRENT", "sourceUrl": "https://www.cityofhenderson.com/government/mayor-and-city-council/council-ward-4", "aliases": ["Stewart", "Dan Stewart", "Councilman Stewart", "D. Stewart"] }
+    ]
+  },
+  {
+    "providerId": "las-vegas-city-council",
+    "sourceName": "City of Las Vegas Mayor and City Council official roster",
+    "sourceUrl": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council",
+    "jurisdictionName": "Las Vegas, Nevada",
+    "jurisdictionSlug": "las-vegas-nv",
+    "jurisdictionType": "CITY",
+    "bodyName": "Las Vegas City Council",
+    "bodyAliases": [
+      "Las Vegas City Council",
+      "City of Las Vegas City Council",
+      "Las Vegas Mayor and City Council",
+      "Mayor and City Council"
+    ],
+    "officeTitle": "Las Vegas City Council Member",
+    "officeLevel": "CITY",
+    "notes": "Official City of Las Vegas page lists the mayor and councilmembers by ward. Used for body-scoped surname matching and review-gated official action display.",
+    "members": [
+      { "externalId": "las-vegas-mayor-berkley", "fullName": "Shelley Berkley", "surname": "Berkley", "seatTitle": "Mayor", "status": "CURRENT", "sourceUrl": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council", "aliases": ["Berkley", "Mayor Berkley"] },
+      { "externalId": "las-vegas-ward-1-knudsen", "fullName": "Brian Knudsen", "surname": "Knudsen", "seatTitle": "Ward 1, Mayor Pro Tem", "status": "CURRENT", "sourceUrl": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council", "aliases": ["Knudsen", "Mayor Pro Tem Knudsen", "Councilman Knudsen"] },
+      { "externalId": "las-vegas-ward-2-kelley", "fullName": "Kara Kelley", "surname": "Kelley", "seatTitle": "Ward 2, Councilwoman", "status": "CURRENT", "sourceUrl": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council", "aliases": ["Kelley", "Councilwoman Kelley"] },
+      { "externalId": "las-vegas-ward-3-diaz", "fullName": "Olivia Diaz", "surname": "Diaz", "seatTitle": "Ward 3, Councilwoman", "status": "CURRENT", "sourceUrl": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council", "aliases": ["Diaz", "Councilwoman Diaz"] },
+      { "externalId": "las-vegas-ward-4-allen-palenske", "fullName": "Francis Allen-Palenske", "surname": "Allen-Palenske", "seatTitle": "Ward 4, Councilwoman", "status": "CURRENT", "sourceUrl": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council", "aliases": ["Allen-Palenske", "Allen Palenske", "Palenske", "Councilwoman Allen-Palenske"] },
+      { "externalId": "las-vegas-ward-5-summers-armstrong", "fullName": "Shondra Summers-Armstrong", "surname": "Summers-Armstrong", "seatTitle": "Ward 5, Councilwoman", "status": "CURRENT", "sourceUrl": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council", "aliases": ["Summers-Armstrong", "Summers Armstrong", "Armstrong", "Councilwoman Summers-Armstrong"] },
+      { "externalId": "las-vegas-ward-6-brune", "fullName": "Nancy E. Brune", "surname": "Brune", "seatTitle": "Ward 6, Councilwoman", "status": "CURRENT", "sourceUrl": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council", "aliases": ["Brune", "Nancy Brune", "Councilwoman Brune"] }
+    ]
+  },
+  {
+    "providerId": "north-las-vegas-city-council",
+    "sourceName": "City of North Las Vegas City Council official roster",
+    "sourceUrl": "https://www.cityofnorthlasvegas.com/our-city/city-council",
+    "jurisdictionName": "North Las Vegas, Nevada",
+    "jurisdictionSlug": "north-las-vegas-nv",
+    "jurisdictionType": "CITY",
+    "bodyName": "North Las Vegas City Council",
+    "bodyAliases": [
+      "North Las Vegas City Council",
+      "City of North Las Vegas City Council",
+      "NLV City Council",
+      "North Las Vegas Council"
+    ],
+    "officeTitle": "North Las Vegas City Council Member",
+    "officeLevel": "CITY",
+    "notes": "Official North Las Vegas page lists the mayor and four ward councilmembers. The page states the mayor and council serve four-year staggered terms.",
+    "members": [
+      { "externalId": "north-las-vegas-mayor-goynes-brown", "fullName": "Pamela Goynes-Brown", "surname": "Goynes-Brown", "seatTitle": "Mayor", "termStart": "2022-12-01", "status": "CURRENT", "sourceUrl": "https://www.cityofnorthlasvegas.com/our-city/city-council", "aliases": ["Goynes-Brown", "Goynes Brown", "Mayor Goynes-Brown", "Goynes"] },
+      { "externalId": "north-las-vegas-ward-1-barron", "fullName": "Isaac Barron", "surname": "Barron", "seatTitle": "Ward 1 Councilman", "status": "CURRENT", "sourceUrl": "https://www.cityofnorthlasvegas.com/our-city/city-council", "aliases": ["Barron", "Councilman Barron"] },
+      { "externalId": "north-las-vegas-ward-2-garcia-anderson", "fullName": "Ruth Garcia-Anderson", "surname": "Garcia-Anderson", "seatTitle": "Ward 2 Councilwoman", "status": "CURRENT", "sourceUrl": "https://www.cityofnorthlasvegas.com/our-city/city-council", "aliases": ["Garcia-Anderson", "Garcia Anderson", "Anderson", "Councilwoman Garcia-Anderson"] },
+      { "externalId": "north-las-vegas-ward-3-black", "fullName": "Scott Black", "surname": "Black", "seatTitle": "Ward 3 Councilman", "status": "CURRENT", "sourceUrl": "https://www.cityofnorthlasvegas.com/our-city/city-council", "aliases": ["Black", "Councilman Black"] },
+      { "externalId": "north-las-vegas-ward-4-cherchio", "fullName": "Richard Cherchio", "surname": "Cherchio", "seatTitle": "Ward 4 Councilman", "status": "CURRENT", "sourceUrl": "https://www.cityofnorthlasvegas.com/our-city/city-council", "aliases": ["Cherchio", "Councilman Cherchio"] }
+    ]
+  },
+  {
+    "providerId": "sparks-city-council",
+    "sourceName": "City of Sparks Mayor and City Councilmembers official roster",
+    "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php",
+    "jurisdictionName": "Sparks, Nevada",
+    "jurisdictionSlug": "sparks-nv",
+    "jurisdictionType": "CITY",
+    "bodyName": "Sparks City Council",
+    "bodyAliases": [
+      "Sparks City Council",
+      "City of Sparks City Council",
+      "Sparks Mayor and City Council",
+      "Sparks City Council and Redevelopment Agency"
+    ],
+    "officeTitle": "Sparks City Council Member",
+    "officeLevel": "CITY",
+    "notes": "Official Sparks page lists the mayor and five ward councilmembers and states they are elected to staggered four-year terms.",
+    "members": [
+      { "externalId": "sparks-mayor-lawson", "fullName": "Ed Lawson", "surname": "Lawson", "seatTitle": "Mayor", "status": "CURRENT", "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php", "aliases": ["Lawson", "Mayor Lawson"] },
+      { "externalId": "sparks-ward-1-abbott", "fullName": "Donald Abbott", "surname": "Abbott", "seatTitle": "Ward 1 Councilmember", "status": "CURRENT", "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php", "aliases": ["Abbott", "Councilmember Abbott"] },
+      { "externalId": "sparks-ward-2-vanderwell", "fullName": "Dian VanderWell", "surname": "VanderWell", "seatTitle": "Ward 2 Councilmember", "status": "CURRENT", "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php", "aliases": ["VanderWell", "Vanderwell", "Councilmember VanderWell"] },
+      { "externalId": "sparks-ward-3-anderson", "fullName": "Paul Anderson", "surname": "Anderson", "seatTitle": "Ward 3 Councilmember", "status": "CURRENT", "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php", "aliases": ["Anderson", "Councilmember Anderson"] },
+      { "externalId": "sparks-ward-4-bybee", "fullName": "Charlene Bybee", "surname": "Bybee", "seatTitle": "Ward 4 Councilmember", "status": "CURRENT", "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php", "aliases": ["Bybee", "Councilmember Bybee"] },
+      { "externalId": "sparks-ward-5-rodriguez", "fullName": "Joe Rodriguez", "surname": "Rodriguez", "seatTitle": "Ward 5 Councilmember", "status": "CURRENT", "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php", "aliases": ["Rodriguez", "Councilmember Rodriguez"] }
+    ]
+  }
+]

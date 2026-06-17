@@ -7,15 +7,7 @@ import type { CampusElectionVoteSummary, ElectionSummary } from "@/types/domain"
 
 const CAMPUS_ELECTION_VOTES_COOKIE = "dd_campus_election_votes";
 
-const seededCampusElectionVotes: CampusElectionVoteSummary[] = [
-  {
-    id: "campus_vote_hannah_jasmine",
-    electionId: "election_unr_student_government_2026",
-    candidateCampaignId: "campaign_jasmine_unr_2026",
-    userId: "user_trusted_citizen_hannah_cho",
-    createdAt: "2026-04-04T11:00:00.000Z",
-  },
-];
+const seededCampusElectionVotes: CampusElectionVoteSummary[] = [];
 
 function isCampusElectionVoteSummary(value: unknown): value is CampusElectionVoteSummary {
   if (!value || typeof value !== "object") {

@@ -4,7 +4,7 @@ import { getIssueRelatedEventCount } from "@/lib/community/events";
 import { getIssueRelatedGroups } from "@/lib/community/groups";
 import { getStructuredValueText, getTopVoices, getUserProfileContent } from "@/lib/profile/details";
 import { getFavoriteSpotCategoryLabel } from "@/lib/profile/options";
-import { mockVoteQuestions } from "@/lib/mock-data";
+import { getVotingLibrary } from "@/lib/feed/quick-votes";
 import { getAllPetitions } from "@/lib/petitions/store";
 import { getPollsForCommunity } from "@/lib/polls/store";
 import type {
@@ -126,10 +126,11 @@ async function getRelatedPollCount(viewer: AuthUser, label: string, communityId:
   }).length;
 }
 
-function getRelatedQuestionCount(label: string, community: CommunitySummary) {
+async function getRelatedQuestionCount(viewer: AuthUser, label: string, community: CommunitySummary) {
   const issueTokens = tokenize(label);
+  const questions = await getVotingLibrary(viewer, { scope: "all", category: "all", objectType: "all" });
 
-  return mockVoteQuestions.filter((question) => {
+  return questions.filter((question) => {
     if (!community.jurisdictionMatches.includes(question.jurisdictionName)) {
       return false;
     }
@@ -167,10 +168,11 @@ export async function getCommunityIssuePriorities(viewer: AuthUser, communityId:
 
   for (const [index, [normalizedKey, value]] of rankedEntries.entries()) {
     const relatedPetition = await getRelatedPetition(value.label, community);
-    const [topVoiceMatches, relatedPollCount, relatedEventCount] = await Promise.all([
+    const [topVoiceMatches, relatedPollCount, relatedEventCount, relatedQuestionCount] = await Promise.all([
       getTopVoiceMatches(viewer, community.id, scope, value.label),
       getRelatedPollCount(viewer, value.label, community.id),
       getIssueRelatedEventCount(community.id, value.label),
+      getRelatedQuestionCount(viewer, value.label, community),
     ]);
 
     priorities.push({
@@ -181,7 +183,7 @@ export async function getCommunityIssuePriorities(viewer: AuthUser, communityId:
       percentage: userCount ? Math.round((value.count / userCount) * 100) : 0,
       relatedPetitionId: relatedPetition?.id ?? null,
       relatedPetitionTitle: relatedPetition?.title ?? null,
-      relatedQuestionCount: getRelatedQuestionCount(value.label, community),
+      relatedQuestionCount,
       relatedPollCount,
       relatedEventCount,
       relatedGroups: getIssueRelatedGroups(community.id, value.label),

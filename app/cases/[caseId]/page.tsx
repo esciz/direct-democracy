@@ -46,14 +46,14 @@ export default async function CaseDetailPage({ params, searchParams }: CaseDetai
       <PageIntro
         eyebrow="Case"
         title={caseItem.title}
-        description="Track a public-interest court issue, see public support, and help shape community-backed themes for possible future legal-partner review."
+        description="Reviewed public court record. Direct Democracy shows stored public metadata only and does not provide legal advice."
         meta={
           <>
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
               {caseItem.jurisdictionName}
             </span>
             <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
-              Not a legal filing
+              Public data only
             </span>
           </>
         }

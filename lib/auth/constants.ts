@@ -8,6 +8,7 @@ export const NEW_USER_DEMO_ID = "user_citizen_casey_rivera";
 const demoModeEnv = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE ?? process.env.ENABLE_DEMO_MODE;
 
 export const DEV_ONLY_AUTH_ENABLED = demoModeEnv ? demoModeEnv !== "false" : true;
+export const DEMO_PROFILE_SWITCHER_ENABLED = demoModeEnv === "true";
 
 export const PUBLIC_POST_CREATOR_ROLES: UserRole[] = ["trustedCitizen", "candidate", "official", "media"];
 
@@ -19,4 +20,10 @@ export const ROLE_LABELS: Record<UserRole, string> = {
   media: "Media",
   moderator: "Moderator",
   admin: "Admin",
+  public_user: "Public User",
+  verified_resident: "Verified Resident",
+  platform_admin: "Platform Admin",
+  government_admin: "Government Admin",
+  government_staff: "Government Staff",
+  government_observer: "Government Observer",
 };

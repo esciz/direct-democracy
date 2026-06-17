@@ -23,6 +23,7 @@ import type {
   PoliticalAdMedium,
   BallotQuestionType,
   PetitionLifecycleStatus,
+  CivicDataAccessMethod,
   SourceSyncStatus,
   SourceType,
 } from "@prisma/client";
@@ -32,11 +33,13 @@ export type CivicSourceAdapterKey =
   | "nevada-state-government"
   | "nevada-federal-delegation"
   | "nevada-secretary-of-state"
+  | "openstates"
+  | "nevada-legislature-records"
+  | "arcgis-boundaries"
   | "reno"
   | "carson-city"
   | "washoe-county"
-  | "unr"
-  | "asun";
+  | "county-election-office";
 
 export type CivicSourceDefinition = {
   name: string;
@@ -45,7 +48,12 @@ export type CivicSourceDefinition = {
   url: string;
   adapterKey: CivicSourceAdapterKey;
   jurisdictionSlug: string;
+  dataCategory?: string;
+  accessMethod?: CivicDataAccessMethod;
+  importPriority?: number;
+  refreshFrequency: string;
   description: string;
+  notes?: string;
 };
 
 export type ImportMode = "manual" | "scheduled";

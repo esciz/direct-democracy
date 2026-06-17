@@ -1,0 +1,1136 @@
+[
+  {
+    "source_id": "nvsos-2026-candidate-public-media",
+    "source_type": "candidate_public_media",
+    "source_url": "https://www.nvsos.gov/elections/election-information/2026-election-information/2026-candidate-public-media-information",
+    "source_stage": "seed",
+    "fetched_at": "2026-06-14T22:55:14.793Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/nvsos-2026-candidate-public-media-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "nvsos-candidate-filing-list",
+    "source_type": "candidate_filing",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchUU/CertCandList.aspx",
+    "source_stage": "seed",
+    "fetched_at": "2026-06-14T22:55:15.003Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/nvsos-candidate-filing-list-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "nvsos-danny-tarkanian-candidate-details",
+    "source_type": "candidate_detail",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchUU/CandidateDetails.aspx?o=tvpre0ayXF84hHcGjkZ1Fw%253d%253d",
+    "source_stage": "seed",
+    "fetched_at": "2026-06-14T22:55:15.197Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/nvsos-danny-tarkanian-candidate-details-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "nvsos-joe-lombardo-candidate-details",
+    "source_type": "candidate_detail",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/cefdsearchuu/CandidateDetails.aspx?o=NZZn4mEHsNMU0L1EsD6oJg%253d%253d",
+    "source_stage": "seed",
+    "fetched_at": "2026-06-14T22:55:15.366Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/nvsos-joe-lombardo-candidate-details-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "nvsos-expense-results-secretary-of-state",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchUU/ExpenseResults.aspx?ns=Office+of+the+Secretary+of+State",
+    "source_stage": "seed",
+    "fetched_at": "2026-06-14T22:55:15.537Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/nvsos-expense-results-secretary-of-state-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "nvsos-browse-reports-2021",
+    "source_type": "campaign_finance_archive",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchuu/BrowseReports.aspx?nd=0002021_Reports",
+    "source_stage": "seed",
+    "fetched_at": "2026-06-14T22:55:15.712Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/nvsos-browse-reports-2021-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "nvsos-show-document-id-4281",
+    "source_type": "show_document",
+    "source_url": "https://www.nvsos.gov/Modules/ShowDocument.aspx?id=4281",
+    "source_stage": "seed",
+    "fetched_at": "2026-06-14T22:55:15.888Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/nvsos-show-document-id-4281-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "nvsos-show-document-documentid-4281",
+    "source_type": "show_document",
+    "source_url": "https://www.nvsos.gov/Modules/ShowDocument.aspx?documentid=4281",
+    "source_stage": "seed",
+    "fetched_at": "2026-06-14T22:55:16.066Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/nvsos-show-document-documentid-4281-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ydg9eieihgx61xuvw7xz7g-3984ef5b",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=YDG9eiEIHgX61xuvw7XZ7g%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:16.243Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ydg9eieihgx61-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-fublvtyrnf-252fn2-252f-8d456010",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=FublVtyrnf%252fn2%252fpMQPuGEQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:16.428Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-fublvtyrnf-25-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-trno-252baydxmlnakkuxg-3826c51f",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=tRno%252bAyDxMlNaKKUxgsHNg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:16.598Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-trno-252baydx-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-lqegka3jg10rconxh1lmtw-d57fb2e4",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=lQEGKa3jg10rCoNXH1LmTw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:16.786Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-lqegka3jg10rc-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-8fao88vfwfwf0wtgwp8kba-fd14dc91",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=8fao88vfWfWf0wtgwp8kbA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:16.956Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-8fao88vfwfwf0-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-4yp4nmnqx5nvumjtlmddga-8a232782",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=4Yp4nMnQx5nvUmJtlmddGA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:17.131Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-4yp4nmnqx5nvu-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ffgalfclken9r9i9-252b--ee3481dd",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=fFgalfclkeN9R9I9%252b%252bQ0eQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:17.305Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ffgalfclken9r-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-yl8t674yqc-252fcpnyg2h-1af24237",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=YL8t674Yqc%252fcpnYG2hAAxA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:17.486Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-yl8t674yqc-25-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ssgglmsfnzqxid25fywzjg-4ee8bd6c",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=ssggLmSfNZqXid25fYWzjg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:17.658Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ssgglmsfnzqxi-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-x3r-252f7fv2wq0wo9yis--40f38653",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=X3r%252f7Fv2wq0wo9YIs%252b0OWg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:18.062Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-x3r-252f7fv2w-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-y85mukh06fz86azit37ipa-3489999a",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=Y85mukh06FZ86aZIT37IpA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:18.241Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-y85mukh06fz86-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-gfy0mb47xlfwnaszwn5rag-4c940b8f",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=gfy0mB47xLFwnasZwN5rAg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:18.417Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-gfy0mb47xlfwn-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-7t-252f7pm6dsjpzd94rlr-7c1a7200",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=7T%252f7PM6dSjpzd94RLR6HOg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:18.584Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-7t-252f7pm6ds-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-uq4h7zz7wg-252biie2xrg-fcb24856",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=Uq4H7zz7wg%252biIE2XrGaDgg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:18.766Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-uq4h7zz7wg-25-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-by-252fjb6ygr3xe55ttzq-9e7b641d",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=By%252fJb6yGr3XE55TtZQabqw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:18.942Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "cb54e27c14b84948f4835e565fd6dae8f7960c9933b524241b4879ce0dd04a56",
+    "bytes": 1031,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-by-252fjb6ygr-cb54e27c14b8.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-avw1cuth0wq0-252fv9m0x-030fe4ea",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=avW1CUTH0wq0%252fv9m0X1mdw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:19.115Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-avw1cuth0wq0--d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-c-252bcixwc0nvadjysyqe-f6548c14",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=c%252bcixwC0nvAdjYsyqEmXJg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:19.293Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-c-252bcixwc0n-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-k3vtks-252ffbsmtjfwnbf-56d68f39",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=k3vTkS%252fFbsmtjFWnBf2l5A%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:19.467Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-k3vtks-252ffb-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-nfa-252bdpo9emongwjv2u-3bb03da2",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=Nfa%252bdPO9eMOnGWJV2u0pLQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:19.638Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-nfa-252bdpo9e-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-252buv73t-252bxyfq8zdn-2dc58239",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=%252bUv73t%252bXYfQ8zdntcy4%252fZA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:19.817Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-252buv73t-252-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-g6qanbxjykswtuiort-252-1f387894",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=g6qANBXJYKsWTuiORT%252fr4w%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:19.995Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-g6qanbxjykswt-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-a1jvgbmjy-252f0ptmgw-2-bd3419cc",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=A1JvGbMJy%252f0pTMGw%252fQZokA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:20.175Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-a1jvgbmjy-252-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-t2kugsrgw6pwwmsj5uq7ww-51b8d01a",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=t2kUGsRgw6pwWmSj5uq7ww%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:20.360Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-t2kugsrgw6pww-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-jt4yhi0kpoiiwf3swqg0pw-4d8c4266",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=Jt4YHi0kPOIIWf3swQG0pw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:20.534Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-jt4yhi0kpoiiw-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-gt6zq1xprnufyse0agm0sw-f3660f02",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=GT6zq1xprnuFySE0AgM0Sw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:20.714Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-gt6zq1xprnufy-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ki30xx4zru7vtmnolz41za-55c7e47c",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=Ki30Xx4ZrU7Vtmnolz41ZA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:20.885Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ki30xx4zru7vt-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-qgtobzyvo2-252bhdksj7r-bcfc13be",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=qGTObzyvO2%252bhDKsj7rBViQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:21.067Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-qgtobzyvo2-25-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-jvvlq8rn5r6ucv0ty13doa-2e41e760",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=Jvvlq8rN5R6UCv0tY13doA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:21.248Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-jvvlq8rn5r6uc-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-vklq3rllhqtlm-252banl9-996a3db0",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=vklQ3rLlHqTLM%252bANL9LlrQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:21.418Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-vklq3rllhqtlm-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-vghlk5fd7govzbigs2jb-2-b3dceb0f",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=VGhlK5fd7GOvZBiGs2jb%252fQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:21.591Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-vghlk5fd7govz-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-znnqe5qyrpwcmphc7qihxa-b92ecac6",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=znnqE5QyRPWcMphc7qiHXA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:21.766Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-znnqe5qyrpwcm-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-fzzzvdjo7t269k4lws2mfq-2b437e66",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=fZzzvDJO7T269k4lwS2MfQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:21.950Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-fzzzvdjo7t269-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ioida6z-252fca3-252fw3-af5634c6",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=iOIDa6z%252fca3%252fW3KVP6wnhg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:22.126Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ioida6z-252fc-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-pmaurndkmz9ke4vxcrmugq-b2652a56",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=PmAUrNdKMZ9KE4vXcrmugQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:22.297Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-pmaurndkmz9ke-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-tt970ypxrychok9rkaspqa-e239c0a6",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=tt970YpXRyChoK9RKasPQA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:22.474Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-tt970ypxrycho-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-c2bnv5uhmvwf9olsqkequa-92131775",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=C2bnV5uhmvwF9OlsqKEQuA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:22.648Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-c2bnv5uhmvwf9-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-wlooenuyf6fgc-252bcbor-e0358d7d",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=wlOOenUyf6FgC%252bCBOrAflw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:22.820Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-wlooenuyf6fgc-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-hx4m-252bui-252fqz7vym-3d4ac755",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=hX4M%252buI%252fQZ7VymOQpT5OnA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:22.997Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-hx4m-252bui-2-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-gm-252fm7-252baamzctyx-da35ac69",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=GM%252fM7%252baamZCtyXkP4NiWlg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:23.174Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-gm-252fm7-252-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-o81amrzerccu79d2j245tg-b60e9a5d",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=O81AMrzERCcu79d2j245tg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:23.344Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-o81amrzerccu7-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-1dx4jhg4i-252fqgfv-252-4cb84e4c",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=1DX4JhG4i%252fQGFv%252fVHiWeAA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:23.513Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-1dx4jhg4i-252-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-s3g-252bhty4o94yjslm4b-f3cd6b60",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=S3g%252bHtY4O94YjsLm4bx7NQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:23.690Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+    "bytes": 212,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-s3g-252bhty4o-d02032286070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-p11r9czp7b5qxkl17d533a-caf5ce66",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=P11R9cZp7B5qxkl17D533A%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:23.862Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "796f096035d7d25812d6dedb7cc29df5d3b049552080bdb1b372d46c348ba0bd",
+    "bytes": 1035,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-p11r9czp7b5qx-796f096035d7.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-r-252f9msgsp5smypabe-2-ce2f86ab",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=R%252f9MsGSp5smYpabe%252bR4duw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:24.038Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "f44b82fdb374f4f65a585625be844f60c9f17bce7fe823a50fd686e4d65f3bb2",
+    "bytes": 1039,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-r-252f9msgsp5-f44b82fdb374.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-dw586vpknjp3l0lz-252fl-0ff5a9a2",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=DW586VPKnjp3l0Lz%252flbGkg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:24.212Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "a30ca87ae070c7db8ebf2230d701566a99d07d3a826a6d5f956e19f098293855",
+    "bytes": 1037,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-dw586vpknjp3l-a30ca87ae070.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ihlo7aaa-252bla0toyfvl-927f2e7c",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=ihlo7AAA%252bLa0tOyfvlG4Vw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:24.392Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "ed252028c6a8891bc736c0d9427feca819d0eea6ad212dd45f444666a86eb248",
+    "bytes": 1031,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ihlo7aaa-252b-ed252028c6a8.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-l3otesxojnxgpn46aefllw-c9d8de60",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=L3OtEsXOJNXgpN46AEFllw%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:24.563Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "5bfb973112b0f0c1986aa674f02e03ff4f713424d5c3adfd165851cd0acfc2b5",
+    "bytes": 1031,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-l3otesxojnxgp-5bfb973112b0.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-oxxhvlrgz73uhvpudpoeoa-5337a382",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=oXxhvlRgz73uHvPUDpOeOA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:24.747Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "f05944d2a97657238a9e880de88c45ba8c0dd763fa1bc5ba378998f0291304e4",
+    "bytes": 1033,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-oxxhvlrgz73uh-f05944d2a976.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-c5i2blxlnzx4csfc-252fo-f7c5ebd4",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=C5i2BlxLnZX4Csfc%252fOXnHA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:24.922Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "717b06bf6b140a4d5f0c224dfc1d353226e0aa83a6af44502f7e268f2a9dd613",
+    "bytes": 1031,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-c5i2blxlnzx4c-717b06bf6b14.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-jmefx6ka-252fthshcszvw-ff2de084",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=Jmefx6KA%252fthshCsZVwZB1w%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:25.106Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "e3281d8f64e4e6dff0ac5ae0e82ea633b127fabcbb7948a37312609a009af180",
+    "bytes": 1035,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-jmefx6ka-252f-e3281d8f64e4.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-wcqkhzermzehthdufvm-25-72cf38aa",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=wcqKHzermzehThDUFvM%252foA%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:25.276Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "c06dba6b4f9de7730465dd5a73e34f900dadf4977f72e147f8f920f111e8a4b0",
+    "bytes": 1037,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-wcqkhzermzeht-c06dba6b4f9d.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-twbeo9nvq4-252f-252f98-4a283b05",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=twBeO9nvq4%252f%252f98ZcACG2zg%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:25.458Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "77fa2ccfb824765a8bd0a79ff9a744f66b577bdc51119e12340dadb9278b2453",
+    "bytes": 1027,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-twbeo9nvq4-25-77fa2ccfb824.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-blpxwgqgoi6v5ibtu7nuxq-3562ce7b",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/ViewCCEReport.aspx?syn=blpxWgQgoi6v5IbTu7NuXQ%253d%253d",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:25.639Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "2743d2541577cbf27543230d259f4e112e084fb937282b35f28b56d06e644660",
+    "bytes": 1035,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-blpxwgqgoi6v5-2743d2541577.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-cefdsearchuu-browsereports-aspx-96131ba8",
+    "source_type": "campaign_finance_archive",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchuu/BrowseReports.aspx",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:25.817Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "6023a84dee631d1a8db95a02e1143e526c63163367533b8c7935b7b380c10610",
+    "bytes": 1031,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-cefdsearchuu-browsereports-aspx-9613-6023a84dee63.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  },
+  {
+    "source_id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-cefdsearchuu-browsereports-aspx-nd-0002021-re-cd2abd02",
+    "source_type": "campaign_finance_archive",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchuu/BrowseReports.aspx?nd=0002021_Reports%5c000Candidate-Incumbent_C_and_E_Reports_and_Financial_Disclosures",
+    "source_stage": "expanded",
+    "fetched_at": "2026-06-14T22:55:25.988Z",
+    "status": "blocked_incapsula",
+    "http_status": 200,
+    "content_type": "text/html",
+    "sha256": "ad4c6a0fa756cb91c4a97316970781f8e990700737f6a8f71513dad775e21e4b",
+    "bytes": 1037,
+    "cached_path": "data/raw/nv-sos/blocked/expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-cefdsearchuu-browsereports-aspx-nd-0-ad4c6a0fa756.html",
+    "required_cookies": [
+      "valid browser/session state accepted by the SoS edge protection layer"
+    ],
+    "used_cookie_file": true,
+    "error": null
+  }
+]

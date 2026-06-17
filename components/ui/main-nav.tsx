@@ -2,12 +2,10 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import { Logo } from "@/components/ui/brand-logo";
-import { DevRoleSwitcher } from "@/components/ui/dev-role-switcher";
 import { NavLinks } from "@/components/ui/nav-links";
 import { NotificationMenu } from "@/components/ui/notification-menu";
 import { getRoleLabel } from "@/lib/auth/roles";
-import { PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
-import { getAllSeedUsers, isGuestUser } from "@/lib/auth/session";
+import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 
 function NotificationMenuFallback() {
@@ -28,31 +26,8 @@ function NotificationMenuFallback() {
   );
 }
 
-function MobileDevTools({
-  currentUserId,
-  users,
-}: {
-  currentUserId: string | null;
-  users: ReturnType<typeof getAllSeedUsers>;
-}) {
-  return (
-    <details className="rounded-2xl border border-white/10 bg-black/20 p-3 md:hidden">
-      <summary className="cursor-pointer list-none text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">
-        Demo Controls
-      </summary>
-      <p className="mt-2 text-xs leading-5 text-slate-400">
-        Early tester controls. Switch between seeded profiles to preview verification, jurisdiction, and voting states.
-      </p>
-      <div className="mt-3">
-        <DevRoleSwitcher currentUserId={currentUserId} users={users} />
-      </div>
-    </details>
-  );
-}
-
 export async function MainNav() {
   const currentSessionUser = await getCurrentSessionUser();
-  const users = getAllSeedUsers();
 
   if (!currentSessionUser) {
     return (
@@ -91,10 +66,6 @@ export async function MainNav() {
                 </Link>
               </div>
               <p className="text-xs text-slate-400">Create an account to vote, message officials, save items, and build your civic dashboard.</p>
-              <MobileDevTools currentUserId={PUBLIC_SESSION_VALUE} users={users} />
-              <div className="hidden md:block">
-                <DevRoleSwitcher currentUserId={PUBLIC_SESSION_VALUE} users={users} />
-              </div>
             </div>
           </div>
         </div>
@@ -141,10 +112,6 @@ export async function MainNav() {
                 </Link>
               </div>
               <p className="text-xs text-slate-400">Browsing is open. Voting, messaging, commenting, and creation require a verified account.</p>
-              <MobileDevTools currentUserId={currentUser.id} users={users} />
-              <div className="hidden md:block">
-                <DevRoleSwitcher currentUserId={currentUser.id} users={users} />
-              </div>
             </div>
           </div>
         </div>
@@ -206,10 +173,6 @@ export async function MainNav() {
               <span className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
                 Current role: {getRoleLabel(currentUser.role)}
               </span>
-            </div>
-            <MobileDevTools currentUserId={currentSessionUser?.id ?? currentUser.id} users={users} />
-            <div className="hidden md:block">
-              <DevRoleSwitcher currentUserId={currentSessionUser?.id ?? currentUser.id} users={users} />
             </div>
           </div>
         </div>

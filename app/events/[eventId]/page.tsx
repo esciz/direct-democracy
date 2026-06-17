@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { CivicEventCard } from "@/components/domain/civic-event-card";
 import { CommunityEventCard } from "@/components/domain/community-event-card";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { PageIntro } from "@/components/ui/page-intro";
@@ -17,6 +18,10 @@ import {
   getEventSentimentSummary,
 } from "@/lib/community/event-participation";
 import { confirmEventAttendance, createEventPost, submitEventSentiment, updateEventRsvp } from "@/lib/community/event-participation-actions";
+import { getCivicEventById, getCivicEventStatusLabel, getCivicEventTypeLabel } from "@/lib/events/civic-events";
+import type { CivicEvent } from "@/lib/events/types";
+import { getPublicMeetingAdminDashboard } from "@/lib/public-meetings/public";
+import { getMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
 import type { PostSummary } from "@/types/domain";
 
 type EventDetailPageProps = {
@@ -45,6 +50,56 @@ function formatCompact(value: string) {
     hour: "numeric",
     minute: "2-digit",
   });
+}
+
+function formatOfficialDate(value: string | null) {
+  if (!value) return "Schedule source";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Date pending";
+  return date.toLocaleString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+function formatFetchedDate(value: string | null) {
+  if (!value) return "Source registry connected";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Source registry connected";
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function EventSourceLink({ href, label, description }: { href: string | null; label: string; description?: string }) {
+  if (!href) return null;
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="block rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 transition hover:border-civic-300 hover:bg-white"
+    >
+      <span className="text-sm font-semibold text-ink">{label}</span>
+      {description ? <span className="mt-1 block text-sm leading-6 text-slate-600">{description}</span> : null}
+    </Link>
+  );
+}
+
+function IntelligenceBadge({ children, tone = "slate" }: { children: string; tone?: "slate" | "green" | "amber" | "blue" }) {
+  const classes = {
+    slate: "bg-slate-100 text-slate-700",
+    green: "bg-emerald-50 text-emerald-700",
+    amber: "bg-amber-50 text-amber-700",
+    blue: "bg-sky-50 text-sky-700",
+  };
+  return <span className={`rounded-full px-3 py-1 text-xs font-semibold ${classes[tone]}`}>{children}</span>;
 }
 
 function renderEventPostPreview(post: PostSummary) {
@@ -79,7 +134,19 @@ function renderEventPostPreview(post: PostSummary) {
 
 export default async function EventDetailPage({ params, searchParams }: EventDetailPageProps) {
   const [{ eventId }, resolvedSearchParams] = await Promise.all([params, searchParams ?? Promise.resolve(undefined)]);
-  const event = await getCommunityEventById(eventId);
+  const currentUser = await getCurrentUser();
+  const civicEvent = await getCivicEventById(currentUser, eventId);
+
+  if (!civicEvent) {
+    notFound();
+  }
+
+  if (civicEvent.isOfficialMeeting) {
+    return <OfficialMeetingEventDetail event={civicEvent} />;
+  }
+
+  const communityEventId = civicEvent.communityEventId ?? eventId;
+  const event = await getCommunityEventById(communityEventId);
 
   if (!event) {
     notFound();
@@ -163,6 +230,347 @@ export default async function EventDetailPage({ params, searchParams }: EventDet
 
       <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <EventDetailBody eventId={event.id} returnPath={returnPath} />
+      </section>
+    </div>
+  );
+}
+
+async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
+  const eventTypeLabel = getCivicEventTypeLabel(event.eventType);
+  const statusLabel = getCivicEventStatusLabel(event.status);
+  const materialCount = event.sourceDocumentCount || [event.agendaUrl, event.packetUrl, event.minutesUrl, event.videoUrl, event.sourceUrl].filter(Boolean).length;
+  const dashboard = event.meetingRecordId
+    ? await withSectionTimeout(getPublicMeetingAdminDashboard(), "public meeting intelligence", 1800).catch((error) => {
+        console.error(`[event-detail] public meeting intelligence fallback for ${event.id}`, error);
+        return null;
+      })
+    : null;
+  const agendaItems = dashboard?.meetingItems
+    .filter((item) => item.meeting_id === event.meetingRecordId)
+    .sort((left, right) => {
+      const leftNumber = Number.parseFloat(left.item_number ?? "");
+      const rightNumber = Number.parseFloat(right.item_number ?? "");
+      if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) return leftNumber - rightNumber;
+      return left.title.localeCompare(right.title);
+    }) ?? [];
+  const meetingVotingCards = event.meetingRecordId
+    ? await withSectionTimeout(getMeetingVotingCards(), "meeting voting cards", 1400).catch((error) => {
+        console.error(`[event-detail] meeting voting cards fallback for ${event.id}`, error);
+        return { cards: [], allCards: [], jurisdictions: [], bodies: [], policyAreas: [] };
+      })
+    : { cards: [], allCards: [], jurisdictions: [], bodies: [], policyAreas: [] };
+  const relatedVotingCards = meetingVotingCards.allCards.filter((card) => card.meeting_id === event.meetingRecordId).slice(0, 8);
+  const votesByItemId = new Map<string, NonNullable<typeof dashboard>["voteRecords"]>();
+  if (dashboard) {
+    for (const vote of dashboard.voteRecords) {
+      votesByItemId.set(vote.meeting_item_id, [...(votesByItemId.get(vote.meeting_item_id) ?? []), vote]);
+    }
+  }
+
+  return (
+    <div className="space-y-8 py-8">
+      <PageIntro
+        eyebrow="Official event"
+        title={event.title}
+        description={event.description}
+        meta={
+          <>
+            <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white">
+              {eventTypeLabel}
+            </span>
+            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${event.status === "completed" ? "bg-slate-100 text-slate-700" : "bg-civic-50 text-civic-700"}`}>
+              {statusLabel}
+            </span>
+            <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+              {event.sourceProviderLabel}
+            </span>
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+              {event.jurisdiction}
+            </span>
+          </>
+        }
+        actions={
+          <>
+            <Link
+              href="/events"
+              className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+            >
+              Back to Events
+            </Link>
+            {event.sourceUrl ? (
+              <Link
+                href={event.sourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+              >
+                Official source
+              </Link>
+            ) : null}
+          </>
+        }
+      />
+
+      <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+        <div className="space-y-6">
+          <CivicEventCard event={event} returnPath={`/events/${event.id}`} />
+
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">What voters can review</p>
+            <h2 className="mt-2 text-2xl font-semibold text-ink">
+              {event.createdFromMeetingRecord ? "Meeting record" : "Meeting source registry"}
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              {event.summary ??
+                event.meetingSummary ??
+                (event.createdFromMeetingRecord
+                  ? "This official meeting record was imported from public source materials."
+                  : "This public body is connected as an official meeting source. Dated agenda, minutes, video, and vote imports will appear here as the meeting import pipeline adds records.")}
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Date</p>
+                <p className="mt-2 text-sm font-semibold text-ink">{formatOfficialDate(event.startsAt)}</p>
+              </div>
+              <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Materials</p>
+                <p className="mt-2 text-sm font-semibold text-ink">
+                  {materialCount} linked source{materialCount === 1 ? "" : "s"}
+                </p>
+              </div>
+              <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Host body</p>
+                <p className="mt-2 text-sm font-semibold text-ink">{event.hostName}</p>
+              </div>
+            </div>
+          </section>
+
+          {event.actionsTaken.length ? (
+            <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Votes and actions</p>
+              <h2 className="mt-2 text-2xl font-semibold text-ink">Actions taken</h2>
+              <div className="mt-5 space-y-3">
+                {event.actionsTaken.map((action) => (
+                  <article key={action.id} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                    <p className="text-sm font-semibold text-ink">{action.title}</p>
+                    {action.result ? <p className="mt-1 text-sm text-slate-600">Result: {action.result}</p> : null}
+                    {action.sourceUrl ? (
+                      <Link href={action.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-sm font-semibold text-civic-700 hover:text-civic-900">
+                        View source
+                      </Link>
+                    ) : null}
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {event.meetingSummary || event.keyActions.length || event.voteResults.length ? (
+            <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Civic intelligence</p>
+              <h2 className="mt-2 text-2xl font-semibold text-ink">Meeting summary and extracted actions</h2>
+              {event.meetingSummary ? <p className="mt-3 text-sm leading-7 text-slate-600">{event.meetingSummary}</p> : null}
+              {event.keyActions.length ? (
+                <div className="mt-5 space-y-2">
+                  {event.keyActions.map((action) => (
+                    <p key={action} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">{action}</p>
+                  ))}
+                </div>
+              ) : null}
+              {event.voteResults.length ? (
+                <div className="mt-5 space-y-3">
+                  {event.voteResults.map((vote, index) => (
+                    <article key={`${vote.motion ?? "vote"}-${index}`} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                      {vote.motion ? <p className="text-sm font-semibold text-ink">{vote.motion}</p> : null}
+                      {vote.result ? <p className="mt-1 text-sm text-slate-600">Result: {vote.result}</p> : null}
+                      {vote.voteText ? <p className="mt-2 text-sm text-slate-600">{vote.voteText}</p> : null}
+                      {vote.sourceUrl ? (
+                        <Link href={vote.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-sm font-semibold text-civic-700 hover:text-civic-900">
+                          View vote source
+                        </Link>
+                      ) : null}
+                    </article>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          ) : null}
+
+          {relatedVotingCards.length ? (
+            <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Related voting cards</p>
+              <h2 className="mt-2 text-2xl font-semibold text-ink">Local questions generated from this meeting</h2>
+              <div className="mt-5 space-y-3">
+                {relatedVotingCards.map((card) => (
+                  <article key={card.id} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <IntelligenceBadge tone={card.review_status === "approved" ? "green" : "amber"}>{card.review_status}</IntelligenceBadge>
+                      <IntelligenceBadge tone="blue">{card.policy_area}</IntelligenceBadge>
+                      <IntelligenceBadge>{card.outcome_status}</IntelligenceBadge>
+                      {card.needs_roll_call_review ? <IntelligenceBadge tone="amber">Roll call pending</IntelligenceBadge> : null}
+                      {card.financial_impact_context?.badges.map((badge) => <IntelligenceBadge key={badge} tone="amber">{badge}</IntelligenceBadge>)}
+                    </div>
+                    <h3 className="mt-3 text-base font-semibold text-ink">{card.question_text}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{card.plain_language_summary}</p>
+                    {card.financial_impact ? <p className="mt-2 text-sm text-slate-600"><span className="font-semibold text-slate-800">Financial:</span> {card.financial_impact}</p> : null}
+                    {card.financial_impact_context ? (
+                      <div className="mt-3 rounded-2xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">Tax / cost impact</p>
+                        <p className="mt-1 leading-6">{card.financial_impact_context.tax_cost_summary}</p>
+                      </div>
+                    ) : null}
+                    {card.outcome_text ? <p className="mt-2 text-sm text-slate-600"><span className="font-semibold text-slate-800">Outcome:</span> {card.outcome_text}</p> : null}
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <Link href="/voting" className="rounded-full bg-slate-950 px-3 py-2 text-xs font-semibold text-white">Voting queue</Link>
+                      <Link href="/admin/voting-cards" className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">Review queue</Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          {agendaItems.length ? (
+            <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Agenda intelligence</p>
+              <h2 className="mt-2 text-2xl font-semibold text-ink">Topics citizens can review</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                These child records turn the meeting into searchable topics, summaries, issue classifications, and vote hooks.
+              </p>
+              <div className="mt-5 space-y-4">
+                {agendaItems.slice(0, 30).map((item) => {
+                  const itemVotes = votesByItemId.get(item.id) ?? [];
+                  return (
+                    <article key={item.id} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {item.item_number ? (
+                          <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700">Item {item.item_number}</span>
+                        ) : null}
+                        {item.source_method === "manual_cache" ? (
+                          <IntelligenceBadge tone="blue">Source-backed</IntelligenceBadge>
+                        ) : null}
+                        <IntelligenceBadge tone="green">{item.policy_area}</IntelligenceBadge>
+                        <IntelligenceBadge>{item.item_type.replace(/_/g, " ")}</IntelligenceBadge>
+                        {item.parser_status === "needs_review" ? <IntelligenceBadge tone="amber">Needs review</IntelligenceBadge> : null}
+                        {item.vote_outcome || itemVotes.length ? <IntelligenceBadge tone="green">Vote parsed</IntelligenceBadge> : null}
+                        {item.roll_call_status === "needs_roll_call_review" || item.roll_call_status === "needs parser" ? <IntelligenceBadge tone="amber">Roll call pending</IntelligenceBadge> : null}
+                        {item.roll_call_status === "parsed" ? <IntelligenceBadge tone="green">Roll call parsed</IntelligenceBadge> : null}
+                      </div>
+                      <h3 className="mt-3 text-base font-semibold text-ink">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-700">{item.one_sentence_summary}</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">{item.plain_english_explanation}</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        <span className="font-semibold text-slate-800">Why it matters:</span> {item.why_it_matters}
+                      </p>
+                      {item.financial_impact || item.vote_outcome || item.affected_groups.length ? (
+                        <div className="mt-3 grid gap-2 text-sm text-slate-600 md:grid-cols-3">
+                          {item.financial_impact ? <p><span className="font-semibold text-slate-800">Financial:</span> {item.financial_impact}</p> : null}
+                          {item.vote_outcome ? <p><span className="font-semibold text-slate-800">Outcome:</span> {item.vote_outcome}</p> : null}
+                          {item.affected_groups.length ? <p><span className="font-semibold text-slate-800">Affected:</span> {item.affected_groups.join(", ")}</p> : null}
+                        </div>
+                      ) : null}
+                      {item.staff_recommendation || item.department_names?.length ? (
+                        <div className="mt-3 grid gap-2 text-sm text-slate-600 md:grid-cols-2">
+                          {item.staff_recommendation ? <p><span className="font-semibold text-slate-800">Recommended action:</span> {item.staff_recommendation}</p> : null}
+                          {item.department_names?.length ? <p><span className="font-semibold text-slate-800">Departments:</span> {item.department_names.join(", ")}</p> : null}
+                        </div>
+                      ) : null}
+                      {itemVotes.length ? (
+                        <div className="mt-3 rounded-[1rem] border border-slate-200 bg-white p-3 text-sm text-slate-600">
+                          <p className="font-semibold text-slate-800">Votes</p>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {itemVotes.map((vote) => (
+                              <span key={vote.id} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                                {vote.official_name}: {vote.vote}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+                      {item.related_official_names.length || item.related_organization_names.length ? (
+                        <p className="mt-3 text-sm text-slate-600">
+                          {item.related_official_names.length ? <><span className="font-semibold text-slate-800">Officials:</span> {item.related_official_names.join(", ")} </> : null}
+                          {item.related_organization_names.length ? <><span className="font-semibold text-slate-800">Organizations:</span> {item.related_organization_names.join(", ")}</> : null}
+                        </p>
+                      ) : null}
+                      {item.source_url ? (
+                        <Link href={item.source_url} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-sm font-semibold text-civic-700 hover:text-civic-900">
+                          View item source
+                        </Link>
+                      ) : null}
+                      {item.source_snippet || item.source_text ? (
+                        <details className="mt-3 rounded-[1rem] border border-slate-200 bg-white p-3 text-sm text-slate-600">
+                          <summary className="cursor-pointer font-semibold text-slate-800">Source snippet</summary>
+                          <p className="mt-2 leading-6">{item.source_snippet ?? item.source_text.slice(0, 900)}</p>
+                        </details>
+                      ) : null}
+                      {item.source_local_path ? (
+                        <p className="mt-2 text-xs leading-5 text-slate-500">Saved source: {item.source_local_path}</p>
+                      ) : null}
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+          ) : null}
+        </div>
+
+        <div className="space-y-6">
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Meeting materials</p>
+            <h2 className="mt-2 text-2xl font-semibold text-ink">Official links</h2>
+            <div className="mt-5 space-y-3">
+              <EventSourceLink href={event.agendaUrl} label="Agenda" description="Agenda or agenda archive from the hosting body." />
+              <EventSourceLink href={event.packetUrl} label="Packet / documents" description="Meeting packet, supporting documents, or item materials." />
+              <EventSourceLink href={event.minutesUrl} label="Minutes" description="Approved minutes or minutes archive when available." />
+              <EventSourceLink href={event.videoUrl ?? event.virtualUrl} label="Video / recording" description="Public stream, recording, or video archive." />
+              <EventSourceLink href={event.sourceUrl} label="Source page" description="Primary official source for this event record." />
+            </div>
+            {!materialCount ? (
+              <p className="mt-5 rounded-[1.25rem] border border-dashed border-slate-300 bg-slate-50 p-4 text-sm leading-6 text-slate-600">
+                No meeting materials have been imported yet. The source registry entry still keeps this public body visible in Events.
+              </p>
+            ) : null}
+          </section>
+
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Source attribution</p>
+            <h2 className="mt-2 text-2xl font-semibold text-ink">Official record status</h2>
+            <dl className="mt-5 space-y-4 text-sm">
+              <div>
+                <dt className="font-semibold text-slate-800">Host</dt>
+                <dd className="mt-1 text-slate-600">{event.hostName}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-slate-800">Jurisdiction</dt>
+                <dd className="mt-1 text-slate-600">{event.jurisdiction}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-slate-800">Source provider</dt>
+                <dd className="mt-1 text-slate-600">{event.sourceProviderLabel}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-slate-800">Last fetched</dt>
+                <dd className="mt-1 text-slate-600">{formatFetchedDate(event.lastFetchedAt)}</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Related civic context</p>
+            <h2 className="mt-2 text-2xl font-semibold text-ink">Connected records</h2>
+            {event.relatedIssueLabels.length || event.relatedOfficialIds.length ? (
+              <div className="mt-5 space-y-3 text-sm text-slate-600">
+                {event.relatedIssueLabels.length ? <p><span className="font-semibold text-slate-800">Issues:</span> {event.relatedIssueLabels.join(", ")}</p> : null}
+                {event.relatedOfficialIds.length ? <p><span className="font-semibold text-slate-800">Officials:</span> {event.relatedOfficialIds.join(", ")}</p> : null}
+              </div>
+            ) : (
+              <p className="mt-5 rounded-[1.25rem] border border-dashed border-slate-300 bg-slate-50 p-4 text-sm leading-6 text-slate-600">
+                Related officials, issues, vote questions, and action summaries will appear as dated meeting records and agenda items are parsed.
+              </p>
+            )}
+          </section>
+        </div>
       </section>
     </div>
   );

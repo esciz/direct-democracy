@@ -70,8 +70,6 @@ const seededInterviewRequests: InterviewRequestRecord[] = [
     status: "accepted",
     createdAt: "2026-04-04T17:30:00.000Z",
     updatedAt: "2026-04-06T18:00:00.000Z",
-    eventId: "event_interview_hannah_david_growth",
-    eventStartsAt: "2026-04-13T19:00:00.000Z",
   },
   {
     id: "interview_request_nora_sofia_water",
@@ -88,8 +86,6 @@ const seededInterviewRequests: InterviewRequestRecord[] = [
     createdAt: "2026-04-02T18:00:00.000Z",
     updatedAt: "2026-04-09T18:30:00.000Z",
     completedAt: "2026-04-09T18:30:00.000Z",
-    eventId: "event_interview_nora_sofia_water",
-    eventStartsAt: "2026-04-08T20:00:00.000Z",
     publishedPostId: "post_interview_nora_sofia_water",
   },
   {

@@ -45,30 +45,6 @@ const seededFavorites: FavoriteRecord[] = [
     targetId: "profile_sofia_bennett",
     createdAt: "2026-04-12T16:00:00.000Z",
   },
-  {
-    userId: "user_trusted_citizen_nora_patel",
-    targetType: "event",
-    targetId: "event_interview_nora_sofia_water",
-    createdAt: "2026-04-03T18:00:00.000Z",
-  },
-  {
-    userId: "user_candidate_sofia_bennett",
-    targetType: "event",
-    targetId: "event_interview_nora_sofia_water",
-    createdAt: "2026-04-03T18:00:00.000Z",
-  },
-  {
-    userId: "user_trusted_citizen_hannah_cho",
-    targetType: "event",
-    targetId: "event_interview_hannah_david_growth",
-    createdAt: "2026-04-06T18:05:00.000Z",
-  },
-  {
-    userId: "user_official_david_park",
-    targetType: "event",
-    targetId: "event_interview_hannah_david_growth",
-    createdAt: "2026-04-06T18:05:00.000Z",
-  },
 ];
 
 function isFavoriteRecord(value: unknown): value is FavoriteRecord {

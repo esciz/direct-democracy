@@ -3,18 +3,27 @@
 import { redirect } from "next/navigation";
 
 import { canUserVote } from "@/lib/auth/guards";
+import { getQuickVoteCardsForUser, updateCivicSentimentAggregate } from "@/lib/feed/quick-votes";
+import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { getAllVoteQuestions, getQuickVoteCardsForUser, getStoredVoteResponses, setStoredVoteResponses } from "@/lib/feed/quick-votes";
-import { mockVoteResponses } from "@/lib/mock-data";
-import type { VoteAnswer, VoteQuestionCardSummary, VoteResponseSummary } from "@/types/domain";
+import type { VoteAnswer, VoteQuestionCardSummary } from "@/types/domain";
 
 const VALID_ANSWERS: VoteAnswer[] = ["yes", "no", "skip"];
+const PUBLIC_REVIEW_STATUSES = ["approved", "verified"] as const;
 
 async function persistQuickVote(questionId: string, answer: VoteAnswer) {
   const user = await getCurrentUser();
-  const allQuestions = await getAllVoteQuestions();
+  const question = await prisma.voteQuestion.findFirst({
+    where: {
+      id: questionId,
+      generatedFromRealData: true,
+      reviewStatus: { in: [...PUBLIC_REVIEW_STATUSES] },
+      sourceUrl: { not: null },
+    },
+    include: { responses: { where: { userId: user.id } } },
+  });
 
-  if (!allQuestions.some((question) => question.id === questionId)) {
+  if (!question) {
     return { ok: false as const, code: "question", user };
   }
 
@@ -22,27 +31,32 @@ async function persistQuickVote(questionId: string, answer: VoteAnswer) {
     return { ok: false as const, code: "verification", user };
   }
 
-  const storedResponses = await getStoredVoteResponses();
-  const existingResponse = [...mockVoteResponses, ...storedResponses].find(
-    (response) => response.userId === user.id && response.questionId === questionId,
-  );
-  const hadExistingResponse = Boolean(existingResponse);
-  const nextResponse: VoteResponseSummary = {
-    id: `vote_response_created_${Date.now()}`,
-    userId: user.id,
-    questionId,
-    answer,
-    createdAt: new Date().toISOString(),
-  };
+  const existingResponse = question.responses[0] ?? null;
 
-  const nextResponses = [nextResponse, ...storedResponses.filter((response) => !(response.userId === user.id && response.questionId === questionId))];
-  await setStoredVoteResponses(nextResponses);
+  await prisma.voteResponse.upsert({
+    where: {
+      userId_questionId: {
+        userId: user.id,
+        questionId,
+      },
+    },
+    create: {
+      userId: user.id,
+      questionId,
+      answer,
+    },
+    update: {
+      answer,
+    },
+  });
+
+  await updateCivicSentimentAggregate(questionId);
 
   return {
     ok: true as const,
     user,
     previousAnswer: existingResponse?.answer ?? null,
-    replacedExistingVote: hadExistingResponse,
+    replacedExistingVote: Boolean(existingResponse),
   };
 }
 
@@ -86,9 +100,7 @@ export async function submitQuickVoteInline(input: {
       previousUserVote: result.previousAnswer,
       voteUpdatedAt: new Date().toISOString(),
     },
-    message: result.replacedExistingVote
-      ? "Vote updated."
-      : "Vote recorded.",
+    message: result.replacedExistingVote ? "Vote updated." : "Vote recorded.",
   };
 }
 
@@ -114,7 +126,5 @@ export async function submitQuickVote(formData: FormData) {
     );
   }
 
-  redirect(
-    `${safeReturnPath}${safeReturnPath.includes("?") ? "&" : "?"}voted=success`,
-  );
+  redirect(`${safeReturnPath}${safeReturnPath.includes("?") ? "&" : "?"}voted=success`);
 }

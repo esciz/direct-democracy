@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { CommunityEventCard } from "@/components/domain/community-event-card";
+import { CivicEventCard } from "@/components/domain/civic-event-card";
 import { CommunitySelector } from "@/components/domain/community-selector";
 import { ActionLabel, ThumbsUpIcon } from "@/components/ui/action-icons";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
@@ -9,206 +9,320 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { canUserApproveEventProposal, canUserCreateCommunityEvent } from "@/lib/auth/guards";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/communities";
-import {
-  getDiscoverableEventsForUser,
-  type EventBrowseDate,
-  type EventBrowseDistance,
-  type EventBrowseSort,
-  type EventBrowseType,
-} from "@/lib/community/event-discovery";
-import { getOpenEventProposals, MIN_PROPOSAL_SUPPORTERS } from "@/lib/community/event-proposals";
 import { approveEventProposal, supportEventProposal } from "@/lib/community/event-actions";
+import { getOpenEventProposals, MIN_PROPOSAL_SUPPORTERS } from "@/lib/community/event-proposals";
+import {
+  getCivicEventsForBrowse,
+  type CivicEventBrowseMode,
+  type CivicEventBrowseSort,
+  type CivicEventBrowseSource,
+  type CivicEventBrowseStatus,
+  type CivicEventBrowseType,
+} from "@/lib/events/civic-events";
 import { getCurrentUser } from "@/lib/server/auth-session";
+import type { CivicEvent } from "@/lib/events/types";
 
 type EventsPageProps = {
   searchParams?: Promise<{
     communityId?: string;
-    view?: string;
+    status?: string;
+    source?: string;
+    type?: string;
+    mode?: string;
+    dateFrom?: string;
+    dateTo?: string;
+    linkedTo?: string;
+    sort?: string;
     event?: string;
     eventError?: string;
-    distance?: string;
-    date?: string;
-    type?: string;
-    sort?: string;
     denied?: string;
   }>;
 };
 
-function normalizeDistance(value: string | undefined): EventBrowseDistance {
-  return value === "nearby" || value === "regional" ? value : "all";
+function normalizeStatus(value: string | undefined): CivicEventBrowseStatus {
+  return value === "upcoming" || value === "completed" ? value : "all";
 }
 
-function normalizeDate(value: string | undefined): EventBrowseDate {
-  return value === "today" || value === "week" || value === "later" ? value : "all";
+function normalizeSource(value: string | undefined): CivicEventBrowseSource {
+  return value === "official" || value === "community" ? value : "all";
 }
 
-function normalizeType(value: string | undefined): EventBrowseType {
-  return value === "civic" || value === "rally" || value === "meeting" || value === "social" || value === "cultural" ? value : "all";
+function normalizeType(value: string | undefined): CivicEventBrowseType {
+  return value === "official_meeting" || value === "public_hearing" || value === "rally" || value === "forum" || value === "election_deadline" || value === "community_event" ? value : "all";
 }
 
-function normalizeSort(value: string | undefined): EventBrowseSort {
-  return value === "soonest" || value === "attending" || value === "trending" ? value : "recommended";
+function normalizeMode(value: string | undefined): CivicEventBrowseMode {
+  return value === "virtual" || value === "in_person" || value === "hybrid" ? value : "all";
+}
+
+function normalizeSort(value: string | undefined): CivicEventBrowseSort {
+  return value === "soonest" || value === "recent" || value === "recommended" ? value : "official-first";
 }
 
 function buildEventsHref({
   communityId,
-  view,
-  distance,
-  date,
+  status,
+  source,
   type,
+  mode,
+  dateFrom,
+  dateTo,
+  linkedTo,
   sort,
 }: {
-  communityId: string;
-  view?: string;
-  distance?: EventBrowseDistance;
-  date?: EventBrowseDate;
-  type?: EventBrowseType;
-  sort?: EventBrowseSort;
+  communityId?: string;
+  status?: CivicEventBrowseStatus;
+  source?: CivicEventBrowseSource;
+  type?: CivicEventBrowseType;
+  mode?: CivicEventBrowseMode;
+  dateFrom?: string;
+  dateTo?: string;
+  linkedTo?: string;
+  sort?: CivicEventBrowseSort;
 }) {
-  const params = new URLSearchParams({ communityId });
-  if (view && view !== "upcoming") params.set("view", view);
-  if (distance && distance !== "all") params.set("distance", distance);
-  if (date && date !== "all") params.set("date", date);
+  const params = new URLSearchParams();
+  if (communityId) params.set("communityId", communityId);
+  if (status && status !== "all") params.set("status", status);
+  if (source && source !== "all") params.set("source", source);
   if (type && type !== "all") params.set("type", type);
-  if (sort && sort !== "recommended") params.set("sort", sort);
-  return `/events?${params.toString()}`;
+  if (mode && mode !== "all") params.set("mode", mode);
+  if (dateFrom?.trim()) params.set("dateFrom", dateFrom.trim());
+  if (dateTo?.trim()) params.set("dateTo", dateTo.trim());
+  if (linkedTo?.trim()) params.set("linkedTo", linkedTo.trim());
+  if (sort && sort !== "official-first") params.set("sort", sort);
+  const query = params.toString();
+  return query ? `/events?${query}` : "/events";
 }
 
-function renderDayKey(dateString: string) {
-  return new Date(dateString).toLocaleDateString("en-US", {
+function renderDayKey(event: CivicEvent) {
+  if (!event.startsAt) return event.status === "completed" ? "Completed records" : "Official meeting sources";
+  return new Date(event.startsAt).toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
     day: "numeric",
+    year: "numeric",
   });
+}
+
+function groupEvents(events: CivicEvent[]) {
+  return events.reduce<Record<string, CivicEvent[]>>((groups, event) => {
+    const key = renderDayKey(event);
+    groups[key] = [...(groups[key] ?? []), event];
+    return groups;
+  }, {});
+}
+
+function EventCountSummary({ events }: { events: CivicEvent[] }) {
+  const officialCount = events.filter((event) => event.isOfficialMeeting).length;
+  const completedCount = events.filter((event) => event.status === "completed").length;
+  const upcomingCount = events.filter((event) => event.status === "upcoming").length;
+  const communityCount = events.filter((event) => !event.isOfficialMeeting).length;
+
+  return (
+    <section className="grid gap-3 md:grid-cols-4">
+      <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Official meetings</p>
+        <p className="mt-2 text-2xl font-semibold text-ink">{officialCount}</p>
+      </div>
+      <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Upcoming</p>
+        <p className="mt-2 text-2xl font-semibold text-ink">{upcomingCount}</p>
+      </div>
+      <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Completed</p>
+        <p className="mt-2 text-2xl font-semibold text-ink">{completedCount}</p>
+      </div>
+      <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Community events</p>
+        <p className="mt-2 text-2xl font-semibold text-ink">{communityCount}</p>
+      </div>
+    </section>
+  );
+}
+
+function getEventSuccessMessage(value: string | undefined) {
+  switch (value) {
+    case "created":
+      return "Event published. It now appears in this community calendar and on My Community.";
+    case "rsvp-saved":
+      return "RSVP saved. You can open the event to confirm attendance and participate once you arrive.";
+    case "attendance-confirmed":
+      return "Attendance confirmed. Event posting and attendee sentiment are now unlocked for this event where applicable.";
+    case "post-created":
+      return "Your event post is live on the event page and in the main feed.";
+    case "sentiment-saved":
+      return "Your attendee sentiment has been added to the event totals.";
+    case "statement-saved":
+      return "Your event statement has been recorded.";
+    case "proposed":
+      return "Your civic event proposal is live. It becomes an official event once it reaches enough support or is approved by a trusted citizen.";
+    case "proposal-supported":
+      return "Your support was added to that civic event proposal.";
+    case "proposal-promoted":
+      return "The proposal reached the threshold and is now an official event.";
+    default:
+      return null;
+  }
+}
+
+function getEventErrorMessage(value: string | undefined) {
+  switch (value) {
+    case "attendance":
+      return "Attendance could not be confirmed yet. Make sure you marked Attending and are at the event during its active window.";
+    case "posting":
+      return "Event posting is only available for confirmed attendees during the event and shortly after it ends.";
+    case "sentiment":
+      return "Attendee sentiment is only available for confirmed attendees at eligible events.";
+    case "statement":
+      return "Event statements are only available for confirmed attendees at eligible events.";
+    case "content":
+      return "Event posts need a little more detail before they can be published.";
+    case "proposalMissing":
+      return "That proposal is no longer available.";
+    case "proposalApproval":
+      return "Only trusted citizens or admins can approve event proposals.";
+    case "invalid":
+      return "That event action could not be completed.";
+    default:
+      return value ? "That event action is not available from this view." : null;
+  }
+}
+
+function getDeniedMessage(value: string | undefined) {
+  switch (value) {
+    case "create-event":
+      return "Your account cannot create events from this view.";
+    case "guest":
+      return "Guest browsing is read-only. Create an account and verify to support proposals or RSVP to events.";
+    default:
+      return null;
+  }
 }
 
 export default async function EventsPage({ searchParams }: EventsPageProps) {
   const user = await getCurrentUser();
   const params = searchParams ? await searchParams : undefined;
   const defaultCommunity = getDefaultCommunityForUser(user);
-  const selectedCommunityId = params?.communityId ?? defaultCommunity.id;
-  const currentCommunity = getCommunityById(selectedCommunityId) ?? defaultCommunity;
-  const selectedView = params?.view === "calendar" ? "calendar" : "upcoming";
-  const selectedDistance = normalizeDistance(params?.distance);
-  const selectedDate = normalizeDate(params?.date);
+  const selectedCommunityId = getCommunityById(params?.communityId)?.id;
+  const currentCommunity = selectedCommunityId ? getCommunityById(selectedCommunityId) ?? defaultCommunity : null;
+  const selectedStatus = normalizeStatus(params?.status);
+  const selectedSource = normalizeSource(params?.source);
   const selectedType = normalizeType(params?.type);
+  const selectedMode = normalizeMode(params?.mode);
+  const selectedDateFrom = params?.dateFrom ?? "";
+  const selectedDateTo = params?.dateTo ?? "";
+  const selectedLinkedTo = params?.linkedTo ?? "";
   const selectedSort = normalizeSort(params?.sort);
   const guestMode = isGuestUser(user);
   const canCreateEvents = await canUserCreateCommunityEvent(user);
   const canApproveProposals = canUserApproveEventProposal(user);
-  const [events, proposals] = await Promise.all([
-    getDiscoverableEventsForUser(user, {
+  const [events, allCommunityEvents, proposals] = await Promise.all([
+    getCivicEventsForBrowse(user, {
       communityId: selectedCommunityId,
-      distance: selectedDistance,
-      date: selectedDate,
+      status: selectedStatus,
+      source: selectedSource,
       type: selectedType,
+      mode: selectedMode,
+      dateFrom: selectedDateFrom,
+      dateTo: selectedDateTo,
+      linkedTo: selectedLinkedTo,
       sort: selectedSort,
     }),
-    getOpenEventProposals(selectedCommunityId),
+    getCivicEventsForBrowse(user, { communityId: selectedCommunityId, status: "all", source: "all", type: "all", sort: "official-first" }),
+    selectedCommunityId ? getOpenEventProposals(selectedCommunityId) : Promise.resolve([]),
   ]);
-
-  const groupedEvents = events.reduce<Record<string, typeof events>>((groups, event) => {
-    const key = renderDayKey(event.startsAt);
-    groups[key] = [...(groups[key] ?? []), event];
-    return groups;
-  }, {});
-
-  const viewTabs = [
-    {
-      label: "Upcoming",
-      href: buildEventsHref({ communityId: selectedCommunityId, distance: selectedDistance, date: selectedDate, type: selectedType, sort: selectedSort }),
-      active: selectedView === "upcoming",
-    },
-    {
-      label: "Calendar",
-      href: buildEventsHref({
-        communityId: selectedCommunityId,
-        view: "calendar",
-        distance: selectedDistance,
-        date: selectedDate,
-        type: selectedType,
-        sort: selectedSort,
-      }),
-      active: selectedView === "calendar",
-    },
+  const groupedEvents = groupEvents(events);
+  const returnPath = buildEventsHref({
+    communityId: selectedCommunityId,
+    status: selectedStatus,
+    source: selectedSource,
+    type: selectedType,
+    mode: selectedMode,
+    dateFrom: selectedDateFrom,
+    dateTo: selectedDateTo,
+    linkedTo: selectedLinkedTo,
+    sort: selectedSort,
+  });
+  const statusTabs = [
+    { label: "All", href: buildEventsHref({ communityId: selectedCommunityId, status: "all", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedStatus === "all" },
+    { label: "Upcoming", href: buildEventsHref({ communityId: selectedCommunityId, status: "upcoming", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedStatus === "upcoming" },
+    { label: "Completed", href: buildEventsHref({ communityId: selectedCommunityId, status: "completed", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedStatus === "completed" },
   ];
-  const sortTabs = [
-    { label: "Recommended", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: selectedType, sort: "recommended" }), active: selectedSort === "recommended" },
-    { label: "Soonest", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: selectedType, sort: "soonest" }), active: selectedSort === "soonest" },
-    { label: "Most attending", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: selectedType, sort: "attending" }), active: selectedSort === "attending" },
-    { label: "Trending", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: selectedType, sort: "trending" }), active: selectedSort === "trending" },
-  ];
-  const distanceTabs = [
-    { label: "All distances", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: "all", date: selectedDate, type: selectedType, sort: selectedSort }), active: selectedDistance === "all" },
-    { label: "Nearby", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: "nearby", date: selectedDate, type: selectedType, sort: selectedSort }), active: selectedDistance === "nearby" },
-    { label: "Regional", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: "regional", date: selectedDate, type: selectedType, sort: selectedSort }), active: selectedDistance === "regional" },
-  ];
-  const dateTabs = [
-    { label: "Any date", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: "all", type: selectedType, sort: selectedSort }), active: selectedDate === "all" },
-    { label: "Today", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: "today", type: selectedType, sort: selectedSort }), active: selectedDate === "today" },
-    { label: "This week", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: "week", type: selectedType, sort: selectedSort }), active: selectedDate === "week" },
-    { label: "Later", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: "later", type: selectedType, sort: selectedSort }), active: selectedDate === "later" },
+  const sourceTabs = [
+    { label: "All sources", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: "all", type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedSource === "all" },
+    { label: "Official / source-backed", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: "official", type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedSource === "official" },
+    { label: "Community events", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: "community", type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedSource === "community" },
   ];
   const typeTabs = [
-    { label: "All types", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: "all", sort: selectedSort }), active: selectedType === "all" },
-    { label: "Civic", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: "civic", sort: selectedSort }), active: selectedType === "civic" },
-    { label: "Rally", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: "rally", sort: selectedSort }), active: selectedType === "rally" },
-    { label: "Meeting", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: "meeting", sort: selectedSort }), active: selectedType === "meeting" },
-    { label: "Social", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: "social", sort: selectedSort }), active: selectedType === "social" },
-    { label: "Cultural", href: buildEventsHref({ communityId: selectedCommunityId, view: selectedView, distance: selectedDistance, date: selectedDate, type: "cultural", sort: selectedSort }), active: selectedType === "cultural" },
+    { label: "All types", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: "all", mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedType === "all" },
+    { label: "Official meeting", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: "official_meeting", mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedType === "official_meeting" },
+    { label: "Public hearing", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: "public_hearing", mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedType === "public_hearing" },
+    { label: "Forum", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: "forum", mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedType === "forum" },
+    { label: "Rally", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: "rally", mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedType === "rally" },
+    { label: "Election deadline", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: "election_deadline", mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedType === "election_deadline" },
+    { label: "Community event", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: "community_event", mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedType === "community_event" },
   ];
+  const modeTabs = [
+    { label: "Any format", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: "all", dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedMode === "all" },
+    { label: "Virtual", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: "virtual", dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedMode === "virtual" },
+    { label: "In-person", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: "in_person", dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedMode === "in_person" },
+    { label: "Hybrid", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: "hybrid", dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedMode === "hybrid" },
+  ];
+  const sortTabs = [
+    { label: "Official first", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: "official-first" }), active: selectedSort === "official-first" },
+    { label: "Soonest", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: "soonest" }), active: selectedSort === "soonest" },
+    { label: "Recent", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: "recent" }), active: selectedSort === "recent" },
+    { label: "Recommended", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: "recommended" }), active: selectedSort === "recommended" },
+  ];
+  const deniedMessage = getDeniedMessage(params?.denied);
+  const eventSuccessMessage = getEventSuccessMessage(params?.event);
+  const eventErrorMessage = getEventErrorMessage(params?.eventError);
 
   return (
     <div className="space-y-8 py-8">
       <PageIntro
         eyebrow="Events"
-        title={`Community coordination in ${currentCommunity.name}`}
-        description="Upcoming meetings, forums, rallies, and issue-based gatherings from trusted citizens, candidates, officials, and community organizers."
+        title={currentCommunity ? `Civic calendar in ${currentCommunity.name}` : "Civic calendar"}
+        description="Official meetings, public hearings, community forums, rallies, election deadlines, and local gatherings in one voter-facing calendar."
         meta={
           <>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{currentCommunity.name}</span>
-            <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">{selectedSort === "recommended" ? "Recommended" : selectedSort}</span>
-            {guestMode ? (
-              <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">Guest browse · Read only</span>
-            ) : null}
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{currentCommunity?.name ?? "All known events"}</span>
+            <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">Official meetings included</span>
+            {guestMode ? <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">Guest browse · Read only</span> : null}
           </>
         }
         actions={
           <div className="flex flex-wrap gap-3">
-            <Link
-              href={`/my-community?communityId=${selectedCommunityId}`}
-              className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-            >
+            <Link href={`/my-community?communityId=${selectedCommunityId ?? defaultCommunity.id}`} className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
               Back to My Community
             </Link>
             {canCreateEvents ? (
-              <Link
-                href={`/events/create?communityId=${selectedCommunityId}`}
-                className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-              >
+              <Link href={`/events/create?communityId=${selectedCommunityId ?? defaultCommunity.id}`} className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
                 {user.role === "citizen" ? "Create or propose event" : "Create event"}
-              </Link>
-            ) : null}
-            {guestMode ? (
-              <Link
-                href="/get-started?step=account"
-                className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-              >
-                Verify to participate
               </Link>
             ) : null}
           </div>
         }
       />
 
-      {params?.denied === "create-event" ? (
+      {deniedMessage ? (
         <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-sm text-orange-900 shadow-card">
-          Your account cannot create events from this view.
+          {deniedMessage}
+        </section>
+      ) : null}
+      {eventSuccessMessage ? (
+        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
+          {eventSuccessMessage}
+        </section>
+      ) : null}
+      {eventErrorMessage ? (
+        <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-sm text-orange-900 shadow-card">
+          {eventErrorMessage}
         </section>
       ) : null}
 
       <CommunitySelector
-        currentCommunity={currentCommunity}
+        currentCommunity={currentCommunity ?? defaultCommunity}
         followedCommunities={[]}
         suggestedCommunities={[]}
         followedIds={[]}
@@ -216,61 +330,7 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
         destinationBase="/events"
       />
 
-      {params?.event === "created" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Event published. It now appears in this community calendar and on My Community.
-        </section>
-      ) : null}
-      {params?.event === "rsvp-saved" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          RSVP saved. You can open the event to confirm attendance and participate once you arrive.
-        </section>
-      ) : null}
-      {params?.event === "attendance-confirmed" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Attendance confirmed. Event posting and attendee sentiment are now unlocked for this event where applicable.
-        </section>
-      ) : null}
-      {params?.event === "post-created" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Your event post is live on the event page and in the main feed.
-        </section>
-      ) : null}
-      {params?.denied === "guest" ? (
-        <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-sm text-orange-900 shadow-card">
-          Guest browsing is read-only. Create an account and verify to support proposals or RSVP to events.
-        </section>
-      ) : null}
-      {params?.event === "sentiment-saved" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Your attendee sentiment has been added to the event totals.
-        </section>
-      ) : null}
-      {params?.event === "proposed" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Your civic event proposal is live. It becomes an official event once it reaches enough support or is approved by a trusted citizen.
-        </section>
-      ) : null}
-      {params?.event === "proposal-supported" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Your support was added to that civic event proposal.
-        </section>
-      ) : null}
-      {params?.event === "proposal-promoted" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          The proposal reached the threshold and is now an official event.
-        </section>
-      ) : null}
-      {params?.eventError ? (
-        <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-sm text-orange-900 shadow-card">
-          {params.eventError === "attendance" && "Attendance could not be confirmed yet. Make sure you marked Attending and are at the event during its active window."}
-          {params.eventError === "posting" && "Event posting is only available for confirmed attendees during the event and shortly after it ends."}
-          {params.eventError === "sentiment" && "Attendee sentiment is only available for confirmed attendees at eligible events."}
-          {params.eventError === "content" && "Event posts need a little more detail before they can be published."}
-          {params.eventError === "invalid" && "That event action could not be completed."}
-          {params.eventError === "proposalMissing" && "That proposal is no longer available."}
-        </section>
-      ) : null}
+      <EventCountSummary events={allCommunityEvents} />
 
       {proposals.length ? (
         <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50/80 p-6 shadow-card backdrop-blur">
@@ -284,75 +344,38 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
           <div className="mt-5 grid gap-4">
             {proposals.slice(0, 4).map((proposal) => {
               const viewerSupported = proposal.supporterUserIds.includes(user.id);
-              const proposalReturnPath = buildEventsHref({
-                communityId: selectedCommunityId,
-                view: selectedView,
-                distance: selectedDistance,
-                date: selectedDate,
-                type: selectedType,
-                sort: selectedSort,
-              });
-
               return (
                 <article key={proposal.id} className="rounded-[1.5rem] border border-orange-200 bg-white p-5">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-800">
-                      Proposal
-                    </span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-                      {proposal.eventType}
-                    </span>
+                    <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-800">Proposal</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{proposal.eventType}</span>
                     <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
                       {proposal.supporterUserIds.length} supporter{proposal.supporterUserIds.length === 1 ? "" : "s"}
                     </span>
                   </div>
                   <h3 className="mt-3 text-lg font-semibold text-ink">{proposal.title}</h3>
                   <p className="mt-2 text-sm text-slate-500">
-                    {new Date(proposal.startsAt).toLocaleString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      hour: "numeric",
-                      minute: "2-digit",
-                    })}{" "}
-                    · {proposal.jurisdictionName}
+                    {new Date(proposal.startsAt).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · {proposal.jurisdictionName}
                   </p>
                   <p className="mt-3 text-sm leading-6 text-slate-600">{proposal.description}</p>
-                  <p className="mt-3 text-sm text-slate-700">
-                    <span className="font-semibold">Purpose:</span> {proposal.purpose}
-                  </p>
                   <div className="mt-4 flex flex-wrap gap-3">
                     {!guestMode ? (
                       <form action={supportEventProposal}>
                         <input type="hidden" name="proposalId" value={proposal.id} />
-                        <input type="hidden" name="returnPath" value={proposalReturnPath} />
+                        <input type="hidden" name="returnPath" value={returnPath} />
                         <FormSubmitButton
                           idleLabel={<ActionLabel icon={<ThumbsUpIcon className="h-4 w-4" />}>{viewerSupported ? "Supported" : "Support proposal"}</ActionLabel>}
                           pendingLabel={<ActionLabel icon={<ThumbsUpIcon className="h-4 w-4" />}>Saving...</ActionLabel>}
                           disabled={viewerSupported}
-                          className={
-                            viewerSupported
-                              ? "rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white"
-                              : "rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-700 transition hover:border-orange-300"
-                          }
+                          className={viewerSupported ? "rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white" : "rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-700 transition hover:border-orange-300"}
                         />
                       </form>
-                    ) : (
-                      <Link
-                        href="/get-started?step=account"
-                        className="inline-flex rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-700 transition hover:border-orange-300"
-                      >
-                        Verify to support proposal
-                      </Link>
-                    )}
+                    ) : null}
                     {canApproveProposals ? (
                       <form action={approveEventProposal}>
                         <input type="hidden" name="proposalId" value={proposal.id} />
-                        <input type="hidden" name="returnPath" value={proposalReturnPath} />
-                        <FormSubmitButton
-                          idleLabel="Approve as trusted citizen"
-                          pendingLabel="Approving..."
-                          className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
-                        />
+                        <input type="hidden" name="returnPath" value={returnPath} />
+                        <FormSubmitButton idleLabel="Approve as trusted citizen" pendingLabel="Approving..." className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800" />
                       </form>
                     ) : null}
                   </div>
@@ -366,95 +389,80 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
       <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-5 shadow-card backdrop-blur">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">View</p>
-            <p className="mt-2 text-sm text-slate-600">Browse events by timing, turnout, and distance without losing community context.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Browse</p>
+            <p className="mt-2 text-sm text-slate-600">Filter official meeting records, meeting-source calendars, and community events without mixing up their source status.</p>
           </div>
-          <FilterTabs tabs={viewTabs} />
         </div>
         <div className="mt-4 space-y-4">
-          <FilterTabs tabs={sortTabs} />
-          <FilterTabs tabs={distanceTabs} />
-          <FilterTabs tabs={dateTabs} />
+          <FilterTabs
+            tabs={[
+              { label: "All communities", href: buildEventsHref({ status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: !selectedCommunityId },
+              { label: "Carson City", href: buildEventsHref({ communityId: "carson-city", status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedCommunityId === "carson-city" },
+              { label: "Reno", href: buildEventsHref({ communityId: "reno", status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedCommunityId === "reno" },
+              { label: "Washoe County", href: buildEventsHref({ communityId: "washoe-county", status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedCommunityId === "washoe-county" },
+              { label: "Nevada", href: buildEventsHref({ communityId: "nevada", status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedCommunityId === "nevada" },
+            ]}
+          />
+          <FilterTabs tabs={statusTabs} />
+          <FilterTabs tabs={sourceTabs} />
           <FilterTabs tabs={typeTabs} />
+          <FilterTabs tabs={modeTabs} />
+          <FilterTabs tabs={sortTabs} />
+          <form action="/events" className="grid gap-3 rounded-[1.35rem] border border-white/10 bg-white/5 p-4 md:grid-cols-[1fr_1fr_1.5fr_auto]">
+            {selectedCommunityId ? <input type="hidden" name="communityId" value={selectedCommunityId} /> : null}
+            {selectedStatus !== "all" ? <input type="hidden" name="status" value={selectedStatus} /> : null}
+            {selectedSource !== "all" ? <input type="hidden" name="source" value={selectedSource} /> : null}
+            {selectedType !== "all" ? <input type="hidden" name="type" value={selectedType} /> : null}
+            {selectedMode !== "all" ? <input type="hidden" name="mode" value={selectedMode} /> : null}
+            {selectedSort !== "official-first" ? <input type="hidden" name="sort" value={selectedSort} /> : null}
+            <label className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+              From
+              <input type="date" name="dateFrom" defaultValue={selectedDateFrom} className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950 px-3 py-2 text-sm normal-case tracking-normal text-slate-100" />
+            </label>
+            <label className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+              To
+              <input type="date" name="dateTo" defaultValue={selectedDateTo} className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950 px-3 py-2 text-sm normal-case tracking-normal text-slate-100" />
+            </label>
+            <label className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+              Office, candidate, official, organization, issue
+              <input name="linkedTo" defaultValue={selectedLinkedTo} placeholder="Example: Reno City Council" className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950 px-3 py-2 text-sm normal-case tracking-normal text-slate-100 placeholder:text-slate-500" />
+            </label>
+            <button className="self-end rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-5 py-2.5 text-sm font-semibold text-slate-950">
+              Apply
+            </button>
+          </form>
         </div>
       </section>
 
-      {selectedView === "upcoming" ? (
-        <section className="grid gap-4">
-          {events.length ? (
-            events.map((event) => (
-              <CommunityEventCard
-                key={event.id}
-                event={event}
-                attendanceCount={event.attendanceCount}
-                confirmedCount={event.confirmedCount}
-                distanceLabel={event.distanceLabel}
-                momentumLabel={event.momentumLabel}
-                viewerStatus={event.viewerStatus}
-                returnPath={buildEventsHref({
-                  communityId: selectedCommunityId,
-                  view: selectedView,
-                  distance: selectedDistance,
-                  date: selectedDate,
-                  type: selectedType,
-                  sort: selectedSort,
-                })}
-                showQuickRsvp
-                guestMode={guestMode}
-              />
-            ))
-          ) : (
-            <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 text-sm text-slate-600 shadow-card backdrop-blur">
-              No events match this community view yet.
-            </section>
-          )}
-        </section>
-      ) : (
-        <section className="grid gap-6">
-          {Object.entries(groupedEvents).length ? (
-            Object.entries(groupedEvents).map(([dayLabel, dayEvents]) => (
-              <section key={dayLabel} className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Calendar</p>
-                    <h2 className="mt-2 text-xl font-semibold text-ink">{dayLabel}</h2>
-                  </div>
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-                    {dayEvents.length} event{dayEvents.length === 1 ? "" : "s"}
-                  </span>
+      <section className="space-y-6">
+        {Object.entries(groupedEvents).length ? (
+          Object.entries(groupedEvents).map(([dayLabel, dayEvents]) => (
+            <section key={dayLabel} className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{selectedStatus === "completed" ? "Completed" : "Events"}</p>
+                  <h2 className="mt-2 text-xl font-semibold text-ink">{dayLabel}</h2>
                 </div>
-                <div className="mt-5 grid gap-4">
-                  {dayEvents.map((event) => (
-                    <CommunityEventCard
-                      key={event.id}
-                      event={event}
-                      attendanceCount={event.attendanceCount}
-                      confirmedCount={event.confirmedCount}
-                      distanceLabel={event.distanceLabel}
-                      momentumLabel={event.momentumLabel}
-                      viewerStatus={event.viewerStatus}
-                      returnPath={buildEventsHref({
-                        communityId: selectedCommunityId,
-                        view: selectedView,
-                        distance: selectedDistance,
-                        date: selectedDate,
-                        type: selectedType,
-                        sort: selectedSort,
-                      })}
-                      showQuickRsvp
-                      guestMode={guestMode}
-                    />
-                  ))}
-                </div>
-              </section>
-            ))
-          ) : (
-            <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 text-sm text-slate-600 shadow-card backdrop-blur">
-              No events match this community view yet.
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                  {dayEvents.length} event{dayEvents.length === 1 ? "" : "s"}
+                </span>
+              </div>
+              <div className="mt-5 grid gap-4">
+                {dayEvents.map((event) => (
+                  <CivicEventCard key={event.id} event={event} returnPath={returnPath} showQuickRsvp guestMode={guestMode} />
+                ))}
+              </div>
             </section>
-          )}
-        </section>
-      )}
+          ))
+        ) : (
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 text-sm leading-6 text-slate-600 shadow-card backdrop-blur">
+            <h2 className="text-lg font-semibold text-ink">No events found yet.</h2>
+            <p className="mt-2">
+              Events will appear here once imported from official calendars, agendas, public notices, or verified community sources.
+            </p>
+          </section>
+        )}
+      </section>
     </div>
   );
 }
