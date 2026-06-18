@@ -26,6 +26,7 @@ export type MeetingVotingCardFilters = {
   meetingStatus?: "upcoming" | "completed";
   outcome?: "approved" | "pending" | "all";
   review?: "approved" | "needs_review" | "all";
+  financial?: "with_financial" | "tax_stated" | "tax_unknown" | "tax_unlikely" | "tax_needs_review" | "all";
 };
 
 async function readJsonFile<T>(relativePath: string, fallback: T): Promise<T> {
@@ -171,6 +172,11 @@ function matchesFilters(card: MeetingVotingCardRecord, filters: MeetingVotingCar
   if (filters.outcome === "pending" && !["proposed", "pending", "unknown"].includes(card.outcome_status)) return false;
   if (filters.review === "approved" && card.review_status !== "approved") return false;
   if (filters.review === "needs_review" && card.review_status === "approved") return false;
+  if (filters.financial === "with_financial" && !card.financial_impact_context) return false;
+  if (filters.financial === "tax_stated" && card.financial_impact_context?.direct_tax_impact !== "stated") return false;
+  if (filters.financial === "tax_unknown" && card.financial_impact_context?.direct_tax_impact !== "unknown") return false;
+  if (filters.financial === "tax_unlikely" && card.financial_impact_context?.direct_tax_impact !== "unlikely") return false;
+  if (filters.financial === "tax_needs_review" && card.financial_impact_context?.direct_tax_impact !== "needs_review") return false;
   return true;
 }
 

@@ -4,7 +4,7 @@ import { VoteCard } from "@/components/domain/vote-card";
 import { FilterTabs } from "@/components/ui/filter-tabs";
 import { canUserVote } from "@/lib/auth/guards";
 import { getVerificationLabel } from "@/lib/auth/verification";
-import { getCivicSignalsDashboard } from "@/lib/civic-signals/dashboard";
+import { getVotingQuestionWindow } from "@/lib/feed/quick-votes";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import type { VoteQuestionCardSummary } from "@/types/domain";
 
@@ -25,13 +25,6 @@ function normalizeFilter(value: string | undefined): VotingFilter {
   }
 
   return "all";
-}
-
-function matchesQuestionFilter(filter: VotingFilter, question: VoteQuestionCardSummary) {
-  if (filter === "all") return true;
-  if (filter === "people") return question.objectType === "representative" && (question.civicEntityType === "OFFICIAL" || question.civicEntityType === "CANDIDATE");
-  if (filter === "cases") return question.objectType === "case" || question.civicEntityType === "BALLOT_MEASURE" || question.civicEntityType === "ELECTION";
-  return question.civicEntityType === "ISSUE_POSITION" || question.objectType === "decision" || question.objectType === "community";
 }
 
 function getQueueHref(filter: VotingFilter, index: number) {
@@ -56,25 +49,26 @@ function EmptyState({ children }: { children?: string }) {
 }
 
 function CivicQuestionsSection({
-  questions,
+  activeQuestion,
+  total,
   canVote,
   filter,
   activeIndex,
 }: {
-  questions: VoteQuestionCardSummary[];
+  activeQuestion: VoteQuestionCardSummary | null;
+  total: number;
   canVote: boolean;
   filter: VotingFilter;
   activeIndex: number;
 }) {
-  const activeQuestion = questions[activeIndex] ?? null;
   const tabs = [
     { label: "All", href: getQueueHref("all", 0), active: filter === "all" },
     { label: "People", href: getQueueHref("people", 0), active: filter === "people" },
     { label: "Issues", href: getQueueHref("issues", 0), active: filter === "issues" },
     { label: "Cases / Elections", href: getQueueHref("cases", 0), active: filter === "cases" },
   ];
-  const previousIndex = activeIndex <= 0 ? questions.length - 1 : activeIndex - 1;
-  const nextIndex = activeIndex >= questions.length - 1 ? 0 : activeIndex + 1;
+  const previousIndex = activeIndex <= 0 ? total - 1 : activeIndex - 1;
+  const nextIndex = activeIndex >= total - 1 ? 0 : activeIndex + 1;
 
   return (
     <section className="space-y-4">
@@ -90,20 +84,20 @@ function CivicQuestionsSection({
         </Link>
       </div>
       <FilterTabs tabs={tabs} />
-      {questions.length ? (
+      {total ? (
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                Question {activeIndex + 1} of {questions.length}
+                Question {activeIndex + 1} of {total}
               </p>
-              <p className="mt-1 text-sm text-slate-400">{questions.length} verified real-data question{questions.length === 1 ? "" : "s"} in this queue.</p>
+              <p className="mt-1 text-sm text-slate-400">{total} verified real-data question{total === 1 ? "" : "s"} in this queue.</p>
             </div>
             <Link
               href={`/voting/all?filter=${filter}`}
               className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100"
             >
-              View all / {questions.length}
+              View all / {total}
             </Link>
           </div>
           {activeQuestion ? <VoteCard key={activeQuestion.id} question={activeQuestion} canAnswer={canVote} returnPath={getQueueHref(filter, activeIndex)} /> : null}
@@ -138,10 +132,11 @@ export default async function VotingPage({ searchParams }: VotingPageProps) {
   const params = searchParams ? await searchParams : undefined;
   const user = await getCurrentUser();
   const verified = canUserVote(user);
-  const dashboard = await getCivicSignalsDashboard(user);
   const filter = normalizeFilter(params?.filter);
-  const questions = dashboard.questions.filter((question) => matchesQuestionFilter(filter, question));
-  const activeIndex = parseActiveIndex(params?.index, questions.length);
+  const requestedIndex = Number.parseInt(params?.index ?? "0", 10);
+  const safeRequestedIndex = Number.isFinite(requestedIndex) && requestedIndex > 0 ? requestedIndex : 0;
+  const votingWindow = await getVotingQuestionWindow(user, { filter, index: safeRequestedIndex });
+  const activeIndex = parseActiveIndex(params?.index, votingWindow.total);
 
   return (
     <div className="relative mx-auto max-w-6xl space-y-8 overflow-hidden pb-10 pt-2 sm:pt-4">
@@ -195,7 +190,7 @@ export default async function VotingPage({ searchParams }: VotingPageProps) {
         </div>
       </section>
 
-      <CivicQuestionsSection questions={questions} canVote={verified} filter={filter} activeIndex={activeIndex} />
+      <CivicQuestionsSection activeQuestion={votingWindow.activeQuestion} total={votingWindow.total} canVote={verified} filter={filter} activeIndex={activeIndex} />
     </div>
   );
 }

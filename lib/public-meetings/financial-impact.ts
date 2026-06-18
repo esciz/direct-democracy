@@ -12,6 +12,8 @@ type FinancialImpactInput = {
 };
 
 const TAX_COST_CONTEXT_PREFIX = "Tax / cost impact:";
+const UNKNOWN_TAX_COST_SUMMARY = "The source lists a financial impact, but does not state whether this directly changes voter taxes or fees.";
+const NEEDS_REVIEW_TAX_COST_SUMMARY = "This may involve tax, fee, bond, debt, or long-term cost impacts. Source review needed.";
 
 function normalizeWhitespace(value: string | null | undefined) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
@@ -99,7 +101,7 @@ function buildTaxCostSummary(input: {
   }
 
   if (types.includes("bond_debt") || directTaxImpact === "needs_review") {
-    return "This may affect taxes or public debt; source review needed.";
+    return NEEDS_REVIEW_TAX_COST_SUMMARY;
   }
 
   if (types.includes("budget_authority") && types.includes("revenue") && types.includes("expense")) {
@@ -117,19 +119,21 @@ function buildTaxCostSummary(input: {
   }
 
   if (types.includes("fee") || types.includes("revenue")) {
-    return "This appears tied to fees/revenue, not a direct property/sales tax increase.";
+    return UNKNOWN_TAX_COST_SUMMARY;
   }
 
-  return "Direct tax impact not stated in the source.";
+  return UNKNOWN_TAX_COST_SUMMARY;
 }
 
 function buildBadges(types: MeetingVotingCardFinancialImpactType[], directTaxImpact: MeetingVotingCardTaxImpactStatus) {
   const badges = ["Financial impact found"];
   if (directTaxImpact === "unknown") badges.push("Direct tax impact unknown");
-  if (directTaxImpact === "needs_review") badges.push("Source review needed");
-  if (directTaxImpact === "stated") badges.push("Direct tax/fee impact stated");
+  if (directTaxImpact === "needs_review") badges.push("Needs tax/debt review");
+  if (directTaxImpact === "stated") badges.push("Direct tax/fee stated");
   if (types.includes("fee") || types.includes("revenue")) badges.push("Fee/revenue authority");
-  if (types.includes("existing_fund") || types.includes("enterprise_fund") || types.includes("budget_authority")) badges.push("Existing fund / budget authority");
+  if (directTaxImpact === "unlikely" || types.includes("existing_fund") || types.includes("enterprise_fund") || types.includes("budget_authority")) {
+    badges.push("Existing fund / unlikely direct tax impact");
+  }
   if (types.includes("grant")) badges.push("Grant funding");
   if (types.includes("bond_debt")) badges.push("Bond/debt review");
   return unique(badges);
@@ -184,6 +188,21 @@ export function extractTaxCostContext(summary: string | null | undefined) {
   if (!summary) return null;
   const match = summary.match(/Tax \/ cost impact:\s*([\s\S]+)$/i);
   return match?.[1]?.trim() || null;
+}
+
+export function taxCostImpactBadge(summary: string | null | undefined) {
+  const text = normalizeWhitespace(summary).toLowerCase();
+  if (!text) return null;
+  if (text.includes("source states a direct tax impact") || text.includes("source states a direct fee impact")) {
+    return { label: "Direct tax/fee stated", tone: "stated" as const };
+  }
+  if (text.includes("source review needed") || text.includes("bond") || text.includes("debt")) {
+    return { label: "Needs tax/debt review", tone: "review" as const };
+  }
+  if (text.includes("does not state a direct property-tax or sales-tax increase") || text.includes("existing funds") || text.includes("grant funding")) {
+    return { label: "Existing fund / unlikely direct tax impact", tone: "unlikely" as const };
+  }
+  return { label: "Direct tax impact unknown", tone: "unknown" as const };
 }
 
 export function stripTaxCostContext(summary: string | null | undefined) {

@@ -32,7 +32,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:30.259Z"
+    "updated_at": "2026-06-17T23:56:12.773Z"
   },
   {
     "provider_id": "nv-legislature",
@@ -66,7 +66,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:30.312Z"
+    "updated_at": "2026-06-17T23:56:12.845Z"
   },
   {
     "provider_id": "nv-senate",
@@ -99,7 +99,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-06-17T23:29:30.314Z"
+    "updated_at": "2026-06-17T23:56:12.848Z"
   },
   {
     "provider_id": "nv-assembly",
@@ -132,7 +132,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-06-17T23:29:30.318Z"
+    "updated_at": "2026-06-17T23:56:12.853Z"
   },
   {
     "provider_id": "nv-governor-executive-boards",
@@ -165,7 +165,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-06-17T23:29:30.319Z"
+    "updated_at": "2026-06-17T23:56:12.854Z"
   },
   {
     "provider_id": "sparks-city-council",
@@ -198,7 +198,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-06-17T23:29:30.322Z"
+    "updated_at": "2026-06-17T23:56:12.858Z"
   },
   {
     "provider_id": "clark-county-commission",
@@ -233,7 +233,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:30.354Z"
+    "updated_at": "2026-06-17T23:56:12.893Z"
   },
   {
     "provider_id": "las-vegas-city-council",
@@ -268,7 +268,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:31.903Z"
+    "updated_at": "2026-06-17T23:56:14.507Z"
   },
   {
     "provider_id": "henderson-city-council",
@@ -302,7 +302,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:31.923Z"
+    "updated_at": "2026-06-17T23:56:14.531Z"
   },
   {
     "provider_id": "north-las-vegas-city-council",
@@ -337,7 +337,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:34.433Z"
+    "updated_at": "2026-06-17T23:56:17.116Z"
   },
   {
     "provider_id": "clark-county-school-district",
@@ -385,7 +385,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:34.688Z"
+    "updated_at": "2026-06-17T23:56:17.383Z"
   },
   {
     "provider_id": "carson-city-school-district",
@@ -433,7 +433,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:34.689Z"
+    "updated_at": "2026-06-17T23:56:17.385Z"
   },
   {
     "provider_id": "nshe-board-of-regents",
@@ -468,6 +468,6 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-06-17T23:29:36.198Z"
+    "updated_at": "2026-06-17T23:56:19.013Z"
   }
 ]

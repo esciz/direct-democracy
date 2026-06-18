@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { ensureInitialRealDataCivicQuestions, getVotingLibrary } from "@/lib/feed/quick-votes";
+import { getVotingLibrary } from "@/lib/feed/quick-votes";
 import type { AuthUser, VoteQuestionCardSummary } from "@/types/domain";
 
 const PUBLIC_REVIEW_STATUSES = ["approved", "verified"] as const;
@@ -40,8 +40,6 @@ export type CivicSignalsDashboard = {
 };
 
 export async function getCivicSignalsDashboard(user: AuthUser): Promise<CivicSignalsDashboard> {
-  await ensureInitialRealDataCivicQuestions();
-
   const [questions, entityReviews, sentimentRows] = await Promise.all([
     getVotingLibrary(user, { scope: "all", category: "all", objectType: "all" }),
     prisma.civicEntityReview.findMany({

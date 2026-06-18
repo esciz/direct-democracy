@@ -17,6 +17,7 @@ import { applyOfficialActionMatches, loadOfficialActionMatchCandidates } from "@
 import { importPublicMeetingOfficialRosters } from "@/lib/public-meetings/official-rosters";
 import { extractOfficialActionsForItem, extractTopicOutcome, itemHasUnnamedVoteOutcome } from "@/lib/public-meetings/official-actions";
 import { buildMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
+import { writePublicMeetingRuntimeArtifacts } from "@/lib/public-meetings/runtime-artifacts";
 import type {
   CitizenVoteQuestionRecord,
   ManualParserStatus,
@@ -958,6 +959,12 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     writeJsonFile(PUBLIC_MEETING_PATHS.citizenQuestions, dedupeQuestions(dedupeById([...retainedQuestions, ...realQuestions]))),
     writeJsonFile(PUBLIC_MEETING_PATHS.manualProviderReport, reports),
   ]);
+  await writePublicMeetingRuntimeArtifacts({
+    bodies: nextBodies,
+    meetings: nextMeetings,
+    votingCards: nextVotingCards,
+    officialActions: nextOfficialActions,
+  });
 
   return { meetings: realMeetings, items: realItems, votes: realVotes, officialActions: realOfficialActions, questions: realQuestions, report: reports, errors };
 }

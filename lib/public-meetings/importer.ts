@@ -20,6 +20,7 @@ import { applyOfficialActionMatches, loadOfficialActionMatchCandidates } from "@
 import { importPublicMeetingOfficialRosters } from "@/lib/public-meetings/official-rosters";
 import { extractOfficialActionsForItem, extractTopicOutcome, itemHasUnnamedVoteOutcome } from "@/lib/public-meetings/official-actions";
 import { buildMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
+import { writePublicMeetingRuntimeArtifacts } from "@/lib/public-meetings/runtime-artifacts";
 import type {
   CitizenVoteQuestionRecord,
   MeetingIngestionStatus,
@@ -1348,6 +1349,12 @@ export async function runPublicMeetingImport(): Promise<PublicMeetingIngestionRe
     writeJsonFile(PUBLIC_MEETING_PATHS.citizenQuestions, dedupedQuestions),
     writeJsonFile(PUBLIC_MEETING_PATHS.providerReport, archiveDiscovery.providerReports),
   ]);
+  await writePublicMeetingRuntimeArtifacts({
+    bodies,
+    meetings: dedupedMeetings,
+    votingCards: dedupedMeetingVotingCards,
+    officialActions: dedupedOfficialActions,
+  });
 
   const report: PublicMeetingIngestionReport = {
     generated_at: new Date().toISOString(),

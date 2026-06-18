@@ -89,6 +89,13 @@ const questionInclude = {
 } satisfies Prisma.VoteQuestionInclude;
 
 type QuestionWithRelations = Prisma.VoteQuestionGetPayload<{ include: typeof questionInclude }>;
+type QuestionWithUserResponse = Prisma.VoteQuestionGetPayload<{
+  include: {
+    jurisdiction: true;
+    source: true;
+    responses: true;
+  };
+}>;
 
 function sourceName(source: SourceLike | null | undefined, fallback = "Imported public civic data") {
   return source?.name ?? fallback;
@@ -459,6 +466,10 @@ function mapQuestion(row: QuestionWithRelations, userId: string): VoteQuestionCa
   };
 }
 
+function mapQuestionWithSparseResponses(row: QuestionWithUserResponse, userId: string): VoteQuestionCardSummary {
+  return mapQuestion(row as QuestionWithRelations, userId);
+}
+
 async function upsertReviewAndQuestion(seed: RealQuestionSeed) {
   await prisma.civicEntityReview.upsert({
     where: {
@@ -808,7 +819,6 @@ export async function getStoredVoteQuestions(): Promise<VoteQuestionSummary[]> {
 }
 
 export async function getAllVoteQuestions() {
-  await ensureInitialRealDataCivicQuestions();
   const questions = await prisma.voteQuestion.findMany({
     where: {
       generatedFromRealData: true,
@@ -824,7 +834,6 @@ export async function getAllVoteQuestions() {
 }
 
 export async function getQuickVoteCardsForUser(user: AuthUser, communityId?: string): Promise<VoteQuestionCardSummary[]> {
-  await ensureInitialRealDataCivicQuestions();
   const questions = await prisma.voteQuestion.findMany({
     where: {
       generatedFromRealData: true,
@@ -848,6 +857,64 @@ export async function getQuickVoteCardsForUser(user: AuthUser, communityId?: str
 
       return Date.parse(right.weekOf ?? "1970-01-01") - Date.parse(left.weekOf ?? "1970-01-01");
     });
+}
+
+function civicEntityTypesForVotingFilter(filter: "all" | "people" | "issues" | "cases") {
+  if (filter === "people") return ["OFFICIAL", "CANDIDATE"] as const;
+  if (filter === "issues") return ["ISSUE_POSITION", "AGENDA_ITEM", "BILL", "LEGISLATIVE_VOTE"] as const;
+  if (filter === "cases") return ["BALLOT_MEASURE", "ELECTION", "REGISTRATION_TURNOUT"] as const;
+  return undefined;
+}
+
+function votingQuestionWhere(user: AuthUser, filter: "all" | "people" | "issues" | "cases") {
+  const entityTypes = civicEntityTypesForVotingFilter(filter);
+  return {
+    generatedFromRealData: true,
+    reviewStatus: { in: [...PUBLIC_REVIEW_STATUSES] },
+    sourceUrl: { not: null },
+    ...(entityTypes ? { civicEntityType: { in: [...entityTypes] } } : {}),
+    OR: [
+      { scope: { in: ["state", "national"] } },
+      { jurisdiction: { name: user.jurisdictionName } },
+    ],
+  } satisfies Prisma.VoteQuestionWhereInput;
+}
+
+export type VotingQuestionWindow = {
+  activeQuestion: VoteQuestionCardSummary | null;
+  total: number;
+};
+
+export async function getVotingQuestionWindow(
+  user: AuthUser,
+  options: {
+    filter: "all" | "people" | "issues" | "cases";
+    index: number;
+  },
+): Promise<VotingQuestionWindow> {
+  const where = votingQuestionWhere(user, options.filter);
+  const total = await prisma.voteQuestion.count({ where });
+  const index = Math.min(Math.max(options.index, 0), Math.max(total - 1, 0));
+  const rows = total
+    ? await prisma.voteQuestion.findMany({
+        where,
+        include: {
+          jurisdiction: true,
+          source: true,
+          responses: {
+            where: { userId: user.id },
+            orderBy: { updatedAt: "desc" },
+            take: 1,
+          },
+        },
+        orderBy: [{ updatedAt: "desc" }],
+        skip: index,
+        take: 1,
+      })
+    : [];
+
+  const activeQuestion = rows[0] ? mapQuestionWithSparseResponses(rows[0], user.id) : null;
+  return { activeQuestion, total };
 }
 
 export async function getDailyVoteExperience(user: AuthUser, communityId?: string) {

@@ -9,12 +9,9 @@
     "action_type": "MOTION_MADE",
     "action_text": "19 May 2026 MOTION: Upon motion by Member Keats, seconded by Secretary Montan, the agenda for May 19, 2026 was approved unanimously",
     "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=8898&compileOutputType=1",
-    "source_snippet": "19 May 2026 MOTION: Upon motion by Member Keats, seconded by Secretary Montan, the agenda for May 19, 2026 was approved unanimously",
     "confidence": 0.74,
     "match_confidence": 0.9,
-    "match_reason": "Unique surname match in narrowed body/jurisdiction: Donna Keats.",
     "review_status": "approved",
-    "needs_review": false,
     "created_at": "2026-06-17T23:56:12.758Z"
   },
   {
@@ -27,12 +24,9 @@
     "action_type": "MOTION_SECONDED",
     "action_text": "19 May 2026 MOTION: Upon motion by Member Keats, seconded by Secretary Montan, the agenda for May 19, 2026 was approved unanimously",
     "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=8898&compileOutputType=1",
-    "source_snippet": "19 May 2026 MOTION: Upon motion by Member Keats, seconded by Secretary Montan, the agenda for May 19, 2026 was approved unanimously",
     "confidence": 0.74,
     "match_confidence": 0.9,
-    "match_reason": "Unique surname match in narrowed body/jurisdiction: Kristen Montan.",
     "review_status": "approved",
-    "needs_review": false,
     "created_at": "2026-06-17T23:56:12.758Z"
   },
   {
@@ -45,12 +39,9 @@
     "action_type": "MOTION_MADE",
     "action_text": "21 April 2026 at 5:30 PM MOTION: Upon motion by Member Keats, seconded by Member Oliver, the minutes of April 21, 2026 were approved unanimously",
     "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=8898&compileOutputType=1",
-    "source_snippet": "21 April 2026 at 5:30 PM MOTION: Upon motion by Member Keats, seconded by Member Oliver, the minutes of April 21, 2026 were approved unanimously",
     "confidence": 0.74,
     "match_confidence": 0.9,
-    "match_reason": "Unique surname match in narrowed body/jurisdiction: Donna Keats.",
     "review_status": "approved",
-    "needs_review": false,
     "created_at": "2026-06-17T23:56:12.758Z"
   },
   {
@@ -63,12 +54,9 @@
     "action_type": "MOTION_SECONDED",
     "action_text": "21 April 2026 at 5:30 PM MOTION: Upon motion by Member Keats, seconded by Member Oliver, the minutes of April 21, 2026 were approved unanimously",
     "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=8898&compileOutputType=1",
-    "source_snippet": "21 April 2026 at 5:30 PM MOTION: Upon motion by Member Keats, seconded by Member Oliver, the minutes of April 21, 2026 were approved unanimously",
     "confidence": 0.74,
     "match_confidence": 0.9,
-    "match_reason": "Unique surname match in narrowed body/jurisdiction: Nicolas Oliver.",
     "review_status": "approved",
-    "needs_review": false,
     "created_at": "2026-06-17T23:56:12.758Z"
   }
 ]

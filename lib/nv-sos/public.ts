@@ -1,5 +1,6 @@
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
+import path from "node:path";
 
 import type {
   NvSosDiscoveredSource,
@@ -68,9 +69,14 @@ export type OfficialSourceDocumentsCardData = {
   sourceLinks: Array<{ label: string; url: string }>;
 };
 
+function absoluteNvSosPath(filePath: string) {
+  return path.join(/* turbopackIgnore: true */ process.cwd(), filePath);
+}
+
 async function readJsonFile<T>(filePath: string, fallback: T): Promise<T> {
-  if (!existsSync(filePath)) return fallback;
-  return JSON.parse(await readFile(filePath, "utf8")) as T;
+  const absolutePath = absoluteNvSosPath(filePath);
+  if (!existsSync(absolutePath)) return fallback;
+  return JSON.parse(await readFile(absolutePath, "utf8")) as T;
 }
 
 async function readSources() {
@@ -100,8 +106,8 @@ export async function getNvSosSourceDashboard(): Promise<NvSosSourceDashboard> {
     fetchLog,
     expandedFetchLog,
     latestBySourceId,
-    hasCookieFile: existsSync(NV_SOS_APP_PATHS.cookieFile),
-    hasStorageState: existsSync(NV_SOS_APP_PATHS.storageStateFile),
+    hasCookieFile: existsSync(absoluteNvSosPath(NV_SOS_APP_PATHS.cookieFile)),
+    hasStorageState: existsSync(absoluteNvSosPath(NV_SOS_APP_PATHS.storageStateFile)),
   };
 }
 

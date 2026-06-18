@@ -16,6 +16,7 @@ type PageProps = {
     meeting?: "upcoming" | "completed";
     outcome?: "approved" | "pending" | "all";
     review?: "approved" | "needs_review" | "all";
+    financial?: "with_financial" | "tax_stated" | "tax_unknown" | "tax_unlikely" | "tax_needs_review" | "all";
   }>;
 };
 
@@ -43,8 +44,13 @@ export default async function AdminVotingCardsPage({ searchParams }: PageProps) 
     meetingStatus: params.meeting,
     outcome: params.outcome,
     review: params.review,
+    financial: params.financial,
   });
   const returnPath = href(params);
+  const financialCards = allCards.filter((card) => card.financial_impact_context);
+  const taxFeeStatedCards = allCards.filter((card) => card.financial_impact_context?.direct_tax_impact === "stated");
+  const unknownTaxImpactCards = allCards.filter((card) => card.financial_impact_context?.direct_tax_impact === "unknown");
+  const needsTaxDebtReviewCards = allCards.filter((card) => card.financial_impact_context?.direct_tax_impact === "needs_review");
 
   return (
     <div className="space-y-6 py-8">
@@ -60,11 +66,12 @@ export default async function AdminVotingCardsPage({ searchParams }: PageProps) 
         }
       />
 
-      <section className="grid gap-3 md:grid-cols-4">
+      <section className="grid gap-3 md:grid-cols-5">
         <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Cards</p><p className="mt-3 text-3xl font-semibold text-white">{allCards.length}</p></div>
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Approved</p><p className="mt-3 text-3xl font-semibold text-white">{allCards.filter((card) => card.review_status === "approved").length}</p></div>
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Needs review</p><p className="mt-3 text-3xl font-semibold text-white">{allCards.filter((card) => card.review_status !== "approved").length}</p></div>
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Roll-call pending</p><p className="mt-3 text-3xl font-semibold text-white">{allCards.filter((card) => card.needs_roll_call_review).length}</p></div>
+        <div className="rounded-2xl border border-amber-300/20 bg-amber-300/10 p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-100">Financial impact</p><p className="mt-3 text-3xl font-semibold text-white">{financialCards.length}</p></div>
+        <div className="rounded-2xl border border-emerald-300/20 bg-emerald-300/10 p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100">Tax/fee stated</p><p className="mt-3 text-3xl font-semibold text-white">{taxFeeStatedCards.length}</p></div>
+        <div className="rounded-2xl border border-amber-300/20 bg-amber-300/10 p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-100">Tax unknown</p><p className="mt-3 text-3xl font-semibold text-white">{unknownTaxImpactCards.length}</p></div>
+        <div className="rounded-2xl border border-rose-300/20 bg-rose-500/10 p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-100">Tax/debt review</p><p className="mt-3 text-3xl font-semibold text-white">{needsTaxDebtReviewCards.length}</p></div>
       </section>
 
       <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5">
@@ -76,6 +83,10 @@ export default async function AdminVotingCardsPage({ searchParams }: PageProps) 
           <Link href={href({ meeting: "upcoming" })} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-100">Upcoming</Link>
           <Link href={href({ outcome: "approved" })} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-100">Approved outcomes</Link>
           <Link href={href({ outcome: "pending" })} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-100">Pending outcomes</Link>
+          <Link href={href({ financial: "with_financial" })} className="rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-2 text-xs font-semibold text-amber-100">Financial impact</Link>
+          <Link href={href({ financial: "tax_stated" })} className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-2 text-xs font-semibold text-emerald-100">Direct tax/fee stated</Link>
+          <Link href={href({ financial: "tax_unknown" })} className="rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-2 text-xs font-semibold text-amber-100">Tax impact unknown</Link>
+          <Link href={href({ financial: "tax_needs_review" })} className="rounded-full border border-rose-300/20 bg-rose-500/10 px-3 py-2 text-xs font-semibold text-rose-100">Needs tax/debt review</Link>
         </div>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           <select defaultValue={params.jurisdiction ?? ""} className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" onChange={undefined}>

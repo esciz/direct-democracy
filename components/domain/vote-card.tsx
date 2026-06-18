@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { submitQuickVoteInline } from "@/lib/feed/vote-actions";
-import { extractTaxCostContext, stripTaxCostContext } from "@/lib/public-meetings/financial-impact";
+import { extractTaxCostContext, stripTaxCostContext, taxCostImpactBadge } from "@/lib/public-meetings/financial-impact";
 import { getResultComparisonText, getVoteObjectLabel, getVoteParticipationPrompt, getVoteResponseLabels } from "@/lib/votes/presentation";
 import type { VoteQuestionCardSummary } from "@/types/domain";
 
@@ -165,6 +165,28 @@ function SourceLinks({ question }: { question: VoteQuestionCardSummary }) {
   );
 }
 
+function TaxCostImpactBlock({ summary, compact = false }: { summary: string; compact?: boolean }) {
+  const badge = taxCostImpactBadge(summary);
+  const badgeClasses =
+    badge?.tone === "stated"
+      ? "border-emerald-300/24 bg-emerald-300/10 text-emerald-100"
+      : badge?.tone === "review"
+        ? "border-rose-300/24 bg-rose-500/10 text-rose-100"
+        : badge?.tone === "unlikely"
+          ? "border-cyan-300/24 bg-cyan-300/10 text-cyan-100"
+          : "border-amber-300/24 bg-amber-300/10 text-amber-100";
+
+  return (
+    <div className={`rounded-3xl border border-amber-300/20 bg-[linear-gradient(135deg,rgba(251,191,36,0.12),rgba(15,23,42,0.72))] ${compact ? "px-4 py-3" : "px-4 py-4"}`}>
+      <div className="flex flex-wrap items-center gap-2">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">{compact ? "Cost to voters" : "Tax / cost impact"}</p>
+        {badge ? <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${badgeClasses}`}>{badge.label}</span> : null}
+      </div>
+      <p className={`mt-2 leading-6 text-amber-50 ${compact ? "text-sm" : "text-sm"}`}>{summary}</p>
+    </div>
+  );
+}
+
 function getContextKind(question: VoteQuestionCardSummary) {
   if (question.questionType === "BALLOT_MEASURE_DECISION") return "ballotMeasure";
   if (question.questionType === "LEGISLATION_DECISION") return "legislation";
@@ -305,12 +327,8 @@ function ContextDetails({
 
   return (
     <>
+      {taxCostImpact ? <TaxCostImpactBlock summary={taxCostImpact} /> : null}
       <ContextItem label="Plain English summary">{plainContextSummary ?? question.plainLanguageSummary ?? pendingText()}</ContextItem>
-      {taxCostImpact ? (
-        <ContextItem label="Tax / cost impact" tone="financial">
-          {taxCostImpact}
-        </ContextItem>
-      ) : null}
       <ContextItem label="Why it matters locally">{question.whyItMatters ?? pendingText("Local impact summary pending review.")}</ContextItem>
       <ContextItem label="Related officials / candidates / elections">
         {[question.subjectName, question.relatedIssueLabel, affectedGroups].filter(Boolean).join(" · ") || pendingText("Related civic records pending review.")}
@@ -356,8 +374,13 @@ export function VoteCard({
   const responseLabels = getVoteResponseLabels(currentQuestion);
   const optionSubLabels = getOptionSubLabels(currentQuestion);
   const comparisonText = getResultComparisonText(currentQuestion);
+  const extractedTaxCostImpact = extractTaxCostContext(currentQuestion.contextSummary);
+  const fallbackTaxCostImpact = currentQuestion.fiscalImpactSummary && !/^no official fiscal note found yet\.?$/i.test(currentQuestion.fiscalImpactSummary)
+    ? currentQuestion.fiscalImpactSummary
+    : null;
+  const taxCostImpact = extractedTaxCostImpact ?? fallbackTaxCostImpact;
   const contextPreview =
-    currentQuestion.contextSummary ??
+    stripTaxCostContext(currentQuestion.contextSummary) ??
     currentQuestion.plainLanguageSummary ??
     currentQuestion.officialPositionSummary ??
     currentQuestion.officialVoteSummary ??
@@ -488,6 +511,11 @@ export function VoteCard({
         <div className="relative mt-4 rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Why this matters</p>
           <p className="mt-2 text-sm leading-6 text-slate-300">{contextPreview}</p>
+        </div>
+      ) : null}
+      {taxCostImpact ? (
+        <div className="relative mt-4">
+          <TaxCostImpactBlock summary={taxCostImpact} compact />
         </div>
       ) : null}
 

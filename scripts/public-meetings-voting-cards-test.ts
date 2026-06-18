@@ -135,7 +135,7 @@ function assertFinancialCase(
 assertFinancialCase("dollar amount only", "$600,000 fiscal impact.", {
   amount: "$600,000",
   directTaxImpact: "unknown",
-  summaryIncludes: "Direct tax impact not stated",
+  summaryIncludes: "does not state whether this directly changes voter taxes or fees",
 });
 
 assertFinancialCase("revenue and expense authority", "Augment the Building and Safety Fund by $600,000 to increase Fiscal Year 2026 revenue and expense authority.", {
@@ -155,7 +155,7 @@ assertFinancialCase("grant funded", "Accept a $250,000 federal grant for park im
 assertFinancialCase("bond debt", "Authorize issuance of up to $12,000,000 in bonds for utility improvements.", {
   amount: "$12,000,000",
   directTaxImpact: "needs_review",
-  summaryIncludes: "public debt",
+  summaryIncludes: "Source review needed",
   typeIncludes: "bond_debt",
 });
 
