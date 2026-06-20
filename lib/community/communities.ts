@@ -1,162 +1,370 @@
 import type { AuthUser, CommunitySummary } from "@/types/domain";
 
-export const seededCommunities: CommunitySummary[] = [
-  {
-    id: "carson-city",
-    name: "Carson City",
-    shortName: "Carson City",
-    descriptor: "Nevada's capital city with a close-up view of schools, downtown growth, and public budgets.",
-    communityType: "geographic",
-    scope: "local",
-    primaryJurisdictionName: "Carson City, Nevada",
-    jurisdictionMatches: ["Carson City, Nevada"],
-    imagePath: "/community/cc.webp",
-  },
-  {
-    id: "reno",
-    name: "Reno",
-    shortName: "Reno",
-    descriptor: "A fast-growing Northern Nevada city where housing, roads, and growth pressure are constant topics.",
-    communityType: "geographic",
-    scope: "local",
-    primaryJurisdictionName: "Reno, Nevada",
-    jurisdictionMatches: ["Reno, Nevada"],
-    imagePath: "/community/nevada.svg",
-  },
-  {
-    id: "las-vegas",
-    name: "Las Vegas",
-    shortName: "Las Vegas",
-    descriptor: "A larger Nevada metro view with statewide overlap for housing, tourism, and infrastructure issues.",
-    communityType: "geographic",
-    scope: "local",
-    primaryJurisdictionName: "Las Vegas, Nevada",
-    jurisdictionMatches: ["Las Vegas, Nevada"],
-    imagePath: "/community/nevada.svg",
-  },
+export type NevadaCommunityKind = "state" | "county" | "city" | "community" | "federal";
+
+type NevadaCommunitySeed = {
+  id: string;
+  name: string;
+  shortName?: string;
+  kind: NevadaCommunityKind;
+  countyId?: string;
+  descriptor: string;
+  aliases?: string[];
+  imagePath?: string;
+};
+
+const NEVADA_IMAGE_PATH = "/community/nevada.svg";
+const CARSON_CITY_IMAGE_PATH = "/community/cc.webp";
+
+const nevadaCommunitySeeds: NevadaCommunitySeed[] = [
   {
     id: "carson-city-county",
     name: "Carson City County",
-    shortName: "Carson City County",
-    descriptor: "A county-equivalent view for Carson City public services, schools, and civic institutions.",
-    communityType: "geographic",
-    scope: "local",
-    primaryJurisdictionName: "Carson City County, Nevada",
-    jurisdictionMatches: ["Carson City County, Nevada", "Carson City, Nevada"],
-    imagePath: "/community/cc.webp",
-  },
-  {
-    id: "washoe-county",
-    name: "Washoe County",
-    shortName: "Washoe County",
-    descriptor: "A county-level view connecting Reno, surrounding communities, schools, and local public services.",
-    communityType: "geographic",
-    scope: "local",
-    primaryJurisdictionName: "Washoe County, Nevada",
-    jurisdictionMatches: ["Washoe County, Nevada", "Reno, Nevada"],
-    imagePath: "/community/nevada.svg",
+    kind: "county",
+    descriptor: "A county-equivalent view for Carson City public services, schools, elections, spending, and civic institutions.",
+    aliases: ["Carson City, Nevada"],
+    imagePath: CARSON_CITY_IMAGE_PATH,
   },
   {
     id: "clark-county",
     name: "Clark County",
-    shortName: "Clark County",
-    descriptor: "A county-level view connecting Las Vegas, regional growth, public services, and civic institutions.",
-    communityType: "geographic",
-    scope: "local",
-    primaryJurisdictionName: "Clark County, Nevada",
-    jurisdictionMatches: ["Clark County, Nevada", "Las Vegas, Nevada"],
-    imagePath: "/community/nevada.svg",
+    kind: "county",
+    descriptor: "A county-level view connecting Las Vegas, regional growth, schools, courts, public services, and civic institutions.",
+    aliases: ["Clark County, NV"],
   },
   {
-    id: "nevada",
-    name: "Nevada",
-    shortName: "Nevada",
-    descriptor: "Statewide issues shaped by growth, water, schools, and public trust.",
-    communityType: "geographic",
-    scope: "state",
-    primaryJurisdictionName: "Nevada",
-    jurisdictionMatches: ["Nevada", "Carson City, Nevada", "Washoe County, Nevada", "Las Vegas, Nevada", "Clark County, Nevada"],
-    imagePath: "/community/nevada.svg",
+    id: "washoe-county",
+    name: "Washoe County",
+    kind: "county",
+    descriptor: "A county-level view connecting Reno, Sparks, surrounding communities, schools, courts, and local public services.",
+    aliases: ["Washoe County, NV"],
   },
   {
-    id: "united-states",
-    name: "United States",
-    shortName: "United States",
-    descriptor: "A broader public view across local voices, state concerns, and national civic mood.",
-    communityType: "geographic",
-    scope: "national",
-    primaryJurisdictionName: "United States",
-    jurisdictionMatches: ["United States", "Nevada", "Carson City, Nevada", "Washoe County, Nevada", "Las Vegas, Nevada", "Clark County, Nevada"],
-    imagePath: "/community/united-states.svg",
+    id: "douglas-county",
+    name: "Douglas County",
+    kind: "county",
+    descriptor: "A county community page for Carson Valley, Tahoe-adjacent growth, public lands, schools, meetings, and local budgets.",
   },
   {
-    id: "unr-campus",
-    name: "University of Nevada, Reno",
-    shortName: "UNR",
-    descriptor: "A campus community centered on student life, university decisions, civic participation, and high-frequency events.",
-    communityType: "campus",
-    scope: "local",
-    primaryJurisdictionName: "University of Nevada, Reno",
-    jurisdictionMatches: ["University of Nevada, Reno"],
-    imagePath: "/community/nevada.svg",
-    locationLabel: "Reno, Nevada",
-    institutionType: "public",
-    enrollmentSize: 21000,
+    id: "lyon-county",
+    name: "Lyon County",
+    kind: "county",
+    descriptor: "A county community page for Fernley, Yerington, Silver Springs, rural services, growth, elections, and public spending.",
   },
   {
-    id: "unlv-campus",
-    name: "University of Nevada, Las Vegas",
-    shortName: "UNLV",
-    descriptor: "A campus community built around Las Vegas student issues, campus events, and statewide civic energy.",
-    communityType: "campus",
-    scope: "local",
-    primaryJurisdictionName: "University of Nevada, Las Vegas",
-    jurisdictionMatches: ["University of Nevada, Las Vegas"],
-    imagePath: "/community/nevada.svg",
-    locationLabel: "Las Vegas, Nevada",
-    institutionType: "public",
-    enrollmentSize: 32500,
+    id: "nye-county",
+    name: "Nye County",
+    kind: "county",
+    descriptor: "A county community page for Pahrump, Tonopah, public lands, courts, county services, elections, and spending.",
   },
   {
-    id: "wnc-campus",
-    name: "Western Nevada College",
-    shortName: "WNC",
-    descriptor: "A smaller campus community focused on commuter students, workforce pathways, and local civic participation.",
-    communityType: "campus",
-    scope: "local",
-    primaryJurisdictionName: "Western Nevada College",
-    jurisdictionMatches: ["Western Nevada College"],
-    imagePath: "/community/cc.webp",
-    locationLabel: "Carson City, Nevada",
-    institutionType: "public",
-    enrollmentSize: 3600,
+    id: "elko-county",
+    name: "Elko County",
+    kind: "county",
+    descriptor: "A county community page for northeastern Nevada, Elko, West Wendover, rural services, natural resources, and public meetings.",
+  },
+  {
+    id: "churchill-county",
+    name: "Churchill County",
+    kind: "county",
+    descriptor: "A county community page for Fallon, agriculture, water, schools, county meetings, elections, and public spending.",
+  },
+  {
+    id: "humboldt-county",
+    name: "Humboldt County",
+    kind: "county",
+    descriptor: "A county community page for Winnemucca, rural services, public lands, elections, meetings, and county budgets.",
+  },
+  {
+    id: "white-pine-county",
+    name: "White Pine County",
+    kind: "county",
+    descriptor: "A county community page for Ely, eastern Nevada services, public lands, courts, elections, and local spending.",
+  },
+  {
+    id: "lander-county",
+    name: "Lander County",
+    kind: "county",
+    descriptor: "A county community page for Battle Mountain, rural government, public lands, elections, meetings, and spending.",
+  },
+  {
+    id: "lincoln-county",
+    name: "Lincoln County",
+    kind: "county",
+    descriptor: "A county community page for rural southeastern Nevada, public lands, county services, elections, and meetings.",
+  },
+  {
+    id: "eureka-county",
+    name: "Eureka County",
+    kind: "county",
+    descriptor: "A county community page for local government, public lands, mining impacts, elections, meetings, and public spending.",
+  },
+  {
+    id: "esmeralda-county",
+    name: "Esmeralda County",
+    kind: "county",
+    descriptor: "A county community page for Nevada's smallest county, rural services, public lands, elections, meetings, and budgets.",
+  },
+  {
+    id: "pershing-county",
+    name: "Pershing County",
+    kind: "county",
+    descriptor: "A county community page for Lovelock, public lands, local services, elections, courts, meetings, and spending.",
+  },
+  {
+    id: "storey-county",
+    name: "Storey County",
+    kind: "county",
+    descriptor: "A county community page for Virginia City, industrial growth, tourism, county services, meetings, and public spending.",
+  },
+  {
+    id: "mineral-county",
+    name: "Mineral County",
+    kind: "county",
+    descriptor: "A county community page for Hawthorne, rural public services, elections, courts, meetings, and local budgets.",
+  },
+  {
+    id: "carson-city",
+    name: "Carson City",
+    kind: "city",
+    countyId: "carson-city-county",
+    descriptor: "Nevada's capital city with a close-up view of schools, downtown growth, elections, public meetings, and budgets.",
+    imagePath: CARSON_CITY_IMAGE_PATH,
+  },
+  {
+    id: "las-vegas",
+    name: "Las Vegas",
+    kind: "city",
+    countyId: "clark-county",
+    descriptor: "A city community page for tourism, housing, public safety, infrastructure, city meetings, elections, and spending.",
+  },
+  {
+    id: "henderson",
+    name: "Henderson",
+    kind: "city",
+    countyId: "clark-county",
+    descriptor: "A city community page for growth, schools, public safety, planning, city meetings, elections, and local budgets.",
+  },
+  {
+    id: "north-las-vegas",
+    name: "North Las Vegas",
+    kind: "city",
+    countyId: "clark-county",
+    descriptor: "A city community page for housing, jobs, public safety, planning, city council actions, elections, and spending.",
+  },
+  {
+    id: "reno",
+    name: "Reno",
+    kind: "city",
+    countyId: "washoe-county",
+    descriptor: "A fast-growing Northern Nevada city where housing, roads, downtown growth, and public meetings are constant topics.",
+  },
+  {
+    id: "sparks",
+    name: "Sparks",
+    kind: "city",
+    countyId: "washoe-county",
+    descriptor: "A city community page for Truckee Meadows growth, redevelopment, public safety, city meetings, elections, and spending.",
+  },
+  {
+    id: "elko",
+    name: "Elko",
+    kind: "city",
+    countyId: "elko-county",
+    descriptor: "A city community page for northeastern Nevada services, growth, public safety, elections, meetings, and budgets.",
+  },
+  {
+    id: "mesquite",
+    name: "Mesquite",
+    kind: "city",
+    countyId: "clark-county",
+    descriptor: "A city community page for northeast Clark County growth, public services, city meetings, elections, and spending.",
+  },
+  {
+    id: "boulder-city",
+    name: "Boulder City",
+    kind: "city",
+    countyId: "clark-county",
+    descriptor: "A city community page for controlled growth, tourism, utilities, city meetings, elections, and public spending.",
+  },
+  {
+    id: "fallon",
+    name: "Fallon",
+    kind: "city",
+    countyId: "churchill-county",
+    descriptor: "A city community page for agriculture, water, schools, city meetings, elections, and local public spending.",
+  },
+  {
+    id: "fernley",
+    name: "Fernley",
+    kind: "city",
+    countyId: "lyon-county",
+    descriptor: "A city community page for growth, transportation, housing, schools, city meetings, elections, and spending.",
+  },
+  {
+    id: "winnemucca",
+    name: "Winnemucca",
+    kind: "city",
+    countyId: "humboldt-county",
+    descriptor: "A city community page for Humboldt County services, transportation, public safety, meetings, elections, and budgets.",
+  },
+  {
+    id: "west-wendover",
+    name: "West Wendover",
+    kind: "city",
+    countyId: "elko-county",
+    descriptor: "A city community page for border-region services, tourism, public safety, elections, meetings, and spending.",
+  },
+  {
+    id: "yerington",
+    name: "Yerington",
+    kind: "city",
+    countyId: "lyon-county",
+    descriptor: "A city community page for county-seat services, agriculture, schools, meetings, elections, and local spending.",
+  },
+  {
+    id: "tonopah",
+    name: "Tonopah",
+    kind: "community",
+    countyId: "nye-county",
+    descriptor: "A major unincorporated community page for central Nevada services, public lands, county meetings, courts, and spending.",
+  },
+  {
+    id: "pahrump",
+    name: "Pahrump",
+    kind: "community",
+    countyId: "nye-county",
+    descriptor: "A major unincorporated community page for growth, water, public safety, county services, elections, and spending.",
+  },
+  {
+    id: "ely",
+    name: "Ely",
+    kind: "community",
+    countyId: "white-pine-county",
+    descriptor: "A major community page for eastern Nevada services, public lands, courts, meetings, elections, and local spending.",
+  },
+  {
+    id: "incline-village",
+    name: "Incline Village",
+    kind: "community",
+    countyId: "washoe-county",
+    descriptor: "A major unincorporated Tahoe community page for water, wildfire, schools, county services, meetings, and spending.",
+  },
+  {
+    id: "gardnerville",
+    name: "Gardnerville",
+    kind: "community",
+    countyId: "douglas-county",
+    descriptor: "A major Carson Valley community page for county services, growth, schools, meetings, elections, and spending.",
+  },
+  {
+    id: "minden",
+    name: "Minden",
+    kind: "community",
+    countyId: "douglas-county",
+    descriptor: "A major Carson Valley community page for county-seat services, planning, schools, meetings, elections, and spending.",
+  },
+  {
+    id: "laughlin",
+    name: "Laughlin",
+    kind: "community",
+    countyId: "clark-county",
+    descriptor: "A major unincorporated community page for Colorado River tourism, county services, public safety, meetings, and spending.",
+  },
+  {
+    id: "battle-mountain",
+    name: "Battle Mountain",
+    kind: "community",
+    countyId: "lander-county",
+    descriptor: "A major community page for Lander County services, transportation, public lands, meetings, elections, and spending.",
   },
 ];
+
+function jurisdictionNameForSeed(seed: NevadaCommunitySeed) {
+  if (seed.kind === "state") return "Nevada";
+  return `${seed.name}, Nevada`;
+}
+
+function buildJurisdictionMatches(seed: NevadaCommunitySeed) {
+  const matches = new Set<string>([jurisdictionNameForSeed(seed), seed.name, ...(seed.aliases ?? [])]);
+
+  if (seed.countyId) {
+    const county = nevadaCommunitySeeds.find((entry) => entry.id === seed.countyId);
+    if (county) {
+      matches.add(county.name);
+      matches.add(`${county.name}, Nevada`);
+    }
+  }
+
+  return [...matches];
+}
+
+function communityFromSeed(seed: NevadaCommunitySeed): CommunitySummary {
+  return {
+    id: seed.id,
+    name: seed.name,
+    shortName: seed.shortName ?? seed.name,
+    descriptor: seed.descriptor,
+    communityType: "geographic",
+    scope: seed.kind === "state" ? "state" : "local",
+    primaryJurisdictionName: jurisdictionNameForSeed(seed),
+    jurisdictionMatches: buildJurisdictionMatches(seed),
+    imagePath: seed.imagePath ?? NEVADA_IMAGE_PATH,
+    locationLabel: seed.countyId ? getCommunitySeedById(seed.countyId)?.name ?? null : null,
+  };
+}
+
+function getCommunitySeedById(communityId: string | undefined) {
+  return nevadaCommunitySeeds.find((community) => community.id === communityId);
+}
+
+export const nevadaCountyCommunityIds = nevadaCommunitySeeds.filter((community) => community.kind === "county").map((community) => community.id);
+export const nevadaCityCommunityIds = nevadaCommunitySeeds.filter((community) => community.kind === "city").map((community) => community.id);
+export const nevadaMajorCommunityIds = nevadaCommunitySeeds.filter((community) => community.kind === "community").map((community) => community.id);
+export const nevadaLocalCommunityIds = [...nevadaCountyCommunityIds, ...nevadaCityCommunityIds, ...nevadaMajorCommunityIds];
+
+const nevadaStateCommunity: CommunitySummary = {
+  id: "nevada",
+  name: "Nevada",
+  shortName: "Nevada",
+  descriptor: "Statewide issues shaped by growth, water, schools, courts, elections, public spending, and public trust.",
+  communityType: "geographic",
+  scope: "state",
+  primaryJurisdictionName: "Nevada",
+  jurisdictionMatches: ["Nevada", ...nevadaCommunitySeeds.flatMap((community) => [community.name, jurisdictionNameForSeed(community)])],
+  imagePath: NEVADA_IMAGE_PATH,
+};
+
+const federalOverlayCommunity: CommunitySummary = {
+  id: "united-states",
+  name: "United States",
+  shortName: "United States",
+  descriptor: "The federal overlay for national actions that affect Nevada, including executive actions, Congress, and federal courts.",
+  communityType: "geographic",
+  scope: "national",
+  primaryJurisdictionName: "United States",
+  jurisdictionMatches: ["United States", "Federal", "Nevada", ...nevadaStateCommunity.jurisdictionMatches],
+  imagePath: "/community/united-states.svg",
+};
+
+export const seededCommunities: CommunitySummary[] = [
+  ...nevadaCommunitySeeds.map(communityFromSeed),
+  nevadaStateCommunity,
+  federalOverlayCommunity,
+];
+
+export function getNevadaCommunityKind(communityId: string | undefined): NevadaCommunityKind | null {
+  if (communityId === "nevada") return "state";
+  if (communityId === "united-states") return "federal";
+  return getCommunitySeedById(communityId)?.kind ?? null;
+}
 
 export function getCommunityById(communityId: string | undefined) {
   return seededCommunities.find((community) => community.id === communityId);
 }
 
-export function getCampusCommunities() {
-  return seededCommunities.filter((community) => community.communityType === "campus");
-}
-
-export function getCampusesForCommunity(communityId: string) {
-  const community = getCommunityById(communityId);
-
-  if (!community || community.communityType === "campus") {
-    return [];
-  }
-
-  return getCampusCommunities().filter((campus) => {
-    const location = campus.locationLabel ?? "";
-
-    return community.jurisdictionMatches.some((match) => location.includes(match));
-  });
-}
-
 export function getGeographicCommunities() {
-  return seededCommunities.filter((community) => community.communityType === "geographic");
+  return seededCommunities;
 }
 
 export function getCommunityByJurisdictionName(jurisdictionName: string) {
@@ -166,10 +374,6 @@ export function getCommunityByJurisdictionName(jurisdictionName: string) {
   );
 }
 
-export function isCampusCommunityId(communityId: string | undefined) {
-  return getCommunityById(communityId)?.communityType === "campus";
-}
-
 export function getCommunityContextLabel(jurisdictionName: string) {
   const community = getCommunityByJurisdictionName(jurisdictionName);
 
@@ -177,7 +381,7 @@ export function getCommunityContextLabel(jurisdictionName: string) {
     return jurisdictionName;
   }
 
-  return community.communityType === "campus" ? `Campus — ${community.shortName}` : community.name;
+  return community.name;
 }
 
 export function getCommunityPageHref(communityId: string) {
@@ -187,7 +391,7 @@ export function getCommunityPageHref(communityId: string) {
     return "/my-community";
   }
 
-  return community.communityType === "campus" ? `/campuses/${community.id}` : `/my-community?communityId=${community.id}`;
+  return `/community/${community.id}`;
 }
 
 export function getCountiesForState(stateCommunityId: string) {
@@ -195,7 +399,7 @@ export function getCountiesForState(stateCommunityId: string) {
     return [];
   }
 
-  return ["carson-city-county", "washoe-county", "clark-county"]
+  return nevadaCountyCommunityIds
     .map((communityId) => getCommunityById(communityId))
     .filter((community): community is CommunitySummary => Boolean(community));
 }
@@ -205,73 +409,39 @@ export function getCitiesForState(stateCommunityId: string) {
     return [];
   }
 
-  return ["carson-city", "reno", "las-vegas"]
+  return nevadaCityCommunityIds
+    .map((communityId) => getCommunityById(communityId))
+    .filter((community): community is CommunitySummary => Boolean(community));
+}
+
+export function getMajorCommunitiesForState(stateCommunityId: string) {
+  if (stateCommunityId !== "nevada") {
+    return [];
+  }
+
+  return nevadaMajorCommunityIds
     .map((communityId) => getCommunityById(communityId))
     .filter((community): community is CommunitySummary => Boolean(community));
 }
 
 export function getCitiesForCounty(countyCommunityId: string) {
-  const communityIds =
-    countyCommunityId === "washoe-county"
-      ? ["reno"]
-      : countyCommunityId === "clark-county"
-        ? ["las-vegas"]
-        : countyCommunityId === "carson-city-county"
-          ? ["carson-city"]
-          : [];
-
-  return communityIds
-    .map((communityId) => getCommunityById(communityId))
+  return nevadaCommunitySeeds
+    .filter((community) => community.kind === "city" && community.countyId === countyCommunityId)
+    .map((community) => getCommunityById(community.id))
     .filter((community): community is CommunitySummary => Boolean(community));
 }
 
-function findLocalCommunityForCampus(campusCommunityId: string) {
-  const campus = getCommunityById(campusCommunityId);
-
-  if (!campus || campus.communityType !== "campus") {
-    return null;
-  }
-
-  return (
-    getGeographicCommunities().find(
-      (community) =>
-        community.scope === "local" &&
-        Boolean(campus.locationLabel) &&
-        campus.locationLabel!.includes(community.name),
-    ) ?? null
-  );
+export function getMajorCommunitiesForCounty(countyCommunityId: string) {
+  return nevadaCommunitySeeds
+    .filter((community) => community.kind === "community" && community.countyId === countyCommunityId)
+    .map((community) => getCommunityById(community.id))
+    .filter((community): community is CommunitySummary => Boolean(community));
 }
 
-export function getLocalCommunityForCampus(campusCommunityId: string) {
-  return findLocalCommunityForCampus(campusCommunityId);
-}
-
-function getCountyLabelForCommunity(communityId: string) {
-  if (communityId === "washoe-county") {
-    return "Washoe County";
-  }
-
-  if (communityId === "clark-county") {
-    return "Clark County";
-  }
-
-  if (communityId === "carson-city-county") {
-    return "Carson City County";
-  }
-
-  if (communityId === "reno") {
-    return "Washoe County";
-  }
-
-  if (communityId === "las-vegas") {
-    return "Clark County";
-  }
-
-  if (communityId === "carson-city") {
-    return "Carson City County";
-  }
-
-  return null;
+function getCountyForCommunity(communityId: string) {
+  const seed = getCommunitySeedById(communityId);
+  const countyId = seed?.kind === "county" ? seed.id : seed?.countyId;
+  return countyId ? getCommunityById(countyId) : null;
 }
 
 export function getCommunityHierarchy(communityId: string) {
@@ -283,26 +453,9 @@ export function getCommunityHierarchy(communityId: string) {
 
   const stateCommunity = getCommunityById("nevada");
   const nationalCommunity = getCommunityById("united-states");
-  const currentIsCounty =
-    current.communityType === "geographic" &&
-    current.scope === "local" &&
-    (current.id === "carson-city-county" || current.id === "washoe-county" || current.id === "clark-county");
-  const countyCommunity = currentIsCounty
-    ? current
-    : current.id === "reno"
-      ? getCommunityById("washoe-county")
-      : current.id === "las-vegas"
-        ? getCommunityById("clark-county")
-        : current.id === "carson-city"
-          ? getCommunityById("carson-city-county")
-          : null;
-  const localCommunity =
-    current.communityType === "campus"
-      ? findLocalCommunityForCampus(current.id)
-      : current.communityType === "geographic" && current.scope === "local" && !currentIsCounty
-        ? current
-        : null;
-  const countyLabel = countyCommunity ? getCountyLabelForCommunity(countyCommunity.id) : null;
+  const currentKind = getNevadaCommunityKind(current.id);
+  const countyCommunity = getCountyForCommunity(current.id);
+  const localCommunity = current.scope === "local" && currentKind !== "county" ? current : null;
   const entries = [];
 
   if (nationalCommunity) {
@@ -325,10 +478,10 @@ export function getCommunityHierarchy(communityId: string) {
     });
   }
 
-  if (countyLabel && countyCommunity) {
+  if (countyCommunity) {
     entries.push({
       id: countyCommunity.id,
-      label: countyLabel,
+      label: countyCommunity.name,
       level: "County",
       href: getCommunityPageHref(countyCommunity.id),
       active: current.id === countyCommunity.id,
@@ -339,19 +492,9 @@ export function getCommunityHierarchy(communityId: string) {
     entries.push({
       id: localCommunity.id,
       label: localCommunity.name,
-      level: "City",
+      level: currentKind === "community" ? "Community" : "City",
       href: getCommunityPageHref(localCommunity.id),
       active: current.id === localCommunity.id,
-    });
-  }
-
-  if (current.communityType === "campus") {
-    entries.push({
-      id: current.id,
-      label: current.shortName || current.name,
-      level: "Campus",
-      href: getCommunityPageHref(current.id),
-      active: true,
     });
   }
 

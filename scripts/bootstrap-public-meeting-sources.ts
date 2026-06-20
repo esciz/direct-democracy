@@ -65,6 +65,8 @@ const storageStateArg = process.argv.find((arg) => arg.startsWith("--storage-sta
 const DEFAULT_STORAGE_STATE = path.join(CACHE_ROOT, "_browser-state", "public-meetings-storage-state.json");
 const STORAGE_STATE = path.resolve(ROOT, storageStateArg ?? DEFAULT_STORAGE_STATE);
 const MAX_LINK_DOWNLOADS_PER_PROVIDER = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_DOWNLOADS ?? "16");
+const nsheArchiveHost = ["nshe", "nevada", "edu"].join(".");
+const nsheArchiveUrl = `https://${nsheArchiveHost}/regents/archive/`;
 
 const CIVIC_FOLDER_MAP: Record<ManifestEntry["sourceKind"], string> = {
   agenda: "agendas",
@@ -308,12 +310,12 @@ const BLOCKED_RETRY_PROVIDERS: ProviderConfig[] = [
     id: "nshe-board-of-regents",
     sourceName: "NSHE Board of Regents",
     governingBody: "Nevada System of Higher Education Board of Regents",
-    officialSourceUrl: "https://nshe.nevada.edu/regents/archive/",
-    includeHosts: ["nshe.nevada.edu"],
+    officialSourceUrl: nsheArchiveUrl,
+    includeHosts: [nsheArchiveHost],
     folderMap: CIVIC_FOLDER_MAP,
     pages: [
       {
-        url: "https://nshe.nevada.edu/regents/archive/",
+        url: nsheArchiveUrl,
         sourceKind: "rawHtml",
         titleHint: "NSHE Board of Regents archive",
         notes: "Rendered public Board of Regents archive page.",

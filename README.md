@@ -15,6 +15,10 @@ Use this build to share the product with early testers by URL, especially on iPh
 
 It is not yet a production-grade verified-voter release.
 
+## Nevada roadmap
+
+The statewide Nevada coverage plan lives in [docs/nevada-statewide-roadmap.md](docs/nevada-statewide-roadmap.md). It defines the Phase 1 launch jurisdictions, statewide and federal layers, full Nevada jurisdiction coverage, generated community-page expectations, and source-backed success criteria.
+
 ## Tech stack
 
 - Next.js App Router

@@ -17,11 +17,6 @@ export function PeopleDirectoryCard({ citizen, returnPath = "/people" }: PeopleD
       <div className="flex items-start gap-2.5">
         <ProfileImagePlaceholder name={citizen.name} size="sm" imageUrl={citizen.profileImageUrl} />
         <div className="min-w-0 flex-1">
-          {citizen.studentProfile?.studentVerified && citizen.studentProfile.campusName ? (
-            <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-civic-700">
-              {citizen.studentProfile.campusName}
-            </p>
-          ) : null}
           <div className="flex flex-wrap items-center gap-1.5">
             <h3 className="text-base font-semibold text-ink">{citizen.name}</h3>
             <RoleBadge role={citizen.role} />

@@ -22,6 +22,12 @@ type PoliticalAdDetailPageProps = {
 
 export default async function PoliticalAdDetailPage({ params }: PoliticalAdDetailPageProps) {
   const { adId } = await params;
+  const allowDemoData = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
+
+  if (!allowDemoData) {
+    notFound();
+  }
+
   const ad = getPoliticalAdById(adId);
 
   if (!ad) {

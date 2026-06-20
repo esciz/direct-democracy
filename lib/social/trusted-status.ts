@@ -24,17 +24,12 @@ import type {
 } from "@/types/domain";
 
 const ENGAGEMENT_REQUIREMENTS: Record<CommunityTrustScope, { percent: number; minimum: number }> = {
-  campus: { percent: 0.03, minimum: 3 },
   local: { percent: 0.03, minimum: 3 },
   state: { percent: 0.02, minimum: 5 },
   national: { percent: 0.01, minimum: 25 },
 };
 
 function getCommunityTrustScope(community: CommunitySummary): CommunityTrustScope {
-  if (community.communityType === "campus") {
-    return "campus";
-  }
-
   if (community.scope === "state") {
     return "state";
   }
@@ -48,8 +43,6 @@ function getCommunityTrustScope(community: CommunitySummary): CommunityTrustScop
 
 function getFollowerTarget(scope: CommunityTrustScope, userCount: number) {
   switch (scope) {
-    case "campus":
-      return Math.max(1, Math.min(300, Math.ceil(userCount * 0.01)));
     case "local":
       return Math.max(1, Math.min(500, Math.ceil(userCount * 0.01)));
     case "state":
@@ -62,10 +55,6 @@ function getFollowerTarget(scope: CommunityTrustScope, userCount: number) {
 }
 
 function getCommunityLabel(scope: CommunityTrustScope, community: CommunitySummary) {
-  if (scope === "campus") {
-    return `${community.shortName} campus`;
-  }
-
   return community.name;
 }
 
@@ -103,12 +92,8 @@ async function getRelevantTrustedCommunities(user: AuthUser) {
     seenIds.add(community.id);
   };
 
-  for (const campusId of profileContent.campusCommunityIds) {
-    addCommunity(getCommunityById(campusId));
-  }
-
   const primaryCommunity = getDefaultCommunityForUser(user);
-  if (primaryCommunity.communityType === "geographic" && primaryCommunity.scope === "local") {
+  if (primaryCommunity.scope === "local") {
     addCommunity(primaryCommunity);
   }
 
@@ -135,7 +120,7 @@ async function getCommunityUserCounts(communities: CommunitySummary[]) {
   return new Map(
     communities.map((community) => [
       community.id,
-      seedUsers.filter((seedUser, index) => seedUser.role !== "admin" && userContentMatchesCommunity(community.id, seedUser, profiles[index])).length,
+      seedUsers.filter((seedUser) => seedUser.role !== "admin" && userContentMatchesCommunity(community.id, seedUser)).length,
     ]),
   );
 }

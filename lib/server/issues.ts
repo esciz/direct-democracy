@@ -1,9 +1,11 @@
 import "server-only";
 
+import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
 import { getCommunityById, getDefaultCommunityForJurisdiction, seededCommunities } from "@/lib/community/communities";
 import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
+import { getIssueHubRecordByRouteParam, getIssueHubRecords, issueHubRecordToTopIssueSummary } from "@/lib/issues/civic-hub";
 import {
   getCanonicalIssueText,
   getCanonicalIssueTextOrNull,
@@ -14,10 +16,10 @@ import {
   slugifyIssueText,
   valuesMatchIssueText,
 } from "@/lib/issues/utils";
-import type { AuthUser, TopIssueSummary, VoteQuestionScope } from "@/types/domain";
+import type { AuthUser, PublicIssueHubSummary, TopIssueSummary, VoteQuestionScope } from "@/types/domain";
 
-function dedupeIssues(issues: TopIssueSummary[]) {
-  const unique = new Map<string, TopIssueSummary>();
+function dedupeIssues<T extends TopIssueSummary>(issues: T[]) {
+  const unique = new Map<string, T>();
 
   for (const issue of issues) {
     const canonicalIssueText = getCanonicalIssueText(issue.issueText);
@@ -40,7 +42,7 @@ function dedupeIssues(issues: TopIssueSummary[]) {
       createdAt: Date.parse(existing.createdAt) > Date.parse(issue.createdAt) ? existing.createdAt : issue.createdAt,
       upvoteCount: existing.upvoteCount + issue.upvoteCount,
       viewerHasUpvoted: existing.viewerHasUpvoted || issue.viewerHasUpvoted,
-    });
+    } as T);
   }
 
   return [...unique.values()];
@@ -58,25 +60,59 @@ function inferScopeFromJurisdiction(jurisdictionName: string): VoteQuestionScope
   return "local";
 }
 
-function buildCanonicalIssueSummary(issueText: string, user: AuthUser): TopIssueSummary {
+function buildCanonicalIssueSummary(issueText: string, user: AuthUser): PublicIssueHubSummary {
   return {
     id: `issue_topic_${slugifyIssueText(issueText)}`,
     issueText,
+    plainTitle: issueText,
     scope: inferScopeFromJurisdiction(user.jurisdictionName),
     jurisdictionName: "Across the platform",
     source: "curated",
     createdAt: "2026-01-01T00:00:00.000Z",
     upvoteCount: 0,
     viewerHasUpvoted: false,
+    category: issueText,
+    sourceBacked: false,
+    sourceCount: 0,
+    linkedMeetingsCount: 0,
+    linkedVotesCount: 0,
+    linkedCourtRecordsCount: 0,
+    linkedAgendaItemsCount: 0,
+    linkedCommunitySubmissionCount: 0,
+    sourceDocumentCount: 0,
+    lastUpdatedAt: null,
+    whyThisMatters: getIssueTopicSummary(issueText),
+    showDemoBadge: true,
   };
 }
 
-export async function getIssueDirectoryForUser(user: AuthUser, options?: { communityId?: string; query?: string }) {
+export async function getIssueDirectoryForUser(user: AuthUser, options?: { communityId?: string; query?: string }): Promise<PublicIssueHubSummary[]> {
   const community = options?.communityId ? getCommunityById(options.communityId) : getDefaultCommunityForJurisdiction(user.jurisdictionName);
-  const issues = dedupeIssues([
-    ...(await getTopIssuesForUser(user, "all", community?.id)),
-    ...getCanonicalIssueTitles().map((issueText) => buildCanonicalIssueSummary(issueText, user)),
-  ]);
+  const generatedIssueHubs = (await getIssueHubRecords())
+    .filter((record) => record.sourceBacked)
+    .map(issueHubRecordToTopIssueSummary);
+  const demoIssues: PublicIssueHubSummary[] = PUBLIC_DEMO_DATA_ENABLED
+    ? [
+        ...(await getTopIssuesForUser(user, "all", community?.id)).map((issue) => ({
+          ...issue,
+          plainTitle: issue.issueText,
+          category: getCanonicalIssueText(issue.issueText),
+          sourceBacked: false,
+          sourceCount: 0,
+          linkedMeetingsCount: 0,
+          linkedVotesCount: 0,
+          linkedCourtRecordsCount: 0,
+          linkedAgendaItemsCount: 0,
+          linkedCommunitySubmissionCount: 0,
+          sourceDocumentCount: 0,
+          lastUpdatedAt: issue.createdAt,
+          whyThisMatters: getIssueTopicSummary(issue.issueText),
+          showDemoBadge: true,
+        } satisfies PublicIssueHubSummary)),
+        ...getCanonicalIssueTitles().map((issueText) => buildCanonicalIssueSummary(issueText, user)),
+      ]
+    : [];
+  const issues = dedupeIssues([...generatedIssueHubs, ...demoIssues]);
 
   if (!options?.query?.trim()) {
     return issues;
@@ -111,15 +147,54 @@ export function getIssueSummary(issueText: string) {
   return getIssueTopicSummary(issueText);
 }
 
-export async function getIssueByRouteParam(user: AuthUser, issueParam: string, communityId?: string) {
+export async function getIssueByRouteParam(user: AuthUser, issueParam: string, communityId?: string): Promise<PublicIssueHubSummary | null> {
+  const generatedMatch = await getIssueHubRecordByRouteParam(issueParam);
+  if (generatedMatch) {
+    return issueHubRecordToTopIssueSummary(generatedMatch);
+  }
+
+  if (!PUBLIC_DEMO_DATA_ENABLED) {
+    return null;
+  }
+
   const issues = dedupeIssues(
     communityId
-      ? await getTopIssuesForUser(user, "all", communityId)
+      ? (await getTopIssuesForUser(user, "all", communityId)).map((issue) => ({
+          ...issue,
+          plainTitle: issue.issueText,
+          category: getCanonicalIssueText(issue.issueText),
+          sourceBacked: false,
+          sourceCount: 0,
+          linkedMeetingsCount: 0,
+          linkedVotesCount: 0,
+          linkedCourtRecordsCount: 0,
+          linkedAgendaItemsCount: 0,
+          linkedCommunitySubmissionCount: 0,
+          sourceDocumentCount: 0,
+          lastUpdatedAt: issue.createdAt,
+          whyThisMatters: getIssueTopicSummary(issue.issueText),
+          showDemoBadge: true,
+        } satisfies PublicIssueHubSummary))
       : (
           await Promise.all(
             seededCommunities.map((community) => getTopIssuesForUser(user, "all", community.id)),
           )
-        ).flat(),
+        ).flat().map((issue) => ({
+          ...issue,
+          plainTitle: issue.issueText,
+          category: getCanonicalIssueText(issue.issueText),
+          sourceBacked: false,
+          sourceCount: 0,
+          linkedMeetingsCount: 0,
+          linkedVotesCount: 0,
+          linkedCourtRecordsCount: 0,
+          linkedAgendaItemsCount: 0,
+          linkedCommunitySubmissionCount: 0,
+          sourceDocumentCount: 0,
+          lastUpdatedAt: issue.createdAt,
+          whyThisMatters: getIssueTopicSummary(issue.issueText),
+          showDemoBadge: true,
+        } satisfies PublicIssueHubSummary)),
   );
   const normalizedParam = normalizeIssueText(issueParam);
   const canonicalMatch = getCanonicalIssueTitles().find(
@@ -162,6 +237,7 @@ export async function ensureIssueReferenceForUser(
   return {
     id: `issue_topic_${slugifyIssueText(sanitized)}`,
     issueText: sanitized,
+    plainTitle: sanitized,
     scope: nextScope,
     jurisdictionName,
     source: "curated" as const,
@@ -170,5 +246,17 @@ export async function ensureIssueReferenceForUser(
     createdByName: user.name,
     upvoteCount: 0,
     viewerHasUpvoted: false,
-  } satisfies TopIssueSummary;
+    category: sanitized,
+    sourceBacked: false,
+    sourceCount: 0,
+    linkedMeetingsCount: 0,
+    linkedVotesCount: 0,
+    linkedCourtRecordsCount: 0,
+    linkedAgendaItemsCount: 0,
+    linkedCommunitySubmissionCount: 0,
+    sourceDocumentCount: 0,
+    lastUpdatedAt: null,
+    whyThisMatters: getIssueTopicSummary(sanitized),
+    showDemoBadge: true,
+  } satisfies PublicIssueHubSummary;
 }

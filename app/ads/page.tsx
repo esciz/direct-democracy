@@ -76,6 +76,29 @@ function buildPageHref(filters: PoliticalAdFiltersType, page: number) {
 export default async function AdsRepositoryPage({ searchParams }: AdsRepositoryPageProps) {
   const params = searchParams ? await searchParams : undefined;
   const filters = normalizeFilters(params);
+  const allowDemoData = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
+
+  if (!allowDemoData) {
+    return (
+      <div className="space-y-6 py-8">
+        <PageIntro
+          eyebrow="Ads Transparency"
+          title="Ad Repository"
+          description="No reviewed political ad repository records are available for production browse previews yet."
+          meta={
+            <span className="rounded-full border border-orange-300/20 bg-orange-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-100">
+              Limited data
+            </span>
+          }
+        />
+
+        <section className="dd-panel-muted rounded-[1.75rem] p-6 text-sm leading-6 text-slate-400">
+          Direct Democracy is not showing seeded ad examples outside demo mode. Once a reviewed public ad repository import exists, this page will show source-backed ads with sponsor, source, geography, and rating context.
+        </section>
+      </div>
+    );
+  }
+
   const allAds = getFilteredPoliticalAds(filters);
   const page = paginatePoliticalAds(allAds, filters.page, 8);
 

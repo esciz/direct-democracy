@@ -6,7 +6,7 @@ import { useState } from "react";
 type CommunitySearchResult = {
   id: string;
   label: string;
-  typeLabel: "State" | "County" | "City" | "Campus" | "USA";
+  typeLabel: "State" | "County" | "City" | "Community" | "Campus" | "USA";
   href: string;
   description?: string;
 };
@@ -45,7 +45,7 @@ export function CommunityDiscoveryExplorer({ searchResults, stateTiles }: Commun
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Search</p>
-            <p className="mt-2 text-sm text-slate-600">Find a state, county, city, or campus community and jump straight to it.</p>
+            <p className="mt-2 text-sm text-slate-600">Find a state, county, city, or major community and jump straight to it.</p>
           </div>
           <div className="w-full max-w-2xl">
             <input
@@ -86,8 +86,8 @@ export function CommunityDiscoveryExplorer({ searchResults, stateTiles }: Commun
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Map</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Clickable U.S. map</h2>
-            <p className="mt-2 text-sm text-slate-600">Hover or focus a state tile to preview it, then click to open the routed community page.</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Nevada launch map</h2>
+            <p className="mt-2 text-sm text-slate-600">Open Nevada statewide coverage first. Other state-local coverage remains in the backlog.</p>
           </div>
           <div className="rounded-full bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200">
             {activeStateName}
@@ -127,7 +127,7 @@ export function CommunityDiscoveryExplorer({ searchResults, stateTiles }: Commun
         </div>
 
         <div className="mt-5 rounded-3xl bg-slate-50 p-4 text-sm text-slate-600">
-          Nevada opens its dedicated state community page today. Other state tiles route to the national community view until more state-specific community pages are added.
+          Nevada is the active statewide launch. Federal coverage appears as an overlay for actions that affect Nevada.
         </div>
       </section>
 

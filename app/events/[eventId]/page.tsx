@@ -406,12 +406,18 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
                     <div className="flex flex-wrap items-center gap-2">
                       <IntelligenceBadge tone={card.review_status === "approved" ? "green" : "amber"}>{card.review_status}</IntelligenceBadge>
                       <IntelligenceBadge tone="blue">{card.policy_area}</IntelligenceBadge>
+                      {card.civic_layer_label ? <IntelligenceBadge tone="blue">{card.civic_layer_label}</IntelligenceBadge> : null}
                       <IntelligenceBadge>{card.outcome_status}</IntelligenceBadge>
                       {card.needs_roll_call_review ? <IntelligenceBadge tone="amber">Roll call pending</IntelligenceBadge> : null}
                       {card.financial_impact_context?.badges.map((badge) => <IntelligenceBadge key={badge} tone="amber">{badge}</IntelligenceBadge>)}
                     </div>
-                    <h3 className="mt-3 text-base font-semibold text-ink">{card.question_text}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{card.plain_language_summary}</p>
+                    <h3 className="mt-3 text-base font-semibold text-ink">{card.public_question ?? card.question_text}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{card.citizen_summary ?? card.plain_language_summary}</p>
+                    {(card.source_item_number || card.source_title || card.governing_body_display_name) ? (
+                      <p className="mt-2 text-xs leading-5 text-slate-500">
+                        Source: {[card.source_item_number, card.source_title, card.governing_body_display_name ?? card.body_name].filter(Boolean).join(" / ")}
+                      </p>
+                    ) : null}
                     {card.financial_impact ? <p className="mt-2 text-sm text-slate-600"><span className="font-semibold text-slate-800">Financial:</span> {card.financial_impact}</p> : null}
                     {card.financial_impact_context ? (
                       <div className="mt-3 rounded-2xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950">

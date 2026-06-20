@@ -1,4 +1,6 @@
 import Link from "next/link";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { redirect } from "next/navigation";
 
 import { PageIntro } from "@/components/ui/page-intro";
@@ -7,6 +9,33 @@ import { DATA_FACTORY_PRIORITIES, DATA_FACTORY_QA_RULES, getCivicDataFactoryDash
 import { getCurrentUser } from "@/lib/server/auth-session";
 
 export const dynamic = "force-dynamic";
+
+const ISSUES_REPORT_PATH = path.join(process.cwd(), "data/generated/issues-report.json");
+
+type IssuesReport = {
+  counts?: {
+    runtimeIssueCount?: number;
+    publicSourceBackedCount?: number;
+    demoFallbackCount?: number;
+    hiddenDemoCount?: number;
+    productionVisibleIssueCount?: number;
+    issuesWithMeetings?: number;
+    issuesWithVotes?: number;
+    issuesWithCourtRecords?: number;
+    issuesNeedingReview?: number;
+    issuesMissingSourceLinks?: number;
+  };
+  issuesByJurisdiction?: Record<string, number>;
+  issuesByCategory?: Record<string, number>;
+};
+
+async function readIssuesReport(): Promise<IssuesReport> {
+  try {
+    return JSON.parse(await fs.readFile(ISSUES_REPORT_PATH, "utf8")) as IssuesReport;
+  } catch {
+    return {};
+  }
+}
 
 function formatDate(value?: Date | null) {
   return value ? new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(value) : "Not imported yet";
@@ -111,7 +140,8 @@ export default async function AdminDataFactoryPage() {
     redirect("/profile");
   }
 
-  const dashboard = await getCivicDataFactoryDashboard();
+  const [dashboard, issuesReport] = await Promise.all([getCivicDataFactoryDashboard(), readIssuesReport()]);
+  const issueCounts = issuesReport.counts ?? {};
 
   return (
     <div className="space-y-6 py-8">
@@ -177,6 +207,39 @@ export default async function AdminDataFactoryPage() {
                   </span>
                 ))}
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-emerald-300/15 bg-emerald-400/5 p-5">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 className="text-lg font-semibold text-slate-50">Issue hub coverage</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+              Public issue pages use source-backed runtime hubs unless demo mode is explicitly enabled. Demo/fallback issue rows stay visible here for audit purposes.
+            </p>
+          </div>
+          <Link href="/issues" className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1.5 text-xs font-semibold text-emerald-100 hover:border-emerald-200/40">
+            Public issues
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ["Runtime hubs", issueCounts.runtimeIssueCount ?? 0],
+            ["Production visible", issueCounts.productionVisibleIssueCount ?? 0],
+            ["Source-backed", issueCounts.publicSourceBackedCount ?? 0],
+            ["Needs review", issueCounts.issuesNeedingReview ?? 0],
+            ["Demo/fallback rows", issueCounts.demoFallbackCount ?? 0],
+            ["Hidden demo rows", issueCounts.hiddenDemoCount ?? 0],
+            ["With meetings", issueCounts.issuesWithMeetings ?? 0],
+            ["With court records", issueCounts.issuesWithCourtRecords ?? 0],
+            ["With votes", issueCounts.issuesWithVotes ?? 0],
+            ["Missing source links", issueCounts.issuesMissingSourceLinks ?? 0],
+          ].map(([label, value]) => (
+            <div key={label} className="rounded-2xl border border-white/10 bg-black/15 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{Number(value).toLocaleString()}</p>
             </div>
           ))}
         </div>

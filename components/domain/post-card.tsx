@@ -13,8 +13,7 @@ import { ShareActionMenu } from "@/components/domain/share-action-menu";
 import { TruthMeter } from "@/components/domain/truth-meter";
 import { canUserFlagFactualClaim } from "@/lib/auth/guards";
 import { isGuestUserId } from "@/lib/auth/session";
-import { getCommunityById, getCommunityByJurisdictionName, getCommunityContextLabel } from "@/lib/community/communities";
-import { getSeedUserById } from "@/lib/auth/mock-users";
+import { getCommunityContextLabel } from "@/lib/community/communities";
 import { getCommentsForPost } from "@/lib/feed/comments";
 import { getMediaBiasSummary, getMediaTierLabel } from "@/lib/media/store";
 import { getBiasAiSummary, getTruthAiSummary } from "@/lib/explanations/ratings";
@@ -79,12 +78,6 @@ export async function PostCard({ post, viewerRole, viewerUserId, returnPath = "/
   const wasReclassified = post.contentType !== "statementClaim" && effectiveContentType === "statementClaim";
   const biasAiSummary = post.authorRole === "media" && mediaBiasSummary ? getBiasAiSummary(post.authorName, mediaBiasSummary) : null;
   const communityContextLabel = getCommunityContextLabel(post.jurisdictionName);
-  const sourceCommunity = getCommunityByJurisdictionName(post.jurisdictionName);
-  const seededAuthor = post.authorId ? getSeedUserById(post.authorId) : null;
-  const authorStudentCampus =
-    seededAuthor?.studentVerified
-      ? getCommunityById(seededAuthor.studentCampusCommunityId ?? "")
-      : null;
 
   return (
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
@@ -112,11 +105,6 @@ export async function PostCard({ post, viewerRole, viewerUserId, returnPath = "/
             {post.viewerFollowsAuthor ? (
               <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
                 Following
-              </span>
-            ) : null}
-            {seededAuthor?.studentModeEnabled && seededAuthor.studentVerified ? (
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                Student Verified
               </span>
             ) : null}
           </div>
@@ -162,16 +150,6 @@ export async function PostCard({ post, viewerRole, viewerUserId, returnPath = "/
           {post.promotedLabel ? (
             <span className="rounded-full bg-fuchsia-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-fuchsia-700">
               {post.promotedLabel}
-            </span>
-          ) : null}
-          {sourceCommunity?.communityType === "campus" ? (
-            <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
-              Campus — {sourceCommunity.shortName}
-            </span>
-          ) : null}
-          {authorStudentCampus ? (
-            <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">
-              Student — {authorStudentCampus.shortName}
             </span>
           ) : null}
           {wasReclassified ? (

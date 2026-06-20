@@ -18,6 +18,8 @@ export const PUBLIC_MEETING_PATHS = {
   meetingVotingCardsRuntime: "data/generated/voting-cards-runtime.json",
   eventsRuntime: "data/generated/events-runtime.json",
   officialsRuntime: "data/generated/officials-runtime.json",
+  publicCases: "data/generated/public-civic-cases.json",
+  publicCasesRuntime: "data/generated/public-cases-runtime.json",
   officialActionReviewOverrides: "data/generated/public-meeting-official-action-review-overrides.json",
   officialRosterSeeds: "data/seed/public-meeting-official-rosters.json",
   officialRosterReport: "data/generated/public-meeting-official-roster-report.json",
@@ -38,6 +40,8 @@ export const PUBLIC_MEETING_OUTPUT_FILES = {
   meeting_voting_cards_runtime: PUBLIC_MEETING_PATHS.meetingVotingCardsRuntime,
   events_runtime: PUBLIC_MEETING_PATHS.eventsRuntime,
   officials_runtime: PUBLIC_MEETING_PATHS.officialsRuntime,
+  public_cases: PUBLIC_MEETING_PATHS.publicCases,
+  public_cases_runtime: PUBLIC_MEETING_PATHS.publicCasesRuntime,
   official_action_review_overrides: PUBLIC_MEETING_PATHS.officialActionReviewOverrides,
   official_roster_report: PUBLIC_MEETING_PATHS.officialRosterReport,
   citizen_vote_questions: PUBLIC_MEETING_PATHS.citizenQuestions,
@@ -133,7 +137,7 @@ export function inferPolicyArea(text: string): MeetingPolicyArea {
   if (/\b(zoning|rezon|variance|land use|parcel|development agreement|subdivision)\b/.test(value)) return "Zoning";
   if (/\b(tax|fee|assessment|rate increase|revenue)\b/.test(value)) return "Taxes";
   if (/\b(police|sheriff|fire|emergency|public safety|911|dispatch)\b/.test(value)) return "Public Safety";
-  if (/\b(school|student|teacher|trustee|curriculum|campus)\b/.test(value)) return "Schools";
+  if (/\b(school|student|teacher|trustee|curriculum)\b/.test(value)) return "Schools";
   if (/\b(road|street|traffic|transportation|transit|sidewalk|bike lane|airport)\b/.test(value)) return "Transportation";
   if (/\b(environment|water quality|air quality|conservation|emission|sustainability)\b/.test(value)) return "Environment";
   if (/\b(utility|utilities|water|sewer|wastewater|stormwater|power|electric)\b/.test(value)) return "Utilities";

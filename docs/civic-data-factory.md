@@ -8,6 +8,8 @@ The Civic Data Factory is the repeatable import, review, and attribution layer f
 2. Campaign Finance
 3. Issue Positions
 4. Meeting / Agenda / Vote Data
+5. Reviewed Public Court Records
+6. Issue Review Requests
 
 Public pages must read stored data only. No candidate, official, issue, election, voting, or meeting page should scrape or fetch source websites during render.
 
@@ -34,6 +36,8 @@ npm run civic:extract-issue-positions
 npm run civic:review-issue-positions
 npm run civic:import-meetings
 npm run civic:review-meetings
+npm run cases:import-public
+npm run cases:report
 ```
 
 The factory runner is `scripts/run-civic-data-factory.mjs`. It orchestrates existing source-specific scripts and document intake jobs, then leaves uncertain data in review.
@@ -137,6 +141,42 @@ Outputs:
 - source attribution
 
 Manual meeting documents belong in `data/imports/meeting-documents/` until source-specific meeting adapters are approved.
+
+## Reviewed Public Court Cases
+
+Sources:
+
+- official public court portals
+- official public opinion listings
+- reviewed public docket/source exports
+- local source files saved under `data/manual-sources/court-cases/reviewed-public-cases/raw-sources/`
+
+Outputs:
+
+- `data/generated/public-court-cases-runtime.json`
+- `data/generated/public-court-cases-report.json`
+- approved public `CourtCase` rows when Prisma is available
+- source attribution records for reviewed public court manifests
+
+Public court records must be review-gated. Set `reviewStatus` to `reviewed_public`, `approved`, or `verified` and `publicVisibilityStatus` to `public` only after confirming the source is official/public and the record is not sealed, confidential, juvenile, protected, or otherwise non-public. Ambiguous rows should remain `needs_review` or `pending_privacy_review`.
+
+## Issue Review Requests
+
+Sources:
+
+- verified voter submissions through `/issues/report`
+- reviewed local manifests under `data/manual-sources/issues/review-requests/`
+- optional supporting documents in `data/manual-sources/issues/evidence/`
+- deprecated community-case manifests migrated by `npm run issues:import`
+
+Outputs:
+
+- `data/generated/issue-review-requests-runtime.json`
+- `data/generated/issue-review-requests-report.json`
+
+Issue Review Requests are not official court records. They are citizen-submitted public-interest matters and follow Submitted -> Under Review -> Verified -> Resolved / Archived. Before publication, reviewers must redact private identifiers, addresses, phone numbers, SSNs, names of minors, and protected/confidential details. Sealed, confidential, juvenile, protected, doxxing, harassment, and non-public matters must not be published.
+
+Issue requests are the connective layer for court records, meetings, agenda items, votes, officials, elections, spending records, projects, news, communities, and investigations.
 
 ## Admin QA Dashboard
 

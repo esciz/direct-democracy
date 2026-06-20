@@ -74,7 +74,7 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
   const stateCommunityId = hierarchy.find((entry) => entry.level === "State")?.id ?? "nevada";
   const stateCommunity = getCommunityById(stateCommunityId);
   const nationalCommunity = getCommunityById("united-states");
-  const allowDemoFallback = selectedCommunityId !== "nevada";
+  const allowDemoFallback = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true" && selectedCommunityId !== "nevada";
   const allOfficials = await getOfficials({ allowDemoFallback })
     .then((officials) => attachOfficialFollowState(user.id, officials))
     .catch((error) => {

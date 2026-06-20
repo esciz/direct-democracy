@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 
 import { parseMeetingVotingCardFinancialImpact } from "@/lib/public-meetings/financial-impact";
+import { buildPlainLanguageMeetingVotingCardFields } from "@/lib/public-meetings/plain-language";
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath, normalizeWhitespace, slugify, summarizeText } from "@/lib/public-meetings/shared";
 import type {
   MeetingVotingCardOutcomeStatus,
@@ -113,6 +114,7 @@ export function buildMeetingVotingCards(context: BuildContext): MeetingVotingCar
     const confidence = confidenceFor(item);
     const now = new Date().toISOString();
     const financialImpact = item.fiscal_impact_summary ?? item.financial_impact;
+    const plainFields = buildPlainLanguageMeetingVotingCardFields(item, body);
     const financialImpactContext = parseMeetingVotingCardFinancialImpact({
       financialImpact: item.financial_impact,
       fiscalImpactSummary: item.fiscal_impact_summary,
@@ -137,12 +139,24 @@ export function buildMeetingVotingCards(context: BuildContext): MeetingVotingCar
       topic_item_id: item.id,
       jurisdiction: body?.jurisdiction ?? "Jurisdiction pending",
       body_name: body?.name ?? "Public body pending",
+      civic_layer: plainFields.civic_layer,
+      civic_layer_label: plainFields.civic_layer_label,
+      jurisdiction_display_name: plainFields.jurisdiction_display_name,
+      governing_body_display_name: plainFields.governing_body_display_name,
       meeting_date: meeting.meeting_date,
       meeting_status: meetingStatus(meeting),
       policy_area: item.policy_area,
-      title: summarizeText(item.title, 180),
-      question_text: questionFor(item, meeting, body),
-      plain_language_summary: item.plain_english_explanation || item.one_sentence_summary,
+      title: plainFields.public_title,
+      question_text: plainFields.public_question || questionFor(item, meeting, body),
+      public_title: plainFields.public_title,
+      public_question: plainFields.public_question,
+      source_title: plainFields.source_title,
+      source_item_number: plainFields.source_item_number,
+      plain_action: plainFields.plain_action,
+      plain_purpose: plainFields.plain_purpose,
+      citizen_summary: plainFields.citizen_summary,
+      agenda_language_original: plainFields.agenda_language_original,
+      plain_language_summary: plainFields.citizen_summary || item.plain_english_explanation || item.one_sentence_summary,
       source_event_href: `/events/${meeting.id}`,
       source_topic_href: `/events/${meeting.id}#${item.id}`,
       source_url: item.source_url ?? meeting.source_urls[0] ?? null,

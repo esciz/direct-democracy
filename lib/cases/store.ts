@@ -1,4 +1,6 @@
 import { cookies } from "next/headers";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { CivicEntityType, CivicRecordReviewStatus, CourtCasePublicVisibilityStatus, CourtJurisdictionLevel } from "@prisma/client";
 
 import { seedUsers } from "@/lib/auth/mock-users";
@@ -18,6 +20,21 @@ const CASE_SUPPORT_STATEMENTS_COOKIE = "dd_case_support_statements";
 const CASE_BRIEF_THEMES_COOKIE = "dd_case_brief_themes";
 const CASE_BRIEF_THEME_SUPPORTS_COOKIE = "dd_case_brief_theme_supports";
 const REMOVED_CASE_BRIEF_THEME_SUPPORTS_COOKIE = "dd_removed_case_brief_theme_supports";
+const PUBLIC_COURT_CASES_RUNTIME_PATH = path.join(process.cwd(), "data/generated/public-court-cases-runtime.json");
+
+type PublicCourtCaseRuntimeRecord = Omit<
+  CaseDetail,
+  "followCount" | "supportCount" | "viewerIsFollowing" | "viewerSupports" | "supportStatements" | "communityBriefThemes"
+> & {
+  sourceFile?: string | null;
+  sourceKind?: string | null;
+  reviewedAt?: string | null;
+  reviewedBy?: string | null;
+};
+
+type PublicCourtCaseRuntime = {
+  records?: PublicCourtCaseRuntimeRecord[];
+};
 
 function mapCourtLevel(value: CourtJurisdictionLevel): CaseSummary["courtLevel"] {
   if (value === CourtJurisdictionLevel.federal) return "federal";
@@ -42,6 +59,20 @@ function parseJsonStringArray(value: unknown): string[] {
 
 function sourceFields(value: unknown) {
   return parseJsonStringArray(value);
+}
+
+async function getReviewedPublicCourtCaseRuntimeRecords() {
+  try {
+    const parsed = JSON.parse(await fs.readFile(PUBLIC_COURT_CASES_RUNTIME_PATH, "utf8")) as PublicCourtCaseRuntime;
+    return Array.isArray(parsed.records)
+      ? parsed.records.filter((record) => record.isRealCourtRecord && record.publicVisibilityStatus === "public" && record.reviewStatus === "approved")
+      : [];
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+      console.warn("[cases] Unable to read public court case runtime", error);
+    }
+    return [];
+  }
 }
 
 function caseSummaryText(row: Awaited<ReturnType<typeof getReviewedCourtCaseRows>>[number]) {
@@ -396,18 +427,23 @@ async function getAllBriefThemeSupports() {
 }
 
 async function getReviewedCourtCaseRows() {
-  return prisma.courtCase.findMany({
-    where: {
-      publicVisibilityStatus: CourtCasePublicVisibilityStatus.public,
-      reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] },
-    },
-    include: {
-      courtJurisdiction: true,
-      source: { select: { name: true, url: true } },
-    },
-    orderBy: [{ filingDate: "desc" }, { lastCheckedAt: "desc" }, { createdAt: "desc" }],
-    take: 100,
-  });
+  try {
+    return await prisma.courtCase.findMany({
+      where: {
+        publicVisibilityStatus: CourtCasePublicVisibilityStatus.public,
+        reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] },
+      },
+      include: {
+        courtJurisdiction: true,
+        source: { select: { name: true, url: true } },
+      },
+      orderBy: [{ filingDate: "desc" }, { lastCheckedAt: "desc" }, { createdAt: "desc" }],
+      take: 100,
+    });
+  } catch (error) {
+    console.warn("[cases] Reviewed court case DB lookup failed; falling back to runtime records", error);
+    return [];
+  }
 }
 
 function mapCourtCaseToSummary(
@@ -437,6 +473,7 @@ function mapCourtCaseToSummary(
     viewerIsFollowing: viewer ? follows.some((follow) => follow.caseId === row.id && follow.userId === viewer.id) : false,
     viewerSupports: viewer ? supportStatements.some((statement) => statement.caseId === row.id && statement.userId === viewer.id) : false,
     isRealCourtRecord: true,
+    caseSourceType: "public_court_record",
     caseNumber: row.caseNumber,
     courtName: row.courtJurisdiction.name,
     caseType: row.caseType,
@@ -450,46 +487,110 @@ function mapCourtCaseToSummary(
   };
 }
 
-export async function getAllCases(viewer?: AuthUser): Promise<CaseSummary[]> {
-  const [follows, supportStatements, courtCases] = await Promise.all([getAllCaseFollows(), getAllSupportStatements(), getReviewedCourtCaseRows()]);
+function mapRuntimeCourtCaseToSummary(
+  row: PublicCourtCaseRuntimeRecord,
+  follows: CaseFollowSeed[],
+  supportStatements: SupportStatementSummary[],
+  viewer?: AuthUser,
+): CaseSummary {
+  return {
+    ...row,
+    followCount: follows.filter((follow) => follow.caseId === row.id).length,
+    supportCount: supportStatements.filter((statement) => statement.caseId === row.id).length,
+    viewerIsFollowing: viewer ? follows.some((follow) => follow.caseId === row.id && follow.userId === viewer.id) : false,
+    viewerSupports: viewer ? supportStatements.some((statement) => statement.caseId === row.id && statement.userId === viewer.id) : false,
+  };
+}
 
-  return courtCases.map((entry) => mapCourtCaseToSummary(entry, follows, supportStatements, viewer));
+export async function getAllCases(viewer?: AuthUser): Promise<CaseSummary[]> {
+  const [follows, supportStatements, courtCases, runtimeCases] = await Promise.all([
+    getAllCaseFollows(),
+    getAllSupportStatements(),
+    getReviewedCourtCaseRows(),
+    getReviewedPublicCourtCaseRuntimeRecords(),
+  ]);
+
+  const dbSummaries = courtCases.map((entry) => mapCourtCaseToSummary(entry, follows, supportStatements, viewer));
+  const seen = new Set(dbSummaries.flatMap((entry) => [entry.id, `${entry.courtName ?? ""}:${entry.caseNumber ?? ""}`]));
+  const runtimeSummaries = runtimeCases
+    .filter((entry) => !seen.has(entry.id) && !seen.has(`${entry.courtName ?? ""}:${entry.caseNumber ?? ""}`))
+    .map((entry) => mapRuntimeCourtCaseToSummary(entry, follows, supportStatements, viewer));
+
+  return [...dbSummaries, ...runtimeSummaries].sort((a, b) => {
+    const aDate = Date.parse(a.filingDate ?? a.dispositionDate ?? a.lastCheckedAt ?? a.createdAt);
+    const bDate = Date.parse(b.filingDate ?? b.dispositionDate ?? b.lastCheckedAt ?? b.createdAt);
+    return bDate - aDate;
+  });
 }
 
 export async function getCaseById(caseId: string, viewer?: AuthUser): Promise<CaseDetail | null> {
-  const [cases, statements, themes] = await Promise.all([getAllCases(viewer), getAllSupportStatements(), getAllBriefThemes(viewer?.id)]);
+  const [cases, statements, themes, runtimeCases] = await Promise.all([
+    getAllCases(viewer),
+    getAllSupportStatements(),
+    getAllBriefThemes(viewer?.id),
+    getReviewedPublicCourtCaseRuntimeRecords(),
+  ]);
   const caseSummary = cases.find((entry) => entry.id === caseId);
+  const runtimeCase = runtimeCases.find((entry) => entry.id === caseId);
 
   if (!caseSummary) {
     return null;
   }
 
   const [row, attributions] = await Promise.all([
-    prisma.courtCase.findUnique({
-      where: { id: caseId },
-      include: {
-        parties: {
-          where: { isPublic: true, reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
-          orderBy: { partyName: "asc" },
+    prisma.courtCase
+      .findUnique({
+        where: { id: caseId },
+        include: {
+          parties: {
+            where: { isPublic: true, reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
+            orderBy: { partyName: "asc" },
+          },
+          docketEntries: {
+            where: { reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
+            orderBy: [{ entryDate: "desc" }, { createdAt: "desc" }],
+            take: 50,
+          },
+          documents: {
+            where: { reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
+            orderBy: { createdAt: "desc" },
+            take: 25,
+          },
         },
-        docketEntries: {
-          where: { reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
-          orderBy: [{ entryDate: "desc" }, { createdAt: "desc" }],
-          take: 50,
-        },
-        documents: {
-          where: { reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] } },
-          orderBy: { createdAt: "desc" },
-          take: 25,
-        },
-      },
-    }),
-    prisma.sourceAttribution.findMany({
-      where: { entityType: CivicEntityType.COURT_CASE, entityId: caseId },
-      orderBy: [{ reviewStatus: "desc" }, { lastImportedAt: "desc" }],
-      take: 12,
-    }),
+      })
+      .catch((error) => {
+        console.warn(`[cases] Court case DB detail lookup failed for ${caseId}`, error);
+        return null;
+      }),
+    prisma.sourceAttribution
+      .findMany({
+        where: { entityType: CivicEntityType.COURT_CASE, entityId: caseId },
+        orderBy: [{ reviewStatus: "desc" }, { lastImportedAt: "desc" }],
+        take: 12,
+      })
+      .catch((error) => {
+        console.warn(`[cases] Court case source attribution lookup failed for ${caseId}`, error);
+        return [];
+      }),
   ]);
+
+  const dbSourceAttributions: NonNullable<CaseDetail["sourceAttributions"]> = attributions.map((source) => ({
+      id: source.id,
+      sourceName: source.sourceName,
+      sourceUrl: source.sourceUrl,
+      fieldsDerived: sourceFields(source.fieldsDerived),
+      reviewStatus: source.reviewStatus,
+      lastImportedAt: source.lastImportedAt?.toISOString() ?? null,
+    }));
+  const runtimeSourceAttributions: NonNullable<CaseDetail["sourceAttributions"]> = (runtimeCase?.sourceAttributions ?? []).map((source) => ({
+    id: source.id,
+    sourceName: source.sourceName,
+    sourceUrl: source.sourceUrl ?? null,
+    fieldsDerived: source.fieldsDerived,
+    reviewStatus: source.reviewStatus,
+    lastImportedAt: source.lastImportedAt ?? null,
+  }));
+  const sourceAttributions = [...dbSourceAttributions, ...runtimeSourceAttributions];
 
   return {
     ...caseSummary,
@@ -501,7 +602,9 @@ export async function getCaseById(caseId: string, viewer?: AuthUser): Promise<Ca
         partyName: party.partyName,
         partyRole: party.partyRole,
         reviewStatus: party.reviewStatus,
-      })) ?? [],
+      })) ??
+      runtimeCase?.parties ??
+      [],
     docketEntries:
       row?.docketEntries.map((entry) => ({
         id: entry.id,
@@ -512,7 +615,9 @@ export async function getCaseById(caseId: string, viewer?: AuthUser): Promise<Ca
         documentType: entry.documentType,
         sourceUrl: entry.sourceUrl,
         reviewStatus: entry.reviewStatus,
-      })) ?? [],
+      })) ??
+      runtimeCase?.docketEntries ??
+      [],
     documents:
       row?.documents.map((document) => ({
         id: document.id,
@@ -524,15 +629,10 @@ export async function getCaseById(caseId: string, viewer?: AuthUser): Promise<Ca
         documentType: document.documentType,
         extractedTextStatus: document.extractedTextStatus,
         reviewStatus: document.reviewStatus,
-      })) ?? [],
-    sourceAttributions: attributions.map((source) => ({
-      id: source.id,
-      sourceName: source.sourceName,
-      sourceUrl: source.sourceUrl,
-      fieldsDerived: sourceFields(source.fieldsDerived),
-      reviewStatus: source.reviewStatus,
-      lastImportedAt: source.lastImportedAt?.toISOString() ?? null,
-    })),
+      })) ??
+      runtimeCase?.documents ??
+      [],
+    sourceAttributions,
   };
 }
 

@@ -1,150 +1,172 @@
-import Link from "next/link";
+import { redirect } from "next/navigation";
 
-import { IssuePickerField } from "@/components/domain/issue-picker-field";
-import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { PageIntro } from "@/components/ui/page-intro";
-import { getCurrentUser } from "@/lib/server/auth-session";
-import { submitVerifiedCaseRequest } from "@/lib/cases/submission-actions";
-import { getIssuePickerOptions } from "@/lib/server/issues";
+import { buildResidentStoryIntakeFromFormData } from "@/lib/cases/resident-intake";
 
-type SubmitCasePageProps = {
+type CaseSubmitPageProps = {
   searchParams?: Promise<{
     submitted?: string;
-    error?: string;
   }>;
 };
 
-export default async function SubmitCasePage({ searchParams }: SubmitCasePageProps) {
-  const user = await getCurrentUser();
+async function submitCaseIntake(_formData: FormData) {
+  "use server";
+
+  const intake = buildResidentStoryIntakeFromFormData(_formData);
+  void intake;
+  redirect("/cases/submit?submitted=1");
+}
+
+function Field({
+  label,
+  name,
+  placeholder,
+  required = false,
+}: {
+  label: string;
+  name: string;
+  placeholder: string;
+  required?: boolean;
+}) {
+  return (
+    <label className="grid gap-2 text-sm font-semibold text-slate-200">
+      {label}
+      <input
+        name={name}
+        required={required}
+        placeholder={placeholder}
+        className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-normal text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/30"
+      />
+    </label>
+  );
+}
+
+export default async function CaseSubmitPage({ searchParams }: CaseSubmitPageProps) {
   const params = searchParams ? await searchParams : undefined;
-  const issueOptions = await getIssuePickerOptions(user);
+  const submitted = params?.submitted === "1";
 
   return (
     <div className="space-y-6 py-8">
       <PageIntro
-        eyebrow="Submit a Case"
-        title="Submit a verified case for review"
-        description="Case submissions are structured and reviewed before public visibility. This is for verifiable public-interest cases, not freeform legal rumors."
-        actions={
-          <Link
-            href="/take-action"
-            className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-          >
-            Back to Take Action
-          </Link>
+        eyebrow="Case intake"
+        title="Share a civic story for review"
+        description="You do not need a formal court case or government file. Share what happened in plain language; submissions are not published automatically."
+        meta={
+          <span className="rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-200">
+            Moderation queue foundation
+          </span>
         }
       />
 
-      {params?.submitted === "1" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Your case submission was received and routed into review before any public visibility.
-        </section>
-      ) : null}
-      {params?.error ? (
-        <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-sm text-orange-900 shadow-card">
-          {params.error === "verification" && "Voter verification is required before submitting a case."}
-          {params.error === "title" && "Add a clear case title."}
-          {params.error === "jurisdiction" && "Choose a valid jurisdiction."}
-          {params.error === "court" && "Choose a valid court level."}
-          {params.error === "source" && "A source or reference link is required."}
-          {params.error === "summary" && "Add a short summary explaining the public-interest reason for submission."}
+      {submitted ? (
+        <section className="rounded-[1.75rem] border border-emerald-300/20 bg-emerald-500/10 p-5 text-sm leading-6 text-emerald-100">
+          Story received for review. It remains private pending review unless and until source verification, moderation, and your publication preference allow a public or anonymous summary.
         </section>
       ) : null}
 
-      {!user.isVerifiedVoter ? (
-        <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-sm text-orange-900 shadow-card">
-          Verified-case submission is limited to verified voters so public case listings do not turn into open freeform claims.
-        </section>
-      ) : null}
+      <form action={submitCaseIntake} className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Resident story</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Tell us what happened</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-400">
+            Keep public civic truth separate from your unverified submission. Reviewers use this to identify timelines, agencies, public records, and safety/moderation needs.
+          </p>
+        </div>
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-        <form action={submitVerifiedCaseRequest} className="space-y-5">
-          <div className="grid gap-4 md:grid-cols-2">
-            <label className="space-y-2 text-sm text-slate-700">
-              <span className="font-semibold text-ink">Case title</span>
-              <input
-                type="text"
-                name="caseTitle"
-                placeholder="Example: Nevada Meeting Access v. Carson City"
-                className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
-              />
-            </label>
-            <label className="space-y-2 text-sm text-slate-700">
-              <span className="font-semibold text-ink">Case number</span>
-              <input
-                type="text"
-                name="caseNumber"
-                placeholder="Optional if available"
-                className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
-              />
-            </label>
-          </div>
+        <label className="mt-6 grid gap-2 text-sm font-semibold text-slate-200">
+          What kind of concern is this?
+          <select
+            name="submissionType"
+            defaultValue="something_happened_to_me"
+            className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-normal text-slate-100 outline-none focus:border-cyan-300/30"
+          >
+            <option value="something_happened_to_me">Something happened to me</option>
+            <option value="something_happened_to_loved_one">Something happened to a loved one</option>
+            <option value="public_safety_concern">Public safety concern</option>
+            <option value="infrastructure_or_city_project_concern">Infrastructure or city project concern</option>
+            <option value="government_service_failure">Government service failure</option>
+            <option value="court_or_legal_matter">Court or legal matter</option>
+            <option value="official_misconduct_or_accountability_concern">Official misconduct or accountability concern</option>
+            <option value="other_civic_concern">Other civic concern</option>
+          </select>
+        </label>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <label className="space-y-2 text-sm text-slate-700">
-              <span className="font-semibold text-ink">Jurisdiction</span>
-              <input
-                type="text"
-                name="jurisdiction"
-                defaultValue={user.jurisdictionName}
-                className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
-              />
-            </label>
-            <label className="space-y-2 text-sm text-slate-700">
-              <span className="font-semibold text-ink">Court level</span>
-              <select
-                name="courtLevel"
-                defaultValue="State"
-                className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
-              >
-                <option value="Municipal">Municipal</option>
-                <option value="County">County</option>
-                <option value="State">State</option>
-                <option value="Federal">Federal</option>
-                <option value="Appellate">Appellate</option>
-                <option value="Supreme Court">Supreme Court</option>
-              </select>
-            </label>
-          </div>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <Field label="Location" name="location" placeholder="Street, neighborhood, community, agency office, or online service" />
+          <Field label="Approximate date" name="approximateDate" placeholder="Exact date, month/year, or approximate timeframe" />
+        </div>
 
-          <label className="space-y-2 text-sm text-slate-700">
-            <span className="font-semibold text-ink">Source or reference link</span>
-            <input
-              type="url"
-              name="sourceUrl"
-              placeholder="https://"
-              className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
-            />
-          </label>
-
-          <IssuePickerField
-            name="issueTag"
-            label="Primary issue"
-            options={issueOptions}
-            placeholder="Select a shared issue"
-            helpText="Issue-tagged case submissions can be grouped with the right topic if approved."
-            allowCustom={false}
-            inputClassName="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
+        <label className="mt-4 grid gap-2 text-sm font-semibold text-slate-200">
+          Your story
+          <textarea
+            name="story"
+            required
+            rows={8}
+            placeholder="Describe what happened in plain language. Include what you tried, what response you received, and what you think residents or reviewers should understand."
+            className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-normal leading-6 text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/30"
           />
+        </label>
 
-          <label className="space-y-2 text-sm text-slate-700">
-            <span className="font-semibold text-ink">Why this case matters publicly</span>
-            <textarea
-              name="summary"
-              rows={5}
-              placeholder="Explain the public-interest reason this case should be reviewed for visibility on the platform."
-              className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
-            />
-          </label>
-
-          <FormSubmitButton
-            idleLabel="Submit for review"
-            pendingLabel="Submitting..."
-            disabled={!user.isVerifiedVoter}
-            className="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+        <label className="mt-4 grid gap-2 text-sm font-semibold text-slate-200">
+          People, agencies, companies, or officials involved
+          <textarea
+            name="peopleOrEntitiesInvolved"
+            rows={4}
+            placeholder="List names if known. You can leave this blank."
+            className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-normal leading-6 text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/30"
           />
-        </form>
-      </section>
+        </label>
+
+        <label className="mt-4 grid gap-2 text-sm font-semibold text-slate-200">
+          Optional links
+          <textarea
+            name="links"
+            rows={3}
+            placeholder="Public records, news links, meeting pages, case lookup pages, photos, or documents. Optional."
+            className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-normal leading-6 text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/30"
+          />
+        </label>
+
+        <label className="mt-4 grid gap-2 text-sm font-semibold text-slate-200">
+          Upload documents, photos, or notices
+          <input
+            name="documents"
+            type="file"
+            multiple
+            className="rounded-2xl border border-dashed border-white/14 bg-white/[0.04] px-4 py-3 text-sm font-normal text-slate-300 file:mr-4 file:rounded-full file:border-0 file:bg-cyan-400 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-slate-950"
+          />
+          <span className="text-xs font-normal text-slate-500">Optional. Uploads are review material and are not published automatically.</span>
+        </label>
+
+        <label className="mt-4 grid gap-2 text-sm font-semibold text-slate-200">
+          Publication preference
+          <select
+            name="publicationPreference"
+            defaultValue="private"
+            className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-normal text-slate-100 outline-none focus:border-cyan-300/30"
+          >
+            <option value="private">Keep private pending review</option>
+            <option value="public_after_review">May be public after review</option>
+            <option value="anonymous_after_review">May be anonymous after review</option>
+          </select>
+        </label>
+
+        <div className="mt-6 grid gap-3 md:grid-cols-3">
+          {[
+            "Safety flags check for personal data, allegations, minors, and legal matters.",
+            "AI-assisted review can draft a timeline, agencies, people involved, and source leads.",
+            "Moderators verify public sources before any public story or case page is created.",
+          ].map((item) => (
+            <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm leading-6 text-slate-300">
+              {item}
+            </div>
+          ))}
+        </div>
+
+        <button type="submit" className="mt-6 rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_16px_34px_-24px_rgba(45,212,191,0.9)]">
+          Send to review
+        </button>
+      </form>
     </div>
   );
 }

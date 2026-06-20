@@ -30,7 +30,7 @@ export function StateCommunitySearch({ placeName, results }: StateCommunitySearc
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Search within place</p>
-          <p className="mt-2 text-sm text-slate-600">Jump directly to related counties, cities, campus communities, and schools within {placeName}.</p>
+          <p className="mt-2 text-sm text-slate-600">Jump directly to related counties, cities, and schools within {placeName}.</p>
         </div>
         <div className="w-full max-w-2xl">
           <input

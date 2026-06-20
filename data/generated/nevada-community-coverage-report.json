@@ -1,0 +1,6620 @@
+{
+  "generatedAt": "2026-06-20T20:50:11.339Z",
+  "relationshipMapGeneratedAt": "2026-06-20T20:50:11.166Z",
+  "roadmapScope": "Nevada local coverage plus federal overlay only",
+  "totals": {
+    "communities": 39,
+    "counties": 17,
+    "cities": 14,
+    "majorCommunities": 8,
+    "navigableCommunities": 39,
+    "communitiesWithAnyLinkedCivicRecord": 39,
+    "communitiesWithLocalLinkedCivicRecord": 21,
+    "communitiesWithUsefulDashboardData": 39,
+    "communitiesWithOnlyStatewideOverlayData": 19,
+    "communitiesWithLimitedLocalData": 22,
+    "communitiesWithImprovedLimitedDataMessaging": 22,
+    "communitiesWithZeroLocalRecordsButUsableOverlays": 19,
+    "communitiesWithStaleDashboardData": 0,
+    "dashboardCardsWithInternalLinks": 588,
+    "dashboardCardsWithSourceOnlyLinks": 210,
+    "dashboardItemsMissingDestinations": 0,
+    "communityPagesReady": 39,
+    "projectDetailCoverageCommunities": 39,
+    "eventDetailCoverageCommunities": 39,
+    "officialDetailCoverageCommunities": 9,
+    "communitiesWithMeetings": 39,
+    "communitiesWithLocalMeetings": 13,
+    "communitiesWithOfficials": 9,
+    "communitiesWithLocalOfficials": 9,
+    "communitiesWithElections": 39,
+    "communitiesWithLocalElections": 10,
+    "communitiesWithCourtCases": 39,
+    "communitiesWithLocalCourtCases": 14,
+    "communitiesWithSpendingData": 39,
+    "communitiesWithLocalSpendingData": 20,
+    "communitiesWithVotingCards": 39,
+    "communitiesWithLocalVotingCards": 13,
+    "communitiesWithIssues": 39,
+    "communitiesWithLocalIssues": 13,
+    "communitiesWithProjects": 39,
+    "communitiesWithLocalProjects": 14,
+    "communitiesWithSourceDocuments": 39,
+    "sourceDocumentLinkCount": 71966,
+    "directLinkCount": 0,
+    "inferredLinkCount": 4202,
+    "statewideOnlyCount": 1577,
+    "federalOnlyCount": 0,
+    "unlinkedCount": 33,
+    "needsReviewCount": 3548,
+    "lowConfidenceCount": 3016,
+    "recordsProcessed": 5812
+  },
+  "sourceArtifacts": {
+    "communities": "lib/community/communities.ts",
+    "relationships": "data/generated/nevada-community-relationships.json",
+    "officials": "data/generated/nevada-community-officials.json",
+    "projects": "data/generated/nevada-community-projects.json",
+    "events": "data/generated/nevada-community-events.json",
+    "rssCapabilities": "data/generated/nevada-rss-source-capabilities.json",
+    "caseLeadIntake": "data/manual-sources/case-leads/intake.json",
+    "runtimeArtifacts": [
+      {
+        "domain": "meetings",
+        "sourcePath": "data/generated/public-meetings.json",
+        "recordCount": 691
+      },
+      {
+        "domain": "agendaItems",
+        "sourcePath": "data/generated/public-meeting-items.json",
+        "recordCount": 2675
+      },
+      {
+        "domain": "votingCards",
+        "sourcePath": "data/generated/public-meeting-voting-cards.json",
+        "recordCount": 553
+      },
+      {
+        "domain": "issues",
+        "sourcePath": "data/generated/issues-runtime.json",
+        "recordCount": 17
+      },
+      {
+        "domain": "courtCases",
+        "sourcePath": "data/generated/public-court-cases-runtime.json",
+        "recordCount": 25
+      },
+      {
+        "domain": "courtCases",
+        "sourcePath": "data/generated/public-cases-runtime.json",
+        "recordCount": 764
+      },
+      {
+        "domain": "spendingRecords",
+        "sourcePath": "data/generated/public-meeting-items.json",
+        "recordCount": 400
+      },
+      {
+        "domain": "spendingRecords",
+        "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+        "recordCount": 54
+      },
+      {
+        "domain": "projects",
+        "sourcePath": "data/generated/nevada-community-projects.json",
+        "recordCount": 582
+      },
+      {
+        "domain": "elections",
+        "sourcePath": "data/generated/nv-sos-candidate-records.json",
+        "recordCount": 3
+      },
+      {
+        "domain": "officialActionRecords",
+        "sourcePath": "data/generated/officials-runtime.json",
+        "recordCount": 4
+      },
+      {
+        "domain": "officialActionRecords",
+        "sourcePath": "data/generated/nevada-community-officials.json",
+        "recordCount": 44
+      }
+    ]
+  },
+  "sprint1EReadiness": {
+    "officials": {
+      "generatedRecords": 44,
+      "coveredCommunities": 9,
+      "namedSourceBackedOnly": true
+    },
+    "projects": {
+      "generatedRecords": 582,
+      "coveredCommunities": 39,
+      "localCoveredCommunities": 14,
+      "inferredRecordsNeedReview": true
+    },
+    "events": {
+      "generatedRecords": 691,
+      "communitiesWithEvents": 39,
+      "artifact": "data/generated/nevada-community-events.json"
+    },
+    "historicalMeetingCoverage": {
+      "providerReports": [
+        {
+          "sourceId": "nv-legislature",
+          "name": "Nevada Legislature",
+          "jurisdiction": "Nevada",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "nv-governor-executive-boards",
+          "name": "Governor / Executive Boards",
+          "jurisdiction": "Nevada",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "carson-city-board-of-supervisors",
+          "name": "Carson City Board of Supervisors",
+          "jurisdiction": "Carson City, NV",
+          "historicalIngestionSupported": true,
+          "meetingsParsed": 480,
+          "minutesParsed": 331,
+          "oldestMeetingFound": "2024-01-04T00:29:00.000Z",
+          "newestMeetingFound": "2026-06-16T20:27:00.000Z",
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "reno-city-council",
+          "name": "Reno City Council",
+          "jurisdiction": "Reno, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Historical archive requires a JavaScript/API adapter; source registered but not parsed in this pass."
+        },
+        {
+          "sourceId": "sparks-city-council",
+          "name": "Sparks City Council",
+          "jurisdiction": "Sparks, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "washoe-county-commission",
+          "name": "Washoe County Commission",
+          "jurisdiction": "Washoe County, NV",
+          "historicalIngestionSupported": true,
+          "meetingsParsed": 17,
+          "minutesParsed": 17,
+          "oldestMeetingFound": "2024-01-16T17:00:00.000Z",
+          "newestMeetingFound": "2025-10-28T17:00:00.000Z",
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "clark-county-commission",
+          "name": "Clark County Commission",
+          "jurisdiction": "Clark County, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "las-vegas-city-council",
+          "name": "Las Vegas City Council",
+          "jurisdiction": "Las Vegas, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Historical archive requires a JavaScript/API adapter; source registered but not parsed in this pass."
+        },
+        {
+          "sourceId": "henderson-city-council",
+          "name": "Henderson City Council",
+          "jurisdiction": "Henderson, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "north-las-vegas-city-council",
+          "name": "North Las Vegas City Council",
+          "jurisdiction": "North Las Vegas, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Historical archive requires a JavaScript/API adapter; source registered but not parsed in this pass."
+        },
+        {
+          "sourceId": "washoe-county-school-district",
+          "name": "Washoe County School District Board of Trustees",
+          "jurisdiction": "Washoe County School District, NV",
+          "historicalIngestionSupported": true,
+          "meetingsParsed": 57,
+          "minutesParsed": 57,
+          "oldestMeetingFound": "2024-01-09T15:30:00.000Z",
+          "newestMeetingFound": "2026-05-12T15:30:00.000Z",
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "clark-county-school-district",
+          "name": "Clark County School District Board of Trustees",
+          "jurisdiction": "Clark County School District, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Historical archive requires a JavaScript/API adapter; source registered but not parsed in this pass."
+        },
+        {
+          "sourceId": "carson-city-school-district",
+          "name": "Carson City School District Board of Trustees",
+          "jurisdiction": "Carson City School District, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Historical archive requires a JavaScript/API adapter; source registered but not parsed in this pass."
+        },
+        {
+          "sourceId": "nshe-board-of-regents",
+          "name": "Nevada System of Higher Education Board of Regents",
+          "jurisdiction": "Nevada System of Higher Education",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "reno-city-council",
+          "name": "Reno City Council",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 27,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "nv-legislature",
+          "name": "Nevada Legislature",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 30,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "nv-senate",
+          "name": "Nevada Senate",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 3,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Some saved source records need manual review."
+        },
+        {
+          "sourceId": "nv-assembly",
+          "name": "Nevada Assembly",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 3,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Some saved source records need manual review."
+        },
+        {
+          "sourceId": "nv-governor-executive-boards",
+          "name": "Governor / Executive Boards",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 1,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Some saved source records need manual review."
+        },
+        {
+          "sourceId": "sparks-city-council",
+          "name": "Sparks City Council",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 4,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Some saved source records need manual review."
+        },
+        {
+          "sourceId": "clark-county-commission",
+          "name": "Clark County Commission",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 3,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "las-vegas-city-council",
+          "name": "Las Vegas City Council",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 18,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "henderson-city-council",
+          "name": "Henderson City Council",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 15,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "north-las-vegas-city-council",
+          "name": "North Las Vegas City Council",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 20,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "clark-county-school-district",
+          "name": "Clark County School District Board of Trustees",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 2,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "carson-city-school-district",
+          "name": "Carson City School District Board of Trustees",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 2,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "nshe-board-of-regents",
+          "name": "Nevada System of Higher Education Board of Regents",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 9,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        }
+      ]
+    },
+    "rss": {
+      "capableSources": 0,
+      "seedExamples": 1,
+      "supplementalOnly": true
+    },
+    "citizenCaseLeads": {
+      "intakeStatus": "architecture_ready_no_public_upload",
+      "pendingSubmissions": 0,
+      "publishesOnlyAfterSourceVerification": true
+    }
+  },
+  "storyExamples": {
+    "community": "Carson City",
+    "examples": [
+      {
+        "recordId": "meeting-voting-card-item-meeting-manual-nv-legislature-nevada-legislature-2026-06-16-6ed19abb-37-f787b7f11e",
+        "type": "statewide_overlay",
+        "before": "Should the state approve Advisory Committee for the Office of Minority Health and Equity Advisory Committee on Housing Advisory Committee on the Safety and Well Being of Public School Staff Advisory Com?",
+        "after": {
+          "headline": "Should the state approve Advisory Committee for the Office of Minority Health and Equity Advisory Committee on Housing Advisory Committee on the Safety and Well Being of Public Sc…?",
+          "summary": "Advisory Committee for the Office of Minority Health and Equity Advisory Committee on Housing Advisory Committee on the Safety and Well Being of Public School Staff Advisory Com...",
+          "whyItMatters": "This may affect housing, development, permits, neighborhood growth, or land-use rules.",
+          "source": "Voting card source · Nevada Legislature · Advisory Committee for the Office of Minority Health and Equity Advisory Committee on Housing Advisory Committee on the Safety and Well Being of Public School Staff Advisory Com..."
+        }
+      },
+      {
+        "recordId": "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-04-08-66fcbbae-14-850501be4b",
+        "type": "inferred_local",
+        "before": "14. Contract Recommendation to retroactively: approve the Forensic Support Services Agreements between Washoe County on behalf of Washoe County Sheriff’s Office and various Loca...",
+        "after": {
+          "headline": "$179,730; Douglas County Sheriff’s Office $29,850; Lyon County Sheriff’s Office $157,107; Mono County District Attorney’s Office $12,569; Reno Sparks…",
+          "summary": "This agenda topic concerns contract to retroactively: approve the Forensic Support Services Agreements between Washoe County on behalf of Washoe County Sheriff’s Office and various Loca... It is classified under Public Safety.",
+          "whyItMatters": "This may affect taxes, fees, public budgets, grants, contracts, or how local money is spent.",
+          "source": "Agenda Item 14 · 14. Contract Recommendation to retroactively: approve the Forensic Support Services Agreements between Washoe County on behalf of Washoe County Sheriff’s Office and various Loca..."
+        }
+      },
+      {
+        "recordId": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-18-9357eb8439",
+        "type": "statewide_overlay",
+        "before": "FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre...",
+        "after": {
+          "headline": "$250,000 will be reported in the Self- Supporting Budget report",
+          "summary": "FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre...",
+          "whyItMatters": "This may affect taxes, fees, public budgets, grants, contracts, or how local money is spent.",
+          "source": "Agenda source · FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre..."
+        }
+      },
+      {
+        "recordId": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-20-473853f7b1",
+        "type": "statewide_overlay",
+        "before": "FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report...",
+        "after": {
+          "headline": "$250,000 will be reported in the Self- Supporting Budget report",
+          "summary": "FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report...",
+          "whyItMatters": "This may affect taxes, fees, public budgets, grants, contracts, or how local money is spent.",
+          "source": "Agenda source · FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report..."
+        }
+      },
+      {
+        "recordId": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-18-9357eb8439",
+        "type": "statewide_overlay",
+        "before": "FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre...",
+        "after": {
+          "headline": "$250,000 will be reported in the Self- Supporting Budget report",
+          "summary": "FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre...",
+          "whyItMatters": "This may affect taxes, fees, public budgets, grants, contracts, or how local money is spent.",
+          "source": "Agenda source · FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre..."
+        }
+      },
+      {
+        "recordId": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-20-473853f7b1",
+        "type": "statewide_overlay",
+        "before": "FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report...",
+        "after": {
+          "headline": "$250,000 will be reported in the Self- Supporting Budget report",
+          "summary": "FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report...",
+          "whyItMatters": "This may affect taxes, fees, public budgets, grants, contracts, or how local money is spent.",
+          "source": "Agenda source · FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report..."
+        }
+      }
+    ]
+  },
+  "communityPageReadinessBySlug": [
+    {
+      "id": "carson-city-county",
+      "slug": "carson-city-county",
+      "name": "Carson City County",
+      "href": "/community/carson-city-county",
+      "readyScore": 719,
+      "missingSections": [
+        "officials"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "clark-county",
+      "slug": "clark-county",
+      "name": "Clark County",
+      "href": "/community/clark-county",
+      "readyScore": 464,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "washoe-county",
+      "slug": "washoe-county",
+      "name": "Washoe County",
+      "href": "/community/washoe-county",
+      "readyScore": 1069,
+      "missingSections": [
+        "officials"
+      ],
+      "internalLinks": 17,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "douglas-county",
+      "slug": "douglas-county",
+      "name": "Douglas County",
+      "href": "/community/douglas-county",
+      "readyScore": -1,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "lyon-county",
+      "slug": "lyon-county",
+      "name": "Lyon County",
+      "href": "/community/lyon-county",
+      "readyScore": -27,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "nye-county",
+      "slug": "nye-county",
+      "name": "Nye County",
+      "href": "/community/nye-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "elko-county",
+      "slug": "elko-county",
+      "name": "Elko County",
+      "href": "/community/elko-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "churchill-county",
+      "slug": "churchill-county",
+      "name": "Churchill County",
+      "href": "/community/churchill-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "humboldt-county",
+      "slug": "humboldt-county",
+      "name": "Humboldt County",
+      "href": "/community/humboldt-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "white-pine-county",
+      "slug": "white-pine-county",
+      "name": "White Pine County",
+      "href": "/community/white-pine-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "lander-county",
+      "slug": "lander-county",
+      "name": "Lander County",
+      "href": "/community/lander-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "lincoln-county",
+      "slug": "lincoln-county",
+      "name": "Lincoln County",
+      "href": "/community/lincoln-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "eureka-county",
+      "slug": "eureka-county",
+      "name": "Eureka County",
+      "href": "/community/eureka-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "esmeralda-county",
+      "slug": "esmeralda-county",
+      "name": "Esmeralda County",
+      "href": "/community/esmeralda-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "pershing-county",
+      "slug": "pershing-county",
+      "name": "Pershing County",
+      "href": "/community/pershing-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "storey-county",
+      "slug": "storey-county",
+      "name": "Storey County",
+      "href": "/community/storey-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "mineral-county",
+      "slug": "mineral-county",
+      "name": "Mineral County",
+      "href": "/community/mineral-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "carson-city",
+      "slug": "carson-city",
+      "name": "Carson City",
+      "href": "/community/carson-city",
+      "readyScore": 725,
+      "missingSections": [
+        "officials"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "las-vegas",
+      "slug": "las-vegas",
+      "name": "Las Vegas",
+      "href": "/community/las-vegas",
+      "readyScore": 793,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "henderson",
+      "slug": "henderson",
+      "name": "Henderson",
+      "href": "/community/henderson",
+      "readyScore": 560,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "north-las-vegas",
+      "slug": "north-las-vegas",
+      "name": "North Las Vegas",
+      "href": "/community/north-las-vegas",
+      "readyScore": 543,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "reno",
+      "slug": "reno",
+      "name": "Reno",
+      "href": "/community/reno",
+      "readyScore": 1178,
+      "missingSections": [],
+      "internalLinks": 17,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "sparks",
+      "slug": "sparks",
+      "name": "Sparks",
+      "href": "/community/sparks",
+      "readyScore": 1124,
+      "missingSections": [],
+      "internalLinks": 17,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "elko",
+      "slug": "elko",
+      "name": "Elko",
+      "href": "/community/elko",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "mesquite",
+      "slug": "mesquite",
+      "name": "Mesquite",
+      "href": "/community/mesquite",
+      "readyScore": 464,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "boulder-city",
+      "slug": "boulder-city",
+      "name": "Boulder City",
+      "href": "/community/boulder-city",
+      "readyScore": 464,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "fallon",
+      "slug": "fallon",
+      "name": "Fallon",
+      "href": "/community/fallon",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "fernley",
+      "slug": "fernley",
+      "name": "Fernley",
+      "href": "/community/fernley",
+      "readyScore": -26,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "winnemucca",
+      "slug": "winnemucca",
+      "name": "Winnemucca",
+      "href": "/community/winnemucca",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "west-wendover",
+      "slug": "west-wendover",
+      "name": "West Wendover",
+      "href": "/community/west-wendover",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "yerington",
+      "slug": "yerington",
+      "name": "Yerington",
+      "href": "/community/yerington",
+      "readyScore": -27,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "tonopah",
+      "slug": "tonopah",
+      "name": "Tonopah",
+      "href": "/community/tonopah",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "pahrump",
+      "slug": "pahrump",
+      "name": "Pahrump",
+      "href": "/community/pahrump",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "ely",
+      "slug": "ely",
+      "name": "Ely",
+      "href": "/community/ely",
+      "readyScore": 105,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "officials"
+      ],
+      "internalLinks": 16,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "incline-village",
+      "slug": "incline-village",
+      "name": "Incline Village",
+      "href": "/community/incline-village",
+      "readyScore": 1069,
+      "missingSections": [
+        "officials"
+      ],
+      "internalLinks": 17,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "gardnerville",
+      "slug": "gardnerville",
+      "name": "Gardnerville",
+      "href": "/community/gardnerville",
+      "readyScore": -1,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "minden",
+      "slug": "minden",
+      "name": "Minden",
+      "href": "/community/minden",
+      "readyScore": -1,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "laughlin",
+      "slug": "laughlin",
+      "name": "Laughlin",
+      "href": "/community/laughlin",
+      "readyScore": 464,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "battle-mountain",
+      "slug": "battle-mountain",
+      "name": "Battle Mountain",
+      "href": "/community/battle-mountain",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    }
+  ],
+  "topLaunchReadyCommunities": [
+    {
+      "id": "reno",
+      "slug": "reno",
+      "name": "Reno",
+      "href": "/community/reno",
+      "readyScore": 1178,
+      "missingSections": [],
+      "internalLinks": 17,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "sparks",
+      "slug": "sparks",
+      "name": "Sparks",
+      "href": "/community/sparks",
+      "readyScore": 1124,
+      "missingSections": [],
+      "internalLinks": 17,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "washoe-county",
+      "slug": "washoe-county",
+      "name": "Washoe County",
+      "href": "/community/washoe-county",
+      "readyScore": 1069,
+      "missingSections": [
+        "officials"
+      ],
+      "internalLinks": 17,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "incline-village",
+      "slug": "incline-village",
+      "name": "Incline Village",
+      "href": "/community/incline-village",
+      "readyScore": 1069,
+      "missingSections": [
+        "officials"
+      ],
+      "internalLinks": 17,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "las-vegas",
+      "slug": "las-vegas",
+      "name": "Las Vegas",
+      "href": "/community/las-vegas",
+      "readyScore": 793,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "carson-city",
+      "slug": "carson-city",
+      "name": "Carson City",
+      "href": "/community/carson-city",
+      "readyScore": 725,
+      "missingSections": [
+        "officials"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "carson-city-county",
+      "slug": "carson-city-county",
+      "name": "Carson City County",
+      "href": "/community/carson-city-county",
+      "readyScore": 719,
+      "missingSections": [
+        "officials"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "henderson",
+      "slug": "henderson",
+      "name": "Henderson",
+      "href": "/community/henderson",
+      "readyScore": 560,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "north-las-vegas",
+      "slug": "north-las-vegas",
+      "name": "North Las Vegas",
+      "href": "/community/north-las-vegas",
+      "readyScore": 543,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "clark-county",
+      "slug": "clark-county",
+      "name": "Clark County",
+      "href": "/community/clark-county",
+      "readyScore": 464,
+      "missingSections": [],
+      "internalLinks": 18,
+      "sourceOnlyLinks": 4,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    }
+  ],
+  "topAcquisitionGapsBlockingLaunch": [
+    {
+      "id": "nye-county",
+      "slug": "nye-county",
+      "name": "Nye County",
+      "href": "/community/nye-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "elko-county",
+      "slug": "elko-county",
+      "name": "Elko County",
+      "href": "/community/elko-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "churchill-county",
+      "slug": "churchill-county",
+      "name": "Churchill County",
+      "href": "/community/churchill-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "humboldt-county",
+      "slug": "humboldt-county",
+      "name": "Humboldt County",
+      "href": "/community/humboldt-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "white-pine-county",
+      "slug": "white-pine-county",
+      "name": "White Pine County",
+      "href": "/community/white-pine-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "lander-county",
+      "slug": "lander-county",
+      "name": "Lander County",
+      "href": "/community/lander-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "lincoln-county",
+      "slug": "lincoln-county",
+      "name": "Lincoln County",
+      "href": "/community/lincoln-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "eureka-county",
+      "slug": "eureka-county",
+      "name": "Eureka County",
+      "href": "/community/eureka-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "esmeralda-county",
+      "slug": "esmeralda-county",
+      "name": "Esmeralda County",
+      "href": "/community/esmeralda-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "pershing-county",
+      "slug": "pershing-county",
+      "name": "Pershing County",
+      "href": "/community/pershing-county",
+      "readyScore": -63,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 6,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      }
+    }
+  ],
+  "rows": [
+    {
+      "id": "carson-city-county",
+      "name": "Carson City County",
+      "kind": "county",
+      "primaryJurisdictionName": "Carson City County, Nevada",
+      "parentCountyId": "carson-city-county",
+      "href": "/community/carson-city-county",
+      "counts": {
+        "meetings": 526,
+        "agendaItems": 1451,
+        "votingCards": 75,
+        "issues": 2,
+        "courtCases": 189,
+        "spendingRecords": 112,
+        "projects": 190,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 4030
+      },
+      "localCounts": {
+        "meetings": 480,
+        "agendaItems": 511,
+        "votingCards": 1,
+        "issues": 1,
+        "courtCases": 67,
+        "spendingRecords": 2,
+        "projects": 21,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 572,
+        "statewideOverlay": 523,
+        "useful": 1095,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": false,
+        "projects": true
+      },
+      "missingCategories": [
+        "officials"
+      ],
+      "acquisitionGapScore": 1,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 1083,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1893,
+        "unknown": 628
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 160,
+        "low": 1833,
+        "unknown": 551
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "clark-county",
+      "name": "Clark County",
+      "kind": "county",
+      "primaryJurisdictionName": "Clark County, Nevada",
+      "parentCountyId": "clark-county",
+      "href": "/community/clark-county",
+      "counts": {
+        "meetings": 51,
+        "agendaItems": 1210,
+        "votingCards": 122,
+        "issues": 7,
+        "courtCases": 145,
+        "spendingRecords": 122,
+        "projects": 326,
+        "elections": 2,
+        "officialActionRecords": 18,
+        "sourceDocuments": 2106
+      },
+      "localCounts": {
+        "meetings": 5,
+        "agendaItems": 270,
+        "votingCards": 48,
+        "issues": 6,
+        "courtCases": 23,
+        "spendingRecords": 12,
+        "projects": 157,
+        "elections": 1,
+        "officialActionRecords": 18
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 270,
+        "statewideOverlay": 523,
+        "useful": 793,
+        "displayedItems": 22
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 18,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 540,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 16,
+        "needsReview": 1741,
+        "unknown": 221
+      },
+      "confidenceCounts": {
+        "high": 25,
+        "medium": 270,
+        "low": 1632,
+        "unknown": 76
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "washoe-county",
+      "name": "Washoe County",
+      "kind": "county",
+      "primaryJurisdictionName": "Washoe County, Nevada",
+      "parentCountyId": "washoe-county",
+      "href": "/community/washoe-county",
+      "counts": {
+        "meetings": 120,
+        "agendaItems": 1405,
+        "votingCards": 395,
+        "issues": 12,
+        "courtCases": 267,
+        "spendingRecords": 360,
+        "projects": 281,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 2924
+      },
+      "localCounts": {
+        "meetings": 74,
+        "agendaItems": 465,
+        "votingCards": 321,
+        "issues": 11,
+        "courtCases": 145,
+        "spendingRecords": 250,
+        "projects": 112,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 913,
+        "statewideOverlay": 523,
+        "useful": 1436,
+        "displayedItems": 21
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 17,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": false,
+        "projects": true
+      },
+      "missingCategories": [
+        "officials"
+      ],
+      "acquisitionGapScore": 1,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 1378,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 276,
+        "ready": 0,
+        "needsReview": 1694,
+        "unknown": 871
+      },
+      "confidenceCounts": {
+        "high": 323,
+        "medium": 977,
+        "low": 1396,
+        "unknown": 145
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "douglas-county",
+      "name": "Douglas County",
+      "kind": "county",
+      "primaryJurisdictionName": "Douglas County, Nevada",
+      "parentCountyId": "douglas-county",
+      "href": "/community/douglas-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 941,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 136,
+        "projects": 169,
+        "elections": 2,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1435
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 1,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 26,
+        "projects": 0,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 27,
+        "statewideOverlay": 523,
+        "useful": 550,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": true,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 6,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 28,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 167
+      },
+      "confidenceCounts": {
+        "high": 28,
+        "medium": 151,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "lyon-county",
+      "name": "Lyon County",
+      "kind": "county",
+      "primaryJurisdictionName": "Lyon County, Nevada",
+      "parentCountyId": "lyon-county",
+      "href": "/community/lyon-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 941,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 111,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1383
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 1,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 1,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 1,
+        "statewideOverlay": 523,
+        "useful": 524,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": true,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 8,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 2,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 141
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 151,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "nye-county",
+      "name": "Nye County",
+      "kind": "county",
+      "primaryJurisdictionName": "Nye County, Nevada",
+      "parentCountyId": "nye-county",
+      "href": "/community/nye-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "elko-county",
+      "name": "Elko County",
+      "kind": "county",
+      "primaryJurisdictionName": "Elko County, Nevada",
+      "parentCountyId": "elko-county",
+      "href": "/community/elko-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "churchill-county",
+      "name": "Churchill County",
+      "kind": "county",
+      "primaryJurisdictionName": "Churchill County, Nevada",
+      "parentCountyId": "churchill-county",
+      "href": "/community/churchill-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "humboldt-county",
+      "name": "Humboldt County",
+      "kind": "county",
+      "primaryJurisdictionName": "Humboldt County, Nevada",
+      "parentCountyId": "humboldt-county",
+      "href": "/community/humboldt-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "white-pine-county",
+      "name": "White Pine County",
+      "kind": "county",
+      "primaryJurisdictionName": "White Pine County, Nevada",
+      "parentCountyId": "white-pine-county",
+      "href": "/community/white-pine-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "lander-county",
+      "name": "Lander County",
+      "kind": "county",
+      "primaryJurisdictionName": "Lander County, Nevada",
+      "parentCountyId": "lander-county",
+      "href": "/community/lander-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "lincoln-county",
+      "name": "Lincoln County",
+      "kind": "county",
+      "primaryJurisdictionName": "Lincoln County, Nevada",
+      "parentCountyId": "lincoln-county",
+      "href": "/community/lincoln-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "eureka-county",
+      "name": "Eureka County",
+      "kind": "county",
+      "primaryJurisdictionName": "Eureka County, Nevada",
+      "parentCountyId": "eureka-county",
+      "href": "/community/eureka-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "esmeralda-county",
+      "name": "Esmeralda County",
+      "kind": "county",
+      "primaryJurisdictionName": "Esmeralda County, Nevada",
+      "parentCountyId": "esmeralda-county",
+      "href": "/community/esmeralda-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "pershing-county",
+      "name": "Pershing County",
+      "kind": "county",
+      "primaryJurisdictionName": "Pershing County, Nevada",
+      "parentCountyId": "pershing-county",
+      "href": "/community/pershing-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "storey-county",
+      "name": "Storey County",
+      "kind": "county",
+      "primaryJurisdictionName": "Storey County, Nevada",
+      "parentCountyId": "storey-county",
+      "href": "/community/storey-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "mineral-county",
+      "name": "Mineral County",
+      "kind": "county",
+      "primaryJurisdictionName": "Mineral County, Nevada",
+      "parentCountyId": "mineral-county",
+      "href": "/community/mineral-county",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "carson-city",
+      "name": "Carson City",
+      "kind": "city",
+      "primaryJurisdictionName": "Carson City, Nevada",
+      "parentCountyId": null,
+      "href": "/community/carson-city",
+      "counts": {
+        "meetings": 528,
+        "agendaItems": 1461,
+        "votingCards": 75,
+        "issues": 2,
+        "courtCases": 191,
+        "spendingRecords": 113,
+        "projects": 191,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 4045
+      },
+      "localCounts": {
+        "meetings": 482,
+        "agendaItems": 521,
+        "votingCards": 1,
+        "issues": 1,
+        "courtCases": 69,
+        "spendingRecords": 3,
+        "projects": 22,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 578,
+        "statewideOverlay": 523,
+        "useful": 1101,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": false,
+        "projects": true
+      },
+      "missingCategories": [
+        "officials"
+      ],
+      "acquisitionGapScore": 1,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 1099,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1904,
+        "unknown": 633
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 164,
+        "low": 1843,
+        "unknown": 553
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "las-vegas",
+      "name": "Las Vegas",
+      "kind": "city",
+      "primaryJurisdictionName": "Las Vegas, Nevada",
+      "parentCountyId": null,
+      "href": "/community/las-vegas",
+      "counts": {
+        "meetings": 89,
+        "agendaItems": 1533,
+        "votingCards": 210,
+        "issues": 8,
+        "courtCases": 245,
+        "spendingRecords": 140,
+        "projects": 398,
+        "elections": 2,
+        "officialActionRecords": 30,
+        "sourceDocuments": 2779
+      },
+      "localCounts": {
+        "meetings": 43,
+        "agendaItems": 593,
+        "votingCards": 136,
+        "issues": 7,
+        "courtCases": 123,
+        "spendingRecords": 30,
+        "projects": 229,
+        "elections": 1,
+        "officialActionRecords": 30
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 599,
+        "statewideOverlay": 523,
+        "useful": 1122,
+        "displayedItems": 22
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 18,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 1192,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 57,
+        "needsReview": 2020,
+        "unknown": 553
+      },
+      "confidenceCounts": {
+        "high": 45,
+        "medium": 715,
+        "low": 1781,
+        "unknown": 114
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "henderson",
+      "name": "Henderson",
+      "kind": "city",
+      "primaryJurisdictionName": "Henderson, Nevada",
+      "parentCountyId": null,
+      "href": "/community/henderson",
+      "counts": {
+        "meetings": 66,
+        "agendaItems": 1282,
+        "votingCards": 130,
+        "issues": 7,
+        "courtCases": 178,
+        "spendingRecords": 122,
+        "projects": 361,
+        "elections": 2,
+        "officialActionRecords": 23,
+        "sourceDocuments": 2274
+      },
+      "localCounts": {
+        "meetings": 20,
+        "agendaItems": 342,
+        "votingCards": 56,
+        "issues": 6,
+        "courtCases": 56,
+        "spendingRecords": 12,
+        "projects": 192,
+        "elections": 1,
+        "officialActionRecords": 23
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 366,
+        "statewideOverlay": 523,
+        "useful": 889,
+        "displayedItems": 22
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 18,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 708,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 16,
+        "needsReview": 1882,
+        "unknown": 248
+      },
+      "confidenceCounts": {
+        "high": 30,
+        "medium": 285,
+        "low": 1765,
+        "unknown": 91
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "north-las-vegas",
+      "name": "North Las Vegas",
+      "kind": "city",
+      "primaryJurisdictionName": "North Las Vegas, Nevada",
+      "parentCountyId": null,
+      "href": "/community/north-las-vegas",
+      "counts": {
+        "meetings": 71,
+        "agendaItems": 1366,
+        "votingCards": 129,
+        "issues": 8,
+        "courtCases": 154,
+        "spendingRecords": 138,
+        "projects": 347,
+        "elections": 2,
+        "officialActionRecords": 23,
+        "sourceDocuments": 2364
+      },
+      "localCounts": {
+        "meetings": 25,
+        "agendaItems": 426,
+        "votingCards": 55,
+        "issues": 7,
+        "courtCases": 32,
+        "spendingRecords": 28,
+        "projects": 178,
+        "elections": 1,
+        "officialActionRecords": 23
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 349,
+        "statewideOverlay": 523,
+        "useful": 872,
+        "displayedItems": 22
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 18,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 775,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 16,
+        "needsReview": 1796,
+        "unknown": 401
+      },
+      "confidenceCounts": {
+        "high": 30,
+        "medium": 436,
+        "low": 1676,
+        "unknown": 96
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "reno",
+      "name": "Reno",
+      "kind": "city",
+      "primaryJurisdictionName": "Reno, Nevada",
+      "parentCountyId": null,
+      "href": "/community/reno",
+      "counts": {
+        "meetings": 147,
+        "agendaItems": 1458,
+        "votingCards": 405,
+        "issues": 12,
+        "courtCases": 284,
+        "spendingRecords": 362,
+        "projects": 292,
+        "elections": 1,
+        "officialActionRecords": 7,
+        "sourceDocuments": 3052
+      },
+      "localCounts": {
+        "meetings": 101,
+        "agendaItems": 518,
+        "votingCards": 331,
+        "issues": 11,
+        "courtCases": 162,
+        "spendingRecords": 252,
+        "projects": 123,
+        "elections": 0,
+        "officialActionRecords": 7
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 987,
+        "statewideOverlay": 523,
+        "useful": 1510,
+        "displayedItems": 21
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 17,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 1505,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 280,
+        "ready": 0,
+        "needsReview": 1758,
+        "unknown": 930
+      },
+      "confidenceCounts": {
+        "high": 326,
+        "medium": 1022,
+        "low": 1448,
+        "unknown": 172
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "sparks",
+      "name": "Sparks",
+      "kind": "city",
+      "primaryJurisdictionName": "Sparks, Nevada",
+      "parentCountyId": null,
+      "href": "/community/sparks",
+      "counts": {
+        "meetings": 124,
+        "agendaItems": 1414,
+        "votingCards": 398,
+        "issues": 12,
+        "courtCases": 270,
+        "spendingRecords": 360,
+        "projects": 285,
+        "elections": 1,
+        "officialActionRecords": 6,
+        "sourceDocuments": 2953
+      },
+      "localCounts": {
+        "meetings": 78,
+        "agendaItems": 474,
+        "votingCards": 324,
+        "issues": 11,
+        "courtCases": 148,
+        "spendingRecords": 250,
+        "projects": 116,
+        "elections": 0,
+        "officialActionRecords": 6
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 933,
+        "statewideOverlay": 523,
+        "useful": 1456,
+        "displayedItems": 21
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 17,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 1407,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 276,
+        "ready": 0,
+        "needsReview": 1713,
+        "unknown": 881
+      },
+      "confidenceCounts": {
+        "high": 329,
+        "medium": 977,
+        "low": 1415,
+        "unknown": 149
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "elko",
+      "name": "Elko",
+      "kind": "city",
+      "primaryJurisdictionName": "Elko, Nevada",
+      "parentCountyId": null,
+      "href": "/community/elko",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 942,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1384
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 2,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 2,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1301,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1243,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "mesquite",
+      "name": "Mesquite",
+      "kind": "city",
+      "primaryJurisdictionName": "Mesquite, Nevada",
+      "parentCountyId": null,
+      "href": "/community/mesquite",
+      "counts": {
+        "meetings": 51,
+        "agendaItems": 1210,
+        "votingCards": 122,
+        "issues": 7,
+        "courtCases": 145,
+        "spendingRecords": 122,
+        "projects": 326,
+        "elections": 2,
+        "officialActionRecords": 18,
+        "sourceDocuments": 2106
+      },
+      "localCounts": {
+        "meetings": 5,
+        "agendaItems": 270,
+        "votingCards": 48,
+        "issues": 6,
+        "courtCases": 23,
+        "spendingRecords": 12,
+        "projects": 157,
+        "elections": 1,
+        "officialActionRecords": 18
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 270,
+        "statewideOverlay": 523,
+        "useful": 793,
+        "displayedItems": 22
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 18,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 540,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 16,
+        "needsReview": 1741,
+        "unknown": 221
+      },
+      "confidenceCounts": {
+        "high": 25,
+        "medium": 270,
+        "low": 1632,
+        "unknown": 76
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "boulder-city",
+      "name": "Boulder City",
+      "kind": "city",
+      "primaryJurisdictionName": "Boulder City, Nevada",
+      "parentCountyId": null,
+      "href": "/community/boulder-city",
+      "counts": {
+        "meetings": 51,
+        "agendaItems": 1210,
+        "votingCards": 122,
+        "issues": 7,
+        "courtCases": 145,
+        "spendingRecords": 122,
+        "projects": 326,
+        "elections": 2,
+        "officialActionRecords": 18,
+        "sourceDocuments": 2106
+      },
+      "localCounts": {
+        "meetings": 5,
+        "agendaItems": 270,
+        "votingCards": 48,
+        "issues": 6,
+        "courtCases": 23,
+        "spendingRecords": 12,
+        "projects": 157,
+        "elections": 1,
+        "officialActionRecords": 18
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 270,
+        "statewideOverlay": 523,
+        "useful": 793,
+        "displayedItems": 22
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 18,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 540,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 16,
+        "needsReview": 1741,
+        "unknown": 221
+      },
+      "confidenceCounts": {
+        "high": 25,
+        "medium": 270,
+        "low": 1632,
+        "unknown": 76
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "fallon",
+      "name": "Fallon",
+      "kind": "city",
+      "primaryJurisdictionName": "Fallon, Nevada",
+      "parentCountyId": null,
+      "href": "/community/fallon",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "fernley",
+      "name": "Fernley",
+      "kind": "city",
+      "primaryJurisdictionName": "Fernley, Nevada",
+      "parentCountyId": null,
+      "href": "/community/fernley",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 944,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 112,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1386
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 4,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 2,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 2,
+        "statewideOverlay": 523,
+        "useful": 525,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": true,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 8,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 6,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1301,
+        "unknown": 143
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 153,
+        "low": 1243,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "winnemucca",
+      "name": "Winnemucca",
+      "kind": "city",
+      "primaryJurisdictionName": "Winnemucca, Nevada",
+      "parentCountyId": null,
+      "href": "/community/winnemucca",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "west-wendover",
+      "name": "West Wendover",
+      "kind": "city",
+      "primaryJurisdictionName": "West Wendover, Nevada",
+      "parentCountyId": null,
+      "href": "/community/west-wendover",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "yerington",
+      "name": "Yerington",
+      "kind": "city",
+      "primaryJurisdictionName": "Yerington, Nevada",
+      "parentCountyId": null,
+      "href": "/community/yerington",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 941,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 111,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1383
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 1,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 1,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 1,
+        "statewideOverlay": 523,
+        "useful": 524,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": true,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 8,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 2,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 141
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 151,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "tonopah",
+      "name": "Tonopah",
+      "kind": "community",
+      "primaryJurisdictionName": "Tonopah, Nevada",
+      "parentCountyId": null,
+      "href": "/community/tonopah",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "pahrump",
+      "name": "Pahrump",
+      "kind": "community",
+      "primaryJurisdictionName": "Pahrump, Nevada",
+      "parentCountyId": null,
+      "href": "/community/pahrump",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "ely",
+      "name": "Ely",
+      "kind": "community",
+      "primaryJurisdictionName": "Ely, Nevada",
+      "parentCountyId": null,
+      "href": "/community/ely",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 1025,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 131,
+        "spendingRecords": 154,
+        "projects": 173,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1480
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 85,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 9,
+        "spendingRecords": 44,
+        "projects": 4,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 57,
+        "statewideOverlay": 523,
+        "useful": 580,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 16,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": true,
+        "cases": true,
+        "officials": false,
+        "projects": true
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "officials"
+      ],
+      "acquisitionGapScore": 4,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 142,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1341,
+        "unknown": 239
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 260,
+        "low": 1272,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "incline-village",
+      "name": "Incline Village",
+      "kind": "community",
+      "primaryJurisdictionName": "Incline Village, Nevada",
+      "parentCountyId": null,
+      "href": "/community/incline-village",
+      "counts": {
+        "meetings": 120,
+        "agendaItems": 1405,
+        "votingCards": 395,
+        "issues": 12,
+        "courtCases": 267,
+        "spendingRecords": 360,
+        "projects": 281,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 2924
+      },
+      "localCounts": {
+        "meetings": 74,
+        "agendaItems": 465,
+        "votingCards": 321,
+        "issues": 11,
+        "courtCases": 145,
+        "spendingRecords": 250,
+        "projects": 112,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 913,
+        "statewideOverlay": 523,
+        "useful": 1436,
+        "displayedItems": 21
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 17,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": false,
+        "projects": true
+      },
+      "missingCategories": [
+        "officials"
+      ],
+      "acquisitionGapScore": 1,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 1378,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 276,
+        "ready": 0,
+        "needsReview": 1694,
+        "unknown": 871
+      },
+      "confidenceCounts": {
+        "high": 323,
+        "medium": 977,
+        "low": 1396,
+        "unknown": 145
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "gardnerville",
+      "name": "Gardnerville",
+      "kind": "community",
+      "primaryJurisdictionName": "Gardnerville, Nevada",
+      "parentCountyId": null,
+      "href": "/community/gardnerville",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 941,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 136,
+        "projects": 169,
+        "elections": 2,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1435
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 1,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 26,
+        "projects": 0,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 27,
+        "statewideOverlay": 523,
+        "useful": 550,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": true,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 6,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 28,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 167
+      },
+      "confidenceCounts": {
+        "high": 28,
+        "medium": 151,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "minden",
+      "name": "Minden",
+      "kind": "community",
+      "primaryJurisdictionName": "Minden, Nevada",
+      "parentCountyId": null,
+      "href": "/community/minden",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 941,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 136,
+        "projects": 169,
+        "elections": 2,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1435
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 1,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 26,
+        "projects": 0,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 27,
+        "statewideOverlay": 523,
+        "useful": 550,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": true,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 6,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 28,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 167
+      },
+      "confidenceCounts": {
+        "high": 28,
+        "medium": 151,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    },
+    {
+      "id": "laughlin",
+      "name": "Laughlin",
+      "kind": "community",
+      "primaryJurisdictionName": "Laughlin, Nevada",
+      "parentCountyId": null,
+      "href": "/community/laughlin",
+      "counts": {
+        "meetings": 51,
+        "agendaItems": 1210,
+        "votingCards": 122,
+        "issues": 7,
+        "courtCases": 145,
+        "spendingRecords": 122,
+        "projects": 326,
+        "elections": 2,
+        "officialActionRecords": 18,
+        "sourceDocuments": 2106
+      },
+      "localCounts": {
+        "meetings": 5,
+        "agendaItems": 270,
+        "votingCards": 48,
+        "issues": 6,
+        "courtCases": 23,
+        "spendingRecords": 12,
+        "projects": 157,
+        "elections": 1,
+        "officialActionRecords": 18
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 270,
+        "statewideOverlay": 523,
+        "useful": 793,
+        "displayedItems": 22
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 18,
+        "sourceOnlyLinks": 4,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": true,
+        "votes": true,
+        "issues": true,
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
+      },
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 540,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 16,
+        "needsReview": 1741,
+        "unknown": 221
+      },
+      "confidenceCounts": {
+        "high": 25,
+        "medium": 270,
+        "low": 1632,
+        "unknown": 76
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": true,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
+        "hasElections": true,
+        "hasLocalElections": true,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": true,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": true,
+        "hasProjects": true,
+        "hasLocalProjects": true,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": true,
+        "hasIssues": true,
+        "hasLocalIssues": true
+      }
+    },
+    {
+      "id": "battle-mountain",
+      "name": "Battle Mountain",
+      "kind": "community",
+      "primaryJurisdictionName": "Battle Mountain, Nevada",
+      "parentCountyId": null,
+      "href": "/community/battle-mountain",
+      "counts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0,
+        "sourceDocuments": 1382
+      },
+      "localCounts": {
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "issues": 0,
+        "courtCases": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "elections": 0,
+        "officialActionRecords": 0
+      },
+      "statewideOverlayCounts": {
+        "meetings": 46,
+        "agendaItems": 940,
+        "votingCards": 74,
+        "issues": 1,
+        "courtCases": 122,
+        "spendingRecords": 110,
+        "projects": 169,
+        "elections": 1,
+        "officialActionRecords": 0
+      },
+      "dashboardCounts": {
+        "local": 0,
+        "statewideOverlay": 523,
+        "useful": 523,
+        "displayedItems": 20
+      },
+      "dashboardLinkAudit": {
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 6,
+        "missingDestinations": 0,
+        "stale": false
+      },
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": false,
+        "caseLeadIntake": true
+      },
+      "categoryCoverage": {
+        "meetings": false,
+        "votes": false,
+        "issues": false,
+        "spending": false,
+        "cases": false,
+        "officials": false,
+        "projects": false
+      },
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "acquisitionGapScore": 12,
+      "linkCounts": {
+        "direct": 0,
+        "inferred": 0,
+        "statewideOverlay": 1463,
+        "federalOverlay": 0
+      },
+      "reviewCounts": {
+        "approved": 25,
+        "ready": 0,
+        "needsReview": 1299,
+        "unknown": 139
+      },
+      "confidenceCounts": {
+        "high": 2,
+        "medium": 149,
+        "low": 1241,
+        "unknown": 71
+      },
+      "coverage": {
+        "navigable": true,
+        "hasAnyLinkedCivicRecord": true,
+        "hasLocalLinkedCivicRecord": false,
+        "hasUsefulDashboardData": true,
+        "hasOnlyStatewideOverlayData": true,
+        "hasLimitedLocalData": true,
+        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasStaleDashboardData": false,
+        "hasMeetings": true,
+        "hasLocalMeetings": false,
+        "hasOfficials": false,
+        "hasLocalOfficials": false,
+        "hasElections": true,
+        "hasLocalElections": false,
+        "hasCourtCases": true,
+        "hasLocalCourtCases": false,
+        "hasSpendingData": true,
+        "hasLocalSpendingData": false,
+        "hasProjects": true,
+        "hasLocalProjects": false,
+        "hasVotingCards": true,
+        "hasLocalVotingCards": false,
+        "hasIssues": true,
+        "hasLocalIssues": false
+      }
+    }
+  ]
+}

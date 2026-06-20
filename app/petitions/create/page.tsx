@@ -30,7 +30,7 @@ export default async function CreatePetitionPage({ searchParams }: CreatePetitio
         eyebrow="Create Petition"
         title="Launch a jurisdiction petition"
         description={
-          organization?.canManage && organization.organizationType !== "campus_org"
+          organization?.canManage
             ? `Publish an organization petition for ${organization.name}. Signature eligibility and co-sponsorship are tracked automatically.`
             : "Verified users can create petitions scoped to their current jurisdiction. Signature eligibility and co-sponsorship are tracked automatically."
         }
@@ -38,7 +38,7 @@ export default async function CreatePetitionPage({ searchParams }: CreatePetitio
       <PetitionCreateForm
         jurisdictionName={user.jurisdictionName}
         error={params?.error}
-        organization={organization?.canManage && organization.organizationType !== "campus_org" ? organization : null}
+        organization={organization?.canManage ? organization : null}
         issueOptions={issueOptions}
       />
     </div>

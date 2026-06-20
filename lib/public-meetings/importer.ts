@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { copyFile, mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import { writePublicCivicCaseArtifacts } from "@/lib/public-cases/public-civic-cases";
 import {
   PUBLIC_MEETING_OUTPUT_FILES,
   PUBLIC_MEETING_PATHS,
@@ -1354,6 +1355,12 @@ export async function runPublicMeetingImport(): Promise<PublicMeetingIngestionRe
     meetings: dedupedMeetings,
     votingCards: dedupedMeetingVotingCards,
     officialActions: dedupedOfficialActions,
+  });
+  await writePublicCivicCaseArtifacts({
+    bodies,
+    meetings: dedupedMeetings,
+    items: dedupedItems,
+    votingCards: dedupedMeetingVotingCards,
   });
 
   const report: PublicMeetingIngestionReport = {

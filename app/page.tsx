@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { HomeGuidedActionCard } from "@/components/domain/home-guided-action-card";
+import { CommunityMeetingIntelligenceCard } from "@/components/domain/community-meeting-intelligence-card";
 import { HomeVotePreviewPane } from "@/components/domain/home-vote-preview-pane";
 import { HomeUpcomingElectionsPane } from "@/components/domain/home-upcoming-elections-pane";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -23,6 +24,7 @@ import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts"
 import { getFavoritesForUser } from "@/lib/server/favorites";
 import { getIssueDirectoryForUser } from "@/lib/server/issues";
 import { getCandidateProfiles, getElectionSummaries } from "@/lib/server/elections-context";
+import { getCommunityMeetingSummary } from "@/lib/public-meetings/public";
 import { formatDateUtc } from "@/lib/dates";
 import type { AuthUser, CommunitySummary, ElectionSummary } from "@/types/domain";
 
@@ -73,7 +75,7 @@ function getElectionLevelLabel(election: ElectionSummary) {
   const jurisdiction = election.jurisdictionName.toLowerCase();
   const title = `${election.title} ${election.officeTitle}`.toLowerCase();
 
-  if (election.isCommunityVoteOnly || title.includes("campus")) return "Campus";
+  if (election.isCommunityVoteOnly) return "Community";
   if (title.includes("school")) return "School board";
   if (jurisdiction === "united states") return "Federal";
   if (jurisdiction === "nevada") return "State";
@@ -103,12 +105,7 @@ function getElectionRelevanceNote(
   election: ElectionSummary,
   defaultCommunity: CommunitySummary,
   user: AuthUser,
-  studentCampus: CommunitySummary | null,
 ) {
-  if (studentCampus && election.communityId === studentCampus.id) {
-    return "Your campus community";
-  }
-
   if (/school board/i.test(`${election.title} ${election.officeTitle}`)) {
     return "Your school district";
   }
@@ -140,7 +137,6 @@ function getUpcomingElectionsForUser(
   elections: ElectionSummary[],
   defaultCommunity: CommunitySummary,
   user: AuthUser,
-  studentCampus: CommunitySummary | null,
 ) {
   const jurisdictionMatches = new Set<string>([
     "United States",
@@ -148,13 +144,11 @@ function getUpcomingElectionsForUser(
     user.jurisdictionName,
     defaultCommunity.primaryJurisdictionName,
     ...defaultCommunity.jurisdictionMatches,
-    ...(studentCampus ? [studentCampus.primaryJurisdictionName, ...studentCampus.jurisdictionMatches] : []),
   ]);
   const communityMatches = new Set<string>([
     defaultCommunity.id,
     "nevada",
     "united-states",
-    ...(studentCampus ? [studentCampus.id] : []),
   ]);
 
   return elections
@@ -180,7 +174,6 @@ function buildUpcomingElectionItems(
   elections: ElectionSummary[],
   defaultCommunity: CommunitySummary,
   user: AuthUser,
-  studentCampus: CommunitySummary | null,
 ) {
   return elections.map((election) => {
     const milestone = getNextElectionMilestone(election);
@@ -198,7 +191,7 @@ function buildUpcomingElectionItems(
       dateLabel: formatDateLabel(election.electionDate),
       countdownLabel: `${milestone.label} · ${formatDaysAway(milestone.date ?? election.electionDate)}`,
       milestoneLabel: milestone.label,
-      relevanceNote: getElectionRelevanceNote(election, defaultCommunity, user, studentCampus),
+      relevanceNote: getElectionRelevanceNote(election, defaultCommunity, user),
       summary:
         election.ballotSummary ??
         "Open this election to compare candidates, review ballot items, and stay ahead of the next important deadline.",
@@ -246,8 +239,6 @@ export default async function HomePage() {
 
   const user = await getCurrentUser();
   const defaultCommunity = getDefaultCommunityForUser(user);
-  const studentCampus =
-    user.studentVerified && user.studentCampusCommunityId ? (getCommunityById(user.studentCampusCommunityId) ?? null) : null;
 
   const [
     elections,
@@ -264,6 +255,7 @@ export default async function HomePage() {
     officials,
     cases,
     organizations,
+    meetingSummary,
   ] = await Promise.all([
     getElectionSummaries(),
     getFavoritesForUser(user.id),
@@ -281,7 +273,6 @@ export default async function HomePage() {
       limit: 3,
       attachments: [
         { type: "community", id: defaultCommunity.id, label: defaultCommunity.name },
-        ...(studentCampus ? [{ type: "community" as const, id: studentCampus.id, label: studentCampus.name }] : []),
       ],
       preferredRoles: ["trustedCitizen", "official", "candidate", "media"],
     }),
@@ -293,10 +284,21 @@ export default async function HomePage() {
     getOfficials(),
     getAllCases(),
     getAllOrganizations(user),
+    getCommunityMeetingSummary(defaultCommunity).catch(() => ({
+      community_name: defaultCommunity.name,
+      matching_public_body_count: 0,
+      upcoming_meetings: [],
+      recent_decisions: [],
+      open_questions: [],
+      recently_approved_spending: [],
+      public_cases: [],
+      public_comment_opportunities: [],
+      last_updated_at: null,
+    })),
   ]);
 
-  const upcomingElections = getUpcomingElectionsForUser(elections, defaultCommunity, user, studentCampus);
-  const upcomingElectionItems = buildUpcomingElectionItems(upcomingElections, defaultCommunity, user, studentCampus);
+  const upcomingElections = getUpcomingElectionsForUser(elections, defaultCommunity, user);
+  const upcomingElectionItems = buildUpcomingElectionItems(upcomingElections, defaultCommunity, user);
   const canVoteNow = canUserVote(user);
   const votePreviewQuestions = dailyVotes.dailyQuestions.slice(0, 3);
 
@@ -311,7 +313,7 @@ export default async function HomePage() {
             label: getFavoriteLabel(record.targetType),
             title: community.name,
             summary: community.descriptor,
-            href: community.communityType === "campus" ? `/campuses/${community.id}` : `/my-community?communityId=${community.id}`,
+            href: `/my-community?communityId=${community.id}`,
           };
         }
         case "issue": {
@@ -501,6 +503,8 @@ export default async function HomePage() {
           <HomeVotePreviewPane questions={votePreviewQuestions} canVote={canVoteNow} />
         </div>
       </section>
+
+      <CommunityMeetingIntelligenceCard summary={meetingSummary} />
 
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">

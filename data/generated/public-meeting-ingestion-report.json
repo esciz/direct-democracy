@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T23:56:08.609Z",
+  "generated_at": "2026-06-18T00:28:08.546Z",
   "seed_sources": 14,
   "public_bodies": 62,
   "manual_documents_found": 0,
@@ -235,6 +235,8 @@
     "meeting_voting_cards_runtime": "data/generated/voting-cards-runtime.json",
     "events_runtime": "data/generated/events-runtime.json",
     "officials_runtime": "data/generated/officials-runtime.json",
+    "public_cases": "data/generated/public-civic-cases.json",
+    "public_cases_runtime": "data/generated/public-cases-runtime.json",
     "official_action_review_overrides": "data/generated/public-meeting-official-action-review-overrides.json",
     "official_roster_report": "data/generated/public-meeting-official-roster-report.json",
     "citizen_vote_questions": "data/generated/citizen-vote-questions.json",

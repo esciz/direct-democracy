@@ -57,7 +57,7 @@ export async function createPetition(formData: FormData) {
   const organization = organizationId ? await getOrganizationById(organizationId, user) : null;
   const linkedIssue = sanitizedIssueTag ? await ensureIssueReferenceForUser(user, sanitizedIssueTag) : null;
 
-  if (organizationId && (!organization || !organization.canManage || organization.organizationType === "campus_org")) {
+  if (organizationId && (!organization || !organization.canManage)) {
     redirectWithError("/petitions/create", "organization");
   }
 

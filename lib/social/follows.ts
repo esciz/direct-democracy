@@ -341,10 +341,6 @@ function toPercentage(count: number, total: number) {
 function getReachBucket(user: AuthUser) {
   const jurisdiction = user.jurisdictionName.toLowerCase();
 
-  if (user.studentVerified || jurisdiction.includes("university") || jurisdiction.includes("campus")) {
-    return "Campus";
-  }
-
   if (jurisdiction.includes("united states") || jurisdiction.includes("federal") || jurisdiction.includes("national")) {
     return "National";
   }

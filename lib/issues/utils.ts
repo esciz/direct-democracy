@@ -19,9 +19,14 @@ const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
     ],
   },
   {
+    title: "Education",
+    summary: "School district decisions, classroom resources, school board governance, student services, and public education outcomes.",
+    aliases: ["school district", "school board", "public education", "students", "teachers", "classroom", "curriculum"],
+  },
+  {
     title: "School Safety",
-    summary: "Student safety, campus and school emergency readiness, mental health support, and safer learning environments.",
-    aliases: ["student safety", "campus safety", "mental health staff", "school facilities", "safer schools"],
+    summary: "School emergency readiness, mental health support, and safer learning environments.",
+    aliases: ["school safety", "mental health staff", "school facilities", "safer schools"],
   },
   {
     title: "Affordable Housing",
@@ -52,7 +57,12 @@ const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
   {
     title: "Public Safety",
     summary: "Emergency readiness, staffing, neighborhood safety, road safety, and how public institutions respond to local safety concerns.",
-    aliases: ["emergency readiness", "road safety", "public safety staffing", "wildfire readiness", "neighborhood traffic"],
+    aliases: ["emergency readiness", "road safety", "public safety staffing", "wildfire readiness", "neighborhood traffic", "police", "fire", "sheriff"],
+  },
+  {
+    title: "Criminal Justice",
+    summary: "Courts, policing, prosecution, sentencing, detention, wrongful conviction claims, and public accountability in the justice system.",
+    aliases: ["criminal justice", "wrongful conviction", "sentencing", "prosecution", "public defender", "jail", "detention", "courts"],
   },
   {
     title: "Healthcare Access",
@@ -73,9 +83,39 @@ const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
     ],
   },
   {
+    title: "Government Accountability",
+    summary: "Transparency, ethics, public records, open meetings, conflicts of interest, and whether government decisions can be understood and reviewed.",
+    aliases: ["government accountability", "government transparency", "public records", "open records", "ethics", "conflicts of interest", "audit"],
+  },
+  {
     title: "Growth and Infrastructure",
     summary: "Growth planning, roads, traffic, infrastructure sequencing, and how communities phase development responsibly.",
-    aliases: ["growth planning", "infrastructure sequencing", "road capacity", "roads", "traffic", "economic development"],
+    aliases: ["growth planning", "infrastructure sequencing", "road capacity", "roads", "traffic", "economic development", "infrastructure"],
+  },
+  {
+    title: "Transportation",
+    summary: "Roads, transit, traffic safety, mobility access, capital projects, and how people move through their community.",
+    aliases: ["transportation", "transit", "traffic", "road improvements", "road projects", "mobility", "bus", "sidewalk"],
+  },
+  {
+    title: "Land Use and Zoning",
+    summary: "Development approvals, zoning, planning, permits, short-term rentals, and neighborhood land-use decisions.",
+    aliases: ["zoning", "land use", "planning commission", "development", "short-term rentals", "building permit", "permit operations", "subdivision"],
+  },
+  {
+    title: "Taxes and Spending",
+    summary: "Budgets, public spending, taxes, fees, debt, grants, contracts, revenue authority, and fiscal choices by public bodies.",
+    aliases: ["taxes", "spending", "budget", "fiscal impact", "financial impact", "revenue", "expense", "bond", "grant", "contract", "fees"],
+  },
+  {
+    title: "Elections",
+    summary: "Election administration, voting access, ballot initiatives, election challenges, campaign rules, and voter trust.",
+    aliases: ["election", "elections", "voting access", "ballot question", "ballot initiative", "election administration", "campaign rules"],
+  },
+  {
+    title: "Environment",
+    summary: "Environmental protection, natural resources, conservation, wildfire risk, climate resilience, and public land stewardship.",
+    aliases: ["environment", "conservation", "wildfire", "climate", "natural resources", "air quality", "public lands"],
   },
   {
     title: "Public Meeting Access",
@@ -91,16 +131,6 @@ const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
     ],
   },
   {
-    title: "Student Transit Access",
-    summary: "Late-night transit, safe off-campus travel, and mobility access that makes campus and student life more workable.",
-    aliases: ["late-night transit", "transit reliability", "safer off-campus travel", "student transit", "transit funding"],
-  },
-  {
-    title: "Campus Budget Transparency",
-    summary: "Plain-language public budgets, visible board decisions, and clearer accountability for public spending.",
-    aliases: ["plain-language public budgets", "budget transparency", "public spending accountability"],
-  },
-  {
     title: "Government Ethics",
     summary: "Ethics rules, stock trading restrictions, conflicts of interest, and the standards people expect from public power.",
     aliases: ["stock trading by members of congress", "congressional stock trading", "ethics reform", "government ethics"],
@@ -109,6 +139,21 @@ const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
     title: "Energy Reliability",
     summary: "Power reliability, production, grid planning, and the costs households absorb when energy systems are unstable.",
     aliases: ["energy reliability", "power costs", "energy production", "utility rates"],
+  },
+  {
+    title: "Courts and Legal Rights",
+    summary: "Public court records, appeals, administrative proceedings, legal rights, and official legal decisions that affect civic life.",
+    aliases: [
+      "court records",
+      "appeals",
+      "judicial opinion",
+      "civil appeal",
+      "criminal appeal",
+      "original proceeding",
+      "administrative hearing",
+      "legal rights",
+      "regulatory proceeding",
+    ],
   },
 ];
 

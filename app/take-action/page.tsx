@@ -9,7 +9,7 @@ import {
   canUserMessagePublicFigures,
 } from "@/lib/auth/guards";
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { getCommunityById, getCommunityHierarchy, getDefaultCommunityForUser } from "@/lib/community/communities";
+import { getCommunityHierarchy, getDefaultCommunityForUser } from "@/lib/community/communities";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getEventPhotobook } from "@/lib/community/event-participation";
 import { getElectionSummaries } from "@/lib/server/elections-context";
@@ -70,26 +70,11 @@ function getRelevantJurisdictions(user: AuthUser, community: CommunitySummary) {
     "United States",
   ]);
 
-  if (user.studentModeEnabled && user.studentVerified && user.studentCampusCommunityId) {
-    const campus = getCommunityById(user.studentCampusCommunityId);
-
-    if (campus) {
-      jurisdictions.add(campus.primaryJurisdictionName);
-      for (const match of campus.jurisdictionMatches) {
-        jurisdictions.add(match);
-      }
-    }
-  }
-
   return jurisdictions;
 }
 
 function getElectionCategory(election: ElectionSummary) {
   const office = `${election.officeTitle} ${election.title}`.toLowerCase();
-
-  if (election.isCommunityVoteOnly || office.includes("student")) {
-    return "Student Elections";
-  }
 
   if (office.includes("school")) {
     return "Schools";
@@ -141,19 +126,9 @@ function buildBallotQuestionItem(initiative: BallotInitiativeSummary, election: 
 function isElectionRelevant(
   election: ElectionSummary,
   allowedJurisdictions: Set<string>,
-  user: AuthUser,
+  _user: AuthUser,
 ) {
   if (allowedJurisdictions.has(election.jurisdictionName)) {
-    return true;
-  }
-
-  if (
-    election.isCommunityVoteOnly &&
-    user.studentModeEnabled &&
-    user.studentVerified &&
-    user.studentCampusCommunityId &&
-    election.communityId === user.studentCampusCommunityId
-  ) {
     return true;
   }
 
@@ -299,9 +274,6 @@ export default async function TakeActionPage() {
 
   for (const election of relevantElections) {
     const category = getElectionCategory(election);
-    if (category === "Student Elections" && !(user.studentModeEnabled && user.studentVerified)) {
-      continue;
-    }
 
     electionGroups.set(category, [...(electionGroups.get(category) ?? []), election]);
   }
@@ -310,7 +282,7 @@ export default async function TakeActionPage() {
   const ballotQuestionItems = relevantElections.flatMap((election) =>
     election.ballotInitiatives.map((initiative) => buildBallotQuestionItem(initiative, election)),
   );
-  const electionCategoryOrder = ["Legislators", "Leaders", "Schools", "Judges", "Ballot Questions", "Student Elections"] as const;
+  const electionCategoryOrder = ["Legislators", "Leaders", "Schools", "Judges", "Ballot Questions"] as const;
   const electionPreviewCategories = electionCategoryOrder.reduce<CompactElectionPaneCategory[]>((categories, category) => {
       if (category === "Ballot Questions") {
         const nextBallotQuestion = ballotQuestionItems.find((item) => Date.parse(item.electionDate) >= Date.now()) ?? ballotQuestionItems[0] ?? null;
@@ -389,7 +361,7 @@ export default async function TakeActionPage() {
           <>
             <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">{defaultCommunity.name}</span>
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-              {user.studentModeEnabled && user.studentVerified ? "Student mode on" : user.jurisdictionName}
+              {user.jurisdictionName}
             </span>
           </>
         }

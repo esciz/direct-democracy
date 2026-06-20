@@ -226,7 +226,6 @@ enum NotificationType {
 }
 
 enum OrganizationType {
-  campus_org
   coalition
   government_agency
   legislative_body
@@ -2099,7 +2098,6 @@ model Organization {
   websiteUrl       String?
   contactEmail     String?
   communityId      String?
-  campusCommunityId String?
   founderUserId    String?
   issueTags        String[]
   jurisdiction     Jurisdiction?     @relation(fields: [jurisdictionId], references: [id])
@@ -2113,7 +2111,6 @@ model Organization {
   @@index([jurisdictionId])
   @@index([sourceId])
   @@index([communityId])
-  @@index([campusCommunityId])
   @@index([organizationType])
 }
 

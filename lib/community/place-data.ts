@@ -24,7 +24,7 @@ export async function getCommunityFavoritePlaces(communityId: string): Promise<C
   for (const user of seedUsers) {
     const content = await getUserProfileContent(user.id);
 
-    if (!userContentMatchesCommunity(communityId, user, content)) {
+    if (!userContentMatchesCommunity(communityId, user)) {
       continue;
     }
 

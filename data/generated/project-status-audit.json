@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-06-20T20:50:09.190Z",
+  "totals": {
+    "projects": 247,
+    "needsReview": 77,
+    "withBudget": 174,
+    "withNextKnownMilestone": 26,
+    "withResponsibleBody": 247,
+    "withSourceReferences": 247
+  },
+  "statusCounts": {
+    "approved": 10,
+    "proposed": 14,
+    "unknown": 16,
+    "funded": 196,
+    "completed": 3,
+    "in_progress": 4,
+    "delayed": 4
+  },
+  "unclearStatusReasons": [
+    {
+      "id": "project-las-vegas-nv-master-plan-area-charleston-y-special-area-and-overlay-districts-co",
+      "name": "Master Plan Area: Charleston Y Special Area and Overlay Districts Compliance A-O (Airport Overlay) District...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-las-vegas-nv-master-plan-area-twin-lakes-y-special-area-and-overlay-districts-co",
+      "name": "Master Plan Area: Twin Lakes Y Special Area and Overlay Districts Compliance A-O (Airport Overlay) District...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-las-vegas-nv-master-plan-area-downtown-south-y-special-area-and-overlay-district",
+      "name": "Master Plan Area: Downtown South Y Special Area and Overlay Districts Compliance A-O (Airport Overlay) Dist...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-nevada-the-state-fiscal-brief-all-standing-committees-conference-committees-asse",
+      "name": "the state Fiscal Brief All Standing Committees Conference Committees Assembly Committees Commerce and Labor...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-clark-county-nv-conduct-a-public-hearing-and-approve-and-authorize-the-chair-to-",
+      "name": "Conduct a public hearing; and approve and authorize the Chair to sign the Airport Canine Handler Letter of...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-adopt-resolution-presentation-department-of-agriculture-the-vir",
+      "name": "adopt Resolution: Presentation: Department of Agriculture - the Virginia Range horse discussion to possibly...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-adopt-resolution-recommendation-to-reappoint-adam-kramer-as-the",
+      "name": "adopt Resolution Recommendation to reappoint: Adam Kramer as the Washoe County representative on the Reno-T...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-adopt-public-hearing-public-hearing-to-1-consider-objections-to",
+      "name": "adopt Public Hearing Public Hearing: to: (1) consider objections to Resolution (R25-23), declaring Washoe C...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-action-to-approve-the-regional-street-naming-committee-s-recomm",
+      "name": "Action to approve the: Regional Street Naming Committee’s recommendation for the naming of an easement to K...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-informational-report-presentation-and-update-on-fy-25-second-qu",
+      "name": "Informational Report Presentation and: Update on FY 25 Second Quarter Status Report for the Washoe County R...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-public-hearing-public-hearing-subject-to-a-finding-of-conforman",
+      "name": "Public Hearing Public: Hearing: Subject to a finding of conformance with the Truckee Meadows Regional Plan...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-action-to-approve-the-reclassification-of-a-librarian-ii-pay-gr",
+      "name": "Action to approve the: reclassification of a Librarian II, pay grade 16, to Librarian I, pay grade 14; recl...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-action-to-approve-an-agreement-between-washoe-county-and-the-re",
+      "name": "Action to approve an: agreement between Washoe County and the Regional Transportation Commission of Washoe...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-action-and-direction-to-staff-regarding-potential-bill-draft-re",
+      "name": "Action and direction to: staff regarding potential Bill Draft Requests (BDRs) for the 83rd (2025) Session o...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-action-to-approve-the-updated-washoe-county-code-of-conduct-whi",
+      "name": "Action to approve the: updated Washoe County Code of Conduct which lists expectations employees and Washoe...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-public-hearing-public-hearing-appeal-of-the-washoe-county-plann",
+      "name": "Public Hearing Public: Hearing: Appeal of the Washoe County Planning Commission’s denial of Master Plan Ame...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    }
+  ]
+}

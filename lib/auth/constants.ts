@@ -9,6 +9,7 @@ const demoModeEnv = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE ?? process.env.ENAB
 
 export const DEV_ONLY_AUTH_ENABLED = demoModeEnv ? demoModeEnv !== "false" : true;
 export const DEMO_PROFILE_SWITCHER_ENABLED = demoModeEnv === "true";
+export const PUBLIC_DEMO_DATA_ENABLED = demoModeEnv === "true";
 
 export const PUBLIC_POST_CREATOR_ROLES: UserRole[] = ["trustedCitizen", "candidate", "official", "media"];
 

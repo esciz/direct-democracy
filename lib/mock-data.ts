@@ -16,9 +16,6 @@ import type {
 export const seededJurisdictions = [
   "Carson City, Nevada",
   "Washoe County, Nevada",
-  "University of Nevada, Reno",
-  "University of Nevada, Las Vegas",
-  "Western Nevada College",
   "Nevada",
   "United States",
 ] as const;
@@ -32,7 +29,7 @@ export const platformStats = [
   {
     label: "Live Elections",
     value: "6",
-    description: "Seeded local, campus, state, and national races with candidate profiles, polling, and funding context.",
+    description: "Seeded local, county, state, and national races with candidate profiles, polling, and funding context.",
   },
   {
     label: "Open Petitions",
@@ -56,15 +53,15 @@ export const currentUser: UserSummary = {
 
 export const mockPosts: PostSummary[] = [
   {
-    id: "post_campus_1",
-    title: "UNR student transit survey shows evening route gap",
+    id: "post_reno_transit_1",
+    title: "Reno transit survey shows evening route gap",
     authorId: "user_citizen_tiana_moore",
     authorName: "Tiana Moore",
     authorRole: "citizen",
-    jurisdictionName: "University of Nevada, Reno",
+    jurisdictionName: "Reno, Nevada",
     content:
-      "Students in tonight’s campus survey kept pointing to the same problem: late-evening transit drops off before library and lab schedules do. I’m sharing the summary so transportation and student leaders can compare ideas before the next mobility meeting.",
-    issueTags: ["Late-night transit and safer off-campus travel for students at UNR."],
+      "Residents in tonight’s transit survey kept pointing to the same problem: late-evening transit drops off before shift schedules and public events do. I’m sharing the summary so transportation staff and neighborhood leaders can compare ideas before the next mobility meeting.",
+    issueTags: ["Late-night transit and safer cross-town travel in Reno."],
     postType: "TEXT",
     contentType: "statementClaim",
     createdAt: "2026-04-01T18:10:00.000Z",
@@ -72,14 +69,14 @@ export const mockPosts: PostSummary[] = [
     truthScore: { media: null, moderators: null, citizens: 77 },
   },
   {
-    id: "post_campus_2",
-    title: "Campus climate week kickoff on the quad",
+    id: "post_reno_resilience_2",
+    title: "Neighborhood resilience week kickoff downtown",
     authorId: "user_trusted_citizen_hannah_cho",
     authorName: "Hannah Cho",
     authorRole: "trustedCitizen",
-    jurisdictionName: "University of Nevada, Reno",
+    jurisdictionName: "Reno, Nevada",
     content:
-      "Climate week starts Monday with a student-led kickoff on the quad, followed by sessions on housing, energy, and wildfire preparedness. If you’re already on campus, it’s one of the easiest ways to meet people who are active in local policy work too.",
+      "Resilience week starts Monday with a downtown kickoff, followed by sessions on housing, energy, and wildfire preparedness. It’s one of the easiest ways to meet residents who are active in local policy work too.",
     postType: "TEXT",
     contentType: "announcementUpdate",
     createdAt: "2026-04-02T15:00:00.000Z",
@@ -1787,21 +1784,21 @@ export const mockPollVotes: PollVoteSummary[] = [
 
 export const mockTopIssueSubmissions: TopIssueSubmissionSummary[] = [
   {
-    id: "issue_campus_1",
+    id: "issue_reno_transit_access",
     userId: "user_citizen_tiana_moore",
     userName: "Tiana Moore",
-    issueText: "Student Transit Access",
+    issueText: "Transit Access",
     scope: "local",
-    jurisdictionName: "University of Nevada, Reno",
+    jurisdictionName: "Reno, Nevada",
     createdAt: "2026-04-01T18:35:00.000Z",
   },
   {
-    id: "issue_campus_2",
+    id: "issue_nevada_budget_transparency",
     userId: "user_trusted_citizen_nora_patel",
     userName: "Nora Patel",
-    issueText: "Campus Budget Transparency",
+    issueText: "Budget Transparency",
     scope: "local",
-    jurisdictionName: "University of Nevada, Las Vegas",
+    jurisdictionName: "Nevada",
     createdAt: "2026-04-01T19:10:00.000Z",
   },
   {

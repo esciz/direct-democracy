@@ -17,6 +17,7 @@ import { getCommunityById, getDefaultCommunityForUser, seededCommunities } from 
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getCommunityHero } from "@/lib/community/place-data";
+import { emptyCommunityRelationshipBucket, getCommunityRelationships, type CommunityRelationshipBucket, type CommunityRelationshipDomain, type CommunityRelationshipRecord } from "@/lib/community/relationships";
 import { getFeedDebatePreviews } from "@/lib/debates/store";
 import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts";
 import { getFavoritesForUser } from "@/lib/server/favorites";
@@ -49,6 +50,50 @@ type TrendingItem = {
   ctaLabel: string;
 };
 
+type CommunityCoverageSection = {
+  id: string;
+  label: string;
+  title: string;
+  summary: string;
+  href: string;
+  statusLabel: string;
+  hasData: boolean;
+};
+
+type RelationshipHighlight = {
+  id: CommunityRelationshipDomain;
+  label: string;
+  title: string;
+  totalCount: number;
+  localCount: number;
+  statewideOverlayCount: number;
+  records: CommunityRelationshipRecord[];
+};
+
+type DashboardItem = {
+  id: string;
+  label: string;
+  storyType: string;
+  title: string;
+  summary: string;
+  whyItMatters: string;
+  sourceLabel: string;
+  sourceDetail: string | null;
+  destinationHref: string | null;
+  destinationKind: "internal" | "source" | "missing";
+  date: string | null;
+  whyLabel: string;
+  sourceAuditLabel: string;
+  record: CommunityRelationshipRecord;
+};
+
+type DashboardSection = {
+  id: string;
+  title: string;
+  emptyLabel: string;
+  items: DashboardItem[];
+};
+
 function formatElectionDate(value: string) {
   return formatDateUtc(value, {
     month: "short",
@@ -75,11 +120,22 @@ function clipText(value: string | null | undefined, max = 140) {
   return `${text.slice(0, max - 1).trimEnd()}…`;
 }
 
+function formatNullableDate(value: string | null | undefined) {
+  if (!value) return null;
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) return null;
+  return formatDateUtc(new Date(timestamp).toISOString(), {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 function getElectionLevelLabel(election: ElectionSummary) {
   const jurisdiction = election.jurisdictionName.toLowerCase();
   const title = `${election.title} ${election.officeTitle}`.toLowerCase();
 
-  if (election.isCommunityVoteOnly || title.includes("campus")) return "Campus";
+  if (election.isCommunityVoteOnly) return "Community";
   if (title.includes("school")) return "School board";
   if (jurisdiction === "united states") return "Federal";
   if (jurisdiction === "nevada") return "State";
@@ -112,12 +168,7 @@ function getElectionRelevanceNote(
   election: ElectionSummary,
   currentCommunity: CommunitySummary,
   user: AuthUser,
-  studentCampus: CommunitySummary | null,
 ) {
-  if (studentCampus && election.communityId === studentCampus.id) {
-    return "Your campus community";
-  }
-
   if (/school board/i.test(`${election.title} ${election.officeTitle}`)) {
     return "Your school district";
   }
@@ -145,7 +196,6 @@ function getUpcomingElectionsForUser(
   elections: ElectionSummary[],
   currentCommunity: CommunitySummary,
   user: AuthUser,
-  studentCampus: CommunitySummary | null,
 ) {
   const jurisdictionMatches = new Set<string>([
     "United States",
@@ -153,13 +203,11 @@ function getUpcomingElectionsForUser(
     user.jurisdictionName,
     currentCommunity.primaryJurisdictionName,
     ...currentCommunity.jurisdictionMatches,
-    ...(studentCampus ? [studentCampus.primaryJurisdictionName, ...studentCampus.jurisdictionMatches] : []),
   ]);
   const communityMatches = new Set<string>([
     currentCommunity.id,
     "nevada",
     "united-states",
-    ...(studentCampus ? [studentCampus.id] : []),
   ]);
 
   return elections
@@ -185,7 +233,6 @@ function buildUpcomingElectionItems(
   elections: ElectionSummary[],
   currentCommunity: CommunitySummary,
   user: AuthUser,
-  studentCampus: CommunitySummary | null,
 ) {
   return elections.map((election) => {
     const milestone = getNextElectionMilestone(election);
@@ -206,7 +253,7 @@ function buildUpcomingElectionItems(
       dateLabel: formatElectionDate(election.electionDate),
       countdownLabel: `${milestone.label} · ${formatDaysAway(milestone.date ?? election.electionDate)}`,
       milestoneLabel: milestone.label,
-      relevanceNote: getElectionRelevanceNote(election, currentCommunity, user, studentCampus),
+      relevanceNote: getElectionRelevanceNote(election, currentCommunity, user),
       summary:
         election.ballotSummary ??
         "Open this election to compare candidates, review ballot items, and stay ahead of the next important deadline.",
@@ -245,6 +292,428 @@ function getFavoriteLabel(targetType: FavoriteTargetType) {
   }
 }
 
+function buildCoverageSections({
+  currentCommunity,
+  relationships,
+}: {
+  currentCommunity: CommunitySummary;
+  relationships: CommunityRelationshipBucket;
+}): CommunityCoverageSection[] {
+  const communityHref = `/my-community?communityId=${currentCommunity.id}`;
+  const counts = relationships.counts;
+
+  return [
+    {
+      id: "overview",
+      label: "Overview",
+      title: `${currentCommunity.name} overview`,
+      summary: currentCommunity.descriptor,
+      href: communityHref,
+      statusLabel: "Generated page ready",
+      hasData: true,
+    },
+    {
+      id: "officials",
+      label: "Officials",
+      title: "Representatives and offices",
+      summary: counts.officialActionRecords
+        ? `${counts.officialActionRecords} official action record${counts.officialActionRecords === 1 ? "" : "s"} currently link to this community.`
+        : "Official records are not fully ingested here yet. This section is ready for city, county, state, and federal source links.",
+      href: `/officials?communityId=${currentCommunity.id}`,
+      statusLabel: counts.officialActionRecords ? `${counts.officialActionRecords} linked` : "Source setup pending",
+      hasData: counts.officialActionRecords > 0,
+    },
+    {
+      id: "meetings",
+      label: "Meetings",
+      title: "Public meetings and votes",
+      summary: counts.meetings
+        ? `${counts.meetings} meeting record${counts.meetings === 1 ? "" : "s"} link to this community, including local records and statewide overlay items where relevant.`
+        : "Meeting ingestion is queued for this place. When source records exist, agendas, summaries, votes, and source links will appear here.",
+      href: communityHref,
+      statusLabel: counts.meetings ? `${counts.meetings} linked` : "Source setup pending",
+      hasData: counts.meetings > 0,
+    },
+    {
+      id: "voting-cards",
+      label: "Voting cards",
+      title: "Plain-language votes",
+      summary: counts.votingCards
+        ? `${counts.votingCards} voting card${counts.votingCards === 1 ? "" : "s"} link to this community from meeting agenda items and generated civic questions.`
+        : "Voting cards will appear when meeting actions can be turned into plain-language public questions.",
+      href: `/voting/all?communityId=${currentCommunity.id}`,
+      statusLabel: counts.votingCards ? `${counts.votingCards} linked` : "Source setup pending",
+      hasData: counts.votingCards > 0,
+    },
+    {
+      id: "elections",
+      label: "Elections",
+      title: "Elections and ballot items",
+      summary: counts.elections
+        ? `${counts.elections} election or candidate source record${counts.elections === 1 ? "" : "s"} link to this community.`
+        : "Election records are ready to attach from Nevada source imports. Candidate, ballot question, and result links will appear as data is reviewed.",
+      href: `/elections?view=all&state=nevada`,
+      statusLabel: counts.elections ? `${counts.elections} linked` : "Source setup pending",
+      hasData: counts.elections > 0,
+    },
+    {
+      id: "issues",
+      label: "Issues",
+      title: "Civic issues",
+      summary: counts.issues
+        ? `${counts.issues} source-backed issue hub${counts.issues === 1 ? "" : "s"} link to this community.`
+        : "Issue hubs are ready for community review requests, meeting links, cases, officials, and spending records as they are approved.",
+      href: `/issues?communityId=${currentCommunity.id}`,
+      statusLabel: counts.issues ? `${counts.issues} linked` : "Awaiting reviewed signals",
+      hasData: counts.issues > 0,
+    },
+    {
+      id: "court-cases",
+      label: "Court cases",
+      title: "Court cases",
+      summary: counts.courtCases
+        ? `${counts.courtCases} public case record${counts.courtCases === 1 ? "" : "s"} link through this community or statewide source coverage.`
+        : "Court case coverage will show reviewed public records only, with privacy screening and original court source links.",
+      href: `/cases?communityId=${currentCommunity.id}`,
+      statusLabel: counts.courtCases ? `${counts.courtCases} linked` : "Review queue pending",
+      hasData: counts.courtCases > 0,
+    },
+    {
+      id: "spending",
+      label: "Spending",
+      title: "Budget and spending",
+      summary: counts.spendingRecords
+        ? `${counts.spendingRecords} spending-related record${counts.spendingRecords === 1 ? "" : "s"} link to this community from agenda or campaign-finance sources.`
+        : "Spending data will appear from budgets, campaign finance, and meeting agenda items when source-backed records are available.",
+      href: `/services?communityId=${currentCommunity.id}`,
+      statusLabel: counts.spendingRecords ? `${counts.spendingRecords} linked` : "Source setup pending",
+      hasData: counts.spendingRecords > 0,
+    },
+    {
+      id: "projects",
+      label: "Projects",
+      title: "Public projects",
+      summary: counts.projects
+        ? `${counts.projects} project or capital-work record${counts.projects === 1 ? "" : "s"} link to this community. Inferred project records are marked for review.`
+        : "Project coverage will appear from capital plans, public works pages, budget records, and agenda items when source-backed records are available.",
+      href: communityHref,
+      statusLabel: counts.projects ? `${counts.projects} linked` : "Source setup pending",
+      hasData: counts.projects > 0,
+    },
+    {
+      id: "news",
+      label: "News",
+      title: "News and source updates",
+      summary: "News coverage will remain source-linked and contextual to civic records, not a generic social feed.",
+      href: `/explore?communityId=${currentCommunity.id}`,
+      statusLabel: "Backlog source setup",
+      hasData: false,
+    },
+  ];
+}
+
+function getLinkTypeLabel(record: CommunityRelationshipRecord) {
+  if (record.relationshipScope === "county") return "County link";
+  if (record.relationshipScope === "school_special_district") return "School / district link";
+  if (record.linkType === "federal_overlay" || record.relationshipScope === "federal_overlay") return "Federal overlay";
+  if (record.linkType === "direct") return "Direct link";
+  if (record.linkType === "statewide_overlay") return "Statewide overlay";
+  return "Inferred link";
+}
+
+function getRelationshipPriority(record: CommunityRelationshipRecord) {
+  if (record.relationshipScope === "direct_local" || record.linkType === "direct") return 1;
+  if (record.relationshipScope === "county") return 2;
+  if (record.relationshipScope === "school_special_district") return 3;
+  if (record.relationshipScope === "inferred_local" || record.linkType === "inferred") return 4;
+  if (record.relationshipScope === "statewide_overlay" || record.linkType === "statewide_overlay") return 5;
+  if (record.relationshipScope === "federal_overlay" || record.linkType === "federal_overlay") return 6;
+  return 7;
+}
+
+function getStoryTypePriority(record: CommunityRelationshipRecord) {
+  const timestamp = Date.parse(record.date ?? "");
+  const isUpcoming = Number.isFinite(timestamp) && timestamp > Date.now();
+  if (record.storyType === "vote" && isUpcoming) return 1;
+  if (record.storyType === "spending") return 2;
+  if (record.storyType === "issue") return 3;
+  if (record.storyType === "case") return 4;
+  if (record.storyType === "meeting" && isUpcoming) return 5;
+  if (record.storyType === "vote") return 6;
+  if (record.storyType === "meeting") return 7;
+  return 8;
+}
+
+function sortDashboardRecords(records: CommunityRelationshipRecord[]) {
+  return [...records].sort((left, right) => {
+    const priorityDiff = getRelationshipPriority(left) - getRelationshipPriority(right);
+    if (priorityDiff !== 0) return priorityDiff;
+    const reviewDiff = Number(left.needsReview) - Number(right.needsReview);
+    if (reviewDiff !== 0) return reviewDiff;
+    const leftConfidence = left.confidence ?? 0.65;
+    const rightConfidence = right.confidence ?? 0.65;
+    const confidenceDiff = rightConfidence - leftConfidence;
+    if (Math.abs(confidenceDiff) > 0.001) return confidenceDiff;
+    const leftDate = Date.parse(left.date ?? "");
+    const rightDate = Date.parse(right.date ?? "");
+    return (Number.isFinite(rightDate) ? rightDate : 0) - (Number.isFinite(leftDate) ? leftDate : 0);
+  });
+}
+
+function sortCivicStories(records: CommunityRelationshipRecord[]) {
+  return [...records].sort((left, right) => {
+    const relationshipDiff = getRelationshipPriority(left) - getRelationshipPriority(right);
+    if (relationshipDiff !== 0) return relationshipDiff;
+    const storyDiff = getStoryTypePriority(left) - getStoryTypePriority(right);
+    if (storyDiff !== 0) return storyDiff;
+    const reviewDiff = Number(left.needsReview) - Number(right.needsReview);
+    if (reviewDiff !== 0) return reviewDiff;
+    const confidenceDiff = (right.confidence ?? 0.65) - (left.confidence ?? 0.65);
+    if (Math.abs(confidenceDiff) > 0.001) return confidenceDiff;
+    return (Date.parse(right.date ?? "") || 0) - (Date.parse(left.date ?? "") || 0);
+  });
+}
+
+function getSourceBadges(record: CommunityRelationshipRecord) {
+  const badges = new Set<string>();
+  if (record.sourceUrl || record.sourcePath) badges.add("source-backed");
+  if (record.relationshipScope === "county") badges.add("county link");
+  else if (record.relationshipScope === "school_special_district") badges.add("school / district");
+  else if (record.linkType === "direct") badges.add("direct local");
+  else if (record.linkType === "inferred") badges.add("local inferred");
+  if (record.statewideOverlay || record.linkType === "statewide_overlay") badges.add("statewide overlay");
+  if (record.federalOverlay || record.linkType === "federal_overlay") badges.add("federal overlay");
+  if (record.needsReview) badges.add("needs review");
+  if (record.confidence !== null && record.confidence < 0.5) badges.add("low confidence");
+  return [...badges];
+}
+
+function getBadgeClassName(label: string) {
+  if (label === "source-backed" || label === "direct local") return "border-emerald-300/20 bg-emerald-500/10 text-emerald-200";
+  if (label === "statewide overlay") return "border-violet-300/20 bg-violet-500/10 text-violet-200";
+  if (label === "federal overlay") return "border-sky-300/20 bg-sky-500/10 text-sky-200";
+  if (label === "needs review" || label === "low confidence") return "border-amber-300/20 bg-amber-500/10 text-amber-200";
+  return "border-white/10 bg-white/5 text-slate-200";
+}
+
+function totalLocalDashboardRecords(relationships: CommunityRelationshipBucket) {
+  const dashboardDomains: CommunityRelationshipDomain[] = ["meetings", "votingCards", "issues", "courtCases", "spendingRecords", "projects", "elections", "officialActionRecords"];
+  return dashboardDomains.reduce((total, domain) => total + relationships.localCounts[domain], 0);
+}
+
+function getDestination(record: CommunityRelationshipRecord) {
+  if (record.href?.startsWith("http")) return { destinationHref: record.href, destinationKind: "source" as const };
+  if (record.href) return { destinationHref: record.href, destinationKind: "internal" as const };
+  if (record.sourceUrl) return { destinationHref: record.sourceUrl, destinationKind: "source" as const };
+  return { destinationHref: null, destinationKind: "missing" as const };
+}
+
+function getSourceOriginLabel(record: CommunityRelationshipRecord) {
+  if (record.sourcePath.includes("public-meeting-voting-cards")) return "voting cards";
+  if (record.sourcePath.includes("public-meetings") || record.sourcePath.includes("public-meeting-items")) return "imported meeting data";
+  if (record.sourcePath.includes("public-court") || record.sourcePath.includes("public-cases")) return "court cases";
+  if (record.sourcePath.includes("issues-runtime")) return "issues";
+  if (record.sourcePath.includes("nv-sos")) return "Nevada election/finance import";
+  if (record.sourcePath.includes("officials-runtime")) return "official action records";
+  return "generated relationships";
+}
+
+function getWhySeeingThis(record: CommunityRelationshipRecord, communityName: string, hasLocalData: boolean) {
+  const confidenceNote = record.needsReview
+    ? " It needs review before being treated as fully verified."
+    : record.confidence !== null && record.confidence < 0.5
+      ? " It is low confidence and should be checked against the source."
+      : "";
+
+  if (record.relationshipScope === "direct_local") return `Shown because this record is directly tied to ${communityName}.${confidenceNote}`;
+  if (record.relationshipScope === "county") return `Shown because this county-level record may affect residents of ${communityName}.${confidenceNote}`;
+  if (record.relationshipScope === "school_special_district") return `Shown because this school or special district record is tied to the local civic area.${confidenceNote}`;
+  if (record.relationshipScope === "statewide_overlay" || record.linkType === "statewide_overlay") {
+    return hasLocalData
+      ? `Shown because this statewide Nevada record may affect ${communityName}.${confidenceNote}`
+      : `Shown because statewide Nevada records are useful while local records for ${communityName} are still limited.${confidenceNote}`;
+  }
+  if (record.relationshipScope === "federal_overlay" || record.linkType === "federal_overlay") {
+    return hasLocalData
+      ? `Shown as a federal overlay because it may affect Nevada residents, including ${communityName}.${confidenceNote}`
+      : `Shown as a federal overlay because no local record is available yet.${confidenceNote}`;
+  }
+  return `Shown because this record was inferred from jurisdiction or public-body text tied to ${communityName}.${confidenceNote}`;
+}
+
+function getSourceAuditLabel(record: CommunityRelationshipRecord) {
+  const confidence = record.confidence === null ? "confidence unknown" : `${Math.round(record.confidence * 100)}% confidence`;
+  const sources = `${record.sourceCount} source${record.sourceCount === 1 ? "" : "s"}`;
+  const updated = formatNullableDate(record.sourceUpdatedAt ?? record.date) ?? "date pending";
+  return `${confidence} · ${sources} · updated ${updated} · ${getSourceOriginLabel(record)}`;
+}
+
+function makeDashboardItem(label: string, record: CommunityRelationshipRecord, communityName: string, hasLocalData: boolean): DashboardItem {
+  const destination = getDestination(record);
+  const storySummary = record.storySummary || `${getLinkTypeLabel(record)}${record.date ? ` · ${formatNullableDate(record.date) ?? "Date pending"}` : ""}`;
+  return {
+    id: `${label}-${record.id}-${record.linkType}`,
+    label,
+    storyType: record.storyType ?? label,
+    title: record.storyHeadline || record.title,
+    summary: storySummary,
+    whyItMatters: record.storyWhyItMatters || "This may affect residents, services, rules, oversight, or public resources.",
+    sourceLabel: record.storySourceLabel || "Source",
+    sourceDetail: record.storySourceDetail ?? null,
+    ...destination,
+    date: record.date,
+    whyLabel: getWhySeeingThis(record, communityName, hasLocalData),
+    sourceAuditLabel: getSourceAuditLabel(record),
+    record,
+  };
+}
+
+function getMostRecentRecord(records: CommunityRelationshipRecord[]) {
+  const now = Date.now();
+  return sortDashboardRecords(records)
+    .filter((record) => {
+      const timestamp = Date.parse(record.date ?? "");
+      return Number.isFinite(timestamp) && timestamp <= now;
+    })
+    .sort((left, right) => (Date.parse(right.date ?? "") || 0) - (Date.parse(left.date ?? "") || 0))[0] ?? null;
+}
+
+function getNextUpcomingRecord(records: CommunityRelationshipRecord[]) {
+  const now = Date.now();
+  return sortDashboardRecords(records)
+    .filter((record) => {
+      const timestamp = Date.parse(record.date ?? "");
+      return Number.isFinite(timestamp) && timestamp > now;
+    })
+    .sort((left, right) => (Date.parse(left.date ?? "") || 0) - (Date.parse(right.date ?? "") || 0))[0] ?? null;
+}
+
+function buildDashboardSections(relationships: CommunityRelationshipBucket, communityName: string): DashboardSection[] {
+  const hasLocalData = totalLocalDashboardRecords(relationships) > 0;
+  const recentMeeting = getMostRecentRecord(relationships.records.meetings);
+  const upcomingMeeting = getNextUpcomingRecord(relationships.records.meetings);
+  const overlayRecords = sortDashboardRecords([
+    ...relationships.records.votingCards,
+    ...relationships.records.issues,
+    ...relationships.records.courtCases,
+    ...relationships.records.spendingRecords,
+    ...relationships.records.projects,
+    ...relationships.records.elections,
+    ...relationships.records.officialActionRecords,
+  ]).filter((record) => record.statewideOverlay || record.federalOverlay || record.linkType === "statewide_overlay" || record.linkType === "federal_overlay");
+
+  return [
+    {
+      id: "meetings-now-next",
+      title: "Meetings",
+      emptyLabel: "Meeting records are queued for this community.",
+      items: [
+        recentMeeting ? makeDashboardItem("Most recent meeting", recentMeeting, communityName, hasLocalData) : null,
+        upcomingMeeting ? makeDashboardItem("Next upcoming meeting", upcomingMeeting, communityName, hasLocalData) : null,
+      ].filter((item): item is DashboardItem => Boolean(item)),
+    },
+    {
+      id: "voting-cards",
+      title: "Top voting cards",
+      emptyLabel: "Plain-language voting cards will appear after local agenda items are reviewed.",
+      items: sortDashboardRecords(relationships.records.votingCards).slice(0, 4).map((record) => makeDashboardItem("Voting card", record, communityName, hasLocalData)),
+    },
+    {
+      id: "issues",
+      title: "Active issues",
+      emptyLabel: "Issue hubs are ready for reviewed local signals.",
+      items: sortDashboardRecords(relationships.records.issues).slice(0, 3).map((record) => makeDashboardItem("Issue", record, communityName, hasLocalData)),
+    },
+    {
+      id: "court-cases",
+      title: "Recent court cases",
+      emptyLabel: "Reviewed public case records will appear here.",
+      items: sortDashboardRecords(relationships.records.courtCases).slice(0, 3).map((record) => makeDashboardItem("Court case", record, communityName, hasLocalData)),
+    },
+    {
+      id: "spending",
+      title: "Recent spending",
+      emptyLabel: "Budget, campaign-finance, and agenda-linked spending records will appear here.",
+      items: sortDashboardRecords(relationships.records.spendingRecords).slice(0, 3).map((record) => makeDashboardItem("Spending", record, communityName, hasLocalData)),
+    },
+    {
+      id: "projects",
+      title: "Projects and capital work",
+      emptyLabel: "No reviewed local project records currently available.",
+      items: sortDashboardRecords(relationships.records.projects).slice(0, 3).map((record) => makeDashboardItem("Project", record, communityName, hasLocalData)),
+    },
+    {
+      id: "overlays",
+      title: "Statewide and federal overlays",
+      emptyLabel: "No statewide or federal overlays are linked right now.",
+      items: overlayRecords.slice(0, 4).map((record) => makeDashboardItem(record.federalOverlay ? "Federal overlay" : "Statewide overlay", record, communityName, hasLocalData)),
+    },
+  ];
+}
+
+function buildPriorityStoryItems(relationships: CommunityRelationshipBucket, communityName: string) {
+  const hasLocalData = totalLocalDashboardRecords(relationships) > 0;
+  const records = [
+    ...relationships.records.votingCards,
+    ...relationships.records.spendingRecords,
+    ...relationships.records.issues,
+    ...relationships.records.courtCases,
+    ...relationships.records.meetings,
+    ...relationships.records.projects,
+  ];
+  const seen = new Set<string>();
+  return sortCivicStories(records)
+    .filter((record) => {
+      const key = `${record.id}-${record.linkType}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 8)
+    .map((record) => makeDashboardItem(record.storyType === "vote" ? "Vote" : record.storyType ? sentenceCaseLabel(record.storyType) : "Story", record, communityName, hasLocalData));
+}
+
+function sentenceCaseLabel(value: string) {
+  if (!value) return "Story";
+  return `${value[0]?.toUpperCase() ?? ""}${value.slice(1)}`;
+}
+
+function buildCoverageStats(relationships: CommunityRelationshipBucket) {
+  return [
+    { label: "Meetings", count: relationships.counts.meetings },
+    { label: "Voting cards", count: relationships.counts.votingCards },
+    { label: "Issues", count: relationships.counts.issues },
+    { label: "Court cases", count: relationships.counts.courtCases },
+    { label: "Spending", count: relationships.counts.spendingRecords },
+    { label: "Projects", count: relationships.counts.projects },
+    { label: "Elections", count: relationships.counts.elections },
+    { label: "Officials/actions", count: relationships.counts.officialActionRecords },
+  ];
+}
+
+function getRelationshipHighlights(relationships: CommunityRelationshipBucket): RelationshipHighlight[] {
+  const domains: Array<{ id: CommunityRelationshipDomain; label: string; title: string }> = [
+    { id: "votingCards", label: "Voting cards", title: "Plain-language government actions" },
+    { id: "issues", label: "Issues", title: "Source-backed issue hubs" },
+    { id: "meetings", label: "Meetings", title: "Public meetings" },
+    { id: "courtCases", label: "Court cases", title: "Public case records" },
+    { id: "spendingRecords", label: "Spending", title: "Budget and finance signals" },
+    { id: "projects", label: "Projects", title: "Public projects and capital work" },
+    { id: "elections", label: "Elections", title: "Election and candidate records" },
+    { id: "officialActionRecords", label: "Officials", title: "Official action records" },
+  ];
+
+  return domains
+    .map((domain) => ({
+      ...domain,
+      totalCount: relationships.counts[domain.id],
+      localCount: relationships.localCounts[domain.id],
+      statewideOverlayCount: relationships.statewideOverlayCounts[domain.id],
+      records: relationships.records[domain.id].slice(0, 3),
+    }))
+    .filter((domain) => domain.totalCount > 0);
+}
+
 async function loadCommunityDataset<T>(label: string, promise: Promise<T>, fallback: T): Promise<T> {
   try {
     return await promise;
@@ -259,8 +728,6 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
   const params = searchParams ? await searchParams : undefined;
   const selectedCommunityId = params?.communityId ?? getDefaultCommunityForUser(user).id;
   const currentCommunity = getCommunityById(selectedCommunityId) ?? getDefaultCommunityForUser(user);
-  const studentCampus =
-    user.studentVerified && user.studentCampusCommunityId ? (getCommunityById(user.studentCampusCommunityId) ?? null) : null;
 
   const [
     elections,
@@ -277,6 +744,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
     cases,
     organizations,
     meetingSummary,
+    relationships,
   ] = await Promise.all([
     loadCommunityDataset("elections", getElectionSummaries(), []),
     loadCommunityDataset("favorites", getFavoritesForUser(user.id), []),
@@ -307,13 +775,27 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
       recent_decisions: [],
       open_questions: [],
       recently_approved_spending: [],
+      public_cases: [],
       public_comment_opportunities: [],
       last_updated_at: null,
     }),
+    loadCommunityDataset("community relationships", getCommunityRelationships(selectedCommunityId, currentCommunity.name), emptyCommunityRelationshipBucket(selectedCommunityId, currentCommunity.name)),
   ]);
 
-  const upcomingElections = getUpcomingElectionsForUser(elections, currentCommunity, user, studentCampus);
-  const upcomingElectionItems = buildUpcomingElectionItems(upcomingElections, currentCommunity, user, studentCampus);
+  const upcomingElections = getUpcomingElectionsForUser(elections, currentCommunity, user);
+  const upcomingElectionItems = buildUpcomingElectionItems(upcomingElections, currentCommunity, user);
+  const coverageSections = buildCoverageSections({
+    currentCommunity,
+    relationships,
+  });
+  const relationshipHighlights = getRelationshipHighlights(relationships);
+  const dashboardSections = buildDashboardSections(relationships, currentCommunity.name);
+  const priorityStoryItems = buildPriorityStoryItems(relationships, currentCommunity.name);
+  const coverageStats = buildCoverageStats(relationships);
+  const localDashboardRecordCount = totalLocalDashboardRecords(relationships);
+  const hasLimitedLocalData = localDashboardRecordCount < 5;
+  const hasOnlyOverlayData = localDashboardRecordCount === 0 && relationships.linkCounts.statewideOverlay + (relationships.linkCounts.federalOverlay ?? 0) > 0;
+  const lastGeneratedLabel = formatNullableDate(relationships.generatedAt) ?? "Not generated yet";
 
   const favoriteItems = favoriteRecords
     .map((record): HomeFavoriteItem | null => {
@@ -511,9 +993,299 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
+            eyebrow="What's happening here"
+            title={`${currentCommunity.name} civic dashboard`}
+            description="Local records are shown first, followed by county, statewide, and federal overlays when they affect this community."
+          />
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-slate-300">
+            <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Last generated</span>
+            <span className="mt-1 block font-semibold text-slate-100">{lastGeneratedLabel}</span>
+          </div>
+        </div>
+
+        {hasLimitedLocalData ? (
+          <div className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
+            We do not have many local records for this community yet, so we are showing county, statewide, and federal civic activity that may still affect residents here.
+            {hasOnlyOverlayData
+              ? " Local meetings, voting cards, officials, elections, court cases, and spending records are still being connected."
+              : " The local records we do have are prioritized first, with broader records shown below them."}
+          </div>
+        ) : null}
+
+        <div className="mt-6 grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="grid gap-4 lg:grid-cols-2">
+            {priorityStoryItems.length ? (
+              <article className="rounded-[1.35rem] border border-cyan-300/20 bg-cyan-500/10 p-4 lg:col-span-2">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Pay attention first</p>
+                    <h2 className="mt-2 text-base font-semibold text-slate-50">Most important civic stories</h2>
+                  </div>
+                  <span className="rounded-full border border-white/10 bg-black/15 px-3 py-1 text-xs font-semibold text-slate-300">
+                    Local, county, state, federal
+                  </span>
+                </div>
+                <div className="mt-4 grid gap-3 md:grid-cols-2">
+                  {priorityStoryItems.map((item) => {
+                    const destinationLabel = item.destinationKind === "source" ? "Source" : item.destinationKind === "internal" ? "Open" : "No destination yet";
+                    const content = (
+                      <>
+                        <div className="flex flex-wrap gap-2">
+                          <span className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyan-200">
+                            {item.label}
+                          </span>
+                          {getSourceBadges(item.record).map((badge) => (
+                            <span
+                              key={`${item.id}-${badge}`}
+                              className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${getBadgeClassName(badge)}`}
+                            >
+                              {badge}
+                            </span>
+                          ))}
+                        </div>
+                        <h3 className="mt-2 line-clamp-2 text-sm font-semibold text-slate-50">{item.title}</h3>
+                        <p className="mt-2 text-xs leading-5 text-slate-300">{item.summary}</p>
+                        <p className="mt-2 text-xs leading-5 text-slate-400">Why it matters: {item.whyItMatters}</p>
+                        <p className="mt-2 text-xs leading-5 text-slate-500">Source: {item.sourceDetail ?? item.sourceLabel}</p>
+                        <span className="mt-3 inline-flex text-xs font-semibold text-cyan-200">{destinationLabel}</span>
+                      </>
+                    );
+                    return item.destinationHref && item.destinationKind === "internal" ? (
+                      <Link
+                        key={item.id}
+                        href={item.destinationHref}
+                        className="block rounded-2xl border border-white/10 bg-black/15 p-3 transition hover:border-cyan-300/30 hover:bg-white/[0.06]"
+                      >
+                        {content}
+                      </Link>
+                    ) : item.destinationHref ? (
+                      <a
+                        key={item.id}
+                        href={item.destinationHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block rounded-2xl border border-white/10 bg-black/15 p-3 transition hover:border-cyan-300/30 hover:bg-white/[0.06]"
+                      >
+                        {content}
+                      </a>
+                    ) : (
+                      <div key={item.id} className="rounded-2xl border border-white/10 bg-black/15 p-3">
+                        {content}
+                      </div>
+                    );
+                  })}
+                </div>
+              </article>
+            ) : null}
+
+            {dashboardSections.map((section) => (
+              <article key={section.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+                <h2 className="text-base font-semibold text-slate-50">{section.title}</h2>
+                {section.items.length ? (
+                  <div className="mt-4 space-y-3">
+                    {section.items.map((item) => {
+                      const content = (
+                        <>
+                          <div className="flex flex-wrap gap-2">
+                            <span className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyan-200">
+                              {item.label}
+                            </span>
+                            {getSourceBadges(item.record).map((badge) => (
+                              <span
+                                key={`${item.id}-${badge}`}
+                                className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${getBadgeClassName(badge)}`}
+                              >
+                                {badge}
+                              </span>
+                            ))}
+                          </div>
+                          <h3 className="mt-2 line-clamp-2 text-sm font-semibold text-slate-50">{item.title}</h3>
+                          <p className="mt-1 text-xs leading-5 text-slate-400">{item.summary}</p>
+                          <p className="mt-2 text-xs leading-5 text-slate-300">Why it matters: {item.whyItMatters}</p>
+                          <p className="mt-2 text-xs leading-5 text-slate-300">Why am I seeing this? {item.whyLabel}</p>
+                          <p className="mt-2 text-xs leading-5 text-slate-500">Source: {item.sourceDetail ?? item.sourceLabel}</p>
+                          <p className="mt-2 text-xs leading-5 text-slate-500">{item.sourceAuditLabel}</p>
+                        </>
+                      );
+
+                      const destinationLabel = item.destinationKind === "source" ? "Source" : item.destinationKind === "internal" ? "Open" : "No destination yet";
+
+                      return item.destinationHref && item.destinationKind === "internal" ? (
+                        <Link
+                          key={item.id}
+                          href={item.destinationHref}
+                          className="block rounded-2xl border border-white/10 bg-black/10 p-3 transition hover:border-cyan-300/20 hover:bg-white/[0.06]"
+                        >
+                          {content}
+                          <span className="mt-3 inline-flex text-xs font-semibold text-cyan-200">{destinationLabel}</span>
+                        </Link>
+                      ) : item.destinationHref ? (
+                        <a
+                          key={item.id}
+                          href={item.destinationHref}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="block rounded-2xl border border-white/10 bg-black/10 p-3 transition hover:border-cyan-300/20 hover:bg-white/[0.06]"
+                        >
+                          {content}
+                          <span className="mt-3 inline-flex text-xs font-semibold text-cyan-200">{destinationLabel}</span>
+                        </a>
+                      ) : (
+                        <div key={item.id} className="rounded-2xl border border-white/10 bg-black/10 p-3">
+                          {content}
+                          <span className="mt-3 inline-flex text-xs font-semibold text-amber-200">{destinationLabel}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="mt-4 rounded-2xl border border-white/10 bg-black/10 p-3 text-sm leading-6 text-slate-400">{section.emptyLabel}</p>
+                )}
+              </article>
+            ))}
+          </div>
+
+          <aside className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Data coverage</p>
+              <h2 className="mt-2 text-base font-semibold text-slate-50">Linked records</h2>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                {localDashboardRecordCount} local records · {relationships.linkCounts.statewideOverlay} statewide overlays
+              </p>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {coverageStats.map((stat) => (
+                <div key={stat.label} className="rounded-2xl border border-white/10 bg-black/10 p-3">
+                  <p className="text-2xl font-semibold text-slate-50">{stat.count}</p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+        <SectionHeading
+          eyebrow="Nevada Coverage"
+          title="Community sections"
+          description="Every Nevada community page stays navigable while source ingestion fills in officials, meetings, elections, issues, cases, spending, and news."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {coverageSections.map((section) => (
+            <Link
+              key={section.id}
+              href={section.href}
+              className="flex min-h-[210px] flex-col justify-between rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/20 hover:bg-white/[0.06]"
+            >
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{section.label}</p>
+                  <span
+                    className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] ${
+                      section.hasData
+                        ? "border border-emerald-300/20 bg-emerald-500/10 text-emerald-200"
+                        : "border border-amber-300/20 bg-amber-500/10 text-amber-200"
+                    }`}
+                  >
+                    {section.statusLabel}
+                  </span>
+                </div>
+                <h2 className="mt-3 text-base font-semibold text-slate-50">{section.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{section.summary}</p>
+              </div>
+              <span className="mt-4 text-sm font-semibold text-cyan-200">Open section</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading
+            eyebrow="Relationship Map"
+            title="Linked civic records"
+            description="These records come from the generated Nevada relationship index, with direct, inferred, statewide overlay, and review status shown on each item."
+          />
+          <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.14em]">
+            <span className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-3 py-1 text-cyan-200">
+              {relationships.linkCounts.inferred} inferred
+            </span>
+            <span className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-3 py-1 text-emerald-200">
+              {relationships.linkCounts.direct} direct
+            </span>
+            <span className="rounded-full border border-violet-300/20 bg-violet-500/10 px-3 py-1 text-violet-200">
+              {relationships.linkCounts.statewideOverlay} statewide
+            </span>
+          </div>
+        </div>
+
+        {relationshipHighlights.length ? (
+          <div className="mt-6 grid gap-4 lg:grid-cols-2">
+            {relationshipHighlights.map((section) => (
+              <article key={section.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{section.label}</p>
+                    <h2 className="mt-2 text-base font-semibold text-slate-50">{section.title}</h2>
+                    <p className="mt-2 text-sm text-slate-400">
+                      {section.localCount} local · {section.statewideOverlayCount} statewide overlay · {section.totalCount} total
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-4 space-y-3">
+                  {section.records.map((record) => {
+                    const content = (
+                      <>
+                        <div className="flex flex-wrap gap-2">
+                          {getSourceBadges(record).map((badge) => (
+                            <span
+                              key={`${section.id}-${record.id}-${badge}`}
+                              className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${getBadgeClassName(badge)}`}
+                            >
+                              {badge}
+                            </span>
+                          ))}
+                        </div>
+                        <h3 className="mt-2 line-clamp-2 text-sm font-semibold text-slate-50">{record.title}</h3>
+                        <p className="mt-1 text-xs text-slate-500">
+                          {record.confidence === null ? "Confidence unknown" : `Confidence ${Math.round(record.confidence * 100)}%`}
+                          {record.date ? ` · ${formatNullableDate(record.date) ?? "Date pending"}` : ""}
+                        </p>
+                      </>
+                    );
+
+                    return record.href ? (
+                      <Link
+                        key={`${section.id}-${record.id}-${record.linkType}`}
+                        href={record.href}
+                        className="block rounded-2xl border border-white/10 bg-white/[0.03] p-3 transition hover:border-cyan-300/20 hover:bg-white/[0.06]"
+                      >
+                        {content}
+                      </Link>
+                    ) : (
+                      <div key={`${section.id}-${record.id}-${record.linkType}`} className="rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+                        {content}
+                      </div>
+                    );
+                  })}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
+            No relationship-map records are linked to this community yet.
+          </div>
+        )}
+      </section>
+
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading
             eyebrow="Upcoming Elections"
             title="Upcoming Elections"
-            description="The next election, deadline, or ballot moment tied to your local, county, state, campus, and national civic life."
+            description="The next election, deadline, or ballot moment tied to your local, county, state, and national civic life."
           />
           <Link
             href={`/who-represents-me?community=${selectedCommunityId}`}

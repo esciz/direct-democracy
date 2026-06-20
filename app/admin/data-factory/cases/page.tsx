@@ -1,4 +1,6 @@
 import Link from "next/link";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { redirect } from "next/navigation";
 
 import { CivicRecordReviewStatus } from "@prisma/client";
@@ -8,6 +10,30 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/server/auth-session";
 
 export const dynamic = "force-dynamic";
+
+const COURT_CASE_MANIFEST_PATH = path.join(process.cwd(), "data/manual-sources/court-cases/reviewed-public-cases/manifest.json");
+const COURT_CASE_REPORT_PATH = path.join(process.cwd(), "data/generated/public-court-cases-report.json");
+
+type CourtCaseManifestRecord = {
+  id?: string;
+  caption?: string | null;
+  caseNumber?: string | null;
+  courtName?: string | null;
+  sourceUrl?: string | null;
+  sourceFile?: string | null;
+  reviewStatus?: string | null;
+  publicVisibilityStatus?: string | null;
+  exclusionReason?: string | null;
+  notes?: string | null;
+};
+
+async function readJsonFile<T>(filePath: string, fallback: T): Promise<T> {
+  try {
+    return JSON.parse(await fs.readFile(filePath, "utf8")) as T;
+  } catch {
+    return fallback;
+  }
+}
 
 function formatDate(value: Date | null) {
   return value ? new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(value) : "Not checked";
@@ -23,7 +49,7 @@ export default async function CasesDataFactoryPage() {
     redirect("/profile");
   }
 
-  const [sources, recentRuns, pendingCases, privacyWarnings, pendingDocuments, duplicateCaseNumbers, staleCases] = await Promise.all([
+  const [sources, recentRuns, pendingCases, privacyWarnings, pendingDocuments, duplicateCaseNumbers, staleCases, manifest, runtimeReport] = await Promise.all([
     prisma.courtJurisdiction.findMany({
       include: { source: true, _count: { select: { cases: true } } },
       orderBy: [{ level: "asc" }, { name: "asc" }],
@@ -67,7 +93,10 @@ export default async function CasesDataFactoryPage() {
       orderBy: { lastCheckedAt: "asc" },
       take: 25,
     }),
+    readJsonFile<{ records?: CourtCaseManifestRecord[] }>(COURT_CASE_MANIFEST_PATH, { records: [] }),
+    readJsonFile<{ counts?: Record<string, number>; runtimePath?: string; exclusions?: Array<Record<string, unknown>> }>(COURT_CASE_REPORT_PATH, {}),
   ]);
+  const manifestRecords = Array.isArray(manifest.records) ? manifest.records : [];
 
   return (
     <div className="space-y-6 py-8">
@@ -100,6 +129,46 @@ export default async function CasesDataFactoryPage() {
             <p className="mt-3 text-3xl font-semibold text-slate-50">{value}</p>
           </div>
         ))}
+      </section>
+
+      <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 className="text-lg font-semibold text-slate-50">Reviewed public manifest lane</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-400">
+              Manual source records must be reviewed as public before they are written to the public court-case runtime.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <StatusBadge value={`${manifestRecords.length} manifest rows`} />
+            <StatusBadge value={`${runtimeReport.counts?.reviewedPublic ?? 0} public runtime`} />
+            <StatusBadge value={`${runtimeReport.counts?.excluded ?? 0} excluded`} />
+          </div>
+        </div>
+        <div className="mt-4 grid gap-3 lg:grid-cols-2">
+          {manifestRecords.slice(0, 8).map((record) => (
+            <div key={record.id ?? record.caseNumber ?? record.caption} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="text-sm font-semibold text-slate-100">{record.caption ?? "Caption pending"}</p>
+                  <p className="mt-1 text-xs text-slate-500">{record.courtName ?? "Court pending"} · {record.caseNumber ?? "Case number pending"}</p>
+                </div>
+                <StatusBadge value={`${record.reviewStatus ?? "needs_review"} / ${record.publicVisibilityStatus ?? "visibility_pending"}`} />
+              </div>
+              {record.exclusionReason ? <p className="mt-3 text-xs font-semibold text-amber-200">Excluded: {record.exclusionReason}</p> : null}
+              {record.notes ? <p className="mt-3 text-sm leading-6 text-slate-400">{record.notes}</p> : null}
+              <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
+                {record.sourceUrl ? (
+                  <a href={record.sourceUrl} target="_blank" rel="noreferrer" className="break-all text-cyan-200">
+                    Official source
+                  </a>
+                ) : null}
+                {record.sourceFile ? <span className="text-slate-500">Local file: {record.sourceFile}</span> : null}
+              </div>
+            </div>
+          ))}
+          {!manifestRecords.length ? <p className="text-sm text-slate-400">No reviewed public manifest rows yet.</p> : null}
+        </div>
       </section>
 
       <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">

@@ -16,7 +16,6 @@ import { getVisibilityOverrides } from "@/lib/profile/visibility";
 import { FAVORITE_SPOT_CATEGORY_OPTIONS } from "@/lib/profile/options";
 import { getFollowState } from "@/lib/social/follows";
 import { getAllCreditBoosts, getCreditBalance } from "@/lib/engagement/credits";
-import { getStudentModeState } from "@/lib/server/auth-verification";
 import type {
   AuthUser,
   FavoriteSpotSummary,
@@ -108,7 +107,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_alicia_2", name: "Kings Canyon Trail", category: "hikeOutdoor", createdAt: "2026-03-01T08:05:00.000Z" },
       { id: "spot_alicia_3", name: "Brewery Arts Center", category: "museumCulture", createdAt: "2026-03-01T08:10:00.000Z" },
     ],
-    favoriteClasses: [],
     groupTags: [entry("Parent"), entry("Educator"), entry("Downtown", true)],
     background: {
       profession: "Teacher",
@@ -123,7 +121,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { platform: "website", url: "https://aliciahart.example.com" },
       { platform: "linkedin", url: "https://www.linkedin.com/in/alicia-hart" },
     ],
-    campusCommunityIds: ["wnc-campus"],
     recentVotesPublic: false,
     bookmarkedScopes: ["local", "state"],
   },
@@ -140,7 +137,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_miles_2", name: "Hunter Creek Trail", category: "hikeOutdoor", createdAt: "2026-03-01T09:05:00.000Z" },
       { id: "spot_miles_3", name: "Idlewild Park", category: "park", createdAt: "2026-03-01T09:10:00.000Z" },
     ],
-    favoriteClasses: [],
     groupTags: [entry("Outdoor Enthusiast"), entry("Small Business"), entry("Transit", true)],
     background: {
       profession: "Business owner",
@@ -155,7 +151,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { platform: "website", url: "https://milesreed.example.com" },
       { platform: "instagram", url: "https://www.instagram.com/miles.reed" },
     ],
-    campusCommunityIds: [],
     recentVotesPublic: true,
     bookmarkedScopes: ["local"],
   },
@@ -172,15 +167,13 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_tiana_2", name: "Avid Reader", category: "coffeeShop", createdAt: "2026-03-01T10:05:00.000Z" },
       { id: "spot_tiana_3", name: "Rancho San Rafael", category: "park", createdAt: "2026-03-01T10:10:00.000Z" },
     ],
-    favoriteClasses: [entry("Political Science"), entry("Public Policy"), entry("Civic Media", true)],
-    groupTags: [entry("Education", true), entry("Student"), entry("Civic Tech", true)],
+    groupTags: [entry("Education", true), entry("Civic Tech", true)],
     background: emptyBackground(),
-    identityTags: [tagEntry("community", "Student", true), tagEntry("interests", "Civic tech", true, true)],
+    identityTags: [tagEntry("interests", "Civic tech", true, true)],
     externalLinks: [
       { platform: "x", url: "https://x.com/tianamoore" },
       { platform: "newsletter", url: "https://tianamoore.substack.com" },
     ],
-    campusCommunityIds: ["unr-campus"],
     recentVotesPublic: true,
     bookmarkedScopes: ["state", "national"],
   },
@@ -197,7 +190,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_marco_2", name: "Nevada State Museum", category: "museumCulture", createdAt: "2026-03-01T11:05:00.000Z" },
       { id: "spot_marco_3", name: "Curry Street Café", category: "restaurant", createdAt: "2026-03-01T11:10:00.000Z" },
     ],
-    favoriteClasses: [],
     groupTags: [entry("Parent"), entry("Budget Watch", true), entry("Volunteer")],
     background: {
       profession: "Budget analyst",
@@ -212,7 +204,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { platform: "website", url: "https://marcosilva.example.com" },
       { platform: "youtube", url: "https://www.youtube.com/@marco-silva" },
     ],
-    campusCommunityIds: [],
     recentVotesPublic: true,
     bookmarkedScopes: ["local", "state"],
   },
@@ -229,7 +220,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_hannah_2", name: "Truckee River Walk", category: "park", createdAt: "2026-03-01T12:05:00.000Z" },
       { id: "spot_hannah_3", name: "Bibo Coffee", category: "coffeeShop", createdAt: "2026-03-01T12:10:00.000Z" },
     ],
-    favoriteClasses: [],
     groupTags: [entry("Volunteer"), entry("Housing", true), entry("Neighborhoods", true)],
     background: {
       profession: "Urban planner",
@@ -244,7 +234,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { platform: "linkedin", url: "https://www.linkedin.com/in/hannah-cho" },
       { platform: "instagram", url: "https://www.instagram.com/hannah.cho" },
     ],
-    campusCommunityIds: ["unr-campus"],
     recentVotesPublic: true,
     bookmarkedScopes: ["local", "state"],
   },
@@ -261,7 +250,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_sofia_2", name: "Old World Coffee Lab", category: "coffeeShop", createdAt: "2026-03-01T13:05:00.000Z" },
       { id: "spot_sofia_3", name: "Wingfield Park", category: "park", createdAt: "2026-03-01T13:10:00.000Z" },
     ],
-    favoriteClasses: [],
     groupTags: [entry("Housing", true), entry("Education", true), entry("Volunteer")],
     background: emptyBackground(),
     identityTags: [],
@@ -270,7 +258,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { platform: "facebook", url: "https://www.facebook.com/sofia-bennett" },
       { platform: "x", url: "https://x.com/sofia_bennett" },
     ],
-    campusCommunityIds: [],
     recentVotesPublic: true,
     bookmarkedScopes: ["state", "national"],
   },
@@ -287,7 +274,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_owen_2", name: "Mills Park", category: "park", createdAt: "2026-03-01T14:05:00.000Z" },
       { id: "spot_owen_3", name: "Carson Coffee", category: "coffeeShop", createdAt: "2026-03-01T14:10:00.000Z" },
     ],
-    favoriteClasses: [],
     groupTags: [entry("Parent"), entry("Educator"), entry("Coaches", true)],
     background: emptyBackground(),
     identityTags: [],
@@ -295,7 +281,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { platform: "website", url: "https://campaign.example.com/owen-castillo" },
       { platform: "facebook", url: "https://www.facebook.com/owen-castillo" },
     ],
-    campusCommunityIds: ["wnc-campus"],
     recentVotesPublic: true,
     bookmarkedScopes: ["local", "state"],
   },
@@ -303,21 +288,19 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
     userId: "user_candidate_jasmine_kim",
     profileImageUrl: defaultProfileImageUrl("user_candidate_jasmine_kim"),
     bannerImageUrl: defaultBannerImageUrl("user_candidate_jasmine_kim"),
-    primaryCommunityId: "unr-campus",
-    localIssues: [entry("Late-night transit", true), entry("Campus housing", true), entry("Student budgets", true)],
+    primaryCommunityId: "reno",
+    localIssues: [entry("Transit reliability", true), entry("Housing affordability", true), entry("Budget clarity", true)],
     stateIssues: [entry("Education funding"), entry("Public meeting access", true), entry("Cost of living", true)],
-    nationalIssues: [entry("Student debt", true), entry("Housing affordability"), entry("Public trust", true)],
+    nationalIssues: [entry("Housing affordability"), entry("Public trust", true)],
     favoriteSpots: [
       { id: "spot_jasmine_1", name: "KC Plaza", category: "coffeeShop", createdAt: "2026-03-02T10:00:00.000Z" },
       { id: "spot_jasmine_2", name: "The Joe", category: "restaurant", createdAt: "2026-03-02T10:05:00.000Z" },
       { id: "spot_jasmine_3", name: "Manzanita Bowl", category: "park", createdAt: "2026-03-02T10:10:00.000Z" },
     ],
-    favoriteClasses: [entry("Public Policy"), entry("Economics"), entry("Urban Planning", true)],
-    groupTags: [entry("Student"), entry("Transit", true), entry("Affordability", true)],
+    groupTags: [entry("Transit", true), entry("Affordability", true)],
     background: emptyBackground(),
-    identityTags: [tagEntry("community", "Student", true), tagEntry("interests", "Transit", true)],
+    identityTags: [tagEntry("interests", "Transit", true)],
     externalLinks: [{ platform: "instagram", url: "https://www.instagram.com/jasminekim" }],
-    campusCommunityIds: ["unr-campus"],
     recentVotesPublic: true,
     bookmarkedScopes: ["local", "state"],
   },
@@ -325,8 +308,8 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
     userId: "user_candidate_noah_brooks",
     profileImageUrl: defaultProfileImageUrl("user_candidate_noah_brooks"),
     bannerImageUrl: defaultBannerImageUrl("user_candidate_noah_brooks"),
-    primaryCommunityId: "unr-campus",
-    localIssues: [entry("Student org funding", true), entry("Campus safety", true), entry("Housing pressure", true)],
+    primaryCommunityId: "reno",
+    localIssues: [entry("Government transparency", true), entry("Public safety", true), entry("Housing affordability", true)],
     stateIssues: [entry("Education funding"), entry("Government transparency", true), entry("Mental health access", true)],
     nationalIssues: [entry("Housing affordability"), entry("Belonging", true), entry("Public trust", true)],
     favoriteSpots: [
@@ -334,12 +317,10 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_noah_2", name: "Hub Coffee", category: "coffeeShop", createdAt: "2026-03-02T11:05:00.000Z" },
       { id: "spot_noah_3", name: "Peccole Park", category: "activityEntertainment", createdAt: "2026-03-02T11:10:00.000Z" },
     ],
-    favoriteClasses: [entry("Journalism"), entry("History"), entry("Student Leadership", true)],
-    groupTags: [entry("Student"), entry("Campus Clubs", true), entry("Housing", true)],
+    groupTags: [entry("Housing", true)],
     background: emptyBackground(),
-    identityTags: [tagEntry("community", "Student", true), tagEntry("interests", "Housing", true)],
+    identityTags: [tagEntry("interests", "Housing", true)],
     externalLinks: [{ platform: "x", url: "https://x.com/noahbrooks" }],
-    campusCommunityIds: ["unr-campus"],
     recentVotesPublic: true,
     bookmarkedScopes: ["local", "state"],
   },
@@ -356,7 +337,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { id: "spot_elena_2", name: "The Fox Brewpub", category: "restaurant", createdAt: "2026-03-01T15:05:00.000Z" },
       { id: "spot_elena_3", name: "Kings Canyon Trail", category: "hikeOutdoor", createdAt: "2026-03-01T15:10:00.000Z" },
     ],
-    favoriteClasses: [],
     groupTags: [entry("Volunteer"), entry("Housing", true), entry("City Government", true)],
     background: emptyBackground(),
     identityTags: [],
@@ -364,7 +344,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { platform: "website", url: "https://campaign.example.com/elena-ramirez" },
       { platform: "facebook", url: "https://www.facebook.com/elena.ramirez" },
     ],
-    campusCommunityIds: [],
     recentVotesPublic: true,
     bookmarkedScopes: ["local", "state"],
   },
@@ -388,7 +367,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
       { platform: "website", url: "https://campaign.example.com/david-park" },
       { platform: "linkedin", url: "https://www.linkedin.com/in/david-park" },
     ],
-    campusCommunityIds: [],
     recentVotesPublic: true,
     bookmarkedScopes: ["local", "state"],
   },
@@ -409,7 +387,6 @@ const seededUserProfileContent: UserProfileContentSummary[] = [
     background: emptyBackground(),
     identityTags: [],
     externalLinks: [{ platform: "website", url: "https://rileymorgan.example.com" }],
-    campusCommunityIds: [],
     recentVotesPublic: false,
     bookmarkedScopes: ["local", "state", "national"],
   },
@@ -482,13 +459,10 @@ function isProfileContent(value: unknown): value is UserProfileContentSummary {
     Array.isArray(profile.localIssues) &&
     Array.isArray(profile.stateIssues) &&
     Array.isArray(profile.nationalIssues) &&
-    (typeof profile.favoriteClasses === "undefined" ||
-      (Array.isArray(profile.favoriteClasses) && (profile.favoriteClasses as unknown[]).every(isStructuredProfileValue))) &&
     Array.isArray(profile.groupTags) &&
     isProfileBackground(profile.background) &&
     Array.isArray(profile.identityTags) &&
     (typeof profile.externalLinks === "undefined" || Array.isArray(profile.externalLinks)) &&
-    Array.isArray(profile.campusCommunityIds) &&
     typeof profile.recentVotesPublic === "boolean" &&
     Array.isArray(profile.bookmarkedScopes) &&
     Array.isArray(profile.favoriteSpots) &&
@@ -603,12 +577,10 @@ export async function getUserProfileContent(userId: string): Promise<UserProfile
       stateIssues: [],
       nationalIssues: [],
       favoriteSpots: [],
-      favoriteClasses: [],
       groupTags: [],
       background: emptyBackground(),
       identityTags: [],
       externalLinks: [],
-      campusCommunityIds: [],
       recentVotesPublic: false,
       bookmarkedScopes: ["local"],
     },
@@ -722,7 +694,6 @@ export async function getPublicCitizenProfileDetail(viewer: AuthUser, userId: st
     getCreditBalance(user.id),
     getPublicEndorsementsForUser(user.id),
   ]);
-  const studentMode = await getStudentModeState(user.id);
   const reputation = await getUserReputationSignals(user.id, { baseFollowerCount: user.followerCount });
   const localIssueValues = content.localIssues.map(getStructuredValueText);
   const stateIssueValues = content.stateIssues.map(getStructuredValueText);
@@ -767,17 +738,8 @@ export async function getPublicCitizenProfileDetail(viewer: AuthUser, userId: st
     },
     topIssuesPreview: [...localIssueValues.slice(0, 1), ...stateIssueValues.slice(0, 1)],
     favoriteSpots: content.favoriteSpots,
-    studentProfile:
-      studentMode?.enabled && studentMode.verified
-        ? {
-            studentVerified: true,
-            campusName: getCommunityById(studentMode.campusCommunityId ?? content.campusCommunityIds[0] ?? "")?.name ?? null,
-            favoriteClasses: (content.favoriteClasses ?? []).map(getStructuredValueText),
-          }
-        : null,
     groupTags: groupTagValues,
     groupAffiliations: getCommunityGroupsForUser(user.id),
-    campusCommunityIds: content.campusCommunityIds,
     background: {
       profession: content.background.professionPublic ? content.background.profession || null : null,
       experience: content.background.experiencePublic ? content.background.experience || null : null,
@@ -833,7 +795,7 @@ export async function getTopVoices(
     visibleUsers.map(async (user) => {
       const content = await getUserProfileContent(user.id);
 
-      if (!userContentMatchesCommunity(communityId, user, content)) {
+      if (!userContentMatchesCommunity(communityId, user)) {
         return null;
       }
 
@@ -888,7 +850,6 @@ export async function getTopVoices(
         topIssuesPreview,
         groupTags: groupTagValues,
         groupAffiliations,
-        campusCommunityIds: content.campusCommunityIds,
         boostCount,
         badgeLabel: options?.issueText ? "Top Voice (Issue)" : "Top Voice (Local)",
         featuredReason,

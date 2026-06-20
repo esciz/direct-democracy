@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-06-20T18:27:36.926Z",
+  "totals": {
+    "fixtureSubmissions": 1,
+    "validFixtures": 1,
+    "errors": 0,
+    "runtimePendingResidentConcerns": 0
+  },
+  "requiredFields": [
+    "submissionType",
+    "story",
+    "location",
+    "approximateDate",
+    "peopleOrEntitiesInvolved",
+    "publicationStatus",
+    "verificationStatus",
+    "reviewerNotes",
+    "safety.containsPersonalData",
+    "safety.containsAllegation",
+    "safety.involvesMinor",
+    "safety.involvesLegalMatter"
+  ],
+  "fixture": {
+    "id": "resident-story-government-service-failure-reno-nevada-2026-06-20t12-00-00-000z",
+    "submissionType": "government_service_failure",
+    "story": "I tried to get a city service resolved for several weeks, but the agency did not respond and I need help understanding which public body is responsible.",
+    "location": "Reno, Nevada",
+    "approximateDate": "Spring 2026",
+    "peopleOrEntitiesInvolved": [
+      "City service department"
+    ],
+    "links": [
+      "https://www.reno.gov/"
+    ],
+    "uploadedDocumentNames": [],
+    "publicationPreference": "private",
+    "publicationStatus": "private_pending_review",
+    "verificationStatus": "source_links_provided",
+    "safety": {
+      "containsPersonalData": false,
+      "containsAllegation": false,
+      "involvesMinor": false,
+      "involvesLegalMatter": false
+    },
+    "reviewerNotes": null,
+    "moderationSummary": "I tried to get a city service resolved for several weeks, but the agency did not respond and I need help understanding which public body is responsible.",
+    "createdAt": "2026-06-20T12:00:00.000Z"
+  },
+  "errors": []
+}

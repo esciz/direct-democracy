@@ -4,6 +4,7 @@ import { useEffect, useState, useTransition } from "react";
 import type { ReactNode } from "react";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
+import { getCivicJurisdictionContext } from "@/lib/civic/jurisdiction-context";
 import { submitQuickVoteInline } from "@/lib/feed/vote-actions";
 import { extractTaxCostContext, stripTaxCostContext, taxCostImpactBadge } from "@/lib/public-meetings/financial-impact";
 import { getResultComparisonText, getVoteObjectLabel, getVoteParticipationPrompt, getVoteResponseLabels } from "@/lib/votes/presentation";
@@ -385,6 +386,10 @@ export function VoteCard({
     currentQuestion.officialPositionSummary ??
     currentQuestion.officialVoteSummary ??
     null;
+  const jurisdictionContext = getCivicJurisdictionContext({
+    jurisdictionName: currentQuestion.jurisdictionName,
+    officialBody: currentQuestion.officialBody,
+  });
 
   useEffect(() => {
     setCurrentQuestion(question);
@@ -444,7 +449,10 @@ export function VoteCard({
           {getStatusLabel(currentQuestion.status)}
         </span>
         <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-semibold text-slate-300">
-          {currentQuestion.communityLabel ?? currentQuestion.jurisdictionName}
+          {jurisdictionContext.issueBadge}
+        </span>
+        <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-semibold text-slate-300">
+          {jurisdictionContext.primaryLabel}
         </span>
         {currentQuestion.relatedIssueLabel ? (
           <span className="rounded-full border border-emerald-300/18 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200">
@@ -489,7 +497,10 @@ export function VoteCard({
               Updated {new Date(currentQuestion.sourceLastUpdated).toLocaleDateString()}
             </span>
           ) : null}
-          <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">{currentQuestion.jurisdictionName}</span>
+          <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">{jurisdictionContext.civicLayerLabel}</span>
+          {jurisdictionContext.secondaryLabel ? (
+            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">Body: {jurisdictionContext.secondaryLabel}</span>
+          ) : null}
           {typeof currentQuestion.confidenceScore === "number" ? (
             <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
               Confidence {(currentQuestion.confidenceScore * 100).toFixed(0)}%

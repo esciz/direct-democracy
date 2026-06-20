@@ -13,8 +13,6 @@ import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getCandidateMatchSummary } from "@/lib/candidates/matching";
 import { formatDateUtc } from "@/lib/dates";
-import { voteInCampusElection } from "@/lib/elections/campus-voting-actions";
-import { canUserVoteInCampusElection, getCampusElectionVoteState } from "@/lib/elections/campus-voting";
 import { getCandidateProfileById, getCandidateProfiles, getElectionById } from "@/lib/server/elections-context";
 
 type ElectionDetailPageProps = {
@@ -22,7 +20,6 @@ type ElectionDetailPageProps = {
     electionId: string;
   }>;
   searchParams?: Promise<{
-    campusVote?: string;
   }>;
 };
 
@@ -158,19 +155,6 @@ async function ElectionDetailBody({
     console.error(`[election-detail] candidate profile fallback for ${election.id}`, error);
     return [];
   });
-  const campusVoteState = election.isCommunityVoteOnly
-    ? await withSectionTimeout(getCampusElectionVoteState(election.id, currentUser.id), "election campus vote state", 1400).catch((error) => {
-        console.error(`[election-detail] campus vote state fallback for ${election.id}`, error);
-        return null;
-      })
-    : null;
-  const canVoteInCampusCommunityElection = election.isCommunityVoteOnly
-    ? await withSectionTimeout(canUserVoteInCampusElection(election), "election campus voting permissions", 1400).catch((error) => {
-        console.error(`[election-detail] campus voting permission fallback for ${election.id}`, error);
-        return false;
-      })
-    : false;
-
   const candidateCards = hasImportedCandidates
     ? []
     : await withSectionTimeout(
@@ -240,7 +224,7 @@ async function ElectionDetailBody({
       ? `${election.ballotInitiatives.length} ballot measure${election.ballotInitiatives.length === 1 ? "" : "s"} share this ballot, including ${election.ballotInitiatives[0].title}.`
       : null,
     election.isCommunityVoteOnly
-      ? "Campus community voting is open as a public sentiment layer and does not replace official results."
+      ? "Community sentiment is displayed as a public context layer and does not replace official election results."
       : `${election.candidates.length + (election.importedCandidates?.length ?? 0)} candidate record${election.candidates.length + (election.importedCandidates?.length ?? 0) === 1 ? "" : "s"} are currently visible for side-by-side comparison.`,
   ].filter((value): value is string => Boolean(value));
   const electionBriefSummary = topMatch && topCampaign
@@ -321,7 +305,7 @@ async function ElectionDetailBody({
         signalChips={[
           `${election.candidates.length + (election.importedCandidates?.length ?? 0)} candidate${election.candidates.length + (election.importedCandidates?.length ?? 0) === 1 ? "" : "s"}`,
           `${election.ballotInitiatives.length} ballot measure${election.ballotInitiatives.length === 1 ? "" : "s"}`,
-          election.isCommunityVoteOnly ? "Live campus sentiment" : election.electionType,
+          election.isCommunityVoteOnly ? "Live community sentiment" : election.electionType,
         ]}
         actionLabel={validCandidateCards[0] ? "Compare candidates" : election.ballotInitiatives[0] ? "Open ballot measure" : undefined}
         actionHref={validCandidateCards[0] ? `#candidate-comparison` : election.ballotInitiatives[0] ? `/initiatives/${election.ballotInitiatives[0].id}` : undefined}
@@ -432,74 +416,6 @@ async function ElectionDetailBody({
           )}
         </div>
       </section>
-
-      {resolvedSearchParams?.campusVote ? (
-        <section
-          className={
-            resolvedSearchParams.campusVote === "success"
-              ? "rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card"
-              : "rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-sm text-orange-900 shadow-card"
-          }
-        >
-          {resolvedSearchParams.campusVote === "success" && "Your campus community vote was saved. These totals are community-facing only and are not official election results."}
-          {resolvedSearchParams.campusVote === "denied" && "Campus community voting is limited to campus-linked verified users for this MVP."}
-          {resolvedSearchParams.campusVote === "already" && "You already selected this candidate in the campus community vote."}
-        </section>
-      ) : null}
-
-      {election.isCommunityVoteOnly ? (
-        <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-6 shadow-card">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange-700">Campus community vote</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Not official election results</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-700">
-            This is a campus community signal designed to surface student sentiment, candidate promises, endorsements, debates, and events in one place.
-          </p>
-          <div className="mt-5 grid gap-4 xl:grid-cols-2">
-            {election.candidates.map((campaign) => {
-              const voteSummary = campusVoteState?.candidateTotals.find((entry) => entry.candidateCampaignId === campaign.id);
-
-              return (
-                <div key={`campus-vote-${campaign.id}`} className="rounded-3xl bg-white p-5 ring-1 ring-orange-200">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{campaign.officeSought}</p>
-                      <h3 className="mt-2 text-lg font-semibold text-ink">
-                        {candidates.find((candidate) => candidate.id === campaign.publicProfileId)?.name ?? campaign.publicProfileId}
-                      </h3>
-                    </div>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-                      {voteSummary?.percentage ?? 0}%
-                    </span>
-                  </div>
-                  <p className="mt-3 text-sm text-slate-600">
-                    {voteSummary?.count ?? 0} campus vote{voteSummary?.count === 1 ? "" : "s"}
-                  </p>
-                  <div className="mt-4 h-2.5 rounded-full bg-slate-200">
-                    <div className="h-2.5 rounded-full bg-civic-500" style={{ width: `${voteSummary?.percentage ?? 0}%` }} />
-                  </div>
-                  {canVoteInCampusCommunityElection ? (
-                    <form action={voteInCampusElection} className="mt-4">
-                      <input type="hidden" name="electionId" value={election.id} />
-                      <input type="hidden" name="candidateCampaignId" value={campaign.id} />
-                      <input type="hidden" name="returnPath" value={`/elections/${election.id}`} />
-                      <button
-                        type="submit"
-                        className={
-                          campusVoteState?.viewerVote === campaign.id
-                            ? "rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white"
-                            : "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-                        }
-                      >
-                        {campusVoteState?.viewerVote === campaign.id ? "Your campus vote" : "Cast campus vote"}
-                      </button>
-                    </form>
-                  ) : null}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
 
       {!hasImportedCandidates ? (
         <section id="candidate-comparison" className="space-y-4">

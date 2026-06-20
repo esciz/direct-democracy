@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { getCommunityPageHref, seededCommunities } from "@/lib/community/communities";
+import { getCommunityPageHref, getNevadaCommunityKind, seededCommunities } from "@/lib/community/communities";
 import type { CommunitySummary } from "@/types/domain";
 
 type CommunitySelectorProps = {
@@ -15,10 +15,8 @@ type CommunitySelectorProps = {
   destinationBase?: string;
 };
 
-function getTypeLabel(community: CommunitySummary): "USA" | "State" | "County" | "City" | "Campus" {
-  if (community.communityType === "campus") {
-    return "Campus";
-  }
+function getTypeLabel(community: CommunitySummary): "USA" | "State" | "County" | "City" | "Community" {
+  const kind = getNevadaCommunityKind(community.id);
 
   if (community.scope === "national") {
     return "USA";
@@ -28,8 +26,12 @@ function getTypeLabel(community: CommunitySummary): "USA" | "State" | "County" |
     return "State";
   }
 
-  if (community.id.endsWith("-county")) {
+  if (kind === "county") {
     return "County";
+  }
+
+  if (kind === "community") {
+    return "Community";
   }
 
   return "City";
@@ -91,7 +93,7 @@ export function CommunitySelector({ currentCommunity }: CommunitySelectorProps) 
         >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Search Communities</p>
-            <p className="mt-2 text-sm text-slate-600">Switch to a city, county, state, or campus community.</p>
+            <p className="mt-2 text-sm text-slate-600">Switch to a Nevada city, county, community, or federal overlay.</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-500">
@@ -107,7 +109,7 @@ export function CommunitySelector({ currentCommunity }: CommunitySelectorProps) 
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Search Communities</p>
-              <p className="mt-2 text-sm text-slate-600">Search cities, counties, states, and campus communities, then jump straight to that place page.</p>
+              <p className="mt-2 text-sm text-slate-600">Search Nevada cities, counties, major communities, and the federal overlay, then jump straight to that page.</p>
             </div>
             <div className="flex flex-wrap items-center gap-3">
               <span className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">

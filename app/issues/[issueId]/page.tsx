@@ -22,7 +22,9 @@ import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getCommunityEventTypeLabel } from "@/lib/community/events";
 import { getDebatesForUser } from "@/lib/debates/store";
 import { getFeedPostPreviews } from "@/lib/feed/posts";
+import { getIssueHubRecordByRouteParam } from "@/lib/issues/civic-hub";
 import { valuesMatchIssueText } from "@/lib/issues/utils";
+import { getIssueReviewRequestsForIssue } from "@/lib/issues/review-requests";
 import { getIssuePositionsByIssue } from "@/lib/issue-positions/store";
 import { getContentDetailHref } from "@/lib/news/links";
 import { getFeedMediaPreviews } from "@/lib/media/store";
@@ -761,6 +763,122 @@ async function IssueBriefSection({
   );
 }
 
+async function IssueReviewRequestsSection({ issueText }: { issueText: string }) {
+  const requests = await getIssueReviewRequestsForIssue(issueText).catch(() => []);
+
+  return (
+    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Community input</p>
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">Submitted concerns and evidence for review</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            Issue requests are not court cases. Reviewers can connect them to public legal records, meetings, officials, agencies, news, spending, and projects after source review.
+          </p>
+        </div>
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+          {requests.length} request{requests.length === 1 ? "" : "s"}
+        </span>
+      </div>
+      <div className="mt-5 grid gap-3 lg:grid-cols-2">
+        {requests.length ? (
+          requests.slice(0, 4).map((request) => (
+            <article key={request.id} className="rounded-2xl border border-slate-200 bg-white p-4">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <p className="font-semibold text-ink">{request.title}</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">{request.category} · {request.community}</p>
+                </div>
+                <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">{request.status.replaceAll("_", " ")}</span>
+              </div>
+              {request.proposedSummary ? <p className="mt-3 text-sm leading-6 text-slate-600">{request.proposedSummary}</p> : null}
+              <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
+                <span className="rounded-full bg-slate-100 px-3 py-1">{request.evidence.length} evidence</span>
+                <span className="rounded-full bg-slate-100 px-3 py-1">{request.identifiedAgencies.length} agencies</span>
+                <span className="rounded-full bg-slate-100 px-3 py-1">{request.identifiedCourtCaseNumbers.length} case numbers</span>
+              </div>
+            </article>
+          ))
+        ) : (
+          <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600 lg:col-span-2">
+            No issue review requests have been linked to this issue yet.
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+async function IssueHubRecordSection({ issueParam }: { issueParam: string }) {
+  const record = await getIssueHubRecordByRouteParam(issueParam);
+
+  if (!record) {
+    return null;
+  }
+
+  const metrics = [
+    ["Meetings", record.relationshipCounts.meetings],
+    ["Agenda items", record.relationshipCounts.agendaItems],
+    ["Voting cards", record.relationshipCounts.votingCards],
+    ["Court records", record.relationshipCounts.courtCases],
+    ["Submissions", record.relationshipCounts.communitySubmissions],
+    ["Source documents", record.relationshipCounts.sourceDocuments],
+  ].filter(([, count]) => Number(count) > 0);
+
+  return (
+    <section className="rounded-[1.75rem] border border-emerald-200 bg-[linear-gradient(180deg,rgba(236,253,245,0.9),rgba(255,255,255,0.98))] p-6 shadow-card backdrop-blur">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">Source-backed facts</p>
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">Official records connected to this issue</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-600">
+            This issue was generated from imported civic records, then linked back to official meeting records, agenda items, voting cards, legal records, and source documents.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">Source-backed</span>
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+            {record.reviewStatus.replaceAll("_", " ")}
+          </span>
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+            {Math.round(record.confidence * 100)}% confidence
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {metrics.map(([label, count]) => (
+          <div key={label} className="rounded-2xl border border-emerald-100 bg-white/85 p-4">
+            <p className="text-2xl font-semibold text-ink">{count}</p>
+            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        {record.sourceTypes.map((sourceType) => (
+          <span key={sourceType} className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700">
+            {sourceType.replaceAll("_", " ")}
+          </span>
+        ))}
+      </div>
+
+      {record.relatedSourceUrls.length ? (
+        <div className="mt-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Sample sources</p>
+          <div className="mt-2 grid gap-2">
+            {record.relatedSourceUrls.slice(0, 3).map((url) => (
+              <a key={url} href={url} className="truncate rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-civic-700 transition hover:text-civic-900">
+                {url}
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
 async function IssueBattlegroundSection({
   issue,
   currentUser,
@@ -1357,13 +1475,14 @@ export default async function IssueDetailPage({ params, searchParams }: IssueDet
     <div className="space-y-6 py-8">
       <PageIntro
         eyebrow="Issue"
-        title={issue.issueText}
-        description={`${getIssueSummary(issue.issueText)} Start with the plain-language summary first, then open the deeper case and accountability trail only when you want it.`}
+        title={issue.plainTitle ?? issue.issueText}
+        description={`${issue.whyThisMatters ?? getIssueSummary(issue.issueText)} Official records, platform explanations, and community input are separated below so source-backed facts stay distinct from submitted concerns.`}
         meta={
           <>
             <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">{issue.jurisdictionName}</span>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{issue.scope}</span>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">Short summary first</span>
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{issue.category ?? issue.scope}</span>
+            {issue.sourceBacked ? <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Source-backed</span> : null}
+            {issue.showDemoBadge ? <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">Demo fallback</span> : null}
           </>
         }
         actions={
@@ -1397,7 +1516,7 @@ export default async function IssueDetailPage({ params, searchParams }: IssueDet
         }
       />
 
-      <IssueDetailContent issueId={issueId} issue={issue} activeFilter={activeFilter} />
+      <IssueDetailContent issueId={issue.id} issue={issue} activeFilter={activeFilter} />
     </div>
   );
 }
@@ -1428,7 +1547,7 @@ async function IssueDetailContent({
       <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Start here</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Platform explanation</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Understand the issue before you go deep</h2>
             <div className="mt-5 grid gap-3 md:grid-cols-2">
               <div className="rounded-2xl bg-slate-50 p-4">
@@ -1504,6 +1623,26 @@ async function IssueDetailContent({
         }
       >
         <IssueBriefSection issueId={safeIssue.id} issueText={safeIssue.issueText} currentUser={currentUser} />
+      </Suspense>
+
+      <Suspense
+        fallback={
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading source-backed issue records…</div>
+          </section>
+        }
+      >
+        <IssueHubRecordSection issueParam={safeIssue.id} />
+      </Suspense>
+
+      <Suspense
+        fallback={
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading review requests…</div>
+          </section>
+        }
+      >
+        <IssueReviewRequestsSection issueText={safeIssue.issueText} />
       </Suspense>
 
       <Suspense

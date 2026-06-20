@@ -14,8 +14,9 @@ type PetitionsPageProps = {
 
 export default async function PetitionsPage({ searchParams }: PetitionsPageProps) {
   const user = await getCurrentUser();
-  const petitions = await getAllPetitions();
   const params = searchParams ? await searchParams : undefined;
+  const allowDemoData = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
+  const petitions = allowDemoData ? await getAllPetitions() : [];
 
   return (
     <div className="space-y-6 py-8">
@@ -26,7 +27,7 @@ export default async function PetitionsPage({ searchParams }: PetitionsPageProps
         meta={
           <>
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-              {petitions.length} open petitions
+              {allowDemoData ? `${petitions.length} open petitions` : "Limited data"}
             </span>
             <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
               {user.isVerifiedVoter ? `Verified in ${user.jurisdictionName}` : getVerificationLabel(user.verificationState)}
@@ -34,12 +35,14 @@ export default async function PetitionsPage({ searchParams }: PetitionsPageProps
           </>
         }
         actions={
+          allowDemoData ? (
           <Link
             href="/petitions/create"
             className="inline-flex rounded-full bg-civic-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-civic-700"
           >
             Create petition
           </Link>
+          ) : null
         }
       />
       {params?.error === "verification" ? (
@@ -57,7 +60,13 @@ export default async function PetitionsPage({ searchParams }: PetitionsPageProps
           </p>
         </div>
       </div>
-      <PetitionList petitions={petitions} />
+      {allowDemoData ? (
+        <PetitionList petitions={petitions} />
+      ) : (
+        <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 text-sm leading-6 text-slate-400">
+          No reviewed public petitions are available yet. Seeded petition examples are hidden outside demo mode until a source-backed public petition import is ready.
+        </section>
+      )}
     </div>
   );
 }

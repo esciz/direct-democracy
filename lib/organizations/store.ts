@@ -43,7 +43,6 @@ type SeedOrganization = {
   description: string;
   organizationType: OrganizationType;
   communityId: string;
-  campusCommunityId?: string | null;
   jurisdictionName: string;
   founderUserId: string;
   issueTags: string[];
@@ -64,38 +63,6 @@ export type OrganizationPreviewSummary = {
 };
 
 const seededOrganizations: SeedOrganization[] = [
-  {
-    id: "org_unr_student_transit_alliance",
-    name: "UNR Student Transit Alliance",
-    slug: "unr-student-transit-alliance",
-    description: "A campus org organizing around late-night transit, campus access, and safer connections between housing and the university.",
-    organizationType: "campus_org",
-    communityId: "unr-campus",
-    campusCommunityId: "unr-campus",
-    jurisdictionName: "University of Nevada, Reno",
-    founderUserId: "user_citizen_tiana_moore",
-    issueTags: ["Late-night transit", "Campus housing", "Public safety"],
-    linkedEventIds: [],
-    linkedDebateIds: [],
-    linkedPetitionIds: [],
-    createdAt: "2026-03-20T18:00:00.000Z",
-  },
-  {
-    id: "org_unr_civic_media_collective",
-    name: "UNR Civic Media Collective",
-    slug: "unr-civic-media-collective",
-    description: "Student journalists and civic tech volunteers helping campus communities track elections, debates, and public decisions more clearly.",
-    organizationType: "campus_org",
-    communityId: "unr-campus",
-    campusCommunityId: "unr-campus",
-    jurisdictionName: "University of Nevada, Reno",
-    founderUserId: "user_candidate_noah_brooks",
-    issueTags: ["Student budgets", "Government transparency", "Campus accountability"],
-    linkedEventIds: [],
-    linkedDebateIds: [],
-    linkedPetitionIds: [],
-    createdAt: "2026-03-21T18:00:00.000Z",
-  },
   {
     id: "org_carson_budget_transparency_coalition",
     name: "Carson Budget Transparency Coalition",
@@ -613,7 +580,6 @@ function isObjectRecord(value: unknown): value is Record<string, unknown> {
 
 function isOrganizationType(value: unknown): value is OrganizationType {
   return (
-    value === "campus_org" ||
     value === "coalition" ||
     value === "labor" ||
     value === "public_interest" ||
@@ -968,18 +934,6 @@ function getOrganizationMembershipRole(
   } as const;
 }
 
-export function isStudentVerifiedForCampusOrg(user: Pick<AuthUser, "studentVerified" | "studentModeEnabled" | "studentCampusCommunityId" | "campusCommunityIds">, campusCommunityId: string) {
-  if (!user.studentModeEnabled || !user.studentVerified) {
-    return false;
-  }
-
-  return user.studentCampusCommunityId === campusCommunityId || user.campusCommunityIds?.includes(campusCommunityId);
-}
-
-export function canUserCreateCampusOrg(user: AuthUser, campusCommunityId: string) {
-  return isStudentVerifiedForCampusOrg(user, campusCommunityId);
-}
-
 export function canUserDirectlyCreateCoalition(user: AuthUser) {
   return user.role === "trustedCitizen" || user.role === "admin";
 }
@@ -1008,15 +962,13 @@ export async function getAllOrganizations(viewer?: AuthUser): Promise<Organizati
     const activeDebateCount = organization.linkedDebateIds.length;
     const upcomingEventCount = organization.linkedEventIds.length;
     const scopeLabel =
-      community?.communityType === "campus"
-        ? "Campus"
-        : community?.scope === "national"
-          ? "National"
-          : community?.scope === "state"
-            ? "State"
-            : organization.issueTags.length > 2 && organization.communityId === "nevada"
-              ? "Issue-based"
-              : "Local";
+      community?.scope === "national"
+        ? "National"
+        : community?.scope === "state"
+          ? "State"
+          : organization.issueTags.length > 2 && organization.communityId === "nevada"
+            ? "Issue-based"
+            : "Local";
 
     return {
       id: organization.id,
@@ -1025,7 +977,6 @@ export async function getAllOrganizations(viewer?: AuthUser): Promise<Organizati
       description: organization.description,
       organizationType: organization.organizationType,
       communityId: organization.communityId,
-      campusCommunityId: organization.campusCommunityId ?? null,
       jurisdictionName: organization.jurisdictionName,
       scopeLabel,
       issueTags: canonicalizeIssueTags(organization.issueTags),
@@ -1103,7 +1054,7 @@ export async function getOrganizationsForCommunity(viewer: AuthUser, communityId
   const organizations = await getAllOrganizations(viewer);
 
   return organizations
-    .filter((entry) => entry.communityId === communityId || entry.campusCommunityId === communityId)
+    .filter((entry) => entry.communityId === communityId)
     .filter((entry) => (issueTag ? entry.issueTags.some((tag) => tag.toLowerCase().includes(issueTag.toLowerCase())) : true))
     .sort((a, b) => b.memberCount - a.memberCount)
     .slice(0, 6);
@@ -1111,7 +1062,7 @@ export async function getOrganizationsForCommunity(viewer: AuthUser, communityId
 
 export function getOrganizationPreviewsForCommunity(communityId: string, limit = 4): OrganizationPreviewSummary[] {
   return seededOrganizations
-    .filter((entry) => entry.communityId === communityId || entry.campusCommunityId === communityId)
+    .filter((entry) => entry.communityId === communityId)
     .map((entry) => ({
       id: entry.id,
       name: entry.name,
@@ -1137,12 +1088,11 @@ export async function getRecommendedOrganizationsForUser(user: AuthUser, communi
 
   return organizations
     .filter((organization) => organization.viewerMembershipState !== "approved")
-    .filter((organization) => (communityId ? organization.communityId === communityId || organization.campusCommunityId === communityId : true))
+    .filter((organization) => (communityId ? organization.communityId === communityId : true))
     .map((organization) => ({
       organization,
       score:
         (organization.communityId === user.primaryCommunityId ? 3 : 0) +
-        (organization.campusCommunityId && user.campusCommunityIds?.includes(organization.campusCommunityId) ? 4 : 0) +
         canonicalizeIssueTags(organization.issueTags).filter((tag) =>
           [...interests].some((entry) => tag.toLowerCase().includes(entry) || entry.includes(tag.toLowerCase())),
         ).length,

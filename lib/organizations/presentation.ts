@@ -9,15 +9,12 @@ export const ORGANIZATION_FILTERS: Array<{ key: "all" | OrganizationType; label:
   { key: "nonprofit", label: "Nonprofit" },
   { key: "neighborhood", label: "Neighborhood" },
   { key: "professional", label: "Professional" },
-  { key: "student", label: "Student" },
   { key: "business", label: "Business" },
   { key: "advocacy", label: "Advocacy" },
 ];
 
 export function getOrganizationTypeLabel(type: OrganizationType) {
   switch (type) {
-    case "campus_org":
-      return "Campus Org";
     case "coalition":
       return "Coalition";
     case "labor":
@@ -34,8 +31,6 @@ export function getOrganizationTypeLabel(type: OrganizationType) {
       return "Neighborhood";
     case "professional":
       return "Professional";
-    case "student":
-      return "Student";
     case "business":
       return "Business";
     case "advocacy":
@@ -43,13 +38,9 @@ export function getOrganizationTypeLabel(type: OrganizationType) {
   }
 }
 
-export function getOrganizationScopeLabel(organization: Pick<OrganizationSummary, "scopeLabel" | "campusCommunityId" | "communityId" | "organizationType">) {
+export function getOrganizationScopeLabel(organization: Pick<OrganizationSummary, "scopeLabel" | "communityId" | "organizationType">) {
   if (organization.scopeLabel) {
     return organization.scopeLabel;
-  }
-
-  if (organization.organizationType === "campus_org" || organization.organizationType === "student" || organization.campusCommunityId) {
-    return "Campus";
   }
 
   if (organization.communityId === "usa") {

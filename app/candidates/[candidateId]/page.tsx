@@ -1311,7 +1311,7 @@ async function CandidateCampaignsSection({
                           {endorsement.organizationName}
                         </Link>
                         <span className="rounded-full border border-white/10 bg-white/[0.05] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-300">
-                          {endorsement.organizationType === "campus_org" ? "Campus Org Endorsement" : `${getOrganizationTypeLabel(endorsement.organizationType)} Endorsement`}
+                          {getOrganizationTypeLabel(endorsement.organizationType)} Endorsement
                         </span>
                       </div>
                       {endorsement.statement ? <p className="mt-2 text-sm text-slate-400">{endorsement.statement}</p> : null}

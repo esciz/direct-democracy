@@ -46,13 +46,13 @@ const onboardingSteps = [
   },
   {
     step: "4",
-    title: "Optional student mode",
-    description: "If campus participation matters to you, add a .edu path without replacing voter verification.",
+    title: "Pick your issues and summary style",
+    description: "Choose what matters most so the app can start with relevant summaries instead of civic overload.",
   },
   {
     step: "5",
-    title: "Pick your issues and summary style",
-    description: "Choose what matters most so the app can start with relevant summaries instead of civic overload.",
+    title: "Start participating",
+    description: "Use voting cards, petitions, meetings, and official messaging when the right verification level is available.",
   },
 ] as const;
 

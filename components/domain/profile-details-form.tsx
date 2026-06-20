@@ -2,10 +2,10 @@ import { FavoriteSpotsInput } from "@/components/domain/favorite-spots-input";
 import { ProfileTagInput } from "@/components/domain/profile-tag-input";
 import { StructuredOptionInput } from "@/components/domain/structured-option-input";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
-import { getCampusCommunities, getGeographicCommunities } from "@/lib/community/communities";
+import { getGeographicCommunities } from "@/lib/community/communities";
 import { updateProfileDetails } from "@/lib/profile/actions";
 import { EXTERNAL_LINK_FIELDS } from "@/lib/profile/external-links";
-import { FAVORITE_CLASS_OPTIONS, PREDEFINED_GROUP_TAG_OPTIONS, PREDEFINED_ISSUE_OPTIONS } from "@/lib/profile/options";
+import { PREDEFINED_GROUP_TAG_OPTIONS, PREDEFINED_ISSUE_OPTIONS } from "@/lib/profile/options";
 import type { AuthUser, UserProfileContentSummary } from "@/types/domain";
 
 const POLITICAL_AFFILIATION_OPTIONS = ["Democrat", "Republican", "Independent", "Other", "Prefer not to say"] as const;
@@ -17,9 +17,6 @@ type ProfileDetailsFormProps = {
 
 export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
   const geographicCommunities = getGeographicCommunities();
-  const campusCommunities = getCampusCommunities();
-  const selectedCampusCommunityId = content.campusCommunityIds[0] ?? "";
-  const canManageCampusMembership = Boolean(user.studentModeEnabled && user.studentVerified);
   const externalLinkValues = new Map((content.externalLinks ?? []).map((link) => [link.platform, link.url] as const));
 
   return (
@@ -34,7 +31,7 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
         <section className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
           <p className="text-sm font-medium text-ink">Communities and onboarding</p>
           <p className="mt-1 text-xs leading-6 text-slate-500">
-            Choose your main geographic community here. Campus community association is managed through Student Mode so public browsing stays open while campus membership stays student-verified.
+            Choose your main geographic community so Direct Democracy can focus your city, county, school district, state, and federal civic context.
           </p>
           <div className="mt-4 grid gap-4 xl:grid-cols-2">
             <div>
@@ -55,26 +52,10 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
               </select>
             </div>
             <div>
-              <p className="text-sm font-medium text-ink">Campus community</p>
-              {canManageCampusMembership ? (
-                <select
-                  id="campusCommunityId"
-                  name="campusCommunityId"
-                  defaultValue={selectedCampusCommunityId}
-                  className="mt-2 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
-                >
-                  <option value="">No campus community</option>
-                  {campusCommunities.map((community) => (
-                    <option key={community.id} value={community.id}>
-                      {community.name}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <div className="mt-2 rounded-3xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-600">
-                  Campus communities are viewable by anyone in Explore and search, but only Student-Verified users can associate their profile with a campus. Use the Student Mode section below to enable campus membership.
-                </div>
-              )}
+              <p className="text-sm font-medium text-ink">Civic context</p>
+              <div className="mt-2 rounded-3xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-600">
+                Your selected community anchors local voting cards, public meetings, officials, issues, and service links. Voter verification remains separate from profile setup.
+              </div>
             </div>
           </div>
         </section>
@@ -176,22 +157,6 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
             customLabel="Other / Custom"
           />
         </div>
-
-        {user.studentModeEnabled && user.studentVerified ? (
-          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="mb-4 text-xs leading-6 text-slate-500">
-              Student Mode is active, so you can share a few classes that reflect your campus experience.
-            </p>
-            <StructuredOptionInput
-              label="Favorite classes"
-              inputName="favoriteClasses"
-              options={FAVORITE_CLASS_OPTIONS}
-              values={content.favoriteClasses ?? []}
-              maxItems={5}
-              customLabel="Other / Custom"
-            />
-          </div>
-        ) : null}
 
         <section className="grid gap-6 xl:grid-cols-[0.9fr,1.1fr]">
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">

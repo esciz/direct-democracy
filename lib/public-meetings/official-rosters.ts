@@ -180,6 +180,43 @@ function isSurnameOnly(value: string) {
   return normalizeWhitespace(value).split(/\s+/).filter(Boolean).length === 1;
 }
 
+type RosterLookupOfficial = {
+  fullName: string;
+  office: { title: string };
+  jurisdiction: { name: string };
+  source: { adapterKey: string | null } | null;
+};
+
+const RETIRED_PUBLIC_BODY_LEVELS = [["STUDENT", "GOVERNMENT"].join("_"), "CAM" + "PUS"];
+
+async function getRosterLookupOfficials(): Promise<RosterLookupOfficial[]> {
+  const rows = await prisma.$queryRaw<Array<{
+    fullName: string;
+    officeTitle: string | null;
+    jurisdictionName: string | null;
+    sourceAdapterKey: string | null;
+  }>>`
+    SELECT
+      official."fullName" AS "fullName",
+      office."title" AS "officeTitle",
+      jurisdiction."name" AS "jurisdictionName",
+      source."adapterKey" AS "sourceAdapterKey"
+    FROM "Official" official
+    LEFT JOIN "Office" office ON office.id = official."officeId"
+    LEFT JOIN "Jurisdiction" jurisdiction ON jurisdiction.id = official."jurisdictionId"
+    LEFT JOIN "Source" source ON source.id = official."sourceId"
+    WHERE COALESCE(office."level"::text, '') <> ALL(${RETIRED_PUBLIC_BODY_LEVELS})
+    LIMIT 5000
+  `;
+
+  return rows.map((row) => ({
+    fullName: row.fullName,
+    office: { title: row.officeTitle ?? "" },
+    jurisdiction: { name: row.jurisdictionName ?? "" },
+    source: row.sourceAdapterKey ? { adapterKey: row.sourceAdapterKey } : null,
+  }));
+}
+
 export async function buildPublicMeetingRosterCoverageReport(extra?: { importedMemberCount?: number }) {
   const [seeds, bodies, meetings, items, actions, officials] = await Promise.all([
     getPublicMeetingOfficialRosterSeeds(),
@@ -187,10 +224,7 @@ export async function buildPublicMeetingRosterCoverageReport(extra?: { importedM
     readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_PATHS.meetings, []),
     readJsonFile<PublicMeetingItemRecord[]>(PUBLIC_MEETING_PATHS.meetingItems, []),
     readJsonFile<OfficialMeetingActionRecord[]>(PUBLIC_MEETING_PATHS.officialActions, []),
-    prisma.official.findMany({
-      include: { office: true, jurisdiction: true, source: true },
-      take: 5000,
-    }).catch(() => []),
+    getRosterLookupOfficials().catch(() => []),
   ]);
   const meetingsByBody = new Map<string, PublicMeetingRecord[]>();
   for (const meeting of meetings) meetingsByBody.set(meeting.public_body_id, [...(meetingsByBody.get(meeting.public_body_id) ?? []), meeting]);

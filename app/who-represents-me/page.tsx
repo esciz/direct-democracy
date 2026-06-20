@@ -167,7 +167,7 @@ export default async function WhoRepresentsMePage({ searchParams }: WhoRepresent
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Address or community</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Find applicable districts</h2>
             <p className="mt-2 text-sm leading-6 text-slate-400">
-              Enter a local community, campus, or stored coordinate pair. External geocoding is not run during page render.
+              Enter a local community or stored coordinate pair. External geocoding is not run during page render.
             </p>
           </div>
           <form action="/who-represents-me" className="flex w-full flex-wrap gap-3 lg:w-[34rem]">

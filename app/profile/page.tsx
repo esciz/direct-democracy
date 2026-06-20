@@ -15,15 +15,12 @@ import { getVerificationLabel } from "@/lib/auth/verification";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { getSafeUserProgressionSummary } from "@/lib/profile/progression";
 import { getSafeReputationSummary } from "@/lib/profile/reputation";
-import { getPendingStudentVerification } from "@/lib/server/auth-verification";
 
 type ProfilePageProps = {
   searchParams?: Promise<{
     visibility?: string;
     details?: string;
     externalLinks?: string;
-    studentMode?: string;
-    studentDemoCode?: string;
     onboarding?: string;
   }>;
 };
@@ -65,10 +62,7 @@ function getPublicProfileHref(role: string, userId: string) {
 export default async function ProfilePage({ searchParams }: ProfilePageProps) {
   const currentUser = await getCurrentUser();
   const params = searchParams ? await searchParams : undefined;
-  const [profileContent, pendingStudentVerification] = await Promise.all([
-    getUserProfileContent(currentUser.id),
-    getPendingStudentVerification(currentUser.id),
-  ]);
+  const profileContent = await getUserProfileContent(currentUser.id);
   const safeName = currentUser?.name ?? "Demo User";
   const safeUsername = currentUser?.username ?? "demo-user";
   const safeJurisdiction = currentUser?.jurisdictionName ?? "Your jurisdiction";
@@ -163,19 +157,9 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
           One or more external links were skipped because they were not valid `http` or `https` URLs.
         </section>
       ) : null}
-      {params?.studentMode === "code-sent" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Student Mode verification code sent. Demo code: <span className="font-semibold">{params.studentDemoCode ?? "Check your inbox"}</span>
-        </section>
-      ) : null}
-      {params?.studentMode === "verified" ? (
-        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Student Mode is now enabled and your .edu email was verified.
-        </section>
-      ) : null}
       {params?.onboarding === "started" ? (
         <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Welcome to onboarding. Start with your profile details, then complete voter verification, and optionally enable Student Mode if it applies to you.
+          Welcome to onboarding. Start with your profile details, then complete voter verification when you need voter-only civic actions.
         </section>
       ) : null}
 
@@ -345,7 +329,7 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
         <ProfileCivicActivitySection userId={currentUser.id} />
       </Suspense>
 
-      <VerificationStatusCard user={currentUser} content={profileContent} pendingStudentVerification={pendingStudentVerification} />
+      <VerificationStatusCard user={currentUser} content={profileContent} />
       <ProfileDetailsForm user={currentUser} content={profileContent} />
       {(currentUser.role === "citizen" || currentUser.role === "trustedCitizen") ? (
         <PublicVisibilityToggle isPublic={!currentUser.isAnonymousPublic} />

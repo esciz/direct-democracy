@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { getCampusCommunities, getGeographicCommunities, getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
+import { getGeographicCommunities, getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
 import { getCanonicalIssueTextOrNull } from "@/lib/issues/utils";
 import { EXTERNAL_LINK_FIELDS, normalizeExternalLinkUrl } from "@/lib/profile/external-links";
 import {
@@ -131,7 +131,6 @@ export async function updateProfileDetails(formData: FormData) {
   const nationalIssues = formData.get("nationalIssues");
   const favoriteSpots = formData.get("favoriteSpots");
   const groupTags = formData.get("groupTags");
-  const favoriteClasses = formData.get("favoriteClasses");
   const identityTags = formData.get("identityTags");
   const currentContent = await getUserProfileContent(currentUser.id);
   const parsedLocalIssues = typeof localIssues === "string" ? dedupeCanonicalIssueValues(parseIssueTextarea(localIssues), 3) : currentContent.localIssues;
@@ -141,24 +140,15 @@ export async function updateProfileDetails(formData: FormData) {
   const parsedFavoriteSpots =
     typeof favoriteSpots === "string" ? dedupeFavoriteSpotsByCategory(parseFavoriteSpots(favoriteSpots)) : currentContent.favoriteSpots;
   const parsedGroupTags = typeof groupTags === "string" ? dedupeStructuredValues(parseGroupTags(groupTags), 6) : currentContent.groupTags;
-  const parsedFavoriteClasses =
-    typeof favoriteClasses === "string" ? dedupeStructuredValues(parseGroupTags(favoriteClasses), 5) : currentContent.favoriteClasses ?? [];
   const parsedIdentityTags =
     typeof identityTags === "string" ? dedupeProfileTags(parseProfileTags(identityTags)) : currentContent.identityTags;
   const { links: parsedExternalLinks, invalidLabels } = parseExternalLinks(formData);
   const requestedPrimaryCommunityId =
     typeof formData.get("primaryCommunityId") === "string" ? String(formData.get("primaryCommunityId")).trim() : currentContent.primaryCommunityId;
-  const requestedCampusCommunityId =
-    typeof formData.get("campusCommunityId") === "string" ? String(formData.get("campusCommunityId")).trim() : "";
   const validPrimaryCommunityId =
     getGeographicCommunities().some((community) => community.id === requestedPrimaryCommunityId)
       ? requestedPrimaryCommunityId
       : currentContent.primaryCommunityId || getDefaultCommunityForJurisdiction(currentUser.jurisdictionName).id;
-  const canAssociateCampusCommunity = Boolean(currentUser.studentModeEnabled && currentUser.studentVerified);
-  const validCampusCommunityIds =
-    canAssociateCampusCommunity && getCampusCommunities().some((community) => community.id === requestedCampusCommunityId)
-      ? [requestedCampusCommunityId]
-      : [];
 
   await updateUserProfileContent(currentUser.id, {
     profileImageUrl:
@@ -170,7 +160,6 @@ export async function updateProfileDetails(formData: FormData) {
     stateIssues: parsedStateIssues,
     nationalIssues: parsedNationalIssues,
     favoriteSpots: parsedFavoriteSpots,
-    favoriteClasses: parsedFavoriteClasses,
     groupTags: parsedGroupTags,
     background: {
       profession: typeof formData.get("profession") === "string" ? String(formData.get("profession")).trim() : currentContent.background.profession,
@@ -186,7 +175,6 @@ export async function updateProfileDetails(formData: FormData) {
     },
     identityTags: parsedIdentityTags,
     externalLinks: parsedExternalLinks,
-    campusCommunityIds: validCampusCommunityIds,
     recentVotesPublic: formData.get("recentVotesPublic") === "on",
     bookmarkedScopes: currentContent.bookmarkedScopes,
   });
@@ -217,12 +205,10 @@ export async function toggleBookmarkedScope(formData: FormData) {
     stateIssues: currentContent.stateIssues,
     nationalIssues: currentContent.nationalIssues,
     favoriteSpots: currentContent.favoriteSpots,
-    favoriteClasses: currentContent.favoriteClasses ?? [],
     groupTags: currentContent.groupTags,
     background: currentContent.background,
     identityTags: currentContent.identityTags,
     externalLinks: currentContent.externalLinks,
-    campusCommunityIds: currentContent.campusCommunityIds,
     recentVotesPublic: currentContent.recentVotesPublic,
     bookmarkedScopes: nextBookmarkedScopes,
   });

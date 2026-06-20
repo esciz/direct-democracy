@@ -43,7 +43,7 @@ function filterOrganizations(
   selectedType: "all" | OrganizationType,
 ) {
   return organizations.filter((organization) => {
-    const matchesCommunity = organization.communityId === selectedCommunityId || organization.campusCommunityId === selectedCommunityId;
+    const matchesCommunity = organization.communityId === selectedCommunityId;
     const matchesType = selectedType === "all" ? true : organization.organizationType === selectedType;
 
     return (
@@ -147,7 +147,6 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
           {params.orgError === "fields" && "Add a clear name, description, community, and issue tags before creating an organization."}
           {params.orgError === "type" && "Choose a valid organization type to continue."}
           {params.orgError === "duplicate" && "An organization with that name already exists."}
-          {params.orgError === "campus-permissions" && "Only Student-Verified users tied to that campus can create or manage a Campus Org."}
           {params.orgError === "coalition-permissions" && "Only Trusted Citizens can directly create broader civic organizations. Other users can submit a request for admin approval."}
         </section>
       ) : null}
@@ -165,7 +164,7 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200/80">Filters</p>
-            <p className="mt-2 text-sm text-slate-400">Browse labor unions, public-interest groups, religious organizations, nonprofits, neighborhood groups, business groups, student groups, and more.</p>
+            <p className="mt-2 text-sm text-slate-400">Browse labor unions, public-interest groups, religious organizations, nonprofits, neighborhood groups, business groups, advocacy groups, and more.</p>
           </div>
           <PreserveScrollQueryForm action="/organizations" className="flex flex-wrap gap-3">
             <input type="hidden" name="communityId" value={selectedCommunityId} />

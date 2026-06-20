@@ -31,7 +31,7 @@ function unique<T>(values: T[]) {
 }
 
 function extractAmounts(text: string) {
-  return unique(text.match(/\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|thousand|m|b|k))?/gi) ?? []);
+  return unique(text.match(/\$[\d,]+(?:\.\d+)?(?:\s+(?:million|billion|thousand)|\s*[mbk]\b)?/gi) ?? []);
 }
 
 function extractFiscalYear(text: string) {

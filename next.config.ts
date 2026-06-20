@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
       "./data/generated/public-meeting-ingestion-report.json",
       "./data/generated/public-meeting-official-actions.json",
       "./data/generated/public-meeting-official-roster-report.json",
+      "./data/generated/public-civic-cases.json",
       "./node_modules/.prisma/client/*.d.ts",
       "./node_modules/.prisma/client/* 2*",
       "./node_modules/.prisma/client/* 3*",

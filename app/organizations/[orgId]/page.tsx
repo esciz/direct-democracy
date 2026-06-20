@@ -45,7 +45,6 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
 
   const pendingMemberships = organization.memberships.filter((entry) => entry.state === "pending");
   const returnPath = `/organizations/${organization.id}`;
-  const campusMembershipRestricted = organization.organizationType === "campus_org" && !organization.viewerMembershipState;
 
   return (
     <div className="space-y-6 py-8">
@@ -65,7 +64,7 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
         }
         actions={
           <div className="flex flex-wrap gap-3">
-            {!organization.viewerMembershipState && !campusMembershipRestricted ? (
+            {!organization.viewerMembershipState ? (
               <form action={requestOrganizationMembership}>
                 <input type="hidden" name="organizationId" value={organization.id} />
                 <input type="hidden" name="returnPath" value={returnPath} />
@@ -75,11 +74,6 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
                   className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
                 />
               </form>
-            ) : null}
-            {campusMembershipRestricted ? (
-              <span className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-3 text-sm font-semibold text-slate-200">
-                Student-Verified users can request to join
-              </span>
             ) : null}
             {organization.viewerMembershipState === "pending" ? (
               <span className="rounded-full border border-amber-300/18 bg-amber-500/10 px-4 py-3 text-sm font-semibold text-amber-200">
@@ -102,7 +96,7 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
                 Start debate
               </Link>
             ) : null}
-            {organization.canManage && organization.organizationType !== "campus_org" ? (
+            {organization.canManage ? (
               <Link
                 href={`/petitions/create?organizationId=${organization.id}`}
                 className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold transition hover:border-cyan-300/30 hover:text-white"
@@ -136,8 +130,6 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
           {resolvedSearchParams.orgError === "endorsement" && "Pick a valid candidate campaign to endorse."}
           {resolvedSearchParams.orgError === "vote" && "Only approved members can vote on platform items."}
           {resolvedSearchParams.orgError === "membership" && "That membership request could not be found."}
-          {resolvedSearchParams.orgError === "campus-membership" &&
-            "Campus org membership is limited to Student-Verified users associated with this campus community."}
           {resolvedSearchParams.orgError === "approval" && "You do not have permission to approve that request."}
         </section>
       ) : null}
@@ -159,11 +151,6 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
               <p className="mt-2 text-sm font-semibold text-slate-100">{organization.adminNames.join(" · ")}</p>
             </div>
           </div>
-          {organization.organizationType === "campus_org" ? (
-            <div className="mt-4 rounded-3xl border border-cyan-300/16 bg-cyan-500/10 p-4 text-sm text-cyan-100">
-              This campus org is publicly viewable, but membership and campus-specific management actions are limited to Student-Verified users tied to this campus community.
-            </div>
-          ) : null}
           <div className="mt-4 flex flex-wrap gap-2">
             {organization.issueTags.map((tag) => (
               <span key={tag} className="rounded-full border border-amber-300/18 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-200">
@@ -354,7 +341,7 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
                       <p className="mt-1 text-sm text-slate-600">{endorsement.officeSought} · {endorsement.electionTitle}</p>
                     </div>
                     <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
-                      {organization.organizationType === "campus_org" ? "Campus Org Endorsement" : "Organization Endorsement"}
+                      Organization Endorsement
                     </span>
                   </div>
                   {endorsement.statement ? <p className="mt-3 text-sm leading-6 text-slate-600">{endorsement.statement}</p> : null}
@@ -398,7 +385,7 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
 
       <section className="grid gap-6 xl:grid-cols-2">
         <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-          <SectionHeading eyebrow="Events" title="Organization events" description="Organizations can host events and appear across campus, community, and Explore surfaces." />
+          <SectionHeading eyebrow="Events" title="Organization events" description="Organizations can host events and appear across community and Explore surfaces." />
           <div className="mt-5 grid gap-4">
             {organization.relatedEvents.length ? (
               organization.relatedEvents.map((event) => (

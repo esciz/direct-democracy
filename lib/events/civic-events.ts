@@ -272,7 +272,7 @@ function inferMeetingKind(bodyName: string, meetingType?: string | null): CivicE
   if (value.includes("city") || value.includes("council") || value.includes("supervisor")) return "city_council_meeting";
   if (value.includes("legislature") || value.includes("legislative") || value.includes("hearing")) return "legislative_hearing";
   if (value.includes("court")) return "court_public_hearing";
-  if (value.includes("regent") || value.includes("university") || value.includes("campus")) return "university_governance_meeting";
+  if (value.includes("regent") || value.includes("university")) return "university_governance_meeting";
   return "official_meeting";
 }
 

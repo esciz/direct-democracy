@@ -1,0 +1,2396 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-19T00:36:19.567Z",
+  "sourceManifest": "data/manual-sources/court-cases/reviewed-public-cases/manifest.json",
+  "counts": {
+    "manifestRecords": 25,
+    "runtimeRecords": 25,
+    "excludedRecords": 0
+  },
+  "records": [
+    {
+      "id": "nv-appellate-90509-zhang-v-zhang",
+      "title": "Zhang v. Zhang",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Zhang v. Zhang. The official docket entry lists this as a civil appeal with outcome text: Vacated and remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-06-18"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "90509",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-06-18",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "90509-opinion-dispositional",
+          "entryDate": "2026-06-18",
+          "title": "142pn045",
+          "description": "Filed authored opinion. \"Vacated and remanded.\" Before Stiglich/Cadish/Lee.  Author: Caddish, J. Majority: Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 45. B26-LS/EC/PL (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=22bb78a8-83d9-4ed2-8de8-400b81ca343b&caseHeader.caseInstanceUUID=7def2361-d88e-4df4-a4d2-d006b53cd8f3",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "90509-opinion-access",
+          "title": "142pn045",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=22bb78a8-83d9-4ed2-8de8-400b81ca343b&caseHeader.caseInstanceUUID=7def2361-d88e-4df4-a4d2-d006b53cd8f3",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-90509-zhang-v-zhang-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:12.634Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "22bb78a8-83d9-4ed2-8de8-400b81ca343b",
+        "caseInstanceUUID": "7def2361-d88e-4df4-a4d2-d006b53cd8f3",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=22bb78a8-83d9-4ed2-8de8-400b81ca343b&caseHeader.caseInstanceUUID=7def2361-d88e-4df4-a4d2-d006b53cd8f3",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-91198-rbr-mgmt-llc-v-dist-ct-williams",
+      "title": "Rbr Mgmt., LLC v. Dist. Ct. (Williams)",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Rbr Mgmt., LLC v. Dist. Ct. (Williams). The official docket entry lists this as a original proceeding with outcome text: Petition denied. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Original proceeding"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-06-18"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "91198",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-06-18",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "91198-opinion-dispositional",
+          "entryDate": "2026-06-18",
+          "title": "142opn044",
+          "description": "Filed authored opinion.  \"Petition denied.\" Before Stiglich/Cadish/Lee. Author: Stiglich, J. Majority: Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 44. LS/EC/PL (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=0214a28c-13a2-45cd-99e7-222d7e9945e9&caseHeader.caseInstanceUUID=1ef23452-4989-4223-a340-237651f113b2",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "91198-opinion-access",
+          "title": "142opn044",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=0214a28c-13a2-45cd-99e7-222d7e9945e9&caseHeader.caseInstanceUUID=1ef23452-4989-4223-a340-237651f113b2",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-91198-rbr-mgmt-llc-v-dist-ct-williams-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:14.035Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [
+        "District Court"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "0214a28c-13a2-45cd-99e7-222d7e9945e9",
+        "caseInstanceUUID": "1ef23452-4989-4223-a340-237651f113b2",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=0214a28c-13a2-45cd-99e7-222d7e9945e9&caseHeader.caseInstanceUUID=1ef23452-4989-4223-a340-237651f113b2",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-90627-causey-kasie-v-dist-ct-state",
+      "title": "Causey (Kasie) v. Dist. Ct. (State)",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Causey (Kasie) v. Dist. Ct. (State). The official docket entry lists this as a original proceeding with outcome text: Petition denied. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Original proceeding"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-06-18"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "90627",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-06-18",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "90627-opinion-dispositional",
+          "entryDate": "2026-06-18",
+          "title": "142op43",
+          "description": "Filed authored opinion. \"Petition denied.\" Before Stiglich/Cadish/Lee. Author: Stiglich, J. Majority: Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 43. fn3[ In light of this opinion, we lift the stay of proceedings imposed by our April 29, 2026, order.] B26-LS/EC/PL (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=2bf9b730-6b8f-4e76-b5ea-0dacb5f44f6c&caseHeader.caseInstanceUUID=ebc9a573-ef2a-4fe2-8c81-337d2a37f251",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "90627-opinion-access",
+          "title": "142op43",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=2bf9b730-6b8f-4e76-b5ea-0dacb5f44f6c&caseHeader.caseInstanceUUID=ebc9a573-ef2a-4fe2-8c81-337d2a37f251",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-90627-causey-kasie-v-dist-ct-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:14.269Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [
+        "District Court"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "2bf9b730-6b8f-4e76-b5ea-0dacb5f44f6c",
+        "caseInstanceUUID": "ebc9a573-ef2a-4fe2-8c81-337d2a37f251",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=2bf9b730-6b8f-4e76-b5ea-0dacb5f44f6c&caseHeader.caseInstanceUUID=ebc9a573-ef2a-4fe2-8c81-337d2a37f251",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89372-garcia-byron-v-state",
+      "title": "Garcia (Byron) v. State",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Garcia (Byron) v. State. The official docket entry lists this as a criminal appeal with an opinion/dispositional filing. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-06-11"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89372",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-06-11",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89372-opinion-dispositional",
+          "entryDate": "2026-06-11",
+          "title": "89372 Opinion",
+          "description": "Filed authored opinion.  \"Affirmed. Before the En Banc Court. Author Cadish, J. Majority: Herndon/Pickering/Parraguirre/Bell/Stiglich/Lee. 142 Nev. Adv. Opn. No. 42. (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e92e4dbe-90cb-48a8-8889-e7af7b40bbb6&caseHeader.caseInstanceUUID=16d73ffb-23c6-4efa-aeb9-d290ad4fde66",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89372-opinion-access",
+          "title": "89372 Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e92e4dbe-90cb-48a8-8889-e7af7b40bbb6&caseHeader.caseInstanceUUID=16d73ffb-23c6-4efa-aeb9-d290ad4fde66",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89372-garcia-byron-v-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:14.490Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "e92e4dbe-90cb-48a8-8889-e7af7b40bbb6",
+        "caseInstanceUUID": "16d73ffb-23c6-4efa-aeb9-d290ad4fde66",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e92e4dbe-90cb-48a8-8889-e7af7b40bbb6&caseHeader.caseInstanceUUID=16d73ffb-23c6-4efa-aeb9-d290ad4fde66",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89985-las-vegas-police-protective-assoc-v-city-of-las-vegas",
+      "title": "Las Vegas Police Protective Assoc. v. City Of Las Vegas",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Las Vegas Police Protective Assoc. v. City Of Las Vegas. The official docket entry lists this as a civil appeal with outcome text: Reversed and Remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal",
+        "Public interest",
+        "Government accountability"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-06-03"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89985",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-06-03",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89985-opinion-dispositional",
+          "entryDate": "2026-06-03",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Reversed and Remanded\". Before: Stiglich/Cadish/Lee. Author: Stiglich, J. Majority:  Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 41. B26-LS/EC/PL. (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=35d2eaf7-5abc-4a8b-a4e5-a70034734db0&caseHeader.caseInstanceUUID=55c894df-53de-4074-b50c-7e9817611c53",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89985-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=35d2eaf7-5abc-4a8b-a4e5-a70034734db0&caseHeader.caseInstanceUUID=55c894df-53de-4074-b50c-7e9817611c53",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89985-las-vegas-police-protective-assoc-v-city-of-las-vegas-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:14.718Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada",
+        "Las Vegas"
+      ],
+      "relatedAgencies": [
+        "City of Las Vegas"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "35d2eaf7-5abc-4a8b-a4e5-a70034734db0",
+        "caseInstanceUUID": "55c894df-53de-4074-b50c-7e9817611c53",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=35d2eaf7-5abc-4a8b-a4e5-a70034734db0&caseHeader.caseInstanceUUID=55c894df-53de-4074-b50c-7e9817611c53",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-91394-planned-parenthood-mar-monte-inc-v-state-of-nev",
+      "title": "Planned Parenthood Mar Monte, Inc.. v. State Of Nev.",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Planned Parenthood Mar Monte, Inc.. v. State Of Nev. The official docket entry lists this as a civil appeal with outcome text: Reversed and Remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal",
+        "Public interest",
+        "Government accountability"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-05-28"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "91394",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-05-28",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "91394-opinion-dispositional",
+          "entryDate": "2026-05-28",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Reversed and Remanded\". Before: En Banc Court. Author: Herndon, C.J. Majority: Herndon/Pickering/Parraguirre/Bell/Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 40. (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e094ae4e-a2af-41ae-9441-cc3e2d3f8d64&caseHeader.caseInstanceUUID=cbeaada2-7fde-46cd-80e3-6a47802aed74",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "91394-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e094ae4e-a2af-41ae-9441-cc3e2d3f8d64&caseHeader.caseInstanceUUID=cbeaada2-7fde-46cd-80e3-6a47802aed74",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-91394-planned-parenthood-mar-monte-inc-v-state-of-nev-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:14.947Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [
+        "State of Nevada"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "e094ae4e-a2af-41ae-9441-cc3e2d3f8d64",
+        "caseInstanceUUID": "cbeaada2-7fde-46cd-80e3-6a47802aed74",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e094ae4e-a2af-41ae-9441-cc3e2d3f8d64&caseHeader.caseInstanceUUID=cbeaada2-7fde-46cd-80e3-6a47802aed74",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89867-state-v-salazar-rocky",
+      "title": "State v. Salazar (Rocky)",
+      "summary": "Reviewed public Nevada appellate opinion metadata for State v. Salazar (Rocky). The official docket entry lists this as a criminal appeal with outcome text: Reversed and Remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-05-28"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89867",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-05-28",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89867-opinion-dispositional",
+          "entryDate": "2026-05-28",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Reversed and Remanded\". Before: En Banc Court. Author: Stiglich, J. Majority: Herndon/Pickering/Parraguirre/Bell/Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 39. (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=23888945-1464-4a0c-8521-d71cb6ca43ed&caseHeader.caseInstanceUUID=953eed26-2c52-4761-b129-8edaf7b6a615",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89867-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=23888945-1464-4a0c-8521-d71cb6ca43ed&caseHeader.caseInstanceUUID=953eed26-2c52-4761-b129-8edaf7b6a615",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89867-state-v-salazar-rocky-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:15.191Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "23888945-1464-4a0c-8521-d71cb6ca43ed",
+        "caseInstanceUUID": "953eed26-2c52-4761-b129-8edaf7b6a615",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=23888945-1464-4a0c-8521-d71cb6ca43ed&caseHeader.caseInstanceUUID=953eed26-2c52-4761-b129-8edaf7b6a615",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89238-nev-health-and-bioscience-asset-corp-v-state-of-nev",
+      "title": "Nev. Health And Bioscience Asset Corp. v. State Of Nev.",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Nev. Health And Bioscience Asset Corp. v. State Of Nev. The official docket entry lists this as a civil appeal with outcome text: Reversed and Remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal",
+        "Public interest",
+        "Government accountability"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-05-28"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89238",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-05-28",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89238-opinion-dispositional",
+          "entryDate": "2026-05-28",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Reversed and Remanded\". Before: En Banc Court. Author: Pickering, J. Majority: Herndon/Pickering/Parraguirre/Bell/Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 38. (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=2ba19b36-0746-42fe-b49e-70d4c3ce4eca&caseHeader.caseInstanceUUID=51f25e0c-6928-4af5-bccd-5fce725adc75",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89238-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=2ba19b36-0746-42fe-b49e-70d4c3ce4eca&caseHeader.caseInstanceUUID=51f25e0c-6928-4af5-bccd-5fce725adc75",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89238-nev-health-and-bioscience-asset-corp-v-state-of-nev-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:15.431Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [
+        "State of Nevada"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "2ba19b36-0746-42fe-b49e-70d4c3ce4eca",
+        "caseInstanceUUID": "51f25e0c-6928-4af5-bccd-5fce725adc75",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=2ba19b36-0746-42fe-b49e-70d4c3ce4eca&caseHeader.caseInstanceUUID=51f25e0c-6928-4af5-bccd-5fce725adc75",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89015-robinson-maurice-v-state",
+      "title": "Robinson (Maurice) v. State",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Robinson (Maurice) v. State. The official docket entry lists this as a criminal appeal with outcome text: Affirmed in part, vacated in part, and remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-05-21"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89015",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-05-21",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89015-opinion-dispositional",
+          "entryDate": "2026-05-21",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed in part, vacated in part, and remanded\". Before: Stiglich/Cadish/Lee. Author: Stiglich, J. Majority: Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 37. B26-LS/EC/PL (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=72e91ffc-d226-4c75-9748-5b0056e28e82&caseHeader.caseInstanceUUID=e7eed994-e8d2-45fd-b0f7-ab1829deb12a",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89015-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=72e91ffc-d226-4c75-9748-5b0056e28e82&caseHeader.caseInstanceUUID=e7eed994-e8d2-45fd-b0f7-ab1829deb12a",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89015-robinson-maurice-v-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:15.670Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "72e91ffc-d226-4c75-9748-5b0056e28e82",
+        "caseInstanceUUID": "e7eed994-e8d2-45fd-b0f7-ab1829deb12a",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=72e91ffc-d226-4c75-9748-5b0056e28e82&caseHeader.caseInstanceUUID=e7eed994-e8d2-45fd-b0f7-ab1829deb12a",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-84452-rosenbrook-v-lloyd-c-w-85175",
+      "title": "Rosenbrook v. Lloyd C/W 85175",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Rosenbrook v. Lloyd C/W 85175. The official docket entry lists this as a civil appeal with an opinion/dispositional filing. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-05-14"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "84452",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-05-14",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "84452-opinion-dispositional",
+          "entryDate": "2026-05-14",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed in part, reversed in part, and remanded (Docket No. 84452); reversed and remanded(Docket No. 85175). Before: Parraguirre/Bell/Stiglich. Author: Parraguirre, J. Majority: Parraguirre/Bell/Stiglich. 142 Nev. Adv. Opn. No. 36. A25-RP/LB/LS. Nos. 84452/85175 (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=6c9555e6-ad89-465a-913e-4a4da3223c61&caseHeader.caseInstanceUUID=0c5682e4-335a-478f-8d31-824c8af7c3e8",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "84452-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=6c9555e6-ad89-465a-913e-4a4da3223c61&caseHeader.caseInstanceUUID=0c5682e4-335a-478f-8d31-824c8af7c3e8",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-84452-rosenbrook-v-lloyd-c-w-85175-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:15.907Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "6c9555e6-ad89-465a-913e-4a4da3223c61",
+        "caseInstanceUUID": "0c5682e4-335a-478f-8d31-824c8af7c3e8",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=6c9555e6-ad89-465a-913e-4a4da3223c61&caseHeader.caseInstanceUUID=0c5682e4-335a-478f-8d31-824c8af7c3e8",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89594-carter-tyler-v-state",
+      "title": "Carter (Tyler) v. State",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Carter (Tyler) v. State. The official docket entry lists this as a criminal appeal with outcome text: Affirmed in part, reversed in part, and remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-05-14"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89594",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-05-14",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89594-opinion-dispositional",
+          "entryDate": "2026-05-14",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed in part, reversed in part, and remanded\". Before: Pickering/Parraguirre/Bell. Author: Bell, J. Majority: Pickering/Parraguirre/Bell. 142 Nev. Adv. Opn. No. 34. A26-KP/RP/LB (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=8937234e-0856-4dc8-a304-81ab9f2acac9&caseHeader.caseInstanceUUID=867afa56-8a77-45d1-8308-d5581c7d553c",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89594-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=8937234e-0856-4dc8-a304-81ab9f2acac9&caseHeader.caseInstanceUUID=867afa56-8a77-45d1-8308-d5581c7d553c",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89594-carter-tyler-v-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:16.138Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "8937234e-0856-4dc8-a304-81ab9f2acac9",
+        "caseInstanceUUID": "867afa56-8a77-45d1-8308-d5581c7d553c",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=8937234e-0856-4dc8-a304-81ab9f2acac9&caseHeader.caseInstanceUUID=867afa56-8a77-45d1-8308-d5581c7d553c",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89144-powers-v-dist-ct-bueno",
+      "title": "Powers v. Dist. Ct. (Bueno)",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Powers v. Dist. Ct. (Bueno). The official docket entry lists this as a original proceeding with outcome text: Petition granted in part and denied in part. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Original proceeding"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-05-14"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89144",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-05-14",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89144-opinion-dispositional",
+          "entryDate": "2026-05-14",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Petition granted in part and denied in part\". Before: En Banc Court. Author: Herndon, C.J. Majority: Herndon/Pickering/Parraguirre/Bell/Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 35. En Banc. (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=c3f89983-c40e-45d2-a1e8-6cb82deb0391&caseHeader.caseInstanceUUID=8939782f-2e8a-42fe-b1e9-a87de496de85",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89144-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=c3f89983-c40e-45d2-a1e8-6cb82deb0391&caseHeader.caseInstanceUUID=8939782f-2e8a-42fe-b1e9-a87de496de85",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89144-powers-v-dist-ct-bueno-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:16.371Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [
+        "District Court"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "c3f89983-c40e-45d2-a1e8-6cb82deb0391",
+        "caseInstanceUUID": "8939782f-2e8a-42fe-b1e9-a87de496de85",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=c3f89983-c40e-45d2-a1e8-6cb82deb0391&caseHeader.caseInstanceUUID=8939782f-2e8a-42fe-b1e9-a87de496de85",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-91210-del-toro-juan-v-state",
+      "title": "Del Toro (Juan) v. State",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Del Toro (Juan) v. State. The official docket entry lists this as a criminal appeal with outcome text: Reversed and Remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-05-07"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "91210",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-05-07",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "91210-opinion-dispositional",
+          "entryDate": "2026-05-07",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Reversed and Remanded\". Before: Stiglich/Cadish/Lee. Authur: Stiglich, J. Majority: Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 33. LS/EC/PL (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=219ba1de-c624-4c35-8c50-ab0aff4bb178&caseHeader.caseInstanceUUID=70b09f60-c89a-4a0a-8ac0-8116b0fe1d93",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "91210-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=219ba1de-c624-4c35-8c50-ab0aff4bb178&caseHeader.caseInstanceUUID=70b09f60-c89a-4a0a-8ac0-8116b0fe1d93",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-91210-del-toro-juan-v-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:16.598Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "219ba1de-c624-4c35-8c50-ab0aff4bb178",
+        "caseInstanceUUID": "70b09f60-c89a-4a0a-8ac0-8116b0fe1d93",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=219ba1de-c624-4c35-8c50-ab0aff4bb178&caseHeader.caseInstanceUUID=70b09f60-c89a-4a0a-8ac0-8116b0fe1d93",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89254-richt-jesce-v-state",
+      "title": "Richt (Jesce) v. State",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Richt (Jesce) v. State. The official docket entry lists this as a criminal appeal with outcome text: Affirmed. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-04-30"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89254",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-04-30",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89254-opinion-dispositional",
+          "entryDate": "2026-04-30",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed.\" Before: Parraguirre/Bell/Stiglich. Author: Bell, J. Majority:  Parraguirre/Bell/Stiglich. 142 Nev. Adv. Opn. No. 32. RP/LB/LS (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=30dc15e2-1a1b-41e8-a195-3b20abce13f5&caseHeader.caseInstanceUUID=f4d87876-e5fb-4cfc-914f-e4d48e136174",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89254-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=30dc15e2-1a1b-41e8-a195-3b20abce13f5&caseHeader.caseInstanceUUID=f4d87876-e5fb-4cfc-914f-e4d48e136174",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89254-richt-jesce-v-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:16.827Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "30dc15e2-1a1b-41e8-a195-3b20abce13f5",
+        "caseInstanceUUID": "f4d87876-e5fb-4cfc-914f-e4d48e136174",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=30dc15e2-1a1b-41e8-a195-3b20abce13f5&caseHeader.caseInstanceUUID=f4d87876-e5fb-4cfc-914f-e4d48e136174",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-92008-las-vegas-review-journal-inc-v-dist-ct-chasing-horse",
+      "title": "Las Vegas Review-Journal, Inc. v. Dist. Ct. (Chasing Horse)",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Las Vegas Review-Journal, Inc. v. Dist. Ct. (Chasing Horse). The official docket entry lists this as a original proceeding with outcome text: Petition granted. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Original proceeding",
+        "Public interest"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-04-23"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "92008",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-04-23",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "92008-opinion-dispositional",
+          "entryDate": "2026-04-23",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Petition granted.\" Before: Herndon/Stiglich/Cadish. Author: Herndon, Chief Justice. Majority: Herndon/Stiglich/Cadish. 142 Nev. Adv. Opn. No. 31. As previously directed in our emergency order, the Review-Journal's petition for a writ of mandamus is granted. fn1[Our Nevada Judges, Inc., subsequently moved for permission to file an amicus curiae brief. The motion is granted. The proposed amicus curiae brief, provisionally filed on January 28, 2026, is accepted.] DH/LS/EC (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d02f2b37-3534-4f93-bd1b-42e86891368b&caseHeader.caseInstanceUUID=503953a0-90a9-4f75-9fb9-82ef93082fc7",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "92008-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d02f2b37-3534-4f93-bd1b-42e86891368b&caseHeader.caseInstanceUUID=503953a0-90a9-4f75-9fb9-82ef93082fc7",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-92008-las-vegas-review-journal-inc-v-dist-ct-chasing-horse-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:17.052Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada",
+        "Las Vegas"
+      ],
+      "relatedAgencies": [
+        "District Court"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "d02f2b37-3534-4f93-bd1b-42e86891368b",
+        "caseInstanceUUID": "503953a0-90a9-4f75-9fb9-82ef93082fc7",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d02f2b37-3534-4f93-bd1b-42e86891368b&caseHeader.caseInstanceUUID=503953a0-90a9-4f75-9fb9-82ef93082fc7",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89183-engle-julie-v-dist-ct-state",
+      "title": "Engle (Julie) v. Dist. Ct. (State)",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Engle (Julie) v. Dist. Ct. (State). The official docket entry lists this as a original proceeding with outcome text: Petition Granting in Part and Denied in Part. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Original proceeding"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-04-16"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89183",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-04-16",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89183-opinion-dispositional",
+          "entryDate": "2026-04-16",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Petition Granting in Part and Denied in Part.\" Before the Court En Banc. Author: Cadish, J. Majority: Herndon/Pickering/Parraguirre/Lee. Dissenting: Stiglich, J., with whom Bell, J., agrees. 142 Nev. Adv. Opn. No. 30. En Banc. (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=817bd551-638f-44ca-b804-5597265f783b&caseHeader.caseInstanceUUID=fed9ffe5-5e58-4454-b279-0d2cfc9fb6d9",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89183-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=817bd551-638f-44ca-b804-5597265f783b&caseHeader.caseInstanceUUID=fed9ffe5-5e58-4454-b279-0d2cfc9fb6d9",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89183-engle-julie-v-dist-ct-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:17.276Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [
+        "District Court"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "817bd551-638f-44ca-b804-5597265f783b",
+        "caseInstanceUUID": "fed9ffe5-5e58-4454-b279-0d2cfc9fb6d9",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=817bd551-638f-44ca-b804-5597265f783b&caseHeader.caseInstanceUUID=fed9ffe5-5e58-4454-b279-0d2cfc9fb6d9",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-88946-lennar-comm-nev-llc-v-whalen",
+      "title": "Lennar Comm. Nev., LLC v. Whalen",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Lennar Comm. Nev., LLC v. Whalen. The official docket entry lists this as a civil appeal with outcome text: Affirmed. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-04-16"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "88946",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-04-16",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "88946-opinion-dispositional",
+          "entryDate": "2026-04-16",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed.\" Parraguirre/Bell/Stiglich. Author: Bell, J. Majority: Parraguirre/Bell/Stiglich. 142 Nev. Adv. Opn. No.29. RP/LB/LS. (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=29ff9126-e219-4865-8dfc-3e195e40a31f&caseHeader.caseInstanceUUID=4eee4509-62f3-4803-895b-5e14788459e5",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "88946-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=29ff9126-e219-4865-8dfc-3e195e40a31f&caseHeader.caseInstanceUUID=4eee4509-62f3-4803-895b-5e14788459e5",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-88946-lennar-comm-nev-llc-v-whalen-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:17.501Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "29ff9126-e219-4865-8dfc-3e195e40a31f",
+        "caseInstanceUUID": "4eee4509-62f3-4803-895b-5e14788459e5",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=29ff9126-e219-4865-8dfc-3e195e40a31f&caseHeader.caseInstanceUUID=4eee4509-62f3-4803-895b-5e14788459e5",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89243-chabot-wacey-v-state",
+      "title": "Chabot (Wacey) v. State",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Chabot (Wacey) v. State. The official docket entry lists this as a criminal appeal with an opinion/dispositional filing. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-04-09"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89243",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-04-09",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89243-opinion-dispositional",
+          "entryDate": "2026-04-09",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. Affirmed. Before: Parraguirre/Bell/Stiglich. Author: Stiglich, J. Majority: Parraguirre/Bell/Stiglich. 142 Nev. Adv. Opn. 27. LS/RP/LB (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=3478ea1c-1056-415a-a820-d74896a89163&caseHeader.caseInstanceUUID=e69ae342-b53f-4ff1-8d31-9797d757359c",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89243-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=3478ea1c-1056-415a-a820-d74896a89163&caseHeader.caseInstanceUUID=e69ae342-b53f-4ff1-8d31-9797d757359c",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89243-chabot-wacey-v-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:17.730Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "3478ea1c-1056-415a-a820-d74896a89163",
+        "caseInstanceUUID": "e69ae342-b53f-4ff1-8d31-9797d757359c",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=3478ea1c-1056-415a-a820-d74896a89163&caseHeader.caseInstanceUUID=e69ae342-b53f-4ff1-8d31-9797d757359c",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-88095-smith-sophia-v-state",
+      "title": "Smith (Sophia) v. State",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Smith (Sophia) v. State. The official docket entry lists this as a criminal appeal with an opinion/dispositional filing. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-04-09"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "88095",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-04-09",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "88095-opinion-dispositional",
+          "entryDate": "2026-04-09",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. Reversed and remanded. Before: Parraguirre/Bell/Stiglich. Author: Stiglich, J., Majority: Parraguirre/Bell/Stiglich. 142 Nev. Adv. Opn. No. 26. LS/RP/LB (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=5e19b38b-1c6e-41a3-aa37-e036d637f5a2&caseHeader.caseInstanceUUID=168251ad-2b1d-4cfa-a26e-0e24f1f99402",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "88095-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=5e19b38b-1c6e-41a3-aa37-e036d637f5a2&caseHeader.caseInstanceUUID=168251ad-2b1d-4cfa-a26e-0e24f1f99402",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-88095-smith-sophia-v-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:17.955Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "5e19b38b-1c6e-41a3-aa37-e036d637f5a2",
+        "caseInstanceUUID": "168251ad-2b1d-4cfa-a26e-0e24f1f99402",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=5e19b38b-1c6e-41a3-aa37-e036d637f5a2&caseHeader.caseInstanceUUID=168251ad-2b1d-4cfa-a26e-0e24f1f99402",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-90620-singh-v-dist-ct-singh",
+      "title": "Singh v. Dist. Ct. (Singh)",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Singh v. Dist. Ct. (Singh). The official docket entry lists this as a original proceeding with outcome text:  Petition denied. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Original proceeding"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-04-02"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "90620",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-04-02",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "90620-opinion-dispositional",
+          "entryDate": "2026-04-02",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \" Petition denied.\" Before: Pickering/Parraguirre/Bell. Author: Parraguirre, J. Majority: Pickering/Parraguirre/Bell. 142 Nev. Adv. Opn. 25. KP/RP/LB (SC)",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d7e63068-1e1a-4181-add8-79b618edabcc&caseHeader.caseInstanceUUID=42fbbf2b-f06c-42a0-add7-b31678f45603",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "90620-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d7e63068-1e1a-4181-add8-79b618edabcc&caseHeader.caseInstanceUUID=42fbbf2b-f06c-42a0-add7-b31678f45603",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-90620-singh-v-dist-ct-singh-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:18.190Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [
+        "District Court"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "d7e63068-1e1a-4181-add8-79b618edabcc",
+        "caseInstanceUUID": "42fbbf2b-f06c-42a0-add7-b31678f45603",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d7e63068-1e1a-4181-add8-79b618edabcc&caseHeader.caseInstanceUUID=42fbbf2b-f06c-42a0-add7-b31678f45603",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-88680-am-civil-liberties-union-of-nev-v-clark-cnty-school-dist",
+      "title": "Am. Civil Liberties Union Of Nev. v. Clark Cnty. School Dist.",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Am. Civil Liberties Union Of Nev. v. Clark Cnty. School Dist.. The official docket entry lists this as a civil appeal with outcome text: Affirmed. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal",
+        "Public interest",
+        "Government accountability"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-03-26"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "88680",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-03-26",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "88680-opinion-dispositional",
+          "entryDate": "2026-03-26",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed.\" Before: Parraguirre/Bell/Stiglich. Author: Bell, J. Majority: Parraguirre/Bell/Stiglich. 142 Nev. Adv. Opn. No. 24. RP/LB/LS. (SC).",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d4a9dd3d-6425-4fe3-9f8b-841f9fa5ea5c&caseHeader.caseInstanceUUID=11e7ec0b-eeac-4e0c-8101-52d5cf4c4562",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "88680-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d4a9dd3d-6425-4fe3-9f8b-841f9fa5ea5c&caseHeader.caseInstanceUUID=11e7ec0b-eeac-4e0c-8101-52d5cf4c4562",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-88680-am-civil-liberties-union-of-nev-v-clark-cnty-school-dist-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:18.422Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada",
+        "Clark County",
+        "School district"
+      ],
+      "relatedAgencies": [
+        "Clark County",
+        "Clark County School District"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "d4a9dd3d-6425-4fe3-9f8b-841f9fa5ea5c",
+        "caseInstanceUUID": "11e7ec0b-eeac-4e0c-8101-52d5cf4c4562",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=d4a9dd3d-6425-4fe3-9f8b-841f9fa5ea5c&caseHeader.caseInstanceUUID=11e7ec0b-eeac-4e0c-8101-52d5cf4c4562",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89527-friedlander-v-tamarack-junction-race-sports-book",
+      "title": "Friedlander v. Tamarack Junction Race & Sports Book",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Friedlander v. Tamarack Junction Race & Sports Book. The official docket entry lists this as a civil appeal with outcome text: Affirmed. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-03-12"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89527",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-03-12",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89527-opinion-dispositional",
+          "entryDate": "2026-03-12",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed.\" Before the Court En Banc. Author: Stiglich, J. Majority: Herndon/Pickering/Parraguirre/Bell/Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 23. En Banc. (SC).",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=09e6d236-7706-4500-95bc-fa2b92879ebc&caseHeader.caseInstanceUUID=bc749610-736a-4539-b305-b91fe8daab2f",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89527-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=09e6d236-7706-4500-95bc-fa2b92879ebc&caseHeader.caseInstanceUUID=bc749610-736a-4539-b305-b91fe8daab2f",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89527-friedlander-v-tamarack-junction-race-sports-book-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:18.655Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "09e6d236-7706-4500-95bc-fa2b92879ebc",
+        "caseInstanceUUID": "bc749610-736a-4539-b305-b91fe8daab2f",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=09e6d236-7706-4500-95bc-fa2b92879ebc&caseHeader.caseInstanceUUID=bc749610-736a-4539-b305-b91fe8daab2f",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89422-in-re-estate-of-ulvang",
+      "title": "In Re: Estate Of Ulvang",
+      "summary": "Reviewed public Nevada appellate opinion metadata for In Re: Estate Of Ulvang. The official docket entry lists this as a civil appeal with outcome text: Affirmed. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-03-12"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89422",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-03-12",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89422-opinion-dispositional",
+          "entryDate": "2026-03-12",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed.\" Before the Court En Banc. Author: Lee, J. Majority: Herndon/Pickering/Parraguirre/Bell/Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 22. En Banc. (SC).",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=3cf2fc45-240a-449c-b20c-242703c18e51&caseHeader.caseInstanceUUID=64ee4b3d-7e6d-4a15-ac29-7dc4abca3a34",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89422-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=3cf2fc45-240a-449c-b20c-242703c18e51&caseHeader.caseInstanceUUID=64ee4b3d-7e6d-4a15-ac29-7dc4abca3a34",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89422-in-re-estate-of-ulvang-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:18.881Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "3cf2fc45-240a-449c-b20c-242703c18e51",
+        "caseInstanceUUID": "64ee4b3d-7e6d-4a15-ac29-7dc4abca3a34",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=3cf2fc45-240a-449c-b20c-242703c18e51&caseHeader.caseInstanceUUID=64ee4b3d-7e6d-4a15-ac29-7dc4abca3a34",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-89341-vegas-aqua-llc-v-jupitor-corp",
+      "title": "Vegas Aqua, LLC v. Jupitor Corp.",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Vegas Aqua, LLC v. Jupitor Corp.. The official docket entry lists this as a civil appeal with outcome text: Vacated and remanded. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-03-05"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "89341",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "civil",
+      "filingDate": null,
+      "dispositionDate": "2026-03-05",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "89341-opinion-dispositional",
+          "entryDate": "2026-03-05",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Vacated and remanded.\" Before: Pickering/Parraguirre/Bell. Author: Parraguirre, J. Majority: Pickering/Parraguirre/Bell. 142 Nev. Adv. Opn. No. 21. KP/RP/LB. (SC).",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=4bd36885-8121-48c7-98bb-8902e5ecf111&caseHeader.caseInstanceUUID=59253074-27f7-43fb-83a8-45ba1241682d",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "89341-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=4bd36885-8121-48c7-98bb-8902e5ecf111&caseHeader.caseInstanceUUID=59253074-27f7-43fb-83a8-45ba1241682d",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-89341-vegas-aqua-llc-v-jupitor-corp-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:19.113Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "4bd36885-8121-48c7-98bb-8902e5ecf111",
+        "caseInstanceUUID": "59253074-27f7-43fb-83a8-45ba1241682d",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=4bd36885-8121-48c7-98bb-8902e5ecf111&caseHeader.caseInstanceUUID=59253074-27f7-43fb-83a8-45ba1241682d",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "nv-appellate-88527-matadamas-serrano-ruben-v-state",
+      "title": "Matadamas-Serrano (Ruben) v. State",
+      "summary": "Reviewed public Nevada appellate opinion metadata for Matadamas-Serrano (Ruben) v. State. The official docket entry lists this as a criminal appeal with outcome text: Affirmed. Direct Democracy displays stored public metadata only and does not provide legal advice.",
+      "courtLevel": "state",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Criminal appeal"
+      ],
+      "keyDates": [
+        {
+          "label": "Opinion / disposition listed",
+          "date": "2026-03-05"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-06-18T19:13:26.242Z",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "88527",
+      "courtName": "Nevada Supreme Court",
+      "caseType": "criminal",
+      "filingDate": null,
+      "dispositionDate": "2026-03-05",
+      "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "sourceFile": "data/manual-sources/court-cases/reviewed-public-cases/raw-sources/nevada-appellate-advance-opinions-api-page-1-2026-06-18.json",
+      "sourceKind": "official_public_opinion_listing_api_json",
+      "lastCheckedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedAt": "2026-06-18T19:13:26.242Z",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "88527-opinion-dispositional",
+          "entryDate": "2026-03-05",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "description": "Filed Authored Opinion. \"Affirmed.\" Before the En Banc Court. Author: Pickering, J. Majority: Herndon/Pickering/Parraguirre/Bell/Stiglich/Cadish/Lee. 142 Nev. Adv. Opn. No. 20. En Banc. (SC).",
+          "documentType": "opinion",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e1d3ab22-755e-4210-b0c6-f659825564d7&caseHeader.caseInstanceUUID=48cdaba0-2ee6-47f7-9506-136072439256",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "88527-opinion-access",
+          "title": "Opinion/Dispositional - Authored Opinion",
+          "documentType": "opinion_listing",
+          "documentUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e1d3ab22-755e-4210-b0c6-f659825564d7&caseHeader.caseInstanceUUID=48cdaba0-2ee6-47f7-9506-136072439256",
+          "sourceName": "Nevada Appellate Courts Public Portal",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "nv-appellate-88527-matadamas-serrano-ruben-v-state-source",
+          "sourceName": "Nevada Appellate Courts Public Portal - Advance Opinions",
+          "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-06-19T00:36:19.341Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [],
+      "relatedOfficials": [],
+      "metadata": {
+        "documentLinkUUID": "e1d3ab22-755e-4210-b0c6-f659825564d7",
+        "caseInstanceUUID": "48cdaba0-2ee6-47f7-9506-136072439256",
+        "documentAccessUrl": "https://acis-api.nvcourts.gov/courts/cms/docketentrydocumentsaccess?page=0&size=10&sort=documentName%2Casc&caseHeader.courtID=dc01122c-a19d-4eb7-bfe9-5b96e93c26fd&documentLinkUUID=e1d3ab22-755e-4210-b0c6-f659825564d7&caseHeader.caseInstanceUUID=48cdaba0-2ee6-47f7-9506-136072439256",
+        "official": true,
+        "securedDocument": false,
+        "courtID": "1",
+        "documentInfoSource": "public ACIS docket entry document API"
+      }
+    }
+  ]
+}

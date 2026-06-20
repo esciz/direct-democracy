@@ -1,6 +1,7 @@
 import { CommunityDiscoveryExplorer } from "@/components/domain/community-discovery-explorer";
 import { PageIntro } from "@/components/ui/page-intro";
-import { getCommunityPageHref, seededCommunities } from "@/lib/community/communities";
+import { getCommunityPageHref, getNevadaCommunityKind, seededCommunities } from "@/lib/community/communities";
+import type { CommunitySummary } from "@/types/domain";
 
 type StateTile = {
   code: string;
@@ -70,63 +71,43 @@ function getStateHref(code: string) {
   return getCommunityPageHref("united-states");
 }
 
+function getSearchTypeLabel(community: CommunitySummary) {
+  const kind = getNevadaCommunityKind(community.id);
+
+  if (kind === "federal") return "USA" as const;
+  if (community.scope === "state") return "State" as const;
+  if (kind === "county") return "County" as const;
+  if (kind === "community") return "Community" as const;
+  if (community.scope === "local") return "City" as const;
+  return "USA" as const;
+}
+
 function buildSearchResults() {
   const communityResults = seededCommunities.map((community) => ({
     id: community.id,
     label: community.name,
-    typeLabel:
-      community.communityType === "campus"
-        ? ("Campus" as const)
-        : community.scope === "state"
-          ? ("State" as const)
-          : community.scope === "local"
-            ? ("City" as const)
-            : ("USA" as const),
+    typeLabel: getSearchTypeLabel(community),
     href: getCommunityPageHref(community.id),
     description: community.descriptor,
   }));
 
-  const countyResults = [
-    {
-      id: "county_carson_city",
-      label: "Carson City County",
-      typeLabel: "County" as const,
-      href: getCommunityPageHref("carson-city-county"),
-      description: "County-equivalent community view for Carson City.",
-    },
-    {
-      id: "county_washoe",
-      label: "Washoe County",
-      typeLabel: "County" as const,
-      href: getCommunityPageHref("washoe-county"),
-      description: "County-level community context anchored through Reno.",
-    },
-    {
-      id: "county_clark",
-      label: "Clark County",
-      typeLabel: "County" as const,
-      href: getCommunityPageHref("clark-county"),
-      description: "County-level community context anchored through Las Vegas.",
-    },
-  ];
-
-  return [...communityResults, ...countyResults];
+  return communityResults;
 }
 
 export default function CommunitiesPage() {
   const searchResults = buildSearchResults();
-  const stateTiles = US_STATE_TILES.map((state) => ({
+  const stateTiles = US_STATE_TILES.filter((state) => state.code === "NV").map((state) => ({
     ...state,
     href: getStateHref(state.code),
-    hasDedicatedPage: state.code === "NV",
+    hasDedicatedPage: true,
   }));
 
   return (
     <div className="space-y-8 py-8">
       <PageIntro
         eyebrow="Explore Communities"
-        title="Find a community"
-        description="Search directly or use the map to open the community page that best matches the place you want to explore."
+        title="Find a Nevada community"
+        description="Browse every Nevada county, incorporated city, and major community. Federal coverage appears as an overlay; other state-local expansion stays in the backlog."
       />
 
       <CommunityDiscoveryExplorer searchResults={searchResults} stateTiles={stateTiles} />

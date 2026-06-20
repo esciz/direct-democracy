@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-20T20:50:09.914Z",
+  "sourceType": "rss",
+  "policy": "RSS is supplemental. It can flag news, notices, meeting updates, project updates, and monitoring leads, but it does not replace agenda, minutes, packet, court, election, or budget ingestion.",
+  "rssCapableSources": [],
+  "seedExamples": [
+    {
+      "id": "carson-city-news-rss",
+      "sourceName": "Carson City official news RSS",
+      "jurisdiction": "Carson City, NV",
+      "sourceType": "rss",
+      "rssUrl": "https://www.carsoncity.gov/Home/Components/News/News?format=rss",
+      "purpose": "official body news and public notices",
+      "supplementalOnly": true,
+      "needsReview": true
+    }
+  ]
+}

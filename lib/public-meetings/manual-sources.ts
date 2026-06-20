@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import { writePublicCivicCaseArtifacts } from "@/lib/public-cases/public-civic-cases";
 import {
   PUBLIC_MEETING_PATHS,
   absolutePublicMeetingPath,
@@ -964,6 +965,12 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     meetings: nextMeetings,
     votingCards: nextVotingCards,
     officialActions: nextOfficialActions,
+  });
+  await writePublicCivicCaseArtifacts({
+    bodies: nextBodies,
+    meetings: nextMeetings,
+    items: nextItems,
+    votingCards: nextVotingCards,
   });
 
   return { meetings: realMeetings, items: realItems, votes: realVotes, officialActions: realOfficialActions, questions: realQuestions, report: reports, errors };

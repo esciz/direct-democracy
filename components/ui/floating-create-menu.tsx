@@ -6,7 +6,7 @@ import { canUserCreatePoll, canUserCreatePublicPost } from "@/lib/server/auth-gu
 import { FloatingCreateMenuClient, type FloatingCreateAction } from "@/components/ui/floating-create-menu-client";
 
 function canUserCreateOrganization(user: NonNullable<Awaited<ReturnType<typeof getCurrentSessionUser>>>) {
-  return user.role === "citizen" || user.role === "trustedCitizen" || user.role === "admin" || (user.studentModeEnabled && user.studentVerified);
+  return user.role === "citizen" || user.role === "trustedCitizen" || user.role === "admin";
 }
 
 export async function FloatingCreateMenu() {
@@ -73,7 +73,7 @@ export async function FloatingCreateMenu() {
     actions.push({
       href: "/organizations/create",
       label: "Create Organization",
-      description: "Start a coalition or campus org if this profile is eligible.",
+      description: "Start or request a civic coalition.",
       group: "Organize",
     });
   }

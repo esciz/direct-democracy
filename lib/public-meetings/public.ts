@@ -4,6 +4,7 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath, namesMatch, normalizeName } from "@/lib/public-meetings/shared";
+import { getPublicCivicCasesForCommunity } from "@/lib/public-cases/public-civic-cases";
 import type {
   CitizenVoteQuestionRecord,
   CommunityMeetingSummary,
@@ -180,11 +181,25 @@ function bodyMatchesCommunity(body: PublicBodyRecord, community: CommunitySummar
 export async function getCommunityMeetingSummary(community: CommunitySummary): Promise<CommunityMeetingSummary> {
   const dashboard = await getPublicMeetingAdminDashboard();
   const meetingVotingCards = await readJsonFile<MeetingVotingCardRecord[]>(PUBLIC_MEETING_PATHS.meetingVotingCards, []);
+  const publicCases = await getPublicCivicCasesForCommunity(community, 6);
   const matchingBodies = dashboard.publicBodies.filter((body) => bodyMatchesCommunity(body, community));
   const matchingBodyIds = new Set(matchingBodies.map((body) => body.id));
   const matchingMeetings = dashboard.meetings.filter((meeting) => matchingBodyIds.has(meeting.public_body_id));
   const matchingMeetingIds = new Set(matchingMeetings.map((meeting) => meeting.id));
   const matchingItems = dashboard.meetingItems.filter((item) => matchingMeetingIds.has(item.meeting_id));
+  const topicsByMeetingId = new Map<string, string[]>();
+  for (const item of matchingItems) {
+    const topics = topicsByMeetingId.get(item.meeting_id) ?? [];
+    const topic = (item.one_sentence_summary || item.plain_english_explanation || item.title)
+      .replace(/^\s*\d+(?:\.[A-Z0-9]+)*\s*[.)]\s*/i, "")
+      .replace(/\b(?:recommendation|appearance|discussion|possible action|for possible action)\b[:\s-]*/gi, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (topic && !topics.includes(topic)) {
+      topics.push(topic);
+      topicsByMeetingId.set(item.meeting_id, topics.slice(0, 4));
+    }
+  }
   const itemById = new Map(dashboard.meetingItems.map((item) => [item.id, item]));
   const meetingById = new Map(dashboard.meetings.map((meeting) => [meeting.id, meeting]));
   const bodyById = new Map(dashboard.publicBodies.map((body) => [body.id, body]));
@@ -202,6 +217,7 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
       public_body_name: bodyById.get(meeting.public_body_id)?.name ?? "Public body pending",
       meeting_date: meeting.meeting_date,
       agenda_url: meeting.agenda_url ?? meeting.source_urls[0] ?? null,
+      major_topics: topicsByMeetingId.get(meeting.id) ?? [],
     }));
   const recentDecisions = dashboard.voteRecords
     .map((vote) => {
@@ -243,6 +259,7 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
     recent_decisions: recentDecisions,
     open_questions: openQuestions,
     recently_approved_spending: recentlyApprovedSpending,
+    public_cases: publicCases,
     public_comment_opportunities: publicCommentOpportunities,
     last_updated_at: dashboard.ingestionReport?.generated_at ?? null,
   };

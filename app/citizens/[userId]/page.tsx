@@ -5,7 +5,6 @@ import Link from "next/link";
 import { seedUsers } from "@/lib/auth/mock-users";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { getStudentModeState } from "@/lib/server/auth-verification";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { getSafeUserProgressionSummary } from "@/lib/profile/progression";
 import { getSafeReputationSummary } from "@/lib/profile/reputation";
@@ -125,9 +124,8 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
     notFound();
   }
 
-  const [content, studentMode, followState] = await Promise.all([
+  const [content, followState] = await Promise.all([
     getUserProfileContent(user.id),
-    getStudentModeState(user.id),
     getLightweightFollowState(viewer.id, user.id, user.followerCount),
   ]);
   const reputation = getSafeReputationSummary(user);
@@ -138,12 +136,6 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
     .filter((issue, index, values) => values.indexOf(issue) === index)
     .slice(0, 6);
   const externalLinks = Array.isArray(content.externalLinks) ? content.externalLinks : [];
-  const studentBadge =
-    studentMode?.enabled && studentMode.verified
-      ? content.campusCommunityIds[0]
-        ? "Student Verified"
-        : "Student Mode"
-      : null;
 
   return (
     <div className="space-y-6 py-8">
@@ -165,9 +157,6 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
             <div className="flex flex-wrap items-center gap-2">
               <RoleBadge role={user.role} />
               <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur">@{user.username}</span>
-              {studentBadge ? (
-                <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur">{studentBadge}</span>
-              ) : null}
             </div>
             <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{user.name}</h1>
             <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-slate-100">

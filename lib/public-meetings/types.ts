@@ -332,11 +332,23 @@ export type MeetingVotingCardRecord = {
   topic_item_id: string;
   jurisdiction: string;
   body_name: string;
+  civic_layer?: "city" | "county" | "school_district" | "state" | "federal" | "special_district";
+  civic_layer_label?: string;
+  jurisdiction_display_name?: string;
+  governing_body_display_name?: string | null;
   meeting_date: string | null;
   meeting_status: "upcoming" | "completed" | "unknown";
   policy_area: MeetingPolicyArea;
   title: string;
   question_text: string;
+  public_title?: string;
+  public_question?: string;
+  source_title?: string;
+  source_item_number?: string | null;
+  plain_action?: string;
+  plain_purpose?: string;
+  citizen_summary?: string;
+  agenda_language_original?: string;
   plain_language_summary: string;
   source_event_href: string;
   source_topic_href: string;
@@ -360,6 +372,45 @@ export type MeetingVotingCardRecord = {
   needs_roll_call_review: boolean;
   created_at: string;
   updated_at: string;
+};
+
+export type PublicCivicCaseStatus = "new" | "open" | "under_review" | "referred" | "resolved" | "closed" | "archived";
+export type PublicCivicCasePriority = "low" | "medium" | "high" | "urgent";
+export type PublicCivicCaseSourceType =
+  | "public_submission"
+  | "meeting_public_comment"
+  | "agenda_item"
+  | "news"
+  | "government_notice"
+  | "imported_case_system"
+  | "manual_admin";
+export type PublicCivicCaseReviewStatus = "needs_review" | "approved" | "rejected";
+
+export type PublicCivicCaseRecord = {
+  id: string;
+  title: string;
+  plain_language_summary: string;
+  status: PublicCivicCaseStatus;
+  priority: PublicCivicCasePriority;
+  jurisdiction: string;
+  civic_layer: "city" | "county" | "school_district" | "state" | "federal" | "special_district";
+  civic_layer_label: string;
+  body_or_department: string | null;
+  source_type: PublicCivicCaseSourceType;
+  source_url: string | null;
+  source_snippet: string | null;
+  related_meeting_id: string | null;
+  related_agenda_item_id: string | null;
+  related_voting_card_id: string | null;
+  related_official_ids: string[];
+  related_community_id: string | null;
+  policy_area: MeetingPolicyArea;
+  created_at: string;
+  updated_at: string;
+  last_public_update_at: string | null;
+  review_status: PublicCivicCaseReviewStatus;
+  confidence_score: number;
+  badges: string[];
 };
 
 export type CitizenVoteQuestionRecord = {
@@ -512,6 +563,7 @@ export type CommunityMeetingSummary = {
     public_body_name: string;
     meeting_date: string | null;
     agenda_url: string | null;
+    major_topics?: string[];
   }>;
   recent_decisions: Array<{
     id: string;
@@ -523,6 +575,7 @@ export type CommunityMeetingSummary = {
   }>;
   open_questions: MeetingVotingCardRecord[];
   recently_approved_spending: PublicMeetingItemRecord[];
+  public_cases?: PublicCivicCaseRecord[];
   public_comment_opportunities: Array<{
     id: string;
     title: string;

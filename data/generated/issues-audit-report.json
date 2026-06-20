@@ -1,0 +1,291 @@
+{
+  "generatedAt": "2026-06-19T16:24:42.476Z",
+  "output": "data/generated/issues-audit-report.json",
+  "currentSchema": {
+    "hasPrimaryIssueModel": false,
+    "finding": "No standalone Prisma Issue model exists. The current Issues system is composed of issue snapshots, follows, top-issue submissions/upvotes, issue positions, issue tags on adjacent records, and generated runtime hubs.",
+    "models": [
+      {
+        "name": "IssueSnapshot",
+        "present": true,
+        "fields": [
+          "id",
+          "communityId",
+          "scope",
+          "issue",
+          "percentage",
+          "date"
+        ]
+      },
+      {
+        "name": "IssueFollow",
+        "present": true,
+        "fields": [
+          "id",
+          "userId",
+          "issueId",
+          "createdAt",
+          "user"
+        ]
+      },
+      {
+        "name": "TopIssueSubmission",
+        "present": true,
+        "fields": [
+          "id",
+          "userId",
+          "jurisdictionId",
+          "issueText",
+          "scope",
+          "source",
+          "user",
+          "jurisdiction",
+          "upvotes",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      {
+        "name": "TopIssueUpvote",
+        "present": true,
+        "fields": [
+          "id",
+          "issueSubmissionId",
+          "userId",
+          "jurisdictionId",
+          "issueSubmission",
+          "user",
+          "jurisdiction",
+          "createdAt"
+        ]
+      },
+      {
+        "name": "IssuePosition",
+        "present": true,
+        "fields": [
+          "id",
+          "candidateId",
+          "officialId",
+          "issueText",
+          "issueSlug",
+          "stance",
+          "derivation",
+          "summary",
+          "evidenceUrl",
+          "evidenceTitle",
+          "evidenceSourceName",
+          "sourceId",
+          "confidenceScore",
+          "reviewStatus",
+          "verificationStatus",
+          "positionDate",
+          "lastObservedAt",
+          "candidate",
+          "official",
+          "source",
+          "changes",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      {
+        "name": "IssuePositionChange",
+        "present": true,
+        "fields": [
+          "id",
+          "issuePositionId",
+          "previousStance",
+          "nextStance",
+          "previousSummary",
+          "nextSummary",
+          "evidenceUrl",
+          "changedAt",
+          "issuePosition"
+        ]
+      },
+      {
+        "name": "Case",
+        "present": true,
+        "fields": [
+          "id",
+          "title",
+          "summary",
+          "courtLevel",
+          "stage",
+          "jurisdictionId",
+          "issueTags",
+          "status",
+          "keyDatesJson",
+          "createdAt",
+          "jurisdiction",
+          "follows",
+          "supportStatements",
+          "communityBriefThemes"
+        ]
+      }
+    ],
+    "enums": [
+      {
+        "name": "TopIssueSource",
+        "present": true,
+        "values": [
+          "curated",
+          "writeIn"
+        ]
+      },
+      {
+        "name": "IssuePositionStance",
+        "present": true,
+        "values": [
+          "SUPPORTS",
+          "OPPOSES",
+          "MIXED",
+          "UNKNOWN",
+          "CHANGED"
+        ]
+      },
+      {
+        "name": "IssuePositionDerivation",
+        "present": true,
+        "values": [
+          "OFFICIAL",
+          "INFERRED",
+          "UNKNOWN"
+        ]
+      }
+    ],
+    "issueSourceFields": [
+      "TopIssueSubmission.source",
+      "IssuePosition.derivation",
+      "IssuePosition.evidenceUrl",
+      "IssuePosition.sourceId",
+      "Case.issueTags",
+      "runtime sourceTypes in data/generated/issues-runtime.json"
+    ],
+    "issueRelationshipStrategy": "Reuse existing issue text/slug matching and adjacent record issueTags; generated issue hubs store related record IDs for meetings, agenda items, voting cards, court cases, source documents, and citizen issue submissions."
+  },
+  "currentUi": {
+    "routes": [
+      "/issues",
+      "/issues/[issueId]",
+      "/issues/report"
+    ],
+    "files": [
+      {
+        "file": "app/issues/page.tsx",
+        "exists": true
+      },
+      {
+        "file": "app/issues/[issueId]/page.tsx",
+        "exists": true
+      },
+      {
+        "file": "app/issues/report/page.tsx",
+        "exists": true
+      },
+      {
+        "file": "components/domain/top-issue-card.tsx",
+        "exists": true
+      },
+      {
+        "file": "components/domain/issue-lifecycle-map.tsx",
+        "exists": true
+      },
+      {
+        "file": "components/domain/issue-picker-field.tsx",
+        "exists": true
+      },
+      {
+        "file": "components/domain/issue-positions-section.tsx",
+        "exists": true
+      },
+      {
+        "file": "components/domain/community-issue-priority-list.tsx",
+        "exists": true
+      }
+    ],
+    "filters": [
+      "q search on /issues",
+      "detail filter: posts",
+      "events",
+      "debates",
+      "petitions",
+      "cases",
+      "ballotMeasures"
+    ],
+    "cardsAndSections": [
+      "ExploreResultCard on /issues",
+      "TopIssueCard in community flows",
+      "Issue brief",
+      "People",
+      "Organizations",
+      "Issue positions",
+      "Political ads",
+      "Issue review requests"
+    ]
+  },
+  "currentData": {
+    "demoIssues": {
+      "mockTopIssueIdCount": 26,
+      "hardcodedIssueLinkCount": 19,
+      "campusProductHitCount": 0,
+      "note": "No campus/student-government issue topic assumptions found in canonical issue topics."
+    },
+    "canonicalIssueTopics": {
+      "count": 20,
+      "titles": [
+        "Teacher Pay",
+        "Education",
+        "School Safety",
+        "Affordable Housing",
+        "Water Access",
+        "Public Safety",
+        "Criminal Justice",
+        "Healthcare Access",
+        "Campaign Finance Transparency",
+        "Government Accountability",
+        "Growth and Infrastructure",
+        "Transportation",
+        "Land Use and Zoning",
+        "Taxes and Spending",
+        "Elections",
+        "Environment",
+        "Public Meeting Access",
+        "Government Ethics",
+        "Energy Reliability",
+        "Courts and Legal Rights"
+      ]
+    },
+    "sourceBackedInputs": {
+      "meetingVotingCards": 553,
+      "agendaItems": 2675,
+      "publicCourtCases": 25,
+      "issueReviewRequests": 0
+    },
+    "generatedIssueHubs": {
+      "count": 17,
+      "metrics": {
+        "issueCount": 17,
+        "sourceBackedCount": 17,
+        "needsReviewCount": 15,
+        "sourceTypes": [
+          "agenda_item",
+          "meeting_voting_card",
+          "public_court_record"
+        ]
+      }
+    },
+    "placeholderSignals": {
+      "mockDataIssueTextOccurrences": 18,
+      "mockCuratedIssueBlockPresent": true,
+      "recommendation": "Keep mock top issues only as demo fallback. Prefer data/generated/issues-runtime.json for issue directory ordering and source-backed relationship counts."
+    }
+  },
+  "migrationPlan": [
+    "Preserve /issues and /issues/[issueId] URLs.",
+    "Use generated issue hubs from existing meeting, agenda, voting-card, court, and issue review request data.",
+    "Keep TopIssueSubmission and IssueFollow as user engagement overlays rather than the canonical issue source.",
+    "Avoid creating a parallel Issue model until persistence requirements exceed runtime relationship records.",
+    "Route citizen concerns through /issues/report and mark claims as submitted or needs review until verified."
+  ]
+}

@@ -7,14 +7,12 @@ import { getCommunityById } from "@/lib/community/communities";
 import { createNotifications } from "@/lib/notifications/store";
 import { getCanonicalIssueTextOrNull } from "@/lib/issues/utils";
 import {
-  canUserCreateCampusOrg,
   canUserDirectlyCreateCoalition,
   canUserRequestCoalition,
   getAllOrganizationMemberships,
   getAllOrganizations,
   getOrganizationById,
   getOrganizationCampaignOptions,
-  isStudentVerifiedForCampusOrg,
   getStoredOrganizationAnnouncements,
   getStoredOrganizationCreationRequests,
   getStoredOrganizationEndorsements,
@@ -72,9 +70,6 @@ function normalizeOrganizationIssueInputs(formData: FormData) {
       normalizeText(formData.get("issueTagPrimary")),
       normalizeText(formData.get("issueTagSecondary")),
       normalizeText(formData.get("issueTagTertiary")),
-      normalizeText(formData.get("campusIssueTagPrimary")),
-      normalizeText(formData.get("campusIssueTagSecondary")),
-      normalizeText(formData.get("campusIssueTagTertiary")),
       normalizeText(formData.get("coalitionIssueTagPrimary")),
       normalizeText(formData.get("coalitionIssueTagSecondary")),
       normalizeText(formData.get("coalitionIssueTagTertiary")),
@@ -112,7 +107,7 @@ export async function createOrganization(formData: FormData) {
     redirectWithState(returnPath, "orgError", "fields");
   }
 
-  if (organizationType !== "campus_org" && organizationType !== "coalition") {
+  if (organizationType !== "coalition") {
     redirectWithState(returnPath, "orgError", "type");
   }
 
@@ -123,44 +118,6 @@ export async function createOrganization(formData: FormData) {
     redirectWithState(returnPath, "orgError", "duplicate");
   }
 
-  if (organizationType === "campus_org") {
-    if (community.communityType !== "campus" || !canUserCreateCampusOrg(user, communityId)) {
-      redirectWithState(returnPath, "orgError", "campus-permissions");
-    }
-
-    const created = {
-      id: `organization_${Date.now()}`,
-      name,
-      slug: slugify(name),
-      description,
-      organizationType,
-      communityId,
-      campusCommunityId: communityId,
-      jurisdictionName: community.primaryJurisdictionName,
-      founderUserId: user.id,
-      issueTags,
-      linkedEventIds: [],
-      linkedDebateIds: [],
-      linkedPetitionIds: [],
-      createdAt: new Date().toISOString(),
-    };
-    const memberships: OrganizationMembershipSummary[] = [
-      {
-        id: `organization_membership_${Date.now()}`,
-        organizationId: created.id,
-        userId: user.id,
-        userName: user.name,
-        role: "founder",
-        state: "approved",
-        createdAt: new Date().toISOString(),
-      },
-      ...(await getStoredOrganizationMemberships()),
-    ];
-
-    await Promise.all([setStoredOrganizations([created, ...existing]), setStoredOrganizationMemberships(memberships)]);
-    redirect(`/organizations/${created.id}?org=created`);
-  }
-
   if (canUserDirectlyCreateCoalition(user)) {
     const created = {
       id: `organization_${Date.now()}`,
@@ -169,7 +126,6 @@ export async function createOrganization(formData: FormData) {
       description,
       organizationType,
       communityId,
-      campusCommunityId: null,
       jurisdictionName: community.primaryJurisdictionName,
       founderUserId: user.id,
       issueTags,
@@ -206,7 +162,6 @@ export async function createOrganization(formData: FormData) {
     name,
     description,
     communityId,
-    campusCommunityId: null,
     requestedByUserId: user.id,
     requestedByUserName: user.name,
     issueTags,
@@ -244,7 +199,6 @@ export async function approveOrganizationCreationRequest(formData: FormData) {
     description: request.description,
     organizationType: request.organizationType,
     communityId: request.communityId,
-    campusCommunityId: request.campusCommunityId ?? null,
     jurisdictionName: community.primaryJurisdictionName,
     founderUserId: request.requestedByUserId,
     issueTags: request.issueTags,
@@ -287,13 +241,6 @@ export async function requestOrganizationMembership(formData: FormData) {
 
   if (!organization) {
     redirectWithState(returnPath, "orgError", "membership");
-  }
-
-  if (
-    organization.organizationType === "campus_org" &&
-    (!organization.campusCommunityId || !isStudentVerifiedForCampusOrg(user, organization.campusCommunityId))
-  ) {
-    redirectWithState(returnPath, "orgError", "campus-membership");
   }
 
   if (allMemberships.some((entry) => entry.organizationId === organizationId && entry.userId === user.id)) {

@@ -5,11 +5,9 @@ import { getStoredVoteResponses } from "@/lib/feed/quick-votes";
 import { getPublicEndorsementsForUser } from "@/lib/candidates/endorsements";
 import { getCreditBalance } from "@/lib/engagement/credits";
 import { getCommunityGroupsForUser } from "@/lib/community/groups";
-import { getCommunityById } from "@/lib/community/communities";
 import { getRecentVotesForUser, getStructuredValueText, getUserProfileContent } from "@/lib/profile/details";
 import { getEffectiveUserRole } from "@/lib/profile/role-progression";
 import { getUserReputationSummary } from "@/lib/profile/reputation";
-import { getStudentModeState } from "@/lib/server/auth-verification";
 import { getFollowState } from "@/lib/social/follows";
 import { mockVoteQuestions, mockVoteResponses } from "@/lib/mock-data";
 import type { AuthUser, PublicOpinionSummary, PublicCitizenProfileSummary, VoteQuestionCategory, VoteResponseSummary } from "@/types/domain";
@@ -127,7 +125,6 @@ export async function getPublicCitizenProfiles(viewer: AuthUser): Promise<Public
         getPublicEndorsementsForUser(user.id),
         getUserReputationSummary(user.id, { baseFollowerCount: user.followerCount }),
       ]);
-      const studentMode = await getStudentModeState(user.id);
       const localIssueValues = content.localIssues.map(getStructuredValueText);
       const stateIssueValues = content.stateIssues.map(getStructuredValueText);
       const nationalIssueValues = content.nationalIssues.map(getStructuredValueText);
@@ -157,17 +154,8 @@ export async function getPublicCitizenProfiles(viewer: AuthUser): Promise<Public
         },
         topIssuesPreview: [...localIssueValues.slice(0, 1), ...stateIssueValues.slice(0, 1)].filter(Boolean),
         favoriteSpots: content.favoriteSpots,
-        studentProfile:
-          studentMode?.enabled && studentMode.verified
-            ? {
-                studentVerified: true,
-                campusName: getCommunityById(studentMode.campusCommunityId ?? content.campusCommunityIds[0] ?? "")?.name ?? null,
-                favoriteClasses: (content.favoriteClasses ?? []).map(getStructuredValueText),
-              }
-            : null,
         groupTags: groupTagValues,
         groupAffiliations: getCommunityGroupsForUser(user.id),
-        campusCommunityIds: content.campusCommunityIds,
         background: {
           profession: content.background.professionPublic ? content.background.profession || null : null,
           experience: content.background.experiencePublic ? content.background.experience || null : null,

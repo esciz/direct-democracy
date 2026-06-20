@@ -1,11 +1,10 @@
 import { seedUsers } from "@/lib/auth/mock-users";
-import { getCommunityById, getCommunityHierarchy } from "@/lib/community/communities";
+import { getCommunityHierarchy } from "@/lib/community/communities";
 import { communityMatchesMembership } from "@/lib/community/membership";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { getSafeReputationSummary } from "@/lib/profile/reputation";
 import { getVisibilityOverrides } from "@/lib/profile/visibility";
 import { getEffectiveUserRole } from "@/lib/profile/role-progression";
-import { getStudentModeState } from "@/lib/server/auth-verification";
 import { getLightweightFollowState } from "@/lib/social/follows";
 import type { AuthUser, PublicCitizenDirectorySummary } from "@/types/domain";
 
@@ -28,9 +27,6 @@ function userMatchesSearch(user: PublicCitizenDirectorySummary, query: string) {
     user.name,
     user.username,
     user.bio ?? "",
-    ...user.campusCommunityIds
-      .map((communityId) => getCommunityById(communityId)?.name ?? "")
-      .filter(Boolean),
     user.jurisdictionName,
   ]
     .join(" ")
@@ -61,9 +57,8 @@ export async function getPublicPeopleDirectory(_viewer: AuthUser) {
     });
   const allProfiles = await Promise.all(
     visibleUsers.map(async (user) => {
-      const [content, studentMode, followState] = await Promise.all([
+      const [content, followState] = await Promise.all([
         getUserProfileContent(user.id),
-        getStudentModeState(user.id),
         getLightweightFollowState(_viewer.id, user.id, user.followerCount),
       ]);
       const reputation = getSafeReputationSummary(user);
@@ -76,14 +71,6 @@ export async function getPublicPeopleDirectory(_viewer: AuthUser) {
         bio: user.bio,
         profileImageUrl: content.profileImageUrl || null,
         jurisdictionName: user.jurisdictionName,
-        campusCommunityIds: content.campusCommunityIds,
-        studentProfile:
-          studentMode?.enabled && studentMode.verified
-            ? {
-                studentVerified: true,
-                campusName: getCommunityById(studentMode.campusCommunityId ?? content.campusCommunityIds[0] ?? "")?.name ?? null,
-              }
-            : null,
         followerCount: followState.followerCount,
         topIssuesPreview: [...content.localIssues, ...content.stateIssues, ...content.nationalIssues]
           .map((issue) => issue.value)

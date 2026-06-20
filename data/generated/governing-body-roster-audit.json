@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-06-20T20:50:08.595Z",
+  "totals": {
+    "priorityBodies": 7,
+    "bodiesCovered": 2,
+    "rosterRecords": 16,
+    "votingMembers": 16,
+    "unmatchedMembers": 13,
+    "expiredMemberships": 0,
+    "averageConfidence": 0.78
+  },
+  "bodyReports": [
+    {
+      "label": "Carson City Board of Supervisors",
+      "bodyId": "body-carson-city-board-of-supervisors",
+      "organizationId": "carson-city-board-of-supervisors",
+      "covered": false,
+      "votingMembers": 0,
+      "unmatchedMembers": 0,
+      "expiredMemberships": 0,
+      "confidence": 0,
+      "blocker": "missing_source_backed_roster"
+    },
+    {
+      "label": "Reno City Council",
+      "bodyId": "body-reno-city-council",
+      "organizationId": "reno-city-council",
+      "covered": true,
+      "votingMembers": 3,
+      "unmatchedMembers": 0,
+      "expiredMemberships": 0,
+      "confidence": 0.88,
+      "blocker": null
+    },
+    {
+      "label": "Washoe County Commission",
+      "bodyId": "body-washoe-county-commission",
+      "organizationId": "washoe-county-commission",
+      "covered": false,
+      "votingMembers": 0,
+      "unmatchedMembers": 0,
+      "expiredMemberships": 0,
+      "confidence": 0,
+      "blocker": "missing_source_backed_roster"
+    },
+    {
+      "label": "Washoe County School District Board",
+      "bodyId": "body-washoe-county-school-district",
+      "organizationId": "washoe-county-school-district",
+      "covered": false,
+      "votingMembers": 0,
+      "unmatchedMembers": 0,
+      "expiredMemberships": 0,
+      "confidence": 0,
+      "blocker": "missing_source_backed_roster"
+    },
+    {
+      "label": "NSHE Board of Regents",
+      "bodyId": "body-nshe-board-of-regents",
+      "organizationId": "nshe-board-of-regents",
+      "covered": true,
+      "votingMembers": 13,
+      "unmatchedMembers": 13,
+      "expiredMemberships": 0,
+      "confidence": 0.76,
+      "blocker": null
+    },
+    {
+      "label": "Nevada Senate",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "covered": false,
+      "votingMembers": 0,
+      "unmatchedMembers": 0,
+      "expiredMemberships": 0,
+      "confidence": 0,
+      "blocker": "missing_source_backed_roster"
+    },
+    {
+      "label": "Nevada Assembly",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "covered": false,
+      "votingMembers": 0,
+      "unmatchedMembers": 0,
+      "expiredMemberships": 0,
+      "confidence": 0,
+      "blocker": "missing_source_backed_roster"
+    }
+  ]
+}

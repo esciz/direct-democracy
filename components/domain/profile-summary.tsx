@@ -5,7 +5,7 @@ import { ReputationBadges } from "@/components/domain/reputation-badges";
 import { RevealIconChip } from "@/components/domain/reveal-icon-chip";
 import { RoleBadge } from "@/components/domain/role-badge";
 import { getVerificationLabel } from "@/lib/auth/verification";
-import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/communities";
+import { getDefaultCommunityForUser } from "@/lib/community/communities";
 import { getFavoriteSpotCategoryLabel, getProfileTagCategoryLabel } from "@/lib/profile/options";
 import { getIssueVisualToken, getPlaceVisualToken, getTagVisualToken } from "@/lib/ui/visual-tokens";
 import type { PublicCitizenProfileSummary, UserReputationSummary, UserSocialSummary, UserSummary } from "@/types/domain";
@@ -19,8 +19,6 @@ type ProfileSummaryProps = {
 
 export function ProfileSummary({ user, social, reputation, profile }: ProfileSummaryProps) {
   const defaultCommunityId = getDefaultCommunityForUser(user)?.id ?? "carson-city";
-  const studentCampusName =
-    profile?.studentProfile?.campusName ?? getCommunityById(user.studentCampusCommunityId ?? profile?.campusCommunityIds[0] ?? "")?.name ?? null;
 
   return (
     <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
@@ -36,9 +34,6 @@ export function ProfileSummary({ user, social, reputation, profile }: ProfileSum
               <div className="flex flex-wrap items-center gap-2">
                 <RoleBadge role={user.role} />
                 <ReputationBadges trustLevel={reputation.trustLevel} influenceLevel={reputation.influenceLevel} compact />
-                {user.studentModeEnabled && user.studentVerified ? (
-                  <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white">Student Verified</span>
-                ) : null}
               </div>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">{user.name}</h2>
               <p className="mt-1 text-sm text-slate-200">
@@ -91,32 +86,6 @@ export function ProfileSummary({ user, social, reputation, profile }: ProfileSum
           <p className="mt-3 text-sm leading-6 text-slate-600">{reputation.influenceSummary}</p>
         </div>
       </div>
-
-      {user.studentModeEnabled && user.studentVerified ? (
-        <div className="mt-6 rounded-3xl bg-slate-50 p-5">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Student profile</p>
-              <p className="mt-2 text-xl font-semibold text-ink">{studentCampusName ?? "Campus community selected"}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                Student Mode is enabled. Campus identity stays separate from voter-based civic permissions.
-              </p>
-            </div>
-            <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">Student Verified</span>
-          </div>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {(profile?.studentProfile?.favoriteClasses ?? []).length ? (
-              profile?.studentProfile?.favoriteClasses.map((value) => (
-                <span key={value} className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
-                  {value}
-                </span>
-              ))
-            ) : (
-              <span className="text-sm text-slate-500">Add favorite classes in your profile details to personalize your campus identity.</span>
-            )}
-          </div>
-        </div>
-      ) : null}
 
       {reputation.trustedCitizenReputation ? (
         <div className="mt-6 rounded-3xl bg-slate-50 p-5">

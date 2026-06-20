@@ -343,25 +343,30 @@ async function getMeetingVotingQuestionSeeds(): Promise<RealQuestionSeed[]> {
     if (!jurisdiction) return [];
     const fiscalContext = card.financial_impact ? ` Financial impact: ${card.financial_impact}` : "";
     const outcomeContext = card.outcome_text ? ` Outcome recorded: ${card.outcome_text}` : "";
-    const contextSummary = appendTaxCostContext(`${card.plain_language_summary}${outcomeContext}${fiscalContext}`, card.financial_impact_context);
+    const sourceContext = [card.source_item_number, card.source_title ?? card.agenda_language_original].filter(Boolean).join(" / ");
+    const bodyContext = card.governing_body_display_name ?? card.body_name;
+    const contextSummary = appendTaxCostContext(
+      `${card.citizen_summary ?? card.plain_language_summary}${outcomeContext}${fiscalContext}${sourceContext ? ` Source detail: ${sourceContext}.` : ""}`,
+      card.financial_impact_context,
+    );
     return [{
       generationKey: card.generation_key,
-      questionText: card.question_text,
+      questionText: card.public_question ?? card.question_text,
       jurisdictionId: jurisdiction.id,
       scope: getScopeForJurisdiction(jurisdiction.slug),
       civicEntityType: "AGENDA_ITEM",
       civicEntityId: card.topic_item_id,
-      civicEntityName: card.title,
+      civicEntityName: card.source_title ?? card.agenda_language_original ?? card.title,
       civicQuestionType: "ISSUE_POSITION_REVIEW",
       sourceId: null,
-      sourceName: `${card.body_name} meeting record`,
+      sourceName: `${bodyContext} meeting record`,
       sourceUrl: card.source_url,
       sourceLastUpdatedAt: card.updated_at ? new Date(card.updated_at) : new Date(),
       contextSummary,
       yesEffectSummary: `A support response records that you support the source-backed meeting action described here.`,
       noEffectSummary: `An oppose response records that you do not support the source-backed meeting action described here.`,
       affectedGroups: card.affected_groups,
-      officialBody: card.body_name,
+      officialBody: bodyContext,
       officialVoteSummary: card.needs_roll_call_review
         ? "Outcome recorded; individual official votes pending review."
         : card.outcome_text,

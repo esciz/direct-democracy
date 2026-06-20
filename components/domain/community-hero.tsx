@@ -23,16 +23,9 @@ export function CommunityHero({ community }: CommunityHeroProps) {
       <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
         <div className="max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
-            {community.communityType === "campus" ? "Campus spotlight" : "Community spotlight"}
+            Community spotlight
           </p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{community.name}</h1>
-          {community.communityType === "campus" ? (
-            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/75">
-              {community.institutionType} institution
-              {community.locationLabel ? ` · ${community.locationLabel}` : ""}
-              {community.enrollmentSize ? ` · ${community.enrollmentSize.toLocaleString()} students` : ""}
-            </p>
-          ) : null}
           <p className="mt-3 max-w-2xl text-sm leading-7 text-white/85 sm:text-base">{community.descriptor}</p>
         </div>
       </div>

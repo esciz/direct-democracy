@@ -88,7 +88,7 @@ export type VoteQuestionContextSource = {
 export type TruthRatingValue = "Accurate" | "Mostly True" | "Mixed / Unclear" | "Misleading" | "False";
 export type TrustLevel = "High Trust" | "Moderate Trust" | "Mixed" | "Low Trust";
 export type InfluenceLevel = "High Influence" | "Moderate Influence" | "Emerging";
-export type UserVerificationState = "unverified" | "campusVerified" | "voterVerified";
+export type UserVerificationState = "unverified" | "voterVerified";
 export type VerificationTrustTier =
   | "guestBrowseOnly"
   | "accountCreated"
@@ -112,7 +112,7 @@ export type VerificationRiskFlag =
   | "manualReviewRequired";
 export type MediaTier = "trustedSource" | "verifiedMedia";
 export type MediaBiasRatingValue = "Far Left" | "Left" | "Center" | "Right" | "Far Right";
-export type CommunityTrustScope = "campus" | "local" | "state" | "national";
+export type CommunityTrustScope = "local" | "state" | "national";
 export type ReputationTier = "Highly Trusted" | "Trusted" | "Mixed Reliability" | "Low Reliability";
 
 export type PollOptionResult = {
@@ -406,7 +406,7 @@ export type ServiceCategory =
   | "Public Safety";
 
 export type CommunityDataLevel = "city" | "county" | "state" | "federal";
-export type CommunityType = "geographic" | "campus";
+export type CommunityType = "geographic";
 export type InstitutionType = "public" | "private";
 
 export type CommunityGroupType =
@@ -421,7 +421,6 @@ export type CommunityGroupType =
   | "faithCommunityService"
   | "professionalAssociation";
 export type OrganizationType =
-  | "campus_org"
   | "coalition"
   | "labor"
   | "public_interest"
@@ -430,7 +429,6 @@ export type OrganizationType =
   | "nonprofit"
   | "neighborhood"
   | "professional"
-  | "student"
   | "business"
   | "advocacy";
 export type OrganizationMembershipRole = "founder" | "admin" | "member";
@@ -581,14 +579,9 @@ export type UserSummary = {
   bio: string | null;
   role: UserRole;
   verificationState: UserVerificationState;
-  studentModeEnabled?: boolean;
-  studentVerified?: boolean;
-  studentEmail?: string | null;
-  studentCampusCommunityId?: string | null;
   mediaTier?: MediaTier | null;
   jurisdictionName: string;
   primaryCommunityId?: string | null;
-  campusCommunityIds?: string[];
   followerCount: number;
   isVerifiedVoter: boolean;
   isAnonymousPublic: boolean;
@@ -1047,7 +1040,6 @@ export type OrganizationSummary = {
   description: string;
   organizationType: OrganizationType;
   communityId: string;
-  campusCommunityId?: string | null;
   jurisdictionName: string;
   scopeLabel?: string;
   issueTags: string[];
@@ -1135,7 +1127,6 @@ export type OrganizationCreationRequestSummary = {
   name: string;
   description: string;
   communityId: string;
-  campusCommunityId?: string | null;
   requestedByUserId: string;
   requestedByUserName: string;
   issueTags: string[];
@@ -1418,6 +1409,62 @@ export type TopIssueSummary = {
   viewerHasUpvoted: boolean;
 };
 
+export type PublicIssueHubSummary = TopIssueSummary & {
+  plainTitle: string;
+  category: string;
+  sourceBacked: boolean;
+  reviewStatus?: "generated" | "needs_review" | "verified";
+  confidence?: number;
+  sourceCount?: number;
+  linkedMeetingsCount?: number;
+  linkedVotesCount?: number;
+  linkedCourtRecordsCount?: number;
+  linkedAgendaItemsCount?: number;
+  linkedCommunitySubmissionCount?: number;
+  sourceDocumentCount?: number;
+  lastUpdatedAt?: string | null;
+  whyThisMatters?: string;
+  showDemoBadge?: boolean;
+};
+
+export type IssueReviewStatus = "submitted" | "under_review" | "verified" | "resolved" | "archived";
+
+export type IssueEvidenceSummary = {
+  id: string;
+  title: string;
+  evidenceType: "pdf" | "photo" | "court_document" | "news_article" | "email" | "letter" | "meeting_record" | "other";
+  sourceUrl?: string | null;
+  localPath?: string | null;
+  extractedSummary?: string | null;
+  reviewStatus: "submitted" | "needs_review" | "verified" | "rejected";
+};
+
+export type IssueReviewRequestSummary = {
+  id: string;
+  title: string;
+  description?: string | null;
+  category: string;
+  community: string;
+  jurisdictionName: string;
+  status: IssueReviewStatus;
+  submittedAt: string;
+  reviewedAt?: string | null;
+  proposedSummary?: string | null;
+  aiReviewStatus: "not_started" | "generated" | "needs_review" | "verified";
+  identifiedOfficials: string[];
+  identifiedAgencies: string[];
+  identifiedJurisdictions: string[];
+  identifiedCourtCaseNumbers: string[];
+  relatedCaseIds: string[];
+  relatedMeetingIds: string[];
+  relatedVoteIds: string[];
+  relatedOfficialIds: string[];
+  relatedNewsIds: string[];
+  relatedSpendingRecordIds: string[];
+  relatedProjectIds: string[];
+  evidence: IssueEvidenceSummary[];
+};
+
 export type IssueLifecycleSummary = {
   currentStage: IssueLifecycleStage;
   petitionSignatureCount?: number;
@@ -1480,12 +1527,10 @@ export type UserProfileContentSummary = {
   stateIssues: StructuredProfileValueSummary[];
   nationalIssues: StructuredProfileValueSummary[];
   favoriteSpots: FavoriteSpotSummary[];
-  favoriteClasses?: StructuredProfileValueSummary[];
   groupTags: StructuredProfileValueSummary[];
   background: ProfileBackgroundSummary;
   identityTags: ProfileTagSummary[];
   externalLinks: ExternalLinkSummary[];
-  campusCommunityIds: string[];
   recentVotesPublic: boolean;
   bookmarkedScopes: VoteQuestionScope[];
 };
@@ -1547,14 +1592,8 @@ export type PublicCitizenProfileSummary = {
   };
   topIssuesPreview: string[];
   favoriteSpots: FavoriteSpotSummary[];
-  studentProfile?: {
-    studentVerified: boolean;
-    campusName?: string | null;
-    favoriteClasses: string[];
-  } | null;
   groupTags: string[];
   groupAffiliations: CommunityGroupSummary[];
-  campusCommunityIds: string[];
   background: {
     profession?: string | null;
     experience?: string | null;
@@ -1576,11 +1615,6 @@ export type PublicCitizenDirectorySummary = {
   bio: string | null;
   profileImageUrl?: string | null;
   jurisdictionName: string;
-  campusCommunityIds: string[];
-  studentProfile?: {
-    studentVerified: boolean;
-    campusName?: string | null;
-  } | null;
   followerCount: number;
   topIssuesPreview: string[];
   civicCredibility: {
@@ -1609,7 +1643,6 @@ export type TopVoiceSummary = {
   topIssuesPreview: string[];
   groupTags: string[];
   groupAffiliations: CommunityGroupSummary[];
-  campusCommunityIds: string[];
   boostCount: number;
   badgeLabel: "Top Voice (Local)" | "Top Voice (Issue)";
   featuredReason: string;
@@ -1697,10 +1730,12 @@ export type CaseSummary = {
   id: string;
   title: string;
   summary: string;
+  caseSourceType?: "public_court_record";
   courtLevel: CaseCourtLevel;
   stage: CaseStage;
   jurisdictionId: string;
   jurisdictionName: string;
+  communityName?: string | null;
   issueTags: string[];
   keyDates: CaseKeyDateSummary[];
   status: CaseStatus;

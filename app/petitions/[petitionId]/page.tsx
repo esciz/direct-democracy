@@ -68,6 +68,12 @@ function getStatusMessage(error?: string, signed?: string, sponsorship?: string,
 }
 
 export default async function PetitionDetailPage({ params, searchParams }: PetitionDetailPageProps) {
+  const allowDemoData = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
+
+  if (!allowDemoData) {
+    notFound();
+  }
+
   const user = await getCurrentUser();
   const resolvedParams = await params;
   const resolvedSearchParams = searchParams ? await searchParams : undefined;

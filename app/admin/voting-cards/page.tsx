@@ -116,10 +116,15 @@ export default async function AdminVotingCardsPage({ searchParams }: PageProps) 
               {card.financial_impact_context?.badges.map((badge) => (
                 <span key={badge} className="rounded-full border border-amber-300/20 bg-amber-300/10 px-2.5 py-1 text-[11px] font-semibold text-amber-100">{badge}</span>
               ))}
+              {card.civic_layer_label ? <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-100">{card.civic_layer_label}</span> : null}
             </div>
-            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">{card.body_name} · {card.jurisdiction} · {formatDate(card.meeting_date)}</p>
-            <h2 className="mt-2 text-lg font-semibold text-white">{card.question_text}</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">{card.plain_language_summary}</p>
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">{card.jurisdiction_display_name ?? card.jurisdiction} · {formatDate(card.meeting_date)}</p>
+            <h2 className="mt-2 text-lg font-semibold text-white">{card.public_question ?? card.question_text}</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-300">{card.citizen_summary ?? card.plain_language_summary}</p>
+            <div className="mt-3 rounded-xl border border-white/10 bg-black/15 p-3 text-xs leading-5 text-slate-400">
+              <span className="font-semibold text-slate-100">Source detail:</span>{" "}
+              {[card.source_item_number, card.source_title ?? card.agenda_language_original, card.governing_body_display_name ?? card.body_name].filter(Boolean).join(" / ")}
+            </div>
             {card.outcome_text || card.financial_impact || card.affected_groups.length ? (
               <div className="mt-3 grid gap-3 md:grid-cols-3">
                 {card.outcome_text ? <p className="rounded-xl border border-white/10 bg-black/15 p-3 text-sm text-slate-300"><span className="font-semibold text-slate-100">Outcome:</span> {card.outcome_text}</p> : null}
@@ -156,6 +161,28 @@ export default async function AdminVotingCardsPage({ searchParams }: PageProps) 
             <form action={updateMeetingVotingCardReviewAction} className="mt-4 flex flex-wrap gap-2">
               <input type="hidden" name="cardId" value={card.id} />
               <input type="hidden" name="returnPath" value={returnPath} />
+              <div className="grid w-full gap-3 md:grid-cols-2">
+                <label className="space-y-1">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Public question</span>
+                  <textarea name="publicQuestion" rows={3} defaultValue={card.public_question ?? card.question_text} className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" />
+                </label>
+                <label className="space-y-1">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Citizen summary</span>
+                  <textarea name="citizenSummary" rows={3} defaultValue={card.citizen_summary ?? card.plain_language_summary} className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" />
+                </label>
+                <label className="space-y-1">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Public title</span>
+                  <input name="publicTitle" defaultValue={card.public_title ?? card.title} className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" />
+                </label>
+                <label className="space-y-1">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Plain purpose</span>
+                  <input name="plainPurpose" defaultValue={card.plain_purpose ?? ""} className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" />
+                </label>
+                <label className="space-y-1 md:col-span-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Plain action</span>
+                  <input name="plainAction" defaultValue={card.plain_action ?? ""} className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" />
+                </label>
+              </div>
               <button name="reviewStatus" value="approved" className="dd-button-primary rounded-full px-3 py-2 text-xs font-semibold">Approve</button>
               <button name="reviewStatus" value="ready" className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-100">Ready</button>
               <button name="reviewStatus" value="needs_review" className="rounded-full border border-amber-300/20 bg-amber-300/10 px-3 py-2 text-xs font-semibold text-amber-100">Needs review</button>

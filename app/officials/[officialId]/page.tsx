@@ -83,7 +83,7 @@ function withSectionTimeout<T>(promise: Promise<T>, label: string, timeoutMs = 1
 }
 
 async function getOfficialSummaryById(officialId: string) {
-  const officials = await getOfficials();
+  const officials = await getOfficials({ allowDemoFallback: process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true" });
   return officials.find((official) => official.id === officialId) ?? null;
 }
 
@@ -617,19 +617,13 @@ async function OfficialProfileBody({
     hydratedOfficial.linkedUserId !== viewer.id &&
     (viewer.role === "citizen" || viewer.role === "trustedCitizen" || viewer.role === "official");
   const officialBriefBullets = [
-    hydratedOfficial.id === "profile_elena_ramirez"
-      ? "This profile is seeded to show how public commitments, visible actions, and follow-through can be read together across housing, infrastructure, and budget transparency."
-      : null,
     `${hydratedOfficial.officeTitle} is the clearest public role signal on this page.`,
     promises[0]?.category ? `Public Reliability is most clearly being tested on ${promises[0].category}.` : null,
     hydratedOfficial.recentPosts[0]
       ? `${hydratedOfficial.recentPosts.length} recent platform post${hydratedOfficial.recentPosts.length === 1 ? "" : "s"} add current context beyond the formal action record.`
-      : "Recent platform posts are limited, so official actions and promises remain the clearest signals.",
+    : "Recent platform posts are limited, so official actions and promises remain the clearest signals.",
   ].filter((value): value is string => Boolean(value));
-  const officialBriefSummary =
-    hydratedOfficial.id === "profile_elena_ramirez"
-      ? `${hydratedOfficial.name}'s page is the clearest seeded example of the platform's accountability model: it connects specific promises to visible official actions, then shows where follow-through looks strong, partial, or contradicted across housing, infrastructure, and budget transparency.`
-      : `${hydratedOfficial.name}'s page works best as a quick accountability read: ${hydratedOfficial.officeTitle.toLowerCase()} activity is anchored in public actions, promises, and follow-through context for ${hydratedOfficial.jurisdictionName}. ${actionCount ? "The action record below is the strongest place to see what changed recently, while posts and polls add supporting context." : "The clearest next step is to review promises and any recent posts for movement."}`;
+  const officialBriefSummary = `${hydratedOfficial.name}'s page works best as a quick accountability read: ${hydratedOfficial.officeTitle.toLowerCase()} activity is anchored in public actions, promises, and follow-through context for ${hydratedOfficial.jurisdictionName}. ${actionCount ? "The action record below is the strongest place to see what changed recently, while posts and polls add supporting context." : "The clearest next step is to review promises and any recent posts for movement."}`;
   const sentimentSummary = await getProfileSentimentSummary(comparisonUser, hydratedOfficial.id).catch((error) => {
     console.error(`[official-detail] sentiment tracker fallback for ${officialId}`, error);
     return null;

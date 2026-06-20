@@ -79,7 +79,7 @@ const civicActionIntents: CivicActionIntent[] = [
         id: "location",
         question: "Where is this about?",
         type: "location",
-        placeholder: "Use your saved community, or type a city, county, campus, or neighborhood",
+        placeholder: "Use your saved community, or type a city, county, or neighborhood",
       },
     ],
   },

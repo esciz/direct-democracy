@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-20T20:50:08.691Z",
+  "sourceArtifacts": [
+    "data/generated/public-meetings.json",
+    "data/generated/public-meeting-items.json",
+    "data/generated/public-meeting-bodies.json",
+    "data/seed/public-meeting-official-rosters.json"
+  ],
+  "totals": {
+    "meetingsScanned": 691,
+    "meetingsWithAttendanceParsed": 2,
+    "attendanceRecords": 47,
+    "votingMemberAttendanceRecords": 33,
+    "nonVotingAttendanceRecords": 14,
+    "unmatchedNames": 21,
+    "meetingsNeedingAttendanceReview": 0,
+    "meetingsWithVerifiedVotingAttendance": 2,
+    "meetingsEligibleForUnanimousOrAggregateVoteAttribution": 2,
+    "voteActionsUnlockedByAttendance": 0
+  },
+  "statusCounts": {
+    "present": 33,
+    "non_voting_present": 14
+  },
+  "matchConfidenceCounts": {
+    "exact_name_match": 26,
+    "unmatched_name": 21
+  }
+}
