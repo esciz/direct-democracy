@@ -80,9 +80,13 @@ export async function getCurrentSessionUser(): Promise<AuthUser | null> {
 
 export async function getCurrentFeedViewer(): Promise<FeedViewerContext> {
   const cookieStore = await cookies();
-  const previewContext = await getActivePreviewContext();
+  const [previewContext, adminSession] = await Promise.all([getActivePreviewContext(), getAdminSession()]);
   const userId = cookieStore.get(MOCK_AUTH_COOKIE)?.value;
-  const seededUser = userId && userId !== PUBLIC_SESSION_VALUE ? getSeedUserById(userId) ?? getDefaultSeedUser() : getDefaultSeedUser();
+  const seededCandidate = userId && userId !== PUBLIC_SESSION_VALUE ? getSeedUserById(userId) ?? getDefaultSeedUser() : getDefaultSeedUser();
+  const seededUser =
+    (seededCandidate.role === "admin" || seededCandidate.role === "platform_admin") && !adminSession
+      ? getDefaultSeedUser()
+      : seededCandidate;
   const previewUser = applyPreviewContextToUser(seededUser, previewContext) ?? getSeedUserById("user_guest_browse") ?? seededUser;
 
   return {
