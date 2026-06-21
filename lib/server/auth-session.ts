@@ -3,6 +3,7 @@ import "server-only";
 import { cookies } from "next/headers";
 
 import { applyPreviewContextToUser, getActivePreviewContext } from "@/lib/admin-preview/context";
+import { getAdminSession } from "@/lib/admin/auth";
 import { MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import type { FeedViewerContext } from "@/lib/auth/session";
@@ -42,6 +43,10 @@ export async function getRawCurrentSessionUser(): Promise<AuthUser | null> {
   const seededUser = getSeedUserById(userId);
 
   if (!seededUser) {
+    return null;
+  }
+
+  if ((seededUser.role === "admin" || seededUser.role === "platform_admin") && !(await getAdminSession())) {
     return null;
   }
 
