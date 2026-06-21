@@ -12,6 +12,10 @@ import {
 
 export const ADMIN_SEED_USER_ID = "user_admin_riley_morgan";
 
+const ADMIN_EMAIL_PLACEHOLDER = "admin@example.org";
+const ADMIN_PASSWORD_PLACEHOLDER = "replace-with-a-long-random-password";
+const ADMIN_SECRET_PLACEHOLDER = "replace-with-at-least-32-random-characters";
+
 export type AdminAuthConfig = {
   email: string;
   password: string;
@@ -26,14 +30,20 @@ export function getAdminAuthConfigurationIssues() {
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email)) {
     issues.push("ADMIN_EMAIL must be a valid email address.");
+  } else if (email.toLowerCase() === ADMIN_EMAIL_PLACEHOLDER) {
+    issues.push("ADMIN_EMAIL must replace the example value.");
   }
 
-  if (password.length < 12) {
-    issues.push("ADMIN_PASSWORD must be at least 12 characters.");
+  if (password.length < 16) {
+    issues.push("ADMIN_PASSWORD must be at least 16 characters.");
+  } else if (password === ADMIN_PASSWORD_PLACEHOLDER) {
+    issues.push("ADMIN_PASSWORD must replace the example value.");
   }
 
   if (sessionSecret.length < 32) {
     issues.push("ADMIN_SESSION_SECRET must be at least 32 characters.");
+  } else if (sessionSecret === ADMIN_SECRET_PLACEHOLDER) {
+    issues.push("ADMIN_SESSION_SECRET must replace the example value.");
   }
 
   return issues;
