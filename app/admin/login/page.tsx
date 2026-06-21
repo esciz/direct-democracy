@@ -89,7 +89,7 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
             <input
               required
               autoComplete="current-password"
-              minLength={12}
+              minLength={16}
               name="password"
               type="password"
               className="mt-2 w-full rounded-xl border border-white/10 bg-slate-950/80 px-4 py-3 text-sm text-slate-100 outline-none ring-cyan-300/40 focus:ring-2"
