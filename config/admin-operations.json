@@ -1,0 +1,89 @@
+{
+  "operations": [
+    {
+      "id": "meetings-bootstrap-cache",
+      "label": "Prepare meeting source cache",
+      "description": "Create or refresh the manual official-source cache structure used by blocked and browser-assisted public meeting providers.",
+      "category": "Meeting acquisition",
+      "requiresPlaywright": false,
+      "steps": [
+        {
+          "label": "Prepare source cache",
+          "script": "meetings:bootstrap:sources"
+        }
+      ]
+    },
+    {
+      "id": "meetings-download-playwright",
+      "label": "Download meeting sources with Playwright",
+      "description": "Run the allowlisted, headless Playwright collector for official public meeting pages and downloadable records.",
+      "category": "Meeting acquisition",
+      "requiresPlaywright": true,
+      "steps": [
+        {
+          "label": "Collect public meeting sources",
+          "script": "meetings:bootstrap:playwright"
+        }
+      ]
+    },
+    {
+      "id": "meetings-import-cached",
+      "label": "Import cached meeting records",
+      "description": "Parse cached official meeting files, refresh generated records, and rebuild the provider coverage report.",
+      "category": "Meeting processing",
+      "requiresPlaywright": false,
+      "steps": [
+        {
+          "label": "Import manual source cache",
+          "script": "meetings:import:manual"
+        },
+        {
+          "label": "Import normalized meeting records",
+          "script": "meetings:import"
+        },
+        {
+          "label": "Refresh meeting coverage report",
+          "script": "meetings:report"
+        }
+      ]
+    },
+    {
+      "id": "meetings-refresh-full",
+      "label": "Full meeting source refresh",
+      "description": "Collect allowlisted public meeting sources with Playwright, import cached files, and rebuild reports in one monitored run.",
+      "category": "Meeting processing",
+      "requiresPlaywright": true,
+      "steps": [
+        {
+          "label": "Collect public meeting sources",
+          "script": "meetings:bootstrap:playwright"
+        },
+        {
+          "label": "Import manual source cache",
+          "script": "meetings:import:manual"
+        },
+        {
+          "label": "Import normalized meeting records",
+          "script": "meetings:import"
+        },
+        {
+          "label": "Refresh meeting coverage report",
+          "script": "meetings:report"
+        }
+      ]
+    },
+    {
+      "id": "nv-sos-refresh",
+      "label": "Refresh Nevada SOS records",
+      "description": "Run the existing Nevada Secretary of State fetch, discovery, extraction, parsing, quality, and status pipeline.",
+      "category": "Election acquisition",
+      "requiresPlaywright": false,
+      "steps": [
+        {
+          "label": "Run Nevada SOS pipeline",
+          "script": "nv-sos:all"
+        }
+      ]
+    }
+  ]
+}

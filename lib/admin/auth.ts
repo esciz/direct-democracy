@@ -1,0 +1,100 @@
+import "server-only";
+
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
+import {
+  ADMIN_SESSION_COOKIE,
+  ADMIN_SESSION_MAX_AGE_SECONDS,
+  verifyAdminSessionToken,
+  type AdminSessionPayload,
+} from "@/lib/admin/session-token";
+
+export const ADMIN_SEED_USER_ID = "user_admin_riley_morgan";
+
+const ADMIN_EMAIL_PLACEHOLDER = "admin@example.org";
+const ADMIN_PASSWORD_PLACEHOLDER = "replace-with-a-long-random-password";
+const ADMIN_SECRET_PLACEHOLDER = "replace-with-at-least-32-random-characters";
+
+export type AdminAuthConfig = {
+  email: string;
+  password: string;
+  sessionSecret: string;
+};
+
+export function getAdminAuthConfigurationIssues() {
+  const issues: string[] = [];
+  const email = process.env.ADMIN_EMAIL?.trim() ?? "";
+  const password = process.env.ADMIN_PASSWORD ?? "";
+  const sessionSecret = process.env.ADMIN_SESSION_SECRET ?? "";
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email)) {
+    issues.push("ADMIN_EMAIL must be a valid email address.");
+  } else if (email.toLowerCase() === ADMIN_EMAIL_PLACEHOLDER) {
+    issues.push("ADMIN_EMAIL must replace the example value.");
+  }
+
+  if (password.length < 16) {
+    issues.push("ADMIN_PASSWORD must be at least 16 characters.");
+  } else if (password === ADMIN_PASSWORD_PLACEHOLDER) {
+    issues.push("ADMIN_PASSWORD must replace the example value.");
+  }
+
+  if (sessionSecret.length < 32) {
+    issues.push("ADMIN_SESSION_SECRET must be at least 32 characters.");
+  } else if (sessionSecret === ADMIN_SECRET_PLACEHOLDER) {
+    issues.push("ADMIN_SESSION_SECRET must replace the example value.");
+  }
+
+  return issues;
+}
+
+export function getAdminAuthConfig(): AdminAuthConfig | null {
+  if (getAdminAuthConfigurationIssues().length > 0) {
+    return null;
+  }
+
+  return {
+    email: process.env.ADMIN_EMAIL!.trim().toLowerCase(),
+    password: process.env.ADMIN_PASSWORD!,
+    sessionSecret: process.env.ADMIN_SESSION_SECRET!,
+  };
+}
+
+export function getAdminSessionCookieOptions() {
+  return {
+    httpOnly: true,
+    sameSite: "strict" as const,
+    path: "/",
+    secure: process.env.NODE_ENV === "production",
+    maxAge: ADMIN_SESSION_MAX_AGE_SECONDS,
+  };
+}
+
+export async function getAdminSession(): Promise<AdminSessionPayload | null> {
+  const config = getAdminAuthConfig();
+
+  if (!config) {
+    return null;
+  }
+
+  const cookieStore = await cookies();
+  const session = await verifyAdminSessionToken(cookieStore.get(ADMIN_SESSION_COOKIE)?.value, config.sessionSecret);
+
+  if (!session || session.email !== config.email) {
+    return null;
+  }
+
+  return session;
+}
+
+export async function requireAdminSession(nextPath = "/admin"): Promise<AdminSessionPayload> {
+  const session = await getAdminSession();
+
+  if (!session) {
+    const params = new URLSearchParams({ next: nextPath.startsWith("/admin") ? nextPath : "/admin" });
+    return redirect(`/admin/login?${params.toString()}`);
+  }
+
+  return session;
+}
