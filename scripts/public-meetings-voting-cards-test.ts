@@ -98,7 +98,7 @@ const cards = buildMeetingVotingCards({
 
 if (cards.length !== 1) throw new Error(`Expected 1 voting card, got ${cards.length}`);
 const [card] = cards;
-if (!card.question_text.includes("Test City Council")) throw new Error(`Question did not include body: ${card.question_text}`);
+if (!card.question_text.includes("city")) throw new Error(`Question did not use citizen-facing jurisdiction language: ${card.question_text}`);
 if (card.outcome_status !== "approved") throw new Error(`Expected approved outcome, got ${card.outcome_status}`);
 if (card.review_status !== "approved") throw new Error(`Expected approved review status, got ${card.review_status}`);
 if (!card.financial_impact) throw new Error("Expected fiscal impact on generated card");

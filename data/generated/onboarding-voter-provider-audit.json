@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-27T16:24:49.887Z",
+  "status": "onboarding_voter_provider_audited",
+  "providerConfigured": false,
+  "sampleResult": {
+    "status": "sourceUnavailable",
+    "confidence": "none",
+    "matchedRecordPresent": false,
+    "sourceStatus": "provider_unconfigured"
+  },
+  "trustTier": "basicVerified",
+  "manualReviewStatus": "available",
+  "validation": {
+    "unavailableProviderDoesNotReturnNoMatch": true,
+    "unavailableProviderDoesNotReturnFakeMatch": true,
+    "unavailableProviderOffersManualReview": true,
+    "accountNotDemotedToGuestWhenBasicChecksExist": true,
+    "sensitiveValuesIncluded": false
+  },
+  "pass": true
+}

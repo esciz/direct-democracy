@@ -19,3 +19,10 @@ data/manual-sources/
 .local/
 .DS_Store
 *.pdf
+
+# Runtime civic source caches. Commit manifests, hashes, and extracted indexes;
+# keep large downloaded evidence binaries out of git.
+data/generated/public-meeting-document-cache/
+data/generated/public-meeting-document-text-cache/
+data/generated/public-meeting-ocr-text-cache/
+data/private/public-meeting-cache-objects/

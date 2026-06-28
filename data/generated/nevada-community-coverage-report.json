@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-20T20:50:11.339Z",
-  "relationshipMapGeneratedAt": "2026-06-20T20:50:11.166Z",
+  "generatedAt": "2026-06-26T13:50:48.604Z",
+  "relationshipMapGeneratedAt": "2026-06-26T13:50:48.427Z",
   "roadmapScope": "Nevada local coverage plus federal overlay only",
   "totals": {
     "communities": 39,
@@ -9,46 +9,46 @@
     "majorCommunities": 8,
     "navigableCommunities": 39,
     "communitiesWithAnyLinkedCivicRecord": 39,
-    "communitiesWithLocalLinkedCivicRecord": 21,
+    "communitiesWithLocalLinkedCivicRecord": 23,
     "communitiesWithUsefulDashboardData": 39,
-    "communitiesWithOnlyStatewideOverlayData": 19,
-    "communitiesWithLimitedLocalData": 22,
-    "communitiesWithImprovedLimitedDataMessaging": 22,
-    "communitiesWithZeroLocalRecordsButUsableOverlays": 19,
+    "communitiesWithOnlyStatewideOverlayData": 16,
+    "communitiesWithLimitedLocalData": 19,
+    "communitiesWithImprovedLimitedDataMessaging": 19,
+    "communitiesWithZeroLocalRecordsButUsableOverlays": 16,
     "communitiesWithStaleDashboardData": 0,
-    "dashboardCardsWithInternalLinks": 588,
-    "dashboardCardsWithSourceOnlyLinks": 210,
+    "dashboardCardsWithInternalLinks": 529,
+    "dashboardCardsWithSourceOnlyLinks": 269,
     "dashboardItemsMissingDestinations": 0,
     "communityPagesReady": 39,
     "projectDetailCoverageCommunities": 39,
     "eventDetailCoverageCommunities": 39,
-    "officialDetailCoverageCommunities": 9,
+    "officialDetailCoverageCommunities": 39,
     "communitiesWithMeetings": 39,
-    "communitiesWithLocalMeetings": 13,
-    "communitiesWithOfficials": 9,
-    "communitiesWithLocalOfficials": 9,
+    "communitiesWithLocalMeetings": 16,
+    "communitiesWithOfficials": 39,
+    "communitiesWithLocalOfficials": 16,
     "communitiesWithElections": 39,
     "communitiesWithLocalElections": 10,
     "communitiesWithCourtCases": 39,
-    "communitiesWithLocalCourtCases": 14,
+    "communitiesWithLocalCourtCases": 17,
     "communitiesWithSpendingData": 39,
-    "communitiesWithLocalSpendingData": 20,
+    "communitiesWithLocalSpendingData": 21,
     "communitiesWithVotingCards": 39,
-    "communitiesWithLocalVotingCards": 13,
+    "communitiesWithLocalVotingCards": 14,
     "communitiesWithIssues": 39,
     "communitiesWithLocalIssues": 13,
     "communitiesWithProjects": 39,
-    "communitiesWithLocalProjects": 14,
+    "communitiesWithLocalProjects": 17,
     "communitiesWithSourceDocuments": 39,
-    "sourceDocumentLinkCount": 71966,
+    "sourceDocumentLinkCount": 77766,
     "directLinkCount": 0,
-    "inferredLinkCount": 4202,
-    "statewideOnlyCount": 1577,
+    "inferredLinkCount": 4757,
+    "statewideOnlyCount": 1694,
     "federalOnlyCount": 0,
     "unlinkedCount": 33,
-    "needsReviewCount": 3548,
-    "lowConfidenceCount": 3016,
-    "recordsProcessed": 5812
+    "needsReviewCount": 3859,
+    "lowConfidenceCount": 3338,
+    "recordsProcessed": 6484
   },
   "sourceArtifacts": {
     "communities": "lib/community/communities.ts",
@@ -62,17 +62,17 @@
       {
         "domain": "meetings",
         "sourcePath": "data/generated/public-meetings.json",
-        "recordCount": 691
+        "recordCount": 728
       },
       {
         "domain": "agendaItems",
         "sourcePath": "data/generated/public-meeting-items.json",
-        "recordCount": 2675
+        "recordCount": 2885
       },
       {
         "domain": "votingCards",
         "sourcePath": "data/generated/public-meeting-voting-cards.json",
-        "recordCount": 553
+        "recordCount": 756
       },
       {
         "domain": "issues",
@@ -87,12 +87,12 @@
       {
         "domain": "courtCases",
         "sourcePath": "data/generated/public-cases-runtime.json",
-        "recordCount": 764
+        "recordCount": 826
       },
       {
         "domain": "spendingRecords",
         "sourcePath": "data/generated/public-meeting-items.json",
-        "recordCount": 400
+        "recordCount": 401
       },
       {
         "domain": "spendingRecords",
@@ -102,7 +102,7 @@
       {
         "domain": "projects",
         "sourcePath": "data/generated/nevada-community-projects.json",
-        "recordCount": 582
+        "recordCount": 621
       },
       {
         "domain": "elections",
@@ -116,25 +116,25 @@
       },
       {
         "domain": "officialActionRecords",
-        "sourcePath": "data/generated/nevada-community-officials.json",
-        "recordCount": 44
+        "sourcePath": "data/generated/current-officials-runtime.json",
+        "recordCount": 164
       }
     ]
   },
   "sprint1EReadiness": {
     "officials": {
-      "generatedRecords": 44,
-      "coveredCommunities": 9,
+      "generatedRecords": 164,
+      "coveredCommunities": 39,
       "namedSourceBackedOnly": true
     },
     "projects": {
-      "generatedRecords": 582,
+      "generatedRecords": 621,
       "coveredCommunities": 39,
-      "localCoveredCommunities": 14,
+      "localCoveredCommunities": 17,
       "inferredRecordsNeedReview": true
     },
     "events": {
-      "generatedRecords": 691,
+      "generatedRecords": 728,
       "communitiesWithEvents": 39,
       "artifact": "data/generated/nevada-community-events.json"
     },
@@ -167,10 +167,10 @@
           "name": "Carson City Board of Supervisors",
           "jurisdiction": "Carson City, NV",
           "historicalIngestionSupported": true,
-          "meetingsParsed": 480,
-          "minutesParsed": 331,
+          "meetingsParsed": 486,
+          "minutesParsed": 334,
           "oldestMeetingFound": "2024-01-04T00:29:00.000Z",
-          "newestMeetingFound": "2026-06-16T20:27:00.000Z",
+          "newestMeetingFound": "2026-06-24T23:52:00.000Z",
           "nextRecommendedAction": null
         },
         {
@@ -204,6 +204,28 @@
           "minutesParsed": 17,
           "oldestMeetingFound": "2024-01-16T17:00:00.000Z",
           "newestMeetingFound": "2025-10-28T17:00:00.000Z",
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "elko-city-council",
+          "name": "Elko City Council",
+          "jurisdiction": "Elko, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": null
+        },
+        {
+          "sourceId": "elko-county-commission",
+          "name": "Elko County Commission",
+          "jurisdiction": "Elko County, NV",
+          "historicalIngestionSupported": false,
+          "meetingsParsed": 0,
+          "minutesParsed": 0,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
           "nextRecommendedAction": null
         },
         {
@@ -255,10 +277,10 @@
           "name": "Washoe County School District Board of Trustees",
           "jurisdiction": "Washoe County School District, NV",
           "historicalIngestionSupported": true,
-          "meetingsParsed": 57,
-          "minutesParsed": 57,
+          "meetingsParsed": 59,
+          "minutesParsed": 59,
           "oldestMeetingFound": "2024-01-09T15:30:00.000Z",
-          "newestMeetingFound": "2026-05-12T15:30:00.000Z",
+          "newestMeetingFound": "2026-06-09T15:30:00.000Z",
           "nextRecommendedAction": null
         },
         {
@@ -299,7 +321,7 @@
           "name": "Reno City Council",
           "jurisdiction": null,
           "historicalIngestionSupported": null,
-          "meetingsParsed": 27,
+          "meetingsParsed": 30,
           "minutesParsed": null,
           "oldestMeetingFound": null,
           "newestMeetingFound": null,
@@ -361,6 +383,28 @@
           "nextRecommendedAction": "Some saved source records need manual review."
         },
         {
+          "sourceId": "elko-city-council",
+          "name": "Elko City Council",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 11,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
+          "sourceId": "elko-county-commission",
+          "name": "Elko County Commission",
+          "jurisdiction": null,
+          "historicalIngestionSupported": null,
+          "meetingsParsed": 6,
+          "minutesParsed": null,
+          "oldestMeetingFound": null,
+          "newestMeetingFound": null,
+          "nextRecommendedAction": "Vote/action text found but individual roll-call names need review."
+        },
+        {
           "sourceId": "clark-county-commission",
           "name": "Clark County Commission",
           "jurisdiction": null,
@@ -376,7 +420,7 @@
           "name": "Las Vegas City Council",
           "jurisdiction": null,
           "historicalIngestionSupported": null,
-          "meetingsParsed": 18,
+          "meetingsParsed": 21,
           "minutesParsed": null,
           "oldestMeetingFound": null,
           "newestMeetingFound": null,
@@ -387,7 +431,7 @@
           "name": "Henderson City Council",
           "jurisdiction": null,
           "historicalIngestionSupported": null,
-          "meetingsParsed": 15,
+          "meetingsParsed": 16,
           "minutesParsed": null,
           "oldestMeetingFound": null,
           "newestMeetingFound": null,
@@ -398,7 +442,7 @@
           "name": "North Las Vegas City Council",
           "jurisdiction": null,
           "historicalIngestionSupported": null,
-          "meetingsParsed": 20,
+          "meetingsParsed": 23,
           "minutesParsed": null,
           "oldestMeetingFound": null,
           "newestMeetingFound": null,
@@ -409,7 +453,7 @@
           "name": "Clark County School District Board of Trustees",
           "jurisdiction": null,
           "historicalIngestionSupported": null,
-          "meetingsParsed": 2,
+          "meetingsParsed": 3,
           "minutesParsed": null,
           "oldestMeetingFound": null,
           "newestMeetingFound": null,
@@ -420,7 +464,7 @@
           "name": "Carson City School District Board of Trustees",
           "jurisdiction": null,
           "historicalIngestionSupported": null,
-          "meetingsParsed": 2,
+          "meetingsParsed": 3,
           "minutesParsed": null,
           "oldestMeetingFound": null,
           "newestMeetingFound": null,
@@ -454,14 +498,14 @@
     "community": "Carson City",
     "examples": [
       {
-        "recordId": "meeting-voting-card-item-meeting-manual-nv-legislature-nevada-legislature-2026-06-16-6ed19abb-37-f787b7f11e",
+        "recordId": "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-863f1c30fb",
         "type": "statewide_overlay",
-        "before": "Should the state approve Advisory Committee for the Office of Minority Health and Equity Advisory Committee on Housing Advisory Committee on the Safety and Well Being of Public School Staff Advisory Com?",
+        "before": "Should the state approve REVISION, PERIODIC FOUR-YEAR SALARY SCHEDULE UPDATE Chancellor Matt McNair will request approval of proposed adjustments to the salary schedules within the Procedures and Guidel?",
         "after": {
-          "headline": "Should the state approve Advisory Committee for the Office of Minority Health and Equity Advisory Committee on Housing Advisory Committee on the Safety and Well Being of Public Sc…?",
-          "summary": "Advisory Committee for the Office of Minority Health and Equity Advisory Committee on Housing Advisory Committee on the Safety and Well Being of Public School Staff Advisory Com...",
-          "whyItMatters": "This may affect housing, development, permits, neighborhood growth, or land-use rules.",
-          "source": "Voting card source · Nevada Legislature · Advisory Committee for the Office of Minority Health and Equity Advisory Committee on Housing Advisory Committee on the Safety and Well Being of Public School Staff Advisory Com..."
+          "headline": "Should the state approve REVISION, PERIODIC FOUR-YEAR SALARY SCHEDULE UPDATE Chancellor Matt McNair will request approval of proposed adjustments to the salary schedules within th…?",
+          "summary": "PROCEDURES AND GUIDELINES MANUAL REVISION, PERIODIC FOUR-YEAR SALARY SCHEDULE UPDATE Chancellor Matt McNair will request approval of proposed adjustments to...",
+          "whyItMatters": "This may affect residents, services, rules, oversight, or public resources connected to local government.",
+          "source": "Agenda Item 8 · Nevada System of Higher Education Board of Regents · PROCEDURES AND GUIDELINES MANUAL FOR POSSIBLE ACTION REVISION, PERIODIC FOUR-YEAR SALARY SCHEDULE UPDATE Chancellor Matt McNair will request approval of proposed adjustments to..."
         }
       },
       {
@@ -498,6 +542,17 @@
         }
       },
       {
+        "recordId": "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-863f1c30fb",
+        "type": "statewide_overlay",
+        "before": "Should the state approve REVISION, PERIODIC FOUR-YEAR SALARY SCHEDULE UPDATE Chancellor Matt McNair will request approval of proposed adjustments to the salary schedules within the Procedures and Guidel?",
+        "after": {
+          "headline": "Should the state approve REVISION, PERIODIC FOUR-YEAR SALARY SCHEDULE UPDATE Chancellor Matt McNair will request approval of proposed adjustments to the salary schedules within th…?",
+          "summary": "PROCEDURES AND GUIDELINES MANUAL REVISION, PERIODIC FOUR-YEAR SALARY SCHEDULE UPDATE Chancellor Matt McNair will request approval of proposed adjustments to...",
+          "whyItMatters": "This may affect residents, services, rules, oversight, or public resources connected to local government.",
+          "source": "Agenda Item 8 · Nevada System of Higher Education Board of Regents · PROCEDURES AND GUIDELINES MANUAL FOR POSSIBLE ACTION REVISION, PERIODIC FOUR-YEAR SALARY SCHEDULE UPDATE Chancellor Matt McNair will request approval of proposed adjustments to..."
+        }
+      },
+      {
         "recordId": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-18-9357eb8439",
         "type": "statewide_overlay",
         "before": "FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre...",
@@ -506,17 +561,6 @@
           "summary": "FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre...",
           "whyItMatters": "This may affect taxes, fees, public budgets, grants, contracts, or how local money is spent.",
           "source": "Agenda source · FISCAL IMPACT: Differential program fees represent extraordinary costs associated with specific programs. Differential program fee supported budgets that meet the reporting thre..."
-        }
-      },
-      {
-        "recordId": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-20-473853f7b1",
-        "type": "statewide_overlay",
-        "before": "FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report...",
-        "after": {
-          "headline": "$250,000 will be reported in the Self- Supporting Budget report",
-          "summary": "FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report...",
-          "whyItMatters": "This may affect taxes, fees, public budgets, grants, contracts, or how local money is spent.",
-          "source": "Agenda source · FISCAL IMPACT: Special fees represent extraordinary costs associated with specific programs, services, or summer registration. Special fee supported budgets that meet the report..."
         }
       }
     ]
@@ -527,18 +571,18 @@
       "slug": "carson-city-county",
       "name": "Carson City County",
       "href": "/community/carson-city-county",
-      "readyScore": 719,
+      "readyScore": 753,
       "missingSections": [
-        "officials"
+        "votes"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 5,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -547,10 +591,10 @@
       "slug": "clark-county",
       "name": "Clark County",
       "href": "/community/clark-county",
-      "readyScore": 464,
+      "readyScore": 489,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -565,18 +609,16 @@
       "slug": "washoe-county",
       "name": "Washoe County",
       "href": "/community/washoe-county",
-      "readyScore": 1069,
-      "missingSections": [
-        "officials"
-      ],
-      "internalLinks": 17,
-      "sourceOnlyLinks": 4,
+      "readyScore": 1110,
+      "missingSections": [],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -585,7 +627,7 @@
       "slug": "douglas-county",
       "name": "Douglas County",
       "href": "/community/douglas-county",
-      "readyScore": -1,
+      "readyScore": -4,
       "missingSections": [
         "meetings",
         "votes",
@@ -594,14 +636,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -610,7 +652,7 @@
       "slug": "lyon-county",
       "name": "Lyon County",
       "href": "/community/lyon-county",
-      "readyScore": -27,
+      "readyScore": -30,
       "missingSections": [
         "meetings",
         "votes",
@@ -619,14 +661,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -635,7 +677,7 @@
       "slug": "nye-county",
       "name": "Nye County",
       "href": "/community/nye-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -645,14 +687,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -661,24 +703,19 @@
       "slug": "elko-county",
       "name": "Elko County",
       "href": "/community/elko-county",
-      "readyScore": -63,
+      "readyScore": 145,
       "missingSections": [
-        "meetings",
-        "votes",
         "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
+        "spending"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -687,7 +724,7 @@
       "slug": "churchill-county",
       "name": "Churchill County",
       "href": "/community/churchill-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -697,14 +734,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -713,7 +750,7 @@
       "slug": "humboldt-county",
       "name": "Humboldt County",
       "href": "/community/humboldt-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -723,14 +760,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -739,7 +776,7 @@
       "slug": "white-pine-county",
       "name": "White Pine County",
       "href": "/community/white-pine-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -749,14 +786,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -765,7 +802,7 @@
       "slug": "lander-county",
       "name": "Lander County",
       "href": "/community/lander-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -775,14 +812,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -791,7 +828,7 @@
       "slug": "lincoln-county",
       "name": "Lincoln County",
       "href": "/community/lincoln-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -801,14 +838,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -817,7 +854,7 @@
       "slug": "eureka-county",
       "name": "Eureka County",
       "href": "/community/eureka-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -827,14 +864,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -843,7 +880,7 @@
       "slug": "esmeralda-county",
       "name": "Esmeralda County",
       "href": "/community/esmeralda-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -853,14 +890,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -869,7 +906,7 @@
       "slug": "pershing-county",
       "name": "Pershing County",
       "href": "/community/pershing-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -879,14 +916,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -895,7 +932,7 @@
       "slug": "storey-county",
       "name": "Storey County",
       "href": "/community/storey-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -905,14 +942,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -921,7 +958,7 @@
       "slug": "mineral-county",
       "name": "Mineral County",
       "href": "/community/mineral-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -931,14 +968,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -947,18 +984,18 @@
       "slug": "carson-city",
       "name": "Carson City",
       "href": "/community/carson-city",
-      "readyScore": 725,
+      "readyScore": 760,
       "missingSections": [
-        "officials"
+        "votes"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 5,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -967,10 +1004,10 @@
       "slug": "las-vegas",
       "name": "Las Vegas",
       "href": "/community/las-vegas",
-      "readyScore": 793,
+      "readyScore": 918,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -985,10 +1022,10 @@
       "slug": "henderson",
       "name": "Henderson",
       "href": "/community/henderson",
-      "readyScore": 560,
+      "readyScore": 587,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1003,10 +1040,10 @@
       "slug": "north-las-vegas",
       "name": "North Las Vegas",
       "href": "/community/north-las-vegas",
-      "readyScore": 543,
+      "readyScore": 640,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1021,10 +1058,10 @@
       "slug": "reno",
       "name": "Reno",
       "href": "/community/reno",
-      "readyScore": 1178,
+      "readyScore": 1195,
       "missingSections": [],
-      "internalLinks": 17,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 14,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1039,10 +1076,10 @@
       "slug": "sparks",
       "name": "Sparks",
       "href": "/community/sparks",
-      "readyScore": 1124,
+      "readyScore": 1129,
       "missingSections": [],
-      "internalLinks": 17,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 14,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1057,24 +1094,18 @@
       "slug": "elko",
       "name": "Elko",
       "href": "/community/elko",
-      "readyScore": -63,
+      "readyScore": 294,
       "missingSections": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
+        "issues"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1083,10 +1114,10 @@
       "slug": "mesquite",
       "name": "Mesquite",
       "href": "/community/mesquite",
-      "readyScore": 464,
+      "readyScore": 489,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1101,10 +1132,10 @@
       "slug": "boulder-city",
       "name": "Boulder City",
       "href": "/community/boulder-city",
-      "readyScore": 464,
+      "readyScore": 489,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1119,7 +1150,7 @@
       "slug": "fallon",
       "name": "Fallon",
       "href": "/community/fallon",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1129,14 +1160,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1145,7 +1176,7 @@
       "slug": "fernley",
       "name": "Fernley",
       "href": "/community/fernley",
-      "readyScore": -26,
+      "readyScore": -29,
       "missingSections": [
         "meetings",
         "votes",
@@ -1154,14 +1185,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1170,7 +1201,7 @@
       "slug": "winnemucca",
       "name": "Winnemucca",
       "href": "/community/winnemucca",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1180,14 +1211,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1196,24 +1227,19 @@
       "slug": "west-wendover",
       "name": "West Wendover",
       "href": "/community/west-wendover",
-      "readyScore": -63,
+      "readyScore": 145,
       "missingSections": [
-        "meetings",
-        "votes",
         "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
+        "spending"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1222,7 +1248,7 @@
       "slug": "yerington",
       "name": "Yerington",
       "href": "/community/yerington",
-      "readyScore": -27,
+      "readyScore": -30,
       "missingSections": [
         "meetings",
         "votes",
@@ -1231,14 +1257,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1247,7 +1273,7 @@
       "slug": "tonopah",
       "name": "Tonopah",
       "href": "/community/tonopah",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1257,14 +1283,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1273,7 +1299,7 @@
       "slug": "pahrump",
       "name": "Pahrump",
       "href": "/community/pahrump",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1283,14 +1309,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1299,21 +1325,21 @@
       "slug": "ely",
       "name": "Ely",
       "href": "/community/ely",
-      "readyScore": 105,
+      "readyScore": 96,
       "missingSections": [
         "meetings",
         "votes",
         "issues",
         "officials"
       ],
-      "internalLinks": 16,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1322,18 +1348,16 @@
       "slug": "incline-village",
       "name": "Incline Village",
       "href": "/community/incline-village",
-      "readyScore": 1069,
-      "missingSections": [
-        "officials"
-      ],
-      "internalLinks": 17,
-      "sourceOnlyLinks": 4,
+      "readyScore": 1110,
+      "missingSections": [],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1342,7 +1366,7 @@
       "slug": "gardnerville",
       "name": "Gardnerville",
       "href": "/community/gardnerville",
-      "readyScore": -1,
+      "readyScore": -4,
       "missingSections": [
         "meetings",
         "votes",
@@ -1351,14 +1375,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1367,7 +1391,7 @@
       "slug": "minden",
       "name": "Minden",
       "href": "/community/minden",
-      "readyScore": -1,
+      "readyScore": -4,
       "missingSections": [
         "meetings",
         "votes",
@@ -1376,14 +1400,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1392,10 +1416,10 @@
       "slug": "laughlin",
       "name": "Laughlin",
       "href": "/community/laughlin",
-      "readyScore": 464,
+      "readyScore": 489,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1410,7 +1434,7 @@
       "slug": "battle-mountain",
       "name": "Battle Mountain",
       "href": "/community/battle-mountain",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1420,14 +1444,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     }
@@ -1438,10 +1462,10 @@
       "slug": "reno",
       "name": "Reno",
       "href": "/community/reno",
-      "readyScore": 1178,
+      "readyScore": 1195,
       "missingSections": [],
-      "internalLinks": 17,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 14,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1456,10 +1480,10 @@
       "slug": "sparks",
       "name": "Sparks",
       "href": "/community/sparks",
-      "readyScore": 1124,
+      "readyScore": 1129,
       "missingSections": [],
-      "internalLinks": 17,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 14,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1474,18 +1498,16 @@
       "slug": "washoe-county",
       "name": "Washoe County",
       "href": "/community/washoe-county",
-      "readyScore": 1069,
-      "missingSections": [
-        "officials"
-      ],
-      "internalLinks": 17,
-      "sourceOnlyLinks": 4,
+      "readyScore": 1110,
+      "missingSections": [],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1494,18 +1516,16 @@
       "slug": "incline-village",
       "name": "Incline Village",
       "href": "/community/incline-village",
-      "readyScore": 1069,
-      "missingSections": [
-        "officials"
-      ],
-      "internalLinks": 17,
-      "sourceOnlyLinks": 4,
+      "readyScore": 1110,
+      "missingSections": [],
+      "internalLinks": 14,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1514,10 +1534,10 @@
       "slug": "las-vegas",
       "name": "Las Vegas",
       "href": "/community/las-vegas",
-      "readyScore": 793,
+      "readyScore": 918,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1532,18 +1552,18 @@
       "slug": "carson-city",
       "name": "Carson City",
       "href": "/community/carson-city",
-      "readyScore": 725,
+      "readyScore": 760,
       "missingSections": [
-        "officials"
+        "votes"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 5,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1552,30 +1572,12 @@
       "slug": "carson-city-county",
       "name": "Carson City County",
       "href": "/community/carson-city-county",
-      "readyScore": 719,
+      "readyScore": 753,
       "missingSections": [
-        "officials"
+        "votes"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
-      "missingDestinations": 0,
-      "detailCoverage": {
-        "communityPage": true,
-        "eventDetail": true,
-        "projectDetail": true,
-        "officialDetail": false,
-        "caseLeadIntake": true
-      }
-    },
-    {
-      "id": "henderson",
-      "slug": "henderson",
-      "name": "Henderson",
-      "href": "/community/henderson",
-      "readyScore": 560,
-      "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 5,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1590,10 +1592,28 @@
       "slug": "north-las-vegas",
       "name": "North Las Vegas",
       "href": "/community/north-las-vegas",
-      "readyScore": 543,
+      "readyScore": 640,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "henderson",
+      "slug": "henderson",
+      "name": "Henderson",
+      "href": "/community/henderson",
+      "readyScore": 587,
+      "missingSections": [],
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1608,10 +1628,10 @@
       "slug": "clark-county",
       "name": "Clark County",
       "href": "/community/clark-county",
-      "readyScore": 464,
+      "readyScore": 489,
       "missingSections": [],
-      "internalLinks": 18,
-      "sourceOnlyLinks": 4,
+      "internalLinks": 15,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
@@ -1628,7 +1648,7 @@
       "slug": "nye-county",
       "name": "Nye County",
       "href": "/community/nye-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1638,40 +1658,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
-        "caseLeadIntake": true
-      }
-    },
-    {
-      "id": "elko-county",
-      "slug": "elko-county",
-      "name": "Elko County",
-      "href": "/community/elko-county",
-      "readyScore": -63,
-      "missingSections": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
-      "missingDestinations": 0,
-      "detailCoverage": {
-        "communityPage": true,
-        "eventDetail": true,
-        "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1680,7 +1674,7 @@
       "slug": "churchill-county",
       "name": "Churchill County",
       "href": "/community/churchill-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1690,14 +1684,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1706,7 +1700,7 @@
       "slug": "humboldt-county",
       "name": "Humboldt County",
       "href": "/community/humboldt-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1716,14 +1710,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1732,7 +1726,7 @@
       "slug": "white-pine-county",
       "name": "White Pine County",
       "href": "/community/white-pine-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1742,14 +1736,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1758,7 +1752,7 @@
       "slug": "lander-county",
       "name": "Lander County",
       "href": "/community/lander-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1768,14 +1762,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1784,7 +1778,7 @@
       "slug": "lincoln-county",
       "name": "Lincoln County",
       "href": "/community/lincoln-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1794,14 +1788,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1810,7 +1804,7 @@
       "slug": "eureka-county",
       "name": "Eureka County",
       "href": "/community/eureka-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1820,14 +1814,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1836,7 +1830,7 @@
       "slug": "esmeralda-county",
       "name": "Esmeralda County",
       "href": "/community/esmeralda-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1846,14 +1840,14 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     },
@@ -1862,7 +1856,7 @@
       "slug": "pershing-county",
       "name": "Pershing County",
       "href": "/community/pershing-county",
-      "readyScore": -63,
+      "readyScore": -66,
       "missingSections": [
         "meetings",
         "votes",
@@ -1872,14 +1866,40 @@
         "officials",
         "projects"
       ],
-      "internalLinks": 14,
-      "sourceOnlyLinks": 6,
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
       "missingDestinations": 0,
       "detailCoverage": {
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
+        "caseLeadIntake": true
+      }
+    },
+    {
+      "id": "storey-county",
+      "slug": "storey-county",
+      "name": "Storey County",
+      "href": "/community/storey-county",
+      "readyScore": -66,
+      "missingSections": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "internalLinks": 13,
+      "sourceOnlyLinks": 7,
+      "missingDestinations": 0,
+      "detailCoverage": {
+        "communityPage": true,
+        "eventDetail": true,
+        "projectDetail": true,
+        "officialDetail": true,
         "caseLeadIntake": true
       }
     }
@@ -1893,48 +1913,48 @@
       "parentCountyId": "carson-city-county",
       "href": "/community/carson-city-county",
       "counts": {
-        "meetings": 526,
-        "agendaItems": 1451,
-        "votingCards": 75,
+        "meetings": 532,
+        "agendaItems": 1457,
+        "votingCards": 116,
         "issues": 2,
-        "courtCases": 189,
+        "courtCases": 190,
         "spendingRecords": 112,
         "projects": 190,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 4030
+        "officialActionRecords": 100,
+        "sourceDocuments": 4202
       },
       "localCounts": {
-        "meetings": 480,
-        "agendaItems": 511,
-        "votingCards": 1,
+        "meetings": 486,
+        "agendaItems": 517,
+        "votingCards": 0,
         "issues": 1,
-        "courtCases": 67,
+        "courtCases": 68,
         "spendingRecords": 2,
         "projects": 21,
         "elections": 0,
-        "officialActionRecords": 0
+        "officialActionRecords": 25
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 572,
-        "statewideOverlay": 523,
-        "useful": 1095,
+        "local": 603,
+        "statewideOverlay": 640,
+        "useful": 1243,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 5,
         "missingDestinations": 0,
         "stale": false
       },
@@ -1942,39 +1962,39 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
         "meetings": true,
-        "votes": true,
+        "votes": false,
         "issues": true,
         "spending": true,
         "cases": true,
-        "officials": false,
+        "officials": true,
         "projects": true
       },
       "missingCategories": [
-        "officials"
+        "votes"
       ],
       "acquisitionGapScore": 1,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1083,
-        "statewideOverlay": 1463,
+        "inferred": 1120,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1893,
-        "unknown": 628
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1911,
+        "unknown": 734
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 160,
-        "low": 1833,
-        "unknown": 551
+        "high": 122,
+        "medium": 172,
+        "low": 1849,
+        "unknown": 557
       },
       "coverage": {
         "navigable": true,
@@ -1987,8 +2007,8 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": true,
-        "hasOfficials": false,
-        "hasLocalOfficials": false,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
         "hasElections": true,
         "hasLocalElections": false,
         "hasCourtCases": true,
@@ -1998,7 +2018,7 @@
         "hasProjects": true,
         "hasLocalProjects": true,
         "hasVotingCards": true,
-        "hasLocalVotingCards": true,
+        "hasLocalVotingCards": false,
         "hasIssues": true,
         "hasLocalIssues": true
       }
@@ -2011,21 +2031,21 @@
       "parentCountyId": "clark-county",
       "href": "/community/clark-county",
       "counts": {
-        "meetings": 51,
-        "agendaItems": 1210,
-        "votingCards": 122,
+        "meetings": 52,
+        "agendaItems": 1211,
+        "votingCards": 197,
         "issues": 7,
         "courtCases": 145,
         "spendingRecords": 122,
         "projects": 326,
         "elections": 2,
-        "officialActionRecords": 18,
-        "sourceDocuments": 2106
+        "officialActionRecords": 93,
+        "sourceDocuments": 2258
       },
       "localCounts": {
-        "meetings": 5,
-        "agendaItems": 270,
-        "votingCards": 48,
+        "meetings": 6,
+        "agendaItems": 271,
+        "votingCards": 81,
         "issues": 6,
         "courtCases": 23,
         "spendingRecords": 12,
@@ -2036,23 +2056,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 270,
-        "statewideOverlay": 523,
-        "useful": 793,
+        "local": 304,
+        "statewideOverlay": 640,
+        "useful": 944,
         "displayedItems": 22
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 18,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -2076,21 +2096,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 540,
-        "statewideOverlay": 1463,
+        "inferred": 575,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 16,
-        "needsReview": 1741,
-        "unknown": 221
+        "approved": 53,
+        "ready": 20,
+        "needsReview": 1785,
+        "unknown": 297
       },
       "confidenceCounts": {
-        "high": 25,
-        "medium": 270,
-        "low": 1632,
-        "unknown": 76
+        "high": 127,
+        "medium": 276,
+        "low": 1675,
+        "unknown": 77
       },
       "coverage": {
         "navigable": true,
@@ -2127,48 +2147,48 @@
       "parentCountyId": "washoe-county",
       "href": "/community/washoe-county",
       "counts": {
-        "meetings": 120,
-        "agendaItems": 1405,
-        "votingCards": 395,
+        "meetings": 122,
+        "agendaItems": 1407,
+        "votingCards": 443,
         "issues": 12,
-        "courtCases": 267,
+        "courtCases": 269,
         "spendingRecords": 360,
         "projects": 281,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 2924
+        "officialActionRecords": 80,
+        "sourceDocuments": 3058
       },
       "localCounts": {
-        "meetings": 74,
-        "agendaItems": 465,
-        "votingCards": 321,
+        "meetings": 76,
+        "agendaItems": 467,
+        "votingCards": 327,
         "issues": 11,
-        "courtCases": 145,
+        "courtCases": 147,
         "spendingRecords": 250,
         "projects": 112,
         "elections": 0,
-        "officialActionRecords": 0
+        "officialActionRecords": 5
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 913,
-        "statewideOverlay": 523,
-        "useful": 1436,
+        "local": 928,
+        "statewideOverlay": 640,
+        "useful": 1568,
         "displayedItems": 21
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 17,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -2176,7 +2196,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -2185,30 +2205,28 @@
         "issues": true,
         "spending": true,
         "cases": true,
-        "officials": false,
+        "officials": true,
         "projects": true
       },
-      "missingCategories": [
-        "officials"
-      ],
-      "acquisitionGapScore": 1,
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1378,
-        "statewideOverlay": 1463,
+        "inferred": 1395,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 276,
-        "ready": 0,
-        "needsReview": 1694,
-        "unknown": 871
+        "approved": 305,
+        "ready": 75,
+        "needsReview": 1642,
+        "unknown": 953
       },
       "confidenceCounts": {
-        "high": 323,
-        "medium": 977,
-        "low": 1396,
-        "unknown": 145
+        "high": 429,
+        "medium": 989,
+        "low": 1410,
+        "unknown": 147
       },
       "coverage": {
         "navigable": true,
@@ -2221,8 +2239,8 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": true,
-        "hasOfficials": false,
-        "hasLocalOfficials": false,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
         "hasElections": true,
         "hasLocalElections": false,
         "hasCourtCases": true,
@@ -2247,14 +2265,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 941,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 136,
         "projects": 169,
         "elections": 2,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1435
+        "officialActionRecords": 75,
+        "sourceDocuments": 1552
       },
       "localCounts": {
         "meetings": 0,
@@ -2270,23 +2288,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 27,
-        "statewideOverlay": 523,
-        "useful": 550,
+        "statewideOverlay": 640,
+        "useful": 667,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -2294,7 +2312,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -2318,19 +2336,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 28,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 167
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 242
       },
       "confidenceCounts": {
-        "high": 28,
-        "medium": 151,
-        "low": 1241,
+        "high": 123,
+        "medium": 163,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -2344,7 +2362,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": true,
@@ -2370,14 +2388,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 941,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 111,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1383
+        "officialActionRecords": 75,
+        "sourceDocuments": 1500
       },
       "localCounts": {
         "meetings": 0,
@@ -2393,23 +2411,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 1,
-        "statewideOverlay": 523,
-        "useful": 524,
+        "statewideOverlay": 640,
+        "useful": 641,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -2417,7 +2435,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -2441,19 +2459,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 2,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 141
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 216
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 151,
-        "low": 1241,
+        "high": 97,
+        "medium": 163,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -2467,7 +2485,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -2493,14 +2511,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -2516,23 +2534,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -2540,7 +2558,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -2565,19 +2583,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -2591,7 +2609,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -2615,48 +2633,48 @@
       "parentCountyId": "elko-county",
       "href": "/community/elko-county",
       "counts": {
-        "meetings": 46,
-        "agendaItems": 940,
-        "votingCards": 74,
+        "meetings": 52,
+        "agendaItems": 1042,
+        "votingCards": 119,
         "issues": 1,
-        "courtCases": 122,
+        "courtCases": 137,
         "spendingRecords": 110,
-        "projects": 169,
+        "projects": 176,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 80,
+        "sourceDocuments": 1637
       },
       "localCounts": {
-        "meetings": 0,
-        "agendaItems": 0,
-        "votingCards": 0,
+        "meetings": 6,
+        "agendaItems": 102,
+        "votingCards": 3,
         "issues": 0,
-        "courtCases": 0,
+        "courtCases": 15,
         "spendingRecords": 0,
-        "projects": 0,
+        "projects": 7,
         "elections": 0,
-        "officialActionRecords": 0
+        "officialActionRecords": 5
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "local": 36,
+        "statewideOverlay": 640,
+        "useful": 676,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -2664,69 +2682,64 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
-        "meetings": false,
-        "votes": false,
+        "meetings": true,
+        "votes": true,
         "issues": false,
         "spending": false,
-        "cases": false,
-        "officials": false,
-        "projects": false
+        "cases": true,
+        "officials": true,
+        "projects": true
       },
       "missingCategories": [
-        "meetings",
-        "votes",
         "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
+        "spending"
       ],
-      "acquisitionGapScore": 12,
+      "acquisitionGapScore": 2,
       "linkCounts": {
         "direct": 0,
-        "inferred": 0,
-        "statewideOverlay": 1463,
+        "inferred": 138,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1433,
+        "unknown": 230
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
-        "unknown": 71
+        "high": 102,
+        "medium": 171,
+        "low": 1368,
+        "unknown": 77
       },
       "coverage": {
         "navigable": true,
         "hasAnyLinkedCivicRecord": true,
-        "hasLocalLinkedCivicRecord": false,
+        "hasLocalLinkedCivicRecord": true,
         "hasUsefulDashboardData": true,
-        "hasOnlyStatewideOverlayData": true,
-        "hasLimitedLocalData": true,
-        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
         "hasStaleDashboardData": false,
         "hasMeetings": true,
-        "hasLocalMeetings": false,
-        "hasOfficials": false,
-        "hasLocalOfficials": false,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
         "hasElections": true,
         "hasLocalElections": false,
         "hasCourtCases": true,
-        "hasLocalCourtCases": false,
+        "hasLocalCourtCases": true,
         "hasSpendingData": true,
         "hasLocalSpendingData": false,
         "hasProjects": true,
-        "hasLocalProjects": false,
+        "hasLocalProjects": true,
         "hasVotingCards": true,
-        "hasLocalVotingCards": false,
+        "hasLocalVotingCards": true,
         "hasIssues": true,
         "hasLocalIssues": false
       }
@@ -2741,14 +2754,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -2764,23 +2777,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -2788,7 +2801,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -2813,19 +2826,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -2839,7 +2852,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -2865,14 +2878,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -2888,23 +2901,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -2912,7 +2925,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -2937,19 +2950,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -2963,7 +2976,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -2989,14 +3002,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -3012,23 +3025,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -3036,7 +3049,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -3061,19 +3074,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -3087,7 +3100,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -3113,14 +3126,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -3136,23 +3149,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -3160,7 +3173,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -3185,19 +3198,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -3211,7 +3224,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -3237,14 +3250,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -3260,23 +3273,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -3284,7 +3297,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -3309,19 +3322,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -3335,7 +3348,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -3361,14 +3374,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -3384,23 +3397,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -3408,7 +3421,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -3433,19 +3446,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -3459,7 +3472,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -3485,14 +3498,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -3508,23 +3521,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -3532,7 +3545,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -3557,19 +3570,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -3583,7 +3596,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -3609,14 +3622,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -3632,23 +3645,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -3656,7 +3669,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -3681,19 +3694,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -3707,7 +3720,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -3733,14 +3746,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -3756,23 +3769,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -3780,7 +3793,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -3805,19 +3818,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -3831,7 +3844,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -3857,14 +3870,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -3880,23 +3893,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -3904,7 +3917,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -3929,19 +3942,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -3955,7 +3968,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -3979,48 +3992,48 @@
       "parentCountyId": null,
       "href": "/community/carson-city",
       "counts": {
-        "meetings": 528,
-        "agendaItems": 1461,
-        "votingCards": 75,
+        "meetings": 535,
+        "agendaItems": 1468,
+        "votingCards": 116,
         "issues": 2,
-        "courtCases": 191,
+        "courtCases": 192,
         "spendingRecords": 113,
         "projects": 191,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 4045
+        "officialActionRecords": 100,
+        "sourceDocuments": 4219
       },
       "localCounts": {
-        "meetings": 482,
-        "agendaItems": 521,
-        "votingCards": 1,
+        "meetings": 489,
+        "agendaItems": 528,
+        "votingCards": 0,
         "issues": 1,
-        "courtCases": 69,
+        "courtCases": 70,
         "spendingRecords": 3,
         "projects": 22,
         "elections": 0,
-        "officialActionRecords": 0
+        "officialActionRecords": 25
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 578,
-        "statewideOverlay": 523,
-        "useful": 1101,
+        "local": 610,
+        "statewideOverlay": 640,
+        "useful": 1250,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 5,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4028,39 +4041,39 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
         "meetings": true,
-        "votes": true,
+        "votes": false,
         "issues": true,
         "spending": true,
         "cases": true,
-        "officials": false,
+        "officials": true,
         "projects": true
       },
       "missingCategories": [
-        "officials"
+        "votes"
       ],
       "acquisitionGapScore": 1,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1099,
-        "statewideOverlay": 1463,
+        "inferred": 1138,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1904,
-        "unknown": 633
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1923,
+        "unknown": 740
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 164,
-        "low": 1843,
-        "unknown": 553
+        "high": 122,
+        "medium": 176,
+        "low": 1860,
+        "unknown": 560
       },
       "coverage": {
         "navigable": true,
@@ -4073,8 +4086,8 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": true,
-        "hasOfficials": false,
-        "hasLocalOfficials": false,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
         "hasElections": true,
         "hasLocalElections": false,
         "hasCourtCases": true,
@@ -4084,7 +4097,7 @@
         "hasProjects": true,
         "hasLocalProjects": true,
         "hasVotingCards": true,
-        "hasLocalVotingCards": true,
+        "hasLocalVotingCards": false,
         "hasIssues": true,
         "hasLocalIssues": true
       }
@@ -4097,48 +4110,48 @@
       "parentCountyId": null,
       "href": "/community/las-vegas",
       "counts": {
-        "meetings": 89,
-        "agendaItems": 1533,
-        "votingCards": 210,
+        "meetings": 96,
+        "agendaItems": 1541,
+        "votingCards": 374,
         "issues": 8,
-        "courtCases": 245,
+        "courtCases": 248,
         "spendingRecords": 140,
-        "projects": 398,
+        "projects": 400,
         "elections": 2,
-        "officialActionRecords": 30,
-        "sourceDocuments": 2779
+        "officialActionRecords": 105,
+        "sourceDocuments": 3038
       },
       "localCounts": {
-        "meetings": 43,
-        "agendaItems": 593,
-        "votingCards": 136,
+        "meetings": 50,
+        "agendaItems": 601,
+        "votingCards": 258,
         "issues": 7,
-        "courtCases": 123,
+        "courtCases": 126,
         "spendingRecords": 30,
-        "projects": 229,
+        "projects": 231,
         "elections": 1,
         "officialActionRecords": 30
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 599,
-        "statewideOverlay": 523,
-        "useful": 1122,
+        "local": 733,
+        "statewideOverlay": 640,
+        "useful": 1373,
         "displayedItems": 22
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 18,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4162,21 +4175,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1192,
-        "statewideOverlay": 1463,
+        "inferred": 1334,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 57,
-        "needsReview": 2020,
-        "unknown": 553
+        "approved": 132,
+        "ready": 33,
+        "needsReview": 2112,
+        "unknown": 637
       },
       "confidenceCounts": {
-        "high": 45,
-        "medium": 715,
-        "low": 1781,
-        "unknown": 114
+        "high": 218,
+        "medium": 742,
+        "low": 1833,
+        "unknown": 121
       },
       "coverage": {
         "navigable": true,
@@ -4213,21 +4226,21 @@
       "parentCountyId": null,
       "href": "/community/henderson",
       "counts": {
-        "meetings": 66,
-        "agendaItems": 1282,
-        "votingCards": 130,
+        "meetings": 68,
+        "agendaItems": 1284,
+        "votingCards": 206,
         "issues": 7,
         "courtCases": 178,
         "spendingRecords": 122,
         "projects": 361,
         "elections": 2,
-        "officialActionRecords": 23,
-        "sourceDocuments": 2274
+        "officialActionRecords": 98,
+        "sourceDocuments": 2429
       },
       "localCounts": {
-        "meetings": 20,
-        "agendaItems": 342,
-        "votingCards": 56,
+        "meetings": 22,
+        "agendaItems": 344,
+        "votingCards": 90,
         "issues": 6,
         "courtCases": 56,
         "spendingRecords": 12,
@@ -4238,23 +4251,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 366,
-        "statewideOverlay": 523,
-        "useful": 889,
+        "local": 402,
+        "statewideOverlay": 640,
+        "useful": 1042,
         "displayedItems": 22
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 18,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4278,21 +4291,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 708,
-        "statewideOverlay": 1463,
+        "inferred": 746,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 16,
-        "needsReview": 1882,
-        "unknown": 248
+        "approved": 53,
+        "ready": 20,
+        "needsReview": 1928,
+        "unknown": 325
       },
       "confidenceCounts": {
-        "high": 30,
-        "medium": 285,
-        "low": 1765,
-        "unknown": 91
+        "high": 132,
+        "medium": 291,
+        "low": 1810,
+        "unknown": 93
       },
       "coverage": {
         "navigable": true,
@@ -4329,48 +4342,48 @@
       "parentCountyId": null,
       "href": "/community/north-las-vegas",
       "counts": {
-        "meetings": 71,
-        "agendaItems": 1366,
-        "votingCards": 129,
+        "meetings": 75,
+        "agendaItems": 1370,
+        "votingCards": 271,
         "issues": 8,
-        "courtCases": 154,
+        "courtCases": 155,
         "spendingRecords": 138,
-        "projects": 347,
+        "projects": 348,
         "elections": 2,
-        "officialActionRecords": 23,
-        "sourceDocuments": 2364
+        "officialActionRecords": 98,
+        "sourceDocuments": 2591
       },
       "localCounts": {
-        "meetings": 25,
-        "agendaItems": 426,
-        "votingCards": 55,
+        "meetings": 29,
+        "agendaItems": 430,
+        "votingCards": 155,
         "issues": 7,
-        "courtCases": 32,
+        "courtCases": 33,
         "spendingRecords": 28,
-        "projects": 178,
+        "projects": 179,
         "elections": 1,
         "officialActionRecords": 23
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 349,
-        "statewideOverlay": 523,
-        "useful": 872,
+        "local": 455,
+        "statewideOverlay": 640,
+        "useful": 1095,
         "displayedItems": 22
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 18,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4394,21 +4407,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 775,
-        "statewideOverlay": 1463,
+        "inferred": 885,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 16,
-        "needsReview": 1796,
-        "unknown": 401
+        "approved": 60,
+        "ready": 32,
+        "needsReview": 1893,
+        "unknown": 480
       },
       "confidenceCounts": {
-        "high": 30,
-        "medium": 436,
-        "low": 1676,
-        "unknown": 96
+        "high": 139,
+        "medium": 503,
+        "low": 1723,
+        "unknown": 100
       },
       "coverage": {
         "navigable": true,
@@ -4445,48 +4458,48 @@
       "parentCountyId": null,
       "href": "/community/reno",
       "counts": {
-        "meetings": 147,
-        "agendaItems": 1458,
-        "votingCards": 405,
+        "meetings": 152,
+        "agendaItems": 1463,
+        "votingCards": 454,
         "issues": 12,
-        "courtCases": 284,
+        "courtCases": 287,
         "spendingRecords": 362,
-        "projects": 292,
+        "projects": 293,
         "elections": 1,
-        "officialActionRecords": 7,
-        "sourceDocuments": 3052
+        "officialActionRecords": 92,
+        "sourceDocuments": 3197
       },
       "localCounts": {
-        "meetings": 101,
-        "agendaItems": 518,
-        "votingCards": 331,
+        "meetings": 106,
+        "agendaItems": 523,
+        "votingCards": 338,
         "issues": 11,
-        "courtCases": 162,
+        "courtCases": 165,
         "spendingRecords": 252,
-        "projects": 123,
+        "projects": 124,
         "elections": 0,
-        "officialActionRecords": 7
+        "officialActionRecords": 17
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 987,
-        "statewideOverlay": 523,
-        "useful": 1510,
+        "local": 1013,
+        "statewideOverlay": 640,
+        "useful": 1653,
         "displayedItems": 21
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 17,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4510,21 +4523,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1505,
-        "statewideOverlay": 1463,
+        "inferred": 1536,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 280,
-        "ready": 0,
-        "needsReview": 1758,
-        "unknown": 930
+        "approved": 311,
+        "ready": 75,
+        "needsReview": 1710,
+        "unknown": 1020
       },
       "confidenceCounts": {
-        "high": 326,
-        "medium": 1022,
-        "low": 1448,
-        "unknown": 172
+        "high": 439,
+        "medium": 1033,
+        "low": 1467,
+        "unknown": 177
       },
       "coverage": {
         "navigable": true,
@@ -4561,48 +4574,48 @@
       "parentCountyId": null,
       "href": "/community/sparks",
       "counts": {
-        "meetings": 124,
-        "agendaItems": 1414,
-        "votingCards": 398,
+        "meetings": 126,
+        "agendaItems": 1416,
+        "votingCards": 445,
         "issues": 12,
-        "courtCases": 270,
+        "courtCases": 272,
         "spendingRecords": 360,
         "projects": 285,
         "elections": 1,
-        "officialActionRecords": 6,
-        "sourceDocuments": 2953
+        "officialActionRecords": 86,
+        "sourceDocuments": 3086
       },
       "localCounts": {
-        "meetings": 78,
-        "agendaItems": 474,
-        "votingCards": 324,
+        "meetings": 80,
+        "agendaItems": 476,
+        "votingCards": 329,
         "issues": 11,
-        "courtCases": 148,
+        "courtCases": 150,
         "spendingRecords": 250,
         "projects": 116,
         "elections": 0,
-        "officialActionRecords": 6
+        "officialActionRecords": 11
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 933,
-        "statewideOverlay": 523,
-        "useful": 1456,
+        "local": 947,
+        "statewideOverlay": 640,
+        "useful": 1587,
         "displayedItems": 21
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 17,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4626,21 +4639,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1407,
-        "statewideOverlay": 1463,
+        "inferred": 1423,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 276,
-        "ready": 0,
-        "needsReview": 1713,
-        "unknown": 881
+        "approved": 305,
+        "ready": 75,
+        "needsReview": 1660,
+        "unknown": 963
       },
       "confidenceCounts": {
-        "high": 329,
-        "medium": 977,
-        "low": 1415,
-        "unknown": 149
+        "high": 435,
+        "medium": 989,
+        "low": 1428,
+        "unknown": 151
       },
       "coverage": {
         "navigable": true,
@@ -4677,48 +4690,48 @@
       "parentCountyId": null,
       "href": "/community/elko",
       "counts": {
-        "meetings": 46,
-        "agendaItems": 942,
-        "votingCards": 74,
+        "meetings": 63,
+        "agendaItems": 1131,
+        "votingCards": 149,
         "issues": 1,
-        "courtCases": 122,
-        "spendingRecords": 110,
-        "projects": 169,
+        "courtCases": 175,
+        "spendingRecords": 111,
+        "projects": 205,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1384
+        "officialActionRecords": 85,
+        "sourceDocuments": 1839
       },
       "localCounts": {
-        "meetings": 0,
-        "agendaItems": 2,
-        "votingCards": 0,
+        "meetings": 17,
+        "agendaItems": 191,
+        "votingCards": 33,
         "issues": 0,
-        "courtCases": 0,
-        "spendingRecords": 0,
-        "projects": 0,
+        "courtCases": 53,
+        "spendingRecords": 1,
+        "projects": 36,
         "elections": 0,
-        "officialActionRecords": 0
+        "officialActionRecords": 10
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "local": 150,
+        "statewideOverlay": 640,
+        "useful": 790,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4726,69 +4739,63 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
-        "meetings": false,
-        "votes": false,
+        "meetings": true,
+        "votes": true,
         "issues": false,
-        "spending": false,
-        "cases": false,
-        "officials": false,
-        "projects": false
+        "spending": true,
+        "cases": true,
+        "officials": true,
+        "projects": true
       },
       "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
+        "issues"
       ],
-      "acquisitionGapScore": 12,
+      "acquisitionGapScore": 1,
       "linkCounts": {
         "direct": 0,
-        "inferred": 2,
-        "statewideOverlay": 1463,
+        "inferred": 341,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1301,
-        "unknown": 139
+        "approved": 67,
+        "ready": 5,
+        "needsReview": 1582,
+        "unknown": 267
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1243,
-        "unknown": 71
+        "high": 119,
+        "medium": 210,
+        "low": 1504,
+        "unknown": 88
       },
       "coverage": {
         "navigable": true,
         "hasAnyLinkedCivicRecord": true,
         "hasLocalLinkedCivicRecord": true,
         "hasUsefulDashboardData": true,
-        "hasOnlyStatewideOverlayData": true,
-        "hasLimitedLocalData": true,
-        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
         "hasStaleDashboardData": false,
         "hasMeetings": true,
-        "hasLocalMeetings": false,
-        "hasOfficials": false,
-        "hasLocalOfficials": false,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
         "hasElections": true,
         "hasLocalElections": false,
         "hasCourtCases": true,
-        "hasLocalCourtCases": false,
+        "hasLocalCourtCases": true,
         "hasSpendingData": true,
-        "hasLocalSpendingData": false,
+        "hasLocalSpendingData": true,
         "hasProjects": true,
-        "hasLocalProjects": false,
+        "hasLocalProjects": true,
         "hasVotingCards": true,
-        "hasLocalVotingCards": false,
+        "hasLocalVotingCards": true,
         "hasIssues": true,
         "hasLocalIssues": false
       }
@@ -4801,21 +4808,21 @@
       "parentCountyId": null,
       "href": "/community/mesquite",
       "counts": {
-        "meetings": 51,
-        "agendaItems": 1210,
-        "votingCards": 122,
+        "meetings": 52,
+        "agendaItems": 1211,
+        "votingCards": 197,
         "issues": 7,
         "courtCases": 145,
         "spendingRecords": 122,
         "projects": 326,
         "elections": 2,
-        "officialActionRecords": 18,
-        "sourceDocuments": 2106
+        "officialActionRecords": 93,
+        "sourceDocuments": 2258
       },
       "localCounts": {
-        "meetings": 5,
-        "agendaItems": 270,
-        "votingCards": 48,
+        "meetings": 6,
+        "agendaItems": 271,
+        "votingCards": 81,
         "issues": 6,
         "courtCases": 23,
         "spendingRecords": 12,
@@ -4826,23 +4833,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 270,
-        "statewideOverlay": 523,
-        "useful": 793,
+        "local": 304,
+        "statewideOverlay": 640,
+        "useful": 944,
         "displayedItems": 22
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 18,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4866,21 +4873,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 540,
-        "statewideOverlay": 1463,
+        "inferred": 575,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 16,
-        "needsReview": 1741,
-        "unknown": 221
+        "approved": 53,
+        "ready": 20,
+        "needsReview": 1785,
+        "unknown": 297
       },
       "confidenceCounts": {
-        "high": 25,
-        "medium": 270,
-        "low": 1632,
-        "unknown": 76
+        "high": 127,
+        "medium": 276,
+        "low": 1675,
+        "unknown": 77
       },
       "coverage": {
         "navigable": true,
@@ -4917,21 +4924,21 @@
       "parentCountyId": null,
       "href": "/community/boulder-city",
       "counts": {
-        "meetings": 51,
-        "agendaItems": 1210,
-        "votingCards": 122,
+        "meetings": 52,
+        "agendaItems": 1211,
+        "votingCards": 197,
         "issues": 7,
         "courtCases": 145,
         "spendingRecords": 122,
         "projects": 326,
         "elections": 2,
-        "officialActionRecords": 18,
-        "sourceDocuments": 2106
+        "officialActionRecords": 93,
+        "sourceDocuments": 2258
       },
       "localCounts": {
-        "meetings": 5,
-        "agendaItems": 270,
-        "votingCards": 48,
+        "meetings": 6,
+        "agendaItems": 271,
+        "votingCards": 81,
         "issues": 6,
         "courtCases": 23,
         "spendingRecords": 12,
@@ -4942,23 +4949,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 270,
-        "statewideOverlay": 523,
-        "useful": 793,
+        "local": 304,
+        "statewideOverlay": 640,
+        "useful": 944,
         "displayedItems": 22
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 18,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -4982,21 +4989,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 540,
-        "statewideOverlay": 1463,
+        "inferred": 575,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 16,
-        "needsReview": 1741,
-        "unknown": 221
+        "approved": 53,
+        "ready": 20,
+        "needsReview": 1785,
+        "unknown": 297
       },
       "confidenceCounts": {
-        "high": 25,
-        "medium": 270,
-        "low": 1632,
-        "unknown": 76
+        "high": 127,
+        "medium": 276,
+        "low": 1675,
+        "unknown": 77
       },
       "coverage": {
         "navigable": true,
@@ -5035,14 +5042,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -5058,23 +5065,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -5082,7 +5089,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -5107,19 +5114,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -5133,7 +5140,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -5159,14 +5166,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 944,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 112,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1386
+        "officialActionRecords": 75,
+        "sourceDocuments": 1503
       },
       "localCounts": {
         "meetings": 0,
@@ -5182,23 +5189,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 2,
-        "statewideOverlay": 523,
-        "useful": 525,
+        "statewideOverlay": 640,
+        "useful": 642,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -5206,7 +5213,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -5230,19 +5237,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 6,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1301,
-        "unknown": 143
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1313,
+        "unknown": 218
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 153,
-        "low": 1243,
+        "high": 97,
+        "medium": 165,
+        "low": 1253,
         "unknown": 71
       },
       "coverage": {
@@ -5256,7 +5263,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -5282,14 +5289,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -5305,23 +5312,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -5329,7 +5336,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -5354,19 +5361,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -5380,7 +5387,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -5404,48 +5411,48 @@
       "parentCountyId": null,
       "href": "/community/west-wendover",
       "counts": {
-        "meetings": 46,
-        "agendaItems": 940,
-        "votingCards": 74,
+        "meetings": 52,
+        "agendaItems": 1042,
+        "votingCards": 119,
         "issues": 1,
-        "courtCases": 122,
+        "courtCases": 137,
         "spendingRecords": 110,
-        "projects": 169,
+        "projects": 176,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 80,
+        "sourceDocuments": 1637
       },
       "localCounts": {
-        "meetings": 0,
-        "agendaItems": 0,
-        "votingCards": 0,
+        "meetings": 6,
+        "agendaItems": 102,
+        "votingCards": 3,
         "issues": 0,
-        "courtCases": 0,
+        "courtCases": 15,
         "spendingRecords": 0,
-        "projects": 0,
+        "projects": 7,
         "elections": 0,
-        "officialActionRecords": 0
+        "officialActionRecords": 5
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "local": 36,
+        "statewideOverlay": 640,
+        "useful": 676,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -5453,69 +5460,64 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
-        "meetings": false,
-        "votes": false,
+        "meetings": true,
+        "votes": true,
         "issues": false,
         "spending": false,
-        "cases": false,
-        "officials": false,
-        "projects": false
+        "cases": true,
+        "officials": true,
+        "projects": true
       },
       "missingCategories": [
-        "meetings",
-        "votes",
         "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
+        "spending"
       ],
-      "acquisitionGapScore": 12,
+      "acquisitionGapScore": 2,
       "linkCounts": {
         "direct": 0,
-        "inferred": 0,
-        "statewideOverlay": 1463,
+        "inferred": 138,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1433,
+        "unknown": 230
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
-        "unknown": 71
+        "high": 102,
+        "medium": 171,
+        "low": 1368,
+        "unknown": 77
       },
       "coverage": {
         "navigable": true,
         "hasAnyLinkedCivicRecord": true,
-        "hasLocalLinkedCivicRecord": false,
+        "hasLocalLinkedCivicRecord": true,
         "hasUsefulDashboardData": true,
-        "hasOnlyStatewideOverlayData": true,
-        "hasLimitedLocalData": true,
-        "hasZeroLocalRecordsButUsableOverlays": true,
+        "hasOnlyStatewideOverlayData": false,
+        "hasLimitedLocalData": false,
+        "hasZeroLocalRecordsButUsableOverlays": false,
         "hasStaleDashboardData": false,
         "hasMeetings": true,
-        "hasLocalMeetings": false,
-        "hasOfficials": false,
-        "hasLocalOfficials": false,
+        "hasLocalMeetings": true,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
         "hasElections": true,
         "hasLocalElections": false,
         "hasCourtCases": true,
-        "hasLocalCourtCases": false,
+        "hasLocalCourtCases": true,
         "hasSpendingData": true,
         "hasLocalSpendingData": false,
         "hasProjects": true,
-        "hasLocalProjects": false,
+        "hasLocalProjects": true,
         "hasVotingCards": true,
-        "hasLocalVotingCards": false,
+        "hasLocalVotingCards": true,
         "hasIssues": true,
         "hasLocalIssues": false
       }
@@ -5530,14 +5532,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 941,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 111,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1383
+        "officialActionRecords": 75,
+        "sourceDocuments": 1500
       },
       "localCounts": {
         "meetings": 0,
@@ -5553,23 +5555,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 1,
-        "statewideOverlay": 523,
-        "useful": 524,
+        "statewideOverlay": 640,
+        "useful": 641,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -5577,7 +5579,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -5601,19 +5603,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 2,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 141
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 216
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 151,
-        "low": 1241,
+        "high": 97,
+        "medium": 163,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -5627,7 +5629,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -5653,14 +5655,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -5676,23 +5678,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -5700,7 +5702,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -5725,19 +5727,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -5751,7 +5753,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -5777,14 +5779,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -5800,23 +5802,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -5824,7 +5826,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -5849,19 +5851,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -5875,7 +5877,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -5900,19 +5902,19 @@
       "href": "/community/ely",
       "counts": {
         "meetings": 46,
-        "agendaItems": 1025,
-        "votingCards": 74,
+        "agendaItems": 1028,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 131,
         "spendingRecords": 154,
         "projects": 173,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1480
+        "officialActionRecords": 75,
+        "sourceDocuments": 1600
       },
       "localCounts": {
         "meetings": 0,
-        "agendaItems": 85,
+        "agendaItems": 88,
         "votingCards": 0,
         "issues": 0,
         "courtCases": 9,
@@ -5924,23 +5926,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 57,
-        "statewideOverlay": 523,
-        "useful": 580,
+        "statewideOverlay": 640,
+        "useful": 697,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 16,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -5948,7 +5950,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -5969,20 +5971,20 @@
       "acquisitionGapScore": 4,
       "linkCounts": {
         "direct": 0,
-        "inferred": 142,
-        "statewideOverlay": 1463,
+        "inferred": 145,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1341,
-        "unknown": 239
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1353,
+        "unknown": 317
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 260,
-        "low": 1272,
+        "high": 97,
+        "medium": 275,
+        "low": 1282,
         "unknown": 71
       },
       "coverage": {
@@ -5996,7 +5998,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,
@@ -6020,48 +6022,48 @@
       "parentCountyId": null,
       "href": "/community/incline-village",
       "counts": {
-        "meetings": 120,
-        "agendaItems": 1405,
-        "votingCards": 395,
+        "meetings": 122,
+        "agendaItems": 1407,
+        "votingCards": 443,
         "issues": 12,
-        "courtCases": 267,
+        "courtCases": 269,
         "spendingRecords": 360,
         "projects": 281,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 2924
+        "officialActionRecords": 80,
+        "sourceDocuments": 3058
       },
       "localCounts": {
-        "meetings": 74,
-        "agendaItems": 465,
-        "votingCards": 321,
+        "meetings": 76,
+        "agendaItems": 467,
+        "votingCards": 327,
         "issues": 11,
-        "courtCases": 145,
+        "courtCases": 147,
         "spendingRecords": 250,
         "projects": 112,
         "elections": 0,
-        "officialActionRecords": 0
+        "officialActionRecords": 5
       },
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 913,
-        "statewideOverlay": 523,
-        "useful": 1436,
+        "local": 928,
+        "statewideOverlay": 640,
+        "useful": 1568,
         "displayedItems": 21
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 17,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 14,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -6069,7 +6071,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -6078,30 +6080,28 @@
         "issues": true,
         "spending": true,
         "cases": true,
-        "officials": false,
+        "officials": true,
         "projects": true
       },
-      "missingCategories": [
-        "officials"
-      ],
-      "acquisitionGapScore": 1,
+      "missingCategories": [],
+      "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1378,
-        "statewideOverlay": 1463,
+        "inferred": 1395,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 276,
-        "ready": 0,
-        "needsReview": 1694,
-        "unknown": 871
+        "approved": 305,
+        "ready": 75,
+        "needsReview": 1642,
+        "unknown": 953
       },
       "confidenceCounts": {
-        "high": 323,
-        "medium": 977,
-        "low": 1396,
-        "unknown": 145
+        "high": 429,
+        "medium": 989,
+        "low": 1410,
+        "unknown": 147
       },
       "coverage": {
         "navigable": true,
@@ -6114,8 +6114,8 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": true,
-        "hasOfficials": false,
-        "hasLocalOfficials": false,
+        "hasOfficials": true,
+        "hasLocalOfficials": true,
         "hasElections": true,
         "hasLocalElections": false,
         "hasCourtCases": true,
@@ -6140,14 +6140,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 941,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 136,
         "projects": 169,
         "elections": 2,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1435
+        "officialActionRecords": 75,
+        "sourceDocuments": 1552
       },
       "localCounts": {
         "meetings": 0,
@@ -6163,23 +6163,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 27,
-        "statewideOverlay": 523,
-        "useful": 550,
+        "statewideOverlay": 640,
+        "useful": 667,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -6187,7 +6187,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -6211,19 +6211,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 28,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 167
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 242
       },
       "confidenceCounts": {
-        "high": 28,
-        "medium": 151,
-        "low": 1241,
+        "high": 123,
+        "medium": 163,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -6237,7 +6237,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": true,
@@ -6263,14 +6263,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 941,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 136,
         "projects": 169,
         "elections": 2,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1435
+        "officialActionRecords": 75,
+        "sourceDocuments": 1552
       },
       "localCounts": {
         "meetings": 0,
@@ -6286,23 +6286,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 27,
-        "statewideOverlay": 523,
-        "useful": 550,
+        "statewideOverlay": 640,
+        "useful": 667,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -6310,7 +6310,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -6334,19 +6334,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 28,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 167
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 242
       },
       "confidenceCounts": {
-        "high": 28,
-        "medium": 151,
-        "low": 1241,
+        "high": 123,
+        "medium": 163,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -6360,7 +6360,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": true,
@@ -6384,21 +6384,21 @@
       "parentCountyId": null,
       "href": "/community/laughlin",
       "counts": {
-        "meetings": 51,
-        "agendaItems": 1210,
-        "votingCards": 122,
+        "meetings": 52,
+        "agendaItems": 1211,
+        "votingCards": 197,
         "issues": 7,
         "courtCases": 145,
         "spendingRecords": 122,
         "projects": 326,
         "elections": 2,
-        "officialActionRecords": 18,
-        "sourceDocuments": 2106
+        "officialActionRecords": 93,
+        "sourceDocuments": 2258
       },
       "localCounts": {
-        "meetings": 5,
-        "agendaItems": 270,
-        "votingCards": 48,
+        "meetings": 6,
+        "agendaItems": 271,
+        "votingCards": 81,
         "issues": 6,
         "courtCases": 23,
         "spendingRecords": 12,
@@ -6409,23 +6409,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 270,
-        "statewideOverlay": 523,
-        "useful": 793,
+        "local": 304,
+        "statewideOverlay": 640,
+        "useful": 944,
         "displayedItems": 22
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 18,
-        "sourceOnlyLinks": 4,
+        "clickableInternalLinks": 15,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -6449,21 +6449,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 540,
-        "statewideOverlay": 1463,
+        "inferred": 575,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 16,
-        "needsReview": 1741,
-        "unknown": 221
+        "approved": 53,
+        "ready": 20,
+        "needsReview": 1785,
+        "unknown": 297
       },
       "confidenceCounts": {
-        "high": 25,
-        "medium": 270,
-        "low": 1632,
-        "unknown": 76
+        "high": 127,
+        "medium": 276,
+        "low": 1675,
+        "unknown": 77
       },
       "coverage": {
         "navigable": true,
@@ -6502,14 +6502,14 @@
       "counts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0,
-        "sourceDocuments": 1382
+        "officialActionRecords": 75,
+        "sourceDocuments": 1499
       },
       "localCounts": {
         "meetings": 0,
@@ -6525,23 +6525,23 @@
       "statewideOverlayCounts": {
         "meetings": 46,
         "agendaItems": 940,
-        "votingCards": 74,
+        "votingCards": 116,
         "issues": 1,
         "courtCases": 122,
         "spendingRecords": 110,
         "projects": 169,
         "elections": 1,
-        "officialActionRecords": 0
+        "officialActionRecords": 75
       },
       "dashboardCounts": {
         "local": 0,
-        "statewideOverlay": 523,
-        "useful": 523,
+        "statewideOverlay": 640,
+        "useful": 640,
         "displayedItems": 20
       },
       "dashboardLinkAudit": {
-        "clickableInternalLinks": 14,
-        "sourceOnlyLinks": 6,
+        "clickableInternalLinks": 13,
+        "sourceOnlyLinks": 7,
         "missingDestinations": 0,
         "stale": false
       },
@@ -6549,7 +6549,7 @@
         "communityPage": true,
         "eventDetail": true,
         "projectDetail": true,
-        "officialDetail": false,
+        "officialDetail": true,
         "caseLeadIntake": true
       },
       "categoryCoverage": {
@@ -6574,19 +6574,19 @@
       "linkCounts": {
         "direct": 0,
         "inferred": 0,
-        "statewideOverlay": 1463,
+        "statewideOverlay": 1580,
         "federalOverlay": 0
       },
       "reviewCounts": {
-        "approved": 25,
-        "ready": 0,
-        "needsReview": 1299,
-        "unknown": 139
+        "approved": 50,
+        "ready": 5,
+        "needsReview": 1311,
+        "unknown": 214
       },
       "confidenceCounts": {
-        "high": 2,
-        "medium": 149,
-        "low": 1241,
+        "high": 97,
+        "medium": 161,
+        "low": 1251,
         "unknown": 71
       },
       "coverage": {
@@ -6600,7 +6600,7 @@
         "hasStaleDashboardData": false,
         "hasMeetings": true,
         "hasLocalMeetings": false,
-        "hasOfficials": false,
+        "hasOfficials": true,
         "hasLocalOfficials": false,
         "hasElections": true,
         "hasLocalElections": false,

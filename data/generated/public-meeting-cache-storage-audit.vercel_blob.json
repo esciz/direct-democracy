@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-06-26T16:16:29.246Z",
+  "status": "storage_unconfigured",
+  "backend": "vercel_blob",
+  "storageRootFingerprint": null,
+  "bucketConfigured": false,
+  "tokenConfigured": false,
+  "priorExport": {
+    "generatedAt": "2026-06-26T16:02:18.892Z",
+    "status": "storage_unconfigured",
+    "objectsWritten": 0,
+    "objectsAlreadyPresent": 0
+  },
+  "totals": {
+    "cacheRecords": 1936,
+    "runtimeSourceFilesPresent": 0,
+    "objectsPresent": 0,
+    "bytesPresent": 0,
+    "missingObjects": 1936,
+    "objectSizeMismatches": 0,
+    "providerErrors": 0
+  },
+  "samples": {
+    "missingObjects": [],
+    "mismatches": [],
+    "providerErrors": []
+  },
+  "operatorCommands": {
+    "smokeExport": "npm run meetings:cache-storage:smoke",
+    "fullExport": "npm run meetings:cache-storage:export -- --limit=all",
+    "audit": "npm run meetings:cache-storage:audit",
+    "vercelBlobSmoke": "npm run meetings:cache-storage:blob-smoke",
+    "vercelBlobExport": "npm run meetings:cache-storage:blob-export",
+    "vercelBlobAudit": "npm run meetings:cache-storage:blob-audit"
+  },
+  "notes": [
+    "Use local_filesystem for local durable handoff, or vercel_blob after configuring BLOB_READ_WRITE_TOKEN or VERCEL_OIDC_TOKEN plus BLOB_STORE_ID.",
+    "This audit never prints provider tokens or source document contents."
+  ]
+}

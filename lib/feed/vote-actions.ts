@@ -2,62 +2,16 @@
 
 import { redirect } from "next/navigation";
 
-import { canUserVote } from "@/lib/auth/guards";
-import { getQuickVoteCardsForUser, updateCivicSentimentAggregate } from "@/lib/feed/quick-votes";
-import { prisma } from "@/lib/prisma";
+import { getQuickVoteCardsForUser } from "@/lib/feed/quick-votes";
+import { recordSourceBackedCivicVoteForUser } from "@/lib/feed/vote-recording";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import type { VoteAnswer, VoteQuestionCardSummary } from "@/types/domain";
 
 const VALID_ANSWERS: VoteAnswer[] = ["yes", "no", "skip"];
-const PUBLIC_REVIEW_STATUSES = ["approved", "verified"] as const;
 
 async function persistQuickVote(questionId: string, answer: VoteAnswer) {
   const user = await getCurrentUser();
-  const question = await prisma.voteQuestion.findFirst({
-    where: {
-      id: questionId,
-      generatedFromRealData: true,
-      reviewStatus: { in: [...PUBLIC_REVIEW_STATUSES] },
-      sourceUrl: { not: null },
-    },
-    include: { responses: { where: { userId: user.id } } },
-  });
-
-  if (!question) {
-    return { ok: false as const, code: "question", user };
-  }
-
-  if (!canUserVote(user)) {
-    return { ok: false as const, code: "verification", user };
-  }
-
-  const existingResponse = question.responses[0] ?? null;
-
-  await prisma.voteResponse.upsert({
-    where: {
-      userId_questionId: {
-        userId: user.id,
-        questionId,
-      },
-    },
-    create: {
-      userId: user.id,
-      questionId,
-      answer,
-    },
-    update: {
-      answer,
-    },
-  });
-
-  await updateCivicSentimentAggregate(questionId);
-
-  return {
-    ok: true as const,
-    user,
-    previousAnswer: existingResponse?.answer ?? null,
-    replacedExistingVote: Boolean(existingResponse),
-  };
+  return recordSourceBackedCivicVoteForUser(user, questionId, answer);
 }
 
 export async function submitQuickVoteInline(input: {
@@ -100,7 +54,9 @@ export async function submitQuickVoteInline(input: {
       previousUserVote: result.previousAnswer,
       voteUpdatedAt: new Date().toISOString(),
     },
-    message: result.replacedExistingVote ? "Vote updated." : "Vote recorded.",
+    message: result.replacedExistingVote
+      ? "Vote updated. It will count in aggregate verified analytics when cohort privacy thresholds are met."
+      : "Vote recorded. It will count in aggregate verified analytics when cohort privacy thresholds are met.",
   };
 }
 

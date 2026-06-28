@@ -1,0 +1,117 @@
+{
+  "generatedAt": "2026-06-26T14:11:28.757Z",
+  "totals": {
+    "meetingItemsScanned": 2885,
+    "actionResultsExtracted": 322,
+    "withMotion": 52,
+    "withMover": 50,
+    "withSeconder": 59,
+    "withOutcome": 310,
+    "withVoteCount": 13,
+    "withNamedVotes": 9,
+    "unanimousActions": 43,
+    "needsReview": 58,
+    "unlinkedToAgendaItem": 124
+  },
+  "organizationReports": [
+    {
+      "organizationId": "nshe-board-of-regents",
+      "actionResults": 104,
+      "withOutcome": 104,
+      "withVoteCount": 3,
+      "withNamedVotes": 0,
+      "needsReview": 23,
+      "unlinkedToAgendaItem": 69
+    },
+    {
+      "organizationId": "las-vegas-city-council",
+      "actionResults": 79,
+      "withOutcome": 79,
+      "withVoteCount": 1,
+      "withNamedVotes": 0,
+      "needsReview": 1,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "elko-city-council",
+      "actionResults": 48,
+      "withOutcome": 45,
+      "withVoteCount": 0,
+      "withNamedVotes": 9,
+      "needsReview": 3,
+      "unlinkedToAgendaItem": 21
+    },
+    {
+      "organizationId": "washoe-county-commission",
+      "actionResults": 25,
+      "withOutcome": 16,
+      "withVoteCount": 9,
+      "withNamedVotes": 0,
+      "needsReview": 14,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "clark-county-school-district",
+      "actionResults": 25,
+      "withOutcome": 25,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 25
+    },
+    {
+      "organizationId": "north-las-vegas-city-council",
+      "actionResults": 23,
+      "withOutcome": 23,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 13,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "henderson-city-council",
+      "actionResults": 7,
+      "withOutcome": 7,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 7
+    },
+    {
+      "organizationId": "clark-county-commission",
+      "actionResults": 6,
+      "withOutcome": 6,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 4,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "reno-city-council",
+      "actionResults": 3,
+      "withOutcome": 3,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "nv-legislature",
+      "actionResults": 1,
+      "withOutcome": 1,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 1
+    },
+    {
+      "organizationId": "carson-city-school-district",
+      "actionResults": 1,
+      "withOutcome": 1,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 1
+    }
+  ]
+}

@@ -1,25 +1,25 @@
 {
-  "generatedAt": "2026-06-20T20:50:08.595Z",
+  "generatedAt": "2026-06-26T13:50:41.276Z",
   "totals": {
     "priorityBodies": 7,
-    "bodiesCovered": 2,
-    "rosterRecords": 16,
-    "votingMembers": 16,
-    "unmatchedMembers": 13,
+    "bodiesCovered": 7,
+    "rosterRecords": 94,
+    "votingMembers": 89,
+    "unmatchedMembers": 38,
     "expiredMemberships": 0,
-    "averageConfidence": 0.78
+    "averageConfidence": 0.86
   },
   "bodyReports": [
     {
       "label": "Carson City Board of Supervisors",
       "bodyId": "body-carson-city-board-of-supervisors",
       "organizationId": "carson-city-board-of-supervisors",
-      "covered": false,
-      "votingMembers": 0,
-      "unmatchedMembers": 0,
+      "covered": true,
+      "votingMembers": 5,
+      "unmatchedMembers": 5,
       "expiredMemberships": 0,
-      "confidence": 0,
-      "blocker": "missing_source_backed_roster"
+      "confidence": 0.9,
+      "blocker": null
     },
     {
       "label": "Reno City Council",
@@ -27,7 +27,7 @@
       "organizationId": "reno-city-council",
       "covered": true,
       "votingMembers": 3,
-      "unmatchedMembers": 0,
+      "unmatchedMembers": 3,
       "expiredMemberships": 0,
       "confidence": 0.88,
       "blocker": null
@@ -36,23 +36,23 @@
       "label": "Washoe County Commission",
       "bodyId": "body-washoe-county-commission",
       "organizationId": "washoe-county-commission",
-      "covered": false,
+      "covered": true,
       "votingMembers": 0,
-      "unmatchedMembers": 0,
+      "unmatchedMembers": 5,
       "expiredMemberships": 0,
-      "confidence": 0,
-      "blocker": "missing_source_backed_roster"
+      "confidence": 0.92,
+      "blocker": null
     },
     {
       "label": "Washoe County School District Board",
       "bodyId": "body-washoe-county-school-district",
       "organizationId": "washoe-county-school-district",
-      "covered": false,
-      "votingMembers": 0,
-      "unmatchedMembers": 0,
+      "covered": true,
+      "votingMembers": 7,
+      "unmatchedMembers": 7,
       "expiredMemberships": 0,
-      "confidence": 0,
-      "blocker": "missing_source_backed_roster"
+      "confidence": 0.9,
+      "blocker": null
     },
     {
       "label": "NSHE Board of Regents",
@@ -69,23 +69,23 @@
       "label": "Nevada Senate",
       "bodyId": "body-manual-nv-senate-nevada-senate",
       "organizationId": "nv-senate",
-      "covered": false,
-      "votingMembers": 0,
-      "unmatchedMembers": 0,
+      "covered": true,
+      "votingMembers": 21,
+      "unmatchedMembers": 5,
       "expiredMemberships": 0,
-      "confidence": 0,
-      "blocker": "missing_source_backed_roster"
+      "confidence": 0.88,
+      "blocker": null
     },
     {
       "label": "Nevada Assembly",
       "bodyId": "body-manual-nv-assembly-nevada-assembly",
       "organizationId": "nv-assembly",
-      "covered": false,
-      "votingMembers": 0,
+      "covered": true,
+      "votingMembers": 40,
       "unmatchedMembers": 0,
       "expiredMemberships": 0,
-      "confidence": 0,
-      "blocker": "missing_source_backed_roster"
+      "confidence": 0.86,
+      "blocker": null
     }
   ]
 }

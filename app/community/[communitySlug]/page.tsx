@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 import { getCommunityHubData, getStoryDestination, type CommunityHubDecision, type CommunityHubEvent, type CommunityHubOfficial, type CommunityHubProject } from "@/lib/community/product-hub";
 import type { CommunityRelationshipRecord } from "@/lib/community/relationships";
 
@@ -10,6 +13,23 @@ type CommunityPageProps = {
     communitySlug: string;
   }>;
 };
+
+type DataopsMonitoring = {
+  generatedAt?: string;
+  records?: Array<{
+    jurisdiction: string | null;
+    healthStatus: string;
+    freshnessStatus: string;
+    documentCounts: { discovered: number; cached: number; extracted: number; queued: number; ocrRequired: number };
+  }>;
+  audit?: { totals?: Record<string, number> };
+};
+
+function readGenerated<T>(fileName: string, fallback: T): T {
+  const filePath = path.join(process.cwd(), "data", "generated", fileName);
+  if (!existsSync(filePath)) return fallback;
+  return JSON.parse(readFileSync(filePath, "utf8")) as T;
+}
 
 function formatDate(value: string | null | undefined) {
   if (!value) return "Date pending";
@@ -109,16 +129,31 @@ function ProjectCard({ project }: { project: CommunityHubProject }) {
 }
 
 function DecisionCard({ decision }: { decision: CommunityHubDecision }) {
+  const trust = getDecisionTrustView(decision);
+  const hasAggregateOutcome = !/^no\b/i.test(decision.voteCount.display);
+  const attributionStatus = decision.voteCount.totalKnown > 0 ? "roll-call parsed" : hasAggregateOutcome ? "aggregate-only" : "unavailable in current records";
+  const attributionMessage =
+    decision.voteCount.totalKnown > 0
+      ? "Votes parsed from official roll-call record."
+      : hasAggregateOutcome
+        ? "Only the aggregate outcome is currently available from public records."
+        : "This action needs review before individual votes can be shown.";
   return (
-    <Link href={decision.meeting.href} className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">
+    <Link href={`/decisions/${decision.id}`} className={`block rounded-[1.35rem] border p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06] ${trust.state === "needs_review" ? "border-amber-300/20 bg-amber-500/[0.06]" : "border-white/10 bg-white/[0.04]"}`}>
       <div className="flex flex-wrap gap-2">
         <Badge tone="cyan">{decision.decisionType}</Badge>
+        <Badge tone={trust.tone}>{trust.label}</Badge>
         <Badge tone={decision.voteOutcome === "approved" ? "green" : decision.voteOutcome === "denied" ? "amber" : "slate"}>{decision.voteOutcome}</Badge>
         <Badge>{decision.voteCount.display}</Badge>
+        <Badge tone={decision.voteCount.totalKnown > 0 ? "green" : hasAggregateOutcome ? "amber" : "slate"}>{attributionStatus}</Badge>
       </div>
       <h3 className="mt-3 text-base font-semibold text-slate-50">{decision.title}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-300">{decision.summary}</p>
       <p className="mt-3 text-sm leading-6 text-slate-400">Impact: {decision.whyItMatters}</p>
+      <p className={`mt-3 rounded-xl border px-3 py-2 text-xs leading-5 ${trust.state === "approved" ? "border-emerald-300/15 bg-emerald-500/10 text-emerald-100" : trust.state === "ready" ? "border-cyan-300/15 bg-cyan-500/10 text-cyan-100" : "border-amber-300/20 bg-amber-500/10 text-amber-100"}`}>
+        {trust.description}
+      </p>
+      <p className="mt-3 rounded-xl border border-white/10 bg-slate-950/35 px-3 py-2 text-xs leading-5 text-slate-400">{attributionMessage}</p>
       <div className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-slate-500">
         <p>{decision.jurisdiction} · {decision.meeting.bodyName} · {formatShortDate(decision.meeting.date)}</p>
         <p>{decision.financialImpact.description ?? decision.financialImpact.raw ?? "No financial impact parsed"} · {confidenceLabel(decision.confidence)}</p>
@@ -129,32 +164,73 @@ function DecisionCard({ decision }: { decision: CommunityHubDecision }) {
 
 function OfficialCard({ official }: { official: CommunityHubOfficial }) {
   const href = official.profile_url ?? official.source_url;
+  const roleLabel = official.role_category?.replaceAll("_", " ") ?? official.level ?? "official";
+  const methodLabel = official.selection_method?.replaceAll("_", " ") ?? "source backed";
+  const statusLabel = official.acting_or_interim ? official.current_status?.replaceAll("_", " ") ?? "acting" : methodLabel;
   const content = (
     <>
       <div className="flex flex-wrap gap-2">
-        <Badge tone="cyan">{official.level ?? "official"}</Badge>
+        <Badge tone="cyan">{roleLabel}</Badge>
+        <Badge tone={official.selection_method === "elected" ? "green" : official.acting_or_interim ? "amber" : "slate"}>{statusLabel}</Badge>
         <Badge tone="green">source backed</Badge>
       </div>
       <h3 className="mt-3 text-base font-semibold text-slate-50">{official.name}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-300">{official.office}</p>
-      <p className="mt-3 text-xs leading-5 text-slate-500">{official.jurisdiction} · {official.district ?? "Seat pending"} · verified {formatShortDate(official.last_verified_at)}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-400">
+        {[official.district, official.department].filter(Boolean).join(" · ") || "Office details verified from source"}
+      </p>
+      <p className="mt-3 text-xs leading-5 text-slate-500">{official.jurisdiction} · verified {formatShortDate(official.last_verified_at)}</p>
       <p className="mt-1 text-xs leading-5 text-slate-500">{confidenceLabel(official.confidence)} · Source: {official.source_label}</p>
+      <p className="mt-1 text-xs leading-5 text-slate-500">Related parsed actions: {official.related_action_count ?? 0}</p>
     </>
   );
   return href ? <a href={href} target="_blank" rel="noreferrer" className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</a> : <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</article>;
+}
+
+function OfficialsGroup({ title, description, officials, emptyText }: { title: string; description: string; officials: CommunityHubOfficial[]; emptyText: string }) {
+  if (!officials.length) return <EmptyCard text={emptyText} />;
+  return (
+    <div>
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold text-slate-50">{title}</h3>
+        <p className="mt-1 text-sm leading-6 text-slate-400">{description}</p>
+      </div>
+      <div className="grid gap-4 lg:grid-cols-2">
+        {officials.map((official) => <OfficialCard key={official.id} official={official} />)}
+      </div>
+    </div>
+  );
 }
 
 export default async function CommunityProductPage({ params }: CommunityPageProps) {
   const { communitySlug } = await params;
   const data = await getCommunityHubData(communitySlug);
   if (!data) notFound();
+  const dataops = readGenerated<DataopsMonitoring>("dataops-monitoring-status.json", { records: [] });
+  const communitySourceRecords = (dataops.records ?? []).filter((record) => {
+    const jurisdiction = record.jurisdiction ?? "";
+    return jurisdiction.includes(data.community.name) || data.community.name.includes(jurisdiction.replace(", NV", ""));
+  });
+  const sourceFreshness = {
+    lastCheckedAt: dataops.generatedAt ?? data.coverageGeneratedAt,
+    documentsRecovered: communitySourceRecords.reduce((sum, record) => sum + record.documentCounts.cached + record.documentCounts.extracted, 0),
+    queuedDocuments: communitySourceRecords.reduce((sum, record) => sum + record.documentCounts.queued, 0),
+    ocrPending: communitySourceRecords.reduce((sum, record) => sum + record.documentCounts.ocrRequired, 0),
+    hasLimitedCoverage: communitySourceRecords.some((record) => record.healthStatus === "stale" || record.healthStatus === "degraded" || record.healthStatus === "blocked"),
+  };
 
   const upcomingEvents = data.events.filter((event) => event.status === "upcoming").sort((a, b) => (Date.parse(a.start_at ?? "") || 0) - (Date.parse(b.start_at ?? "") || 0)).slice(0, 6);
   const completedEvents = data.events.filter((event) => event.status === "completed").sort((a, b) => (Date.parse(b.start_at ?? "") || 0) - (Date.parse(a.start_at ?? "") || 0)).slice(0, 6);
-  const recentDecisions = data.decisions.slice(0, 8);
+  const publicReadyDecisions = data.decisions.filter((decision) => getDecisionTrustView(decision).isPublicSpotlightReady);
+  const recentDecisions = publicReadyDecisions.slice(0, 8);
+  const limitedReviewDecisions = data.decisions.filter((decision) => !getDecisionTrustView(decision).isPublicSpotlightReady).slice(0, 4);
   const spendingStories = data.storyRecords.filter((record) => record.storyType === "spending").slice(0, 4);
   const caseStories = data.storyRecords.filter((record) => record.storyType === "case").slice(0, 4);
   const electionStories = data.storyRecords.filter((record) => record.storyType === "election" || record.storyType === "vote").slice(0, 4);
+  const governingOfficials = data.officials.filter((official) => official.role_category === "governing_body");
+  const otherElectedOfficials = data.officials.filter((official) => ["elected_executive", "elected_constitutional_office", "judiciary"].includes(official.role_category ?? ""));
+  const cityLeadership = data.officials.filter((official) => ["appointed_executive", "department_leadership"].includes(official.role_category ?? ""));
+  const otherOfficials = data.officials.filter((official) => !governingOfficials.includes(official) && !otherElectedOfficials.includes(official) && !cityLeadership.includes(official));
   const rssItems = [
     ...(data.rssCapabilities?.seedExamples ?? []).filter((item) => item.jurisdiction.includes(data.community.name) || data.community.name.includes(item.jurisdiction.replace(", NV", ""))),
     ...(data.rssCapabilities?.rssCapableSources ?? []).filter((item) => item.jurisdiction.includes(data.community.name) || data.community.name.includes(item.jurisdiction.replace(", NV", ""))),
@@ -173,6 +249,7 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Coverage</p>
             <p className="mt-2 font-semibold text-slate-100">{data.kind} · {data.coverageRow?.dashboardCounts.useful ?? 0} linked civic records</p>
             <p className="mt-1 text-xs text-slate-500">Generated {formatShortDate(data.coverageGeneratedAt)}</p>
+            <p className="mt-1 text-xs text-slate-500">Source last checked {formatShortDate(sourceFreshness.lastCheckedAt)}</p>
           </div>
         </div>
         {data.coverageRow?.missingCategories.length ? (
@@ -180,6 +257,12 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
             Limited data: missing reviewed local {data.coverageRow.missingCategories.join(", ")} coverage. Broader Nevada records may still affect residents here.
           </div>
         ) : null}
+        <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.035] p-4 text-sm leading-6 text-slate-400">
+          Source freshness: {sourceFreshness.documentsRecovered} source documents recovered for related monitored sources.
+          {sourceFreshness.queuedDocuments ? ` ${sourceFreshness.queuedDocuments} documents are awaiting retrieval.` : " No queued source documents are currently attached to this community."}
+          {sourceFreshness.ocrPending ? ` ${sourceFreshness.ocrPending} documents await OCR/manual review.` : ""}
+          {sourceFreshness.hasLimitedCoverage ? " Source coverage is limited while retrieval and extraction continue." : ""}
+        </div>
       </section>
 
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
@@ -201,6 +284,20 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {recentDecisions.length ? recentDecisions.map((decision) => <DecisionCard key={decision.id} decision={decision} />) : <EmptyCard text="No source-backed decision cards are currently generated for this community." />}
         </div>
+        {limitedReviewDecisions.length ? (
+          <div className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-500/10 p-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge tone="amber">limited data</Badge>
+              <p className="text-sm font-semibold text-amber-100">Some related decisions are still being reviewed.</p>
+            </div>
+            <p className="mt-2 text-sm leading-6 text-amber-100/90">
+              These items have official-source signals, but extraction or review gaps keep them out of the main decision spotlight.
+            </p>
+            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              {limitedReviewDecisions.map((decision) => <DecisionCard key={decision.id} decision={decision} />)}
+            </div>
+          </div>
+        ) : null}
       </section>
 
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
@@ -215,6 +312,9 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {[
             ["Recent decisions", data.accountabilityScoreboard.recentDecisions],
+            ["Reviewed decisions", data.accountabilityScoreboard.approvedDecisions],
+            ["Source-backed previews", data.accountabilityScoreboard.readyDecisions],
+            ["Decisions needing review", data.accountabilityScoreboard.decisionsNeedingReview],
             ["Active projects", data.accountabilityScoreboard.activeProjects],
             ["No recent project update", data.accountabilityScoreboard.projectsWithNoRecentUpdate],
             ["Votes parsed", data.accountabilityScoreboard.votesParsed],
@@ -281,9 +381,38 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
       </section>
 
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading eyebrow="Officials" title="Who is responsible?" description="Named officials appear only when a source-backed roster or official action record exists." />
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          {data.officials.length ? data.officials.slice(0, 8).map((official) => <OfficialCard key={official.id} official={official} />) : <EmptyCard text="Official roster acquisition is still needed for this community. No fake officials are shown." />}
+        <SectionHeading eyebrow="Officials" title="Officials & City Leadership" description="Current officeholders are shown from compact source-backed runtime records. Historical votes and actions remain separate." />
+        <div className="mt-6 space-y-8">
+          <OfficialsGroup
+            title="Your Elected Governing Officials"
+            description="Mayor and ward supervisors or equivalent governing-body members when verified."
+            officials={governingOfficials}
+            emptyText="Current governing officials have not yet been verified from an official source."
+          />
+          {otherElectedOfficials.length ? (
+            <OfficialsGroup
+              title="Other Elected Offices"
+              description="Other source-verified elected offices and judicial offices where product policy includes them."
+              officials={otherElectedOfficials}
+              emptyText="No reviewed other elected offices currently available."
+            />
+          ) : null}
+          {cityLeadership.length ? (
+            <OfficialsGroup
+              title="City Leadership"
+              description="Appointed, acting, and department leadership are shown separately from elected officials."
+              officials={cityLeadership}
+              emptyText="No reviewed appointed leadership currently available."
+            />
+          ) : null}
+          {otherOfficials.length ? (
+            <OfficialsGroup
+              title="Other Officials"
+              description="Additional reviewed public officials that do not fit the primary groups."
+              officials={otherOfficials}
+              emptyText="No other reviewed officials currently available."
+            />
+          ) : null}
         </div>
       </section>
 

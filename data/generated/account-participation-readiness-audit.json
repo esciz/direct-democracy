@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-27T18:03:37.630Z",
+  "status": "account_participation_readiness_audited",
+  "sensitiveValuesIncluded": false,
+  "totals": {
+    "identityAccounts": 2,
+    "activeVerifiedIdentityAccounts": 1,
+    "publicUserRows": 0,
+    "sourceBackedQuestionsAvailable": 372,
+    "accountsCanVote": 1,
+    "accountsVerifiedForStakeholderAnalytics": 0,
+    "accountsNeedingVerificationForAnalytics": 1,
+    "accountsMissingPublicUserRows": 1,
+    "existingRealResponses": 0,
+    "existingVerifiedAnalyticsResponses": 0
+  },
+  "validation": {
+    "sourceBackedQuestionsAvailable": true,
+    "hiddenWeightingDisabled": true,
+    "responseProvenanceExplicit": true,
+    "noSensitiveValuesIncluded": true,
+    "publicUserRowsMayBeCreatedOnFirstVote": true
+  },
+  "accounts": [
+    {
+      "userId": "identity_owner_admin",
+      "emailRedacted": "ad***@directyourdemocracy.com",
+      "role": "admin",
+      "hasPublicUserRow": false,
+      "canCastSourceBackedVotes": true,
+      "countsAsVerifiedStakeholderSignal": false,
+      "verificationClass": "authenticated_unverified",
+      "responseProvenance": "real_participant",
+      "countsInAnalyticsWhenRecorded": true,
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "existingRealResponses": 0,
+      "existingVerifiedAnalyticsResponses": 0
+    }
+  ],
+  "pass": true
+}

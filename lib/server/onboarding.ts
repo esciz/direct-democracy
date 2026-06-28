@@ -7,6 +7,7 @@ import { evaluateVerificationTrust } from "@/lib/auth/trust";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCommunityById, seededCommunities } from "@/lib/community/communities";
 import { getCanonicalIssueTitles } from "@/lib/issues/utils";
+import { getSeedVoterIdentityRecord, type VerificationMatchStatus } from "@/lib/onboarding/voter-provider";
 import { getAllPublicProfiles } from "@/lib/server/elections-context";
 import type {
   AuthUser,
@@ -22,7 +23,6 @@ import type {
 
 const ONBOARDING_DRAFT_COOKIE = "dd_onboarding_draft";
 
-export type VerificationMatchStatus = "strongMatch" | "possibleMatch" | "noMatch";
 export type ClaimMatchStatus = "eligible" | "needsReview" | "notMatched";
 export type ClaimActionState = "public" | "continueClaim" | "reviewMatch" | "hidden";
 
@@ -53,15 +53,6 @@ export type OnboardingDraft = {
   riskFlags?: VerificationRiskFlag[];
 };
 
-type VoterIdentityRecord = {
-  userId: string;
-  legalFirstName: string;
-  legalLastName: string;
-  dateOfBirth: string;
-  streetAddress: string;
-  jurisdictionName: string;
-};
-
 type PublicIdentityRecord = {
   profileId: string;
   legalFirstName: string;
@@ -70,41 +61,6 @@ type PublicIdentityRecord = {
   streetAddress: string;
   jurisdictionName: string;
 };
-
-const voterIdentityRecords: VoterIdentityRecord[] = [
-  {
-    userId: "user_citizen_alicia_hart",
-    legalFirstName: "Alicia",
-    legalLastName: "Hart",
-    dateOfBirth: "1990-08-14",
-    streetAddress: "142 Carson Street",
-    jurisdictionName: "Carson City, Nevada",
-  },
-  {
-    userId: "user_citizen_casey_rivera",
-    legalFirstName: "Casey",
-    legalLastName: "Rivera",
-    dateOfBirth: "1997-04-21",
-    streetAddress: "18 Juniper Way",
-    jurisdictionName: "Nevada",
-  },
-  {
-    userId: "user_citizen_daniel_rowe",
-    legalFirstName: "Daniel",
-    legalLastName: "Rowe",
-    dateOfBirth: "1981-11-04",
-    streetAddress: "405 Pine Crest Avenue",
-    jurisdictionName: "Nevada",
-  },
-  {
-    userId: "user_citizen_aaron_hale",
-    legalFirstName: "Aaron",
-    legalLastName: "Hale",
-    dateOfBirth: "1978-02-18",
-    streetAddress: "88 Silver Oak Drive",
-    jurisdictionName: "Washoe County, Nevada",
-  },
-];
 
 const publicIdentityRecords: PublicIdentityRecord[] = [
   {
@@ -191,52 +147,6 @@ export function resolveOnboardingSeedUserId(fullName: string) {
   }
 
   return "user_citizen_casey_rivera";
-}
-
-export function evaluateVoterVerification(input: {
-  legalFirstName: string;
-  legalLastName: string;
-  dateOfBirth: string;
-  streetAddress: string;
-  jurisdictionName: string;
-}) {
-  const exact = voterIdentityRecords.find(
-    (record) =>
-      normalize(record.legalFirstName) === normalize(input.legalFirstName) &&
-      normalize(record.legalLastName) === normalize(input.legalLastName) &&
-      record.dateOfBirth === input.dateOfBirth &&
-      normalize(record.streetAddress) === normalize(input.streetAddress) &&
-      normalize(record.jurisdictionName) === normalize(input.jurisdictionName),
-  );
-
-  if (exact) {
-    return {
-      status: "strongMatch" as const,
-      confidence: "high" as const,
-      matchedRecord: exact,
-    };
-  }
-
-  const possible = voterIdentityRecords.find(
-    (record) =>
-      normalize(record.legalFirstName) === normalize(input.legalFirstName) &&
-      normalize(record.legalLastName) === normalize(input.legalLastName) &&
-      normalize(record.jurisdictionName) === normalize(input.jurisdictionName),
-  );
-
-  if (possible) {
-    return {
-      status: "possibleMatch" as const,
-      confidence: "medium" as const,
-      matchedRecord: possible,
-    };
-  }
-
-  return {
-    status: "noMatch" as const,
-    confidence: "none" as const,
-    matchedRecord: null,
-  };
 }
 
 export async function getMatchedPublicProfileForIdentity(draft: OnboardingDraft | null): Promise<PublicProfileSummary | null> {
@@ -350,13 +260,15 @@ export function buildOnboardingTrustSummary(draft: OnboardingDraft | null) {
     voterMatchStatus: draft?.verificationStatus === "strongMatch" ? "voterVerified" : "unverified",
     voterMatchConfidence: draft?.voterMatchConfidence ?? "none",
     enhancedIdentityStatus: draft?.enhancedIdentityStatus ?? (draft?.verificationStatus === "possibleMatch" ? "recommended" : "notNeeded"),
-    manualReviewStatus: draft?.manualReviewStatus ?? (draft?.verificationStatus === "possibleMatch" ? "available" : "notNeeded"),
+    manualReviewStatus: draft?.manualReviewStatus ?? (draft?.verificationStatus === "possibleMatch" || draft?.verificationStatus === "sourceUnavailable" ? "available" : "notNeeded"),
     candidateOfficialMatchStatus:
       draft?.candidateOfficialMatchStatus ??
       (draft?.matchedPublicProfileId
         ? draft.verificationStatus === "strongMatch"
           ? "strongMatch"
-          : "possibleMatch"
+          : draft.verificationStatus === "sourceUnavailable"
+            ? "none"
+            : "possibleMatch"
         : "none"),
     suspiciousSignals: draft?.riskFlags ?? [],
     trustedCitizenSignalsStrong: draft?.verificationStatus === "strongMatch",
@@ -439,7 +351,7 @@ export function getEffectiveRoleFromClaim(profile: PublicProfileSummary | null):
 }
 
 export function getSeedUserIdentityRecord(userId: string) {
-  return voterIdentityRecords.find((record) => record.userId === userId) ?? null;
+  return getSeedVoterIdentityRecord(userId);
 }
 
 export function getOnboardingJurisdictionFromCommunity(communityId: string | undefined) {

@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-06-26T14:11:33.440Z",
+  "policy": {
+    "approved": "Reviewed source-backed decisions appear as solid public records.",
+    "ready": "Source-backed previews appear publicly but disclose missing outcome, roll-call, or impact details.",
+    "needsReview": "Needs-review decisions are excluded from the main community spotlight and shown as limited data when surfaced."
+  },
+  "counts": {
+    "total": 756,
+    "approved": 437,
+    "ready": 115,
+    "needsReview": 204,
+    "publicSpotlightReady": 552,
+    "cardsWithParsedVoteCount": 16,
+    "aggregateOrUnknownVoteOnly": 740,
+    "missingSources": 0
+  },
+  "samples": {
+    "approved": [
+      "voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-06-17-5336553-5b02398d55",
+      "voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-2028-d5046-ba1c628ac0",
+      "voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-2024-a7419-6deba83109",
+      "voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-15-e7da161-2f1a452773",
+      "voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-24-620ab56-3ac9fac31f"
+    ],
+    "ready": [
+      "voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-14-d2c9c81-83aab30def",
+      "voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-6-6f9b83-5d6925c044",
+      "voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-7-4cc6ea-765e208295",
+      "voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-16-ba011-cbd2f6fad8",
+      "voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-17-3c2d5-6614bdce94"
+    ],
+    "needs_review": [
+      "voting-card-item-meeting-manual-nv-legislature-nevada-legislature-2026-06-25-4ebdff9b-10-2a045224be-e1e76efcb6",
+      "voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-06-17-5336553-1f64f94f8e",
+      "voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-06-17-5336553-0b88d41d4c",
+      "voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-06-17-5336553-19ece2fad0",
+      "voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-06-17-5336553-fc31bf3e1b"
+    ]
+  },
+  "pass": true
+}

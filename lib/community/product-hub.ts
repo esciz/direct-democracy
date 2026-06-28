@@ -7,6 +7,7 @@ import path from "node:path";
 import type { AccountabilityGraph } from "@/lib/community/accountability-graph";
 import { getCommunityById, getNevadaCommunityKind, seededCommunities } from "@/lib/community/communities";
 import { emptyCommunityRelationshipBucket, getCommunityRelationships, type CommunityRelationshipBucket, type CommunityRelationshipRecord } from "@/lib/community/relationships";
+import { compareDecisionTrustThenDate, getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 
 const GENERATED_DIR = path.join(process.cwd(), "data/generated");
 
@@ -60,6 +61,7 @@ export type CommunityHubProject = {
   relatedAgendaItemIds: string[];
   sourceMeetings?: Array<{ id: string; title: string; date: string | null; href: string }>;
   relatedVotes?: string[];
+  relatedVotingCards?: string[];
   relatedIssues?: string[];
   source_url: string | null;
   source_label: string;
@@ -84,6 +86,13 @@ export type CommunityHubOfficial = {
   confidence: number | null;
   last_verified_at: string | null;
   profile_url: string | null;
+  department?: string | null;
+  role_category?: string | null;
+  selection_method?: string | null;
+  current_status?: string | null;
+  acting_or_interim?: boolean;
+  source_type?: string | null;
+  related_action_count?: number;
 };
 
 export type CommunityHubDecision = {
@@ -256,6 +265,8 @@ function legacyProjectFromRuntime(project: CommunityHubProject): CommunityHubPro
     location: project.location ?? null,
     relatedMeetingIds: project.relatedMeetingIds ?? project.sourceMeetings?.map((meeting) => meeting.id) ?? [],
     relatedAgendaItemIds: project.relatedAgendaItemIds ?? [],
+    relatedVotes: project.relatedVotes ?? project.relatedVotingCards ?? [],
+    relatedVotingCards: project.relatedVotingCards ?? project.relatedVotes ?? [],
     source_url: project.source_url ?? project.sourceMeetings?.[0]?.href ?? null,
     source_label: project.source_label ?? "Decision-derived project",
     needsReview: project.needsReview ?? project.review_status !== "source_backed",
@@ -318,7 +329,14 @@ export async function getCommunityHubData(communitySlug: string) {
   const officials = (officialsArtifact.records ?? []).filter((official) => matchesCommunity(`${official.communityName} ${official.jurisdiction} ${official.body_name ?? ""}`, needles));
   const decisions = (votingCardsArtifact.records ?? [])
     .filter((decision) => matchesCommunity(`${decision.jurisdiction} ${decision.meeting.bodyName} ${decision.title}`, needles))
-    .sort((left, right) => (Date.parse(right.meeting.date ?? "") || 0) - (Date.parse(left.meeting.date ?? "") || 0));
+    .sort(compareDecisionTrustThenDate);
+  const decisionTrustCounts = decisions.reduce(
+    (counts, decision) => {
+      counts[getDecisionTrustView(decision).state] += 1;
+      return counts;
+    },
+    { approved: 0, ready: 0, needs_review: 0 },
+  );
   const readinessRows = (attributionReadiness?.records ?? []).filter((row) => matchesCommunity(`${row.jurisdiction ?? ""} ${row.bodyName}`, needles));
   const accountabilitySummary = accountabilityGraph?.communitySummaries[community.id] ?? null;
   const communityDecisionIds = new Set(decisions.map((decision) => decision.agendaItemId));
@@ -372,6 +390,9 @@ export async function getCommunityHubData(communitySlug: string) {
     accountabilitySummary,
     accountabilityScoreboard: {
       recentDecisions: decisions.length,
+      approvedDecisions: decisionTrustCounts.approved,
+      readyDecisions: decisionTrustCounts.ready,
+      decisionsNeedingReview: decisionTrustCounts.needs_review,
       activeProjects: projects.filter((project) => ["proposed", "approved", "funded", "in_progress"].includes(project.status)).length,
       projectsWithNoRecentUpdate,
       votesParsed: accountabilitySummary?.votesParsed ?? decisions.reduce((sum, decision) => sum + decision.voteCount.totalKnown, 0),

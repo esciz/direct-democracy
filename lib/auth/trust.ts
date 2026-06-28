@@ -117,7 +117,7 @@ export function evaluateVerificationTrust(profile: VerificationRiskProfile): Ver
 
   if (basicVerified) {
     trustTier = "basicVerified";
-  } else if (profile.emailStatus === "verified" || profile.phoneStatus === "verified") {
+  } else if (profile.emailStatus === "verified" || profile.phoneStatus === "verified" || profile.antiBotScreened) {
     trustTier = "accountCreated";
   }
 

@@ -1,10 +1,13 @@
 import Link from "next/link";
 
+import { ParticipationReadinessPanel } from "@/components/domain/participation-readiness-panel";
 import { VoteCard } from "@/components/domain/vote-card";
 import { FilterTabs } from "@/components/ui/filter-tabs";
 import { canUserVote } from "@/lib/auth/guards";
+import { getParticipationActivationRuntime } from "@/lib/civic-signals/participation-activation";
 import { getVerificationLabel } from "@/lib/auth/verification";
 import { getVotingQuestionWindow } from "@/lib/feed/quick-votes";
+import { getParticipationReadiness } from "@/lib/identity/participation-readiness";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import type { VoteQuestionCardSummary } from "@/types/domain";
 
@@ -45,6 +48,37 @@ function EmptyState({ children }: { children?: string }) {
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm leading-6 text-slate-400">
       {children ?? "No verified real-data content available yet for this jurisdiction."}
     </div>
+  );
+}
+
+function ParticipationSignalSummary({
+  sourceBackedQuestions,
+  verifiedResponses,
+  publicSegments,
+  suppressedSegments,
+}: {
+  sourceBackedQuestions: number;
+  verifiedResponses: number;
+  publicSegments: number;
+  suppressedSegments: number;
+}) {
+  const metrics = [
+    { label: "Source-backed questions", value: sourceBackedQuestions.toLocaleString(), detail: "Reviewed civic records only" },
+    { label: "Verified responses", value: verifiedResponses.toLocaleString(), detail: "Eligible for aggregate signal" },
+    { label: "Public cohorts", value: publicSegments.toLocaleString(), detail: "Large enough to publish" },
+    { label: "Suppressed cohorts", value: suppressedSegments.toLocaleString(), detail: "Hidden by privacy threshold" },
+  ];
+
+  return (
+    <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {metrics.map((metric) => (
+        <article key={metric.label} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{metric.label}</p>
+          <p className="mt-2 text-2xl font-semibold text-white">{metric.value}</p>
+          <p className="mt-1 text-xs leading-5 text-slate-400">{metric.detail}</p>
+        </article>
+      ))}
+    </section>
   );
 }
 
@@ -137,6 +171,8 @@ export default async function VotingPage({ searchParams }: VotingPageProps) {
   const safeRequestedIndex = Number.isFinite(requestedIndex) && requestedIndex > 0 ? requestedIndex : 0;
   const votingWindow = await getVotingQuestionWindow(user, { filter, index: safeRequestedIndex });
   const activeIndex = parseActiveIndex(params?.index, votingWindow.total);
+  const participationReadiness = getParticipationReadiness(user);
+  const participationActivation = await getParticipationActivationRuntime();
 
   return (
     <div className="relative mx-auto max-w-6xl space-y-8 overflow-hidden pb-10 pt-2 sm:pt-4">
@@ -189,6 +225,15 @@ export default async function VotingPage({ searchParams }: VotingPageProps) {
           </Link>
         </div>
       </section>
+
+      <ParticipationReadinessPanel summary={participationReadiness} compact />
+
+      <ParticipationSignalSummary
+        sourceBackedQuestions={participationActivation.totals.sourceBackedQuestions}
+        verifiedResponses={participationActivation.totals.verifiedResponses}
+        publicSegments={participationActivation.totals.stakeholderPublicSegments}
+        suppressedSegments={participationActivation.totals.stakeholderSuppressedSegments}
+      />
 
       <CivicQuestionsSection activeQuestion={votingWindow.activeQuestion} total={votingWindow.total} canVote={verified} filter={filter} activeIndex={activeIndex} />
     </div>

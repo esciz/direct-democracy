@@ -7,6 +7,7 @@ import { MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import type { FeedViewerContext } from "@/lib/auth/session";
 import { getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
+import { accountToAuthUser, getIdentityAccountById } from "@/lib/identity/accounts";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { resolveUserVisibility } from "@/lib/profile/visibility";
 import { resolveUserVerification } from "@/lib/server/auth-verification";
@@ -37,6 +38,12 @@ export async function getRawCurrentSessionUser(): Promise<AuthUser | null> {
 
   if (!userId || userId === PUBLIC_SESSION_VALUE) {
     return null;
+  }
+
+  const identityAccount = getIdentityAccountById(userId);
+
+  if (identityAccount && identityAccount.status === "active") {
+    return hydrateSeedUser(accountToAuthUser(identityAccount));
   }
 
   const seededUser = getSeedUserById(userId);

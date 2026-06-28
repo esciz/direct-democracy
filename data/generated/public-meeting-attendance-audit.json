@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T20:50:08.691Z",
+  "generatedAt": "2026-06-26T14:11:29.212Z",
   "sourceArtifacts": [
     "data/generated/public-meetings.json",
     "data/generated/public-meeting-items.json",
@@ -7,23 +7,29 @@
     "data/seed/public-meeting-official-rosters.json"
   ],
   "totals": {
-    "meetingsScanned": 691,
-    "meetingsWithAttendanceParsed": 2,
-    "attendanceRecords": 47,
-    "votingMemberAttendanceRecords": 33,
-    "nonVotingAttendanceRecords": 14,
-    "unmatchedNames": 21,
+    "meetingsScanned": 728,
+    "meetingsWithAttendanceParsed": 224,
+    "attendanceRecords": 1196,
+    "votingMemberAttendanceRecords": 964,
+    "nonVotingAttendanceRecords": 232,
+    "unmatchedNames": 1007,
     "meetingsNeedingAttendanceReview": 0,
-    "meetingsWithVerifiedVotingAttendance": 2,
-    "meetingsEligibleForUnanimousOrAggregateVoteAttribution": 2,
-    "voteActionsUnlockedByAttendance": 0
+    "meetingsWithVerifiedVotingAttendance": 208,
+    "meetingsEligibleForUnanimousOrAggregateVoteAttribution": 21,
+    "voteActionsUnlockedByAttendance": 2
   },
   "statusCounts": {
-    "present": 33,
-    "non_voting_present": 14
+    "present": 585,
+    "non_voting_present": 232,
+    "absent": 352,
+    "excused": 23,
+    "recused": 2,
+    "remote_present": 2
   },
   "matchConfidenceCounts": {
-    "exact_name_match": 26,
-    "unmatched_name": 21
+    "unmatched_name": 1007,
+    "title_plus_name_match": 82,
+    "exact_name_match": 98,
+    "normalized_name_match": 9
   }
 }

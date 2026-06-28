@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-28T00:34:38.596Z",
+  "status": "account_verification_ux_audited",
+  "sensitiveValuesIncluded": false,
+  "validation": {
+    "residencySuccessMessageVisible": true,
+    "voterSuccessMessageVisible": true,
+    "residencyRedirectTargetsClaimHistory": true,
+    "voterRedirectTargetsClaimHistory": true,
+    "missingRedirectsTargetRelevantForms": true,
+    "residencyCtaTargetsFormAnchor": true,
+    "formAnchorsPresent": true,
+    "voterPortalSummaryUsesDropdown": true,
+    "claimHistoryExplainsReviewOutcomes": true,
+    "claimHistoryShowsVoterReviewContext": true,
+    "explicitSubmitButtonsPresent": true
+  },
+  "pass": true
+}

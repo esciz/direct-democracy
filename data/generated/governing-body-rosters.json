@@ -1,11 +1,138 @@
 {
-  "generatedAt": "2026-06-20T20:50:08.595Z",
+  "generatedAt": "2026-06-26T13:50:41.276Z",
   "records": [
+    {
+      "id": "governing-roster-body-carson-city-board-of-supervisors-lori-bagwell",
+      "bodyId": "body-carson-city-board-of-supervisors",
+      "organizationId": "carson-city-board-of-supervisors",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-carson-city-board-of-supervisors-lori-bagwell",
+      "officialIdMissing": true,
+      "fullName": "Lori Bagwell",
+      "normalizedName": "lori bagwell",
+      "title": "Mayor",
+      "district": "Mayor",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Carson City Board of Supervisors contact page",
+          "url": "https://www.carsoncity.gov/government/board-of-supervisors/contact-us",
+          "path": null,
+          "snippet": "Bagwell, Lori Mayor Board of Supervisors"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-carson-city-board-of-supervisors-stacey-giomi",
+      "bodyId": "body-carson-city-board-of-supervisors",
+      "organizationId": "carson-city-board-of-supervisors",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-carson-city-board-of-supervisors-stacey-giomi",
+      "officialIdMissing": true,
+      "fullName": "Stacey Giomi",
+      "normalizedName": "stacey giomi",
+      "title": "Supervisor",
+      "district": "Ward 1",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Carson City Board of Supervisors contact page",
+          "url": "https://www.carsoncity.gov/government/board-of-supervisors/contact-us",
+          "path": null,
+          "snippet": "Giomi, Stacey Supervisor, Ward 1 Board of Supervisors"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-carson-city-board-of-supervisors-maurice-mo-white",
+      "bodyId": "body-carson-city-board-of-supervisors",
+      "organizationId": "carson-city-board-of-supervisors",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-carson-city-board-of-supervisors-maurice-mo-white",
+      "officialIdMissing": true,
+      "fullName": "Maurice \"Mo\" White",
+      "normalizedName": "maurice mo white",
+      "title": "Supervisor",
+      "district": "Ward 2",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Carson City Board of Supervisors contact page",
+          "url": "https://www.carsoncity.gov/government/board-of-supervisors/contact-us",
+          "path": null,
+          "snippet": "White, Maurice \"Mo\" Supervisor, Ward 2 Board of Supervisors"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-carson-city-board-of-supervisors-curtis-horton",
+      "bodyId": "body-carson-city-board-of-supervisors",
+      "organizationId": "carson-city-board-of-supervisors",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-carson-city-board-of-supervisors-curtis-horton",
+      "officialIdMissing": true,
+      "fullName": "Curtis Horton",
+      "normalizedName": "curtis horton",
+      "title": "Supervisor",
+      "district": "Ward 3",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Carson City Board of Supervisors contact page",
+          "url": "https://www.carsoncity.gov/government/board-of-supervisors/contact-us",
+          "path": null,
+          "snippet": "Horton, Curtis Supervisor, Ward 3 Board of Supervisors"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-carson-city-board-of-supervisors-lisa-schuette",
+      "bodyId": "body-carson-city-board-of-supervisors",
+      "organizationId": "carson-city-board-of-supervisors",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-carson-city-board-of-supervisors-lisa-schuette",
+      "officialIdMissing": true,
+      "fullName": "Lisa Schuette",
+      "normalizedName": "lisa schuette",
+      "title": "Supervisor",
+      "district": "Ward 4",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Carson City Board of Supervisors contact page",
+          "url": "https://www.carsoncity.gov/government/board-of-supervisors/contact-us",
+          "path": null,
+          "snippet": "Schuette, Lisa Supervisor, Ward 4 Board of Supervisors"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
     {
       "id": "governing-roster-body-reno-city-council-donna-keats",
       "bodyId": "body-reno-city-council",
       "organizationId": "reno-city-council",
-      "officialId": "official-4cfa693176915b48",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-reno-city-council-donna-keats",
+      "officialIdMissing": true,
       "fullName": "Donna Keats",
       "normalizedName": "donna keats",
       "title": "Member",
@@ -17,7 +144,7 @@
         {
           "label": "Reno PrimeGov saved public committee member metadata",
           "url": "https://reno.primegov.com/public/portal",
-          "path": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-3-api-committeemember-list.json",
+          "path": null,
           "snippet": null
         }
       ],
@@ -28,7 +155,9 @@
       "id": "governing-roster-body-reno-city-council-kristen-montan",
       "bodyId": "body-reno-city-council",
       "organizationId": "reno-city-council",
-      "officialId": "official-247b949f71134ce8",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-reno-city-council-kristen-montan",
+      "officialIdMissing": true,
       "fullName": "Kristen Montan",
       "normalizedName": "kristen montan",
       "title": "Secretary",
@@ -40,7 +169,7 @@
         {
           "label": "Reno PrimeGov saved public committee member metadata",
           "url": "https://reno.primegov.com/public/portal",
-          "path": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-3-api-committeemember-list.json",
+          "path": null,
           "snippet": null
         }
       ],
@@ -51,7 +180,9 @@
       "id": "governing-roster-body-reno-city-council-nicolas-oliver",
       "bodyId": "body-reno-city-council",
       "organizationId": "reno-city-council",
-      "officialId": "official-1732b0eb49f3cdb6",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-reno-city-council-nicolas-oliver",
+      "officialIdMissing": true,
       "fullName": "Nicolas Oliver",
       "normalizedName": "nicolas oliver",
       "title": "Member",
@@ -63,7 +194,7 @@
         {
           "label": "Reno PrimeGov saved public committee member metadata",
           "url": "https://reno.primegov.com/public/portal",
-          "path": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-3-api-committeemember-list.json",
+          "path": null,
           "snippet": null
         }
       ],
@@ -71,10 +202,312 @@
       "needsReview": false
     },
     {
+      "id": "governing-roster-body-washoe-county-commission-alexis-hill",
+      "bodyId": "body-washoe-county-commission",
+      "organizationId": "washoe-county-commission",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-commission-alexis-hill",
+      "officialIdMissing": true,
+      "fullName": "Alexis Hill",
+      "normalizedName": "alexis hill",
+      "title": "Commissioner",
+      "district": "District 1",
+      "startDate": "2025-01-06",
+      "endDate": "2029-01-01",
+      "votingMember": false,
+      "sourceReferences": [
+        {
+          "label": "Washoe County Commissioner Profiles",
+          "url": "https://www.washoecounty.gov/bcc/profile/index.php",
+          "path": null,
+          "snippet": "Commissioner Alexis Hill District 1 Current Term: 01/06/25 - 01/01/29"
+        }
+      ],
+      "confidence": 0.92,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-commission-michael-clark",
+      "bodyId": "body-washoe-county-commission",
+      "organizationId": "washoe-county-commission",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-commission-michael-clark",
+      "officialIdMissing": true,
+      "fullName": "Michael Clark",
+      "normalizedName": "michael clark",
+      "title": "Commissioner",
+      "district": "District 2",
+      "startDate": "2023-01-06",
+      "endDate": "2027-01-04",
+      "votingMember": false,
+      "sourceReferences": [
+        {
+          "label": "Washoe County Commissioner Profiles",
+          "url": "https://www.washoecounty.gov/bcc/profile/index.php",
+          "path": null,
+          "snippet": "Commissioner Michael Clark District 2 Current Term: 01/06/23 - 01/04/27"
+        }
+      ],
+      "confidence": 0.92,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-commission-mariluz-garcia",
+      "bodyId": "body-washoe-county-commission",
+      "organizationId": "washoe-county-commission",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-commission-mariluz-garcia",
+      "officialIdMissing": true,
+      "fullName": "Mariluz Garcia",
+      "normalizedName": "mariluz garcia",
+      "title": "Vice Chair",
+      "district": "District 3",
+      "startDate": "2023-01-06",
+      "endDate": "2027-01-04",
+      "votingMember": false,
+      "sourceReferences": [
+        {
+          "label": "Washoe County Commissioner Profiles",
+          "url": "https://www.washoecounty.gov/bcc/profile/index.php",
+          "path": null,
+          "snippet": "Vice Chair Mariluz Garcia District 3 Current Term: 01/06/23 - 01/04/27"
+        }
+      ],
+      "confidence": 0.92,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-commission-clara-andriola",
+      "bodyId": "body-washoe-county-commission",
+      "organizationId": "washoe-county-commission",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-commission-clara-andriola",
+      "officialIdMissing": true,
+      "fullName": "Clara Andriola",
+      "normalizedName": "clara andriola",
+      "title": "Chair",
+      "district": "District 4",
+      "startDate": "2025-01-06",
+      "endDate": "2029-01-01",
+      "votingMember": false,
+      "sourceReferences": [
+        {
+          "label": "Washoe County Commissioner Profiles",
+          "url": "https://www.washoecounty.gov/bcc/profile/index.php",
+          "path": null,
+          "snippet": "Chair Clara Andriola District 4 Current Term: 01/06/25 - 01/01/29"
+        }
+      ],
+      "confidence": 0.92,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-commission-jeanne-herman",
+      "bodyId": "body-washoe-county-commission",
+      "organizationId": "washoe-county-commission",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-commission-jeanne-herman",
+      "officialIdMissing": true,
+      "fullName": "Jeanne Herman",
+      "normalizedName": "jeanne herman",
+      "title": "Commissioner",
+      "district": "District 5",
+      "startDate": "2023-01-06",
+      "endDate": "2027-01-04",
+      "votingMember": false,
+      "sourceReferences": [
+        {
+          "label": "Washoe County Commissioner Profiles",
+          "url": "https://www.washoecounty.gov/bcc/profile/index.php",
+          "path": null,
+          "snippet": "Commissioner Jeanne Herman District 5 Current Term: 01/06/23 - 01/04/27"
+        }
+      ],
+      "confidence": 0.92,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-school-district-christine-hull",
+      "bodyId": "body-washoe-county-school-district",
+      "organizationId": "washoe-county-school-district",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-school-district-christine-hull",
+      "officialIdMissing": true,
+      "fullName": "Christine Hull",
+      "normalizedName": "christine hull",
+      "title": "Trustee",
+      "district": "District A",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Washoe County School District Board of Trustees",
+          "url": "https://www.washoeschools.net/trustees/board-of-trustees",
+          "path": null,
+          "snippet": "Christine Hull, District A"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-school-district-colleen-westlake",
+      "bodyId": "body-washoe-county-school-district",
+      "organizationId": "washoe-county-school-district",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-school-district-colleen-westlake",
+      "officialIdMissing": true,
+      "fullName": "Colleen Westlake",
+      "normalizedName": "colleen westlake",
+      "title": "Trustee",
+      "district": "District B",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Washoe County School District Board of Trustees",
+          "url": "https://www.washoeschools.net/trustees/board-of-trustees",
+          "path": null,
+          "snippet": "Colleen Westlake, District B"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-school-district-james-phoenix",
+      "bodyId": "body-washoe-county-school-district",
+      "organizationId": "washoe-county-school-district",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-school-district-james-phoenix",
+      "officialIdMissing": true,
+      "fullName": "James Phoenix",
+      "normalizedName": "james phoenix",
+      "title": "Trustee",
+      "district": "District C",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Washoe County School District Board of Trustees",
+          "url": "https://www.washoeschools.net/trustees/board-of-trustees",
+          "path": null,
+          "snippet": "James Phoenix, District C"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-school-district-elizabeth-smith",
+      "bodyId": "body-washoe-county-school-district",
+      "organizationId": "washoe-county-school-district",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-school-district-elizabeth-smith",
+      "officialIdMissing": true,
+      "fullName": "Elizabeth Smith",
+      "normalizedName": "elizabeth smith",
+      "title": "Trustee",
+      "district": "District D",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Washoe County School District Board of Trustees",
+          "url": "https://www.washoeschools.net/trustees/board-of-trustees",
+          "path": null,
+          "snippet": "Elizabeth Smith, District D"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-school-district-alex-woodley",
+      "bodyId": "body-washoe-county-school-district",
+      "organizationId": "washoe-county-school-district",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-school-district-alex-woodley",
+      "officialIdMissing": true,
+      "fullName": "Alex Woodley",
+      "normalizedName": "alex woodley",
+      "title": "Trustee",
+      "district": "District E",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Washoe County School District Board of Trustees",
+          "url": "https://www.washoeschools.net/trustees/board-of-trustees",
+          "path": null,
+          "snippet": "Alex Woodley, District E"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-school-district-adam-mayberry",
+      "bodyId": "body-washoe-county-school-district",
+      "organizationId": "washoe-county-school-district",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-school-district-adam-mayberry",
+      "officialIdMissing": true,
+      "fullName": "Adam Mayberry",
+      "normalizedName": "adam mayberry",
+      "title": "Trustee",
+      "district": "District F",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Washoe County School District Board of Trustees",
+          "url": "https://www.washoeschools.net/trustees/board-of-trustees",
+          "path": null,
+          "snippet": "Adam Mayberry, District F"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-washoe-county-school-district-diane-nicolet",
+      "bodyId": "body-washoe-county-school-district",
+      "organizationId": "washoe-county-school-district",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-washoe-county-school-district-diane-nicolet",
+      "officialIdMissing": true,
+      "fullName": "Diane Nicolet",
+      "normalizedName": "diane nicolet",
+      "title": "Trustee",
+      "district": "District G",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Washoe County School District Board of Trustees",
+          "url": "https://www.washoeschools.net/trustees/board-of-trustees",
+          "path": null,
+          "snippet": "Diane Nicolet Ph.D., District G"
+        }
+      ],
+      "confidence": 0.9,
+      "needsReview": false
+    },
+    {
       "id": "governing-roster-body-nshe-board-of-regents-byron-brooks",
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-byron-brooks",
+      "officialIdMissing": true,
       "fullName": "Byron Brooks",
       "normalizedName": "byron brooks",
       "title": "Regent",
@@ -86,7 +519,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -98,6 +531,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-stephanie-goodman",
+      "officialIdMissing": true,
       "fullName": "Stephanie Goodman",
       "normalizedName": "stephanie goodman",
       "title": "Regent",
@@ -109,7 +544,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -121,6 +556,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-joseph-c-arrascada",
+      "officialIdMissing": true,
       "fullName": "Joseph C. Arrascada",
       "normalizedName": "joseph c arrascada",
       "title": "Regent",
@@ -132,7 +569,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -144,6 +581,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-aaron-bautista",
+      "officialIdMissing": true,
       "fullName": "Aaron Bautista",
       "normalizedName": "aaron bautista",
       "title": "Regent",
@@ -155,7 +594,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -167,6 +606,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-patrick-j-boylan",
+      "officialIdMissing": true,
       "fullName": "Patrick J. Boylan",
       "normalizedName": "patrick j boylan",
       "title": "Regent",
@@ -178,7 +619,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -190,6 +631,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-susan-brager",
+      "officialIdMissing": true,
       "fullName": "Susan Brager",
       "normalizedName": "susan brager",
       "title": "Regent",
@@ -201,7 +644,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -213,6 +656,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-heather-brown",
+      "officialIdMissing": true,
       "fullName": "Heather Brown",
       "normalizedName": "heather brown",
       "title": "Regent",
@@ -224,7 +669,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -236,6 +681,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-amy-j-carvalho",
+      "officialIdMissing": true,
       "fullName": "Amy J. Carvalho",
       "normalizedName": "amy j carvalho",
       "title": "Regent",
@@ -247,7 +694,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -259,6 +706,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-carol-del-carlo",
+      "officialIdMissing": true,
       "fullName": "Carol Del Carlo",
       "normalizedName": "carol del carlo",
       "title": "Regent",
@@ -270,7 +719,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -282,6 +731,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-jeffrey-s-downs",
+      "officialIdMissing": true,
       "fullName": "Jeffrey S. Downs",
       "normalizedName": "jeffrey s downs",
       "title": "Regent",
@@ -293,7 +744,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -305,6 +756,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-carlos-d-fernandez",
+      "officialIdMissing": true,
       "fullName": "Carlos D. Fernandez",
       "normalizedName": "carlos d fernandez",
       "title": "Regent",
@@ -316,7 +769,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -328,6 +781,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-pete-goicoechea",
+      "officialIdMissing": true,
       "fullName": "Pete Goicoechea",
       "normalizedName": "pete goicoechea",
       "title": "Regent",
@@ -339,7 +794,7 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
@@ -351,6 +806,8 @@
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
       "officialId": null,
+      "generatedPersonKey": "generated-person-nshe-board-of-regents-jennifer-j-mcgrath",
+      "officialIdMissing": true,
       "fullName": "Jennifer J. McGrath",
       "normalizedName": "jennifer j mcgrath",
       "title": "Regent",
@@ -362,12 +819,1537 @@
         {
           "label": "NSHE minutes members present section",
           "url": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-          "path": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
+          "path": null,
           "snippet": "Members Present: Mr. Byron Brooks, Chair Ms. Stephanie Goodman, Vice Chair Mr. Joseph C. Arrascada Mr. Aaron Bautista Mr. Patrick J. Boylan Mrs. Susan Brager Ms. Heather Brown Mrs. Amy J. Carvalho Mrs. Carol Del Carlo Dr. Jeffrey S. Downs Mr. Carlos D. Fernandez Mr. Pete Goicoechea Ms. Jennifer J. McGrath"
         }
       ],
       "confidence": 0.76,
       "needsReview": true
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-carrie-ann-buck",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-e7b479e74b103223",
+      "generatedPersonKey": "generated-person-nv-senate-carrie-ann-buck",
+      "officialIdMissing": false,
+      "fullName": "Carrie Ann Buck",
+      "normalizedName": "carrie ann buck",
+      "title": "Senator",
+      "district": "District 5",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Carrie Ann Buck No. 5 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-nicole-j-cannizzaro",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-nv-senate-nicole-j-cannizzaro",
+      "officialIdMissing": true,
+      "fullName": "Nicole J. Cannizzaro",
+      "normalizedName": "nicole j cannizzaro",
+      "title": "Senator",
+      "district": "District 6",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Nicole J. Cannizzaro No. 6 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-michelee-shelly-cruz-crawford",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-bf29c3ee41d57b28",
+      "generatedPersonKey": "generated-person-nv-senate-michelee-shelly-cruz-crawford",
+      "officialIdMissing": false,
+      "fullName": "Michelee \"Shelly\" Cruz-Crawford",
+      "normalizedName": "michelee shelly cruz crawford",
+      "title": "Senator",
+      "district": "District 1",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Michelee \"Shelly\" Cruz-Crawford No. 1 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-skip-daly",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-945d1c47627bcdc9",
+      "generatedPersonKey": "generated-person-nv-senate-skip-daly",
+      "officialIdMissing": false,
+      "fullName": "Skip Daly",
+      "normalizedName": "skip daly",
+      "title": "Senator",
+      "district": "District 13",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Skip Daly No. 13 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-fabian-do-ate",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-845fcba49a5cfa5a",
+      "generatedPersonKey": "generated-person-nv-senate-fabian-do-ate",
+      "officialIdMissing": false,
+      "fullName": "Fabian Doñate",
+      "normalizedName": "fabian do ate",
+      "title": "Senator",
+      "district": "District 10",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Fabian Doñate No. 10 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-marilyn-dondero-loop",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-4548f11d377da4b2",
+      "generatedPersonKey": "generated-person-nv-senate-marilyn-dondero-loop",
+      "officialIdMissing": false,
+      "fullName": "Marilyn Dondero Loop",
+      "normalizedName": "marilyn dondero loop",
+      "title": "Senator",
+      "district": "District 8",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Marilyn Dondero Loop No. 8 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-john-ellison",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-fd1b8f532b9bd4b8",
+      "generatedPersonKey": "generated-person-nv-senate-john-ellison",
+      "officialIdMissing": false,
+      "fullName": "John Ellison",
+      "normalizedName": "john ellison",
+      "title": "Senator",
+      "district": "District 19",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "John Ellison No. 19 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-edgar-flores",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-b5326d3ae74da9e6",
+      "generatedPersonKey": "generated-person-nv-senate-edgar-flores",
+      "officialIdMissing": false,
+      "fullName": "Edgar Flores",
+      "normalizedName": "edgar flores",
+      "title": "Senator",
+      "district": "District 2",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Edgar Flores No. 2 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-ira-hansen",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-0fb1075fb0811ae1",
+      "generatedPersonKey": "generated-person-nv-senate-ira-hansen",
+      "officialIdMissing": false,
+      "fullName": "Ira Hansen",
+      "normalizedName": "ira hansen",
+      "title": "Senator",
+      "district": "District 14",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Ira Hansen No. 14 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-lisa-krasner",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-4f1ff7da8c706213",
+      "generatedPersonKey": "generated-person-nv-senate-lisa-krasner",
+      "officialIdMissing": false,
+      "fullName": "Lisa Krasner",
+      "normalizedName": "lisa krasner",
+      "title": "Senator",
+      "district": "District 16",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Lisa Krasner No. 16 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-roberta-lange",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-0adddbd7fd2fec5f",
+      "generatedPersonKey": "generated-person-nv-senate-roberta-lange",
+      "officialIdMissing": false,
+      "fullName": "Roberta Lange",
+      "normalizedName": "roberta lange",
+      "title": "Senator",
+      "district": "District 7",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Roberta Lange No. 7 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-dina-neal",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-c8965bcc95cfe0bc",
+      "generatedPersonKey": "generated-person-nv-senate-dina-neal",
+      "officialIdMissing": false,
+      "fullName": "Dina Neal",
+      "normalizedName": "dina neal",
+      "title": "Senator",
+      "district": "District 4",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Dina Neal No. 4 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-rochelle-t-nguyen",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-nv-senate-rochelle-t-nguyen",
+      "officialIdMissing": true,
+      "fullName": "Rochelle T. Nguyen",
+      "normalizedName": "rochelle t nguyen",
+      "title": "Senator",
+      "district": "District 3",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Rochelle T. Nguyen No. 3 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-james-ohrenschall",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-481e8937b561fe72",
+      "generatedPersonKey": "generated-person-nv-senate-james-ohrenschall",
+      "officialIdMissing": false,
+      "fullName": "James Ohrenschall",
+      "normalizedName": "james ohrenschall",
+      "title": "Senator",
+      "district": "District 21",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "James Ohrenschall No. 21 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-julie-pazina",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-43fc2506a02aab92",
+      "generatedPersonKey": "generated-person-nv-senate-julie-pazina",
+      "officialIdMissing": false,
+      "fullName": "Julie Pazina",
+      "normalizedName": "julie pazina",
+      "title": "Senator",
+      "district": "District 12",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Julie Pazina No. 12 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-lori-rogich",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-36c7d377a21f29d9",
+      "generatedPersonKey": "generated-person-nv-senate-lori-rogich",
+      "officialIdMissing": false,
+      "fullName": "Lori Rogich",
+      "normalizedName": "lori rogich",
+      "title": "Senator",
+      "district": "District 11",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Lori Rogich No. 11 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-melanie-scheible",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-7261e42c9b16cac6",
+      "generatedPersonKey": "generated-person-nv-senate-melanie-scheible",
+      "officialIdMissing": false,
+      "fullName": "Melanie Scheible",
+      "normalizedName": "melanie scheible",
+      "title": "Senator",
+      "district": "District 9",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Melanie Scheible No. 9 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-john-c-steinbeck",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-nv-senate-john-c-steinbeck",
+      "officialIdMissing": true,
+      "fullName": "John C. Steinbeck",
+      "normalizedName": "john c steinbeck",
+      "title": "Senator",
+      "district": "District 18",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "John C. Steinbeck No. 18 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-jeff-stone",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": "current-official-722d21d2f3a88877",
+      "generatedPersonKey": "generated-person-nv-senate-jeff-stone",
+      "officialIdMissing": false,
+      "fullName": "Jeff Stone",
+      "normalizedName": "jeff stone",
+      "title": "Senator",
+      "district": "District 20",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Jeff Stone No. 20 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-angela-d-taylor",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-nv-senate-angela-d-taylor",
+      "officialIdMissing": true,
+      "fullName": "Angela D. Taylor",
+      "normalizedName": "angela d taylor",
+      "title": "Senator",
+      "district": "District 15",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Angela D. Taylor No. 15 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-senate-nevada-senate-robin-l-titus",
+      "bodyId": "body-manual-nv-senate-nevada-senate",
+      "organizationId": "nv-senate",
+      "officialId": null,
+      "generatedPersonKey": "generated-person-nv-senate-robin-l-titus",
+      "officialIdMissing": true,
+      "fullName": "Robin L. Titus",
+      "normalizedName": "robin l titus",
+      "title": "Senator",
+      "district": "District 17",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Senate 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/83rd2025",
+          "path": null,
+          "snippet": "Robin L. Titus No. 17 Currently Serving"
+        }
+      ],
+      "confidence": 0.88,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-natha-c-anderson",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-55b261ec7fb8fa5e",
+      "generatedPersonKey": "generated-person-nv-assembly-natha-c-anderson",
+      "officialIdMissing": false,
+      "fullName": "Natha C. Anderson",
+      "normalizedName": "natha c anderson",
+      "title": "Assemblymember",
+      "district": "District 30",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Natha C. Anderson No. 30 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-shea-m-backus",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-39a425dc51b77c01",
+      "generatedPersonKey": "generated-person-nv-assembly-shea-m-backus",
+      "officialIdMissing": false,
+      "fullName": "Shea M. Backus",
+      "normalizedName": "shea m backus",
+      "title": "Assemblymember",
+      "district": "District 37",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Shea M. Backus No. 37 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-tracy-brown-may",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-ad01e23437ed6ae2",
+      "generatedPersonKey": "generated-person-nv-assembly-tracy-brown-may",
+      "officialIdMissing": false,
+      "fullName": "Tracy Brown-May",
+      "normalizedName": "tracy brown may",
+      "title": "Assemblymember",
+      "district": "District 42",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Tracy Brown-May No. 42 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-max-e-carter-ii",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-575f6305901e43fc",
+      "generatedPersonKey": "generated-person-nv-assembly-max-e-carter-ii",
+      "officialIdMissing": false,
+      "fullName": "Max E. Carter II",
+      "normalizedName": "max e carter ii",
+      "title": "Assemblymember",
+      "district": "District 12",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Max E. Carter II No. 12 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-lisa-k-cole",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-89a0163fb88ab14a",
+      "generatedPersonKey": "generated-person-nv-assembly-lisa-k-cole",
+      "officialIdMissing": false,
+      "fullName": "Lisa K. Cole",
+      "normalizedName": "lisa k cole",
+      "title": "Assemblymember",
+      "district": "District 4",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Lisa K. Cole No. 4 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-venicia-considine",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-9afe34157cc3360f",
+      "generatedPersonKey": "generated-person-nv-assembly-venicia-considine",
+      "officialIdMissing": false,
+      "fullName": "Venicia Considine",
+      "normalizedName": "venicia considine",
+      "title": "Assemblymember",
+      "district": "District 18",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Venicia Considine No. 18 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-joe-dalia",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-4be6e0a2200e7fd9",
+      "generatedPersonKey": "generated-person-nv-assembly-joe-dalia",
+      "officialIdMissing": false,
+      "fullName": "Joe Dalia",
+      "normalizedName": "joe dalia",
+      "title": "Assemblymember",
+      "district": "District 29",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Joe Dalia No. 29 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-rich-delong",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-459c92049ab3bb28",
+      "generatedPersonKey": "generated-person-nv-assembly-rich-delong",
+      "officialIdMissing": false,
+      "fullName": "Rich DeLong",
+      "normalizedName": "rich delong",
+      "title": "Assemblymember",
+      "district": "District 26",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Rich DeLong No. 26 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-jill-dickman",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-991854872368b1e0",
+      "generatedPersonKey": "generated-person-nv-assembly-jill-dickman",
+      "officialIdMissing": false,
+      "fullName": "Jill Dickman",
+      "normalizedName": "jill dickman",
+      "title": "Assemblymember",
+      "district": "District 31",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Jill Dickman No. 31 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-reuben-d-silva",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-37ad968b87a52e10",
+      "generatedPersonKey": "generated-person-nv-assembly-reuben-d-silva",
+      "officialIdMissing": false,
+      "fullName": "Reuben D'Silva",
+      "normalizedName": "reuben d silva",
+      "title": "Assemblymember",
+      "district": "District 28",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Reuben D'Silva No. 28 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-rebecca-edgeworth",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-534c9736be8e0571",
+      "generatedPersonKey": "generated-person-nv-assembly-rebecca-edgeworth",
+      "officialIdMissing": false,
+      "fullName": "Rebecca Edgeworth",
+      "normalizedName": "rebecca edgeworth",
+      "title": "Assemblymember",
+      "district": "District 35",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Rebecca Edgeworth No. 35 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-tanya-p-flanagan",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-8117a3a1633bf386",
+      "generatedPersonKey": "generated-person-nv-assembly-tanya-p-flanagan",
+      "officialIdMissing": false,
+      "fullName": "Tanya P. Flanagan",
+      "normalizedName": "tanya p flanagan",
+      "title": "Assemblymember",
+      "district": "District 7",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Tanya P. Flanagan No. 7 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-danielle-gallant",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-26cd776ff315f5c6",
+      "generatedPersonKey": "generated-person-nv-assembly-danielle-gallant",
+      "officialIdMissing": false,
+      "fullName": "Danielle Gallant",
+      "normalizedName": "danielle gallant",
+      "title": "Assemblymember",
+      "district": "District 23",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Danielle Gallant No. 23 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-cecelia-gonz-lez",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-39543404b084020b",
+      "generatedPersonKey": "generated-person-nv-assembly-cecelia-gonz-lez",
+      "officialIdMissing": false,
+      "fullName": "Cecelia González",
+      "normalizedName": "cecelia gonz lez",
+      "title": "Assemblymember",
+      "district": "District 16",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Cecelia González No. 16 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-heather-goulding",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-6c970d24de7fddba",
+      "generatedPersonKey": "generated-person-nv-assembly-heather-goulding",
+      "officialIdMissing": false,
+      "fullName": "Heather Goulding",
+      "normalizedName": "heather goulding",
+      "title": "Assemblymember",
+      "district": "District 27",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Heather Goulding No. 27 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-bert-k-gurr",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-e1856c37b54b7e6b",
+      "generatedPersonKey": "generated-person-nv-assembly-bert-k-gurr",
+      "officialIdMissing": false,
+      "fullName": "Bert K. Gurr",
+      "normalizedName": "bert k gurr",
+      "title": "Assemblymember",
+      "district": "District 33",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Bert K. Gurr No. 33 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-gregory-t-hafen-ii",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-62f6d9407f454e1f",
+      "generatedPersonKey": "generated-person-nv-assembly-gregory-t-hafen-ii",
+      "officialIdMissing": false,
+      "fullName": "Gregory T. Hafen II",
+      "normalizedName": "gregory t hafen ii",
+      "title": "Assemblymember",
+      "district": "District 36",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Gregory T. Hafen II No. 36 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-alexis-m-hansen",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-226edb347aa93fab",
+      "generatedPersonKey": "generated-person-nv-assembly-alexis-m-hansen",
+      "officialIdMissing": false,
+      "fullName": "Alexis M. Hansen",
+      "normalizedName": "alexis m hansen",
+      "title": "Assemblymember",
+      "district": "District 32",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Alexis M. Hansen No. 32 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-melissa-r-hardy",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-10a48df57a013d4d",
+      "generatedPersonKey": "generated-person-nv-assembly-melissa-r-hardy",
+      "officialIdMissing": false,
+      "fullName": "Melissa R. Hardy",
+      "normalizedName": "melissa r hardy",
+      "title": "Assemblymember",
+      "district": "District 22",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Melissa R. Hardy No. 22 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-brian-hibbetts",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-f01973f2a8aa3127",
+      "generatedPersonKey": "generated-person-nv-assembly-brian-hibbetts",
+      "officialIdMissing": false,
+      "fullName": "Brian Hibbetts",
+      "normalizedName": "brian hibbetts",
+      "title": "Assemblymember",
+      "district": "District 13",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Brian Hibbetts No. 13 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-linda-f-hunt",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-a2e123d8b0f52e05",
+      "generatedPersonKey": "generated-person-nv-assembly-linda-f-hunt",
+      "officialIdMissing": false,
+      "fullName": "Linda F. Hunt",
+      "normalizedName": "linda f hunt",
+      "title": "Assemblymember",
+      "district": "District 17",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Linda F. Hunt No. 17 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-jovan-a-jackson",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-90c824e656e61019",
+      "generatedPersonKey": "generated-person-nv-assembly-jovan-a-jackson",
+      "officialIdMissing": false,
+      "fullName": "Jovan A. Jackson",
+      "normalizedName": "jovan a jackson",
+      "title": "Assemblymember",
+      "district": "District 6",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Jovan A. Jackson No. 6 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-sandra-jauregui",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-fa48098b596216d1",
+      "generatedPersonKey": "generated-person-nv-assembly-sandra-jauregui",
+      "officialIdMissing": false,
+      "fullName": "Sandra Jauregui",
+      "normalizedName": "sandra jauregui",
+      "title": "Assemblymember",
+      "district": "District 41",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Sandra Jauregui No. 41 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-venise-karris",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-506d86851ed279ba",
+      "generatedPersonKey": "generated-person-nv-assembly-venise-karris",
+      "officialIdMissing": false,
+      "fullName": "Venise Karris",
+      "normalizedName": "venise karris",
+      "title": "Assemblymember",
+      "district": "District 10",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Venise Karris No. 10 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-heidi-kasama",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-0d3539560fa1a890",
+      "generatedPersonKey": "generated-person-nv-assembly-heidi-kasama",
+      "officialIdMissing": false,
+      "fullName": "Heidi Kasama",
+      "normalizedName": "heidi kasama",
+      "title": "Assemblymember",
+      "district": "District 2",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Heidi Kasama No. 2 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-gregory-s-koenig",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-5c24349844912936",
+      "generatedPersonKey": "generated-person-nv-assembly-gregory-s-koenig",
+      "officialIdMissing": false,
+      "fullName": "Gregory S. Koenig",
+      "normalizedName": "gregory s koenig",
+      "title": "Assemblymember",
+      "district": "District 38",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Gregory S. Koenig No. 38 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-selena-la-rue-hatch",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-6ad63128adffddbd",
+      "generatedPersonKey": "generated-person-nv-assembly-selena-la-rue-hatch",
+      "officialIdMissing": false,
+      "fullName": "Selena La Rue Hatch",
+      "normalizedName": "selena la rue hatch",
+      "title": "Assemblymember",
+      "district": "District 25",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Selena La Rue Hatch No. 25 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-elaine-h-marzola",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-f761f861a512e2a3",
+      "generatedPersonKey": "generated-person-nv-assembly-elaine-h-marzola",
+      "officialIdMissing": false,
+      "fullName": "Elaine H. Marzola",
+      "normalizedName": "elaine h marzola",
+      "title": "Assemblymember",
+      "district": "District 21",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Elaine H. Marzola No. 21 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-brittney-m-miller",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-b9fd764d07f6d8cb",
+      "generatedPersonKey": "generated-person-nv-assembly-brittney-m-miller",
+      "officialIdMissing": false,
+      "fullName": "Brittney M. Miller",
+      "normalizedName": "brittney m miller",
+      "title": "Assemblymember",
+      "district": "District 5",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Brittney M. Miller No. 5 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-daniele-monroe-moreno",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-fc5445dca2623f79",
+      "generatedPersonKey": "generated-person-nv-assembly-daniele-monroe-moreno",
+      "officialIdMissing": false,
+      "fullName": "Daniele Monroe-Moreno",
+      "normalizedName": "daniele monroe moreno",
+      "title": "Assemblymember",
+      "district": "District 1",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Daniele Monroe-Moreno No. 1 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-cinthia-zerme-o-moore",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-36068b1f9a5b6301",
+      "generatedPersonKey": "generated-person-nv-assembly-cinthia-zerme-o-moore",
+      "officialIdMissing": false,
+      "fullName": "Cinthia Zermeño Moore",
+      "normalizedName": "cinthia zerme o moore",
+      "title": "Assemblymember",
+      "district": "District 11",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Cinthia Zermeño Moore No. 11 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-erica-mosca",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-4e0077ceff07c573",
+      "generatedPersonKey": "generated-person-nv-assembly-erica-mosca",
+      "officialIdMissing": false,
+      "fullName": "Erica Mosca",
+      "normalizedName": "erica mosca",
+      "title": "Assemblymember",
+      "district": "District 14",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Erica Mosca No. 14 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-hanadi-nadeem",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-882095aa8072b139",
+      "generatedPersonKey": "generated-person-nv-assembly-hanadi-nadeem",
+      "officialIdMissing": false,
+      "fullName": "Hanadi Nadeem",
+      "normalizedName": "hanadi nadeem",
+      "title": "Assemblymember",
+      "district": "District 34",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Hanadi Nadeem No. 34 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-duy-nguyen",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-1a77c90b3b8eb595",
+      "generatedPersonKey": "generated-person-nv-assembly-duy-nguyen",
+      "officialIdMissing": false,
+      "fullName": "Duy Nguyen",
+      "normalizedName": "duy nguyen",
+      "title": "Assemblymember",
+      "district": "District 8",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Duy Nguyen No. 8 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-pk-o-neill",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-be8eacdf3a871c5f",
+      "generatedPersonKey": "generated-person-nv-assembly-pk-o-neill",
+      "officialIdMissing": false,
+      "fullName": "PK O’Neill",
+      "normalizedName": "pk o neill",
+      "title": "Assemblymember",
+      "district": "District 40",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "PK O’Neill No. 40 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-david-orentlicher",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-51335cf842fa49f7",
+      "generatedPersonKey": "generated-person-nv-assembly-david-orentlicher",
+      "officialIdMissing": false,
+      "fullName": "David Orentlicher",
+      "normalizedName": "david orentlicher",
+      "title": "Assemblymember",
+      "district": "District 20",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "David Orentlicher No. 20 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-erica-p-roth",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-4c03de44e18b3656",
+      "generatedPersonKey": "generated-person-nv-assembly-erica-p-roth",
+      "officialIdMissing": false,
+      "fullName": "Erica P. Roth",
+      "normalizedName": "erica p roth",
+      "title": "Assemblymember",
+      "district": "District 24",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Erica P. Roth No. 24 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-selena-torres-fossett",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-bead034b7fa19841",
+      "generatedPersonKey": "generated-person-nv-assembly-selena-torres-fossett",
+      "officialIdMissing": false,
+      "fullName": "Selena Torres-Fossett",
+      "normalizedName": "selena torres fossett",
+      "title": "Assemblymember",
+      "district": "District 3",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Selena Torres-Fossett No. 3 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-howard-watts",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-e1c5f50cfb7bac99",
+      "generatedPersonKey": "generated-person-nv-assembly-howard-watts",
+      "officialIdMissing": false,
+      "fullName": "Howard Watts",
+      "normalizedName": "howard watts",
+      "title": "Assemblymember",
+      "district": "District 15",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Howard Watts No. 15 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
+    },
+    {
+      "id": "governing-roster-body-manual-nv-assembly-nevada-assembly-steve-yeager",
+      "bodyId": "body-manual-nv-assembly-nevada-assembly",
+      "organizationId": "nv-assembly",
+      "officialId": "current-official-d5f1812336f61231",
+      "generatedPersonKey": "generated-person-nv-assembly-steve-yeager",
+      "officialIdMissing": false,
+      "fullName": "Steve Yeager",
+      "normalizedName": "steve yeager",
+      "title": "Assemblymember",
+      "district": "District 9",
+      "startDate": null,
+      "endDate": null,
+      "votingMember": true,
+      "sourceReferences": [
+        {
+          "label": "Nevada Legislature Assembly 83rd Session roster",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/83rd2025",
+          "path": null,
+          "snippet": "Steve Yeager No. 9 Currently Serving"
+        }
+      ],
+      "confidence": 0.86,
+      "needsReview": false
     }
   ]
 }

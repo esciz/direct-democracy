@@ -1,0 +1,395 @@
+{
+  "generatedAt": "2026-06-26T14:11:33.585Z",
+  "stage": "after_retry",
+  "totals": {
+    "sourceWaitDecisions": 151,
+    "sourceTextRecoverableDecisions": 2,
+    "relatedDocuments": 47,
+    "relatedRemoteDocuments": 26,
+    "relatedLocalDocuments": 21,
+    "latestRetrievalAttempts": 0,
+    "latestDownloads": 0,
+    "latestFailures": 0,
+    "latestUnavailable": 0,
+    "latestBlockedByNetwork": 0
+  },
+  "byJurisdiction": [
+    {
+      "key": "North Las Vegas, NV",
+      "count": 47
+    },
+    {
+      "key": "Clark County, NV",
+      "count": 30
+    },
+    {
+      "key": "Nevada System of Higher Education",
+      "count": 27
+    },
+    {
+      "key": "Las Vegas, NV",
+      "count": 16
+    },
+    {
+      "key": "Clark County School District, NV",
+      "count": 9
+    },
+    {
+      "key": "Reno, NV",
+      "count": 9
+    },
+    {
+      "key": "Nevada",
+      "count": 4
+    },
+    {
+      "key": "Elko County, NV",
+      "count": 3
+    },
+    {
+      "key": "Henderson, NV",
+      "count": 2
+    },
+    {
+      "key": "Sparks, NV",
+      "count": 2
+    },
+    {
+      "key": "Washoe County, NV",
+      "count": 2
+    }
+  ],
+  "byBody": [
+    {
+      "key": "North Las Vegas City Council",
+      "count": 47
+    },
+    {
+      "key": "Clark County Commission",
+      "count": 30
+    },
+    {
+      "key": "Nevada System of Higher Education Board of Regents",
+      "count": 27
+    },
+    {
+      "key": "Las Vegas City Council",
+      "count": 16
+    },
+    {
+      "key": "Clark County School District Board of Trustees",
+      "count": 9
+    },
+    {
+      "key": "Reno City Council",
+      "count": 9
+    },
+    {
+      "key": "Elko County Commission",
+      "count": 3
+    },
+    {
+      "key": "Nevada Legislature",
+      "count": 3
+    },
+    {
+      "key": "Board of County Commissioners",
+      "count": 2
+    },
+    {
+      "key": "Henderson City Council",
+      "count": 2
+    },
+    {
+      "key": "Sparks City Council",
+      "count": 2
+    },
+    {
+      "key": "Nevada Boards and Commissions",
+      "count": 1
+    }
+  ],
+  "bySourceRecoveryStatus": [
+    {
+      "key": "agenda_only_no_result_source",
+      "count": 129
+    },
+    {
+      "key": "awaiting_minutes_or_result_source",
+      "count": 22
+    }
+  ],
+  "relatedDocumentPlatforms": [
+    {
+      "key": "civic_website:local",
+      "count": 21
+    },
+    {
+      "key": "civic_website:nshe.nevada.edu",
+      "count": 5
+    },
+    {
+      "key": "primegov:cityofnorthlasvegas.primegov.com",
+      "count": 5
+    },
+    {
+      "key": "primegov:lasvegas.primegov.com",
+      "count": 5
+    },
+    {
+      "key": "primegov:reno.primegov.com",
+      "count": 3
+    },
+    {
+      "key": "legistar:washoe-nv.legistar.com",
+      "count": 2
+    },
+    {
+      "key": "nevada_legislature:www.leg.state.nv.us",
+      "count": 2
+    },
+    {
+      "key": "civic_website:agendas.cityofsparks.us",
+      "count": 1
+    },
+    {
+      "key": "civic_website:www.cityofsparks.us",
+      "count": 1
+    },
+    {
+      "key": "civic_website:www.elkocountynv.net",
+      "count": 1
+    },
+    {
+      "key": "legistar:clark.legistar.com",
+      "count": 1
+    }
+  ],
+  "sample": [
+    {
+      "title": "Should the city approve Authorization for the City Manager or Her Designee to Execute Various Contracts and Purchase Orders Related to Any Resultin...?",
+      "jurisdiction": "North Las Vegas, NV",
+      "bodyName": "North Las Vegas City Council",
+      "meetingDate": "2026-06-17T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=North%20Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-06-17-5336553-1f64f94f8e"
+    },
+    {
+      "title": "Should the city adopt HEAT MITIGATION and PLANNING COMMISSION RESOLUTION NO?",
+      "jurisdiction": "North Las Vegas, NV",
+      "bodyName": "North Las Vegas City Council",
+      "meetingDate": "2026-06-17T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=North%20Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-06-17-5336553-19ece2fad0"
+    },
+    {
+      "title": "Should the city approve SAN MIGUEL/FUSELIER: Sequoia Homes Development LLC’s Request to Amend Comprehensive Master Plan to Change Land Use Designat...?",
+      "jurisdiction": "North Las Vegas, NV",
+      "bodyName": "North Las Vegas City Council",
+      "meetingDate": "2026-06-17T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=North%20Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-06-17-5336553-fc31bf3e1b"
+    },
+    {
+      "title": "Should the city adopt MASTER PLAN CONSISTENT WITH SECTION 11 OF ORDINANCE 6788, All Wards?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-fb14414d-2050-3be0e-6a1be9b71e"
+    },
+    {
+      "title": "Should the city adopt MASTER PLAN CONSISTENT WITH SECTION 11 OF ORDINANCE 6788, All Wards?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-2050-3be0e-42ddae92bf"
+    },
+    {
+      "title": "Should the city approve building elevations, date stamped 02/17/26, except as amended by conditions herein?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-26-aadd5e7-1ab7e521c9"
+    },
+    {
+      "title": "Should the city approve NORTH DECATUR BOULEVARD 03/26/26 Planning Commission June 16, 2026 - Page 210 -- 210 of 765 -- 26-0051 [VAR1 AND SDR1[ - AP...?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-2167-627fd-bcd02abdd3"
+    },
+    {
+      "title": "Should the city approve NORTH DECATUR BOULEVARD 03/26/26 Planning Commission June 16, 2026 - Page 213 -- 213 of 765 -- 26-0051 [VAR1 AND SDR1[ - AP...?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-2167-40c2f-b0cab5ae5d"
+    },
+    {
+      "title": "Should the city approve NORTH DECATUR BOULEVARD 03/26/26 Planning Commission June 16, 2026 - Page 216 -- 216 of 765 -- 26-0051 [VAR1 AND SDR1[ - AP...?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-2167-5e597-9231474ba0"
+    },
+    {
+      "title": "Should the city approve IFC Section 903 as amended?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-2021-fa845-2309eb0a12"
+    },
+    {
+      "title": "Should the city approve IFC Section 907 as amended?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-2021-6a297-af32f74fd1"
+    },
+    {
+      "title": "Should the city approve DEPARTMENT: Community Development DISCUSSION DIRECTOR: Seth Floyd SUBJECT: 26-0175-VAR1 - VARIANCE - PUBLIC HEARING - APPLI...?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-22-60e7af3-68c63d7243"
+    },
+    {
+      "title": "Should the city approve DEPARTMENT: Community Development DISCUSSION DIRECTOR: Seth Floyd SUBJECT: 26-0180-SUP1 - SPECIAL USE PERMIT - PUBLIC HEARI...?",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "meetingDate": "2026-06-17T01:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Las%20Vegas%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-17-1e496ab3-24-70080ba-a1f0ef775b"
+    },
+    {
+      "title": "Should the county fund Approve the Contract with Southern Nevada Joint Management Culinary and Bartenders Training Fund dba Culinary Academy of Las...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-8-e1fc51-2d47ac96c3"
+    },
+    {
+      "title": "Should the county fund to sign the Contract; or take other action as appropriate. (For possible action)?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-16-6d36f-fb0839cfd9"
+    },
+    {
+      "title": "Should the county approve an Amendment to the Contract with Shoes that Fit, for CBE No. 606602-23, for Shoes for Kids; and authorize the Chief Fina...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-9-b1e839-94d490e514"
+    },
+    {
+      "title": "Should the county approve Ratify an Amendment to the Contract with Eagle Quest, for CBE No. 607552-25, for Residential Services and Therapeutic Tre...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-10-f1f48-5806d4a432"
+    },
+    {
+      "title": "Should the county approve Ratify the Assignment of CBE No. 606007-21, for Contract for Purchase, Installation, Repairs & Maintenance of Countywide...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-11-078ad-7dacb40aa2"
+    },
+    {
+      "title": "Should the county approve Assignment of Contract (For possible action)?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-21-b0b3e-867ac3a069"
+    },
+    {
+      "title": "Should the county approve the application for an Importer/Wholesaler Liquor License for Nuwaaave Beverage LLC (A Nevada Limited Liability Company)...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-15-6f4c0-f4d8955456"
+    },
+    {
+      "title": "Should the county adopt approve adopt the \"2026-2027 Annual Monitoring Network Plan\" and authorize the director of the Department of Environment an...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-21-3ce44-e66166c444"
+    },
+    {
+      "title": "Should the county approve authorize the Director of Aviation, or his designee, to sign a contract (CBE-1596) between Clark County and Opportunity V...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-24-cbf37-74f66485a2"
+    },
+    {
+      "title": "Should the county approve authorize the County Manager or his designee to sign Supplemental No. 5 to the professional engineering services contract...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-27-77258-4d4248e560"
+    },
+    {
+      "title": "Should the county approve authorize the Chair to sign Cooperative (Local Public Agency) Highway Agreement No. PR143-26-063 between Clark County and...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-29-7ccec-4ee493476e"
+    },
+    {
+      "title": "Should the county approve authorize the Director of Real Property Management (Director) and/or her designee to sign the interlocal contract for Lea...?",
+      "jurisdiction": "Clark County, NV",
+      "bodyName": "Clark County Commission",
+      "meetingDate": "2026-06-16T07:00:00.000Z",
+      "sourceRecoveryStatus": "agenda_only_no_result_source",
+      "sourceRecoveryReason": "Only agenda or packet text is available; no source-backed action result was found yet.",
+      "adminHref": "/admin/voting-cards?review=needs_review&jurisdiction=Clark%20County%2C%20NV&nextAction=await_minutes_or_result_source#meeting-voting-card-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-31-cb7c1-43eb7efc00"
+    }
+  ]
+}

@@ -233,6 +233,8 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
                   ? "Verified match found"
                   : draft?.verificationStatus === "possibleMatch"
                     ? "Possible match found"
+                    : draft?.verificationStatus === "sourceUnavailable"
+                      ? "Voter verification source unavailable"
                     : "No voter match found"}
               </p>
               <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -240,9 +242,16 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
                   ? `We found a strong identity match for ${draft.matchedVoterRecordName}. You can continue with community setup and profile matching.`
                   : draft?.verificationStatus === "possibleMatch"
                     ? "Your information appears close to a voter record, but the confidence is not strong enough for automatic clearance. Standard onboarding can continue, but higher-risk actions may require enhanced verification or review."
+                    : draft?.verificationStatus === "sourceUnavailable"
+                      ? "A live voter-registration verification provider is not configured yet, so Direct Democracy did not make a negative match decision. You can continue setup, then request manual residency review from your account verification page."
                     : "We could not find a voter match from the information entered. You can continue onboarding as a citizen account, but voting and secure profile claiming remain locked until review succeeds."}
               </p>
             </div>
+            {draft?.verificationStatus === "sourceUnavailable" ? (
+              <div className="mt-5 rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-amber-950">
+                This is a system limitation, not a statement about your voter registration. Verified stakeholder eligibility should continue through manual residency review until a real voter-registration provider is connected.
+              </div>
+            ) : null}
             <div className="mt-5 rounded-3xl border border-slate-200 bg-white p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Current trust tier</p>
               <p className="mt-2 text-lg font-semibold text-ink">{trustSummary.trustLabel}</p>
@@ -269,6 +278,14 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
               >
                 Edit verification details
               </Link>
+              {currentUser ? (
+                <Link
+                  href="/account/verification"
+                  className="inline-flex rounded-full border border-civic-200 bg-civic-50 px-5 py-3 text-sm font-semibold text-civic-800 transition hover:border-civic-500"
+                >
+                  Request manual review
+                </Link>
+              ) : null}
             </div>
           </div>
         ) : null}

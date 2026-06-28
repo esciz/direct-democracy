@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-06-26T14:11:08.321Z",
+  "runId": "retrieval-2026-06-26T14:11:08.321Z",
+  "limit": 60,
+  "timeoutMs": 15000,
+  "maxBytes": 50000000,
+  "maxRedirects": 5,
+  "userAgent": "DirectDemocracyDataOps/0.1 (+https://directdemocracy.local)",
+  "filters": {
+    "jurisdiction": null,
+    "host": null,
+    "documentType": null,
+    "priorityOnly": false,
+    "retryOnly": false,
+    "forceRefresh": false,
+    "sourceWaitOnly": true,
+    "sourceWaitAgendaItems": 151
+  },
+  "attempts": [],
+  "audit": {
+    "generatedAt": "2026-06-26T14:11:08.321Z",
+    "totals": {
+      "documentsKnown": 1440,
+      "cacheRecords": 1936,
+      "retrievalCandidates": 0,
+      "attempts": 0,
+      "downloaded": 0,
+      "newlyCached": 0,
+      "cachedFromLocalSources": 123,
+      "unchanged": 0,
+      "changed": 0,
+      "updatedContent": 0,
+      "unavailable": 0,
+      "failed": 0,
+      "blockedByNetwork": 0,
+      "securityRejected": 0,
+      "changedCacheRecords": 0
+    }
+  }
+}

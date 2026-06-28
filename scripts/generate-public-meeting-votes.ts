@@ -99,12 +99,26 @@ type AttendanceArtifactRecord = {
   bodyId: string | null;
   personName: string;
   matchedOfficialId: string | null;
-  attendanceStatus: "present" | "absent" | "excused" | "recused" | "non_voting_present" | "unknown";
+  attendanceStatus: "present" | "remote_present" | "absent" | "excused" | "recused" | "non_voting_present" | "unknown";
   votingEligibility: "eligible_voting_member" | "non_voting" | "unknown";
   sourceSnippet: string;
   sourceDocument: string | null;
   confidence: number;
   needsReview: boolean;
+};
+
+type ActionResultRecord = {
+  meetingItemId: string;
+  motionText?: string | null;
+  mover?: string | null;
+  seconder?: string | null;
+  outcome?: string | null;
+  voteCount?: { yes: number; no: number; abstain: number | null } | null;
+  namedVotes?: Array<{ personName: string; vote: "yes" | "no" | "abstain" | "absent"; sourceSnippet: string }>;
+  unanimous?: boolean;
+  sourceSnippet?: string | null;
+  sourceUrl?: string | null;
+  sourcePath?: string | null;
 };
 
 type StructuredVoteOutcome = {
@@ -120,7 +134,7 @@ type StructuredVoteOutcome = {
 const TITLE_WORDS =
   /\b(?:mayor|councilmember|council member|councilwoman|councilman|commissioner|trustee|senator|assemblymember|assembly member|chair|vice chair|director|secretary|clerk|member|regent|regents)\b\.?/gi;
 const NON_NAME_WORDS =
-  /\b(?:none|unanimous|unanimously|all|motion|vote|votes|present|approved|passed|carried|failed|absent|abstain|nays?|ayes?|yeas?|noes?|license|agenda|item|public|staff|department|division|office|state|nevada|upon|roll|call|the|and)\b/i;
+  /\b(?:none|unanimous|unanimously|all|motion|vote|votes|present|approved|passed|carried|failed|absent|abstain|nays?|ayes?|yeas?|noes?|license|agenda|item|public|staff|department|division|office|state|nevada|upon|roll|call|the|and|minutes|meeting|download|reader|windows|privacy|policy|services|employment)\b/i;
 const ATTENDANCE_LABELS = "(?:members\\s+present|present|members\\s+absent|absent|excused|recused|non[-\\s]?voting|members\\s+not\\s+present)";
 
 function readJson<T>(fileName: string, fallback: T): T {
@@ -148,9 +162,36 @@ function actionTypeForVote(vote: VoteChoice): GeneratedVoteRecord["action_type"]
   return "VOTE_YES";
 }
 
-function hasVoteLikeLanguage(item: PublicMeetingItemRecord) {
+function hasVoteLikeLanguage(text: string) {
   return /\b(ayes?|yeas?|nays?|noes?|abstain(?:ed|ing)?|absent|motion|second(?:ed)?|vote|voted|approved|adopted|passed|carried|failed|denied)\b/i.test(
-    `${item.vote_outcome ?? ""} ${item.source_text ?? ""}`,
+    text,
+  );
+}
+
+function isAdministrativeOrPortalNoise(text: string, sourceUrl?: string | null) {
+  const value = `${sourceUrl ?? ""} ${text}`;
+  return (
+    /\bapproved\s+minutes\s+(?:of\s+the\s+)?(?:board|commission|committee|council|meeting)[^.;\n]{0,140}\b(?:available|posted)\s+(?:on|at)\s+https?:\/\//i.test(value) ||
+    /\bapproved\s+minutes\s+(?:are\s+)?(?:available|posted)\s+(?:on|at)\s+https?:\/\//i.test(value) ||
+    /\bapproved\s+(?:on\s+)?this\s+\d{1,2}[^.;\n]{0,40}\s+day\s+of\b/i.test(value) ||
+    /\bapproved\s+by\s+this\s+(?:board|commission|committee|council)\s+in\s+\d{4}\b/i.test(value) ||
+    /\bapproved\s+[—-]\s+unanimously\s+(?:mr|mrs|ms|dr)\b/i.test(value) ||
+    /\bpolling:\s+supports\b/i.test(value) ||
+    /\btotal\s+yes\s+\d+%\b/i.test(value) ||
+    /\bplease\s+fill\s+out\s+a\s+public\s+comment\s+interest\s+card\b/i.test(value) ||
+    /\bfree\s+viewers\s+are\s+required\b/i.test(value) ||
+    /\bwelcome\s+to\s+[^.]{0,80}\bagenda\s+online\b/i.test(value) ||
+    /\/kids-vote\b/i.test(value) ||
+    /board\.nsf\/bd-getmeetingslistforseo/i.test(value) ||
+    /board\.nsf\/public/i.test(value) ||
+    /onbaseagendaonline/i.test(value)
+  );
+}
+
+function hasConcreteVoteOutcomeSignal(text: string, actionResult?: ActionResultRecord) {
+  if (actionResult?.voteCount || actionResult?.namedVotes?.length || actionResult?.mover || actionResult?.seconder) return true;
+  return /\b(?:motion\s+(?:carried|passed|failed)|moved\s+by|second(?:ed)?\s+by|with\s+all\s+ayes|all\s+ayes\s+(?:are\s+)?in\s+favor|vote\s+of\s+\d{1,2}\s*[-–]\s*\d{1,2}|approved\s+unanimously|unanimously\s+approved|roll\s+call\s+vote)\b/i.test(
+    text,
   );
 }
 
@@ -165,6 +206,7 @@ function voteId(item: PublicMeetingItemRecord, evidence: ParsedEvidence, index: 
 function cleanName(value: string) {
   return normalizeWhitespace(
     value
+      .replace(/^.*\bmeeting\.\s*/i, "")
       .replace(TITLE_WORDS, "")
       .replace(/\([^)]*\)/g, "")
       .replace(/\b(?:Dr|Mr|Mrs|Ms)\.\s+/g, "")
@@ -287,7 +329,7 @@ function attendanceRosterFromArtifact(meetingId: string, records: AttendanceArti
     aliases: [record.personName],
     sourceUrl: record.sourceDocument,
   });
-  const present = eligibleRecords.filter((record) => record.attendanceStatus === "present").map(toMember);
+  const present = eligibleRecords.filter((record) => record.attendanceStatus === "present" || record.attendanceStatus === "remote_present").map(toMember);
   const absent = eligibleRecords.filter((record) => record.attendanceStatus === "absent").map(toMember);
   const excused = eligibleRecords.filter((record) => record.attendanceStatus === "excused").map(toMember);
   const recused = eligibleRecords.filter((record) => record.attendanceStatus === "recused").map(toMember);
@@ -318,10 +360,11 @@ function attendanceRosterFromArtifact(meetingId: string, records: AttendanceArti
 function extractRollCallGroups(text: string) {
   const records: ParsedEvidence[] = [];
   const groupPattern =
-    /\b(ayes?|yeas?|yes\s+votes?|nays?|noes?|no\s+votes?|abstain(?:ed|ing)?|abstentions?|absent|excused)\s*(?:vote|votes)?\s*[:\-]\s*([^.;\n]{2,520})(?=[.;\n]|$)/gi;
+    /\b(ayes?|yeas?|yes\s+votes?|nays?|noes?|no\s+votes?|abstain(?:ed|ing)?|abstentions?|absent|excused)\s*(?:vote|votes)?\s*[:\-]\s*([^.;\n]{2,520}?)(?=\b(?:ayes?|yeas?|yes\s+votes?|nays?|noes?|no\s+votes?|abstain(?:ed|ing)?|abstentions?|absent|excused)\b\s*(?:vote|votes)?\s*[:\-]?|[.;\n]|$)/gi;
   for (const match of text.matchAll(groupPattern)) {
     const vote = normalizeVoteValue(match[1].replace(/\s+votes?$/i, ""));
     if (!vote) continue;
+    if (/^\s*(?:none|n\/a|not applicable)\b/i.test(match[2])) continue;
     const sourceSnippet = normalizeWhitespace(match[0]);
     for (const personName of splitNames(match[2])) {
       addUniqueEvidence(records, {
@@ -402,24 +445,80 @@ function extractMotionMetadata(text: string) {
   return records;
 }
 
-function structuredOutcomeFor(item: PublicMeetingItemRecord): StructuredVoteOutcome | null {
-  const text = normalizeWhitespace(`${item.vote_outcome ?? ""} ${item.source_text ?? ""}`);
+function evidenceFromActionResult(actionResult: ActionResultRecord | undefined) {
+  const records: ParsedEvidence[] = [];
+  if (!actionResult) return records;
+  if (actionResult.mover) {
+    addUniqueEvidence(records, {
+      personName: actionResult.mover,
+      vote: "unknown",
+      actionType: "MOTION_MADE",
+      evidenceType: "motion_mover",
+      sourceSnippet: actionResult.motionText ?? actionResult.sourceSnippet ?? `Motion by ${actionResult.mover}`,
+      confidence: 0.84,
+    });
+  }
+  if (actionResult.seconder) {
+    addUniqueEvidence(records, {
+      personName: actionResult.seconder,
+      vote: "unknown",
+      actionType: "MOTION_SECONDED",
+      evidenceType: "motion_second",
+      sourceSnippet: actionResult.sourceSnippet ?? `Second by ${actionResult.seconder}`,
+      confidence: 0.84,
+    });
+  }
+  for (const vote of actionResult.namedVotes ?? []) {
+    addUniqueEvidence(records, {
+      personName: vote.personName,
+      vote: vote.vote,
+      actionType: actionTypeForVote(vote.vote),
+      evidenceType: "inline_named_vote",
+      sourceSnippet: vote.sourceSnippet,
+      confidence: 0.9,
+    });
+  }
+  return records;
+}
+
+function structuredOutcomeFor(item: PublicMeetingItemRecord, actionResult?: ActionResultRecord): StructuredVoteOutcome | null {
+  if (isAdministrativeOrPortalNoise(`${item.vote_outcome ?? ""} ${actionResult?.outcome ?? ""} ${actionResult?.sourceSnippet ?? ""} ${item.source_text ?? ""}`, item.source_url)) return null;
+  if (actionResult?.voteCount) {
+    return {
+      kind: "count",
+      yesVotes: actionResult.voteCount.yes,
+      noVotes: actionResult.voteCount.no,
+      abstainVotes: actionResult.voteCount.abstain ?? 0,
+      absentVotes: null,
+      sourceSnippet: actionResult.sourceSnippet ?? actionResult.outcome ?? `${actionResult.voteCount.yes}-${actionResult.voteCount.no}`,
+      raw: actionResult.outcome ?? `${actionResult.voteCount.yes}-${actionResult.voteCount.no}`,
+    };
+  }
+  if (actionResult?.unanimous && actionResult.outcome) {
+    return /\b(?:denied|rejected|failed|denial|rejection|deny|reject|fail)\b/i.test(actionResult.outcome)
+      ? { kind: "unanimous_no", yesVotes: 0, noVotes: null, abstainVotes: 0, absentVotes: null, sourceSnippet: actionResult.outcome, raw: actionResult.outcome }
+      : { kind: "unanimous_yes", yesVotes: null, noVotes: 0, abstainVotes: 0, absentVotes: null, sourceSnippet: actionResult.outcome, raw: actionResult.outcome };
+  }
+  const text = normalizeWhitespace(`${item.vote_outcome ?? ""} ${actionResult?.outcome ?? ""} ${actionResult?.sourceSnippet ?? ""} ${item.source_text ?? ""}`);
   const unanimous = text.match(
-    /\b(?:(passed|approved|adopted|carried|denied|rejected|failed)\s+unanimously|unanimous\s+(approval|vote|denial|rejection)|unanimously\s+(approved|adopted|carried|denied|rejected|failed)|voted\s+unanimously\s+to\s+(approve|adopt|carry|deny|reject|fail))\b[^.;\n]*/i,
+    /\b(?:(passed|approved|adopted|carried|denied|rejected|failed)\s+unanimously|unanimous\s+(approval|vote|denial|rejection)|unanimously\s+(approved|adopted|carried|denied|rejected|failed)|voted\s+unanimously\s+to\s+(approve|adopt|carry|deny|reject|fail)|with\s+all\s+ayes\s+in\s+favor|all\s+ayes\s+(?:are\s+)?in\s+favor(?:\s+with\s+no\s+opposition)?|without\s+opposition|with\s+no\s+opposition)\b[^.;\n]*/i,
   );
   if (unanimous) {
     const snippet = normalizeWhitespace(unanimous[0]);
     if (/\b(?:denied|rejected|failed|denial|rejection|deny|reject|fail)\b/i.test(snippet)) {
       return { kind: "unanimous_no", yesVotes: 0, noVotes: null, abstainVotes: 0, absentVotes: null, sourceSnippet: snippet, raw: snippet };
     }
-    if (/\b(?:passed|approved|adopted|carried|approval|approve|adopt|carry|vote)\b/i.test(snippet)) {
+    if (/\b(?:ayes|opposition|passed|approved|adopted|carried|approval|approve|adopt|carry|vote)\b/i.test(snippet)) {
       return { kind: "unanimous_yes", yesVotes: null, noVotes: 0, abstainVotes: 0, absentVotes: null, sourceSnippet: snippet, raw: snippet };
     }
     return { kind: "needs_review", yesVotes: null, noVotes: null, abstainVotes: null, absentVotes: null, sourceSnippet: snippet, raw: snippet };
   }
 
-  const count = text.match(/\b(?:(approved|adopted|passed|carried|failed|denied|rejected|motion\s+passed|motion\s+failed|resolution\s+failed|resolution\s+passed)\s+)?(?:by\s+)?(?:a\s+)?(?:vote\s+of\s+)?(\d{1,2})\s*[-–]\s*(\d{1,2})(?:\s*[-–]\s*(\d{1,2}))?\b/i);
+  const count = text.match(
+    /\b(?:(approved|adopted|passed|carried|failed|denied|rejected|motion\s+passed|motion\s+failed|resolution\s+failed|resolution\s+passed|result|vote|ayes?|nays?)\s*:?)\s*(?:by\s+)?(?:a\s+)?(?:vote\s+of\s+)?[^.;\n]{0,80}?\b(\d{1,2})\s*[-–]\s*(\d{1,2})(?:\s*[-–]\s*(\d{1,2}))?\b/i,
+  );
   if (count) {
+    if (isAdministrativeOrPortalNoise(count[0], item.source_url)) return null;
     return {
       kind: "count",
       yesVotes: Number(count[2]),
@@ -433,11 +532,13 @@ function structuredOutcomeFor(item: PublicMeetingItemRecord): StructuredVoteOutc
   return null;
 }
 
-function aggregateEvidenceFor(item: PublicMeetingItemRecord, meeting: PublicMeetingRecord | undefined): AggregateEvidence | null {
-  const structuredOutcome = structuredOutcomeFor(item);
-  const text = normalizeWhitespace(`${item.vote_outcome ?? ""} ${item.source_text ?? ""}`);
+function aggregateEvidenceFor(item: PublicMeetingItemRecord, meeting: PublicMeetingRecord | undefined, actionResult?: ActionResultRecord): AggregateEvidence | null {
+  const combinedText = normalizeWhitespace(`${item.vote_outcome ?? ""} ${actionResult?.outcome ?? ""} ${actionResult?.sourceSnippet ?? ""} ${item.source_text ?? ""}`);
+  if (isAdministrativeOrPortalNoise(combinedText, sourceUrlFor(item, meeting))) return null;
+  const structuredOutcome = structuredOutcomeFor(item, actionResult);
+  const text = combinedText;
   const match = text.match(
-    /\b(?:approved unanimously|unanimously approved|motion\s+(?:carried|passed|failed)|(?:approved|adopted|passed|carried|failed|denied)(?:\s+by)?(?:\s+a)?(?:\s+vote)?(?:\s+of)?\s+\d+\s*[-–]\s*\d+|approved|adopted|passed|carried|failed|denied)\b[^.;\n]*/i,
+    /\b(?:with\s+all\s+ayes\s+in\s+favor|all\s+ayes\s+(?:are\s+)?in\s+favor(?:\s+with\s+no\s+opposition)?|without\s+opposition|with\s+no\s+opposition|approved unanimously|unanimously approved|motion\s+(?:carried|passes|passed|failed)|(?:approved|adopted|passed|carried|failed|denied)(?:\s+by)?(?:\s+a)?(?:\s+vote)?(?:\s+of)?\s+\d+\s*[-–]\s*\d+|approved|adopted|passed|carried|failed|denied)\b[^.;\n]*/i,
   );
   if (!match && !structuredOutcome) return null;
   const sourceSnippet = structuredOutcome?.sourceSnippet ?? normalizeWhitespace(match?.[0] ?? "");
@@ -447,14 +548,16 @@ function aggregateEvidenceFor(item: PublicMeetingItemRecord, meeting: PublicMeet
     title: item.title,
     source_url: sourceUrlFor(item, meeting),
     sourceSnippet: summarizeText(sourceSnippet, 360),
-    outcome: item.vote_outcome ?? summarizeText(sourceSnippet, 220),
+    outcome: actionResult?.outcome ?? item.vote_outcome ?? summarizeText(sourceSnippet, 220),
     evidenceType: "aggregate_only",
     structuredOutcome: structuredOutcome ?? undefined,
   };
 }
 
-function ambiguousEvidenceFor(item: PublicMeetingItemRecord, meeting: PublicMeetingRecord | undefined) {
-  const text = normalizeWhitespace(item.source_text);
+function ambiguousEvidenceFor(item: PublicMeetingItemRecord, meeting: PublicMeetingRecord | undefined, actionResult?: ActionResultRecord) {
+  const text = normalizeWhitespace(`${actionResult?.sourceSnippet ?? ""} ${item.source_text}`);
+  if (isAdministrativeOrPortalNoise(text, sourceUrlFor(item, meeting))) return null;
+  if (!hasConcreteVoteOutcomeSignal(text, actionResult)) return null;
   if (!/\b(?:roll\s+call|vote|voted|ayes?|nays?|abstain|absent|motion)\b/i.test(text)) return null;
   return {
     meeting_item_id: item.id,
@@ -534,10 +637,12 @@ function generateVotes() {
   const meetings = readJson<PublicMeetingRecord[]>("public-meetings.json", []);
   const bodies = readJson<PublicBodyRecord[]>("public-meeting-bodies.json", []);
   const attendanceArtifact = readJson<{ records?: AttendanceArtifactRecord[] }>("public-meeting-attendance.json", { records: [] });
+  const actionResults = readJson<{ records?: ActionResultRecord[] }>("public-meeting-action-results.json", { records: [] });
   const meetingById = new Map(meetings.map((meeting) => [meeting.id, meeting]));
   const bodyById = new Map(bodies.map((body) => [body.id, body]));
   const rosterByBodyId = buildRosterIndex(bodies);
   const attendanceRecords = attendanceArtifact.records ?? [];
+  const actionResultByItemId = new Map((actionResults.records ?? []).map((record) => [record.meetingItemId, record]));
   const votes: GeneratedVoteRecord[] = [];
   const aggregateOnlyOutcomes: AggregateEvidence[] = [];
   const ambiguousVoteActions: Array<{ meeting_item_id: string; meeting_id: string; title: string; source_url: string | null; reason: string; sourceSnippet: string; evidenceType: EvidenceType }> = [];
@@ -551,22 +656,25 @@ function generateVotes() {
     const meeting = meetingById.get(item.meeting_id);
     const body = meeting ? bodyById.get(meeting.public_body_id) ?? null : null;
     const roster = body ? rosterByBodyId.get(body.id) : undefined;
+    const actionResult = actionResultByItemId.get(item.id);
     const attendance = attendanceRosterFromArtifact(item.meeting_id, attendanceRecords) ?? parseAttendanceRoster(meeting, item, roster);
     if (attendance && !attendanceRosters.has(item.meeting_id)) attendanceRosters.set(item.meeting_id, attendance);
-    const voteLike = hasVoteLikeLanguage(item);
+    const evidenceText = normalizeWhitespace(`${item.vote_outcome ?? ""} ${actionResult?.outcome ?? ""} ${actionResult?.motionText ?? ""} ${actionResult?.sourceSnippet ?? ""} ${item.source_text ?? ""}`);
+    const voteLike = hasVoteLikeLanguage(evidenceText);
     if (!voteLike) {
       skippedDueToInsufficientEvidence += 1;
       continue;
     }
     totalVoteLikeActions += 1;
 
-    const text = normalizeWhitespace(item.source_text);
+    const text = evidenceText;
     const parsedEvidence = [
       ...extractRollCallGroups(text),
       ...extractInlineNameVotePairs(text),
       ...extractMotionMetadata(text),
+      ...evidenceFromActionResult(actionResult),
     ];
-    const structuredOutcome = structuredOutcomeFor(item);
+    const structuredOutcome = structuredOutcomeFor(item, actionResult);
     const motion = parsedEvidence.find((evidence) => evidence.evidenceType === "motion_mover")?.personName ?? null;
     const second = parsedEvidence.find((evidence) => evidence.evidenceType === "motion_second")?.personName ?? null;
     const hasNamedVote = parsedEvidence.some((evidence) => evidence.evidenceType === "explicit_roll_call_group" || evidence.evidenceType === "inline_named_vote");
@@ -640,11 +748,11 @@ function generateVotes() {
       });
     });
 
-    const aggregate = aggregateEvidenceFor(item, meeting);
+    const aggregate = aggregateEvidenceFor(item, meeting, actionResult);
     if (aggregate) aggregateOnlyOutcomes.push(aggregate);
 
     if (!hasNamedVote) {
-      const ambiguous = ambiguousEvidenceFor(item, meeting);
+      const ambiguous = ambiguousEvidenceFor(item, meeting, actionResult);
       if (ambiguous && !aggregate) ambiguousVoteActions.push(ambiguous);
       else if (!aggregate && !parsedEvidence.length) skippedDueToInsufficientEvidence += 1;
     }

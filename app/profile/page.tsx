@@ -8,10 +8,15 @@ import { ProfileDetailsForm } from "@/components/domain/profile-details-form";
 import { RoleBadge } from "@/components/domain/role-badge";
 import { PublicVisibilityToggle } from "@/components/domain/public-visibility-toggle";
 import { VerificationStatusCard } from "@/components/domain/verification-status-card";
+import { ParticipationReadinessPanel } from "@/components/domain/participation-readiness-panel";
+import { AccountParticipationStatusCard } from "@/components/domain/account-participation-status-card";
 import { PageIntro } from "@/components/ui/page-intro";
-import { getCurrentUser } from "@/lib/server/auth-session";
+import { hasAdminDashboardPermission } from "@/lib/admin/permissions";
+import { getAccountParticipationStatus } from "@/lib/civic-signals/account-participation-status";
+import { getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
 import { getRoleLabel } from "@/lib/auth/roles";
 import { getVerificationLabel } from "@/lib/auth/verification";
+import { getParticipationReadiness } from "@/lib/identity/participation-readiness";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { getSafeUserProgressionSummary } from "@/lib/profile/progression";
 import { getSafeReputationSummary } from "@/lib/profile/reputation";
@@ -60,7 +65,7 @@ function getPublicProfileHref(role: string, userId: string) {
 }
 
 export default async function ProfilePage({ searchParams }: ProfilePageProps) {
-  const currentUser = await getCurrentUser();
+  const [currentUser, sessionUser] = await Promise.all([getCurrentUser(), getCurrentSessionUser()]);
   const params = searchParams ? await searchParams : undefined;
   const profileContent = await getUserProfileContent(currentUser.id);
   const safeName = currentUser?.name ?? "Demo User";
@@ -81,6 +86,9 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
   const progression = getSafeUserProgressionSummary(currentUser.role);
   const completedSteps = progression.completedStepCount;
   const reputation = getSafeReputationSummary(currentUser);
+  const participationReadiness = getParticipationReadiness(currentUser);
+  const accountParticipationStatus = await getAccountParticipationStatus(currentUser, { signedIn: Boolean(sessionUser) });
+  const canAccessAdminDashboard = hasAdminDashboardPermission(sessionUser, "dataops.view");
 
   return (
     <div className="space-y-6 py-8">
@@ -136,9 +144,19 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
           </>
         }
         actions={
-          <Link href="/profile/activity" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
-            View activity
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/profile/activity" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+              View activity
+            </Link>
+            {canAccessAdminDashboard ? (
+              <Link href="/admin" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                Admin Dashboard
+              </Link>
+            ) : null}
+            <Link href="/auth/sign-out" className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-rose-300 hover:text-rose-700">
+              Sign out
+            </Link>
+          </div>
         }
       />
 
@@ -330,6 +348,8 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
       </Suspense>
 
       <VerificationStatusCard user={currentUser} content={profileContent} />
+      <AccountParticipationStatusCard status={accountParticipationStatus} />
+      <ParticipationReadinessPanel summary={participationReadiness} />
       <ProfileDetailsForm user={currentUser} content={profileContent} />
       {(currentUser.role === "citizen" || currentUser.role === "trustedCitizen") ? (
         <PublicVisibilityToggle isPublic={!currentUser.isAnonymousPublic} />

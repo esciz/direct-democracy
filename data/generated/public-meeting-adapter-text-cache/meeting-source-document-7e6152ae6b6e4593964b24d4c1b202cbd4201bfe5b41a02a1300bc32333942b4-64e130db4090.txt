@@ -1,0 +1,6 @@
+Adapter recovery note: the Granicus minutes endpoint returned a thin HTML shell rather than readable minutes. Direct Democracy is using the companion Granicus agenda for the same clip as source-backed meeting material. This does not claim completed minutes were recovered.
+
+Minutes source: https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2652&doc_id=140dfdc4-1c94-11f0-955d-005056a89546
+Companion agenda source: https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2652
+
+1 CARSON CITY CONSOLIDATED MUNICIPALITY NOTICE OF MEETING OF THE 9-1-1 SURCHARGE ADVISORY COMMITTEE Day: Tuesday Date: April 15, 2025 Time: Beginning at 8:30 am Location: Carson City Fire Station 51 777 S. Stewart Street Carson City, Nevada AGENDA NOTICE TO THE PUBLIC: The public may provide public comment in advance of a meeting by written submission to the following email address: nmerritt@carson.org. For inclusion or reference in the minutes of the meeting, your public comment must include your full name and be submitted via email by not later than 3:00 p.m. the day before the meeting. Public comment during a meeting is limited to three minutes for each speaker. 1. Call to Order 2. Rol...

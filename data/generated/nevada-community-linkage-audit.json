@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T20:50:11.594Z",
+  "generatedAt": "2026-06-26T13:50:48.865Z",
   "auditGoal": "Determine whether Nevada community coverage gaps are missing data or missing canonical community relationships.",
   "canonicalCommunityScope": {
     "coverageCommunities": 39,
@@ -79,11 +79,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 691,
-        "recordsLinkedToCanonicalCommunities": 691,
-        "recordsLinkedToCoverageCommunities": 645,
+        "totalRecordsInDatabaseOrRuntime": 728,
+        "recordsLinkedToCanonicalCommunities": 728,
+        "recordsLinkedToCoverageCommunities": 682,
         "recordsNotLinkedToCoverageCommunities": 46,
-        "recordsCountedInCoverageReport": 645,
+        "recordsCountedInCoverageReport": 682,
         "recordsNotCountedInCoverageReport": 46
       },
       "topReasonsRecordsAreNotCounted": [
@@ -280,7 +280,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-7123cde5",
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-25-4ebdff9b",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -451,7 +451,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meetings.json",
-          "totalRecords": 691
+          "totalRecords": 728
         }
       ]
     },
@@ -560,11 +560,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 789,
-        "recordsLinkedToCanonicalCommunities": 789,
-        "recordsLinkedToCoverageCommunities": 553,
+        "totalRecordsInDatabaseOrRuntime": 851,
+        "recordsLinkedToCanonicalCommunities": 851,
+        "recordsLinkedToCoverageCommunities": 615,
         "recordsNotLinkedToCoverageCommunities": 236,
-        "recordsCountedInCoverageReport": 553,
+        "recordsCountedInCoverageReport": 615,
         "recordsNotCountedInCoverageReport": 236
       },
       "topReasonsRecordsAreNotCounted": [
@@ -919,7 +919,7 @@
         },
         {
           "path": "data/generated/public-cases-runtime.json",
-          "totalRecords": 764
+          "totalRecords": 826
         }
       ]
     },
@@ -940,11 +940,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 454,
-        "recordsLinkedToCanonicalCommunities": 425,
-        "recordsLinkedToCoverageCommunities": 315,
+        "totalRecordsInDatabaseOrRuntime": 455,
+        "recordsLinkedToCanonicalCommunities": 426,
+        "recordsLinkedToCoverageCommunities": 316,
         "recordsNotLinkedToCoverageCommunities": 139,
-        "recordsCountedInCoverageReport": 315,
+        "recordsCountedInCoverageReport": 316,
         "recordsNotCountedInCoverageReport": 139
       },
       "topReasonsRecordsAreNotCounted": [
@@ -1347,7 +1347,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-items.json",
-          "totalRecords": 400
+          "totalRecords": 401
         },
         {
           "path": "data/generated/nv-sos-campaign-finance-records.json",
@@ -1371,11 +1371,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 553,
-        "recordsLinkedToCanonicalCommunities": 553,
-        "recordsLinkedToCoverageCommunities": 479,
-        "recordsNotLinkedToCoverageCommunities": 74,
-        "recordsCountedInCoverageReport": 553,
+        "totalRecordsInDatabaseOrRuntime": 756,
+        "recordsLinkedToCanonicalCommunities": 756,
+        "recordsLinkedToCoverageCommunities": 640,
+        "recordsNotLinkedToCoverageCommunities": 116,
+        "recordsCountedInCoverageReport": 756,
         "recordsNotCountedInCoverageReport": 0
       },
       "topReasonsRecordsAreNotCounted": [],
@@ -1383,7 +1383,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-voting-cards.json",
-          "totalRecords": 553
+          "totalRecords": 756
         }
       ]
     },

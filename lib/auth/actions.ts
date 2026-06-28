@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 
 import { DEV_ONLY_AUTH_ENABLED, GUEST_BROWSE_USER_ID, MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { getSeedUserById, seedUsers } from "@/lib/auth/mock-users";
+import { authenticateLocalAccount, changeLocalPassword, createLocalAccount } from "@/lib/identity/accounts";
+import { MFA_SESSION_COOKIE } from "@/lib/identity/mfa-session";
+import { evaluateVoterVerification } from "@/lib/onboarding/voter-provider";
 import { getUserProfileContent, updateUserProfileContent } from "@/lib/profile/details";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 import { setStoredPublicProfiles, getAllPublicProfiles } from "@/lib/server/elections-context";
@@ -12,7 +15,6 @@ import {
   buildCandidateOfficialMatchStatus,
   buildRoleMatchSummary,
   clearOnboardingDraft,
-  evaluateVoterVerification,
   getClaimMatchForProfile,
   getMatchedPublicProfileForIdentity,
   getOnboardingJurisdictionFromCommunity,
@@ -73,6 +75,17 @@ export async function signInWithDemoCredentials(_previousState: AuthFormState, f
     return { ...AUTH_ERROR_STATE, fieldErrors };
   }
 
+  const localResult = authenticateLocalAccount(email, password);
+  if (localResult.ok) {
+    const cookieStore = await cookies();
+    cookieStore.set(MOCK_AUTH_COOKIE, localResult.account.id, getMockAuthCookieOptions());
+    cookieStore.delete(MFA_SESSION_COOKIE);
+    if (localResult.account.mustChangePassword) redirect("/account/security/change-password");
+    if (localResult.account.mfaEnrollmentRequired && !localResult.account.mfaEnrolledAt) redirect("/account/security/mfa/enroll");
+    if (localResult.account.mfaEnabled) redirect("/account/security/mfa/challenge");
+    redirect("/");
+  }
+
   const matchedUser = seedUsers.find((user) => user.email.toLowerCase() === email && user.id !== GUEST_BROWSE_USER_ID);
 
   if (!matchedUser) {
@@ -107,8 +120,22 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
     return { ...AUTH_ERROR_STATE, fieldErrors };
   }
 
-  const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, getMockAuthCookieOptions());
+  try {
+    const account = createLocalAccount({
+      email,
+      name: fullName,
+      password,
+      emailVerified: false,
+      role: "citizen",
+    });
+    const cookieStore = await cookies();
+    cookieStore.set(MOCK_AUTH_COOKIE, account.id, getMockAuthCookieOptions());
+  } catch {
+    return {
+      status: "error",
+      message: "If that email can be used, we will continue account setup. Try signing in or resetting your password.",
+    };
+  }
 
   await setOnboardingDraft({
     accountName: fullName,
@@ -118,6 +145,47 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
   });
 
   redirect("/get-started?step=verify");
+}
+
+export async function signOutCurrentUser() {
+  const cookieStore = await cookies();
+  cookieStore.delete(MOCK_AUTH_COOKIE);
+  cookieStore.delete(MFA_SESSION_COOKIE);
+  redirect("/auth");
+}
+
+export async function changeCurrentPassword(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
+  const currentUser = await getCurrentSessionUser();
+  const currentPassword = getFormString(formData, "currentPassword");
+  const nextPassword = getFormString(formData, "nextPassword");
+  const confirmPassword = getFormString(formData, "confirmPassword");
+  const fieldErrors: Record<string, string> = {};
+
+  if (!currentUser) {
+    return { status: "error", message: "Please sign in again." };
+  }
+  if (nextPassword.length < 12) {
+    fieldErrors.nextPassword = "Use at least 12 characters.";
+  }
+  if (nextPassword !== confirmPassword) {
+    fieldErrors.confirmPassword = "Passwords do not match.";
+  }
+  if (Object.keys(fieldErrors).length) {
+    return { ...AUTH_ERROR_STATE, fieldErrors };
+  }
+
+  const result = changeLocalPassword(currentUser.id, currentPassword, nextPassword);
+  if (!result.ok) {
+    return { status: "error", message: "The password could not be changed. Check your current password." };
+  }
+
+  return { status: "success", message: "Password changed. Continue to the admin console or civic dashboard." };
+}
+
+export async function changeCurrentPasswordFromForm(formData: FormData) {
+  const result = await changeCurrentPassword({ status: "idle" }, formData);
+  if (result.status === "success") redirect("/");
+  redirect("/account/security/change-password?error=password");
 }
 
 export async function requestDemoPasswordReset(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
@@ -250,12 +318,14 @@ export async function submitVoterVerification(formData: FormData) {
       : null,
     candidateOfficialMatchStatus: buildCandidateOfficialMatchStatus(verification.status, matchedProfile),
     enhancedIdentityStatus: verification.status === "possibleMatch" ? "recommended" : "notNeeded",
-    manualReviewStatus: verification.status === "possibleMatch" ? "available" : "notNeeded",
+    manualReviewStatus: verification.status === "possibleMatch" || verification.status === "sourceUnavailable" ? "available" : "notNeeded",
     riskFlags:
       verification.status === "possibleMatch"
         ? matchedProfile
           ? ["ambiguousVoterMatch", "claimRequiresEnhancedVerification"]
           : ["ambiguousVoterMatch"]
+        : verification.status === "sourceUnavailable"
+          ? ["manualReviewRequired"]
         : [],
   });
 

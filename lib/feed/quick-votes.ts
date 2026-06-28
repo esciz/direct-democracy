@@ -376,12 +376,13 @@ async function getMeetingVotingQuestionSeeds(): Promise<RealQuestionSeed[]> {
 
 function mapQuestion(row: QuestionWithRelations, userId: string): VoteQuestionCardSummary {
   const responses = row.responses;
+  const analyticsResponses = responses.filter((response) => response.provenance === "real_participant" && response.countsInAnalytics);
   const results = {
-    yes: responses.filter((response) => response.answer === "yes").length,
-    no: responses.filter((response) => response.answer === "no").length,
-    skip: responses.filter((response) => response.answer === "skip").length,
+    yes: analyticsResponses.filter((response) => response.answer === "yes").length,
+    no: analyticsResponses.filter((response) => response.answer === "no").length,
+    skip: analyticsResponses.filter((response) => response.answer === "skip").length,
   };
-  const totalResponses = responses.length;
+  const totalResponses = analyticsResponses.length;
   const percentages = {
     yes: totalResponses ? Math.round((results.yes / totalResponses) * 100) : 0,
     no: totalResponses ? Math.round((results.no / totalResponses) * 100) : 0,
@@ -800,7 +801,14 @@ export async function ensureInitialRealDataCivicQuestions() {
 }
 
 export async function getStoredVoteResponses(): Promise<VoteResponseSummary[]> {
-  const responses = await prisma.voteResponse.findMany({ orderBy: { createdAt: "desc" }, take: 200 });
+  const responses = await prisma.voteResponse.findMany({
+    where: {
+      provenance: "real_participant",
+      countsInAnalytics: true,
+    },
+    orderBy: { createdAt: "desc" },
+    take: 200,
+  });
 
   return responses.map((response) => ({
     id: response.id,
@@ -972,7 +980,14 @@ export async function getVotingLibrary(user: AuthUser, filters: VotingLibraryFil
 export async function updateCivicSentimentAggregate(questionId: string) {
   const question = await prisma.voteQuestion.findUnique({
     where: { id: questionId },
-    include: { responses: true },
+    include: {
+      responses: {
+        where: {
+          provenance: "real_participant",
+          countsInAnalytics: true,
+        },
+      },
+    },
   });
 
   if (!question?.civicEntityType || !question.civicEntityId) return;

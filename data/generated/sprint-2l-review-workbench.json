@@ -1,0 +1,642 @@
+{
+  "generatedAt": "2026-06-25T18:31:56.707Z",
+  "totals": {
+    "documentTextRecords": 1392,
+    "documentFailures": 0,
+    "retrievalBlocked": 0,
+    "voteReviewActions": 56,
+    "ambiguousVoteActions": 1,
+    "attendanceReviewActions": 5,
+    "distributionReviewActions": 50,
+    "unmatchedAttendanceNames": 981,
+    "officialCoverageGaps": 0
+  },
+  "documentRecovery": {
+    "byFailureReason": [],
+    "byHost": [],
+    "blockedRetrievalByState": [],
+    "blockedRetrievalByHost": [],
+    "samples": []
+  },
+  "voteReview": {
+    "byBucket": [
+      {
+        "key": "ambiguous_vote_language",
+        "count": 1
+      },
+      {
+        "key": "attendance_not_verified",
+        "count": 5
+      },
+      {
+        "key": "distribution_review",
+        "count": 50
+      }
+    ],
+    "attendanceReviewReasons": [
+      {
+        "key": "attendance_not_verified",
+        "count": 3
+      },
+      {
+        "key": "attendance_exceeds_known_membership",
+        "count": 2
+      }
+    ],
+    "distributionReviewReasons": [
+      {
+        "key": "vote_count_does_not_match_present_members",
+        "count": 31
+      },
+      {
+        "key": "vote_count_does_not_match_present_members, needs_vote_distribution_review",
+        "count": 19
+      }
+    ],
+    "ambiguousSamples": [
+      {
+        "title": "first be applied to executive faculty and that new executive positions not be added before faculty positions; and 4) the Faculty Senate requests that should cuts have to be made...",
+        "reason": "Vote-related language exists, but no supported explicit name-to-vote evidence was found.",
+        "source": "nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
+        "snippet": ". first be applied to executive faculty and that new executive positions not be added before faculty positions; and 4) the Faculty Senate requests that should cuts have to be made, that students, faculty, and staff be fully involved in the decision-making process from the Regent Goicoechea stated the System cannot wait until 2027 to act. He voiced his sup..."
+      }
+    ]
+  },
+  "attendanceIdentity": {
+    "unmatchedByBody": [
+      {
+        "key": "body-carson-city-board-of-supervisors-local-emergency-planning-committee",
+        "count": 314
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "count": 145
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-planning-commission",
+        "count": 78
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority",
+        "count": 51
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-board-of-supervisors",
+        "count": 32
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority",
+        "count": 32
+      },
+      {
+        "key": "body-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents",
+        "count": 32
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-regional-transportation-commission",
+        "count": 29
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization",
+        "count": 28
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-open-space-advisory-committee",
+        "count": 23
+      },
+      {
+        "key": "body-washoe-county-commission-board-of-county-commissioners",
+        "count": 23
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-board-of-supervisors-and-board-of-health",
+        "count": 21
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-parks-and-recreation-commission",
+        "count": 17
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-airport-authority",
+        "count": 16
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-board-of-supervisors-and-liquor-and-entertainment-board",
+        "count": 15
+      },
+      {
+        "key": "body-manual-north-las-vegas-city-council-north-las-vegas-city-council",
+        "count": 14
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-library-board-of-trustees",
+        "count": 13
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-advisory-board-to-manage-wildlife",
+        "count": 11
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-board-of-supervisors-and-the-planning-commission",
+        "count": 11
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-audit-committee",
+        "count": 9
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-cultural-commission",
+        "count": 8
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-joint-meeting-of-the-open-space-advisory-committee-and-the-parks-and-recreation-commission",
+        "count": 8
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-charter-review-committee",
+        "count": 7
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife",
+        "count": 6
+      },
+      {
+        "key": "body-manual-reno-city-council-reno-city-council",
+        "count": 6
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-growth-management-and-planning-commission",
+        "count": 5
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-growth-management-commission-and-planning-commission",
+        "count": 5
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-board-of-equalization",
+        "count": 4
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-and-board-of-health",
+        "count": 4
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees",
+        "count": 4
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-airport-authority-special-meeting",
+        "count": 2
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-debt-management-commission",
+        "count": 2
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-utility-finance-oversight-committee",
+        "count": 2
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-board-of-supervisors-and-the-joint-meeting-of-the-board-of-supervisors-and-the-planning-commissi",
+        "count": 1
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-historic-resources-commission",
+        "count": 1
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-redevelopment-authority-citizens-committee",
+        "count": 1
+      },
+      {
+        "key": "body-manual-las-vegas-city-council-las-vegas-city-council",
+        "count": 1
+      }
+    ],
+    "topUnmatchedNames": [
+      {
+        "key": "Ken Furlong",
+        "count": 45
+      },
+      {
+        "key": "Jenn Stoffer",
+        "count": 18
+      },
+      {
+        "key": "Jerome Tushbant",
+        "count": 17
+      },
+      {
+        "key": "Mark Berch",
+        "count": 15
+      },
+      {
+        "key": "Sean Slamon",
+        "count": 15
+      },
+      {
+        "key": "Serge Duarte",
+        "count": 15
+      },
+      {
+        "key": "Nancy Merritt",
+        "count": 14
+      },
+      {
+        "key": "Jeanne Freeman",
+        "count": 13
+      },
+      {
+        "key": "Jim Rich",
+        "count": 12
+      },
+      {
+        "key": "Charles Borders",
+        "count": 11
+      },
+      {
+        "key": "David Peterson",
+        "count": 11
+      },
+      {
+        "key": "Dawn Johnson",
+        "count": 11
+      },
+      {
+        "key": "Executive Director Chris Kipp",
+        "count": 11
+      },
+      {
+        "key": "Dave Yohey.",
+        "count": 10
+      },
+      {
+        "key": "Kathie Heath",
+        "count": 10
+      },
+      {
+        "key": "Rick Cooley",
+        "count": 10
+      },
+      {
+        "key": "Andy Hummel",
+        "count": 9
+      },
+      {
+        "key": "DeChristopher",
+        "count": 9
+      },
+      {
+        "key": "Deni French",
+        "count": 9
+      },
+      {
+        "key": "Denise Stewart",
+        "count": 9
+      },
+      {
+        "key": "Jon Bakkedahl",
+        "count": 9
+      },
+      {
+        "key": "Kevin Nyberg",
+        "count": 9
+      },
+      {
+        "key": "Lisa Christensen",
+        "count": 9
+      },
+      {
+        "key": "Michelle Monto",
+        "count": 9
+      },
+      {
+        "key": "Scott Hoen",
+        "count": 9
+      },
+      {
+        "key": "Administrative Assistant",
+        "count": 8
+      },
+      {
+        "key": "Christy Runyon",
+        "count": 8
+      },
+      {
+        "key": "Killgore",
+        "count": 8
+      },
+      {
+        "key": "Pyzel",
+        "count": 8
+      },
+      {
+        "key": "Denise Bauer",
+        "count": 7
+      },
+      {
+        "key": "Steve Funk",
+        "count": 7
+      },
+      {
+        "key": "Todd Reese",
+        "count": 7
+      },
+      {
+        "key": "Alan Ernst",
+        "count": 6
+      },
+      {
+        "key": "Alexis Philippi",
+        "count": 6
+      },
+      {
+        "key": "Ann Cyr",
+        "count": 6
+      },
+      {
+        "key": "Brooks",
+        "count": 6
+      },
+      {
+        "key": "Buffy Linkul",
+        "count": 6
+      },
+      {
+        "key": "California",
+        "count": 6
+      },
+      {
+        "key": "Daniel Gonzales",
+        "count": 6
+      },
+      {
+        "key": "Dave Yohey",
+        "count": 6
+      },
+      {
+        "key": "Frank Abella Micah Chalk",
+        "count": 6
+      },
+      {
+        "key": "Hutter",
+        "count": 6
+      },
+      {
+        "key": "Jason Giovacchini",
+        "count": 6
+      },
+      {
+        "key": "Jay Giovacchini",
+        "count": 6
+      },
+      {
+        "key": "Joe Lamprecht . Steve Funk",
+        "count": 6
+      },
+      {
+        "key": "Jon Erb",
+        "count": 6
+      },
+      {
+        "key": "Kelly Hutter",
+        "count": 6
+      },
+      {
+        "key": "Lyons",
+        "count": 6
+      },
+      {
+        "key": "Matt Williams",
+        "count": 6
+      },
+      {
+        "key": "Micah Chalk",
+        "count": 6
+      }
+    ],
+    "samples": [
+      {
+        "personName": "Ryan McIntosh",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Ryan McIntosh on video conference, and Jed McComber, which constituted a quorum. Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Jed McComber",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Ryan McIntosh on video conference, and Jed McComber, which constituted a quorum. Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Christy Runyon",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Ryan McIntosh on video conference, and Jed McComber, which constituted a quorum. Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Jenn Stoffer",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Ryan McIntosh on video conference, and Jed McComber, which constituted a quorum. Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Daniel Gonzales",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Ryan McIntosh on video conference, and Jed McComber, which constituted a quorum. Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Ken Furlong",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Ryan McIntosh on video conference, and Jed McComber, which constituted a quorum. Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Denise Stewart",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "present were Denise Stewart, Ryan McIntosh on video conference, and Jed McComber, which constituted a quorum. Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Christy Runyon",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Jenn Stoffer",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Daniel Gonzales",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Ken Furlong",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Todd Reese (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), Jenn Stoffer (Communications Manager), Daniel Gonzales, Ken Furlong (Carson City Sheriff) and Micah Chalk (Sheriff’s Office). 3."
+      },
+      {
+        "personName": "Denise Bauer",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Ryan Mcintosh",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Jessica Carpenter",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Christy Runyon",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Micah Chalk",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Jenn Stoffer",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Daniel Gonzales",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Ken Furlong",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "Roll Call and Determination of a Quorum Voting members present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Denise Stewart",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "eligible_voting_member",
+        "snippet": "present were Denise Stewart, Denise Bauer, Ryan Mcintosh on video conference, and Jessica Carpenter on video conference, which constituted a quorum. Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Christy Runyon",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Micah Chalk",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Jenn Stoffer",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Daniel Gonzales",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      },
+      {
+        "personName": "Ken Furlong",
+        "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-01-27-c3b94db0",
+        "bodyId": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+        "organizationId": "carson-city-board-of-supervisors",
+        "votingEligibility": "non_voting",
+        "snippet": "Also present were Adam Tully (Carson City District Attorney’s Office), Christy Runyon (Carson City Fire Department), and Micah Chalk (Sheriff’s Department), Jenn Stoffer (Sheriff’s Department), Daniel Gonzales on video conference, Ken Furlong (Sheriff’s Department), and Maricela Ceballos (Sheriff’s Department) 3."
+      }
+    ]
+  },
+  "officialCoverage": {
+    "totals": {
+      "priorityJurisdictions": 11,
+      "complete": 11,
+      "partial": 0,
+      "sourceConfiguredNotImported": 0,
+      "sourceMissing": 0,
+      "linkageFailed": 0,
+      "emptyPublicSectionRisks": 0,
+      "runtimeOfficials": 154,
+      "carsonCityRuntimeOfficials": 25,
+      "failures": 0
+    },
+    "gaps": []
+  },
+  "recommendedNextActions": [
+    "Build source-specific adapters for the highest-count blocked hosts before adding new jurisdictions.",
+    "Review attendance_not_verified actions by body; add governing rosters only where source text supports voting membership.",
+    "Treat distribution_review as human-review work unless the source explicitly names no/abstain voters.",
+    "Keep reviewed manual officials separate from unverified attendance names."
+  ]
+}

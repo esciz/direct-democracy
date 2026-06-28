@@ -4,6 +4,8 @@ import type { PublicBodyRecord, PublicMeetingItemRecord } from "@/lib/public-mee
 
 function stripAgendaPrefixes(value: string) {
   return normalizeWhitespace(value)
+    .replace(/^needs\s+review\s*:?\s*/i, "")
+    .replace(/^(approved|adopted|passed|denied|failed|continued|tabled)\s*[-–:]\s*/i, "")
     .replace(/^\d+(?:\.[A-Za-z0-9]+)*\.?\s*/i, "")
     .replace(/^(resolution|ordinance)?\s*recommendation\s+to\s+(approve|adopt|authorize|accept|award|deny|continue|amend)\s*:?\s*/i, "$2 ")
     .replace(/^(appearance|donation|contract|budget|grant)\s+recommendation\s+to\s+/i, "")
@@ -15,6 +17,10 @@ function stripAgendaPrefixes(value: string) {
     .replace(/^for\s+possible\s+action\s*:?\s*/i, "")
     .replace(/\bresolution\s+[A-Z]?\d{2,4}[-–][A-Z]?\d+\b\s*(to|authorizing|approving)?\s*/gi, "")
     .replace(/\bagenda\s+item\s+\w+\.?\s*/gi, "")
+    .replace(/\s+[–-]\s+\(continued\)\s*/gi, " ")
+    .replace(/\s+\(continued\)\s*/gi, " ")
+    .replace(/\(\s*\)/g, "")
+    .replace(/^and\s+/i, "")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -49,10 +55,11 @@ function actionVerb(item: PublicMeetingItemRecord, action: string) {
   const text = `${item.staff_recommendation ?? ""} ${item.vote_outcome ?? ""} ${item.title} ${action}`.toLowerCase();
   if (/\bdonation|donor|donated\b/.test(text)) return "accept";
   if (/\bdeny|denied|reject|rejected\b/.test(text)) return "reject";
-  if (/\bcontinue|continued|table|tabled|postpone\b/.test(text)) return "continue";
   if (/\bfund|budget|appropriate|augment|allocate|spend\b/.test(text)) return "fund";
   if (/\badopt|ordinance|resolution\b/.test(text)) return "adopt";
   if (/\bauthorize|award|contract|agreement|purchase\b/.test(text)) return "approve";
+  if (/\bapprove|approved|pass|passed|motion carried|motion passed\b/.test(text)) return "approve";
+  if (/\bcontinue|continued|table|tabled|postpone\b/.test(text)) return "continue";
   return "approve";
 }
 

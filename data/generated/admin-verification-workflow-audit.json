@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-28T00:34:38.596Z",
+  "status": "admin_verification_workflow_audited",
+  "sensitiveValuesIncluded": false,
+  "validation": {
+    "operationsDashboardShowsIdentityWorkflow": true,
+    "operationsDashboardLinksToVoterReview": true,
+    "operationsDashboardShowsPendingCounts": true,
+    "identityPageHasResidencyAnchor": true,
+    "identityPageHasVoterAnchor": true,
+    "voterReviewUsesAssistantPackets": true,
+    "voterReviewShowsReviewerChecklist": true,
+    "voterReviewExplainsManualComparison": true,
+    "voterReviewSupportsStatusFilters": true,
+    "voterReviewSupportsRequestMoreInfo": true,
+    "voterReviewNotificationHookPresent": true
+  },
+  "pass": true
+}

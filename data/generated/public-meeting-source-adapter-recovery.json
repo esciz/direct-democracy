@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-06-25T18:25:57.734Z",
+  "records": [
+    {
+      "adapterId": "granicus-minutes-shell-companion-agenda",
+      "documentId": "meeting-source-document-7e6152ae6b6e4593964b24d4c1b202cbd4201bfe5b41a02a1300bc32333942b4",
+      "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2025-04-18-ec293090",
+      "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2652&doc_id=140dfdc4-1c94-11f0-955d-005056a89546",
+      "recoveryStatus": "recovered_with_companion_agenda",
+      "recoveryReason": "Granicus MinutesViewer returned an empty HTML shell; companion agenda for the same clip provides the usable source-backed meeting material.",
+      "companionDocumentId": "meeting-source-document-e6afebcef67d8ce26f1ad48fcce8838db1af9985251002a1f17382089345e632",
+      "companionSourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2652",
+      "outputTextPath": "data/generated/public-meeting-adapter-text-cache/meeting-source-document-7e6152ae6b6e4593964b24d4c1b202cbd4201bfe5b41a02a1300bc32333942b4-64e130db4090.txt",
+      "confidence": 0.52,
+      "sourceReferences": [
+        {
+          "label": "Granicus minutes shell",
+          "url": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2652&doc_id=140dfdc4-1c94-11f0-955d-005056a89546",
+          "documentId": "meeting-source-document-7e6152ae6b6e4593964b24d4c1b202cbd4201bfe5b41a02a1300bc32333942b4"
+        },
+        {
+          "label": "Companion agenda",
+          "url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2652",
+          "documentId": "meeting-source-document-e6afebcef67d8ce26f1ad48fcce8838db1af9985251002a1f17382089345e632"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "generatedAt": "2026-06-25T18:25:57.734Z",
+    "totals": {
+      "adaptersRun": 1,
+      "granicusMinutesShellsFound": 1,
+      "recoveredWithCompanionAgenda": 1,
+      "manualReviewRequired": 0,
+      "documentTextRowsUpdated": 1
+    }
+  }
+}

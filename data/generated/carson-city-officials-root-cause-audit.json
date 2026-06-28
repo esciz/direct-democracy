@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-06-25T16:25:50.037Z",
+  "jurisdiction": "Carson City",
+  "currentSourceCounts": {
+    "officialDirectorySources": 3,
+    "governingBodyRosterRecords": 5,
+    "officialActionRecords": 0,
+    "legacyOfficialsRuntimeRecords": 4,
+    "currentOfficialsRuntimeRecords": 25,
+    "communityOfficialsRuntimeRecords": 25
+  },
+  "findings": [
+    "The legacy data/generated/officials-runtime.json artifact contains official-action records, not a comprehensive current officeholder directory.",
+    "Carson City governing-body roster records existed in generated roster artifacts, but generated public community officials were tied to roster seeds/action summaries instead of a current-officeholder runtime.",
+    "Public current official visibility depended on meeting/action-derived artifacts, so officials with zero parsed actions could disappear from community pages.",
+    "Student-government enum cleanup remains correct; unsupported student-government rows are excluded from public official queries and current-official runtime generation."
+  ],
+  "missingLinkageReasons": [
+    "No dedicated current-officeholder runtime artifact existed.",
+    "Governing body roster records were not promoted into nevada-community-officials.json.",
+    "officials-runtime.json name implied public profile coverage but actually held sparse official action records.",
+    "The community page empty state described official action records as a prerequisite for officials."
+  ],
+  "recommendedReusePath": [
+    "Keep Prisma Official/Office/Jurisdiction models for durable normalized imports.",
+    "Keep public-meeting official actions and attendance for historical attribution.",
+    "Use current-officials-runtime.json for public current officeholder visibility.",
+    "Join current officials to actions only by stable person/official IDs when available; never require action count for display."
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-06-28T00:35:03.085Z",
+  "status": "guided_voter_verification_audited",
+  "officialPortal": {
+    "name": "Nevada Secretary of State voter search",
+    "url": "https://www.nvsos.gov/votersearch/",
+    "providerId": "nevada_voter_search_user_confirmed",
+    "mode": "user_guided_official_source_review"
+  },
+  "automatedProvider": {
+    "ready": true,
+    "providers": [
+      {
+        "providerId": "washoe_county_data_transparency",
+        "county": "Washoe County",
+        "dateOfRecord": "2026-06-27T00:00:00",
+        "recordsIndexed": 773070,
+        "activeRecords": 332559
+      },
+      {
+        "providerId": "clark_county_active_voter_file",
+        "county": "Clark County",
+        "dateOfRecord": "2026-06-25T20:53:00.000Z",
+        "recordsIndexed": 1517741,
+        "activeRecords": 1517741
+      }
+    ]
+  },
+  "sensitiveValuesIncluded": false,
+  "totals": {
+    "activeIdentityAccounts": 2,
+    "activeVerifiedIdentityAccounts": 1,
+    "voterClaims": 1,
+    "guidedPortalClaims": 1,
+    "pendingGuidedPortalClaims": 0,
+    "guidedClaimsWithAssistantPackets": 1,
+    "matchedVoterClaims": 1,
+    "verifiedVoterAccounts": 1
+  },
+  "assistant": {
+    "version": "voter-verification-assistant-v1",
+    "mode": "deterministic_source_triage",
+    "decisionBoundary": "assistant_prepares_review_packet_only_source_match_or_admin_review_can_verify",
+    "outcomes": {
+      "source_unavailable_guided_review": 1
+    },
+    "sourceBackedAutoVerificationRequiresImportedVoterFileMatch": true
+  },
+  "validation": {
+    "guidedOfficialPortalPathAvailable": true,
+    "automatedVoterFileProviderSupported": true,
+    "noFakeVoterProvider": true,
+    "guidedClaimsIncludeVoterIdAndPrecinctContext": true,
+    "assistedGuidedReviewPacketSupported": true,
+    "assistantNeverSourceBacksPendingManualReview": true,
+    "matchedVoterClaimsMapToVerifiedVoter": true,
+    "accountAuthMappingReflectsMatchedVoterClaims": true,
+    "pendingClaimsDoNotAutoVerify": true,
+    "noRawSensitivePortalValuesInAudit": true
+  },
+  "accounts": [
+    {
+      "userId": "identity_owner_admin",
+      "role": "admin",
+      "emailVerificationStatus": "verified",
+      "verificationClass": "authenticated_unverified",
+      "matchedVoterClaims": 0,
+      "pendingGuidedVoterClaims": 0
+    },
+    {
+      "userId": "identity_1782577111071_1kvqtm",
+      "role": "citizen",
+      "emailVerificationStatus": "unverified",
+      "verificationClass": "verified_voter",
+      "matchedVoterClaims": 1,
+      "pendingGuidedVoterClaims": 0
+    }
+  ],
+  "pass": true
+}

@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-06-25T16:05:55.069Z",
+  "tools": [
+    {
+      "command": "pdfinfo",
+      "available": true,
+      "path": "/opt/homebrew/bin/pdfinfo",
+      "version": null
+    },
+    {
+      "command": "pdftotext",
+      "available": true,
+      "path": "/opt/homebrew/bin/pdftotext",
+      "version": null
+    },
+    {
+      "command": "pdftoppm",
+      "available": true,
+      "path": "/opt/homebrew/bin/pdftoppm",
+      "version": null
+    },
+    {
+      "command": "tesseract",
+      "available": true,
+      "path": "/opt/homebrew/bin/tesseract",
+      "version": "tesseract 5.5.2"
+    },
+    {
+      "command": "ocrmypdf",
+      "available": true,
+      "path": "/opt/homebrew/bin/ocrmypdf",
+      "version": "usage: OCRmyPDF [-h] [-l LANGUAGES] [--image-dpi DPI]"
+    }
+  ],
+  "capabilities": {
+    "canInspectPdfPages": true,
+    "canExtractNativePdfText": true,
+    "canRenderPdfPages": true,
+    "canRunTesseract": true,
+    "canRunOcrMyPdf": true,
+    "canRunPageOcr": true
+  },
+  "limits": {
+    "maxFileSizeBytes": 50000000,
+    "maxPagesPerDocument": 10,
+    "subprocessTimeoutMs": 30000
+  },
+  "installHint": null
+}

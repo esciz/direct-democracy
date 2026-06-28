@@ -136,6 +136,13 @@ enum VoteAnswer {
   skip
 }
 
+enum VoteResponseProvenance {
+  real_participant
+  qa_fixture
+  demo_seed
+  imported_test
+}
+
 enum TruthRatingValue {
   Accurate
   MostlyTrue
@@ -1928,17 +1935,22 @@ model VoteQuestion {
 }
 
 model VoteResponse {
-  id         String      @id @default(cuid())
-  userId     String
-  questionId String
-  answer     VoteAnswer
-  user       User        @relation(fields: [userId], references: [id])
-  question   VoteQuestion @relation(fields: [questionId], references: [id])
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  id                  String                 @id @default(cuid())
+  userId              String
+  questionId          String
+  answer              VoteAnswer
+  provenance          VoteResponseProvenance @default(real_participant)
+  countsInAnalytics   Boolean                @default(true)
+  provenanceNote      String?
+  user                User                   @relation(fields: [userId], references: [id])
+  question            VoteQuestion           @relation(fields: [questionId], references: [id])
+  createdAt           DateTime               @default(now())
+  updatedAt           DateTime               @updatedAt
 
   @@unique([userId, questionId])
   @@index([questionId])
+  @@index([provenance])
+  @@index([countsInAnalytics])
 }
 
 model Poll {
@@ -3484,4 +3496,477 @@ model VoterRegistrationStatistic {
   @@index([jurisdictionId, reportDate])
   @@index([sourceId])
   @@index([reviewStatus])
+}
+
+model IdentityAccount {
+  id                      String   @id
+  userId                  String?  @unique
+  email                   String   @unique
+  name                    String
+  username                String
+  role                    String
+  status                  String
+  emailVerificationStatus String
+  mustChangePassword      Boolean  @default(false)
+  mfaEnrollmentRequired   Boolean  @default(false)
+  mfaEnabled              Boolean  @default(false)
+  mfaEncryptedSecret      String?
+  mfaPendingEnrollment    Json?
+  mfaEnrolledAt           DateTime?
+  mfaLastAcceptedCounterHash String?
+  mfaFailedAttempts       Int      @default(0)
+  failedLoginAttempts     Int      @default(0)
+  lockedUntil             DateTime?
+  lastLoginAt             DateTime?
+  disabledAt              DateTime?
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+  credentials             IdentityCredential[]
+  sessions                IdentitySession[]
+  roleGrants              IdentityRoleGrant[]
+  permissionGrants        IdentityPermissionGrant[]
+  tokens                  IdentityToken[]
+  mfaRecoveryCodes        IdentityMfaRecoveryCode[]
+  verificationClaims      IdentityVerificationClaim[]
+  consentRecords          IdentityConsentRecord[]
+  profileClaims           IdentityProfileClaim[]
+  organizationAffiliations IdentityOrganizationAffiliation[]
+  trustedCitizenGrants    IdentityTrustedCitizenGrant[]
+  privacyRequests         IdentityPrivacyRequest[]
+  evidenceMetadata        IdentityEvidenceMetadata[]
+  eligibilitySnapshots    IdentityEligibilitySnapshot[]
+
+  @@index([role])
+  @@index([status])
+  @@index([emailVerificationStatus])
+  @@index([mfaEnabled])
+}
+
+model IdentityCredential {
+  id             String          @id
+  accountId      String
+  credentialType String
+  algorithm      String
+  salt           String
+  hash           String
+  metadata       Json            @default("{}")
+  createdAt      DateTime        @default(now())
+  revokedAt      DateTime?
+  account        IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([credentialType])
+}
+
+model IdentitySession {
+  id                 String          @id
+  accountId          String
+  sessionHash        String          @unique
+  createdAt          DateTime        @default(now())
+  lastSeenAt         DateTime?
+  expiresAt          DateTime
+  revokedAt          DateTime?
+  reason             String?
+  mfaAuthenticatedAt DateTime?
+  deviceSummary      String?
+  suspicious         Boolean         @default(false)
+  account            IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([expiresAt])
+  @@index([revokedAt])
+}
+
+model IdentityRoleGrant {
+  id        String          @id
+  accountId String
+  role      String
+  grantedBy String
+  grantedAt DateTime
+  revokedAt DateTime?
+  account   IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@unique([accountId, role, revokedAt])
+  @@index([accountId])
+  @@index([role])
+}
+
+model IdentityPermissionGrant {
+  id        String          @id
+  accountId String
+  permission String
+  grantedBy String
+  grantedAt DateTime
+  revokedAt DateTime?
+  account   IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@unique([accountId, permission, revokedAt])
+  @@index([accountId])
+  @@index([permission])
+}
+
+model IdentityToken {
+  id          String          @id
+  accountId   String
+  tokenType   String
+  tokenHash   String          @unique
+  purpose     String
+  createdAt   DateTime        @default(now())
+  expiresAt   DateTime
+  consumedAt  DateTime?
+  revokedAt   DateTime?
+  metadata    Json            @default("{}")
+  account     IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([tokenType])
+  @@index([expiresAt])
+}
+
+model IdentityMfaRecoveryCode {
+  id        String          @id
+  accountId String
+  codeHash  String
+  createdAt DateTime        @default(now())
+  usedAt    DateTime?
+  account   IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@unique([accountId, codeHash])
+  @@index([accountId])
+  @@index([usedAt])
+}
+
+model IdentityVerificationClaim {
+  id                  String          @id
+  accountId           String
+  claimType           String
+  jurisdictionIds     String[]
+  communityIds        String[]
+  method              String
+  provider            String
+  status              String
+  verifiedAt          DateTime?
+  expiresAt           DateTime?
+  reviewedAt          DateTime?
+  reviewerId          String?
+  assuranceLevel      String
+  evidenceDisposition String
+  evidenceHash        String?
+  sensitiveAddressRef String?
+  rejectionReason     String?
+  revocationReason    String?
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  account             IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  events              IdentityVerificationEvent[]
+  reviews             IdentityVerificationReview[]
+
+  @@index([accountId])
+  @@index([claimType])
+  @@index([status])
+  @@index([expiresAt])
+}
+
+model IdentityVerificationEvent {
+  id                  String                    @id
+  verificationClaimId String
+  eventType           String
+  actorAccountId      String?
+  summary             String
+  metadata            Json                      @default("{}")
+  createdAt           DateTime                  @default(now())
+  claim               IdentityVerificationClaim @relation(fields: [verificationClaimId], references: [id], onDelete: Cascade)
+
+  @@index([verificationClaimId])
+  @@index([eventType])
+  @@index([createdAt])
+}
+
+model IdentityVerificationReview {
+  id                  String                    @id
+  verificationClaimId String
+  reviewerAccountId   String?
+  decision            String
+  notes               String?
+  createdAt           DateTime                  @default(now())
+  claim               IdentityVerificationClaim @relation(fields: [verificationClaimId], references: [id], onDelete: Cascade)
+
+  @@index([verificationClaimId])
+  @@index([reviewerAccountId])
+  @@index([decision])
+}
+
+model IdentityConsentRecord {
+  id                String          @id
+  accountId         String
+  consentType       String
+  policyVersion     String
+  status            String
+  grantedAt         DateTime?
+  withdrawnAt       DateTime?
+  collectionContext String
+  createdAt         DateTime        @default(now())
+  account           IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([consentType])
+  @@index([status])
+}
+
+model IdentityProfileClaim {
+  id        String          @id
+  accountId String
+  category  String
+  claimKey  String
+  status    String
+  visibility String
+  consentId String?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  revokedAt DateTime?
+  account   IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([category])
+  @@index([visibility])
+}
+
+model IdentityOrganizationAffiliation {
+  id                                String          @id
+  accountId                         String
+  organizationName                  String
+  relationship                      String
+  status                            String
+  visibility                        String
+  authorizedToSpeakForOrganization  Boolean         @default(false)
+  createdAt                         DateTime        @default(now())
+  updatedAt                         DateTime        @updatedAt
+  account                           IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([status])
+}
+
+model IdentityTrustedCitizenGrant {
+  id          String          @id
+  accountId   String
+  status      String
+  capabilities String[]
+  grantReason String
+  grantedBy   String
+  grantedAt   DateTime
+  expiresAt   DateTime?
+  revokedAt   DateTime?
+  suspendedAt DateTime?
+  reviewNotes String?
+  account     IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([status])
+  @@index([expiresAt])
+}
+
+model IdentitySecurityEvent {
+  id             String   @id
+  eventType      String
+  accountId      String?
+  actorAccountId String?
+  summary        String
+  metadata       Json     @default("{}")
+  createdAt      DateTime @default(now())
+
+  @@index([accountId])
+  @@index([eventType])
+  @@index([createdAt])
+}
+
+model IdentityPrivacyRequest {
+  id          String          @id
+  accountId   String
+  requestType String
+  status      String
+  createdAt   DateTime        @default(now())
+  completedAt DateTime?
+  account     IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([status])
+}
+
+model IdentityEvidenceMetadata {
+  id                  String          @id
+  accountId           String
+  verificationClaimId String?
+  storageAdapter      String
+  objectRefHash       String
+  contentHash         String
+  documentCategory    String
+  encrypted           Boolean         @default(true)
+  sourceFileRetained  Boolean         @default(false)
+  purgeAfter          DateTime
+  purgedAt            DateTime?
+  accessHistory       Json            @default("[]")
+  createdAt           DateTime        @default(now())
+  account             IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([verificationClaimId])
+  @@index([purgeAfter])
+  @@index([purgedAt])
+}
+
+model IdentityEligibilitySnapshot {
+  id             String          @id
+  accountId      String
+  snapshotType   String
+  jurisdictionId String?
+  communityId    String?
+  status         String
+  assuranceLevel String
+  sourceClaimIds String[]
+  createdAt      DateTime        @default(now())
+  expiresAt      DateTime?
+  revokedAt      DateTime?
+  account        IdentityAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId])
+  @@index([snapshotType])
+  @@index([status])
+  @@index([expiresAt])
+}
+
+model IdentityJob {
+  id              String   @id
+  jobType         String
+  status          String
+  idempotencyKey  String   @unique
+  actorAccountId  String?
+  operationId     String?
+  parentJobId     String?
+  payload         Json     @default("{}")
+  attempts        Int      @default(0)
+  maxAttempts     Int      @default(3)
+  queuedAt        DateTime @default(now())
+  nextRunAt       DateTime?
+  startedAt       DateTime?
+  heartbeatAt     DateTime?
+  workerId        String?
+  lockedAt        DateTime?
+  completedAt     DateTime?
+  cancelledAt     DateTime?
+  failedAt        DateTime?
+  deadLetteredAt  DateTime?
+  failureReason   String?
+  events          IdentityJobEvent[]
+
+  @@index([jobType])
+  @@index([status])
+  @@index([queuedAt])
+  @@index([nextRunAt])
+  @@index([heartbeatAt])
+  @@index([workerId])
+  @@index([operationId])
+  @@index([deadLetteredAt])
+}
+
+model AdminOperation {
+  id                            String   @id
+  operationType                 String
+  triggerType                   String
+  actorUserId                   String
+  actorRole                     String
+  permissionsAtTrigger          String[]
+  scope                         Json     @default("{}")
+  sourceIds                     String[]
+  jurisdiction                  String?
+  documentType                  String?
+  validatedArguments            String[]
+  executionBackend              String
+  parentOperationId             String?
+  retryOfOperationId            String?
+  idempotencyKey                String   @unique
+  status                        String
+  currentStage                  String?
+  progressSummary               String
+  progress                      Json     @default("{}")
+  retryCount                    Int      @default(0)
+  createdAt                     DateTime @default(now())
+  queuedAt                      DateTime
+  startedAt                     DateTime?
+  heartbeatAt                   DateTime?
+  completedAt                   DateTime?
+  cancellationRequested         Boolean  @default(false)
+  cancellationReason            String?
+  sanitizedResultSummary        String?
+  externalRunUrl                String?
+  failureClassification         String?
+  environmentCapabilitySnapshot Json     @default("{}")
+  artifactReferences            String[]
+  stages                        AdminOperationStage[]
+  auditEvents                   AdminOperationAuditEvent[]
+  logReferences                 AdminOperationLogReference[]
+
+  @@index([operationType])
+  @@index([status])
+  @@index([queuedAt])
+  @@index([heartbeatAt])
+  @@index([parentOperationId])
+}
+
+model AdminOperationStage {
+  id          String         @id
+  operationId String
+  stageName   String
+  status      String
+  startedAt   DateTime?
+  heartbeatAt DateTime?
+  completedAt DateTime?
+  summary     String?
+  metadata    Json           @default("{}")
+  operation   AdminOperation @relation(fields: [operationId], references: [id], onDelete: Cascade)
+
+  @@unique([operationId, stageName])
+  @@index([operationId])
+  @@index([status])
+}
+
+model AdminOperationAuditEvent {
+  id          String         @id
+  operationId String
+  eventType   String
+  actorUserId String?
+  summary     String
+  metadata    Json           @default("{}")
+  createdAt   DateTime       @default(now())
+  operation   AdminOperation @relation(fields: [operationId], references: [id], onDelete: Cascade)
+
+  @@index([operationId])
+  @@index([eventType])
+  @@index([createdAt])
+}
+
+model AdminOperationLogReference {
+  id          String         @id
+  operationId String
+  stream      String
+  adapter     String
+  objectRef   String
+  preview     String?
+  createdAt   DateTime       @default(now())
+  operation   AdminOperation @relation(fields: [operationId], references: [id], onDelete: Cascade)
+
+  @@index([operationId])
+  @@index([stream])
+}
+
+model IdentityJobEvent {
+  id        String      @id
+  jobId     String
+  eventType String
+  summary   String
+  createdAt DateTime    @default(now())
+  job       IdentityJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId])
+  @@index([eventType])
 }

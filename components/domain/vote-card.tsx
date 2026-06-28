@@ -529,6 +529,9 @@ export function VoteCard({
           <TaxCostImpactBlock summary={taxCostImpact} compact />
         </div>
       ) : null}
+      <div className="relative mt-4 rounded-[1.35rem] border border-cyan-300/16 bg-cyan-500/10 px-4 py-3 text-xs leading-5 text-cyan-50">
+        Your individual response is private platform participation data. Official-facing dashboards only show aggregate verified cohorts when enough people have responded.
+      </div>
 
       {showResults && !isEditingVote ? (
         <div className="relative mt-5 space-y-3">
