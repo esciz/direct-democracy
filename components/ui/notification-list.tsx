@@ -56,6 +56,10 @@ function getNotificationHref(notification: NotificationSummary) {
     return notification.contextEntityId ?? "/debates";
   }
 
+  if (notification.type === "watchlistUpdate") {
+    return notification.contextEntityId ?? "/profile/updates";
+  }
+
   if (notification.type === "debateChallenge" || notification.type === "debateGroupJoin") {
     return `/debates/${notification.entityId}`;
   }
@@ -128,6 +132,10 @@ function getNotificationLinkLabel(notification: NotificationSummary) {
 
   if (notification.type === "debateRecommended") {
     return "Open recommendation";
+  }
+
+  if (notification.type === "watchlistUpdate") {
+    return "Open update";
   }
 
   if (notification.type === "debateChallenge" || notification.type === "debateGroupJoin") {

@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-28T23:23:07.785Z",
+  "status": "passed",
+  "totals": {
+    "sourceBackedDecisionsAvailable": 756,
+    "sourceBackedProjectsAvailable": 314,
+    "concernEntryPoints": 3,
+    "missingDestinationChecks": 0,
+    "notificationPathsConfigured": true
+  },
+  "checks": {
+    "digestModuleExists": true,
+    "profileUpdatesRouteExists": true,
+    "profileLinksToUpdates": true,
+    "notificationTypeRegistered": true,
+    "notificationsComputed": true,
+    "notificationReadTracking": true,
+    "notificationRoutesToDigest": true,
+    "updateRecordsHaveDestinations": true,
+    "updateRecordsHaveSourceLabels": true
+  },
+  "failures": []
+}

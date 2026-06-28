@@ -191,6 +191,9 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
               Follow decisions, projects, meetings, issues, and communities to keep a personal list of what changed and what to check next.
             </p>
+            <Link href="/profile/updates" className="mt-4 inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
+              View updates
+            </Link>
           </div>
           <div className="grid grid-cols-3 gap-2 text-center text-xs font-semibold text-slate-600">
             <span className="rounded-2xl bg-slate-50 px-3 py-2">{actionDashboard.totals.followedItems} followed</span>

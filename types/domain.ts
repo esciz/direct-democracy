@@ -477,7 +477,8 @@ export type NotificationType =
   | "messageReplyReceived"
   | "organizationAnnouncement"
   | "followeePost"
-  | "followeeMajorAction";
+  | "followeeMajorAction"
+  | "watchlistUpdate";
 export type CaseCourtLevel = "local" | "state" | "federal";
 export type CaseStage = "trial" | "appeal" | "cert" | "merits";
 export type CaseStatus = "active" | "watching" | "closed";

@@ -1,14 +1,17 @@
 import { cache } from "react";
 import { cookies } from "next/headers";
 
+import { getCitizenUpdateDigest } from "@/lib/citizen-actions/updates";
 import { seedUsers } from "@/lib/auth/mock-users";
 import { getRecommendedDebatesForUser } from "@/lib/debates/recommendations";
+import { accountToAuthUser, getIdentityAccountById } from "@/lib/identity/accounts";
 import { getNotificationPreferences } from "@/lib/notifications/preferences";
 import { getFollowerUserIds } from "@/lib/social/follows";
 import type { NotificationSummary, NotificationType } from "@/types/domain";
 
 const NOTIFICATIONS_COOKIE = "dd_mock_notifications";
 const RECOMMENDED_DEBATE_NOTIFICATIONS_COOKIE = "dd_recommended_debate_notification_reads";
+const WATCHLIST_UPDATE_NOTIFICATION_READS_COOKIE = "dd_watchlist_update_notification_reads";
 const seededNotifications: NotificationSummary[] = [
   {
     id: "notification_seeded_carson_meeting_archives_alicia",
@@ -137,6 +140,31 @@ async function writeRecommendedDebateNotificationReads(ids: string[]) {
   });
 }
 
+async function readWatchlistUpdateNotificationReads() {
+  const cookieStore = await cookies();
+  const raw = cookieStore.get(WATCHLIST_UPDATE_NOTIFICATION_READS_COOKIE)?.value;
+
+  if (!raw) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.filter((value): value is string => typeof value === "string") : [];
+  } catch {
+    return [];
+  }
+}
+
+async function writeWatchlistUpdateNotificationReads(ids: string[]) {
+  const cookieStore = await cookies();
+  cookieStore.set(WATCHLIST_UPDATE_NOTIFICATION_READS_COOKIE, JSON.stringify(ids.slice(0, 200)), {
+    httpOnly: true,
+    sameSite: "lax",
+    path: "/",
+  });
+}
+
 async function getComputedRecommendedDebateNotifications(userId: string): Promise<NotificationSummary[]> {
   const user = seedUsers.find((entry) => entry.id === userId);
 
@@ -167,12 +195,44 @@ async function getComputedRecommendedDebateNotifications(userId: string): Promis
     .filter((notification) => !notification.isRead);
 }
 
+async function getComputedWatchlistUpdateNotifications(userId: string): Promise<NotificationSummary[]> {
+  const user = seedUsers.find((entry) => entry.id === userId) ?? (getIdentityAccountById(userId) ? accountToAuthUser(getIdentityAccountById(userId)!) : null);
+
+  if (!user || user.isAnonymousPublic) {
+    return [];
+  }
+
+  const [digest, readIds] = await Promise.all([
+    getCitizenUpdateDigest(user).catch(() => null),
+    readWatchlistUpdateNotificationReads(),
+  ]);
+  const readSet = new Set(readIds);
+
+  return (digest?.records ?? [])
+    .slice(0, 8)
+    .map(
+      (record): NotificationSummary => ({
+        id: record.id,
+        userId,
+        type: "watchlistUpdate",
+        title: record.title,
+        body: `${record.sourceLabel}: ${record.summary}`,
+        entityId: record.targetId,
+        contextEntityId: record.href,
+        isRead: readSet.has(record.id),
+        createdAt: record.generatedAt,
+      }),
+    )
+    .filter((notification) => !notification.isRead);
+}
+
 const getNotificationsForUserCached = cache(async (userId: string): Promise<NotificationSummary[]> => {
-  const [storedNotifications, computedRecommendedNotifications] = await Promise.all([
+  const [storedNotifications, computedRecommendedNotifications, computedWatchlistNotifications] = await Promise.all([
     readNotifications(),
     getComputedRecommendedDebateNotifications(userId),
+    getComputedWatchlistUpdateNotifications(userId),
   ]);
-  const notifications = [...seededNotifications, ...storedNotifications, ...computedRecommendedNotifications];
+  const notifications = [...seededNotifications, ...storedNotifications, ...computedRecommendedNotifications, ...computedWatchlistNotifications];
 
   return notifications
     .filter((notification) => notification.userId === userId)
@@ -354,6 +414,10 @@ export async function createPetitionProgressNotifications({
     followeeMajorAction: {
       title: "Someone you follow took a major civic action",
       body: "A followed voice took a public civic action on the platform.",
+    },
+    watchlistUpdate: {
+      title: "Watchlist update",
+      body: "A followed civic item has an update available.",
     },
   };
 
@@ -792,6 +856,12 @@ export async function markNotificationRead(notificationId: string, userId: strin
     return;
   }
 
+  if (notificationId.startsWith("watchlist_update_")) {
+    const readIds = await readWatchlistUpdateNotificationReads();
+    await writeWatchlistUpdateNotificationReads([...new Set([...readIds, notificationId])]);
+    return;
+  }
+
   const notifications = await readNotifications();
   const updated = notifications.map((notification) =>
     notification.id === notificationId && notification.userId === userId
@@ -809,6 +879,8 @@ export async function markAllNotificationsRead(userId: string) {
   const notifications = await readNotifications();
   const recommendations = await getComputedRecommendedDebateNotifications(userId);
   const readIds = await readRecommendedDebateNotificationReads();
+  const watchlistUpdates = await getComputedWatchlistUpdateNotifications(userId);
+  const watchlistReadIds = await readWatchlistUpdateNotificationReads();
   const updated = notifications.map((notification) =>
     notification.userId === userId
       ? {
@@ -820,6 +892,9 @@ export async function markAllNotificationsRead(userId: string) {
 
   if (recommendations.length) {
     await writeRecommendedDebateNotificationReads([...new Set([...readIds, ...recommendations.map((notification) => notification.id)])]);
+  }
+  if (watchlistUpdates.length) {
+    await writeWatchlistUpdateNotificationReads([...new Set([...watchlistReadIds, ...watchlistUpdates.map((notification) => notification.id)])]);
   }
   await writeNotifications(updated);
 }
