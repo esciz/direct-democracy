@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-24T18:49:42.829Z",
+  "generatedAt": "2026-06-28T19:26:28.803Z",
   "provenance": {
-    "runId": "20260624184942-unknown-2l2qfk",
-    "generatedAt": "2026-06-24T18:49:42.813Z",
+    "runId": "20260628192628-unknown-nqnz0w",
+    "generatedAt": "2026-06-28T19:26:28.789Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "unknown",
     "storageBackend": "identity_token_prisma_when_available",
     "workerBackend": "durable_queue",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "not_canonical",
     "artifactName": "email-provider-audit"
   },
@@ -49,9 +49,9 @@
   },
   "durableTokenCounts": {
     "status": "schema_ready",
-    "totalTokens": 3,
-    "activeTokens": 1,
-    "expiredUnconsumed": 2
+    "totalTokens": 6,
+    "activeTokens": 0,
+    "expiredUnconsumed": 5
   },
   "promotion": {
     "eligible": true,

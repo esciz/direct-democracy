@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-24T01:59:15.687Z",
+  "generatedAt": "2026-06-28T19:27:12.293Z",
   "provenance": {
-    "runId": "20260624015915-local-network-enabled-huwwm4",
-    "generatedAt": "2026-06-24T01:59:15.687Z",
+    "runId": "20260628192712-local-network-enabled-8ggjlu",
+    "generatedAt": "2026-06-28T19:27:12.293Z",
     "executionEnvironment": "local_network_enabled",
     "networkCapability": "available",
     "databaseReachability": "database_reachable",
     "storageBackend": "schema_ready",
     "workerBackend": "worker_configured",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "not_canonical",
     "artifactName": "worker-smoke-test"
   },
@@ -17,29 +17,40 @@
   "workerStatusBefore": "worker_configured",
   "workerStatusAfter": "worker_configured",
   "workerConfigured": true,
-  "workerId": "worker_smoke_81818",
+  "workerId": "worker_smoke_68809",
   "internalJob": {
     "jobType": "scheduled_health_check",
     "queued": true,
-    "jobId": "job_a7c6c73354f55f80417135d2",
+    "jobId": "job_2fd1940a59e3544ce6d139b8",
     "claimed": true,
     "completed": true,
     "status": "succeeded"
   },
-  "emailProviderStatus": "development_adapter",
+  "emailProviderStatus": "production_provider_configured",
   "emailJob": {
-    "skipped": true,
-    "status": "skipped_missing_recipient",
-    "reason": "Pass --recipient=<authorized-address> to include email delivery in worker smoke."
+    "jobType": "email_delivery",
+    "queued": true,
+    "jobId": "job_267926ce8ec293d6320efd1b",
+    "claimed": true,
+    "completed": true,
+    "status": "succeeded",
+    "recipient": "ad***@directyourdemocracy.com"
   },
-  "evidenceStorageStatus": "verification_evidence_storage_unconfigured",
-  "evidencePurgeJob": null,
+  "evidenceStorageStatus": "production_storage_configured",
+  "evidencePurgeJob": {
+    "jobType": "verification_evidence_purge",
+    "queued": true,
+    "jobId": "job_260fb06897e0869444e73f33",
+    "claimed": true,
+    "completed": true,
+    "status": "succeeded"
+  },
   "workerHeartbeatRecorded": true,
   "retryAndDeadLetterBoundaryPresent": true,
   "durableQueueHealth": {
     "queueDepth": 0,
     "runningJobs": 0,
-    "deadLetters": 0,
+    "deadLetters": 2,
     "staleRunningJobs": 0
   },
   "sensitiveValuesIncluded": false

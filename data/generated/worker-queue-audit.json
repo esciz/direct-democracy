@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-24T01:59:17.067Z",
+  "generatedAt": "2026-06-28T19:27:15.007Z",
   "provenance": {
-    "runId": "20260624015917-local-network-enabled-6kjnt9",
-    "generatedAt": "2026-06-24T01:59:17.039Z",
+    "runId": "20260628192714-local-network-enabled-2v92qi",
+    "generatedAt": "2026-06-28T19:27:14.993Z",
     "executionEnvironment": "local_network_enabled",
     "networkCapability": "available",
     "databaseReachability": "database_reachable",
     "storageBackend": "schema_ready",
     "workerBackend": "configured_runtime",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "not_canonical",
     "artifactName": "worker-queue-audit"
   },
@@ -18,7 +18,7 @@
     "storageStatus": "schema_ready",
     "queueDepth": 0,
     "runningJobs": 0,
-    "deadLetters": 0,
+    "deadLetters": 2,
     "cancelledJobs": 0,
     "staleRunningJobs": 0
   },
@@ -43,14 +43,29 @@
   ],
   "queueByJobType": [
     {
+      "jobType": "email_delivery",
+      "status": "dead_lettered",
+      "count": 2
+    },
+    {
+      "jobType": "email_delivery",
+      "status": "succeeded",
+      "count": 3
+    },
+    {
       "jobType": "scheduled_health_check",
       "status": "succeeded",
-      "count": 1
+      "count": 4
+    },
+    {
+      "jobType": "verification_evidence_purge",
+      "status": "succeeded",
+      "count": 2
     }
   ],
   "latestSmokeTest": {
     "status": "smoke_passed",
-    "workerConfigured": false,
+    "workerConfigured": true,
     "workerHeartbeatRecorded": true,
     "sensitiveValuesIncluded": true
   },

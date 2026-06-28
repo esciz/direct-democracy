@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-25T02:31:32.830Z",
+  "generatedAt": "2026-06-28T19:26:41.278Z",
   "provenance": {
-    "runId": "20260625023132-unknown-814qmf",
-    "generatedAt": "2026-06-25T02:31:32.812Z",
+    "runId": "20260628192641-unknown-0t72de",
+    "generatedAt": "2026-06-28T19:26:41.263Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "not_required",
     "storageBackend": "production_storage_configured",
     "workerBackend": "operator_or_worker",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "not_canonical",
     "artifactName": "evidence-purge-audit"
   },

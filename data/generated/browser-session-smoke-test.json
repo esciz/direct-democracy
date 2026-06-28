@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-25T02:31:33.028Z",
+  "generatedAt": "2026-06-28T19:26:40.934Z",
   "provenance": {
-    "runId": "20260625023133-unknown-xzjxn8",
-    "generatedAt": "2026-06-25T02:31:33.009Z",
+    "runId": "20260628192640-unknown-0p5iez",
+    "generatedAt": "2026-06-28T19:26:40.907Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "not_required",
     "storageBackend": "production_storage_configured",
     "workerBackend": "not_required",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "not_canonical",
     "artifactName": "browser-session-smoke-test"
   },
@@ -18,8 +18,8 @@
   "retrievalSucceeded": true,
   "validationRecorded": true,
   "revocationRecorded": true,
-  "encryptedPathHash": "050125f4defe71283e7fa104d0c95d2aef93a55be6b8f3f71d4719fee529039a",
-  "metadataHash": "380d2c46a48629286125edb44a982b24e3b95a7ae006c98652d5f04ea0a7a714",
+  "encryptedPathHash": "360cd9a6ba93da026cb2dffd3375cc0ce2c7d4ab6498f9c1aae2c78a10e37f04",
+  "metadataHash": "efb4907daceee79f6118f3d4924ad16cb7797bb282b5fd37f5988fa79df827c0",
   "rawStorageStateInGeneratedArtifact": false,
   "ephemeralKeyUsed": false,
   "sensitiveValuesIncluded": false

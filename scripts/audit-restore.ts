@@ -14,19 +14,33 @@ function readRestoreSmokeTest() {
   return JSON.parse(readFileSync(filePath, "utf8")) as Record<string, unknown>;
 }
 
+function sameConfiguredDatabase(left?: string, right?: string) {
+  return Boolean(left && right && left.trim() === right.trim());
+}
+
 async function main() {
   const latestSmoke = readRestoreSmokeTest();
+  const restoreTestDatabaseConfigured = Boolean(process.env.DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL);
+  const restoreTestDatabaseSeparateFromPrimary = restoreTestDatabaseConfigured
+    ? !sameConfiguredDatabase(process.env.DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL, process.env.DATABASE_URL)
+    : false;
+  const latestSmokeReady = latestSmoke?.status === "restore_smoke_test_ready_for_operator";
+  const restoreTested = process.env.DIRECT_DEMOCRACY_DATABASE_RESTORE_TESTED === "true"
+    && restoreTestDatabaseConfigured
+    && restoreTestDatabaseSeparateFromPrimary
+    && latestSmokeReady;
   const provenance = createAuditProvenance({
     artifactName: "restore-audit",
-    databaseReachability: process.env.DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL ? "restore_target_configured_unverified" : "restore_target_unconfigured",
+    databaseReachability: restoreTestDatabaseConfigured && restoreTestDatabaseSeparateFromPrimary ? "restore_target_configured_unverified" : "restore_target_unconfigured",
     storageBackend: "backup_restore",
     workerBackend: "operator",
   });
   const report = {
     generatedAt: new Date().toISOString(),
     provenance,
-    restore: process.env.DIRECT_DEMOCRACY_DATABASE_RESTORE_TESTED === "true" ? "restore_tested" : "restore_untested",
-    restoreTestDatabaseConfigured: Boolean(process.env.DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL),
+    restore: restoreTested ? "restore_tested" : "restore_untested",
+    restoreTestDatabaseConfigured,
+    restoreTestDatabaseSeparateFromPrimary,
     latestSmokeTest: latestSmoke,
     destructivePrimaryRestoreAvailable: false,
     primaryDatabaseTouched: false,

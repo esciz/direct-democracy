@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-06-25T02:31:33.191Z",
+  "generatedAt": "2026-06-28T19:26:41.094Z",
   "provenance": {
-    "runId": "20260625023133-unknown-zehofk",
-    "generatedAt": "2026-06-25T02:31:33.172Z",
+    "runId": "20260628192641-unknown-zig272",
+    "generatedAt": "2026-06-28T19:26:41.077Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "not_required",
     "storageBackend": "production_storage_configured",
     "workerBackend": "not_required",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "not_canonical",
     "artifactName": "browser-session-storage-audit"
   },
   "status": "production_storage_configured",
-  "localRecords": 3,
-  "expiredRecords": 2,
-  "revokedRecords": 3,
+  "localRecords": 4,
+  "expiredRecords": 3,
+  "revokedRecords": 4,
   "records": [
     {
       "metadataFile": "browser_session_1782061591940_83c0d633c4ab8583.metadata.json",
@@ -40,6 +40,15 @@
       "createdAt": "2026-06-25T02:31:33.027Z",
       "expiresAt": "2026-06-25T03:31:33.027Z",
       "revokedAt": "2026-06-25T02:31:33.028Z",
+      "reauthenticationRequired": true,
+      "expired": true,
+      "sizeBytes": 955
+    },
+    {
+      "metadataFile": "browser_session_1782674800932_ef7338404c6d8c07.metadata.json",
+      "createdAt": "2026-06-28T19:26:40.933Z",
+      "expiresAt": "2026-06-28T20:26:40.932Z",
+      "revokedAt": "2026-06-28T19:26:40.933Z",
       "reauthenticationRequired": true,
       "expired": false,
       "sizeBytes": 955

@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-24T18:49:27.202Z",
+  "generatedAt": "2026-06-28T17:26:25.134Z",
   "provenance": {
-    "runId": "20260624184927-unknown-kjldtd",
-    "generatedAt": "2026-06-24T18:49:27.202Z",
+    "runId": "20260628172625-unknown-lxxv3p",
+    "generatedAt": "2026-06-28T17:26:25.134Z",
     "executionEnvironment": "unknown",
     "networkCapability": "available",
     "databaseReachability": "durable_queue_required",
     "storageBackend": "identity_token_prisma_when_available",
     "workerBackend": "durable_queue",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "not_canonical",
     "artifactName": "email-test-audit"
   },
@@ -23,7 +23,7 @@
   "tokenCreated": true,
   "tokenHashPersisted": true,
   "operatorAccountResolved": true,
-  "jobId": "job_8954edbf6a4a8179a2996187",
-  "workerId": "production_email_test_22309",
+  "jobId": "job_d5c5f98e8320dfa802e7231e",
+  "workerId": "production_email_test_51471",
   "workerResult": "succeeded"
 }

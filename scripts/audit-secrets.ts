@@ -21,7 +21,7 @@ const SECRET_DOMAINS = [
 
 function configured(name: string) {
   const value = process.env[name];
-  return Boolean(value && value.trim() && !value.includes("replace-with") && !value.includes("placeholder"));
+  return Boolean(value && value.trim() && !/replace-with|placeholder|paste_[a-z0-9_]*_here/i.test(value));
 }
 
 async function main() {

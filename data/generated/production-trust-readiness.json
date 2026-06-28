@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-25T03:01:01.873Z",
+  "generatedAt": "2026-06-28T19:27:43.077Z",
   "status": "ready",
   "readiness": {
     "database": "ready",
@@ -19,14 +19,14 @@
     "officialScorecards": "not_applicable"
   },
   "provenance": {
-    "runId": "20260625030101-local-network-enabled-k62ge1",
-    "generatedAt": "2026-06-25T03:01:01.873Z",
+    "runId": "20260628192743-local-network-enabled-juqw57",
+    "generatedAt": "2026-06-28T19:27:43.077Z",
     "executionEnvironment": "local_network_enabled",
     "networkCapability": "available",
     "databaseReachability": "database_reachable",
     "storageBackend": "prisma_durable",
     "workerBackend": "worker_configured",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "promoted_from_run",
     "artifactName": "production-trust-readiness"
   },
@@ -88,8 +88,8 @@
   "workerSmoke": {
     "status": "smoke_passed",
     "internalJob": "succeeded",
-    "emailJob": "skipped_missing_recipient",
-    "evidencePurgeJob": null,
+    "emailJob": "succeeded",
+    "evidencePurgeJob": "succeeded",
     "workerHeartbeatRecorded": true
   },
   "queue": {
@@ -101,7 +101,7 @@
   "backup": "backup_configured",
   "restore": "restore_tested",
   "trustServicesPlan": {
-    "generatedAt": "2026-06-25T03:01:01.767Z",
+    "generatedAt": "2026-06-28T19:27:42.978Z",
     "services": 7,
     "sensitiveValuesIncluded": true
   },
@@ -257,6 +257,6 @@
     "requiresExplicitCommand": true
   },
   "sensitiveValuesIncluded": false,
-  "promotedAt": "2026-06-25T03:01:39.524Z",
-  "promotedFromRunId": "20260625030101-local-network-enabled-k62ge1"
+  "promotedAt": "2026-06-28T19:29:07.590Z",
+  "promotedFromRunId": "20260628192743-local-network-enabled-juqw57"
 }

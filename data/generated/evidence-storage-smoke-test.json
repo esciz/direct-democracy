@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-25T02:31:32.543Z",
+  "generatedAt": "2026-06-28T19:26:40.933Z",
   "provenance": {
-    "runId": "20260625023132-unknown-yjh1x2",
-    "generatedAt": "2026-06-25T02:31:32.523Z",
+    "runId": "20260628192640-unknown-cr5yfo",
+    "generatedAt": "2026-06-28T19:26:40.908Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "not_required",
     "storageBackend": "production_storage_configured",
     "workerBackend": "not_required",
-    "gitCommit": "d63f485c43da",
+    "gitCommit": "66b8680416aa",
     "canonicalStatus": "not_canonical",
     "artifactName": "evidence-storage-smoke-test"
   },
@@ -20,9 +20,9 @@
   "purgeSucceeded": true,
   "metadataRemains": true,
   "rawContentGone": true,
-  "objectRefHash": "840713d11917b862402c5ee0ab84715ea9c4ed648eb4dad1232f56c87171ec78",
+  "objectRefHash": "7c776bf936213b946268959bd48cf668c040b1e67b91a54a636acc63054b0585",
   "contentHash": "a580a4a92ef8d5c28ba07d43410bd8bdd0ea470461593dc7e5fbb354174098b9",
-  "localPathHash": "725292e75abaff483538ba600d4e9a1fb9c6db272f31fbe99f668844875fa3ba",
+  "localPathHash": "e360afd1d6372b56b28608471316b129a22c3f5590a1fc02965c799649c6af0b",
   "rawContentInGeneratedArtifact": false,
   "ephemeralKeyUsed": false,
   "sensitiveValuesIncluded": false

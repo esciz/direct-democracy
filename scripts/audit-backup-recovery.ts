@@ -17,7 +17,13 @@ function readGenerated(fileName: string) {
 
 async function main() {
   const backupConfigured = process.env.DIRECT_DEMOCRACY_DATABASE_BACKUP_CONFIGURED === "true";
-  const restoreTested = process.env.DIRECT_DEMOCRACY_DATABASE_RESTORE_TESTED === "true";
+  const latestRestoreSmokeTest = readGenerated("restore-smoke-test-audit.json");
+  const restoreUrlConfigured = Boolean(process.env.DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL);
+  const restoreUrlSeparateFromPrimary = restoreUrlConfigured && process.env.DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL !== process.env.DATABASE_URL;
+  const restoreTested = process.env.DIRECT_DEMOCRACY_DATABASE_RESTORE_TESTED === "true"
+    && restoreUrlConfigured
+    && restoreUrlSeparateFromPrimary
+    && latestRestoreSmokeTest?.status === "restore_smoke_test_ready_for_operator";
   const provenance = createAuditProvenance({
     artifactName: "backup-recovery-audit",
     databaseReachability: isDatabaseConfigured() ? "configured_unverified" : "database_unconfigured",
@@ -31,7 +37,7 @@ async function main() {
     backup: backupConfigured ? "backup_configured" : "backup_unconfigured",
     restore: restoreTested ? "restore_tested" : "restore_untested",
     latestBackupCreate: readGenerated("backup-create-audit.json"),
-    latestRestoreSmokeTest: readGenerated("restore-smoke-test-audit.json"),
+    latestRestoreSmokeTest,
     controls: {
       providerBackedBackupRequired: true,
       destructivePrimaryRestoreCommandAvailable: false,
