@@ -1,128 +1,27 @@
 {
-  "generatedAt": "2026-06-28T16:54:28.438Z",
-  "status": "object_cache_partial",
+  "generatedAt": "2026-06-28T22:26:56.576Z",
+  "status": "object_cache_complete",
   "backend": "vercel_blob",
   "storageRootFingerprint": null,
   "bucketConfigured": false,
   "tokenConfigured": true,
   "priorExport": {
-    "generatedAt": "2026-06-28T16:51:03.073Z",
-    "status": "export_partial",
-    "objectsWritten": 0,
-    "objectsAlreadyPresent": 474
+    "generatedAt": "2026-06-28T22:25:24.037Z",
+    "status": "export_complete",
+    "objectsWritten": 1,
+    "objectsAlreadyPresent": 1935
   },
   "totals": {
     "cacheRecords": 1936,
     "runtimeSourceFilesPresent": 1936,
-    "objectsPresent": 474,
-    "bytesPresent": 2554967084,
-    "missingObjects": 1462,
+    "objectsPresent": 1936,
+    "bytesPresent": 9486378743,
+    "missingObjects": 0,
     "objectSizeMismatches": 0,
     "providerErrors": 0
   },
   "samples": {
-    "missingObjects": [
-      {
-        "documentId": "meeting-source-document-3a24f49a38b152c438130922600fd9f229da4f8f3a43dcfbc0e1b55eb9e17c9e",
-        "objectKey": "public-meeting-cache/sha256/c4/c43399720f1c673ff8280cb449e69bf00c206df8f6db468305d9d1cd3b151f8d"
-      },
-      {
-        "documentId": "meeting-source-document-3a33f916b6b529f3064fdda622f322356555b1464ceb67baedbf9ab9cb4a91c1",
-        "objectKey": "public-meeting-cache/sha256/3a/3a33f916b6b529f3064fdda622f322356555b1464ceb67baedbf9ab9cb4a91c1"
-      },
-      {
-        "documentId": "meeting-source-document-3a4d50fa39e6e027e4002f20edf90b0bf01ad068fea58061cbe84ae211e89c05",
-        "objectKey": "public-meeting-cache/sha256/3a/3a4d50fa39e6e027e4002f20edf90b0bf01ad068fea58061cbe84ae211e89c05"
-      },
-      {
-        "documentId": "meeting-source-document-3a4db71bf0313956f53b2ea7f2f8c99e831b0601ac610f925a2f9eb7801033b4",
-        "objectKey": "public-meeting-cache/sha256/d5/d552b2302899702249c59ff5c549c71dbe31fafdb566aa0c24f16cb8e59df43c"
-      },
-      {
-        "documentId": "meeting-source-document-3a77162a3c940ed24232798eee21a616443fd6849e7b8c6d7852c7041c32fb8e",
-        "objectKey": "public-meeting-cache/sha256/8e/8e6cd583dfe81816308523d1e35854b4e26b5540c9f13fc1e6b220a97faa7ced"
-      },
-      {
-        "documentId": "meeting-source-document-3a9c6ec30c02c65fe85f3cdbf503633c477765afec5f435f9514327d0b2e229c",
-        "objectKey": "public-meeting-cache/sha256/52/528b47d56860fbe8a3ed05a0a5f60d038fd3913719f7b5b925219421bac112bd"
-      },
-      {
-        "documentId": "meeting-source-document-3aade125d25659a990a9e5e64ea78c5f0cb4814114d84b81d503bd05142b90b2",
-        "objectKey": "public-meeting-cache/sha256/fa/faadc60c5e99cc461db94d418cd0cca1f52f986554a90424ec47f4b7a23b935c"
-      },
-      {
-        "documentId": "meeting-source-document-3ad3968b3db16d6a05ca5a31ae0f985ebbf2dcae14e39d02272d9d44b5a2bc88",
-        "objectKey": "public-meeting-cache/sha256/ae/ae53524b3f0bd62871f7121ba920b6554738e707916cf87851946073b2382b8e"
-      },
-      {
-        "documentId": "meeting-source-document-3ad7c5e03ecb5c65e976df07b19c0195306f4259c5f72a9b6cae403983acb806",
-        "objectKey": "public-meeting-cache/sha256/de/dea927e2f3984e75365e4fa276351466316a64d0b32aa9ff8154a210baa2a7e1"
-      },
-      {
-        "documentId": "meeting-source-document-3ae2b5ff2cb1a4a9b35fc4b3ceabb8dd439a8914684fa9791bd1793f40fa0804",
-        "objectKey": "public-meeting-cache/sha256/62/622f1a86dd3ff7560d83a0692f1ca96fdf090f26dfa90d5290c89754a1a88f16"
-      },
-      {
-        "documentId": "meeting-source-document-3ae78a36802ca57c6325851dcd8beeccd96962a81cffee4f6c4fdd9710250bfd",
-        "objectKey": "public-meeting-cache/sha256/6e/6e7ad10a844984575c88ef0f165c31fb5ee32a5d36eafb8343191bd7abde8048"
-      },
-      {
-        "documentId": "meeting-source-document-3b2bf4c770a0d8cc3213040af96848fe9197716b9873cbbd3f37f2d727b708e4",
-        "objectKey": "public-meeting-cache/sha256/3b/3b2bf4c770a0d8cc3213040af96848fe9197716b9873cbbd3f37f2d727b708e4"
-      },
-      {
-        "documentId": "meeting-source-document-3b44d290552e653e20b6fcc569bfa74cc9976636223ddbc0fb57343009153e91",
-        "objectKey": "public-meeting-cache/sha256/a5/a557a80908e20ded135df48dcfc373c824b0332501f57dfbd328b31115763cb1"
-      },
-      {
-        "documentId": "meeting-source-document-3b6133952d2db90995fa01769055a98d48733cd08082af5655d2dfef7d49eddf",
-        "objectKey": "public-meeting-cache/sha256/11/11a7d79966431366ed68b76f9a7ae1cdb8c70ea6857303857e6232b3c6610a86"
-      },
-      {
-        "documentId": "meeting-source-document-3b9622310fca14b3ef37e289c8349939c9ab944889c14121b8d45c8745a04d47",
-        "objectKey": "public-meeting-cache/sha256/b4/b45895a884d51ad78b9e7b3c7f35825b705d9a6a87237f63414134e9bca75467"
-      },
-      {
-        "documentId": "meeting-source-document-3b96ad717dd178840c5c5ed5c81633f284287ae7e9e6cd75818f31372dad2064",
-        "objectKey": "public-meeting-cache/sha256/9e/9e47c37aec5c4e26fa4193a0862a0395ad1375ef6129ec00b89c8263faaee596"
-      },
-      {
-        "documentId": "meeting-source-document-3bb8438345d033365ad315c3096ee627435d28fe5c6a9721ffcfd6a655c5ec71",
-        "objectKey": "public-meeting-cache/sha256/3b/3bb8438345d033365ad315c3096ee627435d28fe5c6a9721ffcfd6a655c5ec71"
-      },
-      {
-        "documentId": "meeting-source-document-3bbb0e6cab4e746780b7949c3864c8faa22ceb84726ba786a627e3f69bb9fb36",
-        "objectKey": "public-meeting-cache/sha256/a1/a1a044e4f69a08bd0bab081cdb2ecbc2aa8b85370aaa44c0a3f81e2000c3b96c"
-      },
-      {
-        "documentId": "meeting-source-document-3bebe627bc3ef425b4b9796f603f53af9bbd6dcd2aba2375bfcdf0b90f80b1a6",
-        "objectKey": "public-meeting-cache/sha256/3d/3d59669a8f5f3f330237cd6b64b3a80be083dd180dde74a7043f78d3c23d9fb4"
-      },
-      {
-        "documentId": "meeting-source-document-3bf81535e9a18be46c932adfd6b1d1fb064b96137aa843fddfe3f7659597d773",
-        "objectKey": "public-meeting-cache/sha256/84/846fbdfbebd683b39457230ec45ae52fa8e83c86640026ff934c305f85ca82dc"
-      },
-      {
-        "documentId": "meeting-source-document-3c243f44cf83586f38d963df2164ca5c990fb7a5b629dcf1e0a4d549ba894353",
-        "objectKey": "public-meeting-cache/sha256/ec/ec58aa99a239130223eeed439b2429ca180a197b5c67567ad2761ccdc794c35b"
-      },
-      {
-        "documentId": "meeting-source-document-3c45fb47ecce6687c47490809f9b7f47c4dbe1641dfd58f28204a31f74a3c2f8",
-        "objectKey": "public-meeting-cache/sha256/3c/3c45fb47ecce6687c47490809f9b7f47c4dbe1641dfd58f28204a31f74a3c2f8"
-      },
-      {
-        "documentId": "meeting-source-document-3c6c8c0fb36fe91cf8f5386667951fb0862d40587030e52b3eb451305a96d056",
-        "objectKey": "public-meeting-cache/sha256/74/74b47b66603fcc7181829d2e8a1e608e60063e8bb63dca24be008715a79b217c"
-      },
-      {
-        "documentId": "meeting-source-document-3c8deb7de78473568e62fc679654c3c6c5d10b9249a3913d970bdfd9d0ceeed6",
-        "objectKey": "public-meeting-cache/sha256/49/496de63fa0a5dd996f37139849a534bbd94271cb8d2ffc0475e5863a62ad2e83"
-      },
-      {
-        "documentId": "meeting-source-document-3d3d6d845436eba75055a124f4c34d71c62f5e63c9c4f16ec715f0e6f7553635",
-        "objectKey": "public-meeting-cache/sha256/3d/3d3d6d845436eba75055a124f4c34d71c62f5e63c9c4f16ec715f0e6f7553635"
-      }
-    ],
+    "missingObjects": [],
     "mismatches": [],
     "providerErrors": []
   },

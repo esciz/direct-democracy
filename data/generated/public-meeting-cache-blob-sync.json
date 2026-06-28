@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-28T16:54:28.688Z",
-  "status": "blob_sync_incomplete",
+  "generatedAt": "2026-06-28T22:26:48.133Z",
+  "status": "blob_sync_complete",
   "credentials": {
     "classicBlobTokenConfigured": true,
     "oidcTokenAndStoreConfigured": false,
@@ -19,36 +19,15 @@
     "providerErrors": 0
   },
   "vercelBlob": {
-    "status": "object_cache_partial",
-    "objectsPresent": 474,
-    "missingObjects": 1462,
+    "status": "object_cache_complete",
+    "objectsPresent": 1936,
+    "missingObjects": 0,
     "objectSizeMismatches": 0,
     "providerErrors": 0,
-    "lastExportStatus": "export_partial",
-    "lastExportObjectsWritten": 0,
-    "lastExportProviderErrors": 1462,
-    "lastExportProviderErrorSamples": [
-      {
-        "documentId": "meeting-source-document-3a24f49a38b152c438130922600fd9f229da4f8f3a43dcfbc0e1b55eb9e17c9e",
-        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
-      },
-      {
-        "documentId": "meeting-source-document-3a33f916b6b529f3064fdda622f322356555b1464ceb67baedbf9ab9cb4a91c1",
-        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
-      },
-      {
-        "documentId": "meeting-source-document-3a4d50fa39e6e027e4002f20edf90b0bf01ad068fea58061cbe84ae211e89c05",
-        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
-      },
-      {
-        "documentId": "meeting-source-document-3a4db71bf0313956f53b2ea7f2f8c99e831b0601ac610f925a2f9eb7801033b4",
-        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
-      },
-      {
-        "documentId": "meeting-source-document-3a77162a3c940ed24232798eee21a616443fd6849e7b8c6d7852c7041c32fb8e",
-        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
-      }
-    ]
+    "lastExportStatus": "export_complete",
+    "lastExportObjectsWritten": 1,
+    "lastExportProviderErrors": 0,
+    "lastExportProviderErrorSamples": []
   },
-  "nextRequiredAction": "Resolve the reported Blob provider errors, then rerun npm run meetings:cache-storage:blob-sync. The upload is content-hash idempotent."
+  "nextRequiredAction": null
 }
