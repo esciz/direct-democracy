@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { ContentReportControl } from "@/components/domain/content-report-control";
 import { ActionLabel, CommentBubbleIcon, CommentSpeakIcon } from "@/components/ui/action-icons";
-import { canUserCommentOnPosts } from "@/lib/auth/guards";
+import { canUserCommentOnPostsClient } from "@/lib/auth/client-guards";
 import type { UserRole } from "@/types/domain";
 
 type FeedPostCommentsPanelProps = {
@@ -52,7 +52,7 @@ export function FeedPostCommentsPanel({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<CommentResponse | null>(null);
-  const canComment = !guestMode && canUserCommentOnPosts({ role: viewerRole });
+  const canComment = !guestMode && canUserCommentOnPostsClient({ role: viewerRole });
   const commentCount = data?.totalCount ?? initialCommentCount;
 
   async function toggleComments(event: React.MouseEvent<HTMLButtonElement>) {

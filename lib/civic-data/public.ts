@@ -1,6 +1,16 @@
 import { prisma } from "@/lib/prisma";
-import type { Prisma } from "@prisma/client";
+import { JurisdictionType, type Prisma } from "@prisma/client";
 import { getApprovedCandidateKnowledge, type PublicCandidateKnowledgeSection } from "@/lib/enrichment/candidate-knowledge";
+
+const publicOfficialJurisdictionTypes = [
+  JurisdictionType.COUNTRY,
+  JurisdictionType.STATE,
+  JurisdictionType.COUNTY,
+  JurisdictionType.CITY,
+  JurisdictionType.DISTRICT,
+  JurisdictionType.CAMPUS,
+  JurisdictionType.AGENCY,
+];
 
 export type PublicOfficialRow = {
   id: string;
@@ -34,13 +44,12 @@ export type PublicOfficialRow = {
 
 export async function getPublicOfficials(jurisdictionSlug?: string): Promise<PublicOfficialRow[]> {
   const officials = await prisma.official.findMany({
-    where: jurisdictionSlug
-      ? {
-          jurisdiction: {
-            slug: jurisdictionSlug,
-          },
-        }
-      : undefined,
+    where: {
+      jurisdiction: {
+        ...(jurisdictionSlug ? { slug: jurisdictionSlug } : {}),
+        type: { in: publicOfficialJurisdictionTypes },
+      },
+    },
     include: {
       office: {
         select: {

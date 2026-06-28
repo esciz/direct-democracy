@@ -11,6 +11,53 @@ Provide every Nevada resident with free, understandable, source-backed access to
 - Community pages should exist before full ingestion is complete, with clear empty states and data completeness signals.
 - The public app remains a free civic information and participation layer, not a production government voting system.
 - Vote remains the flagship action and recurring participation signal.
+- Sensitive identity, MFA, session, verification-evidence, and admin-operation data must stay out of public generated artifacts.
+- Official accountability scorecards remain disabled until evidence-readiness thresholds are defensible.
+
+## Current Sprint Status
+
+Completed:
+
+- Sprint 2B: meeting extraction and accountability primitives.
+- Sprint 2C: source discovery and completeness.
+- Sprint 2D: retrieval queue and trust foundation.
+- Sprint 2E: DataOps loop and freshness.
+- Sprint 2F: cache verification, OCR path, orchestration, and scheduler.
+- Sprint 2G: secured public admin operations console.
+- Sprint 2H: identity, verification, consent, claims, and signal foundation.
+- Sprint 2I-A: owner MFA bootstrap and dashboard access recovery.
+- Sprint 2I-B: durable identity and admin-operation persistence foundation.
+- Sprint 2I-C: durable database migration and identity/admin-operation cutover.
+- Sprint 2I-D-A: Carson City officials recovery, current-officeholder runtime, and statewide officials coverage guard.
+- Sprint 2I-D-B1: network-enabled officials worker path, Carson City source-evidence reconciliation, and canonical promotion guard.
+- Sprint 2I-D-B1.2 through 2I-D-B1.3: GitHub/manual officials worker paths, Granicus verification hotfix, repeatable Carson City sync, and priority Nevada source wrap-up.
+- Sprint 3A through 3E: verified participation UX, stakeholder analytics, voter verification review console, and account email verification flow.
+
+Current:
+
+- Launch-readiness cleanup: generated artifact boundaries, local metadata cleanup, docs status reconciliation, and worktree hygiene.
+
+Planned next:
+
+- Sprint 3C: resident case/story intake moderation and public/private separation polish.
+- Sprint 3D: decision review workbench throughput and human-review queues.
+- Production Blob cache upload after Vercel Blob credentials are configured.
+- Later: official accountability scorecards only after evidence-readiness thresholds are defensible.
+
+Permanent parallel track:
+
+- Data Operations, Monitoring, Freshness, Retrieval, OCR, Reprocessing, and Review.
+- Current officials, roster freshness, official-directory monitoring, and coverage guards.
+
+Status language:
+
+- `implemented`: deterministic local/app behavior exists and passes audits.
+- `foundation only`: schema, boundary, or UI readiness exists, but provider/worker integration is not live.
+- `provider unconfigured`: a real provider is required before production use.
+- `blocked`: environment, credentials, network, or policy prevents completion.
+- `planned`: intentionally scheduled for a later sprint.
+
+Sprint 2I-C completed the durable database migration and identity/admin-operation cutover from the network-enabled Mac terminal. Sprint 2I-D-A repaired Carson City current-officeholder visibility and separated public current officials from historical official-action records. Sprint 2I-D-B1 adds the network-enabled officials refresh path, verified source-evidence cache, reconciliation report, review-gated promotion command, and worker-backed admin operation boundary. Sprint 2I-D-B1.2 adds GitHub allowlisted manual/scheduled officials modes, protected promotion, and artifact import for ephemeral runner evidence. Sprint 2I-D-B2 activates the remaining trust services: production email, production object storage for verification evidence, encrypted browser-session storage, provider-backed backup, restore smoke testing, secret-domain auditing, and explicit trust audit promotion. These sprints do not mark live voter-registration matching or official scorecards as enabled.
 
 ## Priority 0: Freeze Expansion
 
@@ -97,6 +144,12 @@ Add:
 - congressional delegation
 
 Success: a Nevada resident can identify representation in seconds.
+
+Current-officeholder rule:
+
+- Current officials must not depend on parsed votes, motions, or official-action records.
+- Public community pages should read compact current-officeholder runtime records with source URL, source type, and last-verified metadata.
+- Historical meeting attendance, votes, and official actions stay linked to the person/officeholder who existed at the time of the record and must not be rewritten when an office changes hands.
 
 ### Sprint 5: Campaign Finance
 
@@ -296,3 +349,12 @@ All summaries and civic records should link back to original public sources.
 - Prefer seeded fallback records and polished empty states while ingestion is incomplete.
 - Preserve demo profile switching and the existing `/voting`, `/explore`, `/profile`, and shared shell flows.
 - Keep GovCRM and public civic records separated as described in `docs/product-architecture.md`.
+
+## Current Roadmap Position
+
+- Completed: Sprint 2I-D-A, Sprint 2I-D-B1, Sprint 2I-D-B1.2, and Sprint 2I-D-B1.3 for Carson City officials recovery, network source evidence, guarded promotion, and repeatable manual sync.
+- Current: Sprint 2I-D-B2 production trust-service activation. This is an infrastructure gate before real residency evidence collection.
+- Next: Sprint 2J operational residency verification, consent, evidence intake, manual review, appeals, expiration, and reverification.
+- Later: Sprint 2K authorized voter-registration verification, Sprint 3A verified participation UX, and Sprint 3B privacy-preserving stakeholder analytics.
+
+Permanent parallel tracks remain DataOps ingestion/freshness/OCR/reprocessing, current-officeholder source monitoring, accountability source completeness, and admin audit provenance. Official scorecards remain blocked.

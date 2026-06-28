@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { createInterface } from "node:readline/promises";
@@ -44,6 +44,17 @@ type ProviderConfig = {
   includeHosts: string[];
 };
 
+type PublicMeetingSourceSeed = {
+  id: string;
+  name: string;
+  jurisdiction: string;
+  meetingIndexUrl: string | null;
+  agendaArchiveUrl?: string | null;
+  minutesArchiveUrl?: string | null;
+  packetArchiveUrl?: string | null;
+  videoArchiveUrl?: string | null;
+};
+
 type SavedStats = {
   pagesSaved: number;
   filesSaved: number;
@@ -62,6 +73,7 @@ const HEADED = process.argv.includes("--headed") || INTERACTIVE;
 const SAVE_STORAGE_STATE = process.argv.includes("--save-storage-state") || INTERACTIVE;
 const BLOCKED_RETRY = process.argv.includes("--blocked-retry") || INTERACTIVE;
 const storageStateArg = process.argv.find((arg) => arg.startsWith("--storage-state="))?.split("=").slice(1).join("=");
+const providerArg = process.argv.find((arg) => arg.startsWith("--provider="))?.split("=").slice(1).join("=");
 const DEFAULT_STORAGE_STATE = path.join(CACHE_ROOT, "_browser-state", "public-meetings-storage-state.json");
 const STORAGE_STATE = path.resolve(ROOT, storageStateArg ?? DEFAULT_STORAGE_STATE);
 const MAX_LINK_DOWNLOADS_PER_PROVIDER = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_DOWNLOADS ?? "16");
@@ -323,6 +335,57 @@ const BLOCKED_RETRY_PROVIDERS: ProviderConfig[] = [
     ],
   },
 ];
+
+function hostFor(url: string) {
+  try {
+    return new URL(url).host;
+  } catch {
+    return "";
+  }
+}
+
+function sourceKindForSeedUrl(seed: PublicMeetingSourceSeed, url: string): ManifestEntry["sourceKind"] {
+  if (url === seed.minutesArchiveUrl) return "minutes";
+  if (url === seed.packetArchiveUrl) return "packet";
+  if (url === seed.videoArchiveUrl) return "video";
+  if (url === seed.agendaArchiveUrl) return "agenda";
+  return "rawHtml";
+}
+
+function providerFromSeed(seed: PublicMeetingSourceSeed): ProviderConfig | null {
+  const urls = [
+    seed.meetingIndexUrl,
+    seed.agendaArchiveUrl,
+    seed.minutesArchiveUrl,
+    seed.packetArchiveUrl,
+    seed.videoArchiveUrl,
+  ].filter((url, index, urls): url is string => Boolean(url) && urls.indexOf(url) === index);
+  if (!urls.length) return null;
+  const hosts = [...new Set(urls.map(hostFor).filter(Boolean))];
+  return {
+    id: seed.id,
+    sourceName: seed.name,
+    governingBody: seed.name,
+    officialSourceUrl: seed.meetingIndexUrl ?? urls[0],
+    includeHosts: hosts,
+    folderMap: CIVIC_FOLDER_MAP,
+    pages: urls.map((url) => ({
+      url,
+      sourceKind: sourceKindForSeedUrl(seed, url),
+      titleHint: `${seed.name} public meeting source`,
+      notes: `Rendered official ${seed.jurisdiction} public meeting source from data/seed/public-meeting-sources.json.`,
+    })),
+  };
+}
+
+function seedProviders() {
+  try {
+    const seeds = JSON.parse(readFileSync(path.join(ROOT, "data", "seed", "public-meeting-sources.json"), "utf8")) as PublicMeetingSourceSeed[];
+    return seeds.map(providerFromSeed).filter((provider): provider is ProviderConfig => Boolean(provider));
+  } catch {
+    return [];
+  }
+}
 
 function slugify(value: string) {
   return value
@@ -655,10 +718,13 @@ async function collectProvider(provider: ProviderConfig, context: BrowserContext
 }
 
 function providersForRun() {
-  if (!BLOCKED_RETRY) return BASE_PROVIDERS;
+  const includeAllNevada = process.argv.includes("--all-nevada");
+  const seeded = includeAllNevada ? seedProviders() : [];
+  if (!BLOCKED_RETRY && !includeAllNevada) return BASE_PROVIDERS;
   const byId = new Map<string, ProviderConfig>();
-  for (const provider of [...BLOCKED_RETRY_PROVIDERS, ...BASE_PROVIDERS]) byId.set(provider.id, provider);
-  return [...byId.values()];
+  for (const provider of [...seeded, ...BLOCKED_RETRY_PROVIDERS, ...BASE_PROVIDERS]) byId.set(provider.id, provider);
+  const providers = [...byId.values()];
+  return providerArg ? providers.filter((provider) => provider.id === providerArg) : providers;
 }
 
 async function pauseForInteractiveSession(context: BrowserContext, providers: ProviderConfig[]) {

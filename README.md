@@ -64,6 +64,62 @@ npm run meetings:report
 
 Instructions are in [docs/public-meeting-browser-bootstrap.md](docs/public-meeting-browser-bootstrap.md). This workflow is only for manually saved official public records; do not bypass authentication, CAPTCHAs, hidden endpoints, or security controls.
 
+## Meeting source completeness and DataOps
+
+Sprint 2C added a cache-first source recovery and accountability-readiness layer. Sprint 2E adds the retrieval worker, document cache index, source monitoring, freshness audit, RSS registry, and reprocessing run ledger:
+
+```bash
+npm run meetings:documents:discover
+npm run meetings:documents:retrieve
+npm run meetings:documents:verify-cache
+npm run meetings:documents:extract
+npm run meetings:retrieval-queue
+npm run meetings:documents:ocr
+npm run meetings:source-completeness
+npm run meetings:documents:audit
+npm run rss:registry
+npm run dataops:registry
+npm run dataops:monitor
+npm run dataops:retrieve
+npm run dataops:extract
+npm run dataops:ocr
+npm run dataops:reprocess
+npm run dataops:audit
+npm run dataops:daily
+npm run dataops:dev
+npm run dataops:offline
+npm run admin:operations:audit
+npm run ingestion:registry
+npm run ingestion:audit
+npm run playwright:public
+npm run imports:validate
+npm run trust:foundation-audit
+```
+
+Generated artifacts include `data/generated/public-meeting-source-documents.json`, `data/generated/public-meeting-document-cache-index.json`, `data/generated/public-meeting-document-text.json`, `data/generated/public-meeting-retrieval-queue.json`, `data/generated/public-meeting-source-health.json`, `data/generated/dataops-source-registry.json`, `data/generated/dataops-monitoring-status.json`, `data/generated/dataops-retrieval-run.json`, `data/generated/dataops-change-log.json`, `data/generated/dataops-reprocessing-runs.json`, `data/generated/rss-source-registry.json`, `data/generated/public-meeting-source-completeness.json`, `data/generated/public-meeting-accountability-readiness.json`, and `data/generated/public-meeting-document-audit.json`.
+
+Remote public URLs are preserved as discovered sources. A document is marked downloaded only when a real local cache file exists. In network-restricted environments, retrieval attempts are recorded as `blocked_by_network` instead of pretending that source evidence was recovered.
+
+For a network-enabled local or hosted run:
+
+```bash
+npm run dataops:pipeline -- --limit=100
+```
+
+For a Codex/sandbox run without public DNS access:
+
+```bash
+npm run dataops:offline
+```
+
+Trust and claims architecture is documented in [docs/trust-foundation.md](docs/trust-foundation.md). Verified Resident and Verified Voter are segmentation concepts with equal participation rights; Direct Democracy does not use hidden vote weighting.
+
+Data Operations architecture is documented in [docs/data-operations.md](docs/data-operations.md).
+
+Generated artifact commit boundaries are documented in [docs/generated-artifacts.md](docs/generated-artifacts.md).
+
+The secured platform operations console lives at `/admin/operations`. It is part of public platform admin, not GovCRM. It uses allowlisted operation IDs, admin permissions, sanitized local logs, ingestion capability coverage reports, and explicit `worker_unconfigured` / `durable_storage_unconfigured` states where production infrastructure is not yet configured.
+
 ## Demo environment variables
 
 The current demo can run without a real backend, but these values are helpful:

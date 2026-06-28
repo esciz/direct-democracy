@@ -22,13 +22,19 @@ Public pages should use compact runtime files or database/windowed queries:
 
 - `data/generated/voting-cards-runtime.json`
 - `data/generated/events-runtime.json`
+- `data/generated/current-officials-runtime.json`
 - `data/generated/officials-runtime.json`
+- `data/generated/carson-city-officials-source-evidence.json`
+- `data/generated/carson-city-officials-source-reconciliation.json`
+- `data/generated/carson-city-officials-promotion-audit.json`
 - `data/generated/public-cases-runtime.json`
 - `data/generated/public-court-cases-runtime.json`
 - `data/generated/issues-runtime.json`
 - `data/generated/issue-review-requests-runtime.json`
 
 These files contain lightweight summaries suitable for public runtime use. They intentionally omit raw PDFs, packet text, large source caches, full reports, and review-only details.
+
+`current-officials-runtime.json` is the public current-officeholder directory. It is separate from `officials-runtime.json`, which may contain historical official-action summaries for meeting accountability. Public officials must be visible even when they have zero parsed votes or official actions. Canonical current-official source evidence is promoted explicitly from verified cached official-directory HTML; sandbox runs with zero downloads cannot overwrite a promoted canonical result.
 
 5. Public and admin route boundaries
 
@@ -61,7 +67,8 @@ Current generated coverage as of 2026-06-19:
 | `data/generated/issues-report.json` | 1 | n/a | Admin/report |
 | `data/generated/issues-audit-report.json` | 1 | 7.4 KB | Admin/report |
 | `data/generated/issue-review-requests-runtime.json` | 0 | 334 B | Public runtime |
-| `data/generated/officials-runtime.json` | 4 | 3.7 KB | Public runtime |
+| `data/generated/current-officials-runtime.json` | 25 | n/a | Public current officials |
+| `data/generated/officials-runtime.json` | 4 | 3.7 KB | Historical official-action runtime |
 | `data/generated/public-meeting-provider-report.json` | 14 | 6.7 KB | Admin/report |
 | `data/generated/public-meeting-manual-provider-report.json` | 13 | 17.1 KB | Admin/report |
 | Retired student-government Office rows cleaned | 3 | n/a | Database cleanup |
@@ -83,8 +90,30 @@ Provider ingestion snapshot:
 - Citizen-submitted Issue Review Request parsing is active under `data/manual-sources/issues/review-requests/`; current output is 0 until submissions or manifests are imported. Deprecated community-case manifests are migration-only inputs to the issue importer.
 - Issue hub generation is active through `npm run issues:generate`; current output contains 17 source-backed issue hubs derived from imported meeting voting cards, agenda items, and reviewed public court records.
 - Issue runtime reporting is active through `npm run issues:report`; current output shows 17 production-visible source-backed hubs, 38 hidden demo/fallback rows, 12 issues with meetings, 8 issues with votes, and 1 issue with court records.
+- Current-officeholder generation is active through `npm run officials:audit`; Carson City currently publishes 25 current official/leadership records, including the mayor and four supervisors. `npm run officials:refresh` retrieves, verifies, and reconciles official-directory evidence when network access is available. `npm run officials:promote -- --jurisdiction=carson-city --run-id=<run-id> --confirm=promote-carson-city-officials` is the canonical promotion boundary.
 
 ## Change Log
+
+### 2026-06-21 - Carson City Current Officials Runtime
+
+New capability:
+
+- Added current-officeholder generation for Carson City elected governing officials, other elected offices, judiciary offices, and appointed/acting city leadership.
+- Added compact public artifacts `data/generated/current-officials-runtime.json` and `data/generated/nevada-community-officials.json`, plus full/admin artifacts `data/generated/current-officials.json`, `data/generated/officials-source-registry.json`, `data/generated/officials-source-health.json`, `data/generated/officials-coverage-audit.json`, and `data/generated/carson-city-officials-root-cause-audit.json`.
+- Added npm commands `officials:sources`, `officials:retrieve`, `officials:generate`, `officials:reconcile`, `officials:audit`, `officials:coverage-audit`, `officials:refresh`, `officials:carson-city`, and `officials:promote`.
+
+Accuracy impact:
+
+- Current official visibility no longer depends on parsed votes, motions, or official-action records.
+- Appointed and acting leadership is displayed separately from elected governing officials.
+- Historical official-action records remain separate so officeholder replacement does not rewrite old votes or attendance.
+
+Operations impact:
+
+- Carson City official-directory sources are registered as DataOps official-directory sources.
+- Carson City source evidence is cached only under `data/raw/official-directories`; generated public artifacts contain URLs, hashes, timestamps, and review status, never raw HTML.
+- GitHub-hosted runner evidence is classified as `artifact_only_pending_import` until `npm run officials:import-evidence -- --path=<downloaded-artifact-directory>` verifies hashes and imports it into the approved public-source cache.
+- Codex network-restricted runs record `blocked_by_network` and do not mark source pages retrieved unless a real cached file exists.
 
 ### 2026-06-19 - Existing Issues Runtime Hub And Audit
 

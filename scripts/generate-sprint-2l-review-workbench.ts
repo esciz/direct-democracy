@@ -60,6 +60,32 @@ type OfficialsCoverage = {
   }>;
 };
 
+type ActionResultRecord = {
+  organizationId?: string | null;
+  needsReview?: boolean;
+  reviewReason?: string | null;
+};
+
+type VotingCardRecord = {
+  jurisdiction?: string | null;
+  body_name?: string | null;
+  review_status?: string | null;
+  confidence_score?: number | null;
+};
+
+type GeneratedVotingCardRecord = {
+  jurisdiction?: string | null;
+  reviewStatus?: string | null;
+  confidence?: number | null;
+};
+
+type ProjectRecord = {
+  jurisdiction?: string | null;
+  reviewStatus?: string | null;
+  needsReview?: boolean;
+  status?: string | null;
+};
+
 function readJson<T>(fileName: string, fallback: T): T {
   try {
     return JSON.parse(readFileSync(path.join(GENERATED_DIR, fileName), "utf8")) as T;
@@ -112,6 +138,10 @@ const retrievalQueue = recordsFrom<RetrievalRecord>("public-meeting-retrieval-qu
 const voteAudit = readJson<VoteAudit>("public-meeting-vote-extraction-audit.json", {});
 const attendance = recordsFrom<AttendanceRecord>("public-meeting-attendance.json");
 const officialsCoverage = readJson<OfficialsCoverage>("officials-coverage-audit.json", {});
+const actionResults = recordsFrom<ActionResultRecord>("public-meeting-action-results.json");
+const meetingVotingCards = recordsFrom<VotingCardRecord>("public-meeting-voting-cards.json");
+const generatedVotingCards = recordsFrom<GeneratedVotingCardRecord>("voting-cards.json");
+const projects = recordsFrom<ProjectRecord>("projects-runtime.json");
 
 const documentFailures = documentText.filter((record) => record.extractionMethod === "failed" || Boolean(record.failureReason));
 const retrievalBlocked = retrievalQueue.filter((record) => ["failed", "unavailable", "blocked_by_network", "ocr_required"].includes(record.retrievalState ?? ""));
@@ -133,6 +163,16 @@ const report = {
     distributionReviewActions: distributionReview.length,
     unmatchedAttendanceNames: unmatchedAttendance.length,
     officialCoverageGaps: officialGaps.length,
+    actionResults: actionResults.length,
+    actionResultsNeedingReview: actionResults.filter((record) => record.needsReview).length,
+    meetingVotingCards: meetingVotingCards.length,
+    meetingVotingCardsApproved: meetingVotingCards.filter((record) => record.review_status === "approved").length,
+    meetingVotingCardsReady: meetingVotingCards.filter((record) => record.review_status === "ready").length,
+    meetingVotingCardsNeedingReview: meetingVotingCards.filter((record) => record.review_status === "needs_review").length,
+    generatedVotingCards: generatedVotingCards.length,
+    generatedVotingCardsNeedingReview: generatedVotingCards.filter((record) => record.reviewStatus === "needs_review").length,
+    projects: projects.length,
+    projectsNeedingReview: projects.filter((record) => record.needsReview).length,
   },
   documentRecovery: {
     byFailureReason: countBy(documentFailures, (record) => record.failureReason ?? record.extractionMethod),
@@ -187,8 +227,17 @@ const report = {
       nextAction: row.publicRuntimeCount ? "review remaining expected offices" : row.manualFallbackStatus === "seed_roster_available" ? "promote reviewed source roster" : "add official source adapter",
     })),
   },
+  citizenSignalReview: {
+    actionResultsByOrganization: countBy(actionResults.filter((record) => record.needsReview), (record) => record.organizationId),
+    votingCardsByStatus: countBy(meetingVotingCards, (record) => record.review_status),
+    votingCardsNeedingReviewByJurisdiction: countBy(meetingVotingCards.filter((record) => record.review_status === "needs_review"), (record) => record.jurisdiction),
+    votingCardsReadyByJurisdiction: countBy(meetingVotingCards.filter((record) => record.review_status === "ready"), (record) => record.jurisdiction),
+    projectReviewByJurisdiction: countBy(projects.filter((record) => record.needsReview), (record) => record.jurisdiction),
+    projectStatusCounts: countBy(projects, (record) => record.status),
+  },
   recommendedNextActions: [
-    "Build source-specific adapters for the highest-count blocked hosts before adding new jurisdictions.",
+    "Review voting cards still marked needs_review by jurisdiction; prioritize Las Vegas, Nevada statewide, Clark County, and Elko.",
+    "Treat ready voting cards as source-backed public previews with missing outcome/vote details, not as dead-end review work.",
     "Review attendance_not_verified actions by body; add governing rosters only where source text supports voting membership.",
     "Treat distribution_review as human-review work unless the source explicitly names no/abstain voters.",
     "Keep reviewed manual officials separate from unverified attendance names.",

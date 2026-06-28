@@ -1,0 +1,276 @@
+name: DataOps Daily
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Retrieval batch size
+        required: false
+        default: "25"
+        type: string
+      from_stage:
+        description: Optional pipeline --from stage
+        required: false
+        default: none
+        type: choice
+        options:
+          - none
+          - register-sources
+          - discover-documents
+          - monitor-sources
+          - retrieve-documents
+          - verify-cache
+          - extract-native-text
+          - ocr
+          - source-completeness
+          - attendance
+          - votes
+          - accountability
+          - communities
+          - freshness-audit
+      to_stage:
+        description: Optional pipeline --to stage
+        required: false
+        default: none
+        type: choice
+        options:
+          - none
+          - register-sources
+          - discover-documents
+          - monitor-sources
+          - retrieve-documents
+          - verify-cache
+          - extract-native-text
+          - ocr
+          - source-completeness
+          - attendance
+          - votes
+          - accountability
+          - communities
+          - freshness-audit
+      offline:
+        description: Run without network retrieval
+        required: false
+        default: "false"
+        type: boolean
+      officials_mode:
+        description: Carson officials network-worker mode
+        required: false
+        default: retrieve_and_reconcile
+        type: choice
+        options:
+          - retrieve
+          - retrieve_and_reconcile
+          - validate_only
+          - promote_reviewed
+          - refresh_due_sources
+      officials_jurisdiction:
+        description: Officials jurisdiction scope
+        required: false
+        default: carson-city
+        type: choice
+        options:
+          - carson-city
+      officials_source_scope:
+        description: Carson City official source scope
+        required: false
+        default: all
+        type: choice
+        options:
+          - all
+          - department-directory
+          - board-of-supervisors
+          - staff-directory
+      officials_force_refresh:
+        description: Force source refresh
+        required: false
+        default: false
+        type: boolean
+      officials_promote_after_validation:
+        description: Run protected promotion job after a clean validation
+        required: false
+        default: false
+        type: boolean
+      officials_promotion_confirmation:
+        description: Required value for promotion
+        required: false
+        default: ""
+        type: string
+  schedule:
+    - cron: "17 10 * * *"
+
+concurrency:
+  group: direct-democracy-dataops-officials
+  cancel-in-progress: false
+
+jobs:
+  dataops:
+    runs-on: macos-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+      actions: read
+    env:
+      DATAOPS_RETRIEVAL_LIMIT: ${{ github.event.inputs.limit || '25' }}
+      DATAOPS_USER_AGENT: ${{ secrets.DATAOPS_USER_AGENT || 'DirectDemocracyDataOps/0.1 (+https://github.com)' }}
+      DATAOPS_MAX_DOWNLOAD_BYTES: ${{ vars.DATAOPS_MAX_DOWNLOAD_BYTES || '50000000' }}
+      DATAOPS_OCR_MAX_PAGES: ${{ vars.DATAOPS_OCR_MAX_PAGES || '10' }}
+      DATAOPS_OCR_TIMEOUT_MS: ${{ vars.DATAOPS_OCR_TIMEOUT_MS || '30000' }}
+      DATAOPS_NETWORK_ENABLED: ${{ github.event.inputs.offline == 'true' && 'false' || 'true' }}
+      DATAOPS_INSTALL_OCR_TOOLS: ${{ vars.DATAOPS_INSTALL_OCR_TOOLS || 'false' }}
+      OFFICIALS_EXECUTION_ENVIRONMENT: github_actions
+      OFFICIALS_NETWORK_ENABLED: "true"
+      OFFICIALS_WORKER_BACKEND: github_actions
+      OFFICIALS_MODE: ${{ github.event.inputs.officials_mode || 'refresh_due_sources' }}
+      OFFICIALS_JURISDICTION: ${{ github.event.inputs.officials_jurisdiction || 'carson-city' }}
+      OFFICIALS_SOURCE_SCOPE: ${{ github.event.inputs.officials_source_scope || 'all' }}
+      OFFICIALS_FORCE_REFRESH: ${{ github.event.inputs.officials_force_refresh || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Network smoke test
+        run: |
+          curl -I --max-time 15 https://www.google.com
+          curl -I --max-time 15 https://www.leg.state.nv.us || true
+
+      - name: Optional OCR tools
+        if: env.DATAOPS_INSTALL_OCR_TOOLS == 'true'
+        run: |
+          brew update
+          brew install poppler tesseract
+
+      - name: Run DataOps pipeline
+        shell: bash
+        run: |
+          args=(--limit="${DATAOPS_RETRIEVAL_LIMIT}")
+          if [[ -n "${{ github.event.inputs.from_stage }}" && "${{ github.event.inputs.from_stage }}" != "none" ]]; then args+=(--from="${{ github.event.inputs.from_stage }}"); fi
+          if [[ -n "${{ github.event.inputs.to_stage }}" && "${{ github.event.inputs.to_stage }}" != "none" ]]; then args+=(--to="${{ github.event.inputs.to_stage }}"); fi
+          if [[ "${{ github.event.inputs.offline }}" == "true" ]]; then args+=(--offline); fi
+          npm run dataops:pipeline -- "${args[@]}"
+
+      - name: Officials source refresh
+        if: github.event.inputs.offline != 'true' && env.OFFICIALS_MODE != 'promote_reviewed'
+        shell: bash
+        env:
+          OFFICIALS_EXECUTION_ENVIRONMENT: github_actions
+          OFFICIALS_NETWORK_ENABLED: "true"
+          OFFICIALS_WORKER_BACKEND: github_actions
+        run: |
+          args=(--jurisdiction="${OFFICIALS_JURISDICTION}")
+          case "${OFFICIALS_SOURCE_SCOPE}" in
+            department-directory) args+=(--source-id=carson-city-department-directory) ;;
+            board-of-supervisors) args+=(--source-id=carson-city-board-of-supervisors) ;;
+            staff-directory) args+=(--source-id=carson-city-staff-directory) ;;
+            all) ;;
+            *) echo "Invalid officials source scope"; exit 1 ;;
+          esac
+          if [[ "${OFFICIALS_FORCE_REFRESH}" == "true" ]]; then args+=(--force-refresh); fi
+          case "${OFFICIALS_MODE}" in
+            retrieve) npm run officials:retrieve -- "${args[@]}" ;;
+            retrieve_and_reconcile|refresh_due_sources) npm run officials:refresh -- "${args[@]}" ;;
+            validate_only) npm run officials:reconcile && npm run officials:audit ;;
+            *) echo "Invalid officials mode"; exit 1 ;;
+          esac
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Upload DataOps artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dataops-generated-artifacts
+          path: |
+            data/generated/dataops-*.json
+            data/generated/public-meeting-*-audit.json
+            data/generated/public-meeting-*-results.json
+            data/generated/public-meeting-*-verification.json
+            data/generated/public-meeting-cache-*.json
+            data/generated/rss-source-registry.json
+            data/generated/officials-*.json
+            data/generated/current-officials*.json
+            data/generated/carson-city-officials-*.json
+            data/generated/nevada-community-officials.json
+            data/generated/audits/*/carson-city-officials-*.json
+          if-no-files-found: warn
+
+      - name: Upload Carson officials evidence handoff
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: carson-city-officials-evidence-${{ github.run_id }}
+          path: |
+            data/generated/carson-city-officials-source-evidence.json
+            data/generated/carson-city-officials-source-manifest.json
+            data/generated/carson-city-officials-source-reconciliation.json
+            data/generated/carson-city-officials-promotion-audit.json
+            data/generated/officials-retrieval-run.json
+            data/generated/audits/*/carson-city-officials-*.json
+            data/raw/official-directories/**
+          if-no-files-found: ignore
+
+  officials-promotion:
+    needs: dataops
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.officials_promote_after_validation == 'true' && github.event.inputs.officials_promotion_confirmation == 'promote-carson-city-officials'
+    runs-on: macos-latest
+    timeout-minutes: 45
+    environment: officials-production-promotion
+    permissions:
+      contents: read
+      actions: read
+    env:
+      OFFICIALS_EXECUTION_ENVIRONMENT: github_actions
+      OFFICIALS_NETWORK_ENABLED: "true"
+      OFFICIALS_WORKER_BACKEND: github_actions_protected_promotion
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download officials evidence handoff
+        uses: actions/download-artifact@v4
+        with:
+          name: carson-city-officials-evidence-${{ github.run_id }}
+          path: officials-evidence-handoff
+
+      - name: Import evidence and revalidate
+        shell: bash
+        run: |
+          npm run officials:import-evidence -- --path=officials-evidence-handoff
+          npm run officials:reconcile
+          npm run officials:coverage-audit
+
+      - name: Promote reviewed officials runtime
+        shell: bash
+        run: |
+          run_id="$(node -e "console.log(require('./data/generated/carson-city-officials-source-evidence.json').runId)")"
+          npm run officials:promote -- --jurisdiction=carson-city --run-id="$run_id" --confirm=promote-carson-city-officials
+
+      - name: Upload promotion artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: carson-city-officials-promotion-${{ github.run_id }}
+          path: |
+            data/generated/current-officials*.json
+            data/generated/nevada-community-officials.json
+            data/generated/officials-source-health.json
+            data/generated/officials-coverage-audit.json
+            data/generated/carson-city-officials-*.json
+            data/generated/nevada-community-*.json
+            data/generated/browse-preview-audit.json
+          if-no-files-found: warn

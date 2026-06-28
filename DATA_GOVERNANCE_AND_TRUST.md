@@ -10,12 +10,14 @@ Direct Democracy uses public-source civic records to power voter-facing cards, p
 - Keep ambiguous parser output review-gated and label it as needing review instead of publishing it as fact.
 - Keep student-government/ASUN removal guard in place for public-meeting and official-action ingestion.
 - Separate public runtime artifacts from build-time or admin-only archives so large raw documents are not bundled into public serverless functions.
+- Separate current officeholders from historical official actions. A person can appear as a current official with zero parsed actions, and historical votes/attendance must stay attached to the officeholder identity in effect at the time.
+- Promote current-officeholder evidence only through verified official source retrieval or reviewed manual evidence. A sandbox run with zero source downloads is never canonical.
 
 ## Review Standards
 
 Public-facing records can be shown when they are source-backed and either explicitly reviewed or high-confidence under a narrow parser rule. Admin-only queues are required for low-confidence PDF chunks, unclear vote language, unmatched officials, roll-call ambiguity, fiscal-impact ambiguity, and generated public questions that lack enough context.
 
-Official-level action records require explicit named actors in the source text. Surname-only matches may be suggested or auto-approved only when the meeting body/jurisdiction narrows the candidate pool to one clear official; otherwise they remain review-gated.
+Official-level action records require explicit named actors in the source text. Surname-only matches may be suggested or auto-approved only when the meeting body/jurisdiction narrows the candidate pool to one clear official; otherwise they remain review-gated. Current official-directory records are not scorecards and do not imply any accountability rating.
 
 Financial and tax/cost context must be cautious. If the source does not explicitly state a direct property-tax, sales-tax, fee, bond, debt, or long-term cost impact, public cards must say that the direct voter impact is not stated or needs review.
 
@@ -38,6 +40,10 @@ Current generated coverage as of 2026-06-19:
 | Issues runtime report | 1 | `data/generated/issues-report.json` |
 | Issues audit report | 1 / 7.4 KB | `data/generated/issues-audit-report.json` |
 | Runtime issue review requests | 0 / 334 B | `data/generated/issue-review-requests-runtime.json` |
+| Current officeholder runtime | 25 | `data/generated/current-officials-runtime.json` |
+| Carson City officials source evidence | run-scoped | `data/generated/carson-city-officials-source-evidence.json` |
+| Carson City officials reconciliation | run-scoped | `data/generated/carson-city-officials-source-reconciliation.json` |
+| Carson City officials promotion audit | run-scoped | `data/generated/carson-city-officials-promotion-audit.json` |
 | Runtime official-action summaries | 4 / 3.7 KB | `data/generated/officials-runtime.json` |
 | Provider report entries | 14 | `data/generated/public-meeting-provider-report.json` |
 | Manual provider report entries | 13 | `data/generated/public-meeting-manual-provider-report.json` |
@@ -50,6 +56,7 @@ Provider coverage snapshot:
 - Washoe County School District Board of Trustees: 57 discovered and parsed meetings, 57 minutes parsed, 57 agenda packets parsed.
 - Manual-cache providers currently include Reno City Council, Nevada Legislature, Nevada Senate, Nevada Assembly, Clark County Commission, Las Vegas City Council, Henderson City Council, North Las Vegas City Council, Sparks City Council, and related Nevada providers.
 - Roster report currently shows 7 seeded roster bodies, 44 seeded/imported roster members, and 100% coverage for the bodies represented in the roster report.
+- Carson City current officials currently publish 25 compact current-officeholder records from the reviewed baseline with source URL and last-verified metadata. Codex retrieval of the official directory pages is blocked by network restrictions, so `data/generated/officials-retrieval-run.json` records 0 cached files and `carson-city-officials-promotion-audit.json` remains blocked until a network-enabled operator refreshes and promotes the sources.
 
 Review caveats:
 
@@ -62,6 +69,28 @@ Review caveats:
 - Public Issues production visibility is runtime-only by default: 17 source-backed hubs visible, 38 demo/fallback issue rows hidden unless `NEXT_PUBLIC_ENABLE_DEMO_MODE=true`.
 
 ## Change Log
+
+### 2026-06-21 - Current Officeholder Governance Boundary
+
+New capability:
+
+- Added source-backed current-officeholder runtime for Carson City and an officials coverage guard across priority Nevada jurisdictions.
+- Added official-directory source registry and source health artifacts.
+- Added verified source-evidence, reconciliation, and promotion artifacts for Carson City officials.
+- Added GitHub artifact handoff and hash-verified import guard for ephemeral runner official-source evidence.
+
+Accuracy impact:
+
+- Current officials are not inferred from official actions, votes, or motions.
+- Appointed leadership and acting titles are preserved separately from elected governing officials.
+- Student-government records remain excluded from public officials.
+- Canonical current-official promotion requires source URLs, content hashes, cache paths, last-verified metadata, and a passing Carson City governing-body coverage guard.
+- Artifact-only GitHub evidence must be imported or stored durably before promotion; generated public artifacts must not contain raw official-directory HTML.
+
+Review process impact:
+
+- Official-directory retrieval/cache status is explicit and does not mark a source retrieved unless a local cached file exists.
+- Priority jurisdictions with configured healthy official sources and zero runtime officials now produce coverage failures instead of silent empty public sections.
 
 ### 2026-06-19 - Existing Issues Promoted To Source-Backed Civic Hubs
 

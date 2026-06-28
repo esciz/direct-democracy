@@ -83,6 +83,8 @@ const priorityJurisdictions = [
   { id: "reno", name: "Reno", requiredGoverning: 0 },
   { id: "sparks", name: "Sparks", requiredGoverning: 0 },
   { id: "washoe-county", name: "Washoe County", requiredGoverning: 0 },
+  { id: "elko", name: "Elko", requiredGoverning: 5 },
+  { id: "elko-county", name: "Elko County", requiredGoverning: 5 },
   { id: "clark-county", name: "Clark County", requiredGoverning: 0 },
   { id: "las-vegas", name: "Las Vegas", requiredGoverning: 0 },
   { id: "henderson", name: "Henderson", requiredGoverning: 0 },

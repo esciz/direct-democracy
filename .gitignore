@@ -1,24 +1,24 @@
-.next
-node_modules
-.env
-.env.local
-dist
-coverage
-build-next/
 .next/
 node_modules/
-.vercel
+.vercel/
+.local/
+
+dist/
+coverage/
+build-next/
+*.tsbuildinfo
+
+.env
+.env.local
 .env*.local
 .env*
-data/private/*
-!data/private/nv-sos-cookies.example.json
-.DS_Store
-.local/
-data/manual-sources/
-data/manual-sources/
-.local/
+
 .DS_Store
 *.pdf
+
+data/private/*
+!data/private/nv-sos-cookies.example.json
+data/manual-sources/
 
 # Runtime civic source caches. Commit manifests, hashes, and extracted indexes;
 # keep large downloaded evidence binaries out of git.
@@ -26,3 +26,12 @@ data/generated/public-meeting-document-cache/
 data/generated/public-meeting-document-text-cache/
 data/generated/public-meeting-ocr-text-cache/
 data/private/public-meeting-cache-objects/
+
+# Run-scoped/generated local operations artifacts. Commit canonical runtime
+# JSON intentionally; keep transient environment copies and logs local.
+data/generated/audits/
+data/generated/admin-operations/
+data/generated/*.codex-sandbox.json
+data/generated/*.local-network-enabled.json
+data/generated/*.unknown.json
+data/generated/* 2.json

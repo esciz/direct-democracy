@@ -72,7 +72,7 @@ function generateReadiness() {
     const attendanceRecords = attendanceByMeeting.get(meeting.id) ?? [];
     const voteRecords = votesByMeeting.get(meeting.id) ?? [];
     const rosterRecords = rosterByBody.get(meeting.public_body_id) ?? [];
-    const hasAttendance = attendanceRecords.some((record) => record.votingEligibility === "eligible_voting_member" && record.attendanceStatus === "present");
+    const hasAttendance = attendanceRecords.some((record) => record.votingEligibility === "eligible_voting_member" && (record.attendanceStatus === "present" || record.attendanceStatus === "remote_present"));
     const hasVoteOutcomeFlag = meetingItems.some(hasVoteOutcome);
     const hasNamedVotes = voteRecords.some((vote) => vote.evidenceType === "explicit_roll_call_group" || vote.evidenceType === "inline_named_vote");
     const hasRosterMatch = attendanceRecords.some((record) => record.matchConfidence && record.matchConfidence !== "unmatched_name") || rosterRecords.length > 0;

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 import { PageIntro } from "@/components/ui/page-intro";
 import { getPublicMeetingAdminDashboard } from "@/lib/public-meetings/public";
@@ -12,6 +14,41 @@ function formatDate(value: string | null | undefined) {
   return new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
 }
 
+type NevadaSourcePackAudit = {
+  totals?: {
+    readyForAcquisition?: number;
+    incomplete?: number;
+    statewideCommunities?: number;
+    statewideCommunitiesWithMeetingSources?: number;
+    statewideCommunitiesWithFallbackPortalKnown?: number;
+    statewideCommunitiesNeedingSourceResearch?: number;
+  };
+  records?: Array<{
+    jurisdictionId: string;
+    jurisdictionName: string;
+    sourcePackStatus: string;
+    missing: string[];
+    manualBootstrapCommand?: string;
+  }>;
+  statewideCommunityRecords?: Array<{
+    communityId: string;
+    communityName: string;
+    kind: string | null;
+    acquisitionPath: string;
+    meetingSources: number;
+    fallbackPortalSources: number;
+    missing: string[];
+  }>;
+};
+
+function readNevadaSourcePackAudit(): NevadaSourcePackAudit | null {
+  try {
+    return JSON.parse(readFileSync(path.join(process.cwd(), "data", "generated", "nevada-source-pack-audit.json"), "utf8")) as NevadaSourcePackAudit;
+  } catch {
+    return null;
+  }
+}
+
 export default async function AdminMeetingSourcesPage() {
   const user = await getCurrentUser();
   if (user.role !== "admin" && user.role !== "platform_admin") {
@@ -19,6 +56,7 @@ export default async function AdminMeetingSourcesPage() {
   }
 
   const dashboard = await getPublicMeetingAdminDashboard();
+  const sourcePackAudit = readNevadaSourcePackAudit();
   const activeSources = dashboard.seedSources.filter((source) => source.active);
   const scraperCounts = dashboard.seedSources.reduce<Record<string, number>>((counts, source) => {
     counts[source.scraperType] = (counts[source.scraperType] ?? 0) + 1;
@@ -60,6 +98,55 @@ export default async function AdminMeetingSourcesPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Last import</p>
           <p className="mt-3 text-sm font-semibold text-slate-50">{formatDate(dashboard.ingestionReport?.generated_at)}</p>
         </div>
+      </section>
+
+      <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Nevada acquisition map</p>
+            <h2 className="mt-2 text-xl font-semibold text-slate-50">Source-pack readiness</h2>
+          </div>
+          <p className="text-sm text-slate-400">
+            Refresh with <span className="font-mono text-xs">npm run sources:nevada:audit</span>
+          </p>
+        </div>
+        {sourcePackAudit ? (
+          <>
+            <div className="mt-4 grid gap-3 md:grid-cols-4">
+              <div className="rounded-2xl border border-white/10 bg-black/15 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Ready priority</p>
+                <p className="mt-2 text-2xl font-semibold text-slate-50">{sourcePackAudit.totals?.readyForAcquisition ?? 0}</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-black/15 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Incomplete priority</p>
+                <p className="mt-2 text-2xl font-semibold text-slate-50">{sourcePackAudit.totals?.incomplete ?? 0}</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-black/15 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Statewide meeting sources</p>
+                <p className="mt-2 text-2xl font-semibold text-slate-50">
+                  {sourcePackAudit.totals?.statewideCommunitiesWithMeetingSources ?? 0}/{sourcePackAudit.totals?.statewideCommunities ?? 0}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-black/15 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Portal known</p>
+                <p className="mt-2 text-2xl font-semibold text-slate-50">{sourcePackAudit.totals?.statewideCommunitiesWithFallbackPortalKnown ?? 0}</p>
+              </div>
+            </div>
+            <div className="mt-4 grid gap-3 lg:grid-cols-2">
+              {(sourcePackAudit.records ?? []).filter((record) => record.sourcePackStatus !== "ready_for_acquisition").slice(0, 8).map((record) => (
+                <article key={record.jurisdictionId} className="rounded-2xl border border-amber-300/20 bg-amber-300/10 p-4">
+                  <p className="font-semibold text-amber-50">{record.jurisdictionName}</p>
+                  <p className="mt-2 text-xs text-amber-100/80">Missing: {record.missing.join(", ")}</p>
+                  {record.manualBootstrapCommand ? <p className="mt-2 break-all font-mono text-[11px] text-amber-100/70">{record.manualBootstrapCommand}</p> : null}
+                </article>
+              ))}
+            </div>
+          </>
+        ) : (
+          <p className="mt-4 rounded-2xl border border-dashed border-white/10 bg-black/10 p-4 text-sm text-slate-400">
+            No Nevada source-pack audit yet. Run <span className="font-mono text-xs">npm run sources:nevada:audit</span>.
+          </p>
+        )}
       </section>
 
       <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5">

@@ -3,6 +3,7 @@ import type { AuthUser, CommunityEventType, UserRole } from "@/types/domain";
 import { canCreatePublicPosts } from "@/lib/auth/roles";
 import { isGuestUser } from "@/lib/auth/session";
 import { isVoterVerifiedUser } from "@/lib/auth/verification";
+import { canCastEqualWeightCivicVote } from "@/lib/identity/capabilities";
 
 export function requirePublicPostCreator(role: UserRole) {
   return canCreatePublicPosts(role);
@@ -53,7 +54,9 @@ export function canUserCommentOnPosts(user: Pick<AuthUser, "role">) {
 }
 
 export function canUserVote(user: Pick<AuthUser, "verificationState" | "isVerifiedVoter">) {
-  return isVoterVerifiedUser(user);
+  if (isVoterVerifiedUser(user)) return true;
+  if ("id" in user && "role" in user) return canCastEqualWeightCivicVote(user as AuthUser);
+  return false;
 }
 
 export function canUserSignPetitions(user: Pick<AuthUser, "verificationState" | "isVerifiedVoter">) {

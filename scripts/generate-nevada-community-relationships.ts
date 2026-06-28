@@ -329,12 +329,27 @@ const meetingItems = readJson<PublicMeetingItemRecord[]>("data/generated/public-
 const bodyById = new Map(bodies.map((body) => [body.id, body]));
 const meetingById = new Map(meetings.map((meeting) => [meeting.id, meeting]));
 const itemById = new Map(meetingItems.map((item) => [item.id, item]));
+const canonicalVotingCardIdBySourceId = new Map(
+  asRecords("data/generated/voting-cards.json").flatMap((card) => {
+    const id = text(card.id);
+    const sourceVotingCardId = text(card.sourceVotingCardId);
+    const agendaItemId = text(card.agendaItemId);
+    return [
+      id ? [id, id] : null,
+      sourceVotingCardId ? [sourceVotingCardId, id] : null,
+      agendaItemId ? [agendaItemId, id] : null,
+    ].filter((entry): entry is [string, string] => Boolean(entry?.[0] && entry[1]));
+  }),
+);
 
 function sourcePathExists(value: string) {
   return Boolean(value) && !value.startsWith("http") && fs.existsSync(path.join(process.cwd(), value));
 }
 
 function generateOfficialRecords() {
+  const currentOfficials = asRecords("data/generated/current-officials-runtime.json");
+  if (currentOfficials.length) return currentOfficials;
+
   const rosterSeeds = readJson<Array<JsonRecord & { members?: JsonRecord[] }>>("data/seed/public-meeting-official-rosters.json", []);
   const records: JsonRecord[] = [];
   for (const roster of rosterSeeds) {
@@ -666,6 +681,7 @@ function getSourceLabel(record: JsonRecord, domain: RelationshipDomain) {
   if (domain === "courtCases") return text(record.caseNumber) ? `Case ${text(record.caseNumber)}` : "Court source";
   if (domain === "issues") return "Issue source";
   if (domain === "elections") return "Election source";
+  if (domain === "officialActionRecords" && text(record.role_category)) return "Current official source";
   if (domain === "officialActionRecords") return "Official action source";
   return "Source";
 }
@@ -807,18 +823,28 @@ function getRecordDate(record: JsonRecord, domain: RelationshipDomain) {
   }
   if (domain === "projects") return dateValue(record.updated_at) ?? dateValue(record.timeline) ?? dateValue(meeting?.meeting_date);
   if (domain === "elections") return electionYear ? `${electionYear}-11-03T00:00:00.000Z` : dateValue(record.filingDate);
-  if (domain === "officialActionRecords") return dateValue(meeting?.meeting_date) ?? dateValue(record.created_at) ?? dateValue(record.updated_at);
+  if (domain === "officialActionRecords") return dateValue(record.last_verified_at) ?? dateValue(meeting?.meeting_date) ?? dateValue(record.created_at) ?? dateValue(record.updated_at);
   return null;
 }
 
 function getSourceUpdatedAt(record: JsonRecord, domain: RelationshipDomain) {
-  return dateValue(record.updated_at) ?? dateValue(record.updatedAt) ?? dateValue(record.created_at) ?? dateValue(record.createdAt) ?? getRecordDate(record, domain);
+  return dateValue(record.last_verified_at) ?? dateValue(record.updated_at) ?? dateValue(record.updatedAt) ?? dateValue(record.created_at) ?? dateValue(record.createdAt) ?? getRecordDate(record, domain);
+}
+
+function getVotingCardHref(record: JsonRecord) {
+  const canonicalDecisionId =
+    canonicalVotingCardIdBySourceId.get(text(record.id)) ??
+    canonicalVotingCardIdBySourceId.get(text(record.sourceVotingCardId)) ??
+    canonicalVotingCardIdBySourceId.get(text(record.topic_item_id)) ??
+    canonicalVotingCardIdBySourceId.get(text(record.agendaItemId));
+  if (canonicalDecisionId) return `/decisions/${canonicalDecisionId}`;
+  return text(record.source_topic_href) || text(record.source_event_href) || (text(record.meeting_id) ? `/events/${text(record.meeting_id)}` : null);
 }
 
 function getHref(record: JsonRecord, domain: RelationshipDomain) {
   if (domain === "meetings") return `/events/${text(record.id)}`;
   if (domain === "agendaItems") return text(record.meeting_id) ? `/events/${text(record.meeting_id)}#${text(record.id)}` : null;
-  if (domain === "votingCards") return text(record.source_topic_href) || text(record.source_event_href) || (text(record.meeting_id) ? `/events/${text(record.meeting_id)}` : null);
+  if (domain === "votingCards") return getVotingCardHref(record);
   if (domain === "issues") return text(record.issueSlug) ? `/issues/${text(record.issueSlug)}` : null;
   if (domain === "courtCases") return text(record.id) ? `/cases/${text(record.id)}` : null;
   if (domain === "elections") return text(record.id) ? `/elections/${text(record.id)}` : null;
@@ -1075,7 +1101,7 @@ function main() {
     },
     {
       domain: "officialActionRecords",
-      sourcePath: "data/generated/nevada-community-officials.json",
+      sourcePath: "data/generated/current-officials-runtime.json",
       records: generatedOfficialRecords,
       linker: linkOfficialRecord,
     },

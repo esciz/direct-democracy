@@ -189,7 +189,7 @@ export function buildAccountabilityGraph(input: BuildAccountabilityGraphInput): 
       id: decisionId,
       type: "decision",
       label: card.title,
-      href: `/voting/all?decision=${encodeURIComponent(card.id)}`,
+      href: `/decisions/${encodeURIComponent(card.id)}`,
       metadata: { confidence: card.confidence, jurisdiction: card.jurisdiction },
     });
     addNode(nodes, {

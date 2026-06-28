@@ -2,9 +2,9 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
-const VALID_STATUSES = new Set(["present", "absent", "excused", "recused", "non_voting_present", "unknown"]);
+const VALID_STATUSES = new Set(["present", "remote_present", "absent", "excused", "recused", "non_voting_present", "unknown"]);
 const VALID_ELIGIBILITY = new Set(["eligible_voting_member", "non_voting", "unknown"]);
-const VALID_MATCH = new Set(["exact_name_match", "normalized_name_match", "title_plus_name_match", "unmatched_name"]);
+const VALID_MATCH = new Set(["exact_name_match", "normalized_name_match", "title_plus_name_match", "ambiguous_name", "unmatched_name"]);
 
 function readJson<T>(fileName: string): T {
   return JSON.parse(readFileSync(path.join(GENERATED_DIR, fileName), "utf8")) as T;

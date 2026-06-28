@@ -1,19 +1,4 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
-
-const govNavItems = [
-  { href: "/gov/dashboard", label: "Dashboard" },
-  { href: "/gov/catalogs", label: "Catalogs" },
-  { href: "/gov/submissions", label: "Submissions" },
-  { href: "/gov/cases", label: "Cases" },
-  { href: "/gov/comments", label: "Comments" },
-  { href: "/gov/documents", label: "Documents" },
-  { href: "/gov/forms", label: "Forms" },
-  { href: "/gov/public", label: "Portal Preview" },
-  { href: "/gov/meetings", label: "Meetings" },
-  { href: "/gov/reports", label: "Reports" },
-  { href: "/gov/settings", label: "Settings" },
-];
 
 type GovCrmPageShellProps = {
   title: string;
@@ -22,42 +7,33 @@ type GovCrmPageShellProps = {
   children: ReactNode;
 };
 
-export function GovCrmPageShell({ title, description, eyebrow = "Direct Democracy GovCRM / Government Workflow Layer", children }: GovCrmPageShellProps) {
+export function GovCrmPageShell({ title, description, eyebrow = "GovCRM operations", children }: GovCrmPageShellProps) {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pb-16 pt-2 sm:px-6 lg:px-8">
-      <section className="rounded-[1.75rem] border border-emerald-300/20 bg-slate-950/80 p-5 shadow-[0_24px_80px_-48px_rgba(45,212,191,0.55)] sm:p-7">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">{eyebrow}</p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{title}</h1>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">{description}</p>
+    <div className="flex w-full flex-col gap-4 px-4 py-5 sm:px-6 lg:px-8">
+      <section className="border-b border-slate-800 pb-4">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">{eyebrow}</p>
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white">{title}</h1>
+            <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-400">{description}</p>
           </div>
-          <Link
-            href="/gov/settings"
-            className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-emerald-300/35 hover:text-emerald-100"
-          >
-            Separation rules
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-md border border-rose-400/20 bg-rose-400/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-rose-100">
+              Internal/private
+            </span>
+            <span className="rounded-md border border-cyan-400/20 bg-cyan-400/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
+              Public records read-only
+            </span>
+          </div>
         </div>
-        <nav className="mt-6 flex flex-wrap gap-2">
-          {govNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-slate-200 transition hover:border-emerald-300/35 hover:bg-emerald-400/10 hover:text-emerald-100"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
       </section>
 
-      <section className="rounded-[1.5rem] border border-amber-300/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
-        GovCRM is a private workflow surface. It can reference public civic data, but it cannot change public sentiment, voting data, criticism, candidate records, official records, or source attribution.
+      <section className="rounded-md border border-amber-400/20 bg-amber-400/10 p-3 text-sm leading-6 text-amber-100">
+        GovCRM can reference public civic records. It cannot edit public votes, public records, source attribution, public sentiment, candidate records, or accountability data.
       </section>
 
       {children}
-    </main>
+    </div>
   );
 }
 

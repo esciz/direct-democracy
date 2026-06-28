@@ -9,6 +9,8 @@ const PRIORITY_ORGANIZATIONS = new Map<string, string>([
   ["reno-city-council", "Reno"],
   ["sparks-city-council", "Sparks"],
   ["washoe-county-commission", "Washoe County"],
+  ["elko-city-council", "Elko"],
+  ["elko-county-commission", "Elko County"],
   ["clark-county-commission", "Clark County"],
   ["las-vegas-city-council", "Las Vegas"],
   ["henderson-city-council", "Henderson"],
@@ -19,6 +21,15 @@ const PRIORITY_ORGANIZATIONS = new Map<string, string>([
   ["nv-senate", "Nevada Senate"],
   ["nv-assembly", "Nevada Assembly"],
 ]);
+
+type MeetingSeed = {
+  id: string;
+  name: string;
+  jurisdiction: string;
+  scraperType: string;
+  meetingIndexUrl: string | null;
+  active: boolean;
+};
 
 type SourceDocument = {
   id: string;
@@ -51,7 +62,8 @@ type AdapterRecoveryRecord = {
 
 function readJson<T>(fileName: string, fallback: T): T {
   try {
-    return JSON.parse(readFileSync(path.join(GENERATED_DIR, fileName), "utf8")) as T;
+    const filePath = path.isAbsolute(fileName) ? fileName : path.join(GENERATED_DIR, fileName);
+    return JSON.parse(readFileSync(filePath, "utf8")) as T;
   } catch {
     return fallback;
   }
@@ -75,6 +87,7 @@ function statusFor(total: number, extracted: number, blocked: number, recovered:
 
 const generatedAt = new Date().toISOString();
 const documents = readJson<{ records?: SourceDocument[] }>("public-meeting-source-documents.json", { records: [] }).records ?? [];
+const meetingSeeds = readJson<MeetingSeed[]>(path.join(process.cwd(), "data", "seed", "public-meeting-sources.json"), []);
 const queue = readJson<{ records?: RetrievalRecord[] }>("public-meeting-retrieval-queue.json", { records: [] }).records ?? [];
 const recoveries = readJson<{ records?: AdapterRecoveryRecord[] }>("public-meeting-source-adapter-recovery.json", { records: [] }).records ?? [];
 const queueByDocument = new Map(queue.map((record) => [record.documentId, record]));
@@ -140,7 +153,31 @@ const rows = Array.from(
 
 const uncoveredPriority = Array.from(PRIORITY_ORGANIZATIONS.entries())
   .filter(([organizationId]) => !rows.some((row) => row.organizationId === organizationId))
-  .map(([organizationId, jurisdictionName]) => ({ organizationId, jurisdictionName, status: "not_configured", nextAction: "add meeting source registry entry before Sprint 2 expansion" }));
+  .map(([organizationId, jurisdictionName]) => {
+    const seed = meetingSeeds.find((candidate) => candidate.id === organizationId);
+    if (seed?.active && seed.meetingIndexUrl) {
+      return {
+        organizationId,
+        jurisdictionName,
+        sourcePlatform: seed.scraperType,
+        sourceHost: new URL(seed.meetingIndexUrl).host,
+        documents: 0,
+        extracted: 0,
+        blocked: 0,
+        recoveredByAdapter: 0,
+        failed: 0,
+        ocrRequired: 0,
+        unavailable: 0,
+        blockedByNetwork: 0,
+        adapterPath: seed.scraperType === "html" ? "Playwright/manual cache trigger or source-specific HTML adapter" : adapterPathFor(seed.scraperType, new URL(seed.meetingIndexUrl).host),
+        sampleBlockedSources: [{ documentId: seed.id, sourceUrl: seed.meetingIndexUrl, state: "source_registered_no_documents_discovered", reason: "Meeting source is configured but the importer has not discovered meeting documents yet." }],
+        status: "source_registered_adapter_needed",
+        extractionCoverage: 0,
+        nextAction: `Run npm run meetings:bootstrap:nevada-sources -- --provider=${organizationId}; promote a parser only after reviewed source files produce meetings/documents.`,
+      };
+    }
+    return { organizationId, jurisdictionName, status: "not_configured", nextAction: "add meeting source registry entry before Sprint 2 expansion" };
+  });
 
 const allRows = [...rows, ...uncoveredPriority].sort((left, right) => left.jurisdictionName.localeCompare(right.jurisdictionName) || String(left.sourcePlatform ?? "").localeCompare(String(right.sourcePlatform ?? "")));
 const audit = {
@@ -151,6 +188,7 @@ const audit = {
     coveredRows: allRows.filter((row) => row.status === "covered" || row.status === "adapter_recovered").length,
     partialRows: allRows.filter((row) => row.status === "partial_adapter_needed").length,
     adapterNeededRows: allRows.filter((row) => row.status === "adapter_needed").length,
+    sourceRegisteredAdapterNeededRows: allRows.filter((row) => row.status === "source_registered_adapter_needed").length,
     notConfiguredRows: allRows.filter((row) => row.status === "not_configured").length,
     blockedDocuments: allRows.reduce((sum, row) => sum + (row.blocked ?? 0), 0),
     recoveredByAdapter: allRows.reduce((sum, row) => sum + (row.recoveredByAdapter ?? 0), 0),

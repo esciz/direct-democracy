@@ -74,6 +74,15 @@ function readJson<T>(fileName: string, fallback: T): T {
   }
 }
 
+function recordsFrom<T>(fileName: string): T[] {
+  const value = readJson<unknown>(fileName, []);
+  if (Array.isArray(value)) return value as T[];
+  if (value && typeof value === "object" && Array.isArray((value as { records?: unknown[] }).records)) {
+    return (value as { records: T[] }).records;
+  }
+  return [];
+}
+
 function unique<T>(values: T[]) {
   return [...new Set(values)];
 }
@@ -129,11 +138,11 @@ function relatedIssuesFor(card: MeetingVotingCardRecord, item: PublicMeetingItem
 
 function buildCards() {
   const generatedAt = new Date().toISOString();
-  const cards = readJson<MeetingVotingCardRecord[]>("public-meeting-voting-cards.json", []);
-  const meetings = readJson<PublicMeetingRecord[]>("public-meetings.json", []);
-  const items = readJson<PublicMeetingItemRecord[]>("public-meeting-items.json", []);
-  const bodies = readJson<PublicBodyRecord[]>("public-meeting-bodies.json", []);
-  const votes = readJson<VoteRecord[]>("public-meeting-votes.json", []);
+  const cards = recordsFrom<MeetingVotingCardRecord>("public-meeting-voting-cards.json");
+  const meetings = recordsFrom<PublicMeetingRecord>("public-meetings.json");
+  const items = recordsFrom<PublicMeetingItemRecord>("public-meeting-items.json");
+  const bodies = recordsFrom<PublicBodyRecord>("public-meeting-bodies.json");
+  const votes = recordsFrom<VoteRecord>("public-meeting-votes.json");
   const meetingById = new Map(meetings.map((meeting) => [meeting.id, meeting]));
   const itemById = new Map(items.map((item) => [item.id, item]));
   const bodyById = new Map(bodies.map((body) => [body.id, body]));
@@ -209,6 +218,9 @@ function buildCards() {
       skippedWithoutSources: cards.length - output.length,
       cardsWithFinancialImpact: output.filter((card) => card.financialImpact.estimatedAmount || card.financialImpact.raw).length,
       cardsWithParsedVotes: output.filter((card) => card.voteCount.totalKnown > 0).length,
+      approved: output.filter((card) => card.reviewStatus === "approved").length,
+      ready: output.filter((card) => card.reviewStatus === "ready").length,
+      needsReview: output.filter((card) => card.reviewStatus === "needs_review").length,
     },
     records: output.sort((left, right) => (Date.parse(right.meeting.date ?? "") || 0) - (Date.parse(left.meeting.date ?? "") || 0)),
   };
