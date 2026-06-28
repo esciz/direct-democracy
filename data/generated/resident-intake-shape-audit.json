@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T03:25:33.269Z",
+  "generatedAt": "2026-06-28T23:32:39.299Z",
   "totals": {
     "fixtureSubmissions": 1,
     "validFixtures": 1,
@@ -20,6 +20,12 @@
     "review.reviewedAt",
     "review.reviewedBy",
     "review.publicSummary",
+    "routing.targetType",
+    "routing.targetId",
+    "routing.status",
+    "routing.publicStatus",
+    "routing.suggestedRecipientName",
+    "routing.routingReason",
     "reviewerNotes",
     "safety.containsPersonalData",
     "safety.containsAllegation",
@@ -73,6 +79,22 @@
       "reviewerNotes": null,
       "rejectionReason": null,
       "publicSummary": null
+    },
+    "routing": {
+      "targetType": "community",
+      "targetId": "reno",
+      "topic": "City service response",
+      "community": "Reno, Nevada",
+      "requestedAgencyOrBody": "Reno City Council",
+      "suggestedRecipientName": "Reno City Council",
+      "suggestedRecipientType": "agency",
+      "suggestedRecipientSourceUrl": "https://www.reno.gov/",
+      "routingReason": "Routed from a community hub so reviewers can connect the question to the resident's local civic context.",
+      "status": "pending",
+      "publicStatus": "received",
+      "reviewerNotes": null,
+      "answerSummary": null,
+      "updatedAt": null
     },
     "moderationSummary": "I tried to get a city service resolved for several weeks, but the agency did not respond and I need help understanding which public body is responsible.",
     "createdAt": "2026-06-20T12:00:00.000Z"

@@ -4,7 +4,17 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { requireAdminSession } from "@/lib/admin/permissions";
-import { buildResidentStoryIntakeFromFormData, type ResidentStoryReviewStatus, validateResidentStoryIntakeShape } from "@/lib/cases/resident-intake";
+import {
+  buildResidentStoryIntakeFromFormData,
+  RESIDENT_QUESTION_PUBLIC_STATUSES,
+  RESIDENT_QUESTION_RECIPIENT_TYPES,
+  RESIDENT_QUESTION_ROUTING_STATUSES,
+  type ResidentQuestionPublicStatus,
+  type ResidentQuestionRoutingStatus,
+  type ResidentQuestionSuggestedRecipientType,
+  type ResidentStoryReviewStatus,
+  validateResidentStoryIntakeShape,
+} from "@/lib/cases/resident-intake";
 import {
   appendResidentStoryIntake,
   buildReviewedResidentStorySummary,
@@ -17,6 +27,18 @@ import { normalizeWhitespace } from "@/lib/public-meetings/shared";
 function formString(formData: FormData, key: string) {
   const value = formData.get(key);
   return normalizeWhitespace(typeof value === "string" ? value : "");
+}
+
+function routingStatusValue(value: string): ResidentQuestionRoutingStatus {
+  return RESIDENT_QUESTION_ROUTING_STATUSES.includes(value as ResidentQuestionRoutingStatus) ? (value as ResidentQuestionRoutingStatus) : "pending";
+}
+
+function publicStatusValue(value: string): ResidentQuestionPublicStatus {
+  return RESIDENT_QUESTION_PUBLIC_STATUSES.includes(value as ResidentQuestionPublicStatus) ? (value as ResidentQuestionPublicStatus) : "received";
+}
+
+function recipientTypeValue(value: string): ResidentQuestionSuggestedRecipientType {
+  return RESIDENT_QUESTION_RECIPIENT_TYPES.includes(value as ResidentQuestionSuggestedRecipientType) ? (value as ResidentQuestionSuggestedRecipientType) : "unknown";
 }
 
 export async function submitResidentStoryIntake(formData: FormData) {
@@ -51,6 +73,30 @@ export async function reviewResidentStoryIntake(formData: FormData) {
   const records = queue.records.map((record) => {
     if (record.id !== id) return record;
     found = true;
+
+    if (decision === "update_routing") {
+      const routingStatus = routingStatusValue(formString(formData, "routingStatus"));
+      const publicStatus = publicStatusValue(formString(formData, "routingPublicStatus"));
+      const suggestedRecipientName = formString(formData, "routingRecipientName") || null;
+      const suggestedRecipientType = recipientTypeValue(formString(formData, "routingRecipientType"));
+      const suggestedRecipientSourceUrl = formString(formData, "routingRecipientSourceUrl") || null;
+      const routingReviewerNotes = formString(formData, "routingReviewerNotes");
+      const routingAnswerSummary = formString(formData, "routingAnswerSummary");
+      return {
+        ...record,
+        routing: {
+          ...record.routing,
+          suggestedRecipientName,
+          suggestedRecipientType,
+          suggestedRecipientSourceUrl,
+          status: routingStatus,
+          publicStatus,
+          reviewerNotes: routingReviewerNotes || record.routing.reviewerNotes,
+          answerSummary: routingAnswerSummary || record.routing.answerSummary,
+          updatedAt: reviewedAt,
+        },
+      };
+    }
 
     if (decision === "keep_private") {
       return {
@@ -122,5 +168,5 @@ export async function reviewResidentStoryIntake(formData: FormData) {
   await regenerateResidentStoryPublicRuntime();
   revalidatePath("/admin/cases/resident-intake");
   revalidatePath("/cases");
-  redirect("/admin/cases/resident-intake?review=saved");
+  redirect(decision === "update_routing" ? "/admin/cases/resident-intake?review=routing-saved" : "/admin/cases/resident-intake?review=saved");
 }

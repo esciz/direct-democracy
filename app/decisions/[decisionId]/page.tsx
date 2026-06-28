@@ -138,7 +138,7 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
                   visibleLabel="Follow decision"
                   className="inline-flex min-h-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-500/15"
                 />
-                <Link href={`/cases/submit?topic=${encodeURIComponent(decision.title)}&agency=${encodeURIComponent(decision.meeting.bodyName)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+                <Link href={`/cases/submit?targetType=decision&targetId=${encodeURIComponent(decision.id)}&topic=${encodeURIComponent(decision.title)}&agency=${encodeURIComponent(decision.meeting.bodyName)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
                   Ask about this decision
                 </Link>
                 <Link href="/profile" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">

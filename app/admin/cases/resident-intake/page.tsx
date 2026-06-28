@@ -2,7 +2,14 @@ import Link from "next/link";
 
 import { PageIntro } from "@/components/ui/page-intro";
 import { reviewResidentStoryIntake } from "@/lib/cases/resident-intake-actions";
-import { residentSubmissionTypeLabel } from "@/lib/cases/resident-intake";
+import {
+  RESIDENT_QUESTION_PUBLIC_STATUSES,
+  RESIDENT_QUESTION_RECIPIENT_TYPES,
+  RESIDENT_QUESTION_ROUTING_STATUSES,
+  residentQuestionPublicStatusLabel,
+  residentQuestionRoutingStatusLabel,
+  residentSubmissionTypeLabel,
+} from "@/lib/cases/resident-intake";
 import { getResidentStoryPublicRuntime, getResidentStoryReviewQueue } from "@/lib/cases/resident-intake-store";
 
 export const dynamic = "force-dynamic";
@@ -30,6 +37,13 @@ function reviewKind(status: string) {
   return "neutral";
 }
 
+function routingKind(status: string) {
+  if (status === "pending" || status === "needs_source") return "pending";
+  if (status === "ready_to_send" || status === "sent_externally") return "private";
+  if (status === "answered" || status === "closed") return "public";
+  return "neutral";
+}
+
 function formatDate(value: string | null) {
   if (!value) return "Not provided";
   const parsed = new Date(value);
@@ -44,6 +58,9 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
     getResidentStoryPublicRuntime(),
   ]);
   const pending = queue.records.filter((record) => record.review.status === "pending_review");
+  const pendingRouting = queue.records.filter((record) => record.routing.status === "pending" || record.routing.status === "needs_source");
+  const readyToSend = queue.records.filter((record) => record.routing.status === "ready_to_send");
+  const answered = queue.records.filter((record) => record.routing.status === "answered" || record.routing.publicStatus === "answer_published");
   const sensitive = queue.records.filter(
     (record) => record.safety.containsPersonalData || record.safety.involvesMinor || record.safety.involvesLegalMatter || record.safety.containsAllegation,
   );
@@ -69,6 +86,9 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
       {params?.review === "saved" ? (
         <section className="rounded-2xl border border-emerald-300/20 bg-emerald-500/10 p-4 text-sm text-emerald-100">Review saved and public runtime regenerated.</section>
       ) : null}
+      {params?.review === "routing-saved" ? (
+        <section className="rounded-2xl border border-emerald-300/20 bg-emerald-500/10 p-4 text-sm text-emerald-100">Routing workflow saved. Nothing was emailed or published automatically.</section>
+      ) : null}
       {params?.error ? (
         <section className="rounded-2xl border border-rose-300/20 bg-rose-500/10 p-4 text-sm text-rose-100">Review could not be saved: {params.error}</section>
       ) : null}
@@ -89,6 +109,21 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
         <div className="rounded-2xl border border-emerald-300/20 bg-emerald-300/10 p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100">Public summaries</p>
           <p className="mt-3 text-3xl font-semibold text-white">{publicRuntime.totals.reviewedPublicSummaries}</p>
+        </div>
+      </section>
+
+      <section className="grid gap-3 md:grid-cols-3">
+        <div className="rounded-2xl border border-amber-300/20 bg-amber-300/10 p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-100">Needs routing work</p>
+          <p className="mt-3 text-3xl font-semibold text-white">{pendingRouting.length}</p>
+        </div>
+        <div className="rounded-2xl border border-sky-300/20 bg-sky-300/10 p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-100">Ready to send</p>
+          <p className="mt-3 text-3xl font-semibold text-white">{readyToSend.length}</p>
+        </div>
+        <div className="rounded-2xl border border-emerald-300/20 bg-emerald-300/10 p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100">Answered or closed</p>
+          <p className="mt-3 text-3xl font-semibold text-white">{answered.length}</p>
         </div>
       </section>
 
@@ -117,6 +152,12 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
               <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] font-semibold text-slate-300">
                 {record.verificationStatus.replace(/_/g, " ")}
               </span>
+              <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${badgeClass(routingKind(record.routing.status))}`}>
+                Routing: {residentQuestionRoutingStatusLabel(record.routing.status)}
+              </span>
+              <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-semibold text-cyan-100">
+                Public: {residentQuestionPublicStatusLabel(record.routing.publicStatus)}
+              </span>
             </div>
 
             <div className="mt-4 grid gap-3 md:grid-cols-3">
@@ -135,6 +176,27 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
               <summary className="cursor-pointer font-semibold text-slate-100">Private raw story</summary>
               <p className="mt-2 whitespace-pre-wrap leading-6">{record.story}</p>
             </details>
+
+            <div className="mt-3 rounded-2xl border border-cyan-300/15 bg-cyan-500/10 p-4 text-sm leading-6 text-cyan-50">
+              <div className="grid gap-3 md:grid-cols-3">
+                <p>
+                  <span className="font-semibold">Target:</span> {record.routing.targetType.replace(/_/g, " ")}
+                  {record.routing.targetId ? ` (${record.routing.targetId})` : ""}
+                </p>
+                <p>
+                  <span className="font-semibold">Topic:</span> {record.routing.topic ?? "Reviewer should classify"}
+                </p>
+                <p>
+                  <span className="font-semibold">Community:</span> {record.routing.community ?? record.location ?? "Not provided"}
+                </p>
+              </div>
+              <p className="mt-2">
+                <span className="font-semibold">Suggested recipient:</span> {record.routing.suggestedRecipientName ?? "Not yet routed"}{" "}
+                <span className="text-cyan-100/70">({record.routing.suggestedRecipientType.replace(/_/g, " ")})</span>
+              </p>
+              <p className="mt-2 text-cyan-100/80">{record.routing.routingReason}</p>
+              {record.routing.answerSummary ? <p className="mt-2 rounded-xl border border-emerald-300/20 bg-emerald-300/10 p-3 text-emerald-50">Answer summary: {record.routing.answerSummary}</p> : null}
+            </div>
 
             <div className="mt-3 grid gap-3 md:grid-cols-4">
               {[
@@ -170,6 +232,100 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
                 </div>
               </div>
             ) : null}
+
+            <form action={reviewResidentStoryIntake} className="mt-4 rounded-2xl border border-cyan-300/15 bg-cyan-500/10 p-4">
+              <input type="hidden" name="id" value={record.id} />
+              <input type="hidden" name="decision" value="update_routing" />
+              <div className="grid gap-3 md:grid-cols-2">
+                <label className="grid gap-2 text-sm font-semibold text-cyan-50">
+                  Workflow status
+                  <select
+                    name="routingStatus"
+                    defaultValue={record.routing.status}
+                    className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm font-normal text-slate-100 outline-none"
+                  >
+                    {RESIDENT_QUESTION_ROUTING_STATUSES.map((status) => (
+                      <option key={status} value={status}>
+                        {residentQuestionRoutingStatusLabel(status)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="grid gap-2 text-sm font-semibold text-cyan-50">
+                  Public-safe status
+                  <select
+                    name="routingPublicStatus"
+                    defaultValue={record.routing.publicStatus}
+                    className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm font-normal text-slate-100 outline-none"
+                  >
+                    {RESIDENT_QUESTION_PUBLIC_STATUSES.map((status) => (
+                      <option key={status} value={status}>
+                        {residentQuestionPublicStatusLabel(status)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              <div className="mt-3 grid gap-3 md:grid-cols-3">
+                <label className="grid gap-2 text-sm font-semibold text-cyan-50">
+                  Recipient/body
+                  <input
+                    name="routingRecipientName"
+                    defaultValue={record.routing.suggestedRecipientName ?? ""}
+                    placeholder="Carson City Board of Supervisors"
+                    className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm font-normal text-slate-100 outline-none placeholder:text-slate-500"
+                  />
+                </label>
+                <label className="grid gap-2 text-sm font-semibold text-cyan-50">
+                  Recipient type
+                  <select
+                    name="routingRecipientType"
+                    defaultValue={record.routing.suggestedRecipientType}
+                    className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm font-normal text-slate-100 outline-none"
+                  >
+                    {RESIDENT_QUESTION_RECIPIENT_TYPES.map((type) => (
+                      <option key={type} value={type}>
+                        {type.replace(/_/g, " ")}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="grid gap-2 text-sm font-semibold text-cyan-50">
+                  Recipient/source URL
+                  <input
+                    name="routingRecipientSourceUrl"
+                    defaultValue={record.routing.suggestedRecipientSourceUrl ?? ""}
+                    placeholder="Official contact or agenda source URL"
+                    className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm font-normal text-slate-100 outline-none placeholder:text-slate-500"
+                  />
+                </label>
+              </div>
+              <div className="mt-3 grid gap-3 md:grid-cols-2">
+                <label className="grid gap-2 text-sm font-semibold text-cyan-50">
+                  Routing note
+                  <textarea
+                    name="routingReviewerNotes"
+                    rows={3}
+                    defaultValue={record.routing.reviewerNotes ?? ""}
+                    placeholder="Internal routing note. Not public."
+                    className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm font-normal leading-6 text-slate-100 outline-none placeholder:text-slate-500"
+                  />
+                </label>
+                <label className="grid gap-2 text-sm font-semibold text-cyan-50">
+                  Reviewed answer summary
+                  <textarea
+                    name="routingAnswerSummary"
+                    rows={3}
+                    defaultValue={record.routing.answerSummary ?? ""}
+                    placeholder="Only after a reviewed answer exists. Do not paste private contact details."
+                    className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm font-normal leading-6 text-slate-100 outline-none placeholder:text-slate-500"
+                  />
+                </label>
+              </div>
+              <button className="mt-4 rounded-full border border-cyan-300/25 bg-cyan-300/15 px-4 py-2 text-xs font-semibold text-cyan-50">
+                Save routing workflow
+              </button>
+            </form>
 
             <form action={reviewResidentStoryIntake} className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
               <input type="hidden" name="id" value={record.id} />
@@ -229,4 +385,3 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
     </div>
   );
 }
-

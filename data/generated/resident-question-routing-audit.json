@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-06-28T23:32:39.272Z",
+  "totals": {
+    "residentQuestionQueueRecords": 0,
+    "recordsWithRouting": 0,
+    "recordsMissingRouting": 0,
+    "generatedDecisionRecordsAvailable": 756,
+    "generatedProjectRecordsAvailable": 314
+  },
+  "routingQueue": {
+    "pending": 0,
+    "needsSource": 0,
+    "readyToSend": 0,
+    "sentExternally": 0,
+    "answered": 0,
+    "closed": 0
+  },
+  "productBoundary": {
+    "privateByDefault": true,
+    "noAutomaticExternalSend": true,
+    "noAutomaticPublication": true
+  },
+  "checks": {
+    "intakeModelHasRouting": true,
+    "intakeDefaultsPrivate": true,
+    "submitCarriesTargetType": true,
+    "submitExplainsNoAutoSend": true,
+    "decisionEntryPointRouted": true,
+    "projectEntryPointRouted": true,
+    "communityEntryPointRouted": true,
+    "adminRoutingWorkflow": true,
+    "adminReadyToSendStatus": true,
+    "adminAnsweredStatus": true,
+    "actionHandlesRoutingOnlyUpdate": true
+  },
+  "errors": []
+}

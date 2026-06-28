@@ -5,6 +5,7 @@ import path from "node:path";
 
 import {
   buildResidentStoryPublicSummary,
+  normalizeResidentStoryIntake,
   type ResidentStoryIntake,
   type ResidentStoryPublicSummary,
   type ResidentStoryReviewStatus,
@@ -64,7 +65,7 @@ export async function getResidentStoryReviewQueue() {
   const queue = await readJsonFile<ResidentStoryReviewQueueFile>(PRIVATE_QUEUE_PATH, emptyQueue());
   return {
     ...queue,
-    records: sortRecords(Array.isArray(queue.records) ? queue.records : []),
+    records: sortRecords(Array.isArray(queue.records) ? queue.records.map(normalizeResidentStoryIntake) : []),
   };
 }
 

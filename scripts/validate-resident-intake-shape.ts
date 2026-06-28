@@ -24,6 +24,11 @@ fixture.set("approximateDate", "Spring 2026");
 fixture.set("peopleOrEntitiesInvolved", "City service department");
 fixture.set("links", "https://www.reno.gov/");
 fixture.set("publicationPreference", "private");
+fixture.set("routingTargetType", "community");
+fixture.set("routingTargetId", "reno");
+fixture.set("routingTopic", "City service response");
+fixture.set("routingAgency", "Reno City Council");
+fixture.set("routingCommunity", "Reno, Nevada");
 
 const intake = buildResidentStoryIntakeFromFormData(fixture, new Date("2026-06-20T12:00:00.000Z"));
 const errors = validateResidentStoryIntakeShape(intake);
@@ -36,6 +41,10 @@ if (intake.verificationStatus !== "source_links_provided") errors.push("fixture 
 if (intake.review.status !== "pending_review") errors.push("review.status must default to pending_review");
 if (intake.review.reviewedAt !== null || intake.review.reviewedBy !== null) errors.push("review metadata must default to null");
 if (intake.review.publicSummary !== null) errors.push("publicSummary must not be created during submission");
+if (intake.routing.status !== "pending") errors.push("routing.status must default to pending");
+if (intake.routing.publicStatus !== "received") errors.push("routing.publicStatus must default to received");
+if (intake.routing.targetType !== "community") errors.push("routing target should preserve the source page target type");
+if (intake.routing.suggestedRecipientName !== "Reno City Council") errors.push("routing should keep the suggested recipient");
 
 const reviewedSummary = {
   id: `public-${intake.id}`,
@@ -83,6 +92,12 @@ const audit = {
     "review.reviewedAt",
     "review.reviewedBy",
     "review.publicSummary",
+    "routing.targetType",
+    "routing.targetId",
+    "routing.status",
+    "routing.publicStatus",
+    "routing.suggestedRecipientName",
+    "routing.routingReason",
     "reviewerNotes",
     "safety.containsPersonalData",
     "safety.containsAllegation",

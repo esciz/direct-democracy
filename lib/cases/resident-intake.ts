@@ -25,6 +25,31 @@ export type ResidentStoryVerificationStatus = "unverified_resident_submission" |
 
 export type ResidentStoryReviewStatus = "pending_review" | "reviewed_private" | "approved_public_summary" | "approved_anonymous_summary" | "rejected";
 
+export type ResidentQuestionTargetType = "decision" | "project" | "community" | "meeting_event" | "issue" | "official_body" | "unknown";
+
+export type ResidentQuestionRoutingStatus = "pending" | "needs_source" | "ready_to_send" | "sent_externally" | "answered" | "closed";
+
+export type ResidentQuestionPublicStatus = "received" | "under_review" | "routed_to_body" | "answer_published" | "closed";
+
+export type ResidentQuestionSuggestedRecipientType = "governing_body" | "department" | "official" | "agency" | "unknown";
+
+export type ResidentQuestionRouting = {
+  targetType: ResidentQuestionTargetType;
+  targetId: string | null;
+  topic: string | null;
+  community: string | null;
+  requestedAgencyOrBody: string | null;
+  suggestedRecipientName: string | null;
+  suggestedRecipientType: ResidentQuestionSuggestedRecipientType;
+  suggestedRecipientSourceUrl: string | null;
+  routingReason: string;
+  status: ResidentQuestionRoutingStatus;
+  publicStatus: ResidentQuestionPublicStatus;
+  reviewerNotes: string | null;
+  answerSummary: string | null;
+  updatedAt: string | null;
+};
+
 export type ResidentStoryPublicSummary = {
   id: string;
   title: string;
@@ -65,6 +90,7 @@ export type ResidentStoryIntake = {
     rejectionReason: string | null;
     publicSummary: ResidentStoryPublicSummary | null;
   };
+  routing: ResidentQuestionRouting;
   moderationSummary: string;
   createdAt: string;
 };
@@ -79,6 +105,21 @@ const SUBMISSION_TYPES = new Set<ResidentStorySubmissionType>([
   "official_misconduct_or_accountability_concern",
   "other_civic_concern",
 ]);
+
+const TARGET_TYPES = new Set<ResidentQuestionTargetType>(["decision", "project", "community", "meeting_event", "issue", "official_body", "unknown"]);
+
+export const RESIDENT_QUESTION_ROUTING_STATUSES: ResidentQuestionRoutingStatus[] = [
+  "pending",
+  "needs_source",
+  "ready_to_send",
+  "sent_externally",
+  "answered",
+  "closed",
+];
+
+export const RESIDENT_QUESTION_PUBLIC_STATUSES: ResidentQuestionPublicStatus[] = ["received", "under_review", "routed_to_body", "answer_published", "closed"];
+
+export const RESIDENT_QUESTION_RECIPIENT_TYPES: ResidentQuestionSuggestedRecipientType[] = ["governing_body", "department", "official", "agency", "unknown"];
 
 function stringValue(formData: FormData, key: string) {
   const value = formData.get(key);
@@ -124,6 +165,70 @@ function verificationStatusFor(links: string[], documents: string[]): ResidentSt
   return "unverified_resident_submission";
 }
 
+function routingTargetTypeFor(value: string, submissionType: ResidentStorySubmissionType, agency: string, community: string): ResidentQuestionTargetType {
+  if (TARGET_TYPES.has(value as ResidentQuestionTargetType)) return value as ResidentQuestionTargetType;
+  if (agency) return "official_body";
+  if (community) return "community";
+  if (submissionType === "infrastructure_or_city_project_concern") return "project";
+  return "unknown";
+}
+
+function suggestedRecipientTypeFor(targetType: ResidentQuestionTargetType, agency: string): ResidentQuestionSuggestedRecipientType {
+  if (targetType === "official_body") return "governing_body";
+  if (targetType === "community") return "agency";
+  if (targetType === "project" && agency) return "department";
+  if (agency) return "agency";
+  return "unknown";
+}
+
+function routingReasonFor(routing: Pick<ResidentQuestionRouting, "targetType" | "topic" | "community" | "requestedAgencyOrBody" | "suggestedRecipientName">) {
+  if (routing.targetType === "decision" && routing.topic) {
+    return "Routed from a specific citizen decision page so reviewers can connect the question to the source-backed decision record.";
+  }
+  if (routing.targetType === "project" && routing.topic) {
+    return "Routed from a project page so reviewers can connect the question to the responsible body and related source-backed project record.";
+  }
+  if (routing.targetType === "community" && routing.community) {
+    return "Routed from a community hub so reviewers can connect the question to the resident's local civic context.";
+  }
+  if (routing.requestedAgencyOrBody) {
+    return "Routed from a submitted agency/body context. A reviewer should confirm the appropriate recipient before any external send.";
+  }
+  return "Needs reviewer routing because no source-backed target was provided with the submission.";
+}
+
+export function buildResidentQuestionRoutingFromFormData(
+  formData: FormData,
+  submissionType: ResidentStorySubmissionType,
+  links: string[],
+): ResidentQuestionRouting {
+  const topic = stringValue(formData, "routingTopic") || stringValue(formData, "topic") || null;
+  const agency = stringValue(formData, "routingAgency") || stringValue(formData, "agency") || null;
+  const community = stringValue(formData, "routingCommunity") || stringValue(formData, "community") || null;
+  const targetType = routingTargetTypeFor(stringValue(formData, "routingTargetType"), submissionType, agency ?? "", community ?? "");
+  const suggestedRecipientName = agency || community || null;
+  const routing: ResidentQuestionRouting = {
+    targetType,
+    targetId: stringValue(formData, "routingTargetId") || null,
+    topic,
+    community,
+    requestedAgencyOrBody: agency,
+    suggestedRecipientName,
+    suggestedRecipientType: suggestedRecipientTypeFor(targetType, agency ?? ""),
+    suggestedRecipientSourceUrl: links[0] ?? null,
+    routingReason: "",
+    status: "pending",
+    publicStatus: "received",
+    reviewerNotes: null,
+    answerSummary: null,
+    updatedAt: null,
+  };
+  return {
+    ...routing,
+    routingReason: routingReasonFor(routing),
+  };
+}
+
 function safetyFlags(story: string, submissionType: ResidentStorySubmissionType) {
   const text = story.toLowerCase();
   return {
@@ -140,6 +245,40 @@ export function residentSubmissionTypeLabel(type: ResidentStorySubmissionType) {
   return type
     .replace(/_/g, " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+export function residentQuestionRoutingStatusLabel(status: ResidentQuestionRoutingStatus) {
+  return status.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+export function residentQuestionPublicStatusLabel(status: ResidentQuestionPublicStatus) {
+  return status.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+export function normalizeResidentStoryIntake(record: ResidentStoryIntake): ResidentStoryIntake {
+  if (record.routing) return record;
+  const community = record.location ?? null;
+  const targetType: ResidentQuestionTargetType = community ? "community" : "unknown";
+  const routing: ResidentQuestionRouting = {
+    targetType,
+    targetId: null,
+    topic: residentSubmissionTypeLabel(record.submissionType),
+    community,
+    requestedAgencyOrBody: record.peopleOrEntitiesInvolved[0] ?? null,
+    suggestedRecipientName: record.peopleOrEntitiesInvolved[0] ?? community,
+    suggestedRecipientType: record.peopleOrEntitiesInvolved[0] ? "agency" : community ? "agency" : "unknown",
+    suggestedRecipientSourceUrl: record.links[0] ?? null,
+    routingReason: "Added by normalization for a submission created before resident question routing existed. Reviewer should confirm the target before external use.",
+    status: "pending",
+    publicStatus: "received",
+    reviewerNotes: null,
+    answerSummary: null,
+    updatedAt: null,
+  };
+  return {
+    ...record,
+    routing,
+  };
 }
 
 export function publicTitleForResidentStory(intake: Pick<ResidentStoryIntake, "submissionType" | "location" | "story">) {
@@ -210,6 +349,7 @@ export function buildResidentStoryIntakeFromFormData(formData: FormData, now = n
   const links = urlArray(stringValue(formData, "links"));
   const uploadedDocumentNamesValue = uploadedDocumentNames(formData);
   const createdAt = now.toISOString();
+  const routing = buildResidentQuestionRoutingFromFormData(formData, submissionType, links);
 
   return {
     id: `resident-story-${slugify(`${submissionType}-${location ?? "unknown"}-${createdAt}`).slice(0, 96)}`,
@@ -233,6 +373,7 @@ export function buildResidentStoryIntakeFromFormData(formData: FormData, now = n
       rejectionReason: null,
       publicSummary: null,
     },
+    routing,
     moderationSummary: summarizeText(story, 360),
     createdAt,
   };
@@ -250,5 +391,8 @@ export function validateResidentStoryIntakeShape(intake: ResidentStoryIntake) {
   if (intake.reviewerNotes !== null) errors.push("reviewerNotes should default to null");
   if (!intake.review || intake.review.status !== "pending_review") errors.push("review.status must default to pending_review");
   if (intake.review?.publicSummary !== null) errors.push("review.publicSummary should default to null");
+  if (!intake.routing) errors.push("routing is required");
+  if (intake.routing && intake.routing.status !== "pending") errors.push("routing.status must default to pending");
+  if (intake.routing && intake.routing.publicStatus !== "received") errors.push("routing.publicStatus must default to received");
   return errors;
 }

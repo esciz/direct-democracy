@@ -58,7 +58,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               visibleLabel="Follow project"
               className="inline-flex min-h-11 items-center justify-center rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
             />
-            <Link href={`/cases/submit?topic=${encodeURIComponent(project.project_title || project.title)}&agency=${encodeURIComponent(responsibleBody)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
+            <Link href={`/cases/submit?targetType=project&targetId=${encodeURIComponent(project.id)}&topic=${encodeURIComponent(project.project_title || project.title)}&agency=${encodeURIComponent(responsibleBody)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
               Ask about this project
             </Link>
           </div>

@@ -9,6 +9,8 @@ type CaseSubmitPageProps = {
     topic?: string;
     agency?: string;
     community?: string;
+    targetType?: string;
+    targetId?: string;
   }>;
 };
 
@@ -43,13 +45,15 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
   const contextTopic = typeof params?.topic === "string" ? params.topic : "";
   const contextAgency = typeof params?.agency === "string" ? params.agency : "";
   const contextCommunity = typeof params?.community === "string" ? params.community : "";
+  const contextTargetType = typeof params?.targetType === "string" ? params.targetType : "";
+  const contextTargetId = typeof params?.targetId === "string" ? params.targetId : "";
 
   return (
     <div className="space-y-6 py-8">
       <PageIntro
         eyebrow="Case intake"
-        title="Share a civic story for review"
-        description="You do not need a formal court case or government file. Share what happened in plain language; submissions are not published automatically."
+        title="Ask a civic question or share a concern"
+        description="You do not need a formal court case or government file. Share what happened in plain language; submissions are routed for review and are not sent or published automatically."
         meta={
           <span className="rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-200">
             Moderation queue foundation
@@ -61,7 +65,8 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
         <section className="rounded-[1.75rem] border border-emerald-300/20 bg-emerald-500/10 p-5 text-sm leading-6 text-emerald-100">
           <p className="font-semibold text-emerald-50">Story received for review.</p>
           <p className="mt-2">
-            It remains private pending review unless and until source verification, moderation, and your publication preference allow a public or anonymous summary.
+            Public status: received. A reviewer can route it to the right body, request sources, or publish a reviewed answer later. It remains private unless source verification,
+            moderation, and your publication preference allow a public or anonymous summary.
           </p>
           {params?.id ? <p className="mt-2 text-xs text-emerald-200/80">Review reference: {params.id}</p> : null}
         </section>
@@ -74,11 +79,16 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
       ) : null}
 
       <form action={submitResidentStoryIntake} className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+        <input type="hidden" name="routingTargetType" value={contextTargetType} />
+        <input type="hidden" name="routingTargetId" value={contextTargetId} />
+        <input type="hidden" name="routingTopic" value={contextTopic} />
+        <input type="hidden" name="routingAgency" value={contextAgency} />
+        <input type="hidden" name="routingCommunity" value={contextCommunity} />
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Resident story</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Resident question</p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Tell us what happened</h2>
           <p className="mt-2 text-sm leading-6 text-slate-400">
-            Keep public civic truth separate from your unverified submission. Reviewers use this to identify timelines, agencies, public records, and safety/moderation needs.
+            Keep public civic truth separate from your unverified submission. Reviewers use this to identify timelines, agencies, public records, routing targets, and safety/moderation needs.
           </p>
         </div>
 
@@ -118,7 +128,7 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
             <p className="font-semibold">Context carried from the page you were viewing.</p>
             {contextTopic ? <p className="mt-1">Topic: {contextTopic}</p> : null}
             {contextAgency ? <p className="mt-1">Agency/body: {contextAgency}</p> : null}
-            <p className="mt-2 text-cyan-100/80">You can edit the story below. This still enters review and is not published automatically.</p>
+            <p className="mt-2 text-cyan-100/80">You can edit the story below. This enters routing review and is not emailed or published automatically.</p>
           </div>
         ) : null}
 
@@ -181,7 +191,7 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
         <div className="mt-6 grid gap-3 md:grid-cols-3">
           {[
             "Safety flags check for personal data, allegations, minors, and legal matters.",
-            "AI-assisted review can draft a timeline, agencies, people involved, and source leads.",
+            "Reviewer workflow can route the question to the best body, mark needs-source, ready-to-send, answered, or closed.",
             "Moderators verify public sources before any public story or case page is created.",
           ].map((item) => (
             <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm leading-6 text-slate-300">

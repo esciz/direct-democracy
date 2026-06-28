@@ -280,7 +280,7 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
                 visibleLabel="Follow community"
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-500/15"
               />
-              <Link href={`/cases/submit?community=${encodeURIComponent(data.community.name)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+              <Link href={`/cases/submit?targetType=community&targetId=${encodeURIComponent(data.community.id)}&community=${encodeURIComponent(data.community.name)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
                 Ask a question or report concern
               </Link>
               <Link href="/profile" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
