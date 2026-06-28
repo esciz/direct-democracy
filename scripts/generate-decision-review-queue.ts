@@ -127,61 +127,68 @@ function priorityScore(card: GeneratedVotingCard, reasons: string[]) {
   return score;
 }
 
-const cards = records<GeneratedVotingCard>("voting-cards.json");
-const documentTextByMeeting = records<DocumentTextRecord>("public-meeting-document-text.json").reduce((map, record) => {
-  map.set(record.meetingId, [...(map.get(record.meetingId) ?? []), record]);
-  return map;
-}, new Map<string, DocumentTextRecord[]>());
-const actionResultByItem = new Map(records<ActionResultRecord>("public-meeting-action-results.json").map((record) => [record.meetingItemId, record]));
-const reviewCards = cards.filter((card) => card.reviewStatus === "needs_review");
+export function generateDecisionReviewQueue() {
+  const cards = records<GeneratedVotingCard>("voting-cards.json");
+  const documentTextByMeeting = records<DocumentTextRecord>("public-meeting-document-text.json").reduce((map, record) => {
+    map.set(record.meetingId, [...(map.get(record.meetingId) ?? []), record]);
+    return map;
+  }, new Map<string, DocumentTextRecord[]>());
+  const actionResultByItem = new Map(records<ActionResultRecord>("public-meeting-action-results.json").map((record) => [record.meetingItemId, record]));
+  const reviewCards = cards.filter((card) => card.reviewStatus === "needs_review");
 
-const queue = reviewCards
-  .map((card) => {
-    const reasons = reviewReasons(card);
-    const sourceRecovery = sourceRecoveryFor(card, documentTextByMeeting, actionResultByItem);
-    const action = nextAction(reasons, sourceRecovery.status);
-    return {
-      id: card.id,
-      sourceVotingCardId: card.sourceVotingCardId,
-      agendaItemId: card.agendaItemId,
-      title: card.title,
-      jurisdiction: card.jurisdiction,
-      bodyName: card.meeting.bodyName,
-      meetingDate: card.meeting.date,
-      voteOutcome: card.voteOutcome,
-      voteCount: card.voteCount.display,
-      confidence: card.confidence,
-      hasFinancialImpact: Boolean(card.financialImpact.estimatedAmount || card.financialImpact.description || card.financialImpact.raw),
-      sourceCount: card.sourceReferences.length,
-      reasons,
-      sourceRecoveryStatus: sourceRecovery.status,
-      sourceRecoveryReason: sourceRecovery.reason,
-      nextAction: action,
-      priorityScore: priorityScore(card, reasons),
-      adminHref: `/admin/voting-cards?review=needs_review&jurisdiction=${encodeURIComponent(card.jurisdiction)}&nextAction=${encodeURIComponent(action)}#${encodeURIComponent(card.sourceVotingCardId)}`,
-      publicHref: `/decisions/${card.id}`,
-    };
-  })
-  .sort((left, right) => right.priorityScore - left.priorityScore || (Date.parse(right.meetingDate ?? "") || 0) - (Date.parse(left.meetingDate ?? "") || 0));
+  const queue = reviewCards
+    .map((card) => {
+      const reasons = reviewReasons(card);
+      const sourceRecovery = sourceRecoveryFor(card, documentTextByMeeting, actionResultByItem);
+      const action = nextAction(reasons, sourceRecovery.status);
+      return {
+        id: card.id,
+        sourceVotingCardId: card.sourceVotingCardId,
+        agendaItemId: card.agendaItemId,
+        title: card.title,
+        jurisdiction: card.jurisdiction,
+        bodyName: card.meeting.bodyName,
+        meetingDate: card.meeting.date,
+        voteOutcome: card.voteOutcome,
+        voteCount: card.voteCount.display,
+        confidence: card.confidence,
+        hasFinancialImpact: Boolean(card.financialImpact.estimatedAmount || card.financialImpact.description || card.financialImpact.raw),
+        sourceCount: card.sourceReferences.length,
+        reasons,
+        sourceRecoveryStatus: sourceRecovery.status,
+        sourceRecoveryReason: sourceRecovery.reason,
+        nextAction: action,
+        priorityScore: priorityScore(card, reasons),
+        adminHref: `/admin/voting-cards?review=needs_review&jurisdiction=${encodeURIComponent(card.jurisdiction)}&nextAction=${encodeURIComponent(action)}#${encodeURIComponent(card.sourceVotingCardId)}`,
+        publicHref: `/decisions/${card.id}`,
+      };
+    })
+    .sort((left, right) => right.priorityScore - left.priorityScore || (Date.parse(right.meetingDate ?? "") || 0) - (Date.parse(left.meetingDate ?? "") || 0));
 
-const report = {
-  generatedAt: new Date().toISOString(),
-  totals: {
-    decisions: cards.length,
-    needsReview: queue.length,
-    withParsedVoteCount: queue.filter((card) => card.voteCount !== "Vote count not parsed").length,
-    withFinancialImpact: queue.filter((card) => card.hasFinancialImpact).length,
-    possibleNonDecision: queue.filter((card) => card.reasons.includes("possible_non_decision_or_directory_content")).length,
-  },
-  byJurisdiction: countBy(queue, (card) => card.jurisdiction),
-  byNextAction: countBy(queue, (card) => card.nextAction),
-  bySourceRecoveryStatus: countBy(queue, (card) => card.sourceRecoveryStatus),
-  byReason: countBy(queue.flatMap((card) => card.reasons), (reason) => reason),
-  records: queue,
-  priorityQueue: queue.slice(0, 100),
-};
+  const report = {
+    generatedAt: new Date().toISOString(),
+    totals: {
+      decisions: cards.length,
+      needsReview: queue.length,
+      withParsedVoteCount: queue.filter((card) => card.voteCount !== "Vote count not parsed").length,
+      withFinancialImpact: queue.filter((card) => card.hasFinancialImpact).length,
+      possibleNonDecision: queue.filter((card) => card.reasons.includes("possible_non_decision_or_directory_content")).length,
+    },
+    byJurisdiction: countBy(queue, (card) => card.jurisdiction),
+    byNextAction: countBy(queue, (card) => card.nextAction),
+    bySourceRecoveryStatus: countBy(queue, (card) => card.sourceRecoveryStatus),
+    byReason: countBy(queue.flatMap((card) => card.reasons), (reason) => reason),
+    records: queue,
+    priorityQueue: queue.slice(0, 100),
+  };
 
-mkdirSync(GENERATED_DIR, { recursive: true });
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(report, null, 2)}\n`);
-console.log(`Generated decision review queue at ${OUTPUT_PATH}`);
-console.log(JSON.stringify(report.totals, null, 2));
+  mkdirSync(GENERATED_DIR, { recursive: true });
+  writeFileSync(OUTPUT_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  console.log(`Generated decision review queue at ${OUTPUT_PATH}`);
+  console.log(JSON.stringify(report.totals, null, 2));
+  return report;
+}
+
+if (process.argv[1]?.endsWith("generate-decision-review-queue.ts")) {
+  generateDecisionReviewQueue();
+}

@@ -31,15 +31,14 @@ Completed:
 - Sprint 2I-D-A: Carson City officials recovery, current-officeholder runtime, and statewide officials coverage guard.
 - Sprint 2I-D-B1: network-enabled officials worker path, Carson City source-evidence reconciliation, and canonical promotion guard.
 - Sprint 2I-D-B1.2 through 2I-D-B1.3: GitHub/manual officials worker paths, Granicus verification hotfix, repeatable Carson City sync, and priority Nevada source wrap-up.
-- Sprint 3A through 3C and 3E: verified participation UX, stakeholder analytics, resident case/story moderation, voter verification review console, and account email verification flow.
+- Sprint 3A through 3E: verified participation UX, stakeholder analytics, resident case/story moderation, decision review workbench throughput, voter verification review console, and account email verification flow.
 
 Current:
 
-- Sprint 3D: decision review workbench throughput and human-review queues.
+- Production Blob cache upload after Vercel Blob credentials are configured.
 
 Planned next:
 
-- Production Blob cache upload after Vercel Blob credentials are configured.
 - Later: official accountability scorecards only after evidence-readiness thresholds are defensible.
 
 Permanent parallel track:

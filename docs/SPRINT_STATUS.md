@@ -20,15 +20,15 @@
 - Sprint 3A: verified participation UX and Trusted Citizen stewardship visibility.
 - Sprint 3B: privacy-preserving stakeholder analytics and official-facing aggregate dashboards.
 - Sprint 3C: resident case/story intake moderation and public/private separation polish.
+- Sprint 3D: decision review workbench throughput and human-review queues.
 - Sprint 3E: voter verification review console polish and account email verification flow.
 
 ## Current
 
-- Sprint 3D: decision review workbench throughput and human-review queues.
+- Production Blob cache upload after Vercel Blob credentials are configured.
 
 ## Planned Next
 
-- Production Blob cache upload after Vercel Blob credentials are configured.
 - Later: official accountability scorecards only after evidence-readiness thresholds are defensible.
 
 ## Permanent Parallel Track
@@ -65,6 +65,7 @@
 - GitHub officials worker: `.github/workflows/identity-worker.yml` and the admin operation allowlist include durable worker controls. GitHub evidence artifacts remain non-sensitive.
 - Generated artifact policy: public runtime data and canonical audits may be committed; environment-scoped audit copies, admin operation logs, raw caches, duplicate downloads, and local metadata stay ignored/local.
 - Resident story intake: `/cases/submit` writes private pending-review submissions; `/admin/cases/resident-intake` handles moderation; public runtime only receives reviewed redacted summaries.
+- Decision review workbench: `/admin/voting-cards` now includes a priority queue, review action routing, human-review ledger, and `npm run decisions:review-workbench-audit`.
 
 ## Sprint 2I-D-B2 Operator Checklist
 

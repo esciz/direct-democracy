@@ -6,6 +6,7 @@ import path from "node:path";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+import { appendDecisionReviewEntry } from "@/lib/civic/decision-review-ledger";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath, normalizeWhitespace } from "@/lib/public-meetings/shared";
 import { writePublicMeetingRuntimeArtifacts } from "@/lib/public-meetings/runtime-artifacts";
@@ -36,8 +37,11 @@ export async function updateMeetingVotingCardReviewAction(formData: FormData) {
   const citizenSummary = normalizeWhitespace(String(formData.get("citizenSummary") ?? ""));
   const plainPurpose = normalizeWhitespace(String(formData.get("plainPurpose") ?? ""));
   const plainAction = normalizeWhitespace(String(formData.get("plainAction") ?? ""));
+  const reviewNote = normalizeWhitespace(String(formData.get("reviewNote") ?? ""));
+  const reviewReason = normalizeWhitespace(String(formData.get("reviewReason") ?? ""));
 
   const cards = await readCards();
+  const previousCard = cards.find((card) => card.id === cardId);
   const next = cards.map((card) => card.id === cardId ? {
     ...card,
     review_status: status,
@@ -52,7 +56,23 @@ export async function updateMeetingVotingCardReviewAction(formData: FormData) {
     updated_at: new Date().toISOString(),
   } : card);
   await writeCards(next);
+  if (previousCard) {
+    await appendDecisionReviewEntry({
+      cardId,
+      previousStatus: previousCard.review_status,
+      nextStatus: status,
+      reviewerId: user.id,
+      note: reviewNote,
+      reason: reviewReason,
+    });
+  }
   await writePublicMeetingRuntimeArtifacts({ votingCards: next });
+  try {
+    const { generateDecisionReviewQueue } = await import("@/scripts/generate-decision-review-queue");
+    generateDecisionReviewQueue();
+  } catch (error) {
+    console.warn("[voting-card-review] Unable to regenerate decision review queue", error);
+  }
   revalidatePath("/admin/voting-cards");
   revalidatePath("/voting");
   revalidatePath("/events");

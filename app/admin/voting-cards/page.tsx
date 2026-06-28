@@ -51,6 +51,19 @@ type DecisionReviewQueue = {
   }>;
 };
 
+type DecisionReviewLedger = {
+  records?: Array<{
+    id: string;
+    cardId: string;
+    previousStatus: string;
+    nextStatus: string;
+    reviewerId: string;
+    reviewedAt: string;
+    note: string | null;
+    reason: string | null;
+  }>;
+};
+
 function readGenerated<T>(fileName: string, fallback: T): T {
   const filePath = path.join(process.cwd(), "data", "generated", fileName);
   if (!existsSync(filePath)) return fallback;
@@ -89,6 +102,8 @@ export default async function AdminVotingCardsPage({ searchParams }: PageProps) 
   const unknownTaxImpactCards = allCards.filter((card) => card.financial_impact_context?.direct_tax_impact === "unknown");
   const needsTaxDebtReviewCards = allCards.filter((card) => card.financial_impact_context?.direct_tax_impact === "needs_review");
   const reviewQueue = readGenerated<DecisionReviewQueue>("decision-review-queue.json", {});
+  const reviewLedger = readGenerated<DecisionReviewLedger>("decision-review-overrides.json", {});
+  const recentReviews = (reviewLedger.records ?? []).slice(0, 8);
   const queueItems = reviewQueue.priorityQueue ?? [];
   const selectedNextAction = params.nextAction;
   const topReviewItems = (selectedNextAction ? queueItems.filter((item) => item.nextAction === selectedNextAction) : queueItems).slice(0, 8);
@@ -173,6 +188,39 @@ export default async function AdminVotingCardsPage({ searchParams }: PageProps) 
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="rounded-[1.75rem] border border-cyan-300/20 bg-cyan-300/10 p-5">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Human review throughput</p>
+            <h2 className="mt-2 text-xl font-semibold text-white">{reviewLedger.records?.length ?? 0} review actions logged</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-cyan-50/85">
+              Review actions append to a generated ledger so approvals, rejections, and rewrites are auditable without a schema migration.
+            </p>
+          </div>
+          <Link href="/admin/voting-cards?review=needs_review" className="rounded-full border border-cyan-200/20 bg-black/20 px-4 py-2 text-sm font-semibold text-cyan-50">
+            Work queue
+          </Link>
+        </div>
+        {recentReviews.length ? (
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {recentReviews.map((entry) => (
+              <div key={entry.id} className="rounded-2xl border border-cyan-200/20 bg-black/20 p-4 text-sm text-cyan-50">
+                <div className="flex flex-wrap gap-2 text-[11px] font-semibold">
+                  <span className="rounded-full bg-white/10 px-2.5 py-1">{`${entry.previousStatus} -> ${entry.nextStatus}`}</span>
+                  <span className="rounded-full bg-white/10 px-2.5 py-1">{new Date(entry.reviewedAt).toLocaleString("en-US")}</span>
+                </div>
+                {entry.reason ? <p className="mt-2 leading-6"><span className="font-semibold">Reason:</span> {entry.reason}</p> : null}
+                {entry.note ? <p className="mt-1 leading-6 text-cyan-100/80"><span className="font-semibold">Note:</span> {entry.note}</p> : null}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-4 rounded-2xl border border-cyan-200/20 bg-black/20 p-4 text-sm text-cyan-50/85">
+            No human review actions have been logged yet.
+          </p>
+        )}
       </section>
 
       <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5">
@@ -295,6 +343,22 @@ export default async function AdminVotingCardsPage({ searchParams }: PageProps) 
                 <label className="space-y-1 md:col-span-2">
                   <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Plain action</span>
                   <input name="plainAction" defaultValue={card.plain_action ?? ""} className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" />
+                </label>
+                <label className="space-y-1">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Review reason</span>
+                  <select name="reviewReason" defaultValue={reviewItem?.nextAction ?? ""} className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100">
+                    <option value="">Choose reason</option>
+                    <option value="review_named_vote_card_for_public_approval">Named vote card approved/reviewed</option>
+                    <option value="review_tax_cost_language">Tax or cost language reviewed</option>
+                    <option value="rewrite_citizen_summary_from_source">Citizen summary rewritten from source</option>
+                    <option value="recover_minutes_or_action_result">Needs minutes/action-result recovery</option>
+                    <option value="reject_or_reclassify_non_decision">Rejected or reclassified non-decision</option>
+                    <option value="manual_source_review">Manual source review</option>
+                  </select>
+                </label>
+                <label className="space-y-1">
+                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Review note</span>
+                  <input name="reviewNote" placeholder="Optional internal note for audit trail" className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" />
                 </label>
               </div>
               <button name="reviewStatus" value="approved" className="dd-button-primary rounded-full px-3 py-2 text-xs font-semibold">Approve</button>
