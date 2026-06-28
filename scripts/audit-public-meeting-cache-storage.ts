@@ -1,3 +1,4 @@
+import "@/lib/env/load-local-env";
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { list } from "@vercel/blob";
@@ -5,6 +6,7 @@ import { list } from "@vercel/blob";
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const INDEX_PATH = path.join(GENERATED_DIR, "public-meeting-document-cache-index.json");
 const AUDIT_PATH = path.join(GENERATED_DIR, "public-meeting-cache-storage-audit.json");
+const EXPORT_AUDIT_PATH = path.join(GENERATED_DIR, "public-meeting-cache-storage-export.json");
 const DEFAULT_STORAGE_ROOT = path.join(process.cwd(), "data", "private", "public-meeting-cache-objects");
 const BLOB_PREFIX = "public-meeting-cache/sha256";
 
@@ -56,6 +58,11 @@ function outputPath(rawBackend: string): string {
   return path.join(GENERATED_DIR, `public-meeting-cache-storage-audit.${rawBackend}.json`);
 }
 
+function exportOutputPath(rawBackend: string): string {
+  if (rawBackend === "local_filesystem") return EXPORT_AUDIT_PATH;
+  return path.join(GENERATED_DIR, `public-meeting-cache-storage-export.${rawBackend}.json`);
+}
+
 async function listVercelBlobObjects(): Promise<Map<string, number>> {
   const objects = new Map<string, number>();
   let cursor: string | undefined;
@@ -75,7 +82,7 @@ async function main() {
   const config = storageConfig();
   const index = readJson<CacheIndex>(INDEX_PATH, { records: [] });
   const records = index.records ?? [];
-  const priorAudit = readJson<PriorAudit>(outputPath(config.rawBackend), {});
+  const priorAudit = readJson<PriorAudit>(exportOutputPath(config.rawBackend), {});
 
   let sourceFilesPresent = 0;
   let objectsPresent = 0;

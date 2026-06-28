@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-26T16:16:28.984Z",
+  "generatedAt": "2026-06-28T16:51:01.074Z",
   "status": "object_cache_complete",
   "backend": "local_filesystem",
   "storageRootFingerprint": "data/private/public-meeting-cache-objects",
   "bucketConfigured": false,
   "tokenConfigured": null,
   "priorExport": {
-    "generatedAt": "2026-06-26T16:02:18.413Z",
-    "status": "object_cache_complete",
+    "generatedAt": null,
+    "status": null,
     "objectsWritten": 0,
     "objectsAlreadyPresent": 0
   },

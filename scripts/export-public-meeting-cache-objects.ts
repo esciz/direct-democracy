@@ -1,3 +1,4 @@
+import "@/lib/env/load-local-env";
 import { createHash } from "node:crypto";
 import { createReadStream, copyFileSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -5,7 +6,7 @@ import { head, put } from "@vercel/blob";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const INDEX_PATH = path.join(GENERATED_DIR, "public-meeting-document-cache-index.json");
-const AUDIT_PATH = path.join(GENERATED_DIR, "public-meeting-cache-storage-audit.json");
+const EXPORT_AUDIT_PATH = path.join(GENERATED_DIR, "public-meeting-cache-storage-export.json");
 const DEFAULT_STORAGE_ROOT = path.join(process.cwd(), "data", "private", "public-meeting-cache-objects");
 const BLOB_PREFIX = "public-meeting-cache/sha256";
 
@@ -118,8 +119,8 @@ function writeAudit(audit: unknown) {
 }
 
 function outputPath(): string {
-  if (config.backend === "local_filesystem") return AUDIT_PATH;
-  return path.join(GENERATED_DIR, `public-meeting-cache-storage-audit.${config.rawBackend}.json`);
+  if (config.backend === "local_filesystem") return EXPORT_AUDIT_PATH;
+  return path.join(GENERATED_DIR, `public-meeting-cache-storage-export.${config.rawBackend}.json`);
 }
 
 function baseAudit(status: ExportStatus, totals: ExportCounters, extra: Record<string, unknown> = {}) {
@@ -144,7 +145,7 @@ async function blobObjectExists(key: string, fileSize: number): Promise<"present
     const result = await head(key);
     return result.size === fileSize ? "present" : "mismatch";
   } catch (error) {
-    if (error instanceof Error && /not found/i.test(error.message)) return "missing";
+    if (error instanceof Error && /(not found|does not exist)/i.test(error.message)) return "missing";
     throw error;
   }
 }

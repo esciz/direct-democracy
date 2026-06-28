@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-06-28T16:51:03.073Z",
+  "status": "export_partial",
+  "backend": "vercel_blob",
+  "access": "private",
+  "storageRootFingerprint": null,
+  "bucketConfigured": false,
+  "bucketNameRedacted": null,
+  "tokenConfigured": true,
+  "objectKeyScheme": "public-meeting-cache/sha256/<first-two-hex>/<sha256>",
+  "runMode": {
+    "dryRun": false,
+    "verifyOnly": false,
+    "limit": "all"
+  },
+  "totals": {
+    "cacheRecords": 1936,
+    "attempted": 1936,
+    "sourceFilesFound": 1936,
+    "objectsAlreadyPresent": 474,
+    "objectsWritten": 0,
+    "bytesWritten": 0,
+    "missingSourceFiles": 0,
+    "hashMismatches": 0,
+    "providerErrors": 1462
+  },
+  "samples": {
+    "exported": [],
+    "missing": [],
+    "mismatches": [],
+    "providerErrors": [
+      {
+        "documentId": "meeting-source-document-3a24f49a38b152c438130922600fd9f229da4f8f3a43dcfbc0e1b55eb9e17c9e",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3a33f916b6b529f3064fdda622f322356555b1464ceb67baedbf9ab9cb4a91c1",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3a4d50fa39e6e027e4002f20edf90b0bf01ad068fea58061cbe84ae211e89c05",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3a4db71bf0313956f53b2ea7f2f8c99e831b0601ac610f925a2f9eb7801033b4",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3a77162a3c940ed24232798eee21a616443fd6849e7b8c6d7852c7041c32fb8e",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3a9c6ec30c02c65fe85f3cdbf503633c477765afec5f435f9514327d0b2e229c",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3aade125d25659a990a9e5e64ea78c5f0cb4814114d84b81d503bd05142b90b2",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3ad3968b3db16d6a05ca5a31ae0f985ebbf2dcae14e39d02272d9d44b5a2bc88",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3ad7c5e03ecb5c65e976df07b19c0195306f4259c5f72a9b6cae403983acb806",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3ae2b5ff2cb1a4a9b35fc4b3ceabb8dd439a8914684fa9791bd1793f40fa0804",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3ae78a36802ca57c6325851dcd8beeccd96962a81cffee4f6c4fdd9710250bfd",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3b2bf4c770a0d8cc3213040af96848fe9197716b9873cbbd3f37f2d727b708e4",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3b44d290552e653e20b6fcc569bfa74cc9976636223ddbc0fb57343009153e91",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3b6133952d2db90995fa01769055a98d48733cd08082af5655d2dfef7d49eddf",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3b9622310fca14b3ef37e289c8349939c9ab944889c14121b8d45c8745a04d47",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3b96ad717dd178840c5c5ed5c81633f284287ae7e9e6cd75818f31372dad2064",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3bb8438345d033365ad315c3096ee627435d28fe5c6a9721ffcfd6a655c5ec71",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3bbb0e6cab4e746780b7949c3864c8faa22ceb84726ba786a627e3f69bb9fb36",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3bebe627bc3ef425b4b9796f603f53af9bbd6dcd2aba2375bfcdf0b90f80b1a6",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3bf81535e9a18be46c932adfd6b1d1fb064b96137aa843fddfe3f7659597d773",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3c243f44cf83586f38d963df2164ca5c990fb7a5b629dcf1e0a4d549ba894353",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3c45fb47ecce6687c47490809f9b7f47c4dbe1641dfd58f28204a31f74a3c2f8",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3c6c8c0fb36fe91cf8f5386667951fb0862d40587030e52b3eb451305a96d056",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3c8deb7de78473568e62fc679654c3c6c5d10b9249a3913d970bdfd9d0ceeed6",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      },
+      {
+        "documentId": "meeting-source-document-3d3d6d845436eba75055a124f4c34d71c62f5e63c9c4f16ec715f0e6f7553635",
+        "reason": "Vercel Blob: Storage quota exceeded for Hobby plan (1GB maximum)"
+      }
+    ]
+  },
+  "notes": [
+    "This export is additive and does not delete runtime cache files.",
+    "The vercel_blob backend uploads content-hash-addressed meeting evidence to Vercel Blob."
+  ]
+}

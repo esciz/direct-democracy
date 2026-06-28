@@ -245,6 +245,7 @@
     "meetings:cache-storage:blob-smoke": "PUBLIC_MEETING_CACHE_STORAGE_BACKEND=vercel_blob node --import tsx scripts/export-public-meeting-cache-objects.ts --limit=25",
     "meetings:cache-storage:blob-export": "PUBLIC_MEETING_CACHE_STORAGE_BACKEND=vercel_blob node --import tsx scripts/export-public-meeting-cache-objects.ts --limit=all",
     "meetings:cache-storage:blob-audit": "PUBLIC_MEETING_CACHE_STORAGE_BACKEND=vercel_blob node --import tsx scripts/audit-public-meeting-cache-storage.ts",
+    "meetings:cache-storage:blob-sync": "PUBLIC_MEETING_CACHE_STORAGE_BACKEND=vercel_blob node --import tsx scripts/sync-public-meeting-cache-to-blob.ts",
     "meetings:source-wait:report": "node --import tsx scripts/retry-source-wait-meeting-documents.ts --report-only",
     "meetings:source-wait:retry": "node --import tsx scripts/retry-source-wait-meeting-documents.ts",
     "auth:session-audit": "node --import tsx scripts/audit-auth-session-boundaries.ts",

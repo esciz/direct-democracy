@@ -64,6 +64,23 @@ npm run meetings:cache-storage:blob-export
 npm run meetings:cache-storage:blob-audit
 ```
 
+The supported repeatable operator workflow is:
+
+```bash
+npm run meetings:cache-storage:blob-sync
+```
+
+This command regenerates the cache manifest, verifies the local object cache, checks network and Blob credentials, runs the smoke upload, performs the full upload when credentials are present, audits Blob coverage, and writes `data/generated/public-meeting-cache-blob-sync.json`.
+
+If the sync stops with `blob_sync_incomplete`, inspect:
+
+```text
+data/generated/public-meeting-cache-storage-export.vercel_blob.json
+data/generated/public-meeting-cache-storage-audit.vercel_blob.json
+```
+
+The export artifact preserves provider error samples, while the audit artifact reports current object coverage in Blob. The upload is content-hash idempotent, so rerunning skips objects that already exist.
+
 Expected complete status:
 
 - `status`: `object_cache_complete`
