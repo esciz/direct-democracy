@@ -1,4 +1,5 @@
 import type { AuthUser } from "@/types/domain";
+import { createHash, randomBytes } from "node:crypto";
 
 import { getAdminPermissions } from "@/lib/admin/permissions";
 import { OWNER_ADMIN_DEFAULT_EMAIL, OWNER_ADMIN_USER_ID } from "@/lib/identity/constants";
@@ -9,6 +10,7 @@ import type { IdentityAccount } from "@/lib/identity/types";
 
 const LOCKOUT_THRESHOLD = 5;
 const LOCKOUT_MS = 15 * 60 * 1000;
+const EMAIL_VERIFICATION_TTL_MS = 24 * 60 * 60 * 1000;
 
 function nowIso() {
   return new Date().toISOString();
@@ -16,6 +18,10 @@ function nowIso() {
 
 function slugifyUsername(email: string) {
   return email.split("@")[0]?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "citizen";
+}
+
+function hashEmailVerificationToken(token: string) {
+  return createHash("sha256").update(token).digest("hex");
 }
 
 export function accountToAuthUser(account: IdentityAccount): AuthUser {
@@ -75,6 +81,7 @@ export function createLocalAccount(input: {
     role: input.role ?? "citizen",
     status: "active",
     emailVerificationStatus: input.emailVerified ? "verified" : "unverified",
+    emailVerificationRequest: null,
     passwordHash: hashPassword(input.password),
     mustChangePassword: input.mustChangePassword ?? false,
     mfaEnrollmentRequired: input.mfaEnrollmentRequired ?? false,
@@ -127,6 +134,7 @@ export function bootstrapOwnerAdmin(email: string, temporaryPassword: string) {
     role: "admin",
     status: "active",
     emailVerificationStatus: "verified",
+    emailVerificationRequest: null,
     passwordHash: hashPassword(temporaryPassword),
     mustChangePassword: true,
     mfaEnrollmentRequired: true,
@@ -226,6 +234,72 @@ export function changeLocalPassword(userId: string, currentPassword: string, nex
     createdAt: nowIso(),
     summary: "Password changed and prior sessions revoked.",
     metadata: { priorSessionsRevoked: true, resetTokensInvalidated: true },
+  });
+  writeIdentityStore(store);
+  return { ok: true as const, account };
+}
+
+export function createEmailVerificationRequest(userId: string) {
+  const store = readIdentityStore();
+  const account = store.accounts.find((entry) => entry.id === userId);
+  if (!account) return { ok: false as const, reason: "missing_account" as const };
+  if (account.emailVerificationStatus === "verified") return { ok: true as const, alreadyVerified: true as const, account };
+
+  const token = randomBytes(32).toString("base64url");
+  const timestamp = nowIso();
+  account.emailVerificationRequest = {
+    tokenHash: hashEmailVerificationToken(token),
+    createdAt: timestamp,
+    expiresAt: new Date(Date.now() + EMAIL_VERIFICATION_TTL_MS).toISOString(),
+    deliveryStatus: "pending",
+  };
+  account.updatedAt = timestamp;
+  store.securityEvents.unshift({
+    id: `security_${Date.now()}_email_verification_started`,
+    type: "verification_status_changed",
+    userId: account.id,
+    actorUserId: account.id,
+    createdAt: timestamp,
+    summary: "Email verification requested.",
+    metadata: { emailVerificationStatus: account.emailVerificationStatus },
+  });
+  writeIdentityStore(store);
+  return { ok: true as const, alreadyVerified: false as const, account, token, expiresAt: account.emailVerificationRequest.expiresAt };
+}
+
+export function updateEmailVerificationDeliveryStatus(userId: string, deliveryStatus: NonNullable<IdentityAccount["emailVerificationRequest"]>["deliveryStatus"]) {
+  const store = readIdentityStore();
+  const account = store.accounts.find((entry) => entry.id === userId);
+  if (!account?.emailVerificationRequest) return { ok: false as const, reason: "missing_request" as const };
+  account.emailVerificationRequest.deliveryStatus = deliveryStatus;
+  account.updatedAt = nowIso();
+  writeIdentityStore(store);
+  return { ok: true as const, account };
+}
+
+export function verifyAccountEmailToken(token: string) {
+  const tokenHash = hashEmailVerificationToken(token.trim());
+  const store = readIdentityStore();
+  const account = store.accounts.find((entry) => entry.emailVerificationRequest?.tokenHash === tokenHash);
+  if (!account?.emailVerificationRequest) return { ok: false as const, reason: "token_invalid" as const };
+  if (new Date(account.emailVerificationRequest.expiresAt).getTime() <= Date.now()) {
+    account.emailVerificationRequest = null;
+    account.updatedAt = nowIso();
+    writeIdentityStore(store);
+    return { ok: false as const, reason: "token_expired" as const };
+  }
+
+  account.emailVerificationStatus = "verified";
+  account.emailVerificationRequest = null;
+  account.updatedAt = nowIso();
+  store.securityEvents.unshift({
+    id: `security_${Date.now()}_email_verified`,
+    type: "verification_status_changed",
+    userId: account.id,
+    actorUserId: account.id,
+    createdAt: nowIso(),
+    summary: "Email address verified.",
+    metadata: { emailVerificationStatus: "verified" },
   });
   writeIdentityStore(store);
   return { ok: true as const, account };

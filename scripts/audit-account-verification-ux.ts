@@ -33,7 +33,11 @@ async function main() {
         page.includes("Voter ID ending") &&
         page.includes("claim.reviewContext.countyOrJurisdiction") &&
         page.includes("claim.reviewContext.electionPrecinct"),
-      explicitSubmitButtonsPresent: page.includes('<button type="submit"') && page.match(/<button type="submit"/g)?.length === 2,
+      emailVerificationControlPresent:
+        page.includes('id="email-verification"') &&
+        page.includes("requestCurrentEmailVerificationAction") &&
+        page.includes("Send verification link"),
+      explicitSubmitButtonsPresent: page.includes('<button type="submit"') && page.match(/<button type="submit"/g)?.length === 3,
     },
   };
   const pass = Object.values(audit.validation).every(Boolean);

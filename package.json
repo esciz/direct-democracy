@@ -249,7 +249,8 @@
     "meetings:source-wait:retry": "node --import tsx scripts/retry-source-wait-meeting-documents.ts",
     "auth:session-audit": "node --import tsx scripts/audit-auth-session-boundaries.ts",
     "verification:account-ux-audit": "node --import tsx scripts/audit-account-verification-ux.ts",
-    "admin:verification-workflow-audit": "node --import tsx scripts/audit-admin-verification-workflow.ts"
+    "admin:verification-workflow-audit": "node --import tsx scripts/audit-admin-verification-workflow.ts",
+    "email:verification-flow-audit": "node --import tsx scripts/audit-email-verification-flow.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-06-28T00:42:06.651Z",
+  "status": "email_verification_flow_audited",
+  "sensitiveValuesIncluded": false,
+  "validation": {
+    "identityAccountStoresHashedVerificationRequest": true,
+    "rawTokenOnlyReturnedForDelivery": true,
+    "deliveryUsesIdentityEmailAdapter": true,
+    "confirmationRouteConsumesToken": true,
+    "accountPageShowsResendControl": true,
+    "generatedAuditDoesNotIncludeToken": true
+  },
+  "pass": true
+}

@@ -1,11 +1,13 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { DEV_ONLY_AUTH_ENABLED, GUEST_BROWSE_USER_ID, MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { getSeedUserById, seedUsers } from "@/lib/auth/mock-users";
-import { authenticateLocalAccount, changeLocalPassword, createLocalAccount } from "@/lib/identity/accounts";
+import { authenticateLocalAccount, changeLocalPassword, createEmailVerificationRequest, createLocalAccount, updateEmailVerificationDeliveryStatus } from "@/lib/identity/accounts";
+import { sendIdentityEmail } from "@/lib/identity/email";
 import { MFA_SESSION_COOKIE } from "@/lib/identity/mfa-session";
 import { evaluateVoterVerification } from "@/lib/onboarding/voter-provider";
 import { getUserProfileContent, updateUserProfileContent } from "@/lib/profile/details";
@@ -35,6 +37,13 @@ function getMockAuthCookieOptions() {
     path: "/",
     secure: process.env.NODE_ENV === "production",
   };
+}
+
+async function getRequestOrigin() {
+  const headerStore = await headers();
+  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host") ?? "localhost:3000";
+  const protocol = headerStore.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
+  return `${protocol}://${host}`;
 }
 
 export type AuthFormState = {
@@ -186,6 +195,31 @@ export async function changeCurrentPasswordFromForm(formData: FormData) {
   const result = await changeCurrentPassword({ status: "idle" }, formData);
   if (result.status === "success") redirect("/");
   redirect("/account/security/change-password?error=password");
+}
+
+export async function requestCurrentEmailVerificationAction() {
+  const currentUser = await getCurrentSessionUser();
+  if (!currentUser) redirect("/auth");
+
+  const request = createEmailVerificationRequest(currentUser.id);
+  if (!request.ok) redirect("/account/verification?status=email-error#email-verification");
+  if (request.alreadyVerified) redirect("/account/verification?status=email-already-verified#email-verification");
+
+  const origin = await getRequestOrigin();
+  const verificationUrl = `${origin}/account/verify-email?token=${encodeURIComponent(request.token)}`;
+  const delivery = await sendIdentityEmail({
+    to: request.account.email,
+    purpose: "account_email_verification",
+    subject: "Verify your Direct Democracy email",
+    text: [
+      "Verify your Direct Democracy email address using this secure one-time link:",
+      verificationUrl,
+      `This link expires at ${new Date(request.expiresAt).toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} Pacific time.`,
+      "If you did not request this, you can ignore this email.",
+    ].join("\n\n"),
+  });
+  updateEmailVerificationDeliveryStatus(currentUser.id, delivery.status);
+  redirect(`/account/verification?status=${delivery.ok ? "email-sent" : "email-send-failed"}#email-verification`);
 }
 
 export async function requestDemoPasswordReset(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {

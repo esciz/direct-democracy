@@ -61,6 +61,12 @@ export type IdentityAccount = {
   role: UserRole;
   status: AccountStatus;
   emailVerificationStatus: EmailVerificationStatus;
+  emailVerificationRequest?: {
+    tokenHash: string;
+    createdAt: string;
+    expiresAt: string;
+    deliveryStatus: "pending" | "sent" | "queued_development" | "provider_unconfigured" | "provider_send_failed";
+  } | null;
   passwordHash: PasswordHash;
   mustChangePassword: boolean;
   mfaEnrollmentRequired: boolean;

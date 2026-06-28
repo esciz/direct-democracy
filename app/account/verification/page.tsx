@@ -5,7 +5,9 @@ import path from "node:path";
 
 import { requestGuidedVoterPortalVerificationAction, requestResidencyVerificationAction } from "@/app/account/verification/actions";
 import { AccountParticipationStatusCard } from "@/components/domain/account-participation-status-card";
+import { requestCurrentEmailVerificationAction } from "@/lib/auth/actions";
 import { getAccountParticipationStatus } from "@/lib/civic-signals/account-participation-status";
+import { getIdentityAccountById } from "@/lib/identity/accounts";
 import { readIdentityStore } from "@/lib/identity/storage";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 
@@ -86,6 +88,9 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
   const hasVerifiedVoter = voterClaims.some((claim) => claim.status === "matched" && (!claim.expiresAt || new Date(claim.expiresAt).getTime() > Date.now()));
   const participationStatus = await getAccountParticipationStatus(user, { signedIn: true });
   const voterFileProvider = readVoterFileProviderAudit();
+  const identityAccount = getIdentityAccountById(user.id);
+  const emailVerified = identityAccount?.emailVerificationStatus === "verified";
+  const emailRequest = identityAccount?.emailVerificationRequest ?? null;
 
   return (
     <main className="mx-auto max-w-5xl space-y-6 py-8">
@@ -120,6 +125,26 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
           Your voter registration matched an imported official voter-file record. Your account now has a verified voter claim.
         </section>
       ) : null}
+      {params?.status === "email-sent" ? (
+        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
+          Email verification link sent. Check your inbox and use the link within 24 hours.
+        </section>
+      ) : null}
+      {params?.status === "email-verified" || params?.status === "email-already-verified" ? (
+        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
+          Your email address is verified.
+        </section>
+      ) : null}
+      {params?.status === "email-send-failed" || params?.status === "email-error" ? (
+        <section className="rounded-[1.75rem] border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900 shadow-card">
+          We could not send the email verification link. Check email provider configuration or try again.
+        </section>
+      ) : null}
+      {params?.status === "email-invalid" || params?.status === "email-expired" ? (
+        <section className="rounded-[1.75rem] border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900 shadow-card">
+          That email verification link is invalid or expired. Request a fresh link below.
+        </section>
+      ) : null}
       {params?.status === "missing" || params?.status === "residency-missing" ? (
         <section className="rounded-[1.75rem] border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900 shadow-card">
           Add a residency area and accept the attestation before submitting the residency review.
@@ -132,6 +157,35 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
       ) : null}
 
       <AccountParticipationStatusCard status={participationStatus} />
+
+      <section id="email-verification" className="scroll-mt-28 rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Account security</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Email verification</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
+              Email verification keeps account recovery, review updates, and admin notices attached to the right person. It is separate from voter verification and does not change vote weight.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
+              <span className={`rounded-full border px-3 py-1 ${emailVerified ? "border-civic-200 bg-civic-50 text-civic-800" : "border-amber-200 bg-amber-50 text-amber-800"}`}>
+                {emailVerified ? "Email verified" : "Email unverified"}
+              </span>
+              {emailRequest ? (
+                <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-slate-700">
+                  Last request: {emailRequest.deliveryStatus.replaceAll("_", " ")}
+                </span>
+              ) : null}
+            </div>
+          </div>
+          {!emailVerified ? (
+            <form action={requestCurrentEmailVerificationAction}>
+              <button type="submit" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                Send verification link
+              </button>
+            </form>
+          ) : null}
+        </div>
+      </section>
 
       <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div id="voter-review" className="scroll-mt-28 rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur lg:col-span-2">
