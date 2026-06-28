@@ -6,6 +6,9 @@ type CaseSubmitPageProps = {
     submitted?: string;
     error?: string;
     id?: string;
+    topic?: string;
+    agency?: string;
+    community?: string;
   }>;
 };
 
@@ -37,6 +40,9 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
   const params = searchParams ? await searchParams : undefined;
   const submitted = params?.submitted === "1";
   const invalid = params?.error === "invalid";
+  const contextTopic = typeof params?.topic === "string" ? params.topic : "";
+  const contextAgency = typeof params?.agency === "string" ? params.agency : "";
+  const contextCommunity = typeof params?.community === "string" ? params.community : "";
 
   return (
     <div className="space-y-6 py-8">
@@ -95,9 +101,26 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
         </label>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
-          <Field label="Location" name="location" placeholder="Street, neighborhood, community, agency office, or online service" />
+          <label className="grid gap-2 text-sm font-semibold text-slate-200">
+            Location
+            <input
+              name="location"
+              defaultValue={contextCommunity}
+              placeholder="Street, neighborhood, community, agency office, or online service"
+              className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-normal text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/30"
+            />
+          </label>
           <Field label="Approximate date" name="approximateDate" placeholder="Exact date, month/year, or approximate timeframe" />
         </div>
+
+        {contextTopic || contextAgency ? (
+          <div className="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-500/10 p-4 text-sm leading-6 text-cyan-50">
+            <p className="font-semibold">Context carried from the page you were viewing.</p>
+            {contextTopic ? <p className="mt-1">Topic: {contextTopic}</p> : null}
+            {contextAgency ? <p className="mt-1">Agency/body: {contextAgency}</p> : null}
+            <p className="mt-2 text-cyan-100/80">You can edit the story below. This still enters review and is not published automatically.</p>
+          </div>
+        ) : null}
 
         <label className="mt-4 grid gap-2 text-sm font-semibold text-slate-200">
           Your story
@@ -105,6 +128,7 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
             name="story"
             required
             rows={8}
+            defaultValue={contextTopic ? `I have a question or concern about: ${contextTopic}${contextAgency ? `\nAgency/body: ${contextAgency}` : ""}\n\n` : undefined}
             placeholder="Describe what happened in plain language. Include what you tried, what response you received, and what you think residents or reviewers should understand."
             className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-normal leading-6 text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/30"
           />

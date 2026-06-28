@@ -9,6 +9,8 @@ export const FAVORITE_TARGET_TYPES = [
   "event",
   "election",
   "organization",
+  "decision",
+  "project",
 ] as const;
 
 export type FavoriteTargetType = (typeof FAVORITE_TARGET_TYPES)[number];

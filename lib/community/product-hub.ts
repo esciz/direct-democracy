@@ -431,3 +431,15 @@ export async function getProjectById(projectId: string) {
   const legacy = await readJson<Artifact<CommunityHubProject>>("nevada-community-projects.json", { records: [] });
   return [...(runtime.records ?? []), ...(legacy.records ?? [])].map(legacyProjectFromRuntime).find((project) => project.id === projectId) ?? null;
 }
+
+export async function getCommunityHubProjects() {
+  const runtime = await readJson<Artifact<CommunityHubProject>>("projects-runtime.json", { records: [] });
+  const legacy = await readJson<Artifact<CommunityHubProject>>("nevada-community-projects.json", { records: [] });
+  const merged = new Map<string, CommunityHubProject>();
+
+  for (const project of [...(legacy.records ?? []), ...(runtime.records ?? [])].map(legacyProjectFromRuntime)) {
+    merged.set(project.id, project);
+  }
+
+  return [...merged.values()];
+}

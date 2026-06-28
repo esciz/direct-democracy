@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-28T22:52:28.602Z",
+  "status": "passed",
+  "totals": {
+    "sourceBackedDecisionsAvailable": 756,
+    "sourceBackedProjectsAvailable": 314,
+    "pendingResidentConcerns": 0,
+    "concernEntryPoints": 3
+  },
+  "checks": {
+    "decisionFavoriteTypeRegistered": true,
+    "projectFavoriteTypeRegistered": true,
+    "decisionFollowControl": true,
+    "projectFollowControl": true,
+    "communityFollowControl": true,
+    "concernEntryPoints": 3,
+    "profileWatchlistVisible": true,
+    "myCommunityResolvesDecisions": true,
+    "myCommunityResolvesProjects": true,
+    "adminPanelVisible": true
+  },
+  "failures": []
+}

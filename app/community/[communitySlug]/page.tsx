@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
+import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 import { getCommunityHubData, getStoryDestination, type CommunityHubDecision, type CommunityHubEvent, type CommunityHubOfficial, type CommunityHubProject } from "@/lib/community/product-hub";
@@ -272,6 +273,20 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Community hub</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{data.community.name}</h1>
             <p className="mt-3 text-sm leading-6 text-slate-400">{data.community.descriptor}</p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <FavoriteToggleControl
+                targetType="community"
+                targetId={data.community.id}
+                visibleLabel="Follow community"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-500/15"
+              />
+              <Link href={`/cases/submit?community=${encodeURIComponent(data.community.name)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+                Ask a question or report concern
+              </Link>
+              <Link href="/profile" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+                View watchlist
+              </Link>
+            </div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-300">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Coverage</p>

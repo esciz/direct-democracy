@@ -160,6 +160,7 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
   const githubNetworkWorker = readGenerated<{ status?: string; workflow?: { workflowFilename?: string; protectedPromotionJobPresent?: boolean; artifactHandoffPresent?: boolean; workflowInputsAllowlisted?: boolean }; persistenceMode?: { defaultWhenDurableStorageMissing?: string } }>("github-network-worker-audit.json", {});
   const officialsReconciliation = readGenerated<{ generatedAt?: string; parser?: { recordsParsed?: number; reviewQueueRecords?: number }; promotion?: { eligible?: boolean; status?: string; blockers?: string[] } }>("carson-city-officials-source-reconciliation.json", {});
   const officialsPromotion = readGenerated<{ status?: string; recordsPromoted?: number; promotedAt?: string | null; promotedFromRunId?: string | null; conflictsRemaining?: number; blockers?: string[] }>("carson-city-officials-promotion-audit.json", {});
+  const citizenActionAudit = readGenerated<{ status?: string; generatedAt?: string; totals?: { sourceBackedDecisionsAvailable?: number; sourceBackedProjectsAvailable?: number; pendingResidentConcerns?: number; concernEntryPoints?: number }; failures?: string[] }>("citizen-action-loop-audit.json", {});
   const sprint2Readiness = readGenerated<{ status?: string; recommendation?: string; gates?: { voteAttribution?: Record<string, any>; attendanceIdentity?: Record<string, any>; documents?: Record<string, any>; sourceAdapters?: Record<string, any>; officials?: Record<string, any> }; remainingWork?: Array<{ bucket: string; count: number; nextAction: string }> }>("sprint-2-readiness-report.json", {});
   const voteReviewAudit = readGenerated<{ totals?: Record<string, number>; ambiguousVoteActions?: VoteReviewItem[]; attendanceReviewActions?: VoteReviewItem[]; distributionReviewActions?: VoteReviewItem[] }>("public-meeting-vote-extraction-audit.json", {});
   const attendanceIdentity = readGenerated<{ records?: AttendanceIdentityRecord[] }>("public-meeting-attendance.json", { records: [] });
@@ -251,6 +252,7 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
             ["GitHub worker", githubNetworkWorker.status ?? "audit_pending"],
             ["Officials gaps", officialsCoverage.totals?.emptyPublicSectionRisks ?? "audit_pending"],
             ["Officials failures", officialsCoverage.totals?.failures ?? 0],
+            ["Action loop", citizenActionAudit.status ?? "audit_pending"],
           ].map(([label, value]) => (
             <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
@@ -296,6 +298,32 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
             <Link href="/admin/participation" className="inline-flex w-fit rounded-full bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950">
               Open participation QA
             </Link>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-violet-300/20 bg-violet-500/10 p-5">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-200">Citizen action loops</p>
+              <h2 className="mt-2 text-xl font-semibold text-white">Watchlists, questions, and resident concerns</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+                Residents can follow source-backed decisions, projects, meetings, issues, and communities, then submit questions or concerns into the moderated resident-story queue.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Pill tone={citizenActionAudit.status === "passed" ? "green" : "amber"}>{citizenActionAudit.status ?? "audit pending"}</Pill>
+                <Pill tone="cyan">{`${citizenActionAudit.totals?.sourceBackedDecisionsAvailable ?? 0} decisions available`}</Pill>
+                <Pill tone="cyan">{`${citizenActionAudit.totals?.sourceBackedProjectsAvailable ?? 0} projects available`}</Pill>
+                <Pill tone={citizenActionAudit.totals?.pendingResidentConcerns ? "amber" : "green"}>{`${citizenActionAudit.totals?.pendingResidentConcerns ?? 0} concerns pending`}</Pill>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/admin/cases/resident-intake" className="inline-flex w-fit rounded-full bg-violet-300 px-4 py-2 text-sm font-semibold text-slate-950">
+                Review concerns
+              </Link>
+              <Link href="/profile" className="inline-flex w-fit rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100">
+                Open watchlist
+              </Link>
+            </div>
           </div>
         </section>
 

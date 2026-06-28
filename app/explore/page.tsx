@@ -185,6 +185,8 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
       event: [],
       election: [],
       organization: [],
+      decision: [],
+      project: [],
     },
   );
 

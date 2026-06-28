@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { getDecisionPageData, type DecisionVoteRecord } from "@/lib/civic/decision-pages";
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 
@@ -130,6 +131,20 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
               <p className="mt-3 max-w-3xl rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm leading-6 text-slate-300">
                 Vote attribution: {voteAttribution.description}
               </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <FavoriteToggleControl
+                  targetType="decision"
+                  targetId={decision.id}
+                  visibleLabel="Follow decision"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-500/15"
+                />
+                <Link href={`/cases/submit?topic=${encodeURIComponent(decision.title)}&agency=${encodeURIComponent(decision.meeting.bodyName)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+                  Ask about this decision
+                </Link>
+                <Link href="/profile" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+                  View watchlist
+                </Link>
+              </div>
             </div>
             <aside className="rounded-2xl border border-white/10 bg-slate-950/45 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">At a glance</p>

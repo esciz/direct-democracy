@@ -7,6 +7,7 @@ import { HomeVotePreviewPane } from "@/components/domain/home-vote-preview-pane"
 import { HomeUpcomingElectionsPane } from "@/components/domain/home-upcoming-elections-pane";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { canUserVote } from "@/lib/auth/guards";
+import { getDecisionCards } from "@/lib/civic/decision-pages";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
@@ -18,6 +19,7 @@ import { getAllCases } from "@/lib/cases/store";
 import { getCommunityById, getDefaultCommunityForUser, seededCommunities } from "@/lib/community/communities";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getTopIssuesForUser } from "@/lib/community/issues";
+import { getCommunityHubProjects } from "@/lib/community/product-hub";
 import { getFeedDebatePreviews } from "@/lib/debates/store";
 import { getDailyVoteExperience } from "@/lib/feed/quick-votes";
 import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts";
@@ -227,6 +229,10 @@ function getFavoriteLabel(targetType: FavoriteTargetType) {
       return "Citizen";
     case "case":
       return "Public-interest case";
+    case "decision":
+      return "Followed decision";
+    case "project":
+      return "Followed project";
   }
 }
 
@@ -255,6 +261,8 @@ export default async function HomePage() {
     officials,
     cases,
     organizations,
+    decisions,
+    projects,
     meetingSummary,
   ] = await Promise.all([
     getElectionSummaries(),
@@ -284,6 +292,8 @@ export default async function HomePage() {
     getOfficials(),
     getAllCases(),
     getAllOrganizations(user),
+    getDecisionCards(),
+    getCommunityHubProjects(),
     getCommunityMeetingSummary(defaultCommunity).catch(() => ({
       community_name: defaultCommunity.name,
       matching_public_body_count: 0,
@@ -413,6 +423,28 @@ export default async function HomePage() {
             title: organization.name,
             summary: `${organization.jurisdictionName} · ${clipText(organization.description, 90)}`,
             href: `/organizations/${organization.id}`,
+          };
+        }
+        case "decision": {
+          const decision = decisions.find((entry) => entry.id === record.targetId);
+          if (!decision) return null;
+          return {
+            id: `${record.targetType}-${record.targetId}`,
+            label: getFavoriteLabel(record.targetType),
+            title: decision.title,
+            summary: `${decision.voteOutcome} · ${decision.voteCount.display} · ${clipText(decision.whyItMatters, 90)}`,
+            href: `/decisions/${decision.id}`,
+          };
+        }
+        case "project": {
+          const project = projects.find((entry) => entry.id === record.targetId);
+          if (!project) return null;
+          return {
+            id: `${record.targetType}-${record.targetId}`,
+            label: getFavoriteLabel(record.targetType),
+            title: project.name ?? project.project_title ?? project.title,
+            summary: `${project.status} · ${clipText(project.lastPublicAction ?? project.summary ?? project.description, 90)}`,
+            href: `/projects/${project.id}`,
           };
         }
       }

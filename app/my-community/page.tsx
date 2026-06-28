@@ -5,6 +5,7 @@ import { CommunityMeetingIntelligenceCard } from "@/components/domain/community-
 import { CommunitySelector } from "@/components/domain/community-selector";
 import { HomeUpcomingElectionsPane } from "@/components/domain/home-upcoming-elections-pane";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getDecisionCards } from "@/lib/civic/decision-pages";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
@@ -17,6 +18,7 @@ import { getCommunityById, getDefaultCommunityForUser, seededCommunities } from 
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getCommunityHero } from "@/lib/community/place-data";
+import { getCommunityHubProjects } from "@/lib/community/product-hub";
 import { emptyCommunityRelationshipBucket, getCommunityRelationships, type CommunityRelationshipBucket, type CommunityRelationshipDomain, type CommunityRelationshipRecord } from "@/lib/community/relationships";
 import { getFeedDebatePreviews } from "@/lib/debates/store";
 import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts";
@@ -289,6 +291,10 @@ function getFavoriteLabel(targetType: FavoriteTargetType) {
       return "Citizen";
     case "case":
       return "Public-interest case";
+    case "decision":
+      return "Followed decision";
+    case "project":
+      return "Followed project";
   }
 }
 
@@ -743,6 +749,8 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
     officials,
     cases,
     organizations,
+    decisions,
+    projects,
     meetingSummary,
     relationships,
   ] = await Promise.all([
@@ -768,6 +776,8 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
     loadCommunityDataset("officials", getOfficials(), []),
     loadCommunityDataset("cases", getAllCases(), []),
     loadCommunityDataset("organizations", getAllOrganizations(user), []),
+    loadCommunityDataset("decisions", getDecisionCards(), []),
+    loadCommunityDataset("projects", getCommunityHubProjects(), []),
     loadCommunityDataset("meeting records", getCommunityMeetingSummary(currentCommunity), {
       community_name: currentCommunity.name,
       matching_public_body_count: 0,
@@ -908,6 +918,28 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
             title: organization.name,
             summary: `${organization.jurisdictionName} · ${clipText(organization.description, 90)}`,
             href: `/organizations/${organization.id}`,
+          };
+        }
+        case "decision": {
+          const decision = decisions.find((entry) => entry.id === record.targetId);
+          if (!decision) return null;
+          return {
+            id: `${record.targetType}-${record.targetId}`,
+            label: getFavoriteLabel(record.targetType),
+            title: decision.title,
+            summary: `${decision.voteOutcome} · ${decision.voteCount.display} · ${clipText(decision.whyItMatters, 90)}`,
+            href: `/decisions/${decision.id}`,
+          };
+        }
+        case "project": {
+          const project = projects.find((entry) => entry.id === record.targetId);
+          if (!project) return null;
+          return {
+            id: `${record.targetType}-${record.targetId}`,
+            label: getFavoriteLabel(record.targetType),
+            title: project.name ?? project.project_title ?? project.title,
+            summary: `${project.status} · ${clipText(project.lastPublicAction ?? project.summary ?? project.description, 90)}`,
+            href: `/projects/${project.id}`,
           };
         }
       }
