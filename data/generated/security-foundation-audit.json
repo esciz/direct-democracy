@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-26T00:03:28.543Z",
+  "controls": {
+    "secureCredentialHashing": "scrypt",
+    "recoveryTokenOneTimeUseBoundary": true,
+    "sessionRevocationSupported": true,
+    "accountLockoutSupported": true,
+    "csrfBoundary": "sameSite_lax_server_actions_admin_api_auth",
+    "mfaBoundary": "mfaEnrollmentRequired_recorded_provider_unconfigured",
+    "sensitiveAccessAudited": true,
+    "secretRedaction": true,
+    "evidencePurgeJob": true,
+    "politicalDemographicFraudScoring": false
+  },
+  "totals": {
+    "securityEvents": 14,
+    "lockedAccounts": 0
+  }
+}

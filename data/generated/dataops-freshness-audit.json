@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-21T06:08:31.928Z",
+  "totals": {
+    "queueRecords": 1935,
+    "downloadedOrCached": 187,
+    "blockedByNetwork": 25,
+    "cacheRecords": 156,
+    "cacheRecordsWithHashes": 156,
+    "changedDocumentsTracked": 0,
+    "sourcesMonitored": 39,
+    "staleSources": 20,
+    "failingSources": 0,
+    "rssSources": 1,
+    "reprocessingRuns": 1,
+    "failures": 0
+  },
+  "failures": []
+}

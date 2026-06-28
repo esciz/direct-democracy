@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-06-25T02:31:33.028Z",
+  "provenance": {
+    "runId": "20260625023133-unknown-xzjxn8",
+    "generatedAt": "2026-06-25T02:31:33.009Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "not_required",
+    "storageBackend": "production_storage_configured",
+    "workerBackend": "not_required",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "browser-session-smoke-test"
+  },
+  "status": "smoke_passed_production_storage_configured",
+  "storageStatus": "production_storage_configured",
+  "encryptedWriteSucceeded": true,
+  "retrievalSucceeded": true,
+  "validationRecorded": true,
+  "revocationRecorded": true,
+  "encryptedPathHash": "050125f4defe71283e7fa104d0c95d2aef93a55be6b8f3f71d4719fee529039a",
+  "metadataHash": "380d2c46a48629286125edb44a982b24e3b95a7ae006c98652d5f04ea0a7a714",
+  "rawStorageStateInGeneratedArtifact": false,
+  "ephemeralKeyUsed": false,
+  "sensitiveValuesIncluded": false
+}

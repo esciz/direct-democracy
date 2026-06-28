@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-06-26T00:03:28.543Z",
+  "identityStorage": "durable_identity_storage_unconfigured",
+  "operationStorage": "local_development_store_active_durable_storage_unconfigured",
+  "worker": "worker_unconfigured",
+  "encryptedEvidenceStorage": "adapter_boundary_present_provider_unconfigured",
+  "browserSessionStorage": "encrypted_session_storage_unconfigured",
+  "emailProvider": "email_provider_unconfigured",
+  "mfaProvider": "mfa_provider_unconfigured"
+}

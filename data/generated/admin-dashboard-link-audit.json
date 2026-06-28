@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-25T23:58:24.932Z",
+  "validations": {
+    "profileUsesServerSessionUser": true,
+    "profileUsesAdminPermissionHelper": true,
+    "profileLinksCanonicalAdminRoute": true,
+    "profileLabelsButton": true,
+    "adminSeedSeesButton": true,
+    "ownerAdminSeesButton": true,
+    "trustedCitizenDoesNotSeeButton": true,
+    "unverifiedDoesNotSeeButton": true,
+    "governmentDoesNotSeeButton": true,
+    "loggedOutDoesNotSeeButton": true,
+    "adminIndexRedirectsToOperations": true,
+    "adminLayoutRequiresServerPermission": true,
+    "proxyProtectsAdminIndex": true,
+    "proxyProtectsAdminApi": true
+  },
+  "totals": {
+    "validations": 14,
+    "failures": 0
+  },
+  "failures": []
+}

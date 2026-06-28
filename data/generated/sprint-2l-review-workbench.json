@@ -1,15 +1,25 @@
 {
-  "generatedAt": "2026-06-25T18:31:56.707Z",
+  "generatedAt": "2026-06-26T03:08:08.022Z",
   "totals": {
     "documentTextRecords": 1392,
     "documentFailures": 0,
     "retrievalBlocked": 0,
-    "voteReviewActions": 56,
+    "voteReviewActions": 17,
     "ambiguousVoteActions": 1,
-    "attendanceReviewActions": 5,
-    "distributionReviewActions": 50,
-    "unmatchedAttendanceNames": 981,
-    "officialCoverageGaps": 0
+    "attendanceReviewActions": 16,
+    "distributionReviewActions": 0,
+    "unmatchedAttendanceNames": 985,
+    "officialCoverageGaps": 0,
+    "actionResults": 265,
+    "actionResultsNeedingReview": 36,
+    "meetingVotingCards": 540,
+    "meetingVotingCardsApproved": 252,
+    "meetingVotingCardsReady": 127,
+    "meetingVotingCardsNeedingReview": 161,
+    "generatedVotingCards": 540,
+    "generatedVotingCardsNeedingReview": 161,
+    "projects": 253,
+    "projectsNeedingReview": 82
   },
   "documentRecovery": {
     "byFailureReason": [],
@@ -26,33 +36,24 @@
       },
       {
         "key": "attendance_not_verified",
-        "count": 5
+        "count": 16
       },
       {
         "key": "distribution_review",
-        "count": 50
+        "count": 0
       }
     ],
     "attendanceReviewReasons": [
       {
         "key": "attendance_not_verified",
-        "count": 3
+        "count": 14
       },
       {
         "key": "attendance_exceeds_known_membership",
         "count": 2
       }
     ],
-    "distributionReviewReasons": [
-      {
-        "key": "vote_count_does_not_match_present_members",
-        "count": 31
-      },
-      {
-        "key": "vote_count_does_not_match_present_members, needs_vote_distribution_review",
-        "count": 19
-      }
-    ],
+    "distributionReviewReasons": [],
     "ambiguousSamples": [
       {
         "title": "first be applied to executive faculty and that new executive positions not be added before faculty positions; and 4) the Faculty Senate requests that should cuts have to be made...",
@@ -86,11 +87,7 @@
       },
       {
         "key": "body-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority",
-        "count": 32
-      },
-      {
-        "key": "body-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents",
-        "count": 32
+        "count": 31
       },
       {
         "key": "body-carson-city-board-of-supervisors-regional-transportation-commission",
@@ -101,11 +98,11 @@
         "count": 28
       },
       {
-        "key": "body-carson-city-board-of-supervisors-open-space-advisory-committee",
-        "count": 23
+        "key": "body-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents",
+        "count": 28
       },
       {
-        "key": "body-washoe-county-commission-board-of-county-commissioners",
+        "key": "body-carson-city-board-of-supervisors-open-space-advisory-committee",
         "count": 23
       },
       {
@@ -113,11 +110,19 @@
         "count": 21
       },
       {
+        "key": "body-manual-elko-city-council-elko-city-council",
+        "count": 18
+      },
+      {
         "key": "body-carson-city-board-of-supervisors-parks-and-recreation-commission",
         "count": 17
       },
       {
         "key": "body-carson-city-board-of-supervisors-airport-authority",
+        "count": 16
+      },
+      {
+        "key": "body-washoe-county-commission-board-of-county-commissioners",
         "count": 16
       },
       {
@@ -169,10 +174,6 @@
         "count": 5
       },
       {
-        "key": "body-carson-city-board-of-supervisors-growth-management-commission-and-planning-commission",
-        "count": 5
-      },
-      {
         "key": "body-carson-city-board-of-supervisors-board-of-equalization",
         "count": 4
       },
@@ -183,6 +184,10 @@
       {
         "key": "body-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees",
         "count": 4
+      },
+      {
+        "key": "body-carson-city-board-of-supervisors-growth-management-commission-and-planning-commission",
+        "count": 3
       },
       {
         "key": "body-carson-city-board-of-supervisors-airport-authority-special-meeting",
@@ -620,21 +625,200 @@
   },
   "officialCoverage": {
     "totals": {
-      "priorityJurisdictions": 11,
-      "complete": 11,
+      "priorityJurisdictions": 13,
+      "complete": 13,
       "partial": 0,
       "sourceConfiguredNotImported": 0,
       "sourceMissing": 0,
       "linkageFailed": 0,
       "emptyPublicSectionRisks": 0,
-      "runtimeOfficials": 154,
+      "runtimeOfficials": 164,
       "carsonCityRuntimeOfficials": 25,
       "failures": 0
     },
     "gaps": []
   },
+  "citizenSignalReview": {
+    "actionResultsByOrganization": [
+      {
+        "key": "nshe-board-of-regents",
+        "count": 15
+      },
+      {
+        "key": "north-las-vegas-city-council",
+        "count": 13
+      },
+      {
+        "key": "clark-county-commission",
+        "count": 4
+      },
+      {
+        "key": "washoe-county-commission",
+        "count": 2
+      },
+      {
+        "key": "elko-city-council",
+        "count": 1
+      },
+      {
+        "key": "las-vegas-city-council",
+        "count": 1
+      }
+    ],
+    "votingCardsByStatus": [
+      {
+        "key": "approved",
+        "count": 252
+      },
+      {
+        "key": "needs_review",
+        "count": 161
+      },
+      {
+        "key": "ready",
+        "count": 127
+      }
+    ],
+    "votingCardsNeedingReviewByJurisdiction": [
+      {
+        "key": "Las Vegas, NV",
+        "count": 41
+      },
+      {
+        "key": "Nevada",
+        "count": 37
+      },
+      {
+        "key": "Clark County, NV",
+        "count": 30
+      },
+      {
+        "key": "Elko, NV",
+        "count": 15
+      },
+      {
+        "key": "Reno, NV",
+        "count": 11
+      },
+      {
+        "key": "Henderson, NV",
+        "count": 8
+      },
+      {
+        "key": "North Las Vegas, NV",
+        "count": 7
+      },
+      {
+        "key": "Elko County, NV",
+        "count": 5
+      },
+      {
+        "key": "Sparks, NV",
+        "count": 2
+      },
+      {
+        "key": "Washoe County, NV",
+        "count": 2
+      },
+      {
+        "key": "Carson City, NV",
+        "count": 1
+      },
+      {
+        "key": "Clark County School District, NV",
+        "count": 1
+      },
+      {
+        "key": "Nevada System of Higher Education",
+        "count": 1
+      }
+    ],
+    "votingCardsReadyByJurisdiction": [
+      {
+        "key": "Washoe County, NV",
+        "count": 68
+      },
+      {
+        "key": "Las Vegas, NV",
+        "count": 41
+      },
+      {
+        "key": "Clark County, NV",
+        "count": 16
+      },
+      {
+        "key": "Elko, NV",
+        "count": 2
+      }
+    ],
+    "projectReviewByJurisdiction": [
+      {
+        "key": "Clark County, NV",
+        "count": 27
+      },
+      {
+        "key": "Washoe County, NV",
+        "count": 26
+      },
+      {
+        "key": "Las Vegas, NV",
+        "count": 22
+      },
+      {
+        "key": "Nevada",
+        "count": 3
+      },
+      {
+        "key": "Carson City, NV",
+        "count": 1
+      },
+      {
+        "key": "Elko County, NV",
+        "count": 1
+      },
+      {
+        "key": "Nevada System of Higher Education",
+        "count": 1
+      },
+      {
+        "key": "North Las Vegas, NV",
+        "count": 1
+      }
+    ],
+    "projectStatusCounts": [
+      {
+        "key": "funded",
+        "count": 200
+      },
+      {
+        "key": "unknown",
+        "count": 17
+      },
+      {
+        "key": "proposed",
+        "count": 15
+      },
+      {
+        "key": "approved",
+        "count": 10
+      },
+      {
+        "key": "delayed",
+        "count": 4
+      },
+      {
+        "key": "in_progress",
+        "count": 4
+      },
+      {
+        "key": "completed",
+        "count": 3
+      }
+    ]
+  },
   "recommendedNextActions": [
-    "Build source-specific adapters for the highest-count blocked hosts before adding new jurisdictions.",
+    "Review voting cards still marked needs_review by jurisdiction; prioritize Las Vegas, Nevada statewide, Clark County, and Elko.",
+    "Treat ready voting cards as source-backed public previews with missing outcome/vote details, not as dead-end review work.",
     "Review attendance_not_verified actions by body; add governing rosters only where source text supports voting membership.",
     "Treat distribution_review as human-review work unless the source explicitly names no/abstain voters.",
     "Keep reviewed manual officials separate from unverified attendance names."

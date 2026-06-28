@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T20:50:09.612Z",
+  "generatedAt": "2026-06-21T06:04:14.107Z",
   "records": [
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
@@ -126,18 +126,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
-      "eligibleForAggregateAttribution": false,
+      "eligibleForAggregateAttribution": true,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2025-02-10-814e553f",
@@ -864,7 +863,7 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": false,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
@@ -872,11 +871,10 @@
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
         "missing_minutes",
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 1
+      "readinessScore": 2
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2026-04-16-9e0fbebd",
@@ -888,18 +886,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2026-03-19-d948bd61",
@@ -911,18 +908,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2026-02-19-e32cd494",
@@ -934,18 +930,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-12-18-ec883cd7",
@@ -957,18 +952,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-11-20-6aaed8d8",
@@ -980,18 +974,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-10-16-686396a6",
@@ -1003,18 +996,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-08-21-c2d1e53f",
@@ -1026,18 +1018,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-06-19-8a0e7aa6",
@@ -1049,18 +1040,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-05-22-499e5d6e",
@@ -1072,18 +1062,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-04-17-fdbf5404",
@@ -1095,18 +1084,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-03-20-6899c181",
@@ -1118,18 +1106,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-02-20-298f298c",
@@ -1141,18 +1128,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2025-01-16-a91e3443",
@@ -1164,18 +1150,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2024-11-21-fb0b82e9",
@@ -1187,18 +1172,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2024-10-17-254530fc",
@@ -1210,18 +1194,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2024-09-19-497ff30c",
@@ -1233,18 +1216,17 @@
       "hasAgenda": true,
       "hasPacket": false,
       "hasMinutes": true,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
-        "missing_attendance",
         "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2024-07-18-2b33922a",
@@ -13221,18 +13203,18 @@
       "hasAgenda": false,
       "hasPacket": true,
       "hasMinutes": false,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": true,
       "hasNamedVotes": false,
-      "hasRosterMatch": false,
+      "hasRosterMatch": true,
       "eligibleForAggregateAttribution": false,
-      "eligibleForUnanimousAttribution": false,
+      "eligibleForUnanimousAttribution": true,
       "blockedReason": [
         "missing_minutes",
-        "missing_attendance",
-        "missing_roster"
+        "missing_roster",
+        "missing_attendance"
       ],
-      "readinessScore": 2
+      "readinessScore": 4
     },
     {
       "meetingId": "meeting-manual-reno-city-council-reno-city-council-undated-4f130406",
@@ -14254,16 +14236,15 @@
       "hasAttendance": false,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
-      "hasRosterMatch": false,
+      "hasRosterMatch": true,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
         "missing_minutes",
         "missing_attendance",
-        "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 1
+      "readinessScore": 2
     },
     {
       "meetingId": "meeting-manual-nv-senate-nevada-senate-undated-fb88a8f6",
@@ -14278,16 +14259,15 @@
       "hasAttendance": false,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
-      "hasRosterMatch": false,
+      "hasRosterMatch": true,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
         "missing_minutes",
         "missing_attendance",
-        "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 1
+      "readinessScore": 2
     },
     {
       "meetingId": "meeting-manual-nv-senate-nevada-senate-2026-06-16-5ba13b8a",
@@ -14302,16 +14282,15 @@
       "hasAttendance": false,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
-      "hasRosterMatch": false,
+      "hasRosterMatch": true,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
         "missing_minutes",
         "missing_attendance",
-        "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 0
+      "readinessScore": 1
     },
     {
       "meetingId": "meeting-manual-nv-assembly-nevada-assembly-undated-aae86ba2",
@@ -14326,16 +14305,15 @@
       "hasAttendance": false,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
-      "hasRosterMatch": false,
+      "hasRosterMatch": true,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
         "missing_minutes",
         "missing_attendance",
-        "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 1
+      "readinessScore": 2
     },
     {
       "meetingId": "meeting-manual-nv-assembly-nevada-assembly-undated-c12dc67c",
@@ -14350,16 +14328,15 @@
       "hasAttendance": false,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
-      "hasRosterMatch": false,
+      "hasRosterMatch": true,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
         "missing_minutes",
         "missing_attendance",
-        "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 1
+      "readinessScore": 2
     },
     {
       "meetingId": "meeting-manual-nv-assembly-nevada-assembly-2026-06-16-2c90ae48",
@@ -14374,16 +14351,15 @@
       "hasAttendance": false,
       "hasVoteOutcome": false,
       "hasNamedVotes": false,
-      "hasRosterMatch": false,
+      "hasRosterMatch": true,
       "eligibleForAggregateAttribution": false,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
         "missing_minutes",
         "missing_attendance",
-        "missing_roster",
         "insufficient_source_evidence"
       ],
-      "readinessScore": 0
+      "readinessScore": 1
     },
     {
       "meetingId": "meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4",
@@ -14897,18 +14873,18 @@
       "hasAgenda": false,
       "hasPacket": true,
       "hasMinutes": false,
-      "hasAttendance": false,
+      "hasAttendance": true,
       "hasVoteOutcome": true,
       "hasNamedVotes": false,
       "hasRosterMatch": false,
-      "eligibleForAggregateAttribution": false,
+      "eligibleForAggregateAttribution": true,
       "eligibleForUnanimousAttribution": false,
       "blockedReason": [
         "missing_minutes",
-        "missing_attendance",
-        "missing_roster"
+        "missing_roster",
+        "unresolved_distribution"
       ],
-      "readinessScore": 2
+      "readinessScore": 3
     },
     {
       "meetingId": "meeting-manual-las-vegas-city-council-las-vegas-city-council-undated-53ba631c",
@@ -16151,34 +16127,6 @@
       "readinessScore": 0.06
     },
     {
-      "organizationId": "nv-senate",
-      "bodyName": "Nevada Senate",
-      "jurisdiction": "Nevada",
-      "meetingsImported": 3,
-      "agendas": 2,
-      "packets": 0,
-      "minutes": 0,
-      "attendanceCoverage": 0,
-      "voteCoverage": 0,
-      "namedVoteCoverage": 0,
-      "aggregateVoteCoverage": 0,
-      "readinessScore": 0.1
-    },
-    {
-      "organizationId": "nv-assembly",
-      "bodyName": "Nevada Assembly",
-      "jurisdiction": "Nevada",
-      "meetingsImported": 3,
-      "agendas": 2,
-      "packets": 0,
-      "minutes": 0,
-      "attendanceCoverage": 0,
-      "voteCoverage": 0,
-      "namedVoteCoverage": 0,
-      "aggregateVoteCoverage": 0,
-      "readinessScore": 0.1
-    },
-    {
       "organizationId": "nv-governor-executive-boards",
       "bodyName": "Nevada Boards and Commissions",
       "jurisdiction": "Nevada",
@@ -16200,25 +16148,11 @@
       "agendas": 25,
       "packets": 2,
       "minutes": 0,
-      "attendanceCoverage": 0,
+      "attendanceCoverage": 1,
       "voteCoverage": 1,
       "namedVoteCoverage": 0,
       "aggregateVoteCoverage": 0,
-      "readinessScore": 0.15
-    },
-    {
-      "organizationId": "las-vegas-city-council",
-      "bodyName": "Las Vegas City Council",
-      "jurisdiction": "Las Vegas, NV",
-      "meetingsImported": 18,
-      "agendas": 17,
-      "packets": 1,
-      "minutes": 0,
-      "attendanceCoverage": 0,
-      "voteCoverage": 1,
-      "namedVoteCoverage": 0,
-      "aggregateVoteCoverage": 0,
-      "readinessScore": 0.15
+      "readinessScore": 0.16
     },
     {
       "organizationId": "north-las-vegas-city-council",
@@ -16232,6 +16166,20 @@
       "voteCoverage": 3,
       "namedVoteCoverage": 0,
       "aggregateVoteCoverage": 0,
+      "readinessScore": 0.16
+    },
+    {
+      "organizationId": "las-vegas-city-council",
+      "bodyName": "Las Vegas City Council",
+      "jurisdiction": "Las Vegas, NV",
+      "meetingsImported": 18,
+      "agendas": 17,
+      "packets": 1,
+      "minutes": 0,
+      "attendanceCoverage": 1,
+      "voteCoverage": 1,
+      "namedVoteCoverage": 0,
+      "aggregateVoteCoverage": 1,
       "readinessScore": 0.16
     },
     {
@@ -16291,6 +16239,34 @@
       "readinessScore": 0.21
     },
     {
+      "organizationId": "nv-senate",
+      "bodyName": "Nevada Senate",
+      "jurisdiction": "Nevada",
+      "meetingsImported": 3,
+      "agendas": 2,
+      "packets": 0,
+      "minutes": 0,
+      "attendanceCoverage": 0,
+      "voteCoverage": 0,
+      "namedVoteCoverage": 0,
+      "aggregateVoteCoverage": 0,
+      "readinessScore": 0.24
+    },
+    {
+      "organizationId": "nv-assembly",
+      "bodyName": "Nevada Assembly",
+      "jurisdiction": "Nevada",
+      "meetingsImported": 3,
+      "agendas": 2,
+      "packets": 0,
+      "minutes": 0,
+      "attendanceCoverage": 0,
+      "voteCoverage": 0,
+      "namedVoteCoverage": 0,
+      "aggregateVoteCoverage": 0,
+      "readinessScore": 0.24
+    },
+    {
       "organizationId": "clark-county-school-district",
       "bodyName": "Clark County School District Board of Trustees",
       "jurisdiction": "Clark County School District, NV",
@@ -16326,10 +16302,10 @@
       "agendas": 467,
       "packets": 294,
       "minutes": 331,
-      "attendanceCoverage": 0,
+      "attendanceCoverage": 18,
       "voteCoverage": 0,
       "namedVoteCoverage": 0,
-      "aggregateVoteCoverage": 0,
+      "aggregateVoteCoverage": 1,
       "readinessScore": 0.33
     },
     {
@@ -16362,7 +16338,7 @@
     }
   ],
   "audit": {
-    "generatedAt": "2026-06-20T20:50:09.612Z",
+    "generatedAt": "2026-06-21T06:04:14.107Z",
     "sourceTypeCounts": {
       "agenda": 645,
       "packet": 372,
@@ -16374,12 +16350,12 @@
     "totals": {
       "meetings": 691,
       "meetingsWithMinutes": 409,
-      "meetingsWithAttendance": 2,
+      "meetingsWithAttendance": 22,
       "meetingsWithVoteOutcomes": 41,
       "meetingsWithNamedVotes": 1,
-      "meetingsWithRosterMatch": 2,
-      "eligibleForAggregateAttribution": 2,
-      "eligibleForUnanimousAttribution": 0
+      "meetingsWithRosterMatch": 9,
+      "eligibleForAggregateAttribution": 4,
+      "eligibleForUnanimousAttribution": 1
     },
     "highestRemainingGaps": [
       {
@@ -16395,34 +16371,6 @@
         "namedVoteCoverage": 0,
         "aggregateVoteCoverage": 0,
         "readinessScore": 0.06
-      },
-      {
-        "organizationId": "nv-senate",
-        "bodyName": "Nevada Senate",
-        "jurisdiction": "Nevada",
-        "meetingsImported": 3,
-        "agendas": 2,
-        "packets": 0,
-        "minutes": 0,
-        "attendanceCoverage": 0,
-        "voteCoverage": 0,
-        "namedVoteCoverage": 0,
-        "aggregateVoteCoverage": 0,
-        "readinessScore": 0.1
-      },
-      {
-        "organizationId": "nv-assembly",
-        "bodyName": "Nevada Assembly",
-        "jurisdiction": "Nevada",
-        "meetingsImported": 3,
-        "agendas": 2,
-        "packets": 0,
-        "minutes": 0,
-        "attendanceCoverage": 0,
-        "voteCoverage": 0,
-        "namedVoteCoverage": 0,
-        "aggregateVoteCoverage": 0,
-        "readinessScore": 0.1
       },
       {
         "organizationId": "nv-governor-executive-boards",
@@ -16446,25 +16394,11 @@
         "agendas": 25,
         "packets": 2,
         "minutes": 0,
-        "attendanceCoverage": 0,
+        "attendanceCoverage": 1,
         "voteCoverage": 1,
         "namedVoteCoverage": 0,
         "aggregateVoteCoverage": 0,
-        "readinessScore": 0.15
-      },
-      {
-        "organizationId": "las-vegas-city-council",
-        "bodyName": "Las Vegas City Council",
-        "jurisdiction": "Las Vegas, NV",
-        "meetingsImported": 18,
-        "agendas": 17,
-        "packets": 1,
-        "minutes": 0,
-        "attendanceCoverage": 0,
-        "voteCoverage": 1,
-        "namedVoteCoverage": 0,
-        "aggregateVoteCoverage": 0,
-        "readinessScore": 0.15
+        "readinessScore": 0.16
       },
       {
         "organizationId": "north-las-vegas-city-council",
@@ -16478,6 +16412,20 @@
         "voteCoverage": 3,
         "namedVoteCoverage": 0,
         "aggregateVoteCoverage": 0,
+        "readinessScore": 0.16
+      },
+      {
+        "organizationId": "las-vegas-city-council",
+        "bodyName": "Las Vegas City Council",
+        "jurisdiction": "Las Vegas, NV",
+        "meetingsImported": 18,
+        "agendas": 17,
+        "packets": 1,
+        "minutes": 0,
+        "attendanceCoverage": 1,
+        "voteCoverage": 1,
+        "namedVoteCoverage": 0,
+        "aggregateVoteCoverage": 1,
         "readinessScore": 0.16
       },
       {
@@ -16535,6 +16483,34 @@
         "namedVoteCoverage": 0,
         "aggregateVoteCoverage": 0,
         "readinessScore": 0.21
+      },
+      {
+        "organizationId": "nv-senate",
+        "bodyName": "Nevada Senate",
+        "jurisdiction": "Nevada",
+        "meetingsImported": 3,
+        "agendas": 2,
+        "packets": 0,
+        "minutes": 0,
+        "attendanceCoverage": 0,
+        "voteCoverage": 0,
+        "namedVoteCoverage": 0,
+        "aggregateVoteCoverage": 0,
+        "readinessScore": 0.24
+      },
+      {
+        "organizationId": "nv-assembly",
+        "bodyName": "Nevada Assembly",
+        "jurisdiction": "Nevada",
+        "meetingsImported": 3,
+        "agendas": 2,
+        "packets": 0,
+        "minutes": 0,
+        "attendanceCoverage": 0,
+        "voteCoverage": 0,
+        "namedVoteCoverage": 0,
+        "aggregateVoteCoverage": 0,
+        "readinessScore": 0.24
       },
       {
         "organizationId": "clark-county-school-district",

@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-06-26T00:03:28.543Z",
+  "totals": {
+    "accounts": 1,
+    "activeAccounts": 1,
+    "emailVerifiedAccounts": 1,
+    "ownerAdminPresent": 1,
+    "mfaEnrollmentRequired": 0,
+    "mfaEnabledAccounts": 1,
+    "passwordRotationRequired": 0,
+    "securityEvents": 14,
+    "sessions": 6,
+    "failures": 0
+  },
+  "validation": {
+    "credentialHashAlgorithm": "scrypt",
+    "plaintextPasswordAbsentFromPrivateStore": true,
+    "ownerAdminCanAccessAdminOperations": true,
+    "ownerPasswordRotated": true,
+    "ownerMfaEnrolled": true,
+    "nonAdminCannotAccessAdmin": true,
+    "productionBootstrapRequiresExplicitConfirmation": true,
+    "accountEnumerationPreventedInResetResponse": true
+  },
+  "failures": []
+}

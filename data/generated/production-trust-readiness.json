@@ -1,0 +1,262 @@
+{
+  "generatedAt": "2026-06-25T03:01:01.873Z",
+  "status": "ready",
+  "readiness": {
+    "database": "ready",
+    "identityStorage": "ready",
+    "operationStorage": "ready",
+    "email": "ready",
+    "evidence": "ready",
+    "evidencePurge": "ready",
+    "browserSessionStorage": "ready",
+    "worker": "ready",
+    "backup": "ready",
+    "restore": "ready",
+    "secrets": "ready",
+    "dataOpsScheduler": "ready",
+    "officialsScheduler": "ready",
+    "carsonCityOfficials": "ready",
+    "officialScorecards": "not_applicable"
+  },
+  "provenance": {
+    "runId": "20260625030101-local-network-enabled-k62ge1",
+    "generatedAt": "2026-06-25T03:01:01.873Z",
+    "executionEnvironment": "local_network_enabled",
+    "networkCapability": "available",
+    "databaseReachability": "database_reachable",
+    "storageBackend": "prisma_durable",
+    "workerBackend": "worker_configured",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "promoted_from_run",
+    "artifactName": "production-trust-readiness"
+  },
+  "database": {
+    "classification": "database_reachable",
+    "hostSummary": "ep-***.neon.tech",
+    "readOnlyQuery": "ok",
+    "migrationTable": "ok",
+    "schema": "ok",
+    "credentialsRedacted": true
+  },
+  "identityStorage": "schema_ready",
+  "operationStorage": "schema_ready",
+  "ownerAdmin": {
+    "present": true,
+    "passwordRotated": true,
+    "mfaEnabled": true,
+    "mfaEnrolled": true
+  },
+  "localIdentityFallback": {
+    "allowedInCurrentEnvironment": true,
+    "forbiddenInProduction": true
+  },
+  "emailProvider": "production_provider_configured",
+  "emailAuditStatus": "production_configured",
+  "emailProductionTest": {
+    "status": "sent",
+    "productionConfirmed": true,
+    "queuedThroughDurableWorker": true,
+    "emailSent": true
+  },
+  "emailRequirements": [
+    "DIRECT_DEMOCRACY_EMAIL_PROVIDER",
+    "DIRECT_DEMOCRACY_EMAIL_FROM",
+    "DIRECT_DEMOCRACY_EMAIL_API_KEY"
+  ],
+  "mfa": "configured",
+  "evidenceStorage": "production_storage_configured",
+  "evidenceStorageSmoke": {
+    "status": "smoke_passed_production_storage_configured",
+    "uploadSucceeded": true,
+    "authorizedReadSucceeded": true,
+    "purgeSucceeded": true
+  },
+  "evidencePurge": {
+    "status": "production_storage_configured",
+    "dueForPurge": 0,
+    "privateStorageOnly": true,
+    "rawEvidenceIncluded": false
+  },
+  "browserSessionStorage": "production_storage_configured",
+  "browserSessionSmoke": {
+    "status": "smoke_passed_production_storage_configured",
+    "encryptedWriteSucceeded": true,
+    "retrievalSucceeded": true,
+    "revocationRecorded": true
+  },
+  "worker": "worker_configured",
+  "workerSmoke": {
+    "status": "smoke_passed",
+    "internalJob": "succeeded",
+    "emailJob": "skipped_missing_recipient",
+    "evidencePurgeJob": null,
+    "workerHeartbeatRecorded": true
+  },
+  "queue": {
+    "depth": 0,
+    "running": 0,
+    "deadLetters": 2,
+    "staleRunning": 0
+  },
+  "backup": "backup_configured",
+  "restore": "restore_tested",
+  "trustServicesPlan": {
+    "generatedAt": "2026-06-25T03:01:01.767Z",
+    "services": 7,
+    "sensitiveValuesIncluded": true
+  },
+  "carsonCityOfficials": {
+    "ready": true,
+    "status": "promoted",
+    "recordsPromoted": 25,
+    "conflictsRemaining": 0,
+    "runtimeOfficials": 25,
+    "cachedSources": 3,
+    "coverageFailures": 0
+  },
+  "lastKnownNetworkEnabledCutover": {
+    "generatedAt": "2026-06-21T16:27:11.161Z",
+    "database": {
+      "classification": "database_reachable",
+      "hostSummary": "ep-***.neon.tech",
+      "readOnlyQuery": "ok",
+      "migrationTable": "ok",
+      "schema": "ok",
+      "credentialsRedacted": true
+    },
+    "localSource": {
+      "present": true,
+      "sourceCounts": {
+        "accounts": 1,
+        "sessions": 4,
+        "activeSessions": 2,
+        "permissionGrants": 23,
+        "verificationClaims": 0,
+        "consentRecords": 0,
+        "profileClaims": 0,
+        "organizationAffiliations": 0,
+        "trustedCitizenGrants": 0,
+        "securityEvents": 11,
+        "privacyRequests": 0,
+        "verificationEvidence": 0,
+        "mfaEnabledAccounts": 1,
+        "mfaRecoveryCodeHashes": 10
+      },
+      "localJsonAllowedInProduction": false,
+      "localFallbackAllowedInCurrentEnvironment": true,
+      "localFallbackMustBeDisabledBeforeProduction": true,
+      "sensitiveValuesIncluded": false
+    },
+    "durableTarget": {
+      "storageStatus": "schema_ready",
+      "ready": true,
+      "counts": {
+        "accounts": 1,
+        "credentials": 1,
+        "sessions": 4,
+        "roleGrants": 1,
+        "permissionGrants": 23,
+        "tokens": 0,
+        "mfaRecoveryCodes": 10,
+        "verificationClaims": 0,
+        "consentRecords": 0,
+        "profileClaims": 0,
+        "organizationAffiliations": 0,
+        "trustedCitizenGrants": 0,
+        "securityEvents": 12,
+        "privacyRequests": 0,
+        "verificationEvidence": 0
+      }
+    },
+    "ownerAdmin": {
+      "present": true,
+      "role": "admin",
+      "status": "active",
+      "passwordRotated": true,
+      "mfaEnabled": true,
+      "mfaEnrolled": true,
+      "recoveryCodeHashesPreservedInSource": 10,
+      "adminPermissionCount": 23
+    },
+    "migrations": {
+      "prismaMigrationDirectoryPresent": true,
+      "sprint2iMigrationPresent": true,
+      "dryRun": {
+        "ok": true,
+        "wrote": false,
+        "status": "schema_ready"
+      },
+      "apply": {
+        "ok": true,
+        "wrote": true,
+        "status": "schema_ready"
+      }
+    },
+    "sessionCutover": {
+      "rawSessionTokensMigrated": false,
+      "migrationRecordsPriorSessionsAsRevoked": true,
+      "logoutAllBoundaryPresent": true,
+      "passwordChangeRevokesSessions": true,
+      "mfaResetRevokesSessions": true,
+      "accountSuspensionRevokesSessions": false
+    },
+    "status": "durable_identity_ready",
+    "nextOperatorCommands": [
+      "npm run database:diagnose",
+      "npm run prisma:migrate:status",
+      "npm run identity:migrate -- --dry-run",
+      "npm run identity:migrate -- --apply",
+      "npm run identity:cutover-audit"
+    ],
+    "sensitiveValuesIncluded": false
+  },
+  "auditPolicy": {
+    "canonicalUpdatedByThisCommand": false,
+    "canonicalPromotionCommand": "npm run audit:promote -- --run-id=<run-id>",
+    "environmentScopedArtifact": "data/generated/production-trust-readiness.local-network-enabled.json"
+  },
+  "disabledByDesignThisSprint": {
+    "liveVoterRegistrationProvider": true,
+    "officialAccountabilityScorecards": true,
+    "hiddenVoteWeighting": true,
+    "destructiveDatabaseReset": true,
+    "plaintextEvidenceStorage": true,
+    "plaintextBrowserSessionStorage": true,
+    "govCrmIdentityOwnership": true
+  },
+  "sourceChecks": {
+    "adminRoutesProtected": true,
+    "adminApiProtected": true,
+    "canonicalAdminRedirect": true,
+    "durableMigrationScriptPresent": true,
+    "databaseDiagnosticPresent": true,
+    "githubActionsWorkerPresent": true,
+    "productionEmailTestPresent": true,
+    "workerSmokeTestPresent": true,
+    "trustServicesPlanPresent": true
+  },
+  "secrets": {
+    "missingRequiredDomains": [],
+    "separation": {
+      "mfaAndEvidenceDifferent": true,
+      "mfaAndBrowserDifferent": true,
+      "evidenceAndBrowserDifferent": true,
+      "applicationStartupGeneratesProductionSecrets": false,
+      "generatedArtifactsIncludeSecrets": false,
+      "adminLogsIncludeSecrets": false,
+      "ciArtifactsIncludeSecrets": false,
+      "localSecretsGitignored": true,
+      "productionSecretsUseSecretManager": true
+    }
+  },
+  "failures": [],
+  "promotion": {
+    "eligible": true,
+    "databaseChecksRan": true,
+    "validationPassed": true,
+    "requiresExplicitCommand": true
+  },
+  "sensitiveValuesIncluded": false,
+  "promotedAt": "2026-06-25T03:01:39.524Z",
+  "promotedFromRunId": "20260625030101-local-network-enabled-k62ge1"
+}

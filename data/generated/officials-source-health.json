@@ -1,0 +1,128 @@
+{
+  "generatedAt": "2026-06-22T02:40:16.680Z",
+  "records": [
+    {
+      "sourceId": "carson-city-department-directory",
+      "jurisdictionId": "carson-city",
+      "jurisdictionName": "Carson City",
+      "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+      "sourceType": "department_directory",
+      "parserStatus": "implemented",
+      "retrievalStatus": "changed",
+      "cachedPath": "data/raw/official-directories/carson-city-department-directory/current.html",
+      "contentHash": "20de7bb85affcc3d9215e203d8f5851fb0ab5fd01e930711f0e369b5e9209146",
+      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
+      "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
+      "lastChangedAt": "2026-06-22T02:37:41.796Z",
+      "lastParsedAt": "2026-06-22T02:40:16.680Z",
+      "lastVerifiedAt": "2026-06-22T02:37:41.796Z",
+      "nextDueAt": "2026-06-23T02:40:16.683Z",
+      "sourceHealth": "healthy",
+      "currentOfficialCount": 25,
+      "changedOfficeholders": 0,
+      "titlesChanged": 0,
+      "possibleVacancies": 0,
+      "parseFailures": 0,
+      "manualFallback": "verified_cached_source"
+    },
+    {
+      "sourceId": "carson-city-board-of-supervisors",
+      "jurisdictionId": "carson-city",
+      "jurisdictionName": "Carson City",
+      "sourceUrl": "https://www.carsoncity.gov/government/board-of-supervisors",
+      "sourceType": "governing_body_page",
+      "parserStatus": "implemented",
+      "retrievalStatus": "changed",
+      "cachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/current.html",
+      "contentHash": "2fa00888064a2c9d6e127f434f76d994db2eff4183bea887fe9d45ff5610b902",
+      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
+      "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
+      "lastChangedAt": "2026-06-22T02:37:41.796Z",
+      "lastParsedAt": "2026-06-22T02:40:16.680Z",
+      "lastVerifiedAt": "2026-06-22T02:37:41.796Z",
+      "nextDueAt": "2026-06-23T02:40:16.683Z",
+      "sourceHealth": "healthy",
+      "currentOfficialCount": 25,
+      "changedOfficeholders": 0,
+      "titlesChanged": 0,
+      "possibleVacancies": 0,
+      "parseFailures": 0,
+      "manualFallback": "verified_cached_source"
+    },
+    {
+      "sourceId": "carson-city-staff-directory",
+      "jurisdictionId": "carson-city",
+      "jurisdictionName": "Carson City",
+      "sourceUrl": "https://www.carsoncity.gov/government/department-directory/staff-directory",
+      "sourceType": "staff_directory",
+      "parserStatus": "implemented",
+      "retrievalStatus": "changed",
+      "cachedPath": "data/raw/official-directories/carson-city-staff-directory/current.html",
+      "contentHash": "bc907b1798f20dd80f3578a7e1b136b25629e04a1b27451be870370b1ad4e2d8",
+      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
+      "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
+      "lastChangedAt": "2026-06-22T02:37:41.796Z",
+      "lastParsedAt": "2026-06-22T02:40:16.680Z",
+      "lastVerifiedAt": "2026-06-22T02:37:41.796Z",
+      "nextDueAt": "2026-06-23T02:40:16.683Z",
+      "sourceHealth": "healthy",
+      "currentOfficialCount": 25,
+      "changedOfficeholders": 0,
+      "titlesChanged": 0,
+      "possibleVacancies": 0,
+      "parseFailures": 0,
+      "manualFallback": "verified_cached_source"
+    }
+  ],
+  "audit": {
+    "totals": {
+      "sources": 3,
+      "healthy": 3,
+      "partial": 0,
+      "blocked": 0,
+      "unknown": 0,
+      "withCachedHtml": 3
+    }
+  },
+  "provenance": {
+    "runId": "20260622023741-local-network-enabled-j0z6bc",
+    "generatedAt": "2026-06-22T02:37:41.796Z",
+    "executionEnvironment": "local_network_enabled",
+    "networkCapability": "available",
+    "databaseReachability": "not_configured",
+    "storageBackend": "generated_artifact_cache",
+    "workerBackend": "local_operator",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "promoted_from_run",
+    "artifactName": "carson-city-officials-source-evidence",
+    "actor": "eliscislowicz",
+    "trigger": "manual",
+    "sourceRetrievalCount": 3,
+    "cacheCount": 3,
+    "parseCount": 0,
+    "promotionStatus": "promoted"
+  },
+  "canonicalPromotion": {
+    "status": "promoted",
+    "promotedAt": "2026-06-22T02:40:16.680Z",
+    "promotedFromRunId": "20260622023741-local-network-enabled-j0z6bc",
+    "evidenceRunId": "20260622023741-local-network-enabled-j0z6bc",
+    "reconciliationRunId": "20260622023741-local-network-enabled-j0z6bc",
+    "executionEnvironment": "local_network_enabled",
+    "networkCapability": "available",
+    "sourceHashes": [
+      {
+        "sourceId": "carson-city-department-directory",
+        "contentHash": "20de7bb85affcc3d9215e203d8f5851fb0ab5fd01e930711f0e369b5e9209146"
+      },
+      {
+        "sourceId": "carson-city-board-of-supervisors",
+        "contentHash": "2fa00888064a2c9d6e127f434f76d994db2eff4183bea887fe9d45ff5610b902"
+      },
+      {
+        "sourceId": "carson-city-staff-directory",
+        "contentHash": "bc907b1798f20dd80f3578a7e1b136b25629e04a1b27451be870370b1ad4e2d8"
+      }
+    ]
+  }
+}

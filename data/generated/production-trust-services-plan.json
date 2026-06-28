@@ -1,0 +1,227 @@
+{
+  "generatedAt": "2026-06-25T03:01:44.951Z",
+  "provenance": {
+    "runId": "20260625030144-unknown-3ams63",
+    "generatedAt": "2026-06-25T03:01:44.951Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "configured_unverified",
+    "storageBackend": "production_storage_configured",
+    "workerBackend": "worker_configured",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "production-trust-services-plan"
+  },
+  "scope": "Sprint 2I-D-B2 production trust services",
+  "summary": {
+    "databaseProvider": "postgresql",
+    "networkWorkerWorkflowPresent": true,
+    "productionEmailStatus": "production_provider_configured",
+    "evidenceStorageStatus": "production_storage_configured",
+    "browserSessionStorageStatus": "production_storage_configured",
+    "workerStatus": "worker_configured",
+    "backupStatus": "backup_configured_unverified_by_this_plan",
+    "restoreStatus": "restore_tested_by_operator_flag",
+    "realProviderSmokeTestsRequiredBeforeResidencyEvidenceCollection": true
+  },
+  "services": [
+    {
+      "requiredSecretNames": [
+        "DATABASE_URL"
+      ],
+      "requiredVariableNames": [],
+      "service": "durable_identity_and_admin_operations",
+      "selectedBackend": "Prisma postgresql",
+      "whySelected": "The repo already uses Prisma identity, session, operation, and worker-job tables; reusing it avoids a second identity or queue system.",
+      "configurationStatus": "database_configured_unverified_by_plan",
+      "localDevelopmentBehavior": "Local fallback identity is allowed only outside production; production reads must use durable Prisma storage.",
+      "githubActionsBehavior": "Workflows receive DATABASE_URL through protected secrets and run diagnostics before worker or migration steps.",
+      "productionBehavior": "Production must fail closed when durable identity or operation tables are unavailable.",
+      "remainingManualOperatorSteps": [
+        "Run npm run database:diagnose",
+        "Run npm run identity:cutover-audit",
+        "Promote only a successful network-enabled production trust audit."
+      ],
+      "secretValuesIncluded": false,
+      "credentialValuesIncluded": false
+    },
+    {
+      "requiredSecretNames": [
+        "DIRECT_DEMOCRACY_EMAIL_PROVIDER",
+        "DIRECT_DEMOCRACY_EMAIL_FROM",
+        "DIRECT_DEMOCRACY_EMAIL_API_KEY"
+      ],
+      "requiredVariableNames": [
+        "DIRECT_DEMOCRACY_EMAIL_TEST_RECIPIENT_ALLOWLIST",
+        "DIRECT_DEMOCRACY_NETWORK_ENABLED"
+      ],
+      "service": "production_email",
+      "selectedBackend": "Existing provider-neutral identity email adapter; Resend is the only concrete production adapter currently implemented.",
+      "whySelected": "The identity layer already centralizes token creation, sanitized delivery logs, and provider selection.",
+      "configurationStatus": "production_provider_configured",
+      "localDevelopmentBehavior": "Development adapter writes metadata-only private outbox entries and never writes tokens to generated artifacts.",
+      "githubActionsBehavior": "Production tests require protected email secrets and an allowlisted recipient; arbitrary workflow recipients are not trusted.",
+      "productionBehavior": "Production readiness requires npm run email:production-test with confirmation, network enabled, durable queue processing, and provider acceptance.",
+      "remainingManualOperatorSteps": [
+        "Verify sender/domain with the provider.",
+        "Set provider secrets.",
+        "Set an authorized test recipient allowlist.",
+        "Run npm run email:production-test -- --recipient=<authorized> --confirm-production-send."
+      ],
+      "secretValuesIncluded": false,
+      "credentialValuesIncluded": false
+    },
+    {
+      "requiredSecretNames": [
+        "IDENTITY_EVIDENCE_ENCRYPTION_KEY"
+      ],
+      "requiredVariableNames": [
+        "IDENTITY_EVIDENCE_STORAGE_BUCKET",
+        "IDENTITY_EVIDENCE_KEY_VERSION"
+      ],
+      "service": "private_verification_evidence_storage",
+      "selectedBackend": "Existing identity evidence storage boundary with encrypted local-development storage and production private object-storage configuration gate.",
+      "whySelected": "The identity layer already keeps evidence separate from public civic caches, browser sessions, and generated artifacts.",
+      "configurationStatus": "production_storage_configured",
+      "localDevelopmentBehavior": "Encrypted fixture-only local smoke tests may run with an explicit ephemeral development key flag.",
+      "githubActionsBehavior": "Production evidence smoke tests require private storage variables and protected encryption-key secrets.",
+      "productionBehavior": "Do not collect real residency evidence until encrypted upload/read/unauthorized-read/purge smoke tests pass against the configured private backend.",
+      "remainingManualOperatorSteps": [
+        "Configure private object storage.",
+        "Configure independent evidence encryption key.",
+        "Run npm run evidence:smoke-test.",
+        "Run npm run evidence:purge-audit."
+      ],
+      "secretValuesIncluded": false,
+      "credentialValuesIncluded": false
+    },
+    {
+      "requiredSecretNames": [
+        "PLAYWRIGHT_SESSION_STORAGE_KEY"
+      ],
+      "requiredVariableNames": [
+        "PLAYWRIGHT_SESSION_STORAGE_BUCKET",
+        "PLAYWRIGHT_SESSION_KEY_VERSION"
+      ],
+      "service": "encrypted_browser_session_storage",
+      "selectedBackend": "Existing admin operations browser-session storage boundary with separate Playwright session key namespace.",
+      "whySelected": "Authenticated source sessions are operational secrets and must stay separate from evidence storage and public source caches.",
+      "configurationStatus": "production_storage_configured",
+      "localDevelopmentBehavior": "Fixture-only encrypted local smoke tests are allowed with an explicit ephemeral development key flag.",
+      "githubActionsBehavior": "Workflow artifacts must include metadata-only audits and never raw storage state.",
+      "productionBehavior": "Production readiness requires encrypted round-trip, expiry detection, revocation, and post-revocation denial.",
+      "remainingManualOperatorSteps": [
+        "Configure private browser-session storage.",
+        "Configure independent browser-session key.",
+        "Run npm run browser-sessions:smoke-test."
+      ],
+      "secretValuesIncluded": false,
+      "credentialValuesIncluded": false
+    },
+    {
+      "requiredSecretNames": [
+        "DATABASE_URL",
+        "DIRECT_DEMOCRACY_EMAIL_API_KEY",
+        "IDENTITY_EVIDENCE_ENCRYPTION_KEY",
+        "PLAYWRIGHT_SESSION_STORAGE_KEY"
+      ],
+      "requiredVariableNames": [
+        "DIRECT_DEMOCRACY_WORKER_ENABLED",
+        "DIRECT_DEMOCRACY_WORKER_BATCH_SIZE",
+        "DIRECT_DEMOCRACY_NETWORK_ENABLED"
+      ],
+      "service": "durable_network_worker",
+      "selectedBackend": "GitHub Actions durable worker plus local operator worker",
+      "whySelected": "The repo already has IdentityJob queue primitives and an allowlisted operation runner.",
+      "configurationStatus": "worker_configured",
+      "localDevelopmentBehavior": "npm run worker:smoke-test enqueues and claims a harmless internal job when durable storage is reachable.",
+      "githubActionsBehavior": "identity-worker.yml runs scheduled/manual bounded batches, audits the queue, and uploads non-sensitive diagnostics.",
+      "productionBehavior": "Production web requests enqueue work; bounded workers claim jobs, heartbeat, retry, and dead-letter through durable storage.",
+      "remainingManualOperatorSteps": [
+        "Enable protected GitHub environment secrets.",
+        "Run npm run worker:smoke-test in a network-enabled durable environment.",
+        "Confirm worker heartbeat and queue health."
+      ],
+      "secretValuesIncluded": false,
+      "credentialValuesIncluded": false
+    },
+    {
+      "requiredSecretNames": [
+        "DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL"
+      ],
+      "requiredVariableNames": [
+        "DIRECT_DEMOCRACY_DATABASE_BACKUP_CONFIGURED",
+        "DIRECT_DEMOCRACY_DATABASE_RESTORE_TESTED",
+        "DIRECT_DEMOCRACY_DATABASE_BACKUP_PROVIDER"
+      ],
+      "service": "backup_and_restore",
+      "selectedBackend": "Database-provider native backup/restore first; encrypted private-storage fallback only if provider-native backup is unavailable.",
+      "whySelected": "Provider-native snapshots/PITR are safer than ad hoc dumps and avoid plaintext backup artifacts.",
+      "configurationStatus": "backup_and_restore_tested",
+      "localDevelopmentBehavior": "Commands write truthful refusal/status artifacts and never restore into the primary database.",
+      "githubActionsBehavior": "Restore smoke tests require a protected isolated target and must upload only non-sensitive audit counts.",
+      "productionBehavior": "Production trust remains blocked until backup status is verified and an isolated restore smoke test succeeds.",
+      "remainingManualOperatorSteps": [
+        "Verify provider backup/PITR status.",
+        "Run npm run backup:audit.",
+        "Run npm run restore:smoke-test against an isolated target.",
+        "Run npm run restore:audit."
+      ],
+      "secretValuesIncluded": false,
+      "credentialValuesIncluded": false
+    },
+    {
+      "requiredSecretNames": [],
+      "requiredVariableNames": [
+        "OFFICIALS_NETWORK_ENABLED",
+        "OFFICIALS_EXECUTION_ENVIRONMENT"
+      ],
+      "service": "carson_city_officials_pipeline",
+      "selectedBackend": "Existing officials source registry, network retrieval, verification, reconciliation, guarded promotion, and coverage audit.",
+      "whySelected": "The Carson City officials path is now a permanent parallel DataOps responsibility and already has guarded canonical promotion.",
+      "configurationStatus": "manual_operator_sync_available",
+      "localDevelopmentBehavior": "npm run officials:carson-city:sync performs retrieval, reconciliation, promotion guard, regeneration, and browse audit when network is enabled.",
+      "githubActionsBehavior": "Officials refresh operations are allowlisted and must preserve source evidence artifacts.",
+      "productionBehavior": "Canonical officials promotion requires clean reconciliation and governing-body guard success.",
+      "remainingManualOperatorSteps": [
+        "Run OFFICIALS_NETWORK_ENABLED=true npm run officials:carson-city:sync.",
+        "Run npm run officials:source-verification:audit.",
+        "Confirm canonical promotion health."
+      ],
+      "secretValuesIncluded": false,
+      "credentialValuesIncluded": false
+    }
+  ],
+  "githubActionsRequiredConfiguration": {
+    "repositorySecrets": [
+      "DATABASE_URL",
+      "DIRECT_DEMOCRACY_EMAIL_PROVIDER",
+      "DIRECT_DEMOCRACY_EMAIL_FROM",
+      "DIRECT_DEMOCRACY_EMAIL_API_KEY",
+      "IDENTITY_MFA_ENCRYPTION_KEY"
+    ],
+    "protectedEnvironmentSecrets": [
+      "IDENTITY_EVIDENCE_ENCRYPTION_KEY",
+      "PLAYWRIGHT_SESSION_STORAGE_KEY",
+      "DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL"
+    ],
+    "repositoryVariables": [
+      "DIRECT_DEMOCRACY_WORKER_ENABLED",
+      "DIRECT_DEMOCRACY_NETWORK_ENABLED",
+      "DIRECT_DEMOCRACY_WORKER_BATCH_SIZE",
+      "IDENTITY_EVIDENCE_STORAGE_BUCKET",
+      "PLAYWRIGHT_SESSION_STORAGE_BUCKET",
+      "DIRECT_DEMOCRACY_DATABASE_BACKUP_CONFIGURED",
+      "DIRECT_DEMOCRACY_DATABASE_RESTORE_TESTED"
+    ]
+  },
+  "guardrails": {
+    "noRealResidencyEvidenceBeforeEvidenceSmokePasses": true,
+    "noLiveVoterRegistrationMatching": true,
+    "noOfficialScorecards": true,
+    "noHiddenVoteWeighting": true,
+    "noGovCrmOwnershipOfPublicTrustServices": true,
+    "noSecondIdentityQueueOrAdminSystem": true
+  },
+  "sensitiveValuesIncluded": false
+}

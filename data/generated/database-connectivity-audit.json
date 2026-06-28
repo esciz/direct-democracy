@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-06-24T14:26:03.775Z",
+  "safe": {
+    "credentialsRedacted": true,
+    "readOnlyQuery": true,
+    "boundedTimeoutMs": 5000,
+    "schemaChanges": false
+  },
+  "configuration": {
+    "configured": true,
+    "provider": "postgresql",
+    "protocol": "postgresql:",
+    "hostSummary": "ep-***.neon.tech",
+    "hostFingerprint": "6f62c5ac2184",
+    "port": 5432,
+    "databaseNamePresent": true,
+    "schemaParameterPresent": false,
+    "placeholderLike": false
+  },
+  "probes": {
+    "url": {
+      "status": "ok",
+      "reason": null
+    },
+    "dns": {
+      "status": "ok",
+      "reason": null
+    },
+    "tcp": {
+      "status": "ok",
+      "reason": null
+    },
+    "readOnlyQuery": {
+      "status": "ok",
+      "reason": null
+    },
+    "migrationTable": {
+      "status": "ok",
+      "reason": null,
+      "appliedMigrations": 1,
+      "localMigrations": 1
+    },
+    "schema": {
+      "status": "ok",
+      "reason": null,
+      "missingTables": []
+    }
+  },
+  "classification": "database_reachable",
+  "operatorGuidance": [
+    "Database is reachable for read-only diagnostics. Continue with migration status and identity migration dry-run."
+  ],
+  "sensitiveValuesIncluded": false
+}

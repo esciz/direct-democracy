@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-06-22T04:17:59.177Z",
+  "totals": {
+    "operationDefinitions": 26,
+    "localProcessOperations": 16,
+    "workerUnconfiguredOperations": 2,
+    "adminPermissions": 23,
+    "operationRecords": 19,
+    "failures": 0
+  },
+  "validation": {
+    "loggedOutUsersCannotAccessAdmin": "enforced_by_middleware_and_app_admin_layout_requireAdminPage",
+    "nonAdminUsersCannotTriggerOperations": true,
+    "trustedCitizenDoesNotInheritAdmin": true,
+    "arbitraryCommandsRejected": true,
+    "arbitraryWorkflowNamesRejected": true,
+    "operationStatusAndSanitizedLogsPersist": true,
+    "localAllowlistedOperationCompleted": true,
+    "missingGithubCredentialsReportedHonestly": true,
+    "overlapPrevented": true,
+    "retryResumeLinkedRecordsSupported": true,
+    "publicBundlesAvoidRawCaches": "admin routes read generated reports; public routes consume compact runtime artifacts"
+  },
+  "securityPosture": {
+    "sessionCookie": {
+      "httpOnly": true,
+      "sameSite": "lax",
+      "secureInProduction": true,
+      "source": "existing demo/session cookie layer"
+    },
+    "mfa": {
+      "enforced": true,
+      "boundary": "Identity-backed admins require TOTP enrollment and a signed MFA session before admin access."
+    },
+    "verifiedEmail": {
+      "enforced": true,
+      "boundary": "Durable local identity admins require verified email; seed/demo admin remains a legacy development fixture."
+    },
+    "csrf": {
+      "sameSiteCookie": true,
+      "serverActions": true,
+      "apiRequiresAdminSession": true,
+      "note": "State-changing admin APIs require same-origin authenticated admin sessions; no browser-controlled role fields are trusted."
+    }
+  },
+  "operationStore": {
+    "operationsDir": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/generated/admin-operations",
+    "operationsPath": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/generated/admin-operations/operations.json",
+    "durableStorageStatus": "local_file_adapter_with_prisma_durable_adapter"
+  },
+  "failures": []
+}

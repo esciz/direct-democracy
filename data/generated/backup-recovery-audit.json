@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-06-25T02:51:23.658Z",
+  "provenance": {
+    "runId": "20260625025123-unknown-ho4rti",
+    "generatedAt": "2026-06-25T02:51:23.643Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "configured_unverified",
+    "storageBackend": "provider_backup",
+    "workerBackend": "operator_or_worker",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "backup-recovery-audit"
+  },
+  "databaseConfigured": true,
+  "backup": "backup_configured",
+  "restore": "restore_untested",
+  "latestBackupCreate": {
+    "generatedAt": "2026-06-25T02:51:23.481Z",
+    "provenance": {
+      "runId": "20260625025123-unknown-5xgga8",
+      "generatedAt": "2026-06-25T02:51:23.465Z",
+      "executionEnvironment": "unknown",
+      "networkCapability": "unknown",
+      "databaseReachability": "configured_unverified",
+      "storageBackend": "provider_backup",
+      "workerBackend": "operator",
+      "gitCommit": "d63f485c43da",
+      "canonicalStatus": "not_canonical",
+      "artifactName": "backup-create-audit"
+    },
+    "status": "backup_create_requires_provider_operator",
+    "configured": true,
+    "providerConfigured": true,
+    "providerName": "configured",
+    "backupDataWrittenToGeneratedArtifacts": false,
+    "databaseCredentialsPrinted": false,
+    "destructiveOperation": false,
+    "operatorGuidance": [
+      "Use the configured database provider's snapshot/export workflow from a protected operator environment.",
+      "Record the provider backup ID in the deployment runbook, not in generated public artifacts."
+    ]
+  },
+  "latestRestoreSmokeTest": {
+    "generatedAt": "2026-06-23T23:15:00.535Z",
+    "provenance": {
+      "runId": "20260623231500-unknown-z4k2it",
+      "generatedAt": "2026-06-23T23:15:00.495Z",
+      "executionEnvironment": "unknown",
+      "networkCapability": "unknown",
+      "databaseReachability": "restore_target_unconfigured",
+      "storageBackend": "backup_restore",
+      "workerBackend": "operator",
+      "gitCommit": "d63f485c43da",
+      "canonicalStatus": "not_canonical",
+      "artifactName": "restore-smoke-test-audit"
+    },
+    "status": "restore_smoke_test_refused",
+    "restoreTestDatabaseConfigured": false,
+    "explicitConfirmProvided": true,
+    "primaryDatabaseTouched": false,
+    "destructiveOperation": false,
+    "generatedArtifactsIncludeRestoredData": false,
+    "operatorGuidance": [
+      "Set DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL for a separate restore target and pass --confirm-restore-smoke-test.",
+      "Never run restore smoke tests against the primary DATABASE_URL."
+    ]
+  },
+  "controls": {
+    "providerBackedBackupRequired": true,
+    "destructivePrimaryRestoreCommandAvailable": false,
+    "prismaMigrateResetForbiddenForRemote": true,
+    "generatedArtifactsIncludeBackupData": false,
+    "backupSecretsIncluded": false,
+    "smokeTestRequiresSeparateRestoreDatabase": true
+  },
+  "operatorGuidance": [
+    "Take a provider-backed database snapshot before identity:migrate -- --apply.",
+    "Run restore smoke tests against a separate restore/test database only.",
+    "Do not run destructive restores against the primary database from this repository."
+  ]
+}

@@ -96,6 +96,38 @@
     "notes": "Legistar source should eventually provide structured agenda items and vote records."
   },
   {
+    "id": "elko-city-council",
+    "name": "Elko City Council",
+    "jurisdiction": "Elko, NV",
+    "level": "city",
+    "website": "https://www.elkocity.com/government/city_council.php",
+    "sourceUrl": "https://ob.elkocitynv.gov/onbaseagendaonline",
+    "meetingIndexUrl": "https://ob.elkocitynv.gov/onbaseagendaonline",
+    "agendaArchiveUrl": "https://www.elkocity.com/government/agendas/minutes.php",
+    "minutesArchiveUrl": "https://www.elkocity.com/government/minutes.php",
+    "packetArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline",
+    "videoArchiveUrl": "https://www.elkocity.com/government/city_meetings__live_broadcst_and_archives/index.php",
+    "scraperType": "html",
+    "active": true,
+    "notes": "City uses a public OnBase agenda portal plus city-hosted agenda/minutes and video archive pages. Treat as HTML/manual until an OnBase-specific adapter is promoted."
+  },
+  {
+    "id": "elko-county-commission",
+    "name": "Elko County Commission",
+    "jurisdiction": "Elko County, NV",
+    "level": "county",
+    "website": "https://www.elkocountynv.net/your_government/boards/commissioners/county_commission19.php",
+    "sourceUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
+    "meetingIndexUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
+    "agendaArchiveUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
+    "minutesArchiveUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
+    "packetArchiveUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
+    "videoArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+    "scraperType": "granicus",
+    "active": true,
+    "notes": "County meeting page links agendas, minutes, videos, and Granicus archives for the elected five-member commission."
+  },
+  {
     "id": "clark-county-commission",
     "name": "Clark County Commission",
     "jurisdiction": "Clark County, NV",

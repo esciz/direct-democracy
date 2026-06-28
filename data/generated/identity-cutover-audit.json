@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-06-21T16:27:11.161Z",
+  "database": {
+    "classification": "database_reachable",
+    "hostSummary": "ep-***.neon.tech",
+    "readOnlyQuery": "ok",
+    "migrationTable": "ok",
+    "schema": "ok",
+    "credentialsRedacted": true
+  },
+  "localSource": {
+    "present": true,
+    "sourceCounts": {
+      "accounts": 1,
+      "sessions": 4,
+      "activeSessions": 2,
+      "permissionGrants": 23,
+      "verificationClaims": 0,
+      "consentRecords": 0,
+      "profileClaims": 0,
+      "organizationAffiliations": 0,
+      "trustedCitizenGrants": 0,
+      "securityEvents": 11,
+      "privacyRequests": 0,
+      "verificationEvidence": 0,
+      "mfaEnabledAccounts": 1,
+      "mfaRecoveryCodeHashes": 10
+    },
+    "localJsonAllowedInProduction": false,
+    "localFallbackAllowedInCurrentEnvironment": true,
+    "localFallbackMustBeDisabledBeforeProduction": true,
+    "sensitiveValuesIncluded": false
+  },
+  "durableTarget": {
+    "storageStatus": "schema_ready",
+    "ready": true,
+    "counts": {
+      "accounts": 1,
+      "credentials": 1,
+      "sessions": 4,
+      "roleGrants": 1,
+      "permissionGrants": 23,
+      "tokens": 0,
+      "mfaRecoveryCodes": 10,
+      "verificationClaims": 0,
+      "consentRecords": 0,
+      "profileClaims": 0,
+      "organizationAffiliations": 0,
+      "trustedCitizenGrants": 0,
+      "securityEvents": 12,
+      "privacyRequests": 0,
+      "verificationEvidence": 0
+    }
+  },
+  "ownerAdmin": {
+    "present": true,
+    "role": "admin",
+    "status": "active",
+    "passwordRotated": true,
+    "mfaEnabled": true,
+    "mfaEnrolled": true,
+    "recoveryCodeHashesPreservedInSource": 10,
+    "adminPermissionCount": 23
+  },
+  "migrations": {
+    "prismaMigrationDirectoryPresent": true,
+    "sprint2iMigrationPresent": true,
+    "dryRun": {
+      "ok": true,
+      "wrote": false,
+      "status": "schema_ready"
+    },
+    "apply": {
+      "ok": true,
+      "wrote": true,
+      "status": "schema_ready"
+    }
+  },
+  "sessionCutover": {
+    "rawSessionTokensMigrated": false,
+    "migrationRecordsPriorSessionsAsRevoked": true,
+    "logoutAllBoundaryPresent": true,
+    "passwordChangeRevokesSessions": true,
+    "mfaResetRevokesSessions": true,
+    "accountSuspensionRevokesSessions": false
+  },
+  "status": "durable_identity_ready",
+  "nextOperatorCommands": [
+    "npm run database:diagnose",
+    "npm run prisma:migrate:status",
+    "npm run identity:migrate -- --dry-run",
+    "npm run identity:migrate -- --apply",
+    "npm run identity:cutover-audit"
+  ],
+  "sensitiveValuesIncluded": false
+}

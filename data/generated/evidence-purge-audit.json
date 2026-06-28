@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-06-25T02:31:32.830Z",
+  "provenance": {
+    "runId": "20260625023132-unknown-814qmf",
+    "generatedAt": "2026-06-25T02:31:32.812Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "not_required",
+    "storageBackend": "production_storage_configured",
+    "workerBackend": "operator_or_worker",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "evidence-purge-audit"
+  },
+  "status": "production_storage_configured",
+  "totalEvidenceMetadataRecords": 0,
+  "dueForPurge": 0,
+  "alreadyPurged": 0,
+  "rawEvidenceIncluded": false,
+  "privateStorageOnly": true,
+  "purgeCommand": "npm run evidence:purge"
+}

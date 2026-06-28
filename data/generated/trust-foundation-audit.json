@@ -1,0 +1,310 @@
+{
+  "generatedAt": "2026-06-21T06:04:05.216Z",
+  "totals": {
+    "platformRoles": 6,
+    "securityControls": 8,
+    "stakeholderClaimTypes": 8,
+    "organizationClaimTypes": 7,
+    "dataDomains": 4,
+    "failures": 0
+  },
+  "roleModel": [
+    {
+      "id": "public",
+      "label": "Public",
+      "description": "Unauthenticated or unverified public browsing access.",
+      "capabilities": [
+        "browse",
+        "learn"
+      ],
+      "votingRightsGroup": "none",
+      "notes": "Can consume public civic information but cannot participate in verified civic signals."
+    },
+    {
+      "id": "verified_resident",
+      "label": "Verified Resident",
+      "description": "A person with a durable residency claim.",
+      "capabilities": [
+        "browse",
+        "learn",
+        "participate",
+        "vote",
+        "discuss"
+      ],
+      "votingRightsGroup": "verified_participant",
+      "notes": "Participation rights are equal to verified voters; segmentation is reported separately and never used as hidden weighting."
+    },
+    {
+      "id": "verified_voter",
+      "label": "Verified Voter",
+      "description": "A person with durable residency and voter-registration claims.",
+      "capabilities": [
+        "browse",
+        "learn",
+        "participate",
+        "vote",
+        "discuss"
+      ],
+      "votingRightsGroup": "verified_participant",
+      "notes": "Verified voter is a signal segment, not a higher-weight vote class."
+    },
+    {
+      "id": "trusted_citizen",
+      "label": "Trusted Citizen",
+      "description": "A verified participant with trust claims suitable for stewardship workflows.",
+      "capabilities": [
+        "browse",
+        "learn",
+        "participate",
+        "vote",
+        "discuss",
+        "create_debate",
+        "steward_discussion",
+        "curate_evidence"
+      ],
+      "votingRightsGroup": "verified_participant",
+      "notes": "Trusted Citizen status expands stewardship capabilities, not voting weight."
+    },
+    {
+      "id": "government",
+      "label": "Government",
+      "description": "Government staff or official workflow access with product-boundary controls.",
+      "capabilities": [
+        "browse",
+        "learn"
+      ],
+      "votingRightsGroup": "none",
+      "notes": "Government users cannot control public civic truth or verified civic participation."
+    },
+    {
+      "id": "admin",
+      "label": "Admin",
+      "description": "Platform operations and review access.",
+      "capabilities": [
+        "browse",
+        "learn",
+        "moderate",
+        "administer"
+      ],
+      "votingRightsGroup": "administrative",
+      "notes": "Administrative capabilities are audited and separated from public civic participation."
+    }
+  ],
+  "participationPolicy": {
+    "noVoteWeighting": true,
+    "residentAndVoterRightsEqual": true,
+    "segmentationOnly": [
+      "all_verified_participants",
+      "verified_residents",
+      "verified_voters"
+    ]
+  },
+  "claimsModel": {
+    "domains": [
+      "identity",
+      "residency",
+      "voter",
+      "stakeholder",
+      "organization",
+      "trust",
+      "demographic"
+    ],
+    "stakeholderClaimTypes": [
+      "parent",
+      "homeowner",
+      "renter",
+      "veteran",
+      "educator",
+      "student",
+      "retiree",
+      "business_owner"
+    ],
+    "organizationClaimTypes": [
+      "pta",
+      "hoa",
+      "chamber_of_commerce",
+      "union",
+      "nonprofit",
+      "civic_organization",
+      "neighborhood_group"
+    ],
+    "politicalAffiliationPolicy": {
+      "optional": true,
+      "publicByDefault": false,
+      "usedForWeighting": false,
+      "determinesParticipationRights": false
+    },
+    "sampleClaims": [
+      {
+        "userId": "audit-user",
+        "domain": "residency",
+        "type": "residency_verification",
+        "value": "Nevada resident",
+        "status": "verified",
+        "privacy": "aggregate_only",
+        "expiresAt": null,
+        "verificationMethod": "residency_verification",
+        "reviewerId": null,
+        "notes": "Durable claim issued; sensitive source evidence should be removed when feasible.",
+        "issuedAt": "2026-06-20T00:00:00.000Z",
+        "id": "claim-audit-user-residency-residency_verification-2026-06-20",
+        "sourceEvidenceRetained": false,
+        "evidenceRetentionPolicy": "remove_after_claim"
+      },
+      {
+        "userId": "audit-user",
+        "domain": "voter",
+        "type": "voter_registration_verification",
+        "value": "Nevada voter registration matched",
+        "status": "verified",
+        "privacy": "aggregate_only",
+        "expiresAt": null,
+        "verificationMethod": "voter_registration_verification",
+        "reviewerId": null,
+        "notes": "Durable claim issued; sensitive source evidence should be removed when feasible.",
+        "issuedAt": "2026-06-20T00:00:00.000Z",
+        "id": "claim-audit-user-voter-voter_registration_verification-2026-06-20",
+        "sourceEvidenceRetained": false,
+        "evidenceRetentionPolicy": "remove_after_claim"
+      }
+    ]
+  },
+  "verificationPolicy": {
+    "targetModel": "Verify -> Create Claim -> Remove Source Evidence",
+    "sampleFlows": [
+      {
+        "id": "verification-audit-user-residency_verification-2026-06-20",
+        "userId": "audit-user",
+        "type": "residency_verification",
+        "status": "verified",
+        "requiredEvidence": [
+          "residency_signal"
+        ],
+        "sensitiveEvidenceRetained": false,
+        "evidenceDeletionRequired": true,
+        "createdAt": "2026-06-20T00:00:00.000Z",
+        "reviewedAt": "2026-06-20T00:00:00.000Z",
+        "resultingClaimIds": [
+          "claim-audit-user-residency-residency_verification-2026-06-20"
+        ]
+      },
+      {
+        "id": "verification-audit-user-voter_registration_verification-2026-06-20",
+        "userId": "audit-user",
+        "type": "voter_registration_verification",
+        "status": "verified",
+        "requiredEvidence": [
+          "residency_claim",
+          "voter_registration_match"
+        ],
+        "sensitiveEvidenceRetained": false,
+        "evidenceDeletionRequired": true,
+        "createdAt": "2026-06-20T00:00:00.000Z",
+        "reviewedAt": "2026-06-20T00:00:00.000Z",
+        "resultingClaimIds": [
+          "claim-audit-user-voter-voter_registration_verification-2026-06-20"
+        ]
+      }
+    ]
+  },
+  "securityControls": [
+    {
+      "id": "mfa_foundation",
+      "label": "MFA Foundation",
+      "status": "foundation_defined",
+      "purpose": "Allow high-risk role and verification workflows to require a second factor later.",
+      "publicParticipationImpact": "protective"
+    },
+    {
+      "id": "rbac",
+      "label": "RBAC",
+      "status": "foundation_defined",
+      "purpose": "Separate public, verified participant, government, and admin capabilities.",
+      "publicParticipationImpact": "protective"
+    },
+    {
+      "id": "audit_logging",
+      "label": "Audit Logging",
+      "status": "foundation_defined",
+      "purpose": "Record sensitive verification, moderation, admin, and source-ingestion events.",
+      "publicParticipationImpact": "protective"
+    },
+    {
+      "id": "session_management",
+      "label": "Session Management",
+      "status": "foundation_defined",
+      "purpose": "Support future session revocation, device review, and sensitive-action prompts.",
+      "publicParticipationImpact": "protective"
+    },
+    {
+      "id": "suspicious_login_detection",
+      "label": "Suspicious Login Detection",
+      "status": "foundation_defined",
+      "purpose": "Flag anomalous login and verification attempts without exposing private details.",
+      "publicParticipationImpact": "protective"
+    },
+    {
+      "id": "anti_brigading",
+      "label": "Anti-Brigading Framework",
+      "status": "foundation_defined",
+      "purpose": "Detect coordinated manipulation while preserving equal participation rights.",
+      "publicParticipationImpact": "protective"
+    },
+    {
+      "id": "duplicate_account_detection",
+      "label": "Duplicate Account Detection",
+      "status": "foundation_defined",
+      "purpose": "Prevent duplicate verified claims from silently multiplying civic signals.",
+      "publicParticipationImpact": "protective"
+    },
+    {
+      "id": "verification_data_separation",
+      "label": "Verification Data Separation",
+      "status": "foundation_defined",
+      "purpose": "Issue durable claims and remove sensitive source evidence when feasible.",
+      "publicParticipationImpact": "protective"
+    }
+  ],
+  "dataDomainSeparation": [
+    {
+      "domain": "public_civic_data",
+      "contains": [
+        "meetings",
+        "votes",
+        "source documents",
+        "public cases",
+        "elections"
+      ],
+      "separationRule": "Public records remain source-attributed and do not expose private user identity evidence."
+    },
+    {
+      "domain": "user_identity_data",
+      "contains": [
+        "profile",
+        "session",
+        "preferences",
+        "claims metadata"
+      ],
+      "separationRule": "Profile and claims metadata are separate from verification source evidence."
+    },
+    {
+      "domain": "verification_data",
+      "contains": [
+        "verification workflows",
+        "temporary sensitive evidence",
+        "review notes"
+      ],
+      "separationRule": "Sensitive evidence is retained only as needed to issue claims and should not be joined into public civic data."
+    },
+    {
+      "domain": "govcrm_tenant_data",
+      "contains": [
+        "government workflows",
+        "tenant submissions",
+        "staff queues"
+      ],
+      "separationRule": "GovCRM tenant data cannot control public civic truth or verified participation rights."
+    }
+  ],
+  "failures": []
+}

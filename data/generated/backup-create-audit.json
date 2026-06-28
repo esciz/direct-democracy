@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-06-25T02:51:23.481Z",
+  "provenance": {
+    "runId": "20260625025123-unknown-5xgga8",
+    "generatedAt": "2026-06-25T02:51:23.465Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "configured_unverified",
+    "storageBackend": "provider_backup",
+    "workerBackend": "operator",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "backup-create-audit"
+  },
+  "status": "backup_create_requires_provider_operator",
+  "configured": true,
+  "providerConfigured": true,
+  "providerName": "configured",
+  "backupDataWrittenToGeneratedArtifacts": false,
+  "databaseCredentialsPrinted": false,
+  "destructiveOperation": false,
+  "operatorGuidance": [
+    "Use the configured database provider's snapshot/export workflow from a protected operator environment.",
+    "Record the provider backup ID in the deployment runbook, not in generated public artifacts."
+  ]
+}

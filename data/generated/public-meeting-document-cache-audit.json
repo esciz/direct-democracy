@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-22T04:17:59.765Z",
+  "totals": {
+    "cacheRecords": 156,
+    "localFilesPresent": 156,
+    "recordsWithHashes": 156,
+    "recordsWithVersions": 156,
+    "pdfs": 64,
+    "extractionPending": 0,
+    "ocrRequired": 0,
+    "verifiedPdf": 62,
+    "verifiedHtml": 58,
+    "verifiedText": 0,
+    "mimeMismatch": 0,
+    "quarantined": 4,
+    "failures": 0
+  },
+  "failures": []
+}

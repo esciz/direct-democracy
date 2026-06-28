@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-06-22T04:17:59.138Z",
+  "mfaConfigurationStatus": "configured",
+  "owner": {
+    "ownerExists": true,
+    "ownerEmailMatchesDefault": true,
+    "role": "admin",
+    "status": "active",
+    "emailVerificationStatus": "verified",
+    "mustChangePassword": false,
+    "mfaEnrollmentRequired": false,
+    "mfaEnabled": true,
+    "mfaEnrolledAt": "2026-06-21T05:45:04.463Z",
+    "pendingEnrollmentEncrypted": false,
+    "encryptedSecretStored": true,
+    "recoveryCodeHashesStored": 10,
+    "recoveryCodesUsed": 0,
+    "activeSessions": 2,
+    "plaintextSecretsInStore": false
+  },
+  "validations": {
+    "ownerExists": true,
+    "ownerPasswordRotated": true,
+    "ownerMfaRequiredUntilEnrollment": true,
+    "mfaEncryptionConfigured": true,
+    "ownerHasAdminPermission": true,
+    "enrollmentPageExists": true,
+    "challengePageExists": true,
+    "adminRequiresMfaChallenge": true,
+    "signInRoutesMfa": true,
+    "localConfigureCommandExists": true,
+    "resetCommandExists": true,
+    "adminIndexProtectedRedirectExists": true,
+    "profileAdminButtonGatedServerSide": true
+  },
+  "totals": {
+    "validations": 13,
+    "failures": 0
+  },
+  "failures": [],
+  "notes": [
+    "No encryption keys, TOTP secrets, recovery codes, or password material are included in this audit.",
+    "Owner admin uses the normal MFA challenge path after password sign-in; no bypass is recorded."
+  ]
+}

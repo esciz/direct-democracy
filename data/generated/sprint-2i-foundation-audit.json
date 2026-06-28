@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-06-21T06:06:15.084Z",
+  "existingReusableModels": [
+    "User",
+    "VoteResponse @@unique([userId, questionId])",
+    "PollVote @@unique([pollId, userId])",
+    "Jurisdiction",
+    "CivicSentimentAggregate",
+    "Sprint 2G admin operation allowlist",
+    "Sprint 2H identity capability matrix"
+  ],
+  "localOnlyModels": [
+    "data/private/identity/identity-store.json",
+    "data/generated/admin-operations/operations.json"
+  ],
+  "durableModelsAdded": [
+    "IdentityAccount",
+    "IdentityCredential",
+    "IdentitySession",
+    "IdentityRoleGrant",
+    "IdentityPermissionGrant",
+    "IdentityToken",
+    "IdentityMfaRecoveryCode",
+    "IdentityVerificationClaim",
+    "IdentityVerificationEvent",
+    "IdentityVerificationReview",
+    "IdentityConsentRecord",
+    "IdentityProfileClaim",
+    "IdentityOrganizationAffiliation",
+    "IdentityTrustedCitizenGrant",
+    "IdentitySecurityEvent",
+    "IdentityPrivacyRequest",
+    "IdentityEvidenceMetadata",
+    "IdentityEligibilitySnapshot",
+    "IdentityJob",
+    "IdentityJobEvent"
+  ],
+  "duplicateConcepts": [
+    "User remains public/profile identity; IdentityAccount stores credential/security boundary.",
+    "Existing VoteResponse/PollVote remain participation records; IdentityVerificationClaim stores eligibility evidence."
+  ],
+  "migrationRequirements": [
+    "Run npm run identity:migrate -- --dry-run",
+    "Run npm run identity:migrate after DATABASE_URL points to the production database.",
+    "Do not delete data/private/identity/identity-store.json until counts and rollback window are verified."
+  ],
+  "incompleteOrBlockedPaths": [
+    "schema_error",
+    "email_provider_unconfigured",
+    "verification_evidence_storage_unconfigured",
+    "worker_unconfigured"
+  ],
+  "compatibilityRisks": [
+    "Prisma client must be regenerated after schema migration.",
+    "Production must not enable local identity fallback.",
+    "Owner admin must rotate the bootstrap password and enroll MFA before full admin access."
+  ],
+  "failures": []
+}

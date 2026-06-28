@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-06-25T02:31:33.191Z",
+  "provenance": {
+    "runId": "20260625023133-unknown-zehofk",
+    "generatedAt": "2026-06-25T02:31:33.172Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "not_required",
+    "storageBackend": "production_storage_configured",
+    "workerBackend": "not_required",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "browser-session-storage-audit"
+  },
+  "status": "production_storage_configured",
+  "localRecords": 3,
+  "expiredRecords": 2,
+  "revokedRecords": 3,
+  "records": [
+    {
+      "metadataFile": "browser_session_1782061591940_83c0d633c4ab8583.metadata.json",
+      "createdAt": "2026-06-21T17:06:31.940Z",
+      "expiresAt": "2026-06-21T18:06:31.939Z",
+      "revokedAt": "2026-06-21T17:06:31.941Z",
+      "reauthenticationRequired": true,
+      "expired": true,
+      "sizeBytes": 907
+    },
+    {
+      "metadataFile": "browser_session_1782101708619_e8629fa936f2be09.metadata.json",
+      "createdAt": "2026-06-22T04:15:08.620Z",
+      "expiresAt": "2026-06-22T05:15:08.618Z",
+      "revokedAt": "2026-06-22T04:15:08.620Z",
+      "reauthenticationRequired": true,
+      "expired": true,
+      "sizeBytes": 907
+    },
+    {
+      "metadataFile": "browser_session_1782354693027_f29a605d5c1d1d24.metadata.json",
+      "createdAt": "2026-06-25T02:31:33.027Z",
+      "expiresAt": "2026-06-25T03:31:33.027Z",
+      "revokedAt": "2026-06-25T02:31:33.028Z",
+      "reauthenticationRequired": true,
+      "expired": false,
+      "sizeBytes": 955
+    }
+  ],
+  "encrypted": true,
+  "separateKeyNamespace": true,
+  "controls": {
+    "encryptedStorageState": true,
+    "committedStorageStateForbidden": true,
+    "ciArtifactsIncludeStorageState": false,
+    "metadataOnlyInGeneratedArtifacts": true,
+    "rotationSupportedByKeyChange": true,
+    "revocationSupportedByDeletingPrivateObject": true,
+    "expirationTrackedInMetadata": true,
+    "elevatedPermissionAccessAudited": true
+  },
+  "keySeparation": {
+    "sessionKeyConfigured": true,
+    "evidenceKeyConfigured": true,
+    "sessionKeyDifferentFromEvidenceKey": true
+  },
+  "configurationRequired": [
+    "PLAYWRIGHT_SESSION_STORAGE_BUCKET",
+    "PLAYWRIGHT_SESSION_STORAGE_KEY"
+  ],
+  "sensitiveValuesIncluded": false
+}

@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-06-21T16:22:23.105Z",
+  "connectivity": {
+    "classification": "environment_network_unavailable",
+    "hostSummary": "ep-***.neon.tech",
+    "readOnlyQuery": "skipped",
+    "migrationTable": "skipped",
+    "schema": "skipped",
+    "credentialsRedacted": true
+  },
+  "identity": {
+    "status": "environment_network_unavailable",
+    "configured": true,
+    "ready": false,
+    "missingTables": [],
+    "error": "schema inspection skipped because read-only connectivity failed."
+  },
+  "operations": {
+    "status": "environment_network_unavailable",
+    "configured": true,
+    "ready": false,
+    "missingTables": [],
+    "error": "schema inspection skipped because read-only connectivity failed."
+  },
+  "checks": {
+    "databaseConfigured": true,
+    "identityStorageReady": false,
+    "operationStorageReady": false,
+    "orphanedGrants": null,
+    "orphanedSessions": null,
+    "expiredActiveSessions": null,
+    "staleOperations": null,
+    "duplicateEligibilitySnapshots": null
+  },
+  "backup": "backup_unconfigured",
+  "restore": "restore_untested"
+}

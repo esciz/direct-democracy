@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-06-22T04:17:59.406Z",
+  "counts": {
+    "cacheIndexRecords": 156,
+    "queueCacheBackedOrDownloadedRecords": 187,
+    "queueCacheBackedMissingCacheIndex": 0,
+    "cacheIndexMissingQueueRecord": 0,
+    "pdfLikeQueueRecords": 63,
+    "verifiedPdfCacheRecords": 63,
+    "ocrAuditCachedPdfRecords": 63,
+    "cacheRecordsNotExtracted": 7
+  },
+  "queueCacheBackedMissingCacheIndex": [],
+  "cacheIndexMissingQueueRecord": [],
+  "downloadedNotExtracted": [
+    {
+      "documentId": "meeting-source-document-1778e8c99532ea58420cb4172959a6554164029ad9a02cbdb8a63f0688aede98",
+      "sourceUrl": null,
+      "jurisdiction": "Las Vegas, NV",
+      "documentType": "unknown",
+      "localPath": "data/manual-sources/public-meetings/las-vegas-city-council/metadata/undated-api-json-9-api-v2-publicportal-getarchivedm.json",
+      "detectedMimeType": "application/json",
+      "fileSize": 106,
+      "extractionFailureReason": "native_text_too_thin_ocr_unavailable",
+      "requiresOcr": false,
+      "classification": "verified_json"
+    },
+    {
+      "documentId": "meeting-source-document-1848c53ee2913b3921d5bd1c162de6e96629360d8f291fa721ca3f3eb58b584c",
+      "sourceUrl": null,
+      "jurisdiction": "Henderson, NV",
+      "documentType": "unknown",
+      "localPath": "data/manual-sources/public-meetings/henderson-city-council/metadata/undated-api-json-1-shared-getfontsizecookie.json",
+      "detectedMimeType": "application/json",
+      "fileSize": 32,
+      "extractionFailureReason": "native_text_too_thin_ocr_unavailable",
+      "requiresOcr": false,
+      "classification": "verified_json"
+    },
+    {
+      "documentId": "meeting-source-document-37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "sourceUrl": null,
+      "jurisdiction": "Carson City School District, NV",
+      "documentType": "unknown",
+      "localPath": "data/manual-sources/public-meetings/carson-city-school-district/metadata/undated-api-json-1-nv-carson-board-nsf-bd-getmeetin.json",
+      "detectedMimeType": "application/json",
+      "fileSize": 3,
+      "extractionFailureReason": "native_text_too_thin_ocr_unavailable",
+      "requiresOcr": false,
+      "classification": "verified_json"
+    },
+    {
+      "documentId": "meeting-source-document-6f5775c0024703c2643c3095f39b2ea7260a22d392f8f838be261e0ad27cfaa0",
+      "sourceUrl": null,
+      "jurisdiction": "Nevada",
+      "documentType": "unknown",
+      "localPath": "data/manual-sources/public-meetings/nv-legislature/bills/undated-bdrs-allowed-by-entity-division-research-content-items-.html",
+      "detectedMimeType": "text/html",
+      "fileSize": 1666532,
+      "extractionFailureReason": "native_text_too_thin_ocr_unavailable",
+      "requiresOcr": false,
+      "classification": "verified_html"
+    },
+    {
+      "documentId": "meeting-source-document-90b3e91af5b6b3d18f0b7ba5b69ce921682c384da50d48d1356f8dde32d8d529",
+      "sourceUrl": null,
+      "jurisdiction": "Reno, NV",
+      "documentType": "unknown",
+      "localPath": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-8-api-v2-publicportal-getarchivedm.json",
+      "detectedMimeType": "application/json",
+      "fileSize": 76,
+      "extractionFailureReason": "native_text_too_thin_ocr_unavailable",
+      "requiresOcr": false,
+      "classification": "verified_json"
+    },
+    {
+      "documentId": "meeting-source-document-d1ee855026a53ce833136102473263a583b25e493cabfd22f81af257a71887a6",
+      "sourceUrl": null,
+      "jurisdiction": "North Las Vegas, NV",
+      "documentType": "unknown",
+      "localPath": "data/manual-sources/public-meetings/north-las-vegas-city-council/metadata/undated-api-json-1-api-opendata-getmatomoconfig.json",
+      "detectedMimeType": "application/json",
+      "fileSize": 80,
+      "extractionFailureReason": "native_text_too_thin_ocr_unavailable",
+      "requiresOcr": false,
+      "classification": "verified_json"
+    },
+    {
+      "documentId": "meeting-source-document-ff88585de17050313e3a4d6b271e096dbe0d3e4b56b7d90923a1bae26cdad239",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2582",
+      "jurisdiction": "Carson City, NV",
+      "documentType": "agenda",
+      "localPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-agendaviewer-php-view-id-2-clip-id-2582/18c94f0cb898293807cc2b16910de1a7c5cb8dfc56a8b3020bfa88b91795da83.pdf",
+      "detectedMimeType": "application/pdf",
+      "fileSize": 64818,
+      "extractionFailureReason": "native_text_too_thin_ocr_unavailable",
+      "requiresOcr": true,
+      "classification": "ocr_candidate"
+    }
+  ]
+}

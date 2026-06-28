@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-06-21T06:08:31.374Z",
+  "runs": [
+    {
+      "runId": "reprocess-2026-06-21T06:08:31.366Z",
+      "startedAt": "2026-06-21T06:08:31.366Z",
+      "completedAt": "2026-06-21T06:08:31.374Z",
+      "scope": {
+        "source": null,
+        "jurisdiction": null,
+        "documentType": null,
+        "extractionMethod": null,
+        "allCachedDocuments": true,
+        "accountabilityOutputs": false
+      },
+      "inputCounts": {
+        "cachedDocuments": 156,
+        "selectedDocuments": 156,
+        "existingTextRows": 1935
+      },
+      "changedOutputs": [],
+      "failures": [],
+      "generatedArtifacts": [
+        "public-meeting-document-text.json",
+        "minutes-extraction-audit.json",
+        "public-meeting-action-results.json",
+        "public-meeting-attendance.json",
+        "public-meeting-votes.json",
+        "accountability-graph.json"
+      ],
+      "status": "planned_no_recollection",
+      "note": "This run records a reprocessing scope. Use dataops:daily or targeted extraction scripts to apply parser improvements to cached source material."
+    }
+  ],
+  "audit": {
+    "generatedAt": "2026-06-21T06:08:31.374Z",
+    "totals": {
+      "runs": 1,
+      "selectedDocuments": 156,
+      "failures": 0
+    }
+  }
+}

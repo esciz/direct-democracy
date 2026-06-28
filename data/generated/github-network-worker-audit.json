@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-06-21T21:59:53.827Z",
+  "status": "passed",
+  "workflow": {
+    "workflowFilename": ".github/workflows/dataops-daily.yml",
+    "workflowExists": true,
+    "scheduledTriggerPresent": true,
+    "manualTriggerPresent": true,
+    "officialsRefreshStagePresent": true,
+    "protectedPromotionJobPresent": true,
+    "concurrencyProtectionPresent": true,
+    "minimalPermissionsPresent": true,
+    "workflowInputsAllowlisted": true,
+    "arbitraryScriptsRejected": true,
+    "defaultBranchCompatiblePath": true,
+    "artifactHandoffPresent": true,
+    "importCommandPresent": true,
+    "importCommandRecomputesHashes": true,
+    "importCommandRejectsUnsafePaths": true,
+    "artifactOnlyRunsRequireImport": true,
+    "promotionConfirmationRequired": true,
+    "rawHtmlNotUploadedWithPublicRuntimeArtifacts": true
+  },
+  "requiredEnvironmentVariables": [
+    "OFFICIALS_EXECUTION_ENVIRONMENT",
+    "OFFICIALS_NETWORK_ENABLED",
+    "OFFICIALS_WORKER_BACKEND",
+    "OFFICIALS_MODE",
+    "OFFICIALS_JURISDICTION",
+    "OFFICIALS_SOURCE_SCOPE"
+  ],
+  "requiredSecrets": [
+    {
+      "name": "DATAOPS_USER_AGENT",
+      "scope": "repository secret",
+      "required": false
+    }
+  ],
+  "requiredVariables": [
+    {
+      "name": "DATAOPS_MAX_DOWNLOAD_BYTES",
+      "scope": "repository variable",
+      "required": false
+    },
+    {
+      "name": "DATAOPS_OCR_MAX_PAGES",
+      "scope": "repository variable",
+      "required": false
+    },
+    {
+      "name": "DATAOPS_OCR_TIMEOUT_MS",
+      "scope": "repository variable",
+      "required": false
+    },
+    {
+      "name": "DATAOPS_INSTALL_OCR_TOOLS",
+      "scope": "repository variable",
+      "required": false
+    }
+  ],
+  "persistenceMode": {
+    "durablePublicSourceStorage": "not_configured",
+    "defaultWhenDurableStorageMissing": "github_artifact_handoff_requires_import",
+    "artifactNamePattern": "carson-city-officials-evidence-${{ github.run_id }}"
+  },
+  "promotionMode": {
+    "automaticScheduledPromotion": false,
+    "protectedEnvironment": "officials-production-promotion",
+    "confirmationValue": "promote-carson-city-officials",
+    "command": "npm run officials:promote -- --jurisdiction=carson-city --run-id=<run-id> --confirm=promote-carson-city-officials"
+  },
+  "remainingOperatorActions": [
+    "Push or merge this workflow to the default branch.",
+    "Enable GitHub Actions if disabled.",
+    "Create the officials-production-promotion protected environment.",
+    "Run the workflow manually in retrieve_and_reconcile mode.",
+    "Download/import the evidence artifact when durable public-source storage is not configured.",
+    "Promote only after reviewing reconciliation output."
+  ],
+  "failures": [],
+  "sensitiveValuesIncluded": false
+}

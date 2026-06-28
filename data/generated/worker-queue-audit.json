@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-06-24T01:59:17.067Z",
+  "provenance": {
+    "runId": "20260624015917-local-network-enabled-6kjnt9",
+    "generatedAt": "2026-06-24T01:59:17.039Z",
+    "executionEnvironment": "local_network_enabled",
+    "networkCapability": "available",
+    "databaseReachability": "database_reachable",
+    "storageBackend": "schema_ready",
+    "workerBackend": "configured_runtime",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "worker-queue-audit"
+  },
+  "worker": {
+    "configured": true,
+    "status": "worker_configured",
+    "storageStatus": "schema_ready",
+    "queueDepth": 0,
+    "runningJobs": 0,
+    "deadLetters": 0,
+    "cancelledJobs": 0,
+    "staleRunningJobs": 0
+  },
+  "networkEnabledWorkerPath": {
+    "githubActionsWorkflowPresent": true,
+    "workflowPath": ".github/workflows/identity-worker.yml",
+    "configuredWorkerFlag": true,
+    "status": "worker_configured"
+  },
+  "jobTypesSupported": [
+    "email_delivery",
+    "residency_provider_check",
+    "address_normalization",
+    "district_mapping",
+    "voter_provider_check",
+    "verification_evidence_purge",
+    "privacy_export",
+    "account_deletion_anonymization",
+    "dataops_operation",
+    "ocr_processing",
+    "scheduled_health_check"
+  ],
+  "queueByJobType": [
+    {
+      "jobType": "scheduled_health_check",
+      "status": "succeeded",
+      "count": 1
+    }
+  ],
+  "latestSmokeTest": {
+    "status": "smoke_passed",
+    "workerConfigured": false,
+    "workerHeartbeatRecorded": true,
+    "sensitiveValuesIncluded": true
+  },
+  "controls": {
+    "idempotencyKeyRequired": true,
+    "claimUsesDatabaseLocking": true,
+    "heartbeatSupported": true,
+    "retryBackoffSupported": true,
+    "deadLetterSupported": true,
+    "cancellationSupported": true,
+    "parentOperationSupported": true,
+    "noLongRunningRequestHandlers": true,
+    "sanitizedFailureReason": true
+  },
+  "nextOperatorCommands": [
+    "npm run worker:smoke-test",
+    "npm run worker:once",
+    "npm run worker:local",
+    "npm run queue:audit"
+  ]
+}

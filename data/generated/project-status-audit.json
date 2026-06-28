@@ -1,46 +1,41 @@
 {
-  "generatedAt": "2026-06-20T20:50:09.190Z",
+  "generatedAt": "2026-06-26T14:11:32.601Z",
   "totals": {
-    "projects": 247,
-    "needsReview": 77,
-    "withBudget": 174,
-    "withNextKnownMilestone": 26,
-    "withResponsibleBody": 247,
-    "withSourceReferences": 247
+    "projects": 314,
+    "needsReview": 117,
+    "withBudget": 200,
+    "withNextKnownMilestone": 27,
+    "withResponsibleBody": 314,
+    "withSourceReferences": 314
   },
   "statusCounts": {
-    "approved": 10,
-    "proposed": 14,
-    "unknown": 16,
-    "funded": 196,
+    "funded": 247,
+    "in_progress": 10,
+    "approved": 15,
+    "proposed": 19,
+    "unknown": 15,
     "completed": 3,
-    "in_progress": 4,
-    "delayed": 4
+    "delayed": 5
   },
   "unclearStatusReasons": [
     {
-      "id": "project-las-vegas-nv-master-plan-area-charleston-y-special-area-and-overlay-districts-co",
-      "name": "Master Plan Area: Charleston Y Special Area and Overlay Districts Compliance A-O (Airport Overlay) District...",
+      "id": "project-clark-county-nv-conduct-a-public-hearing-and-approve-authorize-the-chair-to-sign",
+      "name": "Conduct a public hearing; and approve authorize the Chair to sign the Airport Canine Handler Letter of Agre...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
-      "id": "project-las-vegas-nv-master-plan-area-twin-lakes-y-special-area-and-overlay-districts-co",
-      "name": "Master Plan Area: Twin Lakes Y Special Area and Overlay Districts Compliance A-O (Airport Overlay) District...",
+      "id": "project-north-las-vegas-nv-out-of-scope-products-non-saas-cloud-computing-products-such-",
+      "name": "Out of Scope Products - Non-SaaS cloud computing products such as Infrastructure as a Service (“IaaS”), Pla...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
-      "id": "project-las-vegas-nv-master-plan-area-downtown-south-y-special-area-and-overlay-district",
-      "name": "Master Plan Area: Downtown South Y Special Area and Overlay Districts Compliance A-O (Airport Overlay) Dist...",
+      "id": "project-north-las-vegas-nv-software-maintenance-and-support-agreements-purchasing-entiti",
+      "name": "Software Maintenance and Support Agreements • Purchasing Entities can purchase maintenance agreements, incl...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
-      "id": "project-nevada-the-state-fiscal-brief-all-standing-committees-conference-committees-asse",
-      "name": "the state Fiscal Brief All Standing Committees Conference Committees Assembly Committees Commerce and Labor...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-clark-county-nv-conduct-a-public-hearing-and-approve-and-authorize-the-chair-to-",
-      "name": "Conduct a public hearing; and approve and authorize the Chair to sign the Airport Canine Handler Letter of...",
+      "id": "project-elko-county-nv-adopt-document-seq-montello-hauled-water-application-document-seq",
+      "name": "adopt document seq Montello Hauled Water Application document seq A Resolution Setting Montello Water Syste...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
@@ -49,13 +44,13 @@
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
-      "id": "project-washoe-county-nv-adopt-resolution-recommendation-to-reappoint-adam-kramer-as-the",
-      "name": "adopt Resolution Recommendation to reappoint: Adam Kramer as the Washoe County representative on the Reno-T...",
+      "id": "project-nevada-system-of-higher-education-the-state-spending-for-return-are-recorded-as-",
+      "name": "the state spending for return, are recorded as expense during the year in which the conditions are substant...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
-      "id": "project-washoe-county-nv-adopt-public-hearing-public-hearing-to-1-consider-objections-to",
-      "name": "adopt Public Hearing Public Hearing: to: (1) consider objections to Resolution (R25-23), declaring Washoe C...",
+      "id": "project-washoe-county-nv-adopt-resolution-recommendation-to-reappoint-adam-kramer-as-the",
+      "name": "adopt Resolution Recommendation to reappoint: Adam Kramer as the Washoe County representative on the Reno-T...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {

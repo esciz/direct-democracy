@@ -494,7 +494,7 @@
     "arguments_for": [],
     "arguments_against": [],
     "affected_groups": [],
-    "policy_area": "Schools",
+    "policy_area": "Budget",
     "status": "draft",
     "source_urls": [
       "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134970&GUID=2B4CAABF-0D0D-485A-846F-7F840DAA56D3",
@@ -2936,7 +2936,7 @@
     "arguments_for": [],
     "arguments_against": [],
     "affected_groups": [],
-    "policy_area": "Schools",
+    "policy_area": "Budget",
     "status": "draft",
     "source_urls": [
       "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134992&GUID=8231C4C3-2F16-449F-8582-09821F36297E",
@@ -5686,7 +5686,7 @@
     "arguments_for": [],
     "arguments_against": [],
     "affected_groups": [],
-    "policy_area": "Schools",
+    "policy_area": "Other",
     "status": "draft",
     "source_urls": [
       "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1347265&GUID=E6A3DAF3-5735-4CFF-B40F-8727651BE849",
@@ -5954,7 +5954,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=8898&compileOutputType=1"
+      "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9021&compileOutputType=1"
     ],
     "confidence_score": 0.64
   },
@@ -5997,6 +5997,291 @@
     "confidence_score": 0.66
   },
   {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-1-e36b2a3858",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-1-e36b2a3858",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve page 1of 12 elko city planning commission minutes january 5, 2016 ***motion: approve the october 6, 2015 minutes in their entirety. moved by david freistroffer, seconded by jose...?",
+    "short_summary": "Page 1of 12 Elko City Planning Commission Minutes January 5, 2016 ***Motion: Approve the October 6, 2015 minutes in their entirety. Moved by David Freistroffer, Seconded by Jose...",
+    "neutral_context": "Page 1of 12 Elko City Planning Commission Minutes January 5, 2016 ***Motion: Approve the October 6, 2015 minutes in their entirety. Moved by David Freistroffer, Seconded by Jose Negrete. The motion passed unanimously.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-2-3a1b736370",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-2-3a1b736370",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve october 6,2015 - regular meeting for possible action ***motion: approve the july 7, 2015, august 4,2015, and september 1,2015 minutes. moved by joe becker, seconded by jose negr...?",
+    "short_summary": "October 6,2015 - Regular meeting FOR POSSIBLE ACTION ***Motion: Approve the July 7, 2015, August 4,2015, and September 1,2015 minutes. Moved by Joe Becker, Seconded by Jose Negr...",
+    "neutral_context": "October 6,2015 - Regular meeting FOR POSSIBLE ACTION ***Motion: Approve the July 7, 2015, August 4,2015, and September 1,2015 minutes. Moved by Joe Becker, Seconded by Jose Negrete. The motion passed with Commissioner Negrete abstaining from the July and September meetings.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-10-0874dbb968",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-10-0874dbb968",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve **motion: forward a recommendation to city council to adopt a resolution which conditionally approves vacation no. 9-15 subject to the following conditions:?",
+    "short_summary": "**Motion: Forward a recommendation to City Council to adopt a resolution which conditionally approves Vacation No. 9-15 subject to the following conditions:",
+    "neutral_context": "**Motion: Forward a recommendation to City Council to adopt a resolution which conditionally approves Vacation No. 9-15 subject to the following conditions:",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-11-ed5a8d0372",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-11-ed5a8d0372",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve mr. norfleet said yes, as long as he's owned it. he moved out in 2015 and has rented it to his friend since then. chairman martinez wondered if the property is currently used as...?",
+    "short_summary": "Mr. Norfleet said yes, as long as he's owned it. He moved out in 2015 and has rented it to his friend since then. Chairman Martinez wondered if the property is currently used as...",
+    "neutral_context": "Mr. Norfleet said yes, as long as he's owned it. He moved out in 2015 and has rented it to his friend since then. Chairman Martinez wondered if the property is currently used as residential, and ifit always has -- 3 of 12 -- Page 4 of12 Elko City Planning Commission Minutes January 5,2016 ***The motion passed unanimously. Moved by Joe Becker, Seconded by David Freistroffer. Commissioner Becker's findings are the special circumstances cited in the application are related to the existing conditions of the residential property not conforming to the proposed zone change. It does not appear that granting the variance will result in material damage or prejudice to other properties in the vicini...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-16-862362bd1b",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-16-862362bd1b",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve (general commercial) to ro (residential office). for possible action ***the motion passed unanimously. -- 4 of 12 -- page 5 of12 elko city planning commission minutes january 5,...?",
+    "short_summary": "(General Commercial) to RO (Residential Office). FOR POSSIBLE ACTION ***The motion passed unanimously. -- 4 of 12 -- Page 5 of12 Elko City Planning Commission Minutes January 5,...",
+    "neutral_context": "(General Commercial) to RO (Residential Office). FOR POSSIBLE ACTION ***The motion passed unanimously. -- 4 of 12 -- Page 5 of12 Elko City Planning Commission Minutes January 5,2016 Mr. Wilkinson recommended approval, but wanted a resolution to Satview Broadband's position. He felt they were confused because their email says they would deny the vacation. He wasn't sure they understood they could retain an easement. We need something more positive on file. Mr. Thibault recommended approval. Chairman Martinez wondered if they were requiring utilities be relocated. (no) Mr. Ormaza said no they are right over each other. Commissioner Becker wanted to make sure they didn't need to do a 20 ft....",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-3-657a0e542d",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-3-657a0e542d",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve review, consideration, and possible action on zoning ordinance amendment no. 1- 15, an amendment to title 3, chapter 2, section 17 of the elko city code, by adding regulations f...?",
+    "short_summary": "Review, consideration, and possible action on Zoning Ordinance Amendment No. 1- 15, an amendment to Title 3, Chapter 2, Section 17 of the Elko City Code, by adding regulations f...",
+    "neutral_context": "3. Review, consideration, and possible action on Zoning Ordinance Amendment No. 1- 15, an amendment to Title 3, Chapter 2, Section 17 of the Elko City Code, by adding regulations for traffic counts and park and ride facilities, and adjusting the traffic visibility, access, civil improvements, parking requirements table, parking lot design, and central business district residential parking requirements, and matters related",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-29-767576cd3f",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-29-767576cd3f",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve width by 60 feet in depth, and matters related thereto. for possible action b. miscellaneous items, petitions, and communications ***the motion passed unanimously. moved by davi...?",
+    "short_summary": "width by 60 feet in depth, and matters related thereto. FOR POSSIBLE ACTION B. MISCELLANEOUS ITEMS, PETITIONS, AND COMMUNICATIONS ***The motion passed unanimously. Moved by Davi...",
+    "neutral_context": "width by 60 feet in depth, and matters related thereto. FOR POSSIBLE ACTION B. MISCELLANEOUS ITEMS, PETITIONS, AND COMMUNICATIONS ***The motion passed unanimously. Moved by David Freistroffer, Seconded by Jose Negrete. Commissioner Freistroffer's findings are the zoning ordinance amendment is in compliance with N .R.S. and City of Elko codes regarding revising ordinances to this point.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-30-e2a5e8aeb0",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-30-e2a5e8aeb0",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve **motion: forward a recommendation to city council to adopt an ordinance which approves zoning ordinance amendment no.1-is with the following minor changes: on page 15, h. 5, st...?",
+    "short_summary": "**Motion: Forward a recommendation to City Council to adopt an ordinance which approves Zoning Ordinance Amendment No.1-IS with the following minor changes: on Page 15, H. 5, st...",
+    "neutral_context": "**Motion: Forward a recommendation to City Council to adopt an ordinance which approves Zoning Ordinance Amendment No.1-IS with the following minor changes: on Page 15, H. 5, strike \"/dumpsters\" from the second and third sentences, and then on Page 16, H. 7. d. change the distance from 100 feet to 40 feet. Mr. Draper explained they looked at the uses around town. It's kind of arbitrary. The parking lot on W. Main is only 2.2 acres, so it would be a legal non-conforming use. Chairman Martinez wondered how the minimum of three acres for size was determined. Mr. Wilkinson was okay with that. It would provide two car lengths. Mr. Draper pointed out they previously talked about reducing the am...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-4-cc60ad1666",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-4-cc60ad1666",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve election of officers. for possible action ***motion: initiate an amendment to the city zoning ordinance, specifically sections 3-2-2 definitions and 3-2-12 a. light industrial d...?",
+    "short_summary": "Election of Officers. FOR POSSIBLE ACTION ***Motion: Initiate an amendment to the City Zoning Ordinance, specifically Sections 3-2-2 Definitions and 3-2-12 A. Light Industrial D...",
+    "neutral_context": "4. Election of Officers. FOR POSSIBLE ACTION ***Motion: Initiate an amendment to the City Zoning Ordinance, specifically Sections 3-2-2 Definitions and 3-2-12 A. Light Industrial District, and direct staff to bring the item back as a",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-5-b37856a9c7",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-5-b37856a9c7",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve review, consideration, and possible action to initiate an amendment to the city zoning ordinance, specifically sections 3-2-2 definitions and 3-2-12 a. light?",
+    "short_summary": "Review, consideration, and possible action to initiate an amendment to the City Zoning Ordinance, specifically Sections 3-2-2 Definitions and 3-2-12 A. Light",
+    "neutral_context": "5. Review, consideration, and possible action to initiate an amendment to the City Zoning Ordinance, specifically Sections 3-2-2 Definitions and 3-2-12 A. Light",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-1-083d5e1a5c",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-1-083d5e1a5c",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve review, consideration, and possible recommendation to city council for zoning ordinance amendment no. 2-15, an amendment to title 3, chapter 2, sections 2 and?",
+    "short_summary": "Review, consideration, and possible recommendation to City Council for Zoning Ordinance Amendment No. 2-15, an amendment to Title 3, Chapter 2, Sections 2 and",
+    "neutral_context": "1. Review, consideration, and possible recommendation to City Council for Zoning Ordinance Amendment No. 2-15, an amendment to Title 3, Chapter 2, Sections 2 and",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-I-5c95007b7b",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-I-5c95007b7b",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve business ***motion: accept the meeting minutes from november 3,2015 as presented. moved by jose negrete, seconded by joe becker. the motion passed unanimously.?",
+    "short_summary": "NEW BUSINESS ***Motion: Accept the meeting minutes from November 3,2015 as presented. Moved by Jose Negrete, Seconded by Joe Becker. The motion passed unanimously.",
+    "neutral_context": "I. NEW BUSINESS ***Motion: Accept the meeting minutes from November 3,2015 as presented. Moved by Jose Negrete, Seconded by Joe Becker. The motion passed unanimously.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Business Regulation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-II-56615fd960",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-II-56615fd960",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve ***motion: approve the 2015 annual report of planning commission activities as presented,?",
+    "short_summary": "REPORTS ***Motion: Approve the 2015 Annual Report of Planning Commission Activities as presented,",
+    "neutral_context": "II. REPORTS ***Motion: Approve the 2015 Annual Report of Planning Commission Activities as presented,",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-9-4d9ea9f0fd",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-9-4d9ea9f0fd",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve and forward a recommendation to city council to approve the report. moved by jose negrete, seconded by tera hooiman. the motion passed unanimously. ms. hansen thought it was rig...?",
+    "short_summary": "and forward a recommendation to City Council to approve the report. Moved by Jose Negrete, Seconded by Tera Hooiman. The motion passed unanimously. Ms. Hansen thought it was rig...",
+    "neutral_context": "and forward a recommendation to City Council to approve the report. Moved by Jose Negrete, Seconded by Tera Hooiman. The motion passed unanimously. Ms. Hansen thought it was right at two years ago. Commissioner Negrete asked when we increased the application fees. Mr. Draper said this is just an update of what Planning Commission has accomplished over the last year. He gave an overview of the report. There were 128 applications processed this year compared to 97 last year, and the application fees collected were $32,850 an increase of $10,825 from last year.",
+    "fiscal_impact": "$32,850 an increase of $10,825 from last year",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-12-b8438e423c",
+    "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-12-b8438e423c",
+    "jurisdiction": "Elko, NV",
+    "question_text": "Would you approve ***motion: forward a recommendation to city council to adopt an ordinance which approves zoning ordinance amendment no. 2-15 as presented. moved by joe becker, seconded by jose...?",
+    "short_summary": "***Motion: Forward a recommendation to City Council to adopt an ordinance which approves Zoning Ordinance Amendment No. 2-15 as presented. Moved by Joe Becker, Seconded by Jose...",
+    "neutral_context": "***Motion: Forward a recommendation to City Council to adopt an ordinance which approves Zoning Ordinance Amendment No. 2-15 as presented. Moved by Joe Becker, Seconded by Jose Negrete. The motion passed unanimously. Mr. Wilkinson reminded the Commission, this is in concert with the prior ordinance change you recommended. He recommended the same type of recommendation for adoption. Mr. Carson was in support. Mr. Thibault recommended approval. Mr. Draper explained we've been working on park and ride facilities under Section 3-2-17. This adds a definition and allows park and ride facilities under the Light Industrial zone as a principal -- 2 of 3 -- Page 3 of3 February 2, 2016 her business,...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470"
+    ],
+    "confidence_score": 0.66
+  },
+  {
     "id": "question-item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-10-c516b86ae1",
     "meeting_item_id": "item-meeting-manual-clark-county-commission-clark-county-commission-2026-06-16-81dd15bb-10-c516b86ae1",
     "jurisdiction": "Clark County, NV",
@@ -6011,7 +6296,7 @@
     "status": "draft",
     "review_status": "needs_vote_outcome",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6030,7 +6315,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6049,7 +6334,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6068,7 +6353,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6087,7 +6372,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6106,7 +6391,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6125,7 +6410,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6144,7 +6429,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6163,7 +6448,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6182,7 +6467,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6201,7 +6486,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6220,7 +6505,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6239,7 +6524,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6258,7 +6543,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6277,7 +6562,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6296,7 +6581,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6315,7 +6600,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6334,7 +6619,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6353,7 +6638,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6372,7 +6657,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6391,7 +6676,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6410,7 +6695,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6429,7 +6714,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6448,7 +6733,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6467,7 +6752,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6486,7 +6771,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6505,7 +6790,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6524,7 +6809,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6543,7 +6828,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6562,7 +6847,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6581,7 +6866,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6600,7 +6885,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6619,7 +6904,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6638,7 +6923,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -6657,7 +6942,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://clark.legistar.com/View.ashx?M=A&ID=1409872&GUID=D2FFD06A-4417-44D9-8E7D-69384740F118"
+      "https://clark.legistar.com/View.ashx?M=A&ID=1377705&GUID=3CF329C6-E036-4AED-90B2-D249D7CAB70D"
     ],
     "confidence_score": 0.66
   },
@@ -7018,7 +7303,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16418"
+      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16576"
     ],
     "confidence_score": 0.64
   },
@@ -7037,7 +7322,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16418"
+      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16576"
     ],
     "confidence_score": 0.64
   },
@@ -7056,7 +7341,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16418"
+      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16576"
     ],
     "confidence_score": 0.64
   },
@@ -7075,7 +7360,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16418"
+      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16576"
     ],
     "confidence_score": 0.64
   },
@@ -7094,7 +7379,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16418"
+      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16576"
     ],
     "confidence_score": 0.64
   },
@@ -7113,7 +7398,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://cityofnorthlasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=16263&compileOutputType=1"
+      "https://cityofnorthlasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=16576&compileOutputType=1"
     ],
     "confidence_score": 0.64
   },
@@ -8329,7 +8614,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf"
+      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/01-jan-mtgs/BOR012326.pdf"
     ],
     "confidence_score": 0.66
   },
@@ -8348,7 +8633,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf"
+      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/01-jan-mtgs/BOR012326.pdf"
     ],
     "confidence_score": 0.66
   },
@@ -8367,7 +8652,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf"
+      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/01-jan-mtgs/BOR012326.pdf"
     ],
     "confidence_score": 0.66
   },
@@ -8386,7 +8671,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf"
+      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/01-jan-mtgs/BOR012326.pdf"
     ],
     "confidence_score": 0.66
   },
@@ -8405,7 +8690,7 @@
     "status": "draft",
     "review_status": "needs_context",
     "source_urls": [
-      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf"
+      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/01-jan-mtgs/BOR012326.pdf"
     ],
     "confidence_score": 0.66
   },
@@ -8424,7 +8709,7 @@
     "status": "draft",
     "review_status": "needs_financial_review",
     "source_urls": [
-      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf"
+      "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/01-jan-mtgs/BOR012326.pdf"
     ],
     "confidence_score": 0.66
   },
@@ -9261,6 +9546,82 @@
     "review_status": "needs_financial_review",
     "source_urls": [
       "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4bsm.pdf"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-county-commission-elko-county-commission-2026-01-01-4d55b709-2-f0f4f5ced9",
+    "meeting_item_id": "item-meeting-manual-elko-county-commission-elko-county-commission-2026-01-01-4d55b709-2-f0f4f5ced9",
+    "jurisdiction": "Elko County, NV",
+    "question_text": "Would you approve document seq agendas 2 documents agenda item request document seq open meeting law acknowledgement document seq request for information 1 document freedom of information act (fo...?",
+    "short_summary": "document seq Agendas 2 documents Agenda Item Request document seq Open Meeting Law Acknowledgement document seq Request for Information 1 document Freedom of Information Act (FO...",
+    "neutral_context": "document seq Agendas 2 documents Agenda Item Request document seq Open Meeting Law Acknowledgement document seq Request for Information 1 document Freedom of Information Act (FOIA) Request document seq County Board Application 1 document Board Member Application document seq Ambulance 6 documents Medical Record Request Forms 3 documents Patient Authorization to Use and Disclose Protected Health Information document seq Patient Authorization to Access Protected Health Information document seq Patient Request for an Amendment to Protected Health Information document seq Notice of Privacy Practices 2 documents Elko County Ambulance Notice of Privacy Practices document seq Procedure for Filin...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Taxes",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocountynv.net/your_services_2/forms_center.php"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-county-commission-elko-county-commission-2026-01-01-4d55b709-4-f96ec06bcc",
+    "meeting_item_id": "item-meeting-manual-elko-county-commission-elko-county-commission-2026-01-01-4d55b709-4-f96ec06bcc",
+    "jurisdiction": "Elko County, NV",
+    "question_text": "Would you approve document seq foundation only permits document seq engineered plan submittal document seq solar roof mount requirements document seq homeowner permitting guide document seq demol...?",
+    "short_summary": "document seq Foundation Only Permits document seq Engineered Plan Submittal document seq Solar Roof Mount Requirements document seq Homeowner Permitting Guide document seq Demol...",
+    "neutral_context": "document seq Foundation Only Permits document seq Engineered Plan Submittal document seq Solar Roof Mount Requirements document seq Homeowner Permitting Guide document seq Demolition Permit Requirements document seq Single Family Dwelling- Standard Plan Policy for \"Spec or Tract Homes\" document seq Homeowner Permitting Guide - Spanish document seq Commercial Permitting Guide document seq Owner Builder Affidavit 1 document Owner Builder Affidavit document seq Miscellaneous Forms 15 documents Permit Extension Request Form document seq Permit Cancellation Request document seq Residential Insulation Requirements document seq Residential Insulation Certificate document seq Deferred Submittal R...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.elkocountynv.net/your_services_2/forms_center.php"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-county-commission-elko-county-commission-2026-01-01-4d55b709-8-5999990326",
+    "meeting_item_id": "item-meeting-manual-elko-county-commission-elko-county-commission-2026-01-01-4d55b709-8-5999990326",
+    "jurisdiction": "Elko County, NV",
+    "question_text": "Would you approve declaration of value document seq instructions for the declaration of value form document seq message regarding new declaration of value form change effective january 1, 2026 do...?",
+    "short_summary": "Declaration of Value document seq Instructions for the Declaration of Value Form document seq Message Regarding New Declaration of Value Form Change Effective January 1, 2026 do...",
+    "neutral_context": "Declaration of Value document seq Instructions for the Declaration of Value Form document seq Message Regarding New Declaration of Value Form Change Effective January 1, 2026 document seq Marriage Certificates 1 document Marriage License Copy document seq Taxes 2 documents Real Property Transfer Tax Table document seq Transfer Tax Exemptions document seq Homesteads 3 documents Information and Instructions on Filing a Homestead document seq Declaration of Homestead Form document seq Abandonment of a Homestead Form document seq Mining 1 document Mining Forms on the Nevada Division of Minerals Website document seq Roads 4 documents Report A Road Concern document seq Explanation of Materials...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Taxes",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocountynv.net/your_services_2/forms_center.php"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-elko-county-commission-elko-county-commission-2026-01-01-4d55b709-9-0053c61639",
+    "meeting_item_id": "item-meeting-manual-elko-county-commission-elko-county-commission-2026-01-01-4d55b709-9-0053c61639",
+    "jurisdiction": "Elko County, NV",
+    "question_text": "Would you approve document seq montello hauled water application document seq resolution no. 2022-01 a resolution setting montello water system water rates document seq tuscarora 2 documents tusc...?",
+    "short_summary": "document seq Montello Hauled Water Application document seq Resolution No. 2022-01 A Resolution Setting Montello Water System Water Rates document seq Tuscarora 2 documents Tusc...",
+    "neutral_context": "document seq Montello Hauled Water Application document seq Resolution No. 2022-01 A Resolution Setting Montello Water System Water Rates document seq Tuscarora 2 documents Tuscarora Water System Service Application document seq Resolution No. 2021-14 A Resolution Setting Tuscarora Water Rates document seq Hauled Water in Montello 1 document Montello Hauled Water Application.pdf document seq Veterans Day Parade 1 document",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.elkocountynv.net/your_services_2/forms_center.php"
     ],
     "confidence_score": 0.66
   }

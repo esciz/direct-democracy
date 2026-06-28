@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-26T13:50:49.197Z",
+  "totals": {
+    "decisions": 756,
+    "titleFailures": 0,
+    "readyTitleFailures": 0,
+    "sourceReviewNeededTitles": 0,
+    "sourceBackedDecisions": 756
+  },
+  "reasonCounts": {},
+  "samples": {
+    "failures": [],
+    "sourceReviewNeeded": []
+  }
+}

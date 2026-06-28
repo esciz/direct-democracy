@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-06-22T02:40:16.680Z",
+  "runId": "20260622023741-local-network-enabled-j0z6bc",
+  "promotedAt": "2026-06-22T02:40:16.680Z",
+  "promotedFromRunId": "20260622023741-local-network-enabled-j0z6bc",
+  "jurisdiction": "carson-city",
+  "status": "promoted",
+  "recordsPromoted": 25,
+  "conflictsRemaining": 0,
+  "sourceHashes": [
+    {
+      "sourceId": "carson-city-department-directory",
+      "contentHash": "20de7bb85affcc3d9215e203d8f5851fb0ab5fd01e930711f0e369b5e9209146",
+      "cachedPath": "data/raw/official-directories/carson-city-department-directory/current.html"
+    },
+    {
+      "sourceId": "carson-city-board-of-supervisors",
+      "contentHash": "2fa00888064a2c9d6e127f434f76d994db2eff4183bea887fe9d45ff5610b902",
+      "cachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/current.html"
+    },
+    {
+      "sourceId": "carson-city-staff-directory",
+      "contentHash": "bc907b1798f20dd80f3578a7e1b136b25629e04a1b27451be870370b1ad4e2d8",
+      "cachedPath": "data/raw/official-directories/carson-city-staff-directory/current.html"
+    }
+  ],
+  "canonicalArtifacts": [
+    "data/generated/current-officials-canonical.json",
+    "data/generated/current-officials.json",
+    "data/generated/current-officials-runtime.json",
+    "data/generated/nevada-community-officials.json",
+    "data/generated/officials-source-health.json"
+  ],
+  "blockers": [],
+  "provenance": {
+    "runId": "20260622023741-local-network-enabled-j0z6bc",
+    "generatedAt": "2026-06-22T02:37:41.796Z",
+    "executionEnvironment": "local_network_enabled",
+    "networkCapability": "available",
+    "databaseReachability": "not_configured",
+    "storageBackend": "generated_artifact_cache",
+    "workerBackend": "local_operator",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "promoted_from_run",
+    "artifactName": "carson-city-officials-source-evidence",
+    "actor": "eliscislowicz",
+    "trigger": "manual",
+    "sourceRetrievalCount": 3,
+    "cacheCount": 3,
+    "parseCount": 0,
+    "promotionStatus": "promoted"
+  },
+  "sensitiveValuesIncluded": false
+}

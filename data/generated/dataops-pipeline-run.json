@@ -1,0 +1,145 @@
+{
+  "runId": "dataops-2026-06-21T04:39:58.022Z",
+  "startedAt": "2026-06-21T04:39:58.022Z",
+  "completedAt": "2026-06-21T04:41:06.361Z",
+  "environment": {
+    "offline": false,
+    "networkAvailable": true,
+    "networkReason": null,
+    "cwd": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex"
+  },
+  "stagesAttempted": 13,
+  "stagesSucceeded": 13,
+  "stagesFailed": 0,
+  "stagesSkipped": 0,
+  "stages": [
+    {
+      "id": "register-sources",
+      "description": "Register RSS/feed sources.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:39:58.113Z",
+      "completedAt": "2026-06-21T04:39:58.164Z",
+      "durationMs": 51,
+      "error": null
+    },
+    {
+      "id": "discover-documents",
+      "description": "Discover public meeting source documents.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:39:58.172Z",
+      "completedAt": "2026-06-21T04:40:18.593Z",
+      "durationMs": 20421,
+      "error": null
+    },
+    {
+      "id": "monitor-sources",
+      "description": "Monitor source health from current artifacts.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:40:18.604Z",
+      "completedAt": "2026-06-21T04:40:18.818Z",
+      "durationMs": 214,
+      "error": null
+    },
+    {
+      "id": "retrieve-documents",
+      "description": "Retrieve/cache queued remote documents.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:40:18.826Z",
+      "completedAt": "2026-06-21T04:40:43.986Z",
+      "durationMs": 25160,
+      "error": null
+    },
+    {
+      "id": "verify-cache",
+      "description": "Verify cached content and reconcile cache counts.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:40:43.998Z",
+      "completedAt": "2026-06-21T04:40:44.372Z",
+      "durationMs": 374,
+      "error": null
+    },
+    {
+      "id": "extract-native-text",
+      "description": "Extract native text from cached documents.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:40:44.381Z",
+      "completedAt": "2026-06-21T04:40:52.617Z",
+      "durationMs": 8236,
+      "error": null
+    },
+    {
+      "id": "ocr",
+      "description": "Audit OCR capabilities and execute bounded OCR candidates.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:40:52.627Z",
+      "completedAt": "2026-06-21T04:41:01.426Z",
+      "durationMs": 8799,
+      "error": null
+    },
+    {
+      "id": "source-completeness",
+      "description": "Regenerate source completeness and accountability readiness.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:41:01.433Z",
+      "completedAt": "2026-06-21T04:41:02.158Z",
+      "durationMs": 725,
+      "error": null
+    },
+    {
+      "id": "attendance",
+      "description": "Regenerate rosters and attendance.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:41:02.167Z",
+      "completedAt": "2026-06-21T04:41:02.673Z",
+      "durationMs": 506,
+      "error": null
+    },
+    {
+      "id": "votes",
+      "description": "Regenerate votes and attribution readiness.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:41:02.681Z",
+      "completedAt": "2026-06-21T04:41:03.263Z",
+      "durationMs": 582,
+      "error": null
+    },
+    {
+      "id": "accountability",
+      "description": "Regenerate voting cards, projects, and accountability graph.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:41:03.271Z",
+      "completedAt": "2026-06-21T04:41:03.800Z",
+      "durationMs": 529,
+      "error": null
+    },
+    {
+      "id": "communities",
+      "description": "Regenerate community relationships and reports.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:41:03.809Z",
+      "completedAt": "2026-06-21T04:41:06.104Z",
+      "durationMs": 2295,
+      "error": null
+    },
+    {
+      "id": "freshness-audit",
+      "description": "Record reprocessing and final DataOps freshness audit.",
+      "status": "succeeded",
+      "startedAt": "2026-06-21T04:41:06.111Z",
+      "completedAt": "2026-06-21T04:41:06.353Z",
+      "durationMs": 242,
+      "error": null
+    }
+  ],
+  "metrics": {
+    "documentsDownloaded": 25,
+    "documentsChanged": 0,
+    "documentsExtracted": 177,
+    "pagesOcrd": 0,
+    "ocrSucceeded": 0,
+    "meetingsReadyForAccountability": 2,
+    "sourceGapMeetings": 516,
+    "parserGapMeetings": 4,
+    "parsedNamedVotes": 63
+  }
+}

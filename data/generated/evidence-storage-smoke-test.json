@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-25T02:31:32.543Z",
+  "provenance": {
+    "runId": "20260625023132-unknown-yjh1x2",
+    "generatedAt": "2026-06-25T02:31:32.523Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "not_required",
+    "storageBackend": "production_storage_configured",
+    "workerBackend": "not_required",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "evidence-storage-smoke-test"
+  },
+  "status": "smoke_passed_production_storage_configured",
+  "storageStatus": "production_storage_configured",
+  "uploadSucceeded": true,
+  "authorizedReadSucceeded": true,
+  "unauthorizedReadFailed": true,
+  "purgeSucceeded": true,
+  "metadataRemains": true,
+  "rawContentGone": true,
+  "objectRefHash": "840713d11917b862402c5ee0ab84715ea9c4ed648eb4dad1232f56c87171ec78",
+  "contentHash": "a580a4a92ef8d5c28ba07d43410bd8bdd0ea470461593dc7e5fbb354174098b9",
+  "localPathHash": "725292e75abaff483538ba600d4e9a1fb9c6db272f31fbe99f668844875fa3ba",
+  "rawContentInGeneratedArtifact": false,
+  "ephemeralKeyUsed": false,
+  "sensitiveValuesIncluded": false
+}

@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-06-26T00:19:38.567Z",
+  "records": [
+    {
+      "sourceId": "meeting:carson-city-board-of-supervisors:granicus:carsoncity.granicus.com",
+      "provider": "granicus",
+      "acquisitionAdapter": "public_html_discovery",
+      "acquisitionMode": "automated_with_fallback",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "stale",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "meeting:carson-city-board-of-supervisors:civic_website:d3n9y02raazwpg.cloudfront.net",
+      "provider": "civic_website",
+      "acquisitionAdapter": "direct_pdf_attachment",
+      "acquisitionMode": "automated_with_fallback",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "stale",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "meeting:washoe-county-commission:legistar:washoe-nv.legistar.com",
+      "provider": "legistar",
+      "acquisitionAdapter": "direct_http_documents",
+      "acquisitionMode": "automated_with_fallback",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "stale",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "meeting:washoe-county-school-district:diligent:washoeschools.diligent.community",
+      "provider": "diligent",
+      "acquisitionAdapter": "direct_http_documents",
+      "acquisitionMode": "automated_with_fallback",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "stale",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "meeting:washoe-county-school-district:diligent:washoeschools.community.diligentoneplatform.com",
+      "provider": "diligent",
+      "acquisitionAdapter": "direct_http_documents",
+      "acquisitionMode": "automated_with_fallback",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "stale",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "rss:carson-city-news-rss",
+      "provider": "rss",
+      "acquisitionAdapter": "rss_atom_feed",
+      "acquisitionMode": "automated",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "unknown",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "official-directory:carson-city-department-directory",
+      "provider": "official_directory",
+      "acquisitionAdapter": "official_directory_html",
+      "acquisitionMode": "automated",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "unknown",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "official-directory:carson-city-board-of-supervisors",
+      "provider": "official_directory",
+      "acquisitionAdapter": "official_directory_html",
+      "acquisitionMode": "automated",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "unknown",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "official-directory:carson-city-staff-directory",
+      "provider": "official_directory",
+      "acquisitionAdapter": "official_directory_html",
+      "acquisitionMode": "automated",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "unknown",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "official-directory:elko-city-council",
+      "provider": "official_directory",
+      "acquisitionAdapter": "official_directory_html",
+      "acquisitionMode": "automated",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "unknown",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "official-directory:elko-city-staff-directory",
+      "provider": "official_directory",
+      "acquisitionAdapter": "official_directory_html",
+      "acquisitionMode": "automated",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "unknown",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    },
+    {
+      "sourceId": "official-directory:elko-county-commission",
+      "provider": "official_directory",
+      "acquisitionAdapter": "official_directory_html",
+      "acquisitionMode": "automated",
+      "triggerPath": "scheduled_or_admin_run_now",
+      "health": "unknown",
+      "sessionHealth": "not_applicable",
+      "manualFallback": "manual official URL/file import"
+    }
+  ],
+  "totals": {
+    "sources": 12,
+    "sourcesWithAcquisitionMode": 12,
+    "sourcesWithTriggerPath": 12,
+    "automated": 7,
+    "automatedWithFallback": 5,
+    "adminGuided": 0,
+    "manualImport": 0,
+    "blocked": 0,
+    "unknown": 0,
+    "playwrightRequired": 0
+  }
+}

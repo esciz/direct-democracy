@@ -1,0 +1,108 @@
+{
+  "generatedAt": "2026-06-22T02:37:41.796Z",
+  "runId": "20260622023741-local-network-enabled-j0z6bc",
+  "jurisdiction": "carson-city",
+  "evidencePersistence": {
+    "mode": "local_cache",
+    "status": "cache_available",
+    "durableObjectReferences": [],
+    "importRequiredBeforePromotion": false
+  },
+  "sources": [
+    {
+      "sourceId": "carson-city-department-directory",
+      "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+      "finalUrl": "https://www.carsoncity.gov/government/department-directory",
+      "status": "changed",
+      "diagnosticClassification": "changed",
+      "cachedPath": "data/raw/official-directories/carson-city-department-directory/current.html",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-department-directory/20260622023741-20de7bb85affcc3d.html",
+      "contentHash": "20de7bb85affcc3d9215e203d8f5851fb0ab5fd01e930711f0e369b5e9209146",
+      "bytes": 201029,
+      "pageTitle": "Department Directory | Carson City",
+      "verifierClassification": "changed",
+      "positiveSignals": [
+        "http_success",
+        "html_content_type_or_magic",
+        "meaningful_body_size",
+        "recognizable_page_title_or_heading",
+        "expected_host_matched",
+        "carson_city_source_identity",
+        "department_directory_identity",
+        "department_directory_department_markers",
+        "department_directory_governing_marker"
+      ],
+      "negativeSignals": [
+        "generic_javascript_notice",
+        "cookie_or_browser_experience_notice"
+      ],
+      "parserEligibility": "eligible",
+      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
+      "lastSeenAt": "2026-06-22T02:37:41.796Z"
+    },
+    {
+      "sourceId": "carson-city-board-of-supervisors",
+      "sourceUrl": "https://www.carsoncity.gov/government/board-of-supervisors",
+      "finalUrl": "https://www.carsoncity.gov/government/board-of-supervisors",
+      "status": "changed",
+      "diagnosticClassification": "changed",
+      "cachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/current.html",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/20260622023741-2fa00888064a2c9d.html",
+      "contentHash": "2fa00888064a2c9d6e127f434f76d994db2eff4183bea887fe9d45ff5610b902",
+      "bytes": 180894,
+      "pageTitle": "Board of Supervisors | Carson City",
+      "verifierClassification": "changed",
+      "positiveSignals": [
+        "http_success",
+        "html_content_type_or_magic",
+        "meaningful_body_size",
+        "recognizable_page_title_or_heading",
+        "expected_host_matched",
+        "carson_city_source_identity",
+        "board_of_supervisors_identity",
+        "board_members_language",
+        "board_mayor_supervisor_language",
+        "board_ward_language"
+      ],
+      "negativeSignals": [
+        "generic_javascript_notice",
+        "cookie_or_browser_experience_notice"
+      ],
+      "parserEligibility": "eligible",
+      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
+      "lastSeenAt": "2026-06-22T02:37:41.796Z"
+    },
+    {
+      "sourceId": "carson-city-staff-directory",
+      "sourceUrl": "https://www.carsoncity.gov/government/department-directory/staff-directory",
+      "finalUrl": "https://www.carsoncity.gov/government/department-directory/staff-directory",
+      "status": "changed",
+      "diagnosticClassification": "changed",
+      "cachedPath": "data/raw/official-directories/carson-city-staff-directory/current.html",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-staff-directory/20260622023741-bc907b1798f20dd8.html",
+      "contentHash": "bc907b1798f20dd80f3578a7e1b136b25629e04a1b27451be870370b1ad4e2d8",
+      "bytes": 240822,
+      "pageTitle": "Staff Directory | Carson City",
+      "verifierClassification": "changed",
+      "positiveSignals": [
+        "http_success",
+        "html_content_type_or_magic",
+        "meaningful_body_size",
+        "recognizable_page_title_or_heading",
+        "expected_host_matched",
+        "carson_city_source_identity",
+        "staff_directory_identity",
+        "staff_directory_search_controls",
+        "staff_directory_department_records",
+        "staff_directory_pagination_or_count"
+      ],
+      "negativeSignals": [
+        "generic_javascript_notice"
+      ],
+      "parserEligibility": "eligible",
+      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
+      "lastSeenAt": "2026-06-22T02:37:41.796Z"
+    }
+  ],
+  "sensitiveValuesIncluded": false
+}

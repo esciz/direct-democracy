@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-06-22T04:17:59.177Z",
+  "localProcess": {
+    "configured": true,
+    "developmentOnly": true
+  },
+  "githubActions": {
+    "workflowConfigured": true,
+    "dispatchConfigured": "manual_workflow_dispatch_available_when_repository_credentials_exist"
+  },
+  "productionWorker": {
+    "configured": false,
+    "status": "worker_unconfigured"
+  },
+  "durableStorage": {
+    "configured": false,
+    "status": "durable_storage_unconfigured"
+  },
+  "browserSessionStorage": {
+    "configured": false,
+    "status": "encrypted_session_storage_unconfigured"
+  }
+}

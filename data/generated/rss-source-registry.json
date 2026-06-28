@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-26T02:57:16.562Z",
+  "records": [
+    {
+      "id": "carson-city-news-rss",
+      "feedUrl": "https://www.carsoncity.gov/Home/Components/News/News?format=rss",
+      "sourceOwner": "Carson City official news RSS",
+      "jurisdiction": "Carson City, NV",
+      "sourceCategory": "rss_or_public_notice",
+      "lastCheckedAt": null,
+      "latestItemDate": null,
+      "discoveredLinks": [],
+      "linkedCivicEntities": [],
+      "status": "registered",
+      "role": "freshness_and_discovery",
+      "policy": "RSS complements official ingestion; it does not replace agendas, minutes, packets, court, election, or budget records.",
+      "generatedAt": "2026-06-26T02:57:16.562Z"
+    }
+  ],
+  "audit": {
+    "generatedAt": "2026-06-26T02:57:16.562Z",
+    "totals": {
+      "rssSources": 1,
+      "registeredFeeds": 1,
+      "needsFeedUrl": 0,
+      "jurisdictions": 1
+    }
+  }
+}

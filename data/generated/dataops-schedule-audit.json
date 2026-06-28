@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-06-22T04:17:59.177Z",
+  "canonicalScheduler": ".github/workflows/dataops-daily.yml",
+  "supportedCadences": [
+    "manual",
+    "daily",
+    "hourly/reduced due-source future",
+    "every_6_hours_future",
+    "weekly_future"
+  ],
+  "arbitraryCronFromAdminUiAllowed": false,
+  "overlapProtection": "github_actions_concurrency_group_and_local_pipeline_lock"
+}

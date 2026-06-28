@@ -1,0 +1,744 @@
+{
+  "generatedAt": "2026-06-26T03:08:23.785Z",
+  "records": [
+    {
+      "jurisdictionId": "carson-city",
+      "jurisdictionName": "Carson City",
+      "meetingSources": 2,
+      "activeMeetingSources": 2,
+      "officialDirectorySources": 3,
+      "officialRosterSources": 0,
+      "rosterSeeds": 0,
+      "currentRosterMembers": 0,
+      "expectedGoverningMembers": 5,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=carson-city",
+      "sourcePackStatus": "incomplete",
+      "missing": [
+        "complete_governing_roster"
+      ]
+    },
+    {
+      "jurisdictionId": "reno",
+      "jurisdictionName": "Reno",
+      "meetingSources": 1,
+      "activeMeetingSources": 1,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 1,
+      "rosterSeeds": 1,
+      "currentRosterMembers": 3,
+      "expectedGoverningMembers": 7,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=reno",
+      "sourcePackStatus": "incomplete",
+      "missing": [
+        "complete_governing_roster"
+      ]
+    },
+    {
+      "jurisdictionId": "sparks",
+      "jurisdictionName": "Sparks",
+      "meetingSources": 1,
+      "activeMeetingSources": 1,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 1,
+      "rosterSeeds": 1,
+      "currentRosterMembers": 6,
+      "expectedGoverningMembers": 6,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": false,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=sparks",
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
+    },
+    {
+      "jurisdictionId": "washoe-county",
+      "jurisdictionName": "Washoe County",
+      "meetingSources": 2,
+      "activeMeetingSources": 2,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 0,
+      "rosterSeeds": 0,
+      "currentRosterMembers": 0,
+      "expectedGoverningMembers": 5,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=washoe-county",
+      "sourcePackStatus": "incomplete",
+      "missing": [
+        "official_source",
+        "complete_governing_roster"
+      ]
+    },
+    {
+      "jurisdictionId": "elko",
+      "jurisdictionName": "Elko",
+      "meetingSources": 2,
+      "activeMeetingSources": 2,
+      "officialDirectorySources": 3,
+      "officialRosterSources": 2,
+      "rosterSeeds": 2,
+      "currentRosterMembers": 10,
+      "expectedGoverningMembers": 5,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=elko",
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
+    },
+    {
+      "jurisdictionId": "elko-county",
+      "jurisdictionName": "Elko County",
+      "meetingSources": 1,
+      "activeMeetingSources": 1,
+      "officialDirectorySources": 1,
+      "officialRosterSources": 1,
+      "rosterSeeds": 1,
+      "currentRosterMembers": 5,
+      "expectedGoverningMembers": 5,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=elko-county",
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
+    },
+    {
+      "jurisdictionId": "clark-county",
+      "jurisdictionName": "Clark County",
+      "meetingSources": 2,
+      "activeMeetingSources": 2,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 2,
+      "rosterSeeds": 2,
+      "currentRosterMembers": 18,
+      "expectedGoverningMembers": 7,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=clark-county",
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
+    },
+    {
+      "jurisdictionId": "las-vegas",
+      "jurisdictionName": "Las Vegas",
+      "meetingSources": 2,
+      "activeMeetingSources": 2,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 2,
+      "rosterSeeds": 2,
+      "currentRosterMembers": 12,
+      "expectedGoverningMembers": 7,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=las-vegas",
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
+    },
+    {
+      "jurisdictionId": "henderson",
+      "jurisdictionName": "Henderson",
+      "meetingSources": 1,
+      "activeMeetingSources": 1,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 1,
+      "rosterSeeds": 1,
+      "currentRosterMembers": 5,
+      "expectedGoverningMembers": 5,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": false,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=henderson",
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
+    },
+    {
+      "jurisdictionId": "north-las-vegas",
+      "jurisdictionName": "North Las Vegas",
+      "meetingSources": 1,
+      "activeMeetingSources": 1,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 1,
+      "rosterSeeds": 1,
+      "currentRosterMembers": 5,
+      "expectedGoverningMembers": 5,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=north-las-vegas",
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
+    },
+    {
+      "jurisdictionId": "clark-county-school-district",
+      "jurisdictionName": "Clark County School District",
+      "meetingSources": 1,
+      "activeMeetingSources": 1,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 1,
+      "rosterSeeds": 1,
+      "currentRosterMembers": 11,
+      "expectedGoverningMembers": 11,
+      "hasAgendaSource": true,
+      "hasMinutesSource": true,
+      "hasPacketSource": true,
+      "hasVideoSource": false,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=clark-county-school-district",
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
+    },
+    {
+      "jurisdictionId": "nevada-legislature",
+      "jurisdictionName": "Nevada Legislature",
+      "meetingSources": 1,
+      "activeMeetingSources": 1,
+      "officialDirectorySources": 0,
+      "officialRosterSources": 0,
+      "rosterSeeds": 0,
+      "currentRosterMembers": 0,
+      "expectedGoverningMembers": null,
+      "hasAgendaSource": true,
+      "hasMinutesSource": false,
+      "hasPacketSource": false,
+      "hasVideoSource": true,
+      "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=nevada-legislature",
+      "sourcePackStatus": "incomplete",
+      "missing": [
+        "official_source"
+      ]
+    }
+  ],
+  "totals": {
+    "priorityJurisdictions": 12,
+    "readyForAcquisition": 8,
+    "incomplete": 4,
+    "withMeetingSources": 12,
+    "withOfficialSources": 10,
+    "withOfficialDirectorySources": 3,
+    "withCompleteGoverningRoster": 9,
+    "statewideCommunities": 39,
+    "statewideCommunitiesWithMeetingSources": 15,
+    "statewideCommunitiesWithOfficialSources": 13,
+    "statewideCommunitiesWithFallbackPortalKnown": 18,
+    "statewideCommunitiesCoveredThroughCounty": 6,
+    "statewideCommunitiesNeedingSourceResearch": 5
+  },
+  "statewideCommunityRecords": [
+    {
+      "communityId": "carson-city-county",
+      "communityName": "Carson City County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "source_research_needed",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "clark-county",
+      "communityName": "Clark County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 2,
+      "officialSources": 2,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "washoe-county",
+      "communityName": "Washoe County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 2,
+      "officialSources": 0,
+      "fallbackPortalSources": 3,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": [
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "douglas-county",
+      "communityName": "Douglas County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "lyon-county",
+      "communityName": "Lyon County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "nye-county",
+      "communityName": "Nye County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "elko-county",
+      "communityName": "Elko County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 1,
+      "officialSources": 2,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "churchill-county",
+      "communityName": "Churchill County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "humboldt-county",
+      "communityName": "Humboldt County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "white-pine-county",
+      "communityName": "White Pine County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "lander-county",
+      "communityName": "Lander County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "lincoln-county",
+      "communityName": "Lincoln County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "eureka-county",
+      "communityName": "Eureka County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "esmeralda-county",
+      "communityName": "Esmeralda County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "pershing-county",
+      "communityName": "Pershing County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "storey-county",
+      "communityName": "Storey County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "mineral-county",
+      "communityName": "Mineral County",
+      "kind": "county",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "carson-city",
+      "communityName": "Carson City",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 2,
+      "officialSources": 3,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "las-vegas",
+      "communityName": "Las Vegas",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 4,
+      "officialSources": 4,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "henderson",
+      "communityName": "Henderson",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
+      "officialSources": 3,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "north-las-vegas",
+      "communityName": "North Las Vegas",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
+      "officialSources": 3,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "reno",
+      "communityName": "Reno",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
+      "officialSources": 1,
+      "fallbackPortalSources": 1,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "sparks",
+      "communityName": "Sparks",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
+      "officialSources": 1,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "elko",
+      "communityName": "Elko",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 2,
+      "officialSources": 5,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "mesquite",
+      "communityName": "Mesquite",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 2,
+      "officialSources": 2,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "boulder-city",
+      "communityName": "Boulder City",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 2,
+      "officialSources": 2,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "fallon",
+      "communityName": "Fallon",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "source_research_needed",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "fernley",
+      "communityName": "Fernley",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "source_research_needed",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "winnemucca",
+      "communityName": "Winnemucca",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "source_research_needed",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "west-wendover",
+      "communityName": "West Wendover",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 1,
+      "officialSources": 2,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "yerington",
+      "communityName": "Yerington",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "source_research_needed",
+      "missing": [
+        "meeting_source",
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "tonopah",
+      "communityName": "Tonopah",
+      "kind": "community",
+      "countyContext": "Nye County",
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "covered_through_county_until_local_source_exists",
+      "missing": [
+        "meeting_source"
+      ]
+    },
+    {
+      "communityId": "pahrump",
+      "communityName": "Pahrump",
+      "kind": "community",
+      "countyContext": "Nye County",
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "covered_through_county_until_local_source_exists",
+      "missing": [
+        "meeting_source"
+      ]
+    },
+    {
+      "communityId": "ely",
+      "communityName": "Ely",
+      "kind": "community",
+      "countyContext": "White Pine County",
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "covered_through_county_until_local_source_exists",
+      "missing": [
+        "meeting_source"
+      ]
+    },
+    {
+      "communityId": "incline-village",
+      "communityName": "Incline Village",
+      "kind": "community",
+      "countyContext": "Washoe County",
+      "meetingSources": 2,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "gardnerville",
+      "communityName": "Gardnerville",
+      "kind": "community",
+      "countyContext": "Douglas County",
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "covered_through_county_until_local_source_exists",
+      "missing": [
+        "meeting_source"
+      ]
+    },
+    {
+      "communityId": "minden",
+      "communityName": "Minden",
+      "kind": "community",
+      "countyContext": "Douglas County",
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "covered_through_county_until_local_source_exists",
+      "missing": [
+        "meeting_source"
+      ]
+    },
+    {
+      "communityId": "laughlin",
+      "communityName": "Laughlin",
+      "kind": "community",
+      "countyContext": "Clark County",
+      "meetingSources": 2,
+      "officialSources": 2,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "battle-mountain",
+      "communityName": "Battle Mountain",
+      "kind": "community",
+      "countyContext": "Lander County",
+      "meetingSources": 0,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "covered_through_county_until_local_source_exists",
+      "missing": [
+        "meeting_source"
+      ]
+    }
+  ]
+}

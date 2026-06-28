@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-06-22T04:17:59.138Z",
+  "validations": {
+    "passwordOnlyAdminBlockedByGate": true,
+    "enrolledAdminRequiresSignedMfaCookie": true,
+    "adminApiUsesServerAuthorization": true,
+    "publicRolesDoNotGainAdminByMfa": true
+  },
+  "totals": {
+    "validations": 4,
+    "failures": 0
+  },
+  "failures": []
+}

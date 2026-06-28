@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-06-25T03:01:01.399Z",
+  "provenance": {
+    "runId": "20260625030101-unknown-a3ttgg",
+    "generatedAt": "2026-06-25T03:01:01.384Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "restore_target_configured_unverified",
+    "storageBackend": "backup_restore",
+    "workerBackend": "operator",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "restore-audit"
+  },
+  "restore": "restore_tested",
+  "restoreTestDatabaseConfigured": true,
+  "latestSmokeTest": {
+    "generatedAt": "2026-06-25T03:01:01.262Z",
+    "provenance": {
+      "runId": "20260625030101-unknown-irqwbq",
+      "generatedAt": "2026-06-25T03:01:01.246Z",
+      "executionEnvironment": "unknown",
+      "networkCapability": "unknown",
+      "databaseReachability": "restore_target_configured_unverified",
+      "storageBackend": "backup_restore",
+      "workerBackend": "operator",
+      "gitCommit": "d63f485c43da",
+      "canonicalStatus": "not_canonical",
+      "artifactName": "restore-smoke-test-audit"
+    },
+    "status": "restore_smoke_test_ready_for_operator",
+    "restoreTestDatabaseConfigured": true,
+    "explicitConfirmProvided": true,
+    "primaryDatabaseTouched": false,
+    "destructiveOperation": false,
+    "generatedArtifactsIncludeRestoredData": false,
+    "operatorGuidance": [
+      "Run provider restore into DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL from a protected terminal, then run read-only audits against that database."
+    ]
+  },
+  "destructivePrimaryRestoreAvailable": false,
+  "primaryDatabaseTouched": false,
+  "sensitiveValuesIncluded": false
+}

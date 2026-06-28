@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-06-25T02:29:16.533Z",
+  "provenance": {
+    "runId": "20260625022916-unknown-s5ovcj",
+    "generatedAt": "2026-06-25T02:29:16.519Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "not_required",
+    "storageBackend": "production_storage_configured",
+    "workerBackend": "not_required",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "evidence-storage-audit"
+  },
+  "status": "production_storage_configured",
+  "storageConfigured": true,
+  "localEncryptedDevelopmentAvailable": false,
+  "localEvidenceMetadataRecords": 0,
+  "pendingPurgeRecords": 0,
+  "controls": {
+    "encryptedAtRest": true,
+    "algorithm": "aes-256-gcm",
+    "privateObjectStorageRequiredForProduction": true,
+    "publicUrlsDisabled": true,
+    "generatedArtifactsIncludeRawEvidence": false,
+    "ciArtifactsIncludeRawEvidence": false,
+    "contentTypeAndMagicValidation": true,
+    "executableAndScriptLikeContentRejected": true,
+    "maxFileSizeBytes": 10485760,
+    "pathTraversalGuard": true,
+    "retentionDaysDefault": 14,
+    "purgeAuditBoundary": "npm run evidence:purge-audit"
+  },
+  "keySeparation": {
+    "evidenceKeyConfigured": true,
+    "mfaKeyConfigured": true,
+    "evidenceKeyDifferentFromMfaKey": true
+  },
+  "configurationRequired": [
+    "IDENTITY_EVIDENCE_STORAGE_BUCKET",
+    "IDENTITY_EVIDENCE_ENCRYPTION_KEY"
+  ],
+  "sensitiveValuesIncluded": false
+}

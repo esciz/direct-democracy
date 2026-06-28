@@ -207,5 +207,55 @@
       { "externalId": "sparks-ward-4-bybee", "fullName": "Charlene Bybee", "surname": "Bybee", "seatTitle": "Ward 4 Councilmember", "status": "CURRENT", "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php", "aliases": ["Bybee", "Councilmember Bybee"] },
       { "externalId": "sparks-ward-5-rodriguez", "fullName": "Joe Rodriguez", "surname": "Rodriguez", "seatTitle": "Ward 5 Councilmember", "status": "CURRENT", "sourceUrl": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php", "aliases": ["Rodriguez", "Councilmember Rodriguez"] }
     ]
+  },
+  {
+    "providerId": "elko-city-council",
+    "sourceName": "City of Elko City Council official roster",
+    "sourceUrl": "https://www.elkocity.com/government/city_council.php",
+    "jurisdictionName": "Elko, Nevada",
+    "jurisdictionSlug": "elko-nv",
+    "jurisdictionType": "CITY",
+    "bodyName": "Elko City Council",
+    "bodyAliases": [
+      "Elko City Council",
+      "City of Elko City Council",
+      "Elko Mayor and Council",
+      "Mayor and City Council"
+    ],
+    "officeTitle": "Elko City Council Member",
+    "officeLevel": "CITY",
+    "notes": "Official City of Elko page lists the mayor and four councilmembers. Used for source-backed public profiles and conservative meeting-action matching.",
+    "members": [
+      { "externalId": "elko-mayor-keener", "fullName": "Reece Keener", "surname": "Keener", "seatTitle": "Mayor", "status": "CURRENT", "sourceUrl": "https://www.elkocity.com/government/mayor_reece_keener/index.php", "aliases": ["Keener", "Mayor Keener"] },
+      { "externalId": "elko-council-puccinelli", "fullName": "Giovanni Puccinelli", "surname": "Puccinelli", "seatTitle": "Mayor Pro Tempore / Councilmember", "status": "CURRENT", "sourceUrl": "https://www.elkocity.com/government/councilan_giovanni_puccinelli/index.php", "aliases": ["Puccinelli", "Councilman Puccinelli", "Mayor Pro Tempore Puccinelli"] },
+      { "externalId": "elko-council-morris", "fullName": "Clair Morris", "surname": "Morris", "seatTitle": "Councilmember", "status": "CURRENT", "sourceUrl": "https://www.elkocity.com/government/city_council.php", "aliases": ["Morris", "Councilmember Morris"] },
+      { "externalId": "elko-council-stone", "fullName": "Chip Stone", "surname": "Stone", "seatTitle": "Councilmember", "status": "CURRENT", "sourceUrl": "https://www.elkocity.com/government/councilman_chip_stone/index.php", "aliases": ["Stone", "Councilman Stone"] },
+      { "externalId": "elko-council-lostra", "fullName": "Marissa Lostra", "surname": "Lostra", "seatTitle": "Councilmember", "status": "CURRENT", "sourceUrl": "https://www.elkocity.com/government/marissa_lostra/index.php", "aliases": ["Lostra", "Councilwoman Lostra"] }
+    ]
+  },
+  {
+    "providerId": "elko-county-commission",
+    "sourceName": "Elko County Commission official roster",
+    "sourceUrl": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php",
+    "jurisdictionName": "Elko County, Nevada",
+    "jurisdictionSlug": "elko-county-nv",
+    "jurisdictionType": "COUNTY",
+    "bodyName": "Elko County Commission",
+    "bodyAliases": [
+      "Elko County Commission",
+      "Elko County Board of Commissioners",
+      "Board of County Commissioners",
+      "County Commission"
+    ],
+    "officeTitle": "Elko County Commissioner",
+    "officeLevel": "COUNTY",
+    "notes": "Official Elko County members page lists the five district commissioners and current term/status notes. Used for source-backed public profiles and conservative meeting-action matching.",
+    "members": [
+      { "externalId": "elko-county-commission-district-1-gale", "fullName": "Brian Gale", "surname": "Gale", "seatTitle": "District 1 Commissioner", "status": "CURRENT", "sourceUrl": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php", "aliases": ["Gale", "Commissioner Gale"] },
+      { "externalId": "elko-county-commission-district-2-andreozzi", "fullName": "Delmo Andreozzi", "surname": "Andreozzi", "seatTitle": "District 2 Commissioner, Chair", "status": "CURRENT", "sourceUrl": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php", "aliases": ["Andreozzi", "Chair Andreozzi", "Commissioner Andreozzi"] },
+      { "externalId": "elko-county-commission-district-3-karr", "fullName": "Jon Karr", "surname": "Karr", "seatTitle": "District 3 Commissioner", "status": "CURRENT", "sourceUrl": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php", "aliases": ["Karr", "Commissioner Karr"] },
+      { "externalId": "elko-county-commission-district-4-gerber", "fullName": "Travis Gerber", "surname": "Gerber", "seatTitle": "District 4 Commissioner", "status": "CURRENT", "sourceUrl": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php", "aliases": ["Gerber", "Commissioner Gerber"] },
+      { "externalId": "elko-county-commission-district-5-steninger", "fullName": "Rex Steninger", "surname": "Steninger", "seatTitle": "District 5 Commissioner, Vice-Chair", "status": "CURRENT", "sourceUrl": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php", "aliases": ["Steninger", "Vice Chair Steninger", "Commissioner Steninger"] }
+    ]
   }
 ]
