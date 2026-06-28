@@ -55,6 +55,28 @@ function evidenceLabel(vote: DecisionVoteRecord) {
   return vote.evidenceType.replaceAll("_", " ");
 }
 
+function voteAttributionSummary(input: { namedVotes: DecisionVoteRecord[]; voteCountDisplay: string; totalKnown: number }) {
+  if (input.namedVotes.length > 0) {
+    return {
+      label: `${input.namedVotes.length} named vote${input.namedVotes.length === 1 ? "" : "s"} parsed`,
+      tone: "green" as const,
+      description: "Individual votes are shown because the source evidence explicitly connects names to vote choices or validated attendance logic.",
+    };
+  }
+  if (!/^no\b/i.test(input.voteCountDisplay)) {
+    return {
+      label: "Aggregate outcome only",
+      tone: "amber" as const,
+      description: "The source gives an outcome or vote count, but Direct Democracy is not assigning individual votes without named source text or verified attendance.",
+    };
+  }
+  return {
+    label: "Vote attribution needs review",
+    tone: "slate" as const,
+    description: "The current source records do not support individual vote attribution yet.",
+  };
+}
+
 function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) {
   return (
     <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5 shadow-2xl shadow-slate-950/20 sm:p-6">
@@ -80,6 +102,7 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
       : decision.voteCount.totalKnown > 0
         ? decision.voteCount.display
         : "Individual votes not parsed";
+  const voteAttribution = voteAttributionSummary({ namedVotes, voteCountDisplay: decision.voteCount.display, totalKnown: decision.voteCount.totalKnown });
 
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-8 text-slate-100 sm:px-6 lg:px-8">
@@ -93,6 +116,7 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
             <Pill tone="cyan">{decision.decisionType}</Pill>
             <Pill tone={decision.voteOutcome === "approved" ? "green" : decision.voteOutcome === "denied" ? "rose" : "slate"}>{decision.voteOutcome}</Pill>
             <Pill tone={trust.tone}>{trust.label}</Pill>
+            <Pill tone={voteAttribution.tone}>{voteAttribution.label}</Pill>
             <Pill>{confidenceLabel(decision.confidence)}</Pill>
           </div>
           <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
@@ -102,6 +126,9 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
               <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300">{decision.summary}</p>
               <p className="mt-5 max-w-3xl rounded-2xl border border-cyan-300/15 bg-cyan-500/10 p-4 text-sm leading-6 text-cyan-50">
                 Why it matters: {decision.whyItMatters}
+              </p>
+              <p className="mt-3 max-w-3xl rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm leading-6 text-slate-300">
+                Vote attribution: {voteAttribution.description}
               </p>
             </div>
             <aside className="rounded-2xl border border-white/10 bg-slate-950/45 p-4">
@@ -220,6 +247,10 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
           <aside className="space-y-6">
             <Section eyebrow="Source" title="Official record">
               <div className="space-y-4">
+                <div className="rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm leading-6 text-slate-300">
+                  <p className="font-semibold text-slate-50">Source trail comes after the citizen summary.</p>
+                  <p className="mt-2 text-slate-400">Agenda IDs, packets, snippets, and cached paths support the explanation above; they are not used as the public headline unless no better plain-language summary exists.</p>
+                </div>
                 <Link href={decision.meeting.href || "/events"} className="block rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm transition hover:border-cyan-300/25">
                   <p className="font-semibold text-slate-50">{decision.meeting.title}</p>
                   <p className="mt-2 text-slate-400">{decision.meeting.bodyName} · {formatDate(decision.meeting.date)}</p>

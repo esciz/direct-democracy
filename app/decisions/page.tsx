@@ -24,6 +24,18 @@ function formatMoney(value: number | null | undefined) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
 }
 
+function voteAttributionLabel(decision: { voteCount: { totalKnown: number; display: string } }) {
+  if (decision.voteCount.totalKnown > 0) return "Named votes parsed";
+  if (!/^no\b/i.test(decision.voteCount.display)) return "Aggregate outcome only";
+  return "Votes need review";
+}
+
+function residentImpactLabel(decision: { financialImpact: { estimatedAmount: number | null; description: string | null; raw: string | null }; relatedIssues: string[] }) {
+  if (decision.financialImpact.estimatedAmount || decision.financialImpact.description || decision.financialImpact.raw) return "Money involved";
+  if (decision.relatedIssues.length) return "Issue-linked";
+  return "Impact summary";
+}
+
 function pillTone(value: string) {
   if (value === "approved" || value === "reviewed") return "border-emerald-300/20 bg-emerald-500/10 text-emerald-200";
   if (value === "ready" || value === "preview") return "border-cyan-300/20 bg-cyan-500/10 text-cyan-200";
@@ -139,16 +151,24 @@ export default async function DecisionsPage({ searchParams }: DecisionsPageProps
       <section className="grid gap-4 lg:grid-cols-2">
         {visible.map((decision) => {
           const trust = getDecisionTrustView(decision);
+          const attribution = voteAttributionLabel(decision);
+          const impact = residentImpactLabel(decision);
           return (
             <Link key={decision.id} href={`/decisions/${decision.id}`} className={`block rounded-[1.35rem] border p-5 transition hover:border-cyan-300/25 hover:bg-white/[0.06] ${trust.state === "needs_review" ? "border-amber-300/20 bg-amber-500/[0.06]" : "border-white/10 bg-white/[0.04]"}`}>
               <div className="flex flex-wrap gap-2">
+                <Pill value="ready">decision</Pill>
                 <Pill value={decision.voteOutcome}>{decision.voteOutcome}</Pill>
                 <Pill value={trust.state === "needs_review" ? "limited" : trust.state}>{trust.label}</Pill>
                 <Pill>{decision.voteCount.display}</Pill>
+                <Pill value={decision.voteCount.totalKnown > 0 ? "approved" : attribution.includes("Aggregate") ? "limited" : "slate"}>{attribution}</Pill>
               </div>
+              <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Question for residents</p>
               <h2 className="mt-4 text-lg font-semibold leading-7 text-slate-50">{decision.title}</h2>
               <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-300">{decision.summary}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-400">Why it matters: {decision.whyItMatters}</p>
+              <div className="mt-3 rounded-2xl border border-white/10 bg-slate-950/35 p-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{impact}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-300">{decision.whyItMatters}</p>
+              </div>
               <p className={`mt-3 rounded-xl border px-3 py-2 text-xs leading-5 ${trust.state === "approved" ? "border-emerald-300/15 bg-emerald-500/10 text-emerald-100" : trust.state === "ready" ? "border-cyan-300/15 bg-cyan-500/10 text-cyan-100" : "border-amber-300/20 bg-amber-500/10 text-amber-100"}`}>
                 {trust.description}
               </p>

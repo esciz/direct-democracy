@@ -64,6 +64,27 @@ function Badge({ children, tone = "slate" }: { children: string; tone?: "slate" 
   return <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${classes[tone]}`}>{children}</span>;
 }
 
+function BriefingCard({ eyebrow, title, summary, href, badge = "source backed", tone = "cyan" }: { eyebrow: string; title: string; summary: string; href?: string | null; badge?: string; tone?: "slate" | "cyan" | "amber" | "green" }) {
+  const content = (
+    <>
+      <div className="flex flex-wrap gap-2">
+        <Badge tone={tone}>{eyebrow}</Badge>
+        <Badge tone={badge.includes("limited") || badge.includes("review") ? "amber" : "green"}>{badge}</Badge>
+      </div>
+      <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{summary}</p>
+    </>
+  );
+
+  if (href?.startsWith("http")) {
+    return <a href={href} target="_blank" rel="noreferrer" className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">{content}</a>;
+  }
+  if (href) {
+    return <Link href={href} className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">{content}</Link>;
+  }
+  return <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</article>;
+}
+
 function StoryCard({ record }: { record: CommunityRelationshipRecord }) {
   const destination = getStoryDestination(record);
   const content = (
@@ -141,12 +162,14 @@ function DecisionCard({ decision }: { decision: CommunityHubDecision }) {
   return (
     <Link href={`/decisions/${decision.id}`} className={`block rounded-[1.35rem] border p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06] ${trust.state === "needs_review" ? "border-amber-300/20 bg-amber-500/[0.06]" : "border-white/10 bg-white/[0.04]"}`}>
       <div className="flex flex-wrap gap-2">
+        <Badge tone="cyan">decision</Badge>
         <Badge tone="cyan">{decision.decisionType}</Badge>
         <Badge tone={trust.tone}>{trust.label}</Badge>
         <Badge tone={decision.voteOutcome === "approved" ? "green" : decision.voteOutcome === "denied" ? "amber" : "slate"}>{decision.voteOutcome}</Badge>
         <Badge>{decision.voteCount.display}</Badge>
         <Badge tone={decision.voteCount.totalKnown > 0 ? "green" : hasAggregateOutcome ? "amber" : "slate"}>{attributionStatus}</Badge>
       </div>
+      <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Question for residents</p>
       <h3 className="mt-3 text-base font-semibold text-slate-50">{decision.title}</h3>
       <p className="mt-2 text-sm leading-6 text-slate-300">{decision.summary}</p>
       <p className="mt-3 text-sm leading-6 text-slate-400">Impact: {decision.whyItMatters}</p>
@@ -224,6 +247,11 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
   const publicReadyDecisions = data.decisions.filter((decision) => getDecisionTrustView(decision).isPublicSpotlightReady);
   const recentDecisions = publicReadyDecisions.slice(0, 8);
   const limitedReviewDecisions = data.decisions.filter((decision) => !getDecisionTrustView(decision).isPublicSpotlightReady).slice(0, 4);
+  const topDecision = recentDecisions[0] ?? data.decisions[0] ?? null;
+  const topStory = data.storyRecords[0] ?? null;
+  const topProject = data.projects.find((project) => ["proposed", "approved", "funded", "in_progress"].includes(project.status)) ?? data.projects[0] ?? null;
+  const nextEvent = upcomingEvents[0] ?? null;
+  const limitedDataBadge = data.coverageRow?.missingCategories.length ? "limited local data" : "source backed";
   const spendingStories = data.storyRecords.filter((record) => record.storyType === "spending").slice(0, 4);
   const caseStories = data.storyRecords.filter((record) => record.storyType === "case").slice(0, 4);
   const electionStories = data.storyRecords.filter((record) => record.storyType === "election" || record.storyType === "vote").slice(0, 4);
@@ -262,6 +290,48 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
           {sourceFreshness.queuedDocuments ? ` ${sourceFreshness.queuedDocuments} documents are awaiting retrieval.` : " No queued source documents are currently attached to this community."}
           {sourceFreshness.ocrPending ? ` ${sourceFreshness.ocrPending} documents await OCR/manual review.` : ""}
           {sourceFreshness.hasLimitedCoverage ? " Source coverage is limited while retrieval and extraction continue." : ""}
+        </div>
+      </section>
+
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+        <SectionHeading
+          eyebrow="Resident briefing"
+          title="What should I pay attention to?"
+          description="A plain-language first pass across decisions, meetings, projects, and source coverage for this community."
+        />
+        <div className="mt-6 grid gap-4 lg:grid-cols-4">
+          <BriefingCard
+            eyebrow="happening"
+            title={topStory?.storyHeadline ?? topDecision?.title ?? "Local civic activity is still being organized"}
+            summary={topStory?.storySummary ?? topDecision?.summary ?? "Direct Democracy has the community page ready, but reviewed local story records are still limited."}
+            href={topStory ? getStoryDestination(topStory).href : topDecision ? `/decisions/${topDecision.id}` : null}
+            badge={topStory?.needsReview ? "needs review" : limitedDataBadge}
+            tone="cyan"
+          />
+          <BriefingCard
+            eyebrow="changed"
+            title={topDecision?.title ?? "No recent reviewed decision is available yet"}
+            summary={topDecision ? `${topDecision.voteOutcome} · ${topDecision.voteCount.display}. ${topDecision.whyItMatters}` : "When a reviewed vote, ordinance, spending item, or action is parsed, it will appear here first."}
+            href={topDecision ? `/decisions/${topDecision.id}` : null}
+            badge={topDecision ? getDecisionTrustView(topDecision).shortLabel : limitedDataBadge}
+            tone={topDecision && getDecisionTrustView(topDecision).state === "needs_review" ? "amber" : "green"}
+          />
+          <BriefingCard
+            eyebrow="watch"
+            title={topProject?.name ?? topProject?.project_title ?? "No active project is highlighted yet"}
+            summary={topProject ? `${topProject.status}. ${topProject.lastPublicAction ?? topProject.description ?? topProject.summary}` : "Projects appear when spending, contracts, capital work, or major initiatives can be connected to official actions."}
+            href={topProject ? `/projects/${topProject.id}` : null}
+            badge={topProject?.needsReview ? "needs review" : topProject ? "source backed" : limitedDataBadge}
+            tone="amber"
+          />
+          <BriefingCard
+            eyebrow="next"
+            title={nextEvent?.title ?? "No upcoming meeting is parsed yet"}
+            summary={nextEvent ? `${formatDate(nextEvent.start_at)} · ${nextEvent.body_name ?? nextEvent.agency ?? "Public body pending"}. ${nextEvent.summary}` : "Upcoming events appear when agendas or meeting records are imported from official public sources."}
+            href={nextEvent?.meeting_id ? `/events/${nextEvent.meeting_id}` : nextEvent?.source_url ?? null}
+            badge={nextEvent?.needsReview ? "needs review" : nextEvent ? "source backed" : limitedDataBadge}
+            tone="green"
+          />
         </div>
       </section>
 

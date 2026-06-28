@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T13:50:48.430Z",
+  "generatedAt": "2026-06-28T22:39:30.029Z",
   "records": [
     {
       "id": "event-meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
@@ -15656,7 +15656,7 @@
       "body_name": "Nevada Legislature",
       "agency": "Nevada Legislature",
       "start_at": "2026-06-26T16:00:00.000Z",
-      "status": "upcoming",
+      "status": "completed",
       "agenda_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35171",
       "minutes_url": "",
       "video_url": "",
@@ -15686,7 +15686,7 @@
       "body_name": "Nevada Legislature",
       "agency": "Nevada Legislature",
       "start_at": "2026-06-26T16:00:00.000Z",
-      "status": "upcoming",
+      "status": "completed",
       "agenda_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34897",
       "minutes_url": "",
       "video_url": "",
