@@ -5,6 +5,7 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
+import { getResidentStoryPublicRuntime } from "@/lib/cases/resident-intake-store";
 
 type CasesPageProps = {
   searchParams?: Promise<{
@@ -18,7 +19,11 @@ type CasesPageProps = {
 
 export default async function CasesPage({ searchParams }: CasesPageProps) {
   const user = await getCurrentUser();
-  const [cases, params] = await Promise.all([getAllCases(user), searchParams ? searchParams : Promise.resolve(undefined)]);
+  const [cases, residentStories, params] = await Promise.all([
+    getAllCases(user),
+    getResidentStoryPublicRuntime(),
+    searchParams ? searchParams : Promise.resolve(undefined),
+  ]);
 
   return (
     <div className="space-y-6 py-8">
@@ -73,11 +78,43 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
         <p className="mt-3 text-sm leading-6 text-slate-600">
           Cases are official legal or quasi-legal records only. Citizen-submitted concerns, complaints, investigations, and policy topics belong in Issues. This page does not provide legal advice, attorney-client relationships, or direct court filing.
         </p>
-        <div className="mt-4">
+        <div className="mt-4 flex flex-wrap gap-2">
           <Link href="/issues/report" className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
             Report an issue
           </Link>
+          <Link href="/cases/submit" className="inline-flex rounded-full border border-civic-200 bg-civic-50 px-4 py-3 text-sm font-semibold text-civic-700 transition hover:border-civic-500">
+            Submit a civic story for review
+          </Link>
         </div>
+      </section>
+
+      <section className="rounded-[1.75rem] border border-cyan-300/20 bg-cyan-300/10 p-6 shadow-card">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-200">Resident story boundary</p>
+            <h2 className="mt-2 text-xl font-semibold tracking-tight text-slate-50">Reviewed resident summaries stay separate from official records.</h2>
+          </div>
+          <span className="rounded-full bg-black/20 px-3 py-1 text-xs font-semibold text-cyan-100">
+            {residentStories.totals.reviewedPublicSummaries} reviewed summaries
+          </span>
+        </div>
+        <p className="mt-3 text-sm leading-6 text-cyan-50/85">
+          Raw resident submissions are private pending review. Direct Democracy does not treat a resident story as public civic truth unless a reviewer publishes a redacted summary.
+        </p>
+        {residentStories.records.length ? (
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {residentStories.records.slice(0, 4).map((story) => (
+              <article key={story.id} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <div className="flex flex-wrap gap-2 text-[11px] font-semibold">
+                  <span className="rounded-full bg-cyan-300/10 px-2.5 py-1 text-cyan-100">{story.publicationStatus.replace(/_/g, " ")}</span>
+                  <span className="rounded-full bg-white/10 px-2.5 py-1 text-slate-300">{story.sourceStatus.replace(/_/g, " ")}</span>
+                </div>
+                <h3 className="mt-3 text-base font-semibold text-white">{story.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{story.summary}</p>
+              </article>
+            ))}
+          </div>
+        ) : null}
       </section>
 
       {cases.length ? (

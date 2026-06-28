@@ -1,10 +1,12 @@
 {
-  "generatedAt": "2026-06-20T18:27:36.926Z",
+  "generatedAt": "2026-06-28T03:25:33.269Z",
   "totals": {
     "fixtureSubmissions": 1,
     "validFixtures": 1,
     "errors": 0,
-    "runtimePendingResidentConcerns": 0
+    "runtimePendingResidentConcerns": 0,
+    "defaultPrivatePendingReview": 1,
+    "publicSummariesGeneratedOnlyAfterReview": 1
   },
   "requiredFields": [
     "submissionType",
@@ -14,12 +16,33 @@
     "peopleOrEntitiesInvolved",
     "publicationStatus",
     "verificationStatus",
+    "review.status",
+    "review.reviewedAt",
+    "review.reviewedBy",
+    "review.publicSummary",
     "reviewerNotes",
     "safety.containsPersonalData",
     "safety.containsAllegation",
     "safety.involvesMinor",
     "safety.involvesLegalMatter"
   ],
+  "privacyBoundary": {
+    "rawStoryPrivateByDefault": true,
+    "publicRuntimeRecordsContainRawStory": false,
+    "publicRuntimeRecordsContainPeopleOrEntities": false,
+    "publicSummaryExample": {
+      "id": "public-resident-story-government-service-failure-reno-nevada-2026-06-20t12-00-00-000z",
+      "title": "Resident-reported government service failure in Reno, Nevada",
+      "summary": "A resident submitted a government service failure in Reno, Nevada around Spring 2026. The resident supplied source material for reviewer follow-up. This summary is redacted and does not publish the raw submission.",
+      "whyItMatters": "Service failures can reveal patterns residents may need to understand, but individual details stay private unless reviewed.",
+      "submissionType": "government_service_failure",
+      "location": "Reno, Nevada",
+      "approximateDate": "Spring 2026",
+      "sourceStatus": "resident_submission_with_sources_reviewed",
+      "publicationStatus": "published_anonymous",
+      "publishedAt": "2026-06-20T13:00:00.000Z"
+    }
+  },
   "fixture": {
     "id": "resident-story-government-service-failure-reno-nevada-2026-06-20t12-00-00-000z",
     "submissionType": "government_service_failure",
@@ -43,6 +66,14 @@
       "involvesLegalMatter": false
     },
     "reviewerNotes": null,
+    "review": {
+      "status": "pending_review",
+      "reviewedAt": null,
+      "reviewedBy": null,
+      "reviewerNotes": null,
+      "rejectionReason": null,
+      "publicSummary": null
+    },
     "moderationSummary": "I tried to get a city service resolved for several weeks, but the agency did not respond and I need help understanding which public body is responsible.",
     "createdAt": "2026-06-20T12:00:00.000Z"
   },

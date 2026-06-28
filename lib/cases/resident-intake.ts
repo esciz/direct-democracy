@@ -12,9 +12,31 @@ export type ResidentStorySubmissionType =
 
 export type ResidentStoryPublicationPreference = "private" | "public_after_review" | "anonymous_after_review";
 
-export type ResidentStoryPublicationStatus = "private_pending_review" | "public_after_review_pending" | "anonymous_after_review_pending" | "rejected" | "published";
+export type ResidentStoryPublicationStatus =
+  | "private_pending_review"
+  | "public_after_review_pending"
+  | "anonymous_after_review_pending"
+  | "private_reviewed"
+  | "rejected"
+  | "published"
+  | "published_anonymous";
 
 export type ResidentStoryVerificationStatus = "unverified_resident_submission" | "source_links_provided" | "documents_uploaded" | "ready_for_review";
+
+export type ResidentStoryReviewStatus = "pending_review" | "reviewed_private" | "approved_public_summary" | "approved_anonymous_summary" | "rejected";
+
+export type ResidentStoryPublicSummary = {
+  id: string;
+  title: string;
+  summary: string;
+  whyItMatters: string;
+  submissionType: ResidentStorySubmissionType;
+  location: string | null;
+  approximateDate: string | null;
+  sourceStatus: "resident_submission_reviewed" | "resident_submission_with_sources_reviewed";
+  publicationStatus: "published" | "published_anonymous";
+  publishedAt: string;
+};
 
 export type ResidentStoryIntake = {
   id: string;
@@ -35,6 +57,14 @@ export type ResidentStoryIntake = {
     involvesLegalMatter: boolean;
   };
   reviewerNotes: string | null;
+  review: {
+    status: ResidentStoryReviewStatus;
+    reviewedAt: string | null;
+    reviewedBy: string | null;
+    reviewerNotes: string | null;
+    rejectionReason: string | null;
+    publicSummary: ResidentStoryPublicSummary | null;
+  };
   moderationSummary: string;
   createdAt: string;
 };
@@ -106,6 +136,69 @@ function safetyFlags(story: string, submissionType: ResidentStorySubmissionType)
   };
 }
 
+export function residentSubmissionTypeLabel(type: ResidentStorySubmissionType) {
+  return type
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+export function publicTitleForResidentStory(intake: Pick<ResidentStoryIntake, "submissionType" | "location" | "story">) {
+  const location = intake.location ? ` in ${intake.location}` : "";
+  const type = residentSubmissionTypeLabel(intake.submissionType).toLowerCase();
+  return summarizeText(`Resident-reported ${type}${location}`, 96);
+}
+
+export function publicWhyItMattersForResidentStory(intake: Pick<ResidentStoryIntake, "submissionType" | "safety">) {
+  if (intake.safety.involvesLegalMatter) {
+    return "This may help reviewers identify public records, agency responsibilities, and whether a public court or legal-process record exists.";
+  }
+  if (intake.safety.containsAllegation) {
+    return "This contains an allegation, so it needs source review before any public-facing summary can be trusted.";
+  }
+  if (intake.submissionType === "government_service_failure") {
+    return "Service failures can reveal patterns residents may need to understand, but individual details stay private unless reviewed.";
+  }
+  if (intake.submissionType === "infrastructure_or_city_project_concern") {
+    return "Infrastructure concerns may connect to meetings, budgets, projects, or agency maintenance responsibilities.";
+  }
+  return "Resident submissions can point reviewers toward civic records without becoming public fact on their own.";
+}
+
+export function defaultRedactedResidentStorySummary(intake: Pick<ResidentStoryIntake, "submissionType" | "location" | "approximateDate" | "verificationStatus">) {
+  const type = residentSubmissionTypeLabel(intake.submissionType).toLowerCase();
+  const place = intake.location ? ` in ${intake.location}` : "";
+  const timeframe = intake.approximateDate ? ` around ${intake.approximateDate}` : "";
+  const sourceNote =
+    intake.verificationStatus === "unverified_resident_submission"
+      ? "No independent public source has been attached yet."
+      : "The resident supplied source material for reviewer follow-up.";
+  return `A resident submitted a ${type}${place}${timeframe}. ${sourceNote} This summary is redacted and does not publish the raw submission.`;
+}
+
+export function buildResidentStoryPublicSummary(
+  intake: ResidentStoryIntake,
+  options: {
+    status: Extract<ResidentStoryReviewStatus, "approved_public_summary" | "approved_anonymous_summary">;
+    reviewerTitle?: string;
+    reviewerSummary?: string;
+    reviewedAt: string;
+  },
+): ResidentStoryPublicSummary {
+  const publicationStatus = options.status === "approved_anonymous_summary" ? "published_anonymous" : "published";
+  return {
+    id: `public-${intake.id}`,
+    title: summarizeText(normalizeWhitespace(options.reviewerTitle) || publicTitleForResidentStory(intake), 120),
+    summary: summarizeText(normalizeWhitespace(options.reviewerSummary) || defaultRedactedResidentStorySummary(intake), 480),
+    whyItMatters: publicWhyItMattersForResidentStory(intake),
+    submissionType: intake.submissionType,
+    location: intake.location,
+    approximateDate: intake.approximateDate,
+    sourceStatus: intake.verificationStatus === "unverified_resident_submission" ? "resident_submission_reviewed" : "resident_submission_with_sources_reviewed",
+    publicationStatus,
+    publishedAt: options.reviewedAt,
+  };
+}
+
 export function buildResidentStoryIntakeFromFormData(formData: FormData, now = new Date()): ResidentStoryIntake {
   const rawType = stringValue(formData, "submissionType") as ResidentStorySubmissionType;
   const submissionType = SUBMISSION_TYPES.has(rawType) ? rawType : "other_civic_concern";
@@ -132,6 +225,14 @@ export function buildResidentStoryIntakeFromFormData(formData: FormData, now = n
     verificationStatus: verificationStatusFor(links, uploadedDocumentNamesValue),
     safety: safetyFlags(story, submissionType),
     reviewerNotes: null,
+    review: {
+      status: "pending_review",
+      reviewedAt: null,
+      reviewedBy: null,
+      reviewerNotes: null,
+      rejectionReason: null,
+      publicSummary: null,
+    },
     moderationSummary: summarizeText(story, 360),
     createdAt,
   };
@@ -147,5 +248,7 @@ export function validateResidentStoryIntakeShape(intake: ResidentStoryIntake) {
   if (!intake.verificationStatus) errors.push("verificationStatus is required");
   if (!intake.safety) errors.push("safety flags are required");
   if (intake.reviewerNotes !== null) errors.push("reviewerNotes should default to null");
+  if (!intake.review || intake.review.status !== "pending_review") errors.push("review.status must default to pending_review");
+  if (intake.review?.publicSummary !== null) errors.push("review.publicSummary should default to null");
   return errors;
 }

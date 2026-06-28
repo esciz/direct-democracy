@@ -1,21 +1,13 @@
-import { redirect } from "next/navigation";
-
 import { PageIntro } from "@/components/ui/page-intro";
-import { buildResidentStoryIntakeFromFormData } from "@/lib/cases/resident-intake";
+import { submitResidentStoryIntake } from "@/lib/cases/resident-intake-actions";
 
 type CaseSubmitPageProps = {
   searchParams?: Promise<{
     submitted?: string;
+    error?: string;
+    id?: string;
   }>;
 };
-
-async function submitCaseIntake(_formData: FormData) {
-  "use server";
-
-  const intake = buildResidentStoryIntakeFromFormData(_formData);
-  void intake;
-  redirect("/cases/submit?submitted=1");
-}
 
 function Field({
   label,
@@ -44,6 +36,7 @@ function Field({
 export default async function CaseSubmitPage({ searchParams }: CaseSubmitPageProps) {
   const params = searchParams ? await searchParams : undefined;
   const submitted = params?.submitted === "1";
+  const invalid = params?.error === "invalid";
 
   return (
     <div className="space-y-6 py-8">
@@ -60,11 +53,21 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
 
       {submitted ? (
         <section className="rounded-[1.75rem] border border-emerald-300/20 bg-emerald-500/10 p-5 text-sm leading-6 text-emerald-100">
-          Story received for review. It remains private pending review unless and until source verification, moderation, and your publication preference allow a public or anonymous summary.
+          <p className="font-semibold text-emerald-50">Story received for review.</p>
+          <p className="mt-2">
+            It remains private pending review unless and until source verification, moderation, and your publication preference allow a public or anonymous summary.
+          </p>
+          {params?.id ? <p className="mt-2 text-xs text-emerald-200/80">Review reference: {params.id}</p> : null}
         </section>
       ) : null}
 
-      <form action={submitCaseIntake} className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+      {invalid ? (
+        <section className="rounded-[1.75rem] border border-rose-300/20 bg-rose-500/10 p-5 text-sm leading-6 text-rose-100">
+          Please include a plain-language story of at least 20 characters. Uploads and links are optional.
+        </section>
+      ) : null}
+
+      <form action={submitResidentStoryIntake} className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Resident story</p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Tell us what happened</h2>

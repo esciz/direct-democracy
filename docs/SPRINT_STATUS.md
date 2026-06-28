@@ -19,16 +19,15 @@
 - Sprint 2 source plumbing closeout: priority Nevada sources, officials coverage, meeting cache verification, local durable cache handoff, and Blob-ready export/audit path.
 - Sprint 3A: verified participation UX and Trusted Citizen stewardship visibility.
 - Sprint 3B: privacy-preserving stakeholder analytics and official-facing aggregate dashboards.
+- Sprint 3C: resident case/story intake moderation and public/private separation polish.
 - Sprint 3E: voter verification review console polish and account email verification flow.
 
 ## Current
 
-- Launch-readiness cleanup: generated artifact boundaries, local metadata cleanup, docs status reconciliation, and worktree hygiene.
+- Sprint 3D: decision review workbench throughput and human-review queues.
 
 ## Planned Next
 
-- Sprint 3C: resident case/story intake moderation and public/private separation polish.
-- Sprint 3D: decision review workbench throughput and human-review queues.
 - Production Blob cache upload after Vercel Blob credentials are configured.
 - Later: official accountability scorecards only after evidence-readiness thresholds are defensible.
 
@@ -65,6 +64,7 @@
 - Canonical officials promotion: `officials:carson-city:sync` is the supported repeatable operator command for retrieval, reconciliation, guarded promotion, community regeneration, and browse audit.
 - GitHub officials worker: `.github/workflows/identity-worker.yml` and the admin operation allowlist include durable worker controls. GitHub evidence artifacts remain non-sensitive.
 - Generated artifact policy: public runtime data and canonical audits may be committed; environment-scoped audit copies, admin operation logs, raw caches, duplicate downloads, and local metadata stay ignored/local.
+- Resident story intake: `/cases/submit` writes private pending-review submissions; `/admin/cases/resident-intake` handles moderation; public runtime only receives reviewed redacted summaries.
 
 ## Sprint 2I-D-B2 Operator Checklist
 

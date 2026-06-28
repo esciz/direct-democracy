@@ -27,6 +27,7 @@ export default async function AdminPublicCasesPage() {
         actions={
           <>
             <Link href="/admin/cases/import" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">Import CSV/JSON</Link>
+            <Link href="/admin/cases/resident-intake" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">Resident intake</Link>
             <Link href="/cases" className="dd-button-primary rounded-full px-4 py-2.5 text-sm font-semibold">Public cases</Link>
           </>
         }
