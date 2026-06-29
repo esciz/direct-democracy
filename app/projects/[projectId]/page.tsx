@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { PageIntro } from "@/components/ui/page-intro";
+import { getResidentQuestionAnswersForTarget } from "@/lib/cases/resident-intake-store";
 import { getDecisionCards } from "@/lib/civic/decision-pages";
 import { getProjectById } from "@/lib/community/product-hub";
 
@@ -26,7 +27,11 @@ function formatMoney(value: number | null | undefined) {
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { projectId } = await params;
-  const [project, decisionCards] = await Promise.all([getProjectById(projectId), getDecisionCards()]);
+  const [project, decisionCards, residentAnswers] = await Promise.all([
+    getProjectById(projectId),
+    getDecisionCards(),
+    getResidentQuestionAnswersForTarget({ targetType: "project", targetId: projectId, limit: 3 }),
+  ]);
 
   if (!project) {
     notFound();
@@ -109,6 +114,37 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           ) : (
             <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
               No canonical decision card is linked to this project yet. The source meeting links below remain available while relationship coverage improves.
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+        <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Reviewed resident answers</h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
+          Questions submitted from this project stay private until a reviewer publishes an answer summary. Published answers appear here without raw resident submissions.
+        </p>
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {residentAnswers.length ? (
+            residentAnswers.map((answer) => (
+              <article key={answer.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="flex flex-wrap gap-2">
+                  <span className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-emerald-200">reviewed answer</span>
+                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-300">{answer.recipientType.replaceAll("_", " ")}</span>
+                </div>
+                <h3 className="mt-3 text-base font-semibold text-slate-50">{answer.questionTitle}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{answer.answerSummary}</p>
+                <p className="mt-3 text-xs text-slate-500">Routed to {answer.recipientName ?? "reviewed civic body"}</p>
+                {answer.sourceUrl ? (
+                  <a href={answer.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                    Open source
+                  </a>
+                ) : null}
+              </article>
+            ))
+          ) : (
+            <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
+              No reviewed resident answers are linked to this project yet.
             </div>
           )}
         </div>

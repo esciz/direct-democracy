@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { getResidentQuestionAnswersForTarget } from "@/lib/cases/resident-intake-store";
 import { getDecisionPageData, type DecisionVoteRecord } from "@/lib/civic/decision-pages";
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 
@@ -90,7 +91,10 @@ function Section({ eyebrow, title, children }: { eyebrow: string; title: string;
 
 export default async function DecisionPage({ params }: DecisionPageProps) {
   const { decisionId } = await params;
-  const data = await getDecisionPageData(decisionId);
+  const [data, residentAnswers] = await Promise.all([
+    getDecisionPageData(decisionId),
+    getResidentQuestionAnswersForTarget({ targetType: "decision", targetId: decisionId, limit: 3 }),
+  ]);
   if (!data) notFound();
 
   const { decision, actionResult, namedVotes, motionMetadata, projects, issues } = data;
@@ -178,6 +182,33 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
           <span className="font-semibold">{trust.label}.</span> {trust.description} The original source links and snippets remain visible below.
           {needsReview && actionResult?.needsReview ? " The extracted action result is also marked for review." : ""}
         </div>
+
+        <Section eyebrow="Resident answers" title="Reviewed questions about this decision">
+          {residentAnswers.length ? (
+            <div className="grid gap-3 md:grid-cols-2">
+              {residentAnswers.map((answer) => (
+                <article key={answer.id} className="rounded-2xl border border-white/10 bg-slate-950/35 p-4">
+                  <div className="flex flex-wrap gap-2">
+                    <Pill tone="green">reviewed answer</Pill>
+                    <Pill>{answer.recipientType.replaceAll("_", " ")}</Pill>
+                  </div>
+                  <h3 className="mt-3 text-base font-semibold text-slate-50">{answer.questionTitle}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{answer.answerSummary}</p>
+                  <p className="mt-3 text-xs text-slate-500">Routed to {answer.recipientName ?? "reviewed civic body"}</p>
+                  {answer.sourceUrl ? (
+                    <a href={answer.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                      Open source
+                    </a>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
+              No reviewed resident answers are linked to this decision yet. Submitted questions stay private until an admin publishes a reviewed answer.
+            </div>
+          )}
+        </Section>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
           <div className="space-y-6">

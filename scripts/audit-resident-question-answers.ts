@@ -36,8 +36,12 @@ const runtimeRecords = Array.isArray(runtime.records) ? runtime.records : [];
 const checks = {
   answerBuilderExists: fileContains("lib/cases/resident-intake.ts", "buildResidentQuestionAnswerSummary"),
   answerRuntimeGeneratedSeparately: fileContains("lib/cases/resident-intake-store.ts", "resident-question-answers-runtime.json"),
+  contextualLookupHelperExists: fileContains("lib/cases/resident-intake-store.ts", "getResidentQuestionAnswersForTarget"),
   publicAnswersRouteExists: fileContains("app/answers/page.tsx", "Reviewed civic Q&A"),
   casesLinksToAnswers: fileContains("app/cases/page.tsx", 'href="/answers"'),
+  decisionsShowContextualAnswers: fileContains("app/decisions/[decisionId]/page.tsx", "getResidentQuestionAnswersForTarget") && fileContains("app/decisions/[decisionId]/page.tsx", "Reviewed questions about this decision"),
+  projectsShowContextualAnswers: fileContains("app/projects/[projectId]/page.tsx", "getResidentQuestionAnswersForTarget") && fileContains("app/projects/[projectId]/page.tsx", "Reviewed resident answers"),
+  communitiesShowContextualAnswers: fileContains("app/community/[communitySlug]/page.tsx", "getResidentQuestionAnswersForTarget") && fileContains("app/community/[communitySlug]/page.tsx", "Questions residents have asked here"),
   adminCanMarkAnswerPublished: fileContains("app/admin/cases/resident-intake/page.tsx", "answer_published"),
   runtimeDoesNotExposeRawStory: !readText("lib/cases/resident-intake-store.ts").includes("story,"),
   runtimeCountMatchesPublishedQueue: runtimeRecords.length === answerPublishedInPrivateQueue,
@@ -53,6 +57,7 @@ const audit = {
     answerPublishedInPrivateQueue,
     publicAnswerRuntimeRecords: runtimeRecords.length,
     reviewedAnswers: runtime.totals?.reviewedAnswers ?? runtimeRecords.length,
+    contextualSurfaces: 3,
   },
   privacyBoundary: {
     publicRuntimePath: "data/generated/resident-question-answers-runtime.json",

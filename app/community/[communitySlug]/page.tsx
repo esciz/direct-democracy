@@ -5,6 +5,7 @@ import path from "node:path";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { getResidentQuestionAnswersForTarget } from "@/lib/cases/resident-intake-store";
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 import { getCommunityHubData, getStoryDestination, type CommunityHubDecision, type CommunityHubEvent, type CommunityHubOfficial, type CommunityHubProject } from "@/lib/community/product-hub";
 import type { CommunityRelationshipRecord } from "@/lib/community/relationships";
@@ -230,6 +231,12 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
   const { communitySlug } = await params;
   const data = await getCommunityHubData(communitySlug);
   if (!data) notFound();
+  const residentAnswers = await getResidentQuestionAnswersForTarget({
+    targetType: "community",
+    targetId: data.community.id,
+    community: data.community.name,
+    limit: 4,
+  });
   const dataops = readGenerated<DataopsMonitoring>("dataops-monitoring-status.json", { records: [] });
   const communitySourceRecords = (dataops.records ?? []).filter((record) => {
     const jurisdiction = record.jurisdiction ?? "";
@@ -348,6 +355,39 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
             tone="green"
           />
         </div>
+      </section>
+
+      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+        <SectionHeading
+          eyebrow="Reviewed answers"
+          title="Questions residents have asked here"
+          description="Published only after review. Raw resident submissions and internal routing notes stay private."
+        />
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+          {residentAnswers.length ? (
+            residentAnswers.map((answer) => (
+              <article key={answer.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+                <div className="flex flex-wrap gap-2">
+                  <Badge tone="green">reviewed answer</Badge>
+                  <Badge>{answer.recipientType.replaceAll("_", " ")}</Badge>
+                </div>
+                <h3 className="mt-3 text-base font-semibold text-slate-50">{answer.questionTitle}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{answer.answerSummary}</p>
+                <p className="mt-3 text-xs text-slate-500">Routed to {answer.recipientName ?? "reviewed civic body"}</p>
+                {answer.sourceUrl ? (
+                  <a href={answer.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                    Open source
+                  </a>
+                ) : null}
+              </article>
+            ))
+          ) : (
+            <EmptyCard text="No reviewed resident answers are linked to this community yet. Residents can ask questions, but answers appear only after moderation and routing review." />
+          )}
+        </div>
+        <Link href="/answers" className="mt-5 inline-flex rounded-full border border-cyan-300/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">
+          View all reviewed answers
+        </Link>
       </section>
 
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">

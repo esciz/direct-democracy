@@ -158,6 +158,31 @@ export async function getResidentQuestionAnswersRuntime() {
   });
 }
 
+function normalizeMatchValue(value: string | null | undefined) {
+  return (value ?? "").trim().toLowerCase();
+}
+
+export async function getResidentQuestionAnswersForTarget(options: {
+  targetType?: ResidentQuestionAnswerSummary["targetType"];
+  targetId?: string | null;
+  community?: string | null;
+  limit?: number;
+}) {
+  const runtime = await getResidentQuestionAnswersRuntime();
+  const targetType = options.targetType;
+  const targetId = normalizeMatchValue(options.targetId);
+  const community = normalizeMatchValue(options.community);
+  const limit = options.limit ?? 4;
+  return runtime.records
+    .filter((answer) => {
+      if (targetType && answer.targetType !== targetType) return false;
+      if (targetId && normalizeMatchValue(answer.targetId) === targetId) return true;
+      if (community && normalizeMatchValue(answer.community) === community) return true;
+      return !targetId && !community;
+    })
+    .slice(0, limit);
+}
+
 export function buildReviewedResidentStorySummary(
   record: ResidentStoryIntake,
   options: {

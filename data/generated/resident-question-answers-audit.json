@@ -1,9 +1,10 @@
 {
-  "generatedAt": "2026-06-28T23:57:12.194Z",
+  "generatedAt": "2026-06-29T00:06:23.837Z",
   "totals": {
     "answerPublishedInPrivateQueue": 0,
     "publicAnswerRuntimeRecords": 0,
-    "reviewedAnswers": 0
+    "reviewedAnswers": 0,
+    "contextualSurfaces": 3
   },
   "privacyBoundary": {
     "publicRuntimePath": "data/generated/resident-question-answers-runtime.json",
@@ -14,8 +15,12 @@
   "checks": {
     "answerBuilderExists": true,
     "answerRuntimeGeneratedSeparately": true,
+    "contextualLookupHelperExists": true,
     "publicAnswersRouteExists": true,
     "casesLinksToAnswers": true,
+    "decisionsShowContextualAnswers": true,
+    "projectsShowContextualAnswers": true,
+    "communitiesShowContextualAnswers": true,
     "adminCanMarkAnswerPublished": true,
     "runtimeDoesNotExposeRawStory": true,
     "runtimeCountMatchesPublishedQueue": true
