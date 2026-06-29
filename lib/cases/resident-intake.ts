@@ -63,6 +63,21 @@ export type ResidentStoryPublicSummary = {
   publishedAt: string;
 };
 
+export type ResidentQuestionAnswerSummary = {
+  id: string;
+  questionTitle: string;
+  answerSummary: string;
+  targetType: ResidentQuestionTargetType;
+  targetId: string | null;
+  community: string | null;
+  recipientName: string | null;
+  recipientType: ResidentQuestionSuggestedRecipientType;
+  sourceUrl: string | null;
+  sourceStatus: "reviewed_routing_answer";
+  publicStatus: Extract<ResidentQuestionPublicStatus, "answer_published">;
+  publishedAt: string;
+};
+
 export type ResidentStoryIntake = {
   id: string;
   submissionType: ResidentStorySubmissionType;
@@ -253,6 +268,31 @@ export function residentQuestionRoutingStatusLabel(status: ResidentQuestionRouti
 
 export function residentQuestionPublicStatusLabel(status: ResidentQuestionPublicStatus) {
   return status.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+export function publicTitleForResidentQuestionAnswer(record: Pick<ResidentStoryIntake, "submissionType" | "location" | "routing">) {
+  if (record.routing.topic) return summarizeText(record.routing.topic, 120);
+  if (record.routing.targetType !== "unknown") return summarizeText(`Resident question about ${record.routing.targetType.replace(/_/g, " ")}`, 120);
+  const location = record.location ? ` in ${record.location}` : "";
+  return summarizeText(`Resident question${location}`, 120);
+}
+
+export function buildResidentQuestionAnswerSummary(record: ResidentStoryIntake): ResidentQuestionAnswerSummary | null {
+  if (record.routing.publicStatus !== "answer_published" || !record.routing.answerSummary) return null;
+  return {
+    id: `answer-${record.id}`,
+    questionTitle: publicTitleForResidentQuestionAnswer(record),
+    answerSummary: summarizeText(record.routing.answerSummary, 640),
+    targetType: record.routing.targetType,
+    targetId: record.routing.targetId,
+    community: record.routing.community ?? record.location,
+    recipientName: record.routing.suggestedRecipientName,
+    recipientType: record.routing.suggestedRecipientType,
+    sourceUrl: record.routing.suggestedRecipientSourceUrl,
+    sourceStatus: "reviewed_routing_answer",
+    publicStatus: "answer_published",
+    publishedAt: record.routing.updatedAt ?? new Date().toISOString(),
+  };
 }
 
 export function normalizeResidentStoryIntake(record: ResidentStoryIntake): ResidentStoryIntake {

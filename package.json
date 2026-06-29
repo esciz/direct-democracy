@@ -192,6 +192,7 @@
     "citizen-actions:audit": "node --import tsx scripts/audit-citizen-action-loops.ts",
     "citizen-updates:audit": "node --import tsx scripts/audit-citizen-update-digest.ts",
     "resident-questions:audit": "node --import tsx scripts/audit-resident-question-routing.ts",
+    "resident-answers:audit": "node --import tsx scripts/audit-resident-question-answers.ts",
     "voting:seed-demo-participation": "node --import tsx scripts/seed-demo-participation.ts",
     "verification:residency-bridge-audit": "node --import tsx scripts/audit-residency-verification-bridge.ts",
     "verification:guided-voter-audit": "node --import tsx scripts/audit-guided-voter-verification.ts",

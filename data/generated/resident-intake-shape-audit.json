@@ -1,12 +1,13 @@
 {
-  "generatedAt": "2026-06-28T23:32:39.299Z",
+  "generatedAt": "2026-06-28T23:57:12.266Z",
   "totals": {
     "fixtureSubmissions": 1,
     "validFixtures": 1,
     "errors": 0,
     "runtimePendingResidentConcerns": 0,
     "defaultPrivatePendingReview": 1,
-    "publicSummariesGeneratedOnlyAfterReview": 1
+    "publicSummariesGeneratedOnlyAfterReview": 1,
+    "publicAnswersGeneratedOnlyAfterReview": 1
   },
   "requiredFields": [
     "submissionType",
@@ -47,6 +48,20 @@
       "sourceStatus": "resident_submission_with_sources_reviewed",
       "publicationStatus": "published_anonymous",
       "publishedAt": "2026-06-20T13:00:00.000Z"
+    },
+    "publicAnswerExample": {
+      "id": "answer-resident-story-government-service-failure-reno-nevada-2026-06-20t12-00-00-000z",
+      "questionTitle": "City service response",
+      "answerSummary": "The reviewed answer says residents should contact the Reno City Council agenda office and include the service request number.",
+      "targetType": "community",
+      "targetId": "reno",
+      "community": "Reno, Nevada",
+      "recipientName": "Reno City Council",
+      "recipientType": "agency",
+      "sourceUrl": "https://www.reno.gov/",
+      "sourceStatus": "reviewed_routing_answer",
+      "publicStatus": "answer_published",
+      "publishedAt": "2026-06-20T14:00:00.000Z"
     }
   },
   "fixture": {

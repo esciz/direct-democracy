@@ -5,7 +5,7 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
-import { getResidentStoryPublicRuntime } from "@/lib/cases/resident-intake-store";
+import { getResidentQuestionAnswersRuntime, getResidentStoryPublicRuntime } from "@/lib/cases/resident-intake-store";
 
 type CasesPageProps = {
   searchParams?: Promise<{
@@ -19,9 +19,10 @@ type CasesPageProps = {
 
 export default async function CasesPage({ searchParams }: CasesPageProps) {
   const user = await getCurrentUser();
-  const [cases, residentStories, params] = await Promise.all([
+  const [cases, residentStories, residentAnswers, params] = await Promise.all([
     getAllCases(user),
     getResidentStoryPublicRuntime(),
+    getResidentQuestionAnswersRuntime(),
     searchParams ? searchParams : Promise.resolve(undefined),
   ]);
 
@@ -85,6 +86,9 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
           <Link href="/cases/submit" className="inline-flex rounded-full border border-civic-200 bg-civic-50 px-4 py-3 text-sm font-semibold text-civic-700 transition hover:border-civic-500">
             Submit a civic story for review
           </Link>
+          <Link href="/answers" className="inline-flex rounded-full border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm font-semibold text-cyan-700 transition hover:border-cyan-500">
+            Reviewed answers
+          </Link>
         </div>
       </section>
 
@@ -97,10 +101,24 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
           <span className="rounded-full bg-black/20 px-3 py-1 text-xs font-semibold text-cyan-100">
             {residentStories.totals.reviewedPublicSummaries} reviewed summaries
           </span>
+          <span className="rounded-full bg-black/20 px-3 py-1 text-xs font-semibold text-cyan-100">
+            {residentAnswers.totals.reviewedAnswers} reviewed answers
+          </span>
         </div>
         <p className="mt-3 text-sm leading-6 text-cyan-50/85">
-          Raw resident submissions are private pending review. Direct Democracy does not treat a resident story as public civic truth unless a reviewer publishes a redacted summary.
+          Raw resident submissions are private pending review. Direct Democracy does not treat a resident story as public civic truth unless a reviewer publishes a redacted summary or a reviewed answer.
         </p>
+        {residentAnswers.records.length ? (
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {residentAnswers.records.slice(0, 2).map((answer) => (
+              <article key={answer.id} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                <span className="rounded-full bg-emerald-300/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-100">reviewed answer</span>
+                <h3 className="mt-3 text-base font-semibold text-white">{answer.questionTitle}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{answer.answerSummary}</p>
+              </article>
+            ))}
+          </div>
+        ) : null}
         {residentStories.records.length ? (
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             {residentStories.records.slice(0, 4).map((story) => (

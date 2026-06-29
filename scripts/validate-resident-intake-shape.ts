@@ -2,6 +2,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 import {
+  buildResidentQuestionAnswerSummary,
   buildResidentStoryIntakeFromFormData,
   buildResidentStoryPublicSummary,
   publicTitleForResidentStory,
@@ -12,6 +13,7 @@ import {
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const AUDIT_OUTPUT_PATH = path.join(GENERATED_DIR, "resident-intake-shape-audit.json");
 const RUNTIME_OUTPUT_PATH = path.join(GENERATED_DIR, "resident-civic-intake-runtime.json");
+const ANSWERS_RUNTIME_OUTPUT_PATH = path.join(GENERATED_DIR, "resident-question-answers-runtime.json");
 
 const fixture = new FormData();
 fixture.set("submissionType", "government_service_failure");
@@ -69,6 +71,19 @@ const generatedSummary = buildResidentStoryPublicSummary(intake, {
   reviewedAt: reviewedSummary.publishedAt,
 });
 if (generatedSummary.publicationStatus !== "published_anonymous") errors.push("anonymous approval should generate published_anonymous");
+if (buildResidentQuestionAnswerSummary(intake) !== null) errors.push("question answer summary must not publish before answer_published");
+const answeredIntake = {
+  ...intake,
+  routing: {
+    ...intake.routing,
+    publicStatus: "answer_published" as const,
+    answerSummary: "The reviewed answer says residents should contact the Reno City Council agenda office and include the service request number.",
+    updatedAt: "2026-06-20T14:00:00.000Z",
+  },
+};
+const generatedAnswer = buildResidentQuestionAnswerSummary(answeredIntake);
+if (!generatedAnswer) errors.push("answer_published routing should generate a public answer summary");
+if (generatedAnswer?.answerSummary.toLowerCase().includes("i tried to get")) errors.push("answer summary must not include raw story text");
 
 const audit = {
   generatedAt: new Date().toISOString(),
@@ -79,6 +94,7 @@ const audit = {
     runtimePendingResidentConcerns: 0,
     defaultPrivatePendingReview: intake.publicationStatus === "private_pending_review" ? 1 : 0,
     publicSummariesGeneratedOnlyAfterReview: generatedSummary.publicationStatus === "published_anonymous" ? 1 : 0,
+    publicAnswersGeneratedOnlyAfterReview: generatedAnswer ? 1 : 0,
   },
   requiredFields: [
     "submissionType",
@@ -109,6 +125,7 @@ const audit = {
     publicRuntimeRecordsContainRawStory: false,
     publicRuntimeRecordsContainPeopleOrEntities: false,
     publicSummaryExample: generatedSummary,
+    publicAnswerExample: generatedAnswer,
   },
   fixture: intake,
   errors,
@@ -127,6 +144,23 @@ writeFileSync(
       totals: {
         reviewedPublicSummaries: 0,
         anonymousSummaries: 0,
+      },
+    },
+    null,
+    2,
+  )}\n`,
+);
+writeFileSync(
+  ANSWERS_RUNTIME_OUTPUT_PATH,
+  `${JSON.stringify(
+    {
+      schemaVersion: 1,
+      generatedAt: audit.generatedAt,
+      policy: "Only reviewed answer summaries are public. Raw resident submissions and routing notes remain private.",
+      records: [],
+      totals: {
+        reviewedAnswers: 0,
+        answersWithSourceUrl: 0,
       },
     },
     null,

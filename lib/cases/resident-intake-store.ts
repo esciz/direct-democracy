@@ -4,8 +4,10 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 import {
+  buildResidentQuestionAnswerSummary,
   buildResidentStoryPublicSummary,
   normalizeResidentStoryIntake,
+  type ResidentQuestionAnswerSummary,
   type ResidentStoryIntake,
   type ResidentStoryPublicSummary,
   type ResidentStoryReviewStatus,
@@ -13,6 +15,7 @@ import {
 
 const PRIVATE_QUEUE_PATH = path.join(process.cwd(), "data/private/resident-story-intake-review-queue.json");
 const PUBLIC_RUNTIME_PATH = path.join(process.cwd(), "data/generated/resident-civic-intake-runtime.json");
+const PUBLIC_ANSWERS_RUNTIME_PATH = path.join(process.cwd(), "data/generated/resident-question-answers-runtime.json");
 
 export type ResidentStoryReviewQueueFile = {
   schemaVersion: 1;
@@ -29,6 +32,17 @@ export type ResidentStoryPublicRuntimeFile = {
   totals: {
     reviewedPublicSummaries: number;
     anonymousSummaries: number;
+  };
+};
+
+export type ResidentQuestionAnswersRuntimeFile = {
+  schemaVersion: 1;
+  generatedAt: string;
+  policy: "Only reviewed answer summaries are public. Raw resident submissions and routing notes remain private.";
+  records: ResidentQuestionAnswerSummary[];
+  totals: {
+    reviewedAnswers: number;
+    answersWithSourceUrl: number;
   };
 };
 
@@ -92,6 +106,10 @@ export async function regenerateResidentStoryPublicRuntime() {
   const queue = await getResidentStoryReviewQueue();
   const records = queue.records.filter(shouldPublish).flatMap((record) => (record.review.publicSummary ? [record.review.publicSummary] : []));
   const anonymousSummaries = records.filter((record) => record.publicationStatus === "published_anonymous").length;
+  const answers = queue.records.flatMap((record) => {
+    const answer = buildResidentQuestionAnswerSummary(record);
+    return answer ? [answer] : [];
+  });
   await writeJsonFile(PUBLIC_RUNTIME_PATH, {
     schemaVersion: 1,
     generatedAt: new Date().toISOString(),
@@ -102,6 +120,16 @@ export async function regenerateResidentStoryPublicRuntime() {
       anonymousSummaries,
     },
   } satisfies ResidentStoryPublicRuntimeFile);
+  await writeJsonFile(PUBLIC_ANSWERS_RUNTIME_PATH, {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    policy: "Only reviewed answer summaries are public. Raw resident submissions and routing notes remain private.",
+    records: answers,
+    totals: {
+      reviewedAnswers: answers.length,
+      answersWithSourceUrl: answers.filter((answer) => Boolean(answer.sourceUrl)).length,
+    },
+  } satisfies ResidentQuestionAnswersRuntimeFile);
 }
 
 export async function getResidentStoryPublicRuntime() {
@@ -113,6 +141,19 @@ export async function getResidentStoryPublicRuntime() {
     totals: {
       reviewedPublicSummaries: 0,
       anonymousSummaries: 0,
+    },
+  });
+}
+
+export async function getResidentQuestionAnswersRuntime() {
+  return readJsonFile<ResidentQuestionAnswersRuntimeFile>(PUBLIC_ANSWERS_RUNTIME_PATH, {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    policy: "Only reviewed answer summaries are public. Raw resident submissions and routing notes remain private.",
+    records: [],
+    totals: {
+      reviewedAnswers: 0,
+      answersWithSourceUrl: 0,
     },
   });
 }

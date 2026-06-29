@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-28T23:57:12.194Z",
+  "totals": {
+    "answerPublishedInPrivateQueue": 0,
+    "publicAnswerRuntimeRecords": 0,
+    "reviewedAnswers": 0
+  },
+  "privacyBoundary": {
+    "publicRuntimePath": "data/generated/resident-question-answers-runtime.json",
+    "privateQueuePath": "data/private/resident-story-intake-review-queue.json",
+    "rawStoryPublic": false,
+    "internalRoutingNotesPublic": false
+  },
+  "checks": {
+    "answerBuilderExists": true,
+    "answerRuntimeGeneratedSeparately": true,
+    "publicAnswersRouteExists": true,
+    "casesLinksToAnswers": true,
+    "adminCanMarkAnswerPublished": true,
+    "runtimeDoesNotExposeRawStory": true,
+    "runtimeCountMatchesPublishedQueue": true
+  },
+  "errors": []
+}
