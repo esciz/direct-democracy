@@ -225,36 +225,38 @@ function nextStepFor(record: ResidentStoryIntake) {
   return "A reviewer still needs to classify the request, confirm the right body, and decide whether source review is needed.";
 }
 
+export function summarizeResidentRequestStatus(record: ResidentStoryIntake): ResidentRequestStatusSummary {
+  const publishedAnswer = buildResidentQuestionAnswerSummary(record);
+  const hasSensitiveFlags = record.safety.containsPersonalData || record.safety.containsAllegation || record.safety.involvesMinor || record.safety.involvesLegalMatter;
+  return {
+    id: record.id,
+    title: publicTitleForResidentQuestionAnswer(record),
+    submittedAt: record.createdAt,
+    location: record.location,
+    targetType: record.routing.targetType,
+    targetId: record.routing.targetId,
+    community: record.routing.community ?? record.location,
+    routingStatus: record.routing.status,
+    routingStatusLabel: residentQuestionRoutingStatusLabel(record.routing.status),
+    publicStatus: record.routing.publicStatus,
+    publicStatusLabel: residentQuestionPublicStatusLabel(record.routing.publicStatus),
+    reviewStatus: record.review.status,
+    privacyStatus: privacyStatusFor(record),
+    nextStep: nextStepFor(record),
+    publicAnswerHref: publishedAnswer ? `/answers#${publishedAnswer.id}` : null,
+    sourceUrl: record.routing.suggestedRecipientSourceUrl,
+    sourceLabel: record.routing.suggestedRecipientSourceUrl ? "Reviewed source/contact linked" : "No public source linked yet",
+    hasSensitiveFlags,
+  };
+}
+
 export async function getResidentRequestStatusesForUser(userId: string | null | undefined, limit = 6) {
   if (!userId) return [];
   const queue = await getResidentStoryReviewQueue();
   return queue.records
     .filter((record) => record.submitterUserId === userId)
     .slice(0, limit)
-    .map((record): ResidentRequestStatusSummary => {
-      const publishedAnswer = buildResidentQuestionAnswerSummary(record);
-      const hasSensitiveFlags = record.safety.containsPersonalData || record.safety.containsAllegation || record.safety.involvesMinor || record.safety.involvesLegalMatter;
-      return {
-        id: record.id,
-        title: publicTitleForResidentQuestionAnswer(record),
-        submittedAt: record.createdAt,
-        location: record.location,
-        targetType: record.routing.targetType,
-        targetId: record.routing.targetId,
-        community: record.routing.community ?? record.location,
-        routingStatus: record.routing.status,
-        routingStatusLabel: residentQuestionRoutingStatusLabel(record.routing.status),
-        publicStatus: record.routing.publicStatus,
-        publicStatusLabel: residentQuestionPublicStatusLabel(record.routing.publicStatus),
-        reviewStatus: record.review.status,
-        privacyStatus: privacyStatusFor(record),
-        nextStep: nextStepFor(record),
-        publicAnswerHref: publishedAnswer ? `/answers#${publishedAnswer.id}` : null,
-        sourceUrl: record.routing.suggestedRecipientSourceUrl,
-        sourceLabel: record.routing.suggestedRecipientSourceUrl ? "Reviewed source/contact linked" : "No public source linked yet",
-        hasSensitiveFlags,
-      };
-    });
+    .map(summarizeResidentRequestStatus);
 }
 
 export function buildReviewedResidentStorySummary(

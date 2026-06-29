@@ -1,0 +1,45 @@
+{
+  "generatedAt": "2026-06-29T16:00:19.422Z",
+  "status": "passed",
+  "totals": {
+    "submittedRequests": 1,
+    "routedRequests": 1,
+    "publishedAnswers": 1,
+    "privateStatusRecords": 2,
+    "errors": 0
+  },
+  "lifecycle": {
+    "submitted": {
+      "id": "resident-story-government-service-failure-carson-city-nevada-2026-06-29t12-00-00-000z",
+      "submitterUserIdPresent": true,
+      "publicStatus": "received",
+      "routingStatus": "pending"
+    },
+    "routed": {
+      "publicStatus": "routed_to_body",
+      "routingStatus": "ready_to_send",
+      "privateStatus": "private_pending_review",
+      "publicAnswerHref": null
+    },
+    "answered": {
+      "publicStatus": "answer_published",
+      "routingStatus": "answered",
+      "privateStatus": "public_answer_available",
+      "publicAnswerHref": "/answers#answer-resident-story-government-service-failure-carson-city-nevada-2026-06-29t12-00-00-000z",
+      "publicAnswerGenerated": true
+    }
+  },
+  "privacyBoundary": {
+    "rawStoryPublic": false,
+    "privateReviewerNotesPublic": false,
+    "publicAnswerContainsPrivateNeedles": false,
+    "publicStorySummaryContainsPrivateNeedles": false
+  },
+  "surfaces": {
+    "citizenConfirmation": "/cases/submit?submitted=1&id=<request-id>",
+    "citizenPrivateStatus": "/profile/updates#my-civic-requests",
+    "adminReviewWorkbench": "/admin/cases/resident-intake",
+    "publicAnswers": "/answers"
+  },
+  "errors": []
+}
