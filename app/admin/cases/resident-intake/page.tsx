@@ -9,6 +9,7 @@ import {
   residentQuestionPublicStatusLabel,
   residentQuestionRoutingStatusLabel,
   residentSubmissionTypeLabel,
+  type ResidentStoryIntake,
 } from "@/lib/cases/resident-intake";
 import { getResidentStoryPublicRuntime, getResidentStoryReviewQueue } from "@/lib/cases/resident-intake-store";
 
@@ -18,8 +19,11 @@ type AdminResidentIntakePageProps = {
   searchParams?: Promise<{
     review?: string;
     error?: string;
+    view?: string;
   }>;
 };
+
+type QueueView = "all" | "needs-routing" | "answer-workbench" | "ready-to-publish" | "published" | "sensitive";
 
 function badgeClass(kind: "pending" | "private" | "public" | "danger" | "neutral") {
   if (kind === "pending") return "border-amber-300/20 bg-amber-300/10 text-amber-100";
@@ -51,19 +55,76 @@ function formatDate(value: string | null) {
   return new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeStyle: "short" }).format(parsed);
 }
 
+function queueView(value: string | undefined): QueueView {
+  if (
+    value === "needs-routing" ||
+    value === "answer-workbench" ||
+    value === "ready-to-publish" ||
+    value === "published" ||
+    value === "sensitive"
+  ) {
+    return value;
+  }
+  return "all";
+}
+
+function hasSensitiveFlag(record: ResidentStoryIntake) {
+  return record.safety.containsPersonalData || record.safety.involvesMinor || record.safety.involvesLegalMatter || record.safety.containsAllegation;
+}
+
+function answerPublicationMissing(record: ResidentStoryIntake) {
+  const missing: string[] = [];
+  if (!record.routing.answerSummary) missing.push("reviewed answer summary");
+  if (!record.routing.suggestedRecipientName) missing.push("confirmed recipient/body");
+  if (record.routing.suggestedRecipientType === "unknown") missing.push("recipient type");
+  if (!record.routing.suggestedRecipientSourceUrl) missing.push("source or official contact URL");
+  if (hasSensitiveFlag(record) && !record.routing.reviewerNotes) missing.push("sensitive-record reviewer note");
+  return missing;
+}
+
+function isAnswerWorkItem(record: ResidentStoryIntake) {
+  return record.routing.status === "ready_to_send" || record.routing.status === "sent_externally" || record.routing.status === "answered";
+}
+
+function isReadyToPublishAnswer(record: ResidentStoryIntake) {
+  return record.routing.publicStatus !== "answer_published" && isAnswerWorkItem(record) && answerPublicationMissing(record).length === 0;
+}
+
+function filterRecords(records: ResidentStoryIntake[], view: QueueView) {
+  if (view === "needs-routing") return records.filter((record) => record.routing.status === "pending" || record.routing.status === "needs_source");
+  if (view === "answer-workbench") return records.filter((record) => isAnswerWorkItem(record) || Boolean(record.routing.answerSummary));
+  if (view === "ready-to-publish") return records.filter(isReadyToPublishAnswer);
+  if (view === "published") return records.filter((record) => record.routing.publicStatus === "answer_published");
+  if (view === "sensitive") return records.filter(hasSensitiveFlag);
+  return records;
+}
+
+function viewHref(view: QueueView) {
+  return view === "all" ? "/admin/cases/resident-intake" : `/admin/cases/resident-intake?view=${view}`;
+}
+
+function viewLinkClass(active: boolean) {
+  return `rounded-full border px-3 py-2 text-xs font-semibold transition ${
+    active ? "border-cyan-200 bg-cyan-200 text-slate-950" : "border-white/10 bg-white/[0.04] text-slate-300 hover:border-cyan-300/40 hover:text-cyan-100"
+  }`;
+}
+
 export default async function AdminResidentIntakePage({ searchParams }: AdminResidentIntakePageProps) {
   const [params, queue, publicRuntime] = await Promise.all([
     searchParams ? searchParams : Promise.resolve(undefined),
     getResidentStoryReviewQueue(),
     getResidentStoryPublicRuntime(),
   ]);
+  const activeView = queueView(params?.view);
   const pending = queue.records.filter((record) => record.review.status === "pending_review");
   const pendingRouting = queue.records.filter((record) => record.routing.status === "pending" || record.routing.status === "needs_source");
   const readyToSend = queue.records.filter((record) => record.routing.status === "ready_to_send");
   const answered = queue.records.filter((record) => record.routing.status === "answered" || record.routing.publicStatus === "answer_published");
-  const sensitive = queue.records.filter(
-    (record) => record.safety.containsPersonalData || record.safety.involvesMinor || record.safety.involvesLegalMatter || record.safety.containsAllegation,
-  );
+  const sensitive = queue.records.filter(hasSensitiveFlag);
+  const answerWorkItems = queue.records.filter((record) => isAnswerWorkItem(record) || Boolean(record.routing.answerSummary));
+  const readyToPublishAnswers = queue.records.filter(isReadyToPublishAnswer);
+  const publishedAnswers = queue.records.filter((record) => record.routing.publicStatus === "answer_published");
+  const visibleRecords = filterRecords(queue.records, activeView);
 
   return (
     <div className="space-y-6 py-8">
@@ -127,18 +188,67 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
         </div>
       </section>
 
+      <section className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Answer review workbench</p>
+            <h2 className="mt-2 text-xl font-semibold text-white">Move resident questions from routed to publishable</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+              Use this view to confirm the recipient, source link, and public-safe answer summary before any answer appears on community, decision, project, or answer pages.
+            </p>
+          </div>
+          <Link href="/answers" className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-semibold text-cyan-100">
+            Public answers
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-3 md:grid-cols-4">
+          <div className="rounded-xl border border-sky-300/20 bg-sky-300/10 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-100">Answer work items</p>
+            <p className="mt-2 text-2xl font-semibold text-white">{answerWorkItems.length}</p>
+          </div>
+          <div className="rounded-xl border border-emerald-300/20 bg-emerald-300/10 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-100">Ready to publish</p>
+            <p className="mt-2 text-2xl font-semibold text-white">{readyToPublishAnswers.length}</p>
+          </div>
+          <div className="rounded-xl border border-cyan-300/20 bg-cyan-300/10 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">Published answers</p>
+            <p className="mt-2 text-2xl font-semibold text-white">{publishedAnswers.length}</p>
+          </div>
+          <div className="rounded-xl border border-amber-300/20 bg-amber-300/10 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-100">Needs routing first</p>
+            <p className="mt-2 text-2xl font-semibold text-white">{pendingRouting.length}</p>
+          </div>
+        </div>
+        <nav className="mt-4 flex flex-wrap gap-2" aria-label="Resident intake queue filters">
+          {[
+            ["all", "All"],
+            ["needs-routing", "Needs routing"],
+            ["answer-workbench", "Answer workbench"],
+            ["ready-to-publish", "Ready to publish"],
+            ["published", "Published"],
+            ["sensitive", "Sensitive"],
+          ].map(([view, label]) => (
+            <Link key={view} href={viewHref(view as QueueView)} className={viewLinkClass(activeView === view)}>
+              {label}
+            </Link>
+          ))}
+        </nav>
+      </section>
+
       <section className="rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-5 text-sm leading-6 text-cyan-50">
         Raw resident stories stay in the private queue. Public pages may only receive a reviewed summary, review timestamp, submission category, non-sensitive location/time context, and source status.
       </section>
 
       <section className="space-y-4">
-        {queue.records.length ? null : (
+        {visibleRecords.length ? null : (
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 text-sm leading-6 text-slate-300">
-            No resident story submissions are waiting for review.
+            No resident story submissions match this queue filter.
           </div>
         )}
-        {queue.records.map((record) => (
-          <article key={record.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+        {visibleRecords.map((record) => {
+          const missingAnswerFields = answerPublicationMissing(record);
+          return (
+            <article key={record.id} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
             <div className="flex flex-wrap items-center gap-2">
               <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${badgeClass(reviewKind(record.review.status))}`}>
                 {record.review.status.replace(/_/g, " ")}
@@ -196,6 +306,39 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
               </p>
               <p className="mt-2 text-cyan-100/80">{record.routing.routingReason}</p>
               {record.routing.answerSummary ? <p className="mt-2 rounded-xl border border-emerald-300/20 bg-emerald-300/10 p-3 text-emerald-50">Answer summary: {record.routing.answerSummary}</p> : null}
+            </div>
+
+            <div
+              className={`mt-3 rounded-2xl border p-4 text-sm leading-6 ${
+                missingAnswerFields.length
+                  ? "border-amber-300/20 bg-amber-300/10 text-amber-50"
+                  : record.routing.publicStatus === "answer_published"
+                    ? "border-emerald-300/20 bg-emerald-300/10 text-emerald-50"
+                    : "border-cyan-300/20 bg-cyan-300/10 text-cyan-50"
+              }`}
+            >
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em]">
+                  {record.routing.publicStatus === "answer_published"
+                    ? "Published answer"
+                    : missingAnswerFields.length
+                      ? "Not ready to publish"
+                      : "Ready to publish"}
+                </p>
+                <span className="rounded-full border border-white/15 bg-black/15 px-2.5 py-1 text-[11px] font-semibold">
+                  {missingAnswerFields.length ? `${missingAnswerFields.length} missing` : "Checklist complete"}
+                </span>
+              </div>
+              {missingAnswerFields.length ? (
+                <p className="mt-2">Missing: {missingAnswerFields.join(", ")}.</p>
+              ) : (
+                <p className="mt-2">
+                  This item has a reviewed answer summary, confirmed recipient, recipient type, and source/contact URL. Set public-safe status to Answer Published to surface it publicly.
+                </p>
+              )}
+              <p className="mt-2 text-white/70">
+                Publishing an answer never publishes the raw resident story, private reviewer notes, contact details, or internal routing notes.
+              </p>
             </div>
 
             <div className="mt-3 grid gap-3 md:grid-cols-4">
@@ -379,8 +522,9 @@ export default async function AdminResidentIntakePage({ searchParams }: AdminRes
                 </button>
               </div>
             </form>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </section>
     </div>
   );
