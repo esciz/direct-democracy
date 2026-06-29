@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T23:57:12.266Z",
+  "generatedAt": "2026-06-29T02:53:22.588Z",
   "totals": {
     "fixtureSubmissions": 1,
     "validFixtures": 1,
@@ -11,6 +11,8 @@
   },
   "requiredFields": [
     "submissionType",
+    "submitterUserId",
+    "submitterDisplayName",
     "story",
     "location",
     "approximateDate",
@@ -35,6 +37,7 @@
   ],
   "privacyBoundary": {
     "rawStoryPrivateByDefault": true,
+    "privateStatusOwnedBySubmitter": true,
     "publicRuntimeRecordsContainRawStory": false,
     "publicRuntimeRecordsContainPeopleOrEntities": false,
     "publicSummaryExample": {
@@ -66,6 +69,8 @@
   },
   "fixture": {
     "id": "resident-story-government-service-failure-reno-nevada-2026-06-20t12-00-00-000z",
+    "submitterUserId": "user_fixture_resident",
+    "submitterDisplayName": "Fixture Resident",
     "submissionType": "government_service_failure",
     "story": "I tried to get a city service resolved for several weeks, but the agency did not respond and I need help understanding which public body is responsible.",
     "location": "Reno, Nevada",

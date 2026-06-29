@@ -32,7 +32,10 @@ fixture.set("routingTopic", "City service response");
 fixture.set("routingAgency", "Reno City Council");
 fixture.set("routingCommunity", "Reno, Nevada");
 
-const intake = buildResidentStoryIntakeFromFormData(fixture, new Date("2026-06-20T12:00:00.000Z"));
+const intake = buildResidentStoryIntakeFromFormData(fixture, new Date("2026-06-20T12:00:00.000Z"), {
+  userId: "user_fixture_resident",
+  displayName: "Fixture Resident",
+});
 const errors = validateResidentStoryIntakeShape(intake);
 const requiredSafetyFields = ["containsPersonalData", "containsAllegation", "involvesMinor", "involvesLegalMatter"];
 for (const field of requiredSafetyFields) {
@@ -47,6 +50,8 @@ if (intake.routing.status !== "pending") errors.push("routing.status must defaul
 if (intake.routing.publicStatus !== "received") errors.push("routing.publicStatus must default to received");
 if (intake.routing.targetType !== "community") errors.push("routing target should preserve the source page target type");
 if (intake.routing.suggestedRecipientName !== "Reno City Council") errors.push("routing should keep the suggested recipient");
+if (intake.submitterUserId !== "user_fixture_resident") errors.push("submitterUserId should preserve signed-in owner context");
+if (intake.submitterDisplayName !== "Fixture Resident") errors.push("submitterDisplayName should preserve signed-in display context");
 
 const reviewedSummary = {
   id: `public-${intake.id}`,
@@ -98,6 +103,8 @@ const audit = {
   },
   requiredFields: [
     "submissionType",
+    "submitterUserId",
+    "submitterDisplayName",
     "story",
     "location",
     "approximateDate",
@@ -122,6 +129,7 @@ const audit = {
   ],
   privacyBoundary: {
     rawStoryPrivateByDefault: intake.review.publicSummary === null,
+    privateStatusOwnedBySubmitter: intake.submitterUserId === "user_fixture_resident",
     publicRuntimeRecordsContainRawStory: false,
     publicRuntimeRecordsContainPeopleOrEntities: false,
     publicSummaryExample: generatedSummary,

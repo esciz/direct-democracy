@@ -7,6 +7,9 @@ import {
   buildResidentQuestionAnswerSummary,
   buildResidentStoryPublicSummary,
   normalizeResidentStoryIntake,
+  publicTitleForResidentQuestionAnswer,
+  residentQuestionPublicStatusLabel,
+  residentQuestionRoutingStatusLabel,
   type ResidentQuestionAnswerSummary,
   type ResidentStoryIntake,
   type ResidentStoryPublicSummary,
@@ -44,6 +47,27 @@ export type ResidentQuestionAnswersRuntimeFile = {
     reviewedAnswers: number;
     answersWithSourceUrl: number;
   };
+};
+
+export type ResidentRequestStatusSummary = {
+  id: string;
+  title: string;
+  submittedAt: string;
+  location: string | null;
+  targetType: ResidentStoryIntake["routing"]["targetType"];
+  targetId: string | null;
+  community: string | null;
+  routingStatus: ResidentStoryIntake["routing"]["status"];
+  routingStatusLabel: string;
+  publicStatus: ResidentStoryIntake["routing"]["publicStatus"];
+  publicStatusLabel: string;
+  reviewStatus: ResidentStoryIntake["review"]["status"];
+  privacyStatus: "private_pending_review" | "private_reviewed" | "public_answer_available" | "closed_or_rejected";
+  nextStep: string;
+  publicAnswerHref: string | null;
+  sourceUrl: string | null;
+  sourceLabel: string;
+  hasSensitiveFlags: boolean;
 };
 
 async function readJsonFile<T>(filePath: string, fallback: T): Promise<T> {
@@ -181,6 +205,56 @@ export async function getResidentQuestionAnswersForTarget(options: {
       return !targetId && !community;
     })
     .slice(0, limit);
+}
+
+function privacyStatusFor(record: ResidentStoryIntake): ResidentRequestStatusSummary["privacyStatus"] {
+  if (record.routing.publicStatus === "answer_published") return "public_answer_available";
+  if (record.review.status === "rejected" || record.routing.status === "closed") return "closed_or_rejected";
+  if (record.review.status === "reviewed_private") return "private_reviewed";
+  return "private_pending_review";
+}
+
+function nextStepFor(record: ResidentStoryIntake) {
+  if (record.routing.publicStatus === "answer_published") return "A reviewed answer is available publicly without exposing your raw submission.";
+  if (record.routing.status === "needs_source") return "Reviewers need a source, official record, or clearer routing target before this can move forward.";
+  if (record.routing.status === "ready_to_send") return "A reviewer has identified a likely recipient/body. It has not been sent or published automatically.";
+  if (record.routing.status === "sent_externally") return "The question has been marked as sent externally and is waiting for a reviewed answer.";
+  if (record.routing.status === "answered") return "A reviewed answer exists internally. It must be marked published before it appears publicly.";
+  if (record.routing.status === "closed") return "This request is closed. Raw submission details remain private.";
+  if (record.review.status === "rejected") return "This request was rejected during moderation review.";
+  return "A reviewer still needs to classify the request, confirm the right body, and decide whether source review is needed.";
+}
+
+export async function getResidentRequestStatusesForUser(userId: string | null | undefined, limit = 6) {
+  if (!userId) return [];
+  const queue = await getResidentStoryReviewQueue();
+  return queue.records
+    .filter((record) => record.submitterUserId === userId)
+    .slice(0, limit)
+    .map((record): ResidentRequestStatusSummary => {
+      const publishedAnswer = buildResidentQuestionAnswerSummary(record);
+      const hasSensitiveFlags = record.safety.containsPersonalData || record.safety.containsAllegation || record.safety.involvesMinor || record.safety.involvesLegalMatter;
+      return {
+        id: record.id,
+        title: publicTitleForResidentQuestionAnswer(record),
+        submittedAt: record.createdAt,
+        location: record.location,
+        targetType: record.routing.targetType,
+        targetId: record.routing.targetId,
+        community: record.routing.community ?? record.location,
+        routingStatus: record.routing.status,
+        routingStatusLabel: residentQuestionRoutingStatusLabel(record.routing.status),
+        publicStatus: record.routing.publicStatus,
+        publicStatusLabel: residentQuestionPublicStatusLabel(record.routing.publicStatus),
+        reviewStatus: record.review.status,
+        privacyStatus: privacyStatusFor(record),
+        nextStep: nextStepFor(record),
+        publicAnswerHref: publishedAnswer ? `/answers#${publishedAnswer.id}` : null,
+        sourceUrl: record.routing.suggestedRecipientSourceUrl,
+        sourceLabel: record.routing.suggestedRecipientSourceUrl ? "Reviewed source/contact linked" : "No public source linked yet",
+        hasSensitiveFlags,
+      };
+    });
 }
 
 export function buildReviewedResidentStorySummary(

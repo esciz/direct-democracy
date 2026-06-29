@@ -23,6 +23,7 @@ import {
   saveResidentStoryReviewQueue,
 } from "@/lib/cases/resident-intake-store";
 import { normalizeWhitespace } from "@/lib/public-meetings/shared";
+import { getCurrentSessionUser } from "@/lib/server/auth-session";
 
 function formString(formData: FormData, key: string) {
   const value = formData.get(key);
@@ -42,7 +43,11 @@ function recipientTypeValue(value: string): ResidentQuestionSuggestedRecipientTy
 }
 
 export async function submitResidentStoryIntake(formData: FormData) {
-  const intake = buildResidentStoryIntakeFromFormData(formData);
+  const user = await getCurrentSessionUser();
+  const intake = buildResidentStoryIntakeFromFormData(formData, new Date(), {
+    userId: user?.id ?? null,
+    displayName: user?.name ?? null,
+  });
   const errors = validateResidentStoryIntakeShape(intake);
 
   if (errors.length) {

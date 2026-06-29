@@ -45,6 +45,9 @@ const checks = {
   adminAnswerWorkbenchExists: fileContains("app/admin/cases/resident-intake/page.tsx", "Answer review workbench"),
   adminAnswerQueueFiltersExist: fileContains("app/admin/cases/resident-intake/page.tsx", "ready-to-publish") && fileContains("app/admin/cases/resident-intake/page.tsx", "answer-workbench"),
   adminAnswerReadinessChecklistExists: fileContains("app/admin/cases/resident-intake/page.tsx", "Not ready to publish") && fileContains("app/admin/cases/resident-intake/page.tsx", "Checklist complete"),
+  submissionsTrackSignedInOwner: fileContains("lib/cases/resident-intake-actions.ts", "getCurrentSessionUser") && fileContains("lib/cases/resident-intake.ts", "submitterUserId"),
+  citizenRequestStatusHelperExists: fileContains("lib/cases/resident-intake-store.ts", "getResidentRequestStatusesForUser"),
+  profileUpdatesShowRequestStatuses: fileContains("app/profile/updates/page.tsx", "My Civic Requests") && fileContains("app/profile/updates/page.tsx", "getResidentRequestStatusesForUser"),
   adminCanMarkAnswerPublished: fileContains("app/admin/cases/resident-intake/page.tsx", "answer_published"),
   runtimeDoesNotExposeRawStory: !readText("lib/cases/resident-intake-store.ts").includes("story,"),
   runtimeCountMatchesPublishedQueue: runtimeRecords.length === answerPublishedInPrivateQueue,
@@ -62,6 +65,7 @@ const audit = {
     reviewedAnswers: runtime.totals?.reviewedAnswers ?? runtimeRecords.length,
     contextualSurfaces: 3,
     adminAnswerReviewSurfaces: 1,
+    citizenPrivateStatusSurfaces: 1,
   },
   privacyBoundary: {
     publicRuntimePath: "data/generated/resident-question-answers-runtime.json",

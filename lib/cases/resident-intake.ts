@@ -80,6 +80,8 @@ export type ResidentQuestionAnswerSummary = {
 
 export type ResidentStoryIntake = {
   id: string;
+  submitterUserId: string | null;
+  submitterDisplayName: string | null;
   submissionType: ResidentStorySubmissionType;
   story: string;
   location: string | null;
@@ -296,7 +298,12 @@ export function buildResidentQuestionAnswerSummary(record: ResidentStoryIntake):
 }
 
 export function normalizeResidentStoryIntake(record: ResidentStoryIntake): ResidentStoryIntake {
-  if (record.routing) return record;
+  const baseRecord = {
+    ...record,
+    submitterUserId: record.submitterUserId ?? null,
+    submitterDisplayName: record.submitterDisplayName ?? null,
+  };
+  if (baseRecord.routing) return baseRecord;
   const community = record.location ?? null;
   const targetType: ResidentQuestionTargetType = community ? "community" : "unknown";
   const routing: ResidentQuestionRouting = {
@@ -316,7 +323,7 @@ export function normalizeResidentStoryIntake(record: ResidentStoryIntake): Resid
     updatedAt: null,
   };
   return {
-    ...record,
+    ...baseRecord,
     routing,
   };
 }
@@ -378,7 +385,14 @@ export function buildResidentStoryPublicSummary(
   };
 }
 
-export function buildResidentStoryIntakeFromFormData(formData: FormData, now = new Date()): ResidentStoryIntake {
+export function buildResidentStoryIntakeFromFormData(
+  formData: FormData,
+  now = new Date(),
+  submitter?: {
+    userId?: string | null;
+    displayName?: string | null;
+  },
+): ResidentStoryIntake {
   const rawType = stringValue(formData, "submissionType") as ResidentStorySubmissionType;
   const submissionType = SUBMISSION_TYPES.has(rawType) ? rawType : "other_civic_concern";
   const publicationPreference = (stringValue(formData, "publicationPreference") || "private") as ResidentStoryPublicationPreference;
@@ -393,6 +407,8 @@ export function buildResidentStoryIntakeFromFormData(formData: FormData, now = n
 
   return {
     id: `resident-story-${slugify(`${submissionType}-${location ?? "unknown"}-${createdAt}`).slice(0, 96)}`,
+    submitterUserId: submitter?.userId ?? null,
+    submitterDisplayName: submitter?.displayName ?? null,
     submissionType,
     story,
     location,

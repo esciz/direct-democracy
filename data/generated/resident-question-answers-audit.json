@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-06-29T01:41:59.085Z",
+  "generatedAt": "2026-06-29T02:53:22.889Z",
   "totals": {
     "answerPublishedInPrivateQueue": 0,
     "publicAnswerRuntimeRecords": 0,
     "reviewedAnswers": 0,
     "contextualSurfaces": 3,
-    "adminAnswerReviewSurfaces": 1
+    "adminAnswerReviewSurfaces": 1,
+    "citizenPrivateStatusSurfaces": 1
   },
   "privacyBoundary": {
     "publicRuntimePath": "data/generated/resident-question-answers-runtime.json",
@@ -25,6 +26,9 @@
     "adminAnswerWorkbenchExists": true,
     "adminAnswerQueueFiltersExist": true,
     "adminAnswerReadinessChecklistExists": true,
+    "submissionsTrackSignedInOwner": true,
+    "citizenRequestStatusHelperExists": true,
+    "profileUpdatesShowRequestStatuses": true,
     "adminCanMarkAnswerPublished": true,
     "runtimeDoesNotExposeRawStory": true,
     "runtimeCountMatchesPublishedQueue": true

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { PageIntro } from "@/components/ui/page-intro";
 import { submitResidentStoryIntake } from "@/lib/cases/resident-intake-actions";
 
@@ -69,6 +71,9 @@ export default async function CaseSubmitPage({ searchParams }: CaseSubmitPagePro
             moderation, and your publication preference allow a public or anonymous summary.
           </p>
           {params?.id ? <p className="mt-2 text-xs text-emerald-200/80">Review reference: {params.id}</p> : null}
+          <Link href="/profile/updates#my-civic-requests" className="mt-4 inline-flex rounded-full border border-emerald-200/30 bg-emerald-200/10 px-4 py-2 text-xs font-semibold text-emerald-50">
+            Track status in your profile
+          </Link>
         </section>
       ) : null}
 
