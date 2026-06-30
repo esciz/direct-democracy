@@ -29,7 +29,7 @@ export function VerificationStatusCard({ user, content }: VerificationStatusCard
         </div>
         {user.verificationState !== "voterVerified" ? (
           <Link
-            href={`/services?communityId=${content.primaryCommunityId}`}
+            href="/account/verification#voter-review"
             className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
           >
             Complete voter verification

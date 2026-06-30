@@ -8,6 +8,7 @@ import { AccountParticipationStatusCard } from "@/components/domain/account-part
 import { requestCurrentEmailVerificationAction } from "@/lib/auth/actions";
 import { getAccountParticipationStatus } from "@/lib/civic-signals/account-participation-status";
 import { getIdentityAccountById } from "@/lib/identity/accounts";
+import { listDurableVerificationClaimsForAccount } from "@/lib/identity/durable-verification";
 import { readIdentityStore } from "@/lib/identity/storage";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 
@@ -78,8 +79,13 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
   const [params, user] = await Promise.all([searchParams, getCurrentSessionUser()]);
   if (!user) redirect("/auth");
 
-  const store = readIdentityStore();
-  const claims = store.verificationClaims.filter((claim) => claim.userId === user.id);
+  const [store, durableClaims] = await Promise.all([
+    Promise.resolve(readIdentityStore()),
+    listDurableVerificationClaimsForAccount(user.id).catch(() => []),
+  ]);
+  const localClaims = store.verificationClaims.filter((claim) => claim.userId === user.id);
+  const durableClaimIds = new Set(durableClaims.map((claim) => claim.id));
+  const claims = [...durableClaims, ...localClaims.filter((claim) => !durableClaimIds.has(claim.id))];
   const residencyClaims = claims.filter((claim) => claim.claimType === "residency");
   const voterClaims = claims.filter((claim) => claim.claimType === "voter");
   const hasPendingResidency = residencyClaims.some((claim) => claim.status === "pending" || claim.status === "pending_manual_review");
@@ -91,6 +97,7 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
   const identityAccount = getIdentityAccountById(user.id);
   const emailVerified = identityAccount?.emailVerificationStatus === "verified";
   const emailRequest = identityAccount?.emailVerificationRequest ?? null;
+  const activeStep = hasVerifiedVoter || hasPendingVoter ? "residency" : "voter";
 
   return (
     <main className="mx-auto max-w-5xl space-y-6 py-8">
@@ -155,6 +162,11 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
           Add the county/jurisdiction, describe the official portal result, and accept the attestation before submitting.
         </section>
       ) : null}
+      {params?.status === "voter-storage-error" ? (
+        <section className="rounded-[1.75rem] border border-rose-200 bg-rose-50 p-5 text-sm text-rose-900 shadow-card">
+          We could not save that guided voter review safely. Please try again in a moment; if it repeats, use the official lookup and contact an admin so the claim can be entered manually.
+        </section>
+      ) : null}
 
       <AccountParticipationStatusCard status={participationStatus} />
 
@@ -187,7 +199,52 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-5 shadow-card backdrop-blur">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Verification steps</p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {[
+            {
+              id: "voter",
+              label: "1. Voter lookup",
+              description: "Preferred path. Use imported voter files when available, then guided SOS lookup review.",
+              state: hasVerifiedVoter ? "complete" : hasPendingVoter ? "pending" : activeStep === "voter" ? "active" : "locked",
+            },
+            {
+              id: "residency",
+              label: "2. Residency review",
+              description: "Backup/manual residency review after voter lookup is matched or pending.",
+              state: hasVerifiedResidency ? "complete" : hasPendingResidency ? "pending" : activeStep === "residency" ? "active" : "locked",
+            },
+            {
+              id: "history",
+              label: "3. Claim history",
+              description: "Review private claim status and any reviewer decisions.",
+              state: claims.length ? "active" : "locked",
+            },
+          ].map((step) => (
+            <div
+              key={step.id}
+              className={`rounded-3xl border p-4 ${
+                step.state === "complete"
+                  ? "border-civic-200 bg-civic-50 text-civic-950"
+                  : step.state === "pending"
+                    ? "border-amber-200 bg-amber-50 text-amber-950"
+                    : step.state === "active"
+                      ? "border-slate-300 bg-white text-slate-900"
+                      : "border-slate-200 bg-slate-50 text-slate-500"
+              }`}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-sm font-semibold">{step.label}</p>
+                <span className="rounded-full bg-white/70 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em]">{step.state}</span>
+              </div>
+              <p className="mt-2 text-xs leading-5 opacity-80">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-6">
         <div id="voter-review" className="scroll-mt-28 rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur lg:col-span-2">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
@@ -302,6 +359,7 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
           )}
         </div>
 
+        {hasVerifiedVoter || hasPendingVoter ? (
         <div id="residency-review" className="scroll-mt-28 rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Residency request</p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Request manual review</h2>
@@ -355,6 +413,7 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
             </form>
           )}
         </div>
+        ) : null}
 
         <div id="claim-history" className="scroll-mt-28 rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Claim history</p>

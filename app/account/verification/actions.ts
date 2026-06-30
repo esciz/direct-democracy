@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 
 import { createAutomatedVoterFileMatchClaim, requestGuidedVoterPortalReview, requestResidencyManualReview } from "@/lib/identity/verification";
+import { createDurableAutomatedVoterFileMatchClaim, createDurableGuidedVoterPortalClaim } from "@/lib/identity/durable-verification";
 import { buildVoterVerificationAssistantPacket } from "@/lib/identity/voter-verification-assistant";
 import { matchVoterFileRecord } from "@/lib/identity/voter-file-provider";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
@@ -62,41 +63,72 @@ export async function requestGuidedVoterPortalVerificationAction(formData: FormD
   });
 
   if (fileMatch.matched) {
-    createAutomatedVoterFileMatchClaim({
-      userId: user.id,
+    try {
+      await createDurableAutomatedVoterFileMatchClaim({
+        accountId: user.id,
+        jurisdictionIds: ["nevada"],
+        countyOrJurisdiction,
+        countyVoterId,
+        electionPrecinct,
+        providerId: fileMatch.providerId,
+        sourceHash: fileMatch.sourceHash,
+      });
+    } catch {
+      try {
+        createAutomatedVoterFileMatchClaim({
+          userId: user.id,
+          jurisdictionIds: ["nevada"],
+          countyOrJurisdiction,
+          countyVoterId,
+          electionPrecinct,
+          registeredFirstName,
+          registeredLastName,
+          providerId: fileMatch.providerId,
+          sourceHash: fileMatch.sourceHash,
+          dateOfRecord: fileMatch.dateOfRecord,
+        });
+      } catch {
+        redirect("/account/verification?status=voter-storage-error#voter-review");
+      }
+    }
+    redirect("/account/verification?status=voter-auto-matched#claim-history");
+  }
+
+  try {
+    await createDurableGuidedVoterPortalClaim({
+      accountId: user.id,
       jurisdictionIds: ["nevada"],
       countyOrJurisdiction,
       countyVoterId,
       electionPrecinct,
-      registeredFirstName,
-      registeredLastName,
-      providerId: fileMatch.providerId,
-      sourceHash: fileMatch.sourceHash,
-      dateOfRecord: fileMatch.dateOfRecord,
-    });
-    redirect("/account/verification?status=voter-auto-matched#claim-history");
-  }
-
-  requestGuidedVoterPortalReview({
-    userId: user.id,
-    jurisdictionIds: ["nevada"],
-    countyOrJurisdiction,
-    countyVoterId,
-    electionPrecinct,
-    registeredFirstName,
-    registeredLastName,
-    portalResultSummary,
-    attestationAccepted,
-    assistantPacket: buildVoterVerificationAssistantPacket({
-      countyOrJurisdiction,
-      countyVoterId,
-      electionPrecinct,
-      registeredFirstName,
-      registeredLastName,
       portalResultSummary,
-      fileMatchMatched: false,
-    }),
-  });
+    });
+  } catch {
+    try {
+      requestGuidedVoterPortalReview({
+        userId: user.id,
+        jurisdictionIds: ["nevada"],
+        countyOrJurisdiction,
+        countyVoterId,
+        electionPrecinct,
+        registeredFirstName,
+        registeredLastName,
+        portalResultSummary,
+        attestationAccepted,
+        assistantPacket: buildVoterVerificationAssistantPacket({
+          countyOrJurisdiction,
+          countyVoterId,
+          electionPrecinct,
+          registeredFirstName,
+          registeredLastName,
+          portalResultSummary,
+          fileMatchMatched: false,
+        }),
+      });
+    } catch {
+      redirect("/account/verification?status=voter-storage-error#voter-review");
+    }
+  }
 
   redirect("/account/verification?status=voter-submitted#claim-history");
 }
