@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-06-30T00:51:48.850Z",
+  "sprint": "Sprint 3",
+  "status": "ready_with_warnings",
+  "recommendation": "Sprint 3 can close with warnings. Move to Sprint 4 launch readiness and production QA, and carry the listed warnings into launch hardening.",
+  "gates": {
+    "citizenActionLoop": {
+      "status": "green",
+      "actionAuditStatus": "passed",
+      "updateAuditStatus": "passed",
+      "concernEntryPoints": 3,
+      "notificationPathsConfigured": true
+    },
+    "residentRequestLifecycle": {
+      "status": "green",
+      "submittedRequests": 1,
+      "routedRequests": 1,
+      "publishedAnswers": 1,
+      "privateStatusRecords": 2
+    },
+    "privacyBoundary": {
+      "status": "green",
+      "rawStoryPrivateByDefault": true,
+      "privateStatusOwnedBySubmitter": true,
+      "rawStoryPublic": false,
+      "privateReviewerNotesPublic": false,
+      "publicAnswerContainsPrivateNeedles": false
+    },
+    "citizenStatusExperience": {
+      "status": "green",
+      "confirmationLinksToProfileStatus": true,
+      "profileStatusSurface": true,
+      "privateStatusHelper": true
+    },
+    "adminReviewExperience": {
+      "status": "green",
+      "answerWorkbench": true,
+      "readyToPublishFilter": true,
+      "readinessChecklist": true
+    },
+    "contextualPublicAnswers": {
+      "status": "green",
+      "answersRoute": true,
+      "decisions": true,
+      "projects": true,
+      "communities": true
+    },
+    "accountParticipation": {
+      "status": "yellow",
+      "accountAuditStatus": "account_participation_readiness_audited",
+      "participationAuditStatus": "not_run_in_closeout"
+    }
+  },
+  "totals": {
+    "blockers": 0,
+    "warnings": 4,
+    "concernEntryPoints": 3,
+    "sourceBackedDecisionsAvailable": 756,
+    "sourceBackedProjectsAvailable": 314,
+    "residentLifecyclePublishedAnswers": 1,
+    "citizenPrivateStatusSurfaces": 1
+  },
+  "blockers": [],
+  "warnings": [
+    "Resident request storage is still local JSON-backed; production launch needs durable private storage policy.",
+    "Public answer count may be zero until real reviewed answers are published by an admin.",
+    "Voter/resident verification remains a practical review workflow without a live Nevada SOS API partnership.",
+    "Sprint 2 data-quality backlog continues for Nevada officials, meeting extraction, OCR, and vote review."
+  ],
+  "requiredValidation": [
+    "npm run citizen-actions:audit",
+    "npm run citizen-updates:audit",
+    "npm run resident-request:lifecycle-audit",
+    "npm run resident-intake:validate",
+    "npm run resident-questions:audit",
+    "npm run resident-answers:audit",
+    "npm run typecheck",
+    "npm run build"
+  ],
+  "nextSprint": {
+    "id": "Sprint 4",
+    "title": "Launch Readiness & Production QA",
+    "focus": [
+      "production environment parity",
+      "custom domain readiness when DNS is ready",
+      "guest/resident/voter/admin QA scripts",
+      "real reviewed answer seeding",
+      "durable private resident request storage"
+    ]
+  }
+}

@@ -194,6 +194,7 @@
     "resident-questions:audit": "node --import tsx scripts/audit-resident-question-routing.ts",
     "resident-answers:audit": "node --import tsx scripts/audit-resident-question-answers.ts",
     "resident-request:lifecycle-audit": "node --import tsx scripts/verify-resident-request-lifecycle.ts",
+    "sprint3:readiness": "npm run citizen-actions:audit && npm run citizen-updates:audit && npm run resident-request:lifecycle-audit && npm run resident-intake:validate && npm run resident-questions:audit && npm run resident-answers:audit && node --import tsx scripts/generate-sprint-3-readiness-report.ts",
     "voting:seed-demo-participation": "node --import tsx scripts/seed-demo-participation.ts",
     "verification:residency-bridge-audit": "node --import tsx scripts/audit-residency-verification-bridge.ts",
     "verification:guided-voter-audit": "node --import tsx scripts/audit-guided-voter-verification.ts",
