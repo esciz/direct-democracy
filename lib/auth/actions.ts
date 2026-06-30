@@ -122,6 +122,7 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
     return { ...AUTH_ERROR_STATE, fieldErrors };
   }
 
+  let registeredAccountId: string;
   try {
     const account = await createDurableLocalAccount({
       email,
@@ -130,8 +131,7 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
       emailVerified: false,
       role: "citizen",
     });
-    const cookieStore = await cookies();
-    cookieStore.set(MOCK_AUTH_COOKIE, account.id, getAuthCookieOptions());
+    registeredAccountId = account.id;
   } catch {
     return {
       status: "error",
@@ -145,6 +145,9 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
     emailVerificationStatus: "unverified",
     antiBotScreened: true,
   });
+
+  const cookieStore = await cookies();
+  cookieStore.set(MOCK_AUTH_COOKIE, registeredAccountId, getAuthCookieOptions());
 
   redirect("/get-started?step=verify");
 }

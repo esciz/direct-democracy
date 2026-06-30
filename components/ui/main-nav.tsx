@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { Logo } from "@/components/ui/brand-logo";
 import { NavLinks } from "@/components/ui/nav-links";
 import { NotificationMenu } from "@/components/ui/notification-menu";
+import { signOutCurrentUser } from "@/lib/auth/actions";
 import { getRoleLabel } from "@/lib/auth/roles";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
@@ -173,12 +174,14 @@ export async function MainNav() {
               <span className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
                 Current role: {getRoleLabel(currentUser.role)}
               </span>
-              <Link
-                href="/auth/sign-out"
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-rose-300/30 hover:text-rose-100"
-              >
-                Sign out
-              </Link>
+              <form action={signOutCurrentUser}>
+                <button
+                  type="submit"
+                  className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition hover:border-rose-300/30 hover:text-rose-100"
+                >
+                  Sign out
+                </button>
+              </form>
             </div>
           </div>
         </div>

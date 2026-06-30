@@ -12,6 +12,14 @@ async function main() {
   const authActionsSource = await fs.readFile(path.join(process.cwd(), "lib/auth/actions.ts"), "utf8");
   const authCookieSource = await fs.readFile(path.join(process.cwd(), "lib/auth/cookies.ts"), "utf8");
   const signOutRouteSource = await fs.readFile(path.join(process.cwd(), "app/auth/sign-out/route.ts"), "utf8");
+  const mainNavSource = await fs.readFile(path.join(process.cwd(), "components/ui/main-nav.tsx"), "utf8");
+  const profilePageSource = await fs.readFile(path.join(process.cwd(), "app/profile/page.tsx"), "utf8");
+  const signOutGetStart = signOutRouteSource.indexOf("export async function GET");
+  const signOutPostStart = signOutRouteSource.indexOf("export async function POST");
+  const signOutGetSource =
+    signOutGetStart >= 0 && signOutPostStart > signOutGetStart
+      ? signOutRouteSource.slice(signOutGetStart, signOutPostStart)
+      : "";
   const audit = {
     generatedAt: new Date().toISOString(),
     status: "auth_session_boundaries_audited",
@@ -38,10 +46,18 @@ async function main() {
         authActionsSource.includes("getAuthCookieOptions"),
       signOutClearsDomainCookie:
         signOutRouteSource.includes("clearAuthSessionCookies") &&
+        authActionsSource.includes("clearAuthSessionCookies(cookieStore)") &&
         authCookieSource.includes("getAuthCookieDeleteOptions"),
       staticInfographicHtmlBypassesAuthProxy:
         proxySource.includes('pathname.startsWith("/infographics/")') &&
         proxySource.includes("html|ico"),
+      signOutIsNotPrefetchableGetMutation:
+        signOutRouteSource.includes("export async function GET") &&
+        !signOutGetSource.includes("clearAuthSessionCookies") &&
+        !mainNavSource.includes('href="/auth/sign-out"') &&
+        !profilePageSource.includes('href="/auth/sign-out"') &&
+        mainNavSource.includes("signOutCurrentUser") &&
+        profilePageSource.includes("signOutCurrentUser"),
     },
   };
   const pass = Object.values(audit.validation).every(Boolean);

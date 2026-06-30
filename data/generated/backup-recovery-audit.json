@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-30T04:02:24.325Z",
+  "generatedAt": "2026-06-30T04:16:28.865Z",
   "provenance": {
-    "runId": "20260630040224-unknown-u5au11",
-    "generatedAt": "2026-06-30T04:02:24.311Z",
+    "runId": "20260630041628-unknown-7g9hz3",
+    "generatedAt": "2026-06-30T04:16:28.850Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "configured_unverified",
     "storageBackend": "provider_backup",
     "workerBackend": "operator_or_worker",
-    "gitCommit": "dc5fcc45142c",
+    "gitCommit": "69a90dbd909c",
     "canonicalStatus": "not_canonical",
     "artifactName": "backup-recovery-audit"
   },

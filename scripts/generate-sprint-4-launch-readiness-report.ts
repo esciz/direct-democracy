@@ -183,6 +183,8 @@ async function main() {
     fileContains("proxy.ts", "isSeededDemoSessionId") &&
     fileContains("proxy.ts", "expireSessionCookie(response)") &&
     fileContains("app/auth/sign-out/route.ts", "clearAuthSessionCookies") &&
+    !fileContains("components/ui/main-nav.tsx", 'href="/auth/sign-out"') &&
+    !fileContains("app/profile/page.tsx", 'href="/auth/sign-out"') &&
     fileContains("lib/auth/cookies.ts", "getAuthCookieOptions") &&
     fileContains("lib/auth/cookies.ts", "getAuthCookieDeleteOptions");
   const sprint3Ready = sprint3.status === "ready_with_warnings" || sprint3.status === "ready_for_sprint_4";
@@ -256,6 +258,7 @@ async function main() {
       adminApiProxyProtected: fileContains("proxy.ts", 'pathname.startsWith("/api/admin/")'),
       productionRejectsSeededDemoSessions: fileContains("proxy.ts", "isSeededDemoSessionId") && fileContains("proxy.ts", "expireSessionCookie(response)"),
       signOutRoutePresent: fileContains("app/auth/sign-out/route.ts", "clearAuthSessionCookies"),
+      signOutLinksArePostForms: !fileContains("components/ui/main-nav.tsx", 'href="/auth/sign-out"') && !fileContains("app/profile/page.tsx", 'href="/auth/sign-out"'),
     },
   };
 

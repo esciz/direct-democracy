@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T04:02:21.693Z",
+  "generatedAt": "2026-06-30T04:16:26.195Z",
   "status": "auth_session_boundaries_audited",
   "sensitiveValuesIncluded": false,
   "validation": {
@@ -14,7 +14,8 @@
     "loginAndRegistrationUseDurableIdentity": true,
     "productionCookieCanSpanRootAndWww": true,
     "signOutClearsDomainCookie": true,
-    "staticInfographicHtmlBypassesAuthProxy": true
+    "staticInfographicHtmlBypassesAuthProxy": true,
+    "signOutIsNotPrefetchableGetMutation": true
   },
   "pass": true
 }

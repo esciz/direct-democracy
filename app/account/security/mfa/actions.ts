@@ -3,18 +3,10 @@
 import { cookies } from "next/headers";
 
 import { MOCK_AUTH_COOKIE } from "@/lib/auth/constants";
+import { getAuthCookieOptions } from "@/lib/auth/cookies";
 import { confirmMfaEnrollment, verifyMfaChallenge } from "@/lib/identity/accounts";
 import { createMfaSessionCookieValue, MFA_SESSION_COOKIE } from "@/lib/identity/mfa-session";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
-
-function getCookieOptions() {
-  return {
-    httpOnly: true,
-    sameSite: "lax" as const,
-    path: "/",
-    secure: process.env.NODE_ENV === "production",
-  };
-}
 
 export type MfaActionState = {
   status: "idle" | "error" | "success";
@@ -35,8 +27,8 @@ export async function confirmMfaEnrollmentAction(_previous: MfaActionState, form
     return { status: "error", message: "That code could not be confirmed. Check your authenticator app and try again." };
   }
   const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, user.id, getCookieOptions());
-  cookieStore.set(MFA_SESSION_COOKIE, createMfaSessionCookieValue(user.id), getCookieOptions());
+  cookieStore.set(MOCK_AUTH_COOKIE, user.id, getAuthCookieOptions());
+  cookieStore.set(MFA_SESSION_COOKIE, createMfaSessionCookieValue(user.id), getAuthCookieOptions());
   return {
     status: "success",
     message: "MFA enrollment complete. Save these recovery codes now; they will not be shown again.",
@@ -52,8 +44,8 @@ export async function confirmMfaChallengeAction(_previous: MfaActionState, formD
     return { status: "error", message: "That code could not be confirmed. Try again or use a recovery code." };
   }
   const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, user.id, getCookieOptions());
-  cookieStore.set(MFA_SESSION_COOKIE, createMfaSessionCookieValue(user.id), getCookieOptions());
+  cookieStore.set(MOCK_AUTH_COOKIE, user.id, getAuthCookieOptions());
+  cookieStore.set(MFA_SESSION_COOKIE, createMfaSessionCookieValue(user.id), getAuthCookieOptions());
   return {
     status: "success",
     message: "MFA confirmed. You can continue to the admin dashboard.",

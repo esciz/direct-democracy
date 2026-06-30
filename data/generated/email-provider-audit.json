@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-30T04:02:22.402Z",
+  "generatedAt": "2026-06-30T04:16:26.924Z",
   "provenance": {
-    "runId": "20260630040222-unknown-f92ntx",
-    "generatedAt": "2026-06-30T04:02:22.387Z",
+    "runId": "20260630041626-unknown-h9if8o",
+    "generatedAt": "2026-06-30T04:16:26.909Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "unknown",
     "storageBackend": "identity_token_prisma_when_available",
     "workerBackend": "durable_queue",
-    "gitCommit": "dc5fcc45142c",
+    "gitCommit": "69a90dbd909c",
     "canonicalStatus": "not_canonical",
     "artifactName": "email-provider-audit"
   },

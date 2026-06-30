@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-30T04:02:23.217Z",
+  "generatedAt": "2026-06-30T04:16:27.752Z",
   "provenance": {
-    "runId": "20260630040223-unknown-ybdvz1",
-    "generatedAt": "2026-06-30T04:02:23.203Z",
+    "runId": "20260630041627-unknown-6wu0o4",
+    "generatedAt": "2026-06-30T04:16:27.737Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "not_required",
     "storageBackend": "production_storage_configured",
     "workerBackend": "not_required",
-    "gitCommit": "dc5fcc45142c",
+    "gitCommit": "69a90dbd909c",
     "canonicalStatus": "not_canonical",
     "artifactName": "evidence-storage-audit"
   },

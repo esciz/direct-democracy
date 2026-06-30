@@ -12,6 +12,7 @@ import { ParticipationReadinessPanel } from "@/components/domain/participation-r
 import { AccountParticipationStatusCard } from "@/components/domain/account-participation-status-card";
 import { PageIntro } from "@/components/ui/page-intro";
 import { hasAdminDashboardPermission } from "@/lib/admin/permissions";
+import { signOutCurrentUser } from "@/lib/auth/actions";
 import { getCitizenActionDashboard } from "@/lib/citizen-actions/dashboard";
 import { getAccountParticipationStatus } from "@/lib/civic-signals/account-participation-status";
 import { getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
@@ -155,9 +156,11 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
                 Admin Dashboard
               </Link>
             ) : null}
-            <Link href="/auth/sign-out" className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-rose-300 hover:text-rose-700">
-              Sign out
-            </Link>
+            <form action={signOutCurrentUser}>
+              <button type="submit" className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-rose-300 hover:text-rose-700">
+                Sign out
+              </button>
+            </form>
           </div>
         }
       />
