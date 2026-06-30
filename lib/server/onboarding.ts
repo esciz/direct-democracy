@@ -260,7 +260,7 @@ export function buildOnboardingTrustSummary(draft: OnboardingDraft | null) {
     voterMatchStatus: draft?.verificationStatus === "strongMatch" ? "voterVerified" : "unverified",
     voterMatchConfidence: draft?.voterMatchConfidence ?? "none",
     enhancedIdentityStatus: draft?.enhancedIdentityStatus ?? (draft?.verificationStatus === "possibleMatch" ? "recommended" : "notNeeded"),
-    manualReviewStatus: draft?.manualReviewStatus ?? (draft?.verificationStatus === "possibleMatch" || draft?.verificationStatus === "sourceUnavailable" ? "available" : "notNeeded"),
+    manualReviewStatus: draft?.manualReviewStatus ?? (draft?.verificationStatus && draft.verificationStatus !== "strongMatch" ? "available" : "notNeeded"),
     candidateOfficialMatchStatus:
       draft?.candidateOfficialMatchStatus ??
       (draft?.matchedPublicProfileId

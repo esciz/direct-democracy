@@ -352,13 +352,13 @@ export async function submitVoterVerification(formData: FormData) {
       : null,
     candidateOfficialMatchStatus: buildCandidateOfficialMatchStatus(verification.status, matchedProfile),
     enhancedIdentityStatus: verification.status === "possibleMatch" ? "recommended" : "notNeeded",
-    manualReviewStatus: verification.status === "possibleMatch" || verification.status === "sourceUnavailable" ? "available" : "notNeeded",
+    manualReviewStatus: verification.status === "strongMatch" ? "notNeeded" : "available",
     riskFlags:
       verification.status === "possibleMatch"
         ? matchedProfile
           ? ["ambiguousVoterMatch", "claimRequiresEnhancedVerification"]
           : ["ambiguousVoterMatch"]
-        : verification.status === "sourceUnavailable"
+        : verification.status === "sourceUnavailable" || verification.status === "noMatch"
           ? ["manualReviewRequired"]
         : [],
   });

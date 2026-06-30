@@ -85,6 +85,7 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
   const claimProfileId = params?.claimProfile ?? draft?.claimTargetProfileId ?? "";
   const communities = getOnboardingCommunities();
   const issueOptions = getCanonicalOnboardingIssues();
+  const needsGuidedVoterReview = Boolean(draft?.verificationStatus && draft.verificationStatus !== "strongMatch");
 
   return (
     <div className="space-y-8 py-8">
@@ -250,6 +251,54 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
             {draft?.verificationStatus === "sourceUnavailable" ? (
               <div className="mt-5 rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-amber-950">
                 This is a system limitation, not a statement about your voter registration. Verified stakeholder eligibility should continue through manual residency review until a real voter-registration provider is connected.
+              </div>
+            ) : null}
+            {needsGuidedVoterReview ? (
+              <div className="mt-5 rounded-3xl border border-civic-200 bg-civic-50 p-5">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-800">Assisted voter review</p>
+                <h4 className="mt-2 text-lg font-semibold text-ink">Use the official Nevada voter lookup next</h4>
+                <p className="mt-3 text-sm leading-7 text-slate-700">
+                  Automatic matching did not verify your voter record. That does not mean you are not registered. Open Nevada&apos;s official voter lookup, then submit a guided review packet with the County Voter ID and election precinct or district number shown there.
+                </p>
+                <div className="mt-4 grid gap-3 text-sm leading-6 text-slate-700 md:grid-cols-3">
+                  <div className="rounded-2xl border border-civic-100 bg-white p-4">
+                    <p className="font-semibold text-ink">1. Open SOS lookup</p>
+                    <p className="mt-1">Search yourself on the official Nevada voter portal.</p>
+                  </div>
+                  <div className="rounded-2xl border border-civic-100 bg-white p-4">
+                    <p className="font-semibold text-ink">2. Copy the fields</p>
+                    <p className="mt-1">County Voter ID, election precinct or district number, county, name, and voting status.</p>
+                  </div>
+                  <div className="rounded-2xl border border-civic-100 bg-white p-4">
+                    <p className="font-semibold text-ink">3. Submit for review</p>
+                    <p className="mt-1">An admin compares your packet against the official portal before approval.</p>
+                  </div>
+                </div>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <a
+                    href="https://www.nvsos.gov/votersearch/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                  >
+                    Open Nevada SOS lookup
+                  </a>
+                  {currentUser ? (
+                    <Link
+                      href="/account/verification#voter-review"
+                      className="inline-flex rounded-full border border-civic-200 bg-white px-5 py-3 text-sm font-semibold text-civic-800 transition hover:border-civic-500"
+                    >
+                      Enter voter ID and precinct
+                    </Link>
+                  ) : (
+                    <Link
+                      href={`/get-started?step=account${claimProfileId ? `&claimProfile=${encodeURIComponent(claimProfileId)}` : ""}`}
+                      className="inline-flex rounded-full border border-civic-200 bg-white px-5 py-3 text-sm font-semibold text-civic-800 transition hover:border-civic-500"
+                    >
+                      Create account before review
+                    </Link>
+                  )}
+                </div>
               </div>
             ) : null}
             <div className="mt-5 rounded-3xl border border-slate-200 bg-white p-5">

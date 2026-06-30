@@ -6,6 +6,7 @@ const OUTPUT_PATH = path.join(GENERATED_DIR, "account-verification-ux-audit.json
 
 async function main() {
   const page = await fs.readFile(path.join(process.cwd(), "app/account/verification/page.tsx"), "utf8");
+  const getStartedPage = await fs.readFile(path.join(process.cwd(), "app/get-started/page.tsx"), "utf8");
   const actions = await fs.readFile(path.join(process.cwd(), "app/account/verification/actions.ts"), "utf8");
   const statusCard = await fs.readFile(path.join(process.cwd(), "components/domain/account-participation-status-card.tsx"), "utf8");
   const audit = {
@@ -25,6 +26,12 @@ async function main() {
         page.includes('name="portalResultSummary"') &&
         page.includes("Select the status you saw") &&
         page.includes("Status shown, needs reviewer confirmation"),
+      noMatchOnboardingExplainsOfficialLookupFallback:
+        getStartedPage.includes("Assisted voter review") &&
+        getStartedPage.includes("Open Nevada SOS lookup") &&
+        getStartedPage.includes("County Voter ID") &&
+        getStartedPage.includes("election precinct or district number") &&
+        getStartedPage.includes("/account/verification#voter-review"),
       claimHistoryExplainsReviewOutcomes:
         page.includes("claimStatusCopy") &&
         page.includes("A reviewer needs more information") &&

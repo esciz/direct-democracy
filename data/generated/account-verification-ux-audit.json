@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T00:42:43.978Z",
+  "generatedAt": "2026-06-30T03:27:35.981Z",
   "status": "account_verification_ux_audited",
   "sensitiveValuesIncluded": false,
   "validation": {
@@ -11,6 +11,7 @@
     "residencyCtaTargetsFormAnchor": true,
     "formAnchorsPresent": true,
     "voterPortalSummaryUsesDropdown": true,
+    "noMatchOnboardingExplainsOfficialLookupFallback": true,
     "claimHistoryExplainsReviewOutcomes": true,
     "claimHistoryShowsVoterReviewContext": true,
     "emailVerificationControlPresent": true,
