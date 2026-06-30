@@ -181,8 +181,10 @@ async function main() {
     fileContains("app/admin/page.tsx", 'redirect("/admin/operations")') &&
     fileContains("proxy.ts", 'pathname.startsWith("/api/admin/")') &&
     fileContains("proxy.ts", "isSeededDemoSessionId") &&
-    fileContains("proxy.ts", "response.cookies.delete(MOCK_AUTH_COOKIE)") &&
-    fileContains("app/auth/sign-out/route.ts", "MOCK_AUTH_COOKIE");
+    fileContains("proxy.ts", "expireSessionCookie(response)") &&
+    fileContains("app/auth/sign-out/route.ts", "clearAuthSessionCookies") &&
+    fileContains("lib/auth/cookies.ts", "getAuthCookieOptions") &&
+    fileContains("lib/auth/cookies.ts", "getAuthCookieDeleteOptions");
   const sprint3Ready = sprint3.status === "ready_with_warnings" || sprint3.status === "ready_for_sprint_4";
   const browseNoDemo = asNumber(browse.audit?.totals?.categoriesWithDemoData) === 0;
   const communityNavigable = asNumber(community.totals?.communityPagesReady) >= 39 || asNumber(community.totals?.totalCommunities) >= 39;
@@ -252,8 +254,8 @@ async function main() {
       adminLayoutProtected: fileContains("app/admin/layout.tsx", "requireAdminPage"),
       adminRedirectCanonical: fileContains("app/admin/page.tsx", 'redirect("/admin/operations")'),
       adminApiProxyProtected: fileContains("proxy.ts", 'pathname.startsWith("/api/admin/")'),
-      productionRejectsSeededDemoSessions: fileContains("proxy.ts", "isSeededDemoSessionId") && fileContains("proxy.ts", "response.cookies.delete(MOCK_AUTH_COOKIE)"),
-      signOutRoutePresent: fileContains("app/auth/sign-out/route.ts", "MOCK_AUTH_COOKIE"),
+      productionRejectsSeededDemoSessions: fileContains("proxy.ts", "isSeededDemoSessionId") && fileContains("proxy.ts", "expireSessionCookie(response)"),
+      signOutRoutePresent: fileContains("app/auth/sign-out/route.ts", "clearAuthSessionCookies"),
     },
   };
 

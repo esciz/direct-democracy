@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 import { DEV_ONLY_AUTH_ENABLED, MOCK_AUTH_COOKIE, PUBLIC_POST_CREATOR_ROLES } from "@/lib/auth/constants";
+import { getAuthCookieDeleteOptions } from "@/lib/auth/cookies";
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import { OWNER_ADMIN_USER_ID } from "@/lib/identity/constants";
 
@@ -17,10 +18,22 @@ function isPubliclyReachablePath(pathname: string) {
     pathname.startsWith("/auth/") ||
     pathname === "/account/verify-email" ||
     pathname === "/manifest.webmanifest" ||
+    pathname.startsWith("/infographics/") ||
     pathname.startsWith("/api/") ||
     pathname.startsWith("/_next/") ||
-    /\.(?:ico|png|jpg|jpeg|svg|webp|gif|css|js|map|txt|xml)$/.test(pathname)
+    /\.(?:html|ico|png|jpg|jpeg|svg|webp|gif|css|js|map|txt|xml|webmanifest)$/.test(pathname)
   );
+}
+
+function expireSessionCookie(response: NextResponse) {
+  response.cookies.delete(MOCK_AUTH_COOKIE);
+  const deleteOptions = getAuthCookieDeleteOptions();
+  if (!deleteOptions.domain) return;
+  response.cookies.set(MOCK_AUTH_COOKIE, "", {
+    ...deleteOptions,
+    expires: new Date(0),
+    maxAge: 0,
+  });
 }
 
 export function proxy(request: NextRequest) {
@@ -30,10 +43,10 @@ export function proxy(request: NextRequest) {
   if (!DEV_ONLY_AUTH_ENABLED && request.method === "GET" && !isPubliclyReachablePath(pathname)) {
     if (!sessionUserId || isSeededDemoSessionId(sessionUserId)) {
       const authUrl = new URL("/auth", request.url);
-      authUrl.searchParams.set("next", pathname);
+      authUrl.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
       const response = NextResponse.redirect(authUrl);
       if (sessionUserId && isSeededDemoSessionId(sessionUserId)) {
-        response.cookies.delete(MOCK_AUTH_COOKIE);
+        expireSessionCookie(response);
       }
       return response;
     }
@@ -53,7 +66,7 @@ export function proxy(request: NextRequest) {
 
     if (!sessionUserId) {
       const authUrl = new URL("/auth", request.url);
-      authUrl.searchParams.set("next", pathname);
+      authUrl.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
       return NextResponse.redirect(authUrl);
     }
 

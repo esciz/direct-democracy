@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T03:48:18.478Z",
+  "generatedAt": "2026-06-30T04:02:21.693Z",
   "status": "auth_session_boundaries_audited",
   "sensitiveValuesIncluded": false,
   "validation": {
@@ -11,7 +11,10 @@
     "productionSessionRejectsSeededUsers": true,
     "productionProxyRedirectsMissingOrSeededSession": true,
     "seededCredentialFallbackRequiresDemoMode": true,
-    "loginAndRegistrationUseDurableIdentity": true
+    "loginAndRegistrationUseDurableIdentity": true,
+    "productionCookieCanSpanRootAndWww": true,
+    "signOutClearsDomainCookie": true,
+    "staticInfographicHtmlBypassesAuthProxy": true
   },
   "pass": true
 }

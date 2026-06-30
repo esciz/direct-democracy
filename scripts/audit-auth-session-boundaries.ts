@@ -10,6 +10,8 @@ async function main() {
   const proxySource = await fs.readFile(path.join(process.cwd(), "proxy.ts"), "utf8");
   const adminPermissionsSource = await fs.readFile(path.join(process.cwd(), "lib/admin/permissions.ts"), "utf8");
   const authActionsSource = await fs.readFile(path.join(process.cwd(), "lib/auth/actions.ts"), "utf8");
+  const authCookieSource = await fs.readFile(path.join(process.cwd(), "lib/auth/cookies.ts"), "utf8");
+  const signOutRouteSource = await fs.readFile(path.join(process.cwd(), "app/auth/sign-out/route.ts"), "utf8");
   const audit = {
     generatedAt: new Date().toISOString(),
     status: "auth_session_boundaries_audited",
@@ -23,13 +25,23 @@ async function main() {
       productionSessionRejectsSeededUsers: sessionSource.includes("DEV_ONLY_AUTH_ENABLED ? getSeedUserById(userId) : null"),
       productionProxyRedirectsMissingOrSeededSession:
         proxySource.includes("isSeededDemoSessionId") &&
-        proxySource.includes('authUrl.searchParams.set("next", pathname)') &&
-        proxySource.includes("response.cookies.delete(MOCK_AUTH_COOKIE)"),
+        proxySource.includes('authUrl.searchParams.set("next"') &&
+        proxySource.includes("expireSessionCookie(response)"),
       seededCredentialFallbackRequiresDemoMode: authActionsSource.includes("DEV_ONLY_AUTH_ENABLED ? seedUsers.find"),
       loginAndRegistrationUseDurableIdentity:
         authActionsSource.includes("authenticateDurableLocalAccount") &&
         authActionsSource.includes("createDurableLocalAccount") &&
         sessionSource.includes("getDurableAuthUserById"),
+      productionCookieCanSpanRootAndWww:
+        authCookieSource.includes("DIRECT_DEMOCRACY_PUBLIC_DOMAIN") &&
+        authCookieSource.includes('replace(/^www\\./, "")') &&
+        authActionsSource.includes("getAuthCookieOptions"),
+      signOutClearsDomainCookie:
+        signOutRouteSource.includes("clearAuthSessionCookies") &&
+        authCookieSource.includes("getAuthCookieDeleteOptions"),
+      staticInfographicHtmlBypassesAuthProxy:
+        proxySource.includes('pathname.startsWith("/infographics/")') &&
+        proxySource.includes("html|ico"),
     },
   };
   const pass = Object.values(audit.validation).every(Boolean);

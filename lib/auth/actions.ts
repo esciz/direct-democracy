@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { DEV_ONLY_AUTH_ENABLED, GUEST_BROWSE_USER_ID, MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
+import { clearAuthSessionCookies, getAuthCookieOptions } from "@/lib/auth/cookies";
 import { getSeedUserById, seedUsers } from "@/lib/auth/mock-users";
 import { changeLocalPassword, createEmailVerificationRequest, updateEmailVerificationDeliveryStatus } from "@/lib/identity/accounts";
 import { authenticateDurableLocalAccount, createDurableLocalAccount } from "@/lib/identity/durable-accounts";
@@ -29,15 +30,6 @@ import {
 function getFormString(formData: FormData, key: string) {
   const value = formData.get(key);
   return typeof value === "string" ? value.trim() : "";
-}
-
-function getMockAuthCookieOptions() {
-  return {
-    httpOnly: true,
-    sameSite: "lax" as const,
-    path: "/",
-    secure: process.env.NODE_ENV === "production",
-  };
 }
 
 async function getRequestOrigin() {
@@ -88,7 +80,7 @@ export async function signInWithDemoCredentials(_previousState: AuthFormState, f
   const localResult = await authenticateDurableLocalAccount(email, password);
   if (localResult.ok) {
     const cookieStore = await cookies();
-    cookieStore.set(MOCK_AUTH_COOKIE, localResult.account.id, getMockAuthCookieOptions());
+    cookieStore.set(MOCK_AUTH_COOKIE, localResult.account.id, getAuthCookieOptions());
     cookieStore.delete(MFA_SESSION_COOKIE);
     if (localResult.account.mustChangePassword) redirect("/account/security/change-password");
     if (localResult.account.mfaEnrollmentRequired && !localResult.account.mfaEnrolledAt) redirect("/account/security/mfa/enroll");
@@ -106,7 +98,7 @@ export async function signInWithDemoCredentials(_previousState: AuthFormState, f
   }
 
   const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, matchedUser.id, getMockAuthCookieOptions());
+  cookieStore.set(MOCK_AUTH_COOKIE, matchedUser.id, getAuthCookieOptions());
 
   redirect("/");
 }
@@ -139,7 +131,7 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
       role: "citizen",
     });
     const cookieStore = await cookies();
-    cookieStore.set(MOCK_AUTH_COOKIE, account.id, getMockAuthCookieOptions());
+    cookieStore.set(MOCK_AUTH_COOKIE, account.id, getAuthCookieOptions());
   } catch {
     return {
       status: "error",
@@ -159,8 +151,7 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
 
 export async function signOutCurrentUser() {
   const cookieStore = await cookies();
-  cookieStore.delete(MOCK_AUTH_COOKIE);
-  cookieStore.delete(MFA_SESSION_COOKIE);
+  clearAuthSessionCookies(cookieStore);
   redirect("/auth");
 }
 
@@ -256,7 +247,7 @@ export async function switchDevUser(formData: FormData) {
   const cookieStore = await cookies();
 
   if (nextUserId === PUBLIC_SESSION_VALUE) {
-    cookieStore.set(MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE, getMockAuthCookieOptions());
+    cookieStore.set(MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE, getAuthCookieOptions());
     await clearOnboardingDraft();
 
     redirect("/auth");
@@ -265,7 +256,7 @@ export async function switchDevUser(formData: FormData) {
       return;
     }
 
-    cookieStore.set(MOCK_AUTH_COOKIE, nextUserId, getMockAuthCookieOptions());
+    cookieStore.set(MOCK_AUTH_COOKIE, nextUserId, getAuthCookieOptions());
   }
 
   redirect(typeof redirectTo === "string" && redirectTo ? redirectTo : "/");
@@ -275,7 +266,7 @@ export async function startDemoOnboarding() {
   if (!DEV_ONLY_AUTH_ENABLED) redirect("/auth");
 
   const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, getMockAuthCookieOptions());
+  cookieStore.set(MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, getAuthCookieOptions());
 
   await clearOnboardingDraft();
   redirect("/get-started?step=account&internal=1");
@@ -285,7 +276,7 @@ export async function startGuestBrowsing() {
   if (!DEV_ONLY_AUTH_ENABLED) redirect("/auth");
 
   const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, GUEST_BROWSE_USER_ID, getMockAuthCookieOptions());
+  cookieStore.set(MOCK_AUTH_COOKIE, GUEST_BROWSE_USER_ID, getAuthCookieOptions());
 
   await clearOnboardingDraft();
   redirect("/explore");
@@ -301,7 +292,7 @@ export async function beginGuidedOnboarding(formData: FormData) {
   const seedUserId = resolveOnboardingSeedUserId(fullName);
   const cookieStore = await cookies();
 
-  cookieStore.set(MOCK_AUTH_COOKIE, seedUserId, getMockAuthCookieOptions());
+  cookieStore.set(MOCK_AUTH_COOKIE, seedUserId, getAuthCookieOptions());
 
   await setOnboardingDraft({
     accountName: fullName,
