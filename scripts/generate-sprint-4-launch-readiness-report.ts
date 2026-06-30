@@ -9,6 +9,7 @@ const GENERATED_DIR = path.join(ROOT, "data", "generated");
 const OUTPUT_PATH = path.join(GENERATED_DIR, "sprint-4-launch-readiness-report.json");
 const PUBLIC_DOMAIN = process.env.DIRECT_DEMOCRACY_PUBLIC_DOMAIN || "directyourdemocracy.com";
 const PRODUCTION_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.DIRECT_DEMOCRACY_PUBLIC_URL || `https://${PUBLIC_DOMAIN}`;
+const demoModeValue = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE ?? process.env.ENABLE_DEMO_MODE ?? "";
 
 type GateStatus = "green" | "yellow" | "red";
 
@@ -159,6 +160,7 @@ async function main() {
     "DIRECT_DEMOCRACY_DATABASE_BACKUP_CONFIGURED",
     "DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL",
   ]);
+  const demoModeDisabled = demoModeValue !== "true";
   const urlEnvMissing = missingEnv(["NEXT_PUBLIC_APP_URL"]);
   const trustFailures = productionTrust.failures ?? [];
   const trustReadiness = productionTrust.readiness ?? {};
@@ -177,7 +179,9 @@ async function main() {
   const sourceBoundariesReady =
     fileContains("app/admin/layout.tsx", "requireAdminPage") &&
     fileContains("app/admin/page.tsx", 'redirect("/admin/operations")') &&
-    fileContains("proxy.ts", '"/api/admin/:path*"') &&
+    fileContains("proxy.ts", 'pathname.startsWith("/api/admin/")') &&
+    fileContains("proxy.ts", "isSeededDemoSessionId") &&
+    fileContains("proxy.ts", "response.cookies.delete(MOCK_AUTH_COOKIE)") &&
     fileContains("app/auth/sign-out/route.ts", "MOCK_AUTH_COOKIE");
   const sprint3Ready = sprint3.status === "ready_with_warnings" || sprint3.status === "ready_for_sprint_4";
   const browseNoDemo = asNumber(browse.audit?.totals?.categoriesWithDemoData) === 0;
@@ -198,10 +202,11 @@ async function main() {
       readiness: trustReadiness,
     },
     productionEnvironment: {
-      status: status(secretsReady, productionEnvMissing.length <= 2),
+      status: status(secretsReady && demoModeDisabled, productionEnvMissing.length <= 2 && demoModeDisabled),
       missingRequiredDomains: secrets.missingRequiredDomains ?? [],
       missingRequiredEnvironment: productionEnvMissing,
       missingPublicUrlEnvironment: urlEnvMissing,
+      demoModeDisabled,
       sensitiveValuesIncluded: secrets.sensitiveValuesIncluded === true ? true : false,
     },
     domainAndEmailDns: {
@@ -246,7 +251,8 @@ async function main() {
       status: status(sourceBoundariesReady, false),
       adminLayoutProtected: fileContains("app/admin/layout.tsx", "requireAdminPage"),
       adminRedirectCanonical: fileContains("app/admin/page.tsx", 'redirect("/admin/operations")'),
-      adminApiProxyProtected: fileContains("proxy.ts", '"/api/admin/:path*"'),
+      adminApiProxyProtected: fileContains("proxy.ts", 'pathname.startsWith("/api/admin/")'),
+      productionRejectsSeededDemoSessions: fileContains("proxy.ts", "isSeededDemoSessionId") && fileContains("proxy.ts", "response.cookies.delete(MOCK_AUTH_COOKIE)"),
       signOutRoutePresent: fileContains("app/auth/sign-out/route.ts", "MOCK_AUTH_COOKIE"),
     },
   };

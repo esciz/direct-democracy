@@ -3,7 +3,7 @@ import "server-only";
 import { cookies } from "next/headers";
 
 import { applyPreviewContextToUser, getActivePreviewContext } from "@/lib/admin-preview/context";
-import { MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
+import { DEV_ONLY_AUTH_ENABLED, MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import type { FeedViewerContext } from "@/lib/auth/session";
 import { getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
@@ -46,7 +46,7 @@ export async function getRawCurrentSessionUser(): Promise<AuthUser | null> {
     return hydrateSeedUser(accountToAuthUser(identityAccount));
   }
 
-  const seededUser = getSeedUserById(userId);
+  const seededUser = DEV_ONLY_AUTH_ENABLED ? getSeedUserById(userId) : null;
 
   if (!seededUser) {
     return null;

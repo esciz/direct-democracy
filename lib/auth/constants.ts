@@ -7,7 +7,7 @@ export const NEW_USER_DEMO_ID = "user_citizen_casey_rivera";
 
 const demoModeEnv = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE ?? process.env.ENABLE_DEMO_MODE;
 
-export const DEV_ONLY_AUTH_ENABLED = demoModeEnv ? demoModeEnv !== "false" : true;
+export const DEV_ONLY_AUTH_ENABLED = demoModeEnv === "true";
 export const DEMO_PROFILE_SWITCHER_ENABLED = demoModeEnv === "true";
 export const PUBLIC_DEMO_DATA_ENABLED = demoModeEnv === "true";
 

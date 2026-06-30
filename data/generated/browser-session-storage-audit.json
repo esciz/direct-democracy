@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-06-28T19:26:41.094Z",
+  "generatedAt": "2026-06-30T03:35:16.582Z",
   "provenance": {
-    "runId": "20260628192641-unknown-zig272",
-    "generatedAt": "2026-06-28T19:26:41.077Z",
+    "runId": "20260630033516-unknown-q8mh38",
+    "generatedAt": "2026-06-30T03:35:16.569Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "not_required",
     "storageBackend": "production_storage_configured",
     "workerBackend": "not_required",
-    "gitCommit": "66b8680416aa",
+    "gitCommit": "d3218701cab8",
     "canonicalStatus": "not_canonical",
     "artifactName": "browser-session-storage-audit"
   },
   "status": "production_storage_configured",
   "localRecords": 4,
-  "expiredRecords": 3,
+  "expiredRecords": 4,
   "revokedRecords": 4,
   "records": [
     {
@@ -50,7 +50,7 @@
       "expiresAt": "2026-06-28T20:26:40.932Z",
       "revokedAt": "2026-06-28T19:26:40.933Z",
       "reauthenticationRequired": true,
-      "expired": false,
+      "expired": true,
       "sizeBytes": 955
     }
   ],

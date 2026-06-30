@@ -95,7 +95,7 @@ export async function signInWithDemoCredentials(_previousState: AuthFormState, f
     redirect("/");
   }
 
-  const matchedUser = seedUsers.find((user) => user.email.toLowerCase() === email && user.id !== GUEST_BROWSE_USER_ID);
+  const matchedUser = DEV_ONLY_AUTH_ENABLED ? seedUsers.find((user) => user.email.toLowerCase() === email && user.id !== GUEST_BROWSE_USER_ID) : null;
 
   if (!matchedUser) {
     return {
@@ -271,6 +271,8 @@ export async function switchDevUser(formData: FormData) {
 }
 
 export async function startDemoOnboarding() {
+  if (!DEV_ONLY_AUTH_ENABLED) redirect("/auth");
+
   const cookieStore = await cookies();
   cookieStore.set(MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, getMockAuthCookieOptions());
 
@@ -279,6 +281,8 @@ export async function startDemoOnboarding() {
 }
 
 export async function startGuestBrowsing() {
+  if (!DEV_ONLY_AUTH_ENABLED) redirect("/auth");
+
   const cookieStore = await cookies();
   cookieStore.set(MOCK_AUTH_COOKIE, GUEST_BROWSE_USER_ID, getMockAuthCookieOptions());
 
@@ -287,6 +291,8 @@ export async function startGuestBrowsing() {
 }
 
 export async function beginGuidedOnboarding(formData: FormData) {
+  if (!DEV_ONLY_AUTH_ENABLED) redirect("/auth");
+
   const fullName = getFormString(formData, "fullName");
   const email = getFormString(formData, "email");
   const phoneNumber = getFormString(formData, "phoneNumber");

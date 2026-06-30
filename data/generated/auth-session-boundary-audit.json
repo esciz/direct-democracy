@@ -1,12 +1,16 @@
 {
-  "generatedAt": "2026-06-27T21:17:21.732Z",
+  "generatedAt": "2026-06-30T03:35:14.861Z",
   "status": "auth_session_boundaries_audited",
   "sensitiveValuesIncluded": false,
   "validation": {
     "activeIdentityAccountsCanHydrateSession": true,
     "adminAccessStillRequiresVerifiedEmail": true,
     "signInSetsIdentitySessionCookie": true,
-    "registrationStillCreatesUnverifiedCitizen": true
+    "registrationStillCreatesUnverifiedCitizen": true,
+    "demoModeRequiresExplicitOptIn": true,
+    "productionSessionRejectsSeededUsers": true,
+    "productionProxyRedirectsMissingOrSeededSession": true,
+    "seededCredentialFallbackRequiresDemoMode": true
   },
   "pass": true
 }

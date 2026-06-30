@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-30T02:36:10.176Z",
+  "generatedAt": "2026-06-30T03:35:19.572Z",
   "sprint": "Sprint 4",
   "title": "Launch Readiness & Production QA",
-  "status": "blocked",
-  "recommendation": "Do not launch publicly yet. Clear red gates, then rerun npm run sprint4:launch-readiness.",
+  "status": "ready_for_launch_candidate",
+  "recommendation": "Ready for launch candidate QA.",
   "gates": {
     "sprint3Closure": {
       "status": "green",
@@ -37,13 +37,12 @@
       "status": "green",
       "missingRequiredDomains": [],
       "missingRequiredEnvironment": [],
-      "missingPublicUrlEnvironment": [
-        "NEXT_PUBLIC_APP_URL"
-      ],
+      "missingPublicUrlEnvironment": [],
+      "demoModeDisabled": true,
       "sensitiveValuesIncluded": false
     },
     "domainAndEmailDns": {
-      "status": "yellow",
+      "status": "green",
       "publicDomain": "directyourdemocracy.com",
       "productionUrl": "directyourdemocracy.com",
       "rootDns": {
@@ -70,7 +69,7 @@
         "hasSpfRecord": false,
         "hasDkimLikeRecord": false,
         "recordCounts": {
-          "a": 1,
+          "a": 2,
           "cname": 1,
           "mx": 0,
           "txt": 0
@@ -80,10 +79,9 @@
       "productionHttp": {
         "checked": true,
         "url": "directyourdemocracy.com",
-        "status": null,
-        "ok": false,
-        "redirected": false,
-        "error": "timeout"
+        "status": 308,
+        "ok": true,
+        "redirected": true
       }
     },
     "identityAndVerification": {
@@ -120,24 +118,20 @@
       "adminLayoutProtected": true,
       "adminRedirectCanonical": true,
       "adminApiProxyProtected": true,
+      "productionRejectsSeededDemoSessions": true,
       "signOutRoutePresent": true
     }
   },
   "totals": {
-    "blockers": 1,
-    "warnings": 2,
+    "blockers": 0,
+    "warnings": 0,
     "productionEnvMissing": 0,
     "trustFailures": 0,
     "sourceBackedDecisionsAvailable": 756,
     "sourceBackedProjectsAvailable": 314
   },
-  "blockers": [
-    "production-domain-http-not-ready"
-  ],
-  "warnings": [
-    "domainAndEmailDns",
-    "public-url-env-not-set"
-  ],
+  "blockers": [],
+  "warnings": [],
   "requiredValidation": [
     "npm run sprint3:readiness",
     "npm run auth:session-audit",
@@ -156,9 +150,9 @@
     "npm run build"
   ],
   "launchGoNoGo": {
-    "publicLaunch": "no_go",
+    "publicLaunch": "go_with_owner_acceptance",
     "localDemo": "go",
-    "nextAction": "Clear DNS/domain, production trust, storage, worker, backup/restore, and route protection blockers."
+    "nextAction": "Run user-role QA scripts and prepare the launch candidate deployment."
   },
   "sensitiveValuesIncluded": false
 }
