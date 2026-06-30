@@ -6,7 +6,8 @@ import { redirect } from "next/navigation";
 
 import { DEV_ONLY_AUTH_ENABLED, GUEST_BROWSE_USER_ID, MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { getSeedUserById, seedUsers } from "@/lib/auth/mock-users";
-import { authenticateLocalAccount, changeLocalPassword, createEmailVerificationRequest, createLocalAccount, updateEmailVerificationDeliveryStatus } from "@/lib/identity/accounts";
+import { changeLocalPassword, createEmailVerificationRequest, updateEmailVerificationDeliveryStatus } from "@/lib/identity/accounts";
+import { authenticateDurableLocalAccount, createDurableLocalAccount } from "@/lib/identity/durable-accounts";
 import { sendIdentityEmail } from "@/lib/identity/email";
 import { MFA_SESSION_COOKIE } from "@/lib/identity/mfa-session";
 import { evaluateVoterVerification } from "@/lib/onboarding/voter-provider";
@@ -84,7 +85,7 @@ export async function signInWithDemoCredentials(_previousState: AuthFormState, f
     return { ...AUTH_ERROR_STATE, fieldErrors };
   }
 
-  const localResult = authenticateLocalAccount(email, password);
+  const localResult = await authenticateDurableLocalAccount(email, password);
   if (localResult.ok) {
     const cookieStore = await cookies();
     cookieStore.set(MOCK_AUTH_COOKIE, localResult.account.id, getMockAuthCookieOptions());
@@ -130,7 +131,7 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
   }
 
   try {
-    const account = createLocalAccount({
+    const account = await createDurableLocalAccount({
       email,
       name: fullName,
       password,

@@ -8,6 +8,7 @@ import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import type { FeedViewerContext } from "@/lib/auth/session";
 import { getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
 import { accountToAuthUser, getIdentityAccountById } from "@/lib/identity/accounts";
+import { getDurableAuthUserById } from "@/lib/identity/durable-accounts";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { resolveUserVisibility } from "@/lib/profile/visibility";
 import { resolveUserVerification } from "@/lib/server/auth-verification";
@@ -38,6 +39,12 @@ export async function getRawCurrentSessionUser(): Promise<AuthUser | null> {
 
   if (!userId || userId === PUBLIC_SESSION_VALUE) {
     return null;
+  }
+
+  const durableUser = await getDurableAuthUserById(userId);
+
+  if (durableUser) {
+    return hydrateSeedUser(durableUser);
   }
 
   const identityAccount = getIdentityAccountById(userId);

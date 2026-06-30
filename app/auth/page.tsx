@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import { AuthEntryClient, WhyThisMattersInfographicTabs } from "@/components/domain/auth-entry-client";
 import { Logo } from "@/components/ui/brand-logo";
+import { DEV_ONLY_AUTH_ENABLED } from "@/lib/auth/constants";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 
@@ -44,7 +45,7 @@ export default async function AuthPage() {
           </div>
         </section>
 
-        <AuthEntryClient />
+        <AuthEntryClient demoEnabled={DEV_ONLY_AUTH_ENABLED} />
       </div>
 
       <WhyThisMattersInfographicTabs />

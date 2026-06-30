@@ -134,16 +134,13 @@ function SignInForm({ onForgot }: { onForgot: () => void }) {
           autoComplete="current-password"
           aria-describedby={state.fieldErrors?.password ? passwordErrorId : undefined}
           className="dd-input min-h-12 w-full rounded-2xl px-4 py-3 text-sm outline-none focus:border-cyan-300/40 focus:ring-2 focus:ring-cyan-300/20"
-          placeholder="Use any demo password with 8+ characters"
+          placeholder="Your password"
           required
         />
         <FieldError id={passwordErrorId} message={state.fieldErrors?.password} />
       </div>
 
       <SubmitButton label="Sign in" pendingLabel="Signing in..." />
-      <p className="text-xs leading-5 text-slate-500">
-        Demo tip: use one of the seeded demo emails. Passwords are checked for length only in this prototype.
-      </p>
     </form>
   );
 }
@@ -229,7 +226,7 @@ function RegisterForm() {
 
       <SubmitButton label="Create my civic dashboard" pendingLabel="Creating dashboard..." />
       <p className="text-xs leading-5 text-slate-500">
-        This demo starts a verification-ready onboarding path. Real voter verification is not live in this prototype.
+        This starts a verification-ready onboarding path. Voter verification may require guided review when official records are not indexed.
       </p>
     </form>
   );
@@ -267,7 +264,7 @@ function ForgotPasswordForm({ onBack }: { onBack: () => void }) {
   );
 }
 
-export function AuthEntryClient() {
+export function AuthEntryClient({ demoEnabled = false }: { demoEnabled?: boolean }) {
   const [view, setView] = useState<AuthView>("register");
 
   return (
@@ -306,19 +303,21 @@ export function AuthEntryClient() {
           {view === "forgot" ? <ForgotPasswordForm onBack={() => setView("sign-in")} /> : null}
         </div>
 
-        <div className="mt-6 rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-          <form action={startGuestBrowsing} className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm leading-6 text-slate-400">
-              Want to look around first? Browse the public demo in read-only mode.
-            </p>
-            <button
-              type="submit"
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/25 hover:text-cyan-100"
-            >
-              Preview the app
-            </button>
-          </form>
-        </div>
+        {demoEnabled ? (
+          <div className="mt-6 rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+            <form action={startGuestBrowsing} className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm leading-6 text-slate-400">
+                Want to look around first? Browse the public demo in read-only mode.
+              </p>
+              <button
+                type="submit"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/25 hover:text-cyan-100"
+              >
+                Preview the app
+              </button>
+            </form>
+          </div>
+        ) : null}
       </div>
     </section>
   );

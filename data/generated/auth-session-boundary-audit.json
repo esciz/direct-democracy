@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T03:35:14.861Z",
+  "generatedAt": "2026-06-30T03:48:18.478Z",
   "status": "auth_session_boundaries_audited",
   "sensitiveValuesIncluded": false,
   "validation": {
@@ -10,7 +10,8 @@
     "demoModeRequiresExplicitOptIn": true,
     "productionSessionRejectsSeededUsers": true,
     "productionProxyRedirectsMissingOrSeededSession": true,
-    "seededCredentialFallbackRequiresDemoMode": true
+    "seededCredentialFallbackRequiresDemoMode": true,
+    "loginAndRegistrationUseDurableIdentity": true
   },
   "pass": true
 }

@@ -26,6 +26,10 @@ async function main() {
         proxySource.includes('authUrl.searchParams.set("next", pathname)') &&
         proxySource.includes("response.cookies.delete(MOCK_AUTH_COOKIE)"),
       seededCredentialFallbackRequiresDemoMode: authActionsSource.includes("DEV_ONLY_AUTH_ENABLED ? seedUsers.find"),
+      loginAndRegistrationUseDurableIdentity:
+        authActionsSource.includes("authenticateDurableLocalAccount") &&
+        authActionsSource.includes("createDurableLocalAccount") &&
+        sessionSource.includes("getDurableAuthUserById"),
     },
   };
   const pass = Object.values(audit.validation).every(Boolean);
