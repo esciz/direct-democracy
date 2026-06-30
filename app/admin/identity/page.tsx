@@ -2,6 +2,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { readIdentityStore } from "@/lib/identity/storage";
 import { requireAdminPage } from "@/lib/admin/permissions";
 import { reviewResidencyClaimAction, reviewVoterClaimAction } from "@/app/admin/identity/actions";
+import { listDurableVerificationAdminData } from "@/lib/identity/durable-verification";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
@@ -100,9 +101,20 @@ export default async function AdminIdentityPage({ searchParams }: AdminIdentityP
   await requireAdminPage("identity.view");
   const params = searchParams ? await searchParams : {};
   const store = readIdentityStore();
-  const residency = store.verificationClaims.filter((claim) => claim.claimType === "residency");
-  const voter = store.verificationClaims.filter((claim) => claim.claimType === "voter");
-  const accountsById = new Map(store.accounts.map((account) => [account.id, account]));
+  const durableAdminData = await listDurableVerificationAdminData().catch(() => ({ claims: [], accounts: [] }));
+  const durableClaimIds = new Set(durableAdminData.claims.map((claim) => claim.id));
+  const durableAccountIds = new Set(durableAdminData.accounts.map((account) => account.id));
+  const verificationClaims = [
+    ...durableAdminData.claims,
+    ...store.verificationClaims.filter((claim) => !durableClaimIds.has(claim.id)),
+  ];
+  const accounts = [
+    ...durableAdminData.accounts,
+    ...store.accounts.filter((account) => !durableAccountIds.has(account.id)),
+  ];
+  const residency = verificationClaims.filter((claim) => claim.claimType === "residency");
+  const voter = verificationClaims.filter((claim) => claim.claimType === "voter");
+  const accountsById = new Map(accounts.map((account) => [account.id, account]));
   const pendingResidencyClaims = residency.filter((claim) => claim.status === "pending" || claim.status === "pending_manual_review");
   const pendingVoterClaims = voter.filter((claim) => claim.status === "pending" || claim.status === "pending_manual_review");
   const activeVoterFilter = VOTER_STATUS_FILTERS.find((filter) => filter.id === params.voterStatus) ?? VOTER_STATUS_FILTERS[0];
@@ -113,7 +125,7 @@ export default async function AdminIdentityPage({ searchParams }: AdminIdentityP
     .filter((claim) => !["pending", "pending_manual_review"].includes(claim.status))
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
     .slice(0, 8);
-  const accountStatuses = countBy(store.accounts.map((account) => account.status));
+  const accountStatuses = countBy(accounts.map((account) => account.status));
   const residencyStatuses = countBy(residency.map((claim) => claim.status));
   const voterStatuses = countBy(voter.map((claim) => claim.status));
   const production = readGenerated<{
@@ -155,9 +167,9 @@ export default async function AdminIdentityPage({ searchParams }: AdminIdentityP
         </section>
 
         <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <Metric label="Accounts" value={store.accounts.length} />
-          <Metric label="Email unverified" value={store.accounts.filter((account) => account.emailVerificationStatus !== "verified").length} />
-          <Metric label="MFA enrollment required" value={store.accounts.filter((account) => account.mfaEnrollmentRequired).length} />
+          <Metric label="Accounts" value={accounts.length} />
+          <Metric label="Email unverified" value={accounts.filter((account) => account.emailVerificationStatus !== "verified").length} />
+          <Metric label="MFA enrollment required" value={accounts.filter((account) => account.mfaEnrollmentRequired).length} />
           <Metric label="Recent security events" value={store.securityEvents.length} />
           <Metric label="Residency claims" value={residency.length} />
           <Metric label="Voter claims" value={voter.length} />

@@ -4,6 +4,8 @@ import { revalidatePath } from "next/cache";
 
 import { requireAdminSession } from "@/lib/admin/permissions";
 import { getIdentityAccountById } from "@/lib/identity/accounts";
+import { getDurableIdentityAccountById } from "@/lib/identity/durable-accounts";
+import { reviewDurableResidencyClaim, reviewDurableVoterClaim } from "@/lib/identity/durable-verification";
 import { sendIdentityEmail } from "@/lib/identity/email";
 import { reviewResidencyClaim, reviewVoterClaim } from "@/lib/identity/verification";
 
@@ -22,7 +24,14 @@ export async function reviewResidencyClaimAction(formData: FormData) {
     return;
   }
 
-  reviewResidencyClaim({
+  const durableResult = await reviewDurableResidencyClaim({
+    claimId,
+    reviewerId: admin.id,
+    decision,
+    reviewerNotes,
+  });
+
+  if (!durableResult.ok) reviewResidencyClaim({
     claimId,
     reviewerId: admin.id,
     decision,
@@ -44,7 +53,13 @@ export async function reviewVoterClaimAction(formData: FormData) {
     return;
   }
 
-  const result = reviewVoterClaim({
+  const durableResult = await reviewDurableVoterClaim({
+    claimId,
+    reviewerId: admin.id,
+    decision,
+    reviewerNotes,
+  });
+  const result = durableResult.ok ? durableResult : reviewVoterClaim({
     claimId,
     reviewerId: admin.id,
     decision,
@@ -52,7 +67,8 @@ export async function reviewVoterClaimAction(formData: FormData) {
   });
 
   if (result.ok) {
-    const account = getIdentityAccountById(result.claim.userId);
+    const durableAccount = await getDurableIdentityAccountById(result.claim.userId).catch(() => null);
+    const account = durableAccount ?? getIdentityAccountById(result.claim.userId);
     if (account) {
       const statusLabel =
         result.claim.status === "matched"

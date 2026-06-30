@@ -36,6 +36,11 @@ function credentialToPasswordHash(credential: {
 }
 
 function accountToAuthUser(account: DurableAccount): AuthUser {
+  const isVerifiedVoter = account.verificationClaims.some(
+    (claim) =>
+      (claim.status === "matched" || claim.status === "verified") &&
+      (!claim.expiresAt || claim.expiresAt.getTime() > Date.now()),
+  );
   return {
     id: account.id,
     email: account.email,
@@ -43,14 +48,10 @@ function accountToAuthUser(account: DurableAccount): AuthUser {
     username: account.username,
     bio: account.role === "admin" || account.role === "platform_admin" ? "Public-platform administrator." : "Direct Democracy account.",
     role: account.role as UserRole,
-    verificationState: "unverified",
+    verificationState: isVerifiedVoter ? "voterVerified" : "unverified",
     jurisdictionName: "Nevada",
     followerCount: 0,
-    isVerifiedVoter: account.verificationClaims.some(
-      (claim) =>
-        (claim.status === "matched" || claim.status === "verified") &&
-        (!claim.expiresAt || claim.expiresAt.getTime() > Date.now()),
-    ),
+    isVerifiedVoter,
     isAnonymousPublic: account.role !== "admin" && account.role !== "platform_admin",
   };
 }

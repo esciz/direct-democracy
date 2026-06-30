@@ -370,6 +370,49 @@ export function reviewVoterClaim(input: {
         : null;
   claim.revocationReason = null;
   claim.updatedAt = timestamp;
+  if (input.decision === "approve") {
+    const existingResidency = store.verificationClaims.find(
+      (entry) =>
+        entry.userId === claim.userId &&
+        entry.claimType === "residency" &&
+        ["pending", "pending_manual_review", "needs_information", "verified", "matched"].includes(entry.status),
+    );
+    if (existingResidency) {
+      existingResidency.jurisdictionIds = claim.jurisdictionIds.length ? claim.jurisdictionIds : existingResidency.jurisdictionIds;
+      existingResidency.method = "temporary_evidence";
+      existingResidency.provider = "verified_voter_registration_residency";
+      existingResidency.status = "verified";
+      existingResidency.verifiedAt = timestamp;
+      existingResidency.expiresAt = oneYearFromNow();
+      existingResidency.assuranceLevel = "high";
+      existingResidency.reviewerId = input.reviewerId;
+      existingResidency.rejectionReason = null;
+      existingResidency.revocationReason = null;
+      existingResidency.updatedAt = timestamp;
+    } else {
+      store.verificationClaims.unshift({
+        id: `residency_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        userId: claim.userId,
+        claimType: "residency",
+        jurisdictionIds: claim.jurisdictionIds.length ? claim.jurisdictionIds : ["nevada"],
+        communityIds: [],
+        method: "temporary_evidence",
+        provider: "verified_voter_registration_residency",
+        status: "verified",
+        verifiedAt: timestamp,
+        expiresAt: oneYearFromNow(),
+        assuranceLevel: "high",
+        reviewerId: input.reviewerId,
+        revocationReason: null,
+        rejectionReason: null,
+        evidenceDisposition: "metadata_only",
+        evidenceHash: hashEvidenceMetadata(`${claim.userId}:residency-from-voter:${claim.id}:${timestamp}`),
+        sensitiveAddressRef: null,
+        createdAt: timestamp,
+        updatedAt: timestamp,
+      });
+    }
+  }
   writeIdentityStore(store);
   createSecurityEvent("verification_status_changed", "Voter verification reviewed.", {
     userId: claim.userId,

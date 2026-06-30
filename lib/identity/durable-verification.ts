@@ -73,6 +73,215 @@ export async function listDurableVerificationClaimsForAccount(accountId: string)
   return claims.map(toVerificationClaim);
 }
 
+export async function listDurableVerificationAdminData() {
+  const [claims, accounts] = await Promise.all([
+    prisma.identityVerificationClaim.findMany({
+      orderBy: { updatedAt: "desc" },
+    }),
+    prisma.identityAccount.findMany({
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        status: true,
+        emailVerificationStatus: true,
+        mfaEnrollmentRequired: true,
+      },
+    }),
+  ]);
+
+  return {
+    claims: claims.map(toVerificationClaim),
+    accounts: accounts.map((account) => ({
+      ...account,
+      role: "citizen",
+      mfaEnrollmentRequired: account.mfaEnrollmentRequired,
+    })),
+  };
+}
+
+async function ensureDurableResidencyFromVoterClaim(
+  tx: Parameters<Parameters<typeof prisma.$transaction>[0]>[0],
+  input: {
+    accountId: string;
+    reviewerId: string;
+    jurisdictionIds: string[];
+    sourceClaimId: string;
+  },
+) {
+  const timestamp = new Date();
+  const existingResidency = await tx.identityVerificationClaim.findFirst({
+    where: {
+      accountId: input.accountId,
+      claimType: "residency",
+      status: { in: ["pending", "needs_information", "pending_manual_review", "verified", "matched"] },
+    },
+    orderBy: { updatedAt: "desc" },
+  });
+
+  if (existingResidency) {
+    const claim = await tx.identityVerificationClaim.update({
+      where: { id: existingResidency.id },
+      data: {
+        jurisdictionIds: input.jurisdictionIds.length ? input.jurisdictionIds : existingResidency.jurisdictionIds,
+        method: "temporary_evidence",
+        provider: "verified_voter_registration_residency",
+        status: "verified",
+        verifiedAt: timestamp,
+        expiresAt: oneYearFromNow(),
+        reviewedAt: timestamp,
+        reviewerId: input.reviewerId,
+        assuranceLevel: "high",
+        evidenceDisposition: "metadata_only",
+        rejectionReason: null,
+        revocationReason: null,
+        evidenceHash: existingResidency.evidenceHash ?? hashEvidenceMetadata(`${input.accountId}:residency-from-voter:${input.sourceClaimId}:${timestamp.toISOString()}`),
+      },
+    });
+    await tx.identityVerificationEvent.create({
+      data: {
+        id: `verification_event_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        verificationClaimId: claim.id,
+        eventType: "verified_from_voter_registration",
+        actorAccountId: input.reviewerId,
+        summary: "Residency verified from approved voter-registration claim.",
+        metadata: { sourceVoterClaimId: input.sourceClaimId },
+      },
+    });
+    return claim;
+  }
+
+  const claim = await tx.identityVerificationClaim.create({
+    data: {
+      id: `residency_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+      accountId: input.accountId,
+      claimType: "residency",
+      jurisdictionIds: input.jurisdictionIds.length ? input.jurisdictionIds : ["nevada"],
+      communityIds: [],
+      method: "temporary_evidence",
+      provider: "verified_voter_registration_residency",
+      status: "verified",
+      verifiedAt: timestamp,
+      expiresAt: oneYearFromNow(),
+      reviewedAt: timestamp,
+      reviewerId: input.reviewerId,
+      assuranceLevel: "high",
+      evidenceDisposition: "metadata_only",
+      evidenceHash: hashEvidenceMetadata(`${input.accountId}:residency-from-voter:${input.sourceClaimId}:${timestamp.toISOString()}`),
+      sensitiveAddressRef: null,
+      rejectionReason: null,
+      revocationReason: null,
+    },
+  });
+  await tx.identityVerificationEvent.create({
+    data: {
+      id: `verification_event_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+      verificationClaimId: claim.id,
+      eventType: "verified_from_voter_registration",
+      actorAccountId: input.reviewerId,
+      summary: "Residency verified from approved voter-registration claim.",
+      metadata: { sourceVoterClaimId: input.sourceClaimId },
+    },
+  });
+  return claim;
+}
+
+export async function reviewDurableResidencyClaim(input: {
+  claimId: string;
+  reviewerId: string;
+  decision: "approve" | "reject";
+  reviewerNotes?: string | null;
+}) {
+  const existing = await prisma.identityVerificationClaim.findFirst({
+    where: { id: input.claimId, claimType: "residency" },
+  });
+  if (!existing) return { ok: false as const, reason: "claim_not_found" as const };
+
+  const timestamp = new Date();
+  const claim = await prisma.$transaction(async (tx) => {
+    const updated = await tx.identityVerificationClaim.update({
+      where: { id: input.claimId },
+      data: {
+        status: input.decision === "approve" ? "verified" : "rejected",
+        verifiedAt: input.decision === "approve" ? timestamp : null,
+        expiresAt: input.decision === "approve" ? oneYearFromNow() : null,
+        reviewedAt: timestamp,
+        reviewerId: input.reviewerId,
+        assuranceLevel: input.decision === "approve" ? "medium" : "none",
+        rejectionReason: input.decision === "reject" ? input.reviewerNotes?.trim() || "Manual residency review rejected." : null,
+        revocationReason: null,
+      },
+    });
+    await tx.identityVerificationReview.create({
+      data: {
+        id: `verification_review_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        verificationClaimId: updated.id,
+        reviewerAccountId: input.reviewerId,
+        decision: input.decision,
+        notes: input.reviewerNotes?.trim() || null,
+      },
+    });
+    return updated;
+  });
+
+  return { ok: true as const, claim: toVerificationClaim(claim) };
+}
+
+export async function reviewDurableVoterClaim(input: {
+  claimId: string;
+  reviewerId: string;
+  decision: "approve" | "reject" | "request_more_info";
+  reviewerNotes?: string | null;
+}) {
+  const existing = await prisma.identityVerificationClaim.findFirst({
+    where: { id: input.claimId, claimType: "voter" },
+  });
+  if (!existing) return { ok: false as const, reason: "claim_not_found" as const };
+
+  const timestamp = new Date();
+  const claim = await prisma.$transaction(async (tx) => {
+    const status = input.decision === "approve" ? "matched" : input.decision === "request_more_info" ? "needs_information" : "rejected";
+    const updated = await tx.identityVerificationClaim.update({
+      where: { id: input.claimId },
+      data: {
+        status,
+        verifiedAt: input.decision === "approve" ? timestamp : null,
+        expiresAt: input.decision === "approve" ? oneYearFromNow() : null,
+        reviewedAt: timestamp,
+        reviewerId: input.reviewerId,
+        assuranceLevel: input.decision === "approve" ? "high" : "none",
+        rejectionReason:
+          input.decision === "reject"
+            ? input.reviewerNotes?.trim() || "Guided voter portal review rejected."
+            : input.decision === "request_more_info"
+              ? input.reviewerNotes?.trim() || "Reviewer requested more information before voter verification can continue."
+              : null,
+        revocationReason: null,
+      },
+    });
+    await tx.identityVerificationReview.create({
+      data: {
+        id: `verification_review_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        verificationClaimId: updated.id,
+        reviewerAccountId: input.reviewerId,
+        decision: input.decision,
+        notes: input.reviewerNotes?.trim() || null,
+      },
+    });
+    if (input.decision === "approve") {
+      await ensureDurableResidencyFromVoterClaim(tx, {
+        accountId: updated.accountId,
+        reviewerId: input.reviewerId,
+        jurisdictionIds: updated.jurisdictionIds,
+        sourceClaimId: updated.id,
+      });
+    }
+    return updated;
+  });
+
+  return { ok: true as const, claim: toVerificationClaim(claim) };
+}
+
 export async function createDurableGuidedVoterPortalClaim(input: {
   accountId: string;
   jurisdictionIds: string[];
@@ -123,6 +332,12 @@ export async function createDurableGuidedVoterPortalClaim(input: {
           countyVoterIdLast4: input.countyVoterId.slice(-4),
         },
       },
+    });
+    await ensureDurableResidencyFromVoterClaim(tx, {
+      accountId: input.accountId,
+      reviewerId: "automated_voter_file_provider",
+      jurisdictionIds: input.jurisdictionIds,
+      sourceClaimId: claim.id,
     });
     return toVerificationClaim(claim);
   });
