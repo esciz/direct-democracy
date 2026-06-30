@@ -1,0 +1,164 @@
+{
+  "generatedAt": "2026-06-30T02:36:10.176Z",
+  "sprint": "Sprint 4",
+  "title": "Launch Readiness & Production QA",
+  "status": "blocked",
+  "recommendation": "Do not launch publicly yet. Clear red gates, then rerun npm run sprint4:launch-readiness.",
+  "gates": {
+    "sprint3Closure": {
+      "status": "green",
+      "sprint3Status": "ready_with_warnings",
+      "sprint3Blockers": 0,
+      "sprint3Warnings": 4
+    },
+    "productionTrustServices": {
+      "status": "green",
+      "productionTrustStatus": "ready",
+      "failures": [],
+      "readiness": {
+        "database": "ready",
+        "identityStorage": "ready",
+        "operationStorage": "ready",
+        "email": "ready",
+        "evidence": "ready",
+        "evidencePurge": "ready",
+        "browserSessionStorage": "ready",
+        "worker": "ready",
+        "backup": "ready",
+        "restore": "ready",
+        "secrets": "ready",
+        "dataOpsScheduler": "ready",
+        "officialsScheduler": "ready",
+        "carsonCityOfficials": "ready",
+        "officialScorecards": "not_applicable"
+      }
+    },
+    "productionEnvironment": {
+      "status": "green",
+      "missingRequiredDomains": [],
+      "missingRequiredEnvironment": [],
+      "missingPublicUrlEnvironment": [
+        "NEXT_PUBLIC_APP_URL"
+      ],
+      "sensitiveValuesIncluded": false
+    },
+    "domainAndEmailDns": {
+      "status": "yellow",
+      "publicDomain": "directyourdemocracy.com",
+      "productionUrl": "directyourdemocracy.com",
+      "rootDns": {
+        "checked": true,
+        "domain": "directyourdemocracy.com",
+        "hasARecord": true,
+        "hasCnameRecord": false,
+        "hasMxRecord": true,
+        "hasSpfRecord": true,
+        "hasDkimLikeRecord": false,
+        "recordCounts": {
+          "a": 1,
+          "cname": 0,
+          "mx": 3,
+          "txt": 1
+        }
+      },
+      "wwwDns": {
+        "checked": true,
+        "domain": "www.directyourdemocracy.com",
+        "hasARecord": true,
+        "hasCnameRecord": true,
+        "hasMxRecord": false,
+        "hasSpfRecord": false,
+        "hasDkimLikeRecord": false,
+        "recordCounts": {
+          "a": 1,
+          "cname": 1,
+          "mx": 0,
+          "txt": 0
+        }
+      },
+      "emailDnsReady": true,
+      "productionHttp": {
+        "checked": true,
+        "url": "directyourdemocracy.com",
+        "status": null,
+        "ok": false,
+        "redirected": false,
+        "error": "timeout"
+      }
+    },
+    "identityAndVerification": {
+      "status": "green",
+      "authSessionAudit": true,
+      "accountVerificationUx": true,
+      "adminVerificationWorkflow": true,
+      "emailVerificationFlow": true
+    },
+    "privateStorageAndWorker": {
+      "status": "green",
+      "evidence": "production_storage_configured",
+      "browserSessions": "production_storage_configured",
+      "workerConfigured": true,
+      "latestWorkerSmoke": "smoke_passed"
+    },
+    "backupAndRestore": {
+      "status": "green",
+      "backup": "backup_configured",
+      "restore": "restore_tested",
+      "restoreSeparateFromPrimary": true
+    },
+    "publicProductData": {
+      "status": "green",
+      "browseCategoriesWithDemoData": null,
+      "communityPagesReady": 39,
+      "totalCommunities": null,
+      "sprint2DataQualityStatus": "green",
+      "sprint2ReadyEnough": true,
+      "remainingSprint2Work": 3
+    },
+    "routeAndApiProtection": {
+      "status": "green",
+      "adminLayoutProtected": true,
+      "adminRedirectCanonical": true,
+      "adminApiProxyProtected": true,
+      "signOutRoutePresent": true
+    }
+  },
+  "totals": {
+    "blockers": 1,
+    "warnings": 2,
+    "productionEnvMissing": 0,
+    "trustFailures": 0,
+    "sourceBackedDecisionsAvailable": 756,
+    "sourceBackedProjectsAvailable": 314
+  },
+  "blockers": [
+    "production-domain-http-not-ready"
+  ],
+  "warnings": [
+    "domainAndEmailDns",
+    "public-url-env-not-set"
+  ],
+  "requiredValidation": [
+    "npm run sprint3:readiness",
+    "npm run auth:session-audit",
+    "npm run verification:account-ux-audit",
+    "npm run admin:verification-workflow-audit",
+    "npm run email:verification-flow-audit",
+    "npm run secrets:audit",
+    "npm run email:audit",
+    "npm run evidence:storage-audit",
+    "npm run browser-sessions:audit",
+    "npm run worker:audit",
+    "npm run backup:audit",
+    "npm run restore:audit",
+    "npm run production:trust-audit",
+    "npm run typecheck",
+    "npm run build"
+  ],
+  "launchGoNoGo": {
+    "publicLaunch": "no_go",
+    "localDemo": "go",
+    "nextAction": "Clear DNS/domain, production trust, storage, worker, backup/restore, and route protection blockers."
+  },
+  "sensitiveValuesIncluded": false
+}

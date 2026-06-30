@@ -243,6 +243,7 @@
     "production:trust-plan": "node --import tsx scripts/generate-production-trust-services-plan.ts",
     "production:readiness-audit": "node --import tsx scripts/audit-production-readiness.ts",
     "production:trust-audit": "npm run production:trust-plan && node --import tsx scripts/audit-production-trust.ts",
+    "sprint4:launch-readiness": "npm run sprint3:readiness && npm run auth:session-audit && npm run verification:account-ux-audit && npm run admin:verification-workflow-audit && npm run email:verification-flow-audit && npm run secrets:audit && npm run email:audit && npm run evidence:storage-audit && npm run browser-sessions:audit && npm run worker:audit && npm run backup:audit && npm run restore:audit && npm run production:trust-audit && node --import tsx scripts/generate-sprint-4-launch-readiness-report.ts",
     "sprint:2i-b:audit": "node --import tsx scripts/audit-sprint-2i-b-foundation.ts",
     "meetings:cache-manifest": "node --import tsx scripts/generate-public-meeting-cache-manifest.ts",
     "meetings:cache-storage:export": "node --import tsx scripts/export-public-meeting-cache-objects.ts",
