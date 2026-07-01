@@ -12,6 +12,16 @@ export const metadata: Metadata = {
   description: "A civic platform for voters, trusted citizens, and officials.",
   applicationName: "Direct Democracy",
   manifest: "/manifest.webmanifest",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

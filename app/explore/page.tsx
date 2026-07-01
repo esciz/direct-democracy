@@ -158,6 +158,37 @@ function renderPreviewBadges(item: BrowsePreviewItem) {
   );
 }
 
+function getEventPreviewTimingStatus(items: BrowsePreviewItem[]) {
+  if (!items.length) return null;
+
+  const hasUpcoming = items.some((item) =>
+    item.badges?.some((badge) => ["upcoming", "scheduled"].includes(badge.label.toLowerCase())),
+  );
+  const hasCompleted = items.some((item) => item.badges?.some((badge) => badge.label.toLowerCase() === "completed"));
+
+  if (hasUpcoming) {
+    return {
+      label: "Upcoming imported events shown first",
+      tone: "emerald" as BrowsePreviewBadgeTone,
+      note: "Event status is refreshed from generated source-backed records.",
+    };
+  }
+
+  if (hasCompleted) {
+    return {
+      label: "No upcoming imported events yet",
+      tone: "orange" as BrowsePreviewBadgeTone,
+      note: "Showing recent completed source-backed events until new upcoming records are imported.",
+    };
+  }
+
+  return {
+    label: "Imported events shown by latest available date",
+    tone: "slate" as BrowsePreviewBadgeTone,
+    note: "Event status is refreshed from generated source-backed records.",
+  };
+}
+
 export default async function ExplorePage({ searchParams }: ExplorePageProps) {
   const user = await getCurrentUser();
   const params = searchParams ? await searchParams : undefined;
@@ -219,6 +250,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
   });
   const activeItems = activePreview.items;
   const browseItems = browsePreview.items;
+  const eventPreviewTimingStatus = activeBrowseCategory === "events" ? getEventPreviewTimingStatus(browseItems) : null;
 
   const activeCategoryLabel = getCategoryLabel(activeCategory);
   const activeBrowseCategoryLabel = getCategoryLabel(activeBrowseCategory);
@@ -286,14 +318,15 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{activeBrowseCategoryLabel}</p>
               <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{activeBrowseCategoryLabel} to browse</h3>
               <p className="mt-2 text-sm text-slate-400">{getCategoryDescription(activeBrowseCategory)}</p>
-              {activeBrowseCategory === "events" ? (
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
-                  Upcoming shown first · completed events available in View all
+              {eventPreviewTimingStatus ? (
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">
+                  {eventPreviewTimingStatus.label} · {eventPreviewTimingStatus.note}
                 </p>
               ) : null}
             </div>
             <div className="flex flex-wrap items-center gap-2">
               {renderBadge(browsePreview.statusLabel, browsePreview.isSourceBacked ? "emerald" : "orange")}
+              {eventPreviewTimingStatus ? renderBadge(eventPreviewTimingStatus.label, eventPreviewTimingStatus.tone) : null}
               {browsePreview.lastGeneratedAt ? renderBadge(`Updated ${new Date(browsePreview.lastGeneratedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`) : null}
               {browsePreview.fullHref && browseItems.length ? (
                 <Link
