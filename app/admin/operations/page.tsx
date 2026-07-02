@@ -310,9 +310,14 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
                 Review private-link tester reports for broken flows, confusing copy, stale data, and account-verification issues before wider sharing.
               </p>
             </div>
-            <Link href="/admin/private-beta-feedback" className="inline-flex w-fit rounded-full bg-sky-300 px-4 py-2 text-sm font-semibold text-slate-950">
-              Open feedback queue
-            </Link>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/admin/private-beta" className="inline-flex w-fit rounded-full bg-sky-300 px-4 py-2 text-sm font-semibold text-slate-950">
+                Launch control
+              </Link>
+              <Link href="/admin/private-beta-feedback" className="inline-flex w-fit rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100">
+                Feedback queue
+              </Link>
+            </div>
           </div>
         </section>
 

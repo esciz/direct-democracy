@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-02T15:41:54.626Z",
+  "generatedAt": "2026-07-02T18:31:21.074Z",
   "sourceArtifact": "data/generated/nevada-community-events.json",
-  "sourceGeneratedAt": "2026-07-02T14:07:33.902Z",
-  "sourceAgeHours": 1.6,
+  "sourceGeneratedAt": "2026-07-02T15:41:56.533Z",
+  "sourceAgeHours": 2.8,
   "totals": {
     "records": 728,
     "sourceBacked": 697,

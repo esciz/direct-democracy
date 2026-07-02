@@ -46,9 +46,14 @@ export default async function AdminPrivateBetaFeedbackPage({ searchParams }: Adm
           </>
         }
         actions={
-          <Link href="/admin/operations" className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
-            Operations
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/admin/private-beta" className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+              Launch control
+            </Link>
+            <Link href="/admin/operations" className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+              Operations
+            </Link>
+          </div>
         }
       />
 

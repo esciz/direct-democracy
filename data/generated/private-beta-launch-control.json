@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-07-02T18:31:24.543Z",
+  "status": "ready_to_share_privately",
+  "recommendation": "Ready for private invite sharing. Keep no-index and auth gating enabled.",
+  "app": {
+    "baseUrl": "https://directyourdemocracy.com",
+    "host": "directyourdemocracy.com",
+    "privateBetaUrl": "https://directyourdemocracy.com/private-beta",
+    "authUrl": "https://directyourdemocracy.com/auth",
+    "adminLaunchControlUrl": "https://directyourdemocracy.com/admin/private-beta"
+  },
+  "validation": {
+    "readinessReportReady": true,
+    "readinessHasNoBlockers": true,
+    "feedbackAuditPassed": true,
+    "privateBetaRouteExists": true,
+    "feedbackRouteExists": true,
+    "adminFeedbackRouteExists": true,
+    "adminLaunchRouteExists": true,
+    "testerHubRequiresAuth": true,
+    "metadataNoIndex": true,
+    "robotsTxtDisallowsAll": true,
+    "xRobotsHeader": true,
+    "productionGateBlocksUnauthed": true,
+    "demoModeNotEnabled": true,
+    "appUrlConfigured": true,
+    "appUrlUsesHttps": true,
+    "customDomainConfigured": true
+  },
+  "blockers": [],
+  "warnings": [],
+  "readiness": {
+    "status": "ready_for_private_link_sharing",
+    "blockers": [],
+    "warnings": [],
+    "totals": {
+      "blockers": 0,
+      "warnings": 0,
+      "browseCategories": 11,
+      "sourceBackedBrowseCategories": 8,
+      "eventRecords": 728,
+      "staleEventStatuses": 0,
+      "communityPagesReady": 39,
+      "privateBetaFeedbackRecords": 0,
+      "privateBetaFeedbackOpen": 0,
+      "privateBetaPublicUpdates": 0
+    }
+  },
+  "feedback": {
+    "status": "passed",
+    "totals": {
+      "records": 0,
+      "open": 0,
+      "publicUpdates": 0,
+      "needsFollowUp": 0,
+      "containsPersonalData": 0,
+      "byStatus": {},
+      "byCategory": {},
+      "bySeverity": {}
+    }
+  },
+  "inviteChecklist": [
+    "Push the latest commits to origin.",
+    "Wait for Vercel production deploy to finish.",
+    "Open the private beta URL in an incognito window.",
+    "Confirm logged-out visitors land on /auth.",
+    "Sign in as a real tester account.",
+    "Open /private-beta and submit one feedback report.",
+    "Confirm the report appears in /admin/private-beta-feedback."
+  ],
+  "sensitiveValuesIncluded": false
+}
