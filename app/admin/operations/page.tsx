@@ -301,6 +301,21 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
           </div>
         </section>
 
+        <section className="rounded-2xl border border-sky-300/20 bg-sky-500/10 p-5">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200">Private beta</p>
+              <h2 className="mt-2 text-xl font-semibold text-white">Tester feedback review</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+                Review private-link tester reports for broken flows, confusing copy, stale data, and account-verification issues before wider sharing.
+              </p>
+            </div>
+            <Link href="/admin/private-beta-feedback" className="inline-flex w-fit rounded-full bg-sky-300 px-4 py-2 text-sm font-semibold text-slate-950">
+              Open feedback queue
+            </Link>
+          </div>
+        </section>
+
         <section className="rounded-2xl border border-violet-300/20 bg-violet-500/10 p-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>

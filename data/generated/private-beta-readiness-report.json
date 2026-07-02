@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T13:56:19.884Z",
+  "generatedAt": "2026-07-02T14:07:35.001Z",
   "sprint": "Private Beta Readiness",
   "status": "ready_for_private_link_sharing",
   "recommendation": "Ready to share privately with invited testers. Keep no-index enabled until public launch.",
@@ -96,8 +96,8 @@
     },
     "civicDataFreshness": {
       "status": "green",
-      "sourceGeneratedAt": "2026-07-02T03:23:06.005Z",
-      "sourceAgeHours": 10.6,
+      "sourceGeneratedAt": "2026-07-02T13:56:18.963Z",
+      "sourceAgeHours": 0.2,
       "eventTotals": {
         "records": 728,
         "sourceBacked": 697,
@@ -117,6 +117,25 @@
       "authSessionAuditPassed": true,
       "accountVerificationUxAuditPassed": true,
       "guidedVoterAuditPassed": true
+    },
+    "testerFeedbackLoop": {
+      "status": "green",
+      "totals": {
+        "records": 0,
+        "open": 0,
+        "needsFollowUp": 0,
+        "containsPersonalData": 0,
+        "byStatus": {},
+        "byCategory": {},
+        "bySeverity": {}
+      },
+      "feedbackAuditPassed": true,
+      "feedbackRouteAvailable": true,
+      "feedbackRequiresSession": true,
+      "feedbackStoredPrivately": true,
+      "adminReviewAvailable": true,
+      "feedbackDiscoverableFromProfile": true,
+      "feedbackDiscoverableFromNav": true
     }
   },
   "totals": {
@@ -126,7 +145,9 @@
     "sourceBackedBrowseCategories": 8,
     "eventRecords": 728,
     "staleEventStatuses": 0,
-    "communityPagesReady": 39
+    "communityPagesReady": 39,
+    "privateBetaFeedbackRecords": 0,
+    "privateBetaFeedbackOpen": 0
   },
   "blockers": [],
   "warnings": [],
@@ -137,6 +158,7 @@
     "npm run auth:session-audit",
     "npm run verification:account-ux-audit",
     "npm run verification:guided-voter-audit",
+    "npm run private-beta:feedback-audit",
     "npm run private-beta:readiness",
     "npm run typecheck",
     "npm run build"

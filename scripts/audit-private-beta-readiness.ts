@@ -74,6 +74,11 @@ const communityReport = readJson<{
 const authAudit = readJson<{ pass?: boolean; validation?: Record<string, boolean> }>("auth-session-boundary-audit.json", {});
 const accountUxAudit = readJson<{ pass?: boolean; validation?: Record<string, boolean> }>("account-verification-ux-audit.json", {});
 const guidedVoterAudit = readJson<{ pass?: boolean; validation?: Record<string, boolean> }>("guided-voter-verification-audit.json", {});
+const feedbackAudit = readJson<{
+  status?: string;
+  totals?: { records?: number; open?: number; needsFollowUp?: number; containsPersonalData?: number };
+  validation?: Record<string, boolean>;
+}>("private-beta-feedback-audit.json", {});
 
 const routeFiles = [
   "app/auth/page.tsx",
@@ -140,6 +145,15 @@ const verificationSignals = {
   accountVerificationUxAuditPassed: accountUxAudit.pass === true,
   guidedVoterAuditPassed: guidedVoterAudit.pass === true,
 };
+const feedbackSignals = {
+  feedbackAuditPassed: feedbackAudit.status === "passed",
+  feedbackRouteAvailable: feedbackAudit.validation?.publicFeedbackRouteExists === true,
+  feedbackRequiresSession: feedbackAudit.validation?.publicFeedbackActionRequiresSession === true,
+  feedbackStoredPrivately: feedbackAudit.validation?.feedbackStoreIsPrivate === true,
+  adminReviewAvailable: feedbackAudit.validation?.adminReviewRouteExists === true,
+  feedbackDiscoverableFromProfile: feedbackAudit.validation?.profileLinksToFeedback === true,
+  feedbackDiscoverableFromNav: feedbackAudit.validation?.mainNavLinksToFeedback === true,
+};
 
 const noIndexReady = Object.values(noIndexSignals).every(Boolean);
 const authReady = Object.values(authProtectionSignals).every(Boolean) && demoModeValue !== "true";
@@ -152,6 +166,7 @@ const freshnessReady =
 const freshnessWarning = !freshnessSignals.eventArtifactFreshEnoughForPrivateBeta;
 const verificationReady = verificationSignals.authSessionAuditPassed && verificationSignals.accountVerificationUxAuditPassed;
 const guidedVoterWarning = !verificationSignals.guidedVoterAuditPassed;
+const feedbackReady = Object.values(feedbackSignals).every(Boolean);
 
 const gates = {
   privateByLink: {
@@ -180,6 +195,11 @@ const gates = {
   verificationUx: {
     status: status(verificationReady && !guidedVoterWarning, verificationReady),
     ...verificationSignals,
+  },
+  testerFeedbackLoop: {
+    status: status(feedbackReady),
+    totals: feedbackAudit.totals ?? {},
+    ...feedbackSignals,
   },
 };
 
@@ -215,6 +235,8 @@ const report = {
     eventRecords: eventFreshness.totals?.records ?? null,
     staleEventStatuses: eventFreshness.totals?.staleStatusRecords ?? null,
     communityPagesReady: communityReport.totals?.communityPagesReady ?? null,
+    privateBetaFeedbackRecords: feedbackAudit.totals?.records ?? null,
+    privateBetaFeedbackOpen: feedbackAudit.totals?.open ?? null,
   },
   blockers,
   warnings,
@@ -225,6 +247,7 @@ const report = {
     "npm run auth:session-audit",
     "npm run verification:account-ux-audit",
     "npm run verification:guided-voter-audit",
+    "npm run private-beta:feedback-audit",
     "npm run private-beta:readiness",
     "npm run typecheck",
     "npm run build",
@@ -247,6 +270,7 @@ console.log(
       productReady,
       freshnessReady,
       verificationReady,
+      feedbackReady,
       output: OUTPUT_PATH,
     },
     null,

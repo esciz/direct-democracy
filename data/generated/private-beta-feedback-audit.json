@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-07-02T14:07:34.886Z",
+  "status": "passed",
+  "storage": {
+    "privateQueuePath": "data/private/private-beta-feedback.json",
+    "generatedPublicQueueExists": false,
+    "gitIgnoredByDefault": true
+  },
+  "totals": {
+    "records": 0,
+    "open": 0,
+    "needsFollowUp": 0,
+    "containsPersonalData": 0,
+    "byStatus": {},
+    "byCategory": {},
+    "bySeverity": {}
+  },
+  "validation": {
+    "publicFeedbackRouteExists": true,
+    "publicFeedbackActionRequiresSession": true,
+    "feedbackStoreIsPrivate": true,
+    "feedbackStoreHasReviewFlags": true,
+    "adminReviewRouteExists": true,
+    "adminReviewActionRequiresPermission": true,
+    "profileLinksToFeedback": true,
+    "mainNavLinksToFeedback": true,
+    "operationsLinksToReviewQueue": true,
+    "noGeneratedPublicFeedbackQueue": true
+  },
+  "sensitiveValuesIncluded": false
+}

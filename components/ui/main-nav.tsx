@@ -141,6 +141,12 @@ export async function MainNav() {
           <div className="flex flex-col gap-3 lg:items-end">
             <div className="flex flex-wrap items-center gap-2">
               <Link
+                href="/feedback"
+                className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-3 py-2 text-xs font-semibold text-cyan-100 transition hover:border-cyan-200/50 hover:bg-cyan-400/15"
+              >
+                Feedback
+              </Link>
+              <Link
                 href="/messages"
                 aria-label="Messages"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:border-emerald-300/30 hover:text-emerald-200"
