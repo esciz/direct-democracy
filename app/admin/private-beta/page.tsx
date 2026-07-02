@@ -10,6 +10,7 @@ type LaunchControlReport = {
   recommendation?: string;
   app?: {
     baseUrl?: string | null;
+    inviteUrl?: string | null;
     privateBetaUrl?: string | null;
     authUrl?: string | null;
     adminLaunchControlUrl?: string | null;
@@ -57,10 +58,11 @@ export default async function AdminPrivateBetaLaunchPage() {
     "Run npm run private-beta:launch-audit.",
     "Push the latest commits to origin.",
     "Wait for Vercel production deploy to finish.",
-    "Open the private beta URL in an incognito window.",
+    "Open the main invite URL in an incognito window.",
     "Submit a feedback report and confirm it appears in admin review.",
   ];
-  const privateBetaUrl = report.app?.privateBetaUrl ?? "/private-beta";
+  const inviteUrl = report.app?.inviteUrl ?? report.app?.baseUrl ?? "/";
+  const testerGuideUrl = report.app?.privateBetaUrl ?? "/private-beta";
 
   return (
     <div className="space-y-6 py-8">
@@ -97,14 +99,17 @@ export default async function AdminPrivateBetaLaunchPage() {
 
       <section className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5 shadow-card sm:p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Tester Link</p>
-          <h2 className="mt-2 text-2xl font-semibold text-white">Send people to the Beta Hub</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Invite Link</p>
+          <h2 className="mt-2 text-2xl font-semibold text-white">Send people to the main site</h2>
           <div className="mt-4 rounded-2xl border border-white/10 bg-slate-950/60 p-4">
-            <p className="break-all font-mono text-sm text-cyan-100">{privateBetaUrl}</p>
+            <p className="break-all font-mono text-sm text-cyan-100">{inviteUrl}</p>
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
-            <a href={privateBetaUrl} className="rounded-full bg-cyan-300 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
-              Open beta link
+            <a href={inviteUrl} className="rounded-full bg-cyan-300 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
+              Open invite link
+            </a>
+            <a href={testerGuideUrl} className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30">
+              Optional tester guide
             </a>
             <a href={report.app?.authUrl ?? "/auth"} className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30">
               Open auth
@@ -113,7 +118,14 @@ export default async function AdminPrivateBetaLaunchPage() {
           <div className="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Invite copy</p>
             <p className="mt-2 text-sm leading-6 text-slate-300">
-              I am privately testing Direct Democracy before public launch. Use this link, create or sign into your account, try the suggested beta pass, and send feedback from the Beta Hub if anything breaks or feels confusing.
+              I am privately testing Direct Democracy before public launch. Use this link, create or sign into your account, try the normal site flow, and send feedback if anything breaks or feels confusing.
+            </p>
+          </div>
+          <div className="mt-4 rounded-2xl border border-cyan-300/15 bg-cyan-500/10 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Optional tester guide</p>
+            <p className="mt-2 break-all font-mono text-xs text-cyan-100">{testerGuideUrl}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              Keep this as a helper page for guided testers. The main invite should still be the homepage so people experience the real entry flow.
             </p>
           </div>
         </div>

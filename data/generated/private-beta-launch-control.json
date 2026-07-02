@@ -1,10 +1,11 @@
 {
-  "generatedAt": "2026-07-02T18:31:24.543Z",
+  "generatedAt": "2026-07-02T18:48:01.869Z",
   "status": "ready_to_share_privately",
   "recommendation": "Ready for private invite sharing. Keep no-index and auth gating enabled.",
   "app": {
     "baseUrl": "https://directyourdemocracy.com",
     "host": "directyourdemocracy.com",
+    "inviteUrl": "https://directyourdemocracy.com",
     "privateBetaUrl": "https://directyourdemocracy.com/private-beta",
     "authUrl": "https://directyourdemocracy.com/auth",
     "adminLaunchControlUrl": "https://directyourdemocracy.com/admin/private-beta"
@@ -62,10 +63,11 @@
   "inviteChecklist": [
     "Push the latest commits to origin.",
     "Wait for Vercel production deploy to finish.",
-    "Open the private beta URL in an incognito window.",
+    "Open the main invite URL in an incognito window.",
     "Confirm logged-out visitors land on /auth.",
     "Sign in as a real tester account.",
-    "Open /private-beta and submit one feedback report.",
+    "Optionally open /private-beta for the tester guide.",
+    "Submit one feedback report.",
     "Confirm the report appears in /admin/private-beta-feedback."
   ],
   "sensitiveValuesIncluded": false

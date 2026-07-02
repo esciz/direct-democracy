@@ -31,8 +31,8 @@ export default async function PrivateBetaPage() {
     <div className="space-y-6 py-8">
       <PageIntro
         eyebrow="Private Beta"
-        title="Tester hub"
-        description="A simple operating page for invited testers. The site stays no-index while we verify account flows, civic data freshness, and feedback triage."
+        title="Optional tester guide"
+        description="A helper page for invited testers who want a structured pass through the product. Most people should start from the homepage so we can test the real entry flow."
         meta={
           <>
             <span className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
@@ -62,7 +62,7 @@ export default async function PrivateBetaPage() {
             <h2 className="mt-2 text-2xl font-semibold text-white">Run through the core flows</h2>
           </div>
           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-300">
-            Private link only
+            Optional guide
           </span>
         </div>
         <div className="mt-5 grid gap-3 md:grid-cols-2">
