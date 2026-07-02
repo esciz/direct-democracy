@@ -429,7 +429,7 @@ function generateProjectRecords() {
       confidence: text(item.fiscal_impact_summary) || text(item.financial_impact) ? 0.72 : 0.48,
       review_status: "needs_review",
       needsReview: true,
-      updated_at: text(item.updated_at) || text(meeting?.meeting_date) || new Date().toISOString(),
+      updated_at: text(item.updated_at) || text(meeting?.meeting_date) || null,
       sourcePath: "data/generated/public-meeting-items.json",
       index,
     };

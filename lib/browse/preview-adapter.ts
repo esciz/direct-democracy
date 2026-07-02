@@ -215,6 +215,16 @@ function formatDate(value: unknown) {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
+function eventStatusFromStartAt(record: Record<string, unknown>) {
+  const currentStatus = asText(record.status).toLowerCase();
+  if (currentStatus === "cancelled") return "cancelled";
+
+  const startTime = Date.parse(asText(record.start_at));
+  if (!Number.isFinite(startTime)) return currentStatus || "unknown";
+
+  return startTime >= Date.now() ? "upcoming" : "completed";
+}
+
 function buildCommunitiesPreview({ communityId, query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
   const report = readJsonFile<{ rows?: Array<Record<string, unknown>>; generatedAt?: string }>("nevada-community-coverage-report.json", {});
   const rows = recordsFrom<Record<string, unknown>>(report.data.rows ?? []);
@@ -393,21 +403,24 @@ function buildEventsPreview({ communityId, query, limit = 8, favoriteIds }: Brow
   });
 
   const items = filterItems(
-    ordered.map((record) => ({
-      id: asText(record.meeting_id) || asText(record.id),
-      title: asText(record.title),
-      subtitle: `${formatDate(record.start_at) ?? "Date pending"} · ${asText(record.jurisdiction) || "Nevada"}`,
-      description: asText(record.summary),
-      href: `/events/${asText(record.meeting_id) || asText(record.id)}`,
-      ctaLabel: "View event",
-      avatar: { name: asText(record.body_name), entityType: "agency" as const, verified: true },
-      badges: [
-        { label: asText(record.status) || "meeting", tone: asText(record.status) === "completed" ? ("slate" as const) : ("emerald" as const) },
-        { label: "Source-backed", tone: "emerald" as const },
-      ],
-      favorite: { targetType: "event" as const, targetId: asText(record.meeting_id) || asText(record.id) },
-      sourceUrl: asText(record.source_url) || asText(record.agenda_url),
-    })),
+    ordered.map((record) => {
+      const status = eventStatusFromStartAt(record);
+      return {
+        id: asText(record.meeting_id) || asText(record.id),
+        title: asText(record.title),
+        subtitle: `${formatDate(record.start_at) ?? "Date pending"} · ${asText(record.jurisdiction) || "Nevada"}`,
+        description: asText(record.summary),
+        href: `/events/${asText(record.meeting_id) || asText(record.id)}`,
+        ctaLabel: "View event",
+        avatar: { name: asText(record.body_name), entityType: "agency" as const, verified: true },
+        badges: [
+          { label: status || "meeting", tone: status === "completed" ? ("slate" as const) : ("emerald" as const) },
+          { label: "Source-backed", tone: "emerald" as const },
+        ],
+        favorite: { targetType: "event" as const, targetId: asText(record.meeting_id) || asText(record.id) },
+        sourceUrl: asText(record.source_url) || asText(record.agenda_url),
+      };
+    }),
     query ?? "",
     favoriteIds,
   ).slice(0, limit);

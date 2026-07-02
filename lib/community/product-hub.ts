@@ -11,6 +11,13 @@ import { compareDecisionTrustThenDate, getDecisionTrustView } from "@/lib/civic/
 
 const GENERATED_DIR = path.join(process.cwd(), "data/generated");
 
+function normalizeEventStatus(event: Pick<CommunityHubEvent, "status" | "start_at">): CommunityHubEvent["status"] {
+  if (event.status === "cancelled") return "cancelled";
+  const startTime = Date.parse(event.start_at ?? "");
+  if (!Number.isFinite(startTime)) return event.status ?? "unknown";
+  return startTime >= Date.now() ? "upcoming" : "completed";
+}
+
 export type CommunityHubEvent = {
   id: string;
   meeting_id: string;
@@ -320,7 +327,9 @@ export async function getCommunityHubData(communitySlug: string) {
     readJson<VoteAttributionReadiness | null>("vote-attribution-readiness.json", null),
   ]);
   const coverageRow = coverageReport?.rows.find((row) => row.id === community.id) ?? null;
-  const events = (eventsArtifact.records ?? []).filter((event) => matchesCommunity(`${event.community} ${event.jurisdiction} ${event.body_name ?? ""}`, needles));
+  const events = (eventsArtifact.records ?? [])
+    .filter((event) => matchesCommunity(`${event.community} ${event.jurisdiction} ${event.body_name ?? ""}`, needles))
+    .map((event) => ({ ...event, status: normalizeEventStatus(event) }));
   const runtimeProjects = (projectsRuntimeArtifact.records ?? []).map(legacyProjectFromRuntime);
   const legacyProjects = (legacyProjectsArtifact.records ?? []).map(legacyProjectFromRuntime);
   const projects = (runtimeProjects.length ? runtimeProjects : legacyProjects).filter((project) =>

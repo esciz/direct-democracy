@@ -64,6 +64,7 @@
     "communities:report": "npm run communities:relationships && node --import tsx scripts/report-nevada-community-coverage.ts",
     "communities:linkage-audit": "node --import tsx scripts/audit-nevada-community-linkage.ts",
     "browse:audit": "node --import tsx scripts/audit-browse-previews.ts",
+    "events:freshness-audit": "node --import tsx scripts/audit-event-freshness.ts",
     "sources:nevada:audit": "node --import tsx scripts/audit-nevada-source-packs.ts",
     "meetings:documents:discover": "node --import tsx scripts/discover-public-meeting-source-documents.ts",
     "meetings:documents:retrieve": "npm run meetings:documents:discover && node --import tsx scripts/retrieve-public-meeting-documents.ts",

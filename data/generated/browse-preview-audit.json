@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T18:09:26.627Z",
+  "generatedAt": "2026-07-02T03:23:04.357Z",
   "communityId": "carson-city-county",
   "totals": {
     "categories": 11,
@@ -74,7 +74,7 @@
       "availableGeneratedCount": 164,
       "isSourceBacked": true,
       "usesDemoData": false,
-      "lastGeneratedAt": "2026-06-28T22:39:30.026Z",
+      "lastGeneratedAt": "2026-07-02T03:22:55.821Z",
       "statusLabel": "Source-backed",
       "emptyReason": null,
       "fullHref": "/officials",
@@ -116,7 +116,7 @@
       "availableGeneratedCount": 697,
       "isSourceBacked": true,
       "usesDemoData": false,
-      "lastGeneratedAt": "2026-06-28T22:39:30.029Z",
+      "lastGeneratedAt": "2026-07-02T03:22:55.823Z",
       "statusLabel": "Source-backed",
       "emptyReason": null,
       "fullHref": "/events",
@@ -130,7 +130,7 @@
       "availableGeneratedCount": 53,
       "isSourceBacked": true,
       "usesDemoData": false,
-      "lastGeneratedAt": "2026-06-28T22:39:30.026Z",
+      "lastGeneratedAt": "2026-07-02T03:22:55.821Z",
       "statusLabel": "Source-backed",
       "emptyReason": null,
       "fullHref": "/elections",
