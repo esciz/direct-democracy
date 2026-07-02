@@ -65,6 +65,8 @@
     "communities:linkage-audit": "node --import tsx scripts/audit-nevada-community-linkage.ts",
     "browse:audit": "node --import tsx scripts/audit-browse-previews.ts",
     "events:freshness-audit": "node --import tsx scripts/audit-event-freshness.ts",
+    "private-beta:readiness": "npm run events:freshness-audit && npm run browse:audit && npm run communities:report && npm run auth:session-audit && npm run verification:account-ux-audit && npm run verification:guided-voter-audit && node --import tsx scripts/audit-private-beta-readiness.ts",
+    "sprint5:readiness": "npm run private-beta:readiness",
     "sources:nevada:audit": "node --import tsx scripts/audit-nevada-source-packs.ts",
     "meetings:documents:discover": "node --import tsx scripts/discover-public-meeting-source-documents.ts",
     "meetings:documents:retrieve": "npm run meetings:documents:discover && node --import tsx scripts/retrieve-public-meeting-documents.ts",
