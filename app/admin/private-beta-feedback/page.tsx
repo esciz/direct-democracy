@@ -115,6 +115,17 @@ export default async function AdminPrivateBetaFeedbackPage({ searchParams }: Adm
                     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200">Reviewer notes</span>
                     <textarea name="reviewerNotes" defaultValue={record.reviewerNotes ?? ""} rows={4} className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" />
                   </label>
+                  <label className="mt-3 grid gap-2">
+                    <span className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200">Public resolved note</span>
+                    <textarea
+                      name="publicReleaseNote"
+                      defaultValue={record.publicReleaseNote ?? ""}
+                      rows={3}
+                      placeholder="Optional safe summary shown to testers after resolving."
+                      className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600"
+                    />
+                  </label>
+                  <p className="mt-2 text-xs leading-5 text-slate-500">Only resolved items with this field filled appear in tester-facing updates.</p>
                   <button className="mt-3 rounded-full bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950">Save review</button>
                 </form>
               </div>

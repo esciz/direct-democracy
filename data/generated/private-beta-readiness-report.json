@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T14:07:35.001Z",
+  "generatedAt": "2026-07-02T15:41:57.538Z",
   "sprint": "Private Beta Readiness",
   "status": "ready_for_private_link_sharing",
   "recommendation": "Ready to share privately with invited testers. Keep no-index enabled until public launch.",
@@ -96,8 +96,8 @@
     },
     "civicDataFreshness": {
       "status": "green",
-      "sourceGeneratedAt": "2026-07-02T13:56:18.963Z",
-      "sourceAgeHours": 0.2,
+      "sourceGeneratedAt": "2026-07-02T14:07:33.902Z",
+      "sourceAgeHours": 1.6,
       "eventTotals": {
         "records": 728,
         "sourceBacked": 697,
@@ -123,6 +123,7 @@
       "totals": {
         "records": 0,
         "open": 0,
+        "publicUpdates": 0,
         "needsFollowUp": 0,
         "containsPersonalData": 0,
         "byStatus": {},
@@ -134,8 +135,13 @@
       "feedbackRequiresSession": true,
       "feedbackStoredPrivately": true,
       "adminReviewAvailable": true,
+      "adminCanWritePublicResolvedNotes": true,
+      "testerHubAvailable": true,
+      "testerHubRequiresSession": true,
+      "testerHubShowsOnlyPublicUpdates": true,
       "feedbackDiscoverableFromProfile": true,
-      "feedbackDiscoverableFromNav": true
+      "betaHubDiscoverableFromProfile": true,
+      "betaHubDiscoverableFromNav": true
     }
   },
   "totals": {
@@ -147,7 +153,8 @@
     "staleEventStatuses": 0,
     "communityPagesReady": 39,
     "privateBetaFeedbackRecords": 0,
-    "privateBetaFeedbackOpen": 0
+    "privateBetaFeedbackOpen": 0,
+    "privateBetaPublicUpdates": 0
   },
   "blockers": [],
   "warnings": [],

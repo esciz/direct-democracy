@@ -12,6 +12,7 @@ type FeedbackRecord = {
   status?: string;
   category?: string;
   severity?: string;
+  publicReleaseNote?: string | null;
   containsPersonalData?: boolean;
   needsFollowUp?: boolean;
 };
@@ -60,8 +61,19 @@ const validation = {
   adminReviewActionRequiresPermission:
     sourceIncludes("app/admin/private-beta-feedback/actions.ts", "requireAdminSession") &&
     sourceIncludes("app/admin/private-beta-feedback/actions.ts", "review.approve"),
+  adminCanWritePublicResolvedNotes:
+    sourceIncludes("app/admin/private-beta-feedback/page.tsx", "publicReleaseNote") &&
+    sourceIncludes("lib/private-beta/feedback.ts", "listPrivateBetaPublicUpdates"),
+  testerHubRouteExists: existsSync(path.join(ROOT, "app", "private-beta", "page.tsx")),
+  testerHubRequiresSession:
+    sourceIncludes("app/private-beta/page.tsx", "getCurrentSessionUser") &&
+    sourceIncludes("app/private-beta/page.tsx", "/auth?next=%2Fprivate-beta"),
+  testerHubShowsOnlyPublicUpdates:
+    sourceIncludes("app/private-beta/page.tsx", "listPrivateBetaPublicUpdates") &&
+    !sourceIncludes("app/private-beta/page.tsx", "listPrivateBetaFeedback"),
   profileLinksToFeedback: sourceIncludes("app/profile/page.tsx", 'href="/feedback"'),
-  mainNavLinksToFeedback: sourceIncludes("components/ui/main-nav.tsx", 'href="/feedback"'),
+  profileLinksToBetaHub: sourceIncludes("app/profile/page.tsx", 'href="/private-beta"'),
+  mainNavLinksToBetaHub: sourceIncludes("components/ui/main-nav.tsx", 'href="/private-beta"'),
   operationsLinksToReviewQueue: sourceIncludes("app/admin/operations/page.tsx", 'href="/admin/private-beta-feedback"'),
   noGeneratedPublicFeedbackQueue: !existsSync(path.join(GENERATED_DIR, "private-beta-feedback.json")),
 };
@@ -78,6 +90,7 @@ const audit = {
   totals: {
     records: records.length,
     open: records.filter((record) => openStatuses.has(record.status ?? "")).length,
+    publicUpdates: records.filter((record) => record.status === "resolved" && Boolean(record.publicReleaseNote)).length,
     needsFollowUp: records.filter((record) => record.needsFollowUp).length,
     containsPersonalData: records.filter((record) => record.containsPersonalData).length,
     byStatus: countBy(records, "status"),

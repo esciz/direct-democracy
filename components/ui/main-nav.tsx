@@ -141,10 +141,10 @@ export async function MainNav() {
           <div className="flex flex-col gap-3 lg:items-end">
             <div className="flex flex-wrap items-center gap-2">
               <Link
-                href="/feedback"
+                href="/private-beta"
                 className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-3 py-2 text-xs font-semibold text-cyan-100 transition hover:border-cyan-200/50 hover:bg-cyan-400/15"
               >
-                Feedback
+                Beta Hub
               </Link>
               <Link
                 href="/messages"

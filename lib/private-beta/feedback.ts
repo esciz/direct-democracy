@@ -42,6 +42,7 @@ export type PrivateBetaFeedbackRecord = {
   reviewerUserId: string | null;
   reviewerName: string | null;
   reviewerNotes: string | null;
+  publicReleaseNote: string | null;
   containsPersonalData: boolean;
   containsAccountIssue: boolean;
   needsFollowUp: boolean;
@@ -163,6 +164,8 @@ export function getPrivateBetaFeedbackSummary() {
   return {
     total: records.length,
     open: records.filter((record) => record.status === "new" || record.status === "triaged" || record.status === "in_progress").length,
+    resolved: records.filter((record) => record.status === "resolved").length,
+    publicUpdates: records.filter((record) => record.status === "resolved" && Boolean(record.publicReleaseNote)).length,
     needsFollowUp: records.filter((record) => record.needsFollowUp).length,
     containsPersonalData: records.filter((record) => record.containsPersonalData).length,
     byStatus,
@@ -217,6 +220,7 @@ export function createPrivateBetaFeedback(input: {
     reviewerUserId: null,
     reviewerName: null,
     reviewerNotes: null,
+    publicReleaseNote: null,
     containsPersonalData: personalDataSignals(summary, details, expectedBehavior, actualBehavior, contactEmail),
     containsAccountIssue: category === "account_verification" || /account|login|sign in|verification|voter|mfa/i.test(`${summary} ${details}`),
     needsFollowUp: severity === "blocking" || severity === "high" || category === "account_verification" || input.contactOk,
@@ -232,6 +236,7 @@ export function updatePrivateBetaFeedbackReview(input: {
   status: string;
   reviewer: AuthUser;
   reviewerNotes: string;
+  publicReleaseNote: string;
 }) {
   if (!isStatus(input.status)) return { ok: false as const, reason: "invalid_status" as const };
   const records = listPrivateBetaFeedback();
@@ -245,8 +250,23 @@ export function updatePrivateBetaFeedbackReview(input: {
     reviewerUserId: input.reviewer.id,
     reviewerName: input.reviewer.name,
     reviewerNotes: cleanLongText(input.reviewerNotes, 2000) || null,
+    publicReleaseNote: input.status === "resolved" ? cleanLongText(input.publicReleaseNote, 800) || null : null,
   };
 
   writeStore(records);
   return { ok: true as const, record: records[index] };
+}
+
+export function listPrivateBetaPublicUpdates() {
+  return listPrivateBetaFeedback()
+    .filter((record) => record.status === "resolved" && Boolean(record.publicReleaseNote))
+    .map((record) => ({
+      id: record.id,
+      resolvedAt: record.reviewedAt ?? record.submittedAt,
+      category: record.category,
+      pageUrl: record.pageUrl,
+      title: record.summary,
+      update: record.publicReleaseNote as string,
+    }))
+    .sort((left, right) => right.resolvedAt.localeCompare(left.resolvedAt));
 }

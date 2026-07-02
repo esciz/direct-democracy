@@ -76,7 +76,7 @@ const accountUxAudit = readJson<{ pass?: boolean; validation?: Record<string, bo
 const guidedVoterAudit = readJson<{ pass?: boolean; validation?: Record<string, boolean> }>("guided-voter-verification-audit.json", {});
 const feedbackAudit = readJson<{
   status?: string;
-  totals?: { records?: number; open?: number; needsFollowUp?: number; containsPersonalData?: number };
+  totals?: { records?: number; open?: number; publicUpdates?: number; needsFollowUp?: number; containsPersonalData?: number };
   validation?: Record<string, boolean>;
 }>("private-beta-feedback-audit.json", {});
 
@@ -151,8 +151,13 @@ const feedbackSignals = {
   feedbackRequiresSession: feedbackAudit.validation?.publicFeedbackActionRequiresSession === true,
   feedbackStoredPrivately: feedbackAudit.validation?.feedbackStoreIsPrivate === true,
   adminReviewAvailable: feedbackAudit.validation?.adminReviewRouteExists === true,
+  adminCanWritePublicResolvedNotes: feedbackAudit.validation?.adminCanWritePublicResolvedNotes === true,
+  testerHubAvailable: feedbackAudit.validation?.testerHubRouteExists === true,
+  testerHubRequiresSession: feedbackAudit.validation?.testerHubRequiresSession === true,
+  testerHubShowsOnlyPublicUpdates: feedbackAudit.validation?.testerHubShowsOnlyPublicUpdates === true,
   feedbackDiscoverableFromProfile: feedbackAudit.validation?.profileLinksToFeedback === true,
-  feedbackDiscoverableFromNav: feedbackAudit.validation?.mainNavLinksToFeedback === true,
+  betaHubDiscoverableFromProfile: feedbackAudit.validation?.profileLinksToBetaHub === true,
+  betaHubDiscoverableFromNav: feedbackAudit.validation?.mainNavLinksToBetaHub === true,
 };
 
 const noIndexReady = Object.values(noIndexSignals).every(Boolean);
@@ -237,6 +242,7 @@ const report = {
     communityPagesReady: communityReport.totals?.communityPagesReady ?? null,
     privateBetaFeedbackRecords: feedbackAudit.totals?.records ?? null,
     privateBetaFeedbackOpen: feedbackAudit.totals?.open ?? null,
+    privateBetaPublicUpdates: feedbackAudit.totals?.publicUpdates ?? null,
   },
   blockers,
   warnings,

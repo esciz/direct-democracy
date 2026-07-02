@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T14:07:34.886Z",
+  "generatedAt": "2026-07-02T15:41:57.465Z",
   "status": "passed",
   "storage": {
     "privateQueuePath": "data/private/private-beta-feedback.json",
@@ -9,6 +9,7 @@
   "totals": {
     "records": 0,
     "open": 0,
+    "publicUpdates": 0,
     "needsFollowUp": 0,
     "containsPersonalData": 0,
     "byStatus": {},
@@ -22,8 +23,13 @@
     "feedbackStoreHasReviewFlags": true,
     "adminReviewRouteExists": true,
     "adminReviewActionRequiresPermission": true,
+    "adminCanWritePublicResolvedNotes": true,
+    "testerHubRouteExists": true,
+    "testerHubRequiresSession": true,
+    "testerHubShowsOnlyPublicUpdates": true,
     "profileLinksToFeedback": true,
-    "mainNavLinksToFeedback": true,
+    "profileLinksToBetaHub": true,
+    "mainNavLinksToBetaHub": true,
     "operationsLinksToReviewQueue": true,
     "noGeneratedPublicFeedbackQueue": true
   },

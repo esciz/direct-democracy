@@ -151,6 +151,9 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
             <Link href="/profile/activity" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
               View activity
             </Link>
+            <Link href="/private-beta" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+              Beta Hub
+            </Link>
             <Link href="/feedback" className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
               Send feedback
             </Link>

@@ -18,6 +18,7 @@ export async function updatePrivateBetaFeedbackAction(formData: FormData) {
     status: formText(formData, "status"),
     reviewer,
     reviewerNotes: formText(formData, "reviewerNotes"),
+    publicReleaseNote: formText(formData, "publicReleaseNote"),
   });
 
   if (!result.ok) {
