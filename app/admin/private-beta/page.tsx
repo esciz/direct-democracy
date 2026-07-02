@@ -23,6 +23,30 @@ type LaunchControlReport = {
   inviteChecklist?: string[];
 };
 
+type LiveSmokeReport = {
+  generatedAt?: string;
+  status?: string;
+  baseUrl?: string | null;
+  totals?: {
+    routesChecked?: number;
+    passed?: number;
+    warnings?: number;
+    failures?: number;
+  };
+  results?: Array<{
+    path: string;
+    label: string;
+    status: number | null;
+    location: string | null;
+    xRobotsTag: string | null;
+    ok: boolean;
+    warning: boolean;
+    reason: string;
+  }>;
+  warnings?: string[];
+  failures?: string[];
+};
+
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 
 function readGenerated<T>(fileName: string, fallback: T): T {
@@ -53,6 +77,7 @@ function formatDate(value: string | undefined) {
 
 export default async function AdminPrivateBetaLaunchPage() {
   const report = readGenerated<LaunchControlReport>("private-beta-launch-control.json", {});
+  const liveSmoke = readGenerated<LiveSmokeReport>("private-beta-live-smoke.json", {});
   const validation = report.validation ?? {};
   const checklist = report.inviteChecklist ?? [
     "Run npm run private-beta:launch-audit.",
@@ -166,6 +191,50 @@ export default async function AdminPrivateBetaLaunchPage() {
               <p className={`mt-2 text-sm font-semibold ${value ? "text-emerald-200" : "text-rose-200"}`}>{value ? "Passing" : "Needs attention"}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5 shadow-card sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Live Domain Smoke</p>
+            <h2 className="mt-2 text-2xl font-semibold text-white">{formatLabel(liveSmoke.status ?? "not run")}</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-400">
+              Run `npm run private-beta:live-smoke` after Vercel deploys to verify the public domain, auth redirects, noindex headers, robots.txt, and demo-name leakage.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-emerald-100">
+              {liveSmoke.totals?.passed ?? 0} passed
+            </span>
+            <span className="rounded-full border border-amber-300/20 bg-amber-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-amber-100">
+              {liveSmoke.totals?.warnings ?? 0} warnings
+            </span>
+            <span className="rounded-full border border-rose-300/20 bg-rose-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-rose-100">
+              {liveSmoke.totals?.failures ?? 0} failures
+            </span>
+          </div>
+        </div>
+        <div className="mt-5 grid gap-3 lg:grid-cols-2">
+          {(liveSmoke.results ?? []).length ? (
+            liveSmoke.results?.map((result) => (
+              <article key={result.path} className="rounded-2xl border border-white/10 bg-slate-950/35 p-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="text-sm font-semibold text-slate-100">{result.label}</h3>
+                  <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${result.ok ? "border-emerald-300/20 bg-emerald-500/10 text-emerald-100" : result.warning ? "border-amber-300/20 bg-amber-500/10 text-amber-100" : "border-rose-300/20 bg-rose-500/10 text-rose-100"}`}>
+                    {result.ok ? "pass" : result.warning ? "warning" : "fail"}
+                  </span>
+                </div>
+                <p className="mt-2 font-mono text-xs text-cyan-100">{result.path}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{result.reason}</p>
+                <p className="mt-2 text-xs text-slate-500">HTTP {result.status ?? "none"} · {result.xRobotsTag ?? "no x-robots header"}</p>
+              </article>
+            ))
+          ) : (
+            <p className="rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm leading-6 text-slate-400">
+              No live smoke results yet.
+            </p>
+          )}
         </div>
       </section>
 

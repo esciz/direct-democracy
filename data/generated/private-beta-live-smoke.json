@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-07-02T22:06:08.768Z",
+  "status": "passed",
+  "baseUrl": "https://directyourdemocracy.com",
+  "totals": {
+    "routesChecked": 5,
+    "passed": 5,
+    "warnings": 0,
+    "failures": 0
+  },
+  "results": [
+    {
+      "path": "/",
+      "label": "Main invite link",
+      "expected": "redirect_to_auth",
+      "url": "https://directyourdemocracy.com",
+      "finalUrl": "https://www.directyourdemocracy.com/",
+      "status": 307,
+      "location": "/auth?next=%2F",
+      "xRobotsTag": "noindex, nofollow",
+      "ok": true,
+      "warning": false,
+      "reason": "Protected route redirects logged-out visitors to auth and includes noindex."
+    },
+    {
+      "path": "/auth",
+      "label": "Auth page",
+      "expected": "auth_page",
+      "url": "https://directyourdemocracy.com/auth",
+      "finalUrl": "https://www.directyourdemocracy.com/auth",
+      "status": 200,
+      "location": null,
+      "xRobotsTag": "noindex, nofollow",
+      "ok": true,
+      "warning": false,
+      "reason": "Auth page loads without known demo account names and includes noindex."
+    },
+    {
+      "path": "/private-beta",
+      "label": "Optional tester guide",
+      "expected": "redirect_to_auth",
+      "url": "https://directyourdemocracy.com/private-beta",
+      "finalUrl": "https://www.directyourdemocracy.com/private-beta",
+      "status": 307,
+      "location": "/auth?next=%2Fprivate-beta",
+      "xRobotsTag": "noindex, nofollow",
+      "ok": true,
+      "warning": false,
+      "reason": "Protected route redirects logged-out visitors to auth and includes noindex."
+    },
+    {
+      "path": "/admin/private-beta",
+      "label": "Admin launch control",
+      "expected": "redirect_to_auth",
+      "url": "https://directyourdemocracy.com/admin/private-beta",
+      "finalUrl": "https://www.directyourdemocracy.com/admin/private-beta",
+      "status": 307,
+      "location": "/auth?next=%2Fadmin%2Fprivate-beta",
+      "xRobotsTag": "noindex, nofollow",
+      "ok": true,
+      "warning": false,
+      "reason": "Protected route redirects logged-out visitors to auth and includes noindex."
+    },
+    {
+      "path": "/robots.txt",
+      "label": "Robots",
+      "expected": "robots_disallow",
+      "url": "https://directyourdemocracy.com/robots.txt",
+      "finalUrl": "https://www.directyourdemocracy.com/robots.txt",
+      "status": 200,
+      "location": null,
+      "xRobotsTag": "noindex, nofollow",
+      "ok": true,
+      "warning": false,
+      "reason": "robots.txt disallows crawling."
+    }
+  ],
+  "warnings": [],
+  "failures": [],
+  "sensitiveValuesIncluded": false
+}
