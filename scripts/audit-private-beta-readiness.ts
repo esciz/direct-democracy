@@ -79,6 +79,11 @@ const feedbackAudit = readJson<{
   totals?: { records?: number; open?: number; publicUpdates?: number; needsFollowUp?: number; containsPersonalData?: number };
   validation?: Record<string, boolean>;
 }>("private-beta-feedback-audit.json", {});
+const invitesAudit = readJson<{
+  status?: string;
+  totals?: { records?: number; active?: number; invited?: number; accepted?: number; feedbackReceived?: number };
+  validation?: Record<string, boolean>;
+}>("private-beta-invites-audit.json", {});
 
 const routeFiles = [
   "app/auth/page.tsx",
@@ -147,6 +152,7 @@ const verificationSignals = {
 };
 const feedbackSignals = {
   feedbackAuditPassed: feedbackAudit.status === "passed",
+  invitesAuditPassed: invitesAudit.status === "passed",
   feedbackRouteAvailable: feedbackAudit.validation?.publicFeedbackRouteExists === true,
   feedbackRequiresSession: feedbackAudit.validation?.publicFeedbackActionRequiresSession === true,
   feedbackStoredPrivately: feedbackAudit.validation?.feedbackStoreIsPrivate === true,
@@ -204,6 +210,7 @@ const gates = {
   testerFeedbackLoop: {
     status: status(feedbackReady),
     totals: feedbackAudit.totals ?? {},
+    inviteTotals: invitesAudit.totals ?? {},
     ...feedbackSignals,
   },
 };
@@ -243,6 +250,7 @@ const report = {
     privateBetaFeedbackRecords: feedbackAudit.totals?.records ?? null,
     privateBetaFeedbackOpen: feedbackAudit.totals?.open ?? null,
     privateBetaPublicUpdates: feedbackAudit.totals?.publicUpdates ?? null,
+    privateBetaInviteRecords: invitesAudit.totals?.records ?? null,
   },
   blockers,
   warnings,
@@ -254,6 +262,7 @@ const report = {
     "npm run verification:account-ux-audit",
     "npm run verification:guided-voter-audit",
     "npm run private-beta:feedback-audit",
+    "npm run private-beta:invites-audit",
     "npm run private-beta:readiness",
     "npm run typecheck",
     "npm run build",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T22:06:21.295Z",
+  "generatedAt": "2026-07-03T02:42:30.119Z",
   "sprint": "Private Beta Readiness",
   "status": "ready_for_private_link_sharing",
   "recommendation": "Ready to share privately with invited testers. Keep no-index enabled until public launch.",
@@ -96,8 +96,8 @@
     },
     "civicDataFreshness": {
       "status": "green",
-      "sourceGeneratedAt": "2026-07-02T18:48:00.776Z",
-      "sourceAgeHours": 3.3,
+      "sourceGeneratedAt": "2026-07-02T22:06:20.044Z",
+      "sourceAgeHours": 4.6,
       "eventTotals": {
         "records": 728,
         "sourceBacked": 697,
@@ -130,7 +130,17 @@
         "byCategory": {},
         "bySeverity": {}
       },
+      "inviteTotals": {
+        "records": 0,
+        "active": 0,
+        "invited": 0,
+        "accepted": 0,
+        "feedbackReceived": 0,
+        "byStatus": {},
+        "byPriority": {}
+      },
       "feedbackAuditPassed": true,
+      "invitesAuditPassed": true,
       "feedbackRouteAvailable": true,
       "feedbackRequiresSession": true,
       "feedbackStoredPrivately": true,
@@ -154,7 +164,8 @@
     "communityPagesReady": 39,
     "privateBetaFeedbackRecords": 0,
     "privateBetaFeedbackOpen": 0,
-    "privateBetaPublicUpdates": 0
+    "privateBetaPublicUpdates": 0,
+    "privateBetaInviteRecords": 0
   },
   "blockers": [],
   "warnings": [],
@@ -166,6 +177,7 @@
     "npm run verification:account-ux-audit",
     "npm run verification:guided-voter-audit",
     "npm run private-beta:feedback-audit",
+    "npm run private-beta:invites-audit",
     "npm run private-beta:readiness",
     "npm run typecheck",
     "npm run build"

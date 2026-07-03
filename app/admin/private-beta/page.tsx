@@ -2,7 +2,9 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 
+import { createPrivateBetaInviteAction, updatePrivateBetaInviteAction } from "@/app/admin/private-beta/actions";
 import { PageIntro } from "@/components/ui/page-intro";
+import { PRIVATE_BETA_INVITE_PRIORITIES, PRIVATE_BETA_INVITE_STATUSES, getPrivateBetaInviteSummary, listPrivateBetaInvites } from "@/lib/private-beta/invites";
 
 type LaunchControlReport = {
   generatedAt?: string;
@@ -78,6 +80,8 @@ function formatDate(value: string | undefined) {
 export default async function AdminPrivateBetaLaunchPage() {
   const report = readGenerated<LaunchControlReport>("private-beta-launch-control.json", {});
   const liveSmoke = readGenerated<LiveSmokeReport>("private-beta-live-smoke.json", {});
+  const inviteSummary = getPrivateBetaInviteSummary();
+  const invites = listPrivateBetaInvites();
   const validation = report.validation ?? {};
   const checklist = report.inviteChecklist ?? [
     "Run npm run private-beta:launch-audit.",
@@ -166,6 +170,102 @@ export default async function AdminPrivateBetaLaunchPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5 shadow-card sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Invite Tracker</p>
+            <h2 className="mt-2 text-2xl font-semibold text-white">Private tester list</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-400">
+              Track who you personally invited and what still needs follow-up. This stays in `data/private` and is not published.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
+              {inviteSummary.total} testers
+            </span>
+            <span className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-emerald-100">
+              {inviteSummary.accepted} accepted
+            </span>
+            <span className="rounded-full border border-amber-300/20 bg-amber-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-amber-100">
+              {inviteSummary.invited} invited
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-5 grid gap-6 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+          <form action={createPrivateBetaInviteAction} className="rounded-2xl border border-white/10 bg-slate-950/35 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Add tester</p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <label className="grid gap-2 text-sm text-slate-300">
+                Name
+                <input name="testerName" required className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" placeholder="Jane Tester" />
+              </label>
+              <label className="grid gap-2 text-sm text-slate-300">
+                Email
+                <input name="testerEmail" type="email" required className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" placeholder="person@example.com" />
+              </label>
+              <label className="grid gap-2 text-sm text-slate-300">
+                Relationship
+                <input name="relationship" className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" placeholder="friend, civic contact, tester" />
+              </label>
+              <label className="grid gap-2 text-sm text-slate-300">
+                Priority
+                <select name="priority" defaultValue="normal" className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100">
+                  {PRIVATE_BETA_INVITE_PRIORITIES.map((priority) => (
+                    <option key={priority.value} value={priority.value}>{priority.label}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <label className="mt-3 grid gap-2 text-sm text-slate-300">
+              Notes
+              <textarea name="notes" rows={4} className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" placeholder="What should this tester focus on?" />
+            </label>
+            <button className="mt-4 rounded-full bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950">Add tester</button>
+          </form>
+
+          <div className="space-y-3">
+            {invites.length ? (
+              invites.slice(0, 20).map((invite) => (
+                <article key={invite.id} className="rounded-2xl border border-white/10 bg-slate-950/35 p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                          {invite.status.replaceAll("_", " ")}
+                        </span>
+                        <span className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyan-100">
+                          {invite.priority}
+                        </span>
+                      </div>
+                      <h3 className="mt-3 text-base font-semibold text-slate-50">{invite.testerName}</h3>
+                      <p className="mt-1 text-sm text-slate-400">{invite.testerEmail}</p>
+                      {invite.relationship ? <p className="mt-1 text-xs text-slate-500">{invite.relationship}</p> : null}
+                    </div>
+                    <p className="text-xs text-slate-500">Updated {formatDate(invite.updatedAt)}</p>
+                  </div>
+                  {invite.notes ? <p className="mt-3 text-sm leading-6 text-slate-400">{invite.notes}</p> : null}
+                  <form action={updatePrivateBetaInviteAction} className="mt-4 grid gap-3 md:grid-cols-[12rem_minmax(0,1fr)_auto]">
+                    <input type="hidden" name="inviteId" value={invite.id} />
+                    <select name="status" defaultValue={invite.status} className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100">
+                      {PRIVATE_BETA_INVITE_STATUSES.map((status) => (
+                        <option key={status.value} value={status.value}>{status.label}</option>
+                      ))}
+                    </select>
+                    <input name="notes" defaultValue={invite.notes ?? ""} className="rounded-xl border border-white/10 bg-slate-950 px-3 py-2 text-sm text-slate-100" placeholder="Follow-up note" />
+                    <button className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100">Update</button>
+                  </form>
+                </article>
+              ))
+            ) : (
+              <p className="rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm leading-6 text-slate-400">
+                No testers tracked yet. Add the first person before you send a link.
+              </p>
+            )}
+          </div>
         </div>
       </section>
 

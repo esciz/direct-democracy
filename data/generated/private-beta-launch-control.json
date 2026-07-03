@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T22:06:21.385Z",
+  "generatedAt": "2026-07-03T02:42:30.196Z",
   "status": "ready_to_share_privately",
   "recommendation": "Ready for private invite sharing. Keep no-index and auth gating enabled.",
   "app": {
@@ -14,6 +14,7 @@
     "readinessReportReady": true,
     "readinessHasNoBlockers": true,
     "feedbackAuditPassed": true,
+    "invitesAuditPassed": true,
     "privateBetaRouteExists": true,
     "feedbackRouteExists": true,
     "adminFeedbackRouteExists": true,
@@ -44,7 +45,8 @@
       "communityPagesReady": 39,
       "privateBetaFeedbackRecords": 0,
       "privateBetaFeedbackOpen": 0,
-      "privateBetaPublicUpdates": 0
+      "privateBetaPublicUpdates": 0,
+      "privateBetaInviteRecords": 0
     }
   },
   "feedback": {
@@ -58,6 +60,18 @@
       "byStatus": {},
       "byCategory": {},
       "bySeverity": {}
+    }
+  },
+  "invites": {
+    "status": "passed",
+    "totals": {
+      "records": 0,
+      "active": 0,
+      "invited": 0,
+      "accepted": 0,
+      "feedbackReceived": 0,
+      "byStatus": {},
+      "byPriority": {}
     }
   },
   "inviteChecklist": [

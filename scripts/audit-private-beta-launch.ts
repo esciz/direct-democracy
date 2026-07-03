@@ -55,6 +55,7 @@ function normalizeBaseUrl(value: string | undefined) {
 
 const readiness = readGenerated<ReadinessReport>("private-beta-readiness-report.json", {});
 const feedback = readGenerated<FeedbackAudit>("private-beta-feedback-audit.json", {});
+const invites = readGenerated<FeedbackAudit>("private-beta-invites-audit.json", {});
 const appUrl = normalizeBaseUrl(process.env.NEXT_PUBLIC_APP_URL);
 const host = appUrl ? new URL(appUrl).hostname : null;
 const localHost = host === "localhost" || host === "127.0.0.1" || host?.endsWith(".localhost");
@@ -64,6 +65,7 @@ const validation = {
   readinessReportReady: readiness.status === "ready_for_private_link_sharing" || readiness.status === "ready_with_warnings",
   readinessHasNoBlockers: (readiness.blockers ?? []).length === 0,
   feedbackAuditPassed: feedback.status === "passed",
+  invitesAuditPassed: invites.status === "passed",
   privateBetaRouteExists: existsSync(path.join(ROOT, "app", "private-beta", "page.tsx")),
   feedbackRouteExists: existsSync(path.join(ROOT, "app", "feedback", "page.tsx")),
   adminFeedbackRouteExists: existsSync(path.join(ROOT, "app", "admin", "private-beta-feedback", "page.tsx")),
@@ -95,6 +97,7 @@ const blockers = Object.entries({
   readinessReportReady: validation.readinessReportReady,
   readinessHasNoBlockers: validation.readinessHasNoBlockers,
   feedbackAuditPassed: validation.feedbackAuditPassed,
+  invitesAuditPassed: validation.invitesAuditPassed,
   privateBetaRouteExists: validation.privateBetaRouteExists,
   feedbackRouteExists: validation.feedbackRouteExists,
   adminFeedbackRouteExists: validation.adminFeedbackRouteExists,
@@ -141,6 +144,10 @@ const report = {
   feedback: {
     status: feedback.status ?? "missing",
     totals: feedback.totals ?? {},
+  },
+  invites: {
+    status: invites.status ?? "missing",
+    totals: invites.totals ?? {},
   },
   inviteChecklist: [
     "Push the latest commits to origin.",

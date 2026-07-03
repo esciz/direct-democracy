@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-07-03T02:42:30.036Z",
+  "status": "passed",
+  "storage": {
+    "privateQueuePath": "data/private/private-beta-invites.json",
+    "generatedPublicQueueExists": false,
+    "gitIgnoredByDefault": true
+  },
+  "totals": {
+    "records": 0,
+    "active": 0,
+    "invited": 0,
+    "accepted": 0,
+    "feedbackReceived": 0,
+    "byStatus": {},
+    "byPriority": {}
+  },
+  "validation": {
+    "privateInviteStoreExists": true,
+    "adminActionsRequirePermission": true,
+    "adminLaunchPageShowsInviteTracker": true,
+    "generatedAuditDoesNotContainEmails": true,
+    "noGeneratedPublicInviteQueue": true
+  },
+  "sensitiveValuesIncluded": false
+}
