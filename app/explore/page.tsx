@@ -263,14 +263,14 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
     ? `A reusable favorites view for ${activeCategoryLabel.toLowerCase()}.`
     : query
       ? `Search is currently scoped to ${activeCategoryLabel.toLowerCase()} only.`
-      : `Preview-first browsing for ${activeCategoryLabel.toLowerCase()} in and around ${currentCommunity.name}.`;
+      : `Browse ${activeCategoryLabel.toLowerCase()} in and around ${currentCommunity.name}.`;
 
   return (
     <div className="space-y-8 py-8">
       <PageIntro
         eyebrow="Explore"
         title="Find your way in without getting overwhelmed"
-        description="Start with one category at a time, browse lightweight previews, and quickly spot what you can vote on before opening the deeper civic layers."
+        description="Start with one category at a time, skim real source-backed previews, and open the items you want to understand more deeply."
         meta={
           <>
             <span className="rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-200">{currentCommunity.name}</span>
@@ -281,8 +281,8 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
       <section className="dd-panel rounded-[1.75rem] p-6">
         <SectionHeading
           eyebrow="Browse"
-          title="Preview-first category browsing"
-          description="Switch categories to browse lightweight cards without loading full lists across the whole page."
+          title="Browse by category"
+          description="Switch categories to see the best available Nevada records, plus honest limited-data messages when a category is not populated yet."
         />
 
         <div className="mt-5 flex flex-wrap gap-2">
@@ -373,7 +373,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Unified search</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Search one civic category at a time</h2>
             <p className="mt-2 text-sm text-slate-400">
-              Switch categories without changing the page structure. Results stay lightweight and preview-first.
+              Choose a category, search within it, and keep the page focused on the type of civic item you are trying to find.
             </p>
           </div>
           {favoritesOnly ? (

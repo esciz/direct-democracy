@@ -105,10 +105,12 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Account verification</p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-ink">Verified stakeholder eligibility</h1>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-ink">Verify your Nevada voter or residency status</h1>
             <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
-              Residency review is the privacy-preserving bridge from “can vote” to “counts in verified stakeholder analytics.”
-              Direct Democracy does not publish submissions automatically and does not store raw street-address evidence in this local identity record.
+              Use this page when you need voter-only civic actions or Nevada resident context. Submissions are private, reviewed before approval, and never published automatically.
+            </p>
+            <p className="mt-4 rounded-2xl border border-civic-200 bg-civic-50 p-4 text-sm leading-6 text-civic-900">
+              Verification is currently Nevada-only. Submit voter or residency details only if you are a Nevada resident using Nevada official records. Non-Nevada testers can continue browsing and account testing without verification.
             </p>
           </div>
           <Link href="/profile" className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
@@ -206,7 +208,7 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
             {
               id: "voter",
               label: "1. Voter lookup",
-              description: "Preferred path. Use imported voter files when available, then guided SOS lookup review.",
+              description: "Preferred Nevada path. Use imported voter files when available, then guided SOS lookup review.",
               state: hasVerifiedVoter ? "complete" : hasPendingVoter ? "pending" : activeStep === "voter" ? "active" : "locked",
             },
             {
@@ -226,9 +228,9 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
               key={step.id}
               className={`rounded-3xl border p-4 ${
                 step.state === "complete"
-                  ? "border-civic-200 bg-civic-50 text-civic-950"
+                  ? "border-civic-200 bg-civic-50 text-civic-900"
                   : step.state === "pending"
-                    ? "border-amber-200 bg-amber-50 text-amber-950"
+                    ? "border-amber-200 bg-amber-50 text-amber-900"
                     : step.state === "active"
                       ? "border-slate-300 bg-white text-slate-900"
                       : "border-slate-200 bg-slate-50 text-slate-500"
@@ -236,7 +238,7 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
             >
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-semibold">{step.label}</p>
-                <span className="rounded-full bg-white/70 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em]">{step.state}</span>
+                <span className="rounded-full bg-white/70 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-700">{step.state}</span>
               </div>
               <p className="mt-2 text-xs leading-5 opacity-80">{step.description}</p>
             </div>
@@ -253,6 +255,9 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
               <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
                 Direct Democracy first checks imported official voter-file records. If your county is not indexed yet, use the official Nevada voter search as the source step and submit a review-ready claim using the County Voter ID and Election Precinct shown by the lookup.
               </p>
+              <p className="mt-4 max-w-3xl rounded-2xl border border-civic-200 bg-civic-50 p-4 text-sm leading-6 text-civic-900">
+                This voter workflow is for Nevada residents only. If you live outside Nevada, do not submit voter ID or residency fields here; the feature will expand only after new state sources are added.
+              </p>
             </div>
             <a
               href="https://www.nvsos.gov/votersearch/"
@@ -265,11 +270,11 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
           </div>
 
           {hasVerifiedVoter ? (
-            <div className="mt-5 rounded-3xl border border-civic-200 bg-civic-50 p-5 text-sm leading-6 text-civic-950">
+            <div className="mt-5 rounded-3xl border border-civic-200 bg-civic-50 p-5 text-sm leading-6 text-civic-900">
               You already have an active verified voter claim. Your source-backed votes can count as verified voter signals when privacy thresholds are met.
             </div>
           ) : hasPendingVoter ? (
-            <div className="mt-5 rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-950">
+            <div className="mt-5 rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-900">
               A guided voter portal request is pending review. Once approved, your account becomes verified voter eligible without changing vote weight.
             </div>
           ) : (
@@ -368,11 +373,11 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
           </p>
 
           {hasVerifiedResidency ? (
-            <div className="mt-5 rounded-3xl border border-civic-200 bg-civic-50 p-5 text-sm leading-6 text-civic-950">
+            <div className="mt-5 rounded-3xl border border-civic-200 bg-civic-50 p-5 text-sm leading-6 text-civic-900">
               You already have an active verified residency claim. Voter-provider matching can be added later without changing your vote weight.
             </div>
           ) : hasPendingResidency ? (
-            <div className="mt-5 rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-950">
+            <div className="mt-5 rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm leading-6 text-amber-900">
               A residency request is already pending manual review. You can submit a new request only after the current one is reviewed or expires.
             </div>
           ) : (

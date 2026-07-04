@@ -17,7 +17,7 @@ function badgeClass(value: boolean) {
 }
 
 function metricClass(value: boolean) {
-  return value ? "text-civic-950" : "text-amber-950";
+  return value ? "text-civic-900" : "text-amber-900";
 }
 
 export function AccountParticipationStatusCard({ status }: AccountParticipationStatusCardProps) {
@@ -60,7 +60,7 @@ export function AccountParticipationStatusCard({ status }: AccountParticipationS
       <div className="mt-5 grid gap-4 md:grid-cols-3">
         <div className="rounded-3xl bg-civic-50 p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Source-backed questions</p>
-          <p className="mt-2 text-lg font-semibold text-civic-950">{status.sourceBackedQuestionsAvailable.toLocaleString()}</p>
+          <p className="mt-2 text-lg font-semibold text-civic-900">{status.sourceBackedQuestionsAvailable.toLocaleString()}</p>
         </div>
         <div className="rounded-3xl bg-slate-50 p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Your real responses</p>
@@ -72,7 +72,7 @@ export function AccountParticipationStatusCard({ status }: AccountParticipationS
         </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-sky-200 bg-sky-50 p-5 text-sm leading-6 text-sky-950">
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-sky-200 bg-sky-50 p-5 text-sm leading-6 text-sky-900">
         <p>{status.nextStep}</p>
         {!status.countsAsVerifiedStakeholderSignal && status.signedIn ? (
           <Link href="/account/verification#residency-review" className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">

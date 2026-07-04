@@ -32,7 +32,7 @@ export function VerificationStatusCard({ user, content }: VerificationStatusCard
             href="/account/verification#voter-review"
             className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
           >
-            Complete voter verification
+            Complete Nevada voter verification
           </Link>
         ) : null}
       </div>
@@ -52,7 +52,7 @@ export function VerificationStatusCard({ user, content }: VerificationStatusCard
         <div className="rounded-3xl bg-slate-50 p-5">
           <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Civic onboarding</p>
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Choose your primary community, follow local issues, and complete voter verification when you are ready to vote, sign petitions, or message officials.
+            Choose your primary Nevada community, follow local issues, and complete Nevada voter verification when you are ready to vote, sign petitions, or message officials.
           </p>
         </div>
       </div>

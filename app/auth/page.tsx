@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { AuthEntryClient, WhyThisMattersInfographicTabs } from "@/components/domain/auth-entry-client";
+import { AuthEntryClient } from "@/components/domain/auth-entry-client";
 import { Logo } from "@/components/ui/brand-logo";
 import { DEV_ONLY_AUTH_ENABLED } from "@/lib/auth/constants";
 import { isGuestUser } from "@/lib/auth/session";
@@ -25,7 +25,7 @@ export default async function AuthPage() {
               Know what&apos;s happening, who&apos;s responsible, and what you can do next.
             </h2>
             <p className="mt-4 max-w-xl text-base leading-8 text-slate-300">
-              Direct Democracy turns local issues, elections, officials, and public action into one clear civic dashboard — so you can follow what matters without sorting through noise.
+              Direct Democracy turns local issues, elections, officials, and public action into one clear civic dashboard so you can follow what matters without sorting through noise.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               {[
@@ -40,7 +40,7 @@ export default async function AuthPage() {
               ))}
             </div>
             <p className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
-              Prototype demo. Not a government voting system.
+              Private beta. Not a government voting system.
             </p>
           </div>
         </section>
@@ -48,7 +48,20 @@ export default async function AuthPage() {
         <AuthEntryClient demoEnabled={DEV_ONLY_AUTH_ENABLED} />
       </div>
 
-      <WhyThisMattersInfographicTabs />
+      <section className="dd-panel rounded-[2rem] p-5 sm:p-6">
+        <div className="grid gap-3 md:grid-cols-3">
+          {[
+            ["1. Create your account", "Start with a normal login so your saved items, verification status, and feedback stay attached to you."],
+            ["2. Pick your Nevada context", "Choose the community and issues you want the beta to prioritize while broader state coverage grows."],
+            ["3. Verify when needed", "Nevada voter and residency verification unlock voter-only actions after official-source review."],
+          ].map(([title, body]) => (
+            <div key={title} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-sm font-semibold text-slate-50">{title}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

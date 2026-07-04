@@ -198,10 +198,9 @@ export default async function VotingPage({ searchParams }: VotingPageProps) {
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
               Nevada real-data beta
             </div>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50">Civic Signals & Voting</h1>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-50">Vote on civic questions</h1>
             <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-400">
-              Production voting now shows only source-attributed Nevada public records that are approved or verified. If a section has no reviewed
-              records, it stays empty instead of falling back to invented people, issues, candidates, or officials.
+              Browse questions generated from reviewed Nevada public records. If we do not have source-backed data for a topic yet, we show a limited-data message instead of invented people, issues, candidates, or officials.
             </p>
           </div>
           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-200">

@@ -244,7 +244,7 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
                   step.state === "current"
                     ? "rounded-3xl bg-slate-950 p-4 text-white"
                     : step.state === "complete"
-                      ? "rounded-3xl bg-civic-50 p-4 text-civic-950"
+                      ? "rounded-3xl bg-civic-50 p-4 text-civic-900"
                       : "rounded-3xl bg-slate-50 p-4 text-slate-600"
                 }
               >

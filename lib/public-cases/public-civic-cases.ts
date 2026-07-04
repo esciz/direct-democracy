@@ -154,10 +154,20 @@ function communityMatchesCase(community: CommunitySummary, entry: Pick<PublicCiv
 
 export async function getPublicCivicCasesForCommunity(community: CommunitySummary, limit = 6) {
   const cases = await readJsonFile<PublicCivicCaseRecord[]>(PUBLIC_MEETING_PATHS.publicCasesRuntime, []);
-  return cases
+  const uniqueCases: PublicCivicCaseRecord[] = [];
+  const seenTitles = new Set<string>();
+
+  for (const entry of cases
     .filter((entry) => communityMatchesCase(community, entry))
-    .sort((left, right) => (Date.parse(right.updated_at) || 0) - (Date.parse(left.updated_at) || 0))
-    .slice(0, limit);
+    .sort((left, right) => (Date.parse(right.updated_at) || 0) - (Date.parse(left.updated_at) || 0))) {
+    const titleKey = normalizeWhitespace(entry.title).toLowerCase();
+    if (seenTitles.has(titleKey)) continue;
+    seenTitles.add(titleKey);
+    uniqueCases.push(entry);
+    if (uniqueCases.length >= limit) break;
+  }
+
+  return uniqueCases;
 }
 
 export async function getPublicCivicCaseAdminQueue() {

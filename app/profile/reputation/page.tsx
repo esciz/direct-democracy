@@ -105,7 +105,7 @@ export default async function ProfileReputationPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Tier Guide</p>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           {TIER_EXPLANATIONS.map((entry) => (
-            <article key={entry.tier} className={`rounded-3xl p-5 ${entry.tier === safeSummary.tier ? "bg-civic-50 text-civic-950" : "bg-slate-50 text-slate-700"}`}>
+            <article key={entry.tier} className={`rounded-3xl p-5 ${entry.tier === safeSummary.tier ? "bg-civic-50 text-civic-900" : "bg-slate-50 text-slate-700"}`}>
               <h3 className="text-lg font-semibold">{entry.tier}</h3>
               <p className="mt-2 text-sm leading-7">{entry.description}</p>
             </article>

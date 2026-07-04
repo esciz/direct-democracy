@@ -42,7 +42,7 @@ const onboardingSteps = [
   {
     step: "3",
     title: "Verify your voter record",
-    description: "Confirm your identity so civic participation is tied to a real person in a real jurisdiction.",
+    description: "For this beta, voter verification is for Nevada residents and Nevada official records.",
   },
   {
     step: "4",
@@ -96,6 +96,9 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
           <p className="mt-4 text-base leading-8 text-slate-600">
             The goal is simple: learn where you are, what matters to you, and how much detail you want first. Verification still matters, but the experience should feel guided and useful, not intimidating.
           </p>
+          <p className="mt-4 rounded-2xl border border-civic-200 bg-civic-50 p-4 text-sm leading-6 text-civic-900">
+            Nevada beta note: voter verification, residency review, local issues, events, elections, officials, and civic actions are currently built for Nevada residents. Non-Nevada testers can still create an account and review the product flow, but local results may not apply to them.
+          </p>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -108,19 +111,19 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
                 Start Demo Signup
               </button>
             </form>
-          ) : (
+          ) : !currentUser ? (
             <Link
               href={`/get-started?step=account${claimProfileId ? `&claimProfile=${encodeURIComponent(claimProfileId)}` : ""}`}
               className="inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
               Start Guided Onboarding
             </Link>
-          )}
+          ) : null}
           <Link
-            href="/"
+            href={currentUser ? "/" : "/"}
             className="inline-flex rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
           >
-            Back to Public Landing
+            {currentUser ? "Back to dashboard" : "Back to Public Landing"}
           </Link>
         </div>
       </section>
@@ -172,22 +175,37 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
           <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
             <form action={beginGuidedOnboarding} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
               <input type="hidden" name="claimProfileId" value={claimProfileId} />
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Screen 1</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Step 1</p>
               <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Create your account</h3>
               <p className="mt-2 text-sm leading-7 text-slate-600">
                 Everyone begins with the same basic account. Public roles like candidate or official only attach later if your verified identity matches a public profile.
               </p>
+              <p className="mt-4 rounded-2xl border border-civic-200 bg-white p-4 text-sm leading-6 text-slate-700">
+                Nevada resident? Continue through verification to unlock Nevada voter and residency review. Outside Nevada? You can still test account setup and browsing, but verification and local civic recommendations may not be relevant yet.
+              </p>
               <div className="mt-5 grid gap-4">
-                <input name="fullName" placeholder="Full name" defaultValue={draft?.accountName ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
-                <input name="email" type="email" placeholder="Email" defaultValue={draft?.accountEmail ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
-                <input name="phoneNumber" type="tel" placeholder="Phone number" defaultValue={draft?.phoneNumber ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
-                <input name="password" type="password" placeholder="Password" className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+                <label className="block text-sm font-semibold text-slate-800">
+                  Full name
+                  <input name="fullName" placeholder="Your legal or preferred name" defaultValue={draft?.accountName ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+                </label>
+                <label className="block text-sm font-semibold text-slate-800">
+                  Email
+                  <input name="email" type="email" placeholder="you@example.com" defaultValue={draft?.accountEmail ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+                </label>
+                <label className="block text-sm font-semibold text-slate-800">
+                  Phone number, optional
+                  <input name="phoneNumber" type="tel" placeholder="For future recovery and review notices" defaultValue={draft?.phoneNumber ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+                </label>
+                <label className="block text-sm font-semibold text-slate-800">
+                  Password
+                  <input name="password" type="password" placeholder="Create a password" className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+                </label>
                 <button type="submit" className="w-fit rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
                   Continue to Verification
                 </button>
               </div>
             </form>
-            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
+            <div className="self-start rounded-[1.5rem] border border-slate-200 bg-white p-5">
               <p className="text-sm font-semibold text-ink">Why signup comes first</p>
               <p className="mt-2 text-sm leading-7 text-slate-600">
                 The platform needs a real account before it can place you in the right communities, verify identity, or personalize what shows up first.
@@ -199,24 +217,39 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
         {step === "verify" ? (
           <form action={submitVoterVerification} className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
             <input type="hidden" name="claimProfileId" value={claimProfileId} />
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Screen 2</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Step 2</p>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Verify identity and voter record</h3>
             <p className="mt-2 text-sm leading-7 text-slate-600">
-              Verification makes civic actions legitimate. It also unlocks the right local context and supports secure candidate or official profile claiming later on.
+              Verification makes civic actions legitimate. This beta verifies Nevada voter and residency information first, then unlocks the right Nevada local context and supports secure candidate or official profile claiming later on.
             </p>
             <div className="mt-5 grid gap-4 md:grid-cols-2">
-              <input name="legalFirstName" placeholder="Legal first name" defaultValue={draft?.legalFirstName ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
-              <input name="legalLastName" placeholder="Legal last name" defaultValue={draft?.legalLastName ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
-              <input name="dateOfBirth" type="date" defaultValue={draft?.dateOfBirth ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
-              <input name="streetAddress" placeholder="Street address" defaultValue={draft?.streetAddress ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
-              <select name="jurisdictionName" defaultValue={draft?.jurisdictionName ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500 md:col-span-2">
-                <option value="">Select jurisdiction</option>
-                {communities.map((community) => (
-                  <option key={community.id} value={community.primaryJurisdictionName}>
-                    {community.primaryJurisdictionName}
-                  </option>
-                ))}
-              </select>
+              <label className="block text-sm font-semibold text-slate-800">
+                Legal first name
+                <input name="legalFirstName" placeholder="First name on voter record" defaultValue={draft?.legalFirstName ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              </label>
+              <label className="block text-sm font-semibold text-slate-800">
+                Legal last name
+                <input name="legalLastName" placeholder="Last name on voter record" defaultValue={draft?.legalLastName ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              </label>
+              <label className="block text-sm font-semibold text-slate-800">
+                Date of birth
+                <input name="dateOfBirth" type="date" defaultValue={draft?.dateOfBirth ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              </label>
+              <label className="block text-sm font-semibold text-slate-800">
+                Street address
+                <input name="streetAddress" placeholder="Residence address on voter record" defaultValue={draft?.streetAddress ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" />
+              </label>
+              <label className="block text-sm font-semibold text-slate-800 md:col-span-2">
+                Nevada jurisdiction
+                <select name="jurisdictionName" defaultValue={draft?.jurisdictionName ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500">
+                  <option value="">Select jurisdiction</option>
+                  {communities.map((community) => (
+                    <option key={community.id} value={community.primaryJurisdictionName}>
+                      {community.primaryJurisdictionName}
+                    </option>
+                  ))}
+                </select>
+              </label>
             </div>
             <button type="submit" className="mt-5 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
               Run Verification Match
@@ -226,7 +259,7 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
 
         {step === "verification-result" ? (
           <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Screen 3</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Step 3</p>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Verification result</h3>
             <div className="mt-5 rounded-3xl bg-white p-5">
               <p className="text-lg font-semibold text-ink">
@@ -342,31 +375,39 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
         {step === "setup" ? (
           <form action={submitCommunityAndIssuesSetup} className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
             <input type="hidden" name="claimProfileId" value={claimProfileId} />
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Screen 4</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Step 4</p>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Choose your community and Top 3 issues</h3>
+            <p className="mt-2 text-sm leading-7 text-slate-600">
+              These choices shape your dashboard first. You can change them later from your profile.
+            </p>
             <div className="mt-5 grid gap-4">
-              <select name="selectedCommunityId" defaultValue={draft?.selectedCommunityId ?? ""} className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500">
-                <option value="">Select a default community</option>
-                {communities.map((community) => (
-                  <option key={community.id} value={community.id}>
-                    {community.name}
-                  </option>
-                ))}
-              </select>
-              {[0, 1, 2].map((index) => (
-                <select
-                  key={index}
-                  name={`issue${index + 1}`}
-                  defaultValue={draft?.topIssueTitles?.[index] ?? ""}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
-                >
-                  <option value="">Select an issue</option>
-                  {issueOptions.map((issue) => (
-                    <option key={issue} value={issue}>
-                      {issue}
+              <label className="block text-sm font-semibold text-slate-800">
+                Primary Nevada community
+                <select name="selectedCommunityId" defaultValue={draft?.selectedCommunityId ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500">
+                  <option value="">Select a default community</option>
+                  {communities.map((community) => (
+                    <option key={community.id} value={community.id}>
+                      {community.name}
                     </option>
                   ))}
                 </select>
+              </label>
+              {[0, 1, 2].map((index) => (
+                <label key={index} className="block text-sm font-semibold text-slate-800">
+                  Priority issue {index + 1}
+                  <select
+                    name={`issue${index + 1}`}
+                    defaultValue={draft?.topIssueTitles?.[index] ?? ""}
+                    className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                  >
+                    <option value="">Select an issue</option>
+                    {issueOptions.map((issue) => (
+                      <option key={issue} value={issue}>
+                        {issue}
+                      </option>
+                    ))}
+                  </select>
+                </label>
               ))}
             </div>
             <button type="submit" className="mt-5 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
@@ -377,7 +418,7 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
 
         {step === "role-match" ? (
           <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Screen 5</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Step 5</p>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Role and public-profile matching</h3>
             {roleMatch ? (
               <div className="mt-5 rounded-3xl bg-white p-5">
@@ -414,7 +455,7 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
         {step === "finish" ? (
           <form action={finishGuidedOnboarding} className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
             <input type="hidden" name="claimProfileId" value={claimProfileId} />
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Screen 6</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Step 6</p>
             <h3 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Finish onboarding</h3>
             <p className="mt-3 text-sm leading-7 text-slate-600">
               Your account now has a clearer civic starting point. If you matched to a public profile, you can continue that secure claim flow next. Otherwise you will enter the app as a citizen account.
@@ -426,11 +467,12 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
         ) : null}
       </section>
 
-      <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-6 shadow-card sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Verification Trust Layer</p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Why verification uses escalating trust instead of one hard wall</h2>
+      <details className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-6 shadow-card sm:p-8">
+        <summary className="cursor-pointer text-lg font-semibold tracking-tight text-ink">
+          How verification protects civic actions
+        </summary>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">
-          Verification helps protect legitimacy without forcing every user through the highest-friction path. Most people should clear ordinary participation through strong voter matching, while higher-risk actions like profile claims or elevated roles can step up to stronger checks only when needed.
+          Verification protects legitimacy without forcing every user through the highest-friction path. Most people can clear ordinary participation through voter matching, while higher-risk actions can step up to stronger review only when needed.
         </p>
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {trustLayers.map((layer) => (
@@ -466,7 +508,7 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
             </div>
           </div>
         </div>
-      </section>
+      </details>
 
       {showInternalTesting ? (
         <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">

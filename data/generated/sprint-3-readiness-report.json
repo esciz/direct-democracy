@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T04:16:26.058Z",
+  "generatedAt": "2026-07-03T18:08:02.839Z",
   "sprint": "Sprint 3",
   "status": "ready_with_warnings",
   "recommendation": "Sprint 3 can close with warnings. Move to Sprint 4 launch readiness and production QA, and carry the listed warnings into launch hardening.",

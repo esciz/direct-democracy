@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T02:42:30.196Z",
+  "generatedAt": "2026-07-04T15:59:51.395Z",
   "status": "ready_to_share_privately",
   "recommendation": "Ready for private invite sharing. Keep no-index and auth gating enabled.",
   "app": {
@@ -13,6 +13,7 @@
   "validation": {
     "readinessReportReady": true,
     "readinessHasNoBlockers": true,
+    "nevadaBoundaryAuditPassed": true,
     "feedbackAuditPassed": true,
     "invitesAuditPassed": true,
     "privateBetaRouteExists": true,
@@ -47,6 +48,18 @@
       "privateBetaFeedbackOpen": 0,
       "privateBetaPublicUpdates": 0,
       "privateBetaInviteRecords": 0
+    }
+  },
+  "boundary": {
+    "status": "passed",
+    "validation": {
+      "registrationStatesNevadaFocus": true,
+      "authIntroMentionsBetaScope": true,
+      "guidedOnboardingHasNevadaNotice": true,
+      "guidedVerificationStatesNevadaOnly": true,
+      "accountVerificationStatesNevadaOnly": true,
+      "profileOnboardingStatesNevadaScope": true,
+      "verificationCardUsesNevadaLabel": true
     }
   },
   "feedback": {

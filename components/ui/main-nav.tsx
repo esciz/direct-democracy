@@ -46,7 +46,7 @@ export async function MainNav() {
             </Link>
           </div>
 
-          <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-5">
             <NavLinks />
             <div className="flex flex-col gap-3 lg:items-end">
               <div className="flex flex-wrap items-center gap-2">
@@ -92,7 +92,7 @@ export async function MainNav() {
             </Link>
           </div>
 
-          <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-5">
             <NavLinks />
             <div className="flex flex-col gap-3 lg:items-end">
               <div className="flex flex-wrap items-center gap-2">
@@ -135,7 +135,7 @@ export async function MainNav() {
           </Link>
         </div>
 
-        <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-5">
           <NavLinks />
 
           <div className="flex flex-col gap-3 lg:items-end">
@@ -178,7 +178,7 @@ export async function MainNav() {
                 {currentUser.name}
               </span>
               <span className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
-                Current role: {getRoleLabel(currentUser.role)}
+                Role: {getRoleLabel(currentUser.role)}
               </span>
               <form action={signOutCurrentUser}>
                 <button

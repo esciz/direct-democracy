@@ -74,6 +74,11 @@ const communityReport = readJson<{
 const authAudit = readJson<{ pass?: boolean; validation?: Record<string, boolean> }>("auth-session-boundary-audit.json", {});
 const accountUxAudit = readJson<{ pass?: boolean; validation?: Record<string, boolean> }>("account-verification-ux-audit.json", {});
 const guidedVoterAudit = readJson<{ pass?: boolean; validation?: Record<string, boolean> }>("guided-voter-verification-audit.json", {});
+const boundaryAudit = readJson<{
+  status?: string;
+  validation?: Record<string, boolean>;
+  failures?: string[];
+}>("nevada-beta-boundary-audit.json", {});
 const feedbackAudit = readJson<{
   status?: string;
   totals?: { records?: number; open?: number; publicUpdates?: number; needsFollowUp?: number; containsPersonalData?: number };
@@ -150,6 +155,13 @@ const verificationSignals = {
   accountVerificationUxAuditPassed: accountUxAudit.pass === true,
   guidedVoterAuditPassed: guidedVoterAudit.pass === true,
 };
+const nevadaBoundarySignals = {
+  nevadaBoundaryAuditPassed: boundaryAudit.status === "passed",
+  registrationStatesNevadaFocus: boundaryAudit.validation?.registrationStatesNevadaFocus === true,
+  guidedOnboardingHasNevadaNotice: boundaryAudit.validation?.guidedOnboardingHasNevadaNotice === true,
+  accountVerificationStatesNevadaOnly: boundaryAudit.validation?.accountVerificationStatesNevadaOnly === true,
+  profileOnboardingStatesNevadaScope: boundaryAudit.validation?.profileOnboardingStatesNevadaScope === true,
+};
 const feedbackSignals = {
   feedbackAuditPassed: feedbackAudit.status === "passed",
   invitesAuditPassed: invitesAudit.status === "passed",
@@ -177,6 +189,7 @@ const freshnessReady =
 const freshnessWarning = !freshnessSignals.eventArtifactFreshEnoughForPrivateBeta;
 const verificationReady = verificationSignals.authSessionAuditPassed && verificationSignals.accountVerificationUxAuditPassed;
 const guidedVoterWarning = !verificationSignals.guidedVoterAuditPassed;
+const nevadaBoundaryReady = Object.values(nevadaBoundarySignals).every(Boolean);
 const feedbackReady = Object.values(feedbackSignals).every(Boolean);
 
 const gates = {
@@ -206,6 +219,11 @@ const gates = {
   verificationUx: {
     status: status(verificationReady && !guidedVoterWarning, verificationReady),
     ...verificationSignals,
+  },
+  nevadaBetaScopeClarity: {
+    status: status(nevadaBoundaryReady),
+    failures: boundaryAudit.failures ?? [],
+    ...nevadaBoundarySignals,
   },
   testerFeedbackLoop: {
     status: status(feedbackReady),
@@ -261,6 +279,7 @@ const report = {
     "npm run auth:session-audit",
     "npm run verification:account-ux-audit",
     "npm run verification:guided-voter-audit",
+    "npm run private-beta:boundary-audit",
     "npm run private-beta:feedback-audit",
     "npm run private-beta:invites-audit",
     "npm run private-beta:readiness",
@@ -285,6 +304,7 @@ console.log(
       productReady,
       freshnessReady,
       verificationReady,
+      nevadaBoundaryReady,
       feedbackReady,
       output: OUTPUT_PATH,
     },

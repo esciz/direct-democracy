@@ -32,7 +32,7 @@ export function RoleProgressionContext({
               key={step.role}
               className={
                 isHighlighted
-                  ? "rounded-3xl border border-civic-300 bg-civic-50 p-4 text-civic-950"
+                  ? "rounded-3xl border border-civic-300 bg-civic-50 p-4 text-civic-900"
                   : step.state === "current"
                     ? "rounded-3xl bg-slate-950 p-4 text-white"
                     : step.state === "complete"

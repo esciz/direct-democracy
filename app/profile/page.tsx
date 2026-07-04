@@ -188,7 +188,7 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
       ) : null}
       {params?.onboarding === "started" ? (
         <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
-          Welcome to onboarding. Start with your profile details, then complete voter verification when you need voter-only civic actions.
+          Welcome to onboarding. Start with your profile details, then complete Nevada voter verification when you need voter-only civic actions. Non-Nevada testers can still browse and review the flow, but local civic data is Nevada-focused right now.
         </section>
       ) : null}
 
@@ -334,7 +334,7 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
                 step.state === "current"
                   ? "rounded-3xl bg-slate-950 p-4 text-white"
                   : step.state === "complete"
-                    ? "rounded-3xl bg-civic-50 p-4 text-civic-950"
+                    ? "rounded-3xl bg-civic-50 p-4 text-civic-900"
                     : "rounded-3xl bg-slate-50 p-4 text-slate-600"
               }
             >

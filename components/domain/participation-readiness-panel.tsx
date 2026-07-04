@@ -66,7 +66,7 @@ export function ParticipationReadinessPanel({ summary, compact = false }: Partic
       <div className="mt-5 grid gap-4 md:grid-cols-3">
         <div className="rounded-3xl bg-civic-50 p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Verification class</p>
-          <p className="mt-2 text-lg font-semibold text-civic-950">{summary.verificationClass.replaceAll("_", " ")}</p>
+          <p className="mt-2 text-lg font-semibold text-civic-900">{summary.verificationClass.replaceAll("_", " ")}</p>
         </div>
         <div className="rounded-3xl bg-slate-50 p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Hidden weighting</p>
@@ -78,7 +78,7 @@ export function ParticipationReadinessPanel({ summary, compact = false }: Partic
         </div>
       </div>
 
-      <div className="mt-5 rounded-3xl border border-civic-200 bg-civic-50 p-5 text-sm leading-6 text-civic-950">
+      <div className="mt-5 rounded-3xl border border-civic-200 bg-civic-50 p-5 text-sm leading-6 text-civic-900">
         {summary.publicDataSeparation}
       </div>
       <div className="mt-3 rounded-3xl border border-sky-200 bg-sky-50 p-5 text-sm leading-6 text-sky-950">

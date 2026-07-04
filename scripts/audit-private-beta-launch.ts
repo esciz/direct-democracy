@@ -54,6 +54,7 @@ function normalizeBaseUrl(value: string | undefined) {
 }
 
 const readiness = readGenerated<ReadinessReport>("private-beta-readiness-report.json", {});
+const boundary = readGenerated<FeedbackAudit>("nevada-beta-boundary-audit.json", {});
 const feedback = readGenerated<FeedbackAudit>("private-beta-feedback-audit.json", {});
 const invites = readGenerated<FeedbackAudit>("private-beta-invites-audit.json", {});
 const appUrl = normalizeBaseUrl(process.env.NEXT_PUBLIC_APP_URL);
@@ -64,6 +65,7 @@ const vercelHost = host?.endsWith(".vercel.app") ?? false;
 const validation = {
   readinessReportReady: readiness.status === "ready_for_private_link_sharing" || readiness.status === "ready_with_warnings",
   readinessHasNoBlockers: (readiness.blockers ?? []).length === 0,
+  nevadaBoundaryAuditPassed: boundary.status === "passed",
   feedbackAuditPassed: feedback.status === "passed",
   invitesAuditPassed: invites.status === "passed",
   privateBetaRouteExists: existsSync(path.join(ROOT, "app", "private-beta", "page.tsx")),
@@ -96,6 +98,7 @@ const validation = {
 const blockers = Object.entries({
   readinessReportReady: validation.readinessReportReady,
   readinessHasNoBlockers: validation.readinessHasNoBlockers,
+  nevadaBoundaryAuditPassed: validation.nevadaBoundaryAuditPassed,
   feedbackAuditPassed: validation.feedbackAuditPassed,
   invitesAuditPassed: validation.invitesAuditPassed,
   privateBetaRouteExists: validation.privateBetaRouteExists,
@@ -140,6 +143,10 @@ const report = {
     blockers: readiness.blockers ?? [],
     warnings: readiness.warnings ?? [],
     totals: readiness.totals ?? {},
+  },
+  boundary: {
+    status: boundary.status ?? "missing",
+    validation: boundary.validation ?? {},
   },
   feedback: {
     status: feedback.status ?? "missing",

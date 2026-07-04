@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-30T04:16:29.244Z",
+  "generatedAt": "2026-07-03T18:08:07.032Z",
   "provenance": {
-    "runId": "20260630041629-unknown-wy8ft9",
-    "generatedAt": "2026-06-30T04:16:29.244Z",
+    "runId": "20260703180807-unknown-5jhcdf",
+    "generatedAt": "2026-07-03T18:08:07.032Z",
     "executionEnvironment": "unknown",
     "networkCapability": "unknown",
     "databaseReachability": "configured_unverified",
     "storageBackend": "production_storage_configured",
     "workerBackend": "worker_configured",
-    "gitCommit": "69a90dbd909c",
+    "gitCommit": "46a6e1e1ff94",
     "canonicalStatus": "not_canonical",
     "artifactName": "production-trust-services-plan"
   },

@@ -12,39 +12,9 @@ import {
 } from "@/lib/auth/actions";
 
 type AuthView = "sign-in" | "register" | "forgot";
-type InfographicTopic = "money" | "awareness";
 
 const initialState: AuthFormState = {
   status: "idle",
-};
-
-const infographicTopics: Record<
-  InfographicTopic,
-  {
-    id: InfographicTopic;
-    label: string;
-    title: string;
-    description: string;
-    src: string;
-    iframeTitle: string;
-  }
-> = {
-  money: {
-    id: "money",
-    label: "Money in Politics",
-    title: "Money in Politics",
-    description: "See how outside spending, super PACs, and dark money shape political attention.",
-    src: "/infographics/money-in-politics.html",
-    iframeTitle: "Money in Politics animated infographic",
-  },
-  awareness: {
-    id: "awareness",
-    label: "The Awareness Gap",
-    title: "The Awareness Gap",
-    description: "See why voters face too much noise, too little local context, and rising verification costs.",
-    src: "/infographics/awareness-gap.html",
-    iframeTitle: "Awareness Gap animated infographic",
-  },
 };
 
 function FieldError({ message, id }: { message?: string; id: string }) {
@@ -226,7 +196,7 @@ function RegisterForm() {
 
       <SubmitButton label="Create my civic dashboard" pendingLabel="Creating dashboard..." />
       <p className="text-xs leading-5 text-slate-500">
-        This starts a verification-ready onboarding path. Voter verification may require guided review when official records are not indexed.
+        This starts a Nevada-focused onboarding path. Voter verification, residency review, local issues, events, elections, and civic actions are only available or locally relevant for Nevada residents right now.
       </p>
     </form>
   );
@@ -274,7 +244,7 @@ export function AuthEntryClient({ demoEnabled = false }: { demoEnabled?: boolean
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">DIRECT DEMOCRACY</p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">Start with your civic dashboard</h1>
         <p className="mt-3 max-w-xl text-sm leading-6 text-slate-400">
-          Create an account to follow the issues, elections, officials, and actions that matter where you live.
+          Create an account to follow the issues, elections, officials, and actions that matter where you live. During this beta, location-specific civic features are focused on Nevada.
         </p>
 
         <div className="mt-6 grid grid-cols-2 gap-2 rounded-full border border-white/10 bg-black/20 p-1" role="tablist" aria-label="Authentication options">
@@ -318,86 +288,6 @@ export function AuthEntryClient({ demoEnabled = false }: { demoEnabled?: boolean
             </form>
           </div>
         ) : null}
-      </div>
-    </section>
-  );
-}
-
-export function WhyThisMattersInfographicTabs() {
-  const [activeTopic, setActiveTopic] = useState<InfographicTopic>("money");
-  const active = infographicTopics[activeTopic];
-
-  return (
-    <section className="dd-panel relative overflow-hidden rounded-[2.2rem] p-4 sm:p-6 lg:p-8">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.13),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(52,211,153,0.12),transparent_32%)]" />
-      <div className="relative">
-        <div className="max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">WHY THIS MATTERS</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">Why Direct Democracy matters now</h2>
-          <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base sm:leading-8">
-            Politics is noisy by design. Money amplifies some voices, misinformation spreads faster than context, and voters are left to piece together what matters locally. Direct Democracy organizes the signal: issues, people, votes, deadlines, and actions in one place.
-          </p>
-        </div>
-
-        <div className="mt-7 grid gap-3 rounded-[1.6rem] border border-white/10 bg-black/20 p-2 sm:grid-cols-2" role="tablist" aria-label="Why this matters infographics">
-          {(Object.keys(infographicTopics) as InfographicTopic[]).map((topicId) => {
-            const topic = infographicTopics[topicId];
-            const isActive = activeTopic === topicId;
-
-            return (
-              <button
-                key={topic.id}
-                id={`why-tab-${topic.id}`}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`why-panel-${topic.id}`}
-                onClick={() => setActiveTopic(topic.id)}
-                className={`rounded-[1.25rem] p-4 text-left transition focus:outline-none focus:ring-2 focus:ring-cyan-300/40 ${
-                  isActive
-                    ? "border border-emerald-300/25 bg-emerald-400/10 text-slate-50 shadow-[0_20px_45px_-30px_rgba(52,211,153,0.95)]"
-                    : "border border-transparent text-slate-300 hover:border-white/10 hover:bg-white/[0.05] hover:text-white"
-                }`}
-              >
-                <span className="block text-sm font-semibold">{topic.label}</span>
-                <span className="mt-2 block text-xs leading-5 text-slate-400">{topic.description}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div
-          id={`why-panel-${active.id}`}
-          role="tabpanel"
-          aria-labelledby={`why-tab-${active.id}`}
-          className="mt-5"
-        >
-          <div className="mb-4 flex flex-wrap items-end justify-between gap-3 rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Selected explainer</p>
-              <h3 className="mt-2 text-xl font-semibold text-slate-50">{active.title}</h3>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">{active.description}</p>
-            </div>
-            <a
-              href={active.src}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/30 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-300/40"
-            >
-              Open full screen
-            </a>
-          </div>
-
-          <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#020817] shadow-[0_28px_80px_-48px_rgba(34,211,238,0.65)]">
-            <iframe
-              key={active.src}
-              src={active.src}
-              title={active.iframeTitle}
-              className="block min-h-[72vh] w-full border-0 md:min-h-[760px] lg:min-h-[880px] xl:min-h-[920px]"
-              loading="lazy"
-            />
-          </div>
-        </div>
       </div>
     </section>
   );

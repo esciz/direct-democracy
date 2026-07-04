@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-07-04T15:59:51.044Z",
+  "status": "passed",
+  "validation": {
+    "registrationStatesNevadaFocus": true,
+    "authIntroMentionsBetaScope": true,
+    "guidedOnboardingHasNevadaNotice": true,
+    "guidedVerificationStatesNevadaOnly": true,
+    "accountVerificationStatesNevadaOnly": true,
+    "profileOnboardingStatesNevadaScope": true,
+    "verificationCardUsesNevadaLabel": true
+  },
+  "failures": [],
+  "sensitiveValuesIncluded": false
+}
