@@ -14,6 +14,7 @@ import { SourceExplorer, type SourceExplorerItem } from "@/components/domain/sou
 import { SummaryBriefPanel } from "@/components/domain/summary-brief-panel";
 import { PageIntro } from "@/components/ui/page-intro";
 import { isGuestUserId } from "@/lib/auth/session";
+import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { toggleTopIssueUpvote } from "@/lib/community/actions";
 import { getCurrentUser } from "@/lib/server/auth-session";
@@ -35,6 +36,7 @@ import { getElectionSummaries } from "@/lib/server/elections-context";
 import { getIssueByRouteParam, getIssueSummary, getOrganizationsForIssue, getPeopleForIssue } from "@/lib/server/issues";
 import { getContentTypeTheme } from "@/lib/ui/content-type-theme";
 import type { AuthUser, OrganizationSummary, PostSummary, PublicCitizenDirectorySummary, TopIssueSummary } from "@/types/domain";
+import { submitIssueCitizenVoice } from "./actions";
 
 type IssueDetailPageProps = {
   params: Promise<{
@@ -42,6 +44,8 @@ type IssueDetailPageProps = {
   }>;
   searchParams?: Promise<{
     filter?: string;
+    issuePost?: string;
+    issuePostError?: string;
   }>;
 };
 
@@ -90,6 +94,44 @@ type IssueAudioPreviewItem = {
   audioUrl: string;
   issueTags: string[];
 };
+
+const ISSUE_VOICE_ROLES = new Set<AuthUser["role"]>(["citizen", "trustedCitizen", "verified_resident"]);
+
+function isRealCitizenIssuePost(post: PostSummary) {
+  return PUBLIC_DEMO_DATA_ENABLED || post.id.startsWith("post_created_");
+}
+
+function isRealIssueDebate(debateId: string) {
+  return PUBLIC_DEMO_DATA_ENABLED || debateId.startsWith("debate_phase1_") || /^debate_\d+$/.test(debateId);
+}
+
+function canSubmitIssueVoice(user: AuthUser) {
+  return !isGuestUserId(user.id) && ISSUE_VOICE_ROLES.has(user.role);
+}
+
+function getStateBucket(jurisdictionName: string) {
+  const normalized = jurisdictionName.trim();
+  if (!normalized) return "Unknown";
+  if (normalized === "United States") return "National";
+  if (normalized === "Nevada" || normalized.endsWith(", Nevada")) return "Nevada";
+  const parts = normalized.split(",").map((part) => part.trim()).filter(Boolean);
+  return parts.at(-1) ?? normalized;
+}
+
+function getLocalityRank(post: PostSummary, currentUser: AuthUser) {
+  if (post.jurisdictionName === currentUser.jurisdictionName) return 0;
+  if (post.jurisdictionName !== "United States" && getStateBucket(post.jurisdictionName) === getStateBucket(currentUser.jurisdictionName)) return 1;
+  if (post.jurisdictionName === "United States") return 3;
+  return 2;
+}
+
+function sortCitizenIssuePosts(posts: PostSummary[], currentUser: AuthUser) {
+  return posts.slice().sort((a, b) => {
+    const locality = getLocalityRank(a, currentUser) - getLocalityRank(b, currentUser);
+    if (locality !== 0) return locality;
+    return Date.parse(b.createdAt) - Date.parse(a.createdAt);
+  });
+}
 
 function withSectionTimeout<T>(promise: Promise<T>, label: string, timeoutMs = 1800): Promise<T> {
   return Promise.race([
@@ -687,6 +729,193 @@ function Section({
   );
 }
 
+function buildStateSupportBreakdown(posts: PostSummary[]) {
+  const stateMap = new Map<string, { support: number; oppose: number; neutral: number; explain: number; total: number }>();
+
+  for (const post of posts) {
+    const state = getStateBucket(post.jurisdictionName);
+    const current = stateMap.get(state) ?? { support: 0, oppose: 0, neutral: 0, explain: 0, total: 0 };
+    const stance = post.stance === "support" || post.stance === "oppose" || post.stance === "neutral" ? post.stance : "explain";
+    current[stance] += 1;
+    current.total += 1;
+    stateMap.set(state, current);
+  }
+
+  return [...stateMap.entries()]
+    .map(([state, counts]) => ({ state, ...counts }))
+    .sort((a, b) => b.total - a.total || a.state.localeCompare(b.state));
+}
+
+function IssueVoiceForm({ issueId, issueText }: { issueId: string; issueText: string }) {
+  return (
+    <form action={submitIssueCitizenVoice} className="mt-5 rounded-[1.5rem] border border-slate-200 bg-white p-5">
+      <input type="hidden" name="issueId" value={issueId} />
+      <input type="hidden" name="issueText" value={issueText} />
+      <div className="grid gap-4 md:grid-cols-[0.55fr_1fr]">
+        <label className="block space-y-2">
+          <span className="text-sm font-semibold text-ink">Your position</span>
+          <select
+            name="stance"
+            defaultValue="explain"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-civic-500"
+          >
+            <option value="explain">Explain / add context</option>
+            <option value="support">Support</option>
+            <option value="oppose">Oppose</option>
+            <option value="neutral">Neutral / unsure</option>
+          </select>
+        </label>
+        <label className="block space-y-2">
+          <span className="text-sm font-semibold text-ink">Headline</span>
+          <input
+            name="title"
+            required
+            maxLength={120}
+            placeholder="What should people understand?"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition placeholder:text-slate-400 focus:border-civic-500"
+          />
+        </label>
+      </div>
+      <label className="mt-4 block space-y-2">
+        <span className="text-sm font-semibold text-ink">Your structured contribution</span>
+        <textarea
+          name="content"
+          required
+          minLength={20}
+          rows={5}
+          placeholder="Share what you have seen, what tradeoff matters, or what local impact people should pay attention to."
+          className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-ink outline-none transition placeholder:text-slate-400 focus:border-civic-500"
+        />
+      </label>
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <p className="max-w-2xl text-xs leading-5 text-slate-500">
+          Citizen posts are separated from official/source-backed records. They can help people follow local voices and identify potential community leaders, but they are not treated as verified public records.
+        </p>
+        <FormSubmitButton
+          idleLabel="Post to issue"
+          pendingLabel="Posting..."
+          className="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+        />
+      </div>
+    </form>
+  );
+}
+
+async function CitizenIssueVoicesSection({
+  issue,
+  currentUser,
+  status,
+  error,
+}: {
+  issue: TopIssueSummary;
+  currentUser: AuthUser;
+  status?: string;
+  error?: string;
+}) {
+  const posts = await getFeedPostPreviews("forYou", { viewerUserId: currentUser.id, limit: -1 }).catch(() => []);
+  const citizenPosts = sortCitizenIssuePosts(
+    posts
+      .filter(isRealCitizenIssuePost)
+      .filter((post) => valuesMatchIssueText(issue.issueText, ...(post.issueTags ?? []), post.title, post.content))
+      .filter((post) => post.authorRole === "citizen" || post.authorRole === "trustedCitizen" || post.authorRole === "verified_resident"),
+    currentUser,
+  );
+  const stateBreakdown = buildStateSupportBreakdown(citizenPosts);
+  const canPost = canSubmitIssueVoice(currentUser);
+  const isNationalIssue = issue.jurisdictionName === "United States" || issue.scope === "national";
+
+  return (
+    <section id="citizen-voices" className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Citizen voices</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">What registered citizens are saying</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
+            Local posts appear first, followed by state and national voices. This is the participation layer for residents; source-backed government records stay in the sections below.
+          </p>
+        </div>
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+          {citizenPosts.length} citizen post{citizenPosts.length === 1 ? "" : "s"}
+        </span>
+      </div>
+
+      {status === "created" ? (
+        <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">
+          Your issue contribution was posted.
+        </div>
+      ) : null}
+      {error ? (
+        <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
+          {error === "registered-citizens-only"
+            ? "Only signed-in registered citizen accounts can post to issues right now."
+            : "Please add a headline and at least a short explanation before posting."}
+        </div>
+      ) : null}
+
+      {canPost ? (
+        <IssueVoiceForm issueId={issue.id} issueText={issue.issueText} />
+      ) : (
+        <div className="mt-5 rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 p-5 text-sm leading-6 text-slate-600">
+          Sign in with a registered citizen account to post your own structured contribution. Browsing, source records, and existing citizen posts remain public.
+        </div>
+      )}
+
+      {isNationalIssue ? (
+        <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Support by state</p>
+          {stateBreakdown.length ? (
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {stateBreakdown.map((state) => (
+                <div key={state.state} className="rounded-2xl bg-slate-50 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-semibold text-ink">{state.state}</p>
+                    <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600">{state.total} posts</span>
+                  </div>
+                  <p className="mt-2 text-sm text-slate-600">
+                    {state.support} support · {state.oppose} oppose · {state.neutral} neutral · {state.explain} explain
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-3 rounded-2xl bg-slate-50 p-4 text-sm text-slate-600">
+              No real citizen submissions are available yet, so state-level support is intentionally empty.
+            </p>
+          )}
+        </div>
+      ) : null}
+
+      <div className="mt-6 space-y-3">
+        {citizenPosts.length ? (
+          citizenPosts.slice(0, 6).map((post) => (
+            <article key={post.id} className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-slate-950 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
+                  {post.stance === "support" ? "Supports" : post.stance === "oppose" ? "Opposes" : post.stance === "neutral" ? "Neutral" : "Context"}
+                </span>
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{post.jurisdictionName}</span>
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{formatDate(post.createdAt)}</span>
+              </div>
+              <h3 className="mt-3 text-base font-semibold text-ink">{post.title ?? `${post.authorName} contribution`}</h3>
+              <p className="mt-2 text-sm text-slate-500">
+                {post.authorName} · {post.authorRole === "trustedCitizen" ? "trusted citizen" : "registered citizen"}
+              </p>
+              <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{post.content}</p>
+              <Link href={getContentDetailHref(post)} className="mt-4 inline-flex text-sm font-semibold text-civic-700 hover:text-civic-900">
+                Open post
+              </Link>
+            </article>
+          ))
+        ) : (
+          <div className="rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 p-5 text-sm text-slate-600">
+            No real citizen posts are available for this issue yet. Seeded demo voices are hidden outside explicit demo mode.
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 async function IssueBriefSection({
   issueId,
   issueText,
@@ -707,9 +936,13 @@ async function IssueBriefSection({
     getFeedMediaPreviews({ viewerUserId: currentUser.id, limit: 10 }).catch(() => []),
   ]);
 
-  const relatedPosts = posts.filter((post) => valuesMatchIssueText(issueText, ...(post.issueTags ?? []), post.title, post.content));
+  const relatedPosts = posts
+    .filter(isRealCitizenIssuePost)
+    .filter((post) => valuesMatchIssueText(issueText, ...(post.issueTags ?? []), post.title, post.content));
   const relatedEvents = events.filter((event) => valuesMatchIssueText(issueText, event.issueLabel, event.title, event.description));
-  const relatedDebates = debates.filter((debate) => valuesMatchIssueText(issueText, debate.issueText, debate.title, debate.description));
+  const relatedDebates = debates
+    .filter((debate) => isRealIssueDebate(debate.id))
+    .filter((debate) => valuesMatchIssueText(issueText, debate.issueText, debate.title, debate.description));
   const relatedPetitions = petitions.filter((petition) => valuesMatchIssueText(issueText, ...(petition.issueTags ?? []), petition.title, petition.summary, petition.body));
   const relatedCases = cases.filter((caseItem) => valuesMatchIssueText(issueText, ...caseItem.issueTags, caseItem.title, caseItem.summary));
   const relatedPolls = polls.filter((poll) => valuesMatchIssueText(issueText, poll.question, ...poll.options));
@@ -916,7 +1149,9 @@ async function IssueBattlegroundSection({
   const sharedContext: IssueBattlegroundItem[] = [];
   const sharedAudio: IssueAudioPreviewItem[] = [];
 
-  const relatedPosts = posts.filter((post) => valuesMatchIssueText(issue.issueText, ...(post.issueTags ?? []), post.title, post.content));
+  const relatedPosts = posts
+    .filter(isRealCitizenIssuePost)
+    .filter((post) => valuesMatchIssueText(issue.issueText, ...(post.issueTags ?? []), post.title, post.content));
   const relatedAudioPosts = relatedPosts
     .filter((post) => isAudioPost(post))
     .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
@@ -1047,7 +1282,9 @@ async function IssueBattlegroundSection({
   );
   support.evidence.push(...relatedMeasures);
 
-  const relatedDebates = debates.filter((debate) => valuesMatchIssueText(issue.issueText, debate.issueText, debate.title, debate.description));
+  const relatedDebates = debates
+    .filter((debate) => isRealIssueDebate(debate.id))
+    .filter((debate) => valuesMatchIssueText(issue.issueText, debate.issueText, debate.title, debate.description));
   const battlegroundDebates = relatedDebates.slice(0, 3).map((debate) =>
     toBattlegroundItem(
       `debate-${debate.id}`,
@@ -1316,6 +1553,7 @@ function SectionFallback({ title, description }: { title: string; description: s
 async function PostsSectionLoader({ issueId, filter, issueText, currentUserId }: { issueId: string; filter: IssueFilter; issueText: string; currentUserId: string }) {
   const posts = await getFeedPostPreviews("forYou", { viewerUserId: currentUserId, limit: 18 }).catch(() => []);
   const items: IssuePreviewCard[] = posts
+    .filter(isRealCitizenIssuePost)
     .filter((post) => valuesMatchIssueText(issueText, ...(post.issueTags ?? []), post.title, post.content))
     .map((post) => ({
       id: post.id,
@@ -1350,6 +1588,7 @@ async function EventsSectionLoader({ issueId, filter, issueText, currentUser }: 
 async function DebatesSectionLoader({ issueId, filter, issueText, currentUser }: { issueId: string; filter: IssueFilter; issueText: string; currentUser: AuthUser }) {
   const debates = await getDebatesForUser(currentUser, { status: "all" }).catch(() => []);
   const items: IssuePreviewCard[] = debates
+    .filter((debate) => isRealIssueDebate(debate.id))
     .filter((debate) => valuesMatchIssueText(issueText, debate.issueText, debate.title, debate.description))
     .map((debate) => ({
       id: debate.id,
@@ -1516,7 +1755,13 @@ export default async function IssueDetailPage({ params, searchParams }: IssueDet
         }
       />
 
-      <IssueDetailContent issueId={issue.id} issue={issue} activeFilter={activeFilter} />
+      <IssueDetailContent
+        issueId={issue.id}
+        issue={issue}
+        activeFilter={activeFilter}
+        issuePostStatus={resolvedSearchParams?.issuePost}
+        issuePostError={resolvedSearchParams?.issuePostError}
+      />
     </div>
   );
 }
@@ -1525,10 +1770,14 @@ async function IssueDetailContent({
   issueId,
   issue: baseIssue,
   activeFilter,
+  issuePostStatus,
+  issuePostError,
 }: {
   issueId: string;
   issue: NonNullable<Awaited<ReturnType<typeof getIssueByRouteParam>>>;
   activeFilter: IssueFilter;
+  issuePostStatus?: string;
+  issuePostError?: string;
 }) {
   const currentUser = await withSectionTimeout(getCurrentUser(), "issue current user", 1200).catch((error) => {
     console.error(`[issue-detail] current user fallback for ${issueId}`, error);
@@ -1653,6 +1902,16 @@ async function IssueDetailContent({
         }
       >
         <IssuePositionsSectionLoader issueText={safeIssue.issueText} />
+      </Suspense>
+
+      <Suspense
+        fallback={
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading citizen voices…</div>
+          </section>
+        }
+      >
+        <CitizenIssueVoicesSection issue={safeIssue} currentUser={currentUser} status={issuePostStatus} error={issuePostError} />
       </Suspense>
 
       <Suspense

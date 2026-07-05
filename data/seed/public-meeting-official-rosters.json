@@ -106,6 +106,33 @@
     ]
   },
   {
+    "providerId": "carson-city-school-district",
+    "sourceName": "Carson City School District School Board official roster",
+    "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board",
+    "jurisdictionName": "Carson City School District, Nevada",
+    "jurisdictionSlug": "carson-city-school-district",
+    "jurisdictionType": "AGENCY",
+    "bodyName": "Carson City School District Board of Trustees",
+    "bodyAliases": [
+      "Carson City School District Board of Trustees",
+      "Carson City School Board",
+      "School Board",
+      "Board of Trustees"
+    ],
+    "officeTitle": "Carson City School District Trustee",
+    "officeLevel": "COUNTY",
+    "notes": "Official district School Board page lists seven trustees, their board roles, districts, and email addresses. Used for public representative lookup and conservative meeting-action matching.",
+    "members": [
+      { "externalId": "carson-city-school-district-1-ramirez", "fullName": "Lupe Ramirez", "surname": "Ramirez", "seatTitle": "District 1, Member", "status": "CURRENT", "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board", "aliases": ["Ramirez", "Trustee Ramirez"] },
+      { "externalId": "carson-city-school-district-2-roberts", "fullName": "Rebecca Roberts", "surname": "Roberts", "seatTitle": "District 2, Member", "status": "CURRENT", "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board", "aliases": ["Roberts", "Trustee Roberts"] },
+      { "externalId": "carson-city-school-district-3-clapham", "fullName": "Matt Clapham", "surname": "Clapham", "seatTitle": "District 3, Member", "status": "CURRENT", "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board", "aliases": ["Clapham", "Trustee Clapham"] },
+      { "externalId": "carson-city-school-district-4-varner", "fullName": "Richard Varner", "surname": "Varner", "seatTitle": "District 4, Vice President", "status": "CURRENT", "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board", "aliases": ["Varner", "Vice President Varner", "Trustee Varner"] },
+      { "externalId": "carson-city-school-district-5-statucki", "fullName": "Tina Statucki", "surname": "Statucki", "seatTitle": "District 5, Member", "status": "CURRENT", "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board", "aliases": ["Statucki", "Trustee Statucki"] },
+      { "externalId": "carson-city-school-district-6-walt", "fullName": "Molly Walt", "surname": "Walt", "seatTitle": "District 6, President", "status": "CURRENT", "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board", "aliases": ["Walt", "President Walt", "Trustee Walt"] },
+      { "externalId": "carson-city-school-district-7-pedersen", "fullName": "Michelle Pedersen", "surname": "Pedersen", "seatTitle": "District 7, Clerk", "status": "CURRENT", "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board", "aliases": ["Pedersen", "Clerk Pedersen", "Trustee Pedersen"] }
+    ]
+  },
+  {
     "providerId": "henderson-city-council",
     "sourceName": "City of Henderson Mayor and Council official pages",
     "sourceUrl": "https://www.cityofhenderson.com/government/mayor-and-city-council",

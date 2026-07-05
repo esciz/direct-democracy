@@ -1949,6 +1949,10 @@ export type GuidedMessageRecipientSummary = {
   jurisdictionName: string;
   level: MessageLevel;
   audienceRule: MessageAudienceRule;
+  deliveryMode?: "direct_message" | "source_contact";
+  sourceUrl?: string | null;
+  sourceLabel?: string | null;
+  matchNote?: string | null;
 };
 
 export type MessagingInboxSummary = {

@@ -206,6 +206,28 @@ export function getOfficialDirectorySources(generatedAt = new Date().toISOString
       sourceHealth: "unknown",
     },
     {
+      id: "carson-city-school-district-board",
+      jurisdictionId: "carson-city-school-district",
+      jurisdictionName: "Carson City School District",
+      sourceName: "Carson City School District School Board",
+      sourceUrl: "https://www.carsoncityschools.com/our-district/school-board",
+      sourceType: "governing_body_page",
+      priority: 3,
+      checkCadence: "P1D",
+      monitoringCadence: "daily source check; weekly full validation",
+      parserStatus: "configured",
+      retrievalStatus: "reviewed_baseline",
+      cachedPath: null,
+      contentHash: null,
+      lastCheckedAt: generatedAt,
+      lastSuccessfulRetrievalAt: null,
+      lastChangedAt: null,
+      lastParsedAt: generatedAt,
+      lastVerifiedAt: generatedAt,
+      nextDueAt: nextDueFrom(generatedAt, 1),
+      sourceHealth: "partial",
+    },
+    {
       id: "elko-city-council",
       jurisdictionId: "elko",
       jurisdictionName: "Elko",
@@ -353,6 +375,14 @@ const reviewedRosterJurisdictions: Record<
     communityName: "Clark County School District",
     governingBodyId: "clark-county-school-district-board-of-trustees",
     confidence: 0.88,
+  },
+  "carson-city-school-district": {
+    jurisdictionId: "carson-city-school-district",
+    jurisdictionName: "Carson City School District",
+    communityId: "carson-city",
+    communityName: "Carson City",
+    governingBodyId: "carson-city-school-district-board-of-trustees",
+    confidence: 0.92,
   },
   "henderson-city-council": {
     jurisdictionId: "henderson",
@@ -911,7 +941,7 @@ function roleCategoryForRosterTitle(title: string): CurrentOfficialRoleCategory 
 
 function districtFromTitle(title: string) {
   return (
-    title.match(/\b(?:district|ward)\s+[A-Z0-9IVX-]+(?:\s*[-,][^,]+)?/i)?.[0] ??
+    title.match(/\b(?:district|ward)\s+[A-Z0-9IVX-]+/i)?.[0] ??
     title.match(/\bmayor\b/i)?.[0] ??
     null
   );

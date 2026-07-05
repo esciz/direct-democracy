@@ -6,6 +6,7 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { canUserMessagePublicFigures } from "@/lib/auth/guards";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { canStartConversation, getGuidedMessageRecipients, getMessageComposerIssues, getMessagingSettings } from "@/lib/messages/store";
+import { getOnboardingDraft } from "@/lib/server/onboarding";
 import { canUserCreateInterviewRequest } from "@/lib/server/interviews";
 
 type NewMessagePageProps = {
@@ -18,12 +19,24 @@ type NewMessagePageProps = {
 export default async function NewMessagePage({ searchParams }: NewMessagePageProps) {
   const currentUser = await getCurrentUser();
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const issues = await getMessageComposerIssues(currentUser);
+  const [issues, onboardingDraft] = await Promise.all([getMessageComposerIssues(currentUser), getOnboardingDraft()]);
   const canMessage = currentUser.role === "official" || canUserMessagePublicFigures(currentUser);
   const canRequestInterview = canUserCreateInterviewRequest(currentUser);
+  const registeredAddressApplies =
+    onboardingDraft?.streetAddress &&
+    (!onboardingDraft.accountEmail || onboardingDraft.accountEmail.toLowerCase() === currentUser.email.toLowerCase());
+  const routingLocationInput = registeredAddressApplies
+    ? `${onboardingDraft.streetAddress}, ${onboardingDraft.jurisdictionName || currentUser.jurisdictionName}`
+    : currentUser.jurisdictionName;
+  const routingContextLabel = registeredAddressApplies
+    ? "Using your registered address on file for representative routing."
+    : "Using your verified jurisdiction for representative routing. Exact subdistrict routing appears as boundary data is imported.";
 
   if (!resolvedSearchParams?.recipientUserId) {
-    const recipients = await getGuidedMessageRecipients(currentUser);
+    const recipients = await getGuidedMessageRecipients(currentUser, {
+      locationInput: routingLocationInput,
+      locationSourceLabel: registeredAddressApplies ? "Matched from your registered address on file" : "Matched from your verified jurisdiction",
+    });
 
     return (
       <div className="space-y-6 py-8">
@@ -42,6 +55,7 @@ export default async function NewMessagePage({ searchParams }: NewMessagePagePro
           recipients={recipients}
           issues={issues.map((issue) => ({ id: issue.id, issueText: issue.issueText })).slice(0, 12)}
           canRequestInterview={canRequestInterview}
+          routingContextLabel={routingContextLabel}
         />
         ) : null}
       </div>

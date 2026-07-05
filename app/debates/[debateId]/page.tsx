@@ -4,10 +4,11 @@ import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { PageIntro } from "@/components/ui/page-intro";
 import { ActionLabel, ThumbsDownIcon, ThumbsUpIcon } from "@/components/ui/action-icons";
 import { canUserCreateDebate } from "@/lib/auth/guards";
+import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { reactToDebateTurn, submitPhaseOneDebateStatement } from "@/lib/debates/actions";
-import { getDebateParticipants, getPhaseOneDebateDetail } from "@/lib/debates/store";
+import { getDebateParticipants, getPhaseOneDebateDetail, getStoredDebateTurns } from "@/lib/debates/store";
 
 type DebateDetailPageProps = {
   params: Promise<{
@@ -99,13 +100,17 @@ async function DebateDetailBody({
     console.error(`[debate-detail] current user fallback for ${debateId}`, error);
     return getDefaultSeedUser();
   });
-  const [debate, participants] = await Promise.all([
+  const [debate, participants, storedTurns] = await Promise.all([
     withSectionTimeout(getPhaseOneDebateDetail(debateId, user.id), "debate detail", 1600).catch((error) => {
       console.error(`[debate-detail] debate detail fallback for ${debateId}`, error);
       return fallbackDebate;
     }),
     withSectionTimeout(getDebateParticipants(debateId), "debate participants", 1400).catch((error) => {
       console.error(`[debate-detail] debate participants fallback for ${debateId}`, error);
+      return [];
+    }),
+    withSectionTimeout(getStoredDebateTurns(), "stored debate turns", 1200).catch((error) => {
+      console.error(`[debate-detail] stored turns fallback for ${debateId}`, error);
       return [];
     }),
   ]);
@@ -116,6 +121,10 @@ async function DebateDetailBody({
 
   const viewerParticipant = participants.find((participant) => participant.userId === user.id) ?? null;
   const canSubmitStatement = canUserCreateDebate(user);
+  const storedTurnIds = new Set(storedTurns.map((turn) => turn.id));
+  const visibleStatements = PUBLIC_DEMO_DATA_ENABLED
+    ? debate.statements
+    : debate.statements.filter((statement) => storedTurnIds.has(statement.id));
   const statusMessage =
     resolvedSearchParams?.debate === "created"
       ? "Debate created. You can start adding statements."
@@ -164,8 +173,8 @@ async function DebateDetailBody({
         </div>
 
         <div className="mt-6 space-y-4">
-          {debate.statements.length ? (
-            debate.statements.map((statement) => (
+          {visibleStatements.length ? (
+            visibleStatements.map((statement) => (
               <article key={statement.id} className={`rounded-[1.5rem] border p-5 ${sideTone(statement.side)}`}>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-200">
@@ -231,7 +240,7 @@ async function DebateDetailBody({
             ))
           ) : (
             <div className="rounded-[1.5rem] border border-dashed border-white/10 bg-white/[0.03] p-5 text-sm text-slate-400">
-              No statements yet.
+              No real citizen statements yet. Seeded demo debate turns are hidden outside explicit demo mode.
             </div>
           )}
         </div>

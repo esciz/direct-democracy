@@ -587,10 +587,10 @@ export default async function TakeActionPage() {
                           </p>
                         </div>
                         <Link
-                          href={`/messages/new?recipientUserId=${recipient.userId}`}
+                          href={recipient.deliveryMode === "source_contact" ? `/officials/${recipient.profileId}` : `/messages/new?recipientUserId=${recipient.userId}`}
                           className="text-xs font-semibold text-civic-700 hover:text-civic-800"
                         >
-                          Write Message
+                          {recipient.deliveryMode === "source_contact" ? "Open Profile" : "Write Message"}
                         </Link>
                       </div>
                     ))

@@ -1,4 +1,6 @@
 import { DistrictType, OfficeLevel, Prisma } from "@prisma/client";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 
 import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/communities";
 import { DISTRICT_SOURCE_ADAPTER_STUBS } from "@/lib/district-matching/source-adapters";
@@ -33,6 +35,7 @@ export type RepresentativeLookupItem = {
   sourceName: string;
   sourceUrl: string | null;
   confidenceScore: number;
+  matchNote: string;
 };
 
 export type ElectionLookupItem = {
@@ -98,8 +101,178 @@ const REQUIRED_DISTRICT_TYPES: Array<{ type: DistrictType; label: string; group:
   { type: DistrictType.JUSTICE_COURT, label: "Justice court township / department", group: "courts" },
 ];
 
+const COMMUNITY_DISTRICT_BASELINES: Record<
+  string,
+  Array<{
+    label: string;
+    jurisdictionSlug: string;
+    jurisdictionName: string;
+    districtName: string;
+    districtType: DistrictType;
+    districtAliases?: string[];
+    sourceName: string;
+    sourceUrl: string;
+    confidenceScore: number;
+    matchMethod: string;
+  }>
+> = {
+  "carson-city": [
+    {
+      label: "Congressional District 2",
+      jurisdictionSlug: "nevada",
+      jurisdictionName: "Nevada",
+      districtName: "Congressional District 2",
+      districtType: DistrictType.CONGRESSIONAL,
+      sourceName: "Carson City Clerk-Recorder Elected Officials",
+      sourceUrl: "https://www.carsoncity.gov/government/departments-a-f/clerk-recorder/elections-department/carson-city-elected-officials",
+      confidenceScore: 0.9,
+      matchMethod: "Carson City elected-official source identifies the federal district representing Carson City.",
+    },
+    {
+      label: "State Senate District 16",
+      jurisdictionSlug: "nevada",
+      jurisdictionName: "Nevada",
+      districtName: "Senate District 16",
+      districtAliases: ["District 16", "State Senate District 16"],
+      districtType: DistrictType.STATE_SENATE,
+      sourceName: "Carson City Clerk-Recorder Elected Officials",
+      sourceUrl: "https://www.carsoncity.gov/government/departments-a-f/clerk-recorder/elections-department/carson-city-elected-officials",
+      confidenceScore: 0.9,
+      matchMethod: "Carson City elected-official source lists State Senate District 16 as representing Carson City.",
+    },
+    {
+      label: "State Assembly District 40",
+      jurisdictionSlug: "nevada",
+      jurisdictionName: "Nevada",
+      districtName: "Assembly District 40",
+      districtAliases: ["District 40", "State Assembly District 40"],
+      districtType: DistrictType.STATE_ASSEMBLY,
+      sourceName: "Carson City Clerk-Recorder Elected Officials",
+      sourceUrl: "https://www.carsoncity.gov/government/departments-a-f/clerk-recorder/elections-department/carson-city-elected-officials",
+      confidenceScore: 0.9,
+      matchMethod: "Carson City elected-official source lists State Assembly District 40 as representing Carson City.",
+    },
+    {
+      label: "Carson City county-equivalent government",
+      jurisdictionSlug: "carson-city",
+      jurisdictionName: "Carson City",
+      districtName: "County-equivalent Board of Supervisors",
+      districtType: DistrictType.COUNTY_COMMISSION,
+      sourceName: "Carson City Board of Supervisors",
+      sourceUrl: "https://www.carsoncity.gov/government/board-of-supervisors",
+      confidenceScore: 0.86,
+      matchMethod: "Carson City is an independent city and county-equivalent government; the Board of Supervisors performs local governing functions.",
+    },
+    {
+      label: "Carson City municipality",
+      jurisdictionSlug: "carson-city",
+      jurisdictionName: "Carson City",
+      districtName: "Citywide / ward offices",
+      districtType: DistrictType.CITY_WARD,
+      sourceName: "Carson City Board of Supervisors",
+      sourceUrl: "https://www.carsoncity.gov/government/board-of-supervisors",
+      confidenceScore: 0.78,
+      matchMethod: "Carson City mayor and ward supervisor offices are known; exact ward assignment still requires address-level boundary matching.",
+    },
+    {
+      label: "Carson City School District",
+      jurisdictionSlug: "carson-city",
+      jurisdictionName: "Carson City",
+      districtName: "Carson City School District",
+      districtType: DistrictType.SCHOOL_DISTRICT,
+      sourceName: "Carson City School District School Board",
+      sourceUrl: "https://www.carsoncityschools.com/our-district/school-board",
+      confidenceScore: 0.9,
+      matchMethod: "Official Carson City School District page confirms the district and school board serving Carson City.",
+    },
+    {
+      label: "Carson City School Board trustee districts",
+      jurisdictionSlug: "carson-city",
+      jurisdictionName: "Carson City",
+      districtName: "Trustee Districts 1-7",
+      districtType: DistrictType.SCHOOL_BOARD,
+      sourceName: "Carson City School District School Board",
+      sourceUrl: "https://www.carsoncityschools.com/our-district/school-board",
+      confidenceScore: 0.78,
+      matchMethod: "Official district page lists trustee Districts 1-7; exact trustee district still requires address-level boundary matching.",
+    },
+    {
+      label: "First Judicial District / Carson City courts",
+      jurisdictionSlug: "carson-city",
+      jurisdictionName: "Carson City",
+      districtName: "First Judicial District and Carson City Justice/Municipal Court",
+      districtType: DistrictType.JUDICIAL_DISTRICT,
+      sourceName: "Carson City Department Directory",
+      sourceUrl: "https://www.carsoncity.gov/government/department-directory",
+      confidenceScore: 0.84,
+      matchMethod: "Carson City source-backed court records identify Carson City justice/municipal court officials.",
+    },
+    {
+      label: "Carson City municipal court departments",
+      jurisdictionSlug: "carson-city",
+      jurisdictionName: "Carson City",
+      districtName: "Justice/Municipal Court Departments I-II",
+      districtType: DistrictType.MUNICIPAL_COURT,
+      sourceName: "Carson City Department Directory",
+      sourceUrl: "https://www.carsoncity.gov/government/department-directory",
+      confidenceScore: 0.84,
+      matchMethod: "Carson City department source lists Justice of the Peace departments for the local justice/municipal court.",
+    },
+    {
+      label: "Carson City justice court departments",
+      jurisdictionSlug: "carson-city",
+      jurisdictionName: "Carson City",
+      districtName: "Justice Court Departments I-II",
+      districtType: DistrictType.JUSTICE_COURT,
+      sourceName: "Carson City Department Directory",
+      sourceUrl: "https://www.carsoncity.gov/government/department-directory",
+      confidenceScore: 0.84,
+      matchMethod: "Carson City department source lists Justice of the Peace departments for local justice court functions.",
+    },
+  ],
+};
+
+type GeneratedCurrentOfficialRecord = {
+  id: string;
+  name: string;
+  title?: string | null;
+  office?: string | null;
+  jurisdiction?: string | null;
+  district?: string | null;
+  party?: string | null;
+  source_url?: string | null;
+  source_label?: string | null;
+  profile_url?: string | null;
+  confidence?: number | null;
+  review_status?: string | null;
+};
+
 function normalize(value: string | null | undefined) {
   return (value ?? "").trim().toLowerCase();
+}
+
+function slugifyDistrictName(value: string) {
+  return normalize(value).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function normalizePersonName(value: string | null | undefined) {
+  return normalize(value).replace(/[^a-z0-9]/g, "");
+}
+
+function personNamesProbablyMatch(a: string | null | undefined, b: string | null | undefined) {
+  const aText = normalize(a).replace(/["']/g, "");
+  const bText = normalize(b).replace(/["']/g, "");
+  const aCompact = normalizePersonName(aText);
+  const bCompact = normalizePersonName(bText);
+  if (!aCompact || !bCompact) return false;
+  if (aCompact === bCompact) return true;
+  const aParts = aText.split(/\s+/).filter(Boolean);
+  const bParts = bText.split(/\s+/).filter(Boolean);
+  const aFirst = aParts[0];
+  const bFirst = bParts[0];
+  const aLast = aParts.at(-1);
+  const bLast = bParts.at(-1);
+  return Boolean(aFirst && bFirst && aLast && bLast && aFirst === bFirst && aLast === bLast);
 }
 
 function parseLatLng(input: string | undefined) {
@@ -217,6 +390,70 @@ function groupForRecord(record: {
   return "state";
 }
 
+function groupForGeneratedOfficial(record: GeneratedCurrentOfficialRecord): RepresentativeGroupKey | null {
+  const title = normalize(record.title ?? record.office);
+  const jurisdiction = normalize(record.jurisdiction);
+  const source = normalize(record.source_label);
+  if (jurisdiction.includes("school district") || source.includes("school district") || source.includes("school board")) return "school";
+  if (title.includes("justice") || title.includes("judge") || title.includes("court")) return "courts";
+  if (title.includes("school") || title.includes("trustee")) return "school";
+  if (title.includes("assessor") || title.includes("clerk") || title.includes("recorder") || title.includes("district attorney") || title.includes("sheriff") || title.includes("treasurer")) {
+    return "county";
+  }
+  if (title.includes("mayor") || title.includes("supervisor") || title.includes("council") || title.includes("commissioner")) return "city";
+  return null;
+}
+
+function isRepresentativeLikeGeneratedOfficial(record: GeneratedCurrentOfficialRecord) {
+  return Boolean(groupForGeneratedOfficial(record));
+}
+
+function readGeneratedCurrentOfficials() {
+  const filePath = path.join(process.cwd(), "data", "generated", "nevada-community-officials.json");
+  if (!existsSync(filePath)) return [];
+
+  try {
+    const parsed = JSON.parse(readFileSync(filePath, "utf8")) as { records?: GeneratedCurrentOfficialRecord[] } | GeneratedCurrentOfficialRecord[];
+    return (Array.isArray(parsed) ? parsed : parsed.records ?? []).filter(isRepresentativeLikeGeneratedOfficial);
+  } catch (error) {
+    console.warn("[district-lookup] generated current officials unavailable", error);
+    return [];
+  }
+}
+
+function generatedOfficialMatchesJurisdiction(record: GeneratedCurrentOfficialRecord, jurisdictionNames: string[]) {
+  const recordJurisdiction = normalize(record.jurisdiction);
+  if (!recordJurisdiction) return false;
+  return jurisdictionNames.some((name) => recordJurisdiction.includes(normalize(name)) || normalize(name).includes(recordJurisdiction));
+}
+
+function displayJurisdiction(value: string | null | undefined) {
+  return String(value ?? "Nevada").replace(/,\s*Nevada$/i, "");
+}
+
+function displayPersonName(value: string) {
+  const decoded = value
+    .replace(/&#225;/g, "á")
+    .replace(/&#233;/g, "é")
+    .replace(/&#237;/g, "í")
+    .replace(/&#243;/g, "ó")
+    .replace(/&#250;/g, "ú")
+    .replace(/&amp;/g, "&");
+  const commaMatch = decoded.match(/^([^,]+),\s*(.+)$/);
+  return commaMatch ? `${commaMatch[2]} ${commaMatch[1]}` : decoded;
+}
+
+function generatedRoleLabel(record: GeneratedCurrentOfficialRecord) {
+  if (groupForGeneratedOfficial(record) === "school") {
+    const title = normalize(record.title ?? record.office);
+    if (title.includes("vice president")) return `${displayJurisdiction(record.jurisdiction)} Trustee, Vice President`;
+    if (title.includes("president")) return `${displayJurisdiction(record.jurisdiction)} Trustee, President`;
+    if (title.includes("clerk")) return `${displayJurisdiction(record.jurisdiction)} Trustee, Clerk`;
+    return `${displayJurisdiction(record.jurisdiction)} Trustee`;
+  }
+  return record.title ?? record.office ?? "Current official";
+}
+
 async function getStoredAssignments(userId: string) {
   try {
     return await prisma.userDistrictAssignment.findMany({
@@ -244,7 +481,13 @@ export async function getRepresentativeLookup({
   const inputLabel = locationInput?.trim() || "Saved community";
   const point = parseLatLng(locationInput);
   const jurisdictionSlugs = locationToJurisdictionSlugs(inputLabel, user);
-  const [jurisdictions, storedAssignments, boundaryDistricts] = await Promise.all([
+  const baselineEntries = [...new Set(jurisdictionSlugs.flatMap((slug) => COMMUNITY_DISTRICT_BASELINES[slug] ?? []))];
+  const baselineDistrictWhere: Prisma.DistrictWhereInput[] = baselineEntries.map((entry) => ({
+    districtType: entry.districtType,
+    jurisdiction: { slug: entry.jurisdictionSlug },
+    name: { in: [entry.districtName, ...(entry.districtAliases ?? [])] },
+  }));
+  const [jurisdictions, storedAssignments, boundaryDistricts, baselineDistricts] = await Promise.all([
     prisma.jurisdiction.findMany({
       where: { slug: { in: jurisdictionSlugs } },
       include: { sources: true },
@@ -256,6 +499,12 @@ export async function getRepresentativeLookup({
             boundaryGeoJson: { not: Prisma.JsonNull },
             jurisdiction: { slug: { in: jurisdictionSlugs } },
           },
+          include: { jurisdiction: true, source: true },
+        })
+      : Promise.resolve([]),
+    baselineDistrictWhere.length
+      ? prisma.district.findMany({
+          where: { OR: baselineDistrictWhere },
           include: { jurisdiction: true, source: true },
         })
       : Promise.resolve([]),
@@ -320,11 +569,33 @@ export async function getRepresentativeLookup({
     });
   }
 
+  baselineEntries.forEach((entry) => {
+    const matchedDistrict = baselineDistricts.find((district) => {
+      const names = [entry.districtName, ...(entry.districtAliases ?? [])].map(normalize);
+      return district.districtType === entry.districtType && district.jurisdiction.slug === entry.jurisdictionSlug && names.includes(normalize(district.name));
+    });
+    assignments.push({
+      id: `baseline-${entry.jurisdictionSlug}-${entry.districtType}-${slugifyDistrictName(entry.districtName)}`,
+      label: entry.label,
+      jurisdictionName: matchedDistrict?.jurisdiction.name ?? entry.jurisdictionName,
+      jurisdictionSlug: matchedDistrict?.jurisdiction.slug ?? entry.jurisdictionSlug,
+      districtName: matchedDistrict?.name ?? entry.districtName,
+      districtType: entry.districtType,
+      sourceName: matchedDistrict?.source?.name ?? entry.sourceName,
+      sourceUrl: matchedDistrict?.source?.url ?? entry.sourceUrl,
+      lastUpdated: matchedDistrict?.updatedAt?.toISOString() ?? null,
+      confidenceScore: entry.confidenceScore,
+      matchMethod: entry.matchMethod,
+      status: "matched",
+    });
+  });
+
   const jurisdictionIds = new Set(jurisdictions.map((jurisdiction) => jurisdiction.id));
   const matchedDistrictIds = new Set(
     [
       ...storedAssignments.filter((assignment) => assignment.districtId).map((assignment) => assignment.districtId!),
       ...boundaryDistricts.filter((district) => assignments.some((assignment) => assignment.id === `boundary-${district.id}`)).map((district) => district.id),
+      ...baselineDistricts.map((district) => district.id),
     ],
   );
   const matchedDistrictTypes = new Set(assignments.flatMap((assignment) => (assignment.status === "matched" && assignment.districtType !== "JURISDICTION" ? [assignment.districtType] : [])));
@@ -336,10 +607,23 @@ export async function getRepresentativeLookup({
       { district: { districtType: DistrictType.AT_LARGE }, jurisdictionId: { in: [...jurisdictionIds] } },
     ],
   };
+  const localJurisdictionIds = jurisdictions
+    .filter((jurisdiction) => jurisdiction.slug !== "nevada" && jurisdiction.slug !== "united-states")
+    .map((jurisdiction) => jurisdiction.id);
+  const officialWhere: Prisma.OfficialWhereInput = {
+    status: "CURRENT",
+    OR: [
+      ...includedDistrictWhere.OR,
+      {
+        jurisdictionId: { in: localJurisdictionIds },
+        office: { level: { in: [OfficeLevel.COUNTY, OfficeLevel.CITY] } },
+      },
+    ],
+  };
 
   const [officials, candidates, elections, ballotItems] = await Promise.all([
     prisma.official.findMany({
-      where: { status: "CURRENT", ...includedDistrictWhere },
+      where: officialWhere,
       include: { office: true, jurisdiction: true, district: true, source: true },
       orderBy: [{ jurisdiction: { name: "asc" } }, { office: { level: "asc" } }, { fullName: "asc" }],
       take: 80,
@@ -382,27 +666,60 @@ export async function getRepresentativeLookup({
     };
   });
 
+  const localJurisdictionNames = jurisdictions
+    .filter((jurisdiction) => jurisdiction.slug !== "nevada" && jurisdiction.slug !== "united-states")
+    .map((jurisdiction) => jurisdiction.name);
+  const jurisdictionNamesForGeneratedOfficials = localJurisdictionNames.length ? localJurisdictionNames : jurisdictions.map((jurisdiction) => jurisdiction.name);
+  const generatedCurrentOfficials = readGeneratedCurrentOfficials().filter((official) => generatedOfficialMatchesJurisdiction(official, jurisdictionNamesForGeneratedOfficials));
+
   const groups = GROUPS.map((group) => {
     const groupOfficialRows = officials.filter((official) => groupForRecord(official) === group.key);
     const groupCandidateRows = candidates.filter((candidate) => groupForRecord(candidate) === group.key);
     const groupElectionRows = elections.filter((election) => groupForRecord({ ...election, office: null }) === group.key);
     const groupBallotRows = ballotItems.filter((item) => group.key === "state" || group.key === "county" || group.key === "city");
     const missing = pendingAssignments.filter((assignment) => REQUIRED_DISTRICT_TYPES.find((entry) => entry.type === assignment.districtType)?.group === group.key);
+    const generatedOfficials = generatedCurrentOfficials
+      .filter((official) => groupForGeneratedOfficial(official) === group.key)
+      .filter((official) => !groupOfficialRows.some((row) => personNamesProbablyMatch(row.fullName, official.name)));
 
     return {
       ...group,
-      officials: groupOfficialRows.map((official) => ({
-        id: official.id,
-        name: official.fullName,
-        roleLabel: official.office.title,
-        jurisdictionName: official.jurisdiction.name,
-        districtName: official.district?.name ?? null,
-        partyText: official.partyText,
-        href: `/officials/${official.id}`,
-        sourceName: official.source?.name ?? "Imported civic data",
-        sourceUrl: official.source?.url ?? null,
-        confidenceScore: official.districtId ? 0.92 : 0.82,
-      })),
+      officials: [
+        ...groupOfficialRows.map((official) => {
+          const exactDistrictMatch = official.districtId ? matchedDistrictIds.has(official.districtId) : true;
+          const districtNeedsAddress = Boolean(official.districtId && !exactDistrictMatch);
+          return {
+            id: official.id,
+            name: displayPersonName(official.fullName),
+            roleLabel: official.office.title,
+            jurisdictionName: official.jurisdiction.name,
+            districtName: official.district?.name ?? null,
+            partyText: official.partyText,
+            href: `/officials/${official.id}`,
+            sourceName: official.source?.name ?? "Imported civic data",
+            sourceUrl: official.source?.url ?? null,
+            confidenceScore: districtNeedsAddress ? 0.72 : official.districtId ? 0.92 : 0.82,
+            matchNote: districtNeedsAddress
+              ? "District-specific local office shown because it belongs to this jurisdiction. Entering an address can narrow the exact ward or district when boundary data is available."
+              : official.districtId
+                ? "Matched to a stored district assignment."
+                : "Jurisdiction-wide office for this location.",
+          };
+        }),
+        ...generatedOfficials.map((official) => ({
+          id: official.id,
+          name: official.name,
+          roleLabel: generatedRoleLabel(official),
+          jurisdictionName: official.jurisdiction ?? "Nevada",
+          districtName: official.district ?? null,
+          partyText: official.party ?? null,
+          href: `/officials/${official.id}`,
+          sourceName: official.source_label ?? "Generated Nevada current-officeholder source",
+          sourceUrl: official.source_url ?? official.profile_url ?? null,
+          confidenceScore: official.confidence ?? 0.78,
+          matchNote: "Current officeholder from the generated Nevada official index. Shown because the source-backed record matches this jurisdiction.",
+        })),
+      ],
       candidates: groupCandidateRows.map((candidate) => ({
         id: candidate.id,
         name: candidate.ballotName ?? candidate.fullName,
@@ -414,6 +731,7 @@ export async function getRepresentativeLookup({
         sourceName: candidate.source?.name ?? "Imported candidate data",
         sourceUrl: candidate.sourceUrl ?? candidate.source?.url ?? null,
         confidenceScore: candidate.districtId ? 0.9 : 0.8,
+        matchNote: candidate.districtId ? "Matched to an election district." : "Jurisdiction-wide candidate record.",
       })),
       elections: groupElectionRows.map((election) => ({
         id: election.id,
@@ -434,7 +752,14 @@ export async function getRepresentativeLookup({
         sourceName: item.source?.name ?? "Imported ballot data",
         sourceUrl: item.source?.url ?? null,
       })),
-      missing: missing.map((assignment) => assignment.matchMethod),
+      missing: [
+        ...new Set(
+          missing.map((assignment) => {
+            const districtLabel = REQUIRED_DISTRICT_TYPES.find((entry) => entry.type === assignment.districtType)?.label.toLowerCase() ?? "district";
+            return `Exact ${districtLabel} matching is still pending. Source-backed jurisdiction-wide and local district officials are shown when available.`;
+          }),
+        ),
+      ],
     } satisfies RepresentativeLookupGroup;
   });
 

@@ -1,5 +1,7 @@
 {
-  "generatedAt": "2026-07-05T17:48:54.468Z",
+  "generatedAt": "2026-07-05T21:15:07.623Z",
+  "schemaVersion": 2,
+  "source": "data/generated/current-officials-runtime.json",
   "records": [
     {
       "id": "current-official-818378e0f1978802",
@@ -675,7 +677,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Monroe-Moreno"
@@ -703,7 +705,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Karris"
@@ -731,7 +733,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Moore"
@@ -759,7 +761,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "II"
@@ -787,7 +789,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Hibbetts"
@@ -815,7 +817,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Mosca"
@@ -843,7 +845,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Watts"
@@ -871,7 +873,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "González"
@@ -899,7 +901,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Hunt"
@@ -927,7 +929,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Considine"
@@ -955,7 +957,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Patchett"
@@ -983,7 +985,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Kasama"
@@ -1011,7 +1013,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Orentlicher"
@@ -1039,7 +1041,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Marzola"
@@ -1067,7 +1069,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Hardy"
@@ -1095,7 +1097,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Gallant"
@@ -1123,7 +1125,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Roth"
@@ -1151,7 +1153,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Hatch"
@@ -1179,7 +1181,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "DeLong"
@@ -1207,7 +1209,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Goulding"
@@ -1235,7 +1237,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "D'Silva"
@@ -1263,7 +1265,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Dalia"
@@ -1291,7 +1293,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Torres-Fossett"
@@ -1319,7 +1321,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Anderson"
@@ -1347,7 +1349,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Dickman"
@@ -1375,7 +1377,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Hansen"
@@ -1403,7 +1405,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Gurr"
@@ -1431,7 +1433,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Nadeem"
@@ -1459,7 +1461,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Edgeworth"
@@ -1487,7 +1489,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "II"
@@ -1515,7 +1517,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Backus"
@@ -1543,7 +1545,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Koenig"
@@ -1571,7 +1573,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Osborn"
@@ -1599,7 +1601,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Cole"
@@ -1627,7 +1629,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "O'Neill"
@@ -1655,7 +1657,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Jauregui"
@@ -1683,7 +1685,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Brown-May"
@@ -1711,7 +1713,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Miller"
@@ -1739,7 +1741,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Jackson"
@@ -1767,7 +1769,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Flanagan"
@@ -1795,7 +1797,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Nguyen"
@@ -1823,7 +1825,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/App/Legislator/A/assembly/current",
       "aliases": [
         "Yeager"
@@ -1851,7 +1853,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.reno.gov/government/city-council",
       "aliases": [
         "Anderson"
@@ -1879,7 +1881,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Satory",
@@ -1908,7 +1910,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocity.com/government/city_council.php",
       "aliases": [
         "Morris",
@@ -1937,7 +1939,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocity.com/government/councilman_chip_stone/index.php",
       "aliases": [
         "Stone",
@@ -1966,7 +1968,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocity.com/government/marissa_lostra/index.php",
       "aliases": [
         "Lostra",
@@ -1995,7 +1997,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php",
       "aliases": [
         "Gale",
@@ -2024,10 +2026,39 @@
       "confidence": 0.92,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.washoecounty.gov/bcc/profile/index.php",
       "aliases": [
         "Hill"
+      ],
+      "related_action_count": 0
+    },
+    {
+      "id": "current-official-b8085e8a2ada097f",
+      "name": "Lupe Ramirez",
+      "title": "District 1, Member",
+      "office": "District 1, Member",
+      "jurisdiction": "Carson City School District, Nevada",
+      "communityName": "Carson City",
+      "level": "district",
+      "body_name": "Carson City School District Board of Trustees",
+      "district": "District 1",
+      "department": null,
+      "role_category": "governing_body",
+      "selection_method": "elected",
+      "current_status": "active",
+      "acting_or_interim": false,
+      "source_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "source_type": "reviewed_manual_source",
+      "source_label": "Carson City School District Board of Trustees",
+      "confidence": 0.92,
+      "review_status": "source_backed",
+      "needsReview": false,
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
+      "profile_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "aliases": [
+        "Ramirez",
+        "Trustee Ramirez"
       ],
       "related_action_count": 0
     },
@@ -2052,7 +2083,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php",
       "aliases": [
         "Andreozzi",
@@ -2082,10 +2113,39 @@
       "confidence": 0.92,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.washoecounty.gov/bcc/profile/index.php",
       "aliases": [
         "Clark"
+      ],
+      "related_action_count": 0
+    },
+    {
+      "id": "current-official-8f9e684ac7ef030c",
+      "name": "Rebecca Roberts",
+      "title": "District 2, Member",
+      "office": "District 2, Member",
+      "jurisdiction": "Carson City School District, Nevada",
+      "communityName": "Carson City",
+      "level": "district",
+      "body_name": "Carson City School District Board of Trustees",
+      "district": "District 2",
+      "department": null,
+      "role_category": "governing_body",
+      "selection_method": "elected",
+      "current_status": "active",
+      "acting_or_interim": false,
+      "source_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "source_type": "reviewed_manual_source",
+      "source_label": "Carson City School District Board of Trustees",
+      "confidence": 0.92,
+      "review_status": "source_backed",
+      "needsReview": false,
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
+      "profile_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "aliases": [
+        "Roberts",
+        "Trustee Roberts"
       ],
       "related_action_count": 0
     },
@@ -2110,11 +2170,40 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php",
       "aliases": [
         "Karr",
         "Commissioner Karr"
+      ],
+      "related_action_count": 0
+    },
+    {
+      "id": "current-official-32773ffa954ee115",
+      "name": "Matt Clapham",
+      "title": "District 3, Member",
+      "office": "District 3, Member",
+      "jurisdiction": "Carson City School District, Nevada",
+      "communityName": "Carson City",
+      "level": "district",
+      "body_name": "Carson City School District Board of Trustees",
+      "district": "District 3",
+      "department": null,
+      "role_category": "governing_body",
+      "selection_method": "elected",
+      "current_status": "active",
+      "acting_or_interim": false,
+      "source_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "source_type": "reviewed_manual_source",
+      "source_label": "Carson City School District Board of Trustees",
+      "confidence": 0.92,
+      "review_status": "source_backed",
+      "needsReview": false,
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
+      "profile_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "aliases": [
+        "Clapham",
+        "Trustee Clapham"
       ],
       "related_action_count": 0
     },
@@ -2139,7 +2228,7 @@
       "confidence": 0.92,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.washoecounty.gov/bcc/profile/index.php",
       "aliases": [
         "Garcia"
@@ -2167,7 +2256,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php",
       "aliases": [
         "Gerber",
@@ -2196,10 +2285,40 @@
       "confidence": 0.92,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.washoecounty.gov/bcc/profile/index.php",
       "aliases": [
         "Andriola"
+      ],
+      "related_action_count": 0
+    },
+    {
+      "id": "current-official-b9cda23920ce194b",
+      "name": "Richard Varner",
+      "title": "District 4, Vice President",
+      "office": "District 4, Vice President",
+      "jurisdiction": "Carson City School District, Nevada",
+      "communityName": "Carson City",
+      "level": "district",
+      "body_name": "Carson City School District Board of Trustees",
+      "district": "District 4",
+      "department": null,
+      "role_category": "governing_body",
+      "selection_method": "elected",
+      "current_status": "active",
+      "acting_or_interim": false,
+      "source_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "source_type": "reviewed_manual_source",
+      "source_label": "Carson City School District Board of Trustees",
+      "confidence": 0.92,
+      "review_status": "source_backed",
+      "needsReview": false,
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
+      "profile_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "aliases": [
+        "Varner",
+        "Vice President Varner",
+        "Trustee Varner"
       ],
       "related_action_count": 0
     },
@@ -2224,7 +2343,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocountynv.net/boards/commissioners/commission/members19.php",
       "aliases": [
         "Steninger",
@@ -2254,10 +2373,99 @@
       "confidence": 0.92,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.washoecounty.gov/bcc/profile/index.php",
       "aliases": [
         "Herman"
+      ],
+      "related_action_count": 0
+    },
+    {
+      "id": "current-official-afc1132e62c917f9",
+      "name": "Tina Statucki",
+      "title": "District 5, Member",
+      "office": "District 5, Member",
+      "jurisdiction": "Carson City School District, Nevada",
+      "communityName": "Carson City",
+      "level": "district",
+      "body_name": "Carson City School District Board of Trustees",
+      "district": "District 5",
+      "department": null,
+      "role_category": "governing_body",
+      "selection_method": "elected",
+      "current_status": "active",
+      "acting_or_interim": false,
+      "source_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "source_type": "reviewed_manual_source",
+      "source_label": "Carson City School District Board of Trustees",
+      "confidence": 0.92,
+      "review_status": "source_backed",
+      "needsReview": false,
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
+      "profile_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "aliases": [
+        "Statucki",
+        "Trustee Statucki"
+      ],
+      "related_action_count": 0
+    },
+    {
+      "id": "current-official-82bf91963cb80524",
+      "name": "Molly Walt",
+      "title": "District 6, President",
+      "office": "District 6, President",
+      "jurisdiction": "Carson City School District, Nevada",
+      "communityName": "Carson City",
+      "level": "district",
+      "body_name": "Carson City School District Board of Trustees",
+      "district": "District 6",
+      "department": null,
+      "role_category": "governing_body",
+      "selection_method": "elected",
+      "current_status": "active",
+      "acting_or_interim": false,
+      "source_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "source_type": "reviewed_manual_source",
+      "source_label": "Carson City School District Board of Trustees",
+      "confidence": 0.92,
+      "review_status": "source_backed",
+      "needsReview": false,
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
+      "profile_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "aliases": [
+        "Walt",
+        "President Walt",
+        "Trustee Walt"
+      ],
+      "related_action_count": 0
+    },
+    {
+      "id": "current-official-f1244670bc6dd268",
+      "name": "Michelle Pedersen",
+      "title": "District 7, Clerk",
+      "office": "District 7, Clerk",
+      "jurisdiction": "Carson City School District, Nevada",
+      "communityName": "Carson City",
+      "level": "district",
+      "body_name": "Carson City School District Board of Trustees",
+      "district": "District 7",
+      "department": null,
+      "role_category": "governing_body",
+      "selection_method": "elected",
+      "current_status": "active",
+      "acting_or_interim": false,
+      "source_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "source_type": "reviewed_manual_source",
+      "source_label": "Carson City School District Board of Trustees",
+      "confidence": 0.92,
+      "review_status": "source_backed",
+      "needsReview": false,
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
+      "profile_url": "https://www.carsoncityschools.com/our-district/school-board",
+      "aliases": [
+        "Pedersen",
+        "Clerk Pedersen",
+        "Trustee Pedersen"
       ],
       "related_action_count": 0
     },
@@ -2270,7 +2478,7 @@
       "communityName": "Clark County",
       "level": "county",
       "body_name": "Clark County Commission",
-      "district": "District A, Chairman",
+      "district": "District A",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2282,7 +2490,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/",
       "aliases": [
         "Naft",
@@ -2301,7 +2509,7 @@
       "communityName": "Clark County School District",
       "level": "county",
       "body_name": "Clark County School District Board of Trustees",
-      "district": "District A, President",
+      "district": "District A",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2313,7 +2521,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Stevens",
@@ -2331,7 +2539,7 @@
       "communityName": "Clark County School District",
       "level": "county",
       "body_name": "Clark County School District Board of Trustees",
-      "district": "District B, Clerk",
+      "district": "District B",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2343,7 +2551,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Dominguez",
@@ -2361,7 +2569,7 @@
       "communityName": "Clark County",
       "level": "county",
       "body_name": "Clark County Commission",
-      "district": "District B, County Commissioner",
+      "district": "District B",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2373,7 +2581,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/",
       "aliases": [
         "Kirkpatrick",
@@ -2390,7 +2598,7 @@
       "communityName": "Clark County",
       "level": "county",
       "body_name": "Clark County Commission",
-      "district": "District C, County Commissioner",
+      "district": "District C",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2402,7 +2610,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/",
       "aliases": [
         "Becker",
@@ -2419,7 +2627,7 @@
       "communityName": "Clark County School District",
       "level": "county",
       "body_name": "Clark County School District Board of Trustees",
-      "district": "District C, Member",
+      "district": "District C",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2431,7 +2639,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Henry",
@@ -2448,7 +2656,7 @@
       "communityName": "Clark County School District",
       "level": "county",
       "body_name": "Clark County School District Board of Trustees",
-      "district": "District D, Member",
+      "district": "District D",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2460,7 +2668,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Zamora",
@@ -2477,7 +2685,7 @@
       "communityName": "Clark County",
       "level": "county",
       "body_name": "Clark County Commission",
-      "district": "District D, Vice-Chairman",
+      "district": "District D",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2489,7 +2697,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/",
       "aliases": [
         "McCurdy",
@@ -2509,7 +2717,7 @@
       "communityName": "Clark County",
       "level": "county",
       "body_name": "Clark County Commission",
-      "district": "District E, County Commissioner",
+      "district": "District E",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2521,7 +2729,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/",
       "aliases": [
         "Segerblom",
@@ -2538,7 +2746,7 @@
       "communityName": "Clark County School District",
       "level": "county",
       "body_name": "Clark County School District Board of Trustees",
-      "district": "District E, Member",
+      "district": "District E",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2550,7 +2758,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Biassotti",
@@ -2567,7 +2775,7 @@
       "communityName": "Clark County",
       "level": "county",
       "body_name": "Clark County Commission",
-      "district": "District F, County Commissioner",
+      "district": "District F",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2579,7 +2787,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/",
       "aliases": [
         "Jones",
@@ -2596,7 +2804,7 @@
       "communityName": "Clark County School District",
       "level": "county",
       "body_name": "Clark County School District Board of Trustees",
-      "district": "District F, Vice President",
+      "district": "District F",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2608,7 +2816,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Adams",
@@ -2628,7 +2836,7 @@
       "communityName": "Clark County",
       "level": "county",
       "body_name": "Clark County Commission",
-      "district": "District G, County Commissioner",
+      "district": "District G",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2640,7 +2848,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/",
       "aliases": [
         "Gibson",
@@ -2658,7 +2866,7 @@
       "communityName": "Clark County School District",
       "level": "county",
       "body_name": "Clark County School District Board of Trustees",
-      "district": "District G, Member",
+      "district": "District G",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -2670,7 +2878,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Cavazos",
@@ -2700,7 +2908,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Esparza-Stoffregan",
@@ -2731,7 +2939,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Johnson",
@@ -2760,7 +2968,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocity.com/government/councilan_giovanni_puccinelli/index.php",
       "aliases": [
         "Puccinelli",
@@ -2790,7 +2998,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.ccsd.net/about/school-board",
       "aliases": [
         "Barron",
@@ -2819,7 +3027,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Fernandez"
@@ -2847,7 +3055,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Arrascada"
@@ -2875,7 +3083,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Downs"
@@ -2903,7 +3111,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Carvalho"
@@ -2931,7 +3139,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Goodman"
@@ -2959,7 +3167,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "McGrath"
@@ -2987,7 +3195,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Brooks"
@@ -3015,7 +3223,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Bautista"
@@ -3043,7 +3251,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Boylan"
@@ -3071,7 +3279,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Brown"
@@ -3099,7 +3307,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Brager"
@@ -3127,7 +3335,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Goicoechea"
@@ -3155,7 +3363,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://nshe.nevada.edu/regents/current-regents/",
       "aliases": [
         "Carlo"
@@ -3183,7 +3391,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Cruz-Crawford"
@@ -3211,7 +3419,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Doñate"
@@ -3239,7 +3447,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Rogich"
@@ -3267,7 +3475,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Pazina"
@@ -3295,7 +3503,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Daly"
@@ -3323,7 +3531,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Hansen"
@@ -3351,7 +3559,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Taylor"
@@ -3379,7 +3587,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Krasner"
@@ -3407,7 +3615,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Titus"
@@ -3435,7 +3643,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Steinbeck"
@@ -3463,7 +3671,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Ellison"
@@ -3491,7 +3699,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Flores"
@@ -3519,7 +3727,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Stone"
@@ -3547,7 +3755,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Ohrenschall"
@@ -3575,7 +3783,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Nguyen"
@@ -3603,7 +3811,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Neal"
@@ -3631,7 +3839,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Buck"
@@ -3659,7 +3867,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Cannizzaro"
@@ -3687,7 +3895,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Lange"
@@ -3715,7 +3923,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Loop"
@@ -3743,7 +3951,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.leg.state.nv.us/Senate/Senators-and-Committees/",
       "aliases": [
         "Scheible"
@@ -3771,7 +3979,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofnorthlasvegas.com/our-city/city-council",
       "aliases": [
         "Barron",
@@ -3800,7 +4008,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php",
       "aliases": [
         "Abbott",
@@ -3829,7 +4037,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.reno.gov/government/city-council",
       "aliases": [
         "Taylor"
@@ -3857,7 +4065,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php",
       "aliases": [
         "VanderWell",
@@ -3887,7 +4095,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.reno.gov/government/city-council",
       "aliases": [
         "Duerr"
@@ -3915,7 +4123,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofnorthlasvegas.com/our-city/city-council",
       "aliases": [
         "Garcia-Anderson",
@@ -3934,7 +4142,7 @@
       "communityName": "Las Vegas",
       "level": "city",
       "body_name": "Las Vegas City Council",
-      "district": "Ward 2, Councilwoman",
+      "district": "Ward 2",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -3946,7 +4154,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council",
       "aliases": [
         "Kelley",
@@ -3975,7 +4183,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofnorthlasvegas.com/our-city/city-council",
       "aliases": [
         "Black",
@@ -4004,7 +4212,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php",
       "aliases": [
         "Anderson",
@@ -4033,7 +4241,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.reno.gov/government/city-council",
       "aliases": [
         "Martinez"
@@ -4049,7 +4257,7 @@
       "communityName": "Las Vegas",
       "level": "city",
       "body_name": "Las Vegas City Council",
-      "district": "Ward 3, Councilwoman",
+      "district": "Ward 3",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -4061,7 +4269,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council",
       "aliases": [
         "Diaz",
@@ -4090,7 +4298,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofnorthlasvegas.com/our-city/city-council",
       "aliases": [
         "Cherchio",
@@ -4119,7 +4327,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php",
       "aliases": [
         "Bybee",
@@ -4148,7 +4356,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.reno.gov/government/city-council",
       "aliases": [
         "Ebert"
@@ -4164,7 +4372,7 @@
       "communityName": "Las Vegas",
       "level": "city",
       "body_name": "Las Vegas City Council",
-      "district": "Ward 4, Councilwoman",
+      "district": "Ward 4",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -4176,7 +4384,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council",
       "aliases": [
         "Allen-Palenske",
@@ -4207,7 +4415,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php",
       "aliases": [
         "Rodriguez",
@@ -4236,7 +4444,7 @@
       "confidence": 0.88,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.reno.gov/government/city-council",
       "aliases": [
         "Reese"
@@ -4252,7 +4460,7 @@
       "communityName": "Las Vegas",
       "level": "city",
       "body_name": "Las Vegas City Council",
-      "district": "Ward 5, Councilwoman",
+      "district": "Ward 5",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -4264,7 +4472,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council",
       "aliases": [
         "Summers-Armstrong",
@@ -4283,7 +4491,7 @@
       "communityName": "Las Vegas",
       "level": "city",
       "body_name": "Las Vegas City Council",
-      "district": "Ward 6, Councilwoman",
+      "district": "Ward 6",
       "department": null,
       "role_category": "governing_body",
       "selection_method": "elected",
@@ -4295,7 +4503,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council",
       "aliases": [
         "Brune",
@@ -4325,7 +4533,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofhenderson.com/government/mayor-and-city-council/council-ward-1",
       "aliases": [
         "Seebock",
@@ -4355,7 +4563,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofhenderson.com/government/departments/mayor-and-council/ward-ii-councilwoman-monica-larson",
       "aliases": [
         "Larson",
@@ -4386,7 +4594,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofhenderson.com/government/departments/mayor-and-council/ward-iii-carrie-cox",
       "aliases": [
         "Cox",
@@ -4416,7 +4624,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofhenderson.com/government/mayor-and-city-council/council-ward-4",
       "aliases": [
         "Stewart",
@@ -4447,7 +4655,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofhenderson.com/government/departments/mayor-and-council/mayor-michelle-romero",
       "aliases": [
         "Romero",
@@ -4477,7 +4685,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council",
       "aliases": [
         "Berkley",
@@ -4506,7 +4714,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofnorthlasvegas.com/our-city/city-council",
       "aliases": [
         "Goynes-Brown",
@@ -4537,7 +4745,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.cityofsparks.us/your_government/mayor_city_council/index.php",
       "aliases": [
         "Lawson",
@@ -4566,7 +4774,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.elkocity.com/government/mayor_reece_keener/index.php",
       "aliases": [
         "Keener",
@@ -4595,7 +4803,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.reno.gov/government/city-council",
       "aliases": [
         "Mayor Schieve",
@@ -4612,7 +4820,7 @@
       "communityName": "Las Vegas",
       "level": "city",
       "body_name": "Las Vegas City Council",
-      "district": "Ward 1, Mayor Pro Tem",
+      "district": "Ward 1",
       "department": null,
       "role_category": "elected_executive",
       "selection_method": "elected",
@@ -4624,7 +4832,7 @@
       "confidence": 0.9,
       "review_status": "source_backed",
       "needsReview": false,
-      "last_verified_at": "2026-06-26T00:17:51.551Z",
+      "last_verified_at": "2026-07-05T21:15:07.623Z",
       "profile_url": "https://www.lasvegasnevada.gov/Government/Mayor-City-Council",
       "aliases": [
         "Knudsen",
@@ -4633,5 +4841,28 @@
       ],
       "related_action_count": 0
     }
-  ]
+  ],
+  "promotion": {
+    "status": "promoted",
+    "promotedAt": "2026-06-22T02:40:16.680Z",
+    "promotedFromRunId": "20260622023741-local-network-enabled-j0z6bc",
+    "evidenceRunId": "20260622023741-local-network-enabled-j0z6bc",
+    "reconciliationRunId": "20260622023741-local-network-enabled-j0z6bc",
+    "executionEnvironment": "local_network_enabled",
+    "networkCapability": "available",
+    "sourceHashes": [
+      {
+        "sourceId": "carson-city-department-directory",
+        "contentHash": "20de7bb85affcc3d9215e203d8f5851fb0ab5fd01e930711f0e369b5e9209146"
+      },
+      {
+        "sourceId": "carson-city-board-of-supervisors",
+        "contentHash": "2fa00888064a2c9d6e127f434f76d994db2eff4183bea887fe9d45ff5610b902"
+      },
+      {
+        "sourceId": "carson-city-staff-directory",
+        "contentHash": "bc907b1798f20dd80f3578a7e1b136b25629e04a1b27451be870370b1ad4e2d8"
+      }
+    ]
+  }
 }

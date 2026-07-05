@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-26T00:17:51.731Z",
+  "generatedAt": "2026-07-05T21:15:20.337Z",
   "jurisdiction": "Carson City",
   "currentSourceCounts": {
     "officialDirectorySources": 3,
     "governingBodyRosterRecords": 5,
-    "officialActionRecords": 0,
+    "officialActionRecords": 4,
     "legacyOfficialsRuntimeRecords": 4,
-    "currentOfficialsRuntimeRecords": 25,
-    "communityOfficialsRuntimeRecords": 25
+    "currentOfficialsRuntimeRecords": 32,
+    "communityOfficialsRuntimeRecords": 32
   },
   "findings": [
     "The legacy data/generated/officials-runtime.json artifact contains official-action records, not a comprehensive current officeholder directory.",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T00:17:51.474Z",
+  "generatedAt": "2026-07-05T21:15:07.552Z",
   "records": [
     {
       "id": "carson-city-department-directory",
@@ -18,9 +18,9 @@
       "lastCheckedAt": "2026-06-22T02:37:41.796Z",
       "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
       "lastChangedAt": "2026-06-22T02:37:41.796Z",
-      "lastParsedAt": "2026-06-26T00:17:51.474Z",
-      "lastVerifiedAt": "2026-06-26T00:17:51.474Z",
-      "nextDueAt": "2026-06-27T00:17:51.474Z",
+      "lastParsedAt": "2026-07-05T21:15:07.552Z",
+      "lastVerifiedAt": "2026-07-05T21:15:07.552Z",
+      "nextDueAt": "2026-07-06T21:15:07.552Z",
       "sourceHealth": "healthy"
     },
     {
@@ -40,9 +40,9 @@
       "lastCheckedAt": "2026-06-22T02:37:41.796Z",
       "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
       "lastChangedAt": "2026-06-22T02:37:41.796Z",
-      "lastParsedAt": "2026-06-26T00:17:51.474Z",
-      "lastVerifiedAt": "2026-06-26T00:17:51.474Z",
-      "nextDueAt": "2026-06-27T00:17:51.474Z",
+      "lastParsedAt": "2026-07-05T21:15:07.552Z",
+      "lastVerifiedAt": "2026-07-05T21:15:07.552Z",
+      "nextDueAt": "2026-07-06T21:15:07.552Z",
       "sourceHealth": "healthy"
     },
     {
@@ -62,10 +62,32 @@
       "lastCheckedAt": "2026-06-22T02:37:41.796Z",
       "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
       "lastChangedAt": "2026-06-22T02:37:41.796Z",
-      "lastParsedAt": "2026-06-26T00:17:51.474Z",
-      "lastVerifiedAt": "2026-06-26T00:17:51.474Z",
-      "nextDueAt": "2026-06-26T00:17:51.474Z",
+      "lastParsedAt": "2026-07-05T21:15:07.552Z",
+      "lastVerifiedAt": "2026-07-05T21:15:07.552Z",
+      "nextDueAt": "2026-07-05T21:15:07.552Z",
       "sourceHealth": "healthy"
+    },
+    {
+      "id": "carson-city-school-district-board",
+      "jurisdictionId": "carson-city-school-district",
+      "jurisdictionName": "Carson City School District",
+      "sourceName": "Carson City School District School Board",
+      "sourceUrl": "https://www.carsoncityschools.com/our-district/school-board",
+      "sourceType": "governing_body_page",
+      "priority": 3,
+      "checkCadence": "P1D",
+      "monitoringCadence": "daily source check; weekly full validation",
+      "parserStatus": "configured",
+      "retrievalStatus": "reviewed_baseline",
+      "cachedPath": null,
+      "contentHash": null,
+      "lastCheckedAt": "2026-07-05T21:15:07.552Z",
+      "lastSuccessfulRetrievalAt": null,
+      "lastChangedAt": null,
+      "lastParsedAt": "2026-07-05T21:15:07.552Z",
+      "lastVerifiedAt": "2026-07-05T21:15:07.552Z",
+      "nextDueAt": "2026-07-06T21:15:07.552Z",
+      "sourceHealth": "partial"
     },
     {
       "id": "elko-city-council",
@@ -86,7 +108,7 @@
       "lastChangedAt": null,
       "lastParsedAt": null,
       "lastVerifiedAt": null,
-      "nextDueAt": "2026-06-26T00:17:51.474Z",
+      "nextDueAt": "2026-07-05T21:15:07.552Z",
       "sourceHealth": "unknown"
     },
     {
@@ -108,7 +130,7 @@
       "lastChangedAt": null,
       "lastParsedAt": null,
       "lastVerifiedAt": null,
-      "nextDueAt": "2026-06-26T00:17:51.474Z",
+      "nextDueAt": "2026-07-05T21:15:07.552Z",
       "sourceHealth": "unknown"
     },
     {
@@ -130,16 +152,16 @@
       "lastChangedAt": null,
       "lastParsedAt": null,
       "lastVerifiedAt": null,
-      "nextDueAt": "2026-06-26T00:17:51.474Z",
+      "nextDueAt": "2026-07-05T21:15:07.552Z",
       "sourceHealth": "unknown"
     }
   ],
   "audit": {
     "totals": {
-      "sources": 6,
+      "sources": 7,
       "carsonCitySources": 3,
       "retrievedSources": 3,
-      "reviewedBaselineSources": 0
+      "reviewedBaselineSources": 1
     }
   }
 }

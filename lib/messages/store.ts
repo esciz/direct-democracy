@@ -1,8 +1,11 @@
 import { cookies } from "next/headers";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 
 import { seedUsers } from "@/lib/auth/mock-users";
 import { canUserMessagePublicFigures } from "@/lib/auth/guards";
 import { getTopIssuesForUser } from "@/lib/community/issues";
+import { getRepresentativeLookup, type RepresentativeGroupKey, type RepresentativeLookupItem } from "@/lib/district-matching/lookup";
 import { getAllCandidateCampaigns, getAllPublicProfiles, getAllOfficialPositions } from "@/lib/server/elections-context";
 import { getInterviewRequestByThreadId } from "@/lib/server/interviews";
 import { getNotificationsForUser } from "@/lib/notifications/store";
@@ -65,6 +68,19 @@ type MessageRecord = {
 type SettingsRecord = {
   userId: string;
   audienceRule: MessageAudienceRule;
+};
+
+type GeneratedCurrentOfficialRecord = {
+  id: string;
+  name: string;
+  title?: string | null;
+  office?: string | null;
+  jurisdiction?: string | null;
+  source_url?: string | null;
+  source_label?: string | null;
+  profile_url?: string | null;
+  confidence?: number | null;
+  review_status?: string | null;
 };
 
 type ModerationRecord = {
@@ -602,7 +618,136 @@ function getLevelForJurisdiction(jurisdictionName: string): MessageLevel | null 
   return null;
 }
 
-export async function getGuidedMessageRecipients(user: AuthUser): Promise<GuidedMessageRecipientSummary[]> {
+function normalizeRecipientText(value: string | null | undefined) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function currentOfficialLevel(record: GeneratedCurrentOfficialRecord): MessageLevel | null {
+  const jurisdiction = normalizeRecipientText(record.jurisdiction);
+  const title = normalizeRecipientText(record.title ?? record.office);
+
+  if (jurisdiction === "united states" || title.includes("u s ") || title.includes("congress") || title.includes("representative")) return "federal";
+  if (
+    jurisdiction === "nevada" ||
+    jurisdiction.includes("system of higher education") ||
+    title.includes("regent") ||
+    title.includes("governor") ||
+    title.includes("secretary of state") ||
+    title.includes("attorney general") ||
+    title.includes("state senate") ||
+    title.includes("assembly")
+  ) return "state";
+  if (jurisdiction.includes("nevada")) return "local";
+
+  return null;
+}
+
+function readGeneratedCurrentOfficialsForMessaging() {
+  const filePath = path.join(process.cwd(), "data", "generated", "nevada-community-officials.json");
+  if (!existsSync(filePath)) return [];
+
+  try {
+    const parsed = JSON.parse(readFileSync(filePath, "utf8")) as { records?: GeneratedCurrentOfficialRecord[] } | GeneratedCurrentOfficialRecord[];
+    return Array.isArray(parsed) ? parsed : parsed.records ?? [];
+  } catch (error) {
+    console.warn("[messages] generated current officials unavailable for guided routing", error);
+    return [];
+  }
+}
+
+function generatedOfficialMatchesLocalJurisdiction(record: GeneratedCurrentOfficialRecord, localJurisdictionName: string) {
+  const level = currentOfficialLevel(record);
+  if (level !== "local") return true;
+
+  const recordJurisdiction = normalizeRecipientText(record.jurisdiction);
+  const userJurisdiction = normalizeRecipientText(localJurisdictionName);
+
+  if (!recordJurisdiction) return false;
+  return Boolean(userJurisdiction && (recordJurisdiction.includes(userJurisdiction) || userJurisdiction.includes(recordJurisdiction)));
+}
+
+function isDuplicateGuidedRecipient(existing: GuidedMessageRecipientSummary[], candidate: GuidedMessageRecipientSummary) {
+  const candidateName = normalizeRecipientText(candidate.name);
+  const candidateOffice = normalizeRecipientText(candidate.officeTitle);
+
+  return existing.some((recipient) => {
+    const samePerson = normalizeRecipientText(recipient.name) === candidateName;
+    const sameLocalJurisdiction = localJurisdictionMatches(recipient.jurisdictionName, candidate.jurisdictionName);
+
+    if (samePerson && sameLocalJurisdiction) {
+      return true;
+    }
+
+    return (
+      samePerson &&
+      normalizeRecipientText(recipient.officeTitle) === candidateOffice &&
+      normalizeRecipientText(recipient.jurisdictionName) === normalizeRecipientText(candidate.jurisdictionName)
+    );
+  });
+}
+
+function localJurisdictionMatches(recipientJurisdiction: string, localJurisdiction: string) {
+  const normalizedRecipientJurisdiction = normalizeRecipientText(recipientJurisdiction);
+  const normalizedLocalJurisdiction = normalizeRecipientText(localJurisdiction);
+
+  if (!normalizedRecipientJurisdiction || !normalizedLocalJurisdiction) return false;
+  if (normalizedRecipientJurisdiction.includes(normalizedLocalJurisdiction) || normalizedLocalJurisdiction.includes(normalizedRecipientJurisdiction)) return true;
+
+  const localTokens = normalizedLocalJurisdiction.split(" ").filter((token) => token.length > 2);
+  return localTokens.length > 0 && localTokens.every((token) => normalizedRecipientJurisdiction.includes(token));
+}
+
+function inferLocalJurisdictionName(value: string | null | undefined, fallback: string) {
+  const normalized = normalizeRecipientText(value);
+
+  if (normalized.includes("carson city")) return "Carson City";
+  if (normalized.includes("washoe county")) return "Washoe County";
+  if (normalized.includes("clark county")) return "Clark County";
+  if (normalized.includes("reno")) return "Reno";
+  if (normalized.includes("sparks")) return "Sparks";
+  if (normalized.includes("henderson")) return "Henderson";
+  if (normalized.includes("north las vegas")) return "North Las Vegas";
+  if (normalized.includes("las vegas")) return "Las Vegas";
+
+  return fallback;
+}
+
+function levelForRepresentativeGroup(groupKey: RepresentativeGroupKey): MessageLevel {
+  if (groupKey === "federal") return "federal";
+  if (groupKey === "state") return "state";
+  return "local";
+}
+
+function representativeToGuidedRecipient(
+  item: RepresentativeLookupItem,
+  groupKey: RepresentativeGroupKey,
+  locationSourceLabel: string,
+): GuidedMessageRecipientSummary {
+  return {
+    userId: `source-official:${item.id}`,
+    profileId: item.id,
+    name: item.name,
+    role: "official",
+    officeTitle: item.roleLabel,
+    jurisdictionName: item.jurisdictionName,
+    level: levelForRepresentativeGroup(groupKey),
+    audienceRule: "everyone",
+    deliveryMode: "source_contact",
+    sourceUrl: item.sourceUrl ?? item.href,
+    sourceLabel: item.sourceName,
+    matchNote: `${locationSourceLabel}. ${item.matchNote} Direct in-app messaging opens once this officeholder claims a profile.`,
+  };
+}
+
+type GuidedRecipientOptions = {
+  locationInput?: string | null;
+  locationSourceLabel?: string;
+};
+
+export async function getGuidedMessageRecipients(user: AuthUser, options: GuidedRecipientOptions = {}): Promise<GuidedMessageRecipientSummary[]> {
   const [profiles, positions, campaigns] = await Promise.all([
     getAllPublicProfiles(),
     getAllOfficialPositions(),
@@ -640,15 +785,57 @@ export async function getGuidedMessageRecipients(user: AuthUser): Promise<Guided
       jurisdictionName: profile.jurisdictionName,
       level,
       audienceRule: settings.audienceRule,
+      deliveryMode: "direct_message",
     });
   }
 
-  const localJurisdiction = user.jurisdictionName;
+  const lookupLocation = options.locationInput?.trim() || user.jurisdictionName;
+  const locationSourceLabel = options.locationSourceLabel ?? "Matched from your verified jurisdiction";
+  const localJurisdiction = inferLocalJurisdictionName(lookupLocation, user.jurisdictionName);
+
+  try {
+    const lookup = await getRepresentativeLookup({ user, locationInput: lookupLocation });
+    for (const group of lookup.groups) {
+      for (const official of group.officials) {
+        const candidate = representativeToGuidedRecipient(official, group.key, locationSourceLabel);
+        if (!isDuplicateGuidedRecipient(recipients, candidate)) {
+          recipients.push(candidate);
+        }
+      }
+    }
+  } catch (error) {
+    console.warn("[messages] representative lookup unavailable for guided routing", error);
+  }
+
+  for (const official of readGeneratedCurrentOfficialsForMessaging()) {
+    const level = currentOfficialLevel(official);
+    if (!level || !generatedOfficialMatchesLocalJurisdiction(official, localJurisdiction)) continue;
+
+    const title = official.title ?? official.office ?? "Current official";
+    const candidate: GuidedMessageRecipientSummary = {
+      userId: `source-official:${official.id}`,
+      profileId: official.id,
+      name: official.name,
+      role: "official",
+      officeTitle: title,
+      jurisdictionName: official.jurisdiction ?? (level === "state" ? "Nevada" : level === "federal" ? "United States" : user.jurisdictionName),
+      level,
+      audienceRule: "everyone",
+      deliveryMode: "source_contact",
+      sourceUrl: official.profile_url ?? official.source_url ?? `/officials/${official.id}`,
+      sourceLabel: official.source_label ?? "Current official source",
+      matchNote: "Source-backed current officeholder. Direct in-app messaging opens once this officeholder claims a profile.",
+    };
+
+    if (!isDuplicateGuidedRecipient(recipients, candidate)) {
+      recipients.push(candidate);
+    }
+  }
 
   return recipients
     .filter((recipient) => {
       if (recipient.level === "local") {
-        return recipient.jurisdictionName === localJurisdiction;
+        return localJurisdictionMatches(recipient.jurisdictionName, localJurisdiction);
       }
 
       if (recipient.level === "state") {

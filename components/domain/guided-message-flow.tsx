@@ -20,6 +20,7 @@ type GuidedMessageFlowProps = {
   recipients: GuidedMessageRecipientSummary[];
   issues: IssueOption[];
   canRequestInterview?: boolean;
+  routingContextLabel?: string;
 };
 
 type GuidedRouteSelection = MessageRouteType | "interviewRequest";
@@ -54,8 +55,8 @@ const routeTypeLabels: Record<MessageRouteType, string> = {
 const officialTypeOptions: Record<MessageLevel, OfficialTypeOption[]> = {
   local: [
     { value: "mayor", label: "Mayor", keywords: ["mayor"] },
-    { value: "cityCouncil", label: "City Council", keywords: ["council"] },
-    { value: "schoolBoard", label: "School Board", keywords: ["school board", "trustee"] },
+    { value: "cityCouncil", label: "City Council", keywords: ["council", "supervisor", "ward"] },
+    { value: "schoolBoard", label: "School Board", keywords: ["school board", "school district", "trustee"] },
     { value: "countyCommissioner", label: "County Commissioner / Supervisor", keywords: ["commissioner", "supervisor"] },
     { value: "sheriff", label: "Sheriff", keywords: ["sheriff"] },
     { value: "publicWorks", label: "Public Works / Utilities official", keywords: ["public works", "utilities", "water"] },
@@ -80,7 +81,7 @@ const issueTypeOptions: Record<MessageLevel, IssueTypeOption[]> = {
       value: "schoolEnrollment",
       label: "School enrollment",
       keywords: ["school", "education", "enrollment"],
-      preferredOfficeKeywords: ["school board", "trustee", "education"],
+      preferredOfficeKeywords: ["school board", "school district", "trustee", "education"],
       initialSubjectType: "needHelp",
       defaultIssueCategory: "schoolDistrictIssue",
       bodyOpening: "I am a constituent and need help with a school enrollment issue.",
@@ -134,7 +135,7 @@ const issueTypeOptions: Record<MessageLevel, IssueTypeOption[]> = {
       value: "supportOpposeLocal",
       label: "Support / oppose local action or legislation",
       keywords: ["local", "housing", "education", "safety", "tax"],
-      preferredOfficeKeywords: ["mayor", "council", "commissioner", "school board"],
+      preferredOfficeKeywords: ["mayor", "council", "supervisor", "commissioner", "school board", "school district"],
       initialSubjectType: "supportOppose",
       bodyOpening: "I am a constituent and I am writing to share my position on a local issue.",
     },
@@ -254,13 +255,120 @@ function matchesKeywords(value: string, keywords: string[]) {
   return keywords.some((keyword) => normalized.includes(keyword));
 }
 
+function recipientSearchText(recipient: GuidedMessageRecipientSummary) {
+  return [recipient.officeTitle, recipient.jurisdictionName, recipient.matchNote].filter(Boolean).join(" ");
+}
+
+function recipientMatchesKeywords(recipient: GuidedMessageRecipientSummary, keywords: string[]) {
+  return matchesKeywords(recipientSearchText(recipient), keywords);
+}
+
+function normalizeOfficeText(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function officeTypeMatchesRecipient(option: OfficialTypeOption, recipient: GuidedMessageRecipientSummary) {
+  const officeText = normalizeOfficeText(`${recipient.officeTitle} ${recipient.jurisdictionName}`);
+  const isSchool = /\b(school|trustee)\b/.test(officeText);
+  const isCourt = /\b(judge|justice|court)\b/.test(officeText);
+
+  if (option.value === "mayor") {
+    return /\bmayor\b/.test(officeText);
+  }
+
+  if (option.value === "cityCouncil") {
+    return !isSchool && !isCourt && /\b(council|supervisor|ward)\b/.test(officeText);
+  }
+
+  if (option.value === "schoolBoard") {
+    return isSchool && !/\b(regent|higher education|university)\b/.test(officeText);
+  }
+
+  if (option.value === "countyCommissioner") {
+    return !isSchool && !isCourt && /\b(commissioner|commission|supervisor|board of supervisors)\b/.test(officeText);
+  }
+
+  if (option.value === "sheriff") {
+    return /\bsheriff\b/.test(officeText);
+  }
+
+  if (option.value === "publicWorks") {
+    return /\b(public works|utilities|utility|water|sewer|streets?)\b/.test(officeText);
+  }
+
+  return recipientMatchesKeywords(recipient, option.keywords);
+}
+
+function isBestDistrictMatch(recipient: GuidedMessageRecipientSummary) {
+  return /matched to (?:a )?stored district assignment/i.test(recipient.matchNote ?? "");
+}
+
+function recipientMatchLabel(option: OfficialTypeOption | null, recipient: GuidedMessageRecipientSummary) {
+  if (isBestDistrictMatch(recipient)) {
+    if (option?.value === "cityCouncil") return "Likely your ward";
+    if (option?.value === "countyCommissioner") return "Likely your district";
+    if (option?.value === "schoolBoard") return "Likely your trustee district";
+    return "Best district match";
+  }
+
+  if (option?.value === "cityCouncil" && /\b(ward|supervisor)\b/i.test(recipient.officeTitle)) return "Other ward";
+  if (option?.value === "countyCommissioner" && /\b(supervisor|commission)\b/i.test(recipient.officeTitle)) return "Other district";
+  if (option?.value === "schoolBoard" && /\b(trustee|school)\b/i.test(`${recipient.officeTitle} ${recipient.jurisdictionName}`)) return "Other trustee";
+  return null;
+}
+
+function officeTypeEmptyMessage(option: OfficialTypeOption | null) {
+  if (!option) return "No exact office match is available right now.";
+  return `No ${option.label.toLowerCase()} match is available for your current routing context yet.`;
+}
+
 function audienceRuleLabel(value: GuidedMessageRecipientSummary["audienceRule"]) {
   if (value === "followersOnly") return "Followers only";
   if (value === "jurisdictionOnly") return "Jurisdiction only";
   return "Open via requests";
 }
 
-export function GuidedMessageFlow({ recipients, issues, canRequestInterview = false }: GuidedMessageFlowProps) {
+function deliveryLabel(recipient: GuidedMessageRecipientSummary) {
+  return recipient.deliveryMode === "source_contact" ? "Source-backed contact" : audienceRuleLabel(recipient.audienceRule);
+}
+
+function recipientStepHelp({
+  routeType,
+  selectedOfficialOption,
+  recommendedRecipients,
+}: {
+  routeType: GuidedRouteSelection | null;
+  selectedOfficialOption: OfficialTypeOption | null;
+  recommendedRecipients: GuidedMessageRecipientSummary[];
+}) {
+  if (routeType === "interviewRequest") {
+    return "Choose the public figure you want to request an interview with.";
+  }
+
+  if (selectedOfficialOption?.value === "schoolBoard" && recommendedRecipients.length > 1) {
+    return "We do not have exact school trustee boundary matching yet, so every source-backed school board trustee for your local district is shown.";
+  }
+
+  if (selectedOfficialOption?.value === "cityCouncil" && recommendedRecipients.length > 1) {
+    return recommendedRecipients.some(isBestDistrictMatch)
+      ? "Your likely ward is highlighted first. Other city/ward officials are shown below for context."
+      : "Exact ward matching is not available yet, so all source-backed city/ward officials are shown.";
+  }
+
+  if (selectedOfficialOption?.value === "countyCommissioner" && recommendedRecipients.length > 1) {
+    return recommendedRecipients.some(isBestDistrictMatch)
+      ? "Your likely district is highlighted first. Other county governing officials are shown below for context."
+      : "In consolidated city-county governments like Carson City, the Board of Supervisors can serve the city and county-equivalent governing role.";
+  }
+
+  if (recommendedRecipients.some((recipient) => recipient.deliveryMode === "source_contact")) {
+    return "Some matches are source-backed officials without claimed in-app messaging yet. Open their profile or official source to continue.";
+  }
+
+  return null;
+}
+
+export function GuidedMessageFlow({ recipients, issues, canRequestInterview = false, routingContextLabel }: GuidedMessageFlowProps) {
   const [level, setLevel] = useState<MessageLevel | null>(null);
   const [routeType, setRouteType] = useState<GuidedRouteSelection | null>(null);
   const [selectedOfficialType, setSelectedOfficialType] = useState<string | null>(null);
@@ -279,13 +387,13 @@ export function GuidedMessageFlow({ recipients, issues, canRequestInterview = fa
 
   let recommendedRecipients: GuidedMessageRecipientSummary[] = [];
   if (level && routeType === "officialType" && selectedOfficialOption) {
-    const directMatches = recipientsForLevel.filter((recipient) => matchesKeywords(recipient.officeTitle, selectedOfficialOption.keywords));
-    recommendedRecipients = directMatches.length ? directMatches : recipientsForLevel;
+    const directMatches = recipientsForLevel.filter((recipient) => officeTypeMatchesRecipient(selectedOfficialOption, recipient));
+    recommendedRecipients = directMatches.sort((left, right) => Number(isBestDistrictMatch(right)) - Number(isBestDistrictMatch(left)) || left.officeTitle.localeCompare(right.officeTitle) || left.name.localeCompare(right.name));
   } else if (level && routeType === "issueType" && selectedIssueOption) {
-    const officialMatches = recipientsForLevel.filter((recipient) => matchesKeywords(recipient.officeTitle, selectedIssueOption.preferredOfficeKeywords));
+    const officialMatches = recipientsForLevel.filter((recipient) => recipientMatchesKeywords(recipient, selectedIssueOption.preferredOfficeKeywords));
     recommendedRecipients = officialMatches.length ? officialMatches : recipientsForLevel;
   } else if (level && routeType === "interviewRequest") {
-    recommendedRecipients = recipientsForLevel;
+    recommendedRecipients = recipientsForLevel.filter((recipient) => recipient.deliveryMode !== "source_contact");
   }
 
   const selectedRecipient =
@@ -327,7 +435,9 @@ export function GuidedMessageFlow({ recipients, issues, canRequestInterview = fa
       (routeType === "issueType" && selectedIssueType)
     );
 
-  const showComposer = Boolean(showRecipientStep && selectedRecipient);
+  const selectedRecipientCanMessage = Boolean(selectedRecipient && selectedRecipient.deliveryMode !== "source_contact");
+  const showComposer = Boolean(showRecipientStep && selectedRecipientCanMessage);
+  const recipientHelp = recipientStepHelp({ routeType, selectedOfficialOption, recommendedRecipients });
   const showInterviewRoute = canRequestInterview && recipientsForLevel.some((recipient) => recipient.role === "candidate" || recipient.role === "official");
 
   const routeOptions: Array<{
@@ -364,6 +474,11 @@ export function GuidedMessageFlow({ recipients, issues, canRequestInterview = fa
         <p className="mt-4 text-sm leading-6 text-slate-600">
           Choose the level, route your message by office or issue, then pick the best recipient before composing.
         </p>
+        {routingContextLabel ? (
+          <p className="mt-4 rounded-2xl border border-civic-100 bg-civic-50 px-4 py-3 text-sm font-semibold leading-6 text-civic-900">
+            {routingContextLabel}
+          </p>
+        ) : null}
       </section>
 
       <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
@@ -560,39 +675,78 @@ export function GuidedMessageFlow({ recipients, issues, canRequestInterview = fa
               Clear selection
             </button>
           </div>
+          {recipientHelp ? <p className="mt-3 text-sm leading-6 text-slate-600">{recipientHelp}</p> : null}
           {recommendedRecipients.length ? null : (
             <div className="mt-4 rounded-[1.25rem] border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-600">
               {routeType === "interviewRequest"
                 ? "No messageable candidates or officials are available at this level right now."
-                : "No exact office match is available right now. You can still choose from other messageable public figures at this level."}
+                : `${officeTypeEmptyMessage(selectedOfficialOption)} Try routing by issue/need type if you are not sure which office handles it.`}
             </div>
           )}
           <div className="mt-4 grid gap-3">
-            {recommendedRecipients.map((recipient) => (
-              <button
-                key={recipient.userId}
-                type="button"
-                onClick={() => setSelectedRecipientId(recipient.userId)}
-                className={`rounded-[1.25rem] border p-4 text-left transition ${
-                  selectedRecipientId === recipient.userId
-                    ? "border-slate-950 bg-slate-950 text-white"
-                    : "border-slate-200 bg-white text-slate-700 hover:border-civic-500 hover:text-civic-700"
-                }`}
-              >
-                <div className="flex flex-wrap items-center gap-2">
-                  <p className="text-sm font-semibold">{recipient.name}</p>
-                  <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${selectedRecipientId === recipient.userId ? "bg-white/15 text-white" : "bg-slate-100 text-slate-600"}`}>
-                    {recipient.role}
-                  </span>
-                </div>
-                <p className={`mt-2 text-sm ${selectedRecipientId === recipient.userId ? "text-white/85" : "text-slate-600"}`}>
-                  {recipient.officeTitle} · {recipient.jurisdictionName}
-                </p>
-                <p className={`mt-2 text-xs font-semibold uppercase tracking-[0.16em] ${selectedRecipientId === recipient.userId ? "text-white/70" : "text-slate-500"}`}>
-                  {audienceRuleLabel(recipient.audienceRule)}
-                </p>
-              </button>
-            ))}
+            {recommendedRecipients.map((recipient) => {
+              const matchLabel = recipientMatchLabel(selectedOfficialOption, recipient);
+              return (
+                <button
+                  key={recipient.userId}
+                  type="button"
+                  onClick={() => setSelectedRecipientId(recipient.userId)}
+                  className={`rounded-[1.25rem] border p-4 text-left transition ${
+                    selectedRecipientId === recipient.userId
+                      ? "border-slate-950 bg-slate-950 text-white"
+                      : isBestDistrictMatch(recipient)
+                        ? "border-civic-500 bg-civic-50 text-civic-950 hover:border-civic-600"
+                        : "border-slate-200 bg-white text-slate-700 hover:border-civic-500 hover:text-civic-700"
+                  }`}
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-sm font-semibold">{recipient.name}</p>
+                    {matchLabel ? (
+                      <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${selectedRecipientId === recipient.userId ? "bg-white/15 text-white" : isBestDistrictMatch(recipient) ? "bg-civic-600 text-white" : "bg-slate-100 text-slate-600"}`}>
+                        {matchLabel}
+                      </span>
+                    ) : null}
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${selectedRecipientId === recipient.userId ? "bg-white/15 text-white" : "bg-slate-100 text-slate-600"}`}>
+                      {recipient.role}
+                    </span>
+                  </div>
+                  <p className={`mt-2 text-sm ${selectedRecipientId === recipient.userId ? "text-white/85" : "text-slate-600"}`}>
+                    {recipient.officeTitle} · {recipient.jurisdictionName}
+                  </p>
+                  <p className={`mt-2 text-xs font-semibold uppercase tracking-[0.16em] ${selectedRecipientId === recipient.userId ? "text-white/70" : "text-slate-500"}`}>
+                    {deliveryLabel(recipient)}
+                  </p>
+                  {recipient.matchNote ? (
+                    <p className={`mt-2 text-xs leading-5 ${selectedRecipientId === recipient.userId ? "text-white/70" : "text-slate-500"}`}>
+                      {recipient.matchNote}
+                    </p>
+                  ) : null}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+      ) : null}
+
+      {showRecipientStep && selectedRecipient && !selectedRecipientCanMessage ? (
+        <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Source-backed contact target</p>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight text-civic-950">{selectedRecipient.name}</h3>
+          <p className="mt-2 text-sm leading-6 text-civic-900">
+            {selectedRecipient.officeTitle} · {selectedRecipient.jurisdictionName}
+          </p>
+          <p className="mt-3 text-sm leading-6 text-civic-900">
+            This officeholder is current in the source-backed officials index, but direct in-app messaging is not available until the profile is claimed. Use the official profile or source link for now.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <a href={`/officials/${selectedRecipient.profileId}`} className="rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-civic-700">
+              Open official profile
+            </a>
+            {selectedRecipient.sourceUrl ? (
+              <a href={selectedRecipient.sourceUrl} target={selectedRecipient.sourceUrl.startsWith("/") ? undefined : "_blank"} rel={selectedRecipient.sourceUrl.startsWith("/") ? undefined : "noreferrer"} className="rounded-full border border-civic-200 bg-white px-4 py-3 text-sm font-semibold text-civic-800 transition hover:border-civic-500">
+                Open source
+              </a>
+            ) : null}
           </div>
         </section>
       ) : null}
