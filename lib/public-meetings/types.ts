@@ -563,6 +563,7 @@ export type CommunityMeetingSummary = {
     public_body_name: string;
     meeting_date: string | null;
     agenda_url: string | null;
+    relationship_scope?: "local" | "statewide_overlay";
     major_topics?: string[];
   }>;
   recent_decisions: Array<{

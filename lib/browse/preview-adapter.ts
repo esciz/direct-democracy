@@ -3,6 +3,7 @@ import path from "path";
 
 import { getCommunityById, getCommunityPageHref, seededCommunities } from "@/lib/community/communities";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
+import { prisma } from "@/lib/prisma";
 
 export type BrowsePreviewCategory =
   | "communities"
@@ -213,6 +214,25 @@ function formatDate(value: unknown) {
   const date = new Date(text);
   if (Number.isNaN(date.getTime())) return null;
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function formatCandidateName(value: string) {
+  const [last, ...rest] = value.split(",").map((part) => part.trim()).filter(Boolean);
+  if (last && rest.length) return `${rest.join(" ")} ${last}`;
+  return value;
+}
+
+async function getImportedCandidatePreviewRows() {
+  return prisma.candidate.findMany({
+    include: {
+      election: { select: { title: true, electionDate: true } },
+      office: { select: { title: true } },
+      jurisdiction: { select: { name: true } },
+      source: { select: { name: true, url: true } },
+    },
+    orderBy: [{ election: { electionDate: "desc" } }, { office: { title: "asc" } }, { fullName: "asc" }],
+    take: 300,
+  });
 }
 
 function eventStatusFromStartAt(record: Record<string, unknown>) {
@@ -453,8 +473,8 @@ function buildOfficialsPreview({ communityId, query, limit = 8, favoriteIds }: B
       title: asText(record.name),
       subtitle: `${asText(record.title) || asText(record.office) || "Officeholder"} · ${asText(record.jurisdiction) || "Nevada"}`,
       description: asText(record.office) || asText(record.source_label),
-      href: asText(record.profile_url) || asText(record.source_url),
-      ctaLabel: "Source",
+      href: `/officials/${asText(record.id)}`,
+      ctaLabel: "View official",
       avatar: { name: asText(record.name), entityType: "official" as const, verified: true },
       badges: [
         { label: "Source-backed roster", tone: "emerald" as const },
@@ -495,8 +515,8 @@ function buildOrganizationsPreview({ communityId, query, limit = 8, favoriteIds 
       title: asText(record.name),
       subtitle: `${asText(record.jurisdiction) || "Nevada"} · ${asText(record.level) || "government body"}`,
       description: asText(record.notes) || "Government body with a source-backed public meeting record.",
-      href: asText(record.website) || asText(record.source_url),
-      ctaLabel: "Source",
+      href: `/organizations/${asText(record.id)}`,
+      ctaLabel: "View body",
       avatar: { name: asText(record.name), entityType: "organization" as const, verified: true },
       badges: [
         { label: "Government body", tone: "civic" as const },
@@ -570,7 +590,55 @@ function buildElectionsPreview({ communityId, query, limit = 8, favoriteIds }: B
   );
 }
 
-function buildCandidatesPreview({ query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
+async function buildCandidatesPreview({ query, limit = 8, favoriteIds }: BrowsePreviewOptions): Promise<BrowsePreviewData> {
+  const importedCandidates = await getImportedCandidatePreviewRows().catch((error) => {
+    console.warn("[browse-preview] imported candidate lookup failed", error);
+    return [];
+  });
+
+  if (importedCandidates.length) {
+    const items = filterItems(
+      importedCandidates.map((candidate) => {
+        const displayName = formatCandidateName(candidate.ballotName ?? candidate.fullName);
+        const sourceUrl = candidate.sourceUrl ?? candidate.source?.url ?? null;
+
+        return {
+          id: candidate.id,
+          title: displayName,
+          subtitle: `${candidate.office?.title ?? "Office pending"} · ${candidate.jurisdiction.name}`,
+          description:
+            candidate.campaignStatement ??
+            "Imported source-backed Nevada candidate record. Additional profile enrichment may still be pending.",
+          href: `/candidates/${candidate.id}`,
+          ctaLabel: "View candidate",
+          avatar: { name: displayName, imageUrl: candidate.photoUrl, entityType: "candidate" as const, verified: true },
+          badges: [
+            { label: "Source-backed candidate", tone: "emerald" as const },
+            { label: candidate.partyText ?? "Party pending", tone: "civic" as const },
+          ],
+          favorite: { targetType: "candidate" as const, targetId: candidate.id },
+          sourceUrl,
+        };
+      }),
+      query ?? "",
+      favoriteIds,
+    ).slice(0, limit);
+
+    return withEmptyReason(
+      {
+        category: "candidates",
+        items,
+        sourceCount: importedCandidates.length,
+        availableGeneratedCount: importedCandidates.length,
+        lastGeneratedAt: null,
+        isSourceBacked: true,
+        usesDemoData: false,
+        fullHref: "/candidates",
+      },
+      "Imported Nevada candidate records exist, but no candidate preview matched this browse context.",
+    );
+  }
+
   const runtime = readJsonFile<Array<Record<string, unknown>>>("nv-sos-candidate-records.json", []);
   const records = recordsFrom<Record<string, unknown>>(runtime.data);
   const reviewed = records.filter((record) => record.unmatched !== true && asText(record.candidate_name) && asText(record.source_url));
@@ -600,7 +668,7 @@ function buildCandidatesPreview({ query, limit = 8, favoriteIds }: BrowsePreview
       lastGeneratedAt: runtime.lastGeneratedAt,
       isSourceBacked: reviewed.length > 0,
       usesDemoData: false,
-      fullHref: items.length ? CATEGORY_HREFS.candidates : null,
+      fullHref: null,
     },
     "Candidate source imports exist, but no reviewed candidate profiles are ready for production browse previews yet.",
   );
@@ -621,7 +689,7 @@ function buildEmptySourcePreview(category: BrowsePreviewCategory, emptyReason: s
   };
 }
 
-export function getBrowsePreviewCategory(options: BrowsePreviewOptions): BrowsePreviewData {
+export async function getBrowsePreviewCategory(options: BrowsePreviewOptions): Promise<BrowsePreviewData> {
   switch (options.category) {
     case "communities":
       return buildCommunitiesPreview(options);
@@ -630,7 +698,7 @@ export function getBrowsePreviewCategory(options: BrowsePreviewOptions): BrowseP
     case "people":
       return buildEmptySourcePreview("people", "No source-backed public people directory is available for production browse previews yet.");
     case "candidates":
-      return buildCandidatesPreview(options);
+      return await buildCandidatesPreview(options);
     case "officials":
       return buildOfficialsPreview(options);
     case "petitions":
@@ -648,7 +716,7 @@ export function getBrowsePreviewCategory(options: BrowsePreviewOptions): BrowseP
   }
 }
 
-export function getBrowsePreviewData(options: Omit<BrowsePreviewOptions, "category">) {
+export async function getBrowsePreviewData(options: Omit<BrowsePreviewOptions, "category">) {
   const categories: BrowsePreviewCategory[] = [
     "communities",
     "issues",
@@ -663,7 +731,8 @@ export function getBrowsePreviewData(options: Omit<BrowsePreviewOptions, "catego
     "organizations",
   ];
 
-  return Object.fromEntries(categories.map((category) => [category, getBrowsePreviewCategory({ ...options, category })])) as Record<
+  const entries = await Promise.all(categories.map(async (category) => [category, await getBrowsePreviewCategory({ ...options, category })] as const));
+  return Object.fromEntries(entries) as Record<
     BrowsePreviewCategory,
     BrowsePreviewData
   >;

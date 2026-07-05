@@ -11,6 +11,7 @@ type ExploreResultCardProps = {
   description?: string | null;
   href: string;
   ctaLabel?: string;
+  sourceUrl?: string | null;
   badges?: ReactNode;
   chart?: ReactNode;
   avatar?: {
@@ -43,6 +44,7 @@ export function ExploreResultCard({
   description,
   href,
   ctaLabel = "Open",
+  sourceUrl,
   badges,
   chart,
   avatar,
@@ -71,13 +73,21 @@ export function ExploreResultCard({
       {description ? <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-400">{description}</p> : null}
       {badges ? <div className="mt-4 flex flex-wrap gap-2">{badges}</div> : null}
       {chart ? <div className="mt-4">{chart}</div> : null}
-      <div className="mt-5">
+      <div className="mt-5 flex flex-wrap gap-2">
         <Link
           href={href}
           className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 transition group-hover:border-cyan-300/20 group-hover:text-cyan-100 hover:bg-white/8"
         >
           {ctaLabel}
         </Link>
+        {sourceUrl && sourceUrl !== href ? (
+          <Link
+            href={sourceUrl}
+            className="inline-flex rounded-full border border-cyan-300/15 bg-cyan-400/10 px-4 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/35 hover:bg-cyan-400/15"
+          >
+            Source
+          </Link>
+        ) : null}
       </div>
     </article>
   );

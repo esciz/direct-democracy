@@ -1,0 +1,860 @@
+{
+  "generatedAt": "2026-07-05T17:48:52.697Z",
+  "totals": {
+    "categories": 11,
+    "items": 74,
+    "internalDestinations": 73,
+    "sourceOnlyDestinations": 1,
+    "missingDestinations": 0,
+    "sourceTrails": 61,
+    "routeFilesChecked": 6,
+    "routeFilesMissing": 0,
+    "failures": 0
+  },
+  "criticalEntityCategories": [
+    "candidates",
+    "officials",
+    "organizations"
+  ],
+  "routes": [
+    {
+      "route": "/candidates",
+      "filePath": "app/candidates/page.tsx",
+      "exists": true
+    },
+    {
+      "route": "/candidates/[candidateId]",
+      "filePath": "app/candidates/[candidateId]/page.tsx",
+      "exists": true
+    },
+    {
+      "route": "/officials",
+      "filePath": "app/officials/page.tsx",
+      "exists": true
+    },
+    {
+      "route": "/officials/[officialId]",
+      "filePath": "app/officials/[officialId]/page.tsx",
+      "exists": true
+    },
+    {
+      "route": "/organizations",
+      "filePath": "app/organizations/page.tsx",
+      "exists": true
+    },
+    {
+      "route": "/organizations/[orgId]",
+      "filePath": "app/organizations/[orgId]/page.tsx",
+      "exists": true
+    }
+  ],
+  "categories": {
+    "communities": {
+      "category": "communities",
+      "itemCount": 12,
+      "sourceCount": 39,
+      "isSourceBacked": true,
+      "usesDemoData": false,
+      "internalDestinationCount": 12,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 0,
+      "items": [
+        {
+          "id": "carson-city-county",
+          "title": "Carson City County",
+          "href": "/community/carson-city-county",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "battle-mountain",
+          "title": "Battle Mountain",
+          "href": "/community/battle-mountain",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "boulder-city",
+          "title": "Boulder City",
+          "href": "/community/boulder-city",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "carson-city",
+          "title": "Carson City",
+          "href": "/community/carson-city",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "churchill-county",
+          "title": "Churchill County",
+          "href": "/community/churchill-county",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "clark-county",
+          "title": "Clark County",
+          "href": "/community/clark-county",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "douglas-county",
+          "title": "Douglas County",
+          "href": "/community/douglas-county",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "elko",
+          "title": "Elko",
+          "href": "/community/elko",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "elko-county",
+          "title": "Elko County",
+          "href": "/community/elko-county",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "ely",
+          "title": "Ely",
+          "href": "/community/ely",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "esmeralda-county",
+          "title": "Esmeralda County",
+          "href": "/community/esmeralda-county",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        },
+        {
+          "id": "eureka-county",
+          "title": "Eureka County",
+          "href": "/community/eureka-county",
+          "ctaLabel": "Open community",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        }
+      ]
+    },
+    "issues": {
+      "category": "issues",
+      "itemCount": 1,
+      "sourceCount": 17,
+      "isSourceBacked": true,
+      "usesDemoData": false,
+      "internalDestinationCount": 1,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 0,
+      "items": [
+        {
+          "id": "issue_real_education",
+          "title": "Education",
+          "href": "/issues/education",
+          "ctaLabel": "Open issue",
+          "sourceUrl": null,
+          "destinationKind": "internal",
+          "hasSourceTrail": false
+        }
+      ]
+    },
+    "people": {
+      "category": "people",
+      "itemCount": 0,
+      "sourceCount": 0,
+      "isSourceBacked": false,
+      "usesDemoData": false,
+      "internalDestinationCount": 0,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 0,
+      "items": []
+    },
+    "candidates": {
+      "category": "candidates",
+      "itemCount": 12,
+      "sourceCount": 203,
+      "isSourceBacked": true,
+      "usesDemoData": false,
+      "internalDestinationCount": 12,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 12,
+      "items": [
+        {
+          "id": "cmq107uih00dvlnoxneaps436",
+          "title": "Chris Sarman",
+          "href": "/candidates/cmq107uih00dvlnoxneaps436",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107ujg00dxlnoxqeakhi8u",
+          "title": "Sean McDowell",
+          "href": "/candidates/cmq107ujg00dxlnoxqeakhi8u",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107ukg00dzlnoxrutf2k3x",
+          "title": "Duane Meyer",
+          "href": "/candidates/cmq107ukg00dzlnoxrutf2k3x",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107ubd00dhlnoxhiy8k0ac",
+          "title": "Mariluz Garcia",
+          "href": "/candidates/cmq107ubd00dhlnoxhiy8k0ac",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107ucc00djlnoxunnteqqs",
+          "title": "Troy P. Regas",
+          "href": "/candidates/cmq107ucc00djlnoxunnteqqs",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107ued00dnlnoxryoud7wt",
+          "title": "Lisa Lee",
+          "href": "/candidates/cmq107ued00dnlnoxryoud7wt",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107ugd00drlnox7dapps5b",
+          "title": "Brian Wadsworth",
+          "href": "/candidates/cmq107ugd00drlnox7dapps5b",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107unh00e5lnox933cf963",
+          "title": "Blaise Jorgensen",
+          "href": "/candidates/cmq107unh00e5lnox933cf963",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107uoi00e7lnoxlcafy82m",
+          "title": "Nicole Klitzke",
+          "href": "/candidates/cmq107uoi00e7lnoxlcafy82m",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107upi00e9lnoxb5fkaukj",
+          "title": "Kalie Work",
+          "href": "/candidates/cmq107upi00e9lnoxb5fkaukj",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107uql00eblnox640fobj0",
+          "title": "Justin Taylor",
+          "href": "/candidates/cmq107uql00eblnox640fobj0",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmq107vp400g7lnoxot3bja0h",
+          "title": "Derek C. Dreiling",
+          "href": "/candidates/cmq107vp400g7lnoxot3bja0h",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        }
+      ]
+    },
+    "officials": {
+      "category": "officials",
+      "itemCount": 12,
+      "sourceCount": 164,
+      "isSourceBacked": true,
+      "usesDemoData": false,
+      "internalDestinationCount": 12,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 12,
+      "items": [
+        {
+          "id": "current-official-818378e0f1978802",
+          "title": "Lori Bagwell",
+          "href": "/officials/current-official-818378e0f1978802",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-8a5826ceff1ae533",
+          "title": "Stacey Giomi",
+          "href": "/officials/current-official-8a5826ceff1ae533",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-ff8eceeefa9a4051",
+          "title": "Maurice White",
+          "href": "/officials/current-official-ff8eceeefa9a4051",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-3f97e1952c9a884e",
+          "title": "Curtis Horton",
+          "href": "/officials/current-official-3f97e1952c9a884e",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-0fba08250daa4442",
+          "title": "Lisa Schuette",
+          "href": "/officials/current-official-0fba08250daa4442",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-a90586474cdb92de",
+          "title": "Kimberly Adams",
+          "href": "/officials/current-official-a90586474cdb92de",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-cbc85abe760baa49",
+          "title": "Scott Hoen",
+          "href": "/officials/current-official-cbc85abe760baa49",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-27243531f549acc7",
+          "title": "Garrit Pruyt",
+          "href": "/officials/current-official-27243531f549acc7",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-9cc36cae3d7454df",
+          "title": "Ken Furlong",
+          "href": "/officials/current-official-9cc36cae3d7454df",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-8750b828190b85c0",
+          "title": "Andrew Rasor",
+          "href": "/officials/current-official-8750b828190b85c0",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-3694a17c1da56c0c",
+          "title": "Thomas Armstrong",
+          "href": "/officials/current-official-3694a17c1da56c0c",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "current-official-a58ce1e2cedb242e",
+          "title": "Melanie Bruketta",
+          "href": "/officials/current-official-a58ce1e2cedb242e",
+          "ctaLabel": "View official",
+          "sourceUrl": "https://www.carsoncity.gov/government/department-directory",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        }
+      ]
+    },
+    "petitions": {
+      "category": "petitions",
+      "itemCount": 0,
+      "sourceCount": 0,
+      "isSourceBacked": false,
+      "usesDemoData": false,
+      "internalDestinationCount": 0,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 0,
+      "items": []
+    },
+    "cases": {
+      "category": "cases",
+      "itemCount": 12,
+      "sourceCount": 851,
+      "isSourceBacked": true,
+      "usesDemoData": false,
+      "internalDestinationCount": 12,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 12,
+      "items": [
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-admin-appeal-hearing-2025-06-18-b3876a6a-1-651a0f5",
+          "title": "Admin Appeal Hearing meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-admin-appeal-hearing-2025-06-18-b3876a6a-1-651a0f5",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2700&doc_id=4b9bbfc2-f0d1-11f0-bb28-005056a89546",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-admin-appeal-hearing-2025-05-22-e5e75e7d-1-6a6ef9a",
+          "title": "Admin Appeal Hearing meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-admin-appeal-hearing-2025-05-22-e5e75e7d-1-6a6ef9a",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2681&doc_id=25526746-55d4-11f0-b7f5-005056a89546",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-admin-appeal-hearing-2025-03-27-2614a684-1-48dd9c7",
+          "title": "Admin Appeal Hearing meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-admin-appeal-hearing-2025-03-27-2614a684-1-48dd9c7",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2643&doc_id=207ca37f-37ec-11f0-856f-005056a89546",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-admin-appeal-hearing-2025-02-06-dc12a66d-1-230223d",
+          "title": "Admin Appeal Hearing meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-admin-appeal-hearing-2025-02-06-dc12a66d-1-230223d",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2621&doc_id=b0073a2d-4003-11f0-b7f5-005056a89546",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-administrative-hearing-2024-11-04-04b71c26-1-d97b8",
+          "title": "Administrative Hearing meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-administrative-hearing-2024-11-04-04b71c26-1-d97b8",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2582",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-05-27-e231ca57-1",
+          "title": "Administrative Permit Review meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-05-27-e231ca57-1",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2887",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-03-25-f9334b67-1",
+          "title": "Administrative Permit Review meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-03-25-f9334b67-1",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2853",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2025-12-16-c95deb5b-1",
+          "title": "Administrative Permit Review meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2025-12-16-c95deb5b-1",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2797",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2025-07-30-c31df8d9-1",
+          "title": "Administrative Permit Review meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2025-07-30-c31df8d9-1",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2715",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2025-03-26-ede0a0cd-1",
+          "title": "Administrative Permit Review meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2025-03-26-ede0a0cd-1",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2638",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2024-10-30-1897a94b-1",
+          "title": "Administrative Permit Review meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-administrative-permit-review-2024-10-30-1897a94b-1",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2561",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "public-case-item-meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-06-24-b1c7f804-1-58c",
+          "title": "Carson City School Board meeting materials.",
+          "href": "/cases/public-case-item-meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-06-24-b1c7f804-1-58c",
+          "ctaLabel": "View case",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2899",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        }
+      ]
+    },
+    "events": {
+      "category": "events",
+      "itemCount": 12,
+      "sourceCount": 697,
+      "isSourceBacked": true,
+      "usesDemoData": false,
+      "internalDestinationCount": 12,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 12,
+      "items": [
+        {
+          "id": "meeting-carson-city-board-of-supervisors-planning-commission-2026-06-24-78dd6238",
+          "title": "Planning Commission - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-planning-commission-2026-06-24-78dd6238",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2902",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway-2026-06-24-68219d16",
+          "title": "NV Commission for Reconstruction of V&T Railway - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway-2026-06-24-68219d16",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2900",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-06-24-b1c7f804",
+          "title": "Carson City School Board - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-06-24-b1c7f804",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2899",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-06-23-bf22103a",
+          "title": "Liquor Hearings Officer - Public hearing",
+          "href": "/events/meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-06-23-bf22103a",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2901",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-06-18-1800824e",
+          "title": "Board of Supervisors - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-06-18-1800824e",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2897",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-airport-authority-2026-06-18-bb02570a",
+          "title": "Airport Authority - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-airport-authority-2026-06-18-bb02570a",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2896",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-audit-committee-2026-06-16-92722607",
+          "title": "Audit Committee - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-audit-committee-2026-06-16-92722607",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2895",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-joint-meeting-of-the-open-space-advisory-committee-and-the-parks-and-recreation-commission-2026-06-16-f3337143",
+          "title": "Joint Meeting of the Open Space Advisory Committee & the Parks and Recreation Commission - Joint meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-joint-meeting-of-the-open-space-advisory-committee-and-the-parks-and-recreation-commission-2026-06-16-f3337143",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2894",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-06-12-ce117571",
+          "title": "Library Board of Trustees - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-06-12-ce117571",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2893",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-regional-transportation-commission-2026-06-10-8d3ffc87",
+          "title": "Regional Transportation Commission - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-regional-transportation-commission-2026-06-10-8d3ffc87",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2892",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-06-10-f908a7a2",
+          "title": "Carson City School Board - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-06-10-f908a7a2",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2891",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2026-06-08-f7e4760b",
+          "title": "Carson City Culture & Tourism Authority - Regular meeting",
+          "href": "/events/meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2026-06-08-f7e4760b",
+          "ctaLabel": "View event",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2890",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        }
+      ]
+    },
+    "elections": {
+      "category": "elections",
+      "itemCount": 1,
+      "sourceCount": 52,
+      "isSourceBacked": true,
+      "usesDemoData": false,
+      "internalDestinationCount": 0,
+      "sourceOnlyDestinationCount": 1,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 1,
+      "items": [
+        {
+          "id": "nvsos-joe-lombardo-candidate-details",
+          "title": "Governor",
+          "href": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/cefdsearchuu/CandidateDetails.aspx?o=NZZn4mEHsNMU0L1EsD6oJg%253d%253d",
+          "ctaLabel": "Source",
+          "sourceUrl": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/cefdsearchuu/CandidateDetails.aspx?o=NZZn4mEHsNMU0L1EsD6oJg%253d%253d",
+          "destinationKind": "source_only",
+          "hasSourceTrail": true
+        }
+      ]
+    },
+    "ads": {
+      "category": "ads",
+      "itemCount": 0,
+      "sourceCount": 0,
+      "isSourceBacked": false,
+      "usesDemoData": false,
+      "internalDestinationCount": 0,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 0,
+      "items": []
+    },
+    "organizations": {
+      "category": "organizations",
+      "itemCount": 12,
+      "sourceCount": 79,
+      "isSourceBacked": true,
+      "usesDemoData": false,
+      "internalDestinationCount": 12,
+      "sourceOnlyDestinationCount": 0,
+      "missingDestinationCount": 0,
+      "sourceTrailCount": 12,
+      "items": [
+        {
+          "id": "body-carson-city-board-of-supervisors",
+          "title": "Carson City Board of Supervisors",
+          "href": "/organizations/body-carson-city-board-of-supervisors",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://www.carsoncity.gov/government/city-meetings",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+          "title": "9-1-1 Surcharge Advisory Committee",
+          "href": "/organizations/body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2482",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-admin-appeal-hearing",
+          "title": "Admin Appeal Hearing",
+          "href": "/organizations/body-carson-city-board-of-supervisors-admin-appeal-hearing",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2621&doc_id=b0073a2d-4003-11f0-b7f5-005056a89546",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-administrative-hearing",
+          "title": "Administrative Hearing",
+          "href": "/organizations/body-carson-city-board-of-supervisors-administrative-hearing",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2582",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-administrative-permit-review",
+          "title": "Administrative Permit Review",
+          "href": "/organizations/body-carson-city-board-of-supervisors-administrative-permit-review",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2561",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife",
+          "title": "Carson City Advisory Board to Manage Wildlife",
+          "href": "/organizations/body-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2596",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-advisory-board-to-manage-wildlife",
+          "title": "Advisory Board to Manage Wildlife",
+          "href": "/organizations/body-carson-city-board-of-supervisors-advisory-board-to-manage-wildlife",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2358",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-airport-authority",
+          "title": "Airport Authority",
+          "href": "/organizations/body-carson-city-board-of-supervisors-airport-authority",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2356",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-airport-authority-special-meeting",
+          "title": "Airport Authority Special Meeting",
+          "href": "/organizations/body-carson-city-board-of-supervisors-airport-authority-special-meeting",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2446",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-audit-committee",
+          "title": "Audit Committee",
+          "href": "/organizations/body-carson-city-board-of-supervisors-audit-committee",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2349",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-board-of-appeals",
+          "title": "Board of Appeals",
+          "href": "/organizations/body-carson-city-board-of-supervisors-board-of-appeals",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2790",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "body-carson-city-board-of-supervisors-board-of-equalization",
+          "title": "Board of Equalization",
+          "href": "/organizations/body-carson-city-board-of-supervisors-board-of-equalization",
+          "ctaLabel": "View body",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2370",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        }
+      ]
+    }
+  },
+  "failures": []
+}

@@ -10,7 +10,13 @@ import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/co
 import { ORGANIZATION_FILTERS, getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { approveOrganizationCreationRequest } from "@/lib/organizations/actions";
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { getAllOrganizations, getOrganizationCreationRequests, getRecommendedOrganizationsForUser } from "@/lib/organizations/store";
+import {
+  getAllOrganizations,
+  getGovernmentBodiesForCommunity,
+  getOrganizationCreationRequests,
+  getRecommendedOrganizationsForUser,
+} from "@/lib/organizations/store";
+import type { GovernmentBodyDetail } from "@/lib/organizations/store";
 import type { OrganizationSummary, OrganizationType } from "@/types/domain";
 
 type OrganizationsPageProps = {
@@ -61,6 +67,59 @@ function sortBySignal(
   return [...organizations].sort((a, b) => (b[key] ?? 0) - (a[key] ?? 0) || b.memberCount - a.memberCount);
 }
 
+function GovernmentBodyCard({ body }: { body: GovernmentBodyDetail }) {
+  return (
+    <article className="rounded-[1.5rem] border border-white/10 bg-[linear-gradient(165deg,rgba(12,22,39,0.96),rgba(8,15,28,0.96))] p-5 shadow-[0_24px_50px_-34px_rgba(2,8,23,0.92)]">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full bg-cyan-500/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
+              Government body
+            </span>
+            <span className="rounded-full bg-emerald-500/12 px-3 py-1 text-xs font-semibold text-emerald-200">
+              Source-backed
+            </span>
+            <span className="rounded-full bg-white/6 px-3 py-1 text-xs font-semibold text-slate-200 ring-1 ring-white/10">
+              {body.level}
+            </span>
+          </div>
+          <h3 className="mt-3 text-lg font-semibold text-slate-50">
+            <Link href={`/organizations/${body.id}`} className="transition hover:text-cyan-100">
+              {body.name}
+            </Link>
+          </h3>
+          <p className="mt-2 text-sm text-slate-400">{body.jurisdictionName}</p>
+        </div>
+      </div>
+      <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-300">{body.description}</p>
+      <div className="mt-4 grid gap-2 sm:grid-cols-3">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">Community</p>
+          <p className="mt-2 truncate text-sm font-semibold text-white">{body.communityName ?? "Statewide"}</p>
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">Source type</p>
+          <p className="mt-2 truncate text-sm font-semibold text-white">{body.scraperType ?? "manual"}</p>
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">Status</p>
+          <p className="mt-2 truncate text-sm font-semibold text-white">{body.active ? "Active" : "Review"}</p>
+        </div>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-3 text-sm">
+        <Link href={`/organizations/${body.id}`} className="font-semibold text-cyan-100 hover:text-white">
+          View body
+        </Link>
+        {body.sourceUrl ? (
+          <Link href={body.sourceUrl} className="font-semibold text-slate-300 hover:text-white">
+            Source
+          </Link>
+        ) : null}
+      </div>
+    </article>
+  );
+}
+
 export default async function OrganizationsPage({ searchParams }: OrganizationsPageProps) {
   const user = await getCurrentUser();
   const params = searchParams ? await searchParams : undefined;
@@ -71,13 +130,15 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
   const selectedType = normalizeOrganizationFilter(params?.type);
   const guestMode = isGuestUser(user);
 
-  const [organizations, recommendations, requests] = await Promise.all([
+  const [organizations, recommendations, requests, governmentBodies] = await Promise.all([
     getAllOrganizations(user),
     getRecommendedOrganizationsForUser(user, selectedCommunityId),
     getOrganizationCreationRequests(),
+    getGovernmentBodiesForCommunity(selectedCommunityId, query),
   ]);
 
   const filtered = filterOrganizations(organizations, selectedCommunityId, query, selectedType);
+  const visibleGovernmentBodies = selectedType === "all" ? governmentBodies.slice(0, 8) : [];
   const featured = [...filtered].sort((a, b) => (b.memberCount + (b.activeVoteCount ?? 0) + (b.endorsementCount ?? 0)) - (a.memberCount + (a.activeVoteCount ?? 0) + (a.endorsementCount ?? 0))).slice(0, 6);
   const recommended = recommendations.filter((organization) => selectedType === "all" || organization.organizationType === selectedType).slice(0, 4);
   const activeVotes = sortBySignal(filtered, "activeVoteCount").filter((organization) => (organization.activeVoteCount ?? 0) > 0).slice(0, 3);
@@ -117,7 +178,7 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200/80">How organizations work</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white">Structured civic groups, not individual profiles</h2>
             <p className="mt-3 text-sm leading-7 text-slate-300">
-              Organizations represent organized civic groups. Members can participate in internal votes, debates, endorsements, petitions, and public actions depending on the organization&apos;s rules.
+              Organizations include citizen-created civic groups and source-backed government bodies. Member workflows apply to civic groups; public bodies are shown for source transparency and meeting navigation.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
@@ -132,6 +193,10 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Debates live</p>
               <p className="mt-2 text-2xl font-semibold text-white">{filtered.reduce((sum, organization) => sum + (organization.activeDebateCount ?? 0), 0)}</p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Public bodies</p>
+              <p className="mt-2 text-2xl font-semibold text-white">{governmentBodies.length}</p>
             </div>
           </div>
         </div>
@@ -164,7 +229,7 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200/80">Filters</p>
-            <p className="mt-2 text-sm text-slate-400">Browse labor unions, public-interest groups, religious organizations, nonprofits, neighborhood groups, business groups, advocacy groups, and more.</p>
+            <p className="mt-2 text-sm text-slate-400">Browse civic groups and source-backed public bodies. Type filters apply to member organizations only.</p>
           </div>
           <PreserveScrollQueryForm action="/organizations" className="flex flex-wrap gap-3">
             <input type="hidden" name="communityId" value={selectedCommunityId} />
@@ -201,6 +266,27 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className="rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,rgba(11,19,33,0.98),rgba(7,13,24,0.96))] p-6 shadow-[0_24px_55px_-32px_rgba(8,15,28,0.92)]">
+        <SectionHeading
+          eyebrow="Government bodies"
+          title="Source-backed public bodies"
+          description="Public bodies come from the generated Nevada meeting-source layer. They link to internal body pages first, with original source links kept visible."
+        />
+        <div className="mt-5 grid gap-4 xl:grid-cols-2">
+          {visibleGovernmentBodies.length ? (
+            visibleGovernmentBodies.map((body) => <GovernmentBodyCard key={body.id} body={body} />)
+          ) : selectedType === "all" ? (
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-sm text-slate-400 xl:col-span-2">
+              No source-backed public bodies match this community view yet.
+            </div>
+          ) : (
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-sm text-slate-400 xl:col-span-2">
+              Public bodies are shown when the organization type filter is set to All.
+            </div>
+          )}
         </div>
       </section>
 

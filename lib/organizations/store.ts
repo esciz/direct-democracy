@@ -1,8 +1,10 @@
 import { cookies } from "next/headers";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 
 import { seedUsers } from "@/lib/auth/mock-users";
 import { getAllCommunityEvents } from "@/lib/community/events";
-import { getCommunityById } from "@/lib/community/communities";
+import { getCommunityById, seededCommunities } from "@/lib/community/communities";
 import { getDebatesForUser } from "@/lib/debates/store";
 import { canonicalizeIssueTags } from "@/lib/issues/utils";
 import { getAllCandidateCampaigns, getCandidateProfiles } from "@/lib/server/elections-context";
@@ -35,6 +37,7 @@ const ORGANIZATION_PLATFORM_ITEMS_COOKIE = "dd_organization_platform_items";
 const ORGANIZATION_VOTES_COOKIE = "dd_organization_votes";
 const ORGANIZATION_ENDORSEMENTS_COOKIE = "dd_organization_endorsements";
 const ORGANIZATION_CREATION_REQUESTS_COOKIE = "dd_organization_creation_requests";
+const GENERATED_DATA_ROOT = path.join(process.cwd(), "data", "generated");
 
 type SeedOrganization = {
   id: string;
@@ -60,6 +63,43 @@ export type OrganizationPreviewSummary = {
   jurisdictionName: string;
   issueTags: string[];
   memberCount: number;
+};
+
+type PublicMeetingBodyRecord = {
+  id?: string;
+  name?: string;
+  jurisdiction?: string;
+  level?: string;
+  website?: string;
+  source_url?: string;
+  meeting_index_url?: string;
+  scraper_type?: string;
+  active?: boolean;
+  seed_source_id?: string;
+  notes?: string;
+  created_at?: string;
+  updated_at?: string;
+};
+
+export type GovernmentBodyDetail = {
+  kind: "government_body";
+  id: string;
+  name: string;
+  jurisdictionName: string;
+  level: string;
+  communityId: string | null;
+  communityName: string | null;
+  description: string;
+  website: string | null;
+  sourceUrl: string | null;
+  meetingIndexUrl: string | null;
+  sourceLabel: string;
+  scraperType: string | null;
+  active: boolean;
+  seedSourceId: string | null;
+  notes: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
 };
 
 const seededOrganizations: SeedOrganization[] = [
@@ -1043,6 +1083,125 @@ export async function getOrganizationById(orgId: string, viewer: AuthUser): Prom
     relatedDebates,
     relatedPetitions,
   };
+}
+
+function readGeneratedRecords<T>(fileName: string): T[] {
+  const filePath = path.join(GENERATED_DATA_ROOT, fileName);
+  if (!existsSync(filePath)) return [];
+
+  try {
+    const parsed = JSON.parse(readFileSync(filePath, "utf8")) as unknown;
+    if (Array.isArray(parsed)) return parsed as T[];
+    if (parsed && typeof parsed === "object" && Array.isArray((parsed as { records?: unknown }).records)) {
+      return (parsed as { records: T[] }).records;
+    }
+  } catch (error) {
+    console.warn(`[organizations] failed to read generated ${fileName}`, error);
+  }
+
+  return [];
+}
+
+function generatedText(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizeGeneratedText(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/\bnevada\b/g, "nv")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function getGeneratedBodyCommunity(record: PublicMeetingBodyRecord) {
+  const jurisdiction = normalizeGeneratedText(generatedText(record.jurisdiction));
+  const name = normalizeGeneratedText(generatedText(record.name));
+  if (!jurisdiction && !name) return null;
+
+  return (
+    seededCommunities.find((community) => {
+      const needles = [
+        community.name,
+        community.shortName,
+        community.primaryJurisdictionName,
+        community.locationLabel,
+        ...community.jurisdictionMatches,
+      ]
+        .map((value) => normalizeGeneratedText(value ?? ""))
+        .filter(Boolean);
+
+      return needles.some((needle) => jurisdiction.includes(needle) || needle.includes(jurisdiction) || name.includes(needle));
+    }) ?? null
+  );
+}
+
+function governmentBodyDetailFromRecord(record: PublicMeetingBodyRecord): GovernmentBodyDetail | null {
+  const id = generatedText(record.id);
+  const name = generatedText(record.name);
+  if (!id || !name) {
+    return null;
+  }
+
+  const community = getGeneratedBodyCommunity(record);
+  const jurisdictionName = generatedText(record.jurisdiction) || community?.primaryJurisdictionName || "Nevada";
+  const level = generatedText(record.level) || "government body";
+  const sourceUrl = generatedText(record.source_url) || generatedText(record.meeting_index_url) || generatedText(record.website) || null;
+  const meetingIndexUrl = generatedText(record.meeting_index_url) || generatedText(record.source_url) || null;
+  const website = generatedText(record.website) || null;
+
+  return {
+    kind: "government_body",
+    id,
+    name,
+    jurisdictionName,
+    level,
+    communityId: community?.id ?? null,
+    communityName: community?.name ?? null,
+    description:
+      generatedText(record.notes) ||
+      `${generatedText(record.name)} is a source-backed ${level} record from the generated Nevada public meeting body index.`,
+    website,
+    sourceUrl,
+    meetingIndexUrl,
+    sourceLabel: generatedText(record.scraper_type) ? `${generatedText(record.scraper_type)} meeting source` : "Public meeting source",
+    scraperType: generatedText(record.scraper_type) || null,
+    active: record.active !== false,
+    seedSourceId: generatedText(record.seed_source_id) || null,
+    notes: generatedText(record.notes) || null,
+    createdAt: generatedText(record.created_at) || null,
+    updatedAt: generatedText(record.updated_at) || null,
+  };
+}
+
+export async function getGovernmentBodyById(bodyId: string): Promise<GovernmentBodyDetail | null> {
+  const records = readGeneratedRecords<PublicMeetingBodyRecord>("public-meeting-bodies.json");
+  const record = records.find((entry) => generatedText(entry.id) === bodyId);
+  return record ? governmentBodyDetailFromRecord(record) : null;
+}
+
+export async function getGovernmentBodiesForCommunity(communityId: string, query = ""): Promise<GovernmentBodyDetail[]> {
+  const normalizedQuery = normalizeGeneratedText(query);
+  const records = readGeneratedRecords<PublicMeetingBodyRecord>("public-meeting-bodies.json");
+  const bodies = records.flatMap((record) => {
+    const body = governmentBodyDetailFromRecord(record);
+    return body ? [body] : [];
+  });
+
+  const local = bodies.filter((body) => body.communityId === communityId);
+  const statewide = bodies.filter((body) => body.communityId === "nevada" || normalizeGeneratedText(body.jurisdictionName).includes("nv"));
+  const candidates = local.length ? local : statewide.length ? statewide : bodies;
+
+  return candidates
+    .filter((body) => {
+      if (!normalizedQuery) return true;
+      return normalizeGeneratedText(`${body.name} ${body.jurisdictionName} ${body.level} ${body.description}`).includes(normalizedQuery);
+    })
+    .sort((left, right) => {
+      if (left.communityId === communityId && right.communityId !== communityId) return -1;
+      if (right.communityId === communityId && left.communityId !== communityId) return 1;
+      return left.name.localeCompare(right.name);
+    });
 }
 
 export async function getOrganizationEndorsementsForCampaign(candidateCampaignId: string) {

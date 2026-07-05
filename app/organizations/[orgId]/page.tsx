@@ -18,7 +18,8 @@ import {
   voteOnOrganizationPlatformItem,
 } from "@/lib/organizations/actions";
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { getOrganizationById, getOrganizationCampaignOptions } from "@/lib/organizations/store";
+import { getGovernmentBodyById, getOrganizationById, getOrganizationCampaignOptions } from "@/lib/organizations/store";
+import type { GovernmentBodyDetail } from "@/lib/organizations/store";
 
 type OrganizationDetailPageProps = {
   params: Promise<{
@@ -30,19 +31,174 @@ type OrganizationDetailPageProps = {
   }>;
 };
 
+function formatBodyDate(value: string | null) {
+  if (!value) return "Not available";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Not available";
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function GovernmentBodyDetailPage({ body }: { body: GovernmentBodyDetail }) {
+  const sourceLinks = [
+    body.website ? { label: "Official website", href: body.website } : null,
+    body.meetingIndexUrl ? { label: "Meeting index", href: body.meetingIndexUrl } : null,
+    body.sourceUrl && body.sourceUrl !== body.meetingIndexUrl ? { label: "Source", href: body.sourceUrl } : null,
+  ].filter((entry): entry is { label: string; href: string } => Boolean(entry));
+
+  return (
+    <div className="space-y-6 py-8">
+      <PageIntro
+        eyebrow="Government body"
+        title={body.name}
+        description={body.description}
+        meta={
+          <>
+            <span className="rounded-full bg-cyan-500/12 px-3 py-1 text-xs font-semibold text-cyan-100">Source-backed</span>
+            <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-slate-200">{body.jurisdictionName}</span>
+            <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-slate-200">{body.level}</span>
+          </>
+        }
+        actions={
+          <div className="flex flex-wrap gap-3">
+            {body.sourceUrl ? (
+              <Link href={body.sourceUrl} className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
+                Open source
+              </Link>
+            ) : null}
+            {body.communityId ? (
+              <Link href={`/community/${body.communityId}`} className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold transition hover:border-cyan-300/30 hover:text-white">
+                Open community
+              </Link>
+            ) : null}
+          </div>
+        }
+      />
+
+      <section className="grid gap-6 xl:grid-cols-[1fr_0.75fr]">
+        <section className="dd-panel-muted rounded-[1.75rem] p-6">
+          <SectionHeading
+            eyebrow="Public record"
+            title="What this page represents"
+            description="This is a source-backed government body record from the generated Nevada meeting-source layer. It is not a member-run civic organization."
+          />
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Jurisdiction</p>
+              <p className="mt-2 text-sm font-semibold text-slate-100">{body.jurisdictionName}</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Coverage level</p>
+              <p className="mt-2 text-sm font-semibold text-slate-100">{body.level}</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Community match</p>
+              <p className="mt-2 text-sm font-semibold text-slate-100">{body.communityName ?? "Statewide / pending match"}</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Status</p>
+              <p className="mt-2 text-sm font-semibold text-slate-100">{body.active ? "Active source" : "Inactive / review needed"}</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="dd-panel-muted rounded-[1.75rem] p-6">
+          <SectionHeading
+            eyebrow="Source trail"
+            title="Where this came from"
+            description="Source links stay visible so residents can inspect the original public record."
+          />
+          <div className="mt-5 grid gap-3">
+            {sourceLinks.length ? (
+              sourceLinks.map((link) => (
+                <Link
+                  key={`${link.label}-${link.href}`}
+                  href={link.href}
+                  className="rounded-3xl border border-white/10 bg-white/[0.04] p-4 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/25 hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ))
+            ) : (
+              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-400">No public source URL is currently attached to this body.</div>
+            )}
+          </div>
+        </section>
+      </section>
+
+      <section className="grid gap-6 xl:grid-cols-3">
+        <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6">
+          <SectionHeading
+            eyebrow="Meetings"
+            title="Meeting records"
+            description="Meeting, agenda, packet, and minutes records appear in Events and community dashboards when imported."
+          />
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href={`/explore?browseCategory=events${body.communityId ? `&communityId=${body.communityId}` : ""}`} className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">
+              Browse related events
+            </Link>
+            {body.meetingIndexUrl ? (
+              <Link href={body.meetingIndexUrl} className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">
+                Official meeting source
+              </Link>
+            ) : null}
+          </div>
+        </section>
+
+        <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6">
+          <SectionHeading
+            eyebrow="Data quality"
+            title="Coverage status"
+            description="This body is available because it exists in the generated public-meeting body index."
+          />
+          <dl className="mt-5 space-y-3 text-sm">
+            <div className="flex items-center justify-between gap-4">
+              <dt className="text-slate-400">Source type</dt>
+              <dd className="font-semibold text-slate-100">{body.scraperType ?? "manual source"}</dd>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <dt className="text-slate-400">Seed source</dt>
+              <dd className="font-semibold text-slate-100">{body.seedSourceId ?? "not labeled"}</dd>
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <dt className="text-slate-400">Updated</dt>
+              <dd className="font-semibold text-slate-100">{formatBodyDate(body.updatedAt)}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6">
+          <SectionHeading
+            eyebrow="Limited data"
+            title="No member workflow"
+            description="Government bodies do not support joining, endorsements, or member petitions. Those tools remain for citizen-created civic organizations."
+          />
+          <p className="mt-5 text-sm leading-6 text-slate-400">
+            This page focuses on source transparency and civic navigation. Related decisions, votes, projects, and spending surface through community dashboards as source records are ingested.
+          </p>
+        </section>
+      </section>
+    </div>
+  );
+}
+
 export default async function OrganizationDetailPage({ params, searchParams }: OrganizationDetailPageProps) {
   const { orgId } = await params;
   const user = await getCurrentUser();
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const [organization, campaignOptions] = await Promise.all([
+  const [organization, governmentBody] = await Promise.all([
     getOrganizationById(orgId, user),
-    getOrganizationCampaignOptions(orgId),
+    getGovernmentBodyById(orgId),
   ]);
 
   if (!organization) {
+    if (governmentBody) {
+      return <GovernmentBodyDetailPage body={governmentBody} />;
+    }
+
     notFound();
   }
 
+  const campaignOptions = await getOrganizationCampaignOptions(orgId);
   const pendingMemberships = organization.memberships.filter((entry) => entry.state === "pending");
   const returnPath = `/organizations/${organization.id}`;
 

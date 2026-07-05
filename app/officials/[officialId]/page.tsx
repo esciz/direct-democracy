@@ -39,7 +39,7 @@ import type { OfficialMeetingRecordSummary } from "@/lib/public-meetings/types";
 import { getCurrentFeedViewer, getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
 import { getOfficialActionCountByOfficialProfileId, getOfficialActionsByOfficialProfileId } from "@/lib/officials/action-store";
 import { getOfficialPromises } from "@/lib/officials/promises";
-import { getOfficials } from "@/lib/officials/store";
+import { getOfficialById, getOfficials } from "@/lib/officials/store";
 import { getDraftLegislationBySponsorId } from "@/lib/petitions/legislation";
 import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
 import { getUserProfileContent } from "@/lib/profile/details";
@@ -84,7 +84,7 @@ function withSectionTimeout<T>(promise: Promise<T>, label: string, timeoutMs = 1
 
 async function getOfficialSummaryById(officialId: string) {
   const officials = await getOfficials({ allowDemoFallback: process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true" });
-  return officials.find((official) => official.id === officialId) ?? null;
+  return officials.find((official) => official.id === officialId) ?? await getOfficialById(officialId);
 }
 
 async function getOfficialRecentPostsById(officialId: string): Promise<PostSummary[]> {

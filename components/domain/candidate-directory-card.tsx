@@ -135,6 +135,16 @@ export function CandidateDirectoryCard({ candidate, returnPath = "/candidates" }
         >
           Open profile
         </Link>
+        {candidate.sourceUrl || imported?.sourceUrl ? (
+          <a
+            href={candidate.sourceUrl ?? imported?.sourceUrl ?? ""}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex rounded-full border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+          >
+            Source
+          </a>
+        ) : null}
       </div>
     </article>
   );

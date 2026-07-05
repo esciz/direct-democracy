@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T15:59:51.344Z",
+  "generatedAt": "2026-07-05T17:48:55.597Z",
   "sprint": "Private Beta Readiness",
   "status": "ready_for_private_link_sharing",
   "recommendation": "Ready to share privately with invited testers. Keep no-index enabled until public launch.",
@@ -96,8 +96,8 @@
     },
     "civicDataFreshness": {
       "status": "green",
-      "sourceGeneratedAt": "2026-07-04T15:38:33.059Z",
-      "sourceAgeHours": 0.4,
+      "sourceGeneratedAt": "2026-07-04T15:59:50.197Z",
+      "sourceAgeHours": 25.8,
       "eventTotals": {
         "records": 728,
         "sourceBacked": 697,

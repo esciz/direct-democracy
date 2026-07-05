@@ -1,5 +1,22 @@
 import { getPublicOfficials, type PublicOfficialRow } from "@/lib/civic-data/public";
 import type { OfficialProfileDetail, OfficialProfileSummary } from "@/types/domain";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
+
+type CurrentOfficialRuntimeRecord = {
+  id: string;
+  name: string;
+  title?: string | null;
+  office?: string | null;
+  jurisdiction?: string | null;
+  district?: string | null;
+  party?: string | null;
+  source_url?: string | null;
+  source_label?: string | null;
+  profile_url?: string | null;
+  confidence?: number | null;
+  review_status?: string | null;
+};
 
 function getDisplayJurisdictionName(slug: string, name: string) {
   if (slug === "reno") return "Reno, Nevada";
@@ -73,6 +90,54 @@ async function getOfficialProfilesFallback(): Promise<OfficialProfileSummary[]> 
   return getOfficialProfiles();
 }
 
+function getGeneratedCurrentOfficialById(id: string): OfficialProfileSummary | null {
+  const filePath = path.join(process.cwd(), "data", "generated", "nevada-community-officials.json");
+  if (!existsSync(filePath)) return null;
+
+  try {
+    const parsed = JSON.parse(readFileSync(filePath, "utf8")) as { records?: CurrentOfficialRuntimeRecord[] } | CurrentOfficialRuntimeRecord[];
+    const records = Array.isArray(parsed) ? parsed : parsed.records ?? [];
+    const official = records.find((record) => record.id === id);
+
+    if (!official) return null;
+
+    const officeTitle = official.title ?? official.office ?? "Officeholder";
+    const jurisdictionName = official.jurisdiction ?? "Nevada";
+    const sourceLabel = official.source_label ?? "Generated Nevada current-officeholder source";
+    const sourceUrl = official.source_url ?? official.profile_url ?? null;
+
+    return {
+      id: official.id,
+      claimedByUserId: null,
+      name: official.name,
+      officeTitle,
+      jurisdictionName,
+      party: official.party ?? "Nonpartisan",
+      bio: `${official.name} is listed as ${officeTitle} for ${jurisdictionName} in the generated Nevada current-officeholder index.`,
+      profileImageUrl: null,
+      platformSummary: "Source-backed current-officeholder profile. Additional accountability activity appears as meeting, vote, and issue links are reviewed.",
+      donationUrl: null,
+      websiteUrl: official.profile_url ?? sourceUrl,
+      email: null,
+      phone: null,
+      districtName: official.district ?? null,
+      sourceLabel,
+      sourceUrl,
+      isClaimed: true,
+      followerCount: 0,
+      followThroughScore: official.confidence ?? null,
+      truthScore: {
+        media: null,
+        moderators: null,
+        citizens: null,
+      },
+    };
+  } catch (error) {
+    console.error("[officials-store] generated current official fallback failed", error);
+    return null;
+  }
+}
+
 export async function getOfficials(options: { allowDemoFallback?: boolean } = {}): Promise<OfficialProfileSummary[]> {
   const allowDemoFallback = options.allowDemoFallback ?? true;
 
@@ -90,7 +155,7 @@ export async function getOfficials(options: { allowDemoFallback?: boolean } = {}
 }
 
 export async function getOfficialById(id: string): Promise<OfficialProfileDetail | null> {
-  const official = (await getOfficials()).find((entry) => entry.id === id);
+  const official = (await getOfficials()).find((entry) => entry.id === id) ?? getGeneratedCurrentOfficialById(id);
 
   if (official) {
     return {

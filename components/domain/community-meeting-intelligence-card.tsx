@@ -55,10 +55,17 @@ export function CommunityMeetingIntelligenceCard({ summary }: { summary: Communi
               {summary.upcoming_meetings.length ? (
                 summary.upcoming_meetings.map((meeting) => (
                   <article key={meeting.id} className="rounded-2xl border border-white/10 bg-black/15 p-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200">{formatDate(meeting.meeting_date)}</p>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200">{formatDate(meeting.meeting_date)}</p>
+                      {meeting.relationship_scope === "statewide_overlay" ? (
+                        <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-2 py-1 text-[11px] font-semibold text-emerald-100">
+                          Statewide Nevada overlay
+                        </span>
+                      ) : null}
+                    </div>
                     <p className="mt-2 text-sm font-semibold text-slate-100">{meeting.title}</p>
                     <p className="mt-1 text-xs text-slate-500">{meeting.public_body_name}</p>
-                    {meeting.major_topics?.length ? (
+                    {meeting.relationship_scope !== "statewide_overlay" && meeting.major_topics?.length ? (
                       <div className="mt-2 flex flex-wrap gap-2">
                         {meeting.major_topics.slice(0, 3).map((topic) => (
                           <span key={topic} className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-semibold text-slate-300">
@@ -68,7 +75,9 @@ export function CommunityMeetingIntelligenceCard({ summary }: { summary: Communi
                       </div>
                     ) : (
                       <p className="mt-2 text-xs leading-5 text-slate-400">
-                        Expected topics will come from the agenda as source parsing improves. Open the details to review agenda material and public-comment timing.
+                        {meeting.relationship_scope === "statewide_overlay"
+                          ? "Shown because no upcoming local Carson City meeting is currently parsed; statewide Nevada meetings may still affect residents here."
+                          : "Expected topics will come from the agenda as source parsing improves. Open the details to review agenda material and public-comment timing."}
                       </p>
                     )}
                     {meeting.agenda_url ? (

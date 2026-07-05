@@ -235,14 +235,14 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
   };
   const activeFavoriteTargetType = targetTypeForCategory[activeCategory];
 
-  const activePreview = getBrowsePreviewCategory({
+  const activePreview = await getBrowsePreviewCategory({
     category: activeCategory,
     communityId: selectedCommunityId,
     query: favoritesOnly ? "" : query,
     limit: favoritesOnly ? 24 : 12,
     favoriteIds: favoritesOnly ? (activeFavoriteTargetType ? favoriteIdsByType[activeFavoriteTargetType] : []) : undefined,
   });
-  const browsePreview = getBrowsePreviewCategory({
+  const browsePreview = await getBrowsePreviewCategory({
     category: activeBrowseCategory,
     communityId: selectedCommunityId,
     query: "",
@@ -352,6 +352,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                     description={item.description}
                     href={item.href}
                     ctaLabel={item.ctaLabel}
+                    sourceUrl={item.sourceUrl}
                     badges={renderPreviewBadges(item)}
                     favorite={item.favorite}
                     avatar={item.avatar}
@@ -465,6 +466,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                   description={item.description}
                   href={item.href}
                   ctaLabel={item.ctaLabel}
+                  sourceUrl={item.sourceUrl}
                   badges={renderPreviewBadges(item)}
                   favorite={item.favorite}
                   avatar={item.avatar}

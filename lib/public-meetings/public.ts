@@ -178,17 +178,29 @@ function bodyMatchesCommunity(body: PublicBodyRecord, community: CommunitySummar
   return needles.some((needle) => haystack.includes(needle) || needle.includes(haystack));
 }
 
+function bodyIsNevadaStatewideOverlay(body: PublicBodyRecord) {
+  const haystack = normalizeName(`${body.name} ${body.jurisdiction}`);
+  return (
+    haystack.includes("nevada legislature") ||
+    haystack.includes("nevada senate") ||
+    haystack.includes("nevada assembly") ||
+    haystack.includes("state of nevada") ||
+    haystack.includes("nevada statewide")
+  );
+}
+
 export async function getCommunityMeetingSummary(community: CommunitySummary): Promise<CommunityMeetingSummary> {
   const dashboard = await getPublicMeetingAdminDashboard();
   const meetingVotingCards = await readJsonFile<MeetingVotingCardRecord[]>(PUBLIC_MEETING_PATHS.meetingVotingCards, []);
   const publicCases = await getPublicCivicCasesForCommunity(community, 6);
   const matchingBodies = dashboard.publicBodies.filter((body) => bodyMatchesCommunity(body, community));
   const matchingBodyIds = new Set(matchingBodies.map((body) => body.id));
+  const statewideBodyIds = new Set(dashboard.publicBodies.filter(bodyIsNevadaStatewideOverlay).map((body) => body.id));
   const matchingMeetings = dashboard.meetings.filter((meeting) => matchingBodyIds.has(meeting.public_body_id));
   const matchingMeetingIds = new Set(matchingMeetings.map((meeting) => meeting.id));
   const matchingItems = dashboard.meetingItems.filter((item) => matchingMeetingIds.has(item.meeting_id));
   const topicsByMeetingId = new Map<string, string[]>();
-  for (const item of matchingItems) {
+  for (const item of dashboard.meetingItems) {
     const topics = topicsByMeetingId.get(item.meeting_id) ?? [];
     const topic = (item.one_sentence_summary || item.plain_english_explanation || item.title)
       .replace(/^\s*\d+(?:\.[A-Z0-9]+)*\s*[.)]\s*/i, "")
@@ -204,21 +216,33 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
   const meetingById = new Map(dashboard.meetings.map((meeting) => [meeting.id, meeting]));
   const bodyById = new Map(dashboard.publicBodies.map((body) => [body.id, body]));
   const now = Date.now();
-  const upcomingMeetings = matchingMeetings
+  const toUpcomingMeeting = (meeting: PublicMeetingRecord, relationshipScope: "local" | "statewide_overlay") => ({
+    id: meeting.id,
+    title: meeting.title,
+    public_body_name: bodyById.get(meeting.public_body_id)?.name ?? "Public body pending",
+    meeting_date: meeting.meeting_date,
+    agenda_url: meeting.agenda_url ?? meeting.source_urls[0] ?? null,
+    relationship_scope: relationshipScope,
+    major_topics: topicsByMeetingId.get(meeting.id) ?? [],
+  });
+  const localUpcomingMeetings = matchingMeetings
     .filter((meeting) => {
       const time = meeting.meeting_date ? Date.parse(meeting.meeting_date) : Number.NaN;
       return Number.isFinite(time) && time >= now;
     })
     .sort((left, right) => (Date.parse(left.meeting_date ?? "") || 0) - (Date.parse(right.meeting_date ?? "") || 0))
     .slice(0, 5)
-    .map((meeting) => ({
-      id: meeting.id,
-      title: meeting.title,
-      public_body_name: bodyById.get(meeting.public_body_id)?.name ?? "Public body pending",
-      meeting_date: meeting.meeting_date,
-      agenda_url: meeting.agenda_url ?? meeting.source_urls[0] ?? null,
-      major_topics: topicsByMeetingId.get(meeting.id) ?? [],
-    }));
+    .map((meeting) => toUpcomingMeeting(meeting, "local"));
+  const statewideUpcomingMeetings = dashboard.meetings
+    .filter((meeting) => statewideBodyIds.has(meeting.public_body_id))
+    .filter((meeting) => {
+      const time = meeting.meeting_date ? Date.parse(meeting.meeting_date) : Number.NaN;
+      return Number.isFinite(time) && time >= now;
+    })
+    .sort((left, right) => (Date.parse(left.meeting_date ?? "") || 0) - (Date.parse(right.meeting_date ?? "") || 0))
+    .slice(0, 5)
+    .map((meeting) => toUpcomingMeeting(meeting, "statewide_overlay"));
+  const upcomingMeetings = localUpcomingMeetings.length ? localUpcomingMeetings : statewideUpcomingMeetings;
   const recentDecisions = dashboard.voteRecords
     .map((vote) => {
       const item = itemById.get(vote.meeting_item_id);
