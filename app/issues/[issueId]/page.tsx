@@ -26,6 +26,7 @@ import { getFeedPostPreviews } from "@/lib/feed/posts";
 import { getIssueHubRecordByRouteParam } from "@/lib/issues/civic-hub";
 import { valuesMatchIssueText } from "@/lib/issues/utils";
 import { getIssueReviewRequestsForIssue } from "@/lib/issues/review-requests";
+import { getIssueFrame, type IssueFrame } from "@/lib/issues/framing";
 import { getIssuePositionsByIssue } from "@/lib/issue-positions/store";
 import { getContentDetailHref } from "@/lib/news/links";
 import { getFeedMediaPreviews } from "@/lib/media/store";
@@ -335,12 +336,13 @@ function buildSideSummary(
   side: IssueSide,
   issueText: string,
   counts: { contributions: number; evidence: number; debatesAndPolls: number; audio: number },
+  frame: IssueFrame,
 ) {
   if (side === "support") {
-    return `Supporters are building the case for ${issueText} through ${counts.evidence} evidence and development signal${counts.evidence === 1 ? "" : "s"}, ${counts.debatesAndPolls} active debate or poll lane${counts.debatesAndPolls === 1 ? "" : "s"}, ${counts.contributions} structured public contribution${counts.contributions === 1 ? "" : "s"}, and ${counts.audio} audio briefing${counts.audio === 1 ? "" : "s"}.`;
+    return `People on this side are arguing to ${frame.supportLabel.toLowerCase()} through ${counts.evidence} evidence and development signal${counts.evidence === 1 ? "" : "s"}, ${counts.debatesAndPolls} active debate or poll lane${counts.debatesAndPolls === 1 ? "" : "s"}, ${counts.contributions} structured public contribution${counts.contributions === 1 ? "" : "s"}, and ${counts.audio} audio briefing${counts.audio === 1 ? "" : "s"}.`;
   }
 
-  return `Opposition is challenging the current direction on ${issueText} through ${counts.evidence} evidence or scrutiny signal${counts.evidence === 1 ? "" : "s"}, ${counts.debatesAndPolls} debate or poll lane${counts.debatesAndPolls === 1 ? "" : "s"}, ${counts.contributions} structured counterargument${counts.contributions === 1 ? "" : "s"}, and ${counts.audio} audio counterpoint${counts.audio === 1 ? "" : "s"}.`;
+  return `People on this side are arguing to ${frame.opposeLabel.toLowerCase()} through ${counts.evidence} evidence or scrutiny signal${counts.evidence === 1 ? "" : "s"}, ${counts.debatesAndPolls} debate or poll lane${counts.debatesAndPolls === 1 ? "" : "s"}, ${counts.contributions} structured counterargument${counts.contributions === 1 ? "" : "s"}, and ${counts.audio} audio counterpoint${counts.audio === 1 ? "" : "s"}.`;
 }
 
 function pushClassifiedItem(
@@ -597,6 +599,8 @@ function IssueSidePanel({
   data: IssueSideData;
 }) {
   const theme = getSideTheme(side);
+  const frame = getIssueFrame(issueText);
+  const sideLabel = side === "support" ? frame.supportLabel : frame.opposeLabel;
 
   return (
     <section className={`rounded-[1.85rem] border p-6 shadow-card backdrop-blur ${theme.shell}`}>
@@ -604,15 +608,14 @@ function IssueSidePanel({
         <div className="max-w-xl">
           <div className="flex flex-wrap items-center gap-2">
             <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] ${theme.badge}`}>
-              {side === "support" ? "Support" : "Oppose"}
+              {side === "support" ? "Direction A" : "Direction B"}
             </span>
             <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
               {data.contributions.length} structured contribution{data.contributions.length === 1 ? "" : "s"}
             </span>
           </div>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">
-            {side === "support" ? `The case for ${issueText}` : `The case against ${issueText}`}
-          </h2>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">{sideLabel}</h2>
+          <p className="mt-2 text-sm font-medium text-slate-600">{issueText}</p>
           <p className="mt-3 text-sm leading-7 text-slate-700">{data.summary}</p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -630,7 +633,7 @@ function IssueSidePanel({
                   <input type="hidden" name="issueId" value={issueId} />
                   <input type="hidden" name="returnPath" value={returnPath} />
                   <FormSubmitButton
-                    idleLabel={issueSupported ? `Support · ${issueSupportCount}` : `Support issue · ${issueSupportCount}`}
+                    idleLabel={issueSupported ? `${frame.supportActionLabel} · ${issueSupportCount}` : `${frame.supportActionLabel} · ${issueSupportCount}`}
                     pendingLabel="Updating..."
                     className={
                       issueSupported
@@ -646,7 +649,7 @@ function IssueSidePanel({
               href={data.primaryActionHref}
               className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
-              {data.primaryActionLabel}
+              {frame.opposeActionLabel}
             </Link>
           )}
         </div>
@@ -747,6 +750,8 @@ function buildStateSupportBreakdown(posts: PostSummary[]) {
 }
 
 function IssueVoiceForm({ issueId, issueText }: { issueId: string; issueText: string }) {
+  const frame = getIssueFrame(issueText);
+
   return (
     <form action={submitIssueCitizenVoice} className="mt-5 rounded-[1.5rem] border border-slate-200 bg-white p-5">
       <input type="hidden" name="issueId" value={issueId} />
@@ -759,9 +764,9 @@ function IssueVoiceForm({ issueId, issueText }: { issueId: string; issueText: st
             defaultValue="explain"
             className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-civic-500"
           >
-            <option value="explain">Explain / add context</option>
-            <option value="support">Support</option>
-            <option value="oppose">Oppose</option>
+            <option value="explain">{frame.neutralPrompt}</option>
+            <option value="support">{frame.supportLabel}</option>
+            <option value="oppose">{frame.opposeLabel}</option>
             <option value="neutral">Neutral / unsure</option>
           </select>
         </label>
@@ -823,6 +828,7 @@ async function CitizenIssueVoicesSection({
   const stateBreakdown = buildStateSupportBreakdown(citizenPosts);
   const canPost = canSubmitIssueVoice(currentUser);
   const isNationalIssue = issue.jurisdictionName === "United States" || issue.scope === "national";
+  const frame = getIssueFrame(issue.issueText);
 
   return (
     <section id="citizen-voices" className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
@@ -891,7 +897,7 @@ async function CitizenIssueVoicesSection({
             <article key={post.id} className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-slate-950 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-                  {post.stance === "support" ? "Supports" : post.stance === "oppose" ? "Opposes" : post.stance === "neutral" ? "Neutral" : "Context"}
+                  {post.stance === "support" ? frame.supportLabel : post.stance === "oppose" ? frame.opposeLabel : post.stance === "neutral" ? "Neutral" : "Context"}
                 </span>
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{post.jurisdictionName}</span>
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{formatDate(post.createdAt)}</span>
@@ -1281,6 +1287,7 @@ async function IssueBattlegroundSection({
       ),
   );
   support.evidence.push(...relatedMeasures);
+  const frame = getIssueFrame(issue.issueText);
 
   const relatedDebates = debates
     .filter((debate) => isRealIssueDebate(debate.id))
@@ -1324,7 +1331,7 @@ async function IssueBattlegroundSection({
       evidence: support.evidence.length,
       debatesAndPolls: battlegroundDebates.length + battlegroundPolls.length,
       audio: support.audio.length,
-    }),
+    }, frame),
     contributions: support.contributions.slice(0, 3),
     evidence: support.evidence.slice(0, 4),
     audio: support.audio.slice(0, 2),
@@ -1341,7 +1348,7 @@ async function IssueBattlegroundSection({
       evidence: oppose.evidence.length,
       debatesAndPolls: battlegroundDebates.length + battlegroundPolls.length,
       audio: oppose.audio.length,
-    }),
+    }, frame),
     contributions: oppose.contributions.slice(0, 3),
     evidence: oppose.evidence.slice(0, 4),
     audio: oppose.audio.slice(0, 2),
@@ -1355,9 +1362,9 @@ async function IssueBattlegroundSection({
   const opposeSignalCount = oppose.contributions.length + oppose.evidence.length + oppose.audio.length;
   const battlegroundPressureLine =
     supportSignalCount > opposeSignalCount
-      ? `Support currently has the denser visible case, but ${opposeSignalCount ? "opposition is still organized enough to keep this contested." : "counterarguments are still thin."}`
+      ? `Direction A currently has the denser visible case, but ${opposeSignalCount ? "Direction B is still organized enough to keep this contested." : "counterarguments are still thin."}`
       : opposeSignalCount > supportSignalCount
-        ? `Opposition currently has the sharper visible case, so pressure is on supporters and public figures to answer.`
+        ? `Direction B currently has the sharper visible case, so pressure is on Direction A and public figures to answer.`
         : `Both sides currently have comparable visible footing, so this issue is genuinely contested right now.`;
 
   return (
@@ -1366,8 +1373,18 @@ async function IssueBattlegroundSection({
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-civic-700">Issue battleground</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink">Where this issue is publicly contested</h2>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
-          This page is organized around the strongest visible cases for and against {issue.issueText}. Trusted citizens, candidates, and officials surface structured contributions, while petitions, debates, polls, cases, news, and events show what is shaping each side.
+          This page is organized around the strongest visible policy directions, not just a yes/no vote. Trusted citizens, candidates, and officials surface structured contributions, while petitions, debates, polls, cases, news, and events show what is shaping each side.
         </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">Direction A</p>
+            <p className="mt-1 font-semibold text-ink">{frame.supportLabel}</p>
+          </div>
+          <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">Direction B</p>
+            <p className="mt-1 font-semibold text-ink">{frame.opposeLabel}</p>
+          </div>
+        </div>
         <p className="mt-4 max-w-3xl text-sm font-medium leading-7 text-ink">{battlegroundPressureLine}</p>
         <div className="mt-5 flex flex-wrap gap-2">
           <span className={`rounded-full px-3 py-1.5 text-xs font-semibold ${getContentTypeTheme("News Story").subtle}`}>

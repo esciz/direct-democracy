@@ -6,6 +6,7 @@ import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
 import { getIssueHubRecordByRouteParam, getIssueHubRecords, issueHubRecordToTopIssueSummary } from "@/lib/issues/civic-hub";
+import { PUBLIC_DISCUSSION_ISSUES, publicDiscussionIssueToSummary } from "@/lib/issues/framing";
 import {
   getCanonicalIssueText,
   getCanonicalIssueTextOrNull,
@@ -86,11 +87,16 @@ function buildCanonicalIssueSummary(issueText: string, user: AuthUser): PublicIs
   };
 }
 
+function getPublicDiscussionIssueSummaries() {
+  return PUBLIC_DISCUSSION_ISSUES.map(publicDiscussionIssueToSummary);
+}
+
 export async function getIssueDirectoryForUser(user: AuthUser, options?: { communityId?: string; query?: string }): Promise<PublicIssueHubSummary[]> {
   const community = options?.communityId ? getCommunityById(options.communityId) : getDefaultCommunityForJurisdiction(user.jurisdictionName);
   const generatedIssueHubs = (await getIssueHubRecords())
     .filter((record) => record.sourceBacked)
     .map(issueHubRecordToTopIssueSummary);
+  const publicDiscussionIssues = getPublicDiscussionIssueSummaries();
   const demoIssues: PublicIssueHubSummary[] = PUBLIC_DEMO_DATA_ENABLED
     ? [
         ...(await getTopIssuesForUser(user, "all", community?.id)).map((issue) => ({
@@ -112,7 +118,7 @@ export async function getIssueDirectoryForUser(user: AuthUser, options?: { commu
         ...getCanonicalIssueTitles().map((issueText) => buildCanonicalIssueSummary(issueText, user)),
       ]
     : [];
-  const issues = dedupeIssues([...generatedIssueHubs, ...demoIssues]);
+  const issues = dedupeIssues([...generatedIssueHubs, ...publicDiscussionIssues, ...demoIssues]);
 
   if (!options?.query?.trim()) {
     return issues;
@@ -151,6 +157,18 @@ export async function getIssueByRouteParam(user: AuthUser, issueParam: string, c
   const generatedMatch = await getIssueHubRecordByRouteParam(issueParam);
   if (generatedMatch) {
     return issueHubRecordToTopIssueSummary(generatedMatch);
+  }
+
+  const normalizedParam = normalizeIssueText(issueParam);
+  const publicDiscussionMatch = getPublicDiscussionIssueSummaries().find(
+    (issue) =>
+      issue.id === issueParam ||
+      slugifyIssueText(issue.issueText) === normalizedParam ||
+      normalizeIssueText(issue.issueText) === normalizedParam,
+  );
+
+  if (publicDiscussionMatch) {
+    return publicDiscussionMatch;
   }
 
   if (!PUBLIC_DEMO_DATA_ENABLED) {
@@ -196,7 +214,6 @@ export async function getIssueByRouteParam(user: AuthUser, issueParam: string, c
           showDemoBadge: true,
         } satisfies PublicIssueHubSummary)),
   );
-  const normalizedParam = normalizeIssueText(issueParam);
   const canonicalMatch = getCanonicalIssueTitles().find(
     (title) =>
       slugifyIssueText(title) === normalizedParam ||
