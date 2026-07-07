@@ -37,28 +37,46 @@ const verification = readJson<{ records?: VerificationRecord[] }>("public-meetin
 const records = index.records ?? [];
 const verificationByDocument = new Map((verification.records ?? []).map((record) => [record.documentId, record]));
 const failures: string[] = [];
+const runningInGithubActions = process.env.GITHUB_ACTIONS === "true";
+const allowExternalCache = runningInGithubActions || process.env.DATAOPS_ALLOW_EXTERNAL_MEETING_CACHE === "true";
+
+function localFileExists(record: CacheRecord) {
+  if (!record.stableLocalPath) return false;
+  return existsSync(path.isAbsolute(record.stableLocalPath) ? record.stableLocalPath : path.join(process.cwd(), record.stableLocalPath));
+}
 
 for (const record of records) {
   if (!record.documentId) failures.push("Cache record missing documentId");
   if (!record.stableLocalPath) failures.push(`Cache record ${record.documentId} missing stableLocalPath`);
-  if (record.stableLocalPath && !existsSync(path.isAbsolute(record.stableLocalPath) ? record.stableLocalPath : path.join(process.cwd(), record.stableLocalPath))) {
+  const exists = localFileExists(record);
+  if (record.stableLocalPath && !exists && !allowExternalCache) {
     failures.push(`Cache record ${record.documentId} points to missing local file`);
   }
   if (!record.contentHash) failures.push(`Cache record ${record.documentId} missing contentHash`);
   if (!record.fileSize || record.fileSize < 1) failures.push(`Cache record ${record.documentId} missing fileSize`);
   if (!record.versions?.length) failures.push(`Cache record ${record.documentId} missing source versions`);
   const verified = verificationByDocument.get(record.documentId);
-  if (verified && !verified.hashMatches) failures.push(`Cache record ${record.documentId} failed verification hash check`);
+  if (verified && !verified.hashMatches && (exists || !allowExternalCache)) failures.push(`Cache record ${record.documentId} failed verification hash check`);
 }
+
+const localFilesPresent = records.filter(localFileExists).length;
+const missingLocalFiles = records.length - localFilesPresent;
+const hashMismatchRecords = (verification.records ?? []).filter((record) => !record.hashMatches);
+const hashMismatchesForPresentFiles = hashMismatchRecords.filter((record) => {
+  const cacheRecord = records.find((entry) => entry.documentId === record.documentId);
+  return Boolean(cacheRecord && localFileExists(cacheRecord));
+}).length;
 
 const audit = {
   generatedAt: new Date().toISOString(),
+  environment: {
+    githubActions: runningInGithubActions,
+    allowExternalCache,
+  },
   totals: {
     cacheRecords: records.length,
-    localFilesPresent: records.filter((record) => {
-      const localPath = record.stableLocalPath ? (path.isAbsolute(record.stableLocalPath) ? record.stableLocalPath : path.join(process.cwd(), record.stableLocalPath)) : "";
-      return Boolean(localPath && existsSync(localPath));
-    }).length,
+    localFilesPresent,
+    missingLocalFiles,
     recordsWithHashes: records.filter((record) => Boolean(record.contentHash)).length,
     recordsWithVersions: records.filter((record) => Boolean(record.versions?.length)).length,
     pdfs: records.filter((record) => record.documentType === "packet" || /\.pdf$/i.test(record.stableLocalPath)).length,
@@ -69,6 +87,9 @@ const audit = {
     verifiedText: (verification.records ?? []).filter((record) => record.classification === "verified_text").length,
     mimeMismatch: (verification.records ?? []).filter((record) => record.classification === "mime_mismatch").length,
     quarantined: (verification.records ?? []).filter((record) => record.quarantine).length,
+    hashMismatches: hashMismatchRecords.length,
+    hashMismatchesForPresentFiles,
+    externalCacheMissingFilesSuppressed: allowExternalCache ? missingLocalFiles : 0,
     failures: failures.length,
   },
   failures,

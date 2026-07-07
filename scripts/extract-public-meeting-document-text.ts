@@ -102,6 +102,13 @@ function confidenceFor(text: string, method: ExtractionMethod) {
   return Number(Math.min(0.95, base + bump).toFixed(2));
 }
 
+function readOptionalText(relativePath: string | null | undefined) {
+  if (!relativePath) return { text: "", missing: false };
+  const absolute = path.join(process.cwd(), relativePath);
+  if (!existsSync(absolute)) return { text: "", missing: true };
+  return { text: cleanText(readFileSync(absolute, "utf8")), missing: false };
+}
+
 const cacheByDocument = new Map(
   readJson<{ records?: CacheIndexRecord[] }>(CACHE_INDEX_PATH, { records: [] }).records?.map((record) => [record.documentId, record]) ?? [],
 );
@@ -170,7 +177,8 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
   }
   const method: ExtractionMethod = text.length >= 120 ? "native_text" : "failed";
   const ocr = ocrByDocument.get(document.id);
-  const ocrText = ocr?.extractedTextPath ? cleanText(readFileSync(path.join(process.cwd(), ocr.extractedTextPath), "utf8")) : "";
+  const ocrSidecar = readOptionalText(ocr?.extractedTextPath);
+  const ocrText = ocrSidecar.text;
   const mergedText = text && ocrText ? `${text}\n\n${ocrText}` : text || ocrText;
   const mergedMethod: ExtractionMethod = text && ocrText ? "mixed" : ocrText ? "ocr_text" : method;
   const textPath = text.length
@@ -194,8 +202,8 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
     confidence: ocrText && !text ? Number(((ocr?.confidence ?? confidenceFor(mergedText, "ocr_text"))).toFixed(2)) : confidenceFor(mergedText, mergedMethod),
     sourceSnippet: mergedText ? summarizeText(mergedText, 700) : null,
     ocrAttempted: Boolean(ocr) || (method === "failed" && Boolean(cachedPath)),
-    ocrAvailable: Boolean(ocr),
-    failureReason: mergedMethod === "failed" ? failureReason ?? "native_text_too_thin_ocr_unavailable" : null,
+    ocrAvailable: Boolean(ocrText),
+    failureReason: mergedMethod === "failed" ? failureReason ?? (ocrSidecar.missing ? "ocr_text_sidecar_missing" : "native_text_too_thin_ocr_unavailable") : null,
     extractedAt,
   };
 }

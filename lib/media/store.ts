@@ -193,9 +193,11 @@ export async function getAllMediaProfiles(viewerUserId?: string): Promise<MediaP
 export type MediaFeedPreview = {
   id: string;
   title: string;
+  summary: string;
   sourceName: string;
   jurisdictionName: string;
   createdAt: string;
+  issueTags: string[];
   thumbnailUrl?: string;
   biasLabel: MediaBiasRatingValue | null;
   reactionTotals: {
@@ -248,9 +250,11 @@ const getFeedMediaPreviewsCached = cache(
       .map((post) => ({
         id: post.id,
         title: post.title ?? "News story",
+        summary: post.content,
         sourceName: post.authorName,
         jurisdictionName: post.jurisdictionName,
         createdAt: post.createdAt,
+        issueTags: post.issueTags ?? [],
         thumbnailUrl: post.mediaThumbnailUrl ?? undefined,
         biasLabel: post.authorId ? (biasLabels.get(post.authorId) ?? null) : null,
         reactionTotals: post.reactionTotals,

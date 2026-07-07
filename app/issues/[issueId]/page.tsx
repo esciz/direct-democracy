@@ -50,7 +50,7 @@ type IssueDetailPageProps = {
   }>;
 };
 
-type IssueFilter = "all" | "posts" | "events" | "debates" | "petitions" | "cases" | "ballotMeasures";
+type IssueFilter = "all" | "posts" | "events" | "news" | "debates" | "petitions" | "cases" | "ballotMeasures";
 
 type IssuePreviewCard = {
   id: string;
@@ -132,6 +132,10 @@ function sortCitizenIssuePosts(posts: PostSummary[], currentUser: AuthUser) {
     if (locality !== 0) return locality;
     return Date.parse(b.createdAt) - Date.parse(a.createdAt);
   });
+}
+
+function mediaStoryMatchesIssue(issueText: string, story: { title: string; summary?: string; issueTags?: string[] }) {
+  return valuesMatchIssueText(issueText, ...(story.issueTags ?? []), story.title, story.summary);
 }
 
 function withSectionTimeout<T>(promise: Promise<T>, label: string, timeoutMs = 1800): Promise<T> {
@@ -244,6 +248,7 @@ function normalizeFilter(value: string | undefined): IssueFilter {
   switch (value) {
     case "posts":
     case "events":
+    case "news":
     case "debates":
     case "petitions":
     case "cases":
@@ -939,7 +944,7 @@ async function IssueBriefSection({
     getAllCases(currentUser).catch(() => []),
     getElectionSummaries(currentUser.id).catch(() => []),
     getFeedPollPreviews({ viewerUserId: currentUser.id, limit: 10 }).catch(() => []),
-    getFeedMediaPreviews({ viewerUserId: currentUser.id, limit: 10 }).catch(() => []),
+    getFeedMediaPreviews({ viewerUserId: currentUser.id, limit: -1 }).catch(() => []),
   ]);
 
   const relatedPosts = posts
@@ -952,7 +957,7 @@ async function IssueBriefSection({
   const relatedPetitions = petitions.filter((petition) => valuesMatchIssueText(issueText, ...(petition.issueTags ?? []), petition.title, petition.summary, petition.body));
   const relatedCases = cases.filter((caseItem) => valuesMatchIssueText(issueText, ...caseItem.issueTags, caseItem.title, caseItem.summary));
   const relatedPolls = polls.filter((poll) => valuesMatchIssueText(issueText, poll.question, ...poll.options));
-  const relatedNews = media.filter((story) => valuesMatchIssueText(issueText, story.title));
+  const relatedNews = media.filter((story) => mediaStoryMatchesIssue(issueText, story));
   const relatedMeasures = elections.flatMap((election) =>
     election.ballotInitiatives.filter((initiative) => valuesMatchIssueText(issueText, ...initiative.relatedIssues, initiative.title, initiative.summary)),
   );
@@ -1135,7 +1140,7 @@ async function IssueBattlegroundSection({
     getAllCases(currentUser).catch(() => []),
     getElectionSummaries(currentUser.id).catch(() => []),
     getFeedPollPreviews({ viewerUserId: currentUser.id, limit: 18 }).catch(() => []),
-    getFeedMediaPreviews({ viewerUserId: currentUser.id, limit: 18 }).catch(() => []),
+    getFeedMediaPreviews({ viewerUserId: currentUser.id, limit: -1 }).catch(() => []),
     getPeopleForIssue(currentUser, issue.issueText).catch(() => []),
     getOrganizationsForIssue(currentUser, issue.issueText).catch(() => []),
   ]);
@@ -1204,7 +1209,7 @@ async function IssueBattlegroundSection({
     sharedAudio.push(item);
   }
 
-  const relatedNews = media.filter((story) => valuesMatchIssueText(issue.issueText, story.title));
+  const relatedNews = media.filter((story) => mediaStoryMatchesIssue(issue.issueText, story));
   for (const story of relatedNews) {
     const side = classifyIssuePosition(story.title);
     const item = toBattlegroundItem(
@@ -1602,6 +1607,23 @@ async function EventsSectionLoader({ issueId, filter, issueText, currentUser }: 
   return <Section issueId={issueId} filter={filter} title="Events" description="Issue-linked public meetings, rallies, interviews, and community events." items={items} sectionKey="events" />;
 }
 
+async function NewsSectionLoader({ issueId, filter, issueText, currentUserId }: { issueId: string; filter: IssueFilter; issueText: string; currentUserId: string }) {
+  const stories = await getFeedMediaPreviews({ viewerUserId: currentUserId, limit: -1 }).catch(() => []);
+  const items: IssuePreviewCard[] = stories
+    .filter((story) => mediaStoryMatchesIssue(issueText, story))
+    .map((story) => ({
+      id: story.id,
+      href: `/news/${story.id}`,
+      label: "News",
+      title: story.title,
+      subtitle: `${story.sourceName} · ${story.jurisdictionName}`,
+      description: story.summary,
+      meta: [formatDate(story.createdAt), story.biasLabel ? `${story.biasLabel} bias rating` : "Bias rating pending"],
+    }));
+
+  return <Section issueId={issueId} filter={filter} title="News" description="Published news stories tagged to this issue or clearly centered on the same topic." items={items} sectionKey="news" />;
+}
+
 async function DebatesSectionLoader({ issueId, filter, issueText, currentUser }: { issueId: string; filter: IssueFilter; issueText: string; currentUser: AuthUser }) {
   const debates = await getDebatesForUser(currentUser, { status: "all" }).catch(() => []);
   const items: IssuePreviewCard[] = debates
@@ -1934,6 +1956,16 @@ async function IssueDetailContent({
       <Suspense
         fallback={
           <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading related news…</div>
+          </section>
+        }
+      >
+        <NewsSectionLoader issueId={issueId} filter="all" issueText={safeIssue.issueText} currentUserId={currentUser.id} />
+      </Suspense>
+
+      <Suspense
+        fallback={
+          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
             <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading issue battleground…</div>
           </section>
         }
@@ -1968,6 +2000,7 @@ async function IssueDetailContent({
               { key: "all" as const, label: "All" },
               { key: "posts" as const, label: "Posts" },
               { key: "events" as const, label: "Events" },
+              { key: "news" as const, label: "News" },
               { key: "debates" as const, label: "Debates" },
               { key: "petitions" as const, label: "Petitions" },
               { key: "cases" as const, label: "Cases" },
@@ -2020,6 +2053,12 @@ async function IssueDetailContent({
           {activeFilter === "all" || activeFilter === "events" ? (
             <Suspense fallback={<SectionFallback title="Events" description="Issue-linked public meetings, rallies, interviews, and community events." />}>
               <EventsSectionLoader issueId={issueId} filter={activeFilter} issueText={safeIssue.issueText} currentUser={currentUser} />
+            </Suspense>
+          ) : null}
+
+          {activeFilter === "all" || activeFilter === "news" ? (
+            <Suspense fallback={<SectionFallback title="News" description="Published news stories tagged to this issue or clearly centered on the same topic." />}>
+              <NewsSectionLoader issueId={issueId} filter={activeFilter} issueText={safeIssue.issueText} currentUserId={currentUser.id} />
             </Suspense>
           ) : null}
 

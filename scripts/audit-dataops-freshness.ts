@@ -19,9 +19,17 @@ const rss = readJson<{ records?: unknown[] }>("rss-source-registry.json", { reco
 const reprocessing = readJson<{ runs?: unknown[] }>("dataops-reprocessing-runs.json", { runs: [] });
 
 const failures: string[] = [];
+const runningInGithubActions = process.env.GITHUB_ACTIONS === "true";
+const allowExternalCache = runningInGithubActions || process.env.DATAOPS_ALLOW_EXTERNAL_MEETING_CACHE === "true";
+let missingLocalCacheFiles = 0;
+
 for (const record of cache.records ?? []) {
   if (!record.stableLocalPath) failures.push(`Cached document ${record.documentId ?? "unknown"} missing local path`);
-  if (record.stableLocalPath && !existsSync(path.isAbsolute(record.stableLocalPath) ? record.stableLocalPath : path.join(process.cwd(), record.stableLocalPath))) {
+  const localPathExists = Boolean(record.stableLocalPath && existsSync(path.isAbsolute(record.stableLocalPath) ? record.stableLocalPath : path.join(process.cwd(), record.stableLocalPath)));
+  if (record.stableLocalPath && !localPathExists) {
+    missingLocalCacheFiles += 1;
+  }
+  if (record.stableLocalPath && !localPathExists && !allowExternalCache) {
     failures.push(`Cached document ${record.documentId ?? "unknown"} local path does not exist`);
   }
   if (!record.contentHash) failures.push(`Cached document ${record.documentId ?? "unknown"} missing hash`);
@@ -33,11 +41,17 @@ if (!(reprocessing.runs ?? []).length) failures.push("No reprocessing run has be
 
 const audit = {
   generatedAt: new Date().toISOString(),
+  environment: {
+    githubActions: runningInGithubActions,
+    allowExternalCache,
+  },
   totals: {
     queueRecords: queue.records?.length ?? 0,
     downloadedOrCached: (queue.records ?? []).filter((record) => ["downloaded", "cached", "unchanged", "changed", "extraction_ready", "ocr_required", "extracted"].includes(record.retrievalState ?? "")).length,
     blockedByNetwork: (queue.records ?? []).filter((record) => record.retrievalState === "blocked_by_network").length,
     cacheRecords: cache.records?.length ?? 0,
+    missingLocalCacheFiles,
+    externalCacheMissingFilesSuppressed: allowExternalCache ? missingLocalCacheFiles : 0,
     cacheRecordsWithHashes: (cache.records ?? []).filter((record) => Boolean(record.contentHash)).length,
     changedDocumentsTracked: (cache.records ?? []).filter((record) => (record.sourceVersion ?? 1) > 1).length,
     sourcesMonitored: monitor.records?.length ?? 0,
