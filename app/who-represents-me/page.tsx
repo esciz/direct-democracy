@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageIntro } from "@/components/ui/page-intro";
 import { getRepresentativeLookup, type RepresentativeLookupGroup, type RepresentativeLookupItem } from "@/lib/district-matching/lookup";
 import { getCurrentUser } from "@/lib/server/auth-session";
+import { getOnboardingDraft } from "@/lib/server/onboarding";
 
 type WhoRepresentsMePageProps = {
   searchParams?: Promise<{
@@ -236,8 +237,13 @@ function GroupSection({ group }: { group: RepresentativeLookupGroup }) {
 
 export default async function WhoRepresentsMePage({ searchParams }: WhoRepresentsMePageProps) {
   const params = searchParams ? await searchParams : undefined;
-  const user = await getCurrentUser();
-  const locationInput = params?.address?.trim() || params?.community?.trim() || "";
+  const [user, onboardingDraft] = await Promise.all([getCurrentUser(), getOnboardingDraft()]);
+  const explicitLocationInput = params?.address?.trim() || params?.community?.trim() || "";
+  const registeredAddressApplies =
+    !explicitLocationInput &&
+    onboardingDraft?.streetAddress &&
+    (!onboardingDraft.accountEmail || onboardingDraft.accountEmail.toLowerCase() === user.email.toLowerCase());
+  const locationInput = explicitLocationInput || (registeredAddressApplies ? `${onboardingDraft.streetAddress}, ${onboardingDraft.jurisdictionName || user.jurisdictionName}` : "");
   const lookup = await getRepresentativeLookup({ user, locationInput });
 
   return (
@@ -271,12 +277,17 @@ export default async function WhoRepresentsMePage({ searchParams }: WhoRepresent
             <p className="mt-2 text-sm leading-6 text-slate-400">
               Start with a Nevada city, county, or address. When exact district boundaries are limited, we show the highest-confidence current officials and explain what is still missing.
             </p>
+            {registeredAddressApplies ? (
+              <p className="mt-3 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+                Using your registered address on file for district routing.
+              </p>
+            ) : null}
           </div>
           <form action="/who-represents-me" className="flex w-full flex-wrap gap-3 lg:w-[34rem]">
             <input
               type="search"
               name="address"
-              defaultValue={locationInput}
+              defaultValue={explicitLocationInput}
               placeholder="Carson City, Reno, Washoe County, or your address"
               className="min-w-[15rem] flex-1 rounded-full border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/40"
             />

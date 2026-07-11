@@ -17,6 +17,7 @@ import { isGuestUserId } from "@/lib/auth/session";
 import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { toggleTopIssueUpvote } from "@/lib/community/actions";
+import { getCommunityById, getDefaultCommunityForUser, getGeographicCommunities } from "@/lib/community/communities";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
@@ -47,6 +48,7 @@ type IssueDetailPageProps = {
     filter?: string;
     issuePost?: string;
     issuePostError?: string;
+    compareCommunity?: string;
   }>;
 };
 
@@ -63,6 +65,22 @@ type IssuePreviewCard = {
 };
 
 type IssueSide = "support" | "oppose";
+type IssueThreadType = "concern" | "experience" | "question" | "evidence" | "proposal" | "counterpoint";
+type CommunityIssueSignal = {
+  communityId: string;
+  communityName: string;
+  total: number;
+  support: number;
+  oppose: number;
+  neutral: number;
+  explain: number;
+  concern: number;
+  experience: number;
+  question: number;
+  evidence: number;
+  proposal: number;
+  counterpoint: number;
+};
 
 type IssueBattlegroundItem = {
   id: string;
@@ -97,6 +115,49 @@ type IssueAudioPreviewItem = {
 };
 
 const ISSUE_VOICE_ROLES = new Set<AuthUser["role"]>(["citizen", "trustedCitizen", "verified_resident"]);
+const ISSUE_THREAD_LANES: Array<{
+  key: IssueThreadType;
+  label: string;
+  prompt: string;
+  empty: string;
+}> = [
+  {
+    key: "concern",
+    label: "Concerns",
+    prompt: "What are you worried could happen?",
+    empty: "No resident concerns have been posted yet.",
+  },
+  {
+    key: "experience",
+    label: "Lived experience",
+    prompt: "How has this affected you, your family, work, or neighborhood?",
+    empty: "No lived-experience posts have been added yet.",
+  },
+  {
+    key: "question",
+    label: "Questions",
+    prompt: "What do you need explained before taking a position?",
+    empty: "No resident questions are waiting for answers yet.",
+  },
+  {
+    key: "evidence",
+    label: "Evidence",
+    prompt: "What source, document, meeting, case, or article should people inspect?",
+    empty: "No resident-submitted evidence has been added yet.",
+  },
+  {
+    key: "proposal",
+    label: "Proposals",
+    prompt: "What specific action should officials or the community consider?",
+    empty: "No proposals have been posted yet.",
+  },
+  {
+    key: "counterpoint",
+    label: "Counterpoints",
+    prompt: "What is the strongest reason someone might disagree?",
+    empty: "No counterpoints have been posted yet.",
+  },
+];
 
 function isRealCitizenIssuePost(post: PostSummary) {
   return PUBLIC_DEMO_DATA_ENABLED || post.id.startsWith("post_created_");
@@ -110,13 +171,138 @@ function canSubmitIssueVoice(user: AuthUser) {
   return !isGuestUserId(user.id) && ISSUE_VOICE_ROLES.has(user.role);
 }
 
+function normalizeJurisdictionName(value: string) {
+  return value.trim().toLowerCase().replace(/,\s*nv\b/g, ", nevada").replace(/\s+/g, " ");
+}
+
+function canPostToIssueScope(user: AuthUser, issue: TopIssueSummary) {
+  if (!canSubmitIssueVoice(user)) return false;
+  if (issue.scope === "national") return true;
+  if (issue.scope === "state") return getStateBucket(user.jurisdictionName) === getStateBucket(issue.jurisdictionName);
+  return normalizeJurisdictionName(user.jurisdictionName) === normalizeJurisdictionName(issue.jurisdictionName);
+}
+
+function getIssueScopeCopy(issue: TopIssueSummary) {
+  if (issue.scope === "national") {
+    return {
+      label: "National room",
+      rule: "Verified registered citizens can contribute. Local voices are still sorted above broad national context when relevant.",
+    };
+  }
+
+  if (issue.scope === "state") {
+    return {
+      label: `${getStateBucket(issue.jurisdictionName)} room`,
+      rule: `Verified ${getStateBucket(issue.jurisdictionName)} residents can contribute. Readers can see the discussion, but posting is scoped to the state.`,
+    };
+  }
+
+  return {
+    label: `${issue.jurisdictionName} room`,
+    rule: "Only verified residents from this local jurisdiction can contribute. This keeps local issues from being overrun by outside voices.",
+  };
+}
+
+function getIssueThreadType(post: PostSummary): IssueThreadType {
+  const match = post.title?.match(/^\[(Concern|Experience|Question|Evidence|Proposal|Counterpoint)\]/i);
+  const value = match?.[1]?.toLowerCase();
+  return ISSUE_THREAD_LANES.some((lane) => lane.key === value) ? (value as IssueThreadType) : "concern";
+}
+
+function getIssueThreadTitle(post: PostSummary) {
+  return (post.title ?? `${post.authorName} contribution`).replace(/^\[(Concern|Experience|Question|Evidence|Proposal|Counterpoint)\]\s*/i, "");
+}
+
+function getContributionQualitySignals(post: PostSummary) {
+  const signals = ["Verified resident"];
+  const text = `${post.title ?? ""} ${post.content}`;
+  if (/https?:\/\/|source|agenda|minutes|court|budget|ordinance|resolution|meeting|document/i.test(text)) signals.push("May contain source");
+  if (post.truthEligible || post.truthRatingCount || post.claimFlagCount) signals.push("Truth-reviewable");
+  if (post.stance === "neutral" || post.stance === "explain") signals.push("Context, not a vote");
+  return signals;
+}
+
+function communityMatchesPost(community: ReturnType<typeof getGeographicCommunities>[number], post: PostSummary) {
+  const normalizedPostJurisdiction = normalizeJurisdictionName(post.jurisdictionName);
+  return community.jurisdictionMatches.some((match) => normalizeJurisdictionName(match) === normalizedPostJurisdiction);
+}
+
+function getDefaultComparisonCommunities(currentUser: AuthUser, selectedCommunityId?: string) {
+  const communities = getGeographicCommunities().filter((community) => community.id !== "united-states");
+  const currentCommunity = getDefaultCommunityForUser(currentUser);
+  const selectedCommunity = getCommunityById(selectedCommunityId);
+  const sameCountyCommunities = currentCommunity.locationLabel
+    ? communities.filter((community) => community.locationLabel === currentCommunity.locationLabel && community.id !== currentCommunity.id)
+    : [];
+  const countyCommunity = currentCommunity.locationLabel
+    ? communities.find((community) => community.name === currentCommunity.locationLabel)
+    : null;
+  const regionalFallbackIds = ["carson-city", "reno", "sparks", "washoe-county", "douglas-county", "lyon-county", "nevada"];
+  const ordered = [
+    currentCommunity,
+    selectedCommunity,
+    countyCommunity,
+    ...sameCountyCommunities,
+    ...regionalFallbackIds.map((id) => getCommunityById(id)),
+  ].filter((community): community is NonNullable<typeof community> => Boolean(community));
+  const seen = new Set<string>();
+  return ordered.filter((community) => {
+    if (seen.has(community.id)) return false;
+    seen.add(community.id);
+    return true;
+  }).slice(0, 6);
+}
+
+function buildCommunityIssueSignals(posts: PostSummary[], currentUser: AuthUser, selectedCommunityId?: string) {
+  const communities = getDefaultComparisonCommunities(currentUser, selectedCommunityId);
+  return communities.map((community) => {
+    const matchingPosts = posts.filter((post) => communityMatchesPost(community, post));
+    const signal: CommunityIssueSignal = {
+      communityId: community.id,
+      communityName: community.name,
+      total: matchingPosts.length,
+      support: 0,
+      oppose: 0,
+      neutral: 0,
+      explain: 0,
+      concern: 0,
+      experience: 0,
+      question: 0,
+      evidence: 0,
+      proposal: 0,
+      counterpoint: 0,
+    };
+
+    for (const post of matchingPosts) {
+      const stance = post.stance === "support" || post.stance === "oppose" || post.stance === "neutral" ? post.stance : "explain";
+      signal[stance] += 1;
+      signal[getIssueThreadType(post)] += 1;
+    }
+
+    return signal;
+  });
+}
+
+function dominantCommunitySignal(signal: CommunityIssueSignal) {
+  const lanes: Array<[string, number]> = [
+    ["concerns", signal.concern],
+    ["lived experience", signal.experience],
+    ["questions", signal.question],
+    ["evidence", signal.evidence],
+    ["proposals", signal.proposal],
+    ["counterpoints", signal.counterpoint],
+  ];
+  const [label, count] = lanes.sort((a, b) => b[1] - a[1])[0] ?? ["activity", 0];
+  return count > 0 ? `${count} ${label}` : "No local signal yet";
+}
+
 function getStateBucket(jurisdictionName: string) {
   const normalized = jurisdictionName.trim();
   if (!normalized) return "Unknown";
   if (normalized === "United States") return "National";
-  if (normalized === "Nevada" || normalized.endsWith(", Nevada")) return "Nevada";
+  if (normalized === "Nevada" || normalized.endsWith(", Nevada") || normalized.endsWith(", NV")) return "Nevada";
   const parts = normalized.split(",").map((part) => part.trim()).filter(Boolean);
-  return parts.at(-1) ?? normalized;
+  return parts.at(-1)?.replace(/^NV$/i, "Nevada") ?? normalized;
 }
 
 function getLocalityRank(post: PostSummary, currentUser: AuthUser) {
@@ -754,14 +940,114 @@ function buildStateSupportBreakdown(posts: PostSummary[]) {
     .sort((a, b) => b.total - a.total || a.state.localeCompare(b.state));
 }
 
-function IssueVoiceForm({ issueId, issueText }: { issueId: string; issueText: string }) {
+function CommunityIssueComparison({
+  issueId,
+  currentUser,
+  signals,
+  selectedCommunityId,
+}: {
+  issueId: string;
+  currentUser: AuthUser;
+  signals: CommunityIssueSignal[];
+  selectedCommunityId?: string;
+}) {
+  const currentCommunity = getDefaultCommunityForUser(currentUser);
+  const selectableCommunities = getGeographicCommunities()
+    .filter((community) => community.id !== "united-states")
+    .sort((a, b) => {
+      if (a.id === currentCommunity.id) return -1;
+      if (b.id === currentCommunity.id) return 1;
+      return a.name.localeCompare(b.name);
+    });
+  const maxTotal = Math.max(...signals.map((signal) => signal.total), 1);
+
+  return (
+    <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Community comparison</p>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight text-ink">How nearby communities are talking about this</h3>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
+            Defaults show your community and nearby Nevada areas. Choose a different community to add it to the comparison.
+          </p>
+        </div>
+        <form action={`/issues/${issueId}#community-comparison`} id="community-comparison" className="flex min-w-[16rem] flex-wrap gap-2">
+          <select
+            name="compareCommunity"
+            defaultValue={selectedCommunityId ?? ""}
+            className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-civic-500"
+          >
+            <option value="">Compare another community</option>
+            {selectableCommunities.map((community) => (
+              <option key={community.id} value={community.id}>{community.name}</option>
+            ))}
+          </select>
+          <button type="submit" className="rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+            Compare
+          </button>
+        </form>
+      </div>
+
+      <div className="mt-5 grid gap-3 lg:grid-cols-3">
+        {signals.map((signal) => {
+          const width = `${Math.max(8, Math.round((signal.total / maxTotal) * 100))}%`;
+          const isMine = signal.communityId === currentCommunity.id;
+
+          return (
+            <article key={signal.communityId} className={`rounded-2xl border p-4 ${isMine ? "border-civic-200 bg-civic-50/70" : "border-slate-200 bg-slate-50"}`}>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="font-semibold text-ink">{signal.communityName}</p>
+                {isMine ? <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-civic-700">My community</span> : null}
+              </div>
+              <div className="mt-4 h-2 overflow-hidden rounded-full bg-white">
+                <div className="h-full rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)]" style={{ width }} />
+              </div>
+              <p className="mt-3 text-sm font-semibold text-slate-700">{signal.total} contribution{signal.total === 1 ? "" : "s"}</p>
+              <p className="mt-1 text-sm text-slate-600">{dominantCommunitySignal(signal)}</p>
+              <p className="mt-3 text-xs leading-5 text-slate-500">
+                {signal.support} {signal.support === 1 ? "support" : "support"} · {signal.oppose} oppose · {signal.neutral} neutral · {signal.explain} context
+              </p>
+            </article>
+          );
+        })}
+      </div>
+
+      {signals.every((signal) => signal.total === 0) ? (
+        <p className="mt-4 rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+          No verified resident contributions exist for these communities yet. Once people post, this panel will show how local conversation differs from nearby and selected areas.
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function IssueVoiceForm({ issue }: { issue: TopIssueSummary }) {
+  const issueId = issue.id;
+  const issueText = issue.issueText;
   const frame = getIssueFrame(issueText);
+  const scopeCopy = getIssueScopeCopy(issue);
 
   return (
     <form action={submitIssueCitizenVoice} className="mt-5 rounded-[1.5rem] border border-slate-200 bg-white p-5">
       <input type="hidden" name="issueId" value={issueId} />
       <input type="hidden" name="issueText" value={issueText} />
+      <div className="mb-4 rounded-2xl border border-civic-100 bg-civic-50/70 p-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{scopeCopy.label}</p>
+        <p className="mt-2 text-sm leading-6 text-slate-700">{scopeCopy.rule}</p>
+      </div>
       <div className="grid gap-4 md:grid-cols-[0.55fr_1fr]">
+        <label className="block space-y-2">
+          <span className="text-sm font-semibold text-ink">Contribution type</span>
+          <select
+            name="threadType"
+            defaultValue="concern"
+            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-civic-500"
+          >
+            {ISSUE_THREAD_LANES.map((lane) => (
+              <option key={lane.key} value={lane.key}>{lane.label}</option>
+            ))}
+          </select>
+        </label>
         <label className="block space-y-2">
           <span className="text-sm font-semibold text-ink">Your position</span>
           <select
@@ -775,6 +1061,11 @@ function IssueVoiceForm({ issueId, issueText }: { issueId: string; issueText: st
             <option value="neutral">Neutral / unsure</option>
           </select>
         </label>
+      </div>
+      <div className="mt-4 grid gap-4 md:grid-cols-[0.55fr_1fr]">
+        <div className="rounded-2xl bg-slate-50 p-4 text-sm leading-6 text-slate-600">
+          Pick the type that best fits. This keeps the issue room searchable and prevents one giant comment wall.
+        </div>
         <label className="block space-y-2">
           <span className="text-sm font-semibold text-ink">Headline</span>
           <input
@@ -793,13 +1084,13 @@ function IssueVoiceForm({ issueId, issueText }: { issueId: string; issueText: st
           required
           minLength={20}
           rows={5}
-          placeholder="Share what you have seen, what tradeoff matters, or what local impact people should pay attention to."
+          placeholder="Share one clear concern, question, source, proposal, lived experience, or counterpoint. Factual claims should include a source when possible."
           className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-ink outline-none transition placeholder:text-slate-400 focus:border-civic-500"
         />
       </label>
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
         <p className="max-w-2xl text-xs leading-5 text-slate-500">
-          Citizen posts are separated from official/source-backed records. They can help people follow local voices and identify potential community leaders, but they are not treated as verified public records.
+          Citizen contributions are separated from official/source-backed records. Facts can be reviewed by community and AI-assisted quality checks; lived experience is preserved as lived experience, not treated as a verified public record.
         </p>
         <FormSubmitButton
           idleLabel="Post to issue"
@@ -814,11 +1105,13 @@ function IssueVoiceForm({ issueId, issueText }: { issueId: string; issueText: st
 async function CitizenIssueVoicesSection({
   issue,
   currentUser,
+  compareCommunityId,
   status,
   error,
 }: {
   issue: TopIssueSummary;
   currentUser: AuthUser;
+  compareCommunityId?: string;
   status?: string;
   error?: string;
 }) {
@@ -831,23 +1124,52 @@ async function CitizenIssueVoicesSection({
     currentUser,
   );
   const stateBreakdown = buildStateSupportBreakdown(citizenPosts);
-  const canPost = canSubmitIssueVoice(currentUser);
+  const canPost = canPostToIssueScope(currentUser, issue);
+  const canSignInPost = canSubmitIssueVoice(currentUser);
   const isNationalIssue = issue.jurisdictionName === "United States" || issue.scope === "national";
   const frame = getIssueFrame(issue.issueText);
+  const scopeCopy = getIssueScopeCopy(issue);
+  const communitySignals = buildCommunityIssueSignals(citizenPosts, currentUser, compareCommunityId);
+  const lanePosts = new Map<IssueThreadType, PostSummary[]>();
+  for (const lane of ISSUE_THREAD_LANES) {
+    lanePosts.set(lane.key, citizenPosts.filter((post) => getIssueThreadType(post) === lane.key));
+  }
 
   return (
     <section id="citizen-voices" className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Citizen voices</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">What registered citizens are saying</h2>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Structured issue room</h2>
           <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
-            Local posts appear first, followed by state and national voices. This is the participation layer for residents; source-backed government records stay in the sections below.
+            This is not a general feed. Verified residents contribute through specific lanes: concerns, lived experience, questions, evidence, proposals, and counterpoints. Local voices appear first, followed by state and national context where the issue scope allows it.
           </p>
         </div>
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-          {citizenPosts.length} citizen post{citizenPosts.length === 1 ? "" : "s"}
-        </span>
+        <div className="flex flex-wrap gap-2">
+          <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">{scopeCopy.label}</span>
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+            {citizenPosts.length} contribution{citizenPosts.length === 1 ? "" : "s"}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+        <p className="text-sm font-semibold text-ink">Who can post here?</p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">{scopeCopy.rule}</p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="rounded-2xl bg-white p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Sort</p>
+            <p className="mt-2 text-sm text-slate-700">Local voices first, then broader context.</p>
+          </div>
+          <div className="rounded-2xl bg-white p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Quality</p>
+            <p className="mt-2 text-sm text-slate-700">Facts can be source-backed, challenged, or marked needs source.</p>
+          </div>
+          <div className="rounded-2xl bg-white p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Boundaries</p>
+            <p className="mt-2 text-sm text-slate-700">No anonymous pile-on for local issues.</p>
+          </div>
+        </div>
       </div>
 
       {status === "created" ? (
@@ -859,17 +1181,28 @@ async function CitizenIssueVoicesSection({
         <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
           {error === "registered-citizens-only"
             ? "Only signed-in registered citizen accounts can post to issues right now."
+            : error === "outside-scope"
+              ? "This issue room is scoped to a different jurisdiction, so your account can read it but cannot post here."
             : "Please add a headline and at least a short explanation before posting."}
         </div>
       ) : null}
 
       {canPost ? (
-        <IssueVoiceForm issueId={issue.id} issueText={issue.issueText} />
+        <IssueVoiceForm issue={issue} />
       ) : (
         <div className="mt-5 rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 p-5 text-sm leading-6 text-slate-600">
-          Sign in with a registered citizen account to post your own structured contribution. Browsing, source records, and existing citizen posts remain public.
+          {canSignInPost
+            ? "Your account can read this room, but posting is limited to verified residents inside this issue’s jurisdiction."
+            : "Sign in with a registered citizen account to post your own structured contribution. Browsing, source records, and existing citizen posts remain public."}
         </div>
       )}
+
+      <CommunityIssueComparison
+        issueId={issue.id}
+        currentUser={currentUser}
+        signals={communitySignals}
+        selectedCommunityId={compareCommunityId}
+      />
 
       {isNationalIssue ? (
         <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-white p-5">
@@ -896,27 +1229,50 @@ async function CitizenIssueVoicesSection({
         </div>
       ) : null}
 
-      <div className="mt-6 space-y-3">
+      <div className="mt-6 grid gap-4 lg:grid-cols-2">
         {citizenPosts.length ? (
-          citizenPosts.slice(0, 6).map((post) => (
-            <article key={post.id} className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-slate-950 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-                  {post.stance === "support" ? frame.supportLabel : post.stance === "oppose" ? frame.opposeLabel : post.stance === "neutral" ? "Neutral" : "Context"}
-                </span>
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{post.jurisdictionName}</span>
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{formatDate(post.createdAt)}</span>
-              </div>
-              <h3 className="mt-3 text-base font-semibold text-ink">{post.title ?? `${post.authorName} contribution`}</h3>
-              <p className="mt-2 text-sm text-slate-500">
-                {post.authorName} · {post.authorRole === "trustedCitizen" ? "trusted citizen" : "registered citizen"}
-              </p>
-              <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{post.content}</p>
-              <Link href={getContentDetailHref(post)} className="mt-4 inline-flex text-sm font-semibold text-civic-700 hover:text-civic-900">
-                Open post
-              </Link>
-            </article>
-          ))
+          ISSUE_THREAD_LANES.map((lane) => {
+            const posts = lanePosts.get(lane.key) ?? [];
+            return (
+              <section key={lane.key} className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{lane.label}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{lane.prompt}</p>
+                  </div>
+                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{posts.length}</span>
+                </div>
+                <div className="mt-4 space-y-3">
+                  {posts.length ? posts.slice(0, 3).map((post) => (
+                    <article key={post.id} className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded-full bg-slate-950 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
+                          {post.stance === "support" ? frame.supportLabel : post.stance === "oppose" ? frame.opposeLabel : post.stance === "neutral" ? "Neutral" : "Context"}
+                        </span>
+                        <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700">{post.jurisdictionName}</span>
+                        <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700">{formatDate(post.createdAt)}</span>
+                      </div>
+                      <h3 className="mt-3 text-base font-semibold text-ink">{getIssueThreadTitle(post)}</h3>
+                      <p className="mt-2 text-sm text-slate-500">
+                        {post.authorName} · {post.authorRole === "trustedCitizen" ? "trusted citizen" : "registered citizen"}
+                      </p>
+                      <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{post.content}</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {getContributionQualitySignals(post).map((signal) => (
+                          <span key={`${post.id}-${signal}`} className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600">{signal}</span>
+                        ))}
+                      </div>
+                      <Link href={getContentDetailHref(post)} className="mt-4 inline-flex text-sm font-semibold text-civic-700 hover:text-civic-900">
+                        Open thread
+                      </Link>
+                    </article>
+                  )) : (
+                    <p className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">{lane.empty}</p>
+                  )}
+                </div>
+              </section>
+            );
+          })
         ) : (
           <div className="rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 p-5 text-sm text-slate-600">
             No real citizen posts are available for this issue yet. Seeded demo voices are hidden outside explicit demo mode.
@@ -1798,6 +2154,7 @@ export default async function IssueDetailPage({ params, searchParams }: IssueDet
         issueId={issue.id}
         issue={issue}
         activeFilter={activeFilter}
+        compareCommunityId={resolvedSearchParams?.compareCommunity}
         issuePostStatus={resolvedSearchParams?.issuePost}
         issuePostError={resolvedSearchParams?.issuePostError}
       />
@@ -1809,12 +2166,14 @@ async function IssueDetailContent({
   issueId,
   issue: baseIssue,
   activeFilter,
+  compareCommunityId,
   issuePostStatus,
   issuePostError,
 }: {
   issueId: string;
   issue: NonNullable<Awaited<ReturnType<typeof getIssueByRouteParam>>>;
   activeFilter: IssueFilter;
+  compareCommunityId?: string;
   issuePostStatus?: string;
   issuePostError?: string;
 }) {
@@ -1950,7 +2309,7 @@ async function IssueDetailContent({
           </section>
         }
       >
-        <CitizenIssueVoicesSection issue={safeIssue} currentUser={currentUser} status={issuePostStatus} error={issuePostError} />
+        <CitizenIssueVoicesSection issue={safeIssue} currentUser={currentUser} compareCommunityId={compareCommunityId} status={issuePostStatus} error={issuePostError} />
       </Suspense>
 
       <Suspense

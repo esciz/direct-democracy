@@ -1,9 +1,12 @@
 import { existsSync, readFileSync, statSync } from "fs";
 import path from "path";
 
+import { seedUsers } from "@/lib/auth/mock-users";
 import { getCommunityById, getCommunityPageHref, seededCommunities } from "@/lib/community/communities";
+import { communityMatchesMembership } from "@/lib/community/membership";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { prisma } from "@/lib/prisma";
+import type { AuthUser, UserRole } from "@/types/domain";
 
 export type BrowsePreviewCategory =
   | "communities"
@@ -50,6 +53,12 @@ export type BrowsePreviewItem = {
     targetType: FavoriteTargetType;
     targetId: string;
   };
+  follow?: {
+    targetUserId: string;
+    returnPath: string;
+    isFollowing: boolean;
+    canFollow: boolean;
+  };
   sourceUrl?: string | null;
 };
 
@@ -72,6 +81,7 @@ type BrowsePreviewOptions = {
   query?: string;
   limit?: number;
   favoriteIds?: string[];
+  viewerUser?: AuthUser;
 };
 
 const DATA_ROOT = path.join(process.cwd(), "data", "generated");
@@ -79,7 +89,7 @@ const DATA_ROOT = path.join(process.cwd(), "data", "generated");
 const CATEGORY_HREFS: Record<BrowsePreviewCategory, string | null> = {
   communities: "/communities",
   issues: "/issues",
-  people: null,
+  people: "/people",
   candidates: null,
   officials: "/officials",
   petitions: null,
@@ -346,6 +356,179 @@ function buildIssuesPreview({ communityId, query, limit = 8, favoriteIds }: Brow
       fullHref: CATEGORY_HREFS.issues,
     },
     "No generated source-backed issue hubs are available for this community yet.",
+  );
+}
+
+function buildPeopleReturnPath(communityId: string, query?: string, favoriteIds?: string[]) {
+  const params = new URLSearchParams({
+    communityId,
+    category: "people",
+  });
+
+  if (query?.trim()) {
+    params.set("q", query.trim());
+  }
+
+  if (favoriteIds) {
+    params.set("favorites", "1");
+  }
+
+  return `/explore?${params.toString()}`;
+}
+
+type LightweightPublicPerson = {
+  id: string;
+  name: string;
+  username: string;
+  role: Extract<UserRole, "citizen" | "trustedCitizen">;
+  bio: string | null;
+  profileImageUrl: string | null;
+  jurisdictionName: string;
+  followerCount: number;
+  topIssuesPreview: string[];
+  civicCredibilityLabel: string;
+  viewerIsFollowing: boolean;
+  viewerCanFollow: boolean;
+};
+
+function personRoleLabel(role: LightweightPublicPerson["role"]) {
+  return role === "trustedCitizen" ? "Trusted citizen" : "Registered citizen";
+}
+
+function buildPersonDescription(person: LightweightPublicPerson) {
+  const issueText = person.topIssuesPreview.length
+    ? ` Active around ${person.topIssuesPreview.slice(0, 2).join(" and ")}.`
+    : " Follow to help build a visible civic signal around their public work.";
+
+  return `${person.bio ?? "Public Direct Democracy profile."} ${issueText}`;
+}
+
+function inferTopIssuesFromText(person: Pick<AuthUser, "bio" | "jurisdictionName">) {
+  const text = `${person.bio ?? ""} ${person.jurisdictionName}`.toLowerCase();
+  const issues = [
+    ["school", "Education"],
+    ["teacher", "Education"],
+    ["housing", "Housing"],
+    ["growth", "Growth"],
+    ["water", "Water"],
+    ["transit", "Transportation"],
+    ["wildfire", "Public safety"],
+    ["campaign finance", "Campaign finance"],
+    ["budget", "Budgets"],
+    ["meeting", "Public meetings"],
+    ["healthcare", "Healthcare"],
+    ["energy", "Energy"],
+  ] as const;
+
+  return issues
+    .filter(([needle]) => text.includes(needle))
+    .map(([, label]) => label)
+    .filter((label, index, values) => values.indexOf(label) === index)
+    .slice(0, 3);
+}
+
+function civicCredibilityLabel(person: Pick<AuthUser, "role" | "isVerifiedVoter">) {
+  if (person.role === "trustedCitizen") return "High";
+  if (person.isVerifiedVoter) return "Verified";
+  return "Still forming";
+}
+
+async function getLightweightPublicPeople(viewer: AuthUser | null) {
+  const viewerId = viewer?.id ?? null;
+  const publicPeople = seedUsers
+    .filter((user): user is AuthUser & { role: Extract<UserRole, "citizen" | "trustedCitizen"> } => user.role === "citizen" || user.role === "trustedCitizen")
+    .filter((user) => !user.isAnonymousPublic);
+
+  const followStateModule = viewerId ? await import("@/lib/social/follows").catch(() => null) : null;
+
+  return Promise.all(
+    publicPeople.map(async (person) => {
+      const followState = followStateModule && viewerId
+        ? await followStateModule.getLightweightFollowState(viewerId, person.id, person.followerCount)
+        : {
+            followerCount: person.followerCount,
+            viewerIsFollowing: false,
+            viewerCanFollow: false,
+          };
+
+      return {
+        id: person.id,
+        name: person.name,
+        username: person.username,
+        role: person.role,
+        bio: person.bio,
+        profileImageUrl: null,
+        jurisdictionName: person.jurisdictionName,
+        followerCount: followState.followerCount,
+        topIssuesPreview: inferTopIssuesFromText(person),
+        civicCredibilityLabel: civicCredibilityLabel(person),
+        viewerIsFollowing: followState.viewerIsFollowing,
+        viewerCanFollow: followState.viewerCanFollow,
+      } satisfies LightweightPublicPerson;
+    }),
+  );
+}
+
+async function buildPeoplePreview({
+  communityId,
+  query,
+  limit = 8,
+  favoriteIds,
+  viewerUser,
+}: BrowsePreviewOptions): Promise<BrowsePreviewData> {
+  const viewer = viewerUser ?? null;
+  const people = await getLightweightPublicPeople(viewer);
+  const localPeople = people.filter((person) => communityMatchesMembership(communityId, person));
+  const localIds = new Set(localPeople.map((person) => person.id));
+  const candidates = query?.trim()
+    ? people
+    : [...localPeople, ...people.filter((person) => !localIds.has(person.id))];
+  const returnPath = buildPeopleReturnPath(communityId, query, favoriteIds);
+
+  const items = filterItems(
+    candidates.map((person) => ({
+      id: person.id,
+      title: person.name,
+      subtitle: `@${person.username} · ${person.jurisdictionName}`,
+      description: buildPersonDescription(person),
+      href: `/citizens/${person.id}`,
+      ctaLabel: "Open profile",
+      avatar: {
+        name: person.name,
+        imageUrl: person.profileImageUrl,
+        entityType: person.role === "trustedCitizen" ? ("trustedCitizen" as const) : ("citizen" as const),
+        verified: person.role === "trustedCitizen",
+      },
+      badges: [
+        { label: personRoleLabel(person.role), tone: person.role === "trustedCitizen" ? ("emerald" as const) : ("civic" as const) },
+        { label: `${person.followerCount.toLocaleString()} followers`, tone: "slate" as const },
+        { label: `Credibility: ${person.civicCredibilityLabel}`, tone: "civic" as const },
+        ...(person.topIssuesPreview[0] ? [{ label: person.topIssuesPreview[0], tone: "slate" as const }] : []),
+      ],
+      favorite: { targetType: "person" as const, targetId: person.id },
+      follow: {
+        targetUserId: person.id,
+        returnPath,
+        isFollowing: person.viewerIsFollowing,
+        canFollow: person.viewerCanFollow,
+      },
+    })),
+    query ?? "",
+    favoriteIds,
+  ).slice(0, limit);
+
+  return withEmptyReason(
+    {
+      category: "people",
+      items,
+      sourceCount: people.length,
+      availableGeneratedCount: people.length,
+      lastGeneratedAt: null,
+      isSourceBacked: false,
+      usesDemoData: false,
+      fullHref: CATEGORY_HREFS.people,
+    },
+    "No public citizen or trusted-citizen profiles are available for this community yet.",
   );
 }
 
@@ -696,7 +879,7 @@ export async function getBrowsePreviewCategory(options: BrowsePreviewOptions): P
     case "issues":
       return buildIssuesPreview(options);
     case "people":
-      return buildEmptySourcePreview("people", "No source-backed public people directory is available for production browse previews yet.");
+      return await buildPeoplePreview(options);
     case "candidates":
       return await buildCandidatesPreview(options);
     case "officials":

@@ -255,6 +255,25 @@ function slugifyDistrictName(value: string) {
   return normalize(value).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+function districtNameVariants(value: string | null | undefined) {
+  const raw = (value ?? "").trim();
+  if (!raw) return [];
+
+  const variants = new Set([raw]);
+  const numberMatch = raw.match(/\b(?:district|ward)\s+([a-z0-9-]+)\b/i);
+  if (numberMatch?.[1]) {
+    variants.add(`District ${numberMatch[1]}`);
+    variants.add(`Ward ${numberMatch[1]}`);
+    variants.add(`Congressional District ${numberMatch[1]}`);
+    variants.add(`State Senate District ${numberMatch[1]}`);
+    variants.add(`Senate District ${numberMatch[1]}`);
+    variants.add(`State Assembly District ${numberMatch[1]}`);
+    variants.add(`Assembly District ${numberMatch[1]}`);
+  }
+
+  return [...variants];
+}
+
 function normalizePersonName(value: string | null | undefined) {
   return normalize(value).replace(/[^a-z0-9]/g, "");
 }
@@ -286,7 +305,7 @@ function locationToJurisdictionSlugs(input: string, user: AuthUser) {
   const defaultCommunity = getDefaultCommunityForUser(user);
   const slugs = new Set(["united-states"]);
 
-  if (!normalized || normalized === "saved" || normalized === "my community") {
+  if (!normalized || normalized === "saved" || normalized === "saved community" || normalized === "my community") {
     slugs.add(defaultCommunity.id);
   }
 
@@ -454,6 +473,22 @@ function generatedRoleLabel(record: GeneratedCurrentOfficialRecord) {
   return record.title ?? record.office ?? "Current official";
 }
 
+function districtMatchesAssignments(
+  district: { districtType?: DistrictType | null; name?: string | null; jurisdiction?: { slug: string } | null } | null | undefined,
+  assignments: DistrictAssignmentSummary[],
+) {
+  if (!district?.districtType || !district.name) return false;
+  const districtNames = districtNameVariants(district.name).map(normalize);
+
+  return assignments.some((assignment) => {
+    if (assignment.status !== "matched" || assignment.districtType === "JURISDICTION" || !assignment.districtName) return false;
+    if (assignment.districtType !== district.districtType) return false;
+    if (district.jurisdiction?.slug && assignment.jurisdictionSlug !== district.jurisdiction.slug) return false;
+    const assignmentNames = districtNameVariants(assignment.districtName).map(normalize);
+    return assignmentNames.some((name) => districtNames.includes(name));
+  });
+}
+
 async function getStoredAssignments(userId: string) {
   try {
     return await prisma.userDistrictAssignment.findMany({
@@ -478,9 +513,10 @@ export async function getRepresentativeLookup({
   user: AuthUser;
   locationInput?: string;
 }): Promise<RepresentativeLookupResult> {
-  const inputLabel = locationInput?.trim() || "Saved community";
-  const point = parseLatLng(locationInput);
-  const jurisdictionSlugs = locationToJurisdictionSlugs(inputLabel, user);
+  const rawLocationInput = locationInput?.trim() ?? "";
+  const inputLabel = rawLocationInput || "Saved community";
+  const point = parseLatLng(rawLocationInput);
+  const jurisdictionSlugs = locationToJurisdictionSlugs(rawLocationInput, user);
   const baselineEntries = [...new Set(jurisdictionSlugs.flatMap((slug) => COMMUNITY_DISTRICT_BASELINES[slug] ?? []))];
   const baselineDistrictWhere: Prisma.DistrictWhereInput[] = baselineEntries.map((entry) => ({
     districtType: entry.districtType,
@@ -599,11 +635,24 @@ export async function getRepresentativeLookup({
     ],
   );
   const matchedDistrictTypes = new Set(assignments.flatMap((assignment) => (assignment.status === "matched" && assignment.districtType !== "JURISDICTION" ? [assignment.districtType] : [])));
+  const matchedDistrictNameWhere = assignments.flatMap((assignment) => {
+    if (assignment.status !== "matched" || assignment.districtType === "JURISDICTION" || !assignment.districtName) return [];
+    return [
+      {
+        jurisdiction: { slug: assignment.jurisdictionSlug },
+        district: {
+          districtType: assignment.districtType,
+          name: { in: districtNameVariants(assignment.districtName) },
+        },
+      },
+    ];
+  });
 
   const includedDistrictWhere = {
     OR: [
       { districtId: null, jurisdictionId: { in: [...jurisdictionIds] } },
       { districtId: { in: [...matchedDistrictIds] } },
+      ...matchedDistrictNameWhere,
       { district: { districtType: DistrictType.AT_LARGE }, jurisdictionId: { in: [...jurisdictionIds] } },
     ],
   };
@@ -686,7 +735,8 @@ export async function getRepresentativeLookup({
       ...group,
       officials: [
         ...groupOfficialRows.map((official) => {
-          const exactDistrictMatch = official.districtId ? matchedDistrictIds.has(official.districtId) : true;
+          const isJurisdictionWideDistrict = official.district?.districtType === DistrictType.AT_LARGE && jurisdictionIds.has(official.jurisdictionId);
+          const exactDistrictMatch = official.districtId ? isJurisdictionWideDistrict || matchedDistrictIds.has(official.districtId) || districtMatchesAssignments(official.district, assignments) : true;
           const districtNeedsAddress = Boolean(official.districtId && !exactDistrictMatch);
           return {
             id: official.id,
@@ -699,7 +749,9 @@ export async function getRepresentativeLookup({
             sourceName: official.source?.name ?? "Imported civic data",
             sourceUrl: official.source?.url ?? null,
             confidenceScore: districtNeedsAddress ? 0.72 : official.districtId ? 0.92 : 0.82,
-            matchNote: districtNeedsAddress
+            matchNote: isJurisdictionWideDistrict
+              ? "Jurisdiction-wide office for this location."
+              : districtNeedsAddress
               ? "District-specific local office shown because it belongs to this jurisdiction. Entering an address can narrow the exact ward or district when boundary data is available."
               : official.districtId
                 ? "Matched to a stored district assignment."

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { FollowButton } from "@/components/domain/follow-button";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 
 type ExploreResultCardProps = {
@@ -36,6 +37,12 @@ type ExploreResultCardProps = {
     targetType: FavoriteTargetType;
     targetId: string;
   };
+  follow?: {
+    targetUserId: string;
+    returnPath: string;
+    isFollowing: boolean;
+    canFollow: boolean;
+  };
 };
 
 export function ExploreResultCard({
@@ -49,6 +56,7 @@ export function ExploreResultCard({
   chart,
   avatar,
   favorite,
+  follow,
 }: ExploreResultCardProps) {
   return (
     <article className="group rounded-[1.5rem] border border-white/10 bg-[linear-gradient(165deg,rgba(12,22,39,0.96),rgba(8,15,28,0.96))] p-5 shadow-[0_24px_50px_-34px_rgba(2,8,23,0.92)] transition hover:-translate-y-0.5 hover:border-cyan-300/20 hover:shadow-[0_28px_58px_-34px_rgba(34,211,238,0.18)]">
@@ -74,6 +82,18 @@ export function ExploreResultCard({
       {badges ? <div className="mt-4 flex flex-wrap gap-2">{badges}</div> : null}
       {chart ? <div className="mt-4">{chart}</div> : null}
       <div className="mt-5 flex flex-wrap gap-2">
+        {follow?.canFollow ? (
+          <FollowButton
+            targetUserId={follow.targetUserId}
+            returnPath={follow.returnPath}
+            isFollowing={follow.isFollowing}
+            className={
+              follow.isFollowing
+                ? "inline-flex rounded-full border border-cyan-300/15 bg-cyan-400/10 px-4 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/35 hover:bg-cyan-400/15 disabled:cursor-not-allowed disabled:opacity-55"
+                : "inline-flex rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-4 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-55"
+            }
+          />
+        ) : null}
         <Link
           href={href}
           className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 transition group-hover:border-cyan-300/20 group-hover:text-cyan-100 hover:bg-white/8"

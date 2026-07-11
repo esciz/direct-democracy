@@ -17,7 +17,6 @@ type ExplorePageProps = {
     communityId?: string;
     q?: string;
     category?: string;
-    browseCategory?: string;
     favorites?: string;
   }>;
 };
@@ -105,13 +104,11 @@ function getCategoryDescription(category: ExploreCategory) {
 function buildExploreHref({
   communityId,
   category,
-  browseCategory,
   q,
   favorites,
 }: {
   communityId: string;
   category: ExploreCategory;
-  browseCategory?: ExploreCategory;
   q?: string;
   favorites?: boolean;
 }) {
@@ -119,10 +116,6 @@ function buildExploreHref({
     communityId,
     category,
   });
-
-  if (browseCategory) {
-    params.set("browseCategory", browseCategory);
-  }
 
   if (q?.trim()) {
     params.set("q", q.trim());
@@ -197,7 +190,6 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
   const currentCommunity = getCommunityById(selectedCommunityId) ?? defaultCommunity;
   const query = params?.q?.trim() ?? "";
   const activeCategory = normalizeCategory(params?.category);
-  const activeBrowseCategory = normalizeCategory(params?.browseCategory ?? params?.category);
   const favoritesOnly = params?.favorites === "1";
   const favoriteRecords = await getFavoritesForUser(user.id);
   const favoriteIdsByType = favoriteRecords.reduce<Record<FavoriteTargetType, string[]>>(
@@ -239,21 +231,14 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
     category: activeCategory,
     communityId: selectedCommunityId,
     query: favoritesOnly ? "" : query,
-    limit: favoritesOnly ? 24 : 12,
+    limit: favoritesOnly ? 24 : query ? 12 : 8,
     favoriteIds: favoritesOnly ? (activeFavoriteTargetType ? favoriteIdsByType[activeFavoriteTargetType] : []) : undefined,
-  });
-  const browsePreview = await getBrowsePreviewCategory({
-    category: activeBrowseCategory,
-    communityId: selectedCommunityId,
-    query: "",
-    limit: 8,
+    viewerUser: user,
   });
   const activeItems = activePreview.items;
-  const browseItems = browsePreview.items;
-  const eventPreviewTimingStatus = activeBrowseCategory === "events" ? getEventPreviewTimingStatus(browseItems) : null;
+  const eventPreviewTimingStatus = activeCategory === "events" ? getEventPreviewTimingStatus(activeItems) : null;
 
   const activeCategoryLabel = getCategoryLabel(activeCategory);
-  const activeBrowseCategoryLabel = getCategoryLabel(activeBrowseCategory);
   const resultsTitle = favoritesOnly
     ? `${activeCategoryLabel} you favorited`
     : query
@@ -279,104 +264,12 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
       />
 
       <section className="dd-panel rounded-[1.75rem] p-6">
-        <SectionHeading
-          eyebrow="Browse"
-          title="Browse by category"
-          description="Switch categories to see the best available Nevada records, plus honest limited-data messages when a category is not populated yet."
-        />
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          {EXPLORE_CATEGORIES.map((category) => {
-            const href = buildExploreHref({
-              communityId: selectedCommunityId,
-              category: activeCategory,
-              browseCategory: category.key,
-              q: query,
-              favorites: favoritesOnly,
-            });
-
-            return (
-              <Link
-                key={`browse-${category.key}`}
-                href={href}
-                scroll={false}
-                className={
-                  category.key === activeBrowseCategory
-                    ? "rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-4 py-2 text-sm font-semibold text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.75)]"
-                    : "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/20 hover:text-cyan-100"
-                }
-              >
-                {category.label}
-              </Link>
-            );
-          })}
-        </div>
-
-        <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{activeBrowseCategoryLabel}</p>
-              <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{activeBrowseCategoryLabel} to browse</h3>
-              <p className="mt-2 text-sm text-slate-400">{getCategoryDescription(activeBrowseCategory)}</p>
-              {eventPreviewTimingStatus ? (
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">
-                  {eventPreviewTimingStatus.label} · {eventPreviewTimingStatus.note}
-                </p>
-              ) : null}
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              {renderBadge(browsePreview.statusLabel, browsePreview.isSourceBacked ? "emerald" : "orange")}
-              {eventPreviewTimingStatus ? renderBadge(eventPreviewTimingStatus.label, eventPreviewTimingStatus.tone) : null}
-              {browsePreview.lastGeneratedAt ? renderBadge(`Updated ${new Date(browsePreview.lastGeneratedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`) : null}
-              {browsePreview.fullHref && browseItems.length ? (
-                <Link
-                  href={browsePreview.fullHref}
-                  className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-                >
-                  View all
-                </Link>
-              ) : null}
-            </div>
-          </div>
-
-          <div className="mt-6 flex gap-4 overflow-x-auto pb-2">
-            {browseItems.length ? (
-              browseItems.map((item) => (
-                <div
-                  key={`browse-card-${activeBrowseCategory}-${item.id}`}
-                  className="min-w-[20rem] max-w-[28rem] flex-none md:min-w-[calc(50%-0.5rem)]"
-                >
-                  <ExploreResultCard
-                    title={item.title}
-                    subtitle={item.subtitle}
-                    description={item.description}
-                    href={item.href}
-                    ctaLabel={item.ctaLabel}
-                    sourceUrl={item.sourceUrl}
-                    badges={renderPreviewBadges(item)}
-                    favorite={item.favorite}
-                    avatar={item.avatar}
-                  />
-                </div>
-              ))
-            ) : (
-              <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
-                {browsePreview.emptyReason ?? `No ${activeBrowseCategoryLabel.toLowerCase()} are available for this browse preview yet.`}
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className="dd-panel rounded-[1.75rem] p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Unified search</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Search one civic category at a time</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Choose a category, search within it, and keep the page focused on the type of civic item you are trying to find.
-            </p>
-          </div>
+          <SectionHeading
+            eyebrow="Browse"
+            title="Browse and search by category"
+            description="Choose one civic category, search within it, and preview the best available source-backed records below."
+          />
           {favoritesOnly ? (
             <Link
               href={buildExploreHref({ communityId: selectedCommunityId, category: activeCategory, q: query })}
@@ -393,14 +286,13 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
             const href = buildExploreHref({
               communityId: selectedCommunityId,
               category: category.key,
-              browseCategory: activeBrowseCategory,
               q: query,
               favorites: favoritesOnly,
             });
 
             return (
               <Link
-                key={category.key}
+                key={`browse-${category.key}`}
                 href={href}
                 scroll={false}
                 className={
@@ -418,7 +310,6 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
         <PreserveScrollQueryForm action="/explore" className="mt-5 flex flex-wrap gap-3">
           <input type="hidden" name="communityId" value={selectedCommunityId} />
           <input type="hidden" name="category" value={activeCategory} />
-          <input type="hidden" name="browseCategory" value={activeBrowseCategory} />
           {favoritesOnly ? <input type="hidden" name="favorites" value="1" /> : null}
           <input
             type="search"
@@ -431,17 +322,42 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
             Search
           </button>
         </PreserveScrollQueryForm>
-      </section>
 
-      {query || favoritesOnly ? (
-        <section className="dd-panel rounded-[1.75rem] p-6">
+          <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading
-              eyebrow={favoritesOnly ? "Favorites view" : "Search results"}
-              title={resultsTitle}
-              description={resultsDescription}
-            />
-            <div className="flex flex-wrap gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{activeCategoryLabel}</p>
+              <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{resultsTitle}</h3>
+              <p className="mt-2 text-sm text-slate-400">{query || favoritesOnly ? resultsDescription : getCategoryDescription(activeCategory)}</p>
+              {eventPreviewTimingStatus ? (
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">
+                  {eventPreviewTimingStatus.label} · {eventPreviewTimingStatus.note}
+                </p>
+              ) : null}
+              {activeCategory === "people" ? (
+                <div className="mt-4 grid gap-3 text-sm text-slate-300 md:grid-cols-3">
+                  <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/10 p-3">
+                    <p className="font-semibold text-cyan-100">1. Follow useful voices</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">Follow citizens whose local issue work helps you understand what is happening.</p>
+                  </div>
+                  <div className="rounded-2xl border border-emerald-300/15 bg-emerald-400/10 p-3">
+                    <p className="font-semibold text-emerald-100">2. Support trusted people</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">Consistent local support can help credible contributors become trusted civic voices.</p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-3">
+                    <p className="font-semibold text-slate-100">3. Build a public record</p>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">Over time, visible issue work can support candidate and officeholder accountability.</p>
+                  </div>
+                </div>
+              ) : null}
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {renderBadge(activePreview.statusLabel, activePreview.isSourceBacked ? "emerald" : "orange")}
+              {eventPreviewTimingStatus ? renderBadge(eventPreviewTimingStatus.label, eventPreviewTimingStatus.tone) : null}
+              {activePreview.lastGeneratedAt ? renderBadge(`Updated ${new Date(activePreview.lastGeneratedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`) : null}
+              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200">
+                {activeItems.length} item{activeItems.length === 1 ? "" : "s"}
+              </span>
               {!favoritesOnly && activePreview.fullHref && activeItems.length ? (
                 <Link
                   href={activePreview.fullHref}
@@ -450,9 +366,6 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                   View all
                 </Link>
               ) : null}
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200">
-                {activeItems.length} item{activeItems.length === 1 ? "" : "s"}
-              </span>
             </div>
           </div>
 
@@ -469,6 +382,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                   sourceUrl={item.sourceUrl}
                   badges={renderPreviewBadges(item)}
                   favorite={item.favorite}
+                  follow={item.follow}
                   avatar={item.avatar}
                 />
               ))
@@ -476,12 +390,14 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
               <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400 xl:col-span-2">
                 {favoritesOnly
                   ? `No saved ${activeCategoryLabel.toLowerCase()} yet.`
-                  : activePreview.emptyReason ?? `No ${activeCategoryLabel.toLowerCase()} match “${query}” yet.`}
+                  : query
+                    ? activePreview.emptyReason ?? `No ${activeCategoryLabel.toLowerCase()} match “${query}” yet.`
+                    : activePreview.emptyReason ?? `No ${activeCategoryLabel.toLowerCase()} are available for this browse preview yet.`}
               </div>
             )}
           </div>
-        </section>
-      ) : null}
+        </div>
+      </section>
     </div>
   );
 }
