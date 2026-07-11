@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { seedUsers } from "@/lib/auth/mock-users";
+import { prisma } from "@/lib/prisma";
 import { recordRoleTransition } from "@/lib/profile/role-progression";
 import { hasEligibleTrustedScope } from "@/lib/social/trusted-status";
 import {
@@ -36,7 +37,15 @@ export async function followUser(formData: FormData) {
     redirect(buildReturnPath(returnPath, "self"));
   }
 
-  if (!seedUsers.some((user) => user.id === targetUserId)) {
+  const targetSeedUser = seedUsers.find((user) => user.id === targetUserId);
+  const targetDurableUser = targetSeedUser
+    ? null
+    : await prisma.user.findUnique({
+        where: { id: targetUserId },
+        select: { id: true, role: true, followerCount: true, jurisdiction: { select: { name: true } }, name: true },
+      }).catch(() => null);
+
+  if (!targetSeedUser && !targetDurableUser) {
     redirect(buildReturnPath(returnPath, "missing"));
   }
 
@@ -61,17 +70,16 @@ export async function followUser(formData: FormData) {
   await setStoredFollows([nextFollow, ...storedFollows.filter((follow) => !(follow.followerUserId === currentUser.id && follow.followingUserId === targetUserId))]);
   await setRemovedFollowKeys(removedKeys.filter((key) => key !== followKey));
 
-  const targetUser = seedUsers.find((user) => user.id === targetUserId);
-  if (targetUser?.role === "citizen") {
-    const updatedFollowState = await getFollowState(currentUser.id, targetUserId, targetUser.followerCount);
+  if (targetSeedUser?.role === "citizen") {
+    const updatedFollowState = await getFollowState(currentUser.id, targetUserId, targetSeedUser.followerCount);
 
     if (hasEligibleTrustedScope(updatedFollowState.trustedProgressByCommunity)) {
       await recordRoleTransition({
-        userId: targetUser.id,
-        userName: targetUser.name,
+        userId: targetSeedUser.id,
+        userName: targetSeedUser.name,
         fromRole: "citizen",
         toRole: "trustedCitizen",
-        jurisdictionName: targetUser.jurisdictionName,
+        jurisdictionName: targetSeedUser.jurisdictionName,
       });
     }
   }

@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getGeographicCommunities, getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
+import { prisma } from "@/lib/prisma";
 import { getCanonicalIssueTextOrNull } from "@/lib/issues/utils";
 import { EXTERNAL_LINK_FIELDS, normalizeExternalLinkUrl } from "@/lib/profile/external-links";
 import {
@@ -120,6 +121,16 @@ export async function togglePublicCitizenVisibility(formData: FormData) {
   const overrides = await getVisibilityOverrides();
   overrides[currentUser.id] = nextVisible === "true";
   await setVisibilityOverrides(overrides);
+
+  const account = await prisma.identityAccount.findUnique({
+    where: { id: currentUser.id },
+    select: { userId: true },
+  }).catch(() => null);
+  const durableUserId = account?.userId ?? currentUser.id;
+  await prisma.user.updateMany({
+    where: { id: durableUserId },
+    data: { isAnonymousPublic: nextVisible !== "true" },
+  }).catch(() => null);
 
   redirect("/profile?visibility=updated");
 }

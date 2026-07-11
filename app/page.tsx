@@ -1,53 +1,37 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { HomeGuidedActionCard } from "@/components/domain/home-guided-action-card";
-import { CommunityMeetingIntelligenceCard } from "@/components/domain/community-meeting-intelligence-card";
-import { HomeVotePreviewPane } from "@/components/domain/home-vote-preview-pane";
-import { HomeUpcomingElectionsPane } from "@/components/domain/home-upcoming-elections-pane";
-import { SectionHeading } from "@/components/ui/section-heading";
+import {
+  HomeTakeActionCard,
+  type HomeTakeActionIssue,
+  type HomeTakeActionMeeting,
+  type HomeTakeActionPetition,
+  type HomeTakeActionPoll,
+  type HomeTakeActionSignal,
+} from "@/components/domain/home-take-action-card";
 import { canUserVote } from "@/lib/auth/guards";
-import { getDecisionCards } from "@/lib/civic/decision-pages";
-import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { slugifyIssueText } from "@/lib/issues/utils";
-import { getAllOrganizations } from "@/lib/organizations/store";
 import { getAllPetitions } from "@/lib/petitions/store";
-import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
-import { getOfficials } from "@/lib/officials/store";
+import { getFeedPollPreviews } from "@/lib/polls/store";
 import { getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
-import { getAllCases } from "@/lib/cases/store";
-import { getCommunityById, getDefaultCommunityForUser, seededCommunities } from "@/lib/community/communities";
+import { getDefaultCommunityForUser } from "@/lib/community/communities";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getTopIssuesForUser } from "@/lib/community/issues";
-import { getCommunityHubProjects } from "@/lib/community/product-hub";
 import { getFeedDebatePreviews } from "@/lib/debates/store";
 import { getDailyVoteExperience } from "@/lib/feed/quick-votes";
 import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts";
 import { getFavoritesForUser } from "@/lib/server/favorites";
 import { getIssueDirectoryForUser } from "@/lib/server/issues";
-import { getCandidateProfiles, getElectionSummaries } from "@/lib/server/elections-context";
+import { getElectionSummaries } from "@/lib/server/elections-context";
 import { getCommunityMeetingSummary } from "@/lib/public-meetings/public";
 import { formatDateUtc } from "@/lib/dates";
 import type { AuthUser, CommunitySummary, ElectionSummary } from "@/types/domain";
 
-type HomeFavoriteItem = {
-  id: string;
-  label: string;
-  title: string;
-  summary: string;
-  href: string;
-};
+function formatDateLabel(value: string | null | undefined) {
+  if (!value) {
+    return "Date pending";
+  }
 
-type TrendingItem = {
-  id: string;
-  label: string;
-  title: string;
-  summary: string;
-  href: string;
-  ctaLabel: string;
-};
-
-function formatDateLabel(value: string) {
   return formatDateUtc(value, {
     month: "short",
     day: "numeric",
@@ -207,35 +191,6 @@ function buildUpcomingElectionItems(
   });
 }
 
-function getFavoriteLabel(targetType: FavoriteTargetType) {
-  switch (targetType) {
-    case "community":
-      return "Community";
-    case "issue":
-      return "Saved issue";
-    case "candidate":
-      return "Followed candidate";
-    case "official":
-      return "Followed official";
-    case "petition":
-      return "Saved petition";
-    case "election":
-      return "Saved election";
-    case "organization":
-      return "Coalition / group";
-    case "event":
-      return "Saved event";
-    case "person":
-      return "Citizen";
-    case "case":
-      return "Public-interest case";
-    case "decision":
-      return "Followed decision";
-    case "project":
-      return "Followed project";
-  }
-}
-
 export default async function HomePage() {
   const currentSessionUser = await getCurrentSessionUser();
 
@@ -256,13 +211,7 @@ export default async function HomePage() {
     previewDebates,
     petitions,
     issueDirectory,
-    people,
-    candidates,
-    officials,
-    cases,
-    organizations,
-    decisions,
-    projects,
+    polls,
     meetingSummary,
   ] = await Promise.all([
     getElectionSummaries(),
@@ -287,13 +236,7 @@ export default async function HomePage() {
     getFeedDebatePreviews({ jurisdictionNames: defaultCommunity.jurisdictionMatches, limit: 3 }),
     getAllPetitions(),
     getIssueDirectoryForUser(user, { communityId: defaultCommunity.id }),
-    getPublicPeopleDirectory(user),
-    getCandidateProfiles(),
-    getOfficials(),
-    getAllCases(),
-    getAllOrganizations(user),
-    getDecisionCards(),
-    getCommunityHubProjects(),
+    getFeedPollPreviews({ jurisdictionNames: defaultCommunity.jurisdictionMatches, limit: 4, viewerUserId: user.id }),
     getCommunityMeetingSummary(defaultCommunity).catch(() => ({
       community_name: defaultCommunity.name,
       matching_public_body_count: 0,
@@ -312,331 +255,132 @@ export default async function HomePage() {
   const canVoteNow = canUserVote(user);
   const votePreviewQuestions = dailyVotes.dailyQuestions.slice(0, 3);
 
-  const favoriteItems = favoriteRecords
-    .map((record): HomeFavoriteItem | null => {
-      switch (record.targetType) {
-        case "community": {
-          const community = seededCommunities.find((entry) => entry.id === record.targetId);
-          if (!community) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: community.name,
-            summary: community.descriptor,
-            href: `/my-community?communityId=${community.id}`,
-          };
-        }
-        case "issue": {
-          const issue = issueDirectory.find((entry) => entry.id === record.targetId);
-          if (!issue) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: issue.issueText,
-            summary: `${issue.jurisdictionName} · ${issue.upvoteCount} people elevating this issue`,
-            href: `/issues/${slugifyIssueText(issue.issueText)}`,
-          };
-        }
-        case "person": {
-          const person = people.find((entry) => entry.id === record.targetId);
-          if (!person) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: person.name,
-            summary: `${person.jurisdictionName} · ${clipText(person.bio, 90) || "Public citizen profile"}`,
-            href: `/citizens/${person.id}`,
-          };
-        }
-        case "candidate": {
-          const candidate = candidates.find((entry) => entry.id === record.targetId);
-          if (!candidate) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: candidate.name,
-            summary: `${candidate.partyText ?? "Candidate"} · ${candidate.jurisdictionName}`,
-            href: `/candidates/${candidate.id}`,
-          };
-        }
-        case "official": {
-          const official = officials.find((entry) => entry.id === record.targetId);
-          if (!official) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: official.name,
-            summary: `${official.officeTitle} · ${official.jurisdictionName}`,
-            href: `/officials/${official.id}`,
-          };
-        }
-        case "petition": {
-          const petition = petitions.find((entry) => entry.id === record.targetId);
-          if (!petition) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: petition.title,
-            summary: `${petition.signatureCount} signatures · ${petition.jurisdictionName}`,
-            href: `/petitions/${petition.id}`,
-          };
-        }
-        case "case": {
-          const caseItem = cases.find((entry) => entry.id === record.targetId);
-          if (!caseItem) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: caseItem.title,
-            summary: `${caseItem.jurisdictionName} · ${clipText(caseItem.summary, 90)}`,
-            href: `/cases/${caseItem.id}`,
-          };
-        }
-        case "event": {
-          const event = events.find((entry) => entry.id === record.targetId);
-          if (!event) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: event.title,
-            summary: `${formatDateLabel(event.startsAt)} · ${event.distanceLabel}`,
-            href: `/events/${event.id}`,
-          };
-        }
-        case "election": {
-          const election = elections.find((entry) => entry.id === record.targetId);
-          if (!election) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: election.title,
-            summary: `${election.jurisdictionName} · ${formatDateLabel(election.electionDate)}`,
-            href: `/elections/${election.id}`,
-          };
-        }
-        case "organization": {
-          const organization = organizations.find((entry) => entry.id === record.targetId);
-          if (!organization) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: organization.name,
-            summary: `${organization.jurisdictionName} · ${clipText(organization.description, 90)}`,
-            href: `/organizations/${organization.id}`,
-          };
-        }
-        case "decision": {
-          const decision = decisions.find((entry) => entry.id === record.targetId);
-          if (!decision) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: decision.title,
-            summary: `${decision.voteOutcome} · ${decision.voteCount.display} · ${clipText(decision.whyItMatters, 90)}`,
-            href: `/decisions/${decision.id}`,
-          };
-        }
-        case "project": {
-          const project = projects.find((entry) => entry.id === record.targetId);
-          if (!project) return null;
-          return {
-            id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
-            title: project.name ?? project.project_title ?? project.title,
-            summary: `${project.status} · ${clipText(project.lastPublicAction ?? project.summary ?? project.description, 90)}`,
-            href: `/projects/${project.id}`,
-          };
-        }
-      }
-    })
-    .filter((item): item is HomeFavoriteItem => item !== null)
-    .slice(0, 5);
+  const activeIssues: HomeTakeActionIssue[] = topIssues.slice(0, 4).map((issue) => ({
+    id: `issue-${issue.id}`,
+    title: issue.issueText,
+    summary: `${issue.upvoteCount} people are elevating this across your civic view.`,
+    meta: issue.jurisdictionName,
+    href: `/issues/${slugifyIssueText(issue.issueText)}`,
+  }));
+
+  const savedIssues: HomeTakeActionIssue[] = favoriteRecords
+    .filter((record) => record.targetType === "issue")
+    .map((record) => issueDirectory.find((entry) => entry.id === record.targetId))
+    .filter((issue): issue is NonNullable<typeof issue> => Boolean(issue))
+    .slice(0, 4)
+    .map((issue) => ({
+      id: `saved-issue-${issue.id}`,
+      title: issue.issueText,
+      summary: `${issue.upvoteCount} people are elevating this issue.`,
+      meta: issue.jurisdictionName,
+      href: `/issues/${slugifyIssueText(issue.issueText)}`,
+    }));
 
   const relevantPetition =
     petitions.find((petition) => defaultCommunity.jurisdictionMatches.includes(petition.jurisdictionName)) ?? petitions[0] ?? null;
 
-  const trendingItems: TrendingItem[] = [
-    topIssues[0]
-      ? {
-          id: `issue-${topIssues[0].id}`,
-          label: "Trending issue",
-          title: topIssues[0].issueText,
-          summary: `${topIssues[0].upvoteCount} people are elevating this across your civic view.`,
-          href: `/issues/${slugifyIssueText(topIssues[0].issueText)}`,
-          ctaLabel: "View",
-        }
-      : null,
-    relevantPetition
-      ? {
-          id: `petition-${relevantPetition.id}`,
-          label: "Active petition",
-          title: relevantPetition.title,
-          summary: `${relevantPetition.signatureCount} signatures and building momentum in ${relevantPetition.jurisdictionName}.`,
-          href: `/petitions/${relevantPetition.id}`,
-          ctaLabel: "View",
-        }
-      : null,
-    events[0]
-      ? {
-          id: `event-${events[0].id}`,
-          label: "Upcoming civic meeting",
-          title: events[0].title,
-          summary: `${formatDateLabel(events[0].startsAt)} · ${events[0].distanceLabel} · ${clipText(events[0].description, 90)}`,
-          href: `/events/${events[0].id}`,
-          ctaLabel: "View",
-        }
-      : null,
-    previewPosts[0]
-      ? {
-          id: `post-${previewPosts[0].id}`,
-          label:
-            getPerspectiveType(previewPosts[0]) === "official_update"
-              ? "Official update"
-              : getPerspectiveType(previewPosts[0]) === "candidate_statement"
-                ? "Candidate statement"
-                : getPerspectiveType(previewPosts[0]) === "media_summary"
-                  ? "Media summary"
-                  : "Perspective",
-          title: previewPosts[0].title ?? previewPosts[0].authorName,
-          summary: clipText(previewPosts[0].content, 110),
-          href: `/posts/${previewPosts[0].id}`,
-          ctaLabel: "View",
-        }
-      : null,
-    previewDebates[0]
-      ? {
-          id: `debate-${previewDebates[0].id}`,
-          label: "Trusted debate",
-          title: previewDebates[0].title,
-          summary: clipText(previewDebates[0].description, 110),
-          href: `/debates/${previewDebates[0].id}`,
-          ctaLabel: "View",
-        }
-      : null,
-  ].filter((item): item is TrendingItem => item !== null).slice(0, 5);
+  const meetingItems: HomeTakeActionMeeting[] = [
+    ...meetingSummary.upcoming_meetings.slice(0, 4).map((meeting) => ({
+      id: `upcoming-${meeting.id}`,
+      title: meeting.title,
+      summary: meeting.major_topics?.length
+        ? meeting.major_topics.slice(0, 2).join(" · ")
+        : "Agenda topics will appear as source parsing improves.",
+      meta: `${formatDateLabel(meeting.meeting_date)} · ${meeting.public_body_name}`,
+      href: `/events/${meeting.id}`,
+      status: "upcoming" as const,
+    })),
+    ...events.slice(0, 2).map((event) => ({
+      id: `event-${event.id}`,
+      title: event.title,
+      summary: clipText(event.description, 120) || "Upcoming civic event discovered from public meeting data.",
+      meta: `${formatDateLabel(event.startsAt)} · ${event.distanceLabel}`,
+      href: `/events/${event.id}`,
+      status: "upcoming" as const,
+    })),
+    ...meetingSummary.recent_decisions.slice(0, 4).map((decision) => ({
+      id: `decision-${decision.id}`,
+      title: decision.title,
+      summary: decision.result ? `Result: ${decision.result}` : "Reviewed meeting action from public source material.",
+      meta: `${formatDateLabel(decision.meeting_date)} · ${decision.public_body_name}`,
+      href: decision.source_url ?? "/events",
+      status: "past" as const,
+    })),
+  ];
+
+  const signalItems: HomeTakeActionSignal[] = [
+    ...previewPosts.map((post) => {
+      const perspective = getPerspectiveType(post);
+
+      return {
+        id: `post-${post.id}`,
+        label:
+          perspective === "official_update"
+            ? "Official update"
+            : perspective === "candidate_statement"
+              ? "Candidate statement"
+              : perspective === "media_summary"
+                ? "News / media"
+                : "Community voice",
+        title: post.title ?? post.authorName,
+        summary: `${post.authorName}: ${clipText(post.content, 130)}`,
+        href: `/posts/${post.id}`,
+        opposingPoint:
+          post.stance === "support"
+            ? "Look for opposition or tradeoff comments before treating this as community consensus."
+            : post.stance === "oppose"
+              ? "Look for support or implementation comments before treating this as settled opposition."
+              : null,
+      };
+    }),
+    ...previewDebates.map((debate) => ({
+      id: `debate-${debate.id}`,
+      label: "Structured debate",
+      title: debate.title,
+      summary: clipText(debate.description, 130),
+      href: `/debates/${debate.id}`,
+      opposingPoint: "This item is structured around at least two sides, so open it to compare competing arguments.",
+    })),
+  ].slice(0, 6);
+
+  const pollItems: HomeTakeActionPoll[] = polls.slice(0, 4).map((poll) => ({
+    id: `poll-${poll.id}`,
+    title: poll.question,
+    summary: `${poll.totalVotes} response${poll.totalVotes === 1 ? "" : "s"} so far. ${poll.viewerVote ? `You answered: ${poll.viewerVote}.` : "You have not answered yet."}`,
+    meta: `${poll.jurisdictionName} · ${poll.votingPeriodStatus ?? "open"}`,
+    href: `/polls`,
+  }));
+
+  const petitionItems: HomeTakeActionPetition[] = [
+    ...(relevantPetition ? [relevantPetition] : []),
+    ...petitions.filter((petition) => petition.id !== relevantPetition?.id && defaultCommunity.jurisdictionMatches.includes(petition.jurisdictionName)),
+  ].slice(0, 4).map((petition) => ({
+    id: `petition-${petition.id}`,
+    title: petition.title,
+    summary: clipText(petition.summary, 130),
+    meta: `${petition.signatureCount} signatures · ${petition.jurisdictionName}`,
+    href: `/petitions/${petition.id}`,
+  }));
 
   return (
-    <div className="space-y-8 py-8">
+    <div className="space-y-6 py-8">
       <HomeGuidedActionCard
         communityName={defaultCommunity.name}
         communityHref={`/my-community?communityId=${defaultCommunity.id}`}
         primaryElectionHref={upcomingElectionItems[0]?.href ?? "/elections"}
         primaryIssueHref={topIssues[0] ? `/issues/${slugifyIssueText(topIssues[0].issueText)}` : "/issues"}
       />
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)] xl:items-start">
-      <div className="space-y-6">
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading
-          eyebrow="Active Votes"
-          title="Verified voters create change by voting regularly"
-          description="Start with the next available vote and keep your civic signal current. Home stays simple; Vote is still where the full queue lives."
-        />
-        <div className="mt-6">
-          <HomeVotePreviewPane questions={votePreviewQuestions} canVote={canVoteNow} />
-        </div>
-      </section>
-
-      <CommunityMeetingIntelligenceCard summary={meetingSummary} />
-
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading
-            eyebrow="Upcoming Elections"
-            title="Upcoming Elections"
-            description="The next election or deadline across the jurisdictions that apply to you."
-          />
-          <Link href="/who-represents-me" className="text-sm font-semibold text-cyan-200 hover:text-cyan-100">
-            Who represents me?
-          </Link>
-        </div>
-        <div className="mt-6">
-          <HomeUpcomingElectionsPane elections={upcomingElectionItems} />
-        </div>
-      </section>
-      </div>
-      <div className="space-y-6">
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading
-            eyebrow="Favorites"
-            title="Saved civic items"
-            description="Keep the communities, issues, officials, petitions, and civic items you care about close at hand."
-          />
-          <Link href="/explore?favorites=1" className="text-sm font-semibold text-cyan-200 hover:text-cyan-100">
-            View all
-          </Link>
-        </div>
-
-        {favoriteItems.length ? (
-          <div className="mt-6 space-y-3">
-            {favoriteItems.map((item) => (
-              <article key={item.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{item.label}</p>
-                    <h3 className="mt-2 text-base font-semibold text-slate-50">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-400">{item.summary}</p>
-                  </div>
-                  <Link
-                    href={item.href}
-                    className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-                  >
-                    View
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
-            Save communities, issues, officials, or petitions to see them here.
-          </div>
-        )}
-      </section>
-
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading
-          eyebrow="Summary & Trending"
-          title="What your community is talking about"
-          description="A quick civic read across the local, county, state, and national layers that matter to you right now."
-        />
-
-        {trendingItems.length ? (
-          <div className="mt-6 space-y-3">
-            {trendingItems.map((item) => (
-              <article key={item.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{item.label}</p>
-                    <h3 className="mt-2 text-base font-semibold text-slate-50">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-400">{item.summary}</p>
-                  </div>
-                  <Link
-                    href={item.href}
-                    className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-                  >
-                    {item.ctaLabel}
-                  </Link>
-                </div>
-              </article>
-            ))}
-            <div className="pt-2">
-              <Link
-                href="/explore"
-                className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
-              >
-                Explore More
-              </Link>
-            </div>
-          </div>
-        ) : (
-          <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
-            Nothing major is trending in your area yet.
-          </div>
-        )}
-      </section>
-      </div>
-      </div>
+      <HomeTakeActionCard
+        communityName={defaultCommunity.name}
+        voteQuestions={votePreviewQuestions}
+        canVote={canVoteNow}
+        activeIssues={activeIssues}
+        savedIssues={savedIssues}
+        meetings={meetingItems}
+        signals={signalItems}
+        polls={pollItems}
+        petitions={petitionItems}
+      />
     </div>
   );
 }

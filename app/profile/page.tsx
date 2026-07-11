@@ -10,7 +10,6 @@ import { PublicVisibilityToggle } from "@/components/domain/public-visibility-to
 import { VerificationStatusCard } from "@/components/domain/verification-status-card";
 import { ParticipationReadinessPanel } from "@/components/domain/participation-readiness-panel";
 import { AccountParticipationStatusCard } from "@/components/domain/account-participation-status-card";
-import { PageIntro } from "@/components/ui/page-intro";
 import { hasAdminDashboardPermission } from "@/lib/admin/permissions";
 import { signOutCurrentUser } from "@/lib/auth/actions";
 import { getCitizenActionDashboard } from "@/lib/citizen-actions/dashboard";
@@ -66,6 +65,52 @@ function getPublicProfileHref(role: string, userId: string) {
   return `/citizens/${userId}`;
 }
 
+function ProfileMetric({
+  label,
+  value,
+  helper,
+}: {
+  label: string;
+  value: string;
+  helper: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-white/80 p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
+      <p className="mt-2 text-lg font-semibold text-ink">{value}</p>
+      <p className="mt-1 text-xs leading-5 text-slate-500">{helper}</p>
+    </div>
+  );
+}
+
+function ProfileActionLink({
+  href,
+  label,
+  detail,
+  primary = false,
+}: {
+  href: string;
+  label: string;
+  detail: string;
+  primary?: boolean;
+}) {
+  return (
+    <Link
+      href={href}
+      className={
+        primary
+          ? "group rounded-3xl bg-slate-950 p-4 text-white shadow-card transition hover:-translate-y-0.5 hover:bg-slate-800"
+          : "group rounded-3xl border border-slate-200 bg-white/80 p-4 text-slate-700 transition hover:-translate-y-0.5 hover:border-civic-400 hover:text-civic-800"
+      }
+    >
+      <span className="text-sm font-semibold">{label}</span>
+      <span className={primary ? "mt-2 block text-xs leading-5 text-slate-200" : "mt-2 block text-xs leading-5 text-slate-500"}>
+        {detail}
+      </span>
+    </Link>
+  );
+}
+
 export default async function ProfilePage({ searchParams }: ProfilePageProps) {
   const [currentUser, sessionUser] = await Promise.all([getCurrentUser(), getCurrentSessionUser()]);
   const params = searchParams ? await searchParams : undefined;
@@ -92,84 +137,127 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
   const accountParticipationStatus = await getAccountParticipationStatus(currentUser, { signedIn: Boolean(sessionUser) });
   const canAccessAdminDashboard = hasAdminDashboardPermission(sessionUser, "dataops.view");
   const actionDashboard = await getCitizenActionDashboard(currentUser);
+  const publicProfileHref = getPublicProfileHref(currentUser.role, currentUser.id);
+  const verificationLabel = getVerificationLabel(currentUser.verificationState);
+  const roleLabel = getRoleLabel(currentUser.role);
+  const isPublicProfile = !currentUser.isAnonymousPublic;
+  const nextProgressionStep = progression.steps.find((step) => step.state === "upcoming")?.label ?? "Complete";
+  const primaryAction =
+    currentUser.verificationState === "voterVerified"
+      ? {
+          href: "/voting",
+          label: "Review voting cards",
+          detail: "Answer source-backed civic questions and keep your signal current.",
+        }
+      : {
+          href: "/account/verification#voter-review",
+          label: "Complete Nevada voter verification",
+          detail: "Unlock verified voting, petitions, and official messaging.",
+        };
 
   return (
     <div className="space-y-6 py-8">
       <section className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-card backdrop-blur">
-        <div className="relative h-56 overflow-hidden sm:h-64">
+        <div className="relative min-h-[18rem] overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.82)), url(${safeBannerImageUrl})`,
+              backgroundImage: `linear-gradient(110deg, rgba(2, 6, 23, 0.9), rgba(15, 23, 42, 0.72) 48%, rgba(20, 184, 166, 0.2)), url(${safeBannerImageUrl})`,
             }}
           />
-          <div className="absolute inset-x-0 bottom-0 px-5 pb-20 sm:px-6 sm:pb-24">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-                {getVerificationLabel(currentUser.verificationState)}
-              </span>
-              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-                {getRoleLabel(currentUser.role)}
-              </span>
+          <div className="relative grid gap-6 px-5 py-6 sm:px-7 sm:py-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
+            <div className="flex min-w-0 flex-col justify-between gap-10">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20 backdrop-blur">
+                  {verificationLabel}
+                </span>
+                <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20 backdrop-blur">
+                  {roleLabel}
+                </span>
+                <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20 backdrop-blur">
+                  {isPublicProfile ? "Public profile on" : "Private profile"}
+                </span>
+              </div>
+
+              <div className="max-w-3xl">
+                <div className="flex flex-wrap items-end gap-4">
+                  <ProfileImagePlaceholder
+                    name={safeName}
+                    size="lg"
+                    imageUrl={safeProfileImageUrl || undefined}
+                  />
+                  <div className="min-w-0 pb-1">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-civic-100">Profile</p>
+                    <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-5xl">{safeName}</h1>
+                    <p className="mt-2 text-sm text-slate-200">
+                      @{safeUsername} · {safeJurisdiction}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-100">
+                  {safeBio}
+                </p>
+              </div>
             </div>
-            <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{safeName}</h1>
-            <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-slate-100">
-              <span>
-                @{safeUsername} · {safeJurisdiction}
-              </span>
+
+            <div className="rounded-[1.5rem] border border-white/15 bg-slate-950/45 p-4 text-white shadow-card backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-100">Next best step</p>
+              <h2 className="mt-2 text-xl font-semibold">{primaryAction.label}</h2>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{primaryAction.detail}</p>
+              <div className="mt-5 grid gap-2">
+                <Link href={primaryAction.href} className="rounded-full bg-civic-400 px-4 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-civic-300">
+                  Continue
+                </Link>
+                <Link href="/profile/activity" className="rounded-full border border-white/15 bg-white/10 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/15">
+                  View activity
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="px-5 pb-6 sm:px-6">
-          <div className="-mt-14 sm:-mt-16">
-            <ProfileImagePlaceholder
-              name={safeName}
-              size="lg"
-              imageUrl={safeProfileImageUrl || undefined}
-            />
+        <div className="grid gap-4 p-5 sm:p-6 lg:grid-cols-[1fr_1fr_1fr_1.2fr]">
+          <ProfileMetric
+            label="Verification"
+            value={verificationLabel}
+            helper={currentUser.verificationState === "voterVerified" ? "Verified actions are unlocked." : "Nevada verification is still pending."}
+          />
+          <ProfileMetric
+            label="Visibility"
+            value={isPublicProfile ? "Public" : "Private"}
+            helper={isPublicProfile ? "People can find your citizen profile." : "You are hidden from public people browsing."}
+          />
+          <ProfileMetric
+            label="Watchlist"
+            value={`${actionDashboard.totals.followedItems}`}
+            helper={`${actionDashboard.totals.sourceBackedItems} source-backed items followed.`}
+          />
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Quick actions</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Link href={publicProfileHref} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-civic-400 hover:text-civic-800">
+                Public view
+              </Link>
+              <Link href="/account/verification" className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-civic-400 hover:text-civic-800">
+                Verification
+              </Link>
+              <Link href="/feedback" className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-civic-400 hover:text-civic-800">
+                Feedback
+              </Link>
+              {canAccessAdminDashboard ? (
+                <Link href="/admin" className="rounded-full bg-slate-950 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-800">
+                  Admin Dashboard
+                </Link>
+              ) : null}
+              <form action={signOutCurrentUser}>
+                <button type="submit" className="rounded-full border border-rose-200 bg-white px-3 py-2 text-xs font-semibold text-rose-700 transition hover:bg-rose-50">
+                  Sign out
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
-
-      <PageIntro
-        eyebrow="Profile"
-        title="Your profile"
-        description="Manage your public identity, verification status, civic activity, and profile details in one place."
-        meta={
-          <>
-            <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
-              {getVerificationLabel(currentUser.verificationState)}
-            </span>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-              {getRoleLabel(currentUser.role)}
-            </span>
-          </>
-        }
-        actions={
-          <div className="flex flex-wrap gap-2">
-            <Link href="/profile/activity" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
-              View activity
-            </Link>
-            <Link href="/private-beta" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
-              Beta Hub
-            </Link>
-            <Link href="/feedback" className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
-              Send feedback
-            </Link>
-            {canAccessAdminDashboard ? (
-              <Link href="/admin" className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
-                Admin Dashboard
-              </Link>
-            ) : null}
-            <form action={signOutCurrentUser}>
-              <button type="submit" className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-rose-300 hover:text-rose-700">
-                Sign out
-              </button>
-            </form>
-          </div>
-        }
-      />
 
       {params?.visibility === "updated" ? (
         <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
@@ -191,6 +279,30 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
           Welcome to onboarding. Start with your profile details, then complete Nevada voter verification when you need voter-only civic actions. Non-Nevada testers can still browse and review the flow, but local civic data is Nevada-focused right now.
         </section>
       ) : null}
+
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <ProfileActionLink
+          href={primaryAction.href}
+          label={primaryAction.label}
+          detail={primaryAction.detail}
+          primary
+        />
+        <ProfileActionLink
+          href="/profile/updates"
+          label="Check your watchlist"
+          detail="See followed communities, issues, meetings, and decisions that need attention."
+        />
+        <ProfileActionLink
+          href={publicProfileHref}
+          label="Review public profile"
+          detail={isPublicProfile ? "Preview what other users can see." : "See the public page before making it visible."}
+        />
+        <ProfileActionLink
+          href="/profile/reputation"
+          label="Understand your standing"
+          detail={`Current label: ${reputation.label}. Next milestone: ${nextProgressionStep}.`}
+        />
+      </section>
 
       <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
@@ -321,7 +433,7 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
           <div className="rounded-3xl bg-slate-50 p-5">
             <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Next milestone</p>
             <p className="mt-2 text-lg font-semibold text-ink">
-              {progression.steps.find((step) => step.state === "upcoming")?.label ?? "Complete"}
+              {nextProgressionStep}
             </p>
           </div>
         </div>

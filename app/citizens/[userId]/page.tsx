@@ -2,13 +2,12 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-import { seedUsers } from "@/lib/auth/mock-users";
 import { isGuestUser } from "@/lib/auth/session";
+import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { getSafeUserProgressionSummary } from "@/lib/profile/progression";
 import { getSafeReputationSummary } from "@/lib/profile/reputation";
-import { getVisibilityOverrides } from "@/lib/profile/visibility";
 import { getSafeCivicActivitySummary } from "@/lib/server/profile-activity";
 import { getLightweightFollowState } from "@/lib/social/follows";
 import { FollowButton } from "@/components/domain/follow-button";
@@ -16,6 +15,7 @@ import { ExternalLinksRow } from "@/components/domain/external-links-row";
 import { ProfileImagePlaceholder } from "@/components/domain/profile-image-placeholder";
 import { RoleBadge } from "@/components/domain/role-badge";
 import { PageIntro } from "@/components/ui/page-intro";
+import type { AuthUser } from "@/types/domain";
 
 type CitizenProfilePageProps = {
   params: Promise<{
@@ -23,8 +23,9 @@ type CitizenProfilePageProps = {
   }>;
 };
 
-function isVisiblePublicCitizen(userId: string, isAnonymousPublic: boolean, overrides: Record<string, boolean>) {
-  return typeof overrides[userId] === "boolean" ? overrides[userId] : !isAnonymousPublic;
+function isOperatorOrSmokeEmail(email: string) {
+  const normalized = email.trim().toLowerCase();
+  return normalized.endsWith("@directdemocracy.local") || normalized.endsWith("@example.com") || normalized.includes("smoke");
 }
 
 function IssueChip({ issue }: { issue: string }) {
@@ -112,17 +113,41 @@ function PublicCitizenActivityFallback() {
 export default async function CitizenProfilePage({ params }: CitizenProfilePageProps) {
   const { userId } = await params;
   const viewer = await getCurrentUser();
-  const user = seedUsers.find((entry) => entry.id === userId);
+  const durableUser = await prisma.user.findUnique({
+    where: { id: userId },
+    include: { jurisdiction: { select: { name: true } } },
+  });
 
-  if (!user || (user.role !== "citizen" && user.role !== "trustedCitizen")) {
+  if (!durableUser || (durableUser.role !== "citizen" && durableUser.role !== "trustedCitizen") || durableUser.isAnonymousPublic) {
     notFound();
   }
 
-  const overrides = await getVisibilityOverrides();
+  const account = await prisma.identityAccount.findFirst({
+    where: {
+      userId: durableUser.id,
+      status: "active",
+      disabledAt: null,
+    },
+    select: { email: true },
+  });
 
-  if (!isVisiblePublicCitizen(user.id, user.isAnonymousPublic, overrides)) {
+  if (!account || isOperatorOrSmokeEmail(account.email)) {
     notFound();
   }
+
+  const user = {
+    id: durableUser.id,
+    email: durableUser.email,
+    name: durableUser.name,
+    username: durableUser.username,
+    bio: durableUser.bio ?? "Direct Democracy public citizen profile.",
+    role: durableUser.role,
+    verificationState: durableUser.isVerifiedVoter ? "voterVerified" : "unverified",
+    jurisdictionName: durableUser.jurisdiction?.name ?? "Nevada",
+    followerCount: durableUser.followerCount,
+    isVerifiedVoter: durableUser.isVerifiedVoter,
+    isAnonymousPublic: durableUser.isAnonymousPublic,
+  } satisfies AuthUser;
 
   const [content, followState] = await Promise.all([
     getUserProfileContent(user.id),

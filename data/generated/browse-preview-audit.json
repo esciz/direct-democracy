@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-11T19:31:55.668Z",
+  "generatedAt": "2026-07-11T22:03:01.006Z",
   "communityId": "carson-city-county",
   "totals": {
     "categories": 11,
-    "populatedCategories": 9,
-    "intentionallyEmptyCategories": 2,
+    "populatedCategories": 8,
+    "intentionallyEmptyCategories": 3,
     "sourceBackedCategories": 8,
     "demoBackedCategories": 0,
     "categoriesWithGeneratedDataButEmptyPreview": 0,
@@ -41,14 +41,14 @@
     },
     "people": {
       "category": "people",
-      "itemCount": 6,
-      "sourceCount": 6,
-      "availableGeneratedCount": 6,
+      "itemCount": 0,
+      "sourceCount": 0,
+      "availableGeneratedCount": 0,
       "isSourceBacked": false,
       "usesDemoData": false,
       "lastGeneratedAt": null,
       "statusLabel": "Limited data",
-      "emptyReason": null,
+      "emptyReason": "No public citizen or trusted-citizen profiles are available for this community yet.",
       "fullHref": "/people",
       "hasGeneratedDataButEmptyPreview": false,
       "forbiddenDemoMatches": []

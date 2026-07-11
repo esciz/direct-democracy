@@ -10,6 +10,14 @@ const LOCKOUT_MS = 15 * 60 * 1000;
 const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 type DurableAccount = NonNullable<Awaited<ReturnType<typeof getDurableIdentityAccountById>>>;
+type DurableUserRecord = {
+  id: string;
+  bio: string | null;
+  role: string;
+  isVerifiedVoter: boolean;
+  isAnonymousPublic: boolean;
+  followerCount: number;
+} | null;
 
 function slugifyUsername(email: string) {
   return email.split("@")[0]?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "citizen";
@@ -35,24 +43,26 @@ function credentialToPasswordHash(credential: {
   };
 }
 
-function accountToAuthUser(account: DurableAccount): AuthUser {
+function accountToAuthUser(account: DurableAccount, userRecord: DurableUserRecord = null): AuthUser {
   const isVerifiedVoter = account.verificationClaims.some(
     (claim) =>
       (claim.status === "matched" || claim.status === "verified") &&
       (!claim.expiresAt || claim.expiresAt.getTime() > Date.now()),
-  );
+  ) || Boolean(userRecord?.isVerifiedVoter);
+  const role = (userRecord?.role ?? account.role) as UserRole;
+
   return {
     id: account.id,
     email: account.email,
     name: account.name,
     username: account.username,
-    bio: account.role === "admin" || account.role === "platform_admin" ? "Public-platform administrator." : "Direct Democracy account.",
-    role: account.role as UserRole,
+    bio: userRecord?.bio ?? (account.role === "admin" || account.role === "platform_admin" ? "Public-platform administrator." : "Direct Democracy account."),
+    role,
     verificationState: isVerifiedVoter ? "voterVerified" : "unverified",
     jurisdictionName: "Nevada",
-    followerCount: 0,
+    followerCount: userRecord?.followerCount ?? 0,
     isVerifiedVoter,
-    isAnonymousPublic: account.role !== "admin" && account.role !== "platform_admin",
+    isAnonymousPublic: userRecord?.isAnonymousPublic ?? (account.role !== "admin" && account.role !== "platform_admin"),
   };
 }
 
@@ -74,7 +84,20 @@ export async function getDurableIdentityAccountById(accountId: string | null | u
 export async function getDurableAuthUserById(accountId: string | null | undefined) {
   const account = await getDurableIdentityAccountById(accountId);
   if (!account || account.status !== "active" || account.disabledAt) return null;
-  return accountToAuthUser(account);
+  const userRecord = account.userId
+    ? await prisma.user.findUnique({
+        where: { id: account.userId },
+        select: {
+          id: true,
+          bio: true,
+          role: true,
+          isVerifiedVoter: true,
+          isAnonymousPublic: true,
+          followerCount: true,
+        },
+      })
+    : null;
+  return accountToAuthUser(account, userRecord);
 }
 
 export async function createDurableLocalAccount(input: {

@@ -5,20 +5,30 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { PreserveScrollQueryForm } from "@/components/ui/preserve-scroll-query-form";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getBrowsePreviewCategory, type BrowsePreviewBadgeTone, type BrowsePreviewCategory, type BrowsePreviewItem } from "@/lib/browse/preview-adapter";
-import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/communities";
+import { getCommunityById, getDefaultCommunityForUser, getGeographicCommunities } from "@/lib/community/communities";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getFavoritesForUser } from "@/lib/server/favorites";
 
 type ExploreCategory = BrowsePreviewCategory;
 
+type ExploreSearchParams = {
+  communityId?: string;
+  q?: string;
+  category?: string;
+  favorites?: string;
+  filterParty?: string;
+  filterOffice?: string;
+  filterLevel?: string;
+  filterStatus?: string;
+  filterRole?: string;
+  filterCredibility?: string;
+  filterScope?: string;
+  filterSource?: string;
+};
+
 type ExplorePageProps = {
-  searchParams?: Promise<{
-    communityId?: string;
-    q?: string;
-    category?: string;
-    favorites?: string;
-  }>;
+  searchParams?: Promise<ExploreSearchParams>;
 };
 
 const EXPLORE_CATEGORIES: Array<{ key: ExploreCategory; label: string }> = [
@@ -34,6 +44,68 @@ const EXPLORE_CATEGORIES: Array<{ key: ExploreCategory; label: string }> = [
   { key: "ads", label: "Ads" },
   { key: "organizations", label: "Organizations" },
 ];
+
+type ExploreFilterKey =
+  | "party"
+  | "office"
+  | "level"
+  | "status"
+  | "role"
+  | "credibility"
+  | "scope"
+  | "source";
+
+type ExploreFilterControl = {
+  key: ExploreFilterKey;
+  name: keyof ExploreSearchParams;
+  label: string;
+  options: string[];
+};
+
+const FILTER_PARAM_BY_KEY: Record<ExploreFilterKey, keyof ExploreSearchParams> = {
+  party: "filterParty",
+  office: "filterOffice",
+  level: "filterLevel",
+  status: "filterStatus",
+  role: "filterRole",
+  credibility: "filterCredibility",
+  scope: "filterScope",
+  source: "filterSource",
+};
+
+const FILTERS_BY_CATEGORY: Partial<Record<ExploreCategory, ExploreFilterControl[]>> = {
+  communities: [
+    { key: "scope", name: "filterScope", label: "Community type", options: ["County", "City", "Community", "State", "Federal"] },
+  ],
+  issues: [
+    { key: "scope", name: "filterScope", label: "Issue scope", options: ["local", "state", "national"] },
+  ],
+  people: [
+    { key: "role", name: "filterRole", label: "Profile type", options: ["Registered citizen", "Trusted citizen"] },
+    { key: "credibility", name: "filterCredibility", label: "Credibility", options: ["Verified", "High", "Still forming"] },
+  ],
+  candidates: [
+    { key: "party", name: "filterParty", label: "Affiliation", options: ["Democratic Party", "Republican Party", "Nonpartisan", "Independent", "Party pending"] },
+    { key: "level", name: "filterLevel", label: "Office level", options: ["Federal", "State", "County", "City", "School", "Court", "Other"] },
+  ],
+  officials: [
+    { key: "level", name: "filterLevel", label: "Government level", options: ["Federal", "State", "County", "City", "School", "Court", "Other"] },
+  ],
+  cases: [
+    { key: "status", name: "filterStatus", label: "Review status", options: ["approved", "needs review", "open", "closed"] },
+    { key: "source", name: "filterSource", label: "Source type", options: ["Reviewed public case", "Agenda-derived case"] },
+  ],
+  events: [
+    { key: "status", name: "filterStatus", label: "Timing", options: ["upcoming", "completed", "cancelled", "unknown"] },
+    { key: "level", name: "filterLevel", label: "Body level", options: ["State", "County", "City", "School", "Court", "Other"] },
+  ],
+  elections: [
+    { key: "scope", name: "filterScope", label: "Election scope", options: ["direct", "inferred", "county", "statewide overlay"] },
+  ],
+  organizations: [
+    { key: "level", name: "filterLevel", label: "Organization level", options: ["Federal", "State", "County", "City", "School", "Court", "Other"] },
+  ],
+};
 
 function normalizeCategory(value: string | undefined): ExploreCategory {
   return EXPLORE_CATEGORIES.some((entry) => entry.key === value) ? (value as ExploreCategory) : "communities";
@@ -151,6 +223,22 @@ function renderPreviewBadges(item: BrowsePreviewItem) {
   );
 }
 
+function getActiveFilterValues(params: ExploreSearchParams | undefined, controls: ExploreFilterControl[]) {
+  return Object.fromEntries(
+    controls.flatMap((control) => {
+      const value = params?.[control.name]?.trim();
+      return value ? [[control.key, value]] : [];
+    }),
+  ) as Record<string, string>;
+}
+
+function getFilterSummary(controls: ExploreFilterControl[], filters: Record<string, string>) {
+  return controls
+    .map((control) => filters[control.key])
+    .filter(Boolean)
+    .join(" · ");
+}
+
 function getEventPreviewTimingStatus(items: BrowsePreviewItem[]) {
   if (!items.length) return null;
 
@@ -190,7 +278,30 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
   const currentCommunity = getCommunityById(selectedCommunityId) ?? defaultCommunity;
   const query = params?.q?.trim() ?? "";
   const activeCategory = normalizeCategory(params?.category);
+  const filterControls = FILTERS_BY_CATEGORY[activeCategory] ?? [];
+  const activeFilters = getActiveFilterValues(params, filterControls);
+  const activeFilterSummary = getFilterSummary(filterControls, activeFilters);
   const favoritesOnly = params?.favorites === "1";
+  const locationChoices = getGeographicCommunities()
+    .filter((community) =>
+      [
+        "nevada",
+        "carson-city-county",
+        "carson-city",
+        "washoe-county",
+        "reno",
+        "sparks",
+        "clark-county",
+        "las-vegas",
+        "henderson",
+        "north-las-vegas",
+      ].includes(community.id),
+    )
+    .sort((a, b) => {
+      if (a.id === selectedCommunityId) return -1;
+      if (b.id === selectedCommunityId) return 1;
+      return a.name.localeCompare(b.name);
+    });
   const favoriteRecords = await getFavoritesForUser(user.id);
   const favoriteIdsByType = favoriteRecords.reduce<Record<FavoriteTargetType, string[]>>(
     (groups, record) => {
@@ -234,6 +345,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
     limit: favoritesOnly ? 24 : query ? 12 : 8,
     favoriteIds: favoritesOnly ? (activeFavoriteTargetType ? favoriteIdsByType[activeFavoriteTargetType] : []) : undefined,
     viewerUser: user,
+    filters: activeFilters,
   });
   const activeItems = activePreview.items;
   const eventPreviewTimingStatus = activeCategory === "events" ? getEventPreviewTimingStatus(activeItems) : null;
@@ -248,6 +360,8 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
     ? `A reusable favorites view for ${activeCategoryLabel.toLowerCase()}.`
     : query
       ? `Search is currently scoped to ${activeCategoryLabel.toLowerCase()} only.`
+      : activeFilterSummary
+        ? `Filtered to ${activeFilterSummary} in and around ${currentCommunity.name}.`
       : `Browse ${activeCategoryLabel.toLowerCase()} in and around ${currentCommunity.name}.`;
 
   return (
@@ -307,20 +421,66 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           })}
         </div>
 
-        <PreserveScrollQueryForm action="/explore" className="mt-5 flex flex-wrap gap-3">
-          <input type="hidden" name="communityId" value={selectedCommunityId} />
+        <PreserveScrollQueryForm action="/explore" className="mt-5 grid gap-3">
           <input type="hidden" name="category" value={activeCategory} />
           {favoritesOnly ? <input type="hidden" name="favorites" value="1" /> : null}
-          <input
-            type="search"
-            name="q"
-            defaultValue={query}
-            placeholder={getCategoryPlaceholder(activeCategory)}
-            className="dd-input min-w-[18rem] flex-1 rounded-full px-4 py-3 text-sm outline-none focus:border-cyan-300/30"
-          />
-          <button type="submit" className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
-            Search
-          </button>
+          <div className="flex flex-wrap gap-3">
+            <label className="min-w-[13rem] flex-1">
+              <span className="sr-only">Location</span>
+              <select
+                name="communityId"
+                defaultValue={selectedCommunityId}
+                className="dd-input w-full rounded-full px-4 py-3 text-sm font-semibold outline-none focus:border-cyan-300/30"
+              >
+                {locationChoices.map((community) => (
+                  <option key={community.id} value={community.id}>
+                    {community.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <input
+              type="search"
+              name="q"
+              defaultValue={query}
+              placeholder={getCategoryPlaceholder(activeCategory)}
+              className="dd-input min-w-[18rem] flex-[2] rounded-full px-4 py-3 text-sm outline-none focus:border-cyan-300/30"
+            />
+            <button type="submit" className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
+              Search
+            </button>
+          </div>
+          {filterControls.length ? (
+            <div className="flex flex-wrap items-center gap-3 rounded-[1.25rem] border border-white/10 bg-white/[0.035] p-3">
+              <span className="px-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Refine {activeCategoryLabel}</span>
+              {filterControls.map((control) => (
+                <label key={control.key} className="min-w-[11rem] flex-1">
+                  <span className="sr-only">{control.label}</span>
+                  <select
+                    name={control.name}
+                    defaultValue={params?.[control.name] ?? ""}
+                    className="dd-input w-full rounded-full px-4 py-3 text-sm font-semibold outline-none focus:border-cyan-300/30"
+                  >
+                    <option value="">{control.label}: All</option>
+                    {control.options.map((option) => (
+                      <option key={`${control.key}-${option}`} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ))}
+              {activeFilterSummary ? (
+                <Link
+                  href={buildExploreHref({ communityId: selectedCommunityId, category: activeCategory, q: query, favorites: favoritesOnly })}
+                  scroll={false}
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/20 hover:text-cyan-100"
+                >
+                  Clear filters
+                </Link>
+              ) : null}
+            </div>
+          ) : null}
         </PreserveScrollQueryForm>
 
           <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">

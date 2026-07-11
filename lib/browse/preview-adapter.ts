@@ -1,12 +1,12 @@
 import { existsSync, readFileSync, statSync } from "fs";
 import path from "path";
 
-import { seedUsers } from "@/lib/auth/mock-users";
 import { getCommunityById, getCommunityPageHref, seededCommunities } from "@/lib/community/communities";
 import { communityMatchesMembership } from "@/lib/community/membership";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
+import { getDurablePublicPeopleDirectory } from "@/lib/profile/public-people";
 import { prisma } from "@/lib/prisma";
-import type { AuthUser, UserRole } from "@/types/domain";
+import type { AuthUser, PublicCitizenDirectorySummary } from "@/types/domain";
 
 export type BrowsePreviewCategory =
   | "communities"
@@ -59,6 +59,7 @@ export type BrowsePreviewItem = {
     isFollowing: boolean;
     canFollow: boolean;
   };
+  facets?: Record<string, string[]>;
   sourceUrl?: string | null;
 };
 
@@ -82,6 +83,7 @@ type BrowsePreviewOptions = {
   limit?: number;
   favoriteIds?: string[];
   viewerUser?: AuthUser;
+  filters?: Record<string, string | undefined>;
 };
 
 const DATA_ROOT = path.join(process.cwd(), "data", "generated");
@@ -204,9 +206,49 @@ function orderLocalThenStatewide<T>(communityId: string, items: T[], getText: (i
   });
 }
 
-function filterItems(items: BrowsePreviewItem[], query: string, favoriteIds?: string[]) {
+function normalizeFacet(value: string) {
+  return value.trim().toLowerCase();
+}
+
+function facetValues(...values: Array<unknown>) {
+  return values.flatMap((value) => {
+    if (Array.isArray(value)) {
+      return value.map(asText).filter(Boolean);
+    }
+
+    return asText(value) ? [asText(value)] : [];
+  });
+}
+
+function matchesFilters(item: BrowsePreviewItem, filters?: Record<string, string | undefined>) {
+  const activeFilters = Object.entries(filters ?? {}).filter(([, value]) => value?.trim());
+
+  if (!activeFilters.length) {
+    return true;
+  }
+
+  return activeFilters.every(([key, value]) => {
+    const normalizedValue = normalizeFacet(value ?? "");
+    const values = item.facets?.[key] ?? [];
+    return values.some((entry) => normalizeFacet(entry) === normalizedValue);
+  });
+}
+
+function inferGovernmentLevel(...values: Array<unknown>) {
+  const text = compactText(...values).toLowerCase();
+
+  if (text.includes("school") || text.includes("trustee")) return "School";
+  if (text.includes("congress") || text.includes("u.s.") || text.includes("federal")) return "Federal";
+  if (text.includes("senate") || text.includes("assembly") || text.includes("governor") || text.includes("state")) return "State";
+  if (text.includes("county") || text.includes("commissioner") || text.includes("sheriff")) return "County";
+  if (text.includes("city") || text.includes("mayor") || text.includes("council") || text.includes("municipal")) return "City";
+  if (text.includes("court") || text.includes("judge") || text.includes("justice")) return "Court";
+  return "Other";
+}
+
+function filterItems(items: BrowsePreviewItem[], query: string, favoriteIds?: string[], filters?: Record<string, string | undefined>) {
   const favoriteFiltered = favoriteIds ? items.filter((item) => favoriteIds.includes(item.id)) : items;
-  return favoriteFiltered.filter((item) => matchesQuery(query, item.title, item.subtitle, item.description));
+  return favoriteFiltered.filter((item) => matchesQuery(query, item.title, item.subtitle, item.description) && matchesFilters(item, filters));
 }
 
 function withEmptyReason(data: Omit<BrowsePreviewData, "emptyReason" | "statusLabel">, emptyReason: string): BrowsePreviewData {
@@ -255,7 +297,7 @@ function eventStatusFromStartAt(record: Record<string, unknown>) {
   return startTime >= Date.now() ? "upcoming" : "completed";
 }
 
-function buildCommunitiesPreview({ communityId, query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
+function buildCommunitiesPreview({ communityId, query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): BrowsePreviewData {
   const report = readJsonFile<{ rows?: Array<Record<string, unknown>>; generatedAt?: string }>("nevada-community-coverage-report.json", {});
   const rows = recordsFrom<Record<string, unknown>>(report.data.rows ?? []);
   const rowById = new Map(rows.map((row) => [asText(row.id), row]));
@@ -290,11 +332,16 @@ function buildCommunitiesPreview({ communityId, query, limit = 8, favoriteIds }:
           { label: community.scope, tone: "civic" as const },
           { label: `${asNumber(counts.meetings).toLocaleString()} meetings`, tone: "slate" as const },
         ],
+        facets: {
+          scope: facetValues(community.scope),
+          location: facetValues(community.name, community.primaryJurisdictionName, community.locationLabel),
+        },
         favorite: { targetType: "community" as const, targetId: community.id },
       };
     }),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
@@ -312,7 +359,7 @@ function buildCommunitiesPreview({ communityId, query, limit = 8, favoriteIds }:
   );
 }
 
-function buildIssuesPreview({ communityId, query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
+function buildIssuesPreview({ communityId, query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): BrowsePreviewData {
   const runtime = readJsonFile<{ records?: Array<Record<string, unknown>>; generatedAt?: string }>("issues-runtime.json", {});
   const records = recordsFrom<Record<string, unknown>>(runtime.data);
   const sourceBacked = records.filter((record) => record.sourceBacked === true);
@@ -338,10 +385,15 @@ function buildIssuesPreview({ communityId, query, limit = 8, favoriteIds }: Brow
         { label: "Source-backed", tone: "emerald" as const },
         { label: `${asNumber((record.relationshipCounts as Record<string, unknown> | undefined)?.votingCards).toLocaleString()} voting cards`, tone: "civic" as const },
       ],
+      facets: {
+        scope: facetValues(record.scope),
+        location: facetValues(record.jurisdictionName, Array.isArray(record.communities) ? record.communities : []),
+      },
       favorite: { targetType: "issue" as const, targetId: asText(record.id) },
     })),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
@@ -376,97 +428,16 @@ function buildPeopleReturnPath(communityId: string, query?: string, favoriteIds?
   return `/explore?${params.toString()}`;
 }
 
-type LightweightPublicPerson = {
-  id: string;
-  name: string;
-  username: string;
-  role: Extract<UserRole, "citizen" | "trustedCitizen">;
-  bio: string | null;
-  profileImageUrl: string | null;
-  jurisdictionName: string;
-  followerCount: number;
-  topIssuesPreview: string[];
-  civicCredibilityLabel: string;
-  viewerIsFollowing: boolean;
-  viewerCanFollow: boolean;
-};
-
-function personRoleLabel(role: LightweightPublicPerson["role"]) {
+function personRoleLabel(role: PublicCitizenDirectorySummary["role"]) {
   return role === "trustedCitizen" ? "Trusted citizen" : "Registered citizen";
 }
 
-function buildPersonDescription(person: LightweightPublicPerson) {
+function buildPersonDescription(person: PublicCitizenDirectorySummary) {
   const issueText = person.topIssuesPreview.length
     ? ` Active around ${person.topIssuesPreview.slice(0, 2).join(" and ")}.`
     : " Follow to help build a visible civic signal around their public work.";
 
   return `${person.bio ?? "Public Direct Democracy profile."} ${issueText}`;
-}
-
-function inferTopIssuesFromText(person: Pick<AuthUser, "bio" | "jurisdictionName">) {
-  const text = `${person.bio ?? ""} ${person.jurisdictionName}`.toLowerCase();
-  const issues = [
-    ["school", "Education"],
-    ["teacher", "Education"],
-    ["housing", "Housing"],
-    ["growth", "Growth"],
-    ["water", "Water"],
-    ["transit", "Transportation"],
-    ["wildfire", "Public safety"],
-    ["campaign finance", "Campaign finance"],
-    ["budget", "Budgets"],
-    ["meeting", "Public meetings"],
-    ["healthcare", "Healthcare"],
-    ["energy", "Energy"],
-  ] as const;
-
-  return issues
-    .filter(([needle]) => text.includes(needle))
-    .map(([, label]) => label)
-    .filter((label, index, values) => values.indexOf(label) === index)
-    .slice(0, 3);
-}
-
-function civicCredibilityLabel(person: Pick<AuthUser, "role" | "isVerifiedVoter">) {
-  if (person.role === "trustedCitizen") return "High";
-  if (person.isVerifiedVoter) return "Verified";
-  return "Still forming";
-}
-
-async function getLightweightPublicPeople(viewer: AuthUser | null) {
-  const viewerId = viewer?.id ?? null;
-  const publicPeople = seedUsers
-    .filter((user): user is AuthUser & { role: Extract<UserRole, "citizen" | "trustedCitizen"> } => user.role === "citizen" || user.role === "trustedCitizen")
-    .filter((user) => !user.isAnonymousPublic);
-
-  const followStateModule = viewerId ? await import("@/lib/social/follows").catch(() => null) : null;
-
-  return Promise.all(
-    publicPeople.map(async (person) => {
-      const followState = followStateModule && viewerId
-        ? await followStateModule.getLightweightFollowState(viewerId, person.id, person.followerCount)
-        : {
-            followerCount: person.followerCount,
-            viewerIsFollowing: false,
-            viewerCanFollow: false,
-          };
-
-      return {
-        id: person.id,
-        name: person.name,
-        username: person.username,
-        role: person.role,
-        bio: person.bio,
-        profileImageUrl: null,
-        jurisdictionName: person.jurisdictionName,
-        followerCount: followState.followerCount,
-        topIssuesPreview: inferTopIssuesFromText(person),
-        civicCredibilityLabel: civicCredibilityLabel(person),
-        viewerIsFollowing: followState.viewerIsFollowing,
-        viewerCanFollow: followState.viewerCanFollow,
-      } satisfies LightweightPublicPerson;
-    }),
-  );
 }
 
 async function buildPeoplePreview({
@@ -475,9 +446,9 @@ async function buildPeoplePreview({
   limit = 8,
   favoriteIds,
   viewerUser,
+  filters,
 }: BrowsePreviewOptions): Promise<BrowsePreviewData> {
-  const viewer = viewerUser ?? null;
-  const people = await getLightweightPublicPeople(viewer);
+  const people = await getDurablePublicPeopleDirectory(viewerUser ?? { id: "browse-audit-viewer" });
   const localPeople = people.filter((person) => communityMatchesMembership(communityId, person));
   const localIds = new Set(localPeople.map((person) => person.id));
   const candidates = query?.trim()
@@ -502,9 +473,15 @@ async function buildPeoplePreview({
       badges: [
         { label: personRoleLabel(person.role), tone: person.role === "trustedCitizen" ? ("emerald" as const) : ("civic" as const) },
         { label: `${person.followerCount.toLocaleString()} followers`, tone: "slate" as const },
-        { label: `Credibility: ${person.civicCredibilityLabel}`, tone: "civic" as const },
+        { label: `Credibility: ${person.civicCredibility.label}`, tone: "civic" as const },
         ...(person.topIssuesPreview[0] ? [{ label: person.topIssuesPreview[0], tone: "slate" as const }] : []),
       ],
+      facets: {
+        role: facetValues(personRoleLabel(person.role)),
+        credibility: facetValues(person.civicCredibility.label),
+        location: facetValues(person.jurisdictionName),
+        topic: facetValues(person.topIssuesPreview),
+      },
       favorite: { targetType: "person" as const, targetId: person.id },
       follow: {
         targetUserId: person.id,
@@ -515,6 +492,7 @@ async function buildPeoplePreview({
     })),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
@@ -532,7 +510,7 @@ async function buildPeoplePreview({
   );
 }
 
-function buildCasesPreview({ communityId, query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
+function buildCasesPreview({ communityId, query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): BrowsePreviewData {
   const reviewedRuntime = readJsonFile<{ records?: Array<Record<string, unknown>>; generatedAt?: string }>("public-court-cases-runtime.json", {});
   const publicCaseRuntime = readJsonFile<Array<Record<string, unknown>>>("public-cases-runtime.json", []);
   const reviewedCases = recordsFrom<Record<string, unknown>>(reviewedRuntime.data).filter(
@@ -566,12 +544,18 @@ function buildCasesPreview({ communityId, query, limit = 8, favoriteIds }: Brows
           { label: sourceKind === "reviewed_public_case" ? "Reviewed public case" : "Source-backed agenda case", tone: "emerald" as const },
           { label: asText(record.reviewStatus) || asText(record.review_status) || "needs review", tone: "slate" as const },
         ],
+        facets: {
+          status: facetValues(asText(record.reviewStatus) || asText(record.review_status) || asText(record.stage) || asText(record.status) || "needs review"),
+          location: facetValues(record.jurisdictionName, record.communityName, record.jurisdiction, Array.isArray(record.communityTags) ? record.communityTags : []),
+          source: facetValues(sourceKind === "reviewed_public_case" ? "Reviewed public case" : "Agenda-derived case"),
+        },
         favorite: { targetType: "case" as const, targetId: asText(record.id) },
         sourceUrl: asText(record.sourceUrl) || asText(record.source_url),
       };
     }),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
@@ -589,7 +573,7 @@ function buildCasesPreview({ communityId, query, limit = 8, favoriteIds }: Brows
   );
 }
 
-function buildEventsPreview({ communityId, query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
+function buildEventsPreview({ communityId, query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): BrowsePreviewData {
   const runtime = readJsonFile<{ records?: Array<Record<string, unknown>>; generatedAt?: string }>("nevada-community-events.json", {});
   const records = recordsFrom<Record<string, unknown>>(runtime.data).filter((record) => asText(record.source_url) || asText(record.agenda_url));
   const local = records.filter((record) => matchesCommunity(communityId, record.community, record.jurisdiction, record.body_name));
@@ -620,12 +604,19 @@ function buildEventsPreview({ communityId, query, limit = 8, favoriteIds }: Brow
           { label: status || "meeting", tone: status === "completed" ? ("slate" as const) : ("emerald" as const) },
           { label: "Source-backed", tone: "emerald" as const },
         ],
+        facets: {
+          status: facetValues(status || "unknown"),
+          location: facetValues(record.community, record.jurisdiction),
+          body: facetValues(record.body_name),
+          level: facetValues(inferGovernmentLevel(record.body_name, record.jurisdiction)),
+        },
         favorite: { targetType: "event" as const, targetId: asText(record.meeting_id) || asText(record.id) },
         sourceUrl: asText(record.source_url) || asText(record.agenda_url),
       };
     }),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
@@ -643,7 +634,7 @@ function buildEventsPreview({ communityId, query, limit = 8, favoriteIds }: Brow
   );
 }
 
-function buildOfficialsPreview({ communityId, query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
+function buildOfficialsPreview({ communityId, query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): BrowsePreviewData {
   const runtime = readJsonFile<{ records?: Array<Record<string, unknown>>; generatedAt?: string }>("nevada-community-officials.json", {});
   const records = recordsFrom<Record<string, unknown>>(runtime.data).filter((record) => asText(record.name) && asText(record.source_url));
   const local = records.filter((record) => matchesCommunity(communityId, record.communityName, record.jurisdiction, record.body_name));
@@ -663,11 +654,18 @@ function buildOfficialsPreview({ communityId, query, limit = 8, favoriteIds }: B
         { label: "Source-backed roster", tone: "emerald" as const },
         { label: asText(record.body_name) || asText(record.level) || "government body", tone: "civic" as const },
       ],
+      facets: {
+        level: facetValues(asText(record.level) || inferGovernmentLevel(record.title, record.office, record.body_name, record.jurisdiction)),
+        office: facetValues(record.title, record.office),
+        location: facetValues(record.communityName, record.jurisdiction, record.body_name),
+        body: facetValues(record.body_name),
+      },
       favorite: { targetType: "official" as const, targetId: asText(record.id) },
       sourceUrl: asText(record.source_url),
     })),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
@@ -685,7 +683,7 @@ function buildOfficialsPreview({ communityId, query, limit = 8, favoriteIds }: B
   );
 }
 
-function buildOrganizationsPreview({ communityId, query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
+function buildOrganizationsPreview({ communityId, query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): BrowsePreviewData {
   const runtime = readJsonFile<Array<Record<string, unknown>>>("public-meeting-bodies.json", []);
   const records = recordsFrom<Record<string, unknown>>(runtime.data).filter((record) => asText(record.name) && (asText(record.source_url) || asText(record.website)));
   const local = records.filter((record) => matchesCommunity(communityId, record.jurisdiction, record.name));
@@ -705,11 +703,17 @@ function buildOrganizationsPreview({ communityId, query, limit = 8, favoriteIds 
         { label: "Government body", tone: "civic" as const },
         { label: "Source-backed", tone: "emerald" as const },
       ],
+      facets: {
+        level: facetValues(asText(record.level) || inferGovernmentLevel(record.name, record.jurisdiction)),
+        location: facetValues(record.jurisdiction, record.name),
+        type: facetValues("Government body"),
+      },
       favorite: { targetType: "organization" as const, targetId: asText(record.id) },
       sourceUrl: asText(record.source_url) || asText(record.website),
     })),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
@@ -727,7 +731,7 @@ function buildOrganizationsPreview({ communityId, query, limit = 8, favoriteIds 
   );
 }
 
-function buildElectionsPreview({ communityId, query, limit = 8, favoriteIds }: BrowsePreviewOptions): BrowsePreviewData {
+function buildElectionsPreview({ communityId, query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): BrowsePreviewData {
   const relationships = readJsonFile<{ communities?: Record<string, { records?: { elections?: Array<Record<string, unknown>> } }>; generatedAt?: string }>(
     "nevada-community-relationships.json",
     {},
@@ -751,11 +755,16 @@ function buildElectionsPreview({ communityId, query, limit = 8, favoriteIds }: B
         { label: "Election source", tone: "emerald" as const },
         { label: asText(record.relationshipScope) || "statewide overlay", tone: "civic" as const },
       ],
+      facets: {
+        scope: facetValues(asText(record.relationshipScope) || "statewide overlay"),
+        location: facetValues(record.storyJurisdiction, record.title),
+      },
       favorite: { targetType: "election" as const, targetId: asText(record.id) },
       sourceUrl: asText(record.sourceUrl),
     })),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
@@ -773,7 +782,7 @@ function buildElectionsPreview({ communityId, query, limit = 8, favoriteIds }: B
   );
 }
 
-async function buildCandidatesPreview({ query, limit = 8, favoriteIds }: BrowsePreviewOptions): Promise<BrowsePreviewData> {
+async function buildCandidatesPreview({ query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): Promise<BrowsePreviewData> {
   const importedCandidates = await getImportedCandidatePreviewRows().catch((error) => {
     console.warn("[browse-preview] imported candidate lookup failed", error);
     return [];
@@ -799,12 +808,19 @@ async function buildCandidatesPreview({ query, limit = 8, favoriteIds }: BrowseP
             { label: "Source-backed candidate", tone: "emerald" as const },
             { label: candidate.partyText ?? "Party pending", tone: "civic" as const },
           ],
+          facets: {
+            party: facetValues(candidate.partyText ?? "Party pending"),
+            office: facetValues(candidate.office?.title ?? "Office pending"),
+            level: facetValues(inferGovernmentLevel(candidate.office?.title, candidate.jurisdiction.name)),
+            location: facetValues(candidate.jurisdiction.name),
+          },
           favorite: { targetType: "candidate" as const, targetId: candidate.id },
           sourceUrl,
         };
       }),
       query ?? "",
       favoriteIds,
+      filters,
     ).slice(0, limit);
 
     return withEmptyReason(
@@ -835,11 +851,18 @@ async function buildCandidatesPreview({ query, limit = 8, favoriteIds }: BrowseP
       ctaLabel: "Source",
       avatar: { name: asText(record.candidate_name), entityType: "candidate" as const, verified: true },
       badges: [{ label: "Source-backed filing", tone: "emerald" as const }],
+      facets: {
+        party: facetValues(record.party, record.partyText, record.party_text),
+        office: facetValues(record.office),
+        level: facetValues(inferGovernmentLevel(record.office, record.jurisdiction)),
+        location: facetValues(record.jurisdiction),
+      },
       favorite: { targetType: "candidate" as const, targetId: `nvsos-candidate-${asText(record.candidate_name)}` },
       sourceUrl: asText(record.source_url),
     })),
     query ?? "",
     favoriteIds,
+    filters,
   ).slice(0, limit);
 
   return withEmptyReason(
