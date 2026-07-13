@@ -16,6 +16,7 @@ import type {
 const GENERATED_DIR = path.join(process.cwd(), "data/generated");
 const MANUAL_INTAKE_PATH = path.join(process.cwd(), "data/manual-sources/political-ads/nevada-reviewed-ads.json");
 const CAMPAIGN_FINANCE_PATH = path.join(GENERATED_DIR, "nv-sos-campaign-finance-records.json");
+const FEC_IMPORT_PATH = path.join(process.cwd(), "data/imports/political-ads/fec-nevada-independent-expenditures.json");
 const OUTPUT_PATH = path.join(GENERATED_DIR, "nevada-political-ads.json");
 const REVIEW_QUEUE_PATH = path.join(GENERATED_DIR, "nevada-political-ads-review-queue.json");
 
@@ -79,6 +80,43 @@ type CampaignFinanceRecord = {
     amount?: number | null;
     date?: string | null;
   }>;
+};
+
+type FecIndependentExpenditureImport = {
+  generatedAt?: string;
+  records?: FecIndependentExpenditureRecord[];
+};
+
+type FecIndependentExpenditureRecord = {
+  candidate_id?: string | null;
+  candidate_name?: string | null;
+  candidate_office?: string | null;
+  candidate_office_district?: string | null;
+  candidate_office_state?: string | null;
+  candidate_party?: string | null;
+  committee_id?: string | null;
+  committee?: {
+    name?: string | null;
+    committee_type_full?: string | null;
+    state?: string | null;
+  } | null;
+  dissemination_date?: string | null;
+  election_type?: string | null;
+  expenditure_amount?: number | null;
+  expenditure_date?: string | null;
+  expenditure_description?: string | null;
+  filing_date?: string | null;
+  filing_form?: string | null;
+  image_number?: string | null;
+  payee_name?: string | null;
+  payee_city?: string | null;
+  payee_state?: string | null;
+  report_year?: string | number | null;
+  schedule_type_full?: string | null;
+  source_url?: string | null;
+  sub_id?: string | null;
+  support_oppose_indicator?: string | null;
+  transaction_id?: string | null;
 };
 
 function readJson<T>(filePath: string, fallback: T): T {
@@ -274,6 +312,153 @@ function normalizeManualRecord(record: ManualAdRecord): PoliticalAd | null {
   };
 }
 
+function sentenceCase(value: string) {
+  return value
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+function candidateDisplayName(value: string | null | undefined) {
+  if (!value) return "Nevada candidate";
+  const [last, rest] = value.split(",").map((part) => part.trim());
+  return rest ? `${sentenceCase(rest)} ${sentenceCase(last)}` : sentenceCase(value);
+}
+
+function sourceTypeForFecPurpose(purpose: string | null | undefined): PoliticalAdSourceType {
+  const text = purpose?.toLowerCase() ?? "";
+  if (/\b(phone|text|sms)\b/.test(text)) return "textSmsAd";
+  if (/\b(mail|postcard)\b/.test(text)) return "mailer";
+  if (/\b(tv|television|broadcast)\b/.test(text)) return "broadcastTvAd";
+  if (/\b(radio)\b/.test(text)) return "radioAd";
+  if (/\b(digital|internet|online|facebook|google|youtube|streaming)\b/.test(text)) return "internetAd";
+  if (/\b(print|banner|sign)\b/.test(text)) return "print";
+  return "otherUnknown";
+}
+
+function sponsorTypeForFecCommittee(row: FecIndependentExpenditureRecord): PoliticalAdSponsorType {
+  const type = row.committee?.committee_type_full?.toLowerCase() ?? "";
+  if (type.includes("super pac") || type.includes("independent expenditure-only")) return "superPac";
+  if (type.includes("party")) return "politicalParty";
+  if (type.includes("pac")) return "pac";
+  return "independentExpenditureGroup";
+}
+
+function relationForFecIndicator(value: string | null | undefined): PoliticalAdRelationType {
+  if (value === "S") return "supports";
+  if (value === "O") return "opposes";
+  return "mentions";
+}
+
+function districtNameForFec(row: FecIndependentExpenditureRecord) {
+  if (row.candidate_office === "S") return "Nevada statewide";
+  if (row.candidate_office === "P") return "Nevada presidential";
+  if (row.candidate_office === "H" && row.candidate_office_district) {
+    return `Nevada Congressional District ${Number.parseInt(row.candidate_office_district, 10) || row.candidate_office_district}`;
+  }
+  return "Nevada";
+}
+
+function normalizeFecRecord(row: FecIndependentExpenditureRecord): PoliticalAd | null {
+  const sourceUrl = row.source_url ?? (row.image_number ? `https://docquery.fec.gov/cgi-bin/fecimg/?${row.image_number}` : null);
+  const candidateName = candidateDisplayName(row.candidate_name);
+  const committeeName = row.committee?.name ?? "Independent expenditure committee";
+  const relation = relationForFecIndicator(row.support_oppose_indicator);
+  const purpose = row.expenditure_description ?? "Independent expenditure communication";
+  const firstSeenAt = row.dissemination_date ?? row.expenditure_date ?? row.filing_date;
+
+  if (!sourceUrl || !firstSeenAt || !row.sub_id) {
+    return null;
+  }
+
+  const id = `fec-nv-ie-${row.sub_id}`;
+  const districtName = districtNameForFec(row);
+  const relationText = relation === "supports" ? "supporting" : relation === "opposes" ? "opposing" : "mentioning";
+  const title = `${committeeName} ${relationText} ${candidateName}`;
+  const description = `FEC-reported independent expenditure communication ${relationText} ${candidateName}. Purpose reported as "${purpose}" with ${typeof row.expenditure_amount === "number" ? `$${row.expenditure_amount.toLocaleString()}` : "spend"} in ${districtName}.`;
+
+  return {
+    id,
+    title,
+    description,
+    sourceType: sourceTypeForFecPurpose(purpose),
+    sponsorName: committeeName,
+    sponsorType: sponsorTypeForFecCommittee(row),
+    paidForBy: committeeName,
+    producedBy: row.payee_name ?? null,
+    authorizedBy: null,
+    authorizationText: "FEC independent expenditure records are reported as independent communications; review the source filing for exact disclaimer language.",
+    totalSpend: typeof row.expenditure_amount === "number" ? row.expenditure_amount : null,
+    currency: "USD",
+    impressions: null,
+    firstSeenAt,
+    lastSeenAt: row.expenditure_date ?? null,
+    electionCycle: String(row.report_year ?? row.election_type ?? "2026"),
+    geographySummary: districtName,
+    platformUrl: null,
+    archiveUrl: sourceUrl,
+    overallSystemRating: "Needs Review",
+    overallSystemConfidence: "Low",
+    overallSystemExplanation: "This is a source-backed FEC independent-expenditure communication record. The spend, sponsor, candidate, support/oppose direction, and filing source are public; the ad creative itself may still need attachment from platform, broadcast, mailer, or public archive evidence.",
+    overallCitizenRating: null,
+    citizenAgreementPercent: null,
+    citizenRatingCount: 0,
+    status: "published",
+    media: [
+      {
+        id: `${id}-fec-source`,
+        politicalAdId: id,
+        mediaType: "externalEmbed",
+        url: sourceUrl,
+        altText: `${title} FEC source filing`,
+        sortOrder: 0,
+        createdAt: new Date().toISOString(),
+      },
+      {
+        id: `${id}-fec-summary`,
+        politicalAdId: id,
+        mediaType: "transcript",
+        textContent: description,
+        altText: `${title} source-backed summary`,
+        sortOrder: 1,
+        createdAt: new Date().toISOString(),
+      },
+    ],
+    entityRelations: [
+      {
+        id: `${id}-candidate-${row.candidate_id ?? slugify(candidateName)}-${relation}`,
+        politicalAdId: id,
+        entityType: "candidate",
+        entityId: row.candidate_id ?? slugify(candidateName),
+        entityLabel: candidateName,
+        relationType: relation,
+        createdAt: new Date().toISOString(),
+      },
+    ],
+    geographies: [
+      {
+        id: `${id}-geo-nevada`,
+        politicalAdId: id,
+        country: "United States",
+        state: "Nevada",
+        county: null,
+        city: null,
+        districtType: row.candidate_office === "H" ? "congressional" : "statewide",
+        districtName,
+        precinct: null,
+        createdAt: new Date().toISOString(),
+      },
+    ],
+    claims: [],
+    citizenRatings: [],
+    challenges: [],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+}
+
 const intake = readJson<ManualIntakeFile>(MANUAL_INTAKE_PATH, { records: [] });
 const records = Array.isArray(intake.records) ? intake.records : [];
 const campaignFinanceRecords = readJson<CampaignFinanceRecord[] | { records?: CampaignFinanceRecord[]; data?: CampaignFinanceRecord[] }>(
@@ -287,6 +472,8 @@ const campaignFinanceArray = Array.isArray(campaignFinanceRecords)
     : Array.isArray(campaignFinanceRecords.data)
       ? campaignFinanceRecords.data
       : [];
+const fecImport = readJson<FecIndependentExpenditureImport>(FEC_IMPORT_PATH, { records: [] });
+const fecRecords = Array.isArray(fecImport.records) ? fecImport.records : [];
 const adSpendPattern = /\b(advertis|media|mailer|mail |digital|facebook|google|radio|television|tv\b|sign|print|postcard|banner|creative|production)\b/i;
 const financeReviewQueue = campaignFinanceArray.flatMap((record) =>
   (record.itemized_expenses ?? [])
@@ -329,6 +516,8 @@ const ads = records
   .filter((record) => isReviewed(record) && hasSource(record))
   .map(normalizeManualRecord)
   .filter((ad): ad is PoliticalAd => Boolean(ad));
+const fecAds = fecRecords.map(normalizeFecRecord).filter((ad): ad is PoliticalAd => Boolean(ad));
+const dedupedAds = [...new Map([...ads, ...fecAds].map((ad) => [ad.id, ad])).values()];
 
 fs.mkdirSync(GENERATED_DIR, { recursive: true });
 fs.writeFileSync(
@@ -337,10 +526,12 @@ fs.writeFileSync(
     {
       generatedAt: new Date().toISOString(),
       source: MANUAL_INTAKE_PATH,
-      ads,
+      ads: dedupedAds,
       totals: {
         intakeRecords: records.length,
-        reviewedSourceBackedAds: ads.length,
+        reviewedSourceBackedAds: dedupedAds.length,
+        manualReviewedAds: ads.length,
+        fecIndependentExpenditureAds: fecAds.length,
         reviewQueueRecords: reviewQueue.length,
         campaignFinanceAdSpendLeads: financeReviewQueue.length,
       },
@@ -370,7 +561,8 @@ console.log(
   JSON.stringify(
     {
       intakeRecords: records.length,
-      reviewedSourceBackedAds: ads.length,
+      reviewedSourceBackedAds: dedupedAds.length,
+      fecIndependentExpenditureAds: fecAds.length,
       reviewQueueRecords: reviewQueue.length,
       campaignFinanceAdSpendLeads: financeReviewQueue.length,
       output: OUTPUT_PATH,

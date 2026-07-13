@@ -201,6 +201,8 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
   const campaignOptions = await getOrganizationCampaignOptions(orgId);
   const pendingMemberships = organization.memberships.filter((entry) => entry.state === "pending");
   const returnPath = `/organizations/${organization.id}`;
+  const viewerIsMember = organization.viewerMembershipState === "approved";
+  const viewerPending = organization.viewerMembershipState === "pending";
 
   return (
     <div className="space-y-6 py-8">
@@ -263,6 +265,49 @@ export default async function OrganizationDetailPage({ params, searchParams }: O
           </div>
         }
       />
+
+      <section className="rounded-[1.75rem] border border-cyan-300/20 bg-cyan-500/10 p-5 shadow-[0_24px_55px_-34px_rgba(8,145,178,0.45)]">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Take action with this organization</p>
+            <h2 className="mt-2 text-xl font-semibold text-white">
+              {organization.canManage ? "Manage this organization" : viewerIsMember ? "You are a member" : viewerPending ? "Your join request is pending" : "Join before participating"}
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-cyan-50/85">
+              {organization.canManage
+                ? "Create events, debates, petitions, announcements, and platform items from this page."
+                : viewerIsMember
+                  ? "Members can vote on platform items and participate in organization action."
+                  : viewerPending
+                    ? "An organization admin needs to approve your membership before you can vote or help manage action."
+                    : "Request membership to participate in this group’s platform votes and organized civic work."}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {!organization.viewerMembershipState ? (
+              <form action={requestOrganizationMembership}>
+                <input type="hidden" name="organizationId" value={organization.id} />
+                <input type="hidden" name="returnPath" value={returnPath} />
+                <FormSubmitButton
+                  idleLabel="Request to join"
+                  pendingLabel="Sending..."
+                  className="rounded-full bg-cyan-300 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+                />
+              </form>
+            ) : null}
+            {organization.canManage ? (
+              <>
+                <Link href={`/events/create?communityId=${organization.communityId}&organizationId=${organization.id}`} className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">
+                  Create event
+                </Link>
+                <Link href={`/petitions/create?organizationId=${organization.id}`} className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">
+                  Create petition
+                </Link>
+              </>
+            ) : null}
+          </div>
+        </div>
+      </section>
 
       {resolvedSearchParams?.org ? (
         <section className="rounded-[1.75rem] border border-cyan-300/16 bg-cyan-500/10 p-5 text-sm text-cyan-100 shadow-card">

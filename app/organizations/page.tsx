@@ -11,6 +11,8 @@ import { ORGANIZATION_FILTERS, getOrganizationTypeLabel } from "@/lib/organizati
 import { approveOrganizationCreationRequest } from "@/lib/organizations/actions";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import {
+  canUserDirectlyCreateCoalition,
+  canUserRequestCoalition,
   getAllOrganizations,
   getGovernmentBodiesForCommunity,
   getOrganizationCreationRequests,
@@ -129,6 +131,15 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
   const query = params?.q?.trim() ?? "";
   const selectedType = normalizeOrganizationFilter(params?.type);
   const guestMode = isGuestUser(user);
+  const canCreateOrganization = canUserDirectlyCreateCoalition(user);
+  const canRequestOrganization = canUserRequestCoalition(user);
+  const createHref = canRequestOrganization ? `/organizations/create?communityId=${selectedCommunityId}` : `/auth?next=${encodeURIComponent(`/organizations/create?communityId=${selectedCommunityId}`)}`;
+  const createLabel = canCreateOrganization ? "Create organization" : canRequestOrganization ? "Request organization" : "Sign in to request";
+  const createExplainer = canCreateOrganization
+    ? "Trusted citizens can launch a civic organization directly."
+    : canRequestOrganization
+      ? "Citizens can request an organization for admin review."
+      : "Sign in as a Nevada citizen to request a civic organization.";
 
   const [organizations, recommendations, requests, governmentBodies] = await Promise.all([
     getAllOrganizations(user),
@@ -153,7 +164,7 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
       <PageIntro
         eyebrow="Organizations"
         title="Organizations"
-        description="Create or join organized civic groups that debate, vote, endorse, and coordinate action."
+        description="Find source-backed public bodies and request citizen-run civic organizations for structured action."
         actions={
           <div className="flex flex-wrap gap-3">
             <Link
@@ -163,14 +174,29 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
               Explore organizations
             </Link>
             <Link
-              href={`/organizations/create?communityId=${selectedCommunityId}`}
+              href={createHref}
               className="inline-flex rounded-full bg-cyan-500 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
             >
-              Start an organization
+              {createLabel}
             </Link>
           </div>
         }
       />
+
+      <section className="rounded-[1.75rem] border border-cyan-300/20 bg-cyan-500/10 p-5 shadow-[0_24px_55px_-34px_rgba(8,145,178,0.45)]">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">Citizen organizations</p>
+            <h2 className="mt-2 text-xl font-semibold text-white">Want to organize people around an issue?</h2>
+            <p className="mt-2 text-sm leading-6 text-cyan-50/85">
+              {createExplainer} Organizations are for coalitions, neighborhood groups, issue advocacy, labor-style groups, business associations, and other organized civic efforts.
+            </p>
+          </div>
+          <Link href={createHref} className="rounded-full bg-cyan-300 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
+            {createLabel}
+          </Link>
+        </div>
+      </section>
 
       <section className="rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,rgba(11,19,33,0.98),rgba(7,13,24,0.96))] p-6 shadow-[0_28px_65px_-34px_rgba(8,15,28,0.95)]">
         <div className="flex flex-wrap items-start justify-between gap-4">
@@ -300,8 +326,14 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
           {featured.length ? (
             featured.map((organization) => <OrganizationCard key={organization.id} organization={organization} guestMode={guestMode} />)
           ) : (
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-sm text-slate-400 xl:col-span-2">
-              No organizations match this preview yet.
+            <div className="rounded-3xl border border-dashed border-cyan-300/25 bg-cyan-500/8 p-5 xl:col-span-2">
+              <p className="text-sm font-semibold text-cyan-100">No citizen-created organizations are published for this view yet.</p>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
+                Source-backed public bodies are still listed above. Citizen organizations appear here after a trusted citizen creates one or an admin approves a citizen request.
+              </p>
+              <Link href={createHref} className="mt-4 inline-flex rounded-full bg-cyan-300 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
+                {createLabel}
+              </Link>
             </div>
           )}
         </div>
