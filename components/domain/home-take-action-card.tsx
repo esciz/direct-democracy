@@ -189,7 +189,7 @@ export function HomeTakeActionCard({
               onClick={() => setActiveTab(tab.id)}
               className={`group w-full rounded-[1.1rem] px-4 py-3 text-left transition ${
                 activeTab === tab.id
-                  ? "border border-cyan-200/70 bg-civic-400 text-slate-950 shadow-lg shadow-cyan-950/20"
+                  ? "border border-cyan-200/80 bg-cyan-300/10 text-cyan-100 shadow-lg shadow-cyan-950/20"
                   : "border border-transparent text-slate-100 hover:border-white/10 hover:bg-white/[0.07]"
               }`}
             >
@@ -198,14 +198,14 @@ export function HomeTakeActionCard({
                 <span
                   className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] ${
                     activeTab === tab.id
-                      ? "bg-slate-950/10 text-slate-900"
+                      ? "bg-cyan-200/15 text-cyan-100"
                       : "bg-white/[0.08] text-cyan-100 group-hover:bg-cyan-300/10"
                   }`}
                 >
                   {tabStats[tab.id]}
                 </span>
               </span>
-              <span className={`mt-1.5 block text-xs leading-5 ${activeTab === tab.id ? "text-slate-800" : "text-slate-300"}`}>
+              <span className={`mt-1.5 block text-xs leading-5 ${activeTab === tab.id ? "text-cyan-50/85" : "text-slate-300"}`}>
                 {tab.description}
               </span>
             </button>
