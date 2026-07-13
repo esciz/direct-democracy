@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import type {
   AdClaim,
   PoliticalAd,
@@ -8,6 +11,13 @@ import type {
   PoliticalAdSponsorType,
   PoliticalAdTruthRating,
 } from "@/types/domain";
+
+const GENERATED_POLITICAL_ADS_PATH = path.join(process.cwd(), "data/generated/nevada-political-ads.json");
+
+type GeneratedPoliticalAdsFile = {
+  generatedAt?: string;
+  ads?: PoliticalAd[];
+};
 
 export const POLITICAL_AD_SOURCE_LABELS: Record<PoliticalAdSourceType, string> = {
   print: "Print",
@@ -51,6 +61,67 @@ export const POLITICAL_AD_RELATION_LABELS: Record<PoliticalAdRelationType, strin
   mentions: "Mentions",
   related: "Related to",
 };
+
+function isPoliticalAd(value: unknown): value is PoliticalAd {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+
+  const ad = value as Partial<PoliticalAd>;
+  return (
+    typeof ad.id === "string" &&
+    typeof ad.title === "string" &&
+    typeof ad.description === "string" &&
+    typeof ad.sourceType === "string" &&
+    typeof ad.sponsorName === "string" &&
+    typeof ad.sponsorType === "string" &&
+    typeof ad.paidForBy === "string" &&
+    typeof ad.currency === "string" &&
+    typeof ad.firstSeenAt === "string" &&
+    typeof ad.electionCycle === "string" &&
+    typeof ad.geographySummary === "string" &&
+    typeof ad.overallSystemRating === "string" &&
+    typeof ad.overallSystemConfidence === "string" &&
+    typeof ad.status === "string" &&
+    Array.isArray(ad.media) &&
+    Array.isArray(ad.entityRelations) &&
+    Array.isArray(ad.geographies) &&
+    Array.isArray(ad.claims) &&
+    Array.isArray(ad.citizenRatings) &&
+    Array.isArray(ad.challenges)
+  );
+}
+
+function readGeneratedPoliticalAds(): PoliticalAd[] {
+  if (!fs.existsSync(GENERATED_POLITICAL_ADS_PATH)) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(fs.readFileSync(GENERATED_POLITICAL_ADS_PATH, "utf8")) as GeneratedPoliticalAdsFile | PoliticalAd[];
+    const ads = Array.isArray(parsed) ? parsed : parsed.ads;
+    return Array.isArray(ads) ? ads.filter(isPoliticalAd) : [];
+  } catch (error) {
+    console.error("Failed to read generated Nevada political ads.", error);
+    return [];
+  }
+}
+
+export function getGeneratedPoliticalAds() {
+  return readGeneratedPoliticalAds();
+}
+
+export function getPoliticalAdRepositoryAds(options?: { includeSeededDemoAds?: boolean }) {
+  const generatedAds = readGeneratedPoliticalAds();
+  if (options?.includeSeededDemoAds) {
+    const merged = new Map<string, PoliticalAd>();
+    for (const ad of seededPoliticalAds) merged.set(ad.id, ad);
+    for (const ad of generatedAds) merged.set(ad.id, ad);
+    return [...merged.values()];
+  }
+
+  return generatedAds;
+}
 
 const RATING_SEVERITY: Record<PoliticalAdTruthRating, number> = {
   True: 0,
@@ -875,11 +946,13 @@ export function getPrimaryAdRelation(ad: PoliticalAd) {
 }
 
 export function getPoliticalAdById(adId: string) {
-  return seededPoliticalAds.find((ad) => ad.id === adId) ?? null;
+  const includeSeededDemoAds = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
+  return getPoliticalAdRepositoryAds({ includeSeededDemoAds }).find((ad) => ad.id === adId) ?? null;
 }
 
 export function getPoliticalAdsForEntity(entityType: PoliticalAdEntityRelation["entityType"], entityId: string, limit = 4) {
-  return seededPoliticalAds
+  const includeSeededDemoAds = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
+  return getPoliticalAdRepositoryAds({ includeSeededDemoAds })
     .filter((ad) => ad.entityRelations.some((relationItem) => relationItem.entityType === entityType && relationItem.entityId === entityId))
     .sort((left, right) => Date.parse(right.firstSeenAt) - Date.parse(left.firstSeenAt))
     .slice(0, limit);
@@ -888,7 +961,8 @@ export function getPoliticalAdsForEntity(entityType: PoliticalAdEntityRelation["
 export function getPoliticalAdsForIssue(issueId: string, issueLabel?: string, limit = 4) {
   const normalizedId = issueId.toLowerCase();
   const normalizedLabel = issueLabel?.toLowerCase() ?? "";
-  return seededPoliticalAds
+  const includeSeededDemoAds = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
+  return getPoliticalAdRepositoryAds({ includeSeededDemoAds })
     .filter((ad) =>
       ad.entityRelations.some((relationItem) => {
         if (relationItem.entityType !== "issue") return false;
@@ -944,13 +1018,14 @@ function matchesRelation(ad: PoliticalAd, filters: PoliticalAdFilters) {
 }
 
 export function getFilteredPoliticalAds(filters: PoliticalAdFilters = {}) {
+  const includeSeededDemoAds = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
   const relationType = filters.relationType && filters.relationType !== "all" ? filters.relationType : null;
   const minSpend = typeof filters.minSpend === "number" ? filters.minSpend : null;
   const maxSpend = typeof filters.maxSpend === "number" ? filters.maxSpend : null;
   const dateFrom = filters.dateFrom ? Date.parse(filters.dateFrom) : null;
   const dateTo = filters.dateTo ? Date.parse(filters.dateTo) : null;
 
-  const filtered = seededPoliticalAds.filter((ad) => {
+  const filtered = getPoliticalAdRepositoryAds({ includeSeededDemoAds }).filter((ad) => {
     if (!matchesText(ad, filters.q?.trim() ?? "")) return false;
     if (!matchesRelation(ad, filters)) return false;
     if (filters.sponsor && !ad.sponsorName.toLowerCase().includes(filters.sponsor.toLowerCase())) return false;

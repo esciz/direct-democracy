@@ -4,6 +4,7 @@ import path from "path";
 import { getCommunityById, getCommunityPageHref, seededCommunities } from "@/lib/community/communities";
 import { communityMatchesMembership } from "@/lib/community/membership";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
+import { getGeneratedPoliticalAds, POLITICAL_AD_SOURCE_LABELS } from "@/lib/political-ads/store";
 import { getDurablePublicPeopleDirectory } from "@/lib/profile/public-people";
 import { prisma } from "@/lib/prisma";
 import type { AuthUser, PublicCitizenDirectorySummary } from "@/types/domain";
@@ -895,6 +896,50 @@ function buildEmptySourcePreview(category: BrowsePreviewCategory, emptyReason: s
   };
 }
 
+function buildAdsPreview(options: BrowsePreviewOptions): BrowsePreviewData {
+  const { limit = 2, query, filters, favoriteIds } = options;
+  const ads = getGeneratedPoliticalAds();
+  const generatedAdsFile = readJsonFile<{ generatedAt?: string }>("nevada-political-ads.json", {});
+  const items = filterItems(
+    ads.map((ad) => ({
+      id: ad.id,
+      title: ad.title,
+      subtitle: `${ad.sponsorName} · ${ad.geographySummary}`,
+      description: ad.description,
+      href: `/ads/${ad.id}`,
+      ctaLabel: "View ad",
+      badges: [
+        { label: "Source-backed", tone: "emerald" as const },
+        { label: POLITICAL_AD_SOURCE_LABELS[ad.sourceType], tone: "slate" as const },
+      ],
+      facets: {
+        source: facetValues(POLITICAL_AD_SOURCE_LABELS[ad.sourceType], ad.sourceType),
+        sponsorType: facetValues(ad.sponsorType),
+        location: facetValues(ad.geographySummary, ...ad.geographies.flatMap((geo) => [geo.state, geo.county, geo.city, geo.districtName])),
+        rating: facetValues(ad.overallSystemRating),
+      },
+      sourceUrl: ad.archiveUrl ?? ad.platformUrl ?? ad.media.find((media) => media.url)?.url ?? null,
+    })),
+    query ?? "",
+    favoriteIds,
+    filters,
+  ).slice(0, limit);
+
+  return withEmptyReason(
+    {
+      category: "ads",
+      items,
+      sourceCount: ads.length,
+      availableGeneratedCount: ads.length,
+      lastGeneratedAt: generatedAdsFile.lastGeneratedAt,
+      isSourceBacked: ads.length > 0,
+      usesDemoData: false,
+      fullHref: ads.length ? "/ads" : null,
+    },
+    "Reviewed political ad records exist, but none match the current browse filters.",
+  );
+}
+
 export async function getBrowsePreviewCategory(options: BrowsePreviewOptions): Promise<BrowsePreviewData> {
   switch (options.category) {
     case "communities":
@@ -916,7 +961,7 @@ export async function getBrowsePreviewCategory(options: BrowsePreviewOptions): P
     case "elections":
       return buildElectionsPreview(options);
     case "ads":
-      return buildEmptySourcePreview("ads", "No reviewed political ad repository records are available for production browse previews yet.");
+      return buildAdsPreview(options);
     case "organizations":
       return buildOrganizationsPreview(options);
   }

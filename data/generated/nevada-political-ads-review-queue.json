@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-07-12T02:52:23.453Z",
+  "records": [
+    {
+      "id": "nv-ad-finance-lead-joe-lombardo-design-print-banner-refund-1625-lakes-pkwy-ste-d-lawrenceville-ga-30043-b7860e24159a",
+      "title": "Joe Lombardo advertising expenditure",
+      "sponsorName": "Joe Lombardo",
+      "reason": "Nevada SOS campaign-finance expenditure appears related to advertising/media, but no ad creative has been attached or reviewed yet.",
+      "sourceUrl": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=ihlo7AAA%252bLa0tOyfvlG4Vw%253d%253d",
+      "raw": {
+        "candidateName": "Joe Lombardo",
+        "office": "Governor",
+        "reportName": "Annual CE Filing",
+        "reportYear": 2023,
+        "expense": {
+          "name": "Design Print Banner REFUND 1625 Lakes Pkwy Ste D Lawrenceville, GA 30043",
+          "amount": 600.54,
+          "date": "02/17/2022"
+        }
+      }
+    }
+  ],
+  "totals": {
+    "reviewQueueRecords": 1
+  }
+}

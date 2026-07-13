@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-07-12T02:52:23.595Z",
+  "status": "limited_data",
+  "totals": {
+    "generatedAds": 0,
+    "publishedAds": 0,
+    "pendingAds": 0,
+    "reviewQueueRecords": 1,
+    "recordsMissingSource": 0,
+    "recordsWithExampleSources": 0
+  },
+  "sourceTypes": [],
+  "sponsorTypes": [],
+  "geographyCounts": {},
+  "failures": [],
+  "nextSteps": [
+    "Add reviewed source-backed records to data/manual-sources/political-ads/nevada-reviewed-ads.json.",
+    "Configure META_AD_LIBRARY_ACCESS_TOKEN or import a reviewed platform export for Nevada political/social issue ads."
+  ]
+}

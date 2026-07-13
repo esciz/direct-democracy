@@ -76,9 +76,9 @@ function buildPageHref(filters: PoliticalAdFiltersType, page: number) {
 export default async function AdsRepositoryPage({ searchParams }: AdsRepositoryPageProps) {
   const params = searchParams ? await searchParams : undefined;
   const filters = normalizeFilters(params);
-  const allowDemoData = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
+  const allAds = getFilteredPoliticalAds(filters);
 
-  if (!allowDemoData) {
+  if (!allAds.length) {
     return (
       <div className="space-y-6 py-8">
         <PageIntro
@@ -99,7 +99,6 @@ export default async function AdsRepositoryPage({ searchParams }: AdsRepositoryP
     );
   }
 
-  const allAds = getFilteredPoliticalAds(filters);
   const page = paginatePoliticalAds(allAds, filters.page, 8);
 
   return (

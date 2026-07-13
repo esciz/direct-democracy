@@ -66,9 +66,9 @@ type TabId = "vote" | "issues" | "meetings" | "signal" | "polls" | "petitions";
 const tabs: Array<{ id: TabId; label: string; description: string }> = [
   { id: "vote", label: "Vote", description: "Answer the next formal civic question." },
   { id: "issues", label: "Issues", description: "Track active, trending, and saved issues." },
-  { id: "meetings", label: "Meetings", description: "See upcoming and recent civic events." },
-  { id: "signal", label: "Voices", description: "Read useful comments with counterpoints." },
-  { id: "polls", label: "Polls", description: "Respond to citizen polls in context." },
+  { id: "meetings", label: "Meetings", description: "Prepare for upcoming and recent meetings." },
+  { id: "signal", label: "Voices", description: "Read useful local comments with counterpoints." },
+  { id: "polls", label: "Polls", description: "Respond to quick citizen questions." },
   { id: "petitions", label: "Petitions", description: "Support structured public requests." },
 ];
 
@@ -156,6 +156,14 @@ export function HomeTakeActionCard({
   );
   const upcomingMeetings = meetings.filter((meeting) => meeting.status === "upcoming");
   const pastMeetings = meetings.filter((meeting) => meeting.status === "past");
+  const tabStats: Record<TabId, string> = {
+    vote: voteQuestions.length ? `${voteQuestions.length} ready` : "No votes",
+    issues: issueItems.length ? `${issueItems.length} tracked` : "No issues",
+    meetings: meetings.length ? `${meetings.length} events` : "No events",
+    signal: signals.length ? `${signals.length} voices` : "No voices",
+    polls: polls.length ? `${polls.length} polls` : "No polls",
+    petitions: petitions.length ? `${petitions.length} petitions` : "No petitions",
+  };
 
   return (
     <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
@@ -172,21 +180,32 @@ export function HomeTakeActionCard({
         </Link>
       </div>
 
-      <div className="mt-6 grid gap-3 lg:grid-cols-[16rem_minmax(0,1fr)]">
-        <div className="rounded-[1.5rem] border border-white/10 bg-black/15 p-2">
+      <div className="mt-6 grid gap-3 lg:grid-cols-[16.5rem_minmax(0,1fr)]">
+        <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-2 shadow-inner shadow-black/20">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
-              className={`w-full rounded-[1.1rem] px-4 py-3 text-left transition ${
+              className={`group w-full rounded-[1.1rem] px-4 py-3 text-left transition ${
                 activeTab === tab.id
-                  ? "bg-civic-400 text-slate-950"
-                  : "text-slate-300 hover:bg-white/[0.06] hover:text-slate-50"
+                  ? "border border-cyan-200/70 bg-civic-400 text-slate-950 shadow-lg shadow-cyan-950/20"
+                  : "border border-transparent text-slate-100 hover:border-white/10 hover:bg-white/[0.07]"
               }`}
             >
-              <span className="block text-sm font-semibold">{tab.label}</span>
-              <span className={`mt-1 block text-xs leading-5 ${activeTab === tab.id ? "text-slate-800" : "text-slate-500"}`}>
+              <span className="flex items-center justify-between gap-3">
+                <span className="text-sm font-semibold">{tab.label}</span>
+                <span
+                  className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] ${
+                    activeTab === tab.id
+                      ? "bg-slate-950/10 text-slate-900"
+                      : "bg-white/[0.08] text-cyan-100 group-hover:bg-cyan-300/10"
+                  }`}
+                >
+                  {tabStats[tab.id]}
+                </span>
+              </span>
+              <span className={`mt-1.5 block text-xs leading-5 ${activeTab === tab.id ? "text-slate-800" : "text-slate-300"}`}>
                 {tab.description}
               </span>
             </button>

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T22:03:01.006Z",
+  "generatedAt": "2026-07-12T02:51:58.639Z",
   "communityId": "carson-city-county",
   "totals": {
     "categories": 11,
@@ -144,9 +144,9 @@
       "availableGeneratedCount": 0,
       "isSourceBacked": false,
       "usesDemoData": false,
-      "lastGeneratedAt": null,
+      "lastGeneratedAt": "2026-07-12T02:51:06.241Z",
       "statusLabel": "Limited data",
-      "emptyReason": "No reviewed political ad repository records are available for production browse previews yet.",
+      "emptyReason": "Reviewed political ad records exist, but none match the current browse filters.",
       "fullHref": null,
       "hasGeneratedDataButEmptyPreview": false,
       "forbiddenDemoMatches": []
