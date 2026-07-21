@@ -69,6 +69,7 @@
     "communities:report": "npm run communities:relationships && node --import tsx scripts/report-nevada-community-coverage.ts",
     "communities:linkage-audit": "node --import tsx scripts/audit-nevada-community-linkage.ts",
     "browse:audit": "node --import tsx scripts/audit-browse-previews.ts",
+    "organizations:audit": "node --import tsx scripts/audit-production-organizations.ts",
     "private-beta:navigation-audit": "node --import tsx scripts/audit-private-beta-navigation.ts",
     "events:freshness-audit": "node --import tsx scripts/audit-event-freshness.ts",
     "private-beta:boundary-audit": "node --import tsx scripts/audit-nevada-beta-boundary.ts",

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-13T03:19:35.866Z",
+  "generatedAt": "2026-07-20T17:11:56.742Z",
   "status": "ready",
   "totals": {
-    "generatedAds": 41,
-    "publishedAds": 41,
+    "generatedAds": 48,
+    "publishedAds": 48,
     "pendingAds": 0,
     "reviewQueueRecords": 1,
     "recordsMissingSource": 0,
@@ -18,11 +18,13 @@
     "textSmsAd"
   ],
   "sponsorTypes": [
+    "candidateCampaign",
     "pac",
-    "superPac"
+    "superPac",
+    "unknownUndisclosed"
   ],
   "geographyCounts": {
-    "Nevada": 41
+    "Nevada": 48
   },
   "failures": [],
   "nextSteps": [

@@ -5,7 +5,7 @@ export default function RootLoading() {
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Loading</p>
         <h1 className="mt-3 text-2xl font-semibold tracking-tight text-ink">Preparing the civic view</h1>
         <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-          We&apos;re loading the latest demo data for posts, petitions, elections, and public profiles.
+          We&apos;re loading the latest available civic records, saved context, and source-backed public information.
         </p>
       </section>
     </div>

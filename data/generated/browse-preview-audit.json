@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T03:19:37.139Z",
+  "generatedAt": "2026-07-20T17:11:57.961Z",
   "communityId": "carson-city-county",
   "totals": {
     "categories": 11,
@@ -140,11 +140,11 @@
     "ads": {
       "category": "ads",
       "itemCount": 12,
-      "sourceCount": 41,
-      "availableGeneratedCount": 41,
+      "sourceCount": 48,
+      "availableGeneratedCount": 48,
       "isSourceBacked": true,
       "usesDemoData": false,
-      "lastGeneratedAt": "2026-07-13T03:19:35.741Z",
+      "lastGeneratedAt": "2026-07-20T17:11:56.624Z",
       "statusLabel": "Source-backed",
       "emptyReason": null,
       "fullHref": "/ads",

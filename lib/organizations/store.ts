@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
-import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
 import { seedUsers } from "@/lib/auth/mock-users";
 import { getAllCommunityEvents } from "@/lib/community/events";
 import { getCommunityById, seededCommunities } from "@/lib/community/communities";
@@ -39,6 +38,7 @@ const ORGANIZATION_VOTES_COOKIE = "dd_organization_votes";
 const ORGANIZATION_ENDORSEMENTS_COOKIE = "dd_organization_endorsements";
 const ORGANIZATION_CREATION_REQUESTS_COOKIE = "dd_organization_creation_requests";
 const GENERATED_DATA_ROOT = path.join(process.cwd(), "data", "generated");
+const ORGANIZATION_DEMO_DATA_ENABLED = process.env.DIRECT_DEMOCRACY_ENABLE_DEMO_ORGANIZATIONS === "true";
 
 type SeedOrganization = {
   id: string;
@@ -861,7 +861,7 @@ export async function getAllOrganizationSeeds() {
   const stored = await getStoredOrganizations();
   const merged = new Map<string, SeedOrganization>();
 
-  if (PUBLIC_DEMO_DATA_ENABLED) {
+  if (ORGANIZATION_DEMO_DATA_ENABLED) {
     for (const organization of seededOrganizations) {
       merged.set(organization.id, organization);
     }
@@ -878,7 +878,7 @@ export async function getAllOrganizationMemberships() {
   const stored = await getStoredOrganizationMemberships();
   const merged = new Map<string, OrganizationMembershipSummary>();
 
-  if (PUBLIC_DEMO_DATA_ENABLED) {
+  if (ORGANIZATION_DEMO_DATA_ENABLED) {
     for (const membership of seededMemberships) {
       merged.set(membership.id, membership);
     }
@@ -895,7 +895,7 @@ export async function getAllOrganizationAnnouncements() {
   const stored = await getStoredOrganizationAnnouncements();
   const merged = new Map<string, OrganizationAnnouncementSummary>();
 
-  if (PUBLIC_DEMO_DATA_ENABLED) {
+  if (ORGANIZATION_DEMO_DATA_ENABLED) {
     for (const entry of seededAnnouncements) {
       merged.set(entry.id, entry);
     }
@@ -912,7 +912,7 @@ export async function getAllOrganizationPlatformItems() {
   const [items, votes] = await Promise.all([getStoredOrganizationPlatformItems(), getAllOrganizationVotes()]);
   const merged = new Map<string, Omit<OrganizationPlatformItemSummary, "supportCount" | "opposeCount" | "viewerVote">>();
 
-  if (PUBLIC_DEMO_DATA_ENABLED) {
+  if (ORGANIZATION_DEMO_DATA_ENABLED) {
     for (const entry of seededPlatformItems) {
       merged.set(entry.id, entry);
     }
@@ -936,7 +936,7 @@ export async function getAllOrganizationVotes() {
   const stored = await getStoredOrganizationVotes();
   const merged = new Map<string, OrganizationVoteSummary>();
 
-  if (PUBLIC_DEMO_DATA_ENABLED) {
+  if (ORGANIZATION_DEMO_DATA_ENABLED) {
     for (const vote of seededVotes) {
       merged.set(`${vote.platformItemId}:${vote.userId}`, vote);
     }
@@ -953,7 +953,7 @@ export async function getAllOrganizationEndorsements() {
   const stored = await getStoredOrganizationEndorsements();
   const merged = new Map<string, OrganizationEndorsementSummary>();
 
-  if (PUBLIC_DEMO_DATA_ENABLED) {
+  if (ORGANIZATION_DEMO_DATA_ENABLED) {
     for (const endorsement of seededEndorsements) {
       merged.set(endorsement.id, endorsement);
     }
@@ -1233,7 +1233,7 @@ export async function getOrganizationsForCommunity(viewer: AuthUser, communityId
 }
 
 export function getOrganizationPreviewsForCommunity(communityId: string, limit = 4): OrganizationPreviewSummary[] {
-  if (!PUBLIC_DEMO_DATA_ENABLED) {
+  if (!ORGANIZATION_DEMO_DATA_ENABLED) {
     return [];
   }
 

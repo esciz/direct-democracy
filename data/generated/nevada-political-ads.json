@@ -1,7 +1,790 @@
 {
-  "generatedAt": "2026-07-13T03:19:35.741Z",
-  "source": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/manual-sources/political-ads/nevada-reviewed-ads.json",
+  "generatedAt": "2026-07-20T17:11:56.624Z",
+  "source": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/imports/political-ads/nevada-reviewed-video-ads.json",
+  "sources": [
+    "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/imports/political-ads/nevada-reviewed-video-ads.json",
+    "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/manual-sources/political-ads/nevada-reviewed-ads.json",
+    "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/imports/political-ads/fec-nevada-independent-expenditures.json",
+    "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/generated/nv-sos-campaign-finance-records.json"
+  ],
   "ads": [
+    {
+      "id": "nv-video-ad-jacky-rosen-never-have-2024",
+      "title": "Never Have",
+      "description": "Jacky Rosen campaign ad presenting Rosen as willing to break with party leadership on policing, border security, and veterans issues.",
+      "sourceType": "broadcastTvAd",
+      "sponsorName": "Jacky Rosen for Nevada",
+      "sponsorType": "candidateCampaign",
+      "paidForBy": "Jacky Rosen for Nevada",
+      "producedBy": null,
+      "authorizedBy": "Jacky Rosen campaign",
+      "authorizationText": "Public YouTube creative from the Jacky Rosen campaign channel; exact disclaimer should be confirmed against the video frame before formal publication.",
+      "totalSpend": null,
+      "currency": "USD",
+      "impressions": null,
+      "firstSeenAt": "2024-04-03",
+      "lastSeenAt": "2024-04-03",
+      "electionCycle": "2024",
+      "geographySummary": "Nevada statewide",
+      "platformUrl": "https://www.youtube.com/watch?v=V7GVzx_8Vqw",
+      "archiveUrl": "https://www.youtube.com/watch?v=V7GVzx_8Vqw",
+      "overallSystemRating": "Needs Review",
+      "overallSystemConfidence": "Low",
+      "overallSystemExplanation": "This ad is source-backed and reviewed for repository inclusion; claim-level truth ratings may still need expert or community review.",
+      "overallCitizenRating": null,
+      "citizenAgreementPercent": null,
+      "citizenRatingCount": 0,
+      "status": "published",
+      "media": [
+        {
+          "id": "nv-video-ad-jacky-rosen-never-have-2024-source-link",
+          "politicalAdId": "nv-video-ad-jacky-rosen-never-have-2024",
+          "mediaType": "externalEmbed",
+          "url": "https://www.youtube.com/watch?v=V7GVzx_8Vqw",
+          "altText": "Never Have source",
+          "sortOrder": 0,
+          "createdAt": "2026-07-20T17:11:56.614Z"
+        },
+        {
+          "id": "nv-video-ad-jacky-rosen-never-have-2024-text",
+          "politicalAdId": "nv-video-ad-jacky-rosen-never-have-2024",
+          "mediaType": "transcript",
+          "textContent": "Source-backed creative summary: the ad emphasizes Rosen's bipartisan identity and highlights policing, border security, and veterans benefits as examples. Full transcript is not copied into the repository.",
+          "sortOrder": 1,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "entityRelations": [
+        {
+          "id": "nv-video-ad-jacky-rosen-never-have-2024-candidate-jacky-rosen-supports",
+          "politicalAdId": "nv-video-ad-jacky-rosen-never-have-2024",
+          "entityType": "candidate",
+          "entityId": "jacky-rosen",
+          "entityLabel": "Jacky Rosen",
+          "relationType": "supports",
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "geographies": [
+        {
+          "id": "nv-video-ad-jacky-rosen-never-have-2024-geo-nevada",
+          "politicalAdId": "nv-video-ad-jacky-rosen-never-have-2024",
+          "country": "United States",
+          "state": "Nevada",
+          "county": null,
+          "city": null,
+          "districtType": "district",
+          "districtName": "Nevada statewide",
+          "precinct": null,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "claims": [
+        {
+          "id": "nv-video-ad-jacky-rosen-never-have-2024-claim-1",
+          "politicalAdId": "nv-video-ad-jacky-rosen-never-have-2024",
+          "claimText": "The ad presents Rosen as willing to break with her party on selected policy votes.",
+          "normalizedClaim": "the ad presents rosen as willing to break with her party on selected policy votes.",
+          "claimType": "factual",
+          "mediaTimestampStart": null,
+          "mediaTimestampEnd": null,
+          "mediaLocation": null,
+          "importance": "high",
+          "systemRating": "Needs Review",
+          "systemConfidence": "Low",
+          "systemExplanation": "The ad creative and Nevada Independent reporting describe the bipartisan framing; individual votes should be checked against congressional records before rating.",
+          "citizenRating": null,
+          "citizenAgreementPercent": null,
+          "citizenRatingCount": 0,
+          "evidence": [
+            {
+              "id": "nv-video-ad-jacky-rosen-never-have-2024-claim-1-evidence-1",
+              "claimId": "nv-video-ad-jacky-rosen-never-have-2024-claim-1",
+              "title": "Never Have",
+              "url": "https://thenevadaindependent.com/article/rosen-launches-first-re-election-ad-campaign-in-las-vegas-reno",
+              "sourceType": "Political ad source",
+              "publisher": "Jacky Rosen",
+              "publishedAt": "2024-04-03",
+              "excerpt": "The ad presents Rosen as willing to break with her party on selected policy votes.",
+              "supportsOrRefutes": "contextualizes",
+              "createdAt": "2026-07-20T17:11:56.615Z"
+            }
+          ],
+          "createdAt": "2026-07-20T17:11:56.615Z",
+          "updatedAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "citizenRatings": [],
+      "challenges": [],
+      "createdAt": "2026-07-20T17:11:56.615Z",
+      "updatedAt": "2026-07-20T17:11:56.615Z"
+    },
+    {
+      "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024",
+      "title": "Sam Brown For Senate: Nevada's Back",
+      "description": "AFP Action ad supporting Sam Brown with an economic message about taxes, spending, and energy policy.",
+      "sourceType": "broadcastTvAd",
+      "sponsorName": "AFP Action",
+      "sponsorType": "pac",
+      "paidForBy": "AFP Action",
+      "producedBy": null,
+      "authorizedBy": null,
+      "authorizationText": "Public YouTube creative from AFP Action; independent-expenditure disclaimer should be confirmed against the video frame before formal publication.",
+      "totalSpend": null,
+      "currency": "USD",
+      "impressions": null,
+      "firstSeenAt": "2024-09-05",
+      "lastSeenAt": "2024-09-05",
+      "electionCycle": "2024",
+      "geographySummary": "Nevada statewide",
+      "platformUrl": "https://www.youtube.com/watch?v=8s0_thf2geQ",
+      "archiveUrl": "https://www.youtube.com/watch?v=8s0_thf2geQ",
+      "overallSystemRating": "Needs Review",
+      "overallSystemConfidence": "Low",
+      "overallSystemExplanation": "This ad is source-backed and reviewed for repository inclusion; claim-level truth ratings may still need expert or community review.",
+      "overallCitizenRating": null,
+      "citizenAgreementPercent": null,
+      "citizenRatingCount": 0,
+      "status": "published",
+      "media": [
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024-source-link",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024",
+          "mediaType": "externalEmbed",
+          "url": "https://www.youtube.com/watch?v=8s0_thf2geQ",
+          "altText": "Sam Brown For Senate: Nevada's Back source",
+          "sortOrder": 0,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        },
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024-text",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024",
+          "mediaType": "transcript",
+          "textContent": "Source-backed creative summary: the ad supports Sam Brown and frames his campaign around lower taxes, lower spending, and energy development. Full transcript is not copied into the repository.",
+          "sortOrder": 1,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "entityRelations": [
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024-candidate-sam-brown-supports",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024",
+          "entityType": "candidate",
+          "entityId": "sam-brown",
+          "entityLabel": "Sam Brown",
+          "relationType": "supports",
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "geographies": [
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024-geo-nevada",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024",
+          "country": "United States",
+          "state": "Nevada",
+          "county": null,
+          "city": null,
+          "districtType": "district",
+          "districtName": "Nevada statewide",
+          "precinct": null,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "claims": [
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024-claim-1",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024",
+          "claimText": "The ad says Brown has a plan to lower taxes, cut spending, and expand Nevada energy production.",
+          "normalizedClaim": "the ad says brown has a plan to lower taxes, cut spending, and expand nevada energy production.",
+          "claimType": "policyPromise",
+          "mediaTimestampStart": null,
+          "mediaTimestampEnd": null,
+          "mediaLocation": null,
+          "importance": "high",
+          "systemRating": "Needs Review",
+          "systemConfidence": "Low",
+          "systemExplanation": "The claim is sourced from the public video description and should be evaluated against Brown's campaign materials and policy record before a truth rating is assigned.",
+          "citizenRating": null,
+          "citizenAgreementPercent": null,
+          "citizenRatingCount": 0,
+          "evidence": [
+            {
+              "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024-claim-1-evidence-1",
+              "claimId": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024-claim-1",
+              "title": "Sam Brown For Senate | \"Nevada's Back\"",
+              "url": "https://www.youtube.com/watch?v=8s0_thf2geQ",
+              "sourceType": "Political ad source",
+              "publisher": "AFP Action",
+              "publishedAt": "2024-09-05",
+              "excerpt": "The ad says Brown has a plan to lower taxes, cut spending, and expand Nevada energy production.",
+              "supportsOrRefutes": "contextualizes",
+              "createdAt": "2026-07-20T17:11:56.615Z"
+            }
+          ],
+          "createdAt": "2026-07-20T17:11:56.615Z",
+          "updatedAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "citizenRatings": [],
+      "challenges": [],
+      "createdAt": "2026-07-20T17:11:56.615Z",
+      "updatedAt": "2026-07-20T17:11:56.615Z"
+    },
+    {
+      "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024",
+      "title": "Sam Brown For Senate: Nevada's Back, 15-second cut",
+      "description": "Shorter AFP Action cut of the Sam Brown economic ad, emphasizing taxes, spending, and energy.",
+      "sourceType": "broadcastTvAd",
+      "sponsorName": "AFP Action",
+      "sponsorType": "pac",
+      "paidForBy": "AFP Action",
+      "producedBy": null,
+      "authorizedBy": null,
+      "authorizationText": "Public YouTube creative from AFP Action; independent-expenditure disclaimer should be confirmed against the video frame before formal publication.",
+      "totalSpend": null,
+      "currency": "USD",
+      "impressions": null,
+      "firstSeenAt": "2024-09-05",
+      "lastSeenAt": "2024-09-05",
+      "electionCycle": "2024",
+      "geographySummary": "Nevada statewide",
+      "platformUrl": "https://www.youtube.com/watch?v=_9bEcVn7OJQ",
+      "archiveUrl": "https://www.youtube.com/watch?v=_9bEcVn7OJQ",
+      "overallSystemRating": "Needs Review",
+      "overallSystemConfidence": "Low",
+      "overallSystemExplanation": "This ad is source-backed and reviewed for repository inclusion; claim-level truth ratings may still need expert or community review.",
+      "overallCitizenRating": null,
+      "citizenAgreementPercent": null,
+      "citizenRatingCount": 0,
+      "status": "published",
+      "media": [
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024-source-link",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024",
+          "mediaType": "externalEmbed",
+          "url": "https://www.youtube.com/watch?v=_9bEcVn7OJQ",
+          "altText": "Sam Brown For Senate: Nevada's Back, 15-second cut source",
+          "sortOrder": 0,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        },
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024-text",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024",
+          "mediaType": "transcript",
+          "textContent": "Source-backed creative summary: a 15-second version of AFP Action's pro-Brown economic message. Full transcript is not copied into the repository.",
+          "sortOrder": 1,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "entityRelations": [
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024-candidate-sam-brown-supports",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024",
+          "entityType": "candidate",
+          "entityId": "sam-brown",
+          "entityLabel": "Sam Brown",
+          "relationType": "supports",
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "geographies": [
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024-geo-nevada",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024",
+          "country": "United States",
+          "state": "Nevada",
+          "county": null,
+          "city": null,
+          "districtType": "district",
+          "districtName": "Nevada statewide",
+          "precinct": null,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "claims": [
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024-claim-1",
+          "politicalAdId": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024",
+          "claimText": "The short ad repeats the taxes, spending, and energy message used in AFP Action's longer pro-Brown creative.",
+          "normalizedClaim": "the short ad repeats the taxes, spending, and energy message used in afp action's longer pro-brown creative.",
+          "claimType": "policyPromise",
+          "mediaTimestampStart": null,
+          "mediaTimestampEnd": null,
+          "mediaLocation": null,
+          "importance": "medium",
+          "systemRating": "Needs Review",
+          "systemConfidence": "Low",
+          "systemExplanation": "The source is a public AFP Action video; the ad's policy claims still require independent issue-level review.",
+          "citizenRating": null,
+          "citizenAgreementPercent": null,
+          "citizenRatingCount": 0,
+          "evidence": [
+            {
+              "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024-claim-1-evidence-1",
+              "claimId": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024-claim-1",
+              "title": "Sam Brown For Senate | \"Nevada's Back\" | :15s",
+              "url": "https://www.youtube.com/watch?v=_9bEcVn7OJQ",
+              "sourceType": "Political ad source",
+              "publisher": "AFP Action",
+              "publishedAt": "2024-09-05",
+              "excerpt": "The short ad repeats the taxes, spending, and energy message used in AFP Action's longer pro-Brown creative.",
+              "supportsOrRefutes": "contextualizes",
+              "createdAt": "2026-07-20T17:11:56.615Z"
+            }
+          ],
+          "createdAt": "2026-07-20T17:11:56.615Z",
+          "updatedAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "citizenRatings": [],
+      "challenges": [],
+      "createdAt": "2026-07-20T17:11:56.615Z",
+      "updatedAt": "2026-07-20T17:11:56.615Z"
+    },
+    {
+      "id": "nv-video-ad-susie-lee-the-most-2024",
+      "title": "The Most",
+      "description": "Susie Lee campaign ad highlighting a bipartisan record and work on costs for prescription drugs and housing in Nevada's 3rd Congressional District.",
+      "sourceType": "broadcastTvAd",
+      "sponsorName": "Susie Lee for Congress",
+      "sponsorType": "candidateCampaign",
+      "paidForBy": "Susie Lee for Congress",
+      "producedBy": null,
+      "authorizedBy": "Susie Lee campaign",
+      "authorizationText": "Public YouTube creative from the Susie Lee for Congress channel; exact disclaimer should be confirmed against the video frame before formal publication.",
+      "totalSpend": null,
+      "currency": "USD",
+      "impressions": null,
+      "firstSeenAt": "2024-09-04",
+      "lastSeenAt": "2024-09-04",
+      "electionCycle": "2024",
+      "geographySummary": "Nevada Congressional District 3",
+      "platformUrl": "https://www.youtube.com/watch?v=7BfE2eJlFxA",
+      "archiveUrl": "https://www.youtube.com/watch?v=7BfE2eJlFxA",
+      "overallSystemRating": "Needs Review",
+      "overallSystemConfidence": "Low",
+      "overallSystemExplanation": "This ad is source-backed and reviewed for repository inclusion; claim-level truth ratings may still need expert or community review.",
+      "overallCitizenRating": null,
+      "citizenAgreementPercent": null,
+      "citizenRatingCount": 0,
+      "status": "published",
+      "media": [
+        {
+          "id": "nv-video-ad-susie-lee-the-most-2024-source-link",
+          "politicalAdId": "nv-video-ad-susie-lee-the-most-2024",
+          "mediaType": "externalEmbed",
+          "url": "https://www.youtube.com/watch?v=7BfE2eJlFxA",
+          "altText": "The Most source",
+          "sortOrder": 0,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        },
+        {
+          "id": "nv-video-ad-susie-lee-the-most-2024-text",
+          "politicalAdId": "nv-video-ad-susie-lee-the-most-2024",
+          "mediaType": "transcript",
+          "textContent": "Source-backed creative summary: the ad introduces Lee's 2024 TV message around bipartisanship and lower costs for prescription drugs and housing. Full transcript is not copied into the repository.",
+          "sortOrder": 1,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "entityRelations": [
+        {
+          "id": "nv-video-ad-susie-lee-the-most-2024-candidate-susie-lee-supports",
+          "politicalAdId": "nv-video-ad-susie-lee-the-most-2024",
+          "entityType": "candidate",
+          "entityId": "susie-lee",
+          "entityLabel": "Susie Lee",
+          "relationType": "supports",
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "geographies": [
+        {
+          "id": "nv-video-ad-susie-lee-the-most-2024-geo-nevada",
+          "politicalAdId": "nv-video-ad-susie-lee-the-most-2024",
+          "country": "United States",
+          "state": "Nevada",
+          "county": null,
+          "city": null,
+          "districtType": "district",
+          "districtName": "Nevada Congressional District 3",
+          "precinct": null,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "claims": [
+        {
+          "id": "nv-video-ad-susie-lee-the-most-2024-claim-1",
+          "politicalAdId": "nv-video-ad-susie-lee-the-most-2024",
+          "claimText": "The ad says Lee worked across party lines and focused on lowering prescription drug and housing costs.",
+          "normalizedClaim": "the ad says lee worked across party lines and focused on lowering prescription drug and housing costs.",
+          "claimType": "factual",
+          "mediaTimestampStart": null,
+          "mediaTimestampEnd": null,
+          "mediaLocation": null,
+          "importance": "high",
+          "systemRating": "Needs Review",
+          "systemConfidence": "Low",
+          "systemExplanation": "The claim is drawn from the public video description and needs follow-up against bill records, votes, and independent reporting.",
+          "citizenRating": null,
+          "citizenAgreementPercent": null,
+          "citizenRatingCount": 0,
+          "evidence": [
+            {
+              "id": "nv-video-ad-susie-lee-the-most-2024-claim-1-evidence-1",
+              "claimId": "nv-video-ad-susie-lee-the-most-2024-claim-1",
+              "title": "The Most | Susie Lee for Congress",
+              "url": "https://www.youtube.com/watch?v=7BfE2eJlFxA",
+              "sourceType": "Political ad source",
+              "publisher": "Susie Lee for Congress",
+              "publishedAt": "2024-09-04",
+              "excerpt": "The ad says Lee worked across party lines and focused on lowering prescription drug and housing costs.",
+              "supportsOrRefutes": "contextualizes",
+              "createdAt": "2026-07-20T17:11:56.615Z"
+            }
+          ],
+          "createdAt": "2026-07-20T17:11:56.615Z",
+          "updatedAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "citizenRatings": [],
+      "challenges": [],
+      "createdAt": "2026-07-20T17:11:56.615Z",
+      "updatedAt": "2026-07-20T17:11:56.615Z"
+    },
+    {
+      "id": "nv-video-ad-susie-lee-stark-choice-2022",
+      "title": "Stark Choice",
+      "description": "Susie Lee campaign ad framed around the contrast in the 2022 Nevada Congressional District 3 race.",
+      "sourceType": "broadcastTvAd",
+      "sponsorName": "Susie Lee for Congress",
+      "sponsorType": "candidateCampaign",
+      "paidForBy": "Susie Lee for Congress",
+      "producedBy": null,
+      "authorizedBy": "Susie Lee campaign",
+      "authorizationText": "Public YouTube creative from the Susie Lee for Congress channel; exact disclaimer should be confirmed against the video frame before formal publication.",
+      "totalSpend": null,
+      "currency": "USD",
+      "impressions": null,
+      "firstSeenAt": "2022-06-24",
+      "lastSeenAt": "2022-06-24",
+      "electionCycle": "2022",
+      "geographySummary": "Nevada Congressional District 3",
+      "platformUrl": "https://www.youtube.com/watch?v=8n8-gn4EkUA",
+      "archiveUrl": "https://www.youtube.com/watch?v=8n8-gn4EkUA",
+      "overallSystemRating": "Needs Review",
+      "overallSystemConfidence": "Low",
+      "overallSystemExplanation": "This ad is source-backed and reviewed for repository inclusion; claim-level truth ratings may still need expert or community review.",
+      "overallCitizenRating": null,
+      "citizenAgreementPercent": null,
+      "citizenRatingCount": 0,
+      "status": "published",
+      "media": [
+        {
+          "id": "nv-video-ad-susie-lee-stark-choice-2022-source-link",
+          "politicalAdId": "nv-video-ad-susie-lee-stark-choice-2022",
+          "mediaType": "externalEmbed",
+          "url": "https://www.youtube.com/watch?v=8n8-gn4EkUA",
+          "altText": "Stark Choice source",
+          "sortOrder": 0,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        },
+        {
+          "id": "nv-video-ad-susie-lee-stark-choice-2022-text",
+          "politicalAdId": "nv-video-ad-susie-lee-stark-choice-2022",
+          "mediaType": "transcript",
+          "textContent": "Source-backed creative summary: the ad frames the congressional race as a contrast between competing policy directions. Full transcript is not copied into the repository.",
+          "sortOrder": 1,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "entityRelations": [
+        {
+          "id": "nv-video-ad-susie-lee-stark-choice-2022-candidate-susie-lee-supports",
+          "politicalAdId": "nv-video-ad-susie-lee-stark-choice-2022",
+          "entityType": "candidate",
+          "entityId": "susie-lee",
+          "entityLabel": "Susie Lee",
+          "relationType": "supports",
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "geographies": [
+        {
+          "id": "nv-video-ad-susie-lee-stark-choice-2022-geo-nevada",
+          "politicalAdId": "nv-video-ad-susie-lee-stark-choice-2022",
+          "country": "United States",
+          "state": "Nevada",
+          "county": null,
+          "city": null,
+          "districtType": "district",
+          "districtName": "Nevada Congressional District 3",
+          "precinct": null,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "claims": [
+        {
+          "id": "nv-video-ad-susie-lee-stark-choice-2022-claim-1",
+          "politicalAdId": "nv-video-ad-susie-lee-stark-choice-2022",
+          "claimText": "The ad positions the election as a policy contrast for voters in Nevada's 3rd Congressional District.",
+          "normalizedClaim": "the ad positions the election as a policy contrast for voters in nevada's 3rd congressional district.",
+          "claimType": "opinion",
+          "mediaTimestampStart": null,
+          "mediaTimestampEnd": null,
+          "mediaLocation": null,
+          "importance": "medium",
+          "systemRating": "Needs Review",
+          "systemConfidence": "Low",
+          "systemExplanation": "The source verifies the creative exists; specific contrast claims need separate claim-level evidence before rating.",
+          "citizenRating": null,
+          "citizenAgreementPercent": null,
+          "citizenRatingCount": 0,
+          "evidence": [
+            {
+              "id": "nv-video-ad-susie-lee-stark-choice-2022-claim-1-evidence-1",
+              "claimId": "nv-video-ad-susie-lee-stark-choice-2022-claim-1",
+              "title": "Stark Choice | Susie Lee for Congress",
+              "url": "https://www.youtube.com/watch?v=8n8-gn4EkUA",
+              "sourceType": "Political ad source",
+              "publisher": "Susie Lee for Congress",
+              "publishedAt": "2022-06-24",
+              "excerpt": "The ad positions the election as a policy contrast for voters in Nevada's 3rd Congressional District.",
+              "supportsOrRefutes": "contextualizes",
+              "createdAt": "2026-07-20T17:11:56.615Z"
+            }
+          ],
+          "createdAt": "2026-07-20T17:11:56.615Z",
+          "updatedAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "citizenRatings": [],
+      "challenges": [],
+      "createdAt": "2026-07-20T17:11:56.615Z",
+      "updatedAt": "2026-07-20T17:11:56.615Z"
+    },
+    {
+      "id": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024",
+      "title": "Rosen/Brown abortion ad fact-check context",
+      "description": "News 4 Reno segment preserving context for Nevada Senate abortion-related campaign ads by Jacky Rosen and Sam Brown.",
+      "sourceType": "broadcastTvAd",
+      "sponsorName": "Multiple Nevada Senate campaigns and outside groups",
+      "sponsorType": "unknownUndisclosed",
+      "paidForBy": "Multiple sponsors; see underlying ads discussed by News 4 Reno",
+      "producedBy": null,
+      "authorizedBy": null,
+      "authorizationText": "This is a source-backed context record, not a replacement for the original campaign creative. It should remain labeled as fact-check context until the original ads are attached.",
+      "totalSpend": null,
+      "currency": "USD",
+      "impressions": null,
+      "firstSeenAt": "2024-09-01",
+      "lastSeenAt": "2024-09-01",
+      "electionCycle": "2024",
+      "geographySummary": "Nevada statewide",
+      "platformUrl": "https://www.youtube.com/watch?v=d9oxZbQ32YY",
+      "archiveUrl": "https://mynews4.com/news/local/fact-checking-nevada-us-senate-candidates-sam-brown-senator-jacky-rosen-campaign-ads-on-abortion",
+      "overallSystemRating": "Needs Review",
+      "overallSystemConfidence": "Low",
+      "overallSystemExplanation": "This ad is source-backed and reviewed for repository inclusion; claim-level truth ratings may still need expert or community review.",
+      "overallCitizenRating": null,
+      "citizenAgreementPercent": null,
+      "citizenRatingCount": 0,
+      "status": "published",
+      "media": [
+        {
+          "id": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024-source-link",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024",
+          "mediaType": "externalEmbed",
+          "url": "https://mynews4.com/news/local/fact-checking-nevada-us-senate-candidates-sam-brown-senator-jacky-rosen-campaign-ads-on-abortion",
+          "altText": "Rosen/Brown abortion ad fact-check context source",
+          "sortOrder": 0,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        },
+        {
+          "id": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024-text",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024",
+          "mediaType": "transcript",
+          "textContent": "Source-backed context summary: News 4 Reno reviewed abortion-related claims from Nevada Senate campaign ads. This record helps the ad tracker surface the issue and points reviewers back to the original creatives.",
+          "sortOrder": 1,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "entityRelations": [
+        {
+          "id": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024-candidate-nevada-senate-2024-rosen-brown-mentions",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024",
+          "entityType": "candidate",
+          "entityId": "nevada-senate-2024-rosen-brown",
+          "entityLabel": "Jacky Rosen and Sam Brown",
+          "relationType": "mentions",
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "geographies": [
+        {
+          "id": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024-geo-nevada",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024",
+          "country": "United States",
+          "state": "Nevada",
+          "county": null,
+          "city": null,
+          "districtType": "district",
+          "districtName": "Nevada statewide",
+          "precinct": null,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "claims": [
+        {
+          "id": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024-claim-1",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024",
+          "claimText": "The fact-check segment indicates abortion-related campaign ads in the Nevada Senate race required voter context.",
+          "normalizedClaim": "the fact-check segment indicates abortion-related campaign ads in the nevada senate race required voter context.",
+          "claimType": "factual",
+          "mediaTimestampStart": null,
+          "mediaTimestampEnd": null,
+          "mediaLocation": null,
+          "importance": "high",
+          "systemRating": "Needs Review",
+          "systemConfidence": "Low",
+          "systemExplanation": "This is a context record; individual original ad claims need to be attached and rated separately.",
+          "citizenRating": null,
+          "citizenAgreementPercent": null,
+          "citizenRatingCount": 0,
+          "evidence": [
+            {
+              "id": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024-claim-1-evidence-1",
+              "claimId": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024-claim-1",
+              "title": "Fact-checking Nevada Senate candidates Sam Brown, Jacky Rosen's campaign ads on abortion",
+              "url": "https://mynews4.com/news/local/fact-checking-nevada-us-senate-candidates-sam-brown-senator-jacky-rosen-campaign-ads-on-abortion",
+              "sourceType": "Political ad source",
+              "publisher": "News 4 Reno",
+              "publishedAt": "2024-09-01",
+              "excerpt": "The fact-check segment indicates abortion-related campaign ads in the Nevada Senate race required voter context.",
+              "supportsOrRefutes": "contextualizes",
+              "createdAt": "2026-07-20T17:11:56.615Z"
+            }
+          ],
+          "createdAt": "2026-07-20T17:11:56.615Z",
+          "updatedAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "citizenRatings": [],
+      "challenges": [],
+      "createdAt": "2026-07-20T17:11:56.615Z",
+      "updatedAt": "2026-07-20T17:11:56.615Z"
+    },
+    {
+      "id": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024",
+      "title": "Nevada Senate housing and COVID-relief ad fact-check context",
+      "description": "News 4 Reno segment preserving context for Nevada Senate campaign commercials about housing and COVID-relief checks.",
+      "sourceType": "broadcastTvAd",
+      "sponsorName": "Multiple Nevada Senate campaigns and outside groups",
+      "sponsorType": "unknownUndisclosed",
+      "paidForBy": "Multiple sponsors; see underlying ads discussed by News 4 Reno",
+      "producedBy": null,
+      "authorizedBy": null,
+      "authorizationText": "This is a source-backed context record, not a replacement for the original campaign creative. It should remain labeled as fact-check context until the original ads are attached.",
+      "totalSpend": null,
+      "currency": "USD",
+      "impressions": null,
+      "firstSeenAt": "2024-09-01",
+      "lastSeenAt": "2024-09-01",
+      "electionCycle": "2024",
+      "geographySummary": "Nevada statewide",
+      "platformUrl": "https://www.youtube.com/watch?v=oL2uyR2yngo",
+      "archiveUrl": "https://www.youtube.com/watch?v=oL2uyR2yngo",
+      "overallSystemRating": "Needs Review",
+      "overallSystemConfidence": "Low",
+      "overallSystemExplanation": "This ad is source-backed and reviewed for repository inclusion; claim-level truth ratings may still need expert or community review.",
+      "overallCitizenRating": null,
+      "citizenAgreementPercent": null,
+      "citizenRatingCount": 0,
+      "status": "published",
+      "media": [
+        {
+          "id": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024-source-link",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024",
+          "mediaType": "externalEmbed",
+          "url": "https://www.youtube.com/watch?v=oL2uyR2yngo",
+          "altText": "Nevada Senate housing and COVID-relief ad fact-check context source",
+          "sortOrder": 0,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        },
+        {
+          "id": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024-text",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024",
+          "mediaType": "transcript",
+          "textContent": "Source-backed context summary: News 4 Reno reviewed campaign-commercial claims about housing and COVID-relief checks in the Nevada Senate race. Original ad creative still needs attachment for final claim rating.",
+          "sortOrder": 1,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "entityRelations": [
+        {
+          "id": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024-candidate-nevada-senate-2024-rosen-brown-mentions",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024",
+          "entityType": "candidate",
+          "entityId": "nevada-senate-2024-rosen-brown",
+          "entityLabel": "Jacky Rosen and Sam Brown",
+          "relationType": "mentions",
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "geographies": [
+        {
+          "id": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024-geo-nevada",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024",
+          "country": "United States",
+          "state": "Nevada",
+          "county": null,
+          "city": null,
+          "districtType": "district",
+          "districtName": "Nevada statewide",
+          "precinct": null,
+          "createdAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "claims": [
+        {
+          "id": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024-claim-1",
+          "politicalAdId": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024",
+          "claimText": "The fact-check segment indicates housing and COVID-relief claims appeared in Nevada Senate campaign commercials.",
+          "normalizedClaim": "the fact-check segment indicates housing and covid-relief claims appeared in nevada senate campaign commercials.",
+          "claimType": "factual",
+          "mediaTimestampStart": null,
+          "mediaTimestampEnd": null,
+          "mediaLocation": null,
+          "importance": "medium",
+          "systemRating": "Needs Review",
+          "systemConfidence": "Low",
+          "systemExplanation": "This is a context record; original ad scripts and official records should be attached before final ratings.",
+          "citizenRating": null,
+          "citizenAgreementPercent": null,
+          "citizenRatingCount": 0,
+          "evidence": [
+            {
+              "id": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024-claim-1-evidence-1",
+              "claimId": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024-claim-1",
+              "title": "Fact-checking Nevada Senate campaign commercials on housing, COVID relief checks",
+              "url": "https://www.youtube.com/watch?v=oL2uyR2yngo",
+              "sourceType": "Political ad source",
+              "publisher": "News 4 Reno",
+              "publishedAt": "2024-09-01",
+              "excerpt": "The fact-check segment indicates housing and COVID-relief claims appeared in Nevada Senate campaign commercials.",
+              "supportsOrRefutes": "contextualizes",
+              "createdAt": "2026-07-20T17:11:56.615Z"
+            }
+          ],
+          "createdAt": "2026-07-20T17:11:56.615Z",
+          "updatedAt": "2026-07-20T17:11:56.615Z"
+        }
+      ],
+      "citizenRatings": [],
+      "challenges": [],
+      "createdAt": "2026-07-20T17:11:56.615Z",
+      "updatedAt": "2026-07-20T17:11:56.615Z"
+    },
     {
       "id": "fec-nv-ie-4060520261520378046",
       "title": "CLUB FOR GROWTH ACTION supporting David Flippo",
@@ -37,7 +820,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606059870431512",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060520261520378046-fec-summary",
@@ -46,7 +829,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"PHONE/TEXT MESSAGING\" with $2,935.17 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -57,7 +840,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -71,14 +854,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060520261520378045",
@@ -115,7 +898,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606059870431512",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060520261520378045-fec-summary",
@@ -124,7 +907,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"PHONE/TEXT MESSAGING (FROM ADVANCE LINE 21)\" with $213.71 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -135,7 +918,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -149,14 +932,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060320261520146499",
@@ -193,7 +976,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362891",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060320261520146499-fec-summary",
@@ -202,7 +985,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"DIGITAL ADVERTISING\" with $29,062.19 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -213,7 +996,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -227,14 +1010,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060320261520146494",
@@ -271,7 +1054,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362889",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060320261520146494-fec-summary",
@@ -280,7 +1063,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"DIGITAL ADVERTISING (FROM ADVANCE LINE 21)\" with $1,178.29 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -291,7 +1074,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -305,14 +1088,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060320261520146493",
@@ -349,7 +1132,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362888",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060320261520146493-fec-summary",
@@ -358,7 +1141,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"RADIO AD PRODUCTION (FROM ADVANCE LINE 21)\" with $137.22 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -369,7 +1152,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -383,14 +1166,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060320261520146492",
@@ -427,7 +1210,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362888",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060320261520146492-fec-summary",
@@ -436,7 +1219,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"TV AD PRODUCTION (FROM ADVANCE LINE 21)\" with $160.46 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -447,7 +1230,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -461,14 +1244,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060220261512603329",
@@ -505,7 +1288,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606029870359266",
           "altText": "FREEDOM CAUCUS FUND supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060220261512603329-fec-summary",
@@ -514,7 +1297,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"IE- FLIPPO- MEDIA BUY\" with $27,392.04 in Nevada Congressional District 2.",
           "altText": "FREEDOM CAUCUS FUND supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -525,7 +1308,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -539,14 +1322,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060220261512603328",
@@ -583,7 +1366,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606029870359266",
           "altText": "FREEDOM CAUCUS FUND opposing James Arnold Settelmeyer FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060220261512603328-fec-summary",
@@ -592,7 +1375,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing James Arnold Settelmeyer. Purpose reported as \"IE- SETTELMEYER- MEDIA BUY\" with $27,392.04 in Nevada Congressional District 2.",
           "altText": "FREEDOM CAUCUS FUND opposing James Arnold Settelmeyer source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -603,7 +1386,7 @@
           "entityId": "H6NV02396",
           "entityLabel": "James Arnold Settelmeyer",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -617,14 +1400,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060320261520146491",
@@ -661,7 +1444,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362887",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060320261520146491-fec-summary",
@@ -670,7 +1453,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"RADIO AD PLACEMENT\" with $24,694.69 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -681,7 +1464,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -695,14 +1478,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.740Z",
-      "updatedAt": "2026-07-13T03:19:35.740Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060320261520146490",
@@ -739,7 +1522,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362887",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060320261520146490-fec-summary",
@@ -748,7 +1531,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"TV AD PLACEMENT\" with $300,366.66 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.740Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -759,7 +1542,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -773,14 +1556,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060320261520146489",
@@ -817,7 +1600,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362886",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060320261520146489-fec-summary",
@@ -826,7 +1609,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"RADIO AD PRODUCTION\" with $2,500 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -837,7 +1620,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -851,14 +1634,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4060320261520146488",
@@ -895,7 +1678,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362886",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4060320261520146488-fec-summary",
@@ -904,7 +1687,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting David Flippo. Purpose reported as \"TV AD PRODUCTION\" with $9,769 in Nevada Congressional District 2.",
           "altText": "CLUB FOR GROWTH ACTION supporting David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -915,7 +1698,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -929,14 +1712,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4063020261523241302",
@@ -973,7 +1756,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606189870796541",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. opposing David Flippo FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4063020261523241302-fec-summary",
@@ -982,7 +1765,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing David Flippo. Purpose reported as \"TEXT MESSAGE SERVICES\" with $1,020.2 in Nevada Congressional District 2.",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. opposing David Flippo source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -993,7 +1776,7 @@
           "entityId": "H4NV04108",
           "entityLabel": "David Flippo",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1007,14 +1790,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4063020261523241301",
@@ -1051,7 +1834,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606189870796541",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. supporting James Arnold Settelmeyer FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4063020261523241301-fec-summary",
@@ -1060,7 +1843,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting James Arnold Settelmeyer. Purpose reported as \"TEXT MESSAGE SERVICES\" with $510.11 in Nevada Congressional District 2.",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. supporting James Arnold Settelmeyer source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1071,7 +1854,7 @@
           "entityId": "H6NV02396",
           "entityLabel": "James Arnold Settelmeyer",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1085,14 +1868,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4052920261511848065",
@@ -1129,7 +1912,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202605299870345844",
           "altText": "NEVADANS FOR AFFORDABILITY PAC supporting Tera Anderson FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4052920261511848065-fec-summary",
@@ -1138,7 +1921,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Tera Anderson. Purpose reported as \"MAILER DESIGN AND DATA\" with $3,536.72 in Nevada Congressional District 3.",
           "altText": "NEVADANS FOR AFFORDABILITY PAC supporting Tera Anderson source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1149,7 +1932,7 @@
           "entityId": "H6NV03220",
           "entityLabel": "Tera Anderson",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1163,14 +1946,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 3",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4063020261523241298",
@@ -1207,7 +1990,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606189870796539",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. supporting James Arnold Settelmeyer FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4063020261523241298-fec-summary",
@@ -1216,7 +1999,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting James Arnold Settelmeyer. Purpose reported as \"DIRECT MAIL SERVICES\" with $20,067.93 in Nevada Congressional District 2.",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. supporting James Arnold Settelmeyer source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1227,7 +2010,7 @@
           "entityId": "H6NV02396",
           "entityLabel": "James Arnold Settelmeyer",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1241,14 +2024,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4063020261523241295",
@@ -1285,7 +2068,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606189870796538",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. supporting James Arnold Settelmeyer FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4063020261523241295-fec-summary",
@@ -1294,7 +2077,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting James Arnold Settelmeyer. Purpose reported as \"DIGITAL ADVERTISEMENT & PRODUCTION\" with $76,046 in Nevada Congressional District 2.",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. supporting James Arnold Settelmeyer source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1305,7 +2088,7 @@
           "entityId": "H6NV02396",
           "entityLabel": "James Arnold Settelmeyer",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1319,14 +2102,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4063020261523241287",
@@ -1363,7 +2146,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606189870796534",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. supporting James Arnold Settelmeyer FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4063020261523241287-fec-summary",
@@ -1372,7 +2155,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting James Arnold Settelmeyer. Purpose reported as \"MEDIA ADVERTISEMENT\" with $58,375 in Nevada Congressional District 2.",
           "altText": "CONSERVATIVES FOR AMERICAN EXCELLENCE INC. supporting James Arnold Settelmeyer source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1383,7 +2166,7 @@
           "entityId": "H6NV02396",
           "entityLabel": "James Arnold Settelmeyer",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1397,14 +2180,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4061020261521115641",
@@ -1441,7 +2224,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202605289870318217",
           "altText": "NEVADANS FOR AFFORDABILITY PAC mentioning Tera Anderson FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4061020261521115641-fec-summary",
@@ -1450,7 +2233,7 @@
           "textContent": "FEC-reported independent expenditure communication mentioning Tera Anderson. Purpose reported as \"MAIL DESIGN\" with $1,100 in Nevada Congressional District 3.",
           "altText": "NEVADANS FOR AFFORDABILITY PAC mentioning Tera Anderson source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1461,7 +2244,7 @@
           "entityId": "H6NV03220",
           "entityLabel": "Tera Anderson",
           "relationType": "mentions",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1475,14 +2258,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 3",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4062920261523119228",
@@ -1519,7 +2302,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606199870809248",
           "altText": "FREEDOM CAUCUS FUND opposing James Arnold Settelmeyer FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4062920261523119228-fec-summary",
@@ -1528,7 +2311,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing James Arnold Settelmeyer. Purpose reported as \"IE- STETTELMEYER- DIGITAL ADVERTISING\" with $12,000.05 in Nevada Congressional District 2.",
           "altText": "FREEDOM CAUCUS FUND opposing James Arnold Settelmeyer source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1539,7 +2322,7 @@
           "entityId": "H6NV02396",
           "entityLabel": "James Arnold Settelmeyer",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1553,14 +2336,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 2",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4070120261523416053",
@@ -1597,7 +2380,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202606189870737524",
           "altText": "GIVEGREEN UNITED ACTION supporting Susie Lee FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4070120261523416053-fec-summary",
@@ -1606,7 +2389,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Susie Lee. Purpose reported as \"TEXT MESSAGING\" with $5.01 in Nevada Congressional District 3.",
           "altText": "GIVEGREEN UNITED ACTION supporting Susie Lee source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1617,7 +2400,7 @@
           "entityId": "H8NV03200",
           "entityLabel": "Susie Lee",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1631,14 +2414,14 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 3",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885901",
@@ -1675,7 +2458,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716449",
           "altText": "RED SENATE opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885901-fec-summary",
@@ -1684,7 +2467,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 11/1/2024. DIGITAL ADS\" with $498.86 in Nevada statewide.",
           "altText": "RED SENATE opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1695,7 +2478,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1709,14 +2492,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885899",
@@ -1753,7 +2536,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716448",
           "altText": "RED SENATE opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885899-fec-summary",
@@ -1762,7 +2545,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 11/1/2024. YOUTUBE ADS\" with $921.32 in Nevada statewide.",
           "altText": "RED SENATE opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1773,7 +2556,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1787,14 +2570,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885884",
@@ -1831,7 +2614,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716441",
           "altText": "RED SENATE opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885884-fec-summary",
@@ -1840,7 +2623,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 11/2/2024. YOUTUBE ADS\" with $716.68 in Nevada statewide.",
           "altText": "RED SENATE opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1851,7 +2634,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1865,14 +2648,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885883",
@@ -1909,7 +2692,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716440",
           "altText": "RED SENATE supporting Sam Brown FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885883-fec-summary",
@@ -1918,7 +2701,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Sam Brown. Purpose reported as \"PMT FOR EST FROM 11/3/2024. DIGITAL ADS\" with $793.3 in Nevada statewide.",
           "altText": "RED SENATE supporting Sam Brown source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -1929,7 +2712,7 @@
           "entityId": "S2NV00308",
           "entityLabel": "Sam Brown",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -1943,14 +2726,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885882",
@@ -1987,7 +2770,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716440",
           "altText": "RED SENATE supporting Sam Brown FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885882-fec-summary",
@@ -1996,7 +2779,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Sam Brown. Purpose reported as \"PMT FOR EST FROM 11/1/2024. DIGITAL ADS\" with $498.86 in Nevada statewide.",
           "altText": "RED SENATE supporting Sam Brown source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2007,7 +2790,7 @@
           "entityId": "S2NV00308",
           "entityLabel": "Sam Brown",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2021,14 +2804,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885876",
@@ -2065,7 +2848,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716437",
           "altText": "RED SENATE supporting Sam Brown FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885876-fec-summary",
@@ -2074,7 +2857,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Sam Brown. Purpose reported as \"PMT FOR EST FROM 11/2/2024. DIGITAL ADS\" with $290.43 in Nevada statewide.",
           "altText": "RED SENATE supporting Sam Brown source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2085,7 +2868,7 @@
           "entityId": "S2NV00308",
           "entityLabel": "Sam Brown",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2099,14 +2882,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885869",
@@ -2143,7 +2926,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716433",
           "altText": "RED SENATE opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885869-fec-summary",
@@ -2152,7 +2935,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 11/4/2024. YOUTUBE ADS\" with $10.03 in Nevada statewide.",
           "altText": "RED SENATE opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2163,7 +2946,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2177,14 +2960,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885838",
@@ -2221,7 +3004,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716418",
           "altText": "RED SENATE opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885838-fec-summary",
@@ -2230,7 +3013,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 11/2/2024. DIGITAL ADS\" with $290.42 in Nevada statewide.",
           "altText": "RED SENATE opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2241,7 +3024,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2255,14 +3038,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885833",
@@ -2299,7 +3082,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716415",
           "altText": "RED SENATE opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885833-fec-summary",
@@ -2308,7 +3091,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 11/3/2024. YOUTUBE ADS\" with $9.98 in Nevada statewide.",
           "altText": "RED SENATE opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2319,7 +3102,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2333,14 +3116,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885830",
@@ -2377,7 +3160,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716414",
           "altText": "RED SENATE supporting Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885830-fec-summary",
@@ -2386,7 +3169,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 11/3/2024. DIGITAL ADS\" with $793.29 in Nevada statewide.",
           "altText": "RED SENATE supporting Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2397,7 +3180,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2411,14 +3194,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885829",
@@ -2455,7 +3238,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716413",
           "altText": "RED SENATE opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885829-fec-summary",
@@ -2464,7 +3247,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 11/5/2024. YOUTUBE ADS\" with $3.72 in Nevada statewide.",
           "altText": "RED SENATE opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2475,7 +3258,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2489,14 +3272,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4020520251142972522",
@@ -2533,7 +3316,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501319749119326",
           "altText": "GUN RIGHTS AMERICA opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4020520251142972522-fec-summary",
@@ -2542,7 +3325,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 10/16/2024. LATE ARRIVING DIGITAL AD CHARGE; SEE PMT EST ID#:..46A1B08\" with $52.98 in Nevada statewide.",
           "altText": "GUN RIGHTS AMERICA opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2553,7 +3336,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2567,14 +3350,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885820",
@@ -2611,7 +3394,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716409",
           "altText": "RED SENATE supporting Sam Brown FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885820-fec-summary",
@@ -2620,7 +3403,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Sam Brown. Purpose reported as \"PMT FOR EST FROM 10/31/2024. DIGITAL ADS\" with $535.63 in Nevada statewide.",
           "altText": "RED SENATE supporting Sam Brown source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2631,7 +3414,7 @@
           "entityId": "S2NV00308",
           "entityLabel": "Sam Brown",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2645,14 +3428,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4013120251139885816",
@@ -2689,7 +3472,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501309748716407",
           "altText": "RED SENATE opposing Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4013120251139885816-fec-summary",
@@ -2698,7 +3481,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Jacky Rosen. Purpose reported as \"PMT FOR EST FROM 10/31/2024. DIGITAL ADS\" with $535.62 in Nevada statewide.",
           "altText": "RED SENATE opposing Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2709,7 +3492,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2723,14 +3506,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4121820241107074040",
@@ -2767,7 +3550,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202412039720152110",
           "altText": "BRADY PAC supporting Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4121820241107074040-fec-summary",
@@ -2776,7 +3559,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Jacky Rosen. Purpose reported as \"DIGITAL ADS\" with $999.99 in Nevada statewide.",
           "altText": "BRADY PAC supporting Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2787,7 +3570,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2801,14 +3584,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4021820251177467315",
@@ -2845,7 +3628,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202502149753430704",
           "altText": "WINSENATE supporting Jacky Rosen FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4021820251177467315-fec-summary",
@@ -2854,7 +3637,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Jacky Rosen. Purpose reported as \"ONLINE CONTENT & PRODUCTION\" with $100 in Nevada statewide.",
           "altText": "WINSENATE supporting Jacky Rosen source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2865,7 +3648,7 @@
           "entityId": "S8NV00156",
           "entityLabel": "Jacky Rosen",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2879,14 +3662,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4021820251177467233",
@@ -2923,7 +3706,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202502149753430663",
           "altText": "WINSENATE opposing Sam Brown FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4021820251177467233-fec-summary",
@@ -2932,7 +3715,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Sam Brown. Purpose reported as \"ONLINE CONTENT & PRODUCTION\" with $50 in Nevada statewide.",
           "altText": "WINSENATE opposing Sam Brown source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -2943,7 +3726,7 @@
           "entityId": "S2NV00308",
           "entityLabel": "Sam Brown",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -2957,14 +3740,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4021820251177467356",
@@ -3001,7 +3784,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202502149753430725",
           "altText": "WINSENATE opposing Sam Brown FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         },
         {
           "id": "fec-nv-ie-4021820251177467356-fec-summary",
@@ -3010,7 +3793,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Sam Brown. Purpose reported as \"MEDIA PRODUCTION COSTS\" with $12,961.14 in Nevada statewide.",
           "altText": "WINSENATE opposing Sam Brown source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "entityRelations": [
@@ -3021,7 +3804,7 @@
           "entityId": "S2NV00308",
           "entityLabel": "Sam Brown",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "geographies": [
@@ -3035,14 +3818,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.623Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.623Z",
+      "updatedAt": "2026-07-20T17:11:56.623Z"
     },
     {
       "id": "fec-nv-ie-4021820251177467217",
@@ -3079,7 +3862,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202502149753430655",
           "altText": "WINSENATE opposing Sam Brown FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.624Z"
         },
         {
           "id": "fec-nv-ie-4021820251177467217-fec-summary",
@@ -3088,7 +3871,7 @@
           "textContent": "FEC-reported independent expenditure communication opposing Sam Brown. Purpose reported as \"DIGITAL MEDIA PRODUCTION COSTS\" with $750 in Nevada statewide.",
           "altText": "WINSENATE opposing Sam Brown source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.624Z"
         }
       ],
       "entityRelations": [
@@ -3099,7 +3882,7 @@
           "entityId": "S2NV00308",
           "entityLabel": "Sam Brown",
           "relationType": "opposes",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.624Z"
         }
       ],
       "geographies": [
@@ -3113,14 +3896,14 @@
           "districtType": "statewide",
           "districtName": "Nevada statewide",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.624Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.624Z",
+      "updatedAt": "2026-07-20T17:11:56.624Z"
     },
     {
       "id": "fec-nv-ie-4012920251138469552",
@@ -3157,7 +3940,7 @@
           "url": "https://docquery.fec.gov/cgi-bin/fecimg/?202501279747946936",
           "altText": "HMP supporting Steven Horsford FEC source filing",
           "sortOrder": 0,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.624Z"
         },
         {
           "id": "fec-nv-ie-4012920251138469552-fec-summary",
@@ -3166,7 +3949,7 @@
           "textContent": "FEC-reported independent expenditure communication supporting Steven Horsford. Purpose reported as \"TEXT MESSAGES\" with $9,900 in Nevada Congressional District 4.",
           "altText": "HMP supporting Steven Horsford source-backed summary",
           "sortOrder": 1,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.624Z"
         }
       ],
       "entityRelations": [
@@ -3177,7 +3960,7 @@
           "entityId": "H2NV04011",
           "entityLabel": "Steven Horsford",
           "relationType": "supports",
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.624Z"
         }
       ],
       "geographies": [
@@ -3191,20 +3974,22 @@
           "districtType": "congressional",
           "districtName": "Nevada Congressional District 4",
           "precinct": null,
-          "createdAt": "2026-07-13T03:19:35.741Z"
+          "createdAt": "2026-07-20T17:11:56.624Z"
         }
       ],
       "claims": [],
       "citizenRatings": [],
       "challenges": [],
-      "createdAt": "2026-07-13T03:19:35.741Z",
-      "updatedAt": "2026-07-13T03:19:35.741Z"
+      "createdAt": "2026-07-20T17:11:56.624Z",
+      "updatedAt": "2026-07-20T17:11:56.624Z"
     }
   ],
   "totals": {
-    "intakeRecords": 0,
-    "reviewedSourceBackedAds": 41,
-    "manualReviewedAds": 0,
+    "intakeRecords": 7,
+    "manualIntakeRecords": 0,
+    "reviewedImportRecords": 7,
+    "reviewedSourceBackedAds": 48,
+    "reviewedCreativeAds": 7,
     "fecIndependentExpenditureAds": 41,
     "reviewQueueRecords": 1,
     "campaignFinanceAdSpendLeads": 1

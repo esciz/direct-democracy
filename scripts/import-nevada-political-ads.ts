@@ -15,12 +15,14 @@ import type {
 
 const GENERATED_DIR = path.join(process.cwd(), "data/generated");
 const MANUAL_INTAKE_PATH = path.join(process.cwd(), "data/manual-sources/political-ads/nevada-reviewed-ads.json");
+const REVIEWED_IMPORT_PATH = path.join(process.cwd(), "data/imports/political-ads/nevada-reviewed-video-ads.json");
 const CAMPAIGN_FINANCE_PATH = path.join(GENERATED_DIR, "nv-sos-campaign-finance-records.json");
 const FEC_IMPORT_PATH = path.join(process.cwd(), "data/imports/political-ads/fec-nevada-independent-expenditures.json");
 const OUTPUT_PATH = path.join(GENERATED_DIR, "nevada-political-ads.json");
 const REVIEW_QUEUE_PATH = path.join(GENERATED_DIR, "nevada-political-ads-review-queue.json");
 
 type ManualIntakeFile = {
+  source?: string;
   records?: ManualAdRecord[];
 };
 
@@ -460,7 +462,10 @@ function normalizeFecRecord(row: FecIndependentExpenditureRecord): PoliticalAd |
 }
 
 const intake = readJson<ManualIntakeFile>(MANUAL_INTAKE_PATH, { records: [] });
-const records = Array.isArray(intake.records) ? intake.records : [];
+const reviewedImport = readJson<ManualIntakeFile>(REVIEWED_IMPORT_PATH, { records: [] });
+const manualRecords = Array.isArray(intake.records) ? intake.records : [];
+const reviewedImportRecords = Array.isArray(reviewedImport.records) ? reviewedImport.records : [];
+const records = [...manualRecords, ...reviewedImportRecords];
 const campaignFinanceRecords = readJson<CampaignFinanceRecord[] | { records?: CampaignFinanceRecord[]; data?: CampaignFinanceRecord[] }>(
   CAMPAIGN_FINANCE_PATH,
   [],
@@ -525,12 +530,15 @@ fs.writeFileSync(
   JSON.stringify(
     {
       generatedAt: new Date().toISOString(),
-      source: MANUAL_INTAKE_PATH,
+      source: REVIEWED_IMPORT_PATH,
+      sources: [REVIEWED_IMPORT_PATH, MANUAL_INTAKE_PATH, FEC_IMPORT_PATH, CAMPAIGN_FINANCE_PATH],
       ads: dedupedAds,
       totals: {
         intakeRecords: records.length,
+        manualIntakeRecords: manualRecords.length,
+        reviewedImportRecords: reviewedImportRecords.length,
         reviewedSourceBackedAds: dedupedAds.length,
-        manualReviewedAds: ads.length,
+        reviewedCreativeAds: ads.length,
         fecIndependentExpenditureAds: fecAds.length,
         reviewQueueRecords: reviewQueue.length,
         campaignFinanceAdSpendLeads: financeReviewQueue.length,
@@ -561,7 +569,10 @@ console.log(
   JSON.stringify(
     {
       intakeRecords: records.length,
+      manualIntakeRecords: manualRecords.length,
+      reviewedImportRecords: reviewedImportRecords.length,
       reviewedSourceBackedAds: dedupedAds.length,
+      reviewedCreativeAds: ads.length,
       fecIndependentExpenditureAds: fecAds.length,
       reviewQueueRecords: reviewQueue.length,
       campaignFinanceAdSpendLeads: financeReviewQueue.length,

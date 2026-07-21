@@ -47,7 +47,7 @@ export default async function CreateOrganizationPage({ searchParams }: CreateOrg
           <div className="mt-5 grid gap-4">
             <div>
               <label htmlFor="coalition-name" className="text-sm font-semibold text-ink">Coalition name</label>
-              <input id="coalition-name" name="name" className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" placeholder="Nevada Housing Action Coalition" />
+              <input id="coalition-name" name="name" className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500" placeholder="Example: Carson City neighborhood housing group" />
             </div>
             <div>
               <label htmlFor="coalition-description" className="text-sm font-semibold text-ink">Description</label>
