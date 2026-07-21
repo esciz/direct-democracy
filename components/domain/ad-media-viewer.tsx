@@ -1,5 +1,28 @@
 import type { PoliticalAd } from "@/types/domain";
 
+function getYoutubeEmbedUrl(mediaUrl: string | null | undefined) {
+  if (!mediaUrl) return null;
+
+  try {
+    const parsed = new URL(mediaUrl);
+    const hostname = parsed.hostname.toLowerCase();
+
+    if (hostname.includes("youtube.com")) {
+      const videoId = parsed.searchParams.get("v");
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    }
+
+    if (hostname.includes("youtu.be")) {
+      const videoId = parsed.pathname.replace("/", "").split("/")[0];
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 function MediaPlaceholder({ ad }: { ad: PoliticalAd }) {
   return (
     <div className="flex min-h-[20rem] flex-col justify-between rounded-[1.5rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.22),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.18),transparent_34%),linear-gradient(135deg,#111827,#020617)] p-6">
@@ -21,6 +44,8 @@ function MediaPlaceholder({ ad }: { ad: PoliticalAd }) {
 
 export function AdMediaViewer({ ad }: { ad: PoliticalAd }) {
   const video = ad.media.find((media) => media.mediaType === "video" && media.url);
+  const externalEmbed = ad.media.find((media) => media.mediaType === "externalEmbed" && media.url);
+  const youtubeEmbedUrl = getYoutubeEmbedUrl(video?.url ?? externalEmbed?.url ?? ad.platformUrl ?? ad.archiveUrl);
   const image = ad.media.find((media) => media.mediaType === "image" && media.url);
   const audio = ad.media.find((media) => media.mediaType === "audio");
   const pdf = ad.media.find((media) => media.mediaType === "pdf" && media.url);
@@ -38,10 +63,26 @@ export function AdMediaViewer({ ad }: { ad: PoliticalAd }) {
             Open mailer / PDF
           </a>
         ) : null}
+        {externalEmbed?.url ? (
+          <a href={externalEmbed.url} className="dd-button-secondary rounded-full px-4 py-2 text-sm font-semibold">
+            Open source
+          </a>
+        ) : null}
       </div>
 
       <div className="mt-5">
-        {video ? (
+        {youtubeEmbedUrl ? (
+          <div className="aspect-video overflow-hidden rounded-[1.5rem] border border-white/10 bg-black">
+            <iframe
+              src={youtubeEmbedUrl}
+              title={`${ad.title} video source`}
+              className="h-full w-full"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        ) : video ? (
           <video controls preload="metadata" poster={image?.url ?? undefined} className="w-full rounded-[1.5rem] border border-white/10 bg-black">
             <source src={video.url ?? undefined} />
           </video>
