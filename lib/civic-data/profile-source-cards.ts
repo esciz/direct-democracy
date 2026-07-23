@@ -3,6 +3,31 @@ import { CivicEntityType } from "@prisma/client";
 import { getCandidateFundingBreakdown, type CandidateFundingBreakdown } from "@/lib/campaign-finance/breakdown";
 import { prisma } from "@/lib/prisma";
 
+export type CampaignFinanceCycleRecord = {
+  cycleYear: number;
+  displayLabel: string;
+  label: string;
+  reportingPeriod: string;
+  periodEnd: string;
+  totalRaised: number;
+  totalSpent: number;
+  cashOnHand: number | null;
+  sourceName: string;
+  sourceUrl: string | null;
+  isCurrentCycle: boolean;
+};
+
+export type CampaignFinanceAllReportedTotals = {
+  label: string;
+  reportingPeriod: string;
+  totalRaised: number;
+  totalSpent: number;
+  cycleCount: number;
+  sourceName: string;
+  sourceUrl: string | null;
+  aggregationMethod: string | null;
+};
+
 export type CampaignFinanceSourceCardData = {
   sourceName: string | null;
   sourceUrl: string | null;
@@ -26,12 +51,15 @@ export type CampaignFinanceSourceCardData = {
   pendingCount: number;
   approvedCount: number;
   fundingBreakdown: CandidateFundingBreakdown | null;
+  cycleHistory: CampaignFinanceCycleRecord[];
+  allReportedTotals: CampaignFinanceAllReportedTotals | null;
   campaignReportedSummary: string | null;
   donorExtractionStatus: string;
 };
 
 type FinanceAttributionMetadata = {
   cycleTotalsAvailable?: boolean;
+  campaignHistoryAvailable?: boolean;
   filingSummaries?: Array<{ name?: string; filedAt?: string | null; url?: string | null }>;
   sourceLinks?: Array<{ label?: string; url?: string; note?: string | null }>;
   campaignReportedSummary?: string | null;
@@ -55,6 +83,16 @@ function financeMetadataScore(value: unknown) {
 
 function dedupeFilings<T extends { name: string; filedAt: string | null; url: string | null }>(filings: T[]) {
   return [...new Map(filings.map((filing) => [`${filing.name.toLowerCase()}|${filing.filedAt ?? ""}|${filing.url ?? ""}`, filing])).values()];
+}
+
+function asFiniteNumber(value: unknown) {
+  if (value == null) return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function asFinanceRawData(value: unknown) {
+  return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
 }
 
 export async function getCampaignFinanceSourceCard(entityType: "candidate" | "official", entityId: string): Promise<CampaignFinanceSourceCardData> {
@@ -81,7 +119,8 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
       ? prisma.campaignFinanceFiling.findMany({
           where: { candidateId: entityId },
           orderBy: [{ filedAt: "desc" }, { updatedAt: "desc" }],
-          take: 8,
+          take: 50,
+          include: { source: { select: { name: true } } },
         })
       : Promise.resolve([]),
     entityType === "candidate"
@@ -124,13 +163,65 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
         }))
         .filter((filing) => filing.name);
   const parsedFilings = filings.map((filing) => {
-    const rawData = filing.rawData && typeof filing.rawData === "object" && !Array.isArray(filing.rawData) ? (filing.rawData as Record<string, unknown>) : null;
+    const rawData = asFinanceRawData(filing.rawData);
     return {
       name: typeof rawData?.filingName === "string" ? rawData.filingName : filing.filingType.replaceAll("_", " "),
       filedAt: filing.filedAt?.toISOString() ?? null,
       url: filing.filingUrl,
     };
   });
+  const cycleHistory = filings
+    .flatMap((filing): CampaignFinanceCycleRecord[] => {
+      const rawData = asFinanceRawData(filing.rawData);
+      const cycleYear = asFiniteNumber(rawData?.cycleYear);
+      const totalRaised = asFiniteNumber(filing.amountRaised);
+      const totalSpent = asFiniteNumber(filing.amountSpent);
+      if (
+        rawData?.recordKind !== "reviewed_cycle_aggregate" ||
+        cycleYear == null ||
+        totalRaised == null ||
+        totalSpent == null ||
+        !filing.periodEnd
+      ) {
+        return [];
+      }
+      return [{
+        cycleYear,
+        displayLabel:
+          typeof rawData.cycleDisplayLabel === "string"
+            ? rawData.cycleDisplayLabel
+            : typeof rawData.filingName === "string"
+              ? rawData.filingName.replace(/\s+totals.*$/i, "")
+              : `${cycleYear} cycle`,
+        label: typeof rawData.filingName === "string" ? rawData.filingName : `${cycleYear} cycle totals`,
+        reportingPeriod: typeof rawData.reportingPeriod === "string" ? rawData.reportingPeriod : `${cycleYear - 1}-${cycleYear} election cycle`,
+        periodEnd: filing.periodEnd.toISOString(),
+        totalRaised,
+        totalSpent,
+        cashOnHand: asFiniteNumber(rawData.cashOnHand),
+        sourceName: filing.source?.name ?? attribution?.sourceName ?? "Campaign finance source",
+        sourceUrl: filing.filingUrl,
+        isCurrentCycle: rawData.isCurrentCycle === true,
+      }];
+    })
+    .sort((left, right) => right.cycleYear - left.cycleYear);
+  const allReportedFiling = filings.find((filing) => asFinanceRawData(filing.rawData)?.recordKind === "reviewed_all_reported_aggregate");
+  const allReportedRawData = asFinanceRawData(allReportedFiling?.rawData);
+  const allReportedRaised = asFiniteNumber(allReportedFiling?.amountRaised);
+  const allReportedSpent = asFiniteNumber(allReportedFiling?.amountSpent);
+  const allReportedTotals: CampaignFinanceAllReportedTotals | null =
+    allReportedFiling && allReportedRaised != null && allReportedSpent != null
+      ? {
+          label: typeof allReportedRawData?.filingName === "string" ? allReportedRawData.filingName : "All reported campaign activity",
+          reportingPeriod: typeof allReportedRawData?.reportingPeriod === "string" ? allReportedRawData.reportingPeriod : "All available reporting periods",
+          totalRaised: allReportedRaised,
+          totalSpent: allReportedSpent,
+          cycleCount: asFiniteNumber(allReportedRawData?.cycleCount) ?? cycleHistory.length,
+          sourceName: allReportedFiling.source?.name ?? attribution?.sourceName ?? "Campaign finance source",
+          sourceUrl: allReportedFiling.filingUrl,
+          aggregationMethod: typeof allReportedRawData?.aggregationMethod === "string" ? allReportedRawData.aggregationMethod : null,
+        }
+      : null;
   const documentFilings = documents.map((document) => ({
     name: document.title,
     filedAt: null,
@@ -151,11 +242,12 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     latestFiling?.rawData && typeof latestFiling.rawData === "object" && !Array.isArray(latestFiling.rawData)
       ? (latestFiling.rawData as Record<string, unknown>)
       : null;
+  const currentCycleRecord = cycleHistory.find((cycle) => cycle.isCurrentCycle) ?? cycleHistory.at(0) ?? null;
 
   return {
     sourceName: attribution?.sourceName ?? latestFiling?.source?.name ?? null,
     sourceUrl: attribution?.sourceUrl ?? latestFiling?.filingUrl ?? latestFiling?.source?.url ?? null,
-    filingStatus: latestFiling
+    filingStatus: currentCycleRecord?.label ?? (latestFiling
       ? typeof latestFilingRawData?.filingName === "string"
         ? latestFilingRawData.filingName
         : latestFiling.filingType.replaceAll("_", " ")
@@ -163,7 +255,7 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
         ? "Filing references stored"
         : attribution
           ? "Source link stored; filing extraction pending"
-          : null,
+          : null),
     reviewStatus: attribution?.reviewStatus ?? null,
     lastCheckedAt: attribution?.lastImportedAt?.toISOString() ?? latestFiling?.source?.lastCheckedAt?.toISOString() ?? null,
     filingCount: dedupeFilings(parsedFilings).length,
@@ -175,6 +267,8 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     pendingCount: attributions.filter((row) => row.reviewStatus === "pending_review").length,
     approvedCount: attributions.filter((row) => row.reviewStatus === "approved" || row.reviewStatus === "verified").length,
     fundingBreakdown,
+    cycleHistory,
+    allReportedTotals,
     campaignReportedSummary: metadata.campaignReportedSummary ?? allMetadata.find((entry) => entry.campaignReportedSummary)?.campaignReportedSummary ?? null,
     donorExtractionStatus: fundingBreakdown?.hasDetailedContributions
       ? fundingBreakdown.sourceCoverageNote

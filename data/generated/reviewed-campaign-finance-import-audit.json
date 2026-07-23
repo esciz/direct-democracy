@@ -1,6 +1,7 @@
 {
-  "generatedAt": "2026-07-23T14:35:52.705Z",
+  "generatedAt": "2026-07-23T16:39:37.770Z",
   "filePath": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/manual-sources/campaign-finance/2026-nevada-statewide-executive.json",
+  "historyFilePath": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/manual-sources/campaign-finance/2017-2026-nevada-statewide-history.json",
   "batch": {
     "name": "2026 Nevada statewide executive campaign finance through Q2",
     "periodStart": "2025-01-01",
@@ -9,6 +10,13 @@
     "periodEndLabel": "June 30, 2026",
     "retrievedAt": "2026-07-23T19:00:00.000Z",
     "notes": "Human-reviewed cycle-to-date totals and top-contributor aggregates. The reporting frame reaches back to the start of the 2025-2026 election cycle instead of showing only the latest quarter."
+  },
+  "historyBatch": {
+    "name": "Nevada statewide candidate campaign-finance history since 2017",
+    "retrievedAt": "2026-07-23T21:00:00.000Z",
+    "coverageStart": "2017-01-01",
+    "coverageEnd": "2026-06-30",
+    "notes": "Reviewed exact cycle aggregates and source-published 2017-to-current totals. Zero-activity cycles are omitted."
   },
   "source": {
     "name": "Transparency USA (Nevada SOS-derived)",
@@ -29,7 +37,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 4285306.86,
           "spent": 2786816.36,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 12388664.7,
+          "allReportedSpent": 11411054.75
         },
         {
           "id": "cmrwg70v70007lnpc1g6rvyga",
@@ -37,7 +48,10 @@
           "election": "2026 Nevada General Election",
           "raised": 4285306.86,
           "spent": 2786816.36,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 12388664.7,
+          "allReportedSpent": 11411054.75
         }
       ]
     },
@@ -50,7 +64,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 2275074.69,
           "spent": 3388834.84,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 8873810.25,
+          "allReportedSpent": 9120734.7
         },
         {
           "id": "cmrwg71fk000jlnpcl1vyujfx",
@@ -58,7 +75,10 @@
           "election": "2026 Nevada General Election",
           "raised": 2275074.69,
           "spent": 3388834.84,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 8873810.25,
+          "allReportedSpent": 9120734.7
         }
       ]
     },
@@ -71,7 +91,10 @@
           "election": "2026 Nevada General Election",
           "raised": 482925.93,
           "spent": 347220.9,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 2185694.19,
+          "allReportedSpent": 1933139.51
         },
         {
           "id": "cmq107stx00ajlnox7fw9ntqu",
@@ -79,7 +102,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 482925.93,
           "spent": 347220.9,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 2185694.19,
+          "allReportedSpent": 1933139.51
         }
       ]
     },
@@ -92,7 +118,10 @@
           "election": "2026 Nevada General Election",
           "raised": 397072.27,
           "spent": 94080.66,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 2553817.07,
+          "allReportedSpent": 2553971.64
         }
       ]
     },
@@ -105,7 +134,10 @@
           "election": "2026 Nevada General Election",
           "raised": 1031043.03,
           "spent": 351329.77,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 3,
+          "allReportedRaised": 4209021.2,
+          "allReportedSpent": 3843516.53
         }
       ]
     },
@@ -118,7 +150,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 1000,
           "spent": 815.93,
-          "contributors": 1
+          "contributors": 1,
+          "historicalCycles": 4,
+          "allReportedRaised": 771548.36,
+          "allReportedSpent": 774981.75
         },
         {
           "id": "cmrwg72a20017lnpca8exxdcx",
@@ -126,7 +161,10 @@
           "election": "2026 Nevada General Election",
           "raised": 1000,
           "spent": 815.93,
-          "contributors": 1
+          "contributors": 1,
+          "historicalCycles": 4,
+          "allReportedRaised": 771548.36,
+          "allReportedSpent": 774981.75
         }
       ]
     },
@@ -139,7 +177,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 176206.16,
           "spent": 159967.1,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 1,
+          "allReportedRaised": 176206.16,
+          "allReportedSpent": 159967.1
         },
         {
           "id": "cmrwg72ng001jlnpcfglfvren",
@@ -147,7 +188,10 @@
           "election": "2026 Nevada General Election",
           "raised": 176206.16,
           "spent": 159967.1,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 1,
+          "allReportedRaised": 176206.16,
+          "allReportedSpent": 159967.1
         }
       ]
     },
@@ -160,7 +204,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 117966.67,
           "spent": 78259.05,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 2,
+          "allReportedRaised": 593609.64,
+          "allReportedSpent": 555463.65
         },
         {
           "id": "cmrwg731s001vlnpcc4xp4ey6",
@@ -168,7 +215,10 @@
           "election": "2026 Nevada General Election",
           "raised": 117966.67,
           "spent": 78259.05,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 2,
+          "allReportedRaised": 593609.64,
+          "allReportedSpent": 555463.65
         }
       ]
     },
@@ -181,7 +231,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 33206,
           "spent": 23711.33,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 1,
+          "allReportedRaised": 33206,
+          "allReportedSpent": 23711.33
         },
         {
           "id": "cmrwg73f00027lnpc19m9fm1k",
@@ -189,7 +242,10 @@
           "election": "2026 Nevada General Election",
           "raised": 33206,
           "spent": 23711.33,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 1,
+          "allReportedRaised": 33206,
+          "allReportedSpent": 23711.33
         }
       ]
     },
@@ -202,7 +258,10 @@
           "election": "2026 Nevada General Election",
           "raised": 237033.6,
           "spent": 66500.24,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 4,
+          "allReportedRaised": 1155817.41,
+          "allReportedSpent": 868034.04
         }
       ]
     },
@@ -215,7 +274,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 1453438.05,
           "spent": 1670324.51,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 4678290.65,
+          "allReportedSpent": 4502180.78
         },
         {
           "id": "cmrwg73sj002jlnpcohx5q22g",
@@ -223,7 +285,10 @@
           "election": "2026 Nevada General Election",
           "raised": 1453438.05,
           "spent": 1670324.51,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 5,
+          "allReportedRaised": 4678290.65,
+          "allReportedSpent": 4502180.78
         }
       ]
     },
@@ -236,7 +301,10 @@
           "election": "2026 Nevada Primary Election",
           "raised": 438864.82,
           "spent": 383979.93,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 1,
+          "allReportedRaised": 438864.82,
+          "allReportedSpent": 383979.93
         },
         {
           "id": "cmrwg745x002vlnpcra4expad",
@@ -244,7 +312,10 @@
           "election": "2026 Nevada General Election",
           "raised": 438864.82,
           "spent": 383979.93,
-          "contributors": 10
+          "contributors": 10,
+          "historicalCycles": 1,
+          "allReportedRaised": 438864.82,
+          "allReportedSpent": 383979.93
         }
       ]
     }

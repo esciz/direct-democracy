@@ -37,6 +37,7 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
   const hasFinancialSnapshot = [raisedAmount, funding?.totalSpent, funding?.cashOnHand].some(
     (value) => typeof value === "number" && Number.isFinite(value),
   );
+  const hasPriorCycles = data.cycleHistory.some((cycle) => !cycle.isCurrentCycle);
   const hasFilingEvidence = data.financeFilingCount > 0 || data.financeDocumentCount > 0 || data.filingSummaries.length > 0;
   const hasSourceLink = Boolean(data.sourceUrl || data.sourceLinks.length);
 
@@ -46,7 +47,7 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Campaign finance</p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">
-            {hasFinancialSnapshot ? "Campaign money, cycle to date" : "Finance source status"}
+            {hasFinancialSnapshot ? "Campaign money, current cycle" : "Finance source status"}
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
             {hasFinancialSnapshot
@@ -81,6 +82,80 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
         </div>
       ) : null}
 
+      {data.allReportedTotals ? (
+        <div className="mt-5 border-b border-white/10 pb-5">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Campaign history</p>
+              <h3 className="mt-2 text-xl font-semibold text-slate-50">{data.allReportedTotals.label}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                {data.allReportedTotals.reportingPeriod}. Totals cover the candidate committee records listed below.
+              </p>
+            </div>
+            {data.allReportedTotals.sourceUrl ? (
+              <Link href={data.allReportedTotals.sourceUrl} className="text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                Open all-cycle source
+              </Link>
+            ) : null}
+          </div>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">All reported raised</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(data.allReportedTotals.totalRaised)}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">All reported spent</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(data.allReportedTotals.totalSpent)}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Cycles covered</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{data.allReportedTotals.cycleCount}</p>
+            </div>
+          </div>
+
+          {hasPriorCycles ? (
+            <div className="mt-5 border-y border-white/10">
+              {data.cycleHistory.map((cycle) => (
+                <div key={`${cycle.cycleYear}-${cycle.periodEnd}`} className="grid gap-3 border-b border-white/10 py-4 last:border-b-0 md:grid-cols-[minmax(0,1.5fr)_minmax(7rem,0.7fr)_minmax(7rem,0.7fr)_auto] md:items-center">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-sm font-semibold text-slate-100">{cycle.displayLabel}</p>
+                      {cycle.isCurrentCycle ? (
+                        <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-0.5 text-[11px] font-semibold text-cyan-100">
+                          Current
+                        </span>
+                      ) : null}
+                    </div>
+                    <p className="mt-1 text-xs text-slate-500">{cycle.reportingPeriod}</p>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Raised</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-100">{formatMoney(cycle.totalRaised)}</p>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Spent</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-100">{formatMoney(cycle.totalSpent)}</p>
+                  </div>
+                  {cycle.sourceUrl ? (
+                    <Link href={cycle.sourceUrl} className="text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                      Source
+                    </Link>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-5 border-y border-white/10 py-4 text-sm leading-6 text-slate-400">
+              No earlier non-zero campaign-finance cycle appears in this source.
+            </p>
+          )}
+          {data.allReportedTotals.aggregationMethod ? (
+            <p className="mt-3 text-xs leading-5 text-slate-500">Method: {data.allReportedTotals.aggregationMethod}</p>
+          ) : null}
+        </div>
+      ) : null}
+
       <div className="mt-5 grid gap-4 md:grid-cols-3">
         <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Source</p>
@@ -94,10 +169,14 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
           )}
         </div>
         <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Filing status</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Coverage</p>
           <p className="mt-3 text-sm font-semibold text-slate-100">{data.filingStatus ?? data.donorExtractionStatus}</p>
           <p className="mt-2 text-xs text-slate-500">
-            {data.financeFilingCount} filing{data.financeFilingCount === 1 ? "" : "s"} · {data.financeDocumentCount} document{data.financeDocumentCount === 1 ? "" : "s"}
+            {data.cycleHistory.length
+              ? `${data.cycleHistory.length} cycle record${data.cycleHistory.length === 1 ? "" : "s"}`
+              : `${data.financeFilingCount} filing${data.financeFilingCount === 1 ? "" : "s"}`}
+            {" · "}
+            {data.financeDocumentCount} document{data.financeDocumentCount === 1 ? "" : "s"}
           </p>
         </div>
         <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
@@ -113,7 +192,7 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
         </div>
       </div>
 
-      {data.filingSummaries.length ? (
+      {data.filingSummaries.length && !data.cycleHistory.length ? (
         <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Known filings</p>
           <div className="mt-3 grid gap-2 md:grid-cols-3">

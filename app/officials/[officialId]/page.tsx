@@ -501,6 +501,8 @@ async function OfficialProfileBody({
         pendingCount: 0,
         approvedCount: 0,
         fundingBreakdown: null,
+        cycleHistory: [],
+        allReportedTotals: null,
         campaignReportedSummary: null,
         donorExtractionStatus: "Classification incomplete; source-backed filing summaries remain available.",
       };
