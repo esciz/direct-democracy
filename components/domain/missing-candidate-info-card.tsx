@@ -10,6 +10,10 @@ export function MissingCandidateInfoCard({
   suggestedSearchQuery: string;
 }) {
   const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(suggestedSearchQuery)}`;
+  const gapDescription = (field: string) =>
+    field === "Campaign finance totals and filing extraction"
+      ? "The official source link is stored; report totals and filing details still need reviewed extraction."
+      : "Needs a source before it can appear publicly.";
 
   return (
     <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
@@ -28,7 +32,7 @@ export function MissingCandidateInfoCard({
           <div key={field} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
             <p className="text-sm font-semibold text-slate-100">{field}</p>
             <p className="mt-2 text-xs leading-5 text-slate-400">
-              {missingFields.length ? "Needs a source before it can appear publicly." : "Stored source coverage looks complete for this field set."}
+              {missingFields.length ? gapDescription(field) : "Stored source coverage looks complete for this field set."}
             </p>
           </div>
         ))}

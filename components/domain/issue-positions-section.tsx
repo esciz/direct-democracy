@@ -21,7 +21,7 @@ const stanceLabels: Record<PublicIssuePositionSummary["stance"], string> = {
 };
 
 const derivationLabels: Record<PublicIssuePositionSummary["derivation"], string> = {
-  OFFICIAL: "Official source",
+  OFFICIAL: "Direct source",
   INFERRED: "Inferred from source",
   UNKNOWN: "Source status unknown",
 };

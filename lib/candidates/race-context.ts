@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 
 const APPROVED_KNOWLEDGE = [ProfileEnrichmentReviewStatus.APPROVED, ProfileEnrichmentReviewStatus.VERIFIED];
 const APPROVED_CIVIC = [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified];
+const APPROVED_CIVIC_SET = new Set<CivicRecordReviewStatus>(APPROVED_CIVIC);
 
 export type CandidateRaceContext = {
   candidateId: string;
@@ -108,18 +109,21 @@ export async function getCandidateRaceContext(candidateId: string): Promise<Cand
       entityType: CivicEntityType.CANDIDATE,
       entityId: candidate.id,
       fieldName: { in: ["campaign_website", "campaign_finance", "bio", "candidate_statement", "social_links"] },
-      reviewStatus: { in: APPROVED_CIVIC },
     },
-    select: { fieldName: true },
+    select: { fieldName: true, reviewStatus: true },
   });
-  const attributed = new Set(sourceAttributions.map((row) => row.fieldName));
+  const attributed = new Set(sourceAttributions.filter((row) => APPROVED_CIVIC_SET.has(row.reviewStatus)).map((row) => row.fieldName));
+  const attributedAtAnyStage = new Set(sourceAttributions.map((row) => row.fieldName));
 
   const missingFields = [
     missingField("Candidate bio", hasBio || attributed.has("bio")),
     missingField("Campaign website", hasCampaignWebsite || attributed.has("campaign_website")),
     missingField("Candidate statement", hasStatement || attributed.has("candidate_statement")),
     missingField("Issue priorities", hasIssues),
-    missingField("Campaign finance", hasFinance || attributed.has("campaign_finance")),
+    missingField(
+      attributedAtAnyStage.has("campaign_finance") ? "Campaign finance totals and filing extraction" : "Campaign finance source",
+      hasFinance || attributed.has("campaign_finance"),
+    ),
     missingField("News mentions", hasNews),
     missingField("Social links", hasSocial || attributed.has("social_links")),
   ].filter((field): field is string => Boolean(field));

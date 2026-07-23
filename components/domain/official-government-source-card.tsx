@@ -20,7 +20,7 @@ export function OfficialGovernmentSourceCard({
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{enrichment?.shortBio ? "Official biography" : emptyTitle}</h2>
           {incumbentMatch ? (
             <p className="mt-2 text-sm leading-6 text-slate-400">
-              Currently serves as {incumbentMatch.officialOffice} for {incumbentMatch.officialJurisdiction}.
+              Current office: {incumbentMatch.officialOffice} · {incumbentMatch.officialJurisdiction}.
             </p>
           ) : null}
         </div>

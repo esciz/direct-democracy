@@ -316,14 +316,27 @@ async function upsertFilingFallback(candidate) {
 
 async function main() {
   const limit = Math.max(1, Math.min(Number(argValue("limit", "25")) || 25, 100));
+  const candidateName = argValue("candidate");
+  const candidateId = argValue("candidate-id");
   const candidates = await prisma.candidate.findMany({
+    where: {
+      ...(candidateId ? { id: candidateId } : {}),
+      ...(candidateName
+        ? {
+            OR: [
+              { fullName: { contains: candidateName, mode: "insensitive" } },
+              { ballotName: { contains: candidateName, mode: "insensitive" } },
+            ],
+          }
+        : {}),
+    },
     include: {
       source: true,
       knowledgeEnrichments: true,
       election: true,
       office: true,
     },
-    orderBy: [{ updatedAt: "desc" }],
+    orderBy: [{ isIncumbent: "desc" }, { election: { electionDate: "desc" } }, { fullName: "asc" }],
     take: limit,
   });
   const diagnostics = {

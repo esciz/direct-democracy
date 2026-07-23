@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "batch": {
+    "name": "2026 Nevada statewide primary winner reconciliation",
+    "reviewedAt": "2026-07-22T00:00:00.000Z",
+    "notes": "Statewide winner totals were transcribed from the Nevada Independent results feed and cross-checked against official county result pages and AP race calls. Results remain UNOFFICIAL until a Nevada statewide certification artifact is stored."
+  },
+  "primaryElectionSlug": "nevada-2026-primary-election",
+  "generalElectionSlug": "nevada-2026-general-election",
+  "resultStatus": "UNOFFICIAL",
+  "sources": {
+    "results": {
+      "name": "Nevada Independent - 2026 Primary Results",
+      "slug": "nevada-independent-2026-primary-results",
+      "url": "https://thenevadaindependent.com/elections/2026/primary/results"
+    },
+    "officialIndex": {
+      "name": "Clark County - 2026 Primary Election Information",
+      "slug": "clark-county-2026-primary-election-information",
+      "url": "https://www.clarkcountynv.gov/government/departments/elections/26p-info"
+    },
+    "officialStatewidePortalUrl": "https://silverstateelection.nv.gov/",
+    "crossCheckUrl": "https://apnews.com/article/3b464ffdedf689387c5a099ba6c0d060"
+  },
+  "contests": [
+    {
+      "key": "governor-democratic",
+      "officeContains": "Governor",
+      "partyText": "Democratic Party",
+      "winnerAliases": ["Ford, Aaron D.", "Aaron D. Ford", "Aaron Ford"],
+      "winnerVotes": 118825,
+      "contestVotes": 187800
+    },
+    {
+      "key": "governor-republican",
+      "officeContains": "Governor",
+      "partyText": "Republican Party",
+      "winnerAliases": ["Lombardo, Joseph", "Joe Lombardo", "Joseph Lombardo"],
+      "winnerVotes": 172058,
+      "contestVotes": 189531
+    },
+    {
+      "key": "lieutenant-governor-democratic",
+      "officeContains": "Lieutenant Governor",
+      "partyText": "Democratic Party",
+      "winnerAliases": ["Jauregui, Sandra", "Sandra Jauregui"],
+      "winnerVotes": 109336,
+      "contestVotes": 182824
+    },
+    {
+      "key": "secretary-of-state-republican",
+      "officeContains": "Secretary of State",
+      "partyText": "Republican Party",
+      "winnerAliases": ["Marchant, Jim", "Jim Marchant"],
+      "winnerVotes": 58830,
+      "contestVotes": 180621
+    },
+    {
+      "key": "state-treasurer-democratic",
+      "officeContains": "State Treasurer",
+      "partyText": "Democratic Party",
+      "winnerAliases": ["Mathis-Coleman, Tya", "Tya Mathis-Coleman"],
+      "winnerVotes": 101204,
+      "contestVotes": 183322
+    },
+    {
+      "key": "state-treasurer-republican",
+      "officeContains": "State Treasurer",
+      "partyText": "Republican Party",
+      "winnerAliases": ["Johnson, Drew", "Drew Johnson"],
+      "winnerVotes": 80793,
+      "contestVotes": 177665
+    },
+    {
+      "key": "state-controller-democratic",
+      "officeContains": "State Controller",
+      "partyText": "Democratic Party",
+      "winnerAliases": ["MacDougall, Michael", "Michael MacDougall"],
+      "winnerVotes": 80619,
+      "contestVotes": 178003
+    },
+    {
+      "key": "attorney-general-democratic",
+      "officeContains": "Attorney General",
+      "partyText": "Democratic Party",
+      "winnerAliases": ["Cannizzaro, Nicole Jeanette", "Nicole Jeanette Cannizzaro", "Nicole Cannizzaro"],
+      "winnerVotes": 112545,
+      "contestVotes": 185566
+    },
+    {
+      "key": "attorney-general-republican",
+      "officeContains": "Attorney General",
+      "partyText": "Republican Party",
+      "winnerAliases": ["Guzman Fralick, Adriana", "Guzmán Fralick, Adriana", "Adriana Guzman Fralick", "Adriana Guzmán Fralick"],
+      "winnerVotes": 111875,
+      "contestVotes": 186087
+    }
+  ]
+}

@@ -26,33 +26,8 @@ function getDisplayJurisdictionName(slug: string, name: string) {
   return name;
 }
 
-function getOfficialBio({
-  name,
-  officeTitle,
-  jurisdictionName,
-  districtName,
-  partyText,
-}: {
-  name: string;
-  officeTitle: string;
-  jurisdictionName: string;
-  districtName?: string | null;
-  partyText?: string | null;
-}) {
-  const district = districtName ? ` representing ${districtName}` : "";
-  const party = partyText ? ` Party: ${partyText}.` : "";
-  return `${name} is listed in the Nevada beta official importer as ${officeTitle}${district} for ${jurisdictionName}.${party}`;
-}
-
 export function mapImportedOfficialToProfile(official: PublicOfficialRow): OfficialProfileSummary {
     const jurisdictionName = getDisplayJurisdictionName(official.jurisdiction.slug, official.jurisdiction.name);
-    const bio = getOfficialBio({
-      name: official.fullName,
-      officeTitle: official.office.title,
-      jurisdictionName,
-      districtName: official.district?.name,
-      partyText: official.partyText,
-    });
 
     return {
       id: official.id,
@@ -61,9 +36,9 @@ export function mapImportedOfficialToProfile(official: PublicOfficialRow): Offic
       officeTitle: official.office.title,
       jurisdictionName,
       party: official.partyText ?? "Nonpartisan",
-      bio,
+      bio: official.websiteEnrichment?.shortBio ?? null,
       profileImageUrl: official.photoUrl,
-      platformSummary: "Imported Nevada beta data from official government sources. Accountability activity will appear as this profile is claimed or linked to platform actions.",
+      platformSummary: null,
       websiteUrl: official.websiteUrl,
       email: official.email,
       phone: official.phone,

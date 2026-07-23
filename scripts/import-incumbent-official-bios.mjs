@@ -178,11 +178,26 @@ async function findMatch(candidate, officials) {
 
 async function main() {
   const limit = Math.max(1, Math.min(Number(argValue("limit", "50")) || 50, 200));
+  const candidateName = argValue("candidate");
+  const candidateId = argValue("candidate-id");
   const [candidates, officials] = await Promise.all([
     prisma.candidate.findMany({
-      where: { OR: [{ isIncumbent: true }, { status: "FILED" }] },
+      where: {
+        AND: [
+          { OR: [{ isIncumbent: true }, { status: "FILED" }] },
+          candidateId ? { id: candidateId } : {},
+          candidateName
+            ? {
+                OR: [
+                  { fullName: { contains: candidateName, mode: "insensitive" } },
+                  { ballotName: { contains: candidateName, mode: "insensitive" } },
+                ],
+              }
+            : {},
+        ],
+      },
       include: { office: true, jurisdiction: true, district: true, election: true },
-      orderBy: [{ updatedAt: "desc" }],
+      orderBy: [{ isIncumbent: "desc" }, { election: { electionDate: "desc" } }, { fullName: "asc" }],
       take: limit,
     }),
     prisma.official.findMany({

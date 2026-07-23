@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { CandidateDirectoryCard } from "@/components/domain/candidate-directory-card";
+import { PaginationNav } from "@/components/ui/pagination-nav";
 import { PageIntro } from "@/components/ui/page-intro";
 import { PreserveScrollQueryForm } from "@/components/ui/preserve-scroll-query-form";
 import { prisma } from "@/lib/prisma";
@@ -23,8 +24,11 @@ type CandidatesPageProps = {
     hasIssues?: string;
     hasNews?: string;
     completeness?: string;
+    page?: string;
   }>;
 };
+
+const CANDIDATES_PER_PAGE = 24;
 
 type CandidateFilterMetadata = {
   id: string;
@@ -131,16 +135,36 @@ async function getCandidateFilterMetadata() {
         take: 1,
       },
       campaignFinanceFilings: { select: { id: true }, take: 1 },
-      issuePositions: { select: { id: true }, take: 1 },
-      newsMentions: { select: { id: true }, take: 1 },
+      issuePositions: {
+        where: { reviewStatus: { in: ["approved", "verified"] } },
+        select: { id: true },
+        take: 1,
+      },
+      newsMentions: {
+        where: { reviewStatus: { in: ["approved", "verified"] } },
+        select: { id: true },
+        take: 1,
+      },
     },
     orderBy: [{ updatedAt: "desc" }, { fullName: "asc" }],
   });
+  const financeAttributions = rows.length
+    ? await prisma.sourceAttribution.groupBy({
+        by: ["entityId"],
+        where: {
+          entityType: "CANDIDATE",
+          entityId: { in: rows.map((candidate) => candidate.id) },
+          fieldName: "campaign_finance",
+          reviewStatus: { in: ["imported", "approved", "verified"] },
+        },
+      })
+    : [];
+  const financeSourceCandidateIds = new Set(financeAttributions.map((row) => row.entityId));
 
   return rows.map((candidate): CandidateFilterMetadata => {
     const officeTitle = candidate.office?.title ?? candidate.election.title;
     const hasBio = Boolean(candidate.campaignStatement) || candidate.knowledgeEnrichments.some((entry) => Boolean(entry.aboutSummary));
-    const hasFinance = candidate.campaignFinanceFilings.length > 0;
+    const hasFinance = candidate.campaignFinanceFilings.length > 0 || financeSourceCandidateIds.has(candidate.id);
     const hasIssues = candidate.issuePositions.length > 0;
     const hasNews = candidate.newsMentions.length > 0;
     const completenessScore = [hasBio, hasFinance, hasIssues, hasNews].filter(Boolean).length * 25;
@@ -173,6 +197,7 @@ export default async function CandidatesPage({ searchParams }: CandidatesPagePro
   const hasFinance = selectedBoolean(params.hasFinance);
   const hasIssues = selectedBoolean(params.hasIssues);
   const hasNews = selectedBoolean(params.hasNews);
+  const requestedPage = Math.max(1, Number.parseInt(params.page ?? "1", 10) || 1);
 
   const [metadataRows, profiles] = await Promise.all([getCandidateFilterMetadata(), attachCandidateFollowState(user.id, await getCandidateProfiles())]);
   const metadataById = new Map(metadataRows.map((row) => [row.id, row]));
@@ -228,7 +253,10 @@ export default async function CandidatesPage({ searchParams }: CandidatesPagePro
     hasNews: params.hasNews,
     completeness: params.completeness,
   };
-  const returnPath = buildQuery(queryState, {});
+  const totalPages = Math.max(1, Math.ceil(filtered.length / CANDIDATES_PER_PAGE));
+  const currentPage = Math.min(requestedPage, totalPages);
+  const visibleCandidates = filtered.slice((currentPage - 1) * CANDIDATES_PER_PAGE, currentPage * CANDIDATES_PER_PAGE);
+  const returnPath = buildQuery(queryState, currentPage > 1 ? { page: String(currentPage) } : {});
   const officeOptions = optionCounts(metadataRows, (row) => row.officeGroup);
   const jurisdictionOptions = optionCounts(metadataRows, (row) => row.jurisdictionName);
   const partyOptions = optionCounts(metadataRows, (row) => row.partyText ?? "No party listed");
@@ -359,15 +387,38 @@ export default async function CandidatesPage({ searchParams }: CandidatesPagePro
 
         <div className="mt-6 grid gap-4 xl:grid-cols-2">
           {filtered.length ? (
-            filtered.map((candidate) => <CandidateDirectoryCard key={candidate.id} candidate={candidate} returnPath={returnPath} />)
+            visibleCandidates.map((candidate) => {
+              const metadata = metadataById.get(candidate.id);
+              return (
+                <CandidateDirectoryCard
+                  key={candidate.id}
+                  candidate={candidate}
+                  returnPath={returnPath}
+                  dataCoverage={metadata ? {
+                    hasBio: metadata.hasBio,
+                    hasFinance: metadata.hasFinance,
+                    hasIssues: metadata.hasIssues,
+                    hasNews: metadata.hasNews,
+                    completenessScore: metadata.completenessScore,
+                  } : undefined}
+                />
+              );
+            })
           ) : (
             <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600 xl:col-span-2">
               No candidates match these filters.
             </div>
           )}
         </div>
+        <PaginationNav
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={filtered.length}
+          itemLabel="candidates"
+          previousHref={currentPage > 1 ? buildQuery(queryState, { page: currentPage === 2 ? null : String(currentPage - 1) }) : null}
+          nextHref={currentPage < totalPages ? buildQuery(queryState, { page: String(currentPage + 1) }) : null}
+        />
       </section>
     </div>
   );
 }
-

@@ -757,7 +757,7 @@ export function HomeGuidedActionCard(props: HomeGuidedActionCardProps) {
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">Civic action guide</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">I want to</h2>
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">I want to</h1>
             <p className="mt-2 text-sm leading-6 text-slate-400">
               Pick a goal and we'll guide you to the right place.
             </p>

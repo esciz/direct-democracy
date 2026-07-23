@@ -4,7 +4,7 @@ import type { CampaignFinanceSourceCardData } from "@/lib/civic-data/profile-sou
 
 function formatDate(value: string | null) {
   if (!value) return "Last checked pending";
-  return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric" }).format(new Date(value));
+  return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(value));
 }
 
 function formatMoney(value: number | null | undefined) {
@@ -33,7 +33,8 @@ function BarList({ items }: { items: Array<{ label: string; amount: number; perc
 export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourceCardData }) {
   const funding = data.fundingBreakdown;
   const showFundingGraph = Boolean(funding?.hasDetailedContributions);
-  const hasSourceBackedFilings = data.financeFilingCount > 0 || data.filingSummaries.length > 0 || data.sourceLinks.length > 0;
+  const hasFilingEvidence = data.financeFilingCount > 0 || data.financeDocumentCount > 0 || data.filingSummaries.length > 0;
+  const hasSourceLink = Boolean(data.sourceUrl || data.sourceLinks.length);
 
   return (
     <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
@@ -164,15 +165,17 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
         </div>
       ) : (
         <div className="mt-5 rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
-          {hasSourceBackedFilings
+          {hasFilingEvidence
             ? "Source filings are available. Industry and entity charts appear only after enough clean itemized contribution rows are parsed and reviewed."
-            : "Source filings have not been attached yet."}
+            : hasSourceLink
+              ? "The official source link is stored, but filing totals and report details have not been extracted and reviewed yet."
+              : "Source filings have not been attached yet."}
         </div>
       )}
 
       {data.campaignReportedSummary ? (
         <div className="mt-5 rounded-[1.35rem] border border-amber-300/18 bg-amber-500/10 p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-100">Campaign-reported</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-100">Source summary</p>
           <p className="mt-3 text-sm leading-6 text-amber-50">{data.campaignReportedSummary}</p>
         </div>
       ) : null}
@@ -191,9 +194,11 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
       ) : null}
 
       <div className="mt-5 rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
-        {data.donorExtractionStatus === "Detailed donor extraction pending" && hasSourceBackedFilings
+        {data.donorExtractionStatus === "Detailed donor extraction pending" && hasFilingEvidence
           ? "Classification is incomplete, but source-backed report summaries and filing links are available."
-          : data.donorExtractionStatus}
+          : data.donorExtractionStatus === "Detailed donor extraction pending" && hasSourceLink
+            ? "The official source link is stored; report totals, filings, and donor rows still need reviewed extraction."
+            : data.donorExtractionStatus}
       </div>
     </section>
   );

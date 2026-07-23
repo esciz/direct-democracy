@@ -599,7 +599,7 @@ export function CampaignFinanceSummaryCard({ dashboard, previewLabel }: { dashbo
     return (
       <div className="rounded-[1.35rem] border border-dashed border-white/12 bg-white/[0.03] p-5">
         <p className="text-sm font-semibold text-slate-100">Campaign finance dashboard</p>
-        <p className="mt-2 text-sm leading-6 text-slate-400">Campaign finance data has not been parsed for this profile yet.</p>
+        <p className="mt-2 text-sm leading-6 text-slate-400">No source-document finance extraction is attached here. Reviewed totals and filings may still be available in the profile's finance source card.</p>
       </div>
     );
   }

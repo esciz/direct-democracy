@@ -271,15 +271,16 @@ export async function findIncumbentOfficialMatch(candidateId: string): Promise<I
 }
 
 export async function getApprovedOfficialGovernmentEnrichment(targetType: "CANDIDATE" | "OFFICIAL", targetId: string): Promise<ApprovedOfficialGovernmentEnrichment | null> {
-  const row = await prisma.profileWebsiteEnrichment.findFirst({
+  const rows = await prisma.profileWebsiteEnrichment.findMany({
     where: {
       targetType,
       targetId,
       reviewStatus: { in: APPROVED_REVIEW_STATUSES },
-      sourceName: "Official government source",
     },
     orderBy: [{ reviewStatus: "desc" }, { lastEnrichedAt: "desc" }],
+    take: 20,
   });
+  const row = rows.find((candidate) => isOfficialJurisdictionUrl(candidate.sourceUrl));
   if (!row) return null;
   const proposed = row.proposedFields as Record<string, unknown>;
   return {

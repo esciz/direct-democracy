@@ -40,6 +40,15 @@ export type PublicOfficialRow = {
     name: string;
     url: string;
   } | null;
+  websiteEnrichment: {
+    officialWebsiteUrl: string | null;
+    headshotUrl: string | null;
+    shortBio: string | null;
+    publicContactEmail: string | null;
+    publicContactPhone: string | null;
+    sourceName: string | null;
+    sourceUrl: string;
+  } | null;
 };
 
 export async function getPublicOfficials(jurisdictionSlug?: string): Promise<PublicOfficialRow[]> {
@@ -81,34 +90,61 @@ export async function getPublicOfficials(jurisdictionSlug?: string): Promise<Pub
     take: 250,
   });
 
-  return officials.map((official) => ({
-    id: official.id,
-    fullName: official.fullName,
-    partyText: official.partyText,
-    email: official.email,
-    phone: official.phone,
-    websiteUrl: official.websiteUrl,
-    photoUrl: official.photoUrl,
-    status: official.status,
-    termStart: official.termStart,
-    termEnd: official.termEnd,
-    office: {
-      title: official.office.title,
-      level: official.office.level,
-    },
-    jurisdiction: {
-      name: official.jurisdiction.name,
-      slug: official.jurisdiction.slug,
-      type: official.jurisdiction.type,
-    },
-    district: official.district
-      ? {
-          name: official.district.name,
-          type: official.district.districtType,
-        }
-      : null,
-    source: official.source,
-  }));
+  const enrichmentRows = officials.length
+    ? await prisma.profileWebsiteEnrichment.findMany({
+        where: {
+          targetType: "OFFICIAL",
+          targetId: { in: officials.map((official) => official.id) },
+          reviewStatus: { in: ["APPROVED", "VERIFIED"] },
+          sourceName: "Official government source",
+        },
+        orderBy: [{ reviewStatus: "desc" }, { lastEnrichedAt: "desc" }, { fetchedAt: "desc" }],
+      })
+    : [];
+  const enrichmentByOfficialId = new Map(enrichmentRows.map((row) => [row.targetId, row]));
+
+  return officials.map((official) => {
+    const enrichment = enrichmentByOfficialId.get(official.id) ?? null;
+    return {
+      id: official.id,
+      fullName: official.fullName,
+      partyText: official.partyText,
+      email: enrichment?.publicContactEmail ?? official.email,
+      phone: enrichment?.publicContactPhone ?? official.phone,
+      websiteUrl: enrichment?.officialWebsiteUrl ?? official.websiteUrl,
+      photoUrl: enrichment?.headshotUrl ?? official.photoUrl,
+      status: official.status,
+      termStart: official.termStart,
+      termEnd: official.termEnd,
+      office: {
+        title: official.office.title,
+        level: official.office.level,
+      },
+      jurisdiction: {
+        name: official.jurisdiction.name,
+        slug: official.jurisdiction.slug,
+        type: official.jurisdiction.type,
+      },
+      district: official.district
+        ? {
+            name: official.district.name,
+            type: official.district.districtType,
+          }
+        : null,
+      source: official.source,
+      websiteEnrichment: enrichment
+        ? {
+            officialWebsiteUrl: enrichment.officialWebsiteUrl,
+            headshotUrl: enrichment.headshotUrl,
+            shortBio: enrichment.shortBio,
+            publicContactEmail: enrichment.publicContactEmail,
+            publicContactPhone: enrichment.publicContactPhone,
+            sourceName: enrichment.sourceName,
+            sourceUrl: enrichment.sourceUrl,
+          }
+        : null,
+    };
+  });
 }
 
 export type PublicImportedElectionRow = {

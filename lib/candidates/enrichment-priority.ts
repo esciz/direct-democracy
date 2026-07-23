@@ -1,4 +1,4 @@
-import { ProfileEnrichmentReviewStatus } from "@prisma/client";
+import { CivicRecordReviewStatus, ElectionResultStatus, ProfileEnrichmentReviewStatus } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
 
@@ -8,8 +8,13 @@ export type CandidateEnrichmentPriorityRow = {
   id: string;
   name: string;
   race: string;
+  electionDate: string;
+  electionStatus: string;
   score: number;
   missingFields: string[];
+  sourceName: string;
+  sourceReadiness: "verified_results" | "reviewed_results" | "reviewed_advancement" | "filing_only" | "historical_unverified";
+  sourceReadinessLabel: string;
   suggestedSearchQuery: string;
 };
 
@@ -25,10 +30,19 @@ function hasArrayJson(value: unknown) {
 export async function getHighPriorityCandidateEnrichmentQueue(limit = 25): Promise<CandidateEnrichmentPriorityRow[]> {
   const candidates = await prisma.candidate.findMany({
     include: {
-      election: { select: { id: true, title: true, electionDate: true } },
+      election: {
+        select: {
+          id: true,
+          title: true,
+          electionDate: true,
+          status: true,
+          source: { select: { name: true } },
+        },
+      },
       office: { select: { title: true } },
       jurisdiction: { select: { name: true, slug: true } },
       district: { select: { name: true } },
+      source: { select: { name: true, adapterKey: true } },
       knowledgeEnrichments: {
         where: { reviewStatus: { in: APPROVED_KNOWLEDGE } },
         select: {
@@ -39,7 +53,14 @@ export async function getHighPriorityCandidateEnrichmentQueue(limit = 25): Promi
           socialLinks: true,
         },
       },
-      issuePositions: { select: { id: true }, take: 1 },
+      issuePositions: {
+        where: {
+          reviewStatus: { in: [CivicRecordReviewStatus.approved, CivicRecordReviewStatus.verified] },
+        },
+        select: { id: true },
+        take: 1,
+      },
+      results: { select: { id: true, resultStatus: true }, take: 1 },
       newsMentions: { select: { id: true }, take: 1 },
       campaignFinanceFilings: { select: { id: true }, take: 1 },
     },
@@ -87,13 +108,41 @@ export async function getHighPriorityCandidateEnrichmentQueue(limit = 25): Promi
       ]);
       const judicial = textIncludes(officeTitle, ["judge", "court", "justice"]);
       const upcoming = candidate.election.electionDate ? candidate.election.electionDate >= now : false;
+      const hasVerifiedResult = candidate.results.some(
+        (result) => result.resultStatus === ElectionResultStatus.OFFICIAL || result.resultStatus === ElectionResultStatus.CERTIFIED,
+      );
+      const hasReviewedResult = candidate.results.length > 0;
+      const hasReviewedAdvancement = candidate.source?.adapterKey === "manual-reviewed-election-result-bridge";
+      const historicalWithoutResult = !hasReviewedResult && (candidate.election.status === "COMPLETED" || candidate.election.electionDate < now);
+      const sourceReadiness: CandidateEnrichmentPriorityRow["sourceReadiness"] = hasVerifiedResult
+        ? "verified_results"
+        : hasReviewedResult
+          ? "reviewed_results"
+          : hasReviewedAdvancement
+            ? "reviewed_advancement"
+        : historicalWithoutResult
+          ? "historical_unverified"
+          : "filing_only";
+      const sourceReadinessLabel = hasVerifiedResult
+        ? "Official result linked"
+        : hasReviewedResult
+          ? "Reviewed result, certification pending"
+          : hasReviewedAdvancement
+            ? "Reviewed advancement, certification pending"
+        : historicalWithoutResult
+          ? "Past election, result missing"
+          : "Filing only, not certified";
       const zeroDetails = missingFields.length >= 6;
       const score =
         (statewide ? 100 : 0) +
+        (candidate.isIncumbent ? 90 : 0) +
+        (candidate.status === "WON" ? 35 : 0) +
         (federalOrState ? 70 : 0) +
         (contested ? 50 : 0) +
         (judicial ? 40 : 0) +
         (upcoming ? 30 : 0) +
+        (["filing_only", "reviewed_advancement"].includes(sourceReadiness) ? 80 : 0) +
+        (sourceReadiness === "historical_unverified" ? -80 : 0) +
         (zeroDetails ? 60 : 0) +
         missingFields.length * 4;
 
@@ -101,8 +150,13 @@ export async function getHighPriorityCandidateEnrichmentQueue(limit = 25): Promi
         id: candidate.id,
         name,
         race: `${officeTitle} · ${candidate.jurisdiction.name}${candidate.district?.name ? ` · ${candidate.district.name}` : ""}`,
+        electionDate: candidate.election.electionDate.toISOString(),
+        electionStatus: candidate.election.status,
         score,
         missingFields,
+        sourceName: candidate.source?.name ?? candidate.election.source?.name ?? "No linked source",
+        sourceReadiness,
+        sourceReadinessLabel,
         suggestedSearchQuery: `"${name}" ${officeTitle} Nevada`,
       };
     })

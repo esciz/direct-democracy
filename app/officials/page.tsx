@@ -17,6 +17,9 @@ type OfficialsPageProps = {
   }>;
 };
 
+const LOCAL_PREVIEW_LIMIT = 12;
+const SEARCH_RESULT_LIMIT = 40;
+
 function matchesOfficialQuery(query: string, ...values: Array<string | null | undefined>) {
   if (!query) {
     return true;
@@ -93,11 +96,8 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
         matchesOfficialQuery(query, official.name, official.officeTitle, official.bio ?? "", official.jurisdictionName, official.party),
       )
     : localOfficials;
-  const localSearchMatches = query
-    ? localOfficials.filter((official) =>
-        matchesOfficialQuery(query, official.name, official.officeTitle, official.bio ?? "", official.jurisdictionName, official.party),
-      )
-    : [];
+  const visibleOfficials = officials.slice(0, SEARCH_RESULT_LIMIT);
+  const visibleLocalOfficials = localOfficials.slice(0, LOCAL_PREVIEW_LIMIT);
   const isImportedNevadaFeed = allOfficials.some((official) => official.sourceLabel);
 
   return (
@@ -135,7 +135,7 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
         }
       />
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-5 shadow-card backdrop-blur">
+      <section id="official-search" className="scroll-mt-28 rounded-[1.75rem] border border-white/70 bg-white/85 p-5 shadow-card backdrop-blur">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Official search</p>
@@ -175,8 +175,7 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
       </section>
 
       {query ? (
-        <>
-          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Nationwide search</p>
@@ -184,34 +183,19 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
                 <p className="mt-2 text-sm text-slate-600">Search results can include officials from any community.</p>
               </div>
               <span className="rounded-full bg-civic-50 px-4 py-2 text-sm font-semibold text-civic-700">
-                {officials.length} official{officials.length === 1 ? "" : "s"}
+                Showing {visibleOfficials.length} of {officials.length}
               </span>
             </div>
             <div className="mt-6 grid gap-4 xl:grid-cols-2">
               {officials.length ? (
-                officials.map((official) => <OfficialDirectoryCard key={official.id} official={official} returnPath={returnPath} />)
+                visibleOfficials.map((official) => <OfficialDirectoryCard key={official.id} official={official} returnPath={returnPath} />)
               ) : (
                 <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600 xl:col-span-2">
                   No official profiles match this search yet.
                 </div>
               )}
             </div>
-          </section>
-
-          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">Matches in {currentCommunity.name}</h2>
-            <p className="mt-2 text-sm text-slate-600">A quick view of which nationwide matches also belong to your current community context.</p>
-            <div className="mt-6 grid gap-4 xl:grid-cols-2">
-              {localSearchMatches.length ? (
-                localSearchMatches.map((official) => <OfficialDirectoryCard key={official.id} official={official} returnPath={returnPath} />)
-              ) : (
-                <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600 xl:col-span-2">
-                  No local officials match this search yet.
-                </div>
-              )}
-            </div>
-          </section>
-        </>
+        </section>
       ) : (
         <section className="space-y-6">
           <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
@@ -221,13 +205,13 @@ export default async function OfficialsPage({ searchParams }: OfficialsPageProps
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{currentCommunity.name}</h2>
                 <p className="mt-2 text-sm text-slate-600">Officials tied to your current/default community.</p>
               </div>
-              <Link href={`/officials?communityId=${selectedCommunityId}`} scroll={false} className="text-sm font-semibold text-civic-700 hover:text-civic-900">
-                View all
+              <Link href="#official-search" className="text-sm font-semibold text-civic-700 hover:text-civic-900">
+                Search all {localOfficials.length}
               </Link>
             </div>
             <div className="mt-6 flex gap-4 overflow-x-auto pb-2">
               {localOfficials.length ? (
-                localOfficials.map((official) => (
+                visibleLocalOfficials.map((official) => (
                   <div key={official.id} className="min-w-[20rem] max-w-[20rem] flex-none">
                     <OfficialDirectoryCard official={official} returnPath={returnPath} />
                   </div>

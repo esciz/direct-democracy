@@ -149,7 +149,13 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
   return {
     sourceName: attribution?.sourceName ?? latestFiling?.source?.name ?? null,
     sourceUrl: attribution?.sourceUrl ?? latestFiling?.filingUrl ?? latestFiling?.source?.url ?? null,
-    filingStatus: latestFiling ? latestFiling.filingType.replaceAll("_", " ") : attribution ? "Source filings stored" : null,
+    filingStatus: latestFiling
+      ? latestFiling.filingType.replaceAll("_", " ")
+      : metadataFilings.length || documentFilings.length
+        ? "Filing references stored"
+        : attribution
+          ? "Source link stored; filing extraction pending"
+          : null,
     reviewStatus: attribution?.reviewStatus ?? null,
     lastCheckedAt: attribution?.lastImportedAt?.toISOString() ?? latestFiling?.source?.lastCheckedAt?.toISOString() ?? null,
     filingCount: dedupeFilings(parsedFilings).length,
@@ -162,6 +168,8 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     approvedCount: attributions.filter((row) => row.reviewStatus === "approved" || row.reviewStatus === "verified").length,
     fundingBreakdown,
     campaignReportedSummary: metadata.campaignReportedSummary ?? null,
-    donorExtractionStatus: fundingBreakdown?.sourceCoverageNote ?? metadata.donorExtractionStatus ?? "Classification incomplete; source-backed filing summaries remain available.",
+    donorExtractionStatus: fundingBreakdown?.hasDetailedContributions
+      ? fundingBreakdown.sourceCoverageNote
+      : metadata.donorExtractionStatus ?? fundingBreakdown?.sourceCoverageNote ?? "Classification incomplete; source-backed filing summaries remain available.",
   };
 }

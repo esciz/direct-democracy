@@ -638,7 +638,11 @@ export async function getCivicEventsForBrowse(
   const filtered = (await getAllCivicEventsForUser(user))
     .filter((event) => eventMatchesCommunity(event, community))
     .filter((event) => eventMatchesScope(scope, event.jurisdiction, user.jurisdictionName))
-    .filter((event) => (status === "all" ? true : event.status === status))
+    .filter((event) => {
+      if (status === "all") return true;
+      if (status === "upcoming") return event.status === "upcoming" && Boolean(event.startsAt);
+      return event.status === status;
+    })
     .filter((event) => (source === "official" ? event.isOfficialMeeting : source === "community" ? !event.isOfficialMeeting : true))
     .filter((event) => (type === "all" ? true : event.eventType === type))
     .filter((event) => (mode === "all" ? true : event.eventMode === mode))

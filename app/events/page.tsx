@@ -6,6 +6,7 @@ import { ActionLabel, ThumbsUpIcon } from "@/components/ui/action-icons";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { FilterTabs } from "@/components/ui/filter-tabs";
 import { PageIntro } from "@/components/ui/page-intro";
+import { PaginationNav } from "@/components/ui/pagination-nav";
 import { canUserApproveEventProposal, canUserCreateCommunityEvent } from "@/lib/auth/guards";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/communities";
@@ -36,11 +37,15 @@ type EventsPageProps = {
     event?: string;
     eventError?: string;
     denied?: string;
+    page?: string;
   }>;
 };
 
+const EVENTS_PER_PAGE = 24;
+
 function normalizeStatus(value: string | undefined): CivicEventBrowseStatus {
-  return value === "upcoming" || value === "completed" ? value : "all";
+  if (value === "all" || value === "completed") return value;
+  return "upcoming";
 }
 
 function normalizeSource(value: string | undefined): CivicEventBrowseSource {
@@ -69,6 +74,7 @@ function buildEventsHref({
   dateTo,
   linkedTo,
   sort,
+  page,
 }: {
   communityId?: string;
   status?: CivicEventBrowseStatus;
@@ -79,10 +85,11 @@ function buildEventsHref({
   dateTo?: string;
   linkedTo?: string;
   sort?: CivicEventBrowseSort;
+  page?: number;
 }) {
   const params = new URLSearchParams();
   if (communityId) params.set("communityId", communityId);
-  if (status && status !== "all") params.set("status", status);
+  if (status && status !== "upcoming") params.set("status", status);
   if (source && source !== "all") params.set("source", source);
   if (type && type !== "all") params.set("type", type);
   if (mode && mode !== "all") params.set("mode", mode);
@@ -90,6 +97,7 @@ function buildEventsHref({
   if (dateTo?.trim()) params.set("dateTo", dateTo.trim());
   if (linkedTo?.trim()) params.set("linkedTo", linkedTo.trim());
   if (sort && sort !== "official-first") params.set("sort", sort);
+  if (page && page > 1) params.set("page", String(page));
   const query = params.toString();
   return query ? `/events?${query}` : "/events";
 }
@@ -115,8 +123,8 @@ function groupEvents(events: CivicEvent[]) {
 function EventCountSummary({ events }: { events: CivicEvent[] }) {
   const officialCount = events.filter((event) => event.isOfficialMeeting).length;
   const completedCount = events.filter((event) => event.status === "completed").length;
-  const upcomingCount = events.filter((event) => event.status === "upcoming").length;
-  const communityCount = events.filter((event) => !event.isOfficialMeeting).length;
+  const upcomingCount = events.filter((event) => event.status === "upcoming" && event.startsAt).length;
+  const sourceRegistryCount = events.filter((event) => event.sourceProvider === "public_meeting_source_registry").length;
 
   return (
     <section className="grid gap-3 md:grid-cols-4">
@@ -125,7 +133,7 @@ function EventCountSummary({ events }: { events: CivicEvent[] }) {
         <p className="mt-2 text-2xl font-semibold text-ink">{officialCount}</p>
       </div>
       <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Upcoming</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Upcoming dates</p>
         <p className="mt-2 text-2xl font-semibold text-ink">{upcomingCount}</p>
       </div>
       <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
@@ -133,8 +141,8 @@ function EventCountSummary({ events }: { events: CivicEvent[] }) {
         <p className="mt-2 text-2xl font-semibold text-ink">{completedCount}</p>
       </div>
       <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Community events</p>
-        <p className="mt-2 text-2xl font-semibold text-ink">{communityCount}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Calendar sources</p>
+        <p className="mt-2 text-2xl font-semibold text-ink">{sourceRegistryCount}</p>
       </div>
     </section>
   );
@@ -213,6 +221,7 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
   const selectedDateTo = params?.dateTo ?? "";
   const selectedLinkedTo = params?.linkedTo ?? "";
   const selectedSort = normalizeSort(params?.sort);
+  const requestedPage = Math.max(1, Number.parseInt(params?.page ?? "1", 10) || 1);
   const guestMode = isGuestUser(user);
   const canCreateEvents = await canUserCreateCommunityEvent(user);
   const canApproveProposals = canUserApproveEventProposal(user);
@@ -231,7 +240,15 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
     getCivicEventsForBrowse(user, { communityId: selectedCommunityId, status: "all", source: "all", type: "all", sort: "official-first" }),
     selectedCommunityId ? getOpenEventProposals(selectedCommunityId) : Promise.resolve([]),
   ]);
-  const groupedEvents = groupEvents(events);
+  const totalPages = Math.max(1, Math.ceil(events.length / EVENTS_PER_PAGE));
+  const currentPage = Math.min(requestedPage, totalPages);
+  const visibleEvents = events.slice((currentPage - 1) * EVENTS_PER_PAGE, currentPage * EVENTS_PER_PAGE);
+  const groupedEvents = groupEvents(visibleEvents);
+  const lastSourceRefresh = allCommunityEvents
+    .map((event) => event.lastFetchedAt ? Date.parse(event.lastFetchedAt) : Number.NaN)
+    .filter(Number.isFinite)
+    .sort((left, right) => right - left)[0];
+  const sourceAgeDays = Number.isFinite(lastSourceRefresh) ? Math.max(0, Math.floor((Date.now() - lastSourceRefresh) / 86_400_000)) : null;
   const returnPath = buildEventsHref({
     communityId: selectedCommunityId,
     status: selectedStatus,
@@ -242,6 +259,7 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
     dateTo: selectedDateTo,
     linkedTo: selectedLinkedTo,
     sort: selectedSort,
+    page: currentPage,
   });
   const statusTabs = [
     { label: "All", href: buildEventsHref({ communityId: selectedCommunityId, status: "all", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedStatus === "all" },
@@ -288,6 +306,11 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
           <>
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{currentCommunity?.name ?? "All known events"}</span>
             <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">Official meetings included</span>
+            {sourceAgeDays !== null ? (
+              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${sourceAgeDays > 7 ? "bg-amber-50 text-amber-700" : "bg-emerald-50 text-emerald-700"}`}>
+                Sources refreshed {sourceAgeDays === 0 ? "today" : `${sourceAgeDays}d ago`}
+              </span>
+            ) : null}
             {guestMode ? <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">Guest browse · Read only</span> : null}
           </>
         }
@@ -410,7 +433,7 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
           <FilterTabs tabs={sortTabs} />
           <form action="/events" className="grid gap-3 rounded-[1.35rem] border border-white/10 bg-white/5 p-4 md:grid-cols-[1fr_1fr_1.5fr_auto]">
             {selectedCommunityId ? <input type="hidden" name="communityId" value={selectedCommunityId} /> : null}
-            {selectedStatus !== "all" ? <input type="hidden" name="status" value={selectedStatus} /> : null}
+            {selectedStatus !== "upcoming" ? <input type="hidden" name="status" value={selectedStatus} /> : null}
             {selectedSource !== "all" ? <input type="hidden" name="source" value={selectedSource} /> : null}
             {selectedType !== "all" ? <input type="hidden" name="type" value={selectedType} /> : null}
             {selectedMode !== "all" ? <input type="hidden" name="mode" value={selectedMode} /> : null}
@@ -435,6 +458,13 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
       </section>
 
       <section className="space-y-6">
+        {events.length ? (
+          <div className="flex flex-wrap items-center justify-between gap-3 px-1">
+            <p className="text-sm text-slate-400">
+              Showing {visibleEvents.length} of {events.length} matching events
+            </p>
+          </div>
+        ) : null}
         {Object.entries(groupedEvents).length ? (
           Object.entries(groupedEvents).map(([dayLabel, dayEvents]) => (
             <section key={dayLabel} className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
@@ -462,6 +492,18 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
             </p>
           </section>
         )}
+        {totalPages > 1 ? (
+          <div className="rounded-[1.75rem] border border-white/70 bg-white/85 px-6 shadow-card backdrop-blur">
+            <PaginationNav
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalItems={events.length}
+              itemLabel="events"
+              previousHref={currentPage > 1 ? buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort, page: currentPage - 1 }) : null}
+              nextHref={currentPage < totalPages ? buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort, page: currentPage + 1 }) : null}
+            />
+          </div>
+        ) : null}
       </section>
     </div>
   );

@@ -370,7 +370,7 @@ async function main() {
       jurisdiction: true,
       election: true,
     },
-    orderBy: [{ election: { electionDate: "desc" } }, { fullName: "asc" }],
+    orderBy: [{ isIncumbent: "desc" }, { election: { electionDate: "desc" } }, { fullName: "asc" }],
     take: limit,
   });
 

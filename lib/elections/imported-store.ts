@@ -44,6 +44,8 @@ function mapImportedCandidateToProfile(candidate: Awaited<ReturnType<typeof getP
   const sourceUrl = candidate.sourceUrl ?? candidate.source?.url ?? null;
   const enrichedWebsiteUrl = candidate.websiteEnrichment?.campaignWebsiteUrl ?? candidate.websiteEnrichment?.officialWebsiteUrl ?? null;
   const enrichedBio = candidate.websiteEnrichment?.shortBio ?? null;
+  const reviewedKnowledgeBio = candidate.knowledgeEnrichments.find((entry) => entry.aboutSummary)?.aboutSummary ?? null;
+  const reviewedCandidateStatement = candidate.knowledgeEnrichments.find((entry) => entry.ownWordsSummary)?.ownWordsSummary ?? null;
   const enrichedHeadshotUrl = candidate.websiteEnrichment?.headshotUrl ?? null;
   const warnings = getCandidateDataWarnings(candidate);
 
@@ -57,6 +59,8 @@ function mapImportedCandidateToProfile(candidate: Awaited<ReturnType<typeof getP
     partyText: candidate.partyText,
     bio:
       enrichedBio ??
+      reviewedKnowledgeBio ??
+      reviewedCandidateStatement ??
       candidate.campaignStatement ??
       `${displayName} is an imported Nevada candidate record for ${candidate.officeTitle ?? "Office needs review"} in ${candidate.electionTitle}. Profile enrichment pending.`,
     profileImageUrl: enrichedHeadshotUrl ?? candidate.photoUrl,
@@ -184,7 +188,7 @@ function getSourceLinks(election: Awaited<ReturnType<typeof getPublicImportedEle
 
   if (jurisdictionSlug === "washoe-county" || jurisdictionSlug === "reno" || title.includes("2026 nevada primary")) {
     links.push({ label: "Washoe County 2026 Primary Election", url: "https://www.washoecounty.gov/voters/information/index.php" });
-    links.push({ label: "Washoe County 2026 Election Data", url: "https://www.washoecounty.gov/voters/data/elections/2026.php" });
+    links.push({ label: "Washoe County 2026 Election Reports", url: "https://www.washoecounty.gov/voters/results/2026data.php" });
   }
 
   if (jurisdictionSlug === "carson-city") {

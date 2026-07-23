@@ -3,8 +3,6 @@ import Link from "next/link";
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { FollowButton } from "@/components/domain/follow-button";
-import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
-import { buildSentimentHistory } from "@/lib/sentiment/history";
 import type { OfficialProfileSummary } from "@/types/domain";
 
 type OfficialDirectoryCardProps = {
@@ -14,12 +12,7 @@ type OfficialDirectoryCardProps = {
 
 export function OfficialDirectoryCard({ official, returnPath = "/officials" }: OfficialDirectoryCardProps) {
   const isImported = Boolean(official.sourceLabel);
-  const hasMeasuredSentiment = !isImported && (Boolean(official.followThroughScore) || Boolean(official.truthScore?.media));
-  const currentSupport = Math.min(
-    82,
-    Math.max(34, Math.round(((official.followThroughScore ?? 52) + (official.truthScore?.media ?? 52)) / 2)),
-  );
-  const history = buildSentimentHistory(`official-${official.id}`, currentSupport, { points: 5, opposeBias: 24 });
+  const bioSummary = official.bio?.replace(/\s+/g, " ").trim() ?? null;
 
   return (
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-3.5 shadow-card backdrop-blur">
@@ -42,7 +35,7 @@ export function OfficialDirectoryCard({ official, returnPath = "/officials" }: O
             </span>
             {isImported ? (
               <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
-                Real data
+                Official source
               </span>
             ) : null}
           </div>
@@ -60,9 +53,11 @@ export function OfficialDirectoryCard({ official, returnPath = "/officials" }: O
                 Follow-through {official.followThroughScore}
               </span>
             ) : null}
-            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-700">
-              {isImported ? "Followers coming soon" : `${official.followerCount.toLocaleString()} followers`}
-            </span>
+            {!isImported ? (
+              <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-700">
+                {official.followerCount.toLocaleString()} followers
+              </span>
+            ) : null}
           </div>
         </div>
         <FavoriteToggleControl
@@ -72,28 +67,13 @@ export function OfficialDirectoryCard({ official, returnPath = "/officials" }: O
           className="inline-flex shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 transition hover:border-civic-500 hover:text-civic-700"
         />
       </div>
-      {isImported ? (
-        <div className="mt-3 rounded-[1.35rem] border border-slate-200 bg-slate-50 p-3">
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Sentiment preview</p>
-            <span className="rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-600 ring-1 ring-slate-200">Coming soon</span>
-          </div>
-          <div className="mt-3 flex h-12 items-end gap-1.5" aria-hidden="true">
-            {[32, 44, 36, 54, 48].map((height, index) => (
-              <span key={`${official.id}-sentiment-${index}`} className="flex-1 rounded-t-lg bg-slate-300/70" style={{ height: `${height}%` }} />
-            ))}
-          </div>
-          <p className="mt-2 text-xs leading-5 text-slate-500">No measured public opinion is shown for imported officials yet.</p>
-        </div>
-      ) : hasMeasuredSentiment ? (
-        <div className="mt-3">
-          <SentimentHistoryChart data={history} title="Public sentiment" currentValue={currentSupport} compact showLegend={false} />
-        </div>
-      ) : (
-        <div className="mt-3 rounded-[1.35rem] border border-slate-200 bg-slate-50 p-3 text-xs text-slate-500">
-          Sentiment preview coming soon.
-        </div>
-      )}
+      <div className="mt-3 rounded-[1.35rem] border border-slate-200 bg-slate-50 p-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">About this official</p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">
+          {bioSummary ? (bioSummary.length > 220 ? `${bioSummary.slice(0, 219).trimEnd()}...` : bioSummary) : "A reviewed official biography has not been attached yet."}
+        </p>
+        {official.sourceLabel ? <p className="mt-2 text-xs font-semibold text-slate-500">Source: {official.sourceLabel}</p> : null}
+      </div>
       <div className="mt-3 flex flex-wrap gap-2">
         {official.viewerCanFollow && official.claimedByUserId ? (
           <FollowButton
@@ -106,14 +86,6 @@ export function OfficialDirectoryCard({ official, returnPath = "/officials" }: O
                 : "rounded-full bg-civic-500 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-civic-700 disabled:cursor-not-allowed disabled:bg-slate-300"
             }
           />
-        ) : isImported ? (
-          <button
-            type="button"
-            disabled
-            className="rounded-full border border-slate-200 bg-slate-100 px-3.5 py-2 text-sm font-semibold text-slate-500"
-          >
-            Follow pending
-          </button>
         ) : null}
         <Link
           href={`/officials/${official.id}`}

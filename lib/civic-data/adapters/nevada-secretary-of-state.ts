@@ -12,7 +12,7 @@ const OFFICIAL_SOURCE_CHECKS = [
   "https://www.nvsos.gov/sos/elections/election-information/2026-election-information",
   "https://www.nvsos.gov/sos/elections/voters/statewide-ballot-questions",
   "https://www.washoecounty.gov/voters/information/index.php",
-  "https://www.washoecounty.gov/voters/data/elections/2026.php",
+  "https://www.washoecounty.gov/voters/results/2026data.php",
 ];
 
 const WASHOE_2026_CANDIDATE_WORKBOOK_URL = "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx";
@@ -42,6 +42,11 @@ async function checkOfficialNevadaSource(url: string): Promise<IngestionIssue | 
   }
 
   return null;
+}
+
+function electionStatusForDate(electionDate: string) {
+  const endOfElectionDay = new Date(`${electionDate}T23:59:59.999Z`);
+  return endOfElectionDay.getTime() < Date.now() ? ElectionStatus.COMPLETED : ElectionStatus.UPCOMING;
 }
 
 function addElectionFoundation(data: NormalizedCivicData) {
@@ -74,7 +79,7 @@ function addElectionFoundation(data: NormalizedCivicData) {
       officeTitle: "Statewide, Federal, Legislative, and Local Offices",
       electionDate: "2026-06-09",
       electionType: ElectionType.PRIMARY,
-      status: ElectionStatus.UPCOMING,
+      status: electionStatusForDate("2026-06-09"),
     },
     {
       externalId: "nvsos-2026-general-statewide",
@@ -84,7 +89,7 @@ function addElectionFoundation(data: NormalizedCivicData) {
       officeTitle: "Statewide, Federal, Legislative, and Local Offices",
       electionDate: "2026-11-03",
       electionType: ElectionType.GENERAL,
-      status: ElectionStatus.UPCOMING,
+      status: electionStatusForDate("2026-11-03"),
     },
     {
       externalId: "nvsos-reno-2026-general",
@@ -94,7 +99,7 @@ function addElectionFoundation(data: NormalizedCivicData) {
       officeTitle: "Reno Municipal Offices",
       electionDate: "2026-11-03",
       electionType: ElectionType.LOCAL,
-      status: ElectionStatus.UPCOMING,
+      status: electionStatusForDate("2026-11-03"),
     },
     {
       externalId: "nvsos-washoe-2026-general",
@@ -104,7 +109,7 @@ function addElectionFoundation(data: NormalizedCivicData) {
       officeTitle: "Washoe County Offices",
       electionDate: "2026-11-03",
       electionType: ElectionType.LOCAL,
-      status: ElectionStatus.UPCOMING,
+      status: electionStatusForDate("2026-11-03"),
     },
     {
       externalId: "nvsos-carson-city-2026-general",
@@ -114,7 +119,7 @@ function addElectionFoundation(data: NormalizedCivicData) {
       officeTitle: "Carson City Offices",
       electionDate: "2026-11-03",
       electionType: ElectionType.LOCAL,
-      status: ElectionStatus.UPCOMING,
+      status: electionStatusForDate("2026-11-03"),
     },
   );
 }

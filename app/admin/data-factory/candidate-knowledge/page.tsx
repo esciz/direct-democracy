@@ -344,6 +344,14 @@ export default async function AdminCandidateKnowledgeFactoryPage() {
             Add source URL
           </Link>
         </div>
+        {priorityQueue.some((row) => row.sourceReadiness !== "verified_results") ? (
+          <div className="mt-4 border-l-2 border-amber-300 bg-amber-300/[0.07] px-4 py-3">
+            <p className="text-sm font-semibold text-amber-100">Ballot transition needs source review</p>
+            <p className="mt-1 text-xs leading-5 text-amber-100/75">
+              Filing records establish who filed, not who won a primary or appears on a certified general-election ballot. The statewide results parser is registered but not implemented, so nominee labels need a verified result before publication.
+            </p>
+          </div>
+        ) : null}
         <div className="mt-4 space-y-3">
           {priorityQueue.length ? (
             priorityQueue.map((row) => (
@@ -355,8 +363,22 @@ export default async function AdminCandidateKnowledgeFactoryPage() {
                       <span className="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-1 text-[11px] font-semibold text-slate-300">
                         Priority {row.score}
                       </span>
+                      <span
+                        className={
+                          row.sourceReadiness === "verified_results"
+                            ? "rounded-full border border-emerald-300/20 bg-emerald-300/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-100"
+                            : row.sourceReadiness === "reviewed_results" || row.sourceReadiness === "reviewed_advancement"
+                              ? "rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-[11px] font-semibold text-cyan-100"
+                              : "rounded-full border border-amber-300/20 bg-amber-300/10 px-2.5 py-1 text-[11px] font-semibold text-amber-100"
+                        }
+                      >
+                        {row.sourceReadinessLabel}
+                      </span>
                     </div>
                     <p className="mt-1 text-sm text-slate-400">{row.race}</p>
+                    <p className="mt-2 text-xs text-slate-500">
+                      {new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeZone: "UTC" }).format(new Date(row.electionDate))} · {row.electionStatus.toLowerCase()} · {row.sourceName}
+                    </p>
                     <p className="mt-2 text-xs text-slate-500">Search: {row.suggestedSearchQuery}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {row.missingFields.map((field) => (
