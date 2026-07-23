@@ -52,6 +52,7 @@
     "civic:repair-lombardo-profile": "node scripts/repair-lombardo-profile-enrichment.mjs",
     "civic:repair-rosen-profile": "node scripts/repair-rosen-profile-enrichment.mjs",
     "civic:import-reviewed-candidate-profiles": "node scripts/import-reviewed-candidate-profiles.mjs",
+    "civic:import-reviewed-campaign-finance": "node scripts/import-reviewed-campaign-finance.mjs",
     "civic:import-candidate-media-local": "node scripts/import-nvsos-candidate-media.mjs",
     "civic:import-court-sources": "node scripts/import-court-sources.mjs",
     "civic:import-appellate-cases": "node scripts/import-appellate-cases.mjs",

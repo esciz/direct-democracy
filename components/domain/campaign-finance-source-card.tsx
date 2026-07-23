@@ -7,8 +7,8 @@ function formatDate(value: string | null) {
   return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(value));
 }
 
-function formatMoney(value: number | null | undefined) {
-  if (typeof value !== "number" || !Number.isFinite(value)) return "Pending";
+function formatMoney(value: number | null | undefined, unavailableLabel = "Pending") {
+  if (typeof value !== "number" || !Number.isFinite(value)) return unavailableLabel;
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
 }
 
@@ -33,6 +33,10 @@ function BarList({ items }: { items: Array<{ label: string; amount: number; perc
 export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourceCardData }) {
   const funding = data.fundingBreakdown;
   const showFundingGraph = Boolean(funding?.hasDetailedContributions);
+  const raisedAmount = funding?.totalRaised ?? (funding?.hasDetailedContributions ? funding.totalContributions : null);
+  const hasFinancialSnapshot = [raisedAmount, funding?.totalSpent, funding?.cashOnHand].some(
+    (value) => typeof value === "number" && Number.isFinite(value),
+  );
   const hasFilingEvidence = data.financeFilingCount > 0 || data.financeDocumentCount > 0 || data.filingSummaries.length > 0;
   const hasSourceLink = Boolean(data.sourceUrl || data.sourceLinks.length);
 
@@ -41,15 +45,41 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Campaign finance</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Finance source status</h2>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">
+            {hasFinancialSnapshot ? "Campaign money, cycle to date" : "Finance source status"}
+          </h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
-            Source links and filing names are shown as soon as they are stored. Official report totals can still be useful even when donor-category charts are waiting on clean row-level contribution records.
+            {hasFinancialSnapshot
+              ? "Direct-campaign totals and reviewed contributor aggregates. Affiliated PACs and independent spending are tracked separately from candidate committees."
+              : "Official report totals appear after the source record and reporting period have been reviewed."}
           </p>
         </div>
         <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-300">
           {data.reviewStatus?.replaceAll("_", " ") ?? "pending source"}
         </span>
       </div>
+
+      {hasFinancialSnapshot && funding ? (
+        <div className="mt-5 border-y border-white/10 py-5">
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Raised</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(raisedAmount)}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Spent</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(funding.totalSpent, "Not reported")}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Cash on hand</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(funding.cashOnHand, "Not reported")}</p>
+            </div>
+          </div>
+          {funding.reportingPeriod ? (
+            <p className="mt-4 text-sm text-slate-400">Reporting period: {funding.reportingPeriod}</p>
+          ) : null}
+        </div>
+      ) : null}
 
       <div className="mt-5 grid gap-4 md:grid-cols-3">
         <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
@@ -74,7 +104,11 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Last checked</p>
           <p className="mt-3 text-sm font-semibold text-slate-100">{formatDate(data.lastCheckedAt)}</p>
           <p className="mt-2 text-xs text-slate-500">
-            {data.approvedCount} approved · {data.pendingCount} pending
+            {data.approvedCount > 0
+              ? `${data.approvedCount} reviewed source${data.approvedCount === 1 ? "" : "s"}`
+              : data.pendingCount > 0
+                ? "Source review pending"
+                : "No source review recorded"}
           </p>
         </div>
       </div>
@@ -100,26 +134,10 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
 
       {showFundingGraph && funding ? (
         <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Funding source graph</p>
-              <h3 className="mt-2 text-lg font-semibold text-slate-50">Where campaign money is coming from</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{funding.sourceCoverageNote}</p>
-            </div>
-            <div className="grid grid-cols-3 gap-2 text-right">
-              <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Raised</p>
-                <p className="mt-1 text-sm font-semibold text-slate-100">{formatMoney(funding.totalRaised ?? funding.totalContributions)}</p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Spent</p>
-                <p className="mt-1 text-sm font-semibold text-slate-100">{formatMoney(funding.totalSpent)}</p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Cash</p>
-                <p className="mt-1 text-sm font-semibold text-slate-100">{formatMoney(funding.cashOnHand)}</p>
-              </div>
-            </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Reviewed contributor sample</p>
+            <h3 className="mt-2 text-lg font-semibold text-slate-50">Largest contributors in the cycle record</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-400">{funding.sourceCoverageNote}</p>
           </div>
 
           <div className="mt-5 grid gap-4 xl:grid-cols-2">
@@ -143,9 +161,13 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
                 </div>
               </div>
             ) : null}
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <div
+              className={`rounded-2xl border border-white/10 bg-white/[0.03] p-4 ${
+                funding.byIndustry.length ? "" : "xl:col-span-2"
+              }`}
+            >
               <p className="text-sm font-semibold text-slate-100">Top contributors</p>
-              <div className="mt-3 space-y-2">
+              <div className={funding.byIndustry.length ? "mt-3 space-y-2" : "mt-3 grid gap-2 md:grid-cols-2"}>
                 {funding.topContributors.map((contributor) => (
                   <div key={contributor.name} className="rounded-2xl border border-white/10 bg-black/15 p-3">
                     <div className="flex items-start justify-between gap-3">
@@ -165,7 +187,9 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
         </div>
       ) : (
         <div className="mt-5 rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
-          {hasFilingEvidence
+          {hasFinancialSnapshot
+            ? "Cycle totals are available. Contributor charts remain hidden until enough itemized donor records are reviewed."
+            : hasFilingEvidence
             ? "Source filings are available. Industry and entity charts appear only after enough clean itemized contribution rows are parsed and reviewed."
             : hasSourceLink
               ? "The official source link is stored, but filing totals and report details have not been extracted and reviewed yet."

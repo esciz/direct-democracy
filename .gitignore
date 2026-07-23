@@ -20,6 +20,7 @@ data/private/*
 !data/private/nv-sos-cookies.example.json
 data/manual-sources/*
 !data/manual-sources/candidate-profiles/
+!data/manual-sources/campaign-finance/
 !data/manual-sources/election-results/
 
 # Runtime civic source caches. Commit manifests, hashes, and extracted indexes;

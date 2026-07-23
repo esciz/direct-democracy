@@ -31,6 +31,7 @@ export type CampaignFinanceSourceCardData = {
 };
 
 type FinanceAttributionMetadata = {
+  cycleTotalsAvailable?: boolean;
   filingSummaries?: Array<{ name?: string; filedAt?: string | null; url?: string | null }>;
   sourceLinks?: Array<{ label?: string; url?: string; note?: string | null }>;
   campaignReportedSummary?: string | null;
@@ -49,7 +50,7 @@ function financeReviewRank(value: string | null | undefined) {
 function financeMetadataScore(value: unknown) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return 0;
   const metadata = value as FinanceAttributionMetadata;
-  return (Array.isArray(metadata.filingSummaries) ? metadata.filingSummaries.length : 0) + (Array.isArray(metadata.sourceLinks) ? metadata.sourceLinks.length : 0) + (metadata.campaignReportedSummary ? 2 : 0);
+  return (metadata.cycleTotalsAvailable ? 20 : 0) + (Array.isArray(metadata.filingSummaries) ? metadata.filingSummaries.length : 0) + (Array.isArray(metadata.sourceLinks) ? metadata.sourceLinks.length : 0) + (metadata.campaignReportedSummary ? 2 : 0);
 }
 
 function dedupeFilings<T extends { name: string; filedAt: string | null; url: string | null }>(filings: T[]) {
@@ -103,6 +104,8 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     attributions
       .slice()
       .sort((left, right) => {
+        const totalsDelta = Number(Boolean((right.metadata as FinanceAttributionMetadata | null)?.cycleTotalsAvailable)) - Number(Boolean((left.metadata as FinanceAttributionMetadata | null)?.cycleTotalsAvailable));
+        if (totalsDelta !== 0) return totalsDelta;
         const reviewDelta = financeReviewRank(right.reviewStatus) - financeReviewRank(left.reviewStatus);
         if (reviewDelta !== 0) return reviewDelta;
         const metadataDelta = financeMetadataScore(right.metadata) - financeMetadataScore(left.metadata);
@@ -111,15 +114,15 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
       })
       .at(0) ?? null;
   const metadata = (attribution?.metadata ?? {}) as FinanceAttributionMetadata;
-  const metadataFilings = Array.isArray(metadata.filingSummaries)
-    ? metadata.filingSummaries
+  const allMetadata = attributions.map((row) => (row.metadata ?? {}) as FinanceAttributionMetadata);
+  const metadataFilings = allMetadata
+    .flatMap((entry) => (Array.isArray(entry.filingSummaries) ? entry.filingSummaries : []))
         .map((filing) => ({
           name: filing.name ?? "Campaign finance filing",
           filedAt: filing.filedAt ?? null,
           url: filing.url ?? attribution?.sourceUrl ?? null,
         }))
-        .filter((filing) => filing.name)
-    : [];
+        .filter((filing) => filing.name);
   const parsedFilings = filings.map((filing) => {
     const rawData = filing.rawData && typeof filing.rawData === "object" && !Array.isArray(filing.rawData) ? (filing.rawData as Record<string, unknown>) : null;
     return {
@@ -133,11 +136,10 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     filedAt: null,
     url: document.sourceUrl,
   }));
-  const metadataLinks = Array.isArray(metadata.sourceLinks)
-    ? metadata.sourceLinks
+  const metadataLinks = allMetadata
+    .flatMap((entry) => (Array.isArray(entry.sourceLinks) ? entry.sourceLinks : []))
         .filter((link): link is { label: string; url: string; note?: string | null } => Boolean(link?.label && link?.url))
-        .map((link) => ({ label: link.label, url: link.url, note: link.note ?? null }))
-    : [];
+        .map((link) => ({ label: link.label, url: link.url, note: link.note ?? null }));
   const rawSourceLinks: Array<{ label: string; url: string; note: string | null } | null> = [
     attribution?.sourceUrl ? { label: attribution.sourceName, url: attribution.sourceUrl, note: "Official campaign finance source" } : null,
     latestFiling?.filingUrl ? { label: "Latest parsed filing", url: latestFiling.filingUrl, note: null } : null,
@@ -145,12 +147,18 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
   ];
   const sourceLinks = rawSourceLinks.filter((link): link is { label: string; url: string; note: string | null } => Boolean(link?.url));
   const dedupedLinks = [...new Map(sourceLinks.map((link) => [link.url, link])).values()];
+  const latestFilingRawData =
+    latestFiling?.rawData && typeof latestFiling.rawData === "object" && !Array.isArray(latestFiling.rawData)
+      ? (latestFiling.rawData as Record<string, unknown>)
+      : null;
 
   return {
     sourceName: attribution?.sourceName ?? latestFiling?.source?.name ?? null,
     sourceUrl: attribution?.sourceUrl ?? latestFiling?.filingUrl ?? latestFiling?.source?.url ?? null,
     filingStatus: latestFiling
-      ? latestFiling.filingType.replaceAll("_", " ")
+      ? typeof latestFilingRawData?.filingName === "string"
+        ? latestFilingRawData.filingName
+        : latestFiling.filingType.replaceAll("_", " ")
       : metadataFilings.length || documentFilings.length
         ? "Filing references stored"
         : attribution
@@ -167,9 +175,9 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     pendingCount: attributions.filter((row) => row.reviewStatus === "pending_review").length,
     approvedCount: attributions.filter((row) => row.reviewStatus === "approved" || row.reviewStatus === "verified").length,
     fundingBreakdown,
-    campaignReportedSummary: metadata.campaignReportedSummary ?? null,
+    campaignReportedSummary: metadata.campaignReportedSummary ?? allMetadata.find((entry) => entry.campaignReportedSummary)?.campaignReportedSummary ?? null,
     donorExtractionStatus: fundingBreakdown?.hasDetailedContributions
       ? fundingBreakdown.sourceCoverageNote
-      : metadata.donorExtractionStatus ?? fundingBreakdown?.sourceCoverageNote ?? "Classification incomplete; source-backed filing summaries remain available.",
+      : metadata.donorExtractionStatus ?? allMetadata.find((entry) => entry.donorExtractionStatus)?.donorExtractionStatus ?? fundingBreakdown?.sourceCoverageNote ?? "Classification incomplete; source-backed filing summaries remain available.",
   };
 }

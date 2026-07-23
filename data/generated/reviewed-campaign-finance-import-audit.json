@@ -1,0 +1,252 @@
+{
+  "generatedAt": "2026-07-23T14:35:52.705Z",
+  "filePath": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex/data/manual-sources/campaign-finance/2026-nevada-statewide-executive.json",
+  "batch": {
+    "name": "2026 Nevada statewide executive campaign finance through Q2",
+    "periodStart": "2025-01-01",
+    "periodEnd": "2026-06-30",
+    "periodStartLabel": "January 1, 2025",
+    "periodEndLabel": "June 30, 2026",
+    "retrievedAt": "2026-07-23T19:00:00.000Z",
+    "notes": "Human-reviewed cycle-to-date totals and top-contributor aggregates. The reporting frame reaches back to the start of the 2025-2026 election cycle instead of showing only the latest quarter."
+  },
+  "source": {
+    "name": "Transparency USA (Nevada SOS-derived)",
+    "slug": "transparency-usa-nevada-2026-cycle",
+    "url": "https://www.transparencyusa.org/nv/?cycle=2026-election-cycle",
+    "derivedFrom": "Nevada Secretary of State campaign-finance records",
+    "officialUrl": "https://www.nvsos.gov/elections/aurora-public-search",
+    "crossCheckUrl": "https://thenevadaindependent.com/article/what-we-learned-from-nevadas-latest-campaign-finance-reports",
+    "notes": "Transparency USA republishes and aggregates Nevada Secretary of State campaign-finance records. Exact candidate totals were reviewed against its June 30, 2026 cycle data and cross-checked against the Nevada Independent's July 16 statewide finance report. Cash on hand is not included because the candidate aggregate does not publish it."
+  },
+  "imported": [
+    {
+      "key": "aaron-ford-governor-2026",
+      "candidates": [
+        {
+          "id": "cmq107sdp009nlnoxjxbzxh70",
+          "name": "Ford, Aaron D.",
+          "election": "2026 Nevada Primary Election",
+          "raised": 4285306.86,
+          "spent": 2786816.36,
+          "contributors": 10
+        },
+        {
+          "id": "cmrwg70v70007lnpc1g6rvyga",
+          "name": "Ford, Aaron D.",
+          "election": "2026 Nevada General Election",
+          "raised": 4285306.86,
+          "spent": 2786816.36,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "joseph-lombardo-governor-2026",
+      "candidates": [
+        {
+          "id": "cmq107sjt009zlnoxh6606omh",
+          "name": "Lombardo, Joseph",
+          "election": "2026 Nevada Primary Election",
+          "raised": 2275074.69,
+          "spent": 3388834.84,
+          "contributors": 10
+        },
+        {
+          "id": "cmrwg71fk000jlnpcl1vyujfx",
+          "name": "Lombardo, Joseph",
+          "election": "2026 Nevada General Election",
+          "raised": 2275074.69,
+          "spent": 3388834.84,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "sandra-jauregui-lieutenant-governor-2026",
+      "candidates": [
+        {
+          "id": "cmrwg71u4000vlnpcfh84wmxa",
+          "name": "Jauregui, Sandra",
+          "election": "2026 Nevada General Election",
+          "raised": 482925.93,
+          "spent": 347220.9,
+          "contributors": 10
+        },
+        {
+          "id": "cmq107stx00ajlnox7fw9ntqu",
+          "name": "Jauregui, Sandra",
+          "election": "2026 Nevada Primary Election",
+          "raised": 482925.93,
+          "spent": 347220.9,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "stavros-anthony-lieutenant-governor-2026",
+      "candidates": [
+        {
+          "id": "cmq107sqv00adlnox74musk55",
+          "name": "Anthony, Stavros",
+          "election": "2026 Nevada General Election",
+          "raised": 397072.27,
+          "spent": 94080.66,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "francisco-aguilar-secretary-of-state-2026",
+      "candidates": [
+        {
+          "id": "cmq107swz00aplnoxiifv2lhg",
+          "name": "Aguilar, Francisco \"Cisco\"",
+          "election": "2026 Nevada General Election",
+          "raised": 1031043.03,
+          "spent": 351329.77,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "james-marchant-secretary-of-state-2026",
+      "candidates": [
+        {
+          "id": "cmq107t2u00b1lnox3ns0qqpn",
+          "name": "Marchant, Jim",
+          "election": "2026 Nevada Primary Election",
+          "raised": 1000,
+          "spent": 815.93,
+          "contributors": 1
+        },
+        {
+          "id": "cmrwg72a20017lnpca8exxdcx",
+          "name": "Marchant, Jim",
+          "election": "2026 Nevada General Election",
+          "raised": 1000,
+          "spent": 815.93,
+          "contributors": 1
+        }
+      ]
+    },
+    {
+      "key": "tya-mathis-coleman-treasurer-2026",
+      "candidates": [
+        {
+          "id": "cmq107t7u00bblnoxef1c3v0t",
+          "name": "Mathis-Coleman, Tya",
+          "election": "2026 Nevada Primary Election",
+          "raised": 176206.16,
+          "spent": 159967.1,
+          "contributors": 10
+        },
+        {
+          "id": "cmrwg72ng001jlnpcfglfvren",
+          "name": "Mathis-Coleman, Tya",
+          "election": "2026 Nevada General Election",
+          "raised": 176206.16,
+          "spent": 159967.1,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "drew-johnson-treasurer-2026",
+      "candidates": [
+        {
+          "id": "cmq107t5v00b7lnoxrh6nfq6t",
+          "name": "Johnson, Drew",
+          "election": "2026 Nevada Primary Election",
+          "raised": 117966.67,
+          "spent": 78259.05,
+          "contributors": 10
+        },
+        {
+          "id": "cmrwg731s001vlnpcc4xp4ey6",
+          "name": "Johnson, Drew",
+          "election": "2026 Nevada General Election",
+          "raised": 117966.67,
+          "spent": 78259.05,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "michael-macdougall-controller-2026",
+      "candidates": [
+        {
+          "id": "cmq107t9v00bflnoxqks0jgwm",
+          "name": "MacDougall, Michael",
+          "election": "2026 Nevada Primary Election",
+          "raised": 33206,
+          "spent": 23711.33,
+          "contributors": 10
+        },
+        {
+          "id": "cmrwg73f00027lnpc19m9fm1k",
+          "name": "MacDougall, Michael",
+          "election": "2026 Nevada General Election",
+          "raised": 33206,
+          "spent": 23711.33,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "andrew-matthews-controller-2026",
+      "candidates": [
+        {
+          "id": "cmq107tav00bhlnoxzm4jt36w",
+          "name": "Matthews, Andy",
+          "election": "2026 Nevada General Election",
+          "raised": 237033.6,
+          "spent": 66500.24,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "nicole-cannizzaro-attorney-general-2026",
+      "candidates": [
+        {
+          "id": "cmq107tcv00bllnox19rd91el",
+          "name": "Cannizzaro, Nicole Jeanette",
+          "election": "2026 Nevada Primary Election",
+          "raised": 1453438.05,
+          "spent": 1670324.51,
+          "contributors": 10
+        },
+        {
+          "id": "cmrwg73sj002jlnpcohx5q22g",
+          "name": "Cannizzaro, Nicole Jeanette",
+          "election": "2026 Nevada General Election",
+          "raised": 1453438.05,
+          "spent": 1670324.51,
+          "contributors": 10
+        }
+      ]
+    },
+    {
+      "key": "adriana-fralick-attorney-general-2026",
+      "candidates": [
+        {
+          "id": "cmq107tev00bplnoxck0m7vt2",
+          "name": "Guzmán Fralick, Adriana",
+          "election": "2026 Nevada Primary Election",
+          "raised": 438864.82,
+          "spent": 383979.93,
+          "contributors": 10
+        },
+        {
+          "id": "cmrwg745x002vlnpcra4expad",
+          "name": "Guzmán Fralick, Adriana",
+          "election": "2026 Nevada General Election",
+          "raised": 438864.82,
+          "spent": 383979.93,
+          "contributors": 10
+        }
+      ]
+    }
+  ]
+}

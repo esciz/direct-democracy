@@ -142,8 +142,8 @@ function pendingKnowledgeCard(title: string, description: string) {
   );
 }
 
-function formatCampaignMoney(value: number | null | undefined) {
-  if (typeof value !== "number" || !Number.isFinite(value)) return "Pending";
+function formatCampaignMoney(value: number | null | undefined, unavailableLabel = "Pending") {
+  if (typeof value !== "number" || !Number.isFinite(value)) return unavailableLabel;
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
 }
 
@@ -239,9 +239,14 @@ function CandidateVoterEssentials({
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Cash</p>
-              <p className="mt-1 text-sm font-semibold text-slate-100">{formatCampaignMoney(funding?.cashOnHand)}</p>
+              <p className="mt-1 text-sm font-semibold text-slate-100">
+                {formatCampaignMoney(funding?.cashOnHand, hasFinanceTotals ? "Not reported" : "Pending")}
+              </p>
             </div>
           </div>
+          {funding?.reportingPeriod ? (
+            <p className="mt-3 text-xs font-semibold text-slate-500">Reporting period: {funding.reportingPeriod}</p>
+          ) : null}
           <p className="mt-3 text-sm leading-6 text-slate-400">
             {campaignFinanceCard.donorExtractionStatus}
           </p>

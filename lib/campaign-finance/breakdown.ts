@@ -104,10 +104,15 @@ export async function getCandidateFundingBreakdown(candidateId: string): Promise
       .slice(0, 8);
 
     const hasDetailedContributions = contributions.length > 0 && totalContributions > 0;
+    const totalRaised = asNumber(summary?.totalRaised);
+    const coveragePercentage =
+      hasDetailedContributions && totalRaised && totalRaised > 0
+        ? Math.min(100, Math.round((totalContributions / totalRaised) * 1000) / 10)
+        : null;
     return {
       hasDetailedContributions,
       totalContributions,
-      totalRaised: asNumber(summary?.totalRaised),
+      totalRaised,
       totalSpent: asNumber(summary?.totalSpent),
       cashOnHand: asNumber(summary?.cashOnHand),
       reportingPeriod: summary?.reportingPeriod ?? null,
@@ -116,7 +121,9 @@ export async function getCandidateFundingBreakdown(candidateId: string): Promise
       topContributors,
       pacVsIndividual: groupedPercentages(pacVsIndividual, totalContributions),
       sourceCoverageNote: hasDetailedContributions
-        ? `Includes ${contributions.length.toLocaleString()} approved or verified contribution row${contributions.length === 1 ? "" : "s"}. Pending or rejected rows are excluded.`
+        ? coveragePercentage != null
+          ? `Shows ${contributions.length.toLocaleString()} reviewed top-contributor aggregate${contributions.length === 1 ? "" : "s"}, representing ${coveragePercentage}% of cycle-to-date contributions. This reviewed sample may not be the full donor ledger.`
+          : `Shows ${contributions.length.toLocaleString()} reviewed top-contributor aggregate${contributions.length === 1 ? "" : "s"}. This reviewed sample may not be the full donor ledger.`
         : "Not enough clean contributor rows are available for donor-category charts yet.",
     };
   } catch (error) {
