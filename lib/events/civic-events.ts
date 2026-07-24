@@ -239,12 +239,22 @@ function normalizeJurisdiction(value: string | null | undefined) {
   return normalize(value).replace(/\bcounty nevada\b/g, "county").replace(/\bcity nevada\b/g, "city");
 }
 
-function eventMatchesCommunity(event: Pick<CivicEvent, "jurisdiction" | "communityId">, community: CommunitySummary | null) {
+function eventMatchesCommunity(
+  event: Pick<CivicEvent, "jurisdiction" | "communityId" | "hostType" | "locationName" | "address" | "meetingSummary">,
+  community: CommunitySummary | null,
+) {
   if (!community) return true;
   if (event.communityId === community.id) return true;
   const eventJurisdiction = normalizeJurisdiction(event.jurisdiction);
   const needles = [community.name, community.primaryJurisdictionName, ...community.jurisdictionMatches].map(normalizeJurisdiction).filter(Boolean);
-  return needles.some((needle) => eventJurisdiction.includes(needle) || needle.includes(eventJurisdiction));
+  if (needles.some((needle) => eventJurisdiction.includes(needle) || needle.includes(eventJurisdiction))) return true;
+
+  if (event.hostType === "state") {
+    const locationText = normalizeJurisdiction([event.locationName, event.address, event.meetingSummary].filter(Boolean).join(" "));
+    return needles.some((needle) => locationText.includes(needle));
+  }
+
+  return false;
 }
 
 function getCommunityIdForJurisdiction(jurisdiction: string) {
@@ -326,6 +336,11 @@ function compactUnique(values: Array<string | null | undefined>) {
   return [...new Set(values.map((value) => String(value ?? "").trim()).filter(Boolean))];
 }
 
+function getMeetingLocation(meeting: PublicMeetingRecord, jurisdiction: string) {
+  const location = meeting.meeting_summary?.match(/\bLocation:\s*(.+)$/i)?.[1]?.trim();
+  return location || jurisdiction || null;
+}
+
 function meetingToEvent({
   meeting,
   body,
@@ -365,7 +380,7 @@ function meetingToEvent({
     status: statusFromDates(meeting.meeting_date, null),
     startsAt: meeting.meeting_date,
     endsAt: null,
-    locationName: bodyName,
+    locationName: getMeetingLocation(meeting, jurisdiction),
     address: null,
     virtualUrl: meeting.video_url ?? null,
     eventMode: meeting.video_url ? "hybrid" : "unknown",

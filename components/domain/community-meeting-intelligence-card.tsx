@@ -76,7 +76,7 @@ export function CommunityMeetingIntelligenceCard({ summary }: { summary: Communi
                     ) : (
                       <p className="mt-2 text-xs leading-5 text-slate-400">
                         {meeting.relationship_scope === "statewide_overlay"
-                          ? "Shown because no upcoming local Carson City meeting is currently parsed; statewide Nevada meetings may still affect residents here."
+                          ? "Nevada state meeting held in, videoconferenced to, or otherwise directly accessible from this community."
                           : "Expected topics will come from the agenda as source parsing improves. Open the details to review agenda material and public-comment timing."}
                       </p>
                     )}

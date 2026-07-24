@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-24T13:04:53.509Z",
+  "generatedAt": "2026-07-24T15:43:12.951Z",
   "launchReady": false,
   "totals": {
     "critical": 0,
-    "high": 4,
+    "high": 3,
     "medium": 0,
     "publicAggregationFilesChecked": 16,
     "meetingProvidersChecked": 16
@@ -44,17 +44,6 @@
         "last successful live fetch 2026-06-14T18:31:17.117Z",
         "117 cached records remain usable",
         "Cached Nevada SoS records remain usable. Refresh the live session with npm run nv-sos:bootstrap before the next live acquisition window."
-      ]
-    },
-    {
-      "id": "partial-dataops-run",
-      "severity": "high",
-      "area": "data operations",
-      "summary": "The latest recorded DataOps run was not a complete successful daily pipeline execution.",
-      "evidence": [
-        "14 of 15 stages attempted",
-        "0 stages failed",
-        "completed 2026-07-24T13:04:53.138Z"
       ]
     },
     {

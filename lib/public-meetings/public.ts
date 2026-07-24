@@ -190,6 +190,16 @@ function bodyIsNevadaStatewideOverlay(body: PublicBodyRecord) {
   );
 }
 
+function meetingMentionsCommunityLocation(meeting: PublicMeetingRecord, community: CommunitySummary) {
+  const haystack = normalizeName(`${meeting.title} ${meeting.meeting_summary ?? ""}`);
+  const needles = [
+    community.name,
+    community.primaryJurisdictionName,
+    ...community.jurisdictionMatches,
+  ].map(normalizeName).filter(Boolean);
+  return needles.some((needle) => haystack.includes(needle));
+}
+
 export async function getCommunityMeetingSummary(community: CommunitySummary): Promise<CommunityMeetingSummary> {
   const dashboard = await getPublicMeetingAdminDashboard();
   const meetingVotingCards = await readJsonFile<MeetingVotingCardRecord[]>(PUBLIC_MEETING_PATHS.meetingVotingCards, []);
@@ -234,16 +244,25 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
     .sort((left, right) => (Date.parse(left.meeting_date ?? "") || 0) - (Date.parse(right.meeting_date ?? "") || 0))
     .slice(0, 5)
     .map((meeting) => toUpcomingMeeting(meeting, "local"));
-  const statewideUpcomingMeetings = dashboard.meetings
+  const allStatewideUpcomingMeetings = dashboard.meetings
     .filter((meeting) => statewideBodyIds.has(meeting.public_body_id))
     .filter((meeting) => {
       const time = meeting.meeting_date ? Date.parse(meeting.meeting_date) : Number.NaN;
       return Number.isFinite(time) && time >= now;
     })
     .sort((left, right) => (Date.parse(left.meeting_date ?? "") || 0) - (Date.parse(right.meeting_date ?? "") || 0))
-    .slice(0, 5)
     .map((meeting) => toUpcomingMeeting(meeting, "statewide_overlay"));
-  const upcomingMeetings = localUpcomingMeetings.length ? localUpcomingMeetings : statewideUpcomingMeetings;
+  const locallyAccessibleStatewideMeetings = allStatewideUpcomingMeetings.filter((meeting) => {
+    const sourceMeeting = meetingById.get(meeting.id);
+    return sourceMeeting ? meetingMentionsCommunityLocation(sourceMeeting, community) : false;
+  });
+  const statewideFallback = localUpcomingMeetings.length || locallyAccessibleStatewideMeetings.length
+    ? []
+    : allStatewideUpcomingMeetings.slice(0, 5);
+  const upcomingMeetings = [...localUpcomingMeetings, ...locallyAccessibleStatewideMeetings, ...statewideFallback]
+    .filter((meeting, index, records) => records.findIndex((entry) => entry.id === meeting.id) === index)
+    .sort((left, right) => (Date.parse(left.meeting_date ?? "") || 0) - (Date.parse(right.meeting_date ?? "") || 0))
+    .slice(0, 8);
   const recentDecisions = dashboard.voteRecords
     .map((vote) => {
       const item = itemById.get(vote.meeting_item_id);

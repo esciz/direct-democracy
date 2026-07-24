@@ -283,7 +283,7 @@ export default async function HomePage() {
       summary: meeting.major_topics?.length
         ? meeting.major_topics.slice(0, 2).join(" · ")
         : "Agenda topics will appear as source parsing improves.",
-      meta: `${formatDateLabel(meeting.meeting_date)} · ${meeting.public_body_name}`,
+      meta: `${formatDateLabel(meeting.meeting_date)} · ${meeting.public_body_name}${meeting.relationship_scope === "statewide_overlay" ? " · Nevada state" : ""}`,
       href: `/events/${meeting.id}`,
       status: "upcoming" as const,
     })),
