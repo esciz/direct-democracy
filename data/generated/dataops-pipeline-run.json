@@ -2,6 +2,7 @@
   "runId": "dataops-2026-07-24T13:00:26.956Z",
   "startedAt": "2026-07-24T13:00:26.957Z",
   "completedAt": "2026-07-24T13:04:53.523Z",
+  "canonicalRun": true,
   "environment": {
     "offline": false,
     "networkAvailable": true,

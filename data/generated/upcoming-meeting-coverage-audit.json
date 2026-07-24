@@ -1,0 +1,426 @@
+{
+  "generatedAt": "2026-07-24T18:25:21.113Z",
+  "totals": {
+    "configuredProviders": 18,
+    "providersWithUpcomingMeetings": 6,
+    "upcomingMeetings": 31,
+    "zeroUpcomingReview": 12,
+    "sourceFailures": 0,
+    "adapterGaps": 0,
+    "sourceGaps": 0
+  },
+  "rows": [
+    {
+      "providerId": "carson-city-school-district",
+      "providerName": "Carson City School District Board of Trustees",
+      "jurisdiction": "Carson City School District, NV",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "carson-city-board-of-supervisors",
+      "providerName": "Carson City Board of Supervisors",
+      "jurisdiction": "Carson City, NV",
+      "status": "upcoming_found",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 497,
+        "meetingsParsed": 497,
+        "failures": 0
+      },
+      "manualProviderStatus": null,
+      "totalDatedMeetings": 497,
+      "upcomingMeetings": 3,
+      "nextUpcomingAt": "2026-07-29T20:30:00.000Z",
+      "newestKnownMeetingAt": "2026-07-31T20:30:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-carson-city-board-of-supervisors-administrative-hearing-2026-07-29-eae23183",
+          "title": "Administrative Hearing - Public hearing",
+          "meetingDate": "2026-07-29T20:30:00.000Z",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2696"
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-8c5c231d",
+          "title": "Planning Commission - Regular meeting",
+          "meetingDate": "2026-07-30T00:00:00.000Z",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2558"
+        },
+        {
+          "id": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-e9629438",
+          "title": "Liquor Hearings Officer - Public hearing",
+          "meetingDate": "2026-07-31T20:30:00.000Z",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2701"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "clark-county-school-district",
+      "providerName": "Clark County School District Board of Trustees",
+      "jurisdiction": "Clark County School District, NV",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "clark-county-commission",
+      "providerName": "Clark County Commission",
+      "jurisdiction": "Clark County, NV",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 1,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-07-07T07:00:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "elko-county-commission",
+      "providerName": "Elko County Commission",
+      "jurisdiction": "Elko County, NV",
+      "status": "upcoming_found",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 5,
+      "upcomingMeetings": 1,
+      "nextUpcomingAt": "2026-07-27T07:00:00.000Z",
+      "newestKnownMeetingAt": "2026-07-27T07:00:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-elko-county-commission-elko-county-commission-2026-07-27-6f04cf36",
+          "title": "Agenda",
+          "meetingDate": "2026-07-27T07:00:00.000Z",
+          "sourceUrl": "https://elkocounty.granicus.com/ViewPublisherRSS.php?view_id=5&mode=agendas"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "elko-city-council",
+      "providerName": "Elko City Council",
+      "jurisdiction": "Elko, NV",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "partially_parsed",
+      "totalDatedMeetings": 7,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2022-01-11T07:00:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "henderson-city-council",
+      "providerName": "Henderson City Council",
+      "jurisdiction": "Henderson, NV",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 7,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-06-09T07:00:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "nv-assembly",
+      "providerName": "Nevada Assembly",
+      "jurisdiction": "Jurisdiction pending",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": null,
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 1,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-07-24T07:00:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "nv-senate",
+      "providerName": "Nevada Senate",
+      "jurisdiction": "Jurisdiction pending",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": null,
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 1,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-07-24T07:00:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "las-vegas-city-council",
+      "providerName": "Las Vegas City Council",
+      "jurisdiction": "Las Vegas, NV",
+      "status": "upcoming_found",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 8,
+      "upcomingMeetings": 1,
+      "nextUpcomingAt": "2026-07-27T21:00:00.000Z",
+      "newestKnownMeetingAt": "2026-07-27T21:00:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-27-da575123",
+          "title": "Search - PrimeGov Portal",
+          "meetingDate": "2026-07-27T21:00:00.000Z",
+          "sourceUrl": "https://lasvegas.primegov.com/public/portal"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "nv-governor-executive-boards",
+      "providerName": "Governor / Executive Boards",
+      "jurisdiction": "Nevada",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "nv-legislature",
+      "providerName": "Nevada Legislature",
+      "jurisdiction": "Nevada",
+      "status": "upcoming_found",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 24,
+        "meetingsParsed": 24,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 43,
+      "upcomingMeetings": 24,
+      "nextUpcomingAt": "2026-07-31T20:00:00.000Z",
+      "newestKnownMeetingAt": "2027-01-28T16:00:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-legislative-operations-and-elections-2026-07-31-d4cf25e7",
+          "title": "Joint Interim Standing Committee on Legislative Operations and Elections",
+          "meetingDate": "2026-07-31T20:00:00.000Z",
+          "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34894"
+        },
+        {
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-health-and-human-services-2026-08-11-0303f3fd",
+          "title": "Joint Interim Standing Committee on Health and Human Services",
+          "meetingDate": "2026-08-11T16:00:00.000Z",
+          "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34838"
+        },
+        {
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-natural-resources-2026-08-12-1e0632a3",
+          "title": "Joint Interim Standing Committee on Natural Resources",
+          "meetingDate": "2026-08-12T16:00:00.000Z",
+          "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34907"
+        },
+        {
+          "id": "meeting-nv-legislature-interim-finance-committee-2026-08-13-dd2b2900",
+          "title": "Interim Finance Committee",
+          "meetingDate": "2026-08-13T16:00:00.000Z",
+          "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34576"
+        },
+        {
+          "id": "meeting-nv-legislature-legislative-committee-on-senior-citizens-veterans-and-adults-with-special-needs-2026-08-17-5cb60c8c",
+          "title": "Legislative Committee on Senior Citizens, Veterans and Adults With Special Needs",
+          "meetingDate": "2026-08-17T22:30:00.000Z",
+          "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34847"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "nshe-board-of-regents",
+      "providerName": "Nevada System of Higher Education Board of Regents",
+      "jurisdiction": "Nevada System of Higher Education",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 9,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-05-21T07:00:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "north-las-vegas-city-council",
+      "providerName": "North Las Vegas City Council",
+      "jurisdiction": "North Las Vegas, NV",
+      "status": "upcoming_found",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 9,
+      "upcomingMeetings": 1,
+      "nextUpcomingAt": "2026-07-29T00:00:00.000Z",
+      "newestKnownMeetingAt": "2026-07-29T00:00:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-29-06321fb8",
+          "title": "Search - PrimeGov Portal",
+          "meetingDate": "2026-07-29T00:00:00.000Z",
+          "sourceUrl": "https://cityofnorthlasvegas.primegov.com/public/portal"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "reno-city-council",
+      "providerName": "Reno City Council",
+      "jurisdiction": "Reno, NV",
+      "status": "upcoming_found",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 10,
+      "upcomingMeetings": 1,
+      "nextUpcomingAt": "2026-07-28T16:30:00.000Z",
+      "newestKnownMeetingAt": "2026-07-28T16:30:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-reno-city-council-reno-city-council-2026-07-28-1f17cec5",
+          "title": "Search - PrimeGov Portal",
+          "meetingDate": "2026-07-28T16:30:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/public/portal"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "sparks-city-council",
+      "providerName": "Sparks City Council",
+      "jurisdiction": "Sparks, NV",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "washoe-county-school-district",
+      "providerName": "Washoe County School District Board of Trustees",
+      "jurisdiction": "Washoe County School District, NV",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 59,
+        "meetingsParsed": 59,
+        "failures": 0
+      },
+      "manualProviderStatus": null,
+      "totalDatedMeetings": 59,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-06-09T15:30:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "washoe-county-commission",
+      "providerName": "Washoe County Commission",
+      "jurisdiction": "Washoe County, NV",
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 17,
+        "meetingsParsed": 17,
+        "failures": 0
+      },
+      "manualProviderStatus": null,
+      "totalDatedMeetings": 17,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2025-10-28T17:00:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    }
+  ]
+}

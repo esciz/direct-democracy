@@ -244,6 +244,51 @@ if ((dataopsRun.metrics?.sourceGapMeetings ?? 0) > 0 || (dataopsRun.metrics?.par
   });
 }
 
+const upcomingCoverage = readJson<{
+  totals?: {
+    configuredProviders?: number;
+    providersWithUpcomingMeetings?: number;
+    zeroUpcomingReview?: number;
+    sourceFailures?: number;
+    adapterGaps?: number;
+    sourceGaps?: number;
+  };
+  rows?: Array<{
+    providerName?: string;
+    jurisdiction?: string;
+    status?: string;
+    newestKnownMeetingAt?: string | null;
+  }>;
+}>("data/generated/upcoming-meeting-coverage-audit.json", {});
+const upcomingCoverageFailures =
+  (upcomingCoverage.totals?.sourceFailures ?? 0) +
+  (upcomingCoverage.totals?.adapterGaps ?? 0) +
+  (upcomingCoverage.totals?.sourceGaps ?? 0);
+
+if (upcomingCoverageFailures > 0) {
+  addFinding({
+    id: "upcoming-meeting-source-failures",
+    severity: "high",
+    area: "meeting calendar coverage",
+    summary: "One or more configured meeting providers cannot currently establish whether upcoming meetings exist.",
+    evidence: (upcomingCoverage.rows ?? [])
+      .filter((row) => row.status === "source_failure" || row.status === "adapter_gap" || row.status === "source_gap")
+      .map((row) => `${row.providerName ?? "Unknown provider"} (${row.jurisdiction ?? "jurisdiction pending"}): ${row.status}`),
+  });
+}
+
+if ((upcomingCoverage.totals?.zeroUpcomingReview ?? 0) > 0) {
+  addFinding({
+    id: "zero-upcoming-meeting-review",
+    severity: "medium",
+    area: "meeting calendar coverage",
+    summary: "Configured providers with no future-dated meetings require an official-calendar check before the public site treats the calendar as empty.",
+    evidence: (upcomingCoverage.rows ?? [])
+      .filter((row) => row.status === "zero_upcoming_review")
+      .map((row) => `${row.providerName ?? "Unknown provider"} (${row.jurisdiction ?? "jurisdiction pending"}): newest ${row.newestKnownMeetingAt ?? "unknown"}`),
+  });
+}
+
 function ageInDays(value: string | undefined) {
   const timestamp = Date.parse(value ?? "");
   return Number.isFinite(timestamp) ? Math.floor((Date.now() - timestamp) / 86_400_000) : null;
@@ -273,7 +318,7 @@ const report = {
     high: findings.filter((finding) => finding.severity === "high").length,
     medium: findings.filter((finding) => finding.severity === "medium").length,
     publicAggregationFilesChecked: publicAggregationFiles.length,
-    meetingProvidersChecked: providerRows.length,
+    meetingProvidersChecked: upcomingCoverage.totals?.configuredProviders ?? providerRows.length,
   },
   findings,
 };

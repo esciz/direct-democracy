@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-24T15:43:12.951Z",
+  "generatedAt": "2026-07-24T18:25:08.581Z",
   "launchReady": false,
   "totals": {
     "critical": 0,
     "high": 3,
-    "medium": 0,
+    "medium": 1,
     "publicAggregationFilesChecked": 16,
-    "meetingProvidersChecked": 16
+    "meetingProvidersChecked": 18
   },
   "findings": [
     {
@@ -55,6 +55,26 @@
         "104 meetings blocked by source gaps",
         "12 meetings blocked by parser gaps",
         "31 upcoming meetings currently published"
+      ]
+    },
+    {
+      "id": "zero-upcoming-meeting-review",
+      "severity": "medium",
+      "area": "meeting calendar coverage",
+      "summary": "Configured providers with no future-dated meetings require an official-calendar check before the public site treats the calendar as empty.",
+      "evidence": [
+        "Carson City School District Board of Trustees (Carson City School District, NV): newest unknown",
+        "Clark County School District Board of Trustees (Clark County School District, NV): newest unknown",
+        "Clark County Commission (Clark County, NV): newest 2026-07-07T07:00:00.000Z",
+        "Elko City Council (Elko, NV): newest 2022-01-11T07:00:00.000Z",
+        "Henderson City Council (Henderson, NV): newest 2026-06-09T07:00:00.000Z",
+        "Nevada Assembly (Jurisdiction pending): newest 2026-07-24T07:00:00.000Z",
+        "Nevada Senate (Jurisdiction pending): newest 2026-07-24T07:00:00.000Z",
+        "Governor / Executive Boards (Nevada): newest unknown",
+        "Nevada System of Higher Education Board of Regents (Nevada System of Higher Education): newest 2026-05-21T07:00:00.000Z",
+        "Sparks City Council (Sparks, NV): newest unknown",
+        "Washoe County School District Board of Trustees (Washoe County School District, NV): newest 2026-06-09T15:30:00.000Z",
+        "Washoe County Commission (Washoe County, NV): newest 2025-10-28T17:00:00.000Z"
       ]
     }
   ]

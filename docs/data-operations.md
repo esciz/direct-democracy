@@ -205,10 +205,13 @@ npm run dataops:pipeline -- --offline --from=verify-cache
 npm run dataops:daily
 npm run sources:refresh:daily
 npm run site:launch-audit
+npm run meetings:upcoming-audit
 npm run dataops:dev
 ```
 
-The orchestrator records a run ID, network status, stage start/end/status, skips network stages when offline or DNS-blocked, prevents overlapping runs with a lock file, and supports `--from` / `--to` stage ranges.
+The orchestrator records a run ID, network status, stage start/end/status, skips network stages when offline or DNS-blocked, prevents overlapping runs with a lock file, and supports `--from` / `--to` stage ranges. Complete runs write `dataops-pipeline-run.json`; targeted diagnostic runs write `dataops-pipeline-targeted-run.json` so they cannot overwrite evidence of the latest complete daily refresh.
+
+Every run writes `data/generated/upcoming-meeting-coverage-audit.json`. It checks each configured meeting provider independently, records the next known meeting, and flags zero-upcoming calendars, source failures, and adapter gaps. A statewide meeting total is never treated as proof that every jurisdiction has current coverage.
 
 ## Scheduled Automation
 
@@ -218,7 +221,7 @@ The daily process is:
 
 1. Refresh all registered Nevada meeting calendars, including browser-rendered official pages.
 2. Import direct calendar records and merge reviewed official-source caches.
-3. Check the source registry and retrieve a bounded batch of changed documents.
+3. Check every configured provider for upcoming-meeting coverage, then retrieve a bounded batch of changed documents.
 4. Verify cache content, extract text, and run bounded OCR where required.
 5. Regenerate accountability records, all source-backed issue hubs, community relationships, and public event views.
 6. Run issue, event-freshness, browse no-demo, source-health, DataOps freshness, and public site integrity audits.

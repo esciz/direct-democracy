@@ -1,0 +1,46 @@
+{
+  "runId": "dataops-2026-07-24T18:25:20.866Z",
+  "startedAt": "2026-07-24T18:25:20.866Z",
+  "completedAt": "2026-07-24T18:25:21.142Z",
+  "canonicalRun": false,
+  "environment": {
+    "offline": true,
+    "networkAvailable": false,
+    "networkReason": "offline_mode_requested",
+    "cwd": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex"
+  },
+  "stagesAttempted": 1,
+  "stagesSucceeded": 1,
+  "stagesFailed": 0,
+  "stagesSkipped": 0,
+  "stages": [
+    {
+      "id": "monitor-sources",
+      "description": "Monitor source health and upcoming-meeting coverage by configured provider.",
+      "status": "succeeded",
+      "startedAt": "2026-07-24T18:25:20.867Z",
+      "completedAt": "2026-07-24T18:25:21.129Z",
+      "durationMs": 262,
+      "error": null
+    }
+  ],
+  "metrics": {
+    "registeredSourcesChecked": 49,
+    "upcomingMeetings": 31,
+    "meetingProvidersWithUpcoming": 6,
+    "meetingProvidersZeroUpcoming": 12,
+    "meetingProviderAdapterGaps": 0,
+    "meetingProviderSourceFailures": 0,
+    "sourceBackedIssues": 16,
+    "meetingProviderFailures": 0,
+    "documentsDownloaded": 20,
+    "documentsChanged": 0,
+    "documentsExtracted": 1481,
+    "pagesOcrd": 1,
+    "ocrSucceeded": 1,
+    "meetingsReadyForAccountability": 12,
+    "sourceGapMeetings": 104,
+    "parserGapMeetings": 12,
+    "parsedNamedVotes": 287
+  }
+}

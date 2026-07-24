@@ -4,7 +4,8 @@ import path from "node:path";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const LOCK_PATH = path.join(GENERATED_DIR, ".dataops-pipeline.lock");
-const OUTPUT_PATH = path.join(GENERATED_DIR, "dataops-pipeline-run.json");
+const CANONICAL_OUTPUT_PATH = path.join(GENERATED_DIR, "dataops-pipeline-run.json");
+const TARGETED_OUTPUT_PATH = path.join(GENERATED_DIR, "dataops-pipeline-targeted-run.json");
 
 type StageStatus = "pending" | "running" | "succeeded" | "failed" | "skipped";
 
@@ -18,6 +19,9 @@ type Stage = {
 function argValue(name: string) {
   return process.argv.find((arg) => arg.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
 }
+
+const isTargetedRun = Boolean(argValue("from") || argValue("to"));
+const OUTPUT_PATH = isTargetedRun ? TARGETED_OUTPUT_PATH : CANONICAL_OUTPUT_PATH;
 
 function readJson<T>(fileName: string, fallback: T): T {
   try {
@@ -71,7 +75,16 @@ const stages: Stage[] = [
   },
   { id: "register-sources", description: "Register RSS/feed sources.", commands: [runNodeScript("scripts/generate-rss-source-registry.ts")] },
   { id: "discover-documents", description: "Discover public meeting source documents.", commands: [runNodeScript("scripts/discover-public-meeting-source-documents.ts")] },
-  { id: "monitor-sources", description: "Monitor source health from current artifacts.", commands: [runNodeScript("scripts/generate-dataops-source-registry.ts"), runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"), runNodeScript("scripts/monitor-civic-sources.ts")] },
+  {
+    id: "monitor-sources",
+    description: "Monitor source health and upcoming-meeting coverage by configured provider.",
+    commands: [
+      runNodeScript("scripts/generate-dataops-source-registry.ts"),
+      runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"),
+      runNodeScript("scripts/monitor-civic-sources.ts"),
+      runNodeScript("scripts/audit-upcoming-meeting-coverage.ts"),
+    ],
+  },
   { id: "retrieve-documents", description: "Retrieve/cache queued remote documents.", network: true, commands: [runNodeScript("scripts/retrieve-public-meeting-documents.ts", retrieveArgs)] },
   { id: "verify-cache", description: "Verify cached content and reconcile cache counts.", commands: [runNodeScript("scripts/verify-public-meeting-cache-content.ts"), runNodeScript("scripts/audit-public-meeting-document-cache.ts")] },
   { id: "extract-native-text", description: "Extract native text from cached documents.", commands: [runNodeScript("scripts/extract-public-meeting-document-text.ts")] },
@@ -128,6 +141,7 @@ function artifactMetrics() {
   const issueRuntime = readJson<{ records?: Array<{ sourceBacked?: boolean }> }>("issues-runtime.json", {});
   const sourceRegistry = readJson<{ records?: unknown[] }>("dataops-source-registry.json", {});
   const meetingImport = readJson<{ errors?: unknown[] }>("public-meeting-ingestion-report.json", {});
+  const upcomingCoverage = readJson<{ totals?: Record<string, number> }>("upcoming-meeting-coverage-audit.json", {});
   const now = Date.now();
   return {
     registeredSourcesChecked: sourceRegistry.records?.length ?? 0,
@@ -135,6 +149,10 @@ function artifactMetrics() {
       const date = Date.parse(meeting.meeting_date ?? "");
       return Number.isFinite(date) && date >= now;
     }).length,
+    meetingProvidersWithUpcoming: upcomingCoverage.totals?.providersWithUpcomingMeetings ?? 0,
+    meetingProvidersZeroUpcoming: upcomingCoverage.totals?.zeroUpcomingReview ?? 0,
+    meetingProviderAdapterGaps: upcomingCoverage.totals?.adapterGaps ?? 0,
+    meetingProviderSourceFailures: upcomingCoverage.totals?.sourceFailures ?? 0,
     sourceBackedIssues: issueRuntime.records?.filter((issue) => issue.sourceBacked).length ?? 0,
     meetingProviderFailures: meetingImport.errors?.length ?? 0,
     documentsDownloaded: retrieval.audit?.totals?.downloaded ?? 0,
@@ -195,6 +213,7 @@ const artifact = {
   runId,
   startedAt,
   completedAt,
+  canonicalRun: !isTargetedRun,
   environment: { offline, networkAvailable: smoke.available, networkReason: smoke.reason, cwd: process.cwd() },
   stagesAttempted: stageReports.filter((stage) => stage.status !== "skipped").length,
   stagesSucceeded: stageReports.filter((stage) => stage.status === "succeeded").length,

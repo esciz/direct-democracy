@@ -195,6 +195,7 @@ jobs:
             data/generated/public-meeting-*-results.json
             data/generated/public-meeting-*-verification.json
             data/generated/public-meeting-cache-*.json
+            data/generated/upcoming-meeting-coverage-audit.json
             data/generated/rss-source-registry.json
             data/generated/officials-*.json
             data/generated/current-officials*.json
