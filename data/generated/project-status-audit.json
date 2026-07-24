@@ -1,41 +1,36 @@
 {
-  "generatedAt": "2026-06-26T14:11:32.601Z",
+  "generatedAt": "2026-07-24T13:04:48.632Z",
   "totals": {
-    "projects": 314,
-    "needsReview": 117,
-    "withBudget": 200,
-    "withNextKnownMilestone": 27,
-    "withResponsibleBody": 314,
-    "withSourceReferences": 314
+    "projects": 267,
+    "needsReview": 95,
+    "withBudget": 187,
+    "withNextKnownMilestone": 26,
+    "withResponsibleBody": 267,
+    "withSourceReferences": 267
   },
   "statusCounts": {
-    "funded": 247,
-    "in_progress": 10,
-    "approved": 15,
-    "proposed": 19,
-    "unknown": 15,
+    "funded": 215,
+    "in_progress": 12,
+    "approved": 5,
+    "unknown": 19,
+    "proposed": 6,
     "completed": 3,
-    "delayed": 5
+    "delayed": 7
   },
   "unclearStatusReasons": [
     {
-      "id": "project-clark-county-nv-conduct-a-public-hearing-and-approve-authorize-the-chair-to-sign",
-      "name": "Conduct a public hearing; and approve authorize the Chair to sign the Airport Canine Handler Letter of Agre...",
+      "id": "project-elko-county-nv-540-court-street-elko-nevada-89801-phone-775-738-5398-fax-775-753",
+      "name": "540 Court Street, Elko, Nevada 89801 Phone: 775-738-5398 Fax: 775-753-8535 www.elkocountynv.net COMMISSIONE...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
-      "id": "project-north-las-vegas-nv-out-of-scope-products-non-saas-cloud-computing-products-such-",
-      "name": "Out of Scope Products - Non-SaaS cloud computing products such as Infrastructure as a Service (“IaaS”), Pla...",
+      "id": "project-elko-county-nv-in-accordance-with-nrs-chapters-533-and-534-consideration-to-appr",
+      "name": "In accordance with NRS Chapters 533 & 534, consideration to approve the State Engineer's groundwater basin...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
-      "id": "project-north-las-vegas-nv-software-maintenance-and-support-agreements-purchasing-entiti",
-      "name": "Software Maintenance and Support Agreements • Purchasing Entities can purchase maintenance agreements, incl...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-elko-county-nv-adopt-document-seq-montello-hauled-water-application-document-seq",
-      "name": "adopt document seq Montello Hauled Water Application document seq A Resolution Setting Montello Water Syste...",
+      "id": "project-elko-county-nv-document-seq-sign-up-for-text-reminders-no-documents-water-and-se",
+      "name": "document seq Sign Up for Text Reminders No documents Water and Sewer - Montello, Tuscarora and Jarbidge 8 d...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
@@ -51,6 +46,11 @@
     {
       "id": "project-washoe-county-nv-adopt-resolution-recommendation-to-reappoint-adam-kramer-as-the",
       "name": "adopt Resolution Recommendation to reappoint: Adam Kramer as the Washoe County representative on the Reno-T...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-washoe-county-nv-adopt-public-hearing-public-hearing-to-1-consider-objections-to",
+      "name": "adopt Public Hearing Public Hearing: to: (1) consider objections to Resolution (R25-23), declaring Washoe C...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
@@ -91,6 +91,26 @@
     {
       "id": "project-washoe-county-nv-public-hearing-public-hearing-appeal-of-the-washoe-county-plann",
       "name": "Public Hearing Public: Hearing: Appeal of the Washoe County Planning Commission’s denial of Master Plan Ame...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-elko-nv-the-engineering-department-from-the-staff-memo-he-clarified-that-dakota-",
+      "name": "the Engineering Department from the Staff Memo. He clarified that Dakota Street would need to be paved up t...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-elko-nv-gutter-and-sidewalk-is-heard-mr-draper-said-staffhas-those-same-concerns",
+      "name": "gutter, and sidewalk is heard. Mr. Draper said staffhas those same concerns. Ultimately it is Council's dec...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-elko-nv-1-priority-one-is-revising-the-zoning-along-5th-street-addressing-proxim",
+      "name": "1. Priority one is revising the zoning along 5th Street addressing proximity to residences and the variance...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-elko-nv-spending-for-commercial-transitional-type-uses-on-51h-street-that-don-t-",
+      "name": "spending for commercial transitional type uses on 51h Street that don't conform to the residential zone. We...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     }
   ]

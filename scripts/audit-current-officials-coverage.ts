@@ -115,13 +115,18 @@ for (const source of sourceHealth.records ?? []) {
 function classificationFor(input: {
   runtimeCount: number;
   governingCount: number;
+  requiredGoverning: number;
   sourceCount: number;
   seedCount: number;
   healthStatuses: string[];
 }) {
-  if (input.runtimeCount > 0 && input.governingCount >= 5) return "complete";
-  if (input.runtimeCount > 0) return "partial";
-  if (input.sourceCount > 0 && input.healthStatuses.some((status) => status === "healthy" || status === "partial")) return "linkage_failed";
+  const hasReviewedSource = input.healthStatuses.some((status) => status === "healthy" || status === "partial");
+  const governingRequirementMet = input.requiredGoverning === 0 || input.governingCount >= input.requiredGoverning;
+
+  if (input.runtimeCount > 0 && hasReviewedSource && governingRequirementMet) return "complete";
+  if (input.runtimeCount > 0 && hasReviewedSource) return "partial";
+  if (input.runtimeCount > 0) return "unverified_roster";
+  if (input.sourceCount > 0 && hasReviewedSource) return "linkage_failed";
   if (input.seedCount > 0) return "source_configured_not_imported";
   if (input.sourceCount > 0) return "source_configured_not_imported";
   return "source_missing";
@@ -144,6 +149,7 @@ const rows = priorityJurisdictions.map((jurisdiction) => {
   const classification = classificationFor({
     runtimeCount: runtime.length,
     governingCount: governingOrCouncilExecutive.length,
+    requiredGoverning: jurisdiction.requiredGoverning,
     sourceCount: sources.length,
     seedCount: seeds.length,
     healthStatuses,
@@ -159,7 +165,7 @@ const rows = priorityJurisdictions.map((jurisdiction) => {
     lastVerified: runtime.map((record) => record.last_verified_at).filter(Boolean).sort().at(-1) ?? null,
     publicRuntimeCount: runtime.length,
     communityRuntimeCount: communityRuntime.length,
-    missingOfficeCount: Math.max(0, jurisdiction.requiredGoverning - governing.length),
+    missingOfficeCount: Math.max(0, jurisdiction.requiredGoverning - governingOrCouncilExecutive.length),
     emptyPublicSectionRisk: runtime.length === 0,
     adapterStatus: classification,
     manualFallbackStatus: sources.some((source) => source.cachedPath) ? "cached_html_available" : seeds.length ? "seed_roster_available" : "manual_review_needed",
@@ -241,6 +247,7 @@ const coverage = {
     priorityJurisdictions: rows.length,
     complete: rows.filter((row) => row.adapterStatus === "complete").length,
     partial: rows.filter((row) => row.adapterStatus === "partial").length,
+    unverifiedRosters: rows.filter((row) => row.adapterStatus === "unverified_roster").length,
     sourceConfiguredNotImported: rows.filter((row) => row.adapterStatus === "source_configured_not_imported").length,
     sourceMissing: rows.filter((row) => row.adapterStatus === "source_missing").length,
     linkageFailed: rows.filter((row) => row.adapterStatus === "linkage_failed").length,

@@ -147,18 +147,25 @@ export function HomeTakeActionCard({
 }: HomeTakeActionCardProps) {
   const [activeTab, setActiveTab] = useState<TabId>("vote");
   const selectedTab = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
-  const issueItems = useMemo(
-    () => [
-      ...activeIssues.map((issue) => ({ ...issue, label: "Active / trending" })),
-      ...savedIssues.map((issue) => ({ ...issue, label: "Saved" })),
-    ],
-    [activeIssues, savedIssues],
-  );
+  const issueItems = useMemo(() => {
+    const savedIds = new Set(savedIssues.map((issue) => issue.id));
+    const generatedIds = new Set(activeIssues.map((issue) => issue.id));
+
+    return [
+      ...activeIssues.map((issue) => ({
+        ...issue,
+        label: savedIds.has(issue.id) ? "Saved" : "System generated",
+      })),
+      ...savedIssues
+        .filter((issue) => !generatedIds.has(issue.id))
+        .map((issue) => ({ ...issue, label: "Saved" })),
+    ];
+  }, [activeIssues, savedIssues]);
   const upcomingMeetings = meetings.filter((meeting) => meeting.status === "upcoming");
   const pastMeetings = meetings.filter((meeting) => meeting.status === "past");
   const tabStats: Record<TabId, string> = {
     vote: voteQuestions.length ? `${voteQuestions.length} ready` : "No votes",
-    issues: issueItems.length ? `${issueItems.length} tracked` : "No issues",
+    issues: issueItems.length ? `${issueItems.length} generated` : "No issues",
     meetings: meetings.length ? `${meetings.length} events` : "No events",
     signal: signals.length ? `${signals.length} voices` : "No voices",
     polls: polls.length ? `${polls.length} polls` : "No polls",
@@ -227,7 +234,7 @@ export function HomeTakeActionCard({
           {activeTab === "issues" ? (
             <ActionList
               items={issueItems}
-              empty={<EmptyTab text="No active or saved issues are ready for this home view yet." href="/issues" action="Browse issues" />}
+              empty={<EmptyTab text="No source-backed issue hubs have been generated yet." href="/issues" action="Browse issues" />}
             />
           ) : null}
 

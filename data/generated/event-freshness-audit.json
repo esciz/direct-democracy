@@ -1,155 +1,215 @@
 {
-  "generatedAt": "2026-07-05T17:48:50.050Z",
+  "generatedAt": "2026-07-24T13:04:51.710Z",
   "sourceArtifact": "data/generated/nevada-community-events.json",
-  "sourceGeneratedAt": "2026-07-04T15:59:50.197Z",
-  "sourceAgeHours": 25.8,
+  "sourceGeneratedAt": "2026-07-24T13:04:51.303Z",
+  "sourceAgeHours": 0,
   "totals": {
-    "records": 728,
-    "sourceBacked": 697,
-    "upcoming": 4,
-    "completed": 635,
-    "unknownDate": 89,
+    "records": 803,
+    "sourceBacked": 773,
+    "upcoming": 31,
+    "completed": 643,
+    "unknownDate": 129,
     "staleStatusRecords": 0
   },
   "nextUpcoming": [
     {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-08-87c22aee",
-      "title": "Joint Interim Standing Committee on Revenue",
-      "jurisdiction": "Nevada",
-      "bodyName": "Nevada Legislature",
-      "startAt": "2026-07-08T16:30:00.000Z",
+      "id": "event-meeting-manual-elko-county-commission-elko-county-commission-2026-07-27-6f04cf36",
+      "title": "Agenda",
+      "jurisdiction": "Elko County, NV",
+      "bodyName": "Elko County Commission",
+      "startAt": "2026-07-27T07:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34862"
+      "sourceUrl": "https://elkocounty.granicus.com/ViewPublisherRSS.php?view_id=5&mode=agendas"
     },
     {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-09-cd44ec08",
-      "title": "Joint Interim Standing Committee on Government Affairs",
-      "jurisdiction": "Nevada",
-      "bodyName": "Nevada Legislature",
-      "startAt": "2026-07-09T20:00:00.000Z",
+      "id": "event-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-27-da575123",
+      "title": "Search - PrimeGov Portal",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "startAt": "2026-07-27T21:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35178"
+      "sourceUrl": "https://lasvegas.primegov.com/public/portal"
     },
     {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-10-61b8fee7",
-      "title": "Legislative Committee for the Review and Oversight of the Tahoe Regional Planning Agency and the Marlette Lake Water System",
-      "jurisdiction": "Nevada",
-      "bodyName": "Nevada Legislature",
-      "startAt": "2026-07-10T20:00:00.000Z",
+      "id": "event-meeting-manual-reno-city-council-reno-city-council-2026-07-28-1f17cec5",
+      "title": "Search - PrimeGov Portal",
+      "jurisdiction": "Reno, NV",
+      "bodyName": "Reno City Council",
+      "startAt": "2026-07-28T16:30:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34920"
+      "sourceUrl": "https://reno.primegov.com/public/portal"
     },
     {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2027-02-01-96900ff9",
-      "title": "Nevada Legislature Events",
-      "jurisdiction": "Nevada",
-      "bodyName": "Nevada Legislature",
-      "startAt": "2027-02-01T07:00:00.000Z",
+      "id": "event-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-29-06321fb8",
+      "title": "Search - PrimeGov Portal",
+      "jurisdiction": "North Las Vegas, NV",
+      "bodyName": "North Las Vegas City Council",
+      "startAt": "2026-07-29T00:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://www.leg.state.nv.us/App/Calendar/A/"
+      "sourceUrl": "https://cityofnorthlasvegas.primegov.com/public/portal"
+    },
+    {
+      "id": "event-meeting-carson-city-board-of-supervisors-administrative-hearing-2026-07-29-eae23183",
+      "title": "Administrative Hearing - Public hearing",
+      "jurisdiction": "Carson City, NV",
+      "bodyName": "Administrative Hearing",
+      "startAt": "2026-07-29T20:30:00.000Z",
+      "currentStatus": "upcoming",
+      "expectedStatus": "upcoming",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2696"
+    },
+    {
+      "id": "event-meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-8c5c231d",
+      "title": "Planning Commission - Regular meeting",
+      "jurisdiction": "Carson City, NV",
+      "bodyName": "Planning Commission",
+      "startAt": "2026-07-30T00:00:00.000Z",
+      "currentStatus": "upcoming",
+      "expectedStatus": "upcoming",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2558"
+    },
+    {
+      "id": "event-meeting-nv-legislature-joint-interim-standing-committee-on-legislative-operations-and-elections-2026-07-31-d4cf25e7",
+      "title": "Joint Interim Standing Committee on Legislative Operations and Elections",
+      "jurisdiction": "Nevada",
+      "bodyName": "Joint Interim Standing Committee on Legislative Operations and Elections",
+      "startAt": "2026-07-31T20:00:00.000Z",
+      "currentStatus": "upcoming",
+      "expectedStatus": "upcoming",
+      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34894"
+    },
+    {
+      "id": "event-meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-e9629438",
+      "title": "Liquor Hearings Officer - Public hearing",
+      "jurisdiction": "Carson City, NV",
+      "bodyName": "Liquor Hearings Officer",
+      "startAt": "2026-07-31T20:30:00.000Z",
+      "currentStatus": "upcoming",
+      "expectedStatus": "upcoming",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2701"
+    },
+    {
+      "id": "event-meeting-nv-legislature-joint-interim-standing-committee-on-health-and-human-services-2026-08-11-0303f3fd",
+      "title": "Joint Interim Standing Committee on Health and Human Services",
+      "jurisdiction": "Nevada",
+      "bodyName": "Joint Interim Standing Committee on Health and Human Services",
+      "startAt": "2026-08-11T16:00:00.000Z",
+      "currentStatus": "upcoming",
+      "expectedStatus": "upcoming",
+      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34838"
+    },
+    {
+      "id": "event-meeting-nv-legislature-joint-interim-standing-committee-on-natural-resources-2026-08-12-1e0632a3",
+      "title": "Joint Interim Standing Committee on Natural Resources",
+      "jurisdiction": "Nevada",
+      "bodyName": "Joint Interim Standing Committee on Natural Resources",
+      "startAt": "2026-08-12T16:00:00.000Z",
+      "currentStatus": "upcoming",
+      "expectedStatus": "upcoming",
+      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34907"
     }
   ],
   "latestCompleted": [
     {
-      "id": "event-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-01-cfedc2a7",
-      "title": "Search - PrimeGov Portal",
-      "jurisdiction": "North Las Vegas, NV",
-      "bodyName": "North Las Vegas City Council",
-      "startAt": "2026-07-01T23:00:00.000Z",
-      "currentStatus": "completed",
-      "expectedStatus": "completed",
-      "sourceUrl": "https://cityofnorthlasvegas.primegov.com/public/portal"
-    },
-    {
-      "id": "event-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-01-b05e6796",
-      "title": "North Las Vegas City Council public JSON response",
-      "jurisdiction": "North Las Vegas, NV",
-      "bodyName": "North Las Vegas City Council",
-      "startAt": "2026-07-01T23:00:00.000Z",
-      "currentStatus": "completed",
-      "expectedStatus": "completed",
-      "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1782442560853"
-    },
-    {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-06-30-a68e0c59",
-      "title": "Legislative Commission",
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-f16df65f",
+      "title": "NELIS",
       "jurisdiction": "Nevada",
       "bodyName": "Nevada Legislature",
-      "startAt": "2026-06-30T20:00:00.000Z",
+      "startAt": "2026-07-24T07:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35177"
+      "sourceUrl": ""
     },
     {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-06-30-74038384",
-      "title": "Joint Interim Standing Committee on Health and Human Services",
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-e6fe3e60",
+      "title": "forms",
       "jurisdiction": "Nevada",
       "bodyName": "Nevada Legislature",
-      "startAt": "2026-06-30T16:00:00.000Z",
+      "startAt": "2026-07-24T07:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34835"
+      "sourceUrl": ""
     },
     {
-      "id": "event-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-06-29-376de969",
-      "title": "Search - PrimeGov Portal",
-      "jurisdiction": "Las Vegas, NV",
-      "bodyName": "Las Vegas City Council",
-      "startAt": "2026-06-29T17:00:00.000Z",
-      "currentStatus": "completed",
-      "expectedStatus": "completed",
-      "sourceUrl": "https://lasvegas.primegov.com/public/portal"
-    },
-    {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-06-26-84b9196b",
-      "title": "Committee on Public Lands",
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-c725b86d",
+      "title": "NELIS",
       "jurisdiction": "Nevada",
       "bodyName": "Nevada Legislature",
-      "startAt": "2026-06-26T16:00:00.000Z",
+      "startAt": "2026-07-24T07:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35171"
+      "sourceUrl": ""
     },
     {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-06-26-2e5faebf",
-      "title": "Sunset Committee",
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-a052f300",
+      "title": "84th (2027) Session",
       "jurisdiction": "Nevada",
       "bodyName": "Nevada Legislature",
-      "startAt": "2026-06-26T16:00:00.000Z",
+      "startAt": "2026-07-24T07:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34897"
+      "sourceUrl": ""
     },
     {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-06-25-d4bad703",
-      "title": "Nevada Silver Haired Legislative Forum",
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-41954cd4",
+      "title": "36th (2025) Special Session",
       "jurisdiction": "Nevada",
       "bodyName": "Nevada Legislature",
-      "startAt": "2026-06-25T17:00:00.000Z",
+      "startAt": "2026-07-24T07:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34843"
+      "sourceUrl": ""
     },
     {
-      "id": "event-meeting-manual-reno-city-council-reno-city-council-2026-06-25-5abc9917",
-      "title": "Search - PrimeGov Portal",
-      "jurisdiction": "Reno, NV",
-      "bodyName": "Reno City Council",
-      "startAt": "2026-06-25T16:15:00.000Z",
-      "currentStatus": "completed",
-      "expectedStatus": "completed",
-      "sourceUrl": "https://reno.primegov.com/public/portal"
-    },
-    {
-      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-06-25-4ebdff9b",
-      "title": "NELIS Home",
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7295aaea",
+      "title": "All Bills and Resolutions",
       "jurisdiction": "Nevada",
       "bodyName": "Nevada Legislature",
-      "startAt": "2026-06-25T07:00:00.000Z",
+      "startAt": "2026-07-24T07:00:00.000Z",
+      "currentStatus": "completed",
+      "expectedStatus": "completed",
+      "sourceUrl": ""
+    },
+    {
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-4f7d6fce",
+      "title": "Reports and Links",
+      "jurisdiction": "Nevada",
+      "bodyName": "Nevada Legislature",
+      "startAt": "2026-07-24T07:00:00.000Z",
+      "currentStatus": "completed",
+      "expectedStatus": "completed",
+      "sourceUrl": ""
+    },
+    {
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-cfea2ad3",
+      "title": "BDR List",
+      "jurisdiction": "Nevada",
+      "bodyName": "Nevada Legislature",
+      "startAt": "2026-07-24T07:00:00.000Z",
+      "currentStatus": "completed",
+      "expectedStatus": "completed",
+      "sourceUrl": ""
+    },
+    {
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7d057725",
+      "title": "Assembly Bills",
+      "jurisdiction": "Nevada",
+      "bodyName": "Nevada Legislature",
+      "startAt": "2026-07-24T07:00:00.000Z",
+      "currentStatus": "completed",
+      "expectedStatus": "completed",
+      "sourceUrl": ""
+    },
+    {
+      "id": "event-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-8431e4ba",
+      "title": "Assembly Resolutions",
+      "jurisdiction": "Nevada",
+      "bodyName": "Nevada Legislature",
+      "startAt": "2026-07-24T07:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
       "sourceUrl": ""

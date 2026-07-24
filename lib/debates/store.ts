@@ -818,7 +818,6 @@ async function getAllDebates() {
   const overrides = await getStoredDebateOverrides();
   const overrideMap = new Map(overrides.map((override) => [override.debateId, override]));
   const merged = new Map<string, DebateRecord>();
-  for (const debate of seededDebates) merged.set(debate.id, debate);
   for (const debate of storedDebates) merged.set(debate.id, debate);
 
   return [...merged.values()].map((debate) => {
@@ -841,7 +840,6 @@ export async function getAllDebatesForTrust() {
 
 async function getAllDebateParticipants() {
   const merged = new Map<string, DebateParticipantRecord>();
-  for (const participant of seededParticipants) merged.set(`${participant.debateId}:${participant.userId}`, participant);
   for (const participant of await getStoredDebateParticipants()) merged.set(`${participant.debateId}:${participant.userId}`, participant);
   return [...merged.values()];
 }
@@ -883,16 +881,7 @@ export async function getFeedDebatePreviews(options?: { jurisdictionNames?: stri
 }
 
 async function getAllDebateFollows() {
-  const removedKeys = new Set(await getRemovedDebateFollowKeys());
   const merged = new Map<string, DebateFollowRecord>();
-
-  for (const follow of seededDebateFollows) {
-    const key = `${follow.debateId}:${follow.userId}`;
-
-    if (!removedKeys.has(key)) {
-      merged.set(key, follow);
-    }
-  }
 
   for (const follow of await getStoredDebateFollows()) merged.set(`${follow.debateId}:${follow.userId}`, follow);
   return [...merged.values()];
@@ -900,42 +889,36 @@ async function getAllDebateFollows() {
 
 async function getAllDebateCommunityVotes() {
   const merged = new Map<string, DebateCommunityVoteRecord>();
-  for (const vote of seededDebateCommunityVotes) merged.set(`${vote.debateId}:${vote.userId}`, vote);
   for (const vote of await getStoredDebateCommunityVotes()) merged.set(`${vote.debateId}:${vote.userId}`, vote);
   return [...merged.values()];
 }
 
 export async function getAllDebateTurnsForTrust() {
   const merged = new Map<string, DebateTurnRecord>();
-  for (const turn of seededTurns) merged.set(turn.id, turn);
   for (const turn of await getStoredDebateTurns()) merged.set(turn.id, turn);
   return [...merged.values()];
 }
 
 async function getAllDebateDrafts() {
   const merged = new Map<string, DebateDraftRecord>();
-  for (const draft of seededDrafts) merged.set(draft.id, draft);
   for (const draft of await getStoredDebateDrafts()) merged.set(draft.id, draft);
   return [...merged.values()];
 }
 
 async function getAllDebateDraftVotes() {
   const merged = new Map<string, DebateDraftVoteRecord>();
-  for (const vote of seededDraftVotes) merged.set(`${vote.draftId}:${vote.userId}`, vote);
   for (const vote of await getStoredDebateDraftVotes()) merged.set(`${vote.draftId}:${vote.userId}`, vote);
   return [...merged.values()];
 }
 
 export async function getAllDebateReactionsForTrust() {
   const merged = new Map<string, DebateReactionRecord>();
-  for (const reaction of seededReactions) merged.set(`${reaction.turnId}:${reaction.userId}`, reaction);
   for (const reaction of await getStoredDebateReactions()) merged.set(`${reaction.turnId}:${reaction.userId}`, reaction);
   return [...merged.values()];
 }
 
 async function getAllDebateFallacyTags() {
   const merged = new Map<string, DebateFallacyTagRecord>();
-  for (const tag of seededFallacyTags) merged.set(`${tag.debateTurnId}:${tag.userId}:${tag.fallacyType}`, tag);
   for (const tag of await getStoredDebateFallacyTags()) merged.set(`${tag.debateTurnId}:${tag.userId}:${tag.fallacyType}`, tag);
   return [...merged.values()];
 }
@@ -946,7 +929,6 @@ export async function getAllDebateFallacyTagsForTrust() {
 
 async function getAllDebateFallacyReviews() {
   const merged = new Map<string, DebateFallacyReviewRecord>();
-  for (const review of seededFallacyReviews) merged.set(`${review.debateTurnId}:${review.fallacyType}:${review.userId}`, review);
   for (const review of await getStoredDebateFallacyReviews()) merged.set(`${review.debateTurnId}:${review.fallacyType}:${review.userId}`, review);
   return [...merged.values()];
 }

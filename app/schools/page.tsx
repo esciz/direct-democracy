@@ -62,7 +62,7 @@ export default async function SchoolsPage({ searchParams }: SchoolsPageProps) {
             schools.map((school) => <SchoolCard key={school.id} school={school} />)
           ) : (
             <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600 xl:col-span-2">
-              No schools are seeded for this community view yet.
+              No reviewed school records are available for this community yet. School names, enrollment, and staffing metrics will appear only after they are linked to an official district source.
             </div>
           )}
         </div>

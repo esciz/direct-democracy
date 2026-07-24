@@ -1,6 +1,36 @@
 {
-  "generatedAt": "2026-06-21T06:08:31.241Z",
+  "generatedAt": "2026-07-24T13:04:53.262Z",
   "records": [
+    {
+      "sourceId": "meeting:nv-legislature:nevada_legislature:www.leg.state.nv.us",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-legislature",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "nevada_legislature",
+      "sourceHost": "www.leg.state.nv.us",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T14:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 44,
+        "queued": 0,
+        "cached": 1,
+        "extracted": 43,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
     {
       "sourceId": "meeting:carson-city-board-of-supervisors:granicus:carsoncity.granicus.com",
       "sourceType": "meeting_system",
@@ -9,26 +39,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "granicus",
       "sourceHost": "carsoncity.granicus.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "failing",
+      "freshnessStatus": "limited",
+      "failureReason": "One or more document retrieval or extraction failures are present.",
       "documentCounts": {
-        "discovered": 1258,
-        "queued": 1183,
+        "discovered": 827,
+        "queued": 0,
         "cached": 0,
-        "extracted": 49,
+        "extracted": 825,
         "ocrRequired": 1,
-        "failed": 0
+        "failed": 1
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -39,26 +69,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "d3n9y02raazwpg.cloudfront.net",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "failing",
+      "freshnessStatus": "limited",
+      "failureReason": "One or more document retrieval or extraction failures are present.",
       "documentCounts": {
-        "discovered": 284,
-        "queued": 284,
+        "discovered": 295,
+        "queued": 1,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 290,
         "ocrRequired": 0,
-        "failed": 0
+        "failed": 4
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -69,26 +99,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "legistar",
       "sourceHost": "washoe-nv.legistar.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
       "documentCounts": {
         "discovered": 85,
-        "queued": 85,
+        "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 85,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -99,26 +129,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "primegov",
       "sourceHost": "reno.primegov.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
       "documentCounts": {
-        "discovered": 17,
-        "queued": 17,
-        "cached": 0,
-        "extracted": 0,
+        "discovered": 16,
+        "queued": 2,
+        "cached": 1,
+        "extracted": 13,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -129,190 +159,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 20,
-        "queued": 0,
-        "cached": 2,
-        "extracted": 17,
-        "ocrRequired": 1,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:nv-legislature:nevada_legislature:www.leg.state.nv.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-legislature",
-      "jurisdiction": "Nevada",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "nevada_legislature",
-      "sourceHost": "www.leg.state.nv.us",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T07:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 28,
-        "queued": 28,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:nv-legislature:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-legislature",
-      "jurisdiction": "Nevada",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 30,
-        "queued": 0,
-        "cached": 1,
-        "extracted": 28,
-        "ocrRequired": 1,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:nv-senate:nevada_legislature:www.leg.state.nv.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-senate",
-      "jurisdiction": "Nevada",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "nevada_legislature",
-      "sourceHost": "www.leg.state.nv.us",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T07:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 2,
-        "queued": 2,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:nv-assembly:nevada_legislature:www.leg.state.nv.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-assembly",
-      "jurisdiction": "Nevada",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "nevada_legislature",
-      "sourceHost": "www.leg.state.nv.us",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T07:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 2,
-        "queued": 2,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:sparks-city-council:civic_website:agendas.cityofsparks.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "sparks-city-council",
-      "jurisdiction": "Sparks, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": "agendas.cityofsparks.us",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 2,
-        "queued": 2,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:sparks-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "sparks-city-council",
-      "jurisdiction": "Sparks, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -325,10 +175,160 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:nv-legislature:civic_website:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-legislature",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 21,
+        "queued": 0,
+        "cached": 1,
+        "extracted": 20,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:nv-senate:nevada_legislature:www.leg.state.nv.us",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-senate",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "nevada_legislature",
+      "sourceHost": "www.leg.state.nv.us",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T14:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 1,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:nv-assembly:nevada_legislature:www.leg.state.nv.us",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-assembly",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "nevada_legislature",
+      "sourceHost": "www.leg.state.nv.us",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T14:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 1,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:sparks-city-council:civic_website:agendas.cityofsparks.us",
+      "sourceType": "meeting_system",
+      "sourceOwner": "sparks-city-council",
+      "jurisdiction": "Sparks, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "agendas.cityofsparks.us",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 2,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 2,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:sparks-city-council:civic_website:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "sparks-city-council",
+      "jurisdiction": "Sparks, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 4,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 4,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -339,26 +339,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.cityofsparks.us",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
       "documentCounts": {
         "discovered": 2,
-        "queued": 2,
+        "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 2,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -369,26 +369,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "legistar",
       "sourceHost": "clark.legistar.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
       "documentCounts": {
-        "discovered": 3,
-        "queued": 3,
+        "discovered": 2,
+        "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 2,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -399,10 +399,160 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 2,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 2,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:las-vegas-city-council:primegov:lasvegas.primegov.com",
+      "sourceType": "meeting_system",
+      "sourceOwner": "las-vegas-city-council",
+      "jurisdiction": "Las Vegas, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "primegov",
+      "sourceHost": "lasvegas.primegov.com",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 14,
+        "queued": 1,
+        "cached": 0,
+        "extracted": 13,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:las-vegas-city-council:civic_website:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "las-vegas-city-council",
+      "jurisdiction": "Las Vegas, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 4,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 4,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:henderson-city-council:civic_website:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "henderson-city-council",
+      "jurisdiction": "Henderson, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 15,
+        "queued": 0,
+        "cached": 1,
+        "extracted": 14,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:north-las-vegas-city-council:primegov:cityofnorthlasvegas.primegov.com",
+      "sourceType": "meeting_system",
+      "sourceOwner": "north-las-vegas-city-council",
+      "jurisdiction": "North Las Vegas, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "primegov",
+      "sourceHost": "cityofnorthlasvegas.primegov.com",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 15,
+        "queued": 1,
+        "cached": 1,
+        "extracted": 13,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:north-las-vegas-city-council:civic_website:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "north-las-vegas-city-council",
+      "jurisdiction": "North Las Vegas, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -415,220 +565,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:las-vegas-city-council:primegov:lasvegas.primegov.com",
-      "sourceType": "meeting_system",
-      "sourceOwner": "las-vegas-city-council",
-      "jurisdiction": "Las Vegas, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "primegov",
-      "sourceHost": "lasvegas.primegov.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 15,
-        "queued": 15,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:las-vegas-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "las-vegas-city-council",
-      "jurisdiction": "Las Vegas, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 13,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 12,
-        "ocrRequired": 1,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:henderson-city-council:civic_website:www.cityofhenderson.com",
-      "sourceType": "meeting_system",
-      "sourceOwner": "henderson-city-council",
-      "jurisdiction": "Henderson, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": "www.cityofhenderson.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 13,
-        "queued": 13,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:henderson-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "henderson-city-council",
-      "jurisdiction": "Henderson, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 15,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 14,
-        "ocrRequired": 1,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:north-las-vegas-city-council:primegov:cityofnorthlasvegas.primegov.com",
-      "sourceType": "meeting_system",
-      "sourceOwner": "north-las-vegas-city-council",
-      "jurisdiction": "North Las Vegas, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "primegov",
-      "sourceHost": "cityofnorthlasvegas.primegov.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 15,
-        "queued": 15,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:north-las-vegas-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "north-las-vegas-city-council",
-      "jurisdiction": "North Las Vegas, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 15,
-        "queued": 0,
-        "cached": 2,
-        "extracted": 12,
-        "ocrRequired": 1,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:clark-county-school-district:boarddocs:go.boarddocs.com",
-      "sourceType": "meeting_system",
-      "sourceOwner": "clark-county-school-district",
-      "jurisdiction": "Clark County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "boarddocs",
-      "sourceHost": "go.boarddocs.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 2,
-        "queued": 2,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -639,40 +579,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "nshe.nevada.edu",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 9,
-        "queued": 9,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:nshe-board-of-regents:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nshe-board-of-regents",
-      "jurisdiction": "Nevada System of Higher Education",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -685,54 +595,54 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
-      "sourceId": "meeting:reno-city-council:primegov:local",
+      "sourceId": "meeting:nshe-board-of-regents:civic_website:local",
       "sourceType": "meeting_system",
-      "sourceOwner": "reno-city-council",
-      "jurisdiction": "Reno, NV",
+      "sourceOwner": "nshe-board-of-regents",
+      "jurisdiction": "Nevada System of Higher Education",
       "sourceCategory": "meetings",
-      "sourcePlatform": "primegov",
+      "sourcePlatform": "civic_website",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 7,
+        "discovered": 9,
         "queued": 0,
         "cached": 0,
-        "extracted": 5,
-        "ocrRequired": 2,
+        "extracted": 9,
+        "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
-      "sourceId": "meeting:nv-legislature:nevada_legislature:search.leg.state.nv.us",
+      "sourceId": "meeting:nv-legislature:granicus:www.leg.state.nv.us",
       "sourceType": "meeting_system",
       "sourceOwner": "nv-legislature",
       "jurisdiction": "Nevada",
       "sourceCategory": "meetings",
-      "sourcePlatform": "nevada_legislature",
-      "sourceHost": "search.leg.state.nv.us",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
+      "sourcePlatform": "granicus",
+      "sourceHost": "www.leg.state.nv.us",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T07:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "stale",
       "freshnessStatus": "stale",
       "failureReason": "Most documents are discovered but not cached or extracted.",
@@ -745,10 +655,70 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:reno-city-council:primegov:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "reno-city-council",
+      "jurisdiction": "Reno, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "primegov",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 1,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:nv-legislature:nevada_legislature:search.leg.state.nv.us",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-legislature",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "nevada_legislature",
+      "sourceHost": "search.leg.state.nv.us",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T14:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 1,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -759,10 +729,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -775,10 +745,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -789,10 +759,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -805,10 +775,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -819,26 +789,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "primegov",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 5,
+        "discovered": 1,
         "queued": 0,
         "cached": 0,
-        "extracted": 4,
-        "ocrRequired": 1,
+        "extracted": 1,
+        "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -849,40 +819,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "primegov",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "healthy",
-      "freshnessStatus": "current",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 5,
-        "queued": 0,
-        "cached": 1,
-        "extracted": 4,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:clark-county-school-district:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "clark-county-school-district",
-      "jurisdiction": "Clark County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -895,10 +835,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -909,10 +849,40 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "boarddocs",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 2,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 1,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:clark-county-school-district:civic_website:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "clark-county-school-district",
+      "jurisdiction": "Clark County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -925,10 +895,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -939,26 +909,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "diligent",
       "sourceHost": "washoeschools.diligent.community",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
       "documentCounts": {
         "discovered": 48,
         "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 48,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -969,86 +939,206 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "diligent",
       "sourceHost": "washoeschools.community.diligentoneplatform.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
       "documentCounts": {
-        "discovered": 9,
+        "discovered": 11,
         "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 11,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
-      "sourceId": "meeting:nv-governor-executive-boards:civic_website:gov.nv.gov",
+      "sourceId": "meeting:elko-city-council:civic_website:ob.elkocitynv.gov",
       "sourceType": "meeting_system",
-      "sourceOwner": "nv-governor-executive-boards",
-      "jurisdiction": "Nevada",
+      "sourceOwner": "elko-city-council",
+      "jurisdiction": "Elko, NV",
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
-      "sourceHost": "gov.nv.gov",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "sourceHost": "ob.elkocitynv.gov",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "stale",
       "freshnessStatus": "stale",
       "failureReason": "Most documents are discovered but not cached or extracted.",
       "documentCounts": {
-        "discovered": 1,
+        "discovered": 5,
         "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 1,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
-      "sourceId": "meeting:carson-city-school-district:boarddocs:go.boarddocs.com",
+      "sourceId": "meeting:elko-city-council:civic_website:local",
       "sourceType": "meeting_system",
-      "sourceOwner": "carson-city-school-district",
-      "jurisdiction": "Carson City School District, NV",
+      "sourceOwner": "elko-city-council",
+      "jurisdiction": "Elko, NV",
       "sourceCategory": "meetings",
-      "sourcePlatform": "boarddocs",
-      "sourceHost": "go.boarddocs.com",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
       "documentCounts": {
-        "discovered": 2,
+        "discovered": 27,
+        "queued": 0,
+        "cached": 10,
+        "extracted": 15,
+        "ocrRequired": 2,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:elko-city-council:civic_website:www.elkocity.com",
+      "sourceType": "meeting_system",
+      "sourceOwner": "elko-city-council",
+      "jurisdiction": "Elko, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "www.elkocity.com",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 21,
         "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 7,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:elko-county-commission:civic_website:www.elkocountynv.net",
+      "sourceType": "meeting_system",
+      "sourceOwner": "elko-county-commission",
+      "jurisdiction": "Elko County, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "www.elkocountynv.net",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 3,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 3,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:elko-county-commission:granicus:elkocounty.granicus.com",
+      "sourceType": "meeting_system",
+      "sourceOwner": "elko-county-commission",
+      "jurisdiction": "Elko County, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "granicus",
+      "sourceHost": "elkocounty.granicus.com",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 5,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 3,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:elko-county-commission:civic_website:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "elko-county-commission",
+      "jurisdiction": "Elko County, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 6,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 6,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -1059,10 +1149,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -1075,40 +1165,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
-      }
-    },
-    {
-      "sourceId": "meeting:carson-city-school-district:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "carson-city-school-district",
-      "jurisdiction": "Carson City School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 1,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 1,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -1119,10 +1179,40 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "boarddocs",
       "sourceHost": null,
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
-      "lastSuccessAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T12:08:31.241Z",
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 2,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 1,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "meeting:carson-city-school-district:civic_website:local",
+      "sourceType": "meeting_system",
+      "sourceOwner": "carson-city-school-district",
+      "jurisdiction": "Carson City School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": "2026-07-24T13:04:53.262Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-24T19:04:53.262Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -1135,10 +1225,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     },
     {
@@ -1149,10 +1239,10 @@
       "sourceCategory": "rss_or_public_notice",
       "sourcePlatform": "rss",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-06-21T06:08:31.241Z",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-06-21T07:08:31.241Z",
+      "nextCheckAt": "2026-07-24T14:04:53.262Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1165,28 +1255,238 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 2,
-        "meetingsBlockedBySourceGaps": 516,
-        "meetingsBlockedByOcr": 10,
-        "meetingsBlockedByParserGaps": 4
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "official-directory:carson-city-department-directory",
+      "sourceType": "official_directory",
+      "sourceOwner": "Carson City Department Directory",
+      "jurisdiction": "Carson City",
+      "sourceCategory": "officials",
+      "sourcePlatform": "official_directory",
+      "sourceHost": "www.carsoncity.gov",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-25T13:04:53.262Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "official-directory:carson-city-board-of-supervisors",
+      "sourceType": "official_directory",
+      "sourceOwner": "Carson City Board of Supervisors",
+      "jurisdiction": "Carson City",
+      "sourceCategory": "officials",
+      "sourcePlatform": "official_directory",
+      "sourceHost": "www.carsoncity.gov",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-25T13:04:53.262Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "official-directory:carson-city-staff-directory",
+      "sourceType": "official_directory",
+      "sourceOwner": "Carson City Staff Directory",
+      "jurisdiction": "Carson City",
+      "sourceCategory": "officials",
+      "sourcePlatform": "official_directory",
+      "sourceHost": "www.carsoncity.gov",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-25T13:04:53.262Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "official-directory:carson-city-school-district-board",
+      "sourceType": "official_directory",
+      "sourceOwner": "Carson City School District School Board",
+      "jurisdiction": "Carson City School District",
+      "sourceCategory": "officials",
+      "sourcePlatform": "official_directory",
+      "sourceHost": "www.carsoncityschools.com",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-25T13:04:53.262Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "official-directory:elko-city-council",
+      "sourceType": "official_directory",
+      "sourceOwner": "Elko City Council",
+      "jurisdiction": "Elko",
+      "sourceCategory": "officials",
+      "sourcePlatform": "official_directory",
+      "sourceHost": "www.elkocity.com",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-25T13:04:53.262Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "official-directory:elko-city-staff-directory",
+      "sourceType": "official_directory",
+      "sourceOwner": "Elko Staff Directory",
+      "jurisdiction": "Elko",
+      "sourceCategory": "officials",
+      "sourcePlatform": "official_directory",
+      "sourceHost": "www.elkocity.com",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-25T13:04:53.262Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
+      }
+    },
+    {
+      "sourceId": "official-directory:elko-county-commission",
+      "sourceType": "official_directory",
+      "sourceOwner": "Elko County Commission Members",
+      "jurisdiction": "Elko County",
+      "sourceCategory": "officials",
+      "sourcePlatform": "official_directory",
+      "sourceHost": "www.elkocountynv.net",
+      "lastCheckedAt": "2026-07-24T13:04:53.262Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-07-25T13:04:53.262Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 12,
+        "meetingsBlockedBySourceGaps": 104,
+        "meetingsBlockedByOcr": 4,
+        "meetingsBlockedByParserGaps": 12
       }
     }
   ],
   "audit": {
-    "generatedAt": "2026-06-21T06:08:31.241Z",
+    "generatedAt": "2026-07-24T13:04:53.262Z",
     "totals": {
-      "sourcesMonitored": 39,
-      "healthy": 10,
-      "stale": 20,
+      "sourcesMonitored": 49,
+      "healthy": 29,
+      "stale": 2,
       "degraded": 8,
-      "failing": 0,
+      "failing": 2,
       "blocked": 0,
-      "unknown": 1,
-      "documentsDiscovered": 1935,
-      "queuedRetrievals": 1663,
-      "downloadedDocuments": 177,
-      "extractedDocuments": 169,
-      "ocrCandidates": 10
+      "unknown": 8,
+      "documentsDiscovered": 1519,
+      "queuedRetrievals": 6,
+      "downloadedDocuments": 1483,
+      "extractedDocuments": 1466,
+      "ocrCandidates": 5
     }
   }
 }

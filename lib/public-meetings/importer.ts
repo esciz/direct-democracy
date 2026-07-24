@@ -62,6 +62,7 @@ type ParsedItemDraft = {
 const SUPPORTED_EXTENSIONS = new Set([".pdf", ".txt", ".text", ".html", ".htm"]);
 const MANIFEST_NAMES = new Set(["manifest.json"]);
 const HISTORICAL_BACKFILL_START = Date.parse("2024-01-01T00:00:00-08:00");
+const UPCOMING_DISCOVERY_END = new Date(new Date().setMonth(new Date().getMonth() + 18)).getTime();
 
 type ArchiveMeetingDraft = {
   id: string;
@@ -95,6 +96,12 @@ function hashBuffer(buffer: Buffer) {
 
 function hashText(value: string) {
   return createHash("sha256").update(value).digest("hex");
+}
+
+function isMeetingDateInDiscoveryWindow(meetingDate: string | null): meetingDate is string {
+  if (!meetingDate) return false;
+  const timestamp = Date.parse(meetingDate);
+  return Number.isFinite(timestamp) && timestamp >= HISTORICAL_BACKFILL_START && timestamp <= UPCOMING_DISCOVERY_END;
 }
 
 async function readJsonFile<T>(relativePath: string, fallback: T): Promise<T> {
@@ -324,7 +331,7 @@ function buildArchiveBody(seed: PublicMeetingSourceSeed, bodyName: string, now: 
     scraper_type: seed.scraperType,
     active: true,
     seed_source_id: seed.id,
-    notes: `Discovered from ${seed.name} historical meeting archive.`,
+    notes: `Discovered from the official ${seed.name} meeting calendar and archive.`,
     created_at: now,
     updated_at: now,
   };
@@ -343,7 +350,7 @@ async function discoverCarsonGranicusArchive(seed: PublicMeetingSourceSeed): Pro
       if (cells.length < 3) return null;
       const publicBodyName = cellText(cells[0]);
       const meetingDate = parseArchiveDate(cellText(cells[1]));
-      if (!publicBodyName || !meetingDate || Date.parse(meetingDate) < HISTORICAL_BACKFILL_START || Date.parse(meetingDate) > Date.now()) {
+      if (!publicBodyName || !isMeetingDateInDiscoveryWindow(meetingDate)) {
         return null;
       }
       const links = cells.flatMap((cell) => extractCellLinks(cell, archiveUrl));
@@ -372,8 +379,8 @@ async function discoverCarsonGranicusArchive(seed: PublicMeetingSourceSeed): Pro
         sourceUrls,
         sourceDocumentCount: [agendaUrl, minutesUrl, packetUrl, videoUrl].filter(Boolean).length,
         meetingSummary: minutesUrl
-          ? `Historical ${publicBodyName} meeting record discovered from the Carson City Granicus archive with minutes available for civic intelligence processing.`
-          : `Historical ${publicBodyName} meeting record discovered from the Carson City Granicus archive.`,
+          ? `${publicBodyName} meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing.`
+          : `${publicBodyName} meeting record discovered from the official Carson City Granicus calendar.`,
       } satisfies ArchiveMeetingDraft;
     });
   return mapped.filter((draft): draft is ArchiveMeetingDraft => Boolean(draft));
@@ -410,7 +417,7 @@ async function discoverGenericHtmlArchive(seed: PublicMeetingSourceSeed): Promis
     for (const link of links) {
       const dateText = link.label.match(/\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?\s+\d{1,2},?\s+20\d{2}\b/i)?.[0];
       const meetingDate = parseArchiveDate(dateText ?? link.label);
-      if (!meetingDate || Date.parse(meetingDate) < HISTORICAL_BACKFILL_START || Date.parse(meetingDate) > Date.now()) continue;
+      if (!isMeetingDateInDiscoveryWindow(meetingDate)) continue;
       if (!/\bagenda|minutes?|packet|meeting|hearing|commission|board|council\b/i.test(`${link.label} ${link.href}`)) continue;
       const lower = `${link.label} ${link.href}`.toLowerCase();
       const existingKey = `${seed.id}:${meetingDate.slice(0, 10)}:${slugify(seed.name)}`;
@@ -435,7 +442,7 @@ async function discoverGenericHtmlArchive(seed: PublicMeetingSourceSeed): Promis
         sourceUrl: agendaUrl ?? minutesUrl ?? packetUrl ?? link.href,
         sourceUrls,
         sourceDocumentCount: [agendaUrl, minutesUrl, packetUrl, existing?.videoUrl ?? seed.videoArchiveUrl ?? null].filter(Boolean).length,
-        meetingSummary: `Historical ${seed.name} meeting archive entry discovered from ${url}.`,
+        meetingSummary: `${seed.name} meeting record discovered from its official calendar or archive.`,
       });
     }
   }
@@ -445,7 +452,10 @@ async function discoverGenericHtmlArchive(seed: PublicMeetingSourceSeed): Promis
 
 async function discoverLegistarArchive(seed: PublicMeetingSourceSeed): Promise<ArchiveMeetingDraft[]> {
   if (!seed.meetingIndexUrl) return [];
-  const years = [2024, 2025, 2026];
+  const years = Array.from(
+    { length: new Date().getFullYear() - 2024 + 2 },
+    (_, index) => 2024 + index,
+  );
   const drafts = new Map<string, ArchiveMeetingDraft>();
 
   for (const year of years) {
@@ -462,7 +472,7 @@ async function discoverLegistarArchive(seed: PublicMeetingSourceSeed): Promise<A
       const titleMatch = text.match(/\b(Board of County Commissioners|Concurrent Meeting|Truckee Meadows|Citizens Advisory Board|Planning Commission|[A-Z][A-Za-z /&-]+(?:Board|Commission|Committee|Council))\b/);
       const dateMatch = text.match(/\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?\s+\d{1,2},\s+20\d{2}(?:\s+\d{1,2}:\d{2}\s*(?:AM|PM))?/i);
       const meetingDate = parseArchiveDate(dateMatch?.[0] ?? text);
-      if (!detailUrl || !meetingDate || Date.parse(meetingDate) < HISTORICAL_BACKFILL_START || Date.parse(meetingDate) > Date.now()) continue;
+      if (!detailUrl || !isMeetingDateInDiscoveryWindow(meetingDate)) continue;
       const publicBodyName = titleMatch?.[0] ?? seed.name;
       let agendaUrl: string | null = null;
       let packetUrl: string | null = null;
@@ -498,7 +508,7 @@ async function discoverLegistarArchive(seed: PublicMeetingSourceSeed): Promise<A
         sourceUrl: detailUrl,
         sourceUrls,
         sourceDocumentCount: [agendaUrl, minutesUrl, packetUrl, videoUrl].filter(Boolean).length,
-        meetingSummary: `Historical ${publicBodyName} meeting record discovered from Legistar.${detailText ? ` ${summarizeText(detailText, 240)}` : ""}`,
+        meetingSummary: `${publicBodyName} meeting record discovered from the official Legistar calendar.${detailText ? ` ${summarizeText(detailText, 240)}` : ""}`,
       });
     }
   }
@@ -543,7 +553,7 @@ async function discoverWashoeLegistarDetailPages(seed: PublicMeetingSourceSeed):
       const text = normalizeTextLines(stripHtml(html));
       if (!/\bMeeting Name:\s*Board of County Commissioners\b/i.test(text)) continue;
       const meetingDate = parseMeetingDateFromDetail(text);
-      if (!meetingDate || Date.parse(meetingDate) < HISTORICAL_BACKFILL_START || Date.parse(meetingDate) > Date.now()) continue;
+      if (!isMeetingDateInDiscoveryWindow(meetingDate)) continue;
       const links = extractCellLinks(html, detailUrl);
       const agendaUrl = pickDetailLink(links, /^Agenda$/i, /M=A(?:&|$)/i);
       const minutesUrl = pickDetailLink(links, /^Minutes$/i, /M=M(?:&|$)/i);
@@ -569,7 +579,7 @@ async function discoverWashoeLegistarDetailPages(seed: PublicMeetingSourceSeed):
         sourceUrl: detailUrl,
         sourceUrls,
         sourceDocumentCount: sourceUrls.length,
-        meetingSummary: `Historical Washoe County Board of County Commissioners meeting imported from the Legistar detail archive with ${itemHints.length} agenda item records parsed.`,
+        meetingSummary: `Washoe County Board of County Commissioners meeting imported from the official Legistar record with ${itemHints.length} agenda item records parsed.`,
         itemHints,
       });
   }
@@ -594,7 +604,7 @@ async function discoverNevadaLegislatureArchive(seed: PublicMeetingSourceSeed): 
         const rowHtml = row[1];
         const time = cellText(rowHtml).match(/\b\d{1,2}:\d{2}\s*(?:AM|PM)\b/i)?.[0] ?? "8:30 AM";
         const meetingDate = parseArchiveDate(`${dayMatch[0]} - ${time}`);
-        if (!meetingDate || Date.parse(meetingDate) < HISTORICAL_BACKFILL_START || Date.parse(meetingDate) > Date.now()) continue;
+        if (!isMeetingDateInDiscoveryWindow(meetingDate) || /\bcancelled\b/i.test(cellText(rowHtml))) continue;
         const links = extractCellLinks(rowHtml, url);
         const meetingLink = links.find((link) => /\/Meeting\/\d+/.test(link.href));
         if (!meetingLink) continue;
@@ -626,11 +636,19 @@ async function discoverNevadaLegislatureArchive(seed: PublicMeetingSourceSeed): 
 }
 
 async function discoverWashoeSchoolsArchive(seed: PublicMeetingSourceSeed): Promise<ArchiveMeetingDraft[]> {
-  const years = [2024, 2025, 2026];
+  const years = Array.from(
+    { length: new Date().getFullYear() - 2024 + 2 },
+    (_, index) => 2024 + index,
+  );
   const drafts = new Map<string, ArchiveMeetingDraft>();
   for (const year of years) {
     const url = `https://www.washoeschools.net/trustees/board-of-trustees/board-meeting-archive/${year}-board-archive`;
-    const html = await fetchText(url);
+    let html = "";
+    try {
+      html = await fetchText(url);
+    } catch {
+      continue;
+    }
     const rawPath = path.join(PUBLIC_MEETING_PATHS.rawRoot, "archive-indexes", `${seed.id}-${year}.html`);
     await mkdir(path.dirname(absolutePublicMeetingPath(rawPath)), { recursive: true });
     await writeFile(absolutePublicMeetingPath(rawPath), html, "utf8");
@@ -644,7 +662,7 @@ async function discoverWashoeSchoolsArchive(seed: PublicMeetingSourceSeed): Prom
       .filter((link) => /MeetingInformation\.aspx/i.test(link.href) && /\b\d{2}-\d{2}-20\d{2}\b/.test(link.label));
     for (const link of links) {
       const meetingDate = parseUsDate(link.label);
-      if (!meetingDate || Date.parse(meetingDate) < HISTORICAL_BACKFILL_START || Date.parse(meetingDate) > Date.now()) continue;
+      if (!isMeetingDateInDiscoveryWindow(meetingDate)) continue;
       const meetingType = inferMeetingTypeFromTitle(link.label);
       const id = `meeting-${seed.id}-${meetingDate.slice(0, 10)}-${hashText(link.href).slice(0, 8)}`;
       drafts.set(id, {
@@ -663,7 +681,7 @@ async function discoverWashoeSchoolsArchive(seed: PublicMeetingSourceSeed): Prom
         sourceUrl: link.href,
         sourceUrls: [...new Set([link.href, seed.videoArchiveUrl].filter(Boolean) as string[])],
         sourceDocumentCount: 1,
-        meetingSummary: `Historical Washoe County School District Board meeting discovered from the ${year} board archive.`,
+        meetingSummary: `Washoe County School District Board meeting discovered from the official ${year} board calendar or archive.`,
       });
     }
   }
@@ -1092,18 +1110,8 @@ function buildItems(meeting: PublicMeetingRecord, extracted: ExtractedDocument):
 }
 
 function buildArchiveItems(meeting: PublicMeetingRecord, draft: ArchiveMeetingDraft): PublicMeetingItemRecord[] {
-  const hints = draft.itemHints?.length
-    ? draft.itemHints
-    : [
-        {
-          itemNumber: null,
-          title: `${draft.publicBodyName} meeting materials`,
-          sourceText: [draft.meetingSummary, draft.agendaUrl ? `Agenda source: ${draft.agendaUrl}` : null, draft.minutesUrl ? `Minutes source: ${draft.minutesUrl}` : null, draft.packetUrl ? `Packet source: ${draft.packetUrl}` : null]
-            .filter(Boolean)
-            .join("\n"),
-          confidence: 0.42,
-        },
-      ];
+  const hints = draft.itemHints ?? [];
+  if (!hints.length) return [];
 
   return hints.slice(0, 80).map((hint, index) => {
     const sourceText = hint.sourceText || hint.title;

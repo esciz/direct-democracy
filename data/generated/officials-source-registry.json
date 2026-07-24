@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T21:15:07.552Z",
+  "generatedAt": "2026-07-24T13:03:10.033Z",
   "records": [
     {
       "id": "carson-city-department-directory",
@@ -14,13 +14,13 @@
       "parserStatus": "implemented",
       "retrievalStatus": "retrieved",
       "cachedPath": "data/raw/official-directories/carson-city-department-directory/current.html",
-      "contentHash": "20de7bb85affcc3d9215e203d8f5851fb0ab5fd01e930711f0e369b5e9209146",
-      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
-      "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
-      "lastChangedAt": "2026-06-22T02:37:41.796Z",
-      "lastParsedAt": "2026-07-05T21:15:07.552Z",
-      "lastVerifiedAt": "2026-07-05T21:15:07.552Z",
-      "nextDueAt": "2026-07-06T21:15:07.552Z",
+      "contentHash": "44d8d83888274370eab155d834a921e1d7cfed0d33e0c4e00dea1d9c585cad28",
+      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
+      "lastSuccessfulRetrievalAt": "2026-07-24T13:02:59.964Z",
+      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "lastParsedAt": "2026-07-24T13:03:10.033Z",
+      "lastVerifiedAt": "2026-07-24T13:03:10.033Z",
+      "nextDueAt": "2026-07-25T13:03:10.033Z",
       "sourceHealth": "healthy"
     },
     {
@@ -36,13 +36,13 @@
       "parserStatus": "implemented",
       "retrievalStatus": "retrieved",
       "cachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/current.html",
-      "contentHash": "2fa00888064a2c9d6e127f434f76d994db2eff4183bea887fe9d45ff5610b902",
-      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
-      "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
-      "lastChangedAt": "2026-06-22T02:37:41.796Z",
-      "lastParsedAt": "2026-07-05T21:15:07.552Z",
-      "lastVerifiedAt": "2026-07-05T21:15:07.552Z",
-      "nextDueAt": "2026-07-06T21:15:07.552Z",
+      "contentHash": "be133ad53da3608646e03ea1690aa736f2c8d0bafcd31d9d2d290e48cba32c72",
+      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
+      "lastSuccessfulRetrievalAt": "2026-07-24T13:02:59.964Z",
+      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "lastParsedAt": "2026-07-24T13:03:10.033Z",
+      "lastVerifiedAt": "2026-07-24T13:03:10.033Z",
+      "nextDueAt": "2026-07-25T13:03:10.033Z",
       "sourceHealth": "healthy"
     },
     {
@@ -58,13 +58,13 @@
       "parserStatus": "configured",
       "retrievalStatus": "retrieved",
       "cachedPath": "data/raw/official-directories/carson-city-staff-directory/current.html",
-      "contentHash": "bc907b1798f20dd80f3578a7e1b136b25629e04a1b27451be870370b1ad4e2d8",
-      "lastCheckedAt": "2026-06-22T02:37:41.796Z",
-      "lastSuccessfulRetrievalAt": "2026-06-22T02:37:41.796Z",
-      "lastChangedAt": "2026-06-22T02:37:41.796Z",
-      "lastParsedAt": "2026-07-05T21:15:07.552Z",
-      "lastVerifiedAt": "2026-07-05T21:15:07.552Z",
-      "nextDueAt": "2026-07-05T21:15:07.552Z",
+      "contentHash": "e57538b3a84fa8fb9297b00d60b76fce45469a16ad17f5a6c7e2793f296429f0",
+      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
+      "lastSuccessfulRetrievalAt": "2026-07-24T13:02:59.964Z",
+      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "lastParsedAt": "2026-07-24T13:03:10.033Z",
+      "lastVerifiedAt": "2026-07-24T13:03:10.033Z",
+      "nextDueAt": "2026-07-24T13:03:10.033Z",
       "sourceHealth": "healthy"
     },
     {
@@ -78,16 +78,16 @@
       "checkCadence": "P1D",
       "monitoringCadence": "daily source check; weekly full validation",
       "parserStatus": "configured",
-      "retrievalStatus": "reviewed_baseline",
-      "cachedPath": null,
-      "contentHash": null,
-      "lastCheckedAt": "2026-07-05T21:15:07.552Z",
-      "lastSuccessfulRetrievalAt": null,
-      "lastChangedAt": null,
-      "lastParsedAt": "2026-07-05T21:15:07.552Z",
-      "lastVerifiedAt": "2026-07-05T21:15:07.552Z",
-      "nextDueAt": "2026-07-06T21:15:07.552Z",
-      "sourceHealth": "partial"
+      "retrievalStatus": "retrieved",
+      "cachedPath": "data/raw/official-directories/carson-city-school-district-board/current.html",
+      "contentHash": "9659024e6eff1cfa4c5da4bc5dd9cdeee1e911a14208aa2abdb7c5b7dac1151a",
+      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
+      "lastSuccessfulRetrievalAt": "2026-07-24T13:02:59.964Z",
+      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "lastParsedAt": "2026-07-24T13:03:10.033Z",
+      "lastVerifiedAt": "2026-07-24T13:03:10.033Z",
+      "nextDueAt": "2026-07-25T13:03:10.033Z",
+      "sourceHealth": "healthy"
     },
     {
       "id": "elko-city-council",
@@ -103,12 +103,12 @@
       "retrievalStatus": "not_retrieved",
       "cachedPath": null,
       "contentHash": null,
-      "lastCheckedAt": null,
+      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
       "lastSuccessfulRetrievalAt": null,
       "lastChangedAt": null,
       "lastParsedAt": null,
       "lastVerifiedAt": null,
-      "nextDueAt": "2026-07-05T21:15:07.552Z",
+      "nextDueAt": "2026-07-24T13:03:10.033Z",
       "sourceHealth": "unknown"
     },
     {
@@ -125,12 +125,12 @@
       "retrievalStatus": "not_retrieved",
       "cachedPath": null,
       "contentHash": null,
-      "lastCheckedAt": null,
+      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
       "lastSuccessfulRetrievalAt": null,
       "lastChangedAt": null,
       "lastParsedAt": null,
       "lastVerifiedAt": null,
-      "nextDueAt": "2026-07-05T21:15:07.552Z",
+      "nextDueAt": "2026-07-24T13:03:10.033Z",
       "sourceHealth": "unknown"
     },
     {
@@ -144,24 +144,24 @@
       "checkCadence": "P1D",
       "monitoringCadence": "daily source check; weekly full validation",
       "parserStatus": "configured",
-      "retrievalStatus": "not_retrieved",
-      "cachedPath": null,
-      "contentHash": null,
-      "lastCheckedAt": null,
-      "lastSuccessfulRetrievalAt": null,
-      "lastChangedAt": null,
-      "lastParsedAt": null,
-      "lastVerifiedAt": null,
-      "nextDueAt": "2026-07-05T21:15:07.552Z",
-      "sourceHealth": "unknown"
+      "retrievalStatus": "retrieved",
+      "cachedPath": "data/raw/official-directories/elko-county-commission/current.html",
+      "contentHash": "4fe7b2d5cb099ada7c78fde5d71a0436f151cf5aacc54750674b5c66f2bb0060",
+      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
+      "lastSuccessfulRetrievalAt": "2026-07-24T13:02:59.964Z",
+      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "lastParsedAt": "2026-07-24T13:03:10.033Z",
+      "lastVerifiedAt": "2026-07-24T13:03:10.033Z",
+      "nextDueAt": "2026-07-24T13:03:10.033Z",
+      "sourceHealth": "healthy"
     }
   ],
   "audit": {
     "totals": {
       "sources": 7,
       "carsonCitySources": 3,
-      "retrievedSources": 3,
-      "reviewedBaselineSources": 1
+      "retrievedSources": 5,
+      "reviewedBaselineSources": 0
     }
   }
 }

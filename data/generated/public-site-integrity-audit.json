@@ -1,0 +1,72 @@
+{
+  "generatedAt": "2026-07-24T13:04:53.509Z",
+  "launchReady": false,
+  "totals": {
+    "critical": 0,
+    "high": 4,
+    "medium": 0,
+    "publicAggregationFilesChecked": 16,
+    "meetingProvidersChecked": 16
+  },
+  "findings": [
+    {
+      "id": "official-roster-source-gaps",
+      "severity": "high",
+      "area": "official collection",
+      "summary": "12 priority jurisdictions do not have complete source-verified official rosters.",
+      "evidence": [
+        "Reno: unverified_roster (configured_seed_only)",
+        "Sparks: unverified_roster (missing)",
+        "Washoe County: unverified_roster (missing)",
+        "Elko: unverified_roster (missing)",
+        "Elko County: unverified_roster (missing)",
+        "Clark County: unverified_roster (missing)",
+        "Las Vegas: unverified_roster (missing)",
+        "Henderson: unverified_roster (missing)",
+        "North Las Vegas: unverified_roster (missing)",
+        "CCSD: unverified_roster (configured_seed_only)",
+        "NSHE: unverified_roster (missing)",
+        "Nevada Legislature: unverified_roster (missing)"
+      ]
+    },
+    {
+      "id": "campaign-finance-reconciliation",
+      "severity": "high",
+      "area": "campaign finance collection",
+      "summary": "Nevada SOS finance records still have unresolved parsing and candidate-reconciliation gaps.",
+      "evidence": [
+        "15 unmatched of 117 records",
+        "15 missing candidate names",
+        "5 missing offices",
+        "40 missing totals",
+        "11 duplicate report groups",
+        "63 live URLs blocked by the current Nevada SOS session",
+        "last successful live fetch 2026-06-14T18:31:17.117Z",
+        "117 cached records remain usable",
+        "Cached Nevada SoS records remain usable. Refresh the live session with npm run nv-sos:bootstrap before the next live acquisition window."
+      ]
+    },
+    {
+      "id": "partial-dataops-run",
+      "severity": "high",
+      "area": "data operations",
+      "summary": "The latest recorded DataOps run was not a complete successful daily pipeline execution.",
+      "evidence": [
+        "14 of 15 stages attempted",
+        "0 stages failed",
+        "completed 2026-07-24T13:04:53.138Z"
+      ]
+    },
+    {
+      "id": "meeting-document-readiness",
+      "severity": "high",
+      "area": "meeting accountability",
+      "summary": "Some meeting records cannot yet support agenda, vote, and accountability detail because source documents or parsers are missing.",
+      "evidence": [
+        "104 meetings blocked by source gaps",
+        "12 meetings blocked by parser gaps",
+        "31 upcoming meetings currently published"
+      ]
+    }
+  ]
+}

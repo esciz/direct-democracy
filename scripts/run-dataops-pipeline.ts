@@ -51,6 +51,24 @@ const retrieveArgs = [
 ].filter(Boolean) as string[];
 
 const stages: Stage[] = [
+  {
+    id: "refresh-meeting-calendars",
+    description: "Refresh Nevada meeting calendars and current-official directory sources.",
+    network: true,
+    commands: [
+      runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--force"]),
+      runNodeScript("scripts/run-officials-refresh.ts"),
+    ],
+  },
+  {
+    id: "import-meetings",
+    description: "Import current calendars and merge reviewed official-source caches.",
+    network: true,
+    commands: [
+      runNodeScript("scripts/public-meetings-import.ts"),
+      runNodeScript("scripts/public-meetings-import-manual.ts"),
+    ],
+  },
   { id: "register-sources", description: "Register RSS/feed sources.", commands: [runNodeScript("scripts/generate-rss-source-registry.ts")] },
   { id: "discover-documents", description: "Discover public meeting source documents.", commands: [runNodeScript("scripts/discover-public-meeting-source-documents.ts")] },
   { id: "monitor-sources", description: "Monitor source health from current artifacts.", commands: [runNodeScript("scripts/generate-dataops-source-registry.ts"), runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"), runNodeScript("scripts/monitor-civic-sources.ts")] },
@@ -62,8 +80,32 @@ const stages: Stage[] = [
   { id: "attendance", description: "Regenerate rosters and attendance.", commands: [runNodeScript("scripts/generate-governing-body-rosters.ts"), runNodeScript("scripts/generate-public-meeting-attendance.ts"), runNodeScript("scripts/audit-public-meeting-attendance.ts")] },
   { id: "votes", description: "Regenerate votes and attribution readiness.", commands: [runNodeScript("scripts/generate-public-meeting-votes.ts"), runNodeScript("scripts/audit-public-meeting-votes.ts"), runNodeScript("scripts/generate-vote-attribution-readiness.ts")] },
   { id: "accountability", description: "Regenerate voting cards, projects, and accountability graph.", commands: [runNodeScript("scripts/generate-voting-cards.ts"), runNodeScript("scripts/generate-projects.ts"), runNodeScript("scripts/generate-accountability-graph.ts")] },
-  { id: "communities", description: "Regenerate community relationships and reports.", commands: [runNodeScript("scripts/generate-nevada-community-relationships.ts"), runNodeScript("scripts/report-nevada-community-coverage.ts"), runNodeScript("scripts/audit-nevada-community-linkage.ts"), runNodeScript("scripts/audit-browse-previews.ts")] },
-  { id: "freshness-audit", description: "Record reprocessing and final DataOps freshness audit.", commands: [runNodeScript("scripts/reprocess-civic-data.ts", ["--all-cached"]), runNodeScript("scripts/monitor-civic-sources.ts"), runNodeScript("scripts/audit-dataops-freshness.ts")] },
+  {
+    id: "communities",
+    description: "Publish source-backed issues, events, and community relationships, then audit the public views.",
+    commands: [
+      runNodeScript("scripts/generate-issue-hubs.ts"),
+      runNodeScript("scripts/audit-issues.ts"),
+      runNodeScript("scripts/report-issues.ts"),
+      runNodeScript("scripts/generate-nevada-community-relationships.ts"),
+      runNodeScript("scripts/report-nevada-community-coverage.ts"),
+      runNodeScript("scripts/audit-nevada-community-linkage.ts"),
+      runNodeScript("scripts/audit-event-freshness.ts"),
+      runNodeScript("scripts/audit-browse-previews.ts"),
+    ],
+  },
+  {
+    id: "freshness-audit",
+    description: "Record reprocessing and final DataOps and public-site integrity audits.",
+    commands: [
+      runNodeScript("scripts/reprocess-civic-data.ts", ["--all-cached"]),
+      runNodeScript("scripts/monitor-civic-sources.ts"),
+      runNodeScript("scripts/audit-dataops-freshness.ts"),
+      runNodeScript("scripts/nv-sos-data-quality-report.ts"),
+      runNodeScript("scripts/nv-sos-operational-status.ts"),
+      runNodeScript("scripts/audit-public-site-integrity.ts"),
+    ],
+  },
 ];
 
 function selectedStages() {
@@ -82,7 +124,19 @@ function artifactMetrics() {
   const ocr = readJson<{ audit?: { totals?: Record<string, number> } }>("public-meeting-ocr-results.json", {});
   const source = readJson<{ totals?: Record<string, number> }>("public-meeting-source-completeness.json", {});
   const votes = readJson<{ totals?: Record<string, number> }>("public-meeting-vote-extraction-audit.json", {});
+  const meetings = readJson<Array<{ meeting_date?: string | null }>>("public-meetings.json", []);
+  const issueRuntime = readJson<{ records?: Array<{ sourceBacked?: boolean }> }>("issues-runtime.json", {});
+  const sourceRegistry = readJson<{ records?: unknown[] }>("dataops-source-registry.json", {});
+  const meetingImport = readJson<{ errors?: unknown[] }>("public-meeting-ingestion-report.json", {});
+  const now = Date.now();
   return {
+    registeredSourcesChecked: sourceRegistry.records?.length ?? 0,
+    upcomingMeetings: meetings.filter((meeting) => {
+      const date = Date.parse(meeting.meeting_date ?? "");
+      return Number.isFinite(date) && date >= now;
+    }).length,
+    sourceBackedIssues: issueRuntime.records?.filter((issue) => issue.sourceBacked).length ?? 0,
+    meetingProviderFailures: meetingImport.errors?.length ?? 0,
     documentsDownloaded: retrieval.audit?.totals?.downloaded ?? 0,
     documentsChanged: retrieval.audit?.totals?.updatedContent ?? retrieval.audit?.totals?.changed ?? 0,
     documentsExtracted: text.audit?.totals?.textExtracted ?? 0,

@@ -6,7 +6,6 @@ import { getSeedUserById } from "@/lib/auth/mock-users";
 import { getAllCommunityEvents, getStoredCommunityEvents, setStoredCommunityEvents } from "@/lib/community/events";
 import { getCreatedPosts } from "@/lib/feed/posts";
 import { canonicalizeIssueTags } from "@/lib/issues/utils";
-import { mockPosts } from "@/lib/mock-data";
 import { addFavoriteForUser } from "@/lib/server/favorites";
 import { getAllOfficialPositions, getAllPublicProfiles } from "@/lib/server/elections-context";
 import type {
@@ -230,7 +229,7 @@ async function buildInterviewSummary(request: InterviewRequestRecord): Promise<I
       null
     : null;
 
-  const allPosts = [...(await getCreatedPosts()), ...mockPosts];
+  const allPosts = await getCreatedPosts();
   const publishedPost = request.publishedPostId ? allPosts.find((post) => post.id === request.publishedPostId) ?? null : null;
 
   return {

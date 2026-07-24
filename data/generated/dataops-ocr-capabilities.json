@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-06-25T16:05:55.069Z",
+  "generatedAt": "2026-07-24T13:04:23.946Z",
   "tools": [
     {
       "command": "pdfinfo",
       "available": true,
-      "path": "/opt/homebrew/bin/pdfinfo",
+      "path": "/Users/eliscislowicz/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo",
       "version": null
     },
     {
@@ -16,7 +16,7 @@
     {
       "command": "pdftoppm",
       "available": true,
-      "path": "/opt/homebrew/bin/pdftoppm",
+      "path": "/Users/eliscislowicz/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
       "version": null
     },
     {

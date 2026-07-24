@@ -18,7 +18,7 @@ export const DISTRICT_SOURCE_ADAPTER_STUBS: DistrictSourceAdapterStub[] = [
     sourceUrl: "https://www.nvsos.gov/sos/elections",
     districtTypes: [DistrictType.CONGRESSIONAL, DistrictType.STATE_SENATE, DistrictType.STATE_ASSEMBLY, DistrictType.COUNTY_COMMISSION, DistrictType.CITY_WARD, DistrictType.SCHOOL_BOARD],
     boundarySupport: "stub",
-    notes: "Candidate and election records can be linked to normalized districts; boundary matching waits for official GIS imports.",
+    notes: "Candidate and election records are linked to normalized districts. Exact address matching still requires official GIS boundary imports.",
   },
   {
     key: "nevada-legislature-districts",
@@ -27,7 +27,7 @@ export const DISTRICT_SOURCE_ADAPTER_STUBS: DistrictSourceAdapterStub[] = [
     sourceUrl: "https://www.leg.state.nv.us/",
     districtTypes: [DistrictType.STATE_SENATE, DistrictType.STATE_ASSEMBLY],
     boundarySupport: "stub",
-    notes: "Legislative district boundary adapter placeholder.",
+    notes: "Exact legislative district matching is unavailable until the official boundary layer is imported.",
   },
   {
     key: "washoe-county-commission-districts",
@@ -36,7 +36,7 @@ export const DISTRICT_SOURCE_ADAPTER_STUBS: DistrictSourceAdapterStub[] = [
     sourceUrl: "https://www.washoecounty.gov/",
     districtTypes: [DistrictType.COUNTY_COMMISSION],
     boundarySupport: "stub",
-    notes: "County commission district boundary adapter placeholder.",
+    notes: "Exact county commission district matching is unavailable until the official boundary layer is imported.",
   },
   {
     key: "city-ward-districts",
@@ -45,7 +45,7 @@ export const DISTRICT_SOURCE_ADAPTER_STUBS: DistrictSourceAdapterStub[] = [
     sourceUrl: "https://www.reno.gov/government",
     districtTypes: [DistrictType.CITY_WARD],
     boundarySupport: "stub",
-    notes: "Municipal ward boundary adapter placeholder.",
+    notes: "Exact municipal ward matching is unavailable until official city boundary layers are imported.",
   },
   {
     key: "school-board-trustee-districts",
@@ -54,7 +54,7 @@ export const DISTRICT_SOURCE_ADAPTER_STUBS: DistrictSourceAdapterStub[] = [
     sourceUrl: "https://www.washoeschools.net/",
     districtTypes: [DistrictType.SCHOOL_DISTRICT, DistrictType.SCHOOL_BOARD],
     boundarySupport: "stub",
-    notes: "School district and trustee boundary adapter placeholder.",
+    notes: "Exact school trustee district matching is unavailable until the official boundary layer is imported.",
   },
   {
     key: "nevada-courts",
@@ -63,16 +63,16 @@ export const DISTRICT_SOURCE_ADAPTER_STUBS: DistrictSourceAdapterStub[] = [
     sourceUrl: "https://nvcourts.gov/",
     districtTypes: [DistrictType.JUDICIAL_DISTRICT],
     boundarySupport: "stub",
-    notes: "Judicial district and court department adapter placeholder.",
+    notes: "Exact judicial district matching is unavailable until official court boundary data is imported.",
   },
   {
     key: "municipal-courts",
     label: "Municipal courts",
     sourceName: "Municipal court public sources",
-    sourceUrl: "https://www.reno.gov/government/municipal-court",
+    sourceUrl: "https://www.reno.gov/government/departments",
     districtTypes: [DistrictType.MUNICIPAL_COURT],
     boundarySupport: "stub",
-    notes: "Municipal court department adapter placeholder.",
+    notes: "Exact municipal court matching is unavailable until official court jurisdiction data is imported.",
   },
   {
     key: "justice-courts",
@@ -81,6 +81,6 @@ export const DISTRICT_SOURCE_ADAPTER_STUBS: DistrictSourceAdapterStub[] = [
     sourceUrl: "https://www.washoecounty.gov/",
     districtTypes: [DistrictType.JUSTICE_COURT],
     boundarySupport: "stub",
-    notes: "Justice court township and department adapter placeholder.",
+    notes: "Exact justice court township matching is unavailable until official jurisdiction data is imported.",
   },
 ];

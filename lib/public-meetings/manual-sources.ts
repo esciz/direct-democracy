@@ -454,8 +454,12 @@ function parseLegislatureItems(text: string) {
       items.push({ itemNumber: numbered[1], title: summarizeText(numbered[2], 180), sourceText: summarizeText(line, 1800), confidence: 0.62 });
       continue;
     }
-    if (/\b(bill|journal|roll call|vote|committee|agenda|minutes|floor session|public comment|presentation|hearing)\b/i.test(line)) {
-      items.push({ itemNumber: null, title: summarizeText(line, 180), sourceText: summarizeText(line, 1800), confidence: 0.48 });
+    const looksLikeAgendaAction =
+      /\b(public comment|presentation|public hearing|agenda item|discussion|possible action|motion|roll call|bill draft request|work session)\b/i.test(line);
+    const isNavigationOrUnavailable =
+      /\b(toggle (?:committee )?navigation|committee list|apply to serve|click here to create an account|agenda (?:is )?not (?:yet )?available)\b/i.test(line);
+    if (looksLikeAgendaAction && !isNavigationOrUnavailable) {
+      items.push({ itemNumber: null, title: summarizeText(line, 180), sourceText: summarizeText(line, 1800), confidence: 0.58 });
     }
   }
   return dedupeByTitle(items).slice(0, 120);
@@ -518,7 +522,13 @@ function parsedItems(providerId: string, entry: ManualPublicMeetingManifestEntry
     return items.length ? items : fallbackItem(entry, text);
   }
   if (providerId.includes("legislature") || providerId.includes("senate") || providerId.includes("assembly")) {
-    const items = [...parseLegislatureItems(text), ...parsePacketItems(text)];
+    const shouldParsePacket =
+      entry.fileType.toLowerCase() === "pdf" ||
+      ["packet", "minutes", "vote", "journal"].includes(entry.sourceKind);
+    const items = [
+      ...parseLegislatureItems(text),
+      ...(shouldParsePacket ? parsePacketItems(text) : []),
+    ];
     return items.length ? items : fallbackItem(entry, text);
   }
   if (entry.fileType.toLowerCase() === "pdf" || ["packet", "minutes", "agenda"].includes(entry.sourceKind)) {
@@ -726,6 +736,38 @@ function dedupeById<T extends { id: string }>(records: T[]) {
   return [...new Map(records.map((record) => [record.id, record])).values()];
 }
 
+function meetingSourceUrls(meeting: PublicMeetingRecord) {
+  return new Set(
+    [
+      meeting.agenda_url,
+      meeting.minutes_url,
+      meeting.packet_url,
+      meeting.video_url,
+      meeting.transcript_url,
+      ...meeting.source_urls,
+    ].filter((url): url is string => Boolean(url)),
+  );
+}
+
+function meetingsRepresentSameEvent(left: PublicMeetingRecord, right: PublicMeetingRecord) {
+  if (!left.meeting_date || !right.meeting_date || left.meeting_date !== right.meeting_date) return false;
+  const leftUrls = meetingSourceUrls(left);
+  const rightUrls = meetingSourceUrls(right);
+  const sharedOfficialUrl = [...leftUrls].some((url) => rightUrls.has(url));
+  const sameTitle = slugify(left.title) === slugify(right.title);
+  return sharedOfficialUrl || sameTitle;
+}
+
+function isProviderCalendarIndex(meeting: PublicMeetingRecord, providers: ManualProviderDefinition[]) {
+  const provider = providers.find((entry) => meeting.id.startsWith(`meeting-manual-${entry.id}-`));
+  if (!provider) return false;
+  const normalizeUrl = (value: string) => value.replace(/\/+$/, "").toLowerCase();
+  const providerUrl = normalizeUrl(provider.officialSourceUrl);
+  const sourceUrls = [...meetingSourceUrls(meeting)].map(normalizeUrl);
+  const hasMeetingSpecificUrl = sourceUrls.some((url) => /\/meeting\/\d+|meetingdetail|event_id=|clip_id=|agendaviewer/i.test(url));
+  return /\b(calendar|events|home)\b/i.test(meeting.title) && (sourceUrls.includes(providerUrl) || !hasMeetingSpecificUrl);
+}
+
 function dedupeQuestions(questions: CitizenVoteQuestionRecord[]) {
   const seen = new Map<string, CitizenVoteQuestionRecord>();
   for (const question of questions) {
@@ -843,6 +885,9 @@ export async function importManualPublicMeetingSources(options: { includeFixture
         parserFailures += 1;
         errors.push({ document_id: `${provider.id}:${entry.localPath}`, message: error });
       }
+      if (/\bmeeting\s+cancel(?:led|ed)\b|\(\s*cancel(?:led|ed)\s*\)/i.test(text)) {
+        continue;
+      }
       const { meeting, items: meetingItems } = buildManualRecords(provider, entry, text, sourceMethod);
       for (const item of meetingItems) {
         item.vote_outcome = item.vote_outcome ?? extractTopicOutcome(item.source_text);
@@ -919,16 +964,40 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     });
   }
 
-  const realMeetings = meetings.filter((meeting) => meeting.source_method !== "manual_fixture");
-  const realItems = items.filter((item) => item.source_method !== "manual_fixture");
-  const realVotes = votes.filter((vote) => realItems.some((item) => item.id === vote.meeting_item_id));
-  const realOfficialActions = officialActions.filter((action) => realItems.some((item) => item.id === action.topic_item_id));
-  const realQuestions = dedupeQuestions(questions.filter((question) => realItems.some((item) => item.id === question.meeting_item_id)));
+  let realMeetings = meetings.filter((meeting) => meeting.source_method !== "manual_fixture");
+  let realItems = items.filter((item) => item.source_method !== "manual_fixture");
   const isProcessedManualMeeting = (meetingId: string) => processedProviderIds.some((providerId) => meetingId.startsWith(`meeting-manual-${providerId}-`));
+  const isProcessedManualItem = (itemId: string) => processedProviderIds.some((providerId) => itemId.startsWith(`item-meeting-manual-${providerId}-`));
   const retainedMeetings = existingMeetings.filter((meeting) => meeting.source_method !== "manual_cache" || !isProcessedManualMeeting(meeting.id));
-  const retainedItems = existingItems.filter((item) => item.source_method !== "manual_cache" || !isProcessedManualMeeting(item.meeting_id));
+  const retainedItems = existingItems.filter((item) => item.source_method !== "manual_cache" || !isProcessedManualItem(item.id));
   const retainedVotes = existingVotes.filter((vote) => retainedItems.some((item) => item.id === vote.meeting_item_id));
   const retainedOfficialActions = existingOfficialActions.filter((action) => retainedItems.some((item) => item.id === action.topic_item_id));
+
+  const meetingAliases = new Map<string, string>();
+  const calendarIndexMeetingIds = new Set(
+    realMeetings.filter((meeting) => isProviderCalendarIndex(meeting, providers)).map((meeting) => meeting.id),
+  );
+  realMeetings = realMeetings.filter((meeting) => {
+    if (calendarIndexMeetingIds.has(meeting.id)) return false;
+    const existing = retainedMeetings.find((candidate) => meetingsRepresentSameEvent(candidate, meeting));
+    if (!existing) return true;
+    meetingAliases.set(meeting.id, existing.id);
+    return false;
+  });
+  realItems = realItems
+    .filter((item) => !calendarIndexMeetingIds.has(item.meeting_id))
+    .filter((item) => !meetingAliases.has(item.meeting_id) || item.confidence_score >= 0.5)
+    .map((item) => ({ ...item, meeting_id: meetingAliases.get(item.meeting_id) ?? item.meeting_id }));
+  const realItemIds = new Set(realItems.map((item) => item.id));
+  const realVotes = votes.filter((vote) => realItemIds.has(vote.meeting_item_id));
+  const realOfficialActions = officialActions
+    .filter((action) => realItemIds.has(action.topic_item_id))
+    .map((action) => ({
+      ...action,
+      meeting_id: meetingAliases.get(action.meeting_id) ?? action.meeting_id,
+    }));
+  const realQuestions = dedupeQuestions(questions.filter((question) => realItemIds.has(question.meeting_item_id)));
+
   const nextItems = dedupeById([...retainedItems, ...realItems]);
   const nextItemIds = new Set(nextItems.map((item) => item.id));
   const retainedQuestions = dedupeQuestions(existingQuestions.filter((question) => nextItemIds.has(question.meeting_item_id)));

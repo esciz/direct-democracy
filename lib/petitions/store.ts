@@ -3,7 +3,6 @@ import { cache } from "react";
 
 import { getPetitionLifecycle } from "@/lib/community/lifecycle";
 import { canonicalizeIssueTags } from "@/lib/issues/utils";
-import { mockPetitions, mockPetitionSignatures } from "@/lib/mock-data";
 import { getDraftingPetitionIds } from "@/lib/petitions/drafting";
 import { getAllSponsorshipRequests } from "@/lib/petitions/sponsorships";
 import type { FeedViewerContext } from "@/lib/auth/session";
@@ -121,10 +120,9 @@ export async function setStoredSignatures(signatures: PetitionSignatureSummary[]
 
 export async function getAllPetitions(): Promise<PetitionSummary[]> {
   const createdPetitions = await getStoredPetitions();
-  const signatures = [...mockPetitionSignatures, ...(await getStoredSignatures())];
-  const petitions = [...createdPetitions, ...mockPetitions];
+  const signatures = await getStoredSignatures();
 
-  return petitions
+  return createdPetitions
     .map((petition) =>
       computePetitionState(
         petition,
@@ -146,7 +144,7 @@ const getFeedPetitionPreviewsCached = cache(
     const jurisdictionNames = jurisdictionKey ? jurisdictionKey.split("|").filter(Boolean) : null;
     const allowedJurisdictions = jurisdictionNames ? new Set(jurisdictionNames) : null;
     const signatureCountByPetition = new Map<string, number>();
-    const allSignatures = [...mockPetitionSignatures, ...storedSignatures];
+    const allSignatures = storedSignatures;
 
     for (const signature of allSignatures) {
       if (signature.status !== "VALID") {
@@ -159,7 +157,7 @@ const getFeedPetitionPreviewsCached = cache(
       );
     }
 
-    const petitions = [...createdPetitions, ...mockPetitions]
+    const petitions = createdPetitions
       .filter((petition) => (allowedJurisdictions ? allowedJurisdictions.has(petition.jurisdictionName) : true))
       .map((petition) => ({
         ...petition,
@@ -198,7 +196,7 @@ export async function getFeedPetitionPreviews(options?: { jurisdictionNames?: st
 }
 
 export async function getAllPetitionSignatures() {
-  return [...mockPetitionSignatures, ...(await getStoredSignatures())].sort((a, b) => Date.parse(b.signedAt) - Date.parse(a.signedAt));
+  return (await getStoredSignatures()).sort((a, b) => Date.parse(b.signedAt) - Date.parse(a.signedAt));
 }
 
 export async function getPetitionById(petitionId: string, user?: AuthUser): Promise<PetitionDetail | null> {
@@ -273,7 +271,7 @@ export async function getUserCivicPetitionActivity(userId: string): Promise<{
     getDraftingPetitionIds(),
   ]);
 
-  const signatures = [...mockPetitionSignatures, ...storedSignatures]
+  const signatures = storedSignatures
     .filter((signature) => signature.signerId === userId && signature.status === "VALID")
     .sort((a, b) => Date.parse(b.signedAt) - Date.parse(a.signedAt));
 

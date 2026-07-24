@@ -355,7 +355,7 @@ function meetingToEvent({
   });
 
   return {
-    id: `meeting-${meeting.id}`,
+    id: meeting.id,
     title: meeting.title || `${bodyName} meeting`,
     description: items.length
       ? `${bodyName} public meeting with ${items.length} parsed agenda item${items.length === 1 ? "" : "s"}.`
@@ -593,9 +593,7 @@ const getAllCivicEventsCached = cache(async (viewerUserId: string): Promise<Civi
     });
   });
 
-  const seededEvents = SEEDED_CIVIC_EVENTS.map(seededEventToEvent);
-
-  return [...meetingEvents, ...sourceEvents, ...communityCivicEvents, ...seededEvents].map((event) => ({
+  return [...meetingEvents, ...sourceEvents, ...communityCivicEvents].map((event) => ({
     ...event,
     distanceLabel: event.distanceLabel ?? null,
   }));

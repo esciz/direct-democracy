@@ -7,7 +7,6 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { canUserCreatePoll, canUserCreatePublicPost } from "@/lib/server/auth-guards";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getFeedPosts, type FeedMode } from "@/lib/feed/posts";
-import { mockPosts } from "@/lib/mock-data";
 import { withBoundedFallback } from "@/lib/server/async-fallback";
 
 type PostsPageProps = {
@@ -44,7 +43,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
       label: "poll creation permission",
       timeoutMs: 1000,
     }),
-    withBoundedFallback(getFeedPosts(view, user.id), mockPosts.slice(0, 12), {
+    withBoundedFallback(getFeedPosts(view, user.id), [], {
       label: "post feed",
       timeoutMs: 1600,
     }),

@@ -4,7 +4,6 @@ import { PetitionDetail } from "@/components/domain/petition-detail";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getContactOfficialsPanelData } from "@/lib/contact/store";
-import { mockPollVotes } from "@/lib/mock-data";
 import { getDraftLegislationByPetitionId } from "@/lib/petitions/legislation";
 import { getPetitionById } from "@/lib/petitions/store";
 import { getStoredPollVotes } from "@/lib/polls/store";
@@ -68,12 +67,6 @@ function getStatusMessage(error?: string, signed?: string, sponsorship?: string,
 }
 
 export default async function PetitionDetailPage({ params, searchParams }: PetitionDetailPageProps) {
-  const allowDemoData = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
-
-  if (!allowDemoData) {
-    notFound();
-  }
-
   const user = await getCurrentUser();
   const resolvedParams = await params;
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
@@ -98,7 +91,7 @@ export default async function PetitionDetailPage({ params, searchParams }: Petit
   });
   const votedOnRelatedPoll =
     resolvedSearchParams?.fromPollNotification === "1" && typeof resolvedSearchParams.pollId === "string"
-      ? [...(await getStoredPollVotes()), ...mockPollVotes].some(
+      ? (await getStoredPollVotes()).some(
           (vote) => vote.pollId === resolvedSearchParams.pollId && vote.userId === user.id,
         )
       : false;

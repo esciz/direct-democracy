@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-14T22:55:27.878Z",
+  "generated_at": "2026-07-24T13:04:53.455Z",
   "live_fetch_status": "blocked",
   "session_status": "stale_blocked_session",
   "last_successful_live_fetch_at": "2026-06-14T18:31:17.117Z",
-  "last_successful_parse_at": "2026-06-14T22:55:27.124Z",
+  "last_successful_parse_at": "2026-07-24T03:57:54.368Z",
   "records_served_from_cache": 117,
   "blocked_unique_urls": 63,
   "next_recommended_action": "Cached Nevada SoS records remain usable. Refresh the live session with npm run nv-sos:bootstrap before the next live acquisition window.",

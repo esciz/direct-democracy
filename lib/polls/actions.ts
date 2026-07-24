@@ -7,7 +7,6 @@ import { getCurrentUser } from "@/lib/server/auth-session";
 import { getStoredVoteQuestions, setStoredVoteQuestions } from "@/lib/feed/quick-votes";
 import { createFolloweeNotificationsForMajorAction, createPollConvertedToPetitionNotifications } from "@/lib/notifications/store";
 import { getPollPromotionRecord, getStoredPollPromotions, POLL_PROMOTION_THRESHOLD, setStoredPollPromotions } from "@/lib/polls/promotions";
-import { mockPollVotes } from "@/lib/mock-data";
 import { buildPollSeed, getPollById, getStoredPolls, getStoredPollVotes, setStoredPolls, setStoredPollVotes } from "@/lib/polls/store";
 import { getStoredPetitions, setStoredPetitions } from "@/lib/petitions/store";
 import type { ContextAttachmentSummary, PetitionSummary, PollVoteSummary, VoteQuestionCategory, VoteQuestionScope, VoteQuestionSummary } from "@/types/domain";
@@ -368,7 +367,7 @@ export async function promotePollToPetition(formData: FormData) {
     },
     ...promotions.filter((entry) => entry.pollId !== pollId),
   ]);
-  const pollVotes = [...(await getStoredPollVotes()), ...mockPollVotes];
+  const pollVotes = await getStoredPollVotes();
   const notifiedUserIds = [...new Set(pollVotes.filter((vote) => vote.pollId === pollId).map((vote) => vote.userId))];
 
   await createPollConvertedToPetitionNotifications({

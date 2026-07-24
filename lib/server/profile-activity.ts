@@ -6,7 +6,6 @@ import { getAllCommunityEvents } from "@/lib/community/events";
 import { getRecommendedDebatesForUser } from "@/lib/debates/recommendations";
 import { getAllDebatesForTrust } from "@/lib/debates/store";
 import { getCreatedPosts } from "@/lib/feed/posts";
-import { mockPosts } from "@/lib/mock-data";
 import { getContentDetailHref } from "@/lib/news/links";
 import { getAllPetitions } from "@/lib/petitions/store";
 import type { DebateRecommendationSummary } from "@/types/domain";
@@ -90,7 +89,7 @@ export async function getUserCivicActivityCollection(userId: string): Promise<Ci
     getRecommendedDebatesForUser(userId, { limit: 3 }),
   ]);
 
-  const posts = [...(postsResult.status === "fulfilled" ? postsResult.value : []), ...mockPosts].filter((post) => post.authorId === userId);
+  const posts = (postsResult.status === "fulfilled" ? postsResult.value : []).filter((post) => post.authorId === userId);
   const petitions = (petitionsResult.status === "fulfilled" ? petitionsResult.value : []).filter((petition) => petition.creatorId === userId);
   const events = (eventsResult.status === "fulfilled" ? eventsResult.value : []).filter((event) => event.sponsorUserId === userId);
   const debates = (debatesResult.status === "fulfilled" ? debatesResult.value : []).filter((debate) => debate.createdByUserId === userId);

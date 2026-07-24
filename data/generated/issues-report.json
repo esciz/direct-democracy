@@ -1,38 +1,37 @@
 {
-  "generatedAt": "2026-06-19T16:24:42.703Z",
+  "generatedAt": "2026-07-24T13:04:50.103Z",
   "runtimePath": "data/generated/issues-runtime.json",
   "auditPath": "data/generated/issues-audit-report.json",
   "counts": {
-    "runtimeIssueCount": 17,
-    "publicSourceBackedCount": 17,
+    "runtimeIssueCount": 16,
+    "publicSourceBackedCount": 16,
     "demoFallbackCount": 38,
     "hiddenDemoCount": 38,
-    "productionVisibleIssueCount": 17,
+    "productionVisibleIssueCount": 16,
     "issuesWithMeetings": 12,
-    "issuesWithVotes": 8,
+    "issuesWithVotes": 10,
     "issuesWithCourtRecords": 1,
     "issuesNeedingReview": 15,
     "issuesMissingPlainEnglishTitle": 0,
     "issuesMissingSourceLinks": 0
   },
   "issuesByJurisdiction": {
-    "Across the platform": 12,
+    "Across the platform": 14,
     "Nevada": 1,
-    "Washoe County, NV": 3,
-    "Carson City, NV": 1
+    "Elko County, NV": 1
   },
   "issuesByCategory": {
     "Budget": 1,
     "Taxes": 1,
-    "Other": 11,
-    "Schools": 1,
-    "Transportation": 1,
-    "Business Regulation": 1,
-    "Zoning": 1,
+    "Other": 9,
     "Housing": 1,
     "Public Safety": 1,
-    "Courts and Legal Rights": 1,
+    "Zoning": 1,
+    "Transportation": 1,
+    "Business Regulation": 1,
+    "Schools": 1,
     "Utilities": 1,
+    "Courts and Legal Rights": 1,
     "Labor": 1,
     "Healthcare": 1,
     "Environment": 1,
@@ -52,43 +51,94 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 204,
-        "agendaItems": 634,
-        "votingCards": 204,
+        "meetings": 191,
+        "agendaItems": 470,
+        "votingCards": 191,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 36,
+        "votes": 45,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 317,
+        "spendingRecords": 305,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 634
+        "sourceDocuments": 470
       }
     },
     {
-      "id": "issue_real_school-safety",
-      "issueText": "School Safety",
+      "id": "issue_real_affordable-housing",
+      "issueText": "Affordable Housing",
       "jurisdictionName": "Across the platform",
       "categories": [
-        "Schools"
+        "Housing"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 10,
-        "agendaItems": 350,
-        "votingCards": 10,
+        "meetings": 101,
+        "agendaItems": 231,
+        "votingCards": 101,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 2,
+        "votes": 40,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 28,
+        "spendingRecords": 55,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 350
+        "sourceDocuments": 231
+      }
+    },
+    {
+      "id": "issue_real_public-safety",
+      "issueText": "Public Safety",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Public Safety"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 74,
+        "agendaItems": 256,
+        "votingCards": 74,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 29,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 95,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 256
+      }
+    },
+    {
+      "id": "issue_real_land-use-and-zoning",
+      "issueText": "Land Use and Zoning",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Zoning",
+        "Other"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 76,
+        "agendaItems": 238,
+        "votingCards": 76,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 35,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 22,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 238
       }
     },
     {
@@ -104,94 +154,68 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 59,
-        "agendaItems": 278,
-        "votingCards": 59,
+        "meetings": 61,
+        "agendaItems": 210,
+        "votingCards": 61,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 19,
+        "votes": 17,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 47,
+        "spendingRecords": 48,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 278
+        "sourceDocuments": 210
       }
     },
     {
-      "id": "issue_real_land-use-and-zoning",
-      "issueText": "Land Use and Zoning",
+      "id": "issue_real_school-safety",
+      "issueText": "School Safety",
       "jurisdictionName": "Across the platform",
       "categories": [
-        "Zoning",
-        "Other"
+        "Schools"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 62,
-        "agendaItems": 240,
-        "votingCards": 62,
+        "meetings": 42,
+        "agendaItems": 149,
+        "votingCards": 42,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 35,
+        "votes": 8,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 19,
+        "spendingRecords": 21,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 240
+        "sourceDocuments": 149
       }
     },
     {
-      "id": "issue_real_affordable-housing",
-      "issueText": "Affordable Housing",
+      "id": "issue_real_water-access",
+      "issueText": "Water Access",
       "jurisdictionName": "Across the platform",
       "categories": [
-        "Housing"
+        "Utilities"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 75,
-        "agendaItems": 196,
-        "votingCards": 75,
+        "meetings": 19,
+        "agendaItems": 64,
+        "votingCards": 19,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 32,
+        "votes": 6,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 55,
+        "spendingRecords": 20,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 196
-      }
-    },
-    {
-      "id": "issue_real_public-safety",
-      "issueText": "Public Safety",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Public Safety"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 52,
-        "agendaItems": 157,
-        "votingCards": 52,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 24,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 90,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 157
+        "sourceDocuments": 64
       }
     },
     {
@@ -207,7 +231,7 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 0,
-        "agendaItems": 3,
+        "agendaItems": 1,
         "votingCards": 0,
         "courtCases": 25,
         "communitySubmissions": 0,
@@ -217,32 +241,7 @@
         "spendingRecords": 1,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 28
-      }
-    },
-    {
-      "id": "issue_real_water-access",
-      "issueText": "Water Access",
-      "jurisdictionName": "Washoe County, NV",
-      "categories": [
-        "Utilities"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 12,
-        "agendaItems": 56,
-        "votingCards": 12,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 2,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 18,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 56
+        "sourceDocuments": 26
       }
     },
     {
@@ -256,24 +255,24 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 7,
-        "agendaItems": 55,
-        "votingCards": 7,
+        "meetings": 13,
+        "agendaItems": 41,
+        "votingCards": 13,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 1,
+        "votes": 2,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 18,
+        "spendingRecords": 16,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 55
+        "sourceDocuments": 41
       }
     },
     {
       "id": "issue_real_healthcare-access",
       "issueText": "Healthcare Access",
-      "jurisdictionName": "Washoe County, NV",
+      "jurisdictionName": "Across the platform",
       "categories": [
         "Healthcare"
       ],
@@ -281,18 +280,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 3,
-        "agendaItems": 52,
-        "votingCards": 3,
+        "meetings": 8,
+        "agendaItems": 32,
+        "votingCards": 8,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 0,
+        "votes": 1,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 5,
+        "spendingRecords": 7,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 52
+        "sourceDocuments": 32
       }
     },
     {
@@ -308,7 +307,7 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 5,
-        "agendaItems": 42,
+        "agendaItems": 15,
         "votingCards": 5,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -318,13 +317,13 @@
         "spendingRecords": 5,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 42
+        "sourceDocuments": 15
       }
     },
     {
-      "id": "issue_real_education",
-      "issueText": "Education",
-      "jurisdictionName": "Carson City, NV",
+      "id": "issue_real_government-accountability",
+      "issueText": "Government Accountability",
+      "jurisdictionName": "Across the platform",
       "categories": [
         "Other"
       ],
@@ -332,9 +331,34 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 1,
-        "agendaItems": 28,
-        "votingCards": 1,
+        "meetings": 4,
+        "agendaItems": 16,
+        "votingCards": 4,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 2,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 16
+      }
+    },
+    {
+      "id": "issue_real_education",
+      "issueText": "Education",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Other"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 0,
+        "agendaItems": 17,
+        "votingCards": 0,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 0,
@@ -343,24 +367,23 @@
         "spendingRecords": 2,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 28
+        "sourceDocuments": 17
       }
     },
     {
       "id": "issue_real_elections",
       "issueText": "Elections",
-      "jurisdictionName": "Across the platform",
+      "jurisdictionName": "Elko County, NV",
       "categories": [
-        "Elections",
-        "Other"
+        "Elections"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 0,
-        "agendaItems": 25,
-        "votingCards": 0,
+        "meetings": 1,
+        "agendaItems": 4,
+        "votingCards": 1,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 0,
@@ -369,57 +392,7 @@
         "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 25
-      }
-    },
-    {
-      "id": "issue_real_government-accountability",
-      "issueText": "Government Accountability",
-      "jurisdictionName": "Washoe County, NV",
-      "categories": [
-        "Other"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 2,
-        "agendaItems": 18,
-        "votingCards": 2,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 0,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 0,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 18
-      }
-    },
-    {
-      "id": "issue_real_growth-and-infrastructure",
-      "issueText": "Growth and Infrastructure",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Other"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 0,
-        "agendaItems": 15,
-        "votingCards": 0,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 0,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 0,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 15
+        "sourceDocuments": 4
       }
     },
     {
@@ -434,7 +407,7 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 0,
-        "agendaItems": 6,
+        "agendaItems": 5,
         "votingCards": 0,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -444,7 +417,7 @@
         "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 6
+        "sourceDocuments": 5
       }
     },
     {
@@ -454,12 +427,12 @@
       "categories": [
         "Other"
       ],
-      "reviewStatus": "generated",
+      "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 0,
-        "agendaItems": 1,
+        "agendaItems": 3,
         "votingCards": 0,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -469,7 +442,7 @@
         "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 1
+        "sourceDocuments": 3
       }
     }
   ],

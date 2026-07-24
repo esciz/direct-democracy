@@ -1275,7 +1275,7 @@ async function CitizenIssueVoicesSection({
           })
         ) : (
           <div className="rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 p-5 text-sm text-slate-600">
-            No real citizen posts are available for this issue yet. Seeded demo voices are hidden outside explicit demo mode.
+            No verified resident contributions are available for this issue yet.
           </div>
         )}
       </div>

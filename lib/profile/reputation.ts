@@ -1,7 +1,6 @@
 import { seedUsers } from "@/lib/auth/mock-users";
 import { getAllComments } from "@/lib/feed/comments";
 import { getCreatedPosts } from "@/lib/feed/posts";
-import { mockPosts } from "@/lib/mock-data";
 import { getUserSocialSummary } from "@/lib/social/follows";
 import { getEffectivePostContentType } from "@/lib/truth/claim-flags";
 import { getAllTruthRatings, getRawTruthMeter } from "@/lib/truth/ratings";
@@ -117,8 +116,7 @@ async function getAllPostsForReputation(options?: { posts?: PostSummary[] }) {
     return options.posts;
   }
 
-  const createdPosts = await getCreatedPosts();
-  return [...createdPosts, ...mockPosts];
+  return getCreatedPosts();
 }
 
 async function getTrustedCitizenReputationSummary(

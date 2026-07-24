@@ -1,7 +1,5 @@
 import "server-only";
 
-import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
-import { getCommunityById, getDefaultCommunityForJurisdiction, seededCommunities } from "@/lib/community/communities";
 import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
@@ -61,64 +59,18 @@ function inferScopeFromJurisdiction(jurisdictionName: string): VoteQuestionScope
   return "local";
 }
 
-function buildCanonicalIssueSummary(issueText: string, user: AuthUser): PublicIssueHubSummary {
-  return {
-    id: `issue_topic_${slugifyIssueText(issueText)}`,
-    issueText,
-    plainTitle: issueText,
-    scope: inferScopeFromJurisdiction(user.jurisdictionName),
-    jurisdictionName: "Across the platform",
-    source: "curated",
-    createdAt: "2026-01-01T00:00:00.000Z",
-    upvoteCount: 0,
-    viewerHasUpvoted: false,
-    category: issueText,
-    sourceBacked: false,
-    sourceCount: 0,
-    linkedMeetingsCount: 0,
-    linkedVotesCount: 0,
-    linkedCourtRecordsCount: 0,
-    linkedAgendaItemsCount: 0,
-    linkedCommunitySubmissionCount: 0,
-    sourceDocumentCount: 0,
-    lastUpdatedAt: null,
-    whyThisMatters: getIssueTopicSummary(issueText),
-    showDemoBadge: true,
-  };
-}
-
 function getPublicDiscussionIssueSummaries() {
   return PUBLIC_DISCUSSION_ISSUES.map(publicDiscussionIssueToSummary);
 }
 
 export async function getIssueDirectoryForUser(user: AuthUser, options?: { communityId?: string; query?: string }): Promise<PublicIssueHubSummary[]> {
-  const community = options?.communityId ? getCommunityById(options.communityId) : getDefaultCommunityForJurisdiction(user.jurisdictionName);
+  void user;
+  void options?.communityId;
   const generatedIssueHubs = (await getIssueHubRecords())
     .filter((record) => record.sourceBacked)
     .map(issueHubRecordToTopIssueSummary);
   const publicDiscussionIssues = getPublicDiscussionIssueSummaries();
-  const demoIssues: PublicIssueHubSummary[] = PUBLIC_DEMO_DATA_ENABLED
-    ? [
-        ...(await getTopIssuesForUser(user, "all", community?.id)).map((issue) => ({
-          ...issue,
-          plainTitle: issue.issueText,
-          category: getCanonicalIssueText(issue.issueText),
-          sourceBacked: false,
-          sourceCount: 0,
-          linkedMeetingsCount: 0,
-          linkedVotesCount: 0,
-          linkedCourtRecordsCount: 0,
-          linkedAgendaItemsCount: 0,
-          linkedCommunitySubmissionCount: 0,
-          sourceDocumentCount: 0,
-          lastUpdatedAt: issue.createdAt,
-          whyThisMatters: getIssueTopicSummary(issue.issueText),
-          showDemoBadge: true,
-        } satisfies PublicIssueHubSummary)),
-        ...getCanonicalIssueTitles().map((issueText) => buildCanonicalIssueSummary(issueText, user)),
-      ]
-    : [];
-  const issues = dedupeIssues([...generatedIssueHubs, ...publicDiscussionIssues, ...demoIssues]);
+  const issues = dedupeIssues([...generatedIssueHubs, ...publicDiscussionIssues]);
 
   if (!options?.query?.trim()) {
     return issues;
@@ -171,62 +123,7 @@ export async function getIssueByRouteParam(user: AuthUser, issueParam: string, c
     return publicDiscussionMatch;
   }
 
-  if (!PUBLIC_DEMO_DATA_ENABLED) {
-    return null;
-  }
-
-  const issues = dedupeIssues(
-    communityId
-      ? (await getTopIssuesForUser(user, "all", communityId)).map((issue) => ({
-          ...issue,
-          plainTitle: issue.issueText,
-          category: getCanonicalIssueText(issue.issueText),
-          sourceBacked: false,
-          sourceCount: 0,
-          linkedMeetingsCount: 0,
-          linkedVotesCount: 0,
-          linkedCourtRecordsCount: 0,
-          linkedAgendaItemsCount: 0,
-          linkedCommunitySubmissionCount: 0,
-          sourceDocumentCount: 0,
-          lastUpdatedAt: issue.createdAt,
-          whyThisMatters: getIssueTopicSummary(issue.issueText),
-          showDemoBadge: true,
-        } satisfies PublicIssueHubSummary))
-      : (
-          await Promise.all(
-            seededCommunities.map((community) => getTopIssuesForUser(user, "all", community.id)),
-          )
-        ).flat().map((issue) => ({
-          ...issue,
-          plainTitle: issue.issueText,
-          category: getCanonicalIssueText(issue.issueText),
-          sourceBacked: false,
-          sourceCount: 0,
-          linkedMeetingsCount: 0,
-          linkedVotesCount: 0,
-          linkedCourtRecordsCount: 0,
-          linkedAgendaItemsCount: 0,
-          linkedCommunitySubmissionCount: 0,
-          sourceDocumentCount: 0,
-          lastUpdatedAt: issue.createdAt,
-          whyThisMatters: getIssueTopicSummary(issue.issueText),
-          showDemoBadge: true,
-        } satisfies PublicIssueHubSummary)),
-  );
-  const canonicalMatch = getCanonicalIssueTitles().find(
-    (title) =>
-      slugifyIssueText(title) === normalizedParam ||
-      normalizeIssueText(title) === normalizedParam ||
-      `issue_topic_${slugifyIssueText(title)}` === issueParam,
-  );
-
-  return (
-    issues.find((issue) => issue.id === issueParam) ??
-    issues.find((issue) => slugifyIssueText(issue.issueText) === normalizedParam || normalizeIssueText(issue.issueText) === normalizedParam) ??
-    (canonicalMatch ? buildCanonicalIssueSummary(canonicalMatch, user) : null) ??
-    null
-  );
+  return null;
 }
 
 export async function ensureIssueReferenceForUser(

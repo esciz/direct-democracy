@@ -181,6 +181,7 @@ function bodyMatchesCommunity(body: PublicBodyRecord, community: CommunitySummar
 function bodyIsNevadaStatewideOverlay(body: PublicBodyRecord) {
   const haystack = normalizeName(`${body.name} ${body.jurisdiction}`);
   return (
+    (body.level === "state" && normalizeName(body.jurisdiction).includes("nevada")) ||
     haystack.includes("nevada legislature") ||
     haystack.includes("nevada senate") ||
     haystack.includes("nevada assembly") ||

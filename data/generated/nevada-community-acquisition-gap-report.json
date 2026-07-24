@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-05T17:48:54.611Z",
-  "relationshipMapGeneratedAt": "2026-07-05T17:48:54.468Z",
+  "generatedAt": "2026-07-24T13:04:51.445Z",
+  "relationshipMapGeneratedAt": "2026-07-24T13:04:51.300Z",
   "purpose": "Prioritize Nevada communities that need additional local source acquisition before expansion.",
   "priorityOrder": [
     {
@@ -19,7 +19,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -38,7 +38,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -57,26 +57,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "white-pine-county",
-      "name": "White Pine County",
-      "kind": "county",
-      "href": "/community/white-pine-county",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -95,7 +76,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -114,7 +95,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -133,7 +114,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -152,7 +133,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -171,7 +152,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -190,7 +171,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -209,7 +190,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -228,7 +209,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -247,7 +228,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -266,7 +247,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -285,7 +266,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -304,7 +285,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -322,7 +303,25 @@
         "projects"
       ],
       "localDashboardRecords": 1,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
+      "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
+    },
+    {
+      "id": "white-pine-county",
+      "name": "White Pine County",
+      "kind": "county",
+      "href": "/community/white-pine-county",
+      "acquisitionGapScore": 8,
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "localDashboardRecords": 1,
+      "overlayDashboardRecords": 443,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
@@ -340,7 +339,7 @@
         "projects"
       ],
       "localDashboardRecords": 1,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
@@ -358,7 +357,7 @@
         "projects"
       ],
       "localDashboardRecords": 2,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
@@ -376,7 +375,7 @@
         "projects"
       ],
       "localDashboardRecords": 27,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -394,7 +393,7 @@
         "projects"
       ],
       "localDashboardRecords": 27,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -412,7 +411,7 @@
         "projects"
       ],
       "localDashboardRecords": 27,
-      "overlayDashboardRecords": 640,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -427,49 +426,8 @@
         "issues",
         "officials"
       ],
-      "localDashboardRecords": 57,
-      "overlayDashboardRecords": 640,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "elko-county",
-      "name": "Elko County",
-      "kind": "county",
-      "href": "/community/elko-county",
-      "acquisitionGapScore": 2,
-      "missingCategories": [
-        "issues",
-        "spending"
-      ],
-      "localDashboardRecords": 36,
-      "overlayDashboardRecords": 640,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "west-wendover",
-      "name": "West Wendover",
-      "kind": "city",
-      "href": "/community/west-wendover",
-      "acquisitionGapScore": 2,
-      "missingCategories": [
-        "issues",
-        "spending"
-      ],
-      "localDashboardRecords": 36,
-      "overlayDashboardRecords": 640,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "elko",
-      "name": "Elko",
-      "kind": "city",
-      "href": "/community/elko",
-      "acquisitionGapScore": 1,
-      "missingCategories": [
-        "issues"
-      ],
-      "localDashboardRecords": 150,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 43,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -477,12 +435,14 @@
       "name": "Carson City County",
       "kind": "county",
       "href": "/community/carson-city-county",
-      "acquisitionGapScore": 1,
+      "acquisitionGapScore": 3,
       "missingCategories": [
-        "votes"
+        "votes",
+        "issues",
+        "cases"
       ],
-      "localDashboardRecords": 603,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 524,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -490,12 +450,13 @@
       "name": "Carson City",
       "kind": "city",
       "href": "/community/carson-city",
-      "acquisitionGapScore": 1,
+      "acquisitionGapScore": 2,
       "missingCategories": [
-        "votes"
+        "votes",
+        "issues"
       ],
-      "localDashboardRecords": 610,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 539,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -505,8 +466,8 @@
       "href": "/community/clark-county",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 304,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 112,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -516,8 +477,8 @@
       "href": "/community/mesquite",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 304,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 112,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -527,8 +488,8 @@
       "href": "/community/boulder-city",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 304,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 112,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -538,19 +499,30 @@
       "href": "/community/laughlin",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 304,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 118,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
-      "id": "henderson",
-      "name": "Henderson",
-      "kind": "city",
-      "href": "/community/henderson",
+      "id": "elko-county",
+      "name": "Elko County",
+      "kind": "county",
+      "href": "/community/elko-county",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 402,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 129,
+      "overlayDashboardRecords": 443,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "west-wendover",
+      "name": "West Wendover",
+      "kind": "city",
+      "href": "/community/west-wendover",
+      "acquisitionGapScore": 0,
+      "missingCategories": [],
+      "localDashboardRecords": 129,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -560,8 +532,19 @@
       "href": "/community/north-las-vegas",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 455,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 188,
+      "overlayDashboardRecords": 443,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "henderson",
+      "name": "Henderson",
+      "kind": "city",
+      "href": "/community/henderson",
+      "acquisitionGapScore": 0,
+      "missingCategories": [],
+      "localDashboardRecords": 210,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -571,8 +554,19 @@
       "href": "/community/las-vegas",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 733,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 263,
+      "overlayDashboardRecords": 443,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "elko",
+      "name": "Elko",
+      "kind": "city",
+      "href": "/community/elko",
+      "acquisitionGapScore": 0,
+      "missingCategories": [],
+      "localDashboardRecords": 550,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -582,8 +576,8 @@
       "href": "/community/washoe-county",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 928,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 868,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -593,8 +587,8 @@
       "href": "/community/incline-village",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 928,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 868,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -604,8 +598,8 @@
       "href": "/community/sparks",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 947,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 887,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -615,8 +609,8 @@
       "href": "/community/reno",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 1013,
-      "overlayDashboardRecords": 640,
+      "localDashboardRecords": 960,
+      "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     }
   ]

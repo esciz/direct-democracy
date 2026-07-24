@@ -10,7 +10,6 @@ import { getQuickVoteCardsForUser } from "@/lib/feed/quick-votes";
 import { applyPostReactionState } from "@/lib/feed/reactions";
 import { getAllCreditBoosts } from "@/lib/engagement/credits";
 import { canonicalizeIssueTags } from "@/lib/issues/utils";
-import { mockPosts } from "@/lib/mock-data";
 import { getSafeReputationSummary } from "@/lib/profile/reputation";
 import { getAllPublicProfiles } from "@/lib/server/elections-context";
 import { getTrustedCitizenVisibilitySignal } from "@/lib/profile/reputation";
@@ -282,8 +281,7 @@ export const getCreatedPosts = cache(async (): Promise<PostSummary[]> => {
 });
 
 const getAllBasePosts = cache(async (): Promise<PostSummary[]> => {
-  const createdPosts = await getCreatedPosts();
-  return [...createdPosts, ...mockPosts];
+  return getCreatedPosts();
 });
 
 function getRoleBoost(post: PostSummary) {
@@ -438,7 +436,7 @@ const getFeedPostsCached = cache(
   const jurisdictionNames = jurisdictionKey ? jurisdictionKey.split("|").filter(Boolean) : null;
   const allowedJurisdictions = jurisdictionNames ? new Set(jurisdictionNames) : null;
   const posts = await applyPostReactionState(
-    [...createdPosts, ...mockPosts].filter((post) => (allowedJurisdictions ? allowedJurisdictions.has(post.jurisdictionName) : true)),
+    createdPosts.filter((post) => (allowedJurisdictions ? allowedJurisdictions.has(post.jurisdictionName) : true)),
     viewerUserId,
   );
   const [comments, truthRatings, followedUserIds] = await Promise.all([
@@ -607,7 +605,7 @@ const getFeedPostPreviewsCached = cache(
     const jurisdictionNames = jurisdictionKey ? jurisdictionKey.split("|").filter(Boolean) : null;
     const allowedJurisdictions = jurisdictionNames ? new Set(jurisdictionNames) : null;
     const previewPosts = await applyPostReactionState(
-      [...createdPosts, ...mockPosts].filter((post) => (allowedJurisdictions ? allowedJurisdictions.has(post.jurisdictionName) : true)),
+      createdPosts.filter((post) => (allowedJurisdictions ? allowedJurisdictions.has(post.jurisdictionName) : true)),
       viewerUserId,
     );
     const boosts = await getAllCreditBoosts();

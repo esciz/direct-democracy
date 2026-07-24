@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
 import { seedUsers } from "@/lib/auth/mock-users";
-import { getStoredVoteResponses } from "@/lib/feed/quick-votes";
+import { getAllVoteQuestions, getStoredVoteResponses } from "@/lib/feed/quick-votes";
 import { getPublicEndorsementsForUser } from "@/lib/candidates/endorsements";
 import { getCreditBalance } from "@/lib/engagement/credits";
 import { getCommunityGroupsForUser } from "@/lib/community/groups";
@@ -9,8 +9,7 @@ import { getRecentVotesForUser, getStructuredValueText, getUserProfileContent } 
 import { getEffectiveUserRole } from "@/lib/profile/role-progression";
 import { getUserReputationSummary } from "@/lib/profile/reputation";
 import { getFollowState } from "@/lib/social/follows";
-import { mockVoteQuestions, mockVoteResponses } from "@/lib/mock-data";
-import type { AuthUser, PublicOpinionSummary, PublicCitizenProfileSummary, VoteQuestionCategory, VoteResponseSummary } from "@/types/domain";
+import type { AuthUser, PublicOpinionSummary, PublicCitizenProfileSummary, VoteQuestionCategory, VoteQuestionSummary, VoteResponseSummary } from "@/types/domain";
 
 const PUBLIC_VISIBILITY_COOKIE = "dd_public_visibility";
 
@@ -65,10 +64,6 @@ export async function resolveUserVisibility(user: AuthUser): Promise<AuthUser> {
 function mergeVoteResponses(storedResponses: VoteResponseSummary[]) {
   const merged = new Map<string, VoteResponseSummary>();
 
-  for (const response of mockVoteResponses) {
-    merged.set(`${response.questionId}:${response.userId}`, response);
-  }
-
   for (const response of storedResponses) {
     merged.set(`${response.questionId}:${response.userId}`, response);
   }
@@ -76,7 +71,7 @@ function mergeVoteResponses(storedResponses: VoteResponseSummary[]) {
   return [...merged.values()];
 }
 
-function getPublicOpinionSummary(userId: string, responses: VoteResponseSummary[]): PublicOpinionSummary {
+function getPublicOpinionSummary(userId: string, responses: VoteResponseSummary[], questions: VoteQuestionSummary[]): PublicOpinionSummary {
   const categoryCounts: Record<VoteQuestionCategory, number> = {
     civic: 0,
     lifestyle: 0,
@@ -86,7 +81,7 @@ function getPublicOpinionSummary(userId: string, responses: VoteResponseSummary[
   const userResponses = responses.filter((response) => response.userId === userId);
 
   userResponses.forEach((response) => {
-    const question = mockVoteQuestions.find((entry) => entry.id === response.questionId);
+    const question = questions.find((entry) => entry.id === response.questionId);
 
     if (question) {
       categoryCounts[question.category] += 1;
@@ -105,7 +100,7 @@ function isPublicCitizenRole(role: AuthUser["role"]): role is PublicCitizenProfi
 
 export async function getPublicCitizenProfiles(viewer: AuthUser): Promise<PublicCitizenProfileSummary[]> {
   const overrides = await getVisibilityOverrides();
-  const storedResponses = await getStoredVoteResponses();
+  const [storedResponses, questions] = await Promise.all([getStoredVoteResponses(), getAllVoteQuestions()]);
   const mergedResponses = mergeVoteResponses(storedResponses);
   const visibleUsers = seedUsers
     .filter((user) => isPublicCitizenRole(user.role))
@@ -113,7 +108,8 @@ export async function getPublicCitizenProfiles(viewer: AuthUser): Promise<Public
       ...user,
       isAnonymousPublic: typeof overrides[user.id] === "boolean" ? !overrides[user.id] : user.isAnonymousPublic,
     }))
-    .filter((user) => !user.isAnonymousPublic);
+    .filter((user) => !user.isAnonymousPublic)
+    .filter((user) => mergedResponses.some((response) => response.userId === user.id));
 
   const profiles = await Promise.all(
     visibleUsers.map(async (user) => {
@@ -146,7 +142,7 @@ export async function getPublicCitizenProfiles(viewer: AuthUser): Promise<Public
         influenceLevel: reputation.influenceLevel,
         viewerIsFollowing: followState.viewerIsFollowing,
         viewerCanFollow: followState.viewerCanFollow,
-        publicOpinionSummary: getPublicOpinionSummary(user.id, mergedResponses),
+        publicOpinionSummary: getPublicOpinionSummary(user.id, mergedResponses, questions),
         topIssuesByScope: {
           local: localIssueValues,
           state: stateIssueValues,

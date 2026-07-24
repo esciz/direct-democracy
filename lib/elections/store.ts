@@ -1,7 +1,6 @@
 import { seedUsers } from "@/lib/auth/mock-users";
 import { attachEndorsementsToCampaigns } from "@/lib/candidates/endorsements";
 import { getBallotInitiativesForElection } from "@/lib/elections/initiatives";
-import { mockOfficials, mockPosts } from "@/lib/mock-data";
 import { getCandidatePromises } from "@/lib/officials/promises";
 import { getFollowState, getUserSocialSummary } from "@/lib/social/follows";
 import type {
@@ -12,6 +11,7 @@ import type {
   OfficialPositionSummary,
   OfficialProfileDetail,
   OfficialProfileSummary,
+  PostSummary,
   PublicProfileSummary,
 } from "@/types/domain";
 
@@ -1088,9 +1088,7 @@ export async function getCandidateProfileById(id: string, context: ElectionsStor
     return null;
   }
   const campaignsWithEndorsements = await attachEndorsementsToCampaigns(campaigns);
-  const recentPosts = profile.claimedByUserId
-    ? mockPosts.filter((post) => post.authorId === profile.claimedByUserId).slice(0, 3)
-    : [];
+  const recentPosts: PostSummary[] = [];
   const campaignPromises = await getCandidatePromises(id);
   const baseFollowerCount = profile.claimedByUserId
     ? (seedUsers.find((user) => user.id === profile.claimedByUserId)?.followerCount ?? 0)
@@ -1125,96 +1123,30 @@ export async function getOfficials(context: ElectionsStoreContext = {}): Promise
   return profiles
     .filter((profile) => profile.profileType === "official" || profile.profileType === "incumbentCandidate")
     .map((profile) => {
-      const seedOfficial = mockOfficials.find((official) => official.name === profile.name);
       const currentPosition = positions.find((position) => position.publicProfileId === profile.id && position.isCurrent);
 
       return {
         id: profile.id,
         claimedByUserId: profile.claimedByUserId,
         name: profile.name,
-        officeTitle: currentPosition?.officeTitle ?? seedOfficial?.officeTitle ?? "Official",
+        officeTitle: currentPosition?.officeTitle ?? "Official",
         jurisdictionName: profile.jurisdictionName,
-        party: profile.partyText ?? seedOfficial?.party ?? "Nonpartisan",
+        party: profile.partyText ?? "Nonpartisan",
         bio: profile.bio,
         profileImageUrl: profile.profileImageUrl,
-        platformSummary: seedOfficial?.platformSummary ?? profile.bio,
-        donationUrl: profile.donationUrl ?? seedOfficial?.donationUrl,
-        websiteUrl: profile.websiteUrl ?? seedOfficial?.websiteUrl,
-        followerCount: seedOfficial?.followerCount ?? 0,
-        followThroughScore: seedOfficial?.followThroughScore ?? null,
-        truthScore: seedOfficial?.truthScore,
-        fundingBreakdown:
-          profile.id === "profile_elena_ramirez"
-            ? buildFundingBreakdown([
-                { label: "Individual / Small Donors", percentage: 34 },
-                { label: "Large Individual Donors", percentage: 24 },
-                { label: "PACs / Committees", percentage: 21 },
-                { label: "Industry / Organization", percentage: 12 },
-                { label: "Self-funded", percentage: 9 },
-              ])
-            : profile.id === "profile_david_park"
-              ? buildFundingBreakdown([
-                  { label: "Individual / Small Donors", percentage: 41 },
-                  { label: "Large Individual Donors", percentage: 14 },
-                  { label: "PACs / Committees", percentage: 12 },
-                  { label: "Industry / Organization", percentage: 10 },
-                  { label: "Self-funded", percentage: 23 },
-                ])
-              : profile.id === "profile_adrian_castillo"
-                ? buildFundingBreakdown([
-                    { label: "Individual / Small Donors", percentage: 29 },
-                    { label: "Large Individual Donors", percentage: 21 },
-                    { label: "PACs / Committees", percentage: 18 },
-                    { label: "Industry / Organization", percentage: 24 },
-                    { label: "Self-funded", percentage: 8 },
-                  ])
-              : undefined,
-        industryFundingBreakdown:
-          profile.id === "profile_elena_ramirez"
-            ? buildIndustryFundingBreakdown([
-                { label: "Real Estate", percentage: 28 },
-                { label: "Construction", percentage: 23 },
-                { label: "Hospitality", percentage: 18 },
-                { label: "Healthcare", percentage: 12 },
-              ])
-            : profile.id === "profile_david_park"
-              ? buildIndustryFundingBreakdown([
-                  { label: "Transportation", percentage: 26 },
-                  { label: "Real Estate", percentage: 19 },
-                  { label: "Public Safety Organizations", percentage: 14 },
-                  { label: "Small Business", percentage: 12 },
-                ])
-              : profile.id === "profile_adrian_castillo"
-                ? buildIndustryFundingBreakdown([
-                    { label: "Labor", percentage: 18 },
-                    { label: "Healthcare", percentage: 16 },
-                    { label: "Real Estate", percentage: 14 },
-                    { label: "Clean Energy", percentage: 12 },
-                    { label: "Defense / Aerospace", percentage: 10 },
-                  ])
-              : undefined,
-        pollingComparisons:
-          profile.id === "profile_elena_ramirez"
-            ? [
-                {
-                  source: "Silver State Pulse",
-                  fieldDate: "2026-03-18",
-                  externalResult: "Ramirez 43% · Dalton 35%",
-                  platformSentiment: "Platform sentiment around Ramirez is modestly more favorable",
-                  differenceLabel: "Demo comparison only. Platform sentiment is slightly warmer than the external poll.",
-                },
-              ]
-            : profile.id === "profile_adrian_castillo"
-              ? [
-                  {
-                    source: "Southwest Congressional Monitor",
-                    fieldDate: "2026-03-30",
-                    externalResult: "Castillo 49% approve · 41% disapprove",
-                    platformSentiment: "Platform sentiment is more favorable on healthcare and ethics votes, but weaker after the housing-voucher budget compromise.",
-                    differenceLabel: "Demo comparison only. Platform sentiment is stronger on ethics and drug-price votes than the external district poll.",
-                  },
-                ]
-            : undefined,
+        platformSummary: profile.bio,
+        donationUrl: profile.donationUrl,
+        websiteUrl: profile.websiteUrl,
+        followerCount: 0,
+        followThroughScore: null,
+        truthScore: {
+          media: null,
+          moderators: null,
+          citizens: null,
+        },
+        fundingBreakdown: undefined,
+        industryFundingBreakdown: undefined,
+        pollingComparisons: undefined,
         isClaimed: profile.isClaimed,
       };
     })
@@ -1229,9 +1161,7 @@ export async function getOfficialById(id: string, context: ElectionsStoreContext
     return null;
   }
 
-  const recentPosts = official.claimedByUserId
-    ? mockPosts.filter((post) => post.authorId === official.claimedByUserId).slice(0, 3)
-    : [];
+  const recentPosts: PostSummary[] = [];
   const social = official.claimedByUserId
     ? await getUserSocialSummary(official.claimedByUserId, official.followerCount)
     : { followerCount: official.followerCount, followingCount: 0, trustedProgressByCommunity: [] };

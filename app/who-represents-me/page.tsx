@@ -151,7 +151,7 @@ function OfficialCard({ item, groupKey, positionIndex }: { item: RepresentativeL
   return (
     <article className="rounded-[1.25rem] border border-slate-200 bg-white p-4">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">Real data</span>
+        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">Source-linked roster</span>
         <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-700">Current official</span>
         <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-700">Hierarchy {positionIndex}</span>
         <span className="rounded-full bg-civic-50 px-2.5 py-1 text-[11px] font-semibold text-civic-700">{confidenceLabel(item.confidenceScore)}</span>
@@ -301,24 +301,14 @@ export default async function WhoRepresentsMePage({ searchParams }: WhoRepresent
       {lookup.groups.map((group) => <GroupSection key={group.key} group={group} />)}
 
       <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Coverage notes</p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">How this lookup decides what to show</h2>
-        <div className="mt-5 grid gap-3 md:grid-cols-2">
-          {lookup.adapterStubs.map((adapter) => (
-            <article key={adapter.key} className="rounded-[1.25rem] border border-white/10 bg-white/[0.04] p-4">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-1 text-[11px] font-semibold text-slate-300">
-                  {adapter.boundarySupport === "ready" ? "Boundary ready" : "Adapter stub"}
-                </span>
-              </div>
-              <h3 className="mt-3 text-base font-semibold text-slate-50">{adapter.label}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{adapter.notes}</p>
-              <a href={adapter.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-sm font-semibold text-cyan-200 hover:text-cyan-100">
-                {adapter.sourceName}
-              </a>
-            </article>
-          ))}
-        </div>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">Coverage limit</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Confirm district-specific offices</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300">
+          Exact district boundaries are not available for every Nevada address yet. Statewide and jurisdiction-wide officials can be shown with source links, but district-specific legislators, trustees, commissioners, judges, and ward representatives may be missing or approximate.
+        </p>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-400">
+          Open the source on an official card before relying on the result. The lookup will become address-precise as official GIS boundary layers are imported and reviewed.
+        </p>
       </section>
     </div>
   );

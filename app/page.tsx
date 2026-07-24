@@ -16,7 +16,6 @@ import { getFeedPollPreviews } from "@/lib/polls/store";
 import { getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
 import { getDefaultCommunityForUser } from "@/lib/community/communities";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
-import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getFeedDebatePreviews } from "@/lib/debates/store";
 import { getDailyVoteExperience } from "@/lib/feed/quick-votes";
 import { getContextualPostPreviews, getPerspectiveType } from "@/lib/feed/posts";
@@ -205,7 +204,6 @@ export default async function HomePage() {
     elections,
     favoriteRecords,
     dailyVotes,
-    topIssues,
     events,
     previewPosts,
     previewDebates,
@@ -223,7 +221,6 @@ export default async function HomePage() {
       remainingQuestions: 0,
       dailyQuestions: [],
     })),
-    getTopIssuesForUser(user, "all", defaultCommunity.id),
     getDiscoverableEventsForUser(user, { scope: "all", limit: 8 }),
     getContextualPostPreviews({
       viewerUserId: user.id,
@@ -254,25 +251,25 @@ export default async function HomePage() {
   const upcomingElectionItems = buildUpcomingElectionItems(upcomingElections, defaultCommunity, user);
   const canVoteNow = canUserVote(user);
   const votePreviewQuestions = dailyVotes.dailyQuestions.slice(0, 3);
+  const generatedIssues = issueDirectory.filter((issue) => issue.sourceBacked && (issue.sourceCount ?? 0) > 0);
 
-  const activeIssues: HomeTakeActionIssue[] = topIssues.slice(0, 4).map((issue) => ({
-    id: `issue-${issue.id}`,
+  const activeIssues: HomeTakeActionIssue[] = generatedIssues.map((issue) => ({
+    id: issue.id,
     title: issue.issueText,
-    summary: `${issue.upvoteCount} people are elevating this across your civic view.`,
-    meta: issue.jurisdictionName,
+    summary: issue.whyThisMatters ?? "Generated from reviewed civic records linked to this issue.",
+    meta: `${issue.sourceCount ?? 0} source${issue.sourceCount === 1 ? "" : "s"} · ${issue.linkedMeetingsCount ?? 0} meeting${issue.linkedMeetingsCount === 1 ? "" : "s"}`,
     href: `/issues/${slugifyIssueText(issue.issueText)}`,
   }));
 
   const savedIssues: HomeTakeActionIssue[] = favoriteRecords
     .filter((record) => record.targetType === "issue")
-    .map((record) => issueDirectory.find((entry) => entry.id === record.targetId))
+    .map((record) => generatedIssues.find((entry) => entry.id === record.targetId))
     .filter((issue): issue is NonNullable<typeof issue> => Boolean(issue))
-    .slice(0, 4)
     .map((issue) => ({
-      id: `saved-issue-${issue.id}`,
+      id: issue.id,
       title: issue.issueText,
-      summary: `${issue.upvoteCount} people are elevating this issue.`,
-      meta: issue.jurisdictionName,
+      summary: issue.whyThisMatters ?? "Generated from reviewed civic records linked to this issue.",
+      meta: `${issue.sourceCount ?? 0} source${issue.sourceCount === 1 ? "" : "s"} · ${issue.linkedMeetingsCount ?? 0} meeting${issue.linkedMeetingsCount === 1 ? "" : "s"}`,
       href: `/issues/${slugifyIssueText(issue.issueText)}`,
     }));
 
@@ -368,7 +365,7 @@ export default async function HomePage() {
         communityName={defaultCommunity.name}
         communityHref={`/my-community?communityId=${defaultCommunity.id}`}
         primaryElectionHref={upcomingElectionItems[0]?.href ?? "/elections"}
-        primaryIssueHref={topIssues[0] ? `/issues/${slugifyIssueText(topIssues[0].issueText)}` : "/issues"}
+        primaryIssueHref={generatedIssues[0] ? `/issues/${slugifyIssueText(generatedIssues[0].issueText)}` : "/issues"}
       />
       <HomeTakeActionCard
         communityName={defaultCommunity.name}

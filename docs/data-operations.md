@@ -203,6 +203,8 @@ npm run dataops:pipeline -- --limit=25
 npm run dataops:pipeline -- --from=verify-cache --to=ocr
 npm run dataops:pipeline -- --offline --from=verify-cache
 npm run dataops:daily
+npm run sources:refresh:daily
+npm run site:launch-audit
 npm run dataops:dev
 ```
 
@@ -210,7 +212,23 @@ The orchestrator records a run ID, network status, stage start/end/status, skips
 
 ## Scheduled Automation
 
-`.github/workflows/dataops-daily.yml` provides a daily and manual GitHub Actions hook. It runs a network smoke test, executes the DataOps pipeline, refreshes Carson City official-directory sources when not offline, typechecks the repo, and uploads generated DataOps artifacts. It does not push generated files to the primary branch; durable production storage remains a future storage adapter concern.
+The canonical source refresh runs once daily at 6:00 AM America/Los_Angeles through the local Codex automation. Daily is recommended because public bodies can post, cancel, or revise meetings with only a few days of notice. Do not add another recurring trigger without first disabling the existing one.
+
+The daily process is:
+
+1. Refresh all registered Nevada meeting calendars, including browser-rendered official pages.
+2. Import direct calendar records and merge reviewed official-source caches.
+3. Check the source registry and retrieve a bounded batch of changed documents.
+4. Verify cache content, extract text, and run bounded OCR where required.
+5. Regenerate accountability records, all source-backed issue hubs, community relationships, and public event views.
+6. Run issue, event-freshness, browse no-demo, source-health, DataOps freshness, and public site integrity audits.
+
+The public site integrity artifact is `data/generated/public-site-integrity-audit.json`. It separates critical code-integrity regressions from high-severity collection barriers so a clean build cannot be mistaken for complete source coverage. In particular, a registered provider with zero parsed records is reported as a barrier even when no exception was thrown.
+
+Meeting calendars and source-health checks run daily. Nevada SOS campaign-finance acquisition should run weekly, or sooner during an active filing window, because it requires a usable browser challenge session. The daily pipeline regenerates the cached finance quality and operational-status reports without retrying blocked live URLs. When `data/generated/nv-sos-operational-status.json` reports `stale_blocked_session`, run `npm run nv-sos:bootstrap` interactively and then `npm run nv-sos:all`; do not schedule repeated blocked fetches.
+7. Write `data/generated/dataops-pipeline-run.json`, including sources checked, upcoming meetings, source-backed issues, and provider failures.
+
+`.github/workflows/dataops-daily.yml` remains a manual recovery hook. It can execute the same pipeline, refresh Carson City official-directory sources, typecheck the repo, and upload generated artifacts, but it has no recurring schedule. It does not push generated files to the primary branch; durable production storage remains a future storage adapter concern.
 
 `.github/workflows/identity-worker.yml` provides the first durable trust-service worker path. It runs from a protected environment, diagnoses database reachability, claims bounded durable jobs, heartbeats through the existing identity queue, and uploads only non-sensitive worker/trust audit artifacts.
 

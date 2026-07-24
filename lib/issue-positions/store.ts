@@ -98,6 +98,39 @@ function mapPosition(row: IssuePositionRow): PublicIssuePositionSummary | null {
   };
 }
 
+function canonicalSubjectIdentity(name: string) {
+  const [left, right] = name.split(",", 2);
+  const orderedName = right ? `${right.trim()} ${left.trim()}` : name;
+  const tokens = orderedName
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter((token) => token.length > 1 && !["jr", "sr", "ii", "iii", "iv"].includes(token));
+  const first = tokens.at(0) ?? "";
+  const last = tokens.at(-1) ?? "";
+  return `${last}:${first.slice(0, 1)}`;
+}
+
+function dedupePublicPositions(positions: PublicIssuePositionSummary[]) {
+  const seen = new Set<string>();
+
+  return positions.filter((position) => {
+    const key = [
+      canonicalSubjectIdentity(position.subject.name),
+      position.issueSlug,
+      position.stance.toLowerCase(),
+    ].join("|");
+
+    if (seen.has(key)) {
+      return false;
+    }
+
+    seen.add(key);
+    return true;
+  });
+}
+
 async function findPublicIssuePositions(where: Prisma.IssuePositionWhereInput) {
   const rows = await prisma.issuePosition.findMany({
     where: {
@@ -108,7 +141,9 @@ async function findPublicIssuePositions(where: Prisma.IssuePositionWhereInput) {
     take: 100,
   });
 
-  return rows.map(mapPosition).filter((position): position is PublicIssuePositionSummary => Boolean(position));
+  return dedupePublicPositions(
+    rows.map(mapPosition).filter((position): position is PublicIssuePositionSummary => Boolean(position)),
+  );
 }
 
 export async function getCandidateIssuePositions(candidateOrProfileId: string) {

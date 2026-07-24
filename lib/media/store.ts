@@ -4,7 +4,6 @@ import { cache } from "react";
 import { seedUsers } from "@/lib/auth/mock-users";
 import { getCreatedPosts } from "@/lib/feed/posts";
 import { applyPostReactionState } from "@/lib/feed/reactions";
-import { mockPosts } from "@/lib/mock-data";
 import type {
   MediaBiasRatingSummary,
   MediaBiasRatingValue,
@@ -235,7 +234,7 @@ const getFeedMediaPreviewsCached = cache(
     const jurisdictionNames = jurisdictionKey ? jurisdictionKey.split("|").filter(Boolean) : null;
     const allowedJurisdictions = jurisdictionNames ? new Set(jurisdictionNames) : null;
     const createdPosts = await getCreatedPosts();
-    const allPosts = await applyPostReactionState([...createdPosts, ...mockPosts], viewerUserId);
+    const allPosts = await applyPostReactionState(createdPosts, viewerUserId);
     const biasLabels = await getMediaBiasLabelSnapshotsCached();
 
     const previews = allPosts

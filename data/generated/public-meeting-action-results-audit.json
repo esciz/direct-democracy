@@ -1,45 +1,45 @@
 {
-  "generatedAt": "2026-06-26T14:11:28.757Z",
+  "generatedAt": "2026-07-24T13:04:43.745Z",
   "totals": {
-    "meetingItemsScanned": 2885,
-    "actionResultsExtracted": 322,
-    "withMotion": 52,
-    "withMover": 50,
-    "withSeconder": 59,
-    "withOutcome": 310,
-    "withVoteCount": 13,
-    "withNamedVotes": 9,
-    "unanimousActions": 43,
-    "needsReview": 58,
-    "unlinkedToAgendaItem": 124
+    "meetingItemsScanned": 1658,
+    "actionResultsExtracted": 329,
+    "withMotion": 148,
+    "withMover": 145,
+    "withSeconder": 135,
+    "withOutcome": 313,
+    "withVoteCount": 22,
+    "withNamedVotes": 22,
+    "unanimousActions": 145,
+    "needsReview": 55,
+    "unlinkedToAgendaItem": 162
   },
   "organizationReports": [
     {
-      "organizationId": "nshe-board-of-regents",
-      "actionResults": 104,
-      "withOutcome": 104,
-      "withVoteCount": 3,
-      "withNamedVotes": 0,
-      "needsReview": 23,
-      "unlinkedToAgendaItem": 69
-    },
-    {
-      "organizationId": "las-vegas-city-council",
-      "actionResults": 79,
-      "withOutcome": 79,
-      "withVoteCount": 1,
-      "withNamedVotes": 0,
-      "needsReview": 1,
-      "unlinkedToAgendaItem": 0
-    },
-    {
       "organizationId": "elko-city-council",
-      "actionResults": 48,
-      "withOutcome": 45,
+      "actionResults": 178,
+      "withOutcome": 173,
+      "withVoteCount": 12,
+      "withNamedVotes": 19,
+      "needsReview": 20,
+      "unlinkedToAgendaItem": 81
+    },
+    {
+      "organizationId": "nshe-board-of-regents",
+      "actionResults": 78,
+      "withOutcome": 78,
       "withVoteCount": 0,
-      "withNamedVotes": 9,
-      "needsReview": 3,
-      "unlinkedToAgendaItem": 21
+      "withNamedVotes": 0,
+      "needsReview": 16,
+      "unlinkedToAgendaItem": 64
+    },
+    {
+      "organizationId": "elko-county-commission",
+      "actionResults": 26,
+      "withOutcome": 26,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 2,
+      "unlinkedToAgendaItem": 9
     },
     {
       "organizationId": "washoe-county-commission",
@@ -48,24 +48,6 @@
       "withVoteCount": 9,
       "withNamedVotes": 0,
       "needsReview": 14,
-      "unlinkedToAgendaItem": 0
-    },
-    {
-      "organizationId": "clark-county-school-district",
-      "actionResults": 25,
-      "withOutcome": 25,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 0,
-      "unlinkedToAgendaItem": 25
-    },
-    {
-      "organizationId": "north-las-vegas-city-council",
-      "actionResults": 23,
-      "withOutcome": 23,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 13,
       "unlinkedToAgendaItem": 0
     },
     {
@@ -78,31 +60,40 @@
       "unlinkedToAgendaItem": 7
     },
     {
-      "organizationId": "clark-county-commission",
-      "actionResults": 6,
-      "withOutcome": 6,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 4,
-      "unlinkedToAgendaItem": 0
-    },
-    {
       "organizationId": "reno-city-council",
-      "actionResults": 3,
-      "withOutcome": 3,
+      "actionResults": 4,
+      "withOutcome": 2,
+      "withVoteCount": 1,
+      "withNamedVotes": 0,
+      "needsReview": 2,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "clark-county-commission",
+      "actionResults": 4,
+      "withOutcome": 4,
       "withVoteCount": 0,
       "withNamedVotes": 0,
       "needsReview": 0,
       "unlinkedToAgendaItem": 0
     },
     {
-      "organizationId": "nv-legislature",
-      "actionResults": 1,
-      "withOutcome": 1,
+      "organizationId": "las-vegas-city-council",
+      "actionResults": 4,
+      "withOutcome": 4,
+      "withVoteCount": 0,
+      "withNamedVotes": 3,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "north-las-vegas-city-council",
+      "actionResults": 2,
+      "withOutcome": 2,
       "withVoteCount": 0,
       "withNamedVotes": 0,
-      "needsReview": 0,
-      "unlinkedToAgendaItem": 1
+      "needsReview": 1,
+      "unlinkedToAgendaItem": 0
     },
     {
       "organizationId": "carson-city-school-district",

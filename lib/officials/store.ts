@@ -114,7 +114,7 @@ function getGeneratedCurrentOfficialById(id: string): OfficialProfileSummary | n
 }
 
 export async function getOfficials(options: { allowDemoFallback?: boolean } = {}): Promise<OfficialProfileSummary[]> {
-  const allowDemoFallback = options.allowDemoFallback ?? true;
+  const allowDemoFallback = options.allowDemoFallback ?? false;
 
   try {
     const importedOfficials = await getImportedOfficials();
@@ -145,6 +145,5 @@ export async function getOfficialById(id: string): Promise<OfficialProfileDetail
     };
   }
 
-  const { getOfficialById: getOfficialProfileById } = await import("@/lib/server/elections-context");
-  return getOfficialProfileById(id);
+  return null;
 }

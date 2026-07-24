@@ -86,6 +86,8 @@ npm run dataops:ocr
 npm run dataops:reprocess
 npm run dataops:audit
 npm run dataops:daily
+npm run sources:refresh:daily
+npm run site:launch-audit
 npm run dataops:dev
 npm run dataops:offline
 npm run admin:operations:audit
@@ -97,6 +99,10 @@ npm run trust:foundation-audit
 ```
 
 Generated artifacts include `data/generated/public-meeting-source-documents.json`, `data/generated/public-meeting-document-cache-index.json`, `data/generated/public-meeting-document-text.json`, `data/generated/public-meeting-retrieval-queue.json`, `data/generated/public-meeting-source-health.json`, `data/generated/dataops-source-registry.json`, `data/generated/dataops-monitoring-status.json`, `data/generated/dataops-retrieval-run.json`, `data/generated/dataops-change-log.json`, `data/generated/dataops-reprocessing-runs.json`, `data/generated/rss-source-registry.json`, `data/generated/public-meeting-source-completeness.json`, `data/generated/public-meeting-accountability-readiness.json`, and `data/generated/public-meeting-document-audit.json`.
+
+`sources:refresh:daily` is the canonical once-daily refresh. It checks official meeting calendars, merges reviewed caches, refreshes bounded source documents, republishes source-backed issue and event records, and runs freshness and no-demo audits. The GitHub workflow remains available for manual recovery runs; recurring execution is owned by one scheduler so the sources are not fetched more than once per day.
+
+`site:launch-audit` is the public integrity gate. It fails on civic fixture imports, retired government links, and legacy issue surfaces that no longer route to the source-backed issue system. It also reports unresolved meeting-provider, official-roster, campaign-finance, source-document, pipeline-completeness, and freshness barriers in `data/generated/public-site-integrity-audit.json`. A command exit code of zero means there are no critical code-integrity regressions; use the artifact's `launchReady` field for the full data-readiness decision.
 
 Remote public URLs are preserved as discovered sources. A document is marked downloaded only when a real local cache file exists. In network-restricted environments, retrieval attempts are recorded as `blocked_by_network` instead of pretending that source evidence was recovered.
 
@@ -132,10 +138,10 @@ ADMIN_PREVIEW_ENABLED="false"
 ```
 
 Notes:
-- `NEXT_PUBLIC_ENABLE_DEMO_MODE="true"` keeps seeded demo profile switching visible in a deployed demo.
+- `NEXT_PUBLIC_ENABLE_DEMO_MODE="true"` keeps seeded demo identity and role switching visible for QA. It must not enable synthetic civic facts, officeholders, campaign finance, posts, polls, petitions, debates, events, ads, or school statistics on public pages.
 - `GOV_CRM_ENABLED="false"` keeps the government workflow scaffold hidden and gated unless explicitly enabled.
 - `ADMIN_PREVIEW_ENABLED="false"` keeps private preview tools disabled in production by default.
-- If you are not using Prisma-backed data for this prototype run, the app still primarily relies on seeded mock data and cookie state.
+- Without Prisma-backed or generated source data, civic surfaces show explicit empty states. User-created prototype actions remain cookie-backed.
 
 ## Deploy to Vercel
 
@@ -166,7 +172,7 @@ For testers on iPhone Safari:
 
 ## Demo behavior
 
-- Seeded users and role switching are intended for demos.
+- Seeded users and role switching are intended for demos; public civic records remain source-backed or explicitly unavailable.
 - State is mostly cookie-backed, so testers can interact without creating real accounts.
 - The main navigation, vote flow, explore pages, profiles, debates, and petitions are all meant to be browsed as a prototype.
 

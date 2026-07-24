@@ -25,7 +25,6 @@ import { getFeedDebatePreviews, type DebateFeedPreview } from "@/lib/debates/sto
 import { getFeedPostPreviews, type FeedMode } from "@/lib/feed/posts";
 import { slugifyIssueText } from "@/lib/issues/utils";
 import { getFeedMediaPreviews, type MediaFeedPreview } from "@/lib/media/store";
-import { mockPosts } from "@/lib/mock-data";
 import { getContentDetailHref, getNewsStoryHref, getTruthDetailHref } from "@/lib/news/links";
 import { getFeedPetitionPreviews, type FeedPetitionPreview } from "@/lib/petitions/store";
 import { getFeedPollPreviews } from "@/lib/polls/store";
@@ -305,20 +304,6 @@ async function getSafeCurrentUser() {
   };
 }
 
-function getFallbackPosts(scope: FeedScope, localJurisdiction: string) {
-  const filtered = mockPosts.filter((post) => {
-    if (scope === "all") return true;
-    if (scope === "local") return post.jurisdictionName === localJurisdiction;
-    if (scope === "state") return post.jurisdictionName === "Nevada";
-    return post.jurisdictionName === "United States";
-  });
-
-  return filtered
-    .slice()
-    .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
-    .slice(0, 8);
-}
-
 function getScopedJurisdictions(scope: FeedScope, localJurisdiction: string) {
   if (scope === "all") return undefined;
   if (scope === "local") return [localJurisdiction];
@@ -335,7 +320,7 @@ function getItemScope(jurisdictionName: string | null | undefined, localJurisdic
 }
 
 async function getSafeFeedPosts(mode: FeedMode, scope: FeedScope, localJurisdiction: string, viewerUserId: string) {
-  const fallbackPosts = getFallbackPosts(scope, localJurisdiction);
+  const fallbackPosts: PostSummary[] = [];
   const scopedJurisdictions = getScopedJurisdictions(scope, localJurisdiction);
   const result = await runFeedQuery({
     label: "post query",

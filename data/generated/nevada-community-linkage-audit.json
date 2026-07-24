@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T22:39:30.457Z",
+  "generatedAt": "2026-07-24T13:04:51.645Z",
   "auditGoal": "Determine whether Nevada community coverage gaps are missing data or missing canonical community relationships.",
   "canonicalCommunityScope": {
     "coverageCommunities": 39,
@@ -79,26 +79,26 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 728,
-        "recordsLinkedToCanonicalCommunities": 728,
-        "recordsLinkedToCoverageCommunities": 682,
-        "recordsNotLinkedToCoverageCommunities": 46,
-        "recordsCountedInCoverageReport": 682,
-        "recordsNotCountedInCoverageReport": 46
+        "totalRecordsInDatabaseOrRuntime": 803,
+        "recordsLinkedToCanonicalCommunities": 803,
+        "recordsLinkedToCoverageCommunities": 741,
+        "recordsNotLinkedToCoverageCommunities": 62,
+        "recordsCountedInCoverageReport": 741,
+        "recordsNotCountedInCoverageReport": 62
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "no_direct_community_id_field",
-          "count": 46
+          "count": 62
         },
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 46
+          "count": 62
         }
       ],
       "sampleUncountedRecords": [
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2027-02-01-96900ff9",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-legislative-operations-and-elections-2026-07-31-d4cf25e7",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -112,7 +112,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-427742c9",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-health-and-human-services-2026-08-11-0303f3fd",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -126,7 +126,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-c4754851",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-natural-resources-2026-08-12-1e0632a3",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -140,7 +140,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-6ed19abb",
+          "id": "meeting-nv-legislature-interim-finance-committee-2026-08-13-dd2b2900",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -154,7 +154,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-24-045b9222",
+          "id": "meeting-nv-legislature-legislative-committee-on-senior-citizens-veterans-and-adults-with-special-needs-2026-08-17-5cb60c8c",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -168,7 +168,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-25-d4bad703",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-growth-and-infrastructure-2026-08-18-eb2a43ca",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -182,7 +182,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-26-84b9196b",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-education-2026-08-18-25b4102d",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -196,7 +196,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-26-2e5faebf",
+          "id": "meeting-nv-legislature-legislative-commission-s-audit-subcommittee-2026-08-20-2434828e",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -210,7 +210,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-30-74038384",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-commerce-and-labor-2026-08-20-5c38f775",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -224,7 +224,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-30-a68e0c59",
+          "id": "meeting-nv-legislature-legislative-committee-for-the-review-and-oversight-of-the-tahoe-regional-planning-agency-and-the-2026-08-20-ffa1a7a9",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -238,7 +238,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-07-08-87c22aee",
+          "id": "meeting-nv-legislature-committee-on-public-lands-2026-08-21-4c3f8785",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -252,7 +252,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-07-09-cd44ec08",
+          "id": "meeting-nv-legislature-sunset-committee-2026-08-21-cdec987d",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -266,7 +266,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-07-10-61b8fee7",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-the-judiciary-2026-08-25-b8b50a90",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -280,7 +280,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-25-4ebdff9b",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-revenue-2026-08-26-23a5c6bd",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -294,7 +294,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-b8d0c6c8",
+          "id": "meeting-nv-legislature-nevada-silver-haired-legislative-forum-2026-08-26-8c409c75",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -308,7 +308,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-dfd471a9",
+          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-government-affairs-2026-08-27-a1e17634",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -322,7 +322,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-undated-677a89b1",
+          "id": "meeting-nv-legislature-nevada-youth-legislature-2026-09-24-f533baae",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -336,7 +336,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-f682fdf8",
+          "id": "meeting-nv-legislature-interim-finance-committee-2026-10-15-7261173d",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -350,7 +350,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-7f90533d",
+          "id": "meeting-nv-legislature-nevada-youth-legislature-2026-10-20-3ea4c43e",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -364,7 +364,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-fbe04238",
+          "id": "meeting-nv-legislature-nevada-youth-legislature-2026-11-17-2eca4024",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -378,7 +378,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-084ecf2d",
+          "id": "meeting-nv-legislature-interim-finance-committee-2026-12-10-a84e38e3",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -392,7 +392,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-undated-56df3ee6",
+          "id": "meeting-nv-legislature-legislative-commission-s-audit-subcommittee-2027-01-13-918683e6",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -406,7 +406,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-bce44400",
+          "id": "meeting-nv-legislature-nevada-youth-legislature-2027-01-13-20beac62",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -420,7 +420,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-undated-64aede9c",
+          "id": "meeting-nv-legislature-interim-finance-committee-2027-01-28-b87d07a2",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -434,7 +434,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-8127acd6",
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-f16df65f",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -451,7 +451,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meetings.json",
-          "totalRecords": 728
+          "totalRecords": 803
         }
       ]
     },
@@ -462,8 +462,8 @@
         "data/generated/officials-runtime.json"
       ],
       "interpretation": {
-        "actualDataAvailableInSystem": true,
-        "linkedToCanonicalCommunityRecords": true,
+        "actualDataAvailableInSystem": false,
+        "linkedToCanonicalCommunityRecords": false,
         "onlyGeneratedByNewCoverageImplementation": false,
         "notes": [
           "The audited runtime source contains official meeting action records, not the complete elected-official directory.",
@@ -471,11 +471,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 4,
-        "recordsLinkedToCanonicalCommunities": 4,
-        "recordsLinkedToCoverageCommunities": 4,
+        "totalRecordsInDatabaseOrRuntime": 0,
+        "recordsLinkedToCanonicalCommunities": 0,
+        "recordsLinkedToCoverageCommunities": 0,
         "recordsNotLinkedToCoverageCommunities": 0,
-        "recordsCountedInCoverageReport": 4,
+        "recordsCountedInCoverageReport": 0,
         "recordsNotCountedInCoverageReport": 0
       },
       "topReasonsRecordsAreNotCounted": [],
@@ -483,7 +483,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/officials-runtime.json",
-          "totalRecords": 4
+          "totalRecords": 0
         }
       ]
     },
@@ -560,29 +560,29 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 851,
-        "recordsLinkedToCanonicalCommunities": 851,
-        "recordsLinkedToCoverageCommunities": 615,
-        "recordsNotLinkedToCoverageCommunities": 236,
-        "recordsCountedInCoverageReport": 615,
-        "recordsNotCountedInCoverageReport": 236
+        "totalRecordsInDatabaseOrRuntime": 556,
+        "recordsLinkedToCanonicalCommunities": 556,
+        "recordsLinkedToCoverageCommunities": 410,
+        "recordsNotLinkedToCoverageCommunities": 146,
+        "recordsCountedInCoverageReport": 410,
+        "recordsNotCountedInCoverageReport": 146
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 236
+          "count": 146
         },
         {
           "reason": "no_direct_community_id_field",
-          "count": 211
+          "count": 121
         },
         {
           "reason": "record_needs_review",
-          "count": 211
+          "count": 121
         },
         {
           "reason": "low_confidence_parse_or_match",
-          "count": 169
+          "count": 102
         }
       ],
       "sampleUncountedRecords": [
@@ -919,7 +919,7 @@
         },
         {
           "path": "data/generated/public-cases-runtime.json",
-          "totalRecords": 826
+          "totalRecords": 531
         }
       ]
     },
@@ -940,25 +940,25 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 455,
-        "recordsLinkedToCanonicalCommunities": 426,
-        "recordsLinkedToCoverageCommunities": 316,
-        "recordsNotLinkedToCoverageCommunities": 139,
-        "recordsCountedInCoverageReport": 316,
-        "recordsNotCountedInCoverageReport": 139
+        "totalRecordsInDatabaseOrRuntime": 423,
+        "recordsLinkedToCanonicalCommunities": 394,
+        "recordsLinkedToCoverageCommunities": 299,
+        "recordsNotLinkedToCoverageCommunities": 124,
+        "recordsCountedInCoverageReport": 299,
+        "recordsNotCountedInCoverageReport": 124
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "no_direct_community_id_field",
-          "count": 139
+          "count": 124
         },
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 110
+          "count": 95
         },
         {
           "reason": "low_confidence_parse_or_match",
-          "count": 89
+          "count": 83
         },
         {
           "reason": "finance_record_missing_candidate_or_jurisdiction",
@@ -979,223 +979,7 @@
       ],
       "sampleUncountedRecords": [
         {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-18-9357eb8439",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-20-473853f7b1",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-22-4465282706",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-25-7bf0ff24c5",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab-27-2b5cf62a4f",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-13-bf3dd256-I-be182b8ad8",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field",
-            "low_confidence_parse_or_match"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-13-bf3dd256-23-90b336648e",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field",
-            "low_confidence_parse_or_match"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-13-bf3dd256-29-ce787724df",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field",
-            "low_confidence_parse_or_match"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-13-bf3dd256-I-1034c87e93",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-13-bf3dd256-72-694b123775",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5-17-e44b386ce8",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field",
-            "low_confidence_parse_or_match"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5-19-23c1ae95ab",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5-33-2c0a2975d9",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field",
-            "low_confidence_parse_or_match"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5-41-56447cb388",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field",
-            "low_confidence_parse_or_match"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5-10-bc42e3e682",
-          "sourcePath": "data/generated/public-meeting-items.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5-7-a41ed56efb",
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5-4-8ab3793fa8",
           "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -1342,12 +1126,236 @@
             "low_confidence_parse_or_match"
           ],
           "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-20-f5b9c2d9fd",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-21-0a36b6b36a",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-22-546de9903e",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-24-c85c003662",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-26-ddcd980c8d",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-28-d8a91e95b2",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-29-5edb116183",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-31-a016f2ff8f",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-26-b6573ffffb",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-33-85df08b1e1",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-34-8954acdba9",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-35-4d9803e06e",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-36-118c168e27",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-37-4cb187a42b",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-38-baf250b085",
+          "sourcePath": "data/generated/public-meeting-items.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field",
+            "low_confidence_parse_or_match"
+          ],
+          "linkBasis": "meeting_body"
         }
       ],
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-items.json",
-          "totalRecords": 401
+          "totalRecords": 369
         },
         {
           "path": "data/generated/nv-sos-campaign-finance-records.json",
@@ -1371,11 +1379,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 756,
-        "recordsLinkedToCanonicalCommunities": 756,
-        "recordsLinkedToCoverageCommunities": 640,
-        "recordsNotLinkedToCoverageCommunities": 116,
-        "recordsCountedInCoverageReport": 756,
+        "totalRecordsInDatabaseOrRuntime": 699,
+        "recordsLinkedToCanonicalCommunities": 699,
+        "recordsLinkedToCoverageCommunities": 591,
+        "recordsNotLinkedToCoverageCommunities": 108,
+        "recordsCountedInCoverageReport": 699,
         "recordsNotCountedInCoverageReport": 0
       },
       "topReasonsRecordsAreNotCounted": [],
@@ -1383,7 +1391,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-voting-cards.json",
-          "totalRecords": 756
+          "totalRecords": 699
         }
       ]
     },
@@ -1403,25 +1411,25 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 17,
+        "totalRecordsInDatabaseOrRuntime": 16,
         "recordsLinkedToCanonicalCommunities": 13,
         "recordsLinkedToCoverageCommunities": 12,
-        "recordsNotLinkedToCoverageCommunities": 5,
+        "recordsNotLinkedToCoverageCommunities": 4,
         "recordsCountedInCoverageReport": 13,
-        "recordsNotCountedInCoverageReport": 4
+        "recordsNotCountedInCoverageReport": 3
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "no_canonical_community_match",
-          "count": 4
+          "count": 3
         },
         {
           "reason": "no_canonical_local_community_match",
-          "count": 4
+          "count": 3
         },
         {
           "reason": "no_direct_community_id_field",
-          "count": 4
+          "count": 3
         },
         {
           "reason": "record_needs_review",
@@ -1434,21 +1442,7 @@
       ],
       "sampleUncountedRecords": [
         {
-          "id": "issue_real_elections",
-          "sourcePath": "data/generated/issues-runtime.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "record_needs_review"
-          ],
-          "linkBasis": "none"
-        },
-        {
-          "id": "issue_real_growth-and-infrastructure",
+          "id": "issue_real_education",
           "sourcePath": "data/generated/issues-runtime.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [],
@@ -1485,7 +1479,8 @@
           "notCountedReasons": [
             "no_canonical_local_community_match",
             "no_canonical_community_match",
-            "no_direct_community_id_field"
+            "no_direct_community_id_field",
+            "record_needs_review"
           ],
           "linkBasis": "none"
         }
@@ -1493,7 +1488,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/issues-runtime.json",
-          "totalRecords": 17
+          "totalRecords": 16
         }
       ]
     }

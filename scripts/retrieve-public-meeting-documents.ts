@@ -366,6 +366,25 @@ async function main() {
     recordsByDocument.set(document.id, record);
   }
 
+  const currentDocumentIds = new Set(documents.map((document) => document.id));
+  const prunedOrphanedHashMismatches: string[] = [];
+  for (const previous of previousIndex) {
+    if (currentDocumentIds.has(previous.documentId) || !previous.stableLocalPath || !previous.contentHash) {
+      continue;
+    }
+
+    const absolutePath = absoluteLocalPath(previous.stableLocalPath);
+    if (!existsSync(absolutePath)) {
+      continue;
+    }
+
+    const currentHash = hashBuffer(readFileSync(absolutePath));
+    if (currentHash !== previous.contentHash) {
+      recordsByDocument.delete(previous.documentId);
+      prunedOrphanedHashMismatches.push(previous.documentId);
+    }
+  }
+
   const candidates = documents
     .filter((document) => {
       if (!document.sourceUrl || existingLocalPayload(document)) return false;
@@ -458,7 +477,9 @@ async function main() {
       blockedByNetwork: attempts.filter((attempt) => attempt.status === "blocked_by_network").length,
       securityRejected: attempts.filter((attempt) => attempt.status === "security_rejected").length,
       changedCacheRecords: changedRecords.length,
+      prunedOrphanedHashMismatches: prunedOrphanedHashMismatches.length,
     },
+    prunedOrphanedHashMismatches,
   };
 
   const changeLog = readJson<{ generatedAt?: string; changes?: unknown[] }>(CHANGE_LOG_PATH, { changes: [] });

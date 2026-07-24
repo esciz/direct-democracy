@@ -1,15 +1,21 @@
 {
-  "generatedAt": "2026-06-21T06:08:31.928Z",
+  "generatedAt": "2026-07-24T13:04:53.335Z",
+  "environment": {
+    "githubActions": false,
+    "allowExternalCache": false
+  },
   "totals": {
-    "queueRecords": 1935,
-    "downloadedOrCached": 187,
-    "blockedByNetwork": 25,
-    "cacheRecords": 156,
-    "cacheRecordsWithHashes": 156,
+    "queueRecords": 1519,
+    "downloadedOrCached": 1488,
+    "blockedByNetwork": 0,
+    "cacheRecords": 2008,
+    "missingLocalCacheFiles": 0,
+    "externalCacheMissingFilesSuppressed": 0,
+    "cacheRecordsWithHashes": 2008,
     "changedDocumentsTracked": 0,
-    "sourcesMonitored": 39,
-    "staleSources": 20,
-    "failingSources": 0,
+    "sourcesMonitored": 49,
+    "staleSources": 2,
+    "failingSources": 2,
     "rssSources": 1,
     "reprocessingRuns": 1,
     "failures": 0

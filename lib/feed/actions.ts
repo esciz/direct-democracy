@@ -7,7 +7,6 @@ import { getCurrentFeedViewer, getCurrentUser } from "@/lib/server/auth-session"
 import { BOOST_COST, getAllCreditBoosts, getCreditBalance, getStoredCreditBoosts, setStoredCreditBoosts } from "@/lib/engagement/credits";
 import { getCreatedPosts, setCreatedPosts } from "@/lib/feed/posts";
 import { getStoredPostReactions, setStoredPostReactions } from "@/lib/feed/reactions";
-import { mockPosts } from "@/lib/mock-data";
 import { createFolloweeNotificationsForPost } from "@/lib/notifications/store";
 import { ensureIssueReferenceForUser } from "@/lib/server/issues";
 import type { ContextAttachmentSummary, CreditBoostSummary, PerspectiveType, PostContentType, PostSummary, PostType } from "@/types/domain";
@@ -279,7 +278,7 @@ export async function createMockPost(formData: FormData) {
 export async function reactToFeedPost(postId: string, reaction: "up" | "down") {
   const user = await getCurrentFeedViewer();
 
-  const post = [...(await getCreatedPosts()), ...mockPosts].find((entry) => entry.id === postId);
+  const post = (await getCreatedPosts()).find((entry) => entry.id === postId);
 
   if (!post) {
     return {
@@ -323,7 +322,7 @@ export async function reactToFeedPost(postId: string, reaction: "up" | "down") {
 
 export async function boostFeedPost(postId: string) {
   const user = await getCurrentFeedViewer();
-  const post = [...(await getCreatedPosts()), ...mockPosts].find((entry) => entry.id === postId);
+  const post = (await getCreatedPosts()).find((entry) => entry.id === postId);
 
   if (!post) {
     return {

@@ -15,6 +15,8 @@ on:
         type: choice
         options:
           - none
+          - refresh-meeting-calendars
+          - import-meetings
           - register-sources
           - discover-documents
           - monitor-sources
@@ -35,6 +37,8 @@ on:
         type: choice
         options:
           - none
+          - refresh-meeting-calendars
+          - import-meetings
           - register-sources
           - discover-documents
           - monitor-sources
@@ -96,9 +100,6 @@ on:
         required: false
         default: ""
         type: string
-  schedule:
-    - cron: "17 10 * * *"
-
 concurrency:
   group: direct-democracy-dataops-officials
   cancel-in-progress: false

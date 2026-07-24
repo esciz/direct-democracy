@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 
 import { getCommunityById } from "@/lib/community/communities";
-import { mockCuratedTopIssues, mockTopIssueSubmissions, mockTopIssueUpvotes } from "@/lib/mock-data";
 import { getAllPetitions } from "@/lib/petitions/store";
 import type {
   AuthUser,
@@ -138,9 +137,8 @@ export async function setStoredTopIssueUpvotes(upvotes: TopIssueUpvoteSummary[])
 export async function getTopIssuesForUser(user: AuthUser, selectedScope: VoteQuestionScope | "all" = "all", communityId?: string) {
   const storedIssues = await getStoredTopIssues();
   const storedUpvotes = await getStoredTopIssueUpvotes();
-  const mergedUpvotes = [...mockTopIssueUpvotes, ...storedUpvotes];
 
-  const writeInIssues: TopIssueSummary[] = [...mockTopIssueSubmissions, ...storedIssues].map((issue) => ({
+  const writeInIssues: TopIssueSummary[] = storedIssues.map((issue) => ({
     id: issue.id,
     issueText: issue.issueText,
     scope: issue.scope,
@@ -153,11 +151,11 @@ export async function getTopIssuesForUser(user: AuthUser, selectedScope: VoteQue
     viewerHasUpvoted: false,
   }));
 
-  return [...mockCuratedTopIssues, ...writeInIssues]
+  return writeInIssues
     .filter((issue) => scopeMatchesCommunity(issue, communityId ?? "carson-city", user))
     .filter((issue) => scopeMatchesFilter(issue.scope, selectedScope))
     .map((issue) => {
-      const upvotes = mergedUpvotes.filter((upvote) => upvote.issueId === issue.id);
+      const upvotes = storedUpvotes.filter((upvote) => upvote.issueId === issue.id);
 
       return {
         ...issue,

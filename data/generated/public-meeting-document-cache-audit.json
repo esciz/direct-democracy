@@ -1,18 +1,26 @@
 {
-  "generatedAt": "2026-06-22T04:17:59.765Z",
+  "generatedAt": "2026-07-24T13:04:21.411Z",
+  "environment": {
+    "githubActions": false,
+    "allowExternalCache": false
+  },
   "totals": {
-    "cacheRecords": 156,
-    "localFilesPresent": 156,
-    "recordsWithHashes": 156,
-    "recordsWithVersions": 156,
-    "pdfs": 64,
-    "extractionPending": 0,
-    "ocrRequired": 0,
-    "verifiedPdf": 62,
-    "verifiedHtml": 58,
-    "verifiedText": 0,
+    "cacheRecords": 2008,
+    "localFilesPresent": 2008,
+    "missingLocalFiles": 0,
+    "recordsWithHashes": 2008,
+    "recordsWithVersions": 2008,
+    "pdfs": 1168,
+    "extractionPending": 51,
+    "ocrRequired": 20,
+    "verifiedPdf": 1114,
+    "verifiedHtml": 751,
+    "verifiedText": 7,
     "mimeMismatch": 0,
-    "quarantined": 4,
+    "quarantined": 30,
+    "hashMismatches": 0,
+    "hashMismatchesForPresentFiles": 0,
+    "externalCacheMissingFilesSuppressed": 0,
     "failures": 0
   },
   "failures": []

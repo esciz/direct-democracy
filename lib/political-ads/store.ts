@@ -946,13 +946,11 @@ export function getPrimaryAdRelation(ad: PoliticalAd) {
 }
 
 export function getPoliticalAdById(adId: string) {
-  const includeSeededDemoAds = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
-  return getPoliticalAdRepositoryAds({ includeSeededDemoAds }).find((ad) => ad.id === adId) ?? null;
+  return getPoliticalAdRepositoryAds().find((ad) => ad.id === adId) ?? null;
 }
 
 export function getPoliticalAdsForEntity(entityType: PoliticalAdEntityRelation["entityType"], entityId: string, limit = 4) {
-  const includeSeededDemoAds = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
-  return getPoliticalAdRepositoryAds({ includeSeededDemoAds })
+  return getPoliticalAdRepositoryAds()
     .filter((ad) => ad.entityRelations.some((relationItem) => relationItem.entityType === entityType && relationItem.entityId === entityId))
     .sort((left, right) => Date.parse(right.firstSeenAt) - Date.parse(left.firstSeenAt))
     .slice(0, limit);
@@ -961,8 +959,7 @@ export function getPoliticalAdsForEntity(entityType: PoliticalAdEntityRelation["
 export function getPoliticalAdsForIssue(issueId: string, issueLabel?: string, limit = 4) {
   const normalizedId = issueId.toLowerCase();
   const normalizedLabel = issueLabel?.toLowerCase() ?? "";
-  const includeSeededDemoAds = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
-  return getPoliticalAdRepositoryAds({ includeSeededDemoAds })
+  return getPoliticalAdRepositoryAds()
     .filter((ad) =>
       ad.entityRelations.some((relationItem) => {
         if (relationItem.entityType !== "issue") return false;
@@ -1018,14 +1015,13 @@ function matchesRelation(ad: PoliticalAd, filters: PoliticalAdFilters) {
 }
 
 export function getFilteredPoliticalAds(filters: PoliticalAdFilters = {}) {
-  const includeSeededDemoAds = process.env.NEXT_PUBLIC_ENABLE_DEMO_MODE === "true";
   const relationType = filters.relationType && filters.relationType !== "all" ? filters.relationType : null;
   const minSpend = typeof filters.minSpend === "number" ? filters.minSpend : null;
   const maxSpend = typeof filters.maxSpend === "number" ? filters.maxSpend : null;
   const dateFrom = filters.dateFrom ? Date.parse(filters.dateFrom) : null;
   const dateTo = filters.dateTo ? Date.parse(filters.dateTo) : null;
 
-  const filtered = getPoliticalAdRepositoryAds({ includeSeededDemoAds }).filter((ad) => {
+  const filtered = getPoliticalAdRepositoryAds().filter((ad) => {
     if (!matchesText(ad, filters.q?.trim() ?? "")) return false;
     if (!matchesRelation(ad, filters)) return false;
     if (filters.sponsor && !ad.sponsorName.toLowerCase().includes(filters.sponsor.toLowerCase())) return false;

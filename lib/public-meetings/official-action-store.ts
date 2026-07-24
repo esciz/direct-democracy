@@ -57,7 +57,7 @@ export async function getEnrichedOfficialMeetingActions(): Promise<EnrichedOffic
   const [dashboard, overrides, officials] = await Promise.all([
     getPublicMeetingAdminDashboard(),
     getOfficialActionReviewOverrides(),
-    getOfficials({ allowDemoFallback: true }).catch(() => []),
+    getOfficials().catch(() => []),
   ]);
   const overrideById = new Map(overrides.map((override) => [override.action_id, override]));
   const meetingById = new Map(dashboard.meetings.map((meeting) => [meeting.id, meeting]));

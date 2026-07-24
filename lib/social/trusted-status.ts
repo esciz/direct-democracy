@@ -1,7 +1,6 @@
 import { seedUsers } from "@/lib/auth/mock-users";
 import { getAllComments } from "@/lib/feed/comments";
 import { getFeedPosts } from "@/lib/feed/posts";
-import { mockPollVotes } from "@/lib/mock-data";
 import { getAllPolls, getStoredPollVotes } from "@/lib/polls/store";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { getAllTruthRatings } from "@/lib/truth/ratings";
@@ -144,12 +143,10 @@ async function getEngagedSupporterCounts(user: AuthUser, followerIds: string[]) 
 
   const eventIds = new Set(events.filter((event) => event.sponsorUserId === user.id).map((event) => event.id));
   const debateTurnIds = new Set(debateTurns.filter((turn) => turn.createdByUserId === user.id).map((turn) => turn.id));
-  const storedAndSeededPollVotes = [...pollVotes, ...mockPollVotes];
-
   const engagerIds = getUniqueValues([
     ...comments.filter((comment) => authoredPostIds.has(comment.postId) && comment.userId !== user.id).map((comment) => comment.userId),
     ...truthRatings.filter((rating) => authoredPostIds.has(rating.entityId) && rating.userId !== user.id).map((rating) => rating.userId),
-    ...storedAndSeededPollVotes.filter((vote) => createdPollIds.has(vote.pollId) && vote.userId !== user.id).map((vote) => vote.userId),
+    ...pollVotes.filter((vote) => createdPollIds.has(vote.pollId) && vote.userId !== user.id).map((vote) => vote.userId),
     ...attendance.filter((entry) => eventIds.has(entry.eventId) && entry.userId !== user.id).map((entry) => entry.userId),
     ...statements.filter((entry) => eventIds.has(entry.eventId) && entry.userId !== user.id).map((entry) => entry.userId),
     ...debateReactions.filter((reaction) => debateTurnIds.has(reaction.turnId) && reaction.userId !== user.id).map((reaction) => reaction.userId),

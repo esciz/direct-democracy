@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { cache } from "react";
 
 import { getCommunityById, getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
-import { mockPolls, mockPollVotes } from "@/lib/mock-data";
 import { getPollPromotionRecord, POLL_PROMOTION_THRESHOLD } from "@/lib/polls/promotions";
 import type { AuthUser, ContextAttachmentSummary, PollSummary, PollVoteSummary, VoteQuestionScope } from "@/types/domain";
 
@@ -81,12 +80,8 @@ async function writeCookieArray<T>(key: string, data: T[]) {
   });
 }
 
-function mergePollVotes(storedVotes: PollVoteSummary[], seededVotes: PollVoteSummary[]) {
+function mergePollVotes(storedVotes: PollVoteSummary[]) {
   const merged = new Map<string, PollVoteSummary>();
-
-  for (const vote of seededVotes) {
-    merged.set(`${vote.pollId}:${vote.userId}`, vote);
-  }
 
   for (const vote of storedVotes) {
     merged.set(`${vote.pollId}:${vote.userId}`, vote);
@@ -217,8 +212,8 @@ export async function setStoredPollVotes(votes: PollVoteSummary[]) {
 
 export async function getAllPolls(viewerId?: string) {
   const [storedPolls, storedVotes] = await Promise.all([getStoredPolls(), getStoredPollVotes()]);
-  const mergedPolls = [...storedPolls, ...mockPolls].sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
-  const mergedVotes = mergePollVotes(storedVotes, mockPollVotes);
+  const mergedPolls = [...storedPolls].sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+  const mergedVotes = mergePollVotes(storedVotes);
 
   return Promise.all(mergedPolls.map((poll) => hydratePoll(poll, mergedVotes, viewerId)));
 }
@@ -228,10 +223,10 @@ const getFeedPollPreviewsCached = cache(
     const [storedPolls, storedVotes] = await Promise.all([getStoredPolls(), getStoredPollVotes()]);
     const jurisdictionNames = jurisdictionKey ? jurisdictionKey.split("|").filter(Boolean) : null;
     const allowedJurisdictions = jurisdictionNames ? new Set(jurisdictionNames) : null;
-    const mergedPolls = [...storedPolls, ...mockPolls]
+    const mergedPolls = [...storedPolls]
       .filter((poll) => (allowedJurisdictions ? allowedJurisdictions.has(poll.jurisdictionName) : true))
       .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
-    const mergedVotes = mergePollVotes(storedVotes, mockPollVotes);
+    const mergedVotes = mergePollVotes(storedVotes);
     const voteCountByPoll = new Map<string, number>();
     const voteCountByPollOption = new Map<string, number>();
 

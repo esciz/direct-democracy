@@ -7,9 +7,8 @@ import { userContentMatchesCommunity } from "@/lib/community/membership";
 import { getCommunityGroupsForUser } from "@/lib/community/groups";
 import { getAllComments } from "@/lib/feed/comments";
 import { getFeedPosts } from "@/lib/feed/posts";
-import { getStoredVoteResponses } from "@/lib/feed/quick-votes";
+import { getAllVoteQuestions, getStoredVoteResponses } from "@/lib/feed/quick-votes";
 import { getCanonicalIssueTextOrNull } from "@/lib/issues/utils";
-import { mockVoteQuestions, mockVoteResponses } from "@/lib/mock-data";
 import { isExternalLinkSummary, normalizeExternalLinks } from "@/lib/profile/external-links";
 import { getUserReputationSignals } from "@/lib/profile/reputation";
 import { getVisibilityOverrides } from "@/lib/profile/visibility";
@@ -519,10 +518,6 @@ function canonicalizeProfileContent(content: UserProfileContentSummary): UserPro
 function mergeVoteResponses(storedResponses: VoteResponseSummary[]) {
   const merged = new Map<string, VoteResponseSummary>();
 
-  for (const response of mockVoteResponses) {
-    merged.set(`${response.questionId}:${response.userId}`, response);
-  }
-
   for (const response of storedResponses) {
     merged.set(`${response.questionId}:${response.userId}`, response);
   }
@@ -654,14 +649,15 @@ function rotateVoiceWindow<T>(voices: T[], seed: string) {
 }
 
 export async function getRecentVotesForUser(userId: string, limit = 5): Promise<RecentVoteSummary[]> {
-  const storedResponses = await getStoredVoteResponses();
+  const [storedResponses, questions] = await Promise.all([getStoredVoteResponses(), getAllVoteQuestions()]);
+  const questionById = new Map(questions.map((question) => [question.id, question]));
   const responses = mergeVoteResponses(storedResponses)
     .filter((response) => response.userId === userId)
     .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
     .slice(0, limit);
 
   return responses.flatMap((response) => {
-    const question = mockVoteQuestions.find((entry) => entry.id === response.questionId);
+    const question = questionById.get(response.questionId);
 
     if (!question) {
       return [];
@@ -718,18 +714,7 @@ export async function getPublicCitizenProfileDetail(viewer: AuthUser, userId: st
     viewerCanFollow: followState.viewerCanFollow,
     publicOpinionSummary: {
       totalVotes: recentVotes.length,
-      categoryCounts: recentVotes.reduce<Record<VoteQuestionCategory, number>>(
-        (counts, vote) => {
-          const question = mockVoteQuestions.find((entry) => entry.id === vote.questionId);
-
-          if (question) {
-            counts[question.category] += 1;
-          }
-
-          return counts;
-        },
-        { civic: 0, lifestyle: 0, identity: 0 },
-      ),
+      categoryCounts: { civic: recentVotes.length, lifestyle: 0, identity: 0 },
     },
     topIssuesByScope: {
       local: localIssueValues,
@@ -764,13 +749,19 @@ export async function getTopVoices(
     limit?: number;
   },
 ) {
-  const storedResponses = await getStoredVoteResponses();
+  const [storedResponses, questions] = await Promise.all([getStoredVoteResponses(), getAllVoteQuestions()]);
   const mergedResponses = mergeVoteResponses(storedResponses);
+  const questionById = new Map(questions.map((question) => [question.id, question]));
   const [boosts, visibilityOverrides, feedPosts, comments] = await Promise.all([
     getAllCreditBoosts(),
     getVisibilityOverrides(),
     getFeedPosts("forYou", viewer.id),
     getAllComments(),
+  ]);
+  const observedUserIds = new Set([
+    ...storedResponses.map((response) => response.userId),
+    ...feedPosts.map((post) => post.authorId).filter((userId): userId is string => Boolean(userId)),
+    ...comments.map((comment) => comment.userId),
   ]);
   const visibleUsers = seedUsers.filter((user) => {
     if (user.role === "admin") {
@@ -788,7 +779,7 @@ export async function getTopVoices(
       return false;
     }
 
-    return true;
+    return observedUserIds.has(user.id);
   });
 
   const voices = await Promise.all(
@@ -809,7 +800,7 @@ export async function getTopVoices(
         (response) =>
           response.userId === user.id &&
           scopeMatches(
-            mockVoteQuestions.find((question) => question.id === response.questionId)?.scope ?? "local",
+            questionById.get(response.questionId)?.scope ?? "local",
             selectedScope,
           ),
       ).length;
