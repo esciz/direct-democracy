@@ -100,9 +100,19 @@ export async function writePublicMeetingRuntimeArtifacts(input?: {
       minutes_url: meeting.minutes_url,
       packet_url: meeting.packet_url,
       video_url: meeting.video_url,
+      transcript_url: meeting.transcript_url,
+      meeting_summary: meeting.meeting_summary ? summarizeText(meeting.meeting_summary, 900) : null,
+      key_actions: meeting.key_actions.slice(0, 8),
+      vote_results: meeting.vote_results.slice(0, 12),
       source_document_count: meeting.source_document_count,
-      ingestion_status: meeting.ingestion_status,
+      source_urls: meeting.source_urls,
       source_method: meeting.source_method,
+      parser_status: meeting.parser_status,
+      roll_call_status: meeting.roll_call_status,
+      ingestion_status: meeting.ingestion_status,
+      document_hashes: [],
+      created_at: meeting.created_at,
+      updated_at: meeting.updated_at,
     };
   });
 

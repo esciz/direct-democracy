@@ -50,10 +50,22 @@ async function readJsonFile<T>(relativePath: string, fallback: T): Promise<T> {
 }
 
 export async function getPublicMeetingAdminDashboard(): Promise<PublicMeetingAdminDashboard> {
-  const [seedSources, publicBodies, meetings, meetingItems, voteRecords, officialActions, citizenQuestions, ingestionReport, manualProviderReport] = await Promise.all([
+  const [
+    seedSources,
+    publicBodies,
+    fullMeetings,
+    runtimeMeetings,
+    meetingItems,
+    voteRecords,
+    officialActions,
+    citizenQuestions,
+    ingestionReport,
+    manualProviderReport,
+  ] = await Promise.all([
     readJsonFile<PublicMeetingSourceSeed[]>(PUBLIC_MEETING_PATHS.seedSources, []),
     readJsonFile<PublicBodyRecord[]>(PUBLIC_MEETING_PATHS.bodies, []),
     readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_PATHS.meetings, []),
+    readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_PATHS.eventsRuntime, []),
     readJsonFile<PublicMeetingItemRecord[]>(PUBLIC_MEETING_PATHS.meetingItems, []),
     readJsonFile<VoteRecord[]>(PUBLIC_MEETING_PATHS.voteRecords, []),
     readJsonFile<OfficialMeetingActionRecord[]>(PUBLIC_MEETING_PATHS.officialActions, []),
@@ -61,6 +73,7 @@ export async function getPublicMeetingAdminDashboard(): Promise<PublicMeetingAdm
     readJsonFile<PublicMeetingIngestionReport | null>(PUBLIC_MEETING_PATHS.ingestionReport, null),
     readJsonFile<PublicMeetingManualProviderReport[]>(PUBLIC_MEETING_PATHS.manualProviderReport, []),
   ]);
+  const meetings = fullMeetings.length ? fullMeetings : runtimeMeetings;
   const itemIds = new Set(meetingItems.map((item) => item.id));
   const meetingIds = new Set(meetings.map((meeting) => meeting.id));
 
@@ -202,7 +215,11 @@ function meetingMentionsCommunityLocation(meeting: PublicMeetingRecord, communit
 
 export async function getCommunityMeetingSummary(community: CommunitySummary): Promise<CommunityMeetingSummary> {
   const dashboard = await getPublicMeetingAdminDashboard();
-  const meetingVotingCards = await readJsonFile<MeetingVotingCardRecord[]>(PUBLIC_MEETING_PATHS.meetingVotingCards, []);
+  const [fullMeetingVotingCards, runtimeMeetingVotingCards] = await Promise.all([
+    readJsonFile<MeetingVotingCardRecord[]>(PUBLIC_MEETING_PATHS.meetingVotingCards, []),
+    readJsonFile<MeetingVotingCardRecord[]>(PUBLIC_MEETING_PATHS.meetingVotingCardsRuntime, []),
+  ]);
+  const meetingVotingCards = fullMeetingVotingCards.length ? fullMeetingVotingCards : runtimeMeetingVotingCards;
   const publicCases = await getPublicCivicCasesForCommunity(community, 6);
   const matchingBodies = dashboard.publicBodies.filter((body) => bodyMatchesCommunity(body, community));
   const matchingBodyIds = new Set(matchingBodies.map((body) => body.id));
@@ -224,6 +241,7 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
     }
   }
   const itemById = new Map(dashboard.meetingItems.map((item) => [item.id, item]));
+  const votingCardByItemId = new Map(meetingVotingCards.map((card) => [card.topic_item_id, card]));
   const meetingById = new Map(dashboard.meetings.map((meeting) => [meeting.id, meeting]));
   const bodyById = new Map(dashboard.publicBodies.map((body) => [body.id, body]));
   const now = Date.now();
@@ -266,16 +284,18 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
   const recentDecisions = dashboard.voteRecords
     .map((vote) => {
       const item = itemById.get(vote.meeting_item_id);
-      if (!item || !matchingMeetingIds.has(item.meeting_id)) return null;
-      const meeting = meetingById.get(item.meeting_id) ?? null;
+      const votingCard = votingCardByItemId.get(vote.meeting_item_id);
+      const meetingId = item?.meeting_id ?? votingCard?.meeting_id;
+      if (!meetingId || !matchingMeetingIds.has(meetingId)) return null;
+      const meeting = meetingById.get(meetingId) ?? null;
       const body = meeting ? bodyById.get(meeting.public_body_id) ?? null : null;
       return {
         id: vote.id,
-        title: item.title,
+        title: item?.title ?? votingCard?.public_title ?? votingCard?.title ?? vote.motion ?? "Recorded public vote",
         public_body_name: body?.name ?? "Public body pending",
         meeting_date: meeting?.meeting_date ?? null,
         result: vote.result,
-        source_url: vote.source_url ?? item.source_url ?? meeting?.source_urls[0] ?? null,
+        source_url: vote.source_url ?? item?.source_url ?? votingCard?.source_url ?? meeting?.source_urls[0] ?? null,
       };
     })
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry))
@@ -283,7 +303,7 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
     .slice(0, 6);
   const matchingItemIds = new Set(matchingItems.map((item) => item.id));
   const openQuestions = meetingVotingCards
-    .filter((card) => matchingItemIds.has(card.topic_item_id))
+    .filter((card) => matchingItemIds.has(card.topic_item_id) || matchingMeetingIds.has(card.meeting_id))
     .filter((card) => card.review_status === "approved" || card.review_status === "ready")
     .slice(0, 6);
   const recentlyApprovedSpending = matchingItems

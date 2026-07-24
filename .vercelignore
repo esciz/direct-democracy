@@ -1,4 +1,17 @@
 data/manual-sources/
+data/private/
+data/raw/
+data/imports/
 .local/
+
+# Source-document caches are local pipeline inputs. Vercel only needs the
+# reviewed runtime JSON committed under data/generated.
+data/generated/public-meeting-document-cache/
+data/generated/public-meeting-document-text-cache/
+data/generated/public-meeting-ocr-text-cache/
+data/generated/nv-sos-text/
+data/generated/audits/
+data/generated/admin-operations/
+
 .DS_Store
 *.pdf
