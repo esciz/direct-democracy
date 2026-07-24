@@ -51,6 +51,7 @@ export type CampaignFinanceSourceCardData = {
   pendingCount: number;
   approvedCount: number;
   fundingBreakdown: CandidateFundingBreakdown | null;
+  allReportedFundingBreakdown: CandidateFundingBreakdown | null;
   cycleHistory: CampaignFinanceCycleRecord[];
   allReportedTotals: CampaignFinanceAllReportedTotals | null;
   campaignReportedSummary: string | null;
@@ -137,7 +138,9 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
           },
         })
       : Promise.resolve([]),
-    entityType === "candidate" ? getCandidateFundingBreakdown(entityId) : Promise.resolve(null),
+    entityType === "candidate"
+      ? getCandidateFundingBreakdown(entityId, { reportIdPrefix: "reviewed-top-contributors:" })
+      : Promise.resolve(null),
   ]);
   const attribution =
     attributions
@@ -222,6 +225,17 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
           aggregationMethod: typeof allReportedRawData?.aggregationMethod === "string" ? allReportedRawData.aggregationMethod : null,
         }
       : null;
+  const allReportedFundingBreakdown =
+    entityType === "candidate" && allReportedTotals
+      ? await getCandidateFundingBreakdown(entityId, {
+          reportIdPrefix: "reviewed-all-reported-top-contributors:",
+          totalRaised: allReportedTotals.totalRaised,
+          totalSpent: allReportedTotals.totalSpent,
+          cashOnHand: null,
+          reportingPeriod: allReportedTotals.reportingPeriod,
+          coverageLabel: "all-reported contributions",
+        })
+      : null;
   const documentFilings = documents.map((document) => ({
     name: document.title,
     filedAt: null,
@@ -243,6 +257,8 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
       ? (latestFiling.rawData as Record<string, unknown>)
       : null;
   const currentCycleRecord = cycleHistory.find((cycle) => cycle.isCurrentCycle) ?? cycleHistory.at(0) ?? null;
+  const publishedContributorBreakdown =
+    allReportedFundingBreakdown?.hasDetailedContributions ? allReportedFundingBreakdown : fundingBreakdown;
 
   return {
     sourceName: attribution?.sourceName ?? latestFiling?.source?.name ?? null,
@@ -267,11 +283,12 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     pendingCount: attributions.filter((row) => row.reviewStatus === "pending_review").length,
     approvedCount: attributions.filter((row) => row.reviewStatus === "approved" || row.reviewStatus === "verified").length,
     fundingBreakdown,
+    allReportedFundingBreakdown,
     cycleHistory,
     allReportedTotals,
     campaignReportedSummary: metadata.campaignReportedSummary ?? allMetadata.find((entry) => entry.campaignReportedSummary)?.campaignReportedSummary ?? null,
-    donorExtractionStatus: fundingBreakdown?.hasDetailedContributions
-      ? fundingBreakdown.sourceCoverageNote
-      : metadata.donorExtractionStatus ?? allMetadata.find((entry) => entry.donorExtractionStatus)?.donorExtractionStatus ?? fundingBreakdown?.sourceCoverageNote ?? "Classification incomplete; source-backed filing summaries remain available.",
+    donorExtractionStatus: publishedContributorBreakdown?.hasDetailedContributions
+      ? publishedContributorBreakdown.sourceCoverageNote
+      : metadata.donorExtractionStatus ?? allMetadata.find((entry) => entry.donorExtractionStatus)?.donorExtractionStatus ?? publishedContributorBreakdown?.sourceCoverageNote ?? "Classification incomplete; source-backed filing summaries remain available.",
   };
 }

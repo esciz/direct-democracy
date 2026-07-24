@@ -16,6 +16,7 @@ import {
 const prisma = new PrismaClient();
 const DEFAULT_FILE = "data/manual-sources/campaign-finance/2026-nevada-statewide-executive.json";
 const DEFAULT_HISTORY_FILE = "data/manual-sources/campaign-finance/2017-2026-nevada-statewide-history.json";
+const DEFAULT_AGGREGATE_CONTRIBUTOR_FILE = "data/manual-sources/campaign-finance/2017-2026-nevada-statewide-aggregate-contributors.json";
 
 function argValue(name, fallback) {
   const prefix = `--${name}=`;
@@ -74,12 +75,15 @@ function cyclePeriodStart(cycleYear) {
   return `${cycleYear - 1}-01-01`;
 }
 
-function validateManifest(manifest, historyManifest) {
+function validateManifest(manifest, historyManifest, aggregateContributorManifest) {
   if (manifest?.version !== 1 || !manifest.batch || !manifest.source || !Array.isArray(manifest.profiles) || !manifest.profiles.length) {
     throw new Error("Reviewed campaign-finance manifest must use version 1 and contain batch, source, and profiles.");
   }
   if (historyManifest?.version !== 1 || !historyManifest.batch || !historyManifest.source || !Array.isArray(historyManifest.profiles)) {
     throw new Error("Campaign-finance history manifest must use version 1 and contain batch, source, and profiles.");
+  }
+  if (aggregateContributorManifest?.version !== 1 || !aggregateContributorManifest.batch || !Array.isArray(aggregateContributorManifest.profiles)) {
+    throw new Error("Aggregate-contributor manifest must use version 1 and contain batch and profiles.");
   }
   manifest.source.url = assertUrl(manifest.source.url, "source URL");
   manifest.source.officialUrl = assertUrl(manifest.source.officialUrl, "official source URL");
@@ -91,6 +95,7 @@ function validateManifest(manifest, historyManifest) {
   }
 
   const historyByKey = new Map(historyManifest.profiles.map((profile) => [profile.key, profile]));
+  const aggregateContributorsByKey = new Map(aggregateContributorManifest.profiles.map((profile) => [profile.key, profile]));
   for (const profile of manifest.profiles) {
     if (!profile.key || !profile.candidate?.aliases?.length || !profile.candidate.officeContains || !profile.candidate.electionYear) {
       throw new Error(`Profile ${profile.key ?? "unknown"} is missing candidate matching fields.`);
@@ -140,9 +145,24 @@ function validateManifest(manifest, historyManifest) {
     ) {
       throw new Error(`${profile.key} all-reported totals do not match the listed non-zero cycles.`);
     }
+
+    const aggregateContributors = aggregateContributorsByKey.get(profile.key);
+    if (!aggregateContributors || !Array.isArray(aggregateContributors.topContributors) || !aggregateContributors.topContributors.length) {
+      throw new Error(`${profile.key} is missing all-cycle top contributors.`);
+    }
+    aggregateContributors.sourceUrl = assertUrl(aggregateContributors.sourceUrl, `${profile.key} aggregate contributor source URL`);
+    if (aggregateContributors.sourceUrl !== history.allReported.sourceUrl) {
+      throw new Error(`${profile.key} aggregate contributors and all-reported totals use different source URLs.`);
+    }
+    for (const contributor of aggregateContributors.topContributors) {
+      if (!contributor.name || !["INDIVIDUAL", "ENTITY"].includes(contributor.type)) {
+        throw new Error(`${profile.key} has an invalid all-cycle contributor.`);
+      }
+      assertMoney(contributor.amount, `${profile.key} all-cycle contributor amount`);
+    }
   }
 
-  return historyByKey;
+  return { historyByKey, aggregateContributorsByKey };
 }
 
 function matchesAlias(value, aliases) {
@@ -371,7 +391,26 @@ async function replaceTopContributors(candidate, profile, manifest) {
   return profile.topContributors.length;
 }
 
-async function upsertAttribution(candidate, profile, manifest, source, history) {
+async function replaceAggregateTopContributors(candidate, profile, history, aggregateContributors, manifest) {
+  const reportId = `reviewed-all-reported-top-contributors:${profile.key}:${history.allReported.periodEnd}`;
+  await prisma.campaignFinanceContribution.deleteMany({ where: { candidateId: candidate.id, reportId } });
+  await prisma.campaignFinanceContribution.createMany({
+    data: aggregateContributors.topContributors.map((contributor) => ({
+      candidateId: candidate.id,
+      contributorName: contributor.name,
+      contributorType: contributorType(contributor),
+      amount: contributor.amount,
+      reportId,
+      sourceName: manifest.source.name,
+      sourceUrl: aggregateContributors.sourceUrl,
+      reviewStatus: CivicRecordReviewStatus.approved,
+      confidenceScore: 0.94,
+    })),
+  });
+  return aggregateContributors.topContributors.length;
+}
+
+async function upsertAttribution(candidate, profile, manifest, source, history, aggregateContributors) {
   const now = new Date(manifest.batch.retrievedAt);
   const candidateName = candidate.ballotName ?? candidate.fullName;
   const officialUrl = officialSearchUrl(candidateName);
@@ -398,7 +437,7 @@ async function upsertAttribution(candidate, profile, manifest, source, history) 
       { label: "Nevada Independent Q2 cross-check", url: manifest.source.crossCheckUrl, note: "Independent reporting on the June 30 disclosure period" },
     ],
     campaignReportedSummary: `Current-cycle direct-campaign totals cover ${reportingPeriod}. Historical totals cover ${history.cycles.length} non-zero Nevada cycle record${history.cycles.length === 1 ? "" : "s"} since 2017. Affiliated PACs and independent expenditures are not included. Cash on hand is not published in the source aggregates and is not estimated.`,
-    donorExtractionStatus: `${profile.topContributors.length} top-contributor aggregate${profile.topContributors.length === 1 ? "" : "s"} reviewed through ${manifest.batch.periodEndLabel}; the source link contains the broader itemized record.`,
+    donorExtractionStatus: `${aggregateContributors.topContributors.length} all-cycle top-contributor aggregate${aggregateContributors.topContributors.length === 1 ? "" : "s"} reviewed through ${manifest.batch.periodEndLabel}; the source link contains the broader itemized record.`,
   };
   await prisma.sourceAttribution.upsert({
     where: {
@@ -454,15 +493,18 @@ async function resolveFinanceGap(candidateId, batchName) {
 async function main() {
   const filePath = path.resolve(process.cwd(), argValue("file", DEFAULT_FILE));
   const historyFilePath = path.resolve(process.cwd(), argValue("history-file", DEFAULT_HISTORY_FILE));
-  const [manifest, historyManifest] = await Promise.all([
+  const aggregateContributorFilePath = path.resolve(process.cwd(), argValue("aggregate-contributor-file", DEFAULT_AGGREGATE_CONTRIBUTOR_FILE));
+  const [manifest, historyManifest, aggregateContributorManifest] = await Promise.all([
     fs.readFile(filePath, "utf8").then(JSON.parse),
     fs.readFile(historyFilePath, "utf8").then(JSON.parse),
+    fs.readFile(aggregateContributorFilePath, "utf8").then(JSON.parse),
   ]);
-  const historyByKey = validateManifest(manifest, historyManifest);
+  const { historyByKey, aggregateContributorsByKey } = validateManifest(manifest, historyManifest, aggregateContributorManifest);
   const imported = [];
 
   for (const profile of manifest.profiles) {
     const history = historyByKey.get(profile.key);
+    const aggregateContributors = aggregateContributorsByKey.get(profile.key);
     const candidates = await findTargets(profile);
     const source = await upsertSource(manifest, candidates[0].jurisdictionId);
     const candidateResults = [];
@@ -473,7 +515,8 @@ async function main() {
       }
       await upsertAllReportedAggregate(candidate, profile, manifest, source, history);
       const contributors = await replaceTopContributors(candidate, profile, manifest);
-      await upsertAttribution(candidate, profile, manifest, source, history);
+      const aggregateContributorCount = await replaceAggregateTopContributors(candidate, profile, history, aggregateContributors, manifest);
+      await upsertAttribution(candidate, profile, manifest, source, history, aggregateContributors);
       await resolveFinanceGap(candidate.id, manifest.batch.name);
       candidateResults.push({
         id: candidate.id,
@@ -482,6 +525,7 @@ async function main() {
         raised: profile.totalRaised,
         spent: profile.totalSpent,
         contributors,
+        aggregateContributors: aggregateContributorCount,
         historicalCycles: history.cycles.length,
         allReportedRaised: history.allReported.totalRaised,
         allReportedSpent: history.allReported.totalSpent,
@@ -494,8 +538,10 @@ async function main() {
     generatedAt: new Date().toISOString(),
     filePath,
     historyFilePath,
+    aggregateContributorFilePath,
     batch: manifest.batch,
     historyBatch: historyManifest.batch,
+    aggregateContributorBatch: aggregateContributorManifest.batch,
     source: manifest.source,
     imported,
   };

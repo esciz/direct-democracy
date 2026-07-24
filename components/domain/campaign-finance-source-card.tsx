@@ -32,7 +32,8 @@ function BarList({ items }: { items: Array<{ label: string; amount: number; perc
 
 export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourceCardData }) {
   const funding = data.fundingBreakdown;
-  const showFundingGraph = Boolean(funding?.hasDetailedContributions);
+  const contributorFunding = data.allReportedFundingBreakdown ?? funding;
+  const showFundingGraph = Boolean(contributorFunding?.hasDetailedContributions);
   const raisedAmount = funding?.totalRaised ?? (funding?.hasDetailedContributions ? funding.totalContributions : null);
   const hasFinancialSnapshot = [raisedAmount, funding?.totalSpent, funding?.cashOnHand].some(
     (value) => typeof value === "number" && Number.isFinite(value),
@@ -211,43 +212,43 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
         </div>
       ) : null}
 
-      {showFundingGraph && funding ? (
+      {showFundingGraph && contributorFunding ? (
         <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Reviewed contributor sample</p>
-            <h3 className="mt-2 text-lg font-semibold text-slate-50">Largest contributors in the cycle record</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-400">{funding.sourceCoverageNote}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Reviewed aggregate contributor sample</p>
+            <h3 className="mt-2 text-lg font-semibold text-slate-50">Largest contributors across reported cycles</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-400">{contributorFunding.sourceCoverageNote}</p>
           </div>
 
           <div className="mt-5 grid gap-4 xl:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-sm font-semibold text-slate-100">Funding by contributor type</p>
+              <p className="text-sm font-semibold text-slate-100">Reviewed contributors by type</p>
               <div className="mt-3">
-                <BarList items={funding.byContributorType} />
+                <BarList items={contributorFunding.byContributorType} />
               </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-sm font-semibold text-slate-100">PAC vs individual vs business</p>
+              <p className="text-sm font-semibold text-slate-100">Reviewed PAC vs individual vs business</p>
               <div className="mt-3">
-                <BarList items={funding.pacVsIndividual} />
+                <BarList items={contributorFunding.pacVsIndividual} />
               </div>
             </div>
-            {funding.byIndustry.length ? (
+            {contributorFunding.byIndustry.length ? (
               <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
                 <p className="text-sm font-semibold text-slate-100">Funding by industry/category</p>
                 <div className="mt-3">
-                  <BarList items={funding.byIndustry} />
+                  <BarList items={contributorFunding.byIndustry} />
                 </div>
               </div>
             ) : null}
             <div
               className={`rounded-2xl border border-white/10 bg-white/[0.03] p-4 ${
-                funding.byIndustry.length ? "" : "xl:col-span-2"
+                contributorFunding.byIndustry.length ? "" : "xl:col-span-2"
               }`}
             >
-              <p className="text-sm font-semibold text-slate-100">Top contributors</p>
-              <div className={funding.byIndustry.length ? "mt-3 space-y-2" : "mt-3 grid gap-2 md:grid-cols-2"}>
-                {funding.topContributors.map((contributor) => (
+              <p className="text-sm font-semibold text-slate-100">Reviewed top contributors</p>
+              <div className={contributorFunding.byIndustry.length ? "mt-3 space-y-2" : "mt-3 grid gap-2 md:grid-cols-2"}>
+                {contributorFunding.topContributors.map((contributor) => (
                   <div key={contributor.name} className="rounded-2xl border border-white/10 bg-black/15 p-3">
                     <div className="flex items-start justify-between gap-3">
                       <div>

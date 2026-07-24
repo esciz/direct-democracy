@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "batch": {
+    "name": "Nevada statewide all-cycle top-contributor aggregates since 2017",
+    "retrievedAt": "2026-07-23T23:55:00.000Z",
+    "coverageStart": "2017-01-01",
+    "coverageEnd": "2026-06-30",
+    "notes": "Reviewed top-ten contributor aggregates from each candidate's 2017-to-current source page."
+  },
+  "profiles": [
+    {
+      "key": "aaron-ford-governor-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/aaron-ford?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Wynn Resorts Ltd", "amount": 40000, "type": "ENTITY" },
+        { "name": "Caesars Enterprise Services LLC", "amount": 35000, "type": "ENTITY" },
+        { "name": "IBEW Local Union 357 PAC", "amount": 32017.85, "type": "ENTITY" },
+        { "name": "Plumbers & Pipefitters Local 525 PAC", "amount": 31500, "type": "ENTITY" },
+        { "name": "Bradley Drendel & Jeanney", "amount": 31000, "type": "ENTITY" },
+        { "name": "Jerry Whitsett", "amount": 31000, "type": "INDIVIDUAL" },
+        { "name": "Mgm Resorts International", "amount": 31000, "type": "ENTITY" },
+        { "name": "International Union of Operating Engineers Local 12", "amount": 30000, "type": "ENTITY" },
+        { "name": "Las Vegas Sands Corp", "amount": 30000, "type": "ENTITY" },
+        { "name": "Alisa and James E Nave", "amount": 29453, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "joseph-lombardo-governor-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/joseph-lombardo?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Court Ordered Reimbursement of Legal Expenses", "amount": 236788.41, "type": "ENTITY" },
+        { "name": "Bigelow Holding Company", "amount": 120000, "type": "ENTITY" },
+        { "name": "Nickolas Gene Mamula Jr", "amount": 30400, "type": "INDIVIDUAL" },
+        { "name": "Las Vegas Sands Corp", "amount": 30000, "type": "ENTITY" },
+        { "name": "Marnell Gaming Management LLC", "amount": 30000, "type": "ENTITY" },
+        { "name": "Mesquite Gaming LLC", "amount": 30000, "type": "ENTITY" },
+        { "name": "Anthony Marnell III", "amount": 20000, "type": "INDIVIDUAL" },
+        { "name": "Ben And Felicia Horowitz", "amount": 20000, "type": "INDIVIDUAL" },
+        { "name": "Boyd Gaming Corporation", "amount": 20000, "type": "ENTITY" },
+        { "name": "David Z Chesnoff Chartered", "amount": 20000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "sandra-jauregui-lieutenant-governor-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/sandra-jauregui?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Citizens for Justice Trust", "amount": 35000, "type": "ENTITY" },
+        { "name": "Home Building Industry PAC", "amount": 35000, "type": "ENTITY" },
+        { "name": "Nevada Board of Realtors PAC", "amount": 33000, "type": "ENTITY" },
+        { "name": "American Federation of State County & Municipal Employees Afscme - Federal", "amount": 31500, "type": "ENTITY" },
+        { "name": "Mgm Resorts International", "amount": 30007.54, "type": "ENTITY" },
+        { "name": "Nevada Strong PAC", "amount": 30000, "type": "ENTITY" },
+        { "name": "Nevada Home Builders Association PAC Nvhba", "amount": 26000, "type": "ENTITY" },
+        { "name": "Zuffa LLC", "amount": 26000, "type": "ENTITY" },
+        { "name": "Clark County Education Association (Ccea)", "amount": 25000, "type": "ENTITY" },
+        { "name": "Nevada Subcontractors Association PAC", "amount": 25000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "stavros-anthony-lieutenant-governor-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/stavros-anthony?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Stavros Anthony", "amount": 440888, "type": "ENTITY" },
+        { "name": "Stations Casino LLC", "amount": 23500, "type": "ENTITY" },
+        { "name": "Ahern Rentals Inc", "amount": 22500, "type": "ENTITY" },
+        { "name": "California Hope Trust", "amount": 20000, "type": "ENTITY" },
+        { "name": "Derek J Stevens Trust", "amount": 20000, "type": "ENTITY" },
+        { "name": "F & M Advertising", "amount": 20000, "type": "ENTITY" },
+        { "name": "Jack Binion", "amount": 20000, "type": "INDIVIDUAL" },
+        { "name": "Kag Property LLC", "amount": 20000, "type": "ENTITY" },
+        { "name": "Mark James", "amount": 20000, "type": "INDIVIDUAL" },
+        { "name": "Nevada Heart & Vascular LLP", "amount": 20000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "francisco-aguilar-secretary-of-state-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/francisco-aguilar?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Francisco Aguilar", "amount": 35812.05, "type": "INDIVIDUAL" },
+        { "name": "Cort Christie", "amount": 30000, "type": "INDIVIDUAL" },
+        { "name": "Marnell Gaming Management LLC", "amount": 30000, "type": "ENTITY" },
+        { "name": "Bailey Kennedy LLP", "amount": 20000, "type": "ENTITY" },
+        { "name": "Clark County Education Association (Ccea)", "amount": 20000, "type": "ENTITY" },
+        { "name": "Jay Glazer", "amount": 20000, "type": "INDIVIDUAL" },
+        { "name": "Marsha Glazer", "amount": 20000, "type": "INDIVIDUAL" },
+        { "name": "National Material Company LLC", "amount": 20000, "type": "ENTITY" },
+        { "name": "Nevada Power Company Dba NV Energy", "amount": 20000, "type": "ENTITY" },
+        { "name": "Pyramid Lake Holdings LLC", "amount": 20000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "james-marchant-secretary-of-state-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/james-marchant?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Jim Marchant", "amount": 200525, "type": "INDIVIDUAL" },
+        { "name": "James Marchant", "amount": 22675.36, "type": "ENTITY" },
+        { "name": "Norman Rogers", "amount": 10485.2, "type": "INDIVIDUAL" },
+        { "name": "300 West Sahara LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Ahern Rentals Inc", "amount": 10000, "type": "ENTITY" },
+        { "name": "Blue Heron Companies LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Conservatives for Election Integrity PAC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Esmeralda Cattle Company LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Kristen Routh-Silberman Real Estate LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Las Vegas Sands Corp", "amount": 10000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "tya-mathis-coleman-treasurer-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/tya-mathis-coleman?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "All for Our Country Leadership PAC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Let's Get to Work Nevada", "amount": 9667, "type": "ENTITY" },
+        { "name": "Diana L Bennett", "amount": 5000, "type": "INDIVIDUAL" },
+        { "name": "Drive Committee - Federal", "amount": 5000, "type": "ENTITY" },
+        { "name": "Harry Hayes", "amount": 4000, "type": "INDIVIDUAL" },
+        { "name": "Lauren Stamis", "amount": 2868, "type": "INDIVIDUAL" },
+        { "name": "2 PAC", "amount": 2500, "type": "ENTITY" },
+        { "name": "Southwest Gas Corporation", "amount": 2500, "type": "ENTITY" },
+        { "name": "Blakeley Griffith", "amount": 2250, "type": "INDIVIDUAL" },
+        { "name": "Latisha O'Neal", "amount": 2192.56, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "drew-johnson-treasurer-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/drew-johnson?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Bigelow Holding Company", "amount": 120000, "type": "ENTITY" },
+        { "name": "Drew Johnson", "amount": 104000, "type": "INDIVIDUAL" },
+        { "name": "Spotlight Liberty LLC", "amount": 17825, "type": "ENTITY" },
+        { "name": "James Thomson", "amount": 15410.16, "type": "INDIVIDUAL" },
+        { "name": "Budget Suites of America LLC Nv480", "amount": 10000, "type": "ENTITY" },
+        { "name": "Budget Suites of America LLC Nv704", "amount": 10000, "type": "ENTITY" },
+        { "name": "Budget Suites of America Tx-342 LP", "amount": 10000, "type": "ENTITY" },
+        { "name": "Chris Rufer", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Coyote Valley LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Derek J Stevens", "amount": 10000, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "michael-macdougall-controller-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/michael-macdougall?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Catherine MacDougall", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Diana MacDougall", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Drive Committee Fec Id# C00032979", "amount": 5000, "type": "ENTITY" },
+        { "name": "James MacDougall", "amount": 5000, "type": "INDIVIDUAL" },
+        { "name": "Robin Schmuckal", "amount": 1000, "type": "INDIVIDUAL" },
+        { "name": "Sheet Metal Workers #88 PAC", "amount": 1000, "type": "ENTITY" },
+        { "name": "Hannah Utecht", "amount": 200, "type": "INDIVIDUAL" },
+        { "name": "Michael MacDougall", "amount": 200, "type": "INDIVIDUAL" },
+        { "name": "Jacqueline Izawa", "amount": 150, "type": "INDIVIDUAL" },
+        { "name": "Clayton Mello", "amount": 100, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "andrew-matthews-controller-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/andrew-matthews?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "James Thomson", "amount": 30000, "type": "INDIVIDUAL" },
+        { "name": "Keystone Corporation", "amount": 20000, "type": "ENTITY" },
+        { "name": "David Contis", "amount": 15350, "type": "INDIVIDUAL" },
+        { "name": "David Cantwell", "amount": 14450, "type": "INDIVIDUAL" },
+        { "name": "Las Vegas Sands Corp", "amount": 12500, "type": "ENTITY" },
+        { "name": "Marianne and John Gibson", "amount": 12000, "type": "INDIVIDUAL" },
+        { "name": "Nevada Board of Realtors PAC", "amount": 11000, "type": "ENTITY" },
+        { "name": "Debra Collins", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Howard Waldow", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Mark Black", "amount": 10000, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "nicole-cannizzaro-attorney-general-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/nicole-cannizzaro?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Mgm Resorts International", "amount": 80000, "type": "ENTITY" },
+        { "name": "Nevada Power Company Dba NV Energy", "amount": 42000, "type": "ENTITY" },
+        { "name": "Summerlin Hospital and Medical Center", "amount": 37000, "type": "ENTITY" },
+        { "name": "Switch Ltd", "amount": 35000, "type": "ENTITY" },
+        { "name": "Caesars Enterprise Services LLC", "amount": 33500, "type": "ENTITY" },
+        { "name": "Dollar Loan Center LLC", "amount": 32500, "type": "ENTITY" },
+        { "name": "Alisa and James E Nave", "amount": 32000, "type": "INDIVIDUAL" },
+        { "name": "Zuffa LLC", "amount": 31000, "type": "ENTITY" },
+        { "name": "IBEW Local Union 357 PAC", "amount": 30510.7, "type": "ENTITY" },
+        { "name": "American Federation of State County & Municipal Employees Afscme - Federal", "amount": 30000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "adriana-fralick-attorney-general-2026",
+      "sourceUrl": "https://www.transparencyusa.org/nv/candidate/adriana-fralick?cycle=2017-to-now",
+      "topContributors": [
+        { "name": "Marnell Gaming Management LLC", "amount": 20000, "type": "ENTITY" },
+        { "name": "Adriana Guzman Fralick", "amount": 14237.39, "type": "INDIVIDUAL" },
+        { "name": "Gary Gilmore", "amount": 10410.16, "type": "INDIVIDUAL" },
+        { "name": "Andrea M Hendrick", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Betty and John Stanko", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Carol and Dennis Troesh", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Claggett & Sykes Law Firm", "amount": 10000, "type": "ENTITY" },
+        { "name": "James Thomson", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Kirk D Hendrick", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Marnell Ak LLC", "amount": 10000, "type": "ENTITY" }
+      ]
+    }
+  ]
+}

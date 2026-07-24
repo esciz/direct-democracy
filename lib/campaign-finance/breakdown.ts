@@ -18,6 +18,15 @@ export type CandidateFundingBreakdown = {
   sourceCoverageNote: string;
 };
 
+type CandidateFundingBreakdownOptions = {
+  reportIdPrefix?: string;
+  totalRaised?: number | null;
+  totalSpent?: number | null;
+  cashOnHand?: number | null;
+  reportingPeriod?: string | null;
+  coverageLabel?: string;
+};
+
 function asNumber(value: unknown) {
   if (value == null) return null;
   const numeric = Number(value);
@@ -44,13 +53,17 @@ function addToGroup(groups: Map<string, number>, key: string, amount: number) {
   groups.set(key, (groups.get(key) ?? 0) + amount);
 }
 
-export async function getCandidateFundingBreakdown(candidateId: string): Promise<CandidateFundingBreakdown> {
+export async function getCandidateFundingBreakdown(
+  candidateId: string,
+  options: CandidateFundingBreakdownOptions = {},
+): Promise<CandidateFundingBreakdown> {
   try {
     const [contributions, summary] = await Promise.all([
       prisma.campaignFinanceContribution.findMany({
         where: {
           candidateId,
           reviewStatus: { in: PUBLISHABLE_REVIEW_STATUSES },
+          ...(options.reportIdPrefix ? { reportId: { startsWith: options.reportIdPrefix } } : {}),
         },
         orderBy: { amount: "desc" },
         take: 5000,
@@ -65,6 +78,8 @@ export async function getCandidateFundingBreakdown(candidateId: string): Promise
     ]);
 
     const totalContributions = contributions.reduce((sum, row) => sum + (asNumber(row.amount) ?? 0), 0);
+    const totalRaised = options.totalRaised !== undefined ? options.totalRaised : asNumber(summary?.totalRaised);
+    const percentageBase = totalRaised && totalRaised > 0 ? totalRaised : totalContributions;
     const byContributorType = new Map<string, number>();
     const byIndustry = new Map<string, number>();
     const topContributorTotals = new Map<string, { amount: number; contributorType: string; industry: string | null }>();
@@ -96,7 +111,7 @@ export async function getCandidateFundingBreakdown(candidateId: string): Promise
       .map(([name, value]) => ({
         name,
         amount: value.amount,
-        percentage: totalContributions > 0 ? Math.round((value.amount / totalContributions) * 1000) / 10 : 0,
+        percentage: percentageBase > 0 ? Math.round((value.amount / percentageBase) * 1000) / 10 : 0,
         contributorType: formatLabel(value.contributorType),
         industry: value.industry,
       }))
@@ -104,7 +119,6 @@ export async function getCandidateFundingBreakdown(candidateId: string): Promise
       .slice(0, 8);
 
     const hasDetailedContributions = contributions.length > 0 && totalContributions > 0;
-    const totalRaised = asNumber(summary?.totalRaised);
     const coveragePercentage =
       hasDetailedContributions && totalRaised && totalRaised > 0
         ? Math.min(100, Math.round((totalContributions / totalRaised) * 1000) / 10)
@@ -113,16 +127,16 @@ export async function getCandidateFundingBreakdown(candidateId: string): Promise
       hasDetailedContributions,
       totalContributions,
       totalRaised,
-      totalSpent: asNumber(summary?.totalSpent),
-      cashOnHand: asNumber(summary?.cashOnHand),
-      reportingPeriod: summary?.reportingPeriod ?? null,
-      byContributorType: groupedPercentages(byContributorType, totalContributions),
-      byIndustry: groupedPercentages(byIndustry, totalContributions),
+      totalSpent: options.totalSpent !== undefined ? options.totalSpent : asNumber(summary?.totalSpent),
+      cashOnHand: options.cashOnHand !== undefined ? options.cashOnHand : asNumber(summary?.cashOnHand),
+      reportingPeriod: options.reportingPeriod !== undefined ? options.reportingPeriod : summary?.reportingPeriod ?? null,
+      byContributorType: groupedPercentages(byContributorType, percentageBase),
+      byIndustry: groupedPercentages(byIndustry, percentageBase),
       topContributors,
-      pacVsIndividual: groupedPercentages(pacVsIndividual, totalContributions),
+      pacVsIndividual: groupedPercentages(pacVsIndividual, percentageBase),
       sourceCoverageNote: hasDetailedContributions
         ? coveragePercentage != null
-          ? `Shows ${contributions.length.toLocaleString()} reviewed top-contributor aggregate${contributions.length === 1 ? "" : "s"}, representing ${coveragePercentage}% of cycle-to-date contributions. This reviewed sample may not be the full donor ledger.`
+          ? `Shows ${contributions.length.toLocaleString()} reviewed top-contributor aggregate${contributions.length === 1 ? "" : "s"}, representing ${coveragePercentage}% of ${options.coverageLabel ?? "cycle-to-date contributions"}. This reviewed sample may not be the full donor ledger.`
           : `Shows ${contributions.length.toLocaleString()} reviewed top-contributor aggregate${contributions.length === 1 ? "" : "s"}. This reviewed sample may not be the full donor ledger.`
         : "Not enough clean contributor rows are available for donor-category charts yet.",
     };
