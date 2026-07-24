@@ -24,46 +24,6 @@ type CandidateProfileHeroProps = {
   externalLinks?: ExternalLinkSummary[];
 };
 
-function ProfileStatCard({
-  label,
-  value,
-  tone,
-  compact = false,
-}: {
-  label: string;
-  value: string | number;
-  tone: "dark" | "civic" | "orange";
-  compact?: boolean;
-}) {
-  const toneClasses =
-    tone === "dark"
-      ? {
-          card: "border-white/10 bg-[linear-gradient(160deg,rgba(8,15,28,0.98),rgba(3,10,20,0.94))] text-white",
-          label: "text-slate-400",
-          value: "text-white",
-        }
-      : tone === "civic"
-        ? {
-            card: "border-emerald-300/18 bg-[linear-gradient(160deg,rgba(6,78,59,0.24),rgba(8,15,28,0.94))] text-emerald-50",
-            label: "text-emerald-200/80",
-            value: "text-emerald-50",
-          }
-        : {
-            card: "border-amber-300/18 bg-[linear-gradient(160deg,rgba(120,53,15,0.3),rgba(8,15,28,0.94))] text-amber-50",
-            label: "text-amber-200/80",
-            value: "text-amber-50",
-          };
-
-  return (
-    <div className={`flex min-h-[7.25rem] flex-col justify-between rounded-[1.4rem] border p-4 shadow-[0_14px_32px_-28px_rgba(15,23,42,0.45)] ${toneClasses.card}`}>
-      <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${toneClasses.label}`}>{label}</p>
-      <p className={`mt-4 font-semibold ${compact ? "text-base leading-6 sm:text-lg" : "text-[1.7rem] leading-none sm:text-[1.85rem]"} ${toneClasses.value}`}>
-        {value}
-      </p>
-    </div>
-  );
-}
-
 export async function CandidateProfileHero({
   candidate,
   returnPath,
@@ -80,9 +40,8 @@ export async function CandidateProfileHero({
 
   return (
     <div className="space-y-6">
-      <section className="dd-panel relative overflow-hidden rounded-[1.75rem] p-6 sm:p-8">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(52,211,153,0.1),transparent_30%)]" />
-        <div className="relative space-y-6">
+      <section className="dd-panel rounded-lg p-6 sm:p-8">
+        <div className="space-y-6">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0 flex-1">
             <div className="flex items-start gap-5">
@@ -141,19 +100,42 @@ export async function CandidateProfileHero({
             </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[16.5rem] lg:grid-cols-1 xl:min-w-[23rem] xl:grid-cols-3">
-              <ProfileStatCard label="Raised" value={primaryCampaign?.totalRaised ?? "TBD"} tone="dark" />
-              <ProfileStatCard label="Campaign Status" value={primaryCampaign?.campaignStatus ?? "Active"} tone="civic" compact />
-              <ProfileStatCard label="Polling Snapshot" value={primaryCampaign?.pollingSummary ?? "Not available"} tone="orange" compact />
+            <div className="divide-y divide-white/10 rounded-lg border border-white/10 bg-white/[0.03] px-4 sm:grid sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:min-w-[17rem] lg:grid-cols-1 lg:divide-x-0 lg:divide-y">
+              <div className="py-3 sm:px-3 lg:px-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Raised</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{primaryCampaign?.totalRaised ?? "Not reported"}</p>
+              </div>
+              <div className="py-3 sm:px-3 lg:px-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-200">Campaign status</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{primaryCampaign?.campaignStatus ?? "Active"}</p>
+              </div>
+              <div className="py-3 sm:px-3 lg:px-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-200">Polling</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{primaryCampaign?.pollingSummary ?? "No public poll"}</p>
+              </div>
             </div>
           </div>
 
           {followerSnapshot ? <ProfileFollowerSnapshot snapshot={followerSnapshot} /> : null}
 
-          <ProfileSignalsPanel signals={signals} />
+          <details className="rounded-lg border border-white/10 bg-white/[0.02]">
+            <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-slate-200 hover:text-cyan-100">
+              Profile and accountability signals
+            </summary>
+            <div className="border-t border-white/10 p-4">
+              <ProfileSignalsPanel signals={signals} />
+            </div>
+          </details>
         </div>
       </section>
-      {progression ? <RoleProgressionContext progression={progression} title="Citizen to candidate progression" /> : null}
+      {progression ? (
+        <details className="dd-panel-muted rounded-lg">
+          <summary className="cursor-pointer px-5 py-4 text-sm font-semibold text-slate-200">How this candidate profile is connected to civic progression</summary>
+          <div className="border-t border-white/10 p-4">
+            <RoleProgressionContext progression={progression} title="Citizen to candidate progression" />
+          </div>
+        </details>
+      ) : null}
     </div>
   );
 }

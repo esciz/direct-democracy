@@ -49,6 +49,7 @@
     "civic:discover-candidate-websites": "node scripts/discover-candidate-websites.mjs",
     "civic:discover-candidate-socials": "node scripts/discover-candidate-social-profiles.mjs",
     "civic:import-incumbent-official-bios": "node scripts/import-incumbent-official-bios.mjs",
+    "civic:import-validated-profile-media": "node scripts/import-validated-profile-media.mjs",
     "civic:repair-lombardo-profile": "node scripts/repair-lombardo-profile-enrichment.mjs",
     "civic:repair-rosen-profile": "node scripts/repair-rosen-profile-enrichment.mjs",
     "civic:import-reviewed-candidate-profiles": "node scripts/import-reviewed-candidate-profiles.mjs",

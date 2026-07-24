@@ -3,6 +3,7 @@ import "server-only";
 import type { Prisma } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
+import { getValidatedProfileImageUrl } from "@/lib/profile/media-validation";
 
 export type EnrichmentTargetType = "CANDIDATE" | "OFFICIAL";
 export type EnrichmentReviewStatus = "PENDING_REVIEW" | "APPROVED" | "REJECTED" | "NEEDS_MORE_SOURCES" | "VERIFIED";
@@ -229,8 +230,15 @@ function extractMeta(html: string, property: string) {
 function extractImageUrl(html: string, sourceUrl: string) {
   const ogImage = extractMeta(html, "og:image");
   const twitterImage = extractMeta(html, "twitter:image");
-  const firstImage = /<img[^>]+src=["']([^"']+)["'][^>]*>/i.exec(html)?.[1] ?? null;
-  return safeUrl(ogImage ?? twitterImage ?? firstImage, sourceUrl);
+  const imageSources = [...html.matchAll(/<img[^>]+src=["']([^"']+)["'][^>]*>/gi)].map((match) => match[1]);
+
+  for (const candidate of [ogImage, twitterImage, ...imageSources]) {
+    const resolvedUrl = safeUrl(candidate, sourceUrl);
+    const validatedUrl = getValidatedProfileImageUrl(resolvedUrl);
+    if (validatedUrl) return validatedUrl;
+  }
+
+  return null;
 }
 
 function extractLinks(html: string, sourceUrl: string) {

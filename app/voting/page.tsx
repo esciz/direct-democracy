@@ -225,16 +225,27 @@ export default async function VotingPage({ searchParams }: VotingPageProps) {
         </div>
       </section>
 
-      <ParticipationReadinessPanel summary={participationReadiness} compact />
-
-      <ParticipationSignalSummary
-        sourceBackedQuestions={participationActivation.totals.sourceBackedQuestions}
-        verifiedResponses={participationActivation.totals.verifiedResponses}
-        publicSegments={participationActivation.totals.stakeholderPublicSegments}
-        suppressedSegments={participationActivation.totals.stakeholderSuppressedSegments}
-      />
-
       <CivicQuestionsSection activeQuestion={votingWindow.activeQuestion} total={votingWindow.total} canVote={verified} filter={filter} activeIndex={activeIndex} />
+
+      <details className="group dd-panel-muted rounded-lg">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 sm:px-6">
+          <span>
+            <span className="block text-base font-semibold text-slate-100">How voting access, privacy, and aggregate results work</span>
+            <span className="mt-1 block text-sm text-slate-400">Verification rules, equal vote weight, publication thresholds, and system totals.</span>
+          </span>
+          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 group-open:hidden">Open</span>
+          <span className="hidden text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 group-open:inline">Close</span>
+        </summary>
+        <div className="space-y-5 border-t border-white/10 p-4 sm:p-6">
+          <ParticipationReadinessPanel summary={participationReadiness} compact />
+          <ParticipationSignalSummary
+            sourceBackedQuestions={participationActivation.totals.sourceBackedQuestions}
+            verifiedResponses={participationActivation.totals.verifiedResponses}
+            publicSegments={participationActivation.totals.stakeholderPublicSegments}
+            suppressedSegments={participationActivation.totals.stakeholderSuppressedSegments}
+          />
+        </div>
+      </details>
     </div>
   );
 }

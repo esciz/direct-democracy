@@ -21,26 +21,26 @@ function statusLabel(status: ParticipationReadinessItem["status"]) {
 function statusClass(status: ParticipationReadinessItem["status"]) {
   switch (status) {
     case "ready":
-      return "border-civic-200 bg-civic-50 text-civic-800";
+      return "border-emerald-300/20 bg-emerald-500/10 text-emerald-100";
     case "provider_needed":
-      return "border-amber-200 bg-amber-50 text-amber-800";
+      return "border-amber-300/20 bg-amber-500/10 text-amber-100";
     case "stewardship_available":
-      return "border-sky-200 bg-sky-50 text-sky-800";
+      return "border-cyan-300/20 bg-cyan-500/10 text-cyan-100";
     case "available_after_verification":
-      return "border-slate-200 bg-white text-slate-600";
+      return "border-white/10 bg-white/[0.04] text-slate-300";
   }
 }
 
 function ReadinessItemCard({ item }: { item: ParticipationReadinessItem }) {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4">
+    <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <p className="text-sm font-semibold text-ink">{item.label}</p>
+        <p className="text-sm font-semibold text-slate-100">{item.label}</p>
         <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${statusClass(item.status)}`}>
           {statusLabel(item.status)}
         </span>
       </div>
-      <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-400">{item.description}</p>
     </div>
   );
 }
@@ -51,60 +51,56 @@ export function ParticipationReadinessPanel({ summary, compact = false }: Partic
   const stewardshipItems = compact ? summary.stewardship.slice(0, 2) : summary.stewardship;
 
   return (
-    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
+    <section className="dd-panel-muted rounded-lg p-5 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Participation readiness</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{summary.verificationLabel}</h2>
-          <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">{summary.verificationDescription}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Voting access</p>
+          <h2 className="mt-2 text-xl font-semibold text-slate-50">{summary.verificationLabel}</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">{summary.verificationDescription}</p>
         </div>
-        <div className="rounded-3xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white">
-          Vote weight: {summary.voteWeight}
+        <div className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-100">
+          Equal vote weight: {summary.voteWeight}
         </div>
       </div>
 
-      <div className="mt-5 grid gap-4 md:grid-cols-3">
-        <div className="rounded-3xl bg-civic-50 p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Verification class</p>
-          <p className="mt-2 text-lg font-semibold text-civic-900">{summary.verificationClass.replaceAll("_", " ")}</p>
+      <div className="mt-5 grid gap-3 border-y border-white/10 py-4 sm:grid-cols-3 sm:divide-x sm:divide-white/10">
+        <div className="sm:px-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Verification</p>
+          <p className="mt-2 text-sm font-semibold text-slate-100">{summary.verificationClass.replaceAll("_", " ")}</p>
         </div>
-        <div className="rounded-3xl bg-slate-50 p-5">
+        <div className="sm:px-4">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Hidden weighting</p>
-          <p className="mt-2 text-lg font-semibold text-ink">{summary.hiddenWeighting ? "Enabled" : "Never"}</p>
+          <p className="mt-2 text-sm font-semibold text-slate-100">{summary.hiddenWeighting ? "Enabled" : "Never"}</p>
         </div>
-        <div className="rounded-3xl bg-slate-50 p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Trusted Citizen</p>
-          <p className="mt-2 text-lg font-semibold text-ink">{summary.trustedGrantStatus === "active" ? "Active" : "Not active"}</p>
+        <div className="sm:px-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Stewardship tools</p>
+          <p className="mt-2 text-sm font-semibold text-slate-100">{summary.trustedGrantStatus === "active" ? "Available" : "Not active"}</p>
         </div>
       </div>
 
-      <div className="mt-5 rounded-3xl border border-civic-200 bg-civic-50 p-5 text-sm leading-6 text-civic-900">
-        {summary.publicDataSeparation}
-      </div>
-      <div className="mt-3 rounded-3xl border border-sky-200 bg-sky-50 p-5 text-sm leading-6 text-sky-950">
-        {summary.trustedCitizenNote}
-      </div>
-
-      <div className="mt-6 grid gap-5 lg:grid-cols-3">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Available now</p>
-          <div className="mt-3 space-y-3">
-            {coreItems.map((item) => <ReadinessItemCard key={item.id} item={item} />)}
+      <details className="mt-4">
+        <summary className="cursor-pointer text-sm font-semibold text-cyan-100 hover:text-cyan-50">Access details and privacy rules</summary>
+        <div className="mt-4 space-y-5 border-t border-white/10 pt-5">
+          <div className="grid gap-3 text-sm leading-6 sm:grid-cols-2">
+            <p className="rounded-lg border border-emerald-300/16 bg-emerald-500/10 p-4 text-emerald-50">{summary.publicDataSeparation}</p>
+            <p className="rounded-lg border border-cyan-300/16 bg-cyan-500/10 p-4 text-cyan-50">{summary.trustedCitizenNote}</p>
+          </div>
+          <div className="grid gap-5 lg:grid-cols-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Available now</p>
+              <div className="mt-3 space-y-3">{coreItems.map((item) => <ReadinessItemCard key={item.id} item={item} />)}</div>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Verification unlocks</p>
+              <div className="mt-3 space-y-3">{nextItems.map((item) => <ReadinessItemCard key={item.id} item={item} />)}</div>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Stewardship</p>
+              <div className="mt-3 space-y-3">{stewardshipItems.map((item) => <ReadinessItemCard key={item.id} item={item} />)}</div>
+            </div>
           </div>
         </div>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Verification unlocks</p>
-          <div className="mt-3 space-y-3">
-            {nextItems.map((item) => <ReadinessItemCard key={item.id} item={item} />)}
-          </div>
-        </div>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Stewardship</p>
-          <div className="mt-3 space-y-3">
-            {stewardshipItems.map((item) => <ReadinessItemCard key={item.id} item={item} />)}
-          </div>
-        </div>
-      </div>
+      </details>
     </section>
   );
 }

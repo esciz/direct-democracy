@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-20T17:11:57.961Z",
+  "generatedAt": "2026-07-24T01:35:41.608Z",
   "communityId": "carson-city-county",
   "totals": {
     "categories": 11,
@@ -56,8 +56,8 @@
     "candidates": {
       "category": "candidates",
       "itemCount": 12,
-      "sourceCount": 203,
-      "availableGeneratedCount": 203,
+      "sourceCount": 212,
+      "availableGeneratedCount": 212,
       "isSourceBacked": true,
       "usesDemoData": false,
       "lastGeneratedAt": null,

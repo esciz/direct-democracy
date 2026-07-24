@@ -7,6 +7,7 @@ import { getFavoriteSpotCategoryLabel } from "@/lib/profile/options";
 import { getVotingLibrary } from "@/lib/feed/quick-votes";
 import { getAllPetitions } from "@/lib/petitions/store";
 import { getPollsForCommunity } from "@/lib/polls/store";
+import { withBoundedFallback } from "@/lib/server/async-fallback";
 import type {
   AuthUser,
   CommunityFavoritePlaceSummary,
@@ -102,57 +103,6 @@ async function aggregateIssuesForCommunity(
   };
 }
 
-async function getRelatedPetition(label: string, community: CommunitySummary) {
-  const petitions = await getAllPetitions();
-  const issueTokens = tokenize(label);
-
-  return (
-    petitions
-      .filter((petition) => matchesCommunity(petition.jurisdictionName, community))
-      .find((petition) => {
-        const petitionTokens = new Set(tokenize(`${petition.title} ${petition.summary}`));
-        return issueTokens.some((token) => petitionTokens.has(token));
-      }) ?? null
-  );
-}
-
-async function getRelatedPollCount(viewer: AuthUser, label: string, communityId: string) {
-  const polls = await getPollsForCommunity(viewer.id, communityId, 20);
-  const issueTokens = tokenize(label);
-
-  return polls.filter((poll) => {
-    const pollTokens = new Set(tokenize(poll.question));
-    return issueTokens.some((token) => pollTokens.has(token));
-  }).length;
-}
-
-async function getRelatedQuestionCount(viewer: AuthUser, label: string, community: CommunitySummary) {
-  const issueTokens = tokenize(label);
-  const questions = await getVotingLibrary(viewer, { scope: "all", category: "all", objectType: "all" });
-
-  return questions.filter((question) => {
-    if (!community.jurisdictionMatches.includes(question.jurisdictionName)) {
-      return false;
-    }
-
-    const questionTokens = new Set(tokenize(question.questionText));
-    return issueTokens.some((token) => questionTokens.has(token));
-  }).length;
-}
-
-async function getTopVoiceMatches(viewer: AuthUser, communityId: string, scope: VoteQuestionScope, label: string) {
-  const topVoices = await getTopVoices(viewer, communityId, scope);
-  const normalized = normalizeText(label);
-
-  return topVoices
-    .filter((voice) => voice.topIssuesPreview.some((issue) => normalizeText(issue) === normalized))
-    .slice(0, 2)
-    .map((voice) => ({
-      id: voice.id,
-      name: voice.name,
-    }));
-}
-
 export async function getCommunityIssuePriorities(viewer: AuthUser, communityId: string, scope: VoteQuestionScope) {
   const community = getCommunityById(communityId) ?? getDefaultCommunityForJurisdiction(viewer.jurisdictionName);
   const { totals, userCount } = await aggregateIssuesForCommunity(community.id, scope);
@@ -164,18 +114,54 @@ export async function getCommunityIssuePriorities(viewer: AuthUser, communityId:
     return a[1].label.localeCompare(b[1].label);
   });
 
-  const priorities: IssuePrioritySummary[] = [];
+  const [petitions, polls, questions, topVoices] = await Promise.all([
+    withBoundedFallback(getAllPetitions(), [], { label: "community petitions", timeoutMs: 900 }),
+    withBoundedFallback(getPollsForCommunity(viewer.id, community.id, 20), [], {
+      label: "community polls",
+      timeoutMs: 900,
+    }),
+    withBoundedFallback(getVotingLibrary(viewer, { scope: "all", category: "all", objectType: "all" }), [], {
+      label: "community voting questions",
+      timeoutMs: 900,
+    }),
+    withBoundedFallback(getTopVoices(viewer, community.id, scope), [], {
+      label: "community top voices",
+      timeoutMs: 900,
+    }),
+  ]);
 
-  for (const [index, [normalizedKey, value]] of rankedEntries.entries()) {
-    const relatedPetition = await getRelatedPetition(value.label, community);
-    const [topVoiceMatches, relatedPollCount, relatedEventCount, relatedQuestionCount] = await Promise.all([
-      getTopVoiceMatches(viewer, community.id, scope, value.label),
-      getRelatedPollCount(viewer, value.label, community.id),
-      getIssueRelatedEventCount(community.id, value.label),
-      getRelatedQuestionCount(viewer, value.label, community),
-    ]);
+  const priorities: IssuePrioritySummary[] = await Promise.all(
+    rankedEntries.map(async ([normalizedKey, value], index) => {
+      const issueTokens = tokenize(value.label);
+      const relatedPetition =
+        petitions
+          .filter((petition) => matchesCommunity(petition.jurisdictionName, community))
+          .find((petition) => {
+            const petitionTokens = new Set(tokenize(`${petition.title} ${petition.summary}`));
+            return issueTokens.some((token) => petitionTokens.has(token));
+          }) ?? null;
+      const relatedPollCount = polls.filter((poll) => {
+        const pollTokens = new Set(tokenize(poll.question));
+        return issueTokens.some((token) => pollTokens.has(token));
+      }).length;
+      const relatedQuestionCount = questions.filter((question) => {
+        if (!community.jurisdictionMatches.includes(question.jurisdictionName)) {
+          return false;
+        }
 
-    priorities.push({
+        const questionTokens = new Set(tokenize(question.questionText));
+        return issueTokens.some((token) => questionTokens.has(token));
+      }).length;
+      const topVoiceMatches = topVoices
+        .filter((voice) => voice.topIssuesPreview.some((issue) => normalizeText(issue) === normalizedKey))
+        .slice(0, 2)
+        .map((voice) => ({ id: voice.id, name: voice.name }));
+      const relatedEventCount = await withBoundedFallback(getIssueRelatedEventCount(community.id, value.label), 0, {
+        label: `community event count for ${value.label}`,
+        timeoutMs: 700,
+      });
+
+      return {
       label: value.label,
       normalizedKey,
       rank: index + 1,
@@ -188,8 +174,9 @@ export async function getCommunityIssuePriorities(viewer: AuthUser, communityId:
       relatedEventCount,
       relatedGroups: getIssueRelatedGroups(community.id, value.label),
       topVoiceMatches,
-    });
-  }
+      };
+    }),
+  );
 
   return {
     community,
@@ -199,8 +186,13 @@ export async function getCommunityIssuePriorities(viewer: AuthUser, communityId:
   };
 }
 
-export async function getCommunityIssueComparison(viewer: AuthUser, communityId: string, scope: VoteQuestionScope) {
-  const selected = await getCommunityIssuePriorities(viewer, communityId, scope);
+export async function getCommunityIssueComparison(
+  viewer: AuthUser,
+  communityId: string,
+  scope: VoteQuestionScope,
+  selectedData?: Awaited<ReturnType<typeof getCommunityIssuePriorities>>,
+) {
+  const selected = selectedData ?? (await getCommunityIssuePriorities(viewer, communityId, scope));
   const [stateData, nationalData] = await Promise.all([
     aggregateIssuesForCommunity("nevada", "state"),
     aggregateIssuesForCommunity("united-states", "national"),

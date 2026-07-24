@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-05T17:48:52.697Z",
+  "generatedAt": "2026-07-24T01:35:50.513Z",
   "totals": {
     "categories": 11,
-    "items": 74,
-    "internalDestinations": 73,
+    "items": 86,
+    "internalDestinations": 85,
     "sourceOnlyDestinations": 1,
     "missingDestinations": 0,
-    "sourceTrails": 61,
+    "sourceTrails": 73,
     "routeFilesChecked": 6,
     "routeFilesMissing": 0,
     "failures": 0
@@ -207,7 +207,7 @@
     "candidates": {
       "category": "candidates",
       "itemCount": 12,
-      "sourceCount": 203,
+      "sourceCount": 212,
       "isSourceBacked": true,
       "usesDemoData": false,
       "internalDestinationCount": 12,
@@ -215,6 +215,24 @@
       "missingDestinationCount": 0,
       "sourceTrailCount": 12,
       "items": [
+        {
+          "id": "cmrwg73sj002jlnpcohx5q22g",
+          "title": "Nicole Jeanette Cannizzaro",
+          "href": "/candidates/cmrwg73sj002jlnpcohx5q22g",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://thenevadaindependent.com/elections/2026/primary/results",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "cmrwg745x002vlnpcra4expad",
+          "title": "Adriana Guzmán Fralick",
+          "href": "/candidates/cmrwg745x002vlnpcra4expad",
+          "ctaLabel": "View candidate",
+          "sourceUrl": "https://thenevadaindependent.com/elections/2026/primary/results",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
         {
           "id": "cmq107uih00dvlnoxneaps436",
           "title": "Chris Sarman",
@@ -304,31 +322,13 @@
           "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
           "destinationKind": "internal",
           "hasSourceTrail": true
-        },
-        {
-          "id": "cmq107uql00eblnox640fobj0",
-          "title": "Justin Taylor",
-          "href": "/candidates/cmq107uql00eblnox640fobj0",
-          "ctaLabel": "View candidate",
-          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
-          "destinationKind": "internal",
-          "hasSourceTrail": true
-        },
-        {
-          "id": "cmq107vp400g7lnoxot3bja0h",
-          "title": "Derek C. Dreiling",
-          "href": "/candidates/cmq107vp400g7lnoxot3bja0h",
-          "ctaLabel": "View candidate",
-          "sourceUrl": "https://www.washoecounty.gov/voters/files/Washoe%20County%202026%20Candidates.xlsx",
-          "destinationKind": "internal",
-          "hasSourceTrail": true
         }
       ]
     },
     "officials": {
       "category": "officials",
       "itemCount": 12,
-      "sourceCount": 164,
+      "sourceCount": 171,
       "isSourceBacked": true,
       "usesDemoData": false,
       "internalDestinationCount": 12,
@@ -724,15 +724,124 @@
     },
     "ads": {
       "category": "ads",
-      "itemCount": 0,
-      "sourceCount": 0,
-      "isSourceBacked": false,
+      "itemCount": 12,
+      "sourceCount": 48,
+      "isSourceBacked": true,
       "usesDemoData": false,
-      "internalDestinationCount": 0,
+      "internalDestinationCount": 12,
       "sourceOnlyDestinationCount": 0,
       "missingDestinationCount": 0,
-      "sourceTrailCount": 0,
-      "items": []
+      "sourceTrailCount": 12,
+      "items": [
+        {
+          "id": "nv-video-ad-jacky-rosen-never-have-2024",
+          "title": "Never Have",
+          "href": "/ads/nv-video-ad-jacky-rosen-never-have-2024",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://www.youtube.com/watch?v=V7GVzx_8Vqw",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-2024",
+          "title": "Sam Brown For Senate: Nevada's Back",
+          "href": "/ads/nv-video-ad-afp-action-sam-brown-nevadas-back-2024",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://www.youtube.com/watch?v=8s0_thf2geQ",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024",
+          "title": "Sam Brown For Senate: Nevada's Back, 15-second cut",
+          "href": "/ads/nv-video-ad-afp-action-sam-brown-nevadas-back-15-2024",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://www.youtube.com/watch?v=_9bEcVn7OJQ",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "nv-video-ad-susie-lee-the-most-2024",
+          "title": "The Most",
+          "href": "/ads/nv-video-ad-susie-lee-the-most-2024",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://www.youtube.com/watch?v=7BfE2eJlFxA",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "nv-video-ad-susie-lee-stark-choice-2022",
+          "title": "Stark Choice",
+          "href": "/ads/nv-video-ad-susie-lee-stark-choice-2022",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://www.youtube.com/watch?v=8n8-gn4EkUA",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "nv-context-ad-news4-rosen-brown-abortion-fact-check-2024",
+          "title": "Rosen/Brown abortion ad fact-check context",
+          "href": "/ads/nv-context-ad-news4-rosen-brown-abortion-fact-check-2024",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://mynews4.com/news/local/fact-checking-nevada-us-senate-candidates-sam-brown-senator-jacky-rosen-campaign-ads-on-abortion",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024",
+          "title": "Nevada Senate housing and COVID-relief ad fact-check context",
+          "href": "/ads/nv-context-ad-news4-rosen-brown-housing-covid-fact-check-2024",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://www.youtube.com/watch?v=oL2uyR2yngo",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "fec-nv-ie-4060520261520378046",
+          "title": "CLUB FOR GROWTH ACTION supporting David Flippo",
+          "href": "/ads/fec-nv-ie-4060520261520378046",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://docquery.fec.gov/cgi-bin/fecimg/?202606059870431512",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "fec-nv-ie-4060520261520378045",
+          "title": "CLUB FOR GROWTH ACTION supporting David Flippo",
+          "href": "/ads/fec-nv-ie-4060520261520378045",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://docquery.fec.gov/cgi-bin/fecimg/?202606059870431512",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "fec-nv-ie-4060320261520146499",
+          "title": "CLUB FOR GROWTH ACTION supporting David Flippo",
+          "href": "/ads/fec-nv-ie-4060320261520146499",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362891",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "fec-nv-ie-4060320261520146494",
+          "title": "CLUB FOR GROWTH ACTION supporting David Flippo",
+          "href": "/ads/fec-nv-ie-4060320261520146494",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362889",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        },
+        {
+          "id": "fec-nv-ie-4060320261520146493",
+          "title": "CLUB FOR GROWTH ACTION supporting David Flippo",
+          "href": "/ads/fec-nv-ie-4060320261520146493",
+          "ctaLabel": "View ad",
+          "sourceUrl": "https://docquery.fec.gov/cgi-bin/fecimg/?202606039870362888",
+          "destinationKind": "internal",
+          "hasSourceTrail": true
+        }
+      ]
     },
     "organizations": {
       "category": "organizations",

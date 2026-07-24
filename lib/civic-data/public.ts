@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { JurisdictionType, type Prisma } from "@prisma/client";
 import { getApprovedCandidateKnowledge, type PublicCandidateKnowledgeSection } from "@/lib/enrichment/candidate-knowledge";
+import { getValidatedProfileImageUrl } from "@/lib/profile/media-validation";
 
 const publicOfficialJurisdictionTypes = [
   JurisdictionType.COUNTRY,
@@ -96,12 +97,28 @@ export async function getPublicOfficials(jurisdictionSlug?: string): Promise<Pub
           targetType: "OFFICIAL",
           targetId: { in: officials.map((official) => official.id) },
           reviewStatus: { in: ["APPROVED", "VERIFIED"] },
-          sourceName: "Official government source",
         },
         orderBy: [{ reviewStatus: "desc" }, { lastEnrichedAt: "desc" }, { fetchedAt: "desc" }],
       })
     : [];
-  const enrichmentByOfficialId = new Map(enrichmentRows.map((row) => [row.targetId, row]));
+  const enrichmentByOfficialId = new Map<string, NonNullable<PublicOfficialRow["websiteEnrichment"]>>();
+  for (const row of enrichmentRows) {
+    const current = enrichmentByOfficialId.get(row.targetId);
+    const headshotUrl = getValidatedProfileImageUrl(row.headshotUrl);
+    if (!current) {
+      enrichmentByOfficialId.set(row.targetId, {
+        officialWebsiteUrl: row.officialWebsiteUrl,
+        headshotUrl,
+        shortBio: row.shortBio,
+        publicContactEmail: row.publicContactEmail,
+        publicContactPhone: row.publicContactPhone,
+        sourceName: row.sourceName,
+        sourceUrl: row.sourceUrl,
+      });
+    } else if (!current.headshotUrl && headshotUrl) {
+      current.headshotUrl = headshotUrl;
+    }
+  }
 
   return officials.map((official) => {
     const enrichment = enrichmentByOfficialId.get(official.id) ?? null;
@@ -112,7 +129,7 @@ export async function getPublicOfficials(jurisdictionSlug?: string): Promise<Pub
       email: enrichment?.publicContactEmail ?? official.email,
       phone: enrichment?.publicContactPhone ?? official.phone,
       websiteUrl: enrichment?.officialWebsiteUrl ?? official.websiteUrl,
-      photoUrl: enrichment?.headshotUrl ?? official.photoUrl,
+      photoUrl: enrichment?.headshotUrl ?? getValidatedProfileImageUrl(official.photoUrl),
       status: official.status,
       termStart: official.termStart,
       termEnd: official.termEnd,
@@ -134,13 +151,7 @@ export async function getPublicOfficials(jurisdictionSlug?: string): Promise<Pub
       source: official.source,
       websiteEnrichment: enrichment
         ? {
-            officialWebsiteUrl: enrichment.officialWebsiteUrl,
-            headshotUrl: enrichment.headshotUrl,
-            shortBio: enrichment.shortBio,
-            publicContactEmail: enrichment.publicContactEmail,
-            publicContactPhone: enrichment.publicContactPhone,
-            sourceName: enrichment.sourceName,
-            sourceUrl: enrichment.sourceUrl,
+            ...enrichment,
           }
         : null,
     };
@@ -316,13 +327,15 @@ export async function getPublicImportedCandidates(): Promise<PublicImportedCandi
       enrichmentRows = [];
     }
   }
-  const enrichmentByCandidateId = new Map(
-    enrichmentRows.map((row) => [
-      row.targetId,
-      {
+  const enrichmentByCandidateId = new Map<string, NonNullable<PublicImportedCandidateRow["websiteEnrichment"]>>();
+  for (const row of enrichmentRows) {
+    const current = enrichmentByCandidateId.get(row.targetId);
+    const headshotUrl = getValidatedProfileImageUrl(row.headshotUrl);
+    if (!current) {
+      enrichmentByCandidateId.set(row.targetId, {
         campaignWebsiteUrl: row.campaignWebsiteUrl,
         officialWebsiteUrl: row.officialWebsiteUrl,
-        headshotUrl: row.headshotUrl,
+        headshotUrl,
         shortBio: row.shortBio,
         longBioSourceUrl: row.longBioSourceUrl,
         socialLinks: Array.isArray(row.socialLinks) ? row.socialLinks.filter((link): link is string => typeof link === "string") : [],
@@ -333,9 +346,11 @@ export async function getPublicImportedCandidates(): Promise<PublicImportedCandi
         lastEnrichedAt: row.lastEnrichedAt,
         enrichmentStatus: row.enrichmentStatus,
         reviewStatus: row.reviewStatus,
-      },
-    ]),
-  );
+      });
+    } else if (!current.headshotUrl && headshotUrl) {
+      current.headshotUrl = headshotUrl;
+    }
+  }
   const knowledgeByCandidateId = await getApprovedCandidateKnowledge(candidates.map((candidate) => candidate.id));
 
   return candidates.map((candidate) => ({

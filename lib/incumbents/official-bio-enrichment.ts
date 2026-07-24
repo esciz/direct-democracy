@@ -1,6 +1,7 @@
 import { ProfileEnrichmentReviewStatus, ProfileEnrichmentStatus, type Prisma } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
+import { getValidatedProfileImageUrl } from "@/lib/profile/media-validation";
 
 const APPROVED_REVIEW_STATUSES: ProfileEnrichmentReviewStatus[] = [ProfileEnrichmentReviewStatus.APPROVED, ProfileEnrichmentReviewStatus.VERIFIED];
 
@@ -173,7 +174,7 @@ function extractImageUrl(html: string, sourceUrl: string) {
   const bestCandidate = candidates.find((candidate) => candidate.score > 0)?.url;
   const socialImage = safeUrl(extractMeta(html, "og:image") ?? extractMeta(html, "twitter:image"), sourceUrl);
   const socialIsUsable = socialImage && !/(seal|logo|icon|outline|svg|badge|banner|placeholder|default)/i.test(socialImage);
-  return bestCandidate ?? (socialIsUsable ? socialImage : null);
+  return getValidatedProfileImageUrl(bestCandidate ?? (socialIsUsable ? socialImage : null));
 }
 
 function extractResponsibilities(text: string) {
@@ -289,7 +290,7 @@ export async function getApprovedOfficialGovernmentEnrichment(targetType: "CANDI
     sourceUrl: row.sourceUrl,
     officialWebsiteUrl: row.officialWebsiteUrl,
     shortBio: row.shortBio,
-    headshotUrl: row.headshotUrl,
+    headshotUrl: getValidatedProfileImageUrl(row.headshotUrl),
     publicContactEmail: row.publicContactEmail,
     publicContactPhone: row.publicContactPhone,
     officeTitle: typeof proposed.officeTitle === "string" ? proposed.officeTitle : null,

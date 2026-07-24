@@ -96,6 +96,14 @@ function validateManifest(manifest, historyManifest, aggregateContributorManifes
 
   const historyByKey = new Map(historyManifest.profiles.map((profile) => [profile.key, profile]));
   const aggregateContributorsByKey = new Map(aggregateContributorManifest.profiles.map((profile) => [profile.key, profile]));
+  const sharedEntityAttributions = aggregateContributorManifest.entityAttributions ?? {};
+  if (
+    typeof sharedEntityAttributions !== "object" ||
+    Array.isArray(sharedEntityAttributions) ||
+    sharedEntityAttributions === null
+  ) {
+    throw new Error("Aggregate-contributor entityAttributions must be an object keyed by reusable attribution ID.");
+  }
   for (const profile of manifest.profiles) {
     if (!profile.key || !profile.candidate?.aliases?.length || !profile.candidate.officeContains || !profile.candidate.electionYear) {
       throw new Error(`Profile ${profile.key ?? "unknown"} is missing candidate matching fields.`);
@@ -160,10 +168,29 @@ function validateManifest(manifest, historyManifest, aggregateContributorManifes
       }
       assertMoney(contributor.amount, `${profile.key} all-cycle contributor amount`);
     }
+    if (!Array.isArray(aggregateContributors.entityAttributionRefs ?? [])) {
+      throw new Error(`${profile.key} entityAttributionRefs must be an array.`);
+    }
+    const attributionRefs = aggregateContributors.entityAttributionRefs ?? [];
+    if (new Set(attributionRefs).size !== attributionRefs.length) {
+      throw new Error(`${profile.key} has duplicate contributor entity attribution references.`);
+    }
+    const referencedAttributions = attributionRefs.map((attributionId) => {
+      if (typeof attributionId !== "string" || !sharedEntityAttributions[attributionId]) {
+        throw new Error(`${profile.key} references unknown contributor entity attribution ${String(attributionId)}.`);
+      }
+      return structuredClone(sharedEntityAttributions[attributionId]);
+    });
+    aggregateContributors.entityAttributions = [
+      ...referencedAttributions,
+      ...(aggregateContributors.entityAttributions ?? []),
+    ];
     const aggregateContributorNames = new Set(aggregateContributors.topContributors.map((contributor) => contributor.name));
+    const attributedContributorNames = new Set();
     for (const attribution of aggregateContributors.entityAttributions ?? []) {
       if (
         !aggregateContributorNames.has(attribution.contributorName) ||
+        attributedContributorNames.has(attribution.contributorName) ||
         !["verified", "timeline", "partial", "reported", "association"].includes(attribution.resolution) ||
         !attribution.headline ||
         !attribution.summary ||
@@ -173,6 +200,7 @@ function validateManifest(manifest, historyManifest, aggregateContributorManifes
       ) {
         throw new Error(`${profile.key} has an invalid contributor entity attribution.`);
       }
+      attributedContributorNames.add(attribution.contributorName);
       for (const relationship of attribution.relationships) {
         if (
           !relationship.targetName ||
@@ -191,6 +219,12 @@ function validateManifest(manifest, historyManifest, aggregateContributorManifes
           `${profile.key} ${attribution.contributorName} relationship source URL`,
         );
       }
+    }
+    if (
+      aggregateContributors.topContributors.some((contributor) => contributor.type === "ENTITY") &&
+      attributedContributorNames.size === 0
+    ) {
+      throw new Error(`${profile.key} has organization contributors but no reviewed contributor entity attribution.`);
     }
   }
 

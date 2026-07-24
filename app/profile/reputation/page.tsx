@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/lib/server/auth-session";
 import { getSafeReputationSummary, getUserReputationSignals } from "@/lib/profile/reputation";
 import { getInterviewRequestsForPublicProfile } from "@/lib/server/interviews";
 import { getAllPublicProfiles } from "@/lib/server/elections-context";
+import { withBoundedFallback } from "@/lib/server/async-fallback";
 
 const TIER_EXPLANATIONS = [
   {
@@ -29,11 +30,23 @@ export default async function ProfileReputationPage() {
   const currentUser = await getCurrentUser();
   const safeSummary = getSafeReputationSummary(currentUser);
   const [signals, profiles] = await Promise.all([
-    getUserReputationSignals(currentUser.id, { baseFollowerCount: currentUser.followerCount }).catch(() => null),
-    getAllPublicProfiles().catch(() => []),
+    withBoundedFallback(
+      getUserReputationSignals(currentUser.id, { baseFollowerCount: currentUser.followerCount }),
+      null,
+      { label: "profile reputation signals", timeoutMs: 1500 },
+    ),
+    withBoundedFallback(getAllPublicProfiles(), [], {
+      label: "profile reputation public profiles",
+      timeoutMs: 1200,
+    }),
   ]);
   const linkedProfile = profiles.find((profile) => profile.claimedByUserId === currentUser.id);
-  const interviews = linkedProfile ? await getInterviewRequestsForPublicProfile(linkedProfile.id).catch(() => null) : null;
+  const interviews = linkedProfile
+    ? await withBoundedFallback(getInterviewRequestsForPublicProfile(linkedProfile.id), null, {
+        label: "profile reputation interviews",
+        timeoutMs: 1200,
+      })
+    : null;
 
   const trustedBreakdown = signals?.trustedCitizenReputation?.breakdown ?? null;
   const contributionCards = [

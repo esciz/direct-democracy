@@ -84,9 +84,9 @@ export function ContributorAttributionMap({
           </p>
         </div>
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-400">
-          <span><strong className="text-base text-slate-100">{attributions.length}</strong> entities traced</span>
-          <span><strong className="text-base text-slate-100">{evidenceCount}</strong> evidence links</span>
-          <span><strong className="text-base text-emerald-200">{explicitCount}</strong> explicit owner record</span>
+          <span><strong className="text-base text-slate-100">{attributions.length}</strong> {attributions.length === 1 ? "entity" : "entities"} traced</span>
+          <span><strong className="text-base text-slate-100">{evidenceCount}</strong> evidence {evidenceCount === 1 ? "link" : "links"}</span>
+          <span><strong className="text-base text-emerald-200">{explicitCount}</strong> explicit owner {explicitCount === 1 ? "record" : "records"}</span>
         </div>
       </div>
 

@@ -11,6 +11,7 @@ import { CommunitySelector } from "@/components/domain/community-selector";
 import { FilterTabs } from "@/components/ui/filter-tabs";
 import { PageIntro } from "@/components/ui/page-intro";
 import { getCurrentUser } from "@/lib/server/auth-session";
+import { withBoundedFallback } from "@/lib/server/async-fallback";
 import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/communities";
 import { getCommunityEconomics, getCommunityEconomicsLevelOptions } from "@/lib/community/economics";
 import { getCommunityIssueComparison, getCommunityIssuePriorities, getCommunityPopularPlaces } from "@/lib/community/priorities";
@@ -73,12 +74,23 @@ export default async function CommunityPrioritiesPage({ searchParams }: Communit
   const compareMode = normalizeCompareMode(params?.compare);
   const trendWindow = normalizeTrendWindow(params?.trend);
   const economicLevel = normalizeEconomicLevel(params?.econLevel);
-  const [issueData, comparisonRows, places, trends] = await Promise.all([
-    getCommunityIssuePriorities(user, selectedCommunity, scope),
-    getCommunityIssueComparison(user, selectedCommunity, scope),
-    getCommunityPopularPlaces(selectedCommunity, placeCategory),
-    getIssueTrendData(selectedCommunity, scope, trendWindow),
+  const [issueData, places] = await Promise.all([
+    withBoundedFallback(
+      getCommunityIssuePriorities(user, selectedCommunity, scope),
+      { community: currentCommunity, scope, userCount: 0, priorities: [] },
+      { label: "community issue priorities", timeoutMs: 1800 },
+    ),
+    withBoundedFallback(getCommunityPopularPlaces(selectedCommunity, placeCategory), [], {
+      label: "community popular places",
+      timeoutMs: 1200,
+    }),
   ]);
+  const comparisonRows = await withBoundedFallback(
+    getCommunityIssueComparison(user, selectedCommunity, scope, issueData),
+    [],
+    { label: "community issue comparison", timeoutMs: 1200 },
+  );
+  const trends = getIssueTrendData(selectedCommunity, scope, trendWindow);
   const snapshot = getCommunitySnapshot(selectedCommunity);
   const stateSnapshot = getCommunitySnapshot("nevada");
   const nationalSnapshot = getCommunitySnapshot("united-states");

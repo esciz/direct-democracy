@@ -1,4 +1,5 @@
 import { getPublicBallotMeasures, getPublicImportedCandidates, getPublicImportedElections } from "@/lib/civic-data/public";
+import { getValidatedProfileImageUrl } from "@/lib/profile/media-validation";
 import type { CandidateCampaignSummary, CandidateProfileDetail, PublicProfileSummary, ElectionSummary } from "@/types/domain";
 
 function getDisplayJurisdictionName(slug: string, name: string) {
@@ -46,7 +47,8 @@ function mapImportedCandidateToProfile(candidate: Awaited<ReturnType<typeof getP
   const enrichedBio = candidate.websiteEnrichment?.shortBio ?? null;
   const reviewedKnowledgeBio = candidate.knowledgeEnrichments.find((entry) => entry.aboutSummary)?.aboutSummary ?? null;
   const reviewedCandidateStatement = candidate.knowledgeEnrichments.find((entry) => entry.ownWordsSummary)?.ownWordsSummary ?? null;
-  const enrichedHeadshotUrl = candidate.websiteEnrichment?.headshotUrl ?? null;
+  const enrichedHeadshotUrl = getValidatedProfileImageUrl(candidate.websiteEnrichment?.headshotUrl);
+  const importedPhotoUrl = getValidatedProfileImageUrl(candidate.photoUrl);
   const warnings = getCandidateDataWarnings(candidate);
 
   return {
@@ -63,7 +65,7 @@ function mapImportedCandidateToProfile(candidate: Awaited<ReturnType<typeof getP
       reviewedCandidateStatement ??
       candidate.campaignStatement ??
       `${displayName} is an imported Nevada candidate record for ${candidate.officeTitle ?? "Office needs review"} in ${candidate.electionTitle}. Profile enrichment pending.`,
-    profileImageUrl: enrichedHeadshotUrl ?? candidate.photoUrl,
+    profileImageUrl: enrichedHeadshotUrl ?? importedPhotoUrl,
     donationUrl: null,
     websiteUrl: enrichedWebsiteUrl ?? candidate.websiteUrl,
     isClaimed: false,
@@ -91,7 +93,7 @@ function mapImportedCandidateToProfile(candidate: Awaited<ReturnType<typeof getP
         ? {
             campaignWebsiteUrl: candidate.websiteEnrichment.campaignWebsiteUrl,
             officialWebsiteUrl: candidate.websiteEnrichment.officialWebsiteUrl,
-            headshotUrl: candidate.websiteEnrichment.headshotUrl,
+            headshotUrl: enrichedHeadshotUrl,
             shortBio: candidate.websiteEnrichment.shortBio,
             longBioSourceUrl: candidate.websiteEnrichment.longBioSourceUrl,
             socialLinks: candidate.websiteEnrichment.socialLinks,

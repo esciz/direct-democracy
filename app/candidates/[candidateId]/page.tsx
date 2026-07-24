@@ -536,13 +536,12 @@ function ImportedCandidateDetailPage({
 
   return (
     <div className="space-y-6 py-8">
-      <section className="dd-panel relative overflow-hidden rounded-[1.75rem] p-6 sm:p-8">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.12),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(34,211,238,0.1),transparent_30%)]" />
-        <div className="relative grid gap-6 lg:grid-cols-[1fr_22rem]">
+      <section className="dd-panel rounded-lg p-6 sm:p-8">
+        <div className="grid gap-6 lg:grid-cols-[1fr_20rem]">
           <div>
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-emerald-300/18 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">
-                Imported Nevada beta data
+                Candidate
               </span>
               <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
                 {candidate.partyText ?? "No party listed"}
@@ -566,24 +565,6 @@ function ImportedCandidateDetailPage({
               <p className="mt-3 text-sm leading-6 text-emerald-100">
                 Current office: {incumbentMatch.officialOffice} · {incumbentMatch.officialJurisdiction}.
               </p>
-            ) : null}
-            <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300">
-              {bioSummary}
-            </p>
-            {enrichment ? (
-              <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
-                <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-emerald-100">
-                  Website enrichment {enrichment.reviewStatus.toLowerCase()}
-                </span>
-                <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
-                  Source: {enrichment.sourceName ?? publicWebsiteLabel}
-                </span>
-                {enrichment.lastEnrichedAt ? (
-                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1">
-                    Enriched {formatDateUtc(enrichment.lastEnrichedAt, { month: "short", day: "numeric", year: "numeric" })}
-                  </span>
-                ) : null}
-              </div>
             ) : null}
             <div className="mt-5 flex flex-wrap gap-3">
               <FavoriteToggleControl
@@ -612,9 +593,16 @@ function ImportedCandidateDetailPage({
 
           <div className="grid gap-3">
             {candidate.profileImageUrl ? (
-              <div className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-white/[0.04]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={candidate.profileImageUrl} alt={`${candidate.name} profile headshot`} className="aspect-[4/3] w-full object-cover" />
+              <div className="grid gap-2">
+                <div className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.04]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={candidate.profileImageUrl} alt={`${candidate.name} profile headshot`} className="aspect-[4/3] w-full object-cover object-top" />
+                </div>
+                {enrichment?.sourceUrl ? (
+                  <Link href={enrichment.sourceUrl} className="text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                    Verified photo · {enrichment.sourceName ?? "Official public source"}
+                  </Link>
+                ) : null}
               </div>
             ) : (
               <div className="flex aspect-[4/3] items-center justify-center rounded-[1.4rem] border border-dashed border-white/14 bg-white/[0.04] text-center">
@@ -624,19 +612,21 @@ function ImportedCandidateDetailPage({
                 </div>
               </div>
             )}
-            <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Race / Office</p>
-              <p className="mt-3 text-lg font-semibold text-slate-50">{campaign.officeSought}</p>
-            </div>
-            <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Election Date</p>
-              <p className="mt-3 text-lg font-semibold text-slate-50">
-                {formatDateUtc(imported.electionDate, { month: "long", day: "numeric", year: "numeric" })}
-              </p>
-            </div>
-            <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Filing Status</p>
-              <p className="mt-3 text-lg font-semibold text-slate-50">{imported.filingStatus ?? imported.candidateStatus ?? "Profile enrichment pending"}</p>
+            <div className="divide-y divide-white/10 rounded-lg border border-white/10 bg-white/[0.03] px-4">
+              <div className="py-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Running for</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{campaign.officeSought}</p>
+              </div>
+              <div className="py-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Election</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">
+                  {formatDateUtc(imported.electionDate, { month: "long", day: "numeric", year: "numeric" })}
+                </p>
+              </div>
+              <div className="py-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Ballot status</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{imported.filingStatus ?? imported.candidateStatus ?? "Under review"}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -652,18 +642,48 @@ function ImportedCandidateDetailPage({
         issueSources={issueSources}
       />
 
-      <IssuePositionsSection
-        positions={issuePositions}
-        emptyTitle="Issue positions pending"
-        emptyDescription="No approved, sourced candidate issue positions are available for this imported record yet."
-        correctionHref={`/claim-profile/${candidate.id}`}
-      />
+      <details className="group dd-panel-muted overflow-hidden rounded-lg">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-left sm:px-6 [&::-webkit-details-marker]:hidden">
+          <div>
+            <p className="text-sm font-semibold text-slate-100">
+              All issue positions and evidence
+            </p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">
+              Review every recorded position, supporting evidence, and source.
+            </p>
+          </div>
+          <span
+            aria-hidden="true"
+            className="text-lg text-slate-400 transition-transform group-open:rotate-45"
+          >
+            +
+          </span>
+        </summary>
+        <div className="border-t border-white/10 p-4 sm:p-6">
+          <IssuePositionsSection
+            positions={issuePositions}
+            emptyTitle="Issue positions pending"
+            emptyDescription="No approved, sourced candidate issue positions are available for this imported record yet."
+            correctionHref={`/claim-profile/${candidate.id}`}
+          />
+        </div>
+      </details>
 
       <CampaignFinanceSourceCard data={campaignFinanceCard} />
 
       <CandidateRaceContextCard context={activeRaceContext} />
 
-      <OfficeIntelligenceCard intelligence={officeIntelligence} />
+      <details className="group dd-panel-muted rounded-lg">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 sm:px-6">
+          <span>
+            <span className="block text-lg font-semibold text-slate-50">Sources, records, and deeper profile details</span>
+            <span className="mt-1 block text-sm text-slate-400">Official records, news, source documents, data notes, and ways to take action.</span>
+          </span>
+          <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 group-open:hidden">Open</span>
+          <span className="hidden shrink-0 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 group-open:inline">Close</span>
+        </summary>
+        <div className="space-y-6 border-t border-white/10 p-4 sm:p-6">
+          <OfficeIntelligenceCard intelligence={officeIntelligence} />
 
       <OfficialGovernmentSourceCard
         enrichment={officialGovernmentEnrichment}
@@ -1004,6 +1024,8 @@ function ImportedCandidateDetailPage({
           </div>
         )}
       </section>
+        </div>
+      </details>
     </div>
   );
 }

@@ -7,6 +7,161 @@
     "coverageEnd": "2026-06-30",
     "notes": "Reviewed top-ten contributor aggregates from each candidate's 2017-to-current source page."
   },
+  "entityAttributions": {
+    "mgm-resorts-international": {
+      "contributorName": "Mgm Resorts International",
+      "resolution": "partial",
+      "headline": "Public-company leadership identified",
+      "summary": "An SEC annual report identifies the contributor's chief executive and explains that MGM Resorts operates primarily as a public holding company.",
+      "relationships": [
+        {
+          "targetName": "William J. Hornbuckle",
+          "relationship": "Chief executive officer and president",
+          "evidenceType": "SEC Form 10-K",
+          "evidenceDate": "2026-02-11",
+          "confidence": "high",
+          "sourceName": "MGM Resorts International SEC Form 10-K",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/789570/000078957026000018/mgm-20251231.htm",
+          "note": "The filing names William J. Hornbuckle as chief executive officer and president and describes MGM Resorts International as a holding company."
+        }
+      ],
+      "caveat": "Executive leadership is not beneficial ownership and does not establish who authorized a particular contribution."
+    },
+    "marnell-gaming-management": {
+      "contributorName": "Marnell Gaming Management LLC",
+      "resolution": "reported",
+      "headline": "Company-identified leadership",
+      "summary": "The Marnell Companies leadership page names the person responsible for Marnell Gaming Management and states his executive roles.",
+      "relationships": [
+        {
+          "targetName": "Anthony A. Marnell III",
+          "relationship": "Chairman and chief executive officer",
+          "evidenceType": "Company leadership disclosure",
+          "evidenceDate": "2026-07-23",
+          "confidence": "medium",
+          "sourceName": "Marnell Companies leadership page",
+          "sourceUrl": "https://www.marnellcompanies.com/team/anthony-a-marnell-iii",
+          "note": "The company says Anthony A. Marnell III is responsible for Marnell Gaming Management, LLC and serves as its chairman and chief executive officer."
+        }
+      ],
+      "caveat": "This company-authored page establishes a leadership role, not an ownership percentage or the person who authorized any specific contribution."
+    },
+    "ahern-rentals": {
+      "contributorName": "Ahern Rentals Inc",
+      "resolution": "timeline",
+      "headline": "Leadership and asset timeline",
+      "summary": "Public SEC records identify company leadership immediately before a later asset acquisition.",
+      "relationships": [
+        {
+          "targetName": "Don F. Ahern",
+          "relationship": "Chairman and chief executive officer",
+          "evidenceType": "SEC-filed asset purchase agreement",
+          "evidenceDate": "2022-11-11",
+          "confidence": "high",
+          "sourceName": "SEC asset purchase agreement",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1047166/000110465922117558/tm2230360d1_ex2-1.htm",
+          "note": "Don F. Ahern signed the agreement for Ahern Rentals as chairman and chief executive officer."
+        },
+        {
+          "targetName": "United Rentals (North America), Inc.",
+          "relationship": "Acquired substantially all operating assets",
+          "evidenceType": "SEC Form 8-K",
+          "evidenceDate": "2022-12-07",
+          "confidence": "high",
+          "sourceName": "United Rentals SEC Form 8-K",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1047166/000110465922125218/tm2232145d1_8k.htm",
+          "note": "United Rentals completed a $2 billion acquisition of substantially all assets related to the Ahern Rentals business."
+        }
+      ],
+      "caveat": "The second record is an asset acquisition, not evidence that United Rentals made the historical campaign contribution."
+    },
+    "southwest-gas": {
+      "contributorName": "Southwest Gas Corporation",
+      "resolution": "partial",
+      "headline": "Corporate parent identified",
+      "summary": "A combined SEC annual report identifies the public holding company that owns all shares of Southwest Gas Corporation.",
+      "relationships": [
+        {
+          "targetName": "Southwest Gas Holdings, Inc.",
+          "relationship": "Wholly owned subsidiary",
+          "evidenceType": "SEC Form 10-K",
+          "evidenceDate": "2025-12-31",
+          "confidence": "high",
+          "sourceName": "Southwest Gas Holdings SEC Form 10-K",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1692115/000169211526000062/swx-20251231.htm",
+          "note": "The filing states that Southwest Gas Corporation is a distinct registrant and wholly owned subsidiary of Southwest Gas Holdings, Inc."
+        }
+      ],
+      "caveat": "This establishes the corporate parent, not a natural-person owner or the person who approved a contribution."
+    },
+    "bigelow-holding-company": {
+      "contributorName": "Bigelow Holding Company",
+      "resolution": "timeline",
+      "headline": "Historical executive association",
+      "summary": "An official university release identifies a named company president, but the record is historical.",
+      "relationships": [
+        {
+          "targetName": "Robert T. Bigelow",
+          "relationship": "President",
+          "evidenceType": "Public-university news release",
+          "evidenceDate": "1997-04-09",
+          "confidence": "medium",
+          "sourceName": "University of Nevada, Las Vegas",
+          "sourceUrl": "https://www.unlv.edu/news/release/bigelows-chair-consciousness-studies-established-unlv",
+          "note": "UNLV quoted Robert T. Bigelow in 1997 and identified him as president of Bigelow Holding Company."
+        }
+      ],
+      "caveat": "The source establishes an executive association in 1997. It does not prove current ownership, current leadership, or contribution authorization."
+    },
+    "drive-committee": {
+      "contributorName": "Drive Committee Fec Id# C00032979",
+      "resolution": "reported",
+      "headline": "Federal PAC sponsor identified",
+      "summary": "The contributor record includes an FEC ID that resolves directly to a labor-organization PAC and its connected organization.",
+      "relationships": [
+        {
+          "targetName": "International Brotherhood of Teamsters",
+          "relationship": "Connected organization",
+          "evidenceType": "FEC committee record",
+          "evidenceDate": "2026-01-21",
+          "confidence": "high",
+          "sourceName": "Federal Election Commission",
+          "sourceUrl": "https://www.fec.gov/data/committee/C00032979/",
+          "note": "The FEC identifies C00032979 as the Teamsters D.R.I.V.E. PAC and names the International Brotherhood of Teamsters as its connected organization."
+        },
+        {
+          "targetName": "Fred E. Zuckerman",
+          "relationship": "Committee treasurer",
+          "evidenceType": "FEC committee record",
+          "evidenceDate": "2026-01-21",
+          "confidence": "high",
+          "sourceName": "Federal Election Commission",
+          "sourceUrl": "https://www.fec.gov/data/committee/C00032979/",
+          "note": "The current FEC committee record lists Fred E. Zuckerman as treasurer."
+        }
+      ],
+      "caveat": "A connected organization and treasurer identify formal committee responsibility. They do not show who approved a particular state contribution."
+    },
+    "las-vegas-sands": {
+      "contributorName": "Las Vegas Sands Corp",
+      "resolution": "verified",
+      "headline": "Controlling ownership disclosed",
+      "summary": "The company's SEC proxy statement identifies a controlling beneficial-owner group and provides its voting stake.",
+      "relationships": [
+        {
+          "targetName": "Miriam Adelson and Adelson family trusts",
+          "relationship": "Controlling beneficial-owner group, 58.2%",
+          "evidenceType": "SEC proxy statement",
+          "evidenceDate": "2026-03-16",
+          "confidence": "high",
+          "sourceName": "Las Vegas Sands 2026 proxy statement",
+          "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1300514/000130051426000031/lvs-20260401.htm",
+          "note": "The proxy states that Miriam Adelson, Irwin Chafetz, and two Adelson family trusts formed a group beneficially owning 58.2% of outstanding common stock as of March 16, 2026."
+        }
+      ],
+      "caveat": "Beneficial stock ownership at the proxy record date does not prove who authorized a particular campaign contribution."
+    }
+  },
   "profiles": [
     {
       "key": "aaron-ford-governor-2026",
@@ -22,7 +177,8 @@
         { "name": "International Union of Operating Engineers Local 12", "amount": 30000, "type": "ENTITY" },
         { "name": "Las Vegas Sands Corp", "amount": 30000, "type": "ENTITY" },
         { "name": "Alisa and James E Nave", "amount": 29453, "type": "INDIVIDUAL" }
-      ]
+      ],
+      "entityAttributionRefs": ["mgm-resorts-international"]
     },
     {
       "key": "joseph-lombardo-governor-2026",
@@ -38,7 +194,8 @@
         { "name": "Ben And Felicia Horowitz", "amount": 20000, "type": "INDIVIDUAL" },
         { "name": "Boyd Gaming Corporation", "amount": 20000, "type": "ENTITY" },
         { "name": "David Z Chesnoff Chartered", "amount": 20000, "type": "ENTITY" }
-      ]
+      ],
+      "entityAttributionRefs": ["marnell-gaming-management"]
     },
     {
       "key": "sandra-jauregui-lieutenant-governor-2026",
@@ -54,7 +211,8 @@
         { "name": "Zuffa LLC", "amount": 26000, "type": "ENTITY" },
         { "name": "Clark County Education Association (Ccea)", "amount": 25000, "type": "ENTITY" },
         { "name": "Nevada Subcontractors Association PAC", "amount": 25000, "type": "ENTITY" }
-      ]
+      ],
+      "entityAttributionRefs": ["mgm-resorts-international"]
     },
     {
       "key": "stavros-anthony-lieutenant-governor-2026",
@@ -70,7 +228,8 @@
         { "name": "Kag Property LLC", "amount": 20000, "type": "ENTITY" },
         { "name": "Mark James", "amount": 20000, "type": "INDIVIDUAL" },
         { "name": "Nevada Heart & Vascular LLP", "amount": 20000, "type": "ENTITY" }
-      ]
+      ],
+      "entityAttributionRefs": ["ahern-rentals"]
     },
     {
       "key": "francisco-aguilar-secretary-of-state-2026",
@@ -86,7 +245,8 @@
         { "name": "National Material Company LLC", "amount": 20000, "type": "ENTITY" },
         { "name": "Nevada Power Company Dba NV Energy", "amount": 20000, "type": "ENTITY" },
         { "name": "Pyramid Lake Holdings LLC", "amount": 20000, "type": "ENTITY" }
-      ]
+      ],
+      "entityAttributionRefs": ["marnell-gaming-management"]
     },
     {
       "key": "james-marchant-secretary-of-state-2026",
@@ -103,6 +263,7 @@
         { "name": "Kristen Routh-Silberman Real Estate LLC", "amount": 10000, "type": "ENTITY" },
         { "name": "Las Vegas Sands Corp", "amount": 10000, "type": "ENTITY" }
       ],
+      "entityAttributionRefs": ["las-vegas-sands"],
       "entityAttributions": [
         {
           "contributorName": "300 West Sahara LLC",
@@ -225,7 +386,8 @@
         { "name": "Southwest Gas Corporation", "amount": 2500, "type": "ENTITY" },
         { "name": "Blakeley Griffith", "amount": 2250, "type": "INDIVIDUAL" },
         { "name": "Latisha O'Neal", "amount": 2192.56, "type": "INDIVIDUAL" }
-      ]
+      ],
+      "entityAttributionRefs": ["southwest-gas"]
     },
     {
       "key": "drew-johnson-treasurer-2026",
@@ -241,7 +403,8 @@
         { "name": "Chris Rufer", "amount": 10000, "type": "INDIVIDUAL" },
         { "name": "Coyote Valley LLC", "amount": 10000, "type": "ENTITY" },
         { "name": "Derek J Stevens", "amount": 10000, "type": "INDIVIDUAL" }
-      ]
+      ],
+      "entityAttributionRefs": ["bigelow-holding-company"]
     },
     {
       "key": "michael-macdougall-controller-2026",
@@ -257,7 +420,8 @@
         { "name": "Michael MacDougall", "amount": 200, "type": "INDIVIDUAL" },
         { "name": "Jacqueline Izawa", "amount": 150, "type": "INDIVIDUAL" },
         { "name": "Clayton Mello", "amount": 100, "type": "INDIVIDUAL" }
-      ]
+      ],
+      "entityAttributionRefs": ["drive-committee"]
     },
     {
       "key": "andrew-matthews-controller-2026",
@@ -273,7 +437,8 @@
         { "name": "Debra Collins", "amount": 10000, "type": "INDIVIDUAL" },
         { "name": "Howard Waldow", "amount": 10000, "type": "INDIVIDUAL" },
         { "name": "Mark Black", "amount": 10000, "type": "INDIVIDUAL" }
-      ]
+      ],
+      "entityAttributionRefs": ["las-vegas-sands"]
     },
     {
       "key": "nicole-cannizzaro-attorney-general-2026",
@@ -289,7 +454,8 @@
         { "name": "Zuffa LLC", "amount": 31000, "type": "ENTITY" },
         { "name": "IBEW Local Union 357 PAC", "amount": 30510.7, "type": "ENTITY" },
         { "name": "American Federation of State County & Municipal Employees Afscme - Federal", "amount": 30000, "type": "ENTITY" }
-      ]
+      ],
+      "entityAttributionRefs": ["mgm-resorts-international"]
     },
     {
       "key": "adriana-fralick-attorney-general-2026",
@@ -305,7 +471,8 @@
         { "name": "James Thomson", "amount": 10000, "type": "INDIVIDUAL" },
         { "name": "Kirk D Hendrick", "amount": 10000, "type": "INDIVIDUAL" },
         { "name": "Marnell Ak LLC", "amount": 10000, "type": "ENTITY" }
-      ]
+      ],
+      "entityAttributionRefs": ["marnell-gaming-management"]
     }
   ]
 }

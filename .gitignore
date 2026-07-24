@@ -22,6 +22,7 @@ data/manual-sources/*
 !data/manual-sources/candidate-profiles/
 !data/manual-sources/campaign-finance/
 !data/manual-sources/election-results/
+!data/manual-sources/profile-media/
 
 # Runtime civic source caches. Commit manifests, hashes, and extracted indexes;
 # keep large downloaded evidence binaries out of git.

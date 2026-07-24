@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-07-23T23:30:00.000Z",
+  "policy": "Use only a portrait visibly identified on an official government or official officeholder page. Keep the source page with the image record and reject logos, seals, banners, placeholders, and generic social cards.",
+  "photos": [
+    {
+      "name": "Jacky Rosen",
+      "targetTypes": ["CANDIDATE", "OFFICIAL"],
+      "photoUrl": "https://www.rosen.senate.gov/wp-content/uploads/2022/07/Headshot.png",
+      "sourceUrl": "https://www.rosen.senate.gov/about-jacky/",
+      "sourceName": "Office of U.S. Senator Jacky Rosen",
+      "officialWebsiteUrl": "https://www.rosen.senate.gov/",
+      "validationNote": "Portrait is the lead image on Senator Rosen's official biography page and is identified by that page's title and surrounding biography."
+    },
+    {
+      "name": "Catherine Cortez Masto",
+      "targetTypes": ["OFFICIAL"],
+      "photoUrl": "https://bioguide.congress.gov/bioguide/photo/C/C001113.jpg",
+      "sourceUrl": "https://bioguide.congress.gov/search/bio/C001113",
+      "sourceName": "Biographical Directory of the United States Congress",
+      "officialWebsiteUrl": "https://www.cortezmasto.senate.gov/",
+      "validationNote": "Congressional Bioguide portrait associated with Catherine Cortez Masto's official member record."
+    },
+    {
+      "name": "Mark Amodei",
+      "targetTypes": ["OFFICIAL"],
+      "photoUrl": "https://bioguide.congress.gov/bioguide/photo/A/A000369.jpg",
+      "sourceUrl": "https://bioguide.congress.gov/search/bio/A000369",
+      "sourceName": "Biographical Directory of the United States Congress",
+      "officialWebsiteUrl": "https://amodei.house.gov/",
+      "validationNote": "Congressional Bioguide portrait associated with Mark Amodei's official member record."
+    },
+    {
+      "name": "Steven Horsford",
+      "targetTypes": ["OFFICIAL"],
+      "photoUrl": "https://horsford.house.gov/sites/evo-subsites/horsford-evo.house.gov/files/styles/large/public/evo-media-image/2023-01-19_np_0019_re.jpg?itok=PMw4Sjd-",
+      "sourceUrl": "https://horsford.house.gov/about/about-steven",
+      "sourceName": "Office of U.S. Representative Steven Horsford",
+      "officialWebsiteUrl": "https://horsford.house.gov/",
+      "validationNote": "Image is labeled Official Photo of Congressman Horsford on his official House biography page."
+    },
+    {
+      "name": "Susie Lee",
+      "targetTypes": ["OFFICIAL"],
+      "photoUrl": "https://susielee.house.gov/sites/evo-subsites/susielee-evo.house.gov/files/styles/large/public/evo-media-image/119th-congress-rep-susie-lee-official-protrait.jpg?itok=VefR29gj",
+      "sourceUrl": "https://susielee.house.gov/official-biography",
+      "sourceName": "Office of U.S. Representative Susie Lee",
+      "officialWebsiteUrl": "https://susielee.house.gov/",
+      "validationNote": "Image is labeled as Representative Lee's 119th Congress portrait on her official House biography page."
+    },
+    {
+      "name": "Nicole Cannizzaro",
+      "targetTypes": ["CANDIDATE", "OFFICIAL"],
+      "photoUrl": "https://www.leg.state.nv.us/Session/84th2027/legislators/Senators/Images/Cannizzaro.Nicole.347.Thumb.jpg",
+      "sourceUrl": "https://www.leg.state.nv.us/App/Legislator/A/Senate/Current/6",
+      "sourceName": "Nevada Legislature",
+      "officialWebsiteUrl": "https://www.leg.state.nv.us/App/Legislator/A/Senate/Current/6",
+      "validationNote": "Current Nevada Legislature portrait for Senator Nicole J. Cannizzaro."
+    },
+    {
+      "name": "Stavros Anthony",
+      "targetTypes": ["CANDIDATE", "OFFICIAL"],
+      "photoUrl": "https://ltgov.nv.gov/uploadedImages/ltgov2022nvgov/content/AboutUs/Stavros%20New%20Headshot.jpg",
+      "sourceUrl": "https://ltgov.nv.gov/AboutUs/BiographyStavrosAnthony/",
+      "sourceName": "Office of the Nevada Lieutenant Governor",
+      "officialWebsiteUrl": "https://ltgov.nv.gov/",
+      "validationNote": "Image is labeled Stavros New Headshot on the lieutenant governor's official biography page."
+    },
+    {
+      "name": "Zach Conine",
+      "targetTypes": ["CANDIDATE", "OFFICIAL"],
+      "photoUrl": "https://www.nevadatreasurer.gov/uploadedImages/treasurernvgov/content/Home/Zach%20Conine%20Headshot%20Tight.jpg",
+      "sourceUrl": "https://www.nevadatreasurer.gov/Home/Meet_Zach_Conine/",
+      "sourceName": "Nevada State Treasurer's Office",
+      "officialWebsiteUrl": "https://www.nevadatreasurer.gov/",
+      "validationNote": "Portrait is identified as Zach Conine's headshot on the Nevada State Treasurer's official biography page."
+    }
+  ]
+}

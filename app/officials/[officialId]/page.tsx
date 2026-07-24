@@ -284,55 +284,92 @@ function ImportedOfficialPublicModules({
       : null,
   ];
   const sourceExplorerItems = possibleSourceExplorerItems.filter(Boolean) as SourceExplorerItem[];
+  const stanceLabels: Record<PublicIssuePositionSummary["stance"], string> = {
+    SUPPORTS: "Supports",
+    OPPOSES: "Opposes",
+    MIXED: "Mixed record",
+    UNKNOWN: "Position unclear",
+    CHANGED: "Position changed",
+  };
 
   return (
     <>
-      <section className="grid gap-4 lg:grid-cols-2">
-        <div className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
+      {issuePositions.length ? (
+        <section className="dd-panel-muted rounded-lg p-5 sm:p-6">
+          <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Public sentiment</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Sentiment preview</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Issue positions</p>
+              <h2 className="mt-2 text-2xl font-semibold text-slate-50">Where {official.name} stands</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+                A plain-language summary of reviewed positions. Open the evidence ledger for every source and review note.
+              </p>
             </div>
-            <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-300">Coming soon</span>
+            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300">
+              {issuePositions.length} reviewed
+            </span>
           </div>
-          <div className="mt-5 flex h-28 items-end gap-2" aria-hidden="true">
-            {[34, 48, 40, 56, 44, 52].map((height, index) => (
-              <span key={`official-profile-sentiment-${index}`} className="flex-1 rounded-t-xl bg-cyan-300/25" style={{ height: `${height}%` }} />
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {issuePositions.slice(0, 4).map((position) => (
+              <article key={position.id} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="text-sm font-semibold text-slate-100">{position.issueText}</h3>
+                  <span className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-200">
+                    {stanceLabels[position.stance]}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  {position.summary ?? "A reviewed source records this position."}
+                </p>
+              </article>
             ))}
           </div>
-          <p className="mt-4 text-sm leading-6 text-slate-400">Public sentiment data not collected yet.</p>
+        </section>
+      ) : null}
+
+      <details className="group dd-panel-muted overflow-hidden rounded-lg">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-left sm:px-6 [&::-webkit-details-marker]:hidden">
+          <span>
+            <span className="block text-sm font-semibold text-slate-100">All issue positions and evidence</span>
+            <span className="mt-1 block text-xs leading-5 text-slate-400">
+              Review every recorded position, supporting evidence, and source.
+            </span>
+          </span>
+          <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
+            <span className="group-open:hidden">Open</span>
+            <span className="hidden group-open:inline">Close</span>
+          </span>
+        </summary>
+        <div className="border-t border-white/10 p-4 sm:p-6">
+          <IssuePositionsSection
+            positions={issuePositions}
+            emptyTitle="Issue positions pending"
+            emptyDescription="No approved, sourced official issue positions are available for this imported record yet."
+            correctionHref={`/claim-profile/${official.id}`}
+          />
         </div>
-
-        <div className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Community questions</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Meeting questions</h2>
-          <div className="mt-5 rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
-            {officialMeetingRecordSummary.matched_question_count
-              ? `${officialMeetingRecordSummary.matched_question_count} source-backed local question${officialMeetingRecordSummary.matched_question_count === 1 ? "" : "s"} linked to parsed meeting records.`
-              : "Official-specific community questions will appear after a verified real-data question is linked to this profile."}
-          </div>
-        </div>
-      </section>
-
-      <IssuePositionsSection
-        positions={issuePositions}
-        emptyTitle="Issue positions pending"
-        emptyDescription="No approved, sourced official issue positions are available for this imported record yet."
-        correctionHref={`/claim-profile/${official.id}`}
-      />
-
-      <NewsMentionsSection cardData={newsMentionCard} showAdminDiagnostics={showNewsDiagnostics} />
+      </details>
 
       <CampaignFinanceSourceCard data={campaignFinanceCard} />
 
-      <OfficialSourceDocumentsCard data={officialSourceDocuments} />
+      <details className="group dd-panel-muted rounded-lg">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 sm:px-6">
+          <span>
+            <span className="block text-lg font-semibold text-slate-50">Sources, records, and ways to act</span>
+            <span className="mt-1 block text-sm text-slate-400">News, official documents, source attribution, contact options, and correction tools.</span>
+          </span>
+          <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 group-open:hidden">Open</span>
+          <span className="hidden shrink-0 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 group-open:inline">Close</span>
+        </summary>
+        <div className="space-y-6 border-t border-white/10 p-4 sm:p-6">
+          <NewsMentionsSection cardData={newsMentionCard} showAdminDiagnostics={showNewsDiagnostics} />
 
-      <OfficialGovernmentSourceCard enrichment={officialGovernmentEnrichment} emptyTitle="Official government source pending review" />
+          <OfficialSourceDocumentsCard data={officialSourceDocuments} />
 
-      <SourceExplorer items={sourceExplorerItems} emptyText="Official source records are pending review." />
+          <OfficialGovernmentSourceCard enrichment={officialGovernmentEnrichment} emptyTitle="Official government source pending review" />
 
-      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+          <SourceExplorer items={sourceExplorerItems} emptyText="Official source records are pending review." />
+
+      <section className="dd-panel-muted rounded-lg p-6 sm:p-8">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Take action</p>
         <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Ways to use this profile</h2>
         <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -410,6 +447,8 @@ function ImportedOfficialPublicModules({
           </div>
         </div>
       </section>
+        </div>
+      </details>
     </>
   );
 }
@@ -648,6 +687,14 @@ async function OfficialProfileBody({
         primaryPromiseCategory={promises[0]?.category ?? null}
         publicActionCount={actionCount}
         externalLinks={externalLinks}
+        imageSource={
+          officialGovernmentEnrichment?.headshotUrl
+            ? {
+                label: officialGovernmentEnrichment.sourceName,
+                url: officialGovernmentEnrichment.sourceUrl,
+              }
+            : null
+        }
       />
       {hydratedOfficial.sourceLabel ? (
         <ImportedOfficialPublicModules
@@ -661,79 +708,97 @@ async function OfficialProfileBody({
           officialMeetingRecordSummary={officialMeetingRecordSummary}
         />
       ) : null}
-      <SummaryBriefPanel
-        eyebrow="Official Brief"
-        title={`What to watch on ${hydratedOfficial.name}'s page`}
-        summary={officialBriefSummary}
-        bullets={officialBriefBullets}
-        signalChips={[
-          hydratedOfficial.officeTitle,
-          `${actionCount} public action${actionCount === 1 ? "" : "s"}`,
-          `${hydratedOfficial.recentPosts.length} recent post${hydratedOfficial.recentPosts.length === 1 ? "" : "s"}`,
-        ]}
-        actionLabel="Review actions"
-        actionHref="#official-actions"
-        actionLinks={[
-          { label: "Review actions", href: "#official-actions" },
-          ...(promises.length ? [{ label: "Review promises", href: "#official-promises" }] : []),
-        ]}
-      />
-      <OfficialMeetingRecordCard summary={officialMeetingRecordSummary} />
-      {sentimentSummary ? (
-        <ProfileSentimentTracker
-          title={`Weekly public vote on ${hydratedOfficial.name}`}
-          summary={sentimentSummary}
-          returnPath={`/officials/${hydratedOfficial.id}`}
-          canVote={canUserVote(comparisonUser)}
-        />
-      ) : hydratedOfficial.sourceLabel ? null : (
-        <ProfileSectionFallback title="Public sentiment" description="No sentiment history yet." />
-      )}
-      {!hydratedOfficial.sourceLabel ? (
-        <IssuePositionsSection
-          positions={issuePositions}
-          emptyTitle="Issue positions pending"
-          emptyDescription="No approved, sourced official issue positions are available for this profile yet."
-          correctionHref={`/claim-profile/${hydratedOfficial.id}`}
-        />
-      ) : null}
-      {!hydratedOfficial.sourceLabel ? <NewsMentionsSection cardData={newsMentionCard} showAdminDiagnostics={showNewsDiagnostics} /> : null}
-      <PoliticalAdsSection
-        title="Political ads about this official"
-        description="Track officeholder committee ads, issue ads mentioning this official, opposition messages, and outside group spending."
-        ads={relatedAds}
-        repositoryHref={`/ads?officialId=${encodeURIComponent(hydratedOfficial.id)}`}
-        emptyText="No political ads are attached to this official yet."
-      />
-      <Suspense fallback={<ProfileSectionFallback title="Funding" description="Loading funding and polling context..." />}>
-        <OfficialFundingSection officialId={hydratedOfficial.id} />
-      </Suspense>
-      <Suspense fallback={<ProfileSectionFallback title="Actions" description="Loading recent official actions..." />}>
-        <OfficialActionsSection
-          officialId={hydratedOfficial.id}
-          viewerId={viewer.id}
-          officialParty={hydratedOfficial.party}
-          officialJurisdictionName={hydratedOfficial.jurisdictionName}
-        />
-      </Suspense>
-      <Suspense fallback={<ProfileSectionFallback title="Actions taken" description="Loading source-backed meeting actions..." />}>
-        <OfficialMeetingActionsTakenSection officialId={hydratedOfficial.id} officialName={hydratedOfficial.name} />
-      </Suspense>
-      <Suspense fallback={<ProfileSectionFallback title="Draft legislation" description="Loading sponsored legislation..." />}>
-        <OfficialDraftLegislationSection officialId={hydratedOfficial.id} />
-      </Suspense>
-      <Suspense fallback={<ProfileSectionFallback title="Promises" description="Loading public promises..." />}>
-        <OfficialPromisesSectionLoader officialId={hydratedOfficial.id} viewerId={viewer.id} viewerRole={viewer.role} />
-      </Suspense>
-      <Suspense fallback={<ProfileSectionFallback title="Interviews" description="Loading interview summary..." />}>
-        <OfficialInterviewsSection officialId={hydratedOfficial.id} />
-      </Suspense>
-      <Suspense fallback={<ProfileSectionFallback title="Recent polls" description="Loading structured questions..." />}>
-        <OfficialRecentPollsSection officialId={hydratedOfficial.id} viewerId={viewer.id} viewerRole={viewer.role} />
-      </Suspense>
-      <Suspense fallback={<ProfileSectionFallback title="Perspectives and updates" description="Loading recent civic briefs..." />}>
-        <OfficialRecentPostsSection officialId={hydratedOfficial.id} viewerId={viewer.id} viewerRole={viewer.role} />
-      </Suspense>
+      <details className="group" open={!hydratedOfficial.sourceLabel}>
+        <summary className="dd-panel-muted flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg px-4 py-4 text-left sm:px-6 [&::-webkit-details-marker]:hidden">
+          <div>
+            <p className="text-sm font-semibold text-slate-100">Deeper accountability record</p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">
+              Public actions, commitments, legislation, ads, interviews, polls, and community updates.
+            </p>
+          </div>
+          <span className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
+            <span className="group-open:hidden">Open</span>
+            <span className="hidden group-open:inline">Close</span>
+          </span>
+        </summary>
+        <div className="mt-6 space-y-6">
+          <SummaryBriefPanel
+            eyebrow="Official Brief"
+            title={`What to watch on ${hydratedOfficial.name}'s page`}
+            summary={officialBriefSummary}
+            bullets={officialBriefBullets}
+            signalChips={[
+              hydratedOfficial.officeTitle,
+              `${actionCount} public action${actionCount === 1 ? "" : "s"}`,
+              `${hydratedOfficial.recentPosts.length} recent post${hydratedOfficial.recentPosts.length === 1 ? "" : "s"}`,
+            ]}
+            actionLabel="Review actions"
+            actionHref="#official-actions"
+            actionLinks={[
+              { label: "Review actions", href: "#official-actions" },
+              ...(promises.length ? [{ label: "Review promises", href: "#official-promises" }] : []),
+            ]}
+          />
+          <OfficialMeetingRecordCard summary={officialMeetingRecordSummary} />
+          {sentimentSummary ? (
+            <ProfileSentimentTracker
+              title={`Weekly public vote on ${hydratedOfficial.name}`}
+              summary={sentimentSummary}
+              returnPath={`/officials/${hydratedOfficial.id}`}
+              canVote={canUserVote(comparisonUser)}
+            />
+          ) : hydratedOfficial.sourceLabel ? null : (
+            <ProfileSectionFallback title="Public sentiment" description="No sentiment history yet." />
+          )}
+          {!hydratedOfficial.sourceLabel ? (
+            <IssuePositionsSection
+              positions={issuePositions}
+              emptyTitle="Issue positions pending"
+              emptyDescription="No approved, sourced official issue positions are available for this profile yet."
+              correctionHref={`/claim-profile/${hydratedOfficial.id}`}
+            />
+          ) : null}
+          {!hydratedOfficial.sourceLabel ? (
+            <NewsMentionsSection cardData={newsMentionCard} showAdminDiagnostics={showNewsDiagnostics} />
+          ) : null}
+          <PoliticalAdsSection
+            title="Political ads about this official"
+            description="Track officeholder committee ads, issue ads mentioning this official, opposition messages, and outside group spending."
+            ads={relatedAds}
+            repositoryHref={`/ads?officialId=${encodeURIComponent(hydratedOfficial.id)}`}
+            emptyText="No political ads are attached to this official yet."
+          />
+          <Suspense fallback={<ProfileSectionFallback title="Funding" description="Loading funding and polling context..." />}>
+            <OfficialFundingSection officialId={hydratedOfficial.id} />
+          </Suspense>
+          <Suspense fallback={<ProfileSectionFallback title="Actions" description="Loading recent official actions..." />}>
+            <OfficialActionsSection
+              officialId={hydratedOfficial.id}
+              viewerId={viewer.id}
+              officialParty={hydratedOfficial.party}
+              officialJurisdictionName={hydratedOfficial.jurisdictionName}
+            />
+          </Suspense>
+          <Suspense fallback={<ProfileSectionFallback title="Actions taken" description="Loading source-backed meeting actions..." />}>
+            <OfficialMeetingActionsTakenSection officialId={hydratedOfficial.id} officialName={hydratedOfficial.name} />
+          </Suspense>
+          <Suspense fallback={<ProfileSectionFallback title="Draft legislation" description="Loading sponsored legislation..." />}>
+            <OfficialDraftLegislationSection officialId={hydratedOfficial.id} />
+          </Suspense>
+          <Suspense fallback={<ProfileSectionFallback title="Promises" description="Loading public promises..." />}>
+            <OfficialPromisesSectionLoader officialId={hydratedOfficial.id} viewerId={viewer.id} viewerRole={viewer.role} />
+          </Suspense>
+          <Suspense fallback={<ProfileSectionFallback title="Interviews" description="Loading interview summary..." />}>
+            <OfficialInterviewsSection officialId={hydratedOfficial.id} />
+          </Suspense>
+          <Suspense fallback={<ProfileSectionFallback title="Recent polls" description="Loading structured questions..." />}>
+            <OfficialRecentPollsSection officialId={hydratedOfficial.id} viewerId={viewer.id} viewerRole={viewer.role} />
+          </Suspense>
+          <Suspense fallback={<ProfileSectionFallback title="Perspectives and updates" description="Loading recent civic briefs..." />}>
+            <OfficialRecentPostsSection officialId={hydratedOfficial.id} viewerId={viewer.id} viewerRole={viewer.role} />
+          </Suspense>
+        </div>
+      </details>
     </>
   );
 }

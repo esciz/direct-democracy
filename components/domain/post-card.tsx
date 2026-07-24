@@ -19,6 +19,7 @@ import { getMediaBiasSummary, getMediaTierLabel } from "@/lib/media/store";
 import { getBiasAiSummary, getTruthAiSummary } from "@/lib/explanations/ratings";
 import { slugifyIssueText } from "@/lib/issues/utils";
 import { getContentDetailHref } from "@/lib/news/links";
+import { withBoundedFallback } from "@/lib/server/async-fallback";
 import { getEffectivePostContentType, getPostClaimFlagState } from "@/lib/truth/claim-flags";
 import { getTruthBadgeFromMeter, getTruthMeter } from "@/lib/truth/ratings";
 import type { PostContentType, PostSummary, UserRole } from "@/types/domain";
@@ -55,23 +56,39 @@ export async function PostCard({ post, viewerRole, viewerUserId, returnPath = "/
   const canReact = viewerRole === "citizen" && !isGuestViewer;
   const canFlagClaim = canUserFlagFactualClaim({ role: viewerRole });
   const [comments, claimFlagState] = await Promise.all([
-    getCommentsForPost(post.id),
-    getPostClaimFlagState(post.id, viewerUserId),
+    withBoundedFallback(getCommentsForPost(post.id), [], {
+      label: `comments for ${post.id}`,
+      timeoutMs: 900,
+    }),
+    withBoundedFallback(
+      getPostClaimFlagState(post.id, viewerUserId),
+      { postId: post.id, count: 0, viewerHasFlagged: false, thresholdReached: false },
+      { label: `claim flags for ${post.id}`, timeoutMs: 700 },
+    ),
   ]);
-  const mediaBiasSummary = post.authorRole === "media" && post.authorId ? await getMediaBiasSummary(post.authorId, viewerUserId) : null;
-  let effectiveContentType = post.contentType;
+  const mediaBiasSummary =
+    post.authorRole === "media" && post.authorId
+      ? await withBoundedFallback(getMediaBiasSummary(post.authorId, viewerUserId), null, {
+          label: `media context for ${post.id}`,
+          timeoutMs: 700,
+        })
+      : null;
+  const effectiveContentType = await withBoundedFallback(getEffectivePostContentType(post), post.contentType, {
+    label: `content type for ${post.id}`,
+    timeoutMs: 700,
+  });
   let truthMeter: Awaited<ReturnType<typeof getTruthMeter>> | null = null;
   let truthBadge: ReturnType<typeof getTruthBadgeFromMeter> = null;
   let truthAiSummary: ReturnType<typeof getTruthAiSummary> | null = null;
 
-  try {
-    effectiveContentType = await getEffectivePostContentType(post);
-    const showTruthMeter = effectiveContentType === "statementClaim" || effectiveContentType === "newsStory";
-    truthMeter = showTruthMeter ? await getTruthMeter(post.id, viewerUserId) : null;
+  const showTruthMeter = effectiveContentType === "statementClaim" || effectiveContentType === "newsStory";
+  if (showTruthMeter) {
+    truthMeter = await withBoundedFallback(getTruthMeter(post.id, viewerUserId), null, {
+      label: `truth meter for ${post.id}`,
+      timeoutMs: 900,
+    });
     truthBadge = truthMeter ? getTruthBadgeFromMeter(truthMeter) : null;
     truthAiSummary = truthMeter ? getTruthAiSummary(post, truthMeter) : null;
-  } catch (error) {
-    console.error(`[post-card] truth context failed for ${post.id}`, error);
   }
 
   const contentTypeMeta = getContentTypeMeta(effectiveContentType);
@@ -80,7 +97,7 @@ export async function PostCard({ post, viewerRole, viewerUserId, returnPath = "/
   const communityContextLabel = getCommunityContextLabel(post.jurisdictionName);
 
   return (
-    <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+    <article className="rounded-lg border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-2">
@@ -136,11 +153,8 @@ export async function PostCard({ post, viewerRole, viewerUserId, returnPath = "/
             guestMode={isGuestViewer}
             iconOnly
           />
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
-            {post.postType}
-          </span>
           <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-700">
-            {contentTypeMeta.icon} · {contentTypeMeta.label}
+            {contentTypeMeta.label}
           </span>
           {post.isEventPost ? (
             <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">

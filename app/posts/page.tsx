@@ -7,6 +7,8 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { canUserCreatePoll, canUserCreatePublicPost } from "@/lib/server/auth-guards";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getFeedPosts, type FeedMode } from "@/lib/feed/posts";
+import { mockPosts } from "@/lib/mock-data";
+import { withBoundedFallback } from "@/lib/server/async-fallback";
 
 type PostsPageProps = {
   searchParams?: Promise<{
@@ -33,9 +35,20 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
   const user = await getCurrentUser();
   const params = searchParams ? await searchParams : undefined;
   const view = normalizeView(params?.view);
-  const canCreate = await canUserCreatePublicPost(user);
-  const canCreatePolls = await canUserCreatePoll(user);
-  const posts = await getFeedPosts(view, user.id);
+  const [canCreate, canCreatePolls, posts] = await Promise.all([
+    withBoundedFallback(canUserCreatePublicPost(user), false, {
+      label: "post creation permission",
+      timeoutMs: 1000,
+    }),
+    withBoundedFallback(canUserCreatePoll(user), false, {
+      label: "poll creation permission",
+      timeoutMs: 1000,
+    }),
+    withBoundedFallback(getFeedPosts(view, user.id), mockPosts.slice(0, 12), {
+      label: "post feed",
+      timeoutMs: 1600,
+    }),
+  ]);
   const items = posts.map((post) => ({ id: `post-${post.id}`, itemType: "post" as const, post }));
   const tabs = [
     { label: "For You", href: "/posts?view=forYou", active: view === "forYou" },

@@ -5,6 +5,7 @@ import { PostCreateForm } from "@/components/domain/post-create-form";
 import { canUserCreatePublicPost } from "@/lib/server/auth-guards";
 import { getRoleLabel } from "@/lib/auth/roles";
 import { getCurrentUser } from "@/lib/server/auth-session";
+import { withBoundedFallback } from "@/lib/server/async-fallback";
 import { getIssuePickerOptions } from "@/lib/server/issues";
 
 type CreatePostPageProps = {
@@ -27,7 +28,10 @@ export default async function CreatePostPage({ searchParams }: CreatePostPagePro
     redirect("/posts?denied=create-post");
   }
 
-  const issueOptions = await getIssuePickerOptions(user);
+  const issueOptions = await withBoundedFallback(getIssuePickerOptions(user), [], {
+    label: "post issue picker",
+    timeoutMs: 1200,
+  });
   const shareContext =
     params?.shareEntityType && params?.shareEntityId && params?.shareTitle && params?.shareHref
       ? {

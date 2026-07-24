@@ -24,43 +24,8 @@ type OfficialProfileHeroProps = {
   primaryPromiseCategory?: string | null;
   publicActionCount?: number;
   externalLinks?: ExternalLinkSummary[];
+  imageSource?: { label: string; url: string } | null;
 };
-
-function ProfileStatCard({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: string | number;
-  tone: "dark" | "civic" | "orange";
-}) {
-  const toneClasses =
-    tone === "dark"
-      ? {
-          card: "border-white/10 bg-[linear-gradient(160deg,rgba(8,15,28,0.98),rgba(3,10,20,0.94))] text-white",
-          label: "text-slate-400",
-          value: "text-white",
-        }
-      : tone === "civic"
-        ? {
-            card: "border-emerald-300/18 bg-[linear-gradient(160deg,rgba(6,78,59,0.24),rgba(8,15,28,0.94))] text-emerald-50",
-            label: "text-emerald-200/80",
-            value: "text-emerald-50",
-          }
-        : {
-            card: "border-amber-300/18 bg-[linear-gradient(160deg,rgba(120,53,15,0.3),rgba(8,15,28,0.94))] text-amber-50",
-            label: "text-amber-200/80",
-            value: "text-amber-50",
-          };
-
-  return (
-    <div className={`flex min-h-[7.25rem] flex-col justify-between rounded-[1.4rem] border p-4 shadow-[0_14px_32px_-28px_rgba(15,23,42,0.45)] ${toneClasses.card}`}>
-      <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${toneClasses.label}`}>{label}</p>
-      <p className={`mt-4 text-[1.7rem] font-semibold leading-none sm:text-[1.85rem] ${toneClasses.value}`}>{value}</p>
-    </div>
-  );
-}
 
 export async function OfficialProfileHero({
   official,
@@ -74,18 +39,25 @@ export async function OfficialProfileHero({
   primaryPromiseCategory = null,
   publicActionCount = 0,
   externalLinks = [],
+  imageSource = null,
 }: OfficialProfileHeroProps) {
   const followerSnapshot = official.linkedUserId ? await getFollowerSnapshotByUserId(official.linkedUserId) : null;
 
   return (
     <div className="space-y-6">
-      <section className="dd-panel relative overflow-hidden rounded-[1.75rem] p-6 sm:p-8">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(52,211,153,0.1),transparent_30%)]" />
-        <div className="relative space-y-6">
+      <section className="dd-panel rounded-lg p-6 sm:p-8">
+        <div className="space-y-6">
           <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
             <div className="min-w-0 flex-1">
               <div className="flex items-start gap-5">
-              <ProfileImagePlaceholder name={official.name} size="lg" imageUrl={official.profileImageUrl} />
+                <div className="grid shrink-0 gap-2">
+                  <ProfileImagePlaceholder name={official.name} size="lg" imageUrl={official.profileImageUrl} />
+                  {imageSource ? (
+                    <a href={imageSource.url} target="_blank" rel="noreferrer" className="max-w-28 text-center text-[11px] font-semibold leading-4 text-cyan-200 hover:text-cyan-100">
+                      Verified photo
+                    </a>
+                  ) : null}
+                </div>
                 <div className="min-w-0 flex-1 space-y-4">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full border border-cyan-300/18 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
@@ -100,18 +72,13 @@ export async function OfficialProfileHero({
                     <h1 className="text-3xl font-semibold tracking-tight text-slate-50">{official.name}</h1>
                     <p className="mt-2 text-sm text-slate-400">{official.jurisdictionName}</p>
                     {official.sourceLabel ? (
-                      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
-                        Imported Nevada beta data{official.sourceLabel ? ` · ${official.sourceLabel}` : ""}
-                      </p>
+                      <p className="mt-2 text-xs text-slate-500">Record source: {official.sourceLabel}</p>
                     ) : null}
                   </div>
                   <p className="max-w-4xl text-sm leading-7 text-slate-300">{official.bio}</p>
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
                     <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">
                       {official.followerCount.toLocaleString()} followers
-                    </span>
-                    <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">
-                      {official.followingCount.toLocaleString()} following
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-3">
@@ -159,19 +126,42 @@ export async function OfficialProfileHero({
               </div>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3 xl:w-[22rem] xl:flex-none xl:grid-cols-1">
-              <ProfileStatCard label="Followers" value={official.followerCount.toLocaleString()} tone="dark" />
-              <ProfileStatCard label="Following" value={official.followingCount.toLocaleString()} tone="civic" />
-              <ProfileStatCard label="Public Actions" value={publicActionCount} tone="orange" />
+            <div className="divide-y divide-white/10 rounded-lg border border-white/10 bg-white/[0.03] px-4 sm:grid sm:grid-cols-3 sm:divide-x sm:divide-y-0 xl:w-[22rem] xl:flex-none xl:grid-cols-1 xl:divide-x-0 xl:divide-y">
+              <div className="py-3 sm:px-3 xl:px-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Office</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{official.officeTitle}</p>
+              </div>
+              <div className="py-3 sm:px-3 xl:px-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Community</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{official.jurisdictionName}</p>
+              </div>
+              <div className="py-3 sm:px-3 xl:px-0">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-200">Public actions</p>
+                <p className="mt-1 text-sm font-semibold text-slate-100">{publicActionCount}</p>
+              </div>
             </div>
           </div>
 
           {followerSnapshot ? <ProfileFollowerSnapshot snapshot={followerSnapshot} /> : null}
 
-          <ProfileSignalsPanel signals={signals} />
+          <details className="rounded-lg border border-white/10 bg-white/[0.02]">
+            <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-slate-200 hover:text-cyan-100">
+              Accountability signals
+            </summary>
+            <div className="border-t border-white/10 p-4">
+              <ProfileSignalsPanel signals={signals} />
+            </div>
+          </details>
         </div>
       </section>
-      {progression ? <RoleProgressionContext progression={progression} title="Citizen to official progression" /> : null}
+      {progression ? (
+        <details className="dd-panel-muted rounded-lg">
+          <summary className="cursor-pointer px-5 py-4 text-sm font-semibold text-slate-200">How this official profile is connected to civic progression</summary>
+          <div className="border-t border-white/10 p-4">
+            <RoleProgressionContext progression={progression} title="Citizen to official progression" />
+          </div>
+        </details>
+      ) : null}
     </div>
   );
 }
