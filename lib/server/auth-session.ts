@@ -29,7 +29,7 @@ async function hydrateSeedUser(seededUser: AuthUser): Promise<AuthUser> {
   return {
     ...user,
     role: effectiveRole ?? user.role,
-    primaryCommunityId: profileContent.primaryCommunityId ?? getDefaultCommunityForJurisdiction(user.jurisdictionName)?.id ?? null,
+    primaryCommunityId: user.primaryCommunityId ?? profileContent.primaryCommunityId ?? getDefaultCommunityForJurisdiction(user.jurisdictionName)?.id ?? null,
   };
 }
 

@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 
 import { prisma } from "@/lib/prisma";
+import { resolveVerificationCommunityIds } from "@/lib/identity/claim-jurisdiction";
 import type { VerificationClaim } from "@/lib/identity/types";
 
 function hashEvidenceMetadata(value: string) {
@@ -106,6 +107,7 @@ async function ensureDurableResidencyFromVoterClaim(
     accountId: string;
     reviewerId: string;
     jurisdictionIds: string[];
+    communityIds: string[];
     sourceClaimId: string;
   },
 ) {
@@ -124,6 +126,7 @@ async function ensureDurableResidencyFromVoterClaim(
       where: { id: existingResidency.id },
       data: {
         jurisdictionIds: input.jurisdictionIds.length ? input.jurisdictionIds : existingResidency.jurisdictionIds,
+        communityIds: input.communityIds.length ? input.communityIds : existingResidency.communityIds,
         method: "temporary_evidence",
         provider: "verified_voter_registration_residency",
         status: "verified",
@@ -157,7 +160,7 @@ async function ensureDurableResidencyFromVoterClaim(
       accountId: input.accountId,
       claimType: "residency",
       jurisdictionIds: input.jurisdictionIds.length ? input.jurisdictionIds : ["nevada"],
-      communityIds: [],
+      communityIds: input.communityIds,
       method: "temporary_evidence",
       provider: "verified_voter_registration_residency",
       status: "verified",
@@ -273,6 +276,7 @@ export async function reviewDurableVoterClaim(input: {
         accountId: updated.accountId,
         reviewerId: input.reviewerId,
         jurisdictionIds: updated.jurisdictionIds,
+        communityIds: updated.communityIds,
         sourceClaimId: updated.id,
       });
     }
@@ -292,6 +296,7 @@ export async function createDurableGuidedVoterPortalClaim(input: {
 }) {
   const timestamp = new Date();
   const id = `voter_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  const communityIds = resolveVerificationCommunityIds([input.countyOrJurisdiction]);
   const evidenceHash = hashEvidenceMetadata(
     `${input.accountId}:nevada-voter-portal:${input.countyOrJurisdiction}:${input.countyVoterId}:${input.electionPrecinct}:${input.portalResultSummary}:${timestamp.toISOString()}`,
   );
@@ -303,7 +308,7 @@ export async function createDurableGuidedVoterPortalClaim(input: {
         accountId: input.accountId,
         claimType: "voter",
         jurisdictionIds: normalizeList(input.jurisdictionIds),
-        communityIds: [],
+        communityIds,
         method: "temporary_evidence",
         provider: "nevada_voter_search_user_confirmed",
         status: "pending_manual_review",
@@ -337,6 +342,7 @@ export async function createDurableGuidedVoterPortalClaim(input: {
       accountId: input.accountId,
       reviewerId: "automated_voter_file_provider",
       jurisdictionIds: input.jurisdictionIds,
+      communityIds,
       sourceClaimId: claim.id,
     });
     return toVerificationClaim(claim);
@@ -354,6 +360,7 @@ export async function createDurableAutomatedVoterFileMatchClaim(input: {
 }) {
   const timestamp = new Date();
   const id = `voter_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  const communityIds = resolveVerificationCommunityIds([input.countyOrJurisdiction]);
   const evidenceHash = hashEvidenceMetadata(
     `${input.accountId}:automated-voter-file:${input.providerId}:${input.sourceHash ?? "no-source-hash"}:${input.countyVoterId}:${input.electionPrecinct}:${timestamp.toISOString()}`,
   );
@@ -365,7 +372,7 @@ export async function createDurableAutomatedVoterFileMatchClaim(input: {
         accountId: input.accountId,
         claimType: "voter",
         jurisdictionIds: normalizeList(input.jurisdictionIds),
-        communityIds: [],
+        communityIds,
         method: "temporary_evidence",
         provider: input.providerId,
         status: "matched",
@@ -395,6 +402,13 @@ export async function createDurableAutomatedVoterFileMatchClaim(input: {
           countyVoterIdLast4: input.countyVoterId.slice(-4),
         },
       },
+    });
+    await ensureDurableResidencyFromVoterClaim(tx, {
+      accountId: input.accountId,
+      reviewerId: "automated_voter_file_provider",
+      jurisdictionIds: input.jurisdictionIds,
+      communityIds,
+      sourceClaimId: claim.id,
     });
     return toVerificationClaim(claim);
   });

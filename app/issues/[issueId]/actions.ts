@@ -4,11 +4,11 @@ import { redirect } from "next/navigation";
 
 import { isGuestUser } from "@/lib/auth/session";
 import { getCreatedPosts, setCreatedPosts } from "@/lib/feed/posts";
+import { canPostToIssueScope, canSubmitIssueVoice, isIssueVoiceAccount } from "@/lib/issues/posting-eligibility";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getIssueByRouteParam } from "@/lib/server/issues";
 import type { ContextAttachmentSummary, PostSummary } from "@/types/domain";
 
-const ISSUE_VOICE_ROLES = new Set<PostSummary["authorRole"]>(["citizen", "trustedCitizen", "verified_resident"]);
 const ISSUE_THREAD_TYPES = new Set(["concern", "experience", "question", "evidence", "proposal", "counterpoint"]);
 
 function textValue(formData: FormData, key: string) {
@@ -18,23 +18,6 @@ function textValue(formData: FormData, key: string) {
 
 function redirectWithStatus(issueId: string, key: "issuePost" | "issuePostError", value: string): never {
   redirect(`/issues/${encodeURIComponent(issueId)}?${key}=${encodeURIComponent(value)}#citizen-voices`);
-}
-
-function stateBucket(jurisdictionName: string) {
-  const normalized = normalizeJurisdictionName(jurisdictionName);
-  if (normalized === "united states") return "United States";
-  if (normalized === "nevada" || normalized.endsWith(", nevada")) return "Nevada";
-  return jurisdictionName.split(",").map((part) => part.trim()).filter(Boolean).at(-1)?.replace(/^nv$/i, "Nevada") ?? jurisdictionName;
-}
-
-function normalizeJurisdictionName(value: string) {
-  return value.trim().toLowerCase().replace(/,\s*nv\b/g, ", nevada").replace(/\s+/g, " ");
-}
-
-function userCanPostToIssue(user: Awaited<ReturnType<typeof getCurrentUser>>, issue: NonNullable<Awaited<ReturnType<typeof getIssueByRouteParam>>>) {
-  if (issue.scope === "national") return true;
-  if (issue.scope === "state") return stateBucket(user.jurisdictionName) === stateBucket(issue.jurisdictionName);
-  return normalizeJurisdictionName(user.jurisdictionName) === normalizeJurisdictionName(issue.jurisdictionName);
 }
 
 export async function submitIssueCitizenVoice(formData: FormData) {
@@ -50,12 +33,16 @@ export async function submitIssueCitizenVoice(formData: FormData) {
     redirect("/issues");
   }
 
-  if (isGuestUser(user) || !ISSUE_VOICE_ROLES.has(user.role)) {
+  if (isGuestUser(user) || !isIssueVoiceAccount(user)) {
     redirectWithStatus(issueId, "issuePostError", "registered-citizens-only");
   }
 
+  if (!canSubmitIssueVoice(user)) {
+    redirectWithStatus(issueId, "issuePostError", "verification-required");
+  }
+
   const issue = await getIssueByRouteParam(user, issueId);
-  if (!issue || !userCanPostToIssue(user, issue)) {
+  if (!issue || !canPostToIssueScope(user, issue)) {
     redirectWithStatus(issueId, "issuePostError", "outside-scope");
   }
 

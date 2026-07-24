@@ -2,6 +2,7 @@ import type { AuthUser } from "@/types/domain";
 import { createHash, randomBytes } from "node:crypto";
 
 import { getAdminPermissions } from "@/lib/admin/permissions";
+import { getActiveVerificationScope } from "@/lib/identity/claim-jurisdiction";
 import { OWNER_ADMIN_DEFAULT_EMAIL, OWNER_ADMIN_USER_ID } from "@/lib/identity/constants";
 import { createTotpEnrollmentSecret, decryptMfaSecret, encryptMfaSecret, generateBackupCodes, hashBackupCode, verifyRecoveryCode, verifyTotpCode } from "@/lib/identity/mfa";
 import { hashPassword, verifyPassword } from "@/lib/identity/passwords";
@@ -25,13 +26,9 @@ function hashEmailVerificationToken(token: string) {
 }
 
 export function accountToAuthUser(account: IdentityAccount): AuthUser {
-  const isVerifiedVoter = readIdentityStore().verificationClaims.some(
-    (claim) =>
-      claim.userId === account.id &&
-      claim.claimType === "voter" &&
-      claim.status === "matched" &&
-      (!claim.expiresAt || new Date(claim.expiresAt).getTime() > Date.now()),
-  );
+  const verificationClaims = readIdentityStore().verificationClaims.filter((claim) => claim.userId === account.id);
+  const verificationScope = getActiveVerificationScope(verificationClaims);
+  const isVerifiedVoter = verificationScope.hasActiveVoterClaim;
   return {
     id: account.id,
     email: account.email,
@@ -40,10 +37,13 @@ export function accountToAuthUser(account: IdentityAccount): AuthUser {
     bio: account.role === "admin" || account.role === "platform_admin" ? "Public-platform administrator." : "Direct Democracy account.",
     role: account.role,
     verificationState: isVerifiedVoter ? "voterVerified" : "unverified",
-    jurisdictionName: "Nevada",
+    jurisdictionName: verificationScope.primaryCommunity?.primaryJurisdictionName ?? "Nevada",
+    primaryCommunityId: verificationScope.primaryCommunity?.id ?? null,
     followerCount: 0,
     isVerifiedVoter,
     isAnonymousPublic: account.role !== "admin" && account.role !== "platform_admin",
+    verifiedJurisdictionIds: verificationScope.jurisdictionIds,
+    verifiedCommunityIds: verificationScope.communityIds,
   };
 }
 

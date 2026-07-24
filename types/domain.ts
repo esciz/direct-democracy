@@ -659,6 +659,8 @@ export type ProfileSignalsSummary = {
 
 export type AuthUser = UserSummary & {
   email: string;
+  verifiedJurisdictionIds?: string[];
+  verifiedCommunityIds?: string[];
 };
 
 export type VerificationTrustSummary = {

@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
+import { getActiveVerificationScope } from "@/lib/identity/claim-jurisdiction";
 import { hashPassword, verifyPassword } from "@/lib/identity/passwords";
 import type { PasswordHash } from "@/lib/identity/types";
 import type { AuthUser, UserRole } from "@/types/domain";
@@ -44,11 +45,8 @@ function credentialToPasswordHash(credential: {
 }
 
 function accountToAuthUser(account: DurableAccount, userRecord: DurableUserRecord = null): AuthUser {
-  const isVerifiedVoter = account.verificationClaims.some(
-    (claim) =>
-      (claim.status === "matched" || claim.status === "verified") &&
-      (!claim.expiresAt || claim.expiresAt.getTime() > Date.now()),
-  ) || Boolean(userRecord?.isVerifiedVoter);
+  const verificationScope = getActiveVerificationScope(account.verificationClaims);
+  const isVerifiedVoter = verificationScope.hasActiveVoterClaim || Boolean(userRecord?.isVerifiedVoter);
   const role = (userRecord?.role ?? account.role) as UserRole;
 
   return {
@@ -59,10 +57,13 @@ function accountToAuthUser(account: DurableAccount, userRecord: DurableUserRecor
     bio: userRecord?.bio ?? (account.role === "admin" || account.role === "platform_admin" ? "Public-platform administrator." : "Direct Democracy account."),
     role,
     verificationState: isVerifiedVoter ? "voterVerified" : "unverified",
-    jurisdictionName: "Nevada",
+    jurisdictionName: verificationScope.primaryCommunity?.primaryJurisdictionName ?? "Nevada",
+    primaryCommunityId: verificationScope.primaryCommunity?.id ?? null,
     followerCount: userRecord?.followerCount ?? 0,
     isVerifiedVoter,
     isAnonymousPublic: userRecord?.isAnonymousPublic ?? (account.role !== "admin" && account.role !== "platform_admin"),
+    verifiedJurisdictionIds: verificationScope.jurisdictionIds,
+    verifiedCommunityIds: verificationScope.communityIds,
   };
 }
 

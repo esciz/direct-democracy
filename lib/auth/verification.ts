@@ -30,7 +30,7 @@ export function getVerificationLabel(state: UserVerificationState) {
 export function getVerificationDescription(state: UserVerificationState) {
   switch (state) {
     case "voterVerified":
-      return "Full civic participation is unlocked, including voting, petition signing, endorsements, and messaging public officials.";
+      return "Voter verification also establishes residency in the verified jurisdiction, unlocking voting, eligible issue-room posting, petition signing, endorsements, and messaging public officials.";
     case "unverified":
       return "You can explore civic records and communities now. Voter verification unlocks voting, petition signing, endorsements, and official messaging.";
   }
@@ -38,7 +38,7 @@ export function getVerificationDescription(state: UserVerificationState) {
 
 export function getUnlockedFeatureLabels(state: UserVerificationState) {
   if (state === "voterVerified") {
-    return ["Browse communities", "RSVP to public events", "Voting", "Petitions", "Messaging officials"];
+    return ["Browse communities", "RSVP to public events", "Voting", "Eligible issue-room posting", "Petitions", "Messaging officials"];
   }
 
   return ["Browse communities", "View civic records", "Follow issues"];

@@ -25,6 +25,7 @@ import { getCommunityEventTypeLabel } from "@/lib/community/events";
 import { getDebatesForUser } from "@/lib/debates/store";
 import { getFeedPostPreviews } from "@/lib/feed/posts";
 import { getIssueHubRecordByRouteParam } from "@/lib/issues/civic-hub";
+import { canPostToIssueScope, canSubmitIssueVoice, isIssueVoiceAccount, isPlatformWideIssue } from "@/lib/issues/posting-eligibility";
 import { valuesMatchIssueText } from "@/lib/issues/utils";
 import { getIssueReviewRequestsForIssue } from "@/lib/issues/review-requests";
 import { getIssueFrame, type IssueFrame } from "@/lib/issues/framing";
@@ -114,7 +115,6 @@ type IssueAudioPreviewItem = {
   issueTags: string[];
 };
 
-const ISSUE_VOICE_ROLES = new Set<AuthUser["role"]>(["citizen", "trustedCitizen", "verified_resident"]);
 const ISSUE_THREAD_LANES: Array<{
   key: IssueThreadType;
   label: string;
@@ -167,22 +167,18 @@ function isRealIssueDebate(debateId: string) {
   return PUBLIC_DEMO_DATA_ENABLED || debateId.startsWith("debate_phase1_") || /^debate_\d+$/.test(debateId);
 }
 
-function canSubmitIssueVoice(user: AuthUser) {
-  return !isGuestUserId(user.id) && ISSUE_VOICE_ROLES.has(user.role);
-}
-
 function normalizeJurisdictionName(value: string) {
   return value.trim().toLowerCase().replace(/,\s*nv\b/g, ", nevada").replace(/\s+/g, " ");
 }
 
-function canPostToIssueScope(user: AuthUser, issue: TopIssueSummary) {
-  if (!canSubmitIssueVoice(user)) return false;
-  if (issue.scope === "national") return true;
-  if (issue.scope === "state") return getStateBucket(user.jurisdictionName) === getStateBucket(issue.jurisdictionName);
-  return normalizeJurisdictionName(user.jurisdictionName) === normalizeJurisdictionName(issue.jurisdictionName);
-}
-
 function getIssueScopeCopy(issue: TopIssueSummary) {
+  if (isPlatformWideIssue(issue)) {
+    return {
+      label: "Across the platform",
+      rule: "Verified residents can contribute from their verified community. Posts stay labeled by community so local comparisons remain meaningful.",
+    };
+  }
+
   if (issue.scope === "national") {
     return {
       label: "National room",
@@ -1125,7 +1121,8 @@ async function CitizenIssueVoicesSection({
   );
   const stateBreakdown = buildStateSupportBreakdown(citizenPosts);
   const canPost = canPostToIssueScope(currentUser, issue);
-  const canSignInPost = canSubmitIssueVoice(currentUser);
+  const hasVerifiedPostingAccess = canSubmitIssueVoice(currentUser);
+  const hasPostingAccount = !isGuestUserId(currentUser.id) && isIssueVoiceAccount(currentUser);
   const isNationalIssue = issue.jurisdictionName === "United States" || issue.scope === "national";
   const frame = getIssueFrame(issue.issueText);
   const scopeCopy = getIssueScopeCopy(issue);
@@ -1181,6 +1178,8 @@ async function CitizenIssueVoicesSection({
         <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
           {error === "registered-citizens-only"
             ? "Only signed-in registered citizen accounts can post to issues right now."
+            : error === "verification-required"
+              ? "Complete voter or residency verification before posting in an issue room."
             : error === "outside-scope"
               ? "This issue room is scoped to a different jurisdiction, so your account can read it but cannot post here."
             : "Please add a headline and at least a short explanation before posting."}
@@ -1191,9 +1190,11 @@ async function CitizenIssueVoicesSection({
         <IssueVoiceForm issue={issue} />
       ) : (
         <div className="mt-5 rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 p-5 text-sm leading-6 text-slate-600">
-          {canSignInPost
+          {hasVerifiedPostingAccess
             ? "Your account can read this room, but posting is limited to verified residents inside this issue’s jurisdiction."
-            : "Sign in with a registered citizen account to post your own structured contribution. Browsing, source records, and existing citizen posts remain public."}
+            : hasPostingAccount
+              ? "Complete voter or residency verification to post your own structured contribution. Browsing, source records, and existing citizen posts remain available."
+              : "Sign in with a registered citizen account to post your own structured contribution. Browsing, source records, and existing citizen posts remain public."}
         </div>
       )}
 

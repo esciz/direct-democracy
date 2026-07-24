@@ -9,6 +9,7 @@
     "start": "next start",
     "seed:mock-users": "node prisma/seed.js",
     "typecheck": "tsc --noEmit",
+    "issues:posting:test": "node --import tsx scripts/test-issue-posting-eligibility.ts",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:migrate:status": "prisma migrate status",
