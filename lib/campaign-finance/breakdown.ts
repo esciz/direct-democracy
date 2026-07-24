@@ -97,12 +97,12 @@ export async function getCandidateFundingBreakdown(
       existing.amount += amount;
       topContributorTotals.set(contribution.contributorName, existing);
       const bucket =
-        contribution.contributorType === "pac"
-          ? "PAC"
-          : contribution.contributorType === "business"
-            ? "Business"
-            : contribution.contributorType === "individual"
-              ? "Individual"
+        contribution.contributorType === "candidate_self"
+          ? "Candidate self"
+          : contribution.contributorType === "individual"
+            ? "Outside individuals"
+            : ["business", "pac", "party", "union"].includes(contribution.contributorType)
+              ? "Organizations"
               : "Other / unknown";
       addToGroup(pacVsIndividual, bucket, amount);
     }

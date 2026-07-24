@@ -102,6 +102,113 @@
         { "name": "Esmeralda Cattle Company LLC", "amount": 10000, "type": "ENTITY" },
         { "name": "Kristen Routh-Silberman Real Estate LLC", "amount": 10000, "type": "ENTITY" },
         { "name": "Las Vegas Sands Corp", "amount": 10000, "type": "ENTITY" }
+      ],
+      "entityAttributions": [
+        {
+          "contributorName": "300 West Sahara LLC",
+          "resolution": "verified",
+          "headline": "Explicit ownership record",
+          "summary": "A city business-license report names a natural-person manager and states an ownership percentage.",
+          "relationships": [
+            {
+              "targetName": "Don F. Ahern",
+              "relationship": "Manager and 100% owner",
+              "evidenceType": "City business-license record",
+              "evidenceDate": "2020-08-09",
+              "confidence": "high",
+              "sourceName": "City of Las Vegas business-license report",
+              "sourceUrl": "https://360newslasvegas.com/wp-content/uploads/2020/08/Investigative-Report-for-Ahern-Hotel-300-W-Sahara-Ave-080920.pdf",
+              "note": "The license report explicitly identifies Don F. Ahern as manager with 100% ownership of the licensed business."
+            }
+          ],
+          "caveat": "This evidence is dated August 2020. It verifies the relationship at that time, not perpetual ownership."
+        },
+        {
+          "contributorName": "Ahern Rentals Inc",
+          "resolution": "timeline",
+          "headline": "Leadership and asset timeline",
+          "summary": "Public SEC records identify company leadership immediately before a later asset acquisition.",
+          "relationships": [
+            {
+              "targetName": "Don F. Ahern",
+              "relationship": "Chairman and chief executive officer",
+              "evidenceType": "SEC-filed asset purchase agreement",
+              "evidenceDate": "2022-11-11",
+              "confidence": "high",
+              "sourceName": "SEC asset purchase agreement",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1047166/000110465922117558/tm2230360d1_ex2-1.htm",
+              "note": "Don F. Ahern signed the agreement for Ahern Rentals as chairman and chief executive officer."
+            },
+            {
+              "targetName": "United Rentals (North America), Inc.",
+              "relationship": "Acquired substantially all operating assets",
+              "evidenceType": "SEC Form 8-K",
+              "evidenceDate": "2022-12-07",
+              "confidence": "high",
+              "sourceName": "United Rentals SEC Form 8-K",
+              "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1047166/000110465922125218/tm2232145d1_8k.htm",
+              "note": "United Rentals completed a $2 billion acquisition of substantially all assets related to the Ahern Rentals business."
+            }
+          ],
+          "caveat": "The second record is an asset acquisition, not evidence that United Rentals made the historical campaign contribution."
+        },
+        {
+          "contributorName": "Blue Heron Companies LLC",
+          "resolution": "partial",
+          "headline": "Corporate structure, owner unresolved",
+          "summary": "A court disclosure confirms one subsidiary relationship but does not identify a natural-person owner.",
+          "relationships": [
+            {
+              "targetName": "DAX Contracting, LLC",
+              "relationship": "Wholly owned subsidiary",
+              "evidenceType": "Nevada Supreme Court disclosure",
+              "evidenceDate": "2024-12-24",
+              "confidence": "high",
+              "sourceName": "Nevada Supreme Court filing",
+              "sourceUrl": "https://caseinfo.nvsupremecourt.us/document/view.do?csIID=69378&csNameID=69378&deLinkID=980880&onBaseDocumentNumber=24-49714",
+              "note": "The filing states that DAX Contracting, LLC is wholly owned by Blue Heron Companies, LLC."
+            }
+          ],
+          "caveat": "This proves a company-to-subsidiary link. It does not prove who beneficially owns Blue Heron Companies, LLC."
+        },
+        {
+          "contributorName": "Conservatives for Election Integrity PAC",
+          "resolution": "reported",
+          "headline": "Committee control reported",
+          "summary": "Nevada campaign-finance reporting links the committee directly to the candidate.",
+          "relationships": [
+            {
+              "targetName": "Jim Marchant",
+              "relationship": "Registrant and only listed officer",
+              "evidenceType": "Reviewed reporting linked to Nevada filings",
+              "evidenceDate": "2022-08-24",
+              "confidence": "medium",
+              "sourceName": "The Nevada Independent",
+              "sourceUrl": "https://thenevadaindependent.com/article/jim-marchant-accused-of-campaign-finance-violations-for-second-time",
+              "note": "The report says the PAC was registered to Marchant and that he was its only listed officer."
+            }
+          ],
+          "caveat": "This is a reviewed secondary report linked to Nevada filings. The underlying committee registration should remain the preferred primary record."
+        },
+        {
+          "contributorName": "Esmeralda Cattle Company LLC",
+          "resolution": "association",
+          "headline": "Tax-record association only",
+          "summary": "A county tax ledger repeatedly places a named person beside the company, without stating an ownership percentage.",
+          "relationships": [
+            {
+              "targetName": "Rod Dowers",
+              "relationship": "Named with entity on county tax roll",
+              "evidenceType": "County auditor tax ledger",
+              "evidenceDate": "2025-08-11",
+              "confidence": "medium",
+              "sourceName": "Esmeralda County auditor report",
+              "sourceUrl": "https://cms2.revize.com/revize/esmeraldanew/FY%2025%20-%2026%20Quarter%201%20Auditor%20Report.pdf?t=202601281217510",
+              "note": "The county ledger labels several real-property tax entries as Esmeralda Cattle Company with Rod Dowers in parentheses."
+            }
+          ],
+          "caveat": "A tax-roll association can identify a contact or responsible party. It does not by itself prove beneficial ownership."
+        }
       ]
     },
     {

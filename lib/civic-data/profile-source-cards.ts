@@ -28,6 +28,26 @@ export type CampaignFinanceAllReportedTotals = {
   aggregationMethod: string | null;
 };
 
+export type CampaignFinanceContributorRelationship = {
+  targetName: string;
+  relationship: string;
+  evidenceType: string;
+  evidenceDate: string;
+  confidence: "high" | "medium" | "low";
+  sourceName: string;
+  sourceUrl: string;
+  note: string;
+};
+
+export type CampaignFinanceContributorAttribution = {
+  contributorName: string;
+  resolution: "verified" | "timeline" | "partial" | "reported" | "association";
+  headline: string;
+  summary: string;
+  relationships: CampaignFinanceContributorRelationship[];
+  caveat: string;
+};
+
 export type CampaignFinanceSourceCardData = {
   sourceName: string | null;
   sourceUrl: string | null;
@@ -52,6 +72,7 @@ export type CampaignFinanceSourceCardData = {
   approvedCount: number;
   fundingBreakdown: CandidateFundingBreakdown | null;
   allReportedFundingBreakdown: CandidateFundingBreakdown | null;
+  contributorAttributions: CampaignFinanceContributorAttribution[];
   cycleHistory: CampaignFinanceCycleRecord[];
   allReportedTotals: CampaignFinanceAllReportedTotals | null;
   campaignReportedSummary: string | null;
@@ -65,6 +86,7 @@ type FinanceAttributionMetadata = {
   sourceLinks?: Array<{ label?: string; url?: string; note?: string | null }>;
   campaignReportedSummary?: string | null;
   donorExtractionStatus?: string;
+  contributorAttributions?: CampaignFinanceContributorAttribution[];
 };
 
 function financeReviewRank(value: string | null | undefined) {
@@ -94,6 +116,20 @@ function asFiniteNumber(value: unknown) {
 
 function asFinanceRawData(value: unknown) {
   return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
+}
+
+function isContributorAttribution(value: unknown): value is CampaignFinanceContributorAttribution {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const attribution = value as Partial<CampaignFinanceContributorAttribution>;
+  return Boolean(
+    attribution.contributorName &&
+      attribution.headline &&
+      attribution.summary &&
+      attribution.caveat &&
+      ["verified", "timeline", "partial", "reported", "association"].includes(attribution.resolution ?? "") &&
+      Array.isArray(attribution.relationships) &&
+      attribution.relationships.length,
+  );
 }
 
 export async function getCampaignFinanceSourceCard(entityType: "candidate" | "official", entityId: string): Promise<CampaignFinanceSourceCardData> {
@@ -259,6 +295,14 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
   const currentCycleRecord = cycleHistory.find((cycle) => cycle.isCurrentCycle) ?? cycleHistory.at(0) ?? null;
   const publishedContributorBreakdown =
     allReportedFundingBreakdown?.hasDetailedContributions ? allReportedFundingBreakdown : fundingBreakdown;
+  const contributorAttributions = [
+    ...new Map(
+      allMetadata
+        .flatMap((entry) => (Array.isArray(entry.contributorAttributions) ? entry.contributorAttributions : []))
+        .filter(isContributorAttribution)
+        .map((entry) => [entry.contributorName.toLowerCase(), entry]),
+    ).values(),
+  ];
 
   return {
     sourceName: attribution?.sourceName ?? latestFiling?.source?.name ?? null,
@@ -284,6 +328,7 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     approvedCount: attributions.filter((row) => row.reviewStatus === "approved" || row.reviewStatus === "verified").length,
     fundingBreakdown,
     allReportedFundingBreakdown,
+    contributorAttributions,
     cycleHistory,
     allReportedTotals,
     campaignReportedSummary: metadata.campaignReportedSummary ?? allMetadata.find((entry) => entry.campaignReportedSummary)?.campaignReportedSummary ?? null,

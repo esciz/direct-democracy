@@ -502,6 +502,7 @@ async function OfficialProfileBody({
         approvedCount: 0,
         fundingBreakdown: null,
         allReportedFundingBreakdown: null,
+        contributorAttributions: [],
         cycleHistory: [],
         allReportedTotals: null,
         campaignReportedSummary: null,

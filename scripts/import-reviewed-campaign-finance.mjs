@@ -160,6 +160,38 @@ function validateManifest(manifest, historyManifest, aggregateContributorManifes
       }
       assertMoney(contributor.amount, `${profile.key} all-cycle contributor amount`);
     }
+    const aggregateContributorNames = new Set(aggregateContributors.topContributors.map((contributor) => contributor.name));
+    for (const attribution of aggregateContributors.entityAttributions ?? []) {
+      if (
+        !aggregateContributorNames.has(attribution.contributorName) ||
+        !["verified", "timeline", "partial", "reported", "association"].includes(attribution.resolution) ||
+        !attribution.headline ||
+        !attribution.summary ||
+        !attribution.caveat ||
+        !Array.isArray(attribution.relationships) ||
+        !attribution.relationships.length
+      ) {
+        throw new Error(`${profile.key} has an invalid contributor entity attribution.`);
+      }
+      for (const relationship of attribution.relationships) {
+        if (
+          !relationship.targetName ||
+          !relationship.relationship ||
+          !relationship.evidenceType ||
+          !relationship.evidenceDate ||
+          Number.isNaN(Date.parse(`${relationship.evidenceDate}T00:00:00.000Z`)) ||
+          !["high", "medium", "low"].includes(relationship.confidence) ||
+          !relationship.sourceName ||
+          !relationship.note
+        ) {
+          throw new Error(`${profile.key} has an invalid relationship for ${attribution.contributorName}.`);
+        }
+        relationship.sourceUrl = assertUrl(
+          relationship.sourceUrl,
+          `${profile.key} ${attribution.contributorName} relationship source URL`,
+        );
+      }
+    }
   }
 
   return { historyByKey, aggregateContributorsByKey };
@@ -170,7 +202,10 @@ function matchesAlias(value, aliases) {
   return aliases.some((alias) => normalizeName(alias) === normalized);
 }
 
-function contributorType(contributor) {
+function contributorType(contributor, profile) {
+  if (profile && matchesAlias(contributor.name, profile.candidate.aliases)) {
+    return CampaignFinanceContributorType.candidate_self;
+  }
   if (contributor.type === "INDIVIDUAL") return CampaignFinanceContributorType.individual;
   const name = contributor.name.toLowerCase();
   if (/\b(union|workers|ibew|afscme|ccea|federation)\b/.test(name)) return CampaignFinanceContributorType.union;
@@ -379,7 +414,7 @@ async function replaceTopContributors(candidate, profile, manifest) {
     data: profile.topContributors.map((contributor) => ({
       candidateId: candidate.id,
       contributorName: contributor.name,
-      contributorType: contributorType(contributor),
+      contributorType: contributorType(contributor, profile),
       amount: contributor.amount,
       reportId,
       sourceName: manifest.source.name,
@@ -398,7 +433,7 @@ async function replaceAggregateTopContributors(candidate, profile, history, aggr
     data: aggregateContributors.topContributors.map((contributor) => ({
       candidateId: candidate.id,
       contributorName: contributor.name,
-      contributorType: contributorType(contributor),
+      contributorType: contributorType(contributor, profile),
       amount: contributor.amount,
       reportId,
       sourceName: manifest.source.name,
@@ -438,6 +473,7 @@ async function upsertAttribution(candidate, profile, manifest, source, history, 
     ],
     campaignReportedSummary: `Current-cycle direct-campaign totals cover ${reportingPeriod}. Historical totals cover ${history.cycles.length} non-zero Nevada cycle record${history.cycles.length === 1 ? "" : "s"} since 2017. Affiliated PACs and independent expenditures are not included. Cash on hand is not published in the source aggregates and is not estimated.`,
     donorExtractionStatus: `${aggregateContributors.topContributors.length} all-cycle top-contributor aggregate${aggregateContributors.topContributors.length === 1 ? "" : "s"} reviewed through ${manifest.batch.periodEndLabel}; the source link contains the broader itemized record.`,
+    contributorAttributions: aggregateContributors.entityAttributions ?? [],
   };
   await prisma.sourceAttribution.upsert({
     where: {
@@ -455,7 +491,7 @@ async function upsertAttribution(candidate, profile, manifest, source, history, 
       sourceId: source.id,
       sourceName: manifest.source.name,
       sourceUrl: profile.candidateSourceUrl,
-      fieldsDerived: json(["current-cycle contributions", "current-cycle expenditures", "historical cycle totals", "all-reported totals", "top contributor aggregates", "reporting period"]),
+      fieldsDerived: json(["current-cycle contributions", "current-cycle expenditures", "historical cycle totals", "all-reported totals", "top contributor aggregates", "contributor entity relationships", "reporting period"]),
       confidenceScore: 0.93,
       reviewStatus: CivicRecordReviewStatus.approved,
       lastImportedAt: now,
@@ -464,7 +500,7 @@ async function upsertAttribution(candidate, profile, manifest, source, history, 
     update: {
       sourceId: source.id,
       sourceName: manifest.source.name,
-      fieldsDerived: json(["current-cycle contributions", "current-cycle expenditures", "historical cycle totals", "all-reported totals", "top contributor aggregates", "reporting period"]),
+      fieldsDerived: json(["current-cycle contributions", "current-cycle expenditures", "historical cycle totals", "all-reported totals", "top contributor aggregates", "contributor entity relationships", "reporting period"]),
       confidenceScore: 0.93,
       reviewStatus: CivicRecordReviewStatus.approved,
       lastImportedAt: now,

@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+import {
+  ContributorAttributionMap,
+  contributorAttributionId,
+} from "@/components/domain/contributor-attribution-map";
 import type { CampaignFinanceSourceCardData } from "@/lib/civic-data/profile-source-cards";
 
 function formatDate(value: string | null) {
@@ -41,6 +45,7 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
   const hasPriorCycles = data.cycleHistory.some((cycle) => !cycle.isCurrentCycle);
   const hasFilingEvidence = data.financeFilingCount > 0 || data.financeDocumentCount > 0 || data.filingSummaries.length > 0;
   const hasSourceLink = Boolean(data.sourceUrl || data.sourceLinks.length);
+  const attributedContributorNames = new Set(data.contributorAttributions.map((attribution) => attribution.contributorName.toLowerCase()));
 
   return (
     <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
@@ -228,7 +233,7 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
               </div>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-sm font-semibold text-slate-100">Reviewed PAC vs individual vs business</p>
+              <p className="text-sm font-semibold text-slate-100">Candidate vs outside sources</p>
               <div className="mt-3">
                 <BarList items={contributorFunding.pacVsIndividual} />
               </div>
@@ -256,6 +261,14 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
                         <p className="mt-1 text-xs text-slate-500">
                           {contributor.contributorType}{contributor.industry ? ` · ${contributor.industry}` : ""}
                         </p>
+                        {attributedContributorNames.has(contributor.name.toLowerCase()) ? (
+                          <a
+                            href={`#${contributorAttributionId(contributor.name)}`}
+                            className="mt-2 inline-flex text-xs font-semibold text-cyan-200 hover:text-cyan-100"
+                          >
+                            Entity trail reviewed
+                          </a>
+                        ) : null}
                       </div>
                       <p className="text-xs font-semibold text-slate-400">{formatMoney(contributor.amount)} · {contributor.percentage}%</p>
                     </div>
@@ -276,6 +289,11 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
               : "Source filings have not been attached yet."}
         </div>
       )}
+
+      <ContributorAttributionMap
+        attributions={data.contributorAttributions}
+        contributors={contributorFunding?.topContributors ?? []}
+      />
 
       {data.campaignReportedSummary ? (
         <div className="mt-5 rounded-[1.35rem] border border-amber-300/18 bg-amber-500/10 p-4">

@@ -1099,6 +1099,7 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
       approvedCount: 0,
       fundingBreakdown: null,
       allReportedFundingBreakdown: null,
+      contributorAttributions: [],
       cycleHistory: [],
       allReportedTotals: null,
       campaignReportedSummary: null,
