@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Plus, X } from "lucide-react";
 
 import { PREDEFINED_PROFILE_TAG_OPTIONS, PROFILE_TAG_CATEGORY_OPTIONS, getProfileTagCategoryLabel } from "@/lib/profile/options";
 import type { ProfileTagCategory, ProfileTagSummary } from "@/types/domain";
@@ -19,7 +20,8 @@ type RowState = {
 };
 
 function buildInitialRows(tags: ProfileTagSummary[], maxItems: number): RowState[] {
-  return Array.from({ length: maxItems }, (_, index) => {
+  const visibleRows = Math.min(maxItems, Math.max(1, tags.length + (tags.length < maxItems ? 1 : 0)));
+  return Array.from({ length: visibleRows }, (_, index) => {
     const tag = tags[index];
 
     if (!tag) {
@@ -68,9 +70,7 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
     <div className="min-w-0">
       <div>
         <p className="text-sm font-semibold text-slate-100">About you</p>
-        <p className="mt-1 text-xs leading-5 text-slate-400">
-          Optional, self-reported details. You choose which ones are public.
-        </p>
+        <p className="mt-1 text-xs leading-5 text-slate-400">Optional. Add only what you want to share.</p>
       </div>
       <input type="hidden" name={inputName} value={serializedValue} />
       <div className="mt-3 divide-y divide-white/10 border-y border-white/10">
@@ -78,14 +78,8 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
           const options = row.category ? PREDEFINED_PROFILE_TAG_OPTIONS[row.category] : [];
 
           return (
-            <div key={`${inputName}-${index}`} className="grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] gap-3 py-3">
-              <span
-                className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-xs font-semibold text-slate-400"
-                aria-hidden="true"
-              >
-                {index + 1}
-              </span>
-              <div className="grid min-w-0 gap-2 lg:grid-cols-[11rem_minmax(0,1fr)_9rem]">
+            <div key={`${inputName}-${index}`} className="grid min-w-0 grid-cols-[minmax(0,1fr)_2rem] gap-2 py-2.5">
+              <div className="grid min-w-0 gap-2 lg:grid-cols-[10rem_minmax(0,1fr)_auto]">
                 <select
                   value={row.category}
                   onChange={(event) => {
@@ -99,7 +93,7 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                     };
                     setRows(nextRows);
                   }}
-                  className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
+                  className="h-10 w-full min-w-0 rounded-md border border-white/12 bg-slate-950/70 px-3 text-sm text-slate-100 outline-none focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
                   aria-label={`Select category for tag ${index + 1}`}
                 >
                   <option value="">Choose category</option>
@@ -122,7 +116,7 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                       setRows(nextRows);
                     }}
                     disabled={!row.category}
-                    className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none disabled:cursor-not-allowed disabled:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
+                    className="h-10 w-full min-w-0 rounded-md border border-white/12 bg-slate-950/70 px-3 text-sm text-slate-100 outline-none disabled:cursor-not-allowed disabled:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
                     aria-label={
                       row.category
                         ? `Select a ${getProfileTagCategoryLabel(row.category).toLowerCase()} tag`
@@ -150,11 +144,11 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                         setRows(nextRows);
                       }}
                       placeholder="Write in your own"
-                      className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
+                      className="h-10 w-full min-w-0 rounded-md border border-white/12 bg-slate-950/70 px-3 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
                     />
                   ) : null}
                 </div>
-                <label className="flex min-h-11 items-center gap-2 text-sm text-slate-300">
+                <label className="inline-flex h-10 cursor-pointer items-center gap-2 rounded-md border border-white/10 px-2.5 text-xs font-semibold text-slate-400 transition hover:border-white/20 hover:text-slate-200">
                   <input
                     type="checkbox"
                     checked={row.isPublic}
@@ -168,10 +162,34 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                   Public
                 </label>
               </div>
+              <button
+                type="button"
+                onClick={() => {
+                  if (rows.length === 1) {
+                    setRows([{ category: "", option: "", custom: "", isPublic: false }]);
+                    return;
+                  }
+                  setRows(rows.filter((_, rowIndex) => rowIndex !== index));
+                }}
+                className="flex h-10 w-8 items-center justify-center rounded-md text-slate-500 transition hover:bg-white/[0.06] hover:text-slate-200"
+                aria-label={`Remove profile detail ${index + 1}`}
+              >
+                <X size={15} />
+              </button>
             </div>
           );
         })}
       </div>
+      {rows.length < maxItems ? (
+        <button
+          type="button"
+          onClick={() => setRows([...rows, { category: "", option: "", custom: "", isPublic: false }])}
+          className="mt-2 inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-semibold text-cyan-200 transition hover:bg-cyan-300/10"
+        >
+          <Plus size={14} />
+          Add a detail
+        </button>
+      ) : null}
     </div>
   );
 }

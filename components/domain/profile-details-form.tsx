@@ -57,6 +57,18 @@ function SectionHeading({
   );
 }
 
+function VisibilityToggle({ name, defaultChecked }: { name: string; defaultChecked: boolean }) {
+  return (
+    <label className="mt-2 inline-flex cursor-pointer items-center gap-2 rounded-md border border-white/10 bg-white/[0.025] px-2.5 py-1.5 text-xs font-semibold text-slate-400 transition hover:border-white/20 hover:text-slate-200">
+      <input type="checkbox" name={name} defaultChecked={defaultChecked} className="peer sr-only" />
+      <span className="relative h-4 w-7 rounded-full bg-slate-700 transition peer-checked:bg-cyan-500" aria-hidden="true">
+        <span className="absolute left-0.5 top-0.5 h-3 w-3 rounded-full bg-white transition peer-checked:translate-x-3" />
+      </span>
+      Public
+    </label>
+  );
+}
+
 export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
   const geographicCommunities = getGeographicCommunities();
   const externalLinkValues = new Map((content.externalLinks ?? []).map((link) => [link.platform, link.url] as const));
@@ -260,15 +272,7 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
                   placeholder="Teacher, student, business owner..."
                   className={fieldClass}
                 />
-                <label className="mt-3 flex items-center gap-2 text-sm text-slate-300">
-                  <input
-                    type="checkbox"
-                    name="professionPublic"
-                    defaultChecked={content.background.professionPublic}
-                    className={checkboxClass}
-                  />
-                  Show publicly
-                </label>
+                <VisibilityToggle name="professionPublic" defaultChecked={content.background.professionPublic} />
               </div>
 
               <div className="mt-5">
@@ -283,15 +287,7 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
                   placeholder="A short note about the perspective you bring."
                   className={`${fieldClass} resize-y`}
                 />
-                <label className="mt-3 flex items-center gap-2 text-sm text-slate-300">
-                  <input
-                    type="checkbox"
-                    name="experiencePublic"
-                    defaultChecked={content.background.experiencePublic}
-                    className={checkboxClass}
-                  />
-                  Show publicly
-                </label>
+                <VisibilityToggle name="experiencePublic" defaultChecked={content.background.experiencePublic} />
               </div>
 
               <div className="mt-5">
@@ -311,15 +307,7 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
                     </option>
                   ))}
                 </select>
-                <label className="mt-3 flex items-center gap-2 text-sm text-slate-300">
-                  <input
-                    type="checkbox"
-                    name="politicalAffiliationPublic"
-                    defaultChecked={content.background.politicalAffiliationPublic}
-                    className={checkboxClass}
-                  />
-                  Show publicly
-                </label>
+                <VisibilityToggle name="politicalAffiliationPublic" defaultChecked={content.background.politicalAffiliationPublic} />
               </div>
             </div>
 

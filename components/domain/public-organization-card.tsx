@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { getOrganizationTypeLabel, getPublicOrganizationCategoryLabel } from "@/lib/organizations/presentation";
 import type { PublicOrganizationDetail } from "@/lib/organizations/store";
 
@@ -19,7 +20,9 @@ export function PublicOrganizationCard({ organization }: { organization: PublicO
   return (
     <article className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0">
+        <div className="flex min-w-0 items-start gap-3">
+          <CivicAvatar name={organization.name} entityType="organization" size="md" verified={organization.websiteHealth?.ok ?? false} />
+          <div className="min-w-0">
           <div className="flex flex-wrap gap-2 text-xs font-semibold">
             <span className="rounded-full bg-cyan-500/12 px-3 py-1 text-cyan-100">
               {getPublicOrganizationCategoryLabel(organization.category)}
@@ -43,6 +46,7 @@ export function PublicOrganizationCard({ organization }: { organization: PublicO
           <p className="mt-1 text-sm text-slate-400">
             {typeLabel} · {organization.headquarters}
           </p>
+          </div>
         </div>
         <span className="text-xs font-semibold text-emerald-200">{registryLabel}</span>
       </div>

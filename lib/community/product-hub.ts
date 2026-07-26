@@ -93,6 +93,7 @@ export type CommunityHubOfficial = {
   confidence: number | null;
   last_verified_at: string | null;
   profile_url: string | null;
+  image_url?: string | null;
   department?: string | null;
   role_category?: string | null;
   selection_method?: string | null;

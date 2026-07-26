@@ -3,12 +3,15 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { CivicAvatar } from "@/components/domain/civic-avatar";
+
 type CommunitySearchResult = {
   id: string;
   label: string;
   typeLabel: "State" | "County" | "City" | "Community" | "Campus" | "USA";
   href: string;
   description?: string;
+  imagePath?: string;
 };
 
 type StateTile = {
@@ -63,9 +66,12 @@ export function CommunityDiscoveryExplorer({ searchResults, stateTiles }: Commun
                     href={entry.href}
                     className="flex items-start justify-between gap-4 border-b border-slate-100 px-4 py-4 text-sm transition last:border-b-0 hover:bg-slate-50"
                   >
-                    <div>
-                      <p className="font-semibold text-ink">{entry.label}</p>
+                    <div className="flex min-w-0 items-start gap-3">
+                      <CivicAvatar name={entry.label} imageUrl={entry.imagePath} entityType="community" size="sm" verified />
+                      <div className="min-w-0">
+                        <p className="font-semibold text-ink">{entry.label}</p>
                       {entry.description ? <p className="mt-1 text-slate-600">{entry.description}</p> : null}
+                      </div>
                     </div>
                     <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-700">
                       {entry.typeLabel}

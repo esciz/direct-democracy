@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Plus, X } from "lucide-react";
 
 import type { StructuredProfileValueSummary } from "@/types/domain";
 
@@ -21,7 +22,8 @@ type RowState = {
 };
 
 function buildInitialRows(values: StructuredProfileValueSummary[], options: readonly string[], maxItems: number): RowState[] {
-  const rows = Array.from({ length: maxItems }, (_, index) => {
+  const visibleRows = Math.min(maxItems, Math.max(1, values.length + (values.length < maxItems ? 1 : 0)));
+  const rows = Array.from({ length: visibleRows }, (_, index) => {
     const value = values[index];
 
     if (!value) {
@@ -79,13 +81,7 @@ export function StructuredOptionInput({
       <input type="hidden" name={inputName} value={serializedValue} />
       <div className="mt-3 divide-y divide-white/10 border-y border-white/10">
         {rows.map((row, index) => (
-          <div key={`${inputName}-${index}`} className="grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] gap-3 py-3">
-            <span
-              className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-xs font-semibold text-slate-400"
-              aria-hidden="true"
-            >
-              {index + 1}
-            </span>
+          <div key={`${inputName}-${index}`} className="grid min-w-0 grid-cols-[minmax(0,1fr)_2rem] gap-2 py-2.5">
             <div className={allowCustom && row.option === "__custom__" ? "grid min-w-0 gap-2 sm:grid-cols-2" : "min-w-0"}>
               <select
                 aria-label={`${label}, choice ${index + 1}`}
@@ -98,7 +94,7 @@ export function StructuredOptionInput({
                   };
                   setRows(nextRows);
                 }}
-                className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
+                className="h-10 w-full min-w-0 rounded-md border border-white/12 bg-slate-950/70 px-3 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
               >
                 <option value="">Choose a topic</option>
                 {options.map((option) => (
@@ -122,13 +118,37 @@ export function StructuredOptionInput({
                     setRows(nextRows);
                   }}
                   placeholder="Write in your own"
-                  className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
+                  className="h-10 w-full min-w-0 rounded-md border border-white/12 bg-slate-950/70 px-3 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
                 />
               ) : null}
             </div>
+            <button
+              type="button"
+              onClick={() => {
+                if (rows.length === 1) {
+                  setRows([{ option: "", custom: "" }]);
+                  return;
+                }
+                setRows(rows.filter((_, rowIndex) => rowIndex !== index));
+              }}
+              className="flex h-10 w-8 items-center justify-center rounded-md text-slate-500 transition hover:bg-white/[0.06] hover:text-slate-200"
+              aria-label={`Remove ${label.toLowerCase()} choice ${index + 1}`}
+            >
+              <X size={15} />
+            </button>
           </div>
         ))}
       </div>
+      {rows.length < maxItems ? (
+        <button
+          type="button"
+          onClick={() => setRows([...rows, { option: "", custom: "" }])}
+          className="mt-2 inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-semibold text-cyan-200 transition hover:bg-cyan-300/10"
+        >
+          <Plus size={14} />
+          Add another
+        </button>
+      ) : null}
     </div>
   );
 }

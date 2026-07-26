@@ -89,6 +89,7 @@ function buildSearchResults() {
     typeLabel: getSearchTypeLabel(community),
     href: getCommunityPageHref(community.id),
     description: community.descriptor,
+    imagePath: community.imagePath,
   }));
 
   return communityResults;

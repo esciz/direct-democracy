@@ -1,172 +1,57 @@
 {
-  "runId": "dataops-2026-07-25T13:01:22.447Z",
-  "startedAt": "2026-07-25T13:01:22.447Z",
-  "completedAt": "2026-07-25T13:05:27.281Z",
-  "canonicalRun": true,
+  "runId": "dataops-2026-07-26T18:48:39.329Z",
+  "startedAt": "2026-07-26T18:48:39.330Z",
+  "updatedAt": "2026-07-26T18:53:08.712Z",
   "environment": {
     "offline": false,
     "networkAvailable": true,
     "networkReason": null,
     "cwd": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex"
   },
-  "stagesAttempted": 15,
-  "stagesSucceeded": 15,
-  "stagesFailed": 0,
-  "stagesSkipped": 0,
   "stages": [
     {
       "id": "refresh-meeting-calendars",
-      "description": "Refresh Nevada meeting calendars and current-official directory sources.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:01:22.541Z",
-      "completedAt": "2026-07-25T13:03:58.824Z",
-      "durationMs": 156283,
-      "error": null
-    },
-    {
-      "id": "import-meetings",
-      "description": "Import current calendars and merge reviewed official-source caches.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:03:58.843Z",
-      "completedAt": "2026-07-25T13:04:42.252Z",
-      "durationMs": 43409,
-      "error": null
-    },
-    {
-      "id": "register-sources",
-      "description": "Register RSS/feed sources.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:04:42.267Z",
-      "completedAt": "2026-07-25T13:04:42.312Z",
-      "durationMs": 45,
-      "error": null
-    },
-    {
-      "id": "discover-documents",
-      "description": "Discover public meeting source documents.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:04:42.321Z",
-      "completedAt": "2026-07-25T13:04:44.350Z",
-      "durationMs": 2029,
-      "error": null
-    },
-    {
-      "id": "monitor-sources",
-      "description": "Monitor source health and upcoming-meeting coverage by configured provider.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:04:44.359Z",
-      "completedAt": "2026-07-25T13:04:44.585Z",
-      "durationMs": 226,
-      "error": null
-    },
-    {
-      "id": "retrieve-documents",
-      "description": "Retrieve/cache queued remote documents.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:04:44.595Z",
-      "completedAt": "2026-07-25T13:04:57.998Z",
-      "durationMs": 13403,
-      "error": null
-    },
-    {
-      "id": "verify-cache",
-      "description": "Verify cached content and reconcile cache counts.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:04:58.014Z",
-      "completedAt": "2026-07-25T13:05:03.922Z",
-      "durationMs": 5908,
-      "error": null
-    },
-    {
-      "id": "extract-native-text",
-      "description": "Extract native text from cached documents.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:05:03.939Z",
-      "completedAt": "2026-07-25T13:05:06.256Z",
-      "durationMs": 2317,
-      "error": null
-    },
-    {
-      "id": "ocr",
-      "description": "Audit OCR capabilities and execute bounded OCR candidates.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:05:06.266Z",
-      "completedAt": "2026-07-25T13:05:17.694Z",
-      "durationMs": 11428,
-      "error": null
-    },
-    {
-      "id": "source-completeness",
-      "description": "Regenerate source completeness and accountability readiness.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:05:17.710Z",
-      "completedAt": "2026-07-25T13:05:20.552Z",
-      "durationMs": 2842,
-      "error": null
-    },
-    {
-      "id": "attendance",
-      "description": "Regenerate rosters and attendance.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:05:20.561Z",
-      "completedAt": "2026-07-25T13:05:22.891Z",
-      "durationMs": 2330,
-      "error": null
-    },
-    {
-      "id": "votes",
-      "description": "Regenerate votes and attribution readiness.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:05:22.900Z",
-      "completedAt": "2026-07-25T13:05:23.275Z",
-      "durationMs": 375,
-      "error": null
-    },
-    {
-      "id": "accountability",
-      "description": "Regenerate voting cards, projects, and accountability graph.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:05:23.284Z",
-      "completedAt": "2026-07-25T13:05:24.088Z",
-      "durationMs": 804,
-      "error": null
-    },
-    {
-      "id": "communities",
-      "description": "Publish source-backed issues, events, and community relationships, then audit the public views.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:05:24.097Z",
-      "completedAt": "2026-07-25T13:05:26.933Z",
-      "durationMs": 2836,
-      "error": null
-    },
-    {
-      "id": "freshness-audit",
-      "description": "Record reprocessing and final DataOps and public-site integrity audits.",
-      "status": "succeeded",
-      "startedAt": "2026-07-25T13:05:26.948Z",
-      "completedAt": "2026-07-25T13:05:27.272Z",
-      "durationMs": 324,
-      "error": null
+      "description": "Refresh Nevada meetings, current-official directories, and statewide financial coverage.",
+      "status": "failed",
+      "startedAt": "2026-07-26T18:48:39.431Z",
+      "completedAt": "2026-07-26T18:53:08.711Z",
+      "durationMs": 269280,
+      "error": "Command failed: node --import tsx scripts/audit-nevada-financial-coverage.ts --strict"
     }
   ],
   "metrics": {
-    "registeredSourcesChecked": 49,
-    "upcomingMeetings": 36,
-    "meetingProvidersWithUpcoming": 6,
+    "registeredSourcesChecked": 63,
+    "upcomingMeetings": 45,
+    "meetingProvidersWithUpcoming": 7,
+    "requiredNevadaJurisdictions": 56,
+    "configuredNevadaJurisdictions": 56,
+    "nevadaProvidersPendingAdvancedPass": 0,
     "meetingProvidersZeroUpcoming": 12,
-    "meetingProviderAdapterGaps": 0,
+    "meetingProviderAdapterGaps": 38,
     "meetingProviderSourceFailures": 0,
     "sourceBackedIssues": 16,
     "meetingProviderFailures": 0,
-    "documentsDownloaded": 20,
+    "documentsDownloaded": 5,
     "documentsChanged": 0,
-    "documentsExtracted": 1493,
+    "documentsExtracted": 1642,
     "pagesOcrd": 1,
     "ocrSucceeded": 1,
     "meetingsReadyForAccountability": 12,
     "sourceGapMeetings": 109,
     "parserGapMeetings": 12,
-    "parsedNamedVotes": 297
+    "parsedNamedVotes": 297,
+    "publishedNevadaCases": 27,
+    "nevadaCaseSourceRoutes": 11,
+    "nevadaNinthCircuitCases": 1,
+    "nevadaSupremeCourtCases": 1,
+    "nevadaPoliticalAdRecords": 1038,
+    "nevadaEntitiesWithMatchedAds": 20,
+    "nevadaPublicOrganizations": 127,
+    "nevadaOrganizationCategories": 19,
+    "nevadaPoliticalPartyOrganizations": 81,
+    "nevadaDemocraticPartyNetwork": 32,
+    "nevadaRepublicanPartyNetwork": 49,
+    "nevadaCountyPartyOrganizations": 34,
+    "nevadaPartyCaucusesAndClubs": 45
   }
 }

@@ -4,6 +4,8 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { CivicAvatar } from "@/components/domain/civic-avatar";
+import { CommunityPageNav } from "@/components/domain/community-page-nav";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getResidentQuestionAnswersForTarget } from "@/lib/cases/resident-intake-store";
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
@@ -194,7 +196,10 @@ function OfficialCard({ official }: { official: CommunityHubOfficial }) {
   const statusLabel = official.acting_or_interim ? official.current_status?.replaceAll("_", " ") ?? "acting" : methodLabel;
   const content = (
     <>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex items-start gap-3">
+        <CivicAvatar name={official.name} imageUrl={official.image_url} entityType="official" size="md" verified />
+        <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap gap-2">
         <Badge tone="cyan">{roleLabel}</Badge>
         <Badge tone={official.selection_method === "elected" ? "green" : official.acting_or_interim ? "amber" : "slate"}>{statusLabel}</Badge>
         <Badge tone="green">source backed</Badge>
@@ -207,6 +212,8 @@ function OfficialCard({ official }: { official: CommunityHubOfficial }) {
       <p className="mt-3 text-xs leading-5 text-slate-500">{official.jurisdiction} · verified {formatShortDate(official.last_verified_at)}</p>
       <p className="mt-1 text-xs leading-5 text-slate-500">{confidenceLabel(official.confidence)} · Source: {official.source_label}</p>
       <p className="mt-1 text-xs leading-5 text-slate-500">Related parsed actions: {official.related_action_count ?? 0}</p>
+        </div>
+      </div>
     </>
   );
   return href ? <a href={href} target="_blank" rel="noreferrer" className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</a> : <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</article>;
@@ -253,7 +260,7 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
   const upcomingEvents = data.events.filter((event) => event.status === "upcoming").sort((a, b) => (Date.parse(a.start_at ?? "") || 0) - (Date.parse(b.start_at ?? "") || 0)).slice(0, 6);
   const completedEvents = data.events.filter((event) => event.status === "completed").sort((a, b) => (Date.parse(b.start_at ?? "") || 0) - (Date.parse(a.start_at ?? "") || 0)).slice(0, 6);
   const publicReadyDecisions = data.decisions.filter((decision) => getDecisionTrustView(decision).isPublicSpotlightReady);
-  const recentDecisions = publicReadyDecisions.slice(0, 8);
+  const recentDecisions = publicReadyDecisions.slice(0, 4);
   const limitedReviewDecisions = data.decisions.filter((decision) => !getDecisionTrustView(decision).isPublicSpotlightReady).slice(0, 4);
   const topDecision = recentDecisions[0] ?? data.decisions[0] ?? null;
   const topStory = data.storyRecords[0] ?? null;
@@ -276,7 +283,9 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
     <div className="space-y-8 py-8">
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-6">
-          <div className="max-w-3xl">
+          <div className="flex max-w-3xl items-start gap-4">
+            <CivicAvatar name={data.community.name} imageUrl={data.community.imagePath} entityType="community" size="lg" verified className="h-16 w-16 rounded-2xl sm:h-20 sm:w-20" />
+            <div className="min-w-0">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Community hub</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{data.community.name}</h1>
             <p className="mt-3 text-sm leading-6 text-slate-400">{data.community.descriptor}</p>
@@ -293,6 +302,7 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
               <Link href="/profile" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
                 View watchlist
               </Link>
+            </div>
             </div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-300">
@@ -315,7 +325,9 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
         </div>
       </section>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+      <CommunityPageNav />
+
+      <section id="briefing" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading
           eyebrow="Resident briefing"
           title="What should I pay attention to?"
@@ -393,18 +405,18 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading eyebrow="Pay attention first" title="Most important civic stories" description="Prioritized by local relevance, upcoming actions, projects, spending, cases, officials, and elections." />
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          {data.storyRecords.length ? data.storyRecords.slice(0, 8).map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="No reviewed civic stories are available yet." />}
+          {data.storyRecords.length ? data.storyRecords.slice(0, 4).map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="No reviewed civic stories are available yet." />}
         </div>
       </section>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+      <section id="events" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading eyebrow="Upcoming events" title="What is coming next?" description="Public meetings and civic events residents may be able to attend, watch, or comment on." />
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          {upcomingEvents.length ? upcomingEvents.map((event) => <EventCard key={event.id} event={event} />) : <EmptyCard text="No upcoming local events are currently parsed. Check source links and statewide records for broader activity." />}
+          {upcomingEvents.slice(0, 4).length ? upcomingEvents.slice(0, 4).map((event) => <EventCard key={event.id} event={event} />) : <EmptyCard text="No upcoming local events are currently parsed. Check source links and statewide records for broader activity." />}
         </div>
       </section>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+      <section id="decisions" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading eyebrow="Recent decisions" title="What changed recently?" description="Completed meetings, source-backed decisions, and meeting records with citizen-readable summaries." />
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {recentDecisions.length ? recentDecisions.map((decision) => <DecisionCard key={decision.id} decision={decision} />) : <EmptyCard text="No source-backed decision cards are currently generated for this community." />}
@@ -428,11 +440,11 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading eyebrow="Projects" title="Active projects and capital work" description="Project leads inferred from source-backed agenda and budget records. Review badges stay visible when confidence is limited." />
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          {data.projects.length ? data.projects.slice(0, 6).map((project) => <ProjectCard key={project.id} project={project} />) : <EmptyCard text="No reviewed local project records currently available." />}
+          {data.projects.length ? data.projects.slice(0, 4).map((project) => <ProjectCard key={project.id} project={project} />) : <EmptyCard text="No reviewed local project records currently available." />}
         </div>
       </section>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+      <section id="more" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading eyebrow="Accountability" title="Who voted, what passed, and what it connects to" description="Graph-backed counts connect meetings, agenda items, decisions, votes, outcomes, spending, projects, and issues." />
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {[
@@ -505,7 +517,7 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
         </p>
       </section>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
+      <section id="officials" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <SectionHeading eyebrow="Officials" title="Officials & City Leadership" description="Current officeholders are shown from compact source-backed runtime records. Historical votes and actions remain separate." />
         <div className="mt-6 space-y-8">
           <OfficialsGroup
