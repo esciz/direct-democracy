@@ -53,3 +53,52 @@ export function getOrganizationScopeLabel(organization: Pick<OrganizationSummary
 
   return "Local";
 }
+
+export const PUBLIC_ORGANIZATION_CATEGORIES = [
+  "all",
+  "political_party",
+  "civic",
+  "community",
+  "civil_rights",
+  "advocacy",
+  "environment",
+  "labor",
+  "business",
+  "professional",
+  "service",
+  "faith_service",
+  "health",
+  "youth",
+  "veterans",
+  "education",
+  "service_club",
+  "arts_culture",
+  "public_institution",
+  "public_association",
+] as const;
+
+export function getPublicOrganizationCategoryLabel(category: string) {
+  const labels: Record<string, string> = {
+    all: "All public organizations",
+    political_party: "Political parties",
+    civic: "Civic",
+    community: "Community",
+    civil_rights: "Civil rights",
+    advocacy: "Advocacy",
+    environment: "Environment",
+    labor: "Labor",
+    business: "Business",
+    professional: "Professional",
+    service: "Community service",
+    faith_service: "Faith and service",
+    health: "Health",
+    youth: "Youth",
+    veterans: "Veterans",
+    education: "Education",
+    service_club: "Service clubs",
+    arts_culture: "Arts and culture",
+    public_institution: "Public institutions",
+    public_association: "Public associations",
+  };
+  return labels[category] ?? category.replaceAll("_", " ");
+}

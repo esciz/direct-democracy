@@ -13,10 +13,48 @@ import type {
 } from "@/types/domain";
 
 const GENERATED_POLITICAL_ADS_PATH = path.join(process.cwd(), "data/generated/nevada-political-ads.json");
+const GENERATED_POLITICAL_AD_COVERAGE_PATH = path.join(process.cwd(), "data/generated/nevada-political-ad-coverage.json");
 
 type GeneratedPoliticalAdsFile = {
   generatedAt?: string;
   ads?: PoliticalAd[];
+};
+
+export type PoliticalAdEntityCoverage = {
+  entityType: "candidate" | "official";
+  entityId: string;
+  name: string;
+  office: string;
+  jurisdiction: string;
+  status: "records_matched" | "sources_registered_no_match";
+  adIds: string[];
+  totals: {
+    matchedRecords: number;
+    creativeRecords: number;
+    filingOnlyRecords: number;
+    recordsWithClaims: number;
+    reportedSpend: number | null;
+    cyclesCovered: number[];
+  };
+  sourceRoutes: Array<{
+    id: string;
+    name: string;
+    sourceUrl: string;
+    collectionStatus: string;
+    creativeCoverage: boolean;
+  }>;
+  coverageNote: string;
+};
+
+type PoliticalAdCoverageFile = {
+  generatedAt?: string;
+  totals?: {
+    repositoryRecords?: number;
+    creativeRecords?: number;
+    filingOnlyRecords?: number;
+    entitiesWithMatchedRecords?: number;
+  };
+  records?: PoliticalAdEntityCoverage[];
 };
 
 export const POLITICAL_AD_SOURCE_LABELS: Record<PoliticalAdSourceType, string> = {
@@ -107,6 +145,16 @@ function readGeneratedPoliticalAds(): PoliticalAd[] {
   }
 }
 
+function readGeneratedPoliticalAdCoverage(): PoliticalAdCoverageFile {
+  if (!fs.existsSync(GENERATED_POLITICAL_AD_COVERAGE_PATH)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(GENERATED_POLITICAL_AD_COVERAGE_PATH, "utf8")) as PoliticalAdCoverageFile;
+  } catch (error) {
+    console.error("Failed to read generated Nevada political ad coverage.", error);
+    return {};
+  }
+}
+
 export function getGeneratedPoliticalAds() {
   return readGeneratedPoliticalAds();
 }
@@ -121,6 +169,30 @@ export function getPoliticalAdRepositoryAds(options?: { includeSeededDemoAds?: b
   }
 
   return generatedAds;
+}
+
+export function getPoliticalAdRepositoryStats() {
+  const ads = readGeneratedPoliticalAds();
+  const coverage = readGeneratedPoliticalAdCoverage();
+  const creativeRecords = coverage.totals?.creativeRecords ?? ads.filter((ad) => !ad.id.startsWith("fec-nv-ie-")).length;
+  return {
+    records: coverage.totals?.repositoryRecords ?? ads.length,
+    creativeRecords,
+    filingOnlyRecords: coverage.totals?.filingOnlyRecords ?? Math.max(0, ads.length - creativeRecords),
+    entitiesWithMatchedRecords: coverage.totals?.entitiesWithMatchedRecords ?? 0,
+    generatedAt: coverage.generatedAt ?? null,
+  };
+}
+
+export function getPoliticalAdCoverageForEntity(
+  entityType: PoliticalAdEntityCoverage["entityType"],
+  entityId: string,
+) {
+  return (
+    readGeneratedPoliticalAdCoverage().records?.find(
+      (record) => record.entityType === entityType && record.entityId === entityId,
+    ) ?? null
+  );
 }
 
 const RATING_SEVERITY: Record<PoliticalAdTruthRating, number> = {
@@ -950,9 +1022,26 @@ export function getPoliticalAdById(adId: string) {
 }
 
 export function getPoliticalAdsForEntity(entityType: PoliticalAdEntityRelation["entityType"], entityId: string, limit = 4) {
+  const coverage =
+    entityType === "candidate" || entityType === "official"
+      ? getPoliticalAdCoverageForEntity(entityType, entityId)
+      : null;
+  const coverageIds = new Set(coverage?.adIds ?? []);
   return getPoliticalAdRepositoryAds()
-    .filter((ad) => ad.entityRelations.some((relationItem) => relationItem.entityType === entityType && relationItem.entityId === entityId))
-    .sort((left, right) => Date.parse(right.firstSeenAt) - Date.parse(left.firstSeenAt))
+    .filter(
+      (ad) =>
+        coverageIds.has(ad.id) ||
+        ad.entityRelations.some((relationItem) => relationItem.entityType === entityType && relationItem.entityId === entityId),
+    )
+    .sort((left, right) => {
+      const creativeDifference =
+        Number(!right.id.startsWith("fec-nv-ie-") && (right.media.length > 0 || right.claims.length > 0)) -
+        Number(!left.id.startsWith("fec-nv-ie-") && (left.media.length > 0 || left.claims.length > 0));
+      if (creativeDifference) return creativeDifference;
+      const spendDifference = (right.totalSpend ?? 0) - (left.totalSpend ?? 0);
+      if (spendDifference) return spendDifference;
+      return Date.parse(right.firstSeenAt) - Date.parse(left.firstSeenAt);
+    })
     .slice(0, limit);
 }
 

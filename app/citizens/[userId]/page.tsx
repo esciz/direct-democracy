@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { MapPin, Users } from "lucide-react";
 
 import { isGuestUser } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
@@ -161,6 +162,7 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
     .filter((issue, index, values) => values.indexOf(issue) === index)
     .slice(0, 6);
   const externalLinks = Array.isArray(content.externalLinks) ? content.externalLinks : [];
+  const isBrightProfile = content.profileTheme === "bright";
 
   return (
     <div className="space-y-6 py-8">
@@ -170,31 +172,60 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
         description="A lightweight public profile that loads core identity first, then streams public summaries without blocking the route."
       />
 
-      <section className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-card backdrop-blur">
+      <section
+        className={`overflow-hidden rounded-lg border shadow-card ${
+          isBrightProfile ? "border-[#ff8a70]/35 bg-[#101522]" : "border-white/70 bg-white/90 backdrop-blur"
+        }`}
+      >
+        {isBrightProfile ? (
+          <div className="flex h-1.5" aria-hidden="true">
+            <span className="flex-1 bg-[#ff8a70]" />
+            <span className="flex-1 bg-[#54d6d0]" />
+            <span className="flex-1 bg-[#b9f66b]" />
+            <span className="flex-1 bg-[#ffd166]" />
+          </div>
+        ) : null}
         <div className="relative h-56 overflow-hidden sm:h-64">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0.82)), url(${content.bannerImageUrl || "/community/cc.webp"})`,
+              backgroundImage: `url("${content.bannerImageUrl || "/community/cc.webp"}")`,
             }}
           />
+          <div className={`absolute inset-0 ${isBrightProfile ? "bg-[#17101e]/50" : "bg-slate-950/65"}`} />
           <div className="absolute inset-x-0 bottom-0 px-5 pb-20 sm:px-6 sm:pb-24">
             <div className="flex flex-wrap items-center gap-2">
               <RoleBadge role={user.role} />
-              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur">@{user.username}</span>
+              <span
+                className={`rounded-full border px-3 py-1 text-xs font-semibold ${
+                  isBrightProfile
+                    ? "border-[#54d6d0]/30 bg-[#54d6d0]/10 text-[#baf7f4]"
+                    : "border-white/15 bg-white/10 text-white"
+                }`}
+              >
+                @{user.username}
+              </span>
             </div>
             <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{user.name}</h1>
-            <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-slate-100">
-              <span className="rounded-full bg-white/15 px-3 py-1 font-semibold text-white backdrop-blur">
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-100">
+              <span className="inline-flex items-center gap-1.5 font-semibold text-white">
+                <Users size={15} aria-hidden="true" />
                 {followState.followerCount.toLocaleString()} followers
               </span>
-              <span>{user.jurisdictionName}</span>
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin size={15} aria-hidden="true" />
+                {user.jurisdictionName}
+              </span>
             </div>
           </div>
         </div>
 
-        <div className="px-5 pb-6 sm:px-6">
-          <div className="-mt-14 sm:-mt-16">
+        <div className={`px-5 pb-6 sm:px-6 ${isBrightProfile ? "bg-[#101522]" : ""}`}>
+          <div
+            className={`-mt-14 w-fit rounded-full p-1 shadow-xl sm:-mt-16 ${
+              isBrightProfile ? "bg-[#ffd166]" : "bg-white"
+            }`}
+          >
             <ProfileImagePlaceholder name={user.name} size="lg" imageUrl={content.profileImageUrl || undefined} />
           </div>
         </div>

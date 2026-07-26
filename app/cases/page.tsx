@@ -4,7 +4,7 @@ import { CaseCard } from "@/components/domain/case-card";
 import { PageIntro } from "@/components/ui/page-intro";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { getAllCases } from "@/lib/cases/store";
+import { getAllCases, getNevadaCaseCoverageSummary } from "@/lib/cases/store";
 import { getResidentQuestionAnswersRuntime, getResidentStoryPublicRuntime } from "@/lib/cases/resident-intake-store";
 
 type CasesPageProps = {
@@ -19,8 +19,9 @@ type CasesPageProps = {
 
 export default async function CasesPage({ searchParams }: CasesPageProps) {
   const user = await getCurrentUser();
-  const [cases, residentStories, residentAnswers, params] = await Promise.all([
+  const [cases, coverage, residentStories, residentAnswers, params] = await Promise.all([
     getAllCases(user),
+    getNevadaCaseCoverageSummary(),
     getResidentStoryPublicRuntime(),
     getResidentQuestionAnswersRuntime(),
     searchParams ? searchParams : Promise.resolve(undefined),
@@ -43,6 +44,50 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
           </>
         }
       />
+      <section className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
+        <div className="grid gap-5 lg:grid-cols-[1.3fr_repeat(3,minmax(0,0.55fr))]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">What the count means</p>
+            <h2 className="mt-2 text-lg font-semibold text-white">Reviewed records, not a statewide docket mirror</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-400">{coverage.collectionPolicy.publicationBoundary}</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-slate-500">Published records</p>
+            <p className="mt-2 text-2xl font-semibold text-white">{coverage.totals.publishedPublicCases}</p>
+            <p className="mt-1 text-xs text-slate-500">{coverage.totals.stateAppellateCases} Nevada appellate</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-slate-500">Source routes</p>
+            <p className="mt-2 text-2xl font-semibold text-white">{coverage.totals.sourceRoutes}</p>
+            <p className="mt-1 text-xs text-slate-500">Court and decision systems</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-slate-500">County coverage</p>
+            <p className="mt-2 text-2xl font-semibold text-white">
+              {coverage.totals.countiesWithSourceRoutes}/{coverage.totals.requiredCounties}
+            </p>
+            <p className="mt-1 text-xs text-slate-500">Source route registered</p>
+          </div>
+        </div>
+        <div className="mt-5 grid gap-3 border-t border-white/10 pt-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="text-xs font-semibold text-slate-500">Nevada appellate</p>
+            <p className="mt-1 text-lg font-semibold text-white">{coverage.totals.stateAppellateCases}</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-slate-500">Ninth Circuit</p>
+            <p className="mt-1 text-lg font-semibold text-white">{coverage.totals.federalCircuitCases}</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-slate-500">U.S. Supreme Court</p>
+            <p className="mt-1 text-lg font-semibold text-white">{coverage.totals.supremeCourtCases}</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-slate-500">Federal district</p>
+            <p className="mt-1 text-lg font-semibold text-white">{coverage.totals.federalDistrictCases}</p>
+          </div>
+        </div>
+      </section>
       {params?.follow === "added" ? (
         <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
           Case added to your followed issues.
@@ -137,13 +182,6 @@ export default async function CasesPage({ searchParams }: CasesPageProps) {
 
       {cases.length ? (
         <div className="space-y-6">
-          <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {["Featured public cases", "Recent appellate decisions", "Public-interest litigation", "Government accountability cases"].map((label) => (
-              <div key={label} className="rounded-2xl border border-white/70 bg-white/80 p-4 text-sm font-semibold text-slate-700 shadow-card">
-                {label}
-              </div>
-            ))}
-          </section>
           <div className="grid gap-4 xl:grid-cols-2">
             {cases.map((caseItem) => (
               <CaseCard key={caseItem.id} caseItem={caseItem} guestMode={isGuestUser(user)} />

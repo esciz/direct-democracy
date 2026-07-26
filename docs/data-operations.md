@@ -94,6 +94,64 @@ Health statuses are:
 
 The monitoring artifact tracks last check, next check, source health, freshness, document counts, extraction counts, OCR counts, and accountability-readiness impact.
 
+## Statewide Financial Coverage
+
+`npm run financials:nevada:first-pass` performs the launch acquisition for every candidate and current official in the database. It writes:
+
+- `data/generated/nevada-financial-coverage.json`
+- `data/generated/nevada-financial-coverage-audit.json`
+- cached public source responses under `data/raw/nevada-financials/`
+
+Campaign money and personal financial disclosures are separate evidence layers:
+
+- Federal campaign committees use official OpenFEC totals and cycle history.
+- Nevada state, judicial, and local campaign committees use Nevada Secretary of State Aurora as the primary filing authority.
+- Transparency USA is a clearly labeled derived cross-check and aggregate adapter for Nevada totals and published top-contributor samples.
+- Nonjudicial Nevada personal disclosures use the Secretary of State filing route when the office is covered.
+- Judicial personal disclosures use the Nevada Administrative Office of the Courts.
+- Federal personal disclosures use the House, Senate, or Office of Government Ethics portal appropriate to the office.
+
+The daily pipeline runs `npm run financials:nevada:collect` once. Direct totals and source routes are checked daily; aggregate and historical-cycle page retrieval is divided into seven deterministic shards so every matched profile is revisited within seven days. Historical periods count only after a candidate-specific cycle page is parsed with nonzero activity. `npm run financials:nevada:audit` verifies that every database candidate and current official has a campaign-finance source route and a personal-disclosure source route. It reports unmatched filing extraction as backlog instead of converting missing data to `$0`.
+
+The official Nevada SOS application can require a browser challenge session. Cached official records remain usable during a blocked session, derived aggregates remain labeled as derived, and a registered search route never counts as a matched filing or financial total.
+
+## Statewide Case Coverage
+
+`npm run cases:nevada:refresh` checks the statewide case-source catalog, reconciles approved public records from the database and generated runtime, and writes:
+
+- `data/generated/nevada-case-coverage.json`
+- `data/generated/nevada-case-coverage-audit.json`
+
+The catalog registers Nevada appellate opinions and ACIS, district/justice/municipal court directories for all 17 counties, CourtListener RECAP, official Ninth Circuit opinions, official U.S. Supreme Court dockets and opinions, Nevada Ethics Commission opinions, Tax Commission appeals, and State Bar discipline. A reachable directory counts as a source route, not as a parsed case. Public case cards require an approved, public, source-backed record and deduplicate by court plus case number.
+
+Federal appellate records must carry a verified Nevada connection: a District of Nevada origin or another documented Nevada nexus for Ninth Circuit records, and an official Nevada lower court, Nevada party, or direct Nevada legal connection for U.S. Supreme Court records. Local trial, federal district, and administrative source routes remain separate backlogs. Trial-court collection must stay document-specific and privacy-aware; directory access does not authorize bulk publication of party names, sealed records, addresses, or sensitive case details.
+
+## Statewide Political Ad Coverage
+
+`npm run ads:nevada:backfill` performs the historical launch pass across official FEC independent-expenditure bulk files for the 2012 through 2026 cycles. `npm run ads:nevada` is the scheduled refresh: it checks the current cycle and one stable historical cycle, preserves prior records, falls back to the official FEC bulk file when the API is rate-limited, rebuilds entity matches, and writes:
+
+- `data/generated/nevada-political-ads.json`
+- `data/generated/nevada-political-ads-audit.json`
+- `data/generated/nevada-political-ad-coverage.json`
+- `data/generated/nevada-political-ad-coverage-audit.json`
+
+Coverage is generated for every database candidate and current official. Matching uses local entity IDs, FEC candidate IDs, and normalized names. The public UI separates reviewed creative from filing-only spend/dissemination records. An FEC Schedule E row proves a reported expenditure and described communication; it does not prove that the creative was captured, that every airing or impression occurred, or that a claim was reviewed.
+
+FCC station political files, Nevada SOS expenditures, Meta Ad Library, Google Ads Transparency Center, and reviewed creative intake remain registered source layers. FCC station-level acquisition is pending a Nevada station registry. Meta automation requires approved credentials, and Google creative retrieval requires export or manual review. Those barriers are shown as coverage state instead of being converted to zero ads.
+
+## Public Organization Directory
+
+`npm run organizations:nevada:first-pass` validates the launch catalog and `npm run organizations:nevada:refresh` performs the scheduled shard plus strict audit. Generated artifacts are:
+
+- `data/generated/nevada-public-organizations.json`
+- `data/generated/nevada-public-organizations-audit.json`
+
+The launch catalog covers common civic, civil-rights, advocacy, environmental, labor, chamber/business, professional, service, faith, health, youth, veterans, education, service-club, arts/culture, public-institution, public-association, and political-party affiliations. Each row needs an official website or first-party directory source, an involvement or membership route, scope, community links, and provenance.
+
+Official websites are checked in seven stable daily shards. The IRS Nevada Exempt Organizations Business Master File refreshes weekly and is used only to cross-reference legal nonprofit records. An IRS or Nevada business-registry match does not establish current activity, membership size, endorsement, ownership, or political position, and the UI does not synthesize those attributes.
+
+The party-network seed adds the Nevada State Democratic Party and Nevada Republican Party, all 17 county organizations published by each state party, the 14 statewide Democratic caucuses and clubs in the party directory, and the Republican clubs published in the state party directory. State-party records link to party platforms, leadership, county and club directories, party updates, and FEC committee profiles. Platform topics, priorities, leadership, news, and organization relationships from these sites are labeled as party-authored material. A directory listing proves only that the state party published the listing; it does not establish a legal affiliation. The Nevada Republican Club record retains the source directory's explicit “no affiliation” disclosure.
+
 ## Official Directory Monitoring
 
 `npm run officials:sources` generates:
@@ -220,25 +278,26 @@ The advanced collector starts from official roots verified through the Nevada As
 
 ## Scheduled Automation
 
-The canonical source refresh runs once daily at 6:00 AM America/Los_Angeles through the local Codex automation. Daily is recommended because public bodies can post, cancel, or revise meetings with only a few days of notice. Do not add another recurring trigger without first disabling the existing one.
+The canonical source refresh runs once daily at 6:00 AM America/Los_Angeles through the active local Codex automation. Daily is recommended because public bodies can post, cancel, or revise meetings with only a few days of notice. Do not add another recurring trigger without first disabling the existing one.
 
 The daily process is:
 
 1. Regenerate and validate the statewide provider registry, refresh every direct/API-capable calendar, and run one of seven deterministic advanced-browser shards.
-2. Import direct calendar records and merge reviewed official-source caches.
-3. Check every configured provider for upcoming-meeting coverage, then retrieve a bounded batch of changed documents.
-4. Verify cache content, extract text, and run bounded OCR where required.
-5. Regenerate accountability records, all source-backed issue hubs, community relationships, and public event views.
-6. Run issue, event-freshness, browse no-demo, source-health, DataOps freshness, and public site integrity audits.
+2. Refresh reviewed case coverage, political-ad records and profile matches, and the public-organization directory.
+3. Import direct calendar records and merge reviewed official-source caches.
+4. Check every configured provider for upcoming-meeting coverage, then retrieve a bounded batch of changed documents.
+5. Verify cache content, extract text, and run bounded OCR where required.
+6. Regenerate accountability records, all source-backed issue hubs, community relationships, and public event views.
+7. Run issue, event-freshness, browse no-demo, source-health, DataOps freshness, and public site integrity audits.
 
 The public site integrity artifact is `data/generated/public-site-integrity-audit.json`. It separates critical code-integrity regressions from high-severity collection barriers so a clean build cannot be mistaken for complete source coverage. In particular, a registered provider with zero parsed records is reported as a barrier even when no exception was thrown.
 
-Meeting calendars and source-health checks run daily. Nevada SOS campaign-finance acquisition should run weekly, or sooner during an active filing window, because it requires a usable browser challenge session. The daily pipeline regenerates the cached finance quality and operational-status reports without retrying blocked live URLs. When `data/generated/nv-sos-operational-status.json` reports `stale_blocked_session`, run `npm run nv-sos:bootstrap` interactively and then `npm run nv-sos:all`; do not schedule repeated blocked fetches.
-7. Write `data/generated/dataops-pipeline-run.json`, including required and configured jurisdictions, sources checked, upcoming meetings, source-backed issues, and provider failures.
+Meeting calendars, OpenFEC totals, statewide financial source registration, derived aggregate shards, and source-health checks run daily. Full Nevada SOS filing acquisition should run weekly, or sooner during an active filing window, because it requires a usable browser challenge session. The daily pipeline regenerates the cached finance quality and operational-status reports without retrying blocked live URLs. When `data/generated/nv-sos-operational-status.json` reports `stale_blocked_session`, run `npm run nv-sos:bootstrap` interactively and then `npm run nv-sos:all`; do not schedule repeated blocked fetches.
+8. Write `data/generated/dataops-pipeline-run.json`, including required and configured jurisdictions, sources checked, upcoming meetings, source-backed issues, public-record totals, separate Ninth Circuit and U.S. Supreme Court counts, and provider failures.
 
 Direct source checks and statewide coverage audits run once daily. Advanced rendered-browser collection is divided into seven stable shards, so every provider receives an advanced pass at least once every seven days without adding a second recurring job. `npm run meetings:bootstrap:nevada-sources` remains the explicit full-state recovery command.
 
-`.github/workflows/dataops-daily.yml` remains a manual recovery hook. It can execute the same pipeline, refresh Carson City official-directory sources, typecheck the repo, and upload generated artifacts, but it has no recurring schedule. It does not push generated files to the primary branch; durable production storage remains a future storage adapter concern.
+`.github/workflows/dataops-daily.yml` remains a manual recovery hook. It can execute the same pipeline, refresh official-directory sources, typecheck the repo, and upload generated artifacts, but it has no recurring schedule. It does not push generated files to the primary branch; promotion into the deployed public runtime still requires the existing reviewed deployment path until durable production source storage is configured.
 
 `.github/workflows/identity-worker.yml` provides the first durable trust-service worker path. It runs from a protected environment, diagnoses database reachability, claims bounded durable jobs, heartbeats through the existing identity queue, and uploads only non-sensitive worker/trust audit artifacts.
 

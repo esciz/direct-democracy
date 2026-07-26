@@ -1,7 +1,18 @@
 import { FavoriteSpotsInput } from "@/components/domain/favorite-spots-input";
+import { ProfileMediaFields } from "@/components/domain/profile-media-fields";
 import { ProfileTagInput } from "@/components/domain/profile-tag-input";
 import { StructuredOptionInput } from "@/components/domain/structured-option-input";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
+import {
+  Check,
+  Link as LinkIcon,
+  MapPin,
+  Palette,
+  Target,
+  UserRound,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { getGeographicCommunities } from "@/lib/community/communities";
 import { updateProfileDetails } from "@/lib/profile/actions";
 import { EXTERNAL_LINK_FIELDS } from "@/lib/profile/external-links";
@@ -15,34 +26,76 @@ type ProfileDetailsFormProps = {
   content: UserProfileContentSummary;
 };
 
+function SectionHeading({
+  id,
+  icon: Icon,
+  iconClassName,
+  eyebrow,
+  title,
+  detail,
+}: {
+  id: string;
+  icon: LucideIcon;
+  iconClassName: string;
+  eyebrow: string;
+  title: string;
+  detail: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border ${iconClassName}`} aria-hidden="true">
+        <Icon size={18} strokeWidth={1.8} />
+      </span>
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{eyebrow}</p>
+        <h3 id={id} className="mt-1.5 text-lg font-semibold text-slate-100">
+          {title}
+        </h3>
+        <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-400">{detail}</p>
+      </div>
+    </div>
+  );
+}
+
 export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
   const geographicCommunities = getGeographicCommunities();
   const externalLinkValues = new Map((content.externalLinks ?? []).map((link) => [link.platform, link.url] as const));
+  const externalLinkCount = content.externalLinks?.length ?? 0;
+  const isBright = content.profileTheme === "bright";
+  const fieldClass = isBright
+    ? "mt-2 min-h-11 w-full rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-[#ff8a70] focus:ring-2 focus:ring-[#ff8a70]/15"
+    : "mt-2 min-h-11 w-full rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10";
+  const checkboxClass = `h-4 w-4 rounded border-white/20 bg-slate-950 ${isBright ? "text-[#ff8a70]" : "text-cyan-400"}`;
+  const classicIcon = "border-cyan-300/20 bg-cyan-300/10 text-cyan-200";
 
   return (
-    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Profile details</p>
-      <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Shape how you appear in your community</h2>
-      <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
-        Use the same structured pattern everywhere: pick a common option when it fits, or write in your own when it doesn&apos;t.
+    <section>
+      <p className={`text-xs font-semibold uppercase tracking-[0.16em] ${isBright ? "text-[#b9f66b]" : "text-emerald-200"}`}>Edit profile</p>
+      <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">The details neighbors see</h2>
+      <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+        Start with a photo, community, and priorities. Everything else is optional.
       </p>
 
-      <form action={updateProfileDetails} className="mt-6 grid gap-6">
-        <section className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-          <p className="text-sm font-medium text-ink">Communities and onboarding</p>
-          <p className="mt-1 text-xs leading-6 text-slate-500">
-            Choose your main geographic community so Direct Democracy can focus your city, county, school district, state, and federal civic context.
-          </p>
-          <div className="mt-4 grid gap-4 xl:grid-cols-2">
+      <form action={updateProfileDetails} className="mt-7 grid gap-8">
+        <section aria-labelledby="profile-home-heading" className="border-b border-white/10 pb-8">
+          <SectionHeading
+            id="profile-home-heading"
+            icon={MapPin}
+            iconClassName={isBright ? "border-[#ff8a70]/30 bg-[#ff8a70]/12 text-[#ffb29f]" : classicIcon}
+            eyebrow="Home"
+            title="Your primary community"
+            detail="This controls the local voting cards, meetings, officials, and issues shown to you."
+          />
+          <div className="mt-5 grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.7fr)]">
             <div>
-              <label htmlFor="primaryCommunityId" className="text-sm font-medium text-ink">
-                Geographic community
+              <label htmlFor="primaryCommunityId" className="text-sm font-semibold text-slate-200">
+                Community
               </label>
               <select
                 id="primaryCommunityId"
                 name="primaryCommunityId"
                 defaultValue={content.primaryCommunityId}
-                className="mt-2 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                className={fieldClass}
               >
                 {geographicCommunities.map((community) => (
                   <option key={community.id} value={community.id}>
@@ -51,141 +104,175 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
                 ))}
               </select>
             </div>
-            <div>
-              <p className="text-sm font-medium text-ink">Civic context</p>
-              <div className="mt-2 rounded-3xl border border-slate-200 bg-white px-4 py-4 text-sm text-slate-600">
-                Your selected community anchors local voting cards, public meetings, officials, issues, and service links. Voter verification remains separate from profile setup.
-              </div>
-            </div>
+            <p className="border-l-2 border-emerald-300/30 pl-4 text-sm leading-6 text-slate-400">
+              Your residence and voter verification remain separate. Changing this preference does not change your verified voting jurisdiction.
+            </p>
           </div>
         </section>
 
-        <section className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-          <p className="text-sm font-medium text-ink">Profile appearance</p>
-          <p className="mt-1 text-xs leading-6 text-slate-500">
-            Add a profile photo and banner image URL to make your profile feel more personal. Keep images clear, public-safe, and representative.
-          </p>
-          <div className="mt-4 grid gap-4 xl:grid-cols-2">
-            <div>
-              <label htmlFor="profileImageUrl" className="text-sm font-medium text-ink">
-                Profile photo URL
-              </label>
+        <fieldset className="border-b border-white/10 pb-8">
+          <legend className="sr-only">Profile color</legend>
+          <SectionHeading
+            id="profile-color-heading"
+            icon={Palette}
+            iconClassName={isBright ? "border-[#ffd166]/30 bg-[#ffd166]/12 text-[#ffe29a]" : classicIcon}
+            eyebrow="Color"
+            title="Choose your profile mood"
+            detail="Keep the civic palette restrained or add brighter accents to your profile."
+          />
+          <div className="mt-5 grid max-w-2xl gap-3 sm:grid-cols-2" aria-labelledby="profile-color-heading">
+            <label className="cursor-pointer">
               <input
-                id="profileImageUrl"
-                name="profileImageUrl"
-                defaultValue={content.profileImageUrl}
-                placeholder="https://example.com/profile-photo.jpg"
-                className="mt-2 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                type="radio"
+                name="profileTheme"
+                value="classic"
+                defaultChecked={!isBright}
+                className="peer sr-only"
               />
-            </div>
-            <div>
-              <label htmlFor="bannerImageUrl" className="text-sm font-medium text-ink">
-                Banner image URL
-              </label>
+              <span className="flex min-h-20 items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 transition peer-checked:border-cyan-300/60 peer-checked:bg-cyan-300/[0.07]">
+                <span>
+                  <span className="block text-sm font-semibold text-slate-100">Classic civic</span>
+                  <span className="mt-1 block text-xs text-slate-400">Calm and focused</span>
+                </span>
+                <span className="grid grid-cols-2 gap-1" aria-hidden="true">
+                  <span className="h-5 w-5 rounded bg-[#07111f]" />
+                  <span className="h-5 w-5 rounded bg-cyan-300" />
+                  <span className="h-5 w-5 rounded bg-emerald-300" />
+                  <span className="h-5 w-5 rounded bg-amber-200" />
+                </span>
+              </span>
+            </label>
+            <label className="cursor-pointer">
               <input
-                id="bannerImageUrl"
-                name="bannerImageUrl"
-                defaultValue={content.bannerImageUrl}
-                placeholder="https://example.com/banner-image.jpg"
-                className="mt-2 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                type="radio"
+                name="profileTheme"
+                value="bright"
+                defaultChecked={isBright}
+                className="peer sr-only"
               />
-            </div>
+              <span className="flex min-h-20 items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 transition peer-checked:border-[#ff8a70] peer-checked:bg-[#ff8a70]/[0.08]">
+                <span>
+                  <span className="flex items-center gap-2 text-sm font-semibold text-slate-100">
+                    Bright civic
+                  </span>
+                  <span className="mt-1 block text-xs text-slate-400">Warm and energetic</span>
+                </span>
+                <span className="grid grid-cols-2 gap-1" aria-hidden="true">
+                  <span className="h-5 w-5 rounded bg-[#ff8a70]" />
+                  <span className="h-5 w-5 rounded bg-[#54d6d0]" />
+                  <span className="h-5 w-5 rounded bg-[#b9f66b]" />
+                  <span className="h-5 w-5 rounded bg-[#ffd166]" />
+                </span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <ProfileMediaFields
+          userName={user.name}
+          profileImageUrl={content.profileImageUrl}
+          bannerImageUrl={content.bannerImageUrl}
+          isBright={isBright}
+        />
+
+        <section aria-labelledby="profile-priorities-heading" className="border-b border-white/10 pb-8">
+          <SectionHeading
+            id="profile-priorities-heading"
+            icon={Target}
+            iconClassName={isBright ? "border-[#b9f66b]/30 bg-[#b9f66b]/10 text-[#d8ffa8]" : classicIcon}
+            eyebrow="Priorities"
+            title="What matters most to you"
+            detail="Rank up to three topics at each level. These connect your profile to the same issue pages used across the site."
+          />
+          <div className="mt-5 grid gap-x-6 gap-y-8 xl:grid-cols-3">
+            <StructuredOptionInput
+              label="Local"
+              inputName="localIssues"
+              options={PREDEFINED_ISSUE_OPTIONS.local}
+              values={content.localIssues}
+              maxItems={3}
+              allowCustom={false}
+              helpText="City, county, and nearby concerns."
+            />
+            <StructuredOptionInput
+              label="Nevada"
+              inputName="stateIssues"
+              options={PREDEFINED_ISSUE_OPTIONS.state}
+              values={content.stateIssues}
+              maxItems={3}
+              allowCustom={false}
+              helpText="Statewide policy and services."
+            />
+            <StructuredOptionInput
+              label="National"
+              inputName="nationalIssues"
+              options={PREDEFINED_ISSUE_OPTIONS.national}
+              values={content.nationalIssues}
+              maxItems={3}
+              allowCustom={false}
+              helpText="Federal issues and national priorities."
+            />
           </div>
         </section>
 
-        <section className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-          <p className="text-sm font-medium text-ink">External Links</p>
-          <p className="mt-1 text-xs leading-6 text-slate-500">
-            Add optional public links for credibility and discovery. These stay secondary on your profile and do not import outside content into Direct Democracy.
-          </p>
-          <div className="mt-4 grid gap-4 xl:grid-cols-2">
-            {EXTERNAL_LINK_FIELDS.map((field) => (
-              <div key={field.platform}>
-                <label htmlFor={field.inputName} className="text-sm font-medium text-ink">
-                  {field.label}
-                </label>
-                <input
-                  id={field.inputName}
-                  name={field.inputName}
-                  defaultValue={externalLinkValues.get(field.platform) ?? ""}
-                  placeholder={field.placeholder}
-                  className="mt-2 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
-                />
-              </div>
-            ))}
+        <section aria-labelledby="profile-community-heading" className="border-b border-white/10 pb-8">
+          <SectionHeading
+            id="profile-community-heading"
+            icon={Users}
+            iconClassName={isBright ? "border-[#54d6d0]/30 bg-[#54d6d0]/10 text-[#8ceae6]" : classicIcon}
+            eyebrow="Community"
+            title="Places and groups you know"
+            detail="Optional context for finding useful local voices and recommendations."
+          />
+          <div className="mt-5 grid gap-8 xl:grid-cols-[1.15fr_0.85fr]">
+            <FavoriteSpotsInput inputName="favoriteSpots" spots={content.favoriteSpots} />
+            <StructuredOptionInput
+              label="Groups and interests"
+              inputName="groupTags"
+              options={PREDEFINED_GROUP_TAG_OPTIONS}
+              values={content.groupTags}
+              maxItems={6}
+              customLabel="Other / Custom"
+              helpText="Choose a shared tag or write in your own."
+            />
           </div>
         </section>
 
-        <div className="grid gap-6 xl:grid-cols-3">
-          <StructuredOptionInput
-            label="Top 3 local issues"
-            inputName="localIssues"
-            options={PREDEFINED_ISSUE_OPTIONS.local}
-            values={content.localIssues}
-            maxItems={3}
-            allowCustom={false}
-            helpText="Choose from the shared issue taxonomy so your profile links cleanly to issue hubs."
+        <section aria-labelledby="profile-about-heading" className="border-b border-white/10 pb-8">
+          <SectionHeading
+            id="profile-about-heading"
+            icon={UserRound}
+            iconClassName={isBright ? "border-[#ff8a70]/30 bg-[#ff8a70]/10 text-[#ffb29f]" : classicIcon}
+            eyebrow="About"
+            title="Background and identity"
+            detail="Self-reported and optional. These details are never treated as verified credentials."
           />
-          <StructuredOptionInput
-            label="Top 3 state issues"
-            inputName="stateIssues"
-            options={PREDEFINED_ISSUE_OPTIONS.state}
-            values={content.stateIssues}
-            maxItems={3}
-            allowCustom={false}
-            helpText="Choose from the shared issue taxonomy so your profile links cleanly to issue hubs."
-          />
-          <StructuredOptionInput
-            label="Top 3 national issues"
-            inputName="nationalIssues"
-            options={PREDEFINED_ISSUE_OPTIONS.national}
-            values={content.nationalIssues}
-            maxItems={3}
-            allowCustom={false}
-            helpText="Choose from the shared issue taxonomy so your profile links cleanly to issue hubs."
-          />
-        </div>
-
-        <div className="grid gap-6 xl:grid-cols-[1.2fr,0.8fr]">
-          <FavoriteSpotsInput inputName="favoriteSpots" spots={content.favoriteSpots} />
-          <StructuredOptionInput
-            label="Group tags"
-            inputName="groupTags"
-            options={PREDEFINED_GROUP_TAG_OPTIONS}
-            values={content.groupTags}
-            maxItems={6}
-            customLabel="Other / Custom"
-          />
-        </div>
-
-        <section className="grid gap-6 xl:grid-cols-[0.9fr,1.1fr]">
-          <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-sm font-medium text-ink">Background</p>
-            <p className="mt-1 text-xs leading-6 text-slate-500">Self-reported only. This is optional and is not verified or used as proof of authority.</p>
-            <div className="mt-4 grid gap-4">
+          <div className="mt-5 grid gap-8 xl:grid-cols-[0.85fr_1.15fr]">
+            <div>
               <div>
-                <label htmlFor="profession" className="text-sm font-medium text-ink">
+                <label htmlFor="profession" className="text-sm font-semibold text-slate-200">
                   Profession
                 </label>
                 <input
                   id="profession"
                   name="profession"
                   defaultValue={content.background.profession}
-                  placeholder="e.g. Teacher, business owner"
-                  className="mt-2 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                  placeholder="Teacher, student, business owner..."
+                  className={fieldClass}
                 />
-                <label className="mt-3 flex items-center gap-3 text-sm text-slate-700">
+                <label className="mt-3 flex items-center gap-2 text-sm text-slate-300">
                   <input
                     type="checkbox"
                     name="professionPublic"
                     defaultChecked={content.background.professionPublic}
-                    className="h-4 w-4 rounded border-slate-300"
+                    className={checkboxClass}
                   />
-                  Show profession publicly
+                  Show publicly
                 </label>
               </div>
-              <div>
-                <label htmlFor="experience" className="text-sm font-medium text-ink">
+
+              <div className="mt-5">
+                <label htmlFor="experience" className="text-sm font-semibold text-slate-200">
                   Experience
                 </label>
                 <textarea
@@ -193,62 +280,121 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
                   name="experience"
                   rows={4}
                   defaultValue={content.background.experience}
-                  placeholder="Share a short self-reported background note or lived experience if you want."
-                  className="mt-2 w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                  placeholder="A short note about the perspective you bring."
+                  className={`${fieldClass} resize-y`}
                 />
-                <label className="mt-3 flex items-center gap-3 text-sm text-slate-700">
+                <label className="mt-3 flex items-center gap-2 text-sm text-slate-300">
                   <input
                     type="checkbox"
                     name="experiencePublic"
                     defaultChecked={content.background.experiencePublic}
-                    className="h-4 w-4 rounded border-slate-300"
+                    className={checkboxClass}
                   />
-                  Show experience publicly
+                  Show publicly
                 </label>
               </div>
-              <div>
-                <label htmlFor="politicalAffiliation" className="text-sm font-medium text-ink">
+
+              <div className="mt-5">
+                <label htmlFor="politicalAffiliation" className="text-sm font-semibold text-slate-200">
                   Political affiliation
                 </label>
                 <select
                   id="politicalAffiliation"
                   name="politicalAffiliation"
                   defaultValue={content.background.politicalAffiliation}
-                  className="mt-2 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                  className={fieldClass}
                 >
-                  <option value="">Prefer not to include</option>
+                  <option value="">Do not include</option>
                   {POLITICAL_AFFILIATION_OPTIONS.map((option) => (
                     <option key={option} value={option}>
                       {option}
                     </option>
                   ))}
                 </select>
-                <label className="mt-3 flex items-center gap-3 text-sm text-slate-700">
+                <label className="mt-3 flex items-center gap-2 text-sm text-slate-300">
                   <input
                     type="checkbox"
                     name="politicalAffiliationPublic"
                     defaultChecked={content.background.politicalAffiliationPublic}
-                    className="h-4 w-4 rounded border-slate-300"
+                    className={checkboxClass}
                   />
-                  Show political affiliation publicly
+                  Show publicly
                 </label>
               </div>
             </div>
-          </div>
 
-          <ProfileTagInput inputName="identityTags" tags={content.identityTags} />
+            <ProfileTagInput inputName="identityTags" tags={content.identityTags} />
+          </div>
         </section>
 
-        <label className="flex items-center gap-3 rounded-3xl bg-slate-50 px-4 py-4 text-sm text-slate-700">
-          <input type="checkbox" name="recentVotesPublic" defaultChecked={content.recentVotesPublic} className="h-4 w-4 rounded border-slate-300" />
-          Show recent votes publicly on your citizen profile
-        </label>
+        <details className="group border-b border-white/10 pb-8">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
+            <span className="flex items-start gap-3">
+              <span
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border ${
+                  isBright ? "border-[#ffd166]/30 bg-[#ffd166]/10 text-[#ffe29a]" : classicIcon
+                }`}
+                aria-hidden="true"
+              >
+                <LinkIcon size={18} strokeWidth={1.8} />
+              </span>
+              <span>
+                <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Links</span>
+                <span className="mt-1.5 block text-lg font-semibold text-slate-100">Public links</span>
+                <span className="mt-1 block text-sm text-slate-400">
+                  {externalLinkCount ? `${externalLinkCount} added` : "Website and social accounts, if useful."}
+                </span>
+              </span>
+            </span>
+            <span className="text-sm font-semibold text-cyan-200 group-open:hidden">Add or edit</span>
+            <span className="hidden text-sm font-semibold text-cyan-200 group-open:inline">Close</span>
+          </summary>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {EXTERNAL_LINK_FIELDS.map((field) => (
+              <div key={field.platform}>
+                <label htmlFor={field.inputName} className="text-sm font-semibold text-slate-200">
+                  {field.label}
+                </label>
+                <input
+                  id={field.inputName}
+                  name={field.inputName}
+                  defaultValue={externalLinkValues.get(field.platform) ?? ""}
+                  placeholder={field.placeholder}
+                  inputMode="url"
+                  className={fieldClass}
+                />
+              </div>
+            ))}
+          </div>
+        </details>
 
-        <FormSubmitButton
-          idleLabel="Save profile details"
-          pendingLabel="Saving..."
-          className="w-fit rounded-full bg-civic-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-civic-700 disabled:cursor-not-allowed disabled:bg-slate-300"
-        />
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <label className="flex items-start gap-3 text-sm leading-6 text-slate-300">
+            <input
+              type="checkbox"
+              name="recentVotesPublic"
+              defaultChecked={content.recentVotesPublic}
+              className={`mt-1 ${checkboxClass}`}
+            />
+            <span>
+              <span className="block font-semibold text-slate-200">Show recent votes on my public profile</span>
+              <span className="block text-slate-500">You can turn this off at any time.</span>
+            </span>
+          </label>
+
+          <FormSubmitButton
+            idleLabel={
+              <span className="inline-flex items-center gap-2">
+                <Check size={17} strokeWidth={2} aria-hidden="true" />
+                Save profile
+              </span>
+            }
+            pendingLabel="Saving..."
+            className={`min-h-11 shrink-0 rounded-lg px-5 py-2.5 text-sm font-semibold text-slate-950 transition disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400 ${
+              isBright ? "bg-[#ff8a70] hover:bg-[#ff9c86]" : "bg-emerald-300 hover:bg-emerald-200"
+            }`}
+          />
+        </div>
       </form>
     </section>
   );

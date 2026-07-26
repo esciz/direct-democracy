@@ -454,6 +454,7 @@ function isProfileContent(value: unknown): value is UserProfileContentSummary {
     typeof profile.userId === "string" &&
     typeof profile.profileImageUrl === "string" &&
     typeof profile.bannerImageUrl === "string" &&
+    (typeof profile.profileTheme === "undefined" || profile.profileTheme === "classic" || profile.profileTheme === "bright") &&
     typeof profile.primaryCommunityId === "string" &&
     Array.isArray(profile.localIssues) &&
     Array.isArray(profile.stateIssues) &&
@@ -508,6 +509,7 @@ function canonicalizeIssueEntries(entries: StructuredProfileValueSummary[]) {
 function canonicalizeProfileContent(content: UserProfileContentSummary): UserProfileContentSummary {
   return {
     ...content,
+    profileTheme: content.profileTheme === "bright" ? "bright" : "classic",
     localIssues: canonicalizeIssueEntries(content.localIssues),
     stateIssues: canonicalizeIssueEntries(content.stateIssues),
     nationalIssues: canonicalizeIssueEntries(content.nationalIssues),
@@ -567,6 +569,7 @@ export async function getUserProfileContent(userId: string): Promise<UserProfile
       userId,
       profileImageUrl: defaultProfileImageUrl(userId),
       bannerImageUrl: defaultBannerImageUrl(userId),
+      profileTheme: "classic",
       primaryCommunityId: getDefaultCommunityForJurisdiction(seedUsers.find((entry) => entry.id === userId)?.jurisdictionName ?? "Carson City, Nevada").id,
       localIssues: [],
       stateIssues: [],

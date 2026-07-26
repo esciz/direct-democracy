@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-25T22:06:10.619Z",
+  "generatedAt": "2026-07-26T01:42:23.916Z",
   "launchReady": false,
   "totals": {
     "critical": 0,
-    "high": 5,
-    "medium": 1,
+    "high": 6,
+    "medium": 4,
     "publicAggregationFilesChecked": 16,
     "meetingProvidersChecked": 57
   },
@@ -88,6 +88,55 @@
         "last successful live fetch 2026-06-14T18:31:17.117Z",
         "117 cached records remain usable",
         "Cached Nevada SoS records remain usable. Refresh the live session with npm run nv-sos:bootstrap before the next live acquisition window."
+      ]
+    },
+    {
+      "id": "statewide-financial-extraction-backlog",
+      "severity": "medium",
+      "area": "financial transparency",
+      "summary": "Statewide financial source coverage is complete, but some campaign totals and personal-disclosure filings still require matched extraction.",
+      "evidence": [
+        "305 of 366 profiles have matched campaign totals",
+        "165 candidate profiles have totals",
+        "140 official profiles have totals",
+        "61 profiles remain source-route only",
+        "4 of 366 profiles have matched personal-disclosure filings",
+        "264 profiles have published contributor samples"
+      ]
+    },
+    {
+      "id": "statewide-case-extraction-backlog",
+      "severity": "medium",
+      "area": "case collection",
+      "summary": "Case source routes are registered statewide, but reviewed publication is still limited to appellate records.",
+      "evidence": [
+        "25 appellate cases published",
+        "0 local trial cases published",
+        "0 federal cases published",
+        "0 administrative cases published"
+      ]
+    },
+    {
+      "id": "political-ad-creative-backlog",
+      "severity": "medium",
+      "area": "political ad collection",
+      "summary": "Most matched political-ad records establish reported spend or dissemination but do not include reviewed creative.",
+      "evidence": [
+        "7 reviewed creative records",
+        "1031 filing-only records",
+        "20 entities with matched records",
+        "4 entities with reviewed creative"
+      ]
+    },
+    {
+      "id": "partial-dataops-run",
+      "severity": "high",
+      "area": "data operations",
+      "summary": "The latest recorded DataOps run was not a complete successful daily pipeline execution.",
+      "evidence": [
+        "15 of 16 stages attempted",
+        "0 stages failed",
+        "completed 2026-07-25T13:05:27.281Z"
       ]
     },
     {

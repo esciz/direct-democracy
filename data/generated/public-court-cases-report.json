@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-19T00:36:19.567Z",
+  "generatedAt": "2026-07-26T02:29:53.109Z",
   "sourceManifest": "data/manual-sources/court-cases/reviewed-public-cases/manifest.json",
   "runtimePath": "data/generated/public-court-cases-runtime.json",
   "counts": {
-    "manifestRecords": 25,
-    "reviewedPublic": 25,
+    "manifestRecords": 27,
+    "reviewedPublic": 27,
     "excluded": 0,
     "needsReview": 0,
-    "dbUpserted": 25,
+    "dbUpserted": 27,
     "dbSkipped": 0
   },
   "exclusions": [],

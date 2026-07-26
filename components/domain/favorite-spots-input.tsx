@@ -50,24 +50,31 @@ export function FavoriteSpotsInput({ inputName, spots, maxItems = 4 }: FavoriteS
   );
 
   return (
-    <div className="grid gap-3">
+    <div className="min-w-0">
       <div>
-        <p className="text-sm font-medium text-ink">Favorite places</p>
-        <p className="mt-1 text-xs text-slate-500">One place per category. Reusing a category replaces the previous entry.</p>
+        <p className="text-sm font-semibold text-slate-100">Favorite places</p>
+        <p className="mt-1 text-xs leading-5 text-slate-400">Share a few places that help neighbors understand your community.</p>
       </div>
       <input type="hidden" name={inputName} value={serializedValue} />
-      <div className="grid gap-3">
+      <div className="mt-3 divide-y divide-white/10 border-y border-white/10">
         {rows.map((row, index) => (
-          <div key={`${inputName}-${index}`} className="rounded-3xl border border-slate-200 bg-slate-50 p-3">
-            <div className="grid gap-3 md:grid-cols-[15rem,minmax(0,1fr)]">
+          <div key={`${inputName}-${index}`} className="grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] gap-3 py-3">
+            <span
+              className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-xs font-semibold text-slate-400"
+              aria-hidden="true"
+            >
+              {index + 1}
+            </span>
+            <div className="grid min-w-0 gap-2 md:grid-cols-[12rem_minmax(0,1fr)]">
               <select
+                aria-label={`Favorite place ${index + 1} category`}
                 value={row.category}
                 onChange={(event) => {
                   const nextRows = [...rows];
                   nextRows[index] = { ...row, category: event.target.value };
                   setRows(nextRows);
                 }}
-                className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
               >
                 <option value="">Choose category</option>
                 {FAVORITE_SPOT_CATEGORY_OPTIONS.map((option) => (
@@ -77,14 +84,15 @@ export function FavoriteSpotsInput({ inputName, spots, maxItems = 4 }: FavoriteS
                 ))}
               </select>
               <input
+                aria-label={`Favorite place ${index + 1} name`}
                 value={row.name}
                 onChange={(event) => {
                   const nextRows = [...rows];
                   nextRows[index] = { ...row, name: event.target.value };
                   setRows(nextRows);
                 }}
-                placeholder="Write in a place name"
-                className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                placeholder="Place name"
+                className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
               />
             </div>
           </div>

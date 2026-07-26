@@ -43,7 +43,7 @@ import { createEmptyCampaignFinanceDashboard } from "@/lib/nv-sos/finance-dashbo
 import { getOfficialSourceDocumentsForProfile, type OfficialSourceDocumentsCardData } from "@/lib/nv-sos/public";
 import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
 import { getOrganizationEndorsementsForCampaign } from "@/lib/organizations/store";
-import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
+import { getPoliticalAdCoverageForEntity, getPoliticalAdsForEntity } from "@/lib/political-ads/store";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { mergeExternalLinksWithWebsite } from "@/lib/profile/external-links";
 import { getSafeUserProgressionSummary } from "@/lib/profile/progression";
@@ -165,6 +165,7 @@ function CandidateVoterEssentials({
   issueSources: Array<{ label: string; summary: string; sourceUrl: string; sourceName: string; sourceType: string }>;
 }) {
   const funding = campaignFinanceCard.fundingBreakdown;
+  const financeSnapshot = campaignFinanceCard.financialSnapshot;
   const hasFinanceSource = Boolean(
     campaignFinanceCard.sourceUrl ||
       campaignFinanceCard.filingSummaries.length ||
@@ -172,8 +173,14 @@ function CandidateVoterEssentials({
       campaignFinanceCard.financeDocumentCount ||
       funding?.hasDetailedContributions,
   );
-  const raisedAmount = funding?.totalRaised ?? (funding?.hasDetailedContributions ? funding.totalContributions : null);
-  const hasFinanceTotals = [raisedAmount, funding?.totalSpent, funding?.cashOnHand].some((value) => typeof value === "number" && Number.isFinite(value));
+  const raisedAmount =
+    funding?.totalRaised ??
+    (funding?.hasDetailedContributions ? funding.totalContributions : null) ??
+    financeSnapshot?.totalRaised ??
+    null;
+  const spentAmount = funding?.totalSpent ?? financeSnapshot?.totalSpent ?? null;
+  const cashOnHandAmount = funding?.cashOnHand ?? financeSnapshot?.cashOnHand ?? null;
+  const hasFinanceTotals = [raisedAmount, spentAmount, cashOnHandAmount].some((value) => typeof value === "number" && Number.isFinite(value));
   const financeAvailabilityLabel = hasFinanceTotals
     ? "Reviewed totals available"
     : campaignFinanceCard.financeFilingCount || campaignFinanceCard.filingSummaries.length
@@ -235,17 +242,17 @@ function CandidateVoterEssentials({
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Spent</p>
-              <p className="mt-1 text-sm font-semibold text-slate-100">{formatCampaignMoney(funding?.totalSpent)}</p>
+              <p className="mt-1 text-sm font-semibold text-slate-100">{formatCampaignMoney(spentAmount)}</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Cash</p>
               <p className="mt-1 text-sm font-semibold text-slate-100">
-                {formatCampaignMoney(funding?.cashOnHand, hasFinanceTotals ? "Not reported" : "Pending")}
+                {formatCampaignMoney(cashOnHandAmount, hasFinanceTotals ? "Not reported" : "Pending")}
               </p>
             </div>
           </div>
-          {funding?.reportingPeriod ? (
-            <p className="mt-3 text-xs font-semibold text-slate-500">Reporting period: {funding.reportingPeriod}</p>
+          {funding?.reportingPeriod || financeSnapshot?.reportingPeriod ? (
+            <p className="mt-3 text-xs font-semibold text-slate-500">Reporting period: {funding?.reportingPeriod ?? financeSnapshot?.reportingPeriod}</p>
           ) : null}
           <p className="mt-3 text-sm leading-6 text-slate-400">
             {campaignFinanceCard.donorExtractionStatus}
@@ -533,6 +540,8 @@ function ImportedCandidateDetailPage({
     { label: "Profile", value: bioSourceName ? "Profile info present" : "Profile enrichment pending" },
     { label: "Source", value: imported.sourceUrl ? "Source verified" : "Source link pending" },
   ];
+  const relatedAds = getPoliticalAdsForEntity("candidate", candidate.id, 4);
+  const politicalAdCoverage = getPoliticalAdCoverageForEntity("candidate", candidate.id);
 
   return (
     <div className="space-y-6 py-8">
@@ -670,6 +679,15 @@ function ImportedCandidateDetailPage({
       </details>
 
       <CampaignFinanceSourceCard data={campaignFinanceCard} />
+
+      <PoliticalAdsSection
+        title="Political ads about this candidate"
+        description="Reviewed creative and reported outside-spending filings are shown as separate evidence layers."
+        ads={relatedAds}
+        coverage={politicalAdCoverage}
+        repositoryHref={`/ads?candidateId=${encodeURIComponent(candidate.id)}`}
+        emptyText="No political-ad records are matched to this candidate yet."
+      />
 
       <CandidateRaceContextCard context={activeRaceContext} />
 
@@ -1120,10 +1138,21 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
       pendingCount: 0,
       approvedCount: 0,
       fundingBreakdown: null,
+      financialSnapshot: null,
       allReportedFundingBreakdown: null,
       contributorAttributions: [],
       cycleHistory: [],
       allReportedTotals: null,
+      personalFinancialDisclosure: {
+        sourceName: null,
+        sourceUrl: null,
+        status: null,
+        applicability: null,
+        reviewStatus: null,
+        lastCheckedAt: null,
+        filingSummaries: [],
+        note: null,
+      },
       campaignReportedSummary: null,
       donorExtractionStatus: "Classification incomplete; source-backed filing summaries remain available.",
     };
@@ -1272,6 +1301,7 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
   ].filter((value): value is string => Boolean(value));
   const candidateBriefSummary = `${hydratedCandidate.name}'s page is most useful as a quick campaign read: ${leadCampaign ? `${leadCampaign.campaignStatus.toLowerCase()} activity is centered on ${leadCampaign.officeSought.toLowerCase()} in ${leadCampaign.jurisdictionName}. ` : ""}${hydratedCandidate.campaignPromises.length ? `Public Reliability pulls campaign promises, platform commitments, endorsements, and visible activity into one accountability read, while polls and posts add extra context when you want more detail.` : `This profile is still light on structured promises, so the best next step is to scan the campaign and endorsement sections below.`}`;
   const relatedAds = getPoliticalAdsForEntity("candidate", hydratedCandidate.id, 4);
+  const politicalAdCoverage = getPoliticalAdCoverageForEntity("candidate", hydratedCandidate.id);
 
   return (
     <div className="space-y-6 py-8">
@@ -1341,6 +1371,7 @@ export default async function CandidateDetailPage({ params, searchParams }: Cand
         title="Political ads about this candidate"
         description="See ads by this campaign, supportive groups, opposition groups, and outside spenders. System ratings and trusted citizen ratings stay separate."
         ads={relatedAds}
+        coverage={politicalAdCoverage}
         repositoryHref={`/ads?candidateId=${encodeURIComponent(hydratedCandidate.id)}`}
         emptyText="No political ads are attached to this candidate yet."
       />

@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import { Activity, ArrowRight, Eye } from "lucide-react";
 
 import { AccountParticipationStatusCard } from "@/components/domain/account-participation-status-card";
 import { ParticipationReadinessPanel } from "@/components/domain/participation-readiness-panel";
@@ -122,6 +123,8 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
   const safeJurisdiction = currentUser.jurisdictionName ?? "Your jurisdiction";
   const safeBio = currentUser.bio ?? "Add a short bio so neighbors understand the perspective you bring.";
   const safeProfileImageUrl = normalizeMediaUrl(profileContent.profileImageUrl);
+  const safeBannerImageUrl = normalizeMediaUrl(profileContent.bannerImageUrl);
+  const isBrightProfile = profileContent.profileTheme === "bright";
   const progression = getSafeUserProgressionSummary(currentUser.role);
   const reputation = getSafeReputationSummary(currentUser);
   const participationReadiness = getParticipationReadiness(currentUser);
@@ -145,35 +148,102 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
           label: "Complete voter verification",
           detail: "Unlock verified voting, petitions, and messages to officials.",
         };
+  const profileDetailNotice =
+    params?.details === "updated"
+      ? "Your profile details were updated."
+      : params?.details === "media-format"
+        ? "That file is not a supported image. Choose a JPEG, PNG, or WebP."
+        : params?.details === "media-size"
+          ? "That image is too large. Choose a file that is 5 MB or smaller."
+          : params?.details === "media-storage"
+            ? "The image could not be saved right now. Your existing profile photo was not changed."
+            : null;
   const notice =
     params?.visibility === "updated"
       ? "Your public profile visibility was updated."
-      : params?.details === "updated"
-        ? "Your profile details were updated."
+      : profileDetailNotice
+        ? profileDetailNotice
         : params?.externalLinks === "invalid"
           ? "One or more links were skipped because they were not valid web addresses."
           : params?.onboarding === "started"
             ? "Welcome. Start with the action below, then fill in profile details when you are ready."
             : null;
+  const noticeIsError = params?.details?.startsWith("media-") ?? false;
 
   return (
     <div className="space-y-6 py-8">
       {notice ? (
-        <div className="rounded-lg border border-cyan-300/20 bg-cyan-500/10 px-4 py-3 text-sm text-cyan-50" role="status">
+        <div
+          className={`rounded-lg border px-4 py-3 text-sm ${
+            noticeIsError
+              ? "border-rose-300/20 bg-rose-500/10 text-rose-50"
+              : "border-cyan-300/20 bg-cyan-500/10 text-cyan-50"
+          }`}
+          role="status"
+        >
           {notice}
         </div>
       ) : null}
 
-      <section className="dd-panel overflow-hidden rounded-lg">
+      <section
+        className="dd-panel overflow-hidden rounded-lg"
+        style={
+          isBrightProfile
+            ? {
+                background: "#101522",
+                borderColor: "rgba(255, 138, 112, 0.34)",
+                boxShadow: "0 28px 70px -44px rgba(255, 138, 112, 0.72)",
+              }
+            : undefined
+        }
+      >
+        {safeBannerImageUrl ? (
+          <div
+            className="relative h-28 border-b border-white/10 bg-slate-950 bg-cover bg-center sm:h-36"
+            style={{ backgroundImage: `url("${safeBannerImageUrl}")` }}
+            role="img"
+            aria-label={`${safeName}'s cover photo`}
+          >
+            <div className={`absolute inset-0 ${isBrightProfile ? "bg-[#17101e]/20" : "bg-slate-950/35"}`} />
+          </div>
+        ) : null}
+        {isBrightProfile ? (
+          <div className="flex h-1.5" aria-hidden="true">
+            <span className="flex-1 bg-[#ff8a70]" />
+            <span className="flex-1 bg-[#54d6d0]" />
+            <span className="flex-1 bg-[#b9f66b]" />
+            <span className="flex-1 bg-[#ffd166]" />
+          </div>
+        ) : null}
         <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="flex min-w-0 flex-col gap-5 sm:flex-row sm:items-start">
-            <ProfileImagePlaceholder name={safeName} size="lg" imageUrl={safeProfileImageUrl || undefined} />
+            <div
+              className={
+                safeBannerImageUrl
+                  ? `-mt-14 w-fit rounded-full p-1 shadow-xl ${isBrightProfile ? "bg-[#ffd166]" : "bg-[#08101e]"}`
+                  : ""
+              }
+            >
+              <ProfileImagePlaceholder name={safeName} size="lg" imageUrl={safeProfileImageUrl || undefined} />
+            </div>
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-emerald-300/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-100">
+                <span
+                  className={`rounded-full border px-3 py-1 text-xs font-semibold ${
+                    isBrightProfile
+                      ? "border-[#b9f66b]/30 bg-[#b9f66b]/10 text-[#d8ffa8]"
+                      : "border-emerald-300/20 bg-emerald-500/10 text-emerald-100"
+                  }`}
+                >
                   {verificationLabel}
                 </span>
-                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300">
+                <span
+                  className={`rounded-full border px-3 py-1 text-xs font-semibold ${
+                    isBrightProfile
+                      ? "border-[#54d6d0]/30 bg-[#54d6d0]/10 text-[#8ceae6]"
+                      : "border-white/10 bg-white/[0.04] text-slate-300"
+                  }`}
+                >
                   {roleLabel}
                 </span>
               </div>
@@ -183,22 +253,48 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
               </p>
               <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">{safeBio}</p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Link href={publicProfileHref} className="dd-button-secondary rounded-lg px-4 py-2.5 text-sm font-semibold">
+                <Link
+                  href={publicProfileHref}
+                  className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold ${
+                    isBrightProfile
+                      ? "border-[#54d6d0]/30 bg-[#54d6d0]/10 text-[#baf7f4] hover:border-[#54d6d0]/55"
+                      : "dd-button-secondary"
+                  }`}
+                >
+                  <Eye size={16} aria-hidden="true" />
                   View public profile
                 </Link>
-                <Link href="/profile/activity" className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-cyan-300/24">
+                <Link
+                  href="/profile/activity"
+                  className={`inline-flex items-center gap-2 rounded-lg border bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-slate-200 ${
+                    isBrightProfile ? "border-[#ffd166]/25 hover:border-[#ffd166]/55" : "border-white/10 hover:border-cyan-300/24"
+                  }`}
+                >
+                  <Activity size={16} aria-hidden="true" />
                   All activity
                 </Link>
               </div>
             </div>
           </div>
 
-          <aside className="hidden border-l border-white/10 pl-6 lg:block">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Next step</p>
+          <aside className={`hidden border-l pl-6 lg:block ${isBrightProfile ? "border-[#ff8a70]/25" : "border-white/10"}`}>
+            <p
+              className={`text-xs font-semibold uppercase tracking-[0.16em] ${
+                isBrightProfile ? "text-[#ffd166]" : "text-emerald-200"
+              }`}
+            >
+              Next step
+            </p>
             <h2 className="mt-2 text-xl font-semibold text-slate-50">{primaryAction.label}</h2>
             <p className="mt-2 text-sm leading-6 text-slate-400">{primaryAction.detail}</p>
-            <Link href={primaryAction.href} className="dd-button-primary mt-5 inline-flex w-full justify-center rounded-lg px-4 py-3 text-sm font-semibold">
+            <Link
+              href={primaryAction.href}
+              className={`mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold ${
+                isBrightProfile ? "bg-[#ff8a70] text-[#1d1010] hover:bg-[#ff9c86]" : "dd-button-primary"
+              }`}
+            >
               Continue
+              <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </aside>
         </div>
@@ -289,7 +385,7 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
       </div>
 
       <div className="space-y-3">
-        <ProfileDisclosure title="Profile and privacy" detail="Edit your photo, bio, topics, public links, and visibility.">
+        <ProfileDisclosure title="Profile and privacy" detail="Edit your photos, priorities, public details, links, and visibility.">
           <ProfileDetailsForm user={currentUser} content={profileContent} />
           {currentUser.role === "citizen" || currentUser.role === "trustedCitizen" ? (
             <PublicVisibilityToggle isPublic={!currentUser.isAnonymousPublic} />

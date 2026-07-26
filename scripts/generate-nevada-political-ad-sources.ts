@@ -4,11 +4,11 @@ import path from "node:path";
 type PoliticalAdSourceRegistryRecord = {
   id: string;
   name: string;
-  provider: "meta" | "google" | "fec" | "nevada_sos" | "manual";
+  provider: "meta" | "google" | "fec" | "fcc" | "nevada_sos" | "manual";
   coverage: string;
   sourceUrl: string;
-  accessModel: "api_key_required" | "export_required" | "public_web" | "manual_review";
-  status: "configured" | "needs_credentials" | "needs_export" | "reference_only";
+  accessModel: "api_key_required" | "export_required" | "public_web" | "public_files" | "manual_review";
+  status: "configured" | "needs_credentials" | "needs_export" | "adapter_pending" | "reference_only";
   notes: string;
 };
 
@@ -21,7 +21,7 @@ const records: PoliticalAdSourceRegistryRecord[] = [
     name: "Meta Ad Library API - Nevada political and social issue ads",
     provider: "meta",
     coverage: "Facebook, Instagram, Messenger, and Meta technologies political/social issue ads delivered in the United States. Nevada targeting can be reviewed through regional delivery metadata when available.",
-    sourceUrl: "https://www.facebook.com/ads/library/api/",
+    sourceUrl: "https://www.facebook.com/ads/library/",
     accessModel: "api_key_required",
     status: process.env.META_AD_LIBRARY_ACCESS_TOKEN ? "configured" : "needs_credentials",
     notes: "Use this for source-backed digital ad captures once META_AD_LIBRARY_ACCESS_TOKEN is configured. Raw captures should remain in review until source metadata and sponsor fields are checked.",
@@ -31,10 +31,10 @@ const records: PoliticalAdSourceRegistryRecord[] = [
     name: "Google Political Ads Transparency data - Nevada",
     provider: "google",
     coverage: "Google political ads transparency exports and public data for advertiser, spend, geography, and creative metadata when available.",
-    sourceUrl: "https://transparencyreport.google.com/political-ads/home",
-    accessModel: "export_required",
-    status: fs.existsSync(path.join(process.cwd(), "data/imports/political-ads/google-political-ads.json")) ? "configured" : "needs_export",
-    notes: "Drop reviewed Google export JSON at data/imports/political-ads/google-political-ads.json for later normalization.",
+    sourceUrl: "https://adstransparency.google.com/",
+    accessModel: "public_web",
+    status: fs.existsSync(path.join(process.cwd(), "data/imports/political-ads/google-political-ads.json")) ? "configured" : "reference_only",
+    notes: "Public advertiser search is available. A reviewed export or approved adapter is still required before records enter the repository.",
   },
   {
     id: "fec-independent-expenditures-nevada",
@@ -42,9 +42,19 @@ const records: PoliticalAdSourceRegistryRecord[] = [
     provider: "fec",
     coverage: "Federal independent expenditures and communication spending related to Nevada federal candidates and committees.",
     sourceUrl: "https://api.open.fec.gov/developers/",
-    accessModel: "api_key_required",
-    status: process.env.FEC_API_KEY ? "configured" : "needs_credentials",
-    notes: "Useful for spend/accountability context. FEC records usually do not provide full ad creative, so they should be linked as source context rather than full ad records unless creative evidence is attached.",
+    accessModel: "public_web",
+    status: "configured",
+    notes: "The public DEMO_KEY supports bounded collection when FEC_API_KEY is absent. These are spend/dissemination records, not ad creative.",
+  },
+  {
+    id: "fcc-nevada-political-files",
+    name: "FCC public inspection political files - Nevada stations and systems",
+    provider: "fcc",
+    coverage: "Political time orders and related public files uploaded by Nevada television, radio, cable, DBS, and satellite-radio entities.",
+    sourceUrl: "https://publicfiles.fcc.gov/",
+    accessModel: "public_files",
+    status: "adapter_pending",
+    notes: "The public file and station RSS routes are available. A Nevada station/system registry must be completed before unattended collection is considered comprehensive.",
   },
   {
     id: "nevada-sos-campaign-finance-ad-spend",
@@ -80,6 +90,7 @@ fs.writeFileSync(
         configured: records.filter((record) => record.status === "configured").length,
         needsCredentials: records.filter((record) => record.status === "needs_credentials").length,
         needsExport: records.filter((record) => record.status === "needs_export").length,
+        adapterPending: records.filter((record) => record.status === "adapter_pending").length,
       },
     },
     null,

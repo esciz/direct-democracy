@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-07-26T02:30:15.797Z",
+  "coverageGeneratedAt": "2026-07-26T02:30:11.468Z",
+  "strictPassed": true,
+  "totals": {
+    "sourceRoutes": 11,
+    "reachableSourceRoutes": 11,
+    "requiredCounties": 17,
+    "countiesWithSourceRoutes": 17,
+    "publishedPublicCases": 27,
+    "appellateCases": 25,
+    "stateAppellateCases": 25,
+    "localTrialCases": 0,
+    "federalCases": 2,
+    "federalDistrictCases": 0,
+    "federalCircuitCases": 1,
+    "supremeCourtCases": 1,
+    "administrativeCases": 0,
+    "missingCountyRoutes": 0,
+    "invalidPublishedRecords": 0,
+    "demoRecords": 0,
+    "duplicateRecordIds": 0,
+    "duplicateCourtCaseKeys": 0,
+    "missingFederalSourceRoutes": 0,
+    "missingFederalRecordLayers": 0
+  },
+  "gaps": {
+    "missingCountyRoutes": [],
+    "invalidPublishedRecords": [],
+    "demoRecordIds": [],
+    "duplicateRecordIds": [],
+    "duplicateCourtCaseKeys": [],
+    "missingFederalSourceRoutes": [],
+    "missingFederalRecordLayers": []
+  },
+  "failures": []
+}

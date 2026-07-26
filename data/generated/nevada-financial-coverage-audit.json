@@ -1,0 +1,530 @@
+{
+  "generatedAt": "2026-07-26T00:54:41.030Z",
+  "coverageGeneratedAt": "2026-07-26T00:52:09.663Z",
+  "strictPassed": true,
+  "totals": {
+    "expectedEntities": 366,
+    "expectedCandidates": 212,
+    "expectedCurrentOfficials": 154,
+    "auditedEntities": 366,
+    "auditedCandidates": 212,
+    "auditedCurrentOfficials": 154,
+    "campaignSourcesRegistered": 366,
+    "campaignTotalsAvailable": 305,
+    "candidateTotalsAvailable": 165,
+    "officialTotalsAvailable": 140,
+    "verifiedFecTotals": 24,
+    "derivedNevadaTotals": 281,
+    "aggregateMatchesPendingExtraction": 0,
+    "sourceRoutesOnly": 61,
+    "disclosureSourcesRegistered": 366,
+    "disclosureFilingsMatched": 4,
+    "contributorSamplesAvailable": 264,
+    "missingEntities": 0,
+    "unexpectedEntities": 0,
+    "duplicateEntities": 0,
+    "missingCampaignSources": 0,
+    "missingDisclosureSources": 0,
+    "invalidZeroSubstitutions": 0,
+    "aggregateReconciliationWarnings": 0
+  },
+  "gaps": {
+    "missingEntities": [],
+    "unexpectedEntities": [],
+    "duplicateEntities": [],
+    "missingCampaignSources": [],
+    "missingDisclosureSources": [],
+    "invalidZeroSubstitutions": [],
+    "aggregateReconciliationWarnings": [],
+    "extractionBacklog": [
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107tq000cblnoxjo9794mr",
+        "name": "Noah R. Bachman Dodge",
+        "office": "State Assembly, District 25",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vcv00fjlnox6t1w6rcv",
+        "name": "Tom Baker",
+        "office": "Palomino Valley General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vk000fxlnoxqhdo8re9",
+        "name": "Stephany Bandoni",
+        "office": "Verdi Tv District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107uxl00eplnox9grfh5va",
+        "name": "Scott Benton",
+        "office": "Washoe County School Board, District F At-Large",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vdx00fllnoxpiftzeb6",
+        "name": "David Black",
+        "office": "Palomino Valley General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107wmp00i1lnoxcv9ro303",
+        "name": "Zee Bogale",
+        "office": "Reno City Attorney",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vey00fnlnoxasd9ql85",
+        "name": "III  Martin W. Breitmeyer",
+        "office": "Palomino Valley General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vas00fflnoxlwrr17jx",
+        "name": "Denise Bremer",
+        "office": "North Lake Tahoe Fire Protection District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vx900gnlnox9elo12zu",
+        "name": "Barry Breslow",
+        "office": "District Court Judge, Department 8",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107u7c00d9lnoxqi2cyp5v",
+        "name": "Susan H. Broili Kamesch",
+        "office": "County Commissioner, District 2",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107v7s00f9lnoxs5oon3b7",
+        "name": "Ryan \"RB\" Brooks",
+        "office": "Incline Village General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107rij007zlnoxsdsna4tf",
+        "name": "Lynn Chapman",
+        "office": "Representative in Congress, District 2",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107scp009llnoxaudjx4tr",
+        "name": "James Cooper",
+        "office": "Governor",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107v0o00evlnoxm9xaaasu",
+        "name": "Carl J. Copek",
+        "office": "Gerlach General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vg100fplnoxzysshg9d",
+        "name": "Greg Dennis",
+        "office": "Palomino Valley General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmpzycnp5001plnzs4mr3seg3",
+        "name": "Donald J. Trump",
+        "office": "President of the United States",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107ulh00e1lnoxp9qopuko",
+        "name": "Wes Duncan",
+        "office": "County District Attorney",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107rln0085lnoxqh19vzc2",
+        "name": "Gamaliel Z. \"Gamy\" Enriquez",
+        "office": "Representative in Congress, District 2",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vy700gplnoxqolbyodq",
+        "name": "Scott Freeman",
+        "office": "District Court Judge, Department 9",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107v1n00exlnoxo32eg98v",
+        "name": "Elisabeth S. Gambrell",
+        "office": "Gerlach General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107wlp00hzlnox434e3gou",
+        "name": "Eddie Gomez",
+        "office": "Reno City Council, Ward 4",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107rpn008dlnox9tmqv3s8",
+        "name": "Gerold L. Gorman",
+        "office": "Representative in Congress, District 2",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107rqo008flnox9u8m7g4s",
+        "name": "Bruce Grego",
+        "office": "Representative in Congress, District 2",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107rrn008hlnoxk0aoste2",
+        "name": "Josh Hebert",
+        "office": "Representative in Congress, District 2",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vv600gjlnoxle2qbm76",
+        "name": "Lynne Jones",
+        "office": "District Court Judge, Department 6",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmpzycnn0001nlnzsb8tefgsy",
+        "name": "Kamala D. Harris",
+        "office": "President of the United States",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107t1u00azlnoxo7u0paiz",
+        "name": "John T. Kennedy",
+        "office": "Secretary of State",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107ruo008nlnoxcrpc4zl7",
+        "name": "Robert G. \"Greg\" Kidd",
+        "office": "Representative in Congress, District 2",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107sit009xlnoxgher0kuc",
+        "name": "Jordan Koteras",
+        "office": "Governor",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vm100g1lnoxxc95oiqd",
+        "name": "Trevor J. Leppek",
+        "office": "Verdi Tv District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107whi00hrlnoxxvflkhh1",
+        "name": "Ian Luetkehans",
+        "office": "Reno City Council, Ward 2",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vbu00fhlnox9i2581q8",
+        "name": "Charley Miller",
+        "office": "North Lake Tahoe Fire Protection District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107v2o00ezlnoxdkb9vb8f",
+        "name": "Kent Morris",
+        "office": "Grandview Terrace General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vhz00ftlnoxntbxvhs9",
+        "name": "Mark Neumann",
+        "office": "Sun Valley General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107w9d00hblnoxwn4neugj",
+        "name": "Greg \"Nutt\" Nuttle",
+        "office": "Reno City Mayor",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107v3p00f1lnoxq6dig3ky",
+        "name": "Karen T. Pickens",
+        "office": "Grandview Terrace General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107url00edlnoxobwlnud8",
+        "name": "Kristina Pickering",
+        "office": "Supreme Court Justice, Seat B",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107vj000fvlnox8i5zekus",
+        "name": "Michael I. Revty",
+        "office": "Sun Valley General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107skt00a1lnoxkg85g06p",
+        "name": "Allen Rheinhart",
+        "office": "Governor",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107slt00a3lnox1af9c786",
+        "name": "Emilio R. Rodriguez",
+        "office": "Governor",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107v4r00f3lnox7rfczyfb",
+        "name": "Alejandro Sabogal",
+        "office": "Grandview Terrace General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107sms00a5lnoxy7ctsw9h",
+        "name": "John T. Scott",
+        "office": "Governor",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107uql00eblnox640fobj0",
+        "name": "Justin Taylor",
+        "office": "County Treasurer",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107v5t00f5lnoxrj4mble5",
+        "name": "II  Richard L. Thompson",
+        "office": "Grandview Terrace General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107v6t00f7lnoxsnb7wujc",
+        "name": "Robert Vernon",
+        "office": "Grandview Terrace General Improvement District",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107sot00a9lnoxbptn3ukv",
+        "name": "Jose M. Zelaya",
+        "office": "Governor",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107wff00hnlnoxt4f7gpo3",
+        "name": "John Wayne Zink",
+        "office": "Reno City Mayor",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqipcqp3001glnb6bqg6rnm0",
+        "name": "Adam Johnson",
+        "office": "Clark County School District Trustee",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqu6nfcz0042lnuc1bzzj5vn",
+        "name": "Delmo Andreozzi",
+        "office": "Elko County Commissioner",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqimhx020006lne1pgoi3moy",
+        "name": "Donna Keats",
+        "office": "Reno City Council public meeting body member",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqu6nfe40044lnucva03rusr",
+        "name": "Jon Karr",
+        "office": "Elko County Commissioner",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqipcr5k002alnb6ei1ff9vh",
+        "name": "Kara Kelley",
+        "office": "Las Vegas City Council Member",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqimhx250008lne17eylcbuo",
+        "name": "Kristen Montan",
+        "office": "Reno City Council public meeting body member",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqipcqq4001ilnb6al1b0pt2",
+        "name": "Lisa Satory",
+        "office": "Clark County School District Trustee",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqimhx35000alne172heqepy",
+        "name": "Nicolas Oliver",
+        "office": "Reno City Council public meeting body member",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqipcqn6001clnb6vyxjumpn",
+        "name": "Ramona Esparza-Stoffregan",
+        "office": "Clark County School District Trustee",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmryckj12001tln26z6txvssx",
+        "name": "Rebecca Roberts",
+        "office": "Carson City School District Trustee",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmryckj3b001xln2616u1grre",
+        "name": "Richard Varner",
+        "office": "Carson City School District Trustee",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqipcrgr002vlnb6n4ihmt4z",
+        "name": "Scott Black",
+        "office": "North Las Vegas City Council Member",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxd6co00gfln07xnxcdyhb",
+        "name": "Stacey Giomi",
+        "office": "Carson City Supervisor Ward 1",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmryckj4c001zln26drmvyr99",
+        "name": "Tina Statucki",
+        "office": "Carson City School District Trustee",
+        "status": "source_registered",
+        "aggregateSourceUrl": null
+      }
+    ]
+  }
+}

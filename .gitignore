@@ -23,6 +23,12 @@ data/manual-sources/*
 !data/manual-sources/campaign-finance/
 !data/manual-sources/election-results/
 !data/manual-sources/profile-media/
+!data/manual-sources/court-cases/
+data/manual-sources/court-cases/*
+!data/manual-sources/court-cases/reviewed-public-cases/
+data/manual-sources/court-cases/reviewed-public-cases/*
+!data/manual-sources/court-cases/reviewed-public-cases/README.md
+!data/manual-sources/court-cases/reviewed-public-cases/manifest.json
 
 # Runtime civic source caches. Commit manifests, hashes, and extracted indexes;
 # keep large downloaded evidence binaries out of git.
@@ -30,6 +36,8 @@ data/generated/public-meeting-document-cache/
 data/generated/public-meeting-document-text-cache/
 data/generated/public-meeting-ocr-text-cache/
 data/private/public-meeting-cache-objects/
+data/raw/nevada-financials/
+data/raw/nevada-organizations/
 
 # Run-scoped/generated local operations artifacts. Commit canonical runtime
 # JSON intentionally; keep transient environment copies and logs local.

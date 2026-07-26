@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-19T00:36:19.567Z",
+  "generatedAt": "2026-07-26T02:29:53.109Z",
   "sourceManifest": "data/manual-sources/court-cases/reviewed-public-cases/manifest.json",
   "counts": {
-    "manifestRecords": 25,
-    "runtimeRecords": 25,
+    "manifestRecords": 27,
+    "runtimeRecords": 27,
     "excludedRecords": 0
   },
   "records": [
@@ -84,7 +84,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:12.634Z"
+          "lastImportedAt": "2026-07-26T02:29:45.472Z"
         }
       ],
       "communityTags": [
@@ -178,7 +178,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:14.035Z"
+          "lastImportedAt": "2026-07-26T02:29:46.929Z"
         }
       ],
       "communityTags": [
@@ -274,7 +274,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:14.269Z"
+          "lastImportedAt": "2026-07-26T02:29:47.169Z"
         }
       ],
       "communityTags": [
@@ -370,7 +370,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:14.490Z"
+          "lastImportedAt": "2026-07-26T02:29:47.405Z"
         }
       ],
       "communityTags": [
@@ -466,7 +466,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:14.718Z"
+          "lastImportedAt": "2026-07-26T02:29:47.646Z"
         }
       ],
       "communityTags": [
@@ -565,7 +565,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:14.947Z"
+          "lastImportedAt": "2026-07-26T02:29:47.873Z"
         }
       ],
       "communityTags": [
@@ -661,7 +661,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:15.191Z"
+          "lastImportedAt": "2026-07-26T02:29:48.103Z"
         }
       ],
       "communityTags": [
@@ -757,7 +757,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:15.431Z"
+          "lastImportedAt": "2026-07-26T02:29:48.335Z"
         }
       ],
       "communityTags": [
@@ -853,7 +853,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:15.670Z"
+          "lastImportedAt": "2026-07-26T02:29:48.578Z"
         }
       ],
       "communityTags": [
@@ -947,7 +947,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:15.907Z"
+          "lastImportedAt": "2026-07-26T02:29:48.812Z"
         }
       ],
       "communityTags": [
@@ -1041,7 +1041,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:16.138Z"
+          "lastImportedAt": "2026-07-26T02:29:49.050Z"
         }
       ],
       "communityTags": [
@@ -1135,7 +1135,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:16.371Z"
+          "lastImportedAt": "2026-07-26T02:29:49.282Z"
         }
       ],
       "communityTags": [
@@ -1231,7 +1231,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:16.598Z"
+          "lastImportedAt": "2026-07-26T02:29:49.528Z"
         }
       ],
       "communityTags": [
@@ -1325,7 +1325,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:16.827Z"
+          "lastImportedAt": "2026-07-26T02:29:49.761Z"
         }
       ],
       "communityTags": [
@@ -1420,7 +1420,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:17.052Z"
+          "lastImportedAt": "2026-07-26T02:29:49.994Z"
         }
       ],
       "communityTags": [
@@ -1517,7 +1517,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:17.276Z"
+          "lastImportedAt": "2026-07-26T02:29:50.223Z"
         }
       ],
       "communityTags": [
@@ -1613,7 +1613,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:17.501Z"
+          "lastImportedAt": "2026-07-26T02:29:50.469Z"
         }
       ],
       "communityTags": [
@@ -1707,7 +1707,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:17.730Z"
+          "lastImportedAt": "2026-07-26T02:29:50.708Z"
         }
       ],
       "communityTags": [
@@ -1801,7 +1801,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:17.955Z"
+          "lastImportedAt": "2026-07-26T02:29:50.935Z"
         }
       ],
       "communityTags": [
@@ -1895,7 +1895,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:18.190Z"
+          "lastImportedAt": "2026-07-26T02:29:51.173Z"
         }
       ],
       "communityTags": [
@@ -1993,7 +1993,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:18.422Z"
+          "lastImportedAt": "2026-07-26T02:29:51.401Z"
         }
       ],
       "communityTags": [
@@ -2092,7 +2092,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:18.655Z"
+          "lastImportedAt": "2026-07-26T02:29:51.639Z"
         }
       ],
       "communityTags": [
@@ -2186,7 +2186,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:18.881Z"
+          "lastImportedAt": "2026-07-26T02:29:51.874Z"
         }
       ],
       "communityTags": [
@@ -2280,7 +2280,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:19.113Z"
+          "lastImportedAt": "2026-07-26T02:29:52.114Z"
         }
       ],
       "communityTags": [
@@ -2374,7 +2374,7 @@
             "review status"
           ],
           "reviewStatus": "approved",
-          "lastImportedAt": "2026-06-19T00:36:19.341Z"
+          "lastImportedAt": "2026-07-26T02:29:52.353Z"
         }
       ],
       "communityTags": [
@@ -2390,6 +2390,211 @@
         "securedDocument": false,
         "courtID": "1",
         "documentInfoSource": "public ACIS docket entry document API"
+      }
+    },
+    {
+      "id": "usca9-23-3080-mcneil-v-gittere",
+      "title": "Michael McNeil v. William L. Gittere, et al.",
+      "summary": "A published Ninth Circuit opinion arising from the U.S. District Court for the District of Nevada. The court dismissed the appeal because the notice of appeal from an order denying qualified immunity was filed after the federal 30-day deadline.",
+      "courtLevel": "federal",
+      "stage": "appeal",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Courts",
+        "Civil rights",
+        "Appeal deadlines"
+      ],
+      "keyDates": [
+        {
+          "label": "Ninth Circuit opinion filed",
+          "date": "2025-09-02"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-07-25T19:27:32-07:00",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "23-3080",
+      "courtName": "United States Court of Appeals for the Ninth Circuit",
+      "caseType": "civil",
+      "filingDate": "2023-10-19",
+      "dispositionDate": "2025-09-02",
+      "sourceName": "U.S. Court of Appeals for the Ninth Circuit",
+      "sourceUrl": "https://cdn.ca9.uscourts.gov/datastore/opinions/2025/09/02/23-3080.pdf",
+      "sourceFile": null,
+      "sourceKind": "official_published_opinion_pdf",
+      "lastCheckedAt": "2026-07-25T19:27:32-07:00",
+      "reviewedAt": "2026-07-25T19:27:32-07:00",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "usca9-23-3080-disposition",
+          "entryDate": "2025-09-02",
+          "title": "Published opinion filed",
+          "description": "Appeal dismissed as untimely for lack of appellate jurisdiction.",
+          "documentType": "opinion",
+          "documentUrl": "https://cdn.ca9.uscourts.gov/datastore/opinions/2025/09/02/23-3080.pdf",
+          "sourceUrl": "https://www.ca9.uscourts.gov/decisions/opinions/",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "usca9-23-3080-opinion",
+          "title": "Published Ninth Circuit opinion",
+          "documentType": "opinion",
+          "documentUrl": "https://cdn.ca9.uscourts.gov/datastore/opinions/2025/09/02/23-3080.pdf",
+          "sourceName": "U.S. Court of Appeals for the Ninth Circuit",
+          "sourceUrl": "https://www.ca9.uscourts.gov/decisions/opinions/",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "usca9-23-3080-mcneil-v-gittere-source",
+          "sourceName": "U.S. Court of Appeals for the Ninth Circuit",
+          "sourceUrl": "https://cdn.ca9.uscourts.gov/datastore/opinions/2025/09/02/23-3080.pdf",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-07-26T02:29:52.593Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada"
+      ],
+      "relatedAgencies": [
+        "Nevada Department of Corrections"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "official": true,
+        "federalCourtLayer": "circuit_appellate",
+        "originatingCourt": "U.S. District Court for the District of Nevada",
+        "districtCaseNumber": "3:20-cv-00668-APG-CSD",
+        "nevadaConnection": "Official opinion identifies the U.S. District Court for the District of Nevada as the originating court."
+      }
+    },
+    {
+      "id": "scotus-10-568-nevada-commission-on-ethics-v-carrigan",
+      "title": "Nevada Commission on Ethics v. Michael A. Carrigan",
+      "summary": "The U.S. Supreme Court reviewed a Nevada Supreme Court decision about Nevada's ethics recusal law. It held that the law was not unconstitutionally overbroad, reversed the Nevada Supreme Court judgment, and sent the case back for further proceedings.",
+      "courtLevel": "federal",
+      "stage": "merits",
+      "jurisdictionId": "nevada",
+      "jurisdictionName": "Nevada",
+      "communityName": "Nevada",
+      "issueTags": [
+        "Government ethics",
+        "Conflicts of interest",
+        "First Amendment"
+      ],
+      "keyDates": [
+        {
+          "label": "Certiorari granted",
+          "date": "2011-01-07"
+        },
+        {
+          "label": "U.S. Supreme Court decision",
+          "date": "2011-06-13"
+        }
+      ],
+      "status": "closed",
+      "createdAt": "2026-07-25T19:27:32-07:00",
+      "isRealCourtRecord": true,
+      "caseSourceType": "public_court_record",
+      "caseNumber": "10-568",
+      "courtName": "Supreme Court of the United States",
+      "caseType": "civil",
+      "filingDate": "2010-10-27",
+      "dispositionDate": "2011-06-13",
+      "sourceName": "Supreme Court of the United States",
+      "sourceUrl": "https://www.supremecourt.gov/Search.aspx?FileName=%2Fdocketfiles%2F10-568.htm",
+      "sourceFile": null,
+      "sourceKind": "official_docket_and_bound_opinion",
+      "lastCheckedAt": "2026-07-25T19:27:32-07:00",
+      "reviewedAt": "2026-07-25T19:27:32-07:00",
+      "reviewedBy": "manual-source-review",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public",
+      "docketEntries": [
+        {
+          "id": "scotus-10-568-disposition",
+          "entryDate": "2011-06-13",
+          "title": "Judgment reversed and case remanded",
+          "description": "The Court held that the Nevada Ethics in Government Law was not unconstitutionally overbroad.",
+          "documentType": "opinion",
+          "documentUrl": "https://www.supremecourt.gov/opinions/boundvolumes/564BV.pdf",
+          "sourceUrl": "https://www.supremecourt.gov/Search.aspx?FileName=%2Fdocketfiles%2F10-568.htm",
+          "reviewStatus": "approved"
+        }
+      ],
+      "documents": [
+        {
+          "id": "scotus-10-568-docket",
+          "title": "Official Supreme Court docket",
+          "documentType": "docket",
+          "documentUrl": "https://www.supremecourt.gov/Search.aspx?FileName=%2Fdocketfiles%2F10-568.htm",
+          "sourceName": "Supreme Court of the United States",
+          "sourceUrl": "https://www.supremecourt.gov/Search.aspx?FileName=%2Fdocketfiles%2F10-568.htm",
+          "reviewStatus": "approved"
+        },
+        {
+          "id": "scotus-10-568-opinion",
+          "title": "564 U.S. 117 bound opinion",
+          "documentType": "opinion",
+          "documentUrl": "https://www.supremecourt.gov/opinions/boundvolumes/564BV.pdf",
+          "sourceName": "Supreme Court of the United States",
+          "sourceUrl": "https://www.supremecourt.gov/opinions/boundvolumes/564BV.pdf",
+          "reviewStatus": "approved"
+        }
+      ],
+      "parties": [],
+      "sourceAttributions": [
+        {
+          "id": "scotus-10-568-nevada-commission-on-ethics-v-carrigan-source",
+          "sourceName": "Supreme Court of the United States",
+          "sourceUrl": "https://www.supremecourt.gov/Search.aspx?FileName=%2Fdocketfiles%2F10-568.htm",
+          "fieldsDerived": [
+            "case number",
+            "caption",
+            "case type",
+            "status",
+            "court",
+            "source URL",
+            "review status"
+          ],
+          "reviewStatus": "approved",
+          "lastImportedAt": "2026-07-26T02:29:52.874Z"
+        }
+      ],
+      "communityTags": [
+        "Nevada",
+        "Sparks"
+      ],
+      "relatedAgencies": [
+        "Nevada Commission on Ethics"
+      ],
+      "relatedOfficials": [],
+      "metadata": {
+        "official": true,
+        "federalCourtLayer": "us_supreme",
+        "originatingCourt": "Supreme Court of Nevada",
+        "nevadaLowerCourtCaseNumber": "51920",
+        "reporterCitation": "564 U.S. 117 (2011)",
+        "nevadaConnection": "Official Supreme Court docket identifies the Supreme Court of Nevada as the lower court."
       }
     }
   ]

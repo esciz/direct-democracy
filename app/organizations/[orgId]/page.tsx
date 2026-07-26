@@ -7,7 +7,7 @@ import { ActionLabel, ThumbsDownIcon, ThumbsUpIcon } from "@/components/ui/actio
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { PageIntro } from "@/components/ui/page-intro";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { getOrganizationTypeLabel } from "@/lib/organizations/presentation";
+import { getOrganizationTypeLabel, getPublicOrganizationCategoryLabel } from "@/lib/organizations/presentation";
 import {
   approveOrganizationMembership,
   createOrganizationAnnouncement,
@@ -18,8 +18,14 @@ import {
   voteOnOrganizationPlatformItem,
 } from "@/lib/organizations/actions";
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { getGovernmentBodyById, getOrganizationById, getOrganizationCampaignOptions } from "@/lib/organizations/store";
-import type { GovernmentBodyDetail } from "@/lib/organizations/store";
+import {
+  getGovernmentBodyById,
+  getOrganizationById,
+  getOrganizationCampaignOptions,
+  getPublicOrganizationById,
+  getPublicOrganizationsForPartyNetwork,
+} from "@/lib/organizations/store";
+import type { GovernmentBodyDetail, PublicOrganizationDetail } from "@/lib/organizations/store";
 
 type OrganizationDetailPageProps = {
   params: Promise<{
@@ -181,16 +187,298 @@ function GovernmentBodyDetailPage({ body }: { body: GovernmentBodyDetail }) {
   );
 }
 
+function PublicOrganizationDetailPage({
+  organization,
+  networkOrganizations = [],
+}: {
+  organization: PublicOrganizationDetail;
+  networkOrganizations?: PublicOrganizationDetail[];
+}) {
+  const registryRecords = organization.registry.irsRecords;
+  const partyProfile = organization.partyProfile;
+  const verificationLabel = partyProfile
+    ? organization.websiteHealth?.ok
+      ? "Party source checked"
+      : "Party source registered"
+    : registryRecords.length
+      ? "Official website checked"
+      : organization.websiteHealth?.ok
+        ? "Official website checked"
+        : "Public source routes registered";
+  const partySourceLinks = partyProfile
+    ? [
+        { label: "Relationship or directory source", href: partyProfile.listingSourceUrl },
+        { label: partyProfile.platformLabel, href: partyProfile.platformUrl },
+        { label: "Party leadership", href: partyProfile.leadershipUrl },
+        { label: "County party directory", href: partyProfile.affiliateDirectoryUrl },
+        partyProfile.clubDirectoryUrl ? { label: "Party-listed clubs", href: partyProfile.clubDirectoryUrl } : null,
+        { label: "Party updates", href: partyProfile.newsUrl },
+        { label: "Federal committee filings", href: partyProfile.filingUrl },
+      ]
+        .filter((entry): entry is { label: string; href: string } => Boolean(entry))
+        .filter((entry, index, entries) => entries.findIndex((candidate) => candidate.href === entry.href) === index)
+    : [];
+  const networkGroups = [
+    {
+      role: "county_party",
+      label: "County parties",
+      items: networkOrganizations.filter((entry) => entry.partyProfile?.networkRole === "county_party"),
+    },
+    {
+      role: "caucus",
+      label: "Party caucuses",
+      items: networkOrganizations.filter((entry) => entry.partyProfile?.networkRole === "caucus"),
+    },
+    {
+      role: "club",
+      label: "Party-listed clubs",
+      items: networkOrganizations.filter((entry) => entry.partyProfile?.networkRole === "club"),
+    },
+  ].filter((group) => group.items.length);
+
+  return (
+    <div className="space-y-6 py-8">
+      <PageIntro
+        eyebrow={partyProfile ? `${partyProfile.party} Party` : getPublicOrganizationCategoryLabel(organization.category)}
+        title={organization.name}
+        description={organization.description}
+        meta={
+          <>
+            <span className="rounded-full bg-emerald-500/12 px-3 py-1 text-xs font-semibold text-emerald-100">
+              {verificationLabel}
+            </span>
+            {registryRecords.length ? (
+              <span className="rounded-full bg-cyan-500/12 px-3 py-1 text-xs font-semibold text-cyan-100">
+                IRS cross-check attached
+              </span>
+            ) : null}
+            <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-slate-200">
+              {organization.scope}
+            </span>
+            <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-slate-200">
+              {organization.headquarters}
+            </span>
+            {partyProfile ? (
+              <span className="rounded-full bg-amber-500/12 px-3 py-1 text-xs font-semibold text-amber-100">
+                {partyProfile.relationshipLabel}
+              </span>
+            ) : null}
+          </>
+        }
+        actions={
+          <div className="flex flex-wrap gap-3">
+            <Link href={organization.websiteUrl} className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold">
+              Official website
+            </Link>
+            <Link href={organization.affiliationUrl} className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">
+              {partyProfile ? "Party source or involvement" : "Membership or involvement"}
+            </Link>
+          </div>
+        }
+      />
+
+      <section className="grid gap-6 xl:grid-cols-[1fr_0.8fr]">
+        <section className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
+          <SectionHeading
+            eyebrow="At a glance"
+            title="What this organization is"
+            description={
+              partyProfile
+                ? "A first-party directory profile. Party-authored material is labeled and kept separate from government filing evidence."
+                : "A source-backed public directory profile. Direct Democracy does not claim that the organization endorses this listing."
+            }
+          />
+          <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Category</dt>
+              <dd className="mt-2 text-sm font-semibold text-white">{getPublicOrganizationCategoryLabel(organization.category)}</dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Organization type</dt>
+              <dd className="mt-2 text-sm font-semibold text-white">
+                {partyProfile ? "Political party organization" : getOrganizationTypeLabel(organization.organizationType)}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Scope</dt>
+              <dd className="mt-2 text-sm font-semibold capitalize text-white">{organization.scope}</dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Headquarters</dt>
+              <dd className="mt-2 text-sm font-semibold text-white">{organization.headquarters}</dd>
+            </div>
+            {partyProfile ? (
+              <>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Relationship</dt>
+                  <dd className="mt-2 text-sm font-semibold text-white">{partyProfile.relationshipLabel}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">State party</dt>
+                  <dd className="mt-2 text-sm font-semibold text-white">
+                    {partyProfile.parentOrganizationId && partyProfile.parentOrganizationName ? (
+                      <Link href={`/organizations/${partyProfile.parentOrganizationId}`} className="text-cyan-100 hover:text-white">
+                        {partyProfile.parentOrganizationName}
+                      </Link>
+                    ) : (
+                      organization.name
+                    )}
+                  </dd>
+                </div>
+              </>
+            ) : null}
+          </dl>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {organization.issueTags.map((tag) => (
+              <span key={tag} className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs font-semibold text-slate-200">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
+          <SectionHeading
+            eyebrow="Source trail"
+            title="How the listing was checked"
+            description={
+              partyProfile
+                ? "Party websites establish the published identity and relationship. The FEC profile independently confirms the state party's federal committee record."
+                : "The official website is the identity source. IRS data is a separate cross-check against reviewed legal or affiliate names in the Nevada exempt-organization file."
+            }
+          />
+          <div className="mt-5 space-y-4 text-sm">
+            <div className="border-b border-white/10 pb-4">
+              <p className="text-slate-500">Official website</p>
+              <Link href={organization.websiteUrl} className="mt-1 block break-all font-semibold text-cyan-100 hover:text-white">
+                {organization.websiteUrl}
+              </Link>
+            </div>
+            <div className="border-b border-white/10 pb-4">
+              <p className="text-slate-500">Last checked</p>
+              <p className="mt-1 font-semibold text-white">{formatBodyDate(organization.lastCheckedAt)}</p>
+            </div>
+            {partyProfile ? (
+              <>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {partySourceLinks.map((source) => (
+                    <Link
+                      key={`${source.label}-${source.href}`}
+                      href={source.href}
+                      className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 font-semibold text-cyan-100 transition hover:border-cyan-300/25 hover:text-white"
+                    >
+                      {source.label}
+                    </Link>
+                  ))}
+                </div>
+                <p className="text-slate-400">
+                  The FEC record confirms an active federal party committee for the state organization. It does not validate party platform claims or every directory relationship.
+                </p>
+              </>
+            ) : registryRecords.length ? (
+              registryRecords.map((record) => (
+                <div key={record.ein} className="border-b border-white/10 pb-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Related IRS registry record</p>
+                  <p className="font-semibold text-white">{record.legalName}</p>
+                  <p className="mt-1 text-slate-400">
+                    IRS subsection {record.subsection || "not listed"} · filing period {record.taxPeriod ?? "not listed"} · {record.city || "Nevada"}
+                  </p>
+                  <Link href={record.sourceUrl} className="mt-2 inline-block font-semibold text-cyan-100 hover:text-white">
+                    Verify in IRS search
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <p className="text-slate-400">
+                No exact Nevada IRS BMF name match is attached. This is common for public institutions, national affiliates, and organizations registered under a different legal name.
+              </p>
+            )}
+            {!partyProfile ? (
+              <Link href={organization.registry.nevadaBusinessSearchUrl} className="inline-block font-semibold text-cyan-100 hover:text-white">
+                Cross-check Nevada business records
+              </Link>
+            ) : null}
+          </div>
+        </section>
+      </section>
+
+      {networkGroups.length ? (
+        <section className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
+          <SectionHeading
+            eyebrow="Party network"
+            title={`${networkOrganizations.length} organizations in the published network`}
+            description="Open a group to browse every county organization, caucus, or club carried in the state party's own directory. Directory-listed clubs retain their exact relationship labels."
+          />
+          <div className="mt-5 grid gap-3">
+            {networkGroups.map((group) => (
+              <details key={group.role} className="rounded-lg border border-white/10 bg-black/10 p-4" open={group.role === "county_party"}>
+                <summary className="cursor-pointer font-semibold text-white">
+                  {group.label} <span className="ml-2 text-sm text-slate-400">{group.items.length}</span>
+                </summary>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+                  {group.items.map((entry) => (
+                    <Link
+                      key={entry.id}
+                      href={`/organizations/${entry.id}`}
+                      className="rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 transition hover:border-cyan-300/25 hover:bg-white/[0.06]"
+                    >
+                      <span className="block text-sm font-semibold text-cyan-100">{entry.name}</span>
+                      <span className="mt-1 block text-xs leading-5 text-slate-400">
+                        {entry.headquarters} · {entry.partyProfile?.relationshipLabel}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {partyProfile ? (
+        <section className="rounded-lg border border-amber-300/20 bg-amber-500/[0.07] p-6">
+          <SectionHeading
+            eyebrow="Party-authored material"
+            title={`Topics named in the ${partyProfile.platformLabel}`}
+            description={partyProfile.materialDisclosure}
+          />
+          <div className="mt-5 flex flex-wrap gap-2">
+            {partyProfile.platformTopics.map((topic) => (
+              <span key={topic} className="rounded-full border border-amber-200/15 bg-amber-100/[0.06] px-3 py-1 text-xs font-semibold text-amber-50">
+                {topic}
+              </span>
+            ))}
+          </div>
+          {partyProfile.relationship === "directory_listing_no_affiliation" ? (
+            <p className="mt-5 border-t border-amber-200/15 pt-4 text-sm font-semibold leading-6 text-amber-100">
+              Important: the Nevada Republican Party directory explicitly says this club is not affiliated with the state party. It appears here only because the party publishes the listing.
+            </p>
+          ) : null}
+        </section>
+      ) : null}
+    </div>
+  );
+}
+
 export default async function OrganizationDetailPage({ params, searchParams }: OrganizationDetailPageProps) {
   const { orgId } = await params;
   const user = await getCurrentUser();
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const [organization, governmentBody] = await Promise.all([
+  const [organization, governmentBody, publicOrganization] = await Promise.all([
     getOrganizationById(orgId, user),
     getGovernmentBodyById(orgId),
+    getPublicOrganizationById(orgId),
   ]);
 
   if (!organization) {
+    if (publicOrganization) {
+      const networkOrganizations =
+        publicOrganization.partyProfile?.networkRole === "state_party"
+          ? await getPublicOrganizationsForPartyNetwork(publicOrganization.id)
+          : [];
+      return <PublicOrganizationDetailPage organization={publicOrganization} networkOrganizations={networkOrganizations} />;
+    }
+
     if (governmentBody) {
       return <GovernmentBodyDetailPage body={governmentBody} />;
     }

@@ -24,11 +24,12 @@ function getYoutubeEmbedUrl(mediaUrl: string | null | undefined) {
 }
 
 function MediaPlaceholder({ ad }: { ad: PoliticalAd }) {
+  const filingOnly = ad.id.startsWith("fec-nv-ie-");
   return (
-    <div className="flex min-h-[20rem] flex-col justify-between rounded-[1.5rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(52,211,153,0.22),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.18),transparent_34%),linear-gradient(135deg,#111827,#020617)] p-6">
+    <div className="flex min-h-[20rem] flex-col justify-between rounded-lg border border-white/10 bg-slate-950 p-6">
       <div className="flex flex-wrap gap-2">
         <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
-          Ad media preview
+          {filingOnly ? "Source filing" : "Ad media preview"}
         </span>
         <span className="rounded-full border border-white/15 bg-black/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
           {ad.electionCycle}
@@ -37,12 +38,18 @@ function MediaPlaceholder({ ad }: { ad: PoliticalAd }) {
       <div>
         <p className="max-w-xl text-4xl font-semibold tracking-tight text-white">{ad.title}</p>
         <p className="mt-4 max-w-xl text-sm leading-6 text-slate-300">{ad.description}</p>
+        {filingOnly ? (
+          <p className="mt-4 max-w-xl text-sm leading-6 text-amber-100/80">
+            No creative is attached to this expenditure record. Open the source filing to inspect the reported communication details.
+          </p>
+        ) : null}
       </div>
     </div>
   );
 }
 
 export function AdMediaViewer({ ad }: { ad: PoliticalAd }) {
+  const filingOnly = ad.id.startsWith("fec-nv-ie-");
   const video = ad.media.find((media) => media.mediaType === "video" && media.url);
   const externalEmbed = ad.media.find((media) => media.mediaType === "externalEmbed" && media.url);
   const youtubeEmbedUrl = getYoutubeEmbedUrl(video?.url ?? externalEmbed?.url ?? ad.platformUrl ?? ad.archiveUrl);
@@ -52,11 +59,13 @@ export function AdMediaViewer({ ad }: { ad: PoliticalAd }) {
   const transcriptItems = ad.media.filter((media) => media.mediaType === "transcript" || media.mediaType === "ocrText");
 
   return (
-    <section className="dd-panel rounded-[1.75rem] p-5 sm:p-6">
+    <section className="dd-panel rounded-lg p-5 sm:p-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Media</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Ad creative and transcript</h2>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">
+            {filingOnly ? "Filing source and reported details" : "Ad creative and transcript"}
+          </h2>
         </div>
         {pdf ? (
           <a href={pdf.url ?? "#"} className="dd-button-secondary rounded-full px-4 py-2 text-sm font-semibold">

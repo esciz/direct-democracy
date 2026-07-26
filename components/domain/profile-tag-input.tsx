@@ -65,21 +65,27 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
   );
 
   return (
-    <div className="grid gap-3">
+    <div className="min-w-0">
       <div>
-        <p className="text-sm font-medium text-ink">Identity and community tags</p>
-        <p className="mt-1 text-xs text-slate-500">
-          Optional, self-managed tags. You control visibility for each one, and nothing is inferred or verified.
+        <p className="text-sm font-semibold text-slate-100">About you</p>
+        <p className="mt-1 text-xs leading-5 text-slate-400">
+          Optional, self-reported details. You choose which ones are public.
         </p>
       </div>
       <input type="hidden" name={inputName} value={serializedValue} />
-      <div className="grid gap-3">
+      <div className="mt-3 divide-y divide-white/10 border-y border-white/10">
         {rows.map((row, index) => {
           const options = row.category ? PREDEFINED_PROFILE_TAG_OPTIONS[row.category] : [];
 
           return (
-            <div key={`${inputName}-${index}`} className="rounded-3xl border border-slate-200 bg-slate-50 p-3">
-              <div className="grid gap-3 lg:grid-cols-[13rem,minmax(0,1fr),minmax(0,1fr)]">
+            <div key={`${inputName}-${index}`} className="grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] gap-3 py-3">
+              <span
+                className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-xs font-semibold text-slate-400"
+                aria-hidden="true"
+              >
+                {index + 1}
+              </span>
+              <div className="grid min-w-0 gap-2 lg:grid-cols-[11rem_minmax(0,1fr)_9rem]">
                 <select
                   value={row.category}
                   onChange={(event) => {
@@ -93,7 +99,7 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                     };
                     setRows(nextRows);
                   }}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                  className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
                   aria-label={`Select category for tag ${index + 1}`}
                 >
                   <option value="">Choose category</option>
@@ -103,7 +109,7 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                     </option>
                   ))}
                 </select>
-                <div className="grid gap-3">
+                <div className={row.option === "__custom__" ? "grid min-w-0 gap-2 sm:grid-cols-2" : "min-w-0"}>
                   <select
                     value={row.option}
                     onChange={(event) => {
@@ -116,7 +122,7 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                       setRows(nextRows);
                     }}
                     disabled={!row.category}
-                    className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none disabled:cursor-not-allowed disabled:bg-slate-100 focus:border-civic-500"
+                    className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none disabled:cursor-not-allowed disabled:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
                     aria-label={
                       row.category
                         ? `Select a ${getProfileTagCategoryLabel(row.category).toLowerCase()} tag`
@@ -131,23 +137,24 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                     ))}
                     <option value="__custom__">Other / Custom</option>
                   </select>
-                  <input
-                    value={row.custom}
-                    onChange={(event) => {
-                      const nextRows = [...rows];
-                      nextRows[index] = {
-                        ...row,
-                        option: "__custom__",
-                        custom: event.target.value,
-                      };
-                      setRows(nextRows);
-                    }}
-                    placeholder="Write in your own"
-                    disabled={row.option !== "__custom__"}
-                    className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none disabled:cursor-not-allowed disabled:bg-slate-100 focus:border-civic-500"
-                  />
+                  {row.option === "__custom__" ? (
+                    <input
+                      value={row.custom}
+                      onChange={(event) => {
+                        const nextRows = [...rows];
+                        nextRows[index] = {
+                          ...row,
+                          option: "__custom__",
+                          custom: event.target.value,
+                        };
+                        setRows(nextRows);
+                      }}
+                      placeholder="Write in your own"
+                      className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
+                    />
+                  ) : null}
                 </div>
-                <label className="flex items-center gap-3 rounded-3xl bg-white px-4 py-3 text-sm text-slate-700 ring-1 ring-slate-200">
+                <label className="flex min-h-11 items-center gap-2 text-sm text-slate-300">
                   <input
                     type="checkbox"
                     checked={row.isPublic}
@@ -156,9 +163,9 @@ export function ProfileTagInput({ inputName, tags, maxItems = 6 }: ProfileTagInp
                       nextRows[index] = { ...row, isPublic: event.target.checked };
                       setRows(nextRows);
                     }}
-                    className="h-4 w-4 rounded border-slate-300"
+                    className="h-4 w-4 rounded border-white/20 bg-slate-950 text-cyan-400"
                   />
-                  Show publicly
+                  Public
                 </label>
               </div>
             </div>

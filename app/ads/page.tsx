@@ -5,6 +5,7 @@ import { PoliticalAdFilters } from "@/components/domain/political-ad-filters";
 import { PageIntro } from "@/components/ui/page-intro";
 import {
   getFilteredPoliticalAds,
+  getPoliticalAdRepositoryStats,
   getPoliticalAdRepositoryFilterLabel,
   paginatePoliticalAds,
   POLITICAL_AD_RELATION_LABELS,
@@ -77,6 +78,7 @@ export default async function AdsRepositoryPage({ searchParams }: AdsRepositoryP
   const params = searchParams ? await searchParams : undefined;
   const filters = normalizeFilters(params);
   const allAds = getFilteredPoliticalAds(filters);
+  const repositoryStats = getPoliticalAdRepositoryStats();
 
   if (!allAds.length) {
     return (
@@ -118,6 +120,27 @@ export default async function AdsRepositoryPage({ searchParams }: AdsRepositoryP
           </>
         }
       />
+
+      <section className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
+        <div className="grid gap-5 md:grid-cols-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Evidence layers</p>
+            <p className="mt-2 text-sm leading-6 text-slate-400">
+              Creative captures and spending filings are counted separately. A filing can prove who spent money without showing the ad itself.
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-slate-500">Creative records</p>
+            <p className="mt-2 text-2xl font-semibold text-white">{repositoryStats.creativeRecords}</p>
+            <p className="mt-1 text-xs text-slate-500">Public creative or reviewed capture attached</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-slate-500">Spend-only records</p>
+            <p className="mt-2 text-2xl font-semibold text-white">{repositoryStats.filingOnlyRecords}</p>
+            <p className="mt-1 text-xs text-slate-500">FEC dissemination filing; creative pending</p>
+          </div>
+        </div>
+      </section>
 
       <PoliticalAdFilters filters={filters} />
 

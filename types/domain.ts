@@ -1525,6 +1525,7 @@ export type UserProfileContentSummary = {
   userId: string;
   profileImageUrl: string;
   bannerImageUrl: string;
+  profileTheme?: "classic" | "bright";
   primaryCommunityId: string;
   localIssues: StructuredProfileValueSummary[];
   stateIssues: StructuredProfileValueSummary[];

@@ -36,24 +36,40 @@ function BarList({ items }: { items: Array<{ label: string; amount: number; perc
 
 export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourceCardData }) {
   const funding = data.fundingBreakdown;
+  const snapshot = data.financialSnapshot;
   const contributorFunding = data.allReportedFundingBreakdown ?? funding;
   const showFundingGraph = Boolean(contributorFunding?.hasDetailedContributions);
-  const raisedAmount = funding?.totalRaised ?? (funding?.hasDetailedContributions ? funding.totalContributions : null);
-  const hasFinancialSnapshot = [raisedAmount, funding?.totalSpent, funding?.cashOnHand].some(
+  const raisedAmount =
+    funding?.totalRaised ??
+    (funding?.hasDetailedContributions ? funding.totalContributions : null) ??
+    snapshot?.totalRaised ??
+    null;
+  const spentAmount = funding?.totalSpent ?? snapshot?.totalSpent ?? null;
+  const cashOnHandAmount = funding?.cashOnHand ?? snapshot?.cashOnHand ?? null;
+  const reportingPeriod = funding?.reportingPeriod ?? snapshot?.reportingPeriod ?? null;
+  const hasFinancialSnapshot = [raisedAmount, spentAmount, cashOnHandAmount].some(
     (value) => typeof value === "number" && Number.isFinite(value),
   );
   const hasPriorCycles = data.cycleHistory.some((cycle) => !cycle.isCurrentCycle);
+  const hasUnitemizedHistoricalActivity = Boolean(
+    data.allReportedTotals &&
+      data.cycleHistory.length <= 1 &&
+      ((raisedAmount != null && data.allReportedTotals.totalRaised > raisedAmount) ||
+        (spentAmount != null && data.allReportedTotals.totalSpent > spentAmount)),
+  );
   const hasFilingEvidence = data.financeFilingCount > 0 || data.financeDocumentCount > 0 || data.filingSummaries.length > 0;
   const hasSourceLink = Boolean(data.sourceUrl || data.sourceLinks.length);
+  const disclosure = data.personalFinancialDisclosure;
+  const hasDisclosureSource = Boolean(disclosure.sourceUrl);
   const attributedContributorNames = new Set(data.contributorAttributions.map((attribution) => attribution.contributorName.toLowerCase()));
 
   return (
     <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Campaign finance</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Financial transparency</p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">
-            {hasFinancialSnapshot ? "Campaign money, current cycle" : "Finance source status"}
+            {hasFinancialSnapshot ? "Campaign money and history" : "Finance source status"}
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
             {hasFinancialSnapshot
@@ -66,7 +82,7 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
         </span>
       </div>
 
-      {hasFinancialSnapshot && funding ? (
+      {hasFinancialSnapshot ? (
         <div className="mt-5 border-y border-white/10 py-5">
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
@@ -75,15 +91,15 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Spent</p>
-              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(funding.totalSpent, "Not reported")}</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(spentAmount, "Not reported")}</p>
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Cash on hand</p>
-              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(funding.cashOnHand, "Not reported")}</p>
+              <p className="mt-2 text-2xl font-semibold text-slate-50">{formatMoney(cashOnHandAmount, "Not reported")}</p>
             </div>
           </div>
-          {funding.reportingPeriod ? (
-            <p className="mt-4 text-sm text-slate-400">Reporting period: {funding.reportingPeriod}</p>
+          {reportingPeriod ? (
+            <p className="mt-4 text-sm text-slate-400">Reporting period: {reportingPeriod}</p>
           ) : null}
         </div>
       ) : null}
@@ -151,6 +167,10 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
                 </div>
               ))}
             </div>
+          ) : hasUnitemizedHistoricalActivity ? (
+            <p className="mt-5 border-y border-white/10 py-4 text-sm leading-6 text-slate-400">
+              Earlier activity is included in the all-reported aggregate. Cycle-by-cycle extraction is still pending.
+            </p>
           ) : (
             <p className="mt-5 border-y border-white/10 py-4 text-sm leading-6 text-slate-400">
               No earlier non-zero campaign-finance cycle appears in this source.
@@ -315,13 +335,73 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
         </div>
       ) : null}
 
-      <div className="mt-5 rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
-        {data.donorExtractionStatus === "Detailed donor extraction pending" && hasFilingEvidence
-          ? "Classification is incomplete, but source-backed report summaries and filing links are available."
-          : data.donorExtractionStatus === "Detailed donor extraction pending" && hasSourceLink
-            ? "The official source link is stored; report totals, filings, and donor rows still need reviewed extraction."
-            : data.donorExtractionStatus}
+      <div className="mt-5 border-t border-white/10 pt-5">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-200">Personal financial disclosure</p>
+            <h3 className="mt-2 text-lg font-semibold text-slate-50">
+              {disclosure.filingSummaries.length ? "Disclosure filings located" : hasDisclosureSource ? "Official disclosure search registered" : "Disclosure source pending"}
+            </h3>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+              These filings describe reportable financial interests and income sources. They are separate from campaign contributions and do not establish an exact net worth.
+            </p>
+          </div>
+          {disclosure.reviewStatus ? (
+            <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-300">
+              {disclosure.reviewStatus.replaceAll("_", " ")}
+            </span>
+          ) : null}
+        </div>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Filing authority</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">{disclosure.sourceName ?? "Official source not registered"}</p>
+            <p className="mt-2 text-xs leading-5 text-slate-500">
+              {disclosure.applicability === "required_or_likely"
+                ? "This office is generally covered, subject to the filing rules for the office and term."
+                : disclosure.applicability === "eligibility_review"
+                  ? "Filing applicability still needs review for this office."
+                  : "Filing applicability has not been classified yet."}
+            </p>
+            {disclosure.sourceUrl ? (
+              <Link href={disclosure.sourceUrl} className="mt-3 inline-flex break-all text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                Search official disclosures
+              </Link>
+            ) : null}
+          </div>
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Record status</p>
+            <p className="mt-3 text-sm font-semibold text-slate-100">
+              {disclosure.filingSummaries.length
+                ? `${disclosure.filingSummaries.length} matched filing${disclosure.filingSummaries.length === 1 ? "" : "s"}`
+                : disclosure.status === "source_registered"
+                  ? "Search route ready; match pending"
+                  : "Source review pending"}
+            </p>
+            <p className="mt-2 text-xs text-slate-500">{formatDate(disclosure.lastCheckedAt)}</p>
+          </div>
+        </div>
+
+        {disclosure.filingSummaries.length ? (
+          <div className="mt-4 grid gap-2 md:grid-cols-2">
+            {disclosure.filingSummaries.map((filing) => (
+              <div key={`${filing.name}-${filing.url ?? filing.filedAt ?? "stored"}`} className="rounded-lg border border-white/10 bg-black/15 p-3">
+                <p className="text-sm font-semibold text-slate-100">{filing.name}</p>
+                <p className="mt-1 text-xs text-slate-500">{filing.filedAt ? formatDate(filing.filedAt) : "Filing date not parsed"}</p>
+                {filing.url ? (
+                  <Link href={filing.url} className="mt-2 inline-flex break-all text-xs font-semibold text-cyan-200 hover:text-cyan-100">
+                    Open filing
+                  </Link>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {disclosure.note ? <p className="mt-3 text-xs leading-5 text-slate-500">{disclosure.note}</p> : null}
       </div>
+
     </section>
   );
 }

@@ -21,6 +21,7 @@ const CASE_BRIEF_THEMES_COOKIE = "dd_case_brief_themes";
 const CASE_BRIEF_THEME_SUPPORTS_COOKIE = "dd_case_brief_theme_supports";
 const REMOVED_CASE_BRIEF_THEME_SUPPORTS_COOKIE = "dd_removed_case_brief_theme_supports";
 const PUBLIC_COURT_CASES_RUNTIME_PATH = path.join(process.cwd(), "data/generated/public-court-cases-runtime.json");
+const NEVADA_CASE_COVERAGE_PATH = path.join(process.cwd(), "data/generated/nevada-case-coverage.json");
 
 type PublicCourtCaseRuntimeRecord = Omit<
   CaseDetail,
@@ -36,13 +37,39 @@ type PublicCourtCaseRuntime = {
   records?: PublicCourtCaseRuntimeRecord[];
 };
 
+export type NevadaCaseCoverageSummary = {
+  generatedAt: string | null;
+  totals: {
+    sourceRoutes: number;
+    requiredCounties: number;
+    countiesWithSourceRoutes: number;
+    publishedPublicCases: number;
+    appellateCases: number;
+    stateAppellateCases: number;
+    localTrialCases: number;
+    federalCases: number;
+    federalDistrictCases: number;
+    federalCircuitCases: number;
+    supremeCourtCases: number;
+    administrativeCases: number;
+  };
+  collectionPolicy: {
+    schedule: string;
+    publicationBoundary: string;
+    excluded: string;
+  };
+};
+
 function mapCourtLevel(value: CourtJurisdictionLevel): CaseSummary["courtLevel"] {
   if (value === CourtJurisdictionLevel.federal) return "federal";
   if (value === CourtJurisdictionLevel.appellate || value === CourtJurisdictionLevel.district) return "state";
   return "local";
 }
 
-function mapCourtStage(value: CourtJurisdictionLevel): CaseSummary["stage"] {
+function mapCourtStage(value: CourtJurisdictionLevel, courtName?: string | null): CaseSummary["stage"] {
+  const normalizedCourtName = courtName?.toLowerCase() ?? "";
+  if (normalizedCourtName.includes("supreme court of the united states")) return "merits";
+  if (normalizedCourtName.includes("court of appeals") || normalizedCourtName.includes("ninth circuit")) return "appeal";
   return value === CourtJurisdictionLevel.appellate ? "appeal" : "trial";
 }
 
@@ -72,6 +99,37 @@ async function getReviewedPublicCourtCaseRuntimeRecords() {
       console.warn("[cases] Unable to read public court case runtime", error);
     }
     return [];
+  }
+}
+
+export async function getNevadaCaseCoverageSummary(): Promise<NevadaCaseCoverageSummary> {
+  const fallback: NevadaCaseCoverageSummary = {
+    generatedAt: null,
+    totals: {
+      sourceRoutes: 0,
+      requiredCounties: 17,
+      countiesWithSourceRoutes: 0,
+      publishedPublicCases: 0,
+      appellateCases: 0,
+      stateAppellateCases: 0,
+      localTrialCases: 0,
+      federalCases: 0,
+      federalDistrictCases: 0,
+      federalCircuitCases: 0,
+      supremeCourtCases: 0,
+      administrativeCases: 0,
+    },
+    collectionPolicy: {
+      schedule: "Daily source monitoring with weekly source-route review.",
+      publicationBoundary: "Source-route coverage is tracked separately from reviewed public records.",
+      excluded: "Protected and non-public records are excluded.",
+    },
+  };
+  try {
+    const parsed = JSON.parse(await fs.readFile(NEVADA_CASE_COVERAGE_PATH, "utf8")) as NevadaCaseCoverageSummary;
+    return parsed?.totals ? parsed : fallback;
+  } catch {
+    return fallback;
   }
 }
 
@@ -458,7 +516,7 @@ function mapCourtCaseToSummary(
     title: row.caption,
     summary: caseSummaryText(row),
     courtLevel: mapCourtLevel(row.courtLevel),
-    stage: mapCourtStage(row.courtLevel),
+    stage: mapCourtStage(row.courtLevel, row.courtJurisdiction.name),
     jurisdictionId: row.courtJurisdictionId,
     jurisdictionName: row.jurisdiction,
     issueTags: [],

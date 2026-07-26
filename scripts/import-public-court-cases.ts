@@ -107,6 +107,22 @@ function runtimeStatus(value?: string | null) {
   return "watching";
 }
 
+function runtimeStage(record: ManifestRecord, courtLevel: CourtJurisdictionLevel) {
+  const courtName = record.courtName?.toLowerCase() ?? "";
+  const federalCourtLayer =
+    typeof record.metadata?.federalCourtLayer === "string"
+      ? record.metadata.federalCourtLayer.toLowerCase()
+      : "";
+
+  if (courtName.includes("supreme court of the united states") || federalCourtLayer === "us_supreme") {
+    return "merits";
+  }
+  if (courtName.includes("court of appeals") || courtName.includes("ninth circuit") || federalCourtLayer === "circuit_appellate") {
+    return "appeal";
+  }
+  return courtLevel === CourtJurisdictionLevel.appellate ? "appeal" : "trial";
+}
+
 function isUnsafeText(record: ManifestRecord) {
   const text = [
     record.caption,
@@ -166,7 +182,7 @@ function toRuntimeRecord(record: ManifestRecord, manifestPath: string) {
       record.plainEnglishSummary ??
       `Reviewed public court record for ${record.caption}. Direct Democracy displays stored public case metadata only and does not provide legal advice.`,
     courtLevel: courtLevel === CourtJurisdictionLevel.federal ? "federal" : courtLevel === CourtJurisdictionLevel.appellate || courtLevel === CourtJurisdictionLevel.district ? "state" : "local",
-    stage: courtLevel === CourtJurisdictionLevel.appellate ? "appeal" : "trial",
+    stage: runtimeStage(record, courtLevel),
     jurisdictionId: record.jurisdictionId ?? record.jurisdictionName?.toLowerCase().replace(/[^a-z0-9]+/g, "-") ?? "unknown",
     jurisdictionName: record.jurisdictionName ?? "Unknown jurisdiction",
     communityName: Array.isArray(record.communityTags) ? record.communityTags[0] ?? null : null,

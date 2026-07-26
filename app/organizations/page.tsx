@@ -1,13 +1,19 @@
 import Link from "next/link";
 
 import { OrganizationCard } from "@/components/domain/organization-card";
+import { PublicOrganizationCard } from "@/components/domain/public-organization-card";
 import { CommunitySelector } from "@/components/domain/community-selector";
 import { PageIntro } from "@/components/ui/page-intro";
 import { PreserveScrollQueryForm } from "@/components/ui/preserve-scroll-query-form";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { isGuestUser } from "@/lib/auth/session";
 import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/communities";
-import { ORGANIZATION_FILTERS, getOrganizationTypeLabel } from "@/lib/organizations/presentation";
+import {
+  ORGANIZATION_FILTERS,
+  PUBLIC_ORGANIZATION_CATEGORIES,
+  getOrganizationTypeLabel,
+  getPublicOrganizationCategoryLabel,
+} from "@/lib/organizations/presentation";
 import { approveOrganizationCreationRequest } from "@/lib/organizations/actions";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import {
@@ -16,6 +22,7 @@ import {
   getAllOrganizations,
   getGovernmentBodiesForCommunity,
   getOrganizationCreationRequests,
+  getPublicOrganizationsForCommunity,
   getRecommendedOrganizationsForUser,
 } from "@/lib/organizations/store";
 import type { GovernmentBodyDetail } from "@/lib/organizations/store";
@@ -26,6 +33,7 @@ type OrganizationsPageProps = {
     communityId?: string;
     q?: string;
     type?: string;
+    category?: string;
     org?: string;
     orgError?: string;
   }>;
@@ -42,6 +50,10 @@ function matchesQuery(query: string, ...values: Array<string | null | undefined>
 
 function normalizeOrganizationFilter(value: string | undefined): "all" | OrganizationType {
   return ORGANIZATION_FILTERS.some((entry) => entry.key === value) ? (value as "all" | OrganizationType) : "all";
+}
+
+function normalizePublicOrganizationCategory(value: string | undefined) {
+  return value && PUBLIC_ORGANIZATION_CATEGORIES.some((category) => category === value) ? value : "all";
 }
 
 function filterOrganizations(
@@ -130,6 +142,7 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
   const currentCommunity = getCommunityById(selectedCommunityId) ?? defaultCommunity;
   const query = params?.q?.trim() ?? "";
   const selectedType = normalizeOrganizationFilter(params?.type);
+  const selectedPublicCategory = normalizePublicOrganizationCategory(params?.category);
   const guestMode = isGuestUser(user);
   const canCreateOrganization = canUserDirectlyCreateCoalition(user);
   const canRequestOrganization = canUserRequestCoalition(user);
@@ -141,11 +154,12 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
       ? "Citizens can request an organization for admin review."
       : "Sign in as a Nevada citizen to request a civic organization.";
 
-  const [organizations, recommendations, requests, governmentBodies] = await Promise.all([
+  const [organizations, recommendations, requests, governmentBodies, publicOrganizations] = await Promise.all([
     getAllOrganizations(user),
     getRecommendedOrganizationsForUser(user, selectedCommunityId),
     getOrganizationCreationRequests(),
     getGovernmentBodiesForCommunity(selectedCommunityId, query),
+    getPublicOrganizationsForCommunity(selectedCommunityId, query, selectedPublicCategory),
   ]);
 
   const filtered = filterOrganizations(organizations, selectedCommunityId, query, selectedType);
@@ -163,8 +177,8 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
     <div className="space-y-8 py-8">
       <PageIntro
         eyebrow="Organizations"
-        title="Organizations"
-        description="Find source-backed public bodies and request citizen-run civic organizations for structured action."
+        title="Groups and public organizations"
+        description="Find organizations people join, support, work through, or encounter in public life. Official sources and membership links stay visible."
         actions={
           <div className="flex flex-wrap gap-3">
             <Link
@@ -210,7 +224,7 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
           <div className="grid gap-3 sm:grid-cols-3">
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Groups live</p>
-              <p className="mt-2 text-2xl font-semibold text-white">{filtered.length}</p>
+              <p className="mt-2 text-2xl font-semibold text-white">{filtered.length + publicOrganizations.length}</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Active votes</p>
@@ -266,6 +280,18 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
               placeholder="Search organizations, issues, or jurisdictions"
               className="min-w-[16rem] rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-300/25"
             />
+            <select
+              name="category"
+              defaultValue={selectedPublicCategory}
+              aria-label="Public organization category"
+              className="rounded-full border border-white/10 bg-slate-950 px-4 py-3 text-sm text-slate-100 outline-none focus:border-cyan-300/25"
+            >
+              {PUBLIC_ORGANIZATION_CATEGORIES.map((category) => (
+                <option key={category} value={category}>
+                  {getPublicOrganizationCategoryLabel(category)}
+                </option>
+              ))}
+            </select>
             <button type="submit" className="rounded-full bg-cyan-500 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400">
               Search
             </button>
@@ -275,6 +301,7 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
           {ORGANIZATION_FILTERS.map((filter) => {
             const href = new URLSearchParams({ communityId: selectedCommunityId });
             if (query) href.set("q", query);
+            if (selectedPublicCategory !== "all") href.set("category", selectedPublicCategory);
             if (filter.key !== "all") href.set("type", filter.key);
 
             const active = filter.key === selectedType;
@@ -292,6 +319,39 @@ export default async function OrganizationsPage({ searchParams }: OrganizationsP
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className="rounded-lg border border-white/10 bg-white/[0.035] p-6">
+        <SectionHeading
+          eyebrow="Public directory"
+          title="Organizations people affiliate with"
+          description="Community groups, political parties and their published networks, unions, professional associations, service organizations, civil-rights groups, faith-based services, veterans groups, business associations, and public institutions. A listing is not an endorsement."
+        />
+        <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
+          <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-emerald-100">
+            {publicOrganizations.length} in this community view
+          </span>
+          <span className="rounded-full bg-white/[0.06] px-3 py-1 text-slate-300">
+            Official website required
+          </span>
+          <span className="rounded-full bg-white/[0.06] px-3 py-1 text-slate-300">
+            IRS registry cross-check where applicable
+          </span>
+          <span className="rounded-full bg-amber-500/10 px-3 py-1 text-amber-100">
+            Party-authored material labeled
+          </span>
+        </div>
+        <div className="mt-5 grid gap-4 xl:grid-cols-2">
+          {publicOrganizations.length ? (
+            publicOrganizations.map((organization) => (
+              <PublicOrganizationCard key={organization.id} organization={organization} />
+            ))
+          ) : (
+            <div className="rounded-lg border border-dashed border-white/15 p-5 text-sm text-slate-400 xl:col-span-2">
+              No source-backed public organizations match this community, category, and search.
+            </div>
+          )}
         </div>
       </section>
 

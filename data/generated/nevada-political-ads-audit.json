@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-20T17:11:56.742Z",
+  "generatedAt": "2026-07-26T01:41:59.790Z",
   "status": "ready",
   "totals": {
-    "generatedAds": 48,
-    "publishedAds": 48,
+    "generatedAds": 1038,
+    "publishedAds": 1038,
     "pendingAds": 0,
     "reviewQueueRecords": 1,
     "recordsMissingSource": 0,
@@ -14,17 +14,19 @@
     "internetAd",
     "mailer",
     "otherUnknown",
+    "print",
     "radioAd",
     "textSmsAd"
   ],
   "sponsorTypes": [
     "candidateCampaign",
+    "independentExpenditureGroup",
     "pac",
     "superPac",
     "unknownUndisclosed"
   ],
   "geographyCounts": {
-    "Nevada": 48
+    "Nevada": 1038
   },
   "failures": [],
   "nextSteps": [

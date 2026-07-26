@@ -1,0 +1,816 @@
+{
+  "generatedAt": "2026-07-26T02:30:11.468Z",
+  "catalogVersion": 1,
+  "sourceCatalogUpdatedAt": "2026-07-25",
+  "collectionPolicy": {
+    "schedule": "Daily source monitoring with weekly source-route review; public records publish only after privacy and visibility review.",
+    "publicationBoundary": "A court directory or search route proves where records may be found. It does not prove that all cases are collected or safe to publish.",
+    "excluded": "Sealed, confidential, juvenile, protected, adoption, guardianship, and other non-public records are never eligible for the public repository."
+  },
+  "totals": {
+    "sourceRoutes": 11,
+    "reachableSourceRoutes": 11,
+    "requiredCounties": 17,
+    "countiesWithSourceRoutes": 17,
+    "publishedPublicCases": 27,
+    "appellateCases": 25,
+    "stateAppellateCases": 25,
+    "localTrialCases": 0,
+    "federalCases": 2,
+    "federalDistrictCases": 0,
+    "federalCircuitCases": 1,
+    "supremeCourtCases": 1,
+    "administrativeCases": 0
+  },
+  "sources": [
+    {
+      "id": "nevada-appellate-advance-opinions",
+      "name": "Nevada Appellate Courts advance opinions",
+      "authority": "official",
+      "recordClass": "appellate_opinions",
+      "courtLevels": [
+        "appellate"
+      ],
+      "jurisdictions": [
+        "Nevada"
+      ],
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "accessMethod": "public_api_and_html",
+      "collectionStatus": "automated_reviewed",
+      "cadenceDays": 1,
+      "privacyRule": "Publish only public opinion metadata and public documents after review.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:01.514Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://acis.nvcourts.gov/portal/search/document/results?criteria=~(advanced~false~courtID~%27dc01122c-a19d-4eb7-bfe9-5b96e93c26fd~paging~(totalItems~0~itemsPerPage~25~page~1~sortBy~%27docketEntryHeader.filedDate~sortDesc~true)~document~(docketEntrySubTypeID~%27typeID*3a1000014)~case~(excludeClosed~false))",
+        "error": null
+      },
+      "publishedCaseCount": 25,
+      "coverageLayer": "published_records"
+    },
+    {
+      "id": "nevada-appellate-acis",
+      "name": "Nevada Appellate Courts ACIS public portal",
+      "authority": "official",
+      "recordClass": "appellate_dockets",
+      "courtLevels": [
+        "appellate"
+      ],
+      "jurisdictions": [
+        "Nevada"
+      ],
+      "sourceUrl": "https://acis.nvcourts.gov/portal/home",
+      "accessMethod": "public_portal",
+      "collectionStatus": "manual_review_required",
+      "cadenceDays": 7,
+      "privacyRule": "No protected-portal bypass or bulk harvesting. Publish only reviewed public fields.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:02.142Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://acis.nvcourts.gov/portal/home",
+        "error": null
+      },
+      "publishedCaseCount": 0,
+      "coverageLayer": "source_route"
+    },
+    {
+      "id": "nevada-district-court-directory",
+      "name": "Nevada Judiciary district court directory",
+      "authority": "official",
+      "recordClass": "district_court_source_routes",
+      "courtLevels": [
+        "district"
+      ],
+      "jurisdictions": [
+        "Carson City",
+        "Churchill",
+        "Clark",
+        "Douglas",
+        "Elko",
+        "Esmeralda",
+        "Eureka",
+        "Humboldt",
+        "Lander",
+        "Lincoln",
+        "Lyon",
+        "Mineral",
+        "Nye",
+        "Pershing",
+        "Storey",
+        "Washoe",
+        "White Pine"
+      ],
+      "sourceUrl": "https://nvcourts.gov/find_a_court/district_courts",
+      "accessMethod": "official_directory",
+      "collectionStatus": "source_routes_registered",
+      "cadenceDays": 7,
+      "privacyRule": "Court directory coverage is not a case count. Trial records require a court-specific adapter and privacy review.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:02.373Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvcourts.gov/find_a_court/district_courts",
+        "error": null
+      },
+      "publishedCaseCount": 0,
+      "coverageLayer": "source_route"
+    },
+    {
+      "id": "nevada-justice-court-directory",
+      "name": "Nevada Judiciary justice court directory",
+      "authority": "official",
+      "recordClass": "justice_court_source_routes",
+      "courtLevels": [
+        "justice"
+      ],
+      "jurisdictions": [
+        "Carson City",
+        "Churchill",
+        "Clark",
+        "Douglas",
+        "Elko",
+        "Esmeralda",
+        "Eureka",
+        "Humboldt",
+        "Lander",
+        "Lincoln",
+        "Lyon",
+        "Mineral",
+        "Nye",
+        "Pershing",
+        "Storey",
+        "Washoe",
+        "White Pine"
+      ],
+      "sourceUrl": "https://nvcourts.gov/find_a_court/justice_courts",
+      "accessMethod": "official_directory",
+      "collectionStatus": "source_routes_registered",
+      "cadenceDays": 7,
+      "privacyRule": "Court directory coverage is not a case count. Publish no evictions, protection orders, or small-claims parties without record-level review.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:05.836Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvcourts.gov/find_a_court/justice_courts",
+        "error": null
+      },
+      "publishedCaseCount": 0,
+      "coverageLayer": "source_route"
+    },
+    {
+      "id": "nevada-municipal-court-directory",
+      "name": "Nevada Judiciary municipal court directory",
+      "authority": "official",
+      "recordClass": "municipal_court_source_routes",
+      "courtLevels": [
+        "municipal"
+      ],
+      "jurisdictions": [
+        "Nevada municipalities"
+      ],
+      "sourceUrl": "https://nvcourts.gov/find_a_court/municipal_courts",
+      "accessMethod": "official_directory",
+      "collectionStatus": "source_routes_registered",
+      "cadenceDays": 7,
+      "privacyRule": "Court directory coverage is not a case count. Municipal records require a court-specific public-record adapter.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:05.977Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvcourts.gov/find_a_court/municipal_courts",
+        "error": null
+      },
+      "publishedCaseCount": 0,
+      "coverageLayer": "source_route"
+    },
+    {
+      "id": "federal-district-nevada-recap",
+      "name": "CourtListener RECAP for the U.S. District Court, District of Nevada",
+      "authority": "derived_public_archive",
+      "recordClass": "federal_dockets",
+      "courtLevels": [
+        "federal"
+      ],
+      "jurisdictions": [
+        "Nevada"
+      ],
+      "sourceUrl": "https://www.courtlistener.com/recap/",
+      "accessMethod": "public_api",
+      "collectionStatus": "adapter_pending",
+      "cadenceDays": 7,
+      "privacyRule": "Use public RECAP material only. PACER billing and credentials are outside the unattended collector.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:06.226Z",
+        "ok": true,
+        "status": 403,
+        "finalUrl": "https://www.courtlistener.com/recap/",
+        "error": null
+      },
+      "publishedCaseCount": 0,
+      "coverageLayer": "source_route"
+    },
+    {
+      "id": "ninth-circuit-nevada-opinions",
+      "name": "U.S. Court of Appeals for the Ninth Circuit Nevada-origin opinions",
+      "authority": "official",
+      "recordClass": "federal_circuit_opinions",
+      "courtLevels": [
+        "federal_circuit"
+      ],
+      "jurisdictions": [
+        "Nevada"
+      ],
+      "sourceUrl": "https://www.ca9.uscourts.gov/decisions/opinions/",
+      "accessMethod": "public_search_and_documents",
+      "collectionStatus": "manual_review_required",
+      "cadenceDays": 7,
+      "privacyRule": "Publish only reviewed public opinions whose official record identifies the District of Nevada or another verified Nevada connection.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:06.289Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.ca9.uscourts.gov/decisions/opinions/",
+        "error": null
+      },
+      "publishedCaseCount": 1,
+      "coverageLayer": "published_records"
+    },
+    {
+      "id": "us-supreme-court-nevada-cases",
+      "name": "U.S. Supreme Court Nevada-connected dockets and opinions",
+      "authority": "official",
+      "recordClass": "supreme_court_opinions",
+      "courtLevels": [
+        "us_supreme"
+      ],
+      "jurisdictions": [
+        "Nevada"
+      ],
+      "sourceUrl": "https://www.supremecourt.gov/opinions/opinions.aspx",
+      "accessMethod": "public_docket_and_documents",
+      "collectionStatus": "manual_review_required",
+      "cadenceDays": 7,
+      "privacyRule": "Publish only reviewed public merits records with a verified Nevada lower court, Nevada party, or direct Nevada legal connection.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:06.387Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.supremecourt.gov/opinions/opinions.aspx",
+        "error": null
+      },
+      "publishedCaseCount": 1,
+      "coverageLayer": "published_records"
+    },
+    {
+      "id": "nevada-commission-ethics-opinions",
+      "name": "Nevada Commission on Ethics opinions",
+      "authority": "official",
+      "recordClass": "ethics_opinions",
+      "courtLevels": [
+        "administrative"
+      ],
+      "jurisdictions": [
+        "Nevada"
+      ],
+      "sourceUrl": "https://ethics.nv.gov/opinions/",
+      "accessMethod": "public_html_and_documents",
+      "collectionStatus": "adapter_pending",
+      "cadenceDays": 7,
+      "privacyRule": "Publish final public opinions and public panel determinations only; confidential matters stay excluded.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:07.327Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.ethics.nv.gov/opinions/",
+        "error": null
+      },
+      "publishedCaseCount": 0,
+      "coverageLayer": "source_route"
+    },
+    {
+      "id": "nevada-tax-commission-appeals",
+      "name": "Nevada Tax Commission hearings and appeals",
+      "authority": "official",
+      "recordClass": "administrative_appeals",
+      "courtLevels": [
+        "administrative"
+      ],
+      "jurisdictions": [
+        "Nevada"
+      ],
+      "sourceUrl": "https://tax.nv.gov/boards-meetings/",
+      "accessMethod": "public_html_and_documents",
+      "collectionStatus": "adapter_pending",
+      "cadenceDays": 7,
+      "privacyRule": "Do not publish taxpayer records or proprietary material. Only public final decisions with an approved record-level review are eligible.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:07.579Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://tax.nv.gov/boards-meetings/",
+        "error": null
+      },
+      "publishedCaseCount": 0,
+      "coverageLayer": "source_route"
+    },
+    {
+      "id": "nevada-attorney-public-discipline",
+      "name": "State Bar of Nevada public attorney discipline",
+      "authority": "official_public_corporation",
+      "recordClass": "professional_discipline",
+      "courtLevels": [
+        "administrative"
+      ],
+      "jurisdictions": [
+        "Nevada"
+      ],
+      "sourceUrl": "https://nvbar.org/for-the-public/attorney-discipline/",
+      "accessMethod": "public_search",
+      "collectionStatus": "adapter_pending",
+      "cadenceDays": 7,
+      "privacyRule": "Public discipline only. Pending and private discipline is excluded.",
+      "health": {
+        "checkedAt": "2026-07-26T02:30:10.968Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvbar.org/for-the-public/attorney-discipline/",
+        "error": null
+      },
+      "publishedCaseCount": 0,
+      "coverageLayer": "source_route"
+    }
+  ],
+  "counties": [
+    {
+      "county": "Carson City",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Churchill",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Clark",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Douglas",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Elko",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Esmeralda",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Eureka",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Humboldt",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Lander",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Lincoln",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Lyon",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Mineral",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Nye",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Pershing",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Storey",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "Washoe",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    },
+    {
+      "county": "White Pine",
+      "sourceRouteCount": 2,
+      "publishedCaseCount": 0,
+      "status": "source_routes_registered",
+      "sourceIds": [
+        "nevada-district-court-directory",
+        "nevada-justice-court-directory"
+      ]
+    }
+  ],
+  "publishedRecords": [
+    {
+      "id": "nv-appellate-89372-garcia-byron-v-state",
+      "caseNumber": "89372",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89985-las-vegas-police-protective-assoc-v-city-of-las-vegas",
+      "caseNumber": "89985",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-91394-planned-parenthood-mar-monte-inc-v-state-of-nev",
+      "caseNumber": "91394",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-90509-zhang-v-zhang",
+      "caseNumber": "90509",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-91198-rbr-mgmt-llc-v-dist-ct-williams",
+      "caseNumber": "91198",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-90627-causey-kasie-v-dist-ct-state",
+      "caseNumber": "90627",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89867-state-v-salazar-rocky",
+      "caseNumber": "89867",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-84452-rosenbrook-v-lloyd-c-w-85175",
+      "caseNumber": "84452",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89594-carter-tyler-v-state",
+      "caseNumber": "89594",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89144-powers-v-dist-ct-bueno",
+      "caseNumber": "89144",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-91210-del-toro-juan-v-state",
+      "caseNumber": "91210",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89254-richt-jesce-v-state",
+      "caseNumber": "89254",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-92008-las-vegas-review-journal-inc-v-dist-ct-chasing-horse",
+      "caseNumber": "92008",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89183-engle-julie-v-dist-ct-state",
+      "caseNumber": "89183",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-88946-lennar-comm-nev-llc-v-whalen",
+      "caseNumber": "88946",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89243-chabot-wacey-v-state",
+      "caseNumber": "89243",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-88095-smith-sophia-v-state",
+      "caseNumber": "88095",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-90620-singh-v-dist-ct-singh",
+      "caseNumber": "90620",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89015-robinson-maurice-v-state",
+      "caseNumber": "89015",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89238-nev-health-and-bioscience-asset-corp-v-state-of-nev",
+      "caseNumber": "89238",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-88680-am-civil-liberties-union-of-nev-v-clark-cnty-school-dist",
+      "caseNumber": "88680",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89527-friedlander-v-tamarack-junction-race-sports-book",
+      "caseNumber": "89527",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89422-in-re-estate-of-ulvang",
+      "caseNumber": "89422",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-89341-vegas-aqua-llc-v-jupitor-corp",
+      "caseNumber": "89341",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "nv-appellate-88527-matadamas-serrano-ruben-v-state",
+      "caseNumber": "88527",
+      "courtName": "Nevada Supreme Court",
+      "courtLevel": "state",
+      "federalCourtLayer": null,
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "usca9-23-3080-mcneil-v-gittere",
+      "caseNumber": "23-3080",
+      "courtName": "United States Court of Appeals for the Ninth Circuit",
+      "courtLevel": "federal",
+      "federalCourtLayer": "circuit_appellate",
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://cdn.ca9.uscourts.gov/datastore/opinions/2025/09/02/23-3080.pdf",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    },
+    {
+      "id": "scotus-10-568-nevada-commission-on-ethics-v-carrigan",
+      "caseNumber": "10-568",
+      "courtName": "Supreme Court of the United States",
+      "courtLevel": "federal",
+      "federalCourtLayer": "us_supreme",
+      "jurisdictionName": "Nevada",
+      "sourceUrl": "https://www.supremecourt.gov/Search.aspx?FileName=%2Fdocketfiles%2F10-568.htm",
+      "reviewStatus": "approved",
+      "publicVisibilityStatus": "public"
+    }
+  ]
+}

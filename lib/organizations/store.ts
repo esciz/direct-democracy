@@ -103,6 +103,67 @@ export type GovernmentBodyDetail = {
   updatedAt: string | null;
 };
 
+export type PublicOrganizationDetail = {
+  kind: "public_organization";
+  id: string;
+  name: string;
+  category: string;
+  organizationType: OrganizationType;
+  description: string;
+  scope: "local" | "regional" | "statewide" | "national";
+  communityIds: string[];
+  headquarters: string;
+  websiteUrl: string;
+  affiliationUrl: string;
+  issueTags: string[];
+  verificationStatus: string;
+  lastCheckedAt: string | null;
+  websiteHealth: {
+    checkedAt: string;
+    ok: boolean;
+    status: number | null;
+    finalUrl: string;
+    error: string | null;
+  } | null;
+  registry: {
+    irsMatched: boolean;
+    irsRecords: Array<{
+      ein: string;
+      legalName: string;
+      city: string;
+      subsection: string;
+      statusCode: string;
+      taxPeriod: string | null;
+      nteeCode: string | null;
+      sourceUrl: string;
+    }>;
+    nevadaBusinessSearchUrl: string;
+  };
+  partyProfile?: {
+    party: "Democratic" | "Republican";
+    networkRole: "state_party" | "county_party" | "caucus" | "club";
+    relationship:
+      | "state_party_organization"
+      | "official_county_party"
+      | "party_caucus"
+      | "state_party_directory_listing"
+      | "directory_listing_no_affiliation";
+    relationshipLabel: string;
+    parentOrganizationId: string | null;
+    parentOrganizationName: string | null;
+    listingSourceUrl: string;
+    platformUrl: string;
+    platformLabel: string;
+    leadershipUrl: string;
+    affiliateDirectoryUrl: string;
+    clubDirectoryUrl: string | null;
+    newsUrl: string;
+    filingUrl: string;
+    platformTopics: string[];
+    materialDisclosure: string;
+  };
+};
+
 const seededOrganizations: SeedOrganization[] = [
   {
     id: "org_carson_budget_transparency_coalition",
@@ -1214,6 +1275,50 @@ export async function getGovernmentBodiesForCommunity(communityId: string, query
       if (left.communityId === communityId && right.communityId !== communityId) return -1;
       if (right.communityId === communityId && left.communityId !== communityId) return 1;
       return left.name.localeCompare(right.name);
+    });
+}
+
+export async function getPublicOrganizationById(organizationId: string): Promise<PublicOrganizationDetail | null> {
+  const records = readGeneratedRecords<Omit<PublicOrganizationDetail, "kind">>("nevada-public-organizations.json");
+  const record = records.find((entry) => entry.id === organizationId);
+  return record ? { ...record, kind: "public_organization" } : null;
+}
+
+export async function getPublicOrganizationsForCommunity(
+  communityId: string,
+  query = "",
+  category = "all",
+): Promise<PublicOrganizationDetail[]> {
+  const normalizedQuery = normalizeGeneratedText(query);
+  const records = readGeneratedRecords<Omit<PublicOrganizationDetail, "kind">>("nevada-public-organizations.json")
+    .map((record) => ({ ...record, kind: "public_organization" as const }));
+  return records
+    .filter((record) => record.communityIds.includes(communityId) || record.communityIds.includes("nevada"))
+    .filter((record) => category === "all" || record.category === category)
+    .filter((record) => {
+      if (!normalizedQuery) return true;
+      return normalizeGeneratedText(
+        `${record.name} ${record.description} ${record.headquarters} ${record.category} ${record.issueTags.join(" ")} ${record.partyProfile?.party ?? ""} ${record.partyProfile?.relationshipLabel ?? ""} ${record.partyProfile?.platformTopics.join(" ") ?? ""}`,
+      ).includes(normalizedQuery);
+    })
+    .sort((left, right) => {
+      const leftLocal = left.communityIds.includes(communityId) && communityId !== "nevada";
+      const rightLocal = right.communityIds.includes(communityId) && communityId !== "nevada";
+      if (leftLocal !== rightLocal) return leftLocal ? -1 : 1;
+      return left.name.localeCompare(right.name);
+    });
+}
+
+export async function getPublicOrganizationsForPartyNetwork(parentOrganizationId: string): Promise<PublicOrganizationDetail[]> {
+  const roleOrder = { county_party: 0, caucus: 1, club: 2, state_party: 3 } as const;
+  return readGeneratedRecords<Omit<PublicOrganizationDetail, "kind">>("nevada-public-organizations.json")
+    .filter((record) => record.partyProfile?.parentOrganizationId === parentOrganizationId)
+    .map((record) => ({ ...record, kind: "public_organization" as const }))
+    .sort((left, right) => {
+      const roleDifference =
+        roleOrder[left.partyProfile?.networkRole ?? "state_party"] -
+        roleOrder[right.partyProfile?.networkRole ?? "state_party"];
+      return roleDifference || left.name.localeCompare(right.name);
     });
 }
 

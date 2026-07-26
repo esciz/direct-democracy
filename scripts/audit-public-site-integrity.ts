@@ -205,6 +205,176 @@ if (
   });
 }
 
+const statewideFinanceCoverage = readJson<{
+  strictPassed?: boolean;
+  totals?: {
+    expectedEntities?: number;
+    campaignSourcesRegistered?: number;
+    campaignTotalsAvailable?: number;
+    candidateTotalsAvailable?: number;
+    officialTotalsAvailable?: number;
+    sourceRoutesOnly?: number;
+    disclosureSourcesRegistered?: number;
+    disclosureFilingsMatched?: number;
+    contributorSamplesAvailable?: number;
+    missingEntities?: number;
+    missingCampaignSources?: number;
+    missingDisclosureSources?: number;
+    invalidZeroSubstitutions?: number;
+  };
+}>("data/generated/nevada-financial-coverage-audit.json", {});
+
+if ((statewideFinanceCoverage.totals?.expectedEntities ?? 0) === 0 || statewideFinanceCoverage.strictPassed !== true) {
+  addFinding({
+    id: "statewide-financial-source-coverage",
+    severity: "high",
+    area: "financial transparency",
+    summary: "The statewide candidate and official financial-source coverage contract is missing or failed.",
+    evidence: [
+      `${statewideFinanceCoverage.totals?.expectedEntities ?? 0} entities expected`,
+      `${statewideFinanceCoverage.totals?.missingEntities ?? 0} entities missing from the coverage artifact`,
+      `${statewideFinanceCoverage.totals?.missingCampaignSources ?? 0} campaign-finance sources missing`,
+      `${statewideFinanceCoverage.totals?.missingDisclosureSources ?? 0} personal-disclosure sources missing`,
+      `${statewideFinanceCoverage.totals?.invalidZeroSubstitutions ?? 0} invalid zero substitutions`,
+    ],
+  });
+}
+
+if (
+  (statewideFinanceCoverage.totals?.sourceRoutesOnly ?? 0) > 0 ||
+  (statewideFinanceCoverage.totals?.disclosureFilingsMatched ?? 0) <
+    (statewideFinanceCoverage.totals?.disclosureSourcesRegistered ?? 0)
+) {
+  addFinding({
+    id: "statewide-financial-extraction-backlog",
+    severity: "medium",
+    area: "financial transparency",
+    summary: "Statewide financial source coverage is complete, but some campaign totals and personal-disclosure filings still require matched extraction.",
+    evidence: [
+      `${statewideFinanceCoverage.totals?.campaignTotalsAvailable ?? 0} of ${statewideFinanceCoverage.totals?.expectedEntities ?? 0} profiles have matched campaign totals`,
+      `${statewideFinanceCoverage.totals?.candidateTotalsAvailable ?? 0} candidate profiles have totals`,
+      `${statewideFinanceCoverage.totals?.officialTotalsAvailable ?? 0} official profiles have totals`,
+      `${statewideFinanceCoverage.totals?.sourceRoutesOnly ?? 0} profiles remain source-route only`,
+      `${statewideFinanceCoverage.totals?.disclosureFilingsMatched ?? 0} of ${statewideFinanceCoverage.totals?.disclosureSourcesRegistered ?? 0} profiles have matched personal-disclosure filings`,
+      `${statewideFinanceCoverage.totals?.contributorSamplesAvailable ?? 0} profiles have published contributor samples`,
+    ],
+  });
+}
+
+const caseCoverage = readJson<{
+  strictPassed?: boolean;
+  totals?: Record<string, number>;
+  failures?: string[];
+}>("data/generated/nevada-case-coverage-audit.json", {});
+
+if (!caseCoverage.totals?.requiredCounties || caseCoverage.strictPassed !== true) {
+  addFinding({
+    id: "statewide-case-coverage-contract",
+    severity: "high",
+    area: "case collection",
+    summary: "The statewide case-source and published-record integrity contract is missing or failed.",
+    evidence: [
+      `${caseCoverage.totals?.countiesWithSourceRoutes ?? 0} of ${caseCoverage.totals?.requiredCounties ?? 0} counties have source routes`,
+      `${caseCoverage.totals?.invalidPublishedRecords ?? 0} invalid public records`,
+      `${caseCoverage.totals?.demoRecords ?? 0} demo records`,
+      ...(caseCoverage.failures ?? []),
+    ],
+  });
+}
+
+if (
+  (caseCoverage.totals?.localTrialCases ?? 0) === 0 ||
+  (caseCoverage.totals?.federalCases ?? 0) === 0 ||
+  (caseCoverage.totals?.administrativeCases ?? 0) === 0
+) {
+  addFinding({
+    id: "statewide-case-extraction-backlog",
+    severity: "medium",
+    area: "case collection",
+    summary: "Case source routes are registered statewide, but reviewed publication is still limited to appellate records.",
+    evidence: [
+      `${caseCoverage.totals?.appellateCases ?? 0} appellate cases published`,
+      `${caseCoverage.totals?.localTrialCases ?? 0} local trial cases published`,
+      `${caseCoverage.totals?.federalCases ?? 0} federal cases published`,
+      `${caseCoverage.totals?.administrativeCases ?? 0} administrative cases published`,
+    ],
+  });
+}
+
+const politicalAdAudit = readJson<{
+  totals?: Record<string, number>;
+}>("data/generated/nevada-political-ads-audit.json", {});
+const politicalAdCoverage = readJson<{
+  strictPassed?: boolean;
+  totals?: Record<string, number>;
+  failures?: string[];
+}>("data/generated/nevada-political-ad-coverage-audit.json", {});
+
+if (
+  !politicalAdCoverage.totals?.expectedEntities ||
+  politicalAdCoverage.strictPassed !== true ||
+  (politicalAdAudit.totals?.recordsMissingSource ?? 0) > 0 ||
+  (politicalAdAudit.totals?.recordsWithExampleSources ?? 0) > 0
+) {
+  addFinding({
+    id: "statewide-political-ad-coverage-contract",
+    severity: "high",
+    area: "political ad collection",
+    summary: "Political-ad source integrity or statewide profile reconciliation is missing or failed.",
+    evidence: [
+      `${politicalAdCoverage.totals?.auditedEntities ?? 0} of ${politicalAdCoverage.totals?.expectedEntities ?? 0} entities audited`,
+      `${politicalAdCoverage.totals?.missingSourceRoutes ?? 0} profile source-route gaps`,
+      `${politicalAdCoverage.totals?.falseZeroSpend ?? 0} false zero-spend records`,
+      `${politicalAdAudit.totals?.recordsMissingSource ?? 0} ad records missing sources`,
+      `${politicalAdAudit.totals?.recordsWithExampleSources ?? 0} ad records with example sources`,
+      ...(politicalAdCoverage.failures ?? []),
+    ],
+  });
+}
+
+if ((politicalAdCoverage.totals?.filingOnlyRecords ?? 0) > 0) {
+  addFinding({
+    id: "political-ad-creative-backlog",
+    severity: "medium",
+    area: "political ad collection",
+    summary: "Most matched political-ad records establish reported spend or dissemination but do not include reviewed creative.",
+    evidence: [
+      `${politicalAdCoverage.totals?.creativeRecords ?? 0} reviewed creative records`,
+      `${politicalAdCoverage.totals?.filingOnlyRecords ?? 0} filing-only records`,
+      `${politicalAdCoverage.totals?.entitiesWithMatchedRecords ?? 0} entities with matched records`,
+      `${politicalAdCoverage.totals?.entitiesWithCreative ?? 0} entities with reviewed creative`,
+    ],
+  });
+}
+
+const organizationCoverage = readJson<{
+  strictPassed?: boolean;
+  totals?: Record<string, number>;
+  failures?: string[];
+}>("data/generated/nevada-public-organizations-audit.json", {});
+
+if (
+  !organizationCoverage.totals?.organizations ||
+  organizationCoverage.strictPassed !== true ||
+  (organizationCoverage.totals?.websitesReachable ?? 0) <
+    (organizationCoverage.totals?.websitesChecked ?? 0)
+) {
+  addFinding({
+    id: "statewide-public-organization-contract",
+    severity: "high",
+    area: "organization collection",
+    summary: "The source-backed public-organization directory is missing, contains integrity failures, or has unreachable reviewed websites.",
+    evidence: [
+      `${organizationCoverage.totals?.organizations ?? 0} organizations`,
+      `${organizationCoverage.totals?.categories ?? 0} affiliation categories`,
+      `${organizationCoverage.totals?.websitesReachable ?? 0} of ${organizationCoverage.totals?.websitesChecked ?? 0} checked websites reachable`,
+      `${organizationCoverage.totals?.missingSourceRoutes ?? 0} missing source routes`,
+      `${organizationCoverage.totals?.exampleUrls ?? 0} example URLs`,
+      ...(organizationCoverage.failures ?? []),
+    ],
+  });
+}
+
 const dataopsRun = readJson<{
   completedAt?: string;
   updatedAt?: string;
@@ -216,14 +386,14 @@ const dataopsRun = readJson<{
 
 const stagesAttempted = dataopsRun.stagesAttempted ?? dataopsRun.stages?.length ?? 0;
 const stagesFailed = dataopsRun.stagesFailed ?? dataopsRun.stages?.filter((stage) => stage.status === "failed").length ?? 0;
-if (stagesAttempted < 15 || stagesFailed > 0) {
+if (stagesAttempted < 16 || stagesFailed > 0) {
   addFinding({
     id: "partial-dataops-run",
     severity: "high",
     area: "data operations",
     summary: "The latest recorded DataOps run was not a complete successful daily pipeline execution.",
     evidence: [
-      `${stagesAttempted} of 15 stages attempted`,
+      `${stagesAttempted} of 16 stages attempted`,
       `${stagesFailed} stages failed`,
       `completed ${dataopsRun.completedAt ?? dataopsRun.updatedAt ?? "unknown"}`,
     ],

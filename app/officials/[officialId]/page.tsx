@@ -41,7 +41,7 @@ import { getOfficialActionCountByOfficialProfileId, getOfficialActionsByOfficial
 import { getOfficialPromises } from "@/lib/officials/promises";
 import { getOfficialById, getOfficials } from "@/lib/officials/store";
 import { getDraftLegislationBySponsorId } from "@/lib/petitions/legislation";
-import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
+import { getPoliticalAdCoverageForEntity, getPoliticalAdsForEntity } from "@/lib/political-ads/store";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { mergeExternalLinksWithWebsite } from "@/lib/profile/external-links";
 import {
@@ -523,7 +523,7 @@ async function OfficialProfileBody({
         lastImportRun: null,
       };
     }),
-    withSectionTimeout(getCampaignFinanceSourceCard("official", officialId), "official campaign finance source", 900).catch((error) => {
+    withSectionTimeout(getCampaignFinanceSourceCard("official", officialId), "official campaign finance source", 1800).catch((error) => {
       console.error(`[official-detail] campaign finance source fallback for ${officialId}`, error);
       return {
         sourceName: null,
@@ -540,10 +540,21 @@ async function OfficialProfileBody({
         pendingCount: 0,
         approvedCount: 0,
         fundingBreakdown: null,
+        financialSnapshot: null,
         allReportedFundingBreakdown: null,
         contributorAttributions: [],
         cycleHistory: [],
         allReportedTotals: null,
+        personalFinancialDisclosure: {
+          sourceName: null,
+          sourceUrl: null,
+          status: null,
+          applicability: null,
+          reviewStatus: null,
+          lastCheckedAt: null,
+          filingSummaries: [],
+          note: null,
+        },
         campaignReportedSummary: null,
         donorExtractionStatus: "Classification incomplete; source-backed filing summaries remain available.",
       };
@@ -672,6 +683,7 @@ async function OfficialProfileBody({
     return null;
   });
   const relatedAds = getPoliticalAdsForEntity("official", hydratedOfficial.id, 4);
+  const politicalAdCoverage = getPoliticalAdCoverageForEntity("official", hydratedOfficial.id);
 
   return (
     <>
@@ -765,6 +777,7 @@ async function OfficialProfileBody({
             title="Political ads about this official"
             description="Track officeholder committee ads, issue ads mentioning this official, opposition messages, and outside group spending."
             ads={relatedAds}
+            coverage={politicalAdCoverage}
             repositoryHref={`/ads?officialId=${encodeURIComponent(hydratedOfficial.id)}`}
             emptyText="No political ads are attached to this official yet."
           />

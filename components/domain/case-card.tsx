@@ -2,22 +2,28 @@ import Link from "next/link";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
-import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { ShareActionMenu } from "@/components/domain/share-action-menu";
-import { buildSentimentHistory } from "@/lib/sentiment/history";
 import type { CaseSummary } from "@/types/domain";
 
-function courtLabel(value: CaseSummary["courtLevel"]) {
+function courtLabel(value: CaseSummary["courtLevel"], courtName?: string | null) {
+  const normalizedCourtName = courtName?.toLowerCase() ?? "";
+  if (normalizedCourtName.includes("supreme court of the united states")) return "U.S. Supreme Court";
+  if (normalizedCourtName.includes("court of appeals") || normalizedCourtName.includes("ninth circuit")) return "Ninth Circuit";
   return value === "local" ? "Local court" : value === "state" ? "State court" : "Federal court";
 }
 
 export function CaseCard({ caseItem, guestMode = false }: { caseItem: CaseSummary; guestMode?: boolean }) {
-  const currentSupport = Math.min(82, Math.max(28, 32 + caseItem.supportCount * 8 + caseItem.followCount * 3));
-  const history = buildSentimentHistory(`case-${caseItem.id}`, currentSupport, { points: 6, opposeBias: 27 });
-  const filingDate = caseItem.filingDate ? new Date(caseItem.filingDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : null;
+  const filingDate = caseItem.filingDate
+    ? new Date(caseItem.filingDate).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        timeZone: "UTC",
+      })
+    : null;
 
   return (
-    <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+    <article className="rounded-lg border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex min-w-0 items-start gap-3">
           <CivicAvatar
@@ -29,7 +35,7 @@ export function CaseCard({ caseItem, guestMode = false }: { caseItem: CaseSummar
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
-                {courtLabel(caseItem.courtLevel)}
+                {courtLabel(caseItem.courtLevel, caseItem.courtName)}
               </span>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
                 {caseItem.stage}
@@ -81,11 +87,6 @@ export function CaseCard({ caseItem, guestMode = false }: { caseItem: CaseSummar
         )}
         <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">{caseItem.reviewStatus?.replaceAll("_", " ") ?? "reviewed"}</span>
       </div>
-      {!caseItem.isRealCourtRecord ? (
-        <div className="mt-5">
-          <SentimentHistoryChart data={history} title="Community result" currentValue={currentSupport} compact showLegend={false} />
-        </div>
-      ) : null}
       <div className="mt-5">
         <Link
           href={`/cases/${caseItem.id}`}

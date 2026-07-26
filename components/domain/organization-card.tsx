@@ -2,10 +2,8 @@ import Link from "next/link";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
-import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { ShareActionMenu } from "@/components/domain/share-action-menu";
 import { getOrganizationScopeLabel, getOrganizationTypeLabel } from "@/lib/organizations/presentation";
-import { buildSentimentHistory } from "@/lib/sentiment/history";
 import type { OrganizationSummary } from "@/types/domain";
 
 type OrganizationCardProps = {
@@ -15,11 +13,8 @@ type OrganizationCardProps = {
 };
 
 export function OrganizationCard({ organization, compact = false, guestMode = false }: OrganizationCardProps) {
-  const currentSupport = Math.min(84, Math.max(32, 42 + organization.memberCount * 5 + (organization.endorsementCount ?? 0) * 3));
-  const sentimentHistory = buildSentimentHistory(`organization-${organization.id}`, currentSupport, { points: 6, opposeBias: 22 });
-
   return (
-    <article className="rounded-[1.5rem] border border-white/10 bg-[linear-gradient(165deg,rgba(12,22,39,0.96),rgba(8,15,28,0.96))] p-5 shadow-[0_24px_50px_-34px_rgba(2,8,23,0.92)]">
+    <article className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex min-w-0 items-start gap-3">
           <CivicAvatar
@@ -95,9 +90,6 @@ export function OrganizationCard({ organization, compact = false, guestMode = fa
             {tag}
           </span>
         ))}
-      </div>
-      <div className="mt-4">
-        <SentimentHistoryChart data={sentimentHistory} title="Member sentiment" currentValue={currentSupport} compact />
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
         <Link href={`/organizations/${organization.id}`} className="font-semibold text-cyan-100 hover:text-white">

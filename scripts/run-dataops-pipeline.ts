@@ -57,12 +57,31 @@ const retrieveArgs = [
 const stages: Stage[] = [
   {
     id: "refresh-meeting-calendars",
-    description: "Refresh Nevada meeting calendars and current-official directory sources.",
+    description: "Refresh Nevada meetings, current-official directories, and statewide financial coverage.",
     network: true,
     commands: [
       runNodeScript("scripts/generate-nevada-public-meeting-source-seeds.ts"),
       runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--scheduled", "--force"]),
       runNodeScript("scripts/run-officials-refresh.ts"),
+      runNodeScript("scripts/collect-nevada-financials.ts", ["--scheduled"]),
+      runNodeScript("scripts/audit-nevada-financial-coverage.ts", ["--strict"]),
+    ],
+  },
+  {
+    id: "public-records",
+    description: "Refresh and reconcile statewide case, political-ad, and public-organization records.",
+    network: true,
+    commands: [
+      runNodeScript("scripts/collect-nevada-case-coverage.ts"),
+      runNodeScript("scripts/audit-nevada-case-coverage.ts", ["--strict"]),
+      runNodeScript("scripts/generate-nevada-political-ad-sources.ts"),
+      runNodeScript("scripts/download-nevada-fec-political-ads.ts", ["--scheduled", "--limit=1600"]),
+      runNodeScript("scripts/import-nevada-political-ads.ts"),
+      runNodeScript("scripts/audit-nevada-political-ads.ts"),
+      runNodeScript("scripts/generate-nevada-political-ad-coverage.ts"),
+      runNodeScript("scripts/audit-nevada-political-ad-coverage.ts", ["--strict"]),
+      runNodeScript("scripts/collect-nevada-organizations.ts"),
+      runNodeScript("scripts/audit-nevada-organizations.ts", ["--strict"]),
     ],
   },
   {
@@ -145,6 +164,9 @@ function artifactMetrics() {
   const meetingImport = readJson<{ errors?: unknown[] }>("public-meeting-ingestion-report.json", {});
   const upcomingCoverage = readJson<{ totals?: Record<string, number> }>("upcoming-meeting-coverage-audit.json", {});
   const statewideCoverage = readJson<{ totals?: Record<string, number> }>("nevada-jurisdiction-meeting-coverage.json", {});
+  const caseCoverage = readJson<{ totals?: Record<string, number> }>("nevada-case-coverage.json", {});
+  const adCoverage = readJson<{ totals?: Record<string, number> }>("nevada-political-ad-coverage.json", {});
+  const organizationCoverage = readJson<{ totals?: Record<string, number> }>("nevada-public-organizations.json", {});
   const now = Date.now();
   return {
     registeredSourcesChecked: sourceRegistry.records?.length ?? 0,
@@ -170,6 +192,19 @@ function artifactMetrics() {
     sourceGapMeetings: source.totals?.meetingsBlockedBySourceGaps ?? 0,
     parserGapMeetings: source.totals?.meetingsBlockedByParserGaps ?? 0,
     parsedNamedVotes: votes.totals?.parsedNamedVotes ?? 0,
+    publishedNevadaCases: caseCoverage.totals?.publishedPublicCases ?? 0,
+    nevadaCaseSourceRoutes: caseCoverage.totals?.sourceRoutes ?? 0,
+    nevadaNinthCircuitCases: caseCoverage.totals?.federalCircuitCases ?? 0,
+    nevadaSupremeCourtCases: caseCoverage.totals?.supremeCourtCases ?? 0,
+    nevadaPoliticalAdRecords: adCoverage.totals?.repositoryRecords ?? 0,
+    nevadaEntitiesWithMatchedAds: adCoverage.totals?.entitiesWithMatchedRecords ?? 0,
+    nevadaPublicOrganizations: organizationCoverage.totals?.organizations ?? 0,
+    nevadaOrganizationCategories: organizationCoverage.totals?.categories ?? 0,
+    nevadaPoliticalPartyOrganizations: organizationCoverage.totals?.politicalPartyOrganizations ?? 0,
+    nevadaDemocraticPartyNetwork: organizationCoverage.totals?.democraticPartyNetwork ?? 0,
+    nevadaRepublicanPartyNetwork: organizationCoverage.totals?.republicanPartyNetwork ?? 0,
+    nevadaCountyPartyOrganizations: organizationCoverage.totals?.countyPartyOrganizations ?? 0,
+    nevadaPartyCaucusesAndClubs: organizationCoverage.totals?.partyCaucusesAndClubs ?? 0,
   };
 }
 

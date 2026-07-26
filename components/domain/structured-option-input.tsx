@@ -65,18 +65,30 @@ export function StructuredOptionInput({
     [rows],
   );
 
+  const selectedOptions = useMemo(
+    () => new Set(rows.map((row) => row.option).filter((option) => option && option !== "__custom__")),
+    [rows],
+  );
+
   return (
-    <div className="grid gap-3">
+    <div className="min-w-0">
       <div>
-        <p className="text-sm font-medium text-ink">{label}</p>
-        <p className="mt-1 text-xs text-slate-500">{helpText}</p>
+        <p className="text-sm font-semibold text-slate-100">{label}</p>
+        <p className="mt-1 text-xs leading-5 text-slate-400">{helpText}</p>
       </div>
       <input type="hidden" name={inputName} value={serializedValue} />
-      <div className="grid gap-3">
+      <div className="mt-3 divide-y divide-white/10 border-y border-white/10">
         {rows.map((row, index) => (
-          <div key={`${inputName}-${index}`} className="rounded-3xl border border-slate-200 bg-slate-50 p-3">
-            <div className="grid gap-3 md:grid-cols-[minmax(0,1fr),minmax(0,1fr)]">
+          <div key={`${inputName}-${index}`} className="grid min-w-0 grid-cols-[2rem_minmax(0,1fr)] gap-3 py-3">
+            <span
+              className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-xs font-semibold text-slate-400"
+              aria-hidden="true"
+            >
+              {index + 1}
+            </span>
+            <div className={allowCustom && row.option === "__custom__" ? "grid min-w-0 gap-2 sm:grid-cols-2" : "min-w-0"}>
               <select
+                aria-label={`${label}, choice ${index + 1}`}
                 value={row.option}
                 onChange={(event) => {
                   const nextRows = [...rows];
@@ -86,18 +98,19 @@ export function StructuredOptionInput({
                   };
                   setRows(nextRows);
                 }}
-                className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
+                className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none transition focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
               >
-                <option value="">Select an option</option>
+                <option value="">Choose a topic</option>
                 {options.map((option) => (
-                  <option key={option} value={option}>
+                  <option key={option} value={option} disabled={row.option !== option && selectedOptions.has(option)}>
                     {option}
                   </option>
                 ))}
                 {allowCustom ? <option value="__custom__">{customLabel}</option> : null}
               </select>
-              {allowCustom ? (
+              {allowCustom && row.option === "__custom__" ? (
                 <input
+                  aria-label={`${label}, custom choice ${index + 1}`}
                   value={row.custom}
                   onChange={(event) => {
                     const nextRows = [...rows];
@@ -109,14 +122,9 @@ export function StructuredOptionInput({
                     setRows(nextRows);
                   }}
                   placeholder="Write in your own"
-                  disabled={row.option !== "__custom__"}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none disabled:cursor-not-allowed disabled:bg-slate-100 focus:border-civic-500"
+                  className="min-h-11 w-full min-w-0 rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10"
                 />
-              ) : (
-                <div className="rounded-full border border-slate-200 bg-slate-100 px-4 py-3 text-sm text-slate-500">
-                  Choose from the shared issue list to keep profiles linked to the same topic hubs.
-                </div>
-              )}
+              ) : null}
             </div>
           </div>
         ))}

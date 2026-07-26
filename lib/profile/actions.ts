@@ -15,6 +15,12 @@ import {
   parseProfileTags,
   updateUserProfileContent,
 } from "@/lib/profile/details";
+import {
+  deleteProfileMedia,
+  ProfileMediaUploadError,
+  storeProfileMedia,
+  validateProfileMediaUpload,
+} from "@/lib/profile/media-storage";
 import { getVisibilityOverrides, setVisibilityOverrides } from "@/lib/profile/visibility";
 import type { PoliticalAffiliation, VoteQuestionScope } from "@/types/domain";
 
@@ -160,12 +166,45 @@ export async function updateProfileDetails(formData: FormData) {
     getGeographicCommunities().some((community) => community.id === requestedPrimaryCommunityId)
       ? requestedPrimaryCommunityId
       : currentContent.primaryCommunityId || getDefaultCommunityForJurisdiction(currentUser.jurisdictionName).id;
+  let profileImageUpload: Awaited<ReturnType<typeof validateProfileMediaUpload>> = null;
+  let bannerImageUpload: Awaited<ReturnType<typeof validateProfileMediaUpload>> = null;
+
+  try {
+    [profileImageUpload, bannerImageUpload] = await Promise.all([
+      validateProfileMediaUpload(formData.get("profileImageFile")),
+      validateProfileMediaUpload(formData.get("bannerImageFile")),
+    ]);
+  } catch (error) {
+    const code = error instanceof ProfileMediaUploadError ? error.code : "media-storage";
+    redirect(`/profile?details=${code}`);
+  }
+
+  const removeProfileImage = formData.get("removeProfileImage") === "true";
+  const removeBannerImage = formData.get("removeBannerImage") === "true";
+  const storedMediaUrls: string[] = [];
+  let nextProfileImageUrl = removeProfileImage ? "" : currentContent.profileImageUrl;
+  let nextBannerImageUrl = removeBannerImage ? "" : currentContent.bannerImageUrl;
+
+  try {
+    if (profileImageUpload) {
+      nextProfileImageUrl = await storeProfileMedia(currentUser.id, "profile", profileImageUpload);
+      storedMediaUrls.push(nextProfileImageUrl);
+    }
+
+    if (bannerImageUpload) {
+      nextBannerImageUrl = await storeProfileMedia(currentUser.id, "banner", bannerImageUpload);
+      storedMediaUrls.push(nextBannerImageUrl);
+    }
+  } catch (error) {
+    await Promise.allSettled(storedMediaUrls.map((url) => deleteProfileMedia(url)));
+    const code = error instanceof ProfileMediaUploadError ? error.code : "media-storage";
+    redirect(`/profile?details=${code}`);
+  }
 
   await updateUserProfileContent(currentUser.id, {
-    profileImageUrl:
-      typeof formData.get("profileImageUrl") === "string" ? String(formData.get("profileImageUrl")).trim() : currentContent.profileImageUrl,
-    bannerImageUrl:
-      typeof formData.get("bannerImageUrl") === "string" ? String(formData.get("bannerImageUrl")).trim() : currentContent.bannerImageUrl,
+    profileImageUrl: nextProfileImageUrl,
+    bannerImageUrl: nextBannerImageUrl,
+    profileTheme: formData.get("profileTheme") === "bright" ? "bright" : "classic",
     primaryCommunityId: validPrimaryCommunityId,
     localIssues: parsedLocalIssues,
     stateIssues: parsedStateIssues,
@@ -190,6 +229,15 @@ export async function updateProfileDetails(formData: FormData) {
     bookmarkedScopes: currentContent.bookmarkedScopes,
   });
 
+  await Promise.allSettled([
+    nextProfileImageUrl !== currentContent.profileImageUrl
+      ? deleteProfileMedia(currentContent.profileImageUrl)
+      : Promise.resolve(),
+    nextBannerImageUrl !== currentContent.bannerImageUrl
+      ? deleteProfileMedia(currentContent.bannerImageUrl)
+      : Promise.resolve(),
+  ]);
+
   redirect(invalidLabels.length ? "/profile?details=updated&externalLinks=invalid" : "/profile?details=updated");
 }
 
@@ -211,6 +259,7 @@ export async function toggleBookmarkedScope(formData: FormData) {
   await updateUserProfileContent(currentUser.id, {
     profileImageUrl: currentContent.profileImageUrl,
     bannerImageUrl: currentContent.bannerImageUrl,
+    profileTheme: currentContent.profileTheme,
     primaryCommunityId: currentContent.primaryCommunityId,
     localIssues: currentContent.localIssues,
     stateIssues: currentContent.stateIssues,

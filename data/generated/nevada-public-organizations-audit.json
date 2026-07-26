@@ -1,0 +1,556 @@
+{
+  "generatedAt": "2026-07-26T02:54:11.392Z",
+  "coverageGeneratedAt": "2026-07-26T02:49:38.263Z",
+  "strictPassed": true,
+  "totals": {
+    "organizations": 127,
+    "categories": 19,
+    "statewide": 46,
+    "localOrRegional": 81,
+    "websitesChecked": 57,
+    "websitesReachable": 57,
+    "irsRegistryMatches": 26,
+    "politicalPartyOrganizations": 81,
+    "democraticPartyNetwork": 32,
+    "republicanPartyNetwork": 49,
+    "countyPartyOrganizations": 34,
+    "partyCaucusesAndClubs": 45,
+    "sourceRoutesRegistered": 127,
+    "duplicateIds": 0,
+    "duplicateNames": 0,
+    "missingSourceRoutes": 0,
+    "missingCommunityLinks": 0,
+    "exampleUrls": 0,
+    "statePartyOrganizations": 2,
+    "democraticCountyParties": 17,
+    "republicanCountyParties": 17,
+    "democraticCaucusesAndClubs": 14,
+    "republicanListedClubs": 31,
+    "missingPartySourceFields": 0,
+    "explicitlyUnaffiliatedDirectoryListings": 1
+  },
+  "gaps": {
+    "duplicateIds": [],
+    "duplicateNames": [],
+    "missingSourceRoutes": [],
+    "missingCommunityLinks": [],
+    "exampleUrls": [],
+    "missingStateParties": [],
+    "missingPartySourceFields": [],
+    "unaffiliatedDirectoryRecords": [
+      {
+        "id": "public-org-gop-nevada-republican-club",
+        "name": "Nevada Republican Club",
+        "relationship": "directory_listing_no_affiliation"
+      }
+    ],
+    "irsUnmatched": [
+      {
+        "id": "public-org-aclu-nevada",
+        "name": "ACLU of Nevada",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-make-road-nevada",
+        "name": "Make the Road Nevada",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-silver-state-equality",
+        "name": "Silver State Equality",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-carson-city-chamber",
+        "name": "Carson City Chamber of Commerce",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-vegas-chamber",
+        "name": "Vegas Chamber",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-state-bar-nevada",
+        "name": "State Bar of Nevada",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-northern-nevada-hopes",
+        "name": "Northern Nevada HOPES",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-nevada-american-legion",
+        "name": "American Legion Department of Nevada",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-vfw-nevada",
+        "name": "Veterans of Foreign Wars Department of Nevada",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-nevada-pta",
+        "name": "Nevada PTA",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-nshe",
+        "name": "Nevada System of Higher Education",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-unr",
+        "name": "University of Nevada, Reno",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-unlv",
+        "name": "University of Nevada, Las Vegas",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-nevada-state-university",
+        "name": "Nevada State University",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-csn",
+        "name": "College of Southern Nevada",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-tmcc",
+        "name": "Truckee Meadows Community College",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-great-basin-college",
+        "name": "Great Basin College",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-western-nevada-college",
+        "name": "Western Nevada College",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-nevada-association-counties",
+        "name": "Nevada Association of Counties",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-nevada-league-cities",
+        "name": "Nevada League of Cities and Municipalities",
+        "verificationStatus": "official_website_checked"
+      },
+      {
+        "id": "public-org-nevada-state-democratic-party",
+        "name": "Nevada State Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-carson-city",
+        "name": "Carson City Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-churchill-county",
+        "name": "Churchill County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-clark-county",
+        "name": "Clark County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-douglas-county",
+        "name": "Douglas County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-elko-county",
+        "name": "Elko County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-esmeralda-county",
+        "name": "Esmeralda County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-eureka-county",
+        "name": "Eureka County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-humboldt-county",
+        "name": "Humboldt County Democratic Party",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-dem-lander-county",
+        "name": "Lander County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-lincoln-county",
+        "name": "Lincoln County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-lyon-county",
+        "name": "Lyon County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-mineral-county",
+        "name": "Mineral County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-nye-county",
+        "name": "Nye County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-pershing-county",
+        "name": "Pershing County Democratic Party",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-dem-storey-county",
+        "name": "Storey County Democratic Party",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-dem-washoe-county",
+        "name": "Washoe County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-white-pine-county",
+        "name": "White Pine County Democratic Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-aapi-caucus",
+        "name": "AAPI Democratic Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-accessibility-caucus",
+        "name": "Accessibility Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-aian-caucus",
+        "name": "American Indian Alaska Native Democratic Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-black-caucus",
+        "name": "Black Democratic Caucus",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-dem-jewish-caucus",
+        "name": "Jewish Democratic Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-labor-caucus",
+        "name": "Labor Democratic Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-latino-caucus",
+        "name": "Latino Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-lgbtqia-caucus",
+        "name": "LGBTQIA+ Democratic Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-muslim-caucus",
+        "name": "Muslim Democratic Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-rural-caucus",
+        "name": "Rural Nevada Democratic Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-senior-caucus",
+        "name": "Senior Democratic Caucus",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-dem-veterans-caucus",
+        "name": "Veterans Caucus",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-dem-womens-caucus",
+        "name": "Women's Democratic Caucus",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-dem-young-democrats",
+        "name": "Young Democrats of Nevada",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-nevada-republican-party",
+        "name": "Nevada Republican Party",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-carson-city",
+        "name": "Carson City Republican Central Committee",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-gop-churchill-county",
+        "name": "Churchill County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-clark-county",
+        "name": "Clark County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-douglas-county",
+        "name": "Douglas County Republican Central Committee",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-gop-elko-county",
+        "name": "Elko County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-esmeralda-county",
+        "name": "Esmeralda Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-eureka-county",
+        "name": "Eureka County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-humboldt-county",
+        "name": "Humboldt County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-lander-county",
+        "name": "Lander County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-lincoln-county",
+        "name": "Lincoln County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-lyon-county",
+        "name": "Lyon County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-mineral-county",
+        "name": "Mineral County Republican Central Committee",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-gop-nye-county",
+        "name": "Nye County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-pershing-county",
+        "name": "Pershing County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-storey-county",
+        "name": "Storey County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-washoe-county",
+        "name": "Washoe County Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-white-pine-county",
+        "name": "White Pine Republican Central Committee",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-active-republican-women-las-vegas",
+        "name": "Active Republican Women of Las Vegas",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-battle-born-republican-women",
+        "name": "Battle Born Republican Women of Southern Nevada",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-boulder-city-republican-women",
+        "name": "Boulder City Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-carson-city-republican-women",
+        "name": "Carson City Republican Women",
+        "verificationStatus": "party_source_checked"
+      },
+      {
+        "id": "public-org-gop-churchill-republican-women",
+        "name": "Churchill County Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-douglas-republican-women",
+        "name": "Douglas County Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-fernley-republican-women",
+        "name": "Fernley Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-incline-republican-women",
+        "name": "Incline Village Crystal Bay Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-lahontan-republican-women",
+        "name": "Lahontan Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-las-vegas-town-hall",
+        "name": "Las Vegas Republican Town Hall Group",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-mesquite-patriots",
+        "name": "Mesquite Nevada Patriots",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-mesquite-republican-women",
+        "name": "Mesquite Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-mt-rose-republican-women",
+        "name": "Mt. Rose Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-federation-republican-women",
+        "name": "Nevada Federation of Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-nevada-republican-club",
+        "name": "Nevada Republican Club",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-nevada-republican-assembly",
+        "name": "Nevada Republican Assembly",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-pahrump-republican-women",
+        "name": "Pahrump Valley Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-republican-jewish-coalition",
+        "name": "Republican Jewish Coalition - Nevada chapters",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-republican-women-las-vegas",
+        "name": "Republican Women of Las Vegas",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-republican-women-reno",
+        "name": "Republican Women of Reno",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-siena-conservatives",
+        "name": "Siena Conservatives",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-sierra-republican-club",
+        "name": "Sierra Republican Club",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-sierra-nevada-republican-women",
+        "name": "Sierra Nevada Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-silver-state-republican-women",
+        "name": "Silver State Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-southern-hills-republican-women",
+        "name": "Southern Hills Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-sparks-republican-women",
+        "name": "Sparks Republican Women's Club",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-spring-mountain-republican-women",
+        "name": "Spring Mountain Republican Women",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-sun-city-anthem",
+        "name": "Sun City Anthem",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-unlv-young-republicans",
+        "name": "UNLV Young Republicans",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-unr-college-republicans",
+        "name": "UNR College Republicans",
+        "verificationStatus": "party_source_registered"
+      },
+      {
+        "id": "public-org-gop-washoe-republican-women",
+        "name": "Washoe Republican Women",
+        "verificationStatus": "party_source_registered"
+      }
+    ]
+  },
+  "failures": []
+}

@@ -16,6 +16,7 @@ on:
         options:
           - none
           - refresh-meeting-calendars
+          - public-records
           - import-meetings
           - register-sources
           - discover-documents
@@ -38,6 +39,7 @@ on:
         options:
           - none
           - refresh-meeting-calendars
+          - public-records
           - import-meetings
           - register-sources
           - discover-documents
@@ -119,6 +121,7 @@ jobs:
       DATAOPS_OCR_TIMEOUT_MS: ${{ vars.DATAOPS_OCR_TIMEOUT_MS || '30000' }}
       DATAOPS_NETWORK_ENABLED: ${{ github.event.inputs.offline == 'true' && 'false' || 'true' }}
       DATAOPS_INSTALL_OCR_TOOLS: ${{ vars.DATAOPS_INSTALL_OCR_TOOLS || 'false' }}
+      FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
       OFFICIALS_EXECUTION_ENVIRONMENT: github_actions
       OFFICIALS_NETWORK_ENABLED: "true"
       OFFICIALS_WORKER_BACKEND: github_actions
@@ -202,6 +205,17 @@ jobs:
             data/generated/current-officials*.json
             data/generated/carson-city-officials-*.json
             data/generated/nevada-community-officials.json
+            data/generated/nevada-financial-coverage.json
+            data/generated/nevada-financial-coverage-audit.json
+            data/generated/nevada-case-coverage.json
+            data/generated/nevada-case-coverage-audit.json
+            data/generated/nevada-political-ad-source-registry.json
+            data/generated/nevada-political-ads.json
+            data/generated/nevada-political-ads-audit.json
+            data/generated/nevada-political-ad-coverage.json
+            data/generated/nevada-political-ad-coverage-audit.json
+            data/generated/nevada-public-organizations.json
+            data/generated/nevada-public-organizations-audit.json
             data/generated/audits/*/carson-city-officials-*.json
           if-no-files-found: warn
 

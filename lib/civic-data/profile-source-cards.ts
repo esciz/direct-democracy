@@ -28,6 +28,34 @@ export type CampaignFinanceAllReportedTotals = {
   aggregationMethod: string | null;
 };
 
+export type CampaignFinancialSnapshot = {
+  sourceKind: "fec" | "transparency_usa";
+  sourceName: string;
+  sourceUrl: string;
+  cycleYear: number;
+  totalRaised: number;
+  totalSpent: number;
+  cashOnHand: number | null;
+  reportingPeriod: string;
+  periodStart: string | null;
+  periodEnd: string | null;
+};
+
+export type PersonalFinancialDisclosureData = {
+  sourceName: string | null;
+  sourceUrl: string | null;
+  status: string | null;
+  applicability: string | null;
+  reviewStatus: string | null;
+  lastCheckedAt: string | null;
+  filingSummaries: Array<{
+    name: string;
+    filedAt: string | null;
+    url: string | null;
+  }>;
+  note: string | null;
+};
+
 export type CampaignFinanceContributorRelationship = {
   targetName: string;
   relationship: string;
@@ -71,10 +99,12 @@ export type CampaignFinanceSourceCardData = {
   pendingCount: number;
   approvedCount: number;
   fundingBreakdown: CandidateFundingBreakdown | null;
+  financialSnapshot: CampaignFinancialSnapshot | null;
   allReportedFundingBreakdown: CandidateFundingBreakdown | null;
   contributorAttributions: CampaignFinanceContributorAttribution[];
   cycleHistory: CampaignFinanceCycleRecord[];
   allReportedTotals: CampaignFinanceAllReportedTotals | null;
+  personalFinancialDisclosure: PersonalFinancialDisclosureData;
   campaignReportedSummary: string | null;
   donorExtractionStatus: string;
 };
@@ -87,6 +117,16 @@ type FinanceAttributionMetadata = {
   campaignReportedSummary?: string | null;
   donorExtractionStatus?: string;
   contributorAttributions?: CampaignFinanceContributorAttribution[];
+  financialSnapshot?: CampaignFinancialSnapshot | null;
+  cycleHistory?: CampaignFinanceCycleRecord[];
+  allReportedTotals?: CampaignFinanceAllReportedTotals | null;
+};
+
+type DisclosureAttributionMetadata = {
+  coverageStatus?: string;
+  applicability?: string;
+  filingSummaries?: Array<{ name?: string; filedAt?: string | null; url?: string | null }>;
+  note?: string | null;
 };
 
 function financeReviewRank(value: string | null | undefined) {
@@ -118,6 +158,92 @@ function asFinanceRawData(value: unknown) {
   return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
 }
 
+function asFinancialSnapshot(value: unknown): CampaignFinancialSnapshot | null {
+  const snapshot = asFinanceRawData(value);
+  const cycleYear = asFiniteNumber(snapshot?.cycleYear);
+  const totalRaised = asFiniteNumber(snapshot?.totalRaised);
+  const totalSpent = asFiniteNumber(snapshot?.totalSpent);
+  if (
+    (snapshot?.sourceKind !== "fec" && snapshot?.sourceKind !== "transparency_usa") ||
+    typeof snapshot.sourceName !== "string" ||
+    typeof snapshot.sourceUrl !== "string" ||
+    typeof snapshot.reportingPeriod !== "string" ||
+    cycleYear == null ||
+    totalRaised == null ||
+    totalSpent == null
+  ) {
+    return null;
+  }
+  return {
+    sourceKind: snapshot.sourceKind,
+    sourceName: snapshot.sourceName,
+    sourceUrl: snapshot.sourceUrl,
+    cycleYear,
+    totalRaised,
+    totalSpent,
+    cashOnHand: asFiniteNumber(snapshot.cashOnHand),
+    reportingPeriod: snapshot.reportingPeriod,
+    periodStart: typeof snapshot.periodStart === "string" ? snapshot.periodStart : null,
+    periodEnd: typeof snapshot.periodEnd === "string" ? snapshot.periodEnd : null,
+  };
+}
+
+function asCycleRecord(value: unknown): CampaignFinanceCycleRecord | null {
+  const cycle = asFinanceRawData(value);
+  const cycleYear = asFiniteNumber(cycle?.cycleYear);
+  const totalRaised = asFiniteNumber(cycle?.totalRaised);
+  const totalSpent = asFiniteNumber(cycle?.totalSpent);
+  if (
+    cycleYear == null ||
+    totalRaised == null ||
+    totalSpent == null ||
+    typeof cycle?.displayLabel !== "string" ||
+    typeof cycle.reportingPeriod !== "string"
+  ) {
+    return null;
+  }
+  return {
+    cycleYear,
+    displayLabel: cycle.displayLabel,
+    label: typeof cycle.label === "string" ? cycle.label : `${cycle.displayLabel} totals`,
+    reportingPeriod: cycle.reportingPeriod,
+    periodEnd: typeof cycle.periodEnd === "string" ? cycle.periodEnd : "",
+    totalRaised,
+    totalSpent,
+    cashOnHand: asFiniteNumber(cycle.cashOnHand),
+    sourceName: typeof cycle.sourceName === "string" ? cycle.sourceName : "Campaign finance source",
+    sourceUrl: typeof cycle.sourceUrl === "string" ? cycle.sourceUrl : null,
+    isCurrentCycle: cycle.isCurrentCycle === true,
+  };
+}
+
+function asAllReportedTotals(value: unknown): CampaignFinanceAllReportedTotals | null {
+  const aggregate = asFinanceRawData(value);
+  const totalRaised = asFiniteNumber(aggregate?.totalRaised);
+  const totalSpent = asFiniteNumber(aggregate?.totalSpent);
+  const cycleCount = asFiniteNumber(aggregate?.cycleCount);
+  if (
+    typeof aggregate?.label !== "string" ||
+    typeof aggregate.reportingPeriod !== "string" ||
+    typeof aggregate.sourceName !== "string" ||
+    totalRaised == null ||
+    totalSpent == null ||
+    cycleCount == null
+  ) {
+    return null;
+  }
+  return {
+    label: aggregate.label,
+    reportingPeriod: aggregate.reportingPeriod,
+    totalRaised,
+    totalSpent,
+    cycleCount,
+    sourceName: aggregate.sourceName,
+    sourceUrl: typeof aggregate.sourceUrl === "string" ? aggregate.sourceUrl : null,
+    aggregationMethod: typeof aggregate.aggregationMethod === "string" ? aggregate.aggregationMethod : null,
+  };
+}
+
 function isContributorAttribution(value: unknown): value is CampaignFinanceContributorAttribution {
   if (!value || typeof value !== "object" || Array.isArray(value)) return false;
   const attribution = value as Partial<CampaignFinanceContributorAttribution>;
@@ -132,9 +258,47 @@ function isContributorAttribution(value: unknown): value is CampaignFinanceContr
   );
 }
 
+async function getLinkedFinanceCandidateId(entityType: "candidate" | "official", entityId: string) {
+  if (entityType === "candidate") return entityId;
+  const official = await prisma.official.findUnique({
+    where: { id: entityId },
+    select: { fullName: true },
+  });
+  if (!official) return null;
+  const candidates = await prisma.candidate.findMany({
+    where: {
+      fullName: { equals: official.fullName, mode: "insensitive" },
+      OR: [
+        { campaignFinanceFilings: { some: {} } },
+        { campaignFinanceSummaries: { some: {} } },
+      ],
+    },
+    select: {
+      id: true,
+      _count: {
+        select: {
+          campaignFinanceFilings: true,
+          campaignFinanceSummaries: true,
+        },
+      },
+    },
+    take: 3,
+  });
+  return candidates
+    .slice()
+    .sort(
+      (left, right) =>
+        right._count.campaignFinanceFilings +
+        right._count.campaignFinanceSummaries -
+        (left._count.campaignFinanceFilings + left._count.campaignFinanceSummaries),
+    )
+    .at(0)?.id ?? null;
+}
+
 export async function getCampaignFinanceSourceCard(entityType: "candidate" | "official", entityId: string): Promise<CampaignFinanceSourceCardData> {
   const civicEntityType = entityType === "candidate" ? CivicEntityType.CANDIDATE : CivicEntityType.OFFICIAL;
-  const [attributions, filingCount, latestFiling, filings, documents, fundingBreakdown] = await Promise.all([
+  const financeCandidateId = await getLinkedFinanceCandidateId(entityType, entityId);
+  const [attributions, disclosureAttributions, filingCount, latestFiling, filings, documents, fundingBreakdown] = await Promise.all([
     prisma.sourceAttribution.findMany({
       where: {
         entityType: civicEntityType,
@@ -144,28 +308,37 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
       orderBy: [{ lastImportedAt: "desc" }, { updatedAt: "desc" }],
       take: 10,
     }),
-    entityType === "candidate" ? prisma.campaignFinanceFiling.count({ where: { candidateId: entityId } }) : Promise.resolve(0),
-    entityType === "candidate"
+    prisma.sourceAttribution.findMany({
+      where: {
+        entityType: civicEntityType,
+        entityId,
+        fieldName: "financial_disclosure",
+      },
+      orderBy: [{ lastImportedAt: "desc" }, { updatedAt: "desc" }],
+      take: 10,
+    }),
+    financeCandidateId ? prisma.campaignFinanceFiling.count({ where: { candidateId: financeCandidateId } }) : Promise.resolve(0),
+    financeCandidateId
       ? prisma.campaignFinanceFiling.findFirst({
-          where: { candidateId: entityId },
+          where: { candidateId: financeCandidateId },
           orderBy: [{ filedAt: "desc" }, { updatedAt: "desc" }],
           include: { source: { select: { name: true, url: true, lastCheckedAt: true } } },
         })
       : Promise.resolve(null),
-    entityType === "candidate"
+    financeCandidateId
       ? prisma.campaignFinanceFiling.findMany({
-          where: { candidateId: entityId },
+          where: { candidateId: financeCandidateId },
           orderBy: [{ filedAt: "desc" }, { updatedAt: "desc" }],
           take: 50,
           include: { source: { select: { name: true } } },
         })
       : Promise.resolve([]),
-    entityType === "candidate"
+    financeCandidateId
       ? prisma.civicDocument.findMany({
           where: {
             documentType: "CAMPAIGN_FINANCE_FILING",
             relatedEntityType: "CANDIDATE",
-            relatedEntityId: entityId,
+            relatedEntityId: financeCandidateId,
           },
           orderBy: { createdAt: "desc" },
           take: 8,
@@ -174,8 +347,8 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
           },
         })
       : Promise.resolve([]),
-    entityType === "candidate"
-      ? getCandidateFundingBreakdown(entityId, { reportIdPrefix: "reviewed-top-contributors:" })
+    financeCandidateId
+      ? getCandidateFundingBreakdown(financeCandidateId, { reportIdPrefix: "reviewed-top-contributors:" })
       : Promise.resolve(null),
   ]);
   const attribution =
@@ -193,6 +366,10 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
       .at(0) ?? null;
   const metadata = (attribution?.metadata ?? {}) as FinanceAttributionMetadata;
   const allMetadata = attributions.map((row) => (row.metadata ?? {}) as FinanceAttributionMetadata);
+  const financialSnapshot =
+    asFinancialSnapshot(metadata.financialSnapshot) ??
+    allMetadata.map((entry) => asFinancialSnapshot(entry.financialSnapshot)).find(Boolean) ??
+    null;
   const metadataFilings = allMetadata
     .flatMap((entry) => (Array.isArray(entry.filingSummaries) ? entry.filingSummaries : []))
         .map((filing) => ({
@@ -209,14 +386,23 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
       url: filing.filingUrl,
     };
   });
-  const cycleHistory = filings
+  const filingCycleHistory = filings
+    .slice()
+    .sort((left, right) => {
+      const kindRank = (value: unknown) =>
+        asFinanceRawData(value)?.recordKind === "reviewed_cycle_aggregate" ? 2 : 1;
+      const kindDelta = kindRank(right.rawData) - kindRank(left.rawData);
+      if (kindDelta !== 0) return kindDelta;
+      return (right.periodEnd?.getTime() ?? 0) - (left.periodEnd?.getTime() ?? 0);
+    })
     .flatMap((filing): CampaignFinanceCycleRecord[] => {
       const rawData = asFinanceRawData(filing.rawData);
       const cycleYear = asFiniteNumber(rawData?.cycleYear);
       const totalRaised = asFiniteNumber(filing.amountRaised);
       const totalSpent = asFiniteNumber(filing.amountSpent);
       if (
-        rawData?.recordKind !== "reviewed_cycle_aggregate" ||
+        !rawData ||
+        !["reviewed_cycle_aggregate", "statewide_cycle_aggregate"].includes(String(rawData?.recordKind ?? "")) ||
         cycleYear == null ||
         totalRaised == null ||
         totalSpent == null ||
@@ -244,11 +430,24 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
       }];
     })
     .sort((left, right) => right.cycleYear - left.cycleYear);
-  const allReportedFiling = filings.find((filing) => asFinanceRawData(filing.rawData)?.recordKind === "reviewed_all_reported_aggregate");
+  const metadataCycleHistory = allMetadata
+    .flatMap((entry) => (Array.isArray(entry.cycleHistory) ? entry.cycleHistory : []))
+    .map(asCycleRecord)
+    .filter((cycle): cycle is CampaignFinanceCycleRecord => Boolean(cycle));
+  const cycleHistory = (() => {
+    const cycles = new Map<number, CampaignFinanceCycleRecord>();
+    for (const cycle of [...filingCycleHistory, ...metadataCycleHistory]) {
+      if (!cycles.has(cycle.cycleYear)) cycles.set(cycle.cycleYear, cycle);
+    }
+    return [...cycles.values()].sort((left, right) => right.cycleYear - left.cycleYear);
+  })();
+  const allReportedFiling =
+    filings.find((filing) => asFinanceRawData(filing.rawData)?.recordKind === "reviewed_all_reported_aggregate") ??
+    filings.find((filing) => asFinanceRawData(filing.rawData)?.recordKind === "statewide_all_reported_aggregate");
   const allReportedRawData = asFinanceRawData(allReportedFiling?.rawData);
   const allReportedRaised = asFiniteNumber(allReportedFiling?.amountRaised);
   const allReportedSpent = asFiniteNumber(allReportedFiling?.amountSpent);
-  const allReportedTotals: CampaignFinanceAllReportedTotals | null =
+  const filingAllReportedTotals: CampaignFinanceAllReportedTotals | null =
     allReportedFiling && allReportedRaised != null && allReportedSpent != null
       ? {
           label: typeof allReportedRawData?.filingName === "string" ? allReportedRawData.filingName : "All reported campaign activity",
@@ -261,9 +460,14 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
           aggregationMethod: typeof allReportedRawData?.aggregationMethod === "string" ? allReportedRawData.aggregationMethod : null,
         }
       : null;
+  const allReportedTotals =
+    filingAllReportedTotals ??
+    asAllReportedTotals(metadata.allReportedTotals) ??
+    allMetadata.map((entry) => asAllReportedTotals(entry.allReportedTotals)).find(Boolean) ??
+    null;
   const allReportedFundingBreakdown =
-    entityType === "candidate" && allReportedTotals
-      ? await getCandidateFundingBreakdown(entityId, {
+    financeCandidateId && allReportedTotals
+      ? await getCandidateFundingBreakdown(financeCandidateId, {
           reportIdPrefix: "reviewed-all-reported-top-contributors:",
           totalRaised: allReportedTotals.totalRaised,
           totalSpent: allReportedTotals.totalSpent,
@@ -303,6 +507,25 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
         .map((entry) => [entry.contributorName.toLowerCase(), entry]),
     ).values(),
   ];
+  const disclosureAttribution =
+    disclosureAttributions
+      .slice()
+      .sort((left, right) => {
+        const reviewDelta = financeReviewRank(right.reviewStatus) - financeReviewRank(left.reviewStatus);
+        if (reviewDelta !== 0) return reviewDelta;
+        return (right.lastImportedAt?.getTime() ?? 0) - (left.lastImportedAt?.getTime() ?? 0);
+      })
+      .at(0) ?? null;
+  const disclosureMetadata = (disclosureAttribution?.metadata ?? {}) as DisclosureAttributionMetadata;
+  const disclosureFilings = dedupeFilings(
+    (Array.isArray(disclosureMetadata.filingSummaries) ? disclosureMetadata.filingSummaries : [])
+      .map((filing) => ({
+        name: filing.name ?? "Personal financial disclosure",
+        filedAt: filing.filedAt ?? null,
+        url: filing.url ?? disclosureAttribution?.sourceUrl ?? null,
+      }))
+      .filter((filing) => filing.name),
+  );
 
   return {
     sourceName: attribution?.sourceName ?? latestFiling?.source?.name ?? null,
@@ -327,10 +550,21 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
     pendingCount: attributions.filter((row) => row.reviewStatus === "pending_review").length,
     approvedCount: attributions.filter((row) => row.reviewStatus === "approved" || row.reviewStatus === "verified").length,
     fundingBreakdown,
+    financialSnapshot,
     allReportedFundingBreakdown,
     contributorAttributions,
     cycleHistory,
     allReportedTotals,
+    personalFinancialDisclosure: {
+      sourceName: disclosureAttribution?.sourceName ?? null,
+      sourceUrl: disclosureAttribution?.sourceUrl ?? null,
+      status: disclosureMetadata.coverageStatus ?? (disclosureAttribution ? "source_registered" : null),
+      applicability: disclosureMetadata.applicability ?? null,
+      reviewStatus: disclosureAttribution?.reviewStatus ?? null,
+      lastCheckedAt: disclosureAttribution?.lastImportedAt?.toISOString() ?? null,
+      filingSummaries: disclosureFilings,
+      note: disclosureMetadata.note ?? null,
+    },
     campaignReportedSummary: metadata.campaignReportedSummary ?? allMetadata.find((entry) => entry.campaignReportedSummary)?.campaignReportedSummary ?? null,
     donorExtractionStatus: publishedContributorBreakdown?.hasDetailedContributions
       ? publishedContributorBreakdown.sourceCoverageNote

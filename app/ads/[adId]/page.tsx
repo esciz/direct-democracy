@@ -27,11 +27,12 @@ export default async function PoliticalAdDetailPage({ params }: PoliticalAdDetai
   if (!ad) {
     notFound();
   }
+  const hasReviewedClaims = ad.claims.length > 0;
+  const filingOnly = ad.id.startsWith("fec-nv-ie-");
 
   return (
     <div className="space-y-6 py-8">
-      <section className="dd-panel relative overflow-hidden rounded-[1.75rem] p-6 sm:p-8">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#34d399,#22d3ee,#818cf8)]" />
+      <section className="dd-panel relative overflow-hidden rounded-lg p-6 sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Political Ad</p>
@@ -49,10 +50,18 @@ export default async function PoliticalAdDetailPage({ params }: PoliticalAdDetai
               ))}
             </div>
           </div>
-          <div className="grid min-w-[16rem] gap-2">
-            <TruthRatingBadge label="System rating" rating={ad.overallSystemRating} confidence={ad.overallSystemConfidence} />
-            <TruthRatingBadge label="Trusted citizen rating" rating={ad.overallCitizenRating} tone="citizen" />
-          </div>
+          {hasReviewedClaims ? (
+            <div className="grid min-w-[16rem] gap-2">
+              <TruthRatingBadge label="System rating" rating={ad.overallSystemRating} confidence={ad.overallSystemConfidence} />
+              <TruthRatingBadge label="Trusted citizen rating" rating={ad.overallCitizenRating} tone="citizen" />
+            </div>
+          ) : (
+            <div className="max-w-sm border-l-2 border-amber-300/40 pl-4 text-sm leading-6 text-amber-100/80">
+              {filingOnly
+                ? "Spend and dissemination are source-backed. The creative and its claims have not been attached."
+                : "The creative source is attached, but no claims have been reviewed or rated."}
+            </div>
+          )}
         </div>
 
         <dl className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -82,7 +91,8 @@ export default async function PoliticalAdDetailPage({ params }: PoliticalAdDetai
 
       <AdMediaViewer ad={ad} />
 
-      <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+      {hasReviewedClaims ? (
+      <section className="dd-panel-muted rounded-lg p-6 sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Truth rating</p>
@@ -112,8 +122,10 @@ export default async function PoliticalAdDetailPage({ params }: PoliticalAdDetai
           <RatingChallengeButton targetType="ad" targetId={ad.id} />
         </div>
       </section>
+      ) : null}
 
-      <section id="claims" className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
+      {hasReviewedClaims ? (
+      <section id="claims" className="dd-panel-muted rounded-lg p-6 sm:p-8">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Claim breakdown</p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">Claims reviewed</h2>
@@ -127,6 +139,7 @@ export default async function PoliticalAdDetailPage({ params }: PoliticalAdDetai
           ))}
         </div>
       </section>
+      ) : null}
 
       <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Source metadata</p>
