@@ -4,6 +4,7 @@ import path from "node:path";
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const OUTPUT_PATH = path.join(GENERATED_DIR, "upcoming-meeting-coverage-audit.json");
 const SEED_PATH = path.join(process.cwd(), "data", "seed", "public-meeting-sources.json");
+const COVERAGE_PATH = path.join(process.cwd(), "data", "seed", "nevada-jurisdiction-coverage.json");
 
 type MeetingSource = {
   id: string;
@@ -42,6 +43,11 @@ type ManualProvider = {
   newest_meeting_found?: string | null;
 };
 
+type CoverageCatalog = {
+  providers?: Array<{ id: string; name: string; providerGroup: string }>;
+  jurisdictions?: Array<{ id: string; name: string; kind: string; providerId: string; communityIds: string[] }>;
+};
+
 function readJson<T>(filePath: string, fallback: T): T {
   try {
     return JSON.parse(readFileSync(filePath, "utf8")) as T;
@@ -62,6 +68,14 @@ function parseTime(value: string | null | undefined) {
 const generatedAt = new Date().toISOString();
 const now = Date.now();
 const sources = readJson<MeetingSource[]>(SEED_PATH, []).filter((source) => source.active);
+const coverage = readJson<CoverageCatalog>(COVERAGE_PATH, {});
+const requiredProviders = coverage.providers ?? [];
+const requirementsByProvider = new Map<string, NonNullable<CoverageCatalog["jurisdictions"]>>();
+for (const requirement of coverage.jurisdictions ?? []) {
+  const requirements = requirementsByProvider.get(requirement.providerId) ?? [];
+  requirements.push(requirement);
+  requirementsByProvider.set(requirement.providerId, requirements);
+}
 const bodies = readJson<PublicBody[]>(generatedPath("public-meeting-bodies.json"), []);
 const meetings = readJson<Meeting[]>(generatedPath("public-meetings.json"), []);
 const directProviders = readJson<DirectProvider[]>(generatedPath("public-meeting-provider-report.json"), []);
@@ -71,6 +85,7 @@ const manualById = new Map(manualProviders.map((provider) => [provider.provider_
 const sourceById = new Map(sources.map((source) => [source.id, source]));
 const bodyById = new Map(bodies.map((body) => [body.id, body]));
 const providerIds = new Set([
+  ...requiredProviders.map((provider) => provider.id),
   ...sources.map((source) => source.id),
   ...directProviders.map((provider) => provider.source_id),
   ...manualProviders.map((provider) => provider.provider_id),
@@ -80,6 +95,8 @@ const rows = [...providerIds].map((providerId) => {
   const source = sourceById.get(providerId);
   const direct = directById.get(providerId);
   const manual = manualById.get(providerId);
+  const requiredProvider = requiredProviders.find((provider) => provider.id === providerId);
+  const coverageRequirements = requirementsByProvider.get(providerId) ?? [];
   const providerMeetings = meetings
     .filter((meeting) => bodyById.get(meeting.public_body_id)?.seed_source_id === providerId)
     .filter((meeting) => parseTime(meeting.meeting_date) !== null)
@@ -104,8 +121,16 @@ const rows = [...providerIds].map((providerId) => {
 
   return {
     providerId,
-    providerName: source?.name ?? direct?.provider_name ?? manual?.source_name ?? providerId,
+    providerName: source?.name ?? direct?.provider_name ?? manual?.source_name ?? requiredProvider?.name ?? providerId,
     jurisdiction: source?.jurisdiction ?? direct?.jurisdiction ?? "Jurisdiction pending",
+    requiredByStatewideCatalog: Boolean(requiredProvider),
+    providerGroup: requiredProvider?.providerGroup ?? null,
+    coverageRequirements: coverageRequirements.map((requirement) => ({
+      id: requirement.id,
+      name: requirement.name,
+      kind: requirement.kind,
+      communityIds: requirement.communityIds,
+    })),
     status,
     sourceConfigured: Boolean(source || direct || manual),
     directProviderStatus: direct
@@ -140,6 +165,9 @@ const rows = [...providerIds].map((providerId) => {
 }).sort((left, right) => left.jurisdiction.localeCompare(right.jurisdiction) || left.providerName.localeCompare(right.providerName));
 
 const totals = {
+  requiredJurisdictions: coverage.jurisdictions?.length ?? 0,
+  requiredProviders: requiredProviders.length,
+  configuredRequiredProviders: requiredProviders.filter((provider) => sourceById.has(provider.id)).length,
   configuredProviders: rows.filter((row) => row.sourceConfigured).length,
   providersWithUpcomingMeetings: rows.filter((row) => row.status === "upcoming_found").length,
   upcomingMeetings: rows.reduce((total, row) => total + row.upcomingMeetings, 0),

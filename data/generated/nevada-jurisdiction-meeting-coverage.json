@@ -1,0 +1,3236 @@
+{
+  "generatedAt": "2026-07-25T22:06:02.746Z",
+  "catalogVersion": 1,
+  "scope": {
+    "description": "Statewide baseline for Nevada public-meeting acquisition. Covers every county or county-equivalent government, incorporated city, county school district, and the primary statewide meeting layers.",
+    "countyGovernments": 17,
+    "incorporatedCities": 19,
+    "countySchoolDistricts": 17,
+    "statewideLayers": 3,
+    "unincorporatedCommunityPolicy": "County meeting coverage is inherited until a separate town board or special district source is registered.",
+    "expansionClasses": [
+      "individual state boards and commissions",
+      "general improvement and special districts",
+      "unincorporated town advisory boards",
+      "charter school governing boards"
+    ]
+  },
+  "verificationSources": [
+    {
+      "label": "Nevada Association of Counties members",
+      "url": "https://nvnaco.org/members/index.php"
+    },
+    {
+      "label": "Nevada League of Cities member municipalities",
+      "url": "https://nvleague.com/member-municipalities/"
+    },
+    {
+      "label": "Nevada Department of Education district websites",
+      "url": "https://doe.nv.gov/school-and-district-information"
+    }
+  ],
+  "totals": {
+    "requiredJurisdictions": 56,
+    "requiredProviders": 55,
+    "configuredProviders": 55,
+    "jurisdictionsWithConfiguredSource": 56,
+    "sourceGaps": 0,
+    "advancedCollectionActive": 55,
+    "pendingFirstAdvancedPass": 0,
+    "advancedCollectionBlocked": 0,
+    "advancedCollectionCheckedNoRecords": 0,
+    "inheritedCommunities": 7,
+    "countMismatches": 0,
+    "unmappedSeeds": 0
+  },
+  "expectedCounts": {
+    "county": 17,
+    "city": 19,
+    "school": 17,
+    "state": 3
+  },
+  "actualCounts": {
+    "county": 17,
+    "city": 19,
+    "school": 17,
+    "state": 3
+  },
+  "countMismatches": [],
+  "unmappedSeeds": [],
+  "missingSources": [],
+  "communityInheritance": [
+    {
+      "communityId": "tonopah",
+      "providerId": "nye-county-commission"
+    },
+    {
+      "communityId": "pahrump",
+      "providerId": "nye-county-commission"
+    },
+    {
+      "communityId": "incline-village",
+      "providerId": "washoe-county-commission"
+    },
+    {
+      "communityId": "gardnerville",
+      "providerId": "douglas-county-commission"
+    },
+    {
+      "communityId": "minden",
+      "providerId": "douglas-county-commission"
+    },
+    {
+      "communityId": "laughlin",
+      "providerId": "clark-county-commission"
+    },
+    {
+      "communityId": "battle-mountain",
+      "providerId": "lander-county-commission"
+    }
+  ],
+  "providerRows": [
+    {
+      "providerId": "nv-legislature",
+      "providerName": "Nevada Legislature",
+      "providerGroup": "state",
+      "jurisdiction": "Nevada",
+      "requirementIds": [
+        "state-nevada-legislature"
+      ],
+      "communityIds": [
+        "nevada"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.leg.state.nv.us/app/calendar/a/",
+        "https://www.leg.state.nv.us/Granicus/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_legislature"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:47:50.618Z",
+        "lastSucceededAt": "2026-07-25T21:47:50.618Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "bill"
+        ],
+        "cachedEntries": 48,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "nv-governor-executive-boards",
+      "providerName": "Governor / Executive Boards",
+      "providerGroup": "state",
+      "jurisdiction": "Nevada",
+      "requirementIds": [
+        "state-nevada-executive-boards"
+      ],
+      "communityIds": [
+        "nevada"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.gov.nv.gov/board-appts/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "distributed_state_boards"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:47:54.345Z",
+        "lastSucceededAt": "2026-07-25T21:47:54.345Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "nshe-board-of-regents",
+      "providerName": "Nevada System of Higher Education Board of Regents",
+      "providerGroup": "state",
+      "jurisdiction": "Nevada System of Higher Education",
+      "requirementIds": [
+        "state-nevada-regents"
+      ],
+      "communityIds": [
+        "nevada"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://nshe.nevada.edu/regents/upcoming-meetings/",
+        "https://nshe.nevada.edu/regents/archive/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "html",
+        "pdf"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:42:35.142Z",
+        "lastSucceededAt": "2026-07-25T21:42:35.142Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [
+          "agenda",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 11,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "carson-city-board-of-supervisors",
+      "providerName": "Carson City Board of Supervisors",
+      "providerGroup": "county",
+      "jurisdiction": "Carson City, NV",
+      "requirementIds": [
+        "county-carson-city",
+        "city-carson-city"
+      ],
+      "communityIds": [
+        "carson-city-county",
+        "carson-city"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.carsoncity.gov/government/city-meetings"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "granicus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:47:55.346Z",
+        "lastSucceededAt": "2026-07-25T21:47:55.346Z",
+        "pagesVisited": 1,
+        "pagesSucceeded": 1,
+        "discoveredKinds": [
+          "minutes"
+        ],
+        "cachedEntries": 1,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "churchill-county-commission",
+      "providerName": "Churchill County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Churchill County, NV",
+      "requirementIds": [
+        "county-churchill"
+      ],
+      "communityIds": [
+        "churchill-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.churchillcountynv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicclerk",
+        "civicplus",
+        "municode_meetings"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:48:05.550Z",
+        "lastSucceededAt": "2026-07-25T21:48:05.550Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 21,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "clark-county-commission",
+      "providerName": "Clark County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Clark County, NV",
+      "requirementIds": [
+        "county-clark"
+      ],
+      "communityIds": [
+        "clark-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://clark.legistar.com/",
+        "https://www.clarkcountynv.gov/government/board_of_county_commissioners/county-meeting-agendas"
+      ],
+      "scraperType": "legistar",
+      "platformHints": [
+        "legistar",
+        "granicus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:48:13.359Z",
+        "lastSucceededAt": "2026-07-25T21:48:13.359Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "rawHtml"
+        ],
+        "cachedEntries": 6,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "douglas-county-commission",
+      "providerName": "Douglas County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Douglas County, NV",
+      "requirementIds": [
+        "county-douglas"
+      ],
+      "communityIds": [
+        "douglas-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.douglascountynv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "granicus",
+        "municode_meetings"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:48:42.366Z",
+        "lastSucceededAt": "2026-07-25T21:48:42.366Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "apiJson",
+          "bill",
+          "minutes",
+          "rawHtml",
+          "vote"
+        ],
+        "cachedEntries": 11,
+        "failures": 1
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "elko-county-commission",
+      "providerName": "Elko County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Elko County, NV",
+      "requirementIds": [
+        "county-elko"
+      ],
+      "communityIds": [
+        "elko-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
+        "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "granicus",
+        "html"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:48:52.023Z",
+        "lastSucceededAt": "2026-07-25T21:48:52.023Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "rawHtml",
+          "video"
+        ],
+        "cachedEntries": 10,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "esmeralda-county-commission",
+      "providerName": "Esmeralda County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Esmeralda County, NV",
+      "requirementIds": [
+        "county-esmeralda"
+      ],
+      "communityIds": [
+        "esmeralda-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.accessesmeralda.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:48:57.135Z",
+        "lastSucceededAt": "2026-07-25T21:48:57.135Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "bill",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 10,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "eureka-county-commission",
+      "providerName": "Eureka County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Eureka County, NV",
+      "requirementIds": [
+        "county-eureka"
+      ],
+      "communityIds": [
+        "eureka-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+        "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-minutes/",
+        "https://www.eurekacountynv.gov/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "html",
+        "pdf"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T22:00:02.694Z",
+        "lastSucceededAt": "2026-07-25T22:00:02.694Z",
+        "pagesVisited": 4,
+        "pagesSucceeded": 4,
+        "discoveredKinds": [
+          "agenda",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 16,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "humboldt-county-commission",
+      "providerName": "Humboldt County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Humboldt County, NV",
+      "requirementIds": [
+        "county-humboldt"
+      ],
+      "communityIds": [
+        "humboldt-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.humboldtcountynv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicplus",
+        "granicus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:49:06.910Z",
+        "lastSucceededAt": "2026-07-25T21:49:06.910Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 12,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "lander-county-commission",
+      "providerName": "Lander County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Lander County, NV",
+      "requirementIds": [
+        "county-lander"
+      ],
+      "communityIds": [
+        "lander-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.landercountynv.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "granicus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:49:14.095Z",
+        "lastSucceededAt": "2026-07-25T21:49:14.095Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "apiJson",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 7,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "lincoln-county-commission",
+      "providerName": "Lincoln County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Lincoln County, NV",
+      "requirementIds": [
+        "county-lincoln"
+      ],
+      "communityIds": [
+        "lincoln-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://lincolncountynv.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:49:19.451Z",
+        "lastSucceededAt": "2026-07-25T21:49:19.451Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "apiJson",
+          "rawHtml"
+        ],
+        "cachedEntries": 8,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "lyon-county-commission",
+      "providerName": "Lyon County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Lyon County, NV",
+      "requirementIds": [
+        "county-lyon"
+      ],
+      "communityIds": [
+        "lyon-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.lyon-county.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicplus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:49:31.210Z",
+        "lastSucceededAt": "2026-07-25T21:49:31.210Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 14,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "mineral-county-commission",
+      "providerName": "Mineral County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Mineral County, NV",
+      "requirementIds": [
+        "county-mineral"
+      ],
+      "communityIds": [
+        "mineral-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://mineralcountynv.us/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:49:37.107Z",
+        "lastSucceededAt": "2026-07-25T21:49:37.107Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "bill",
+          "minutes",
+          "rawHtml",
+          "vote"
+        ],
+        "cachedEntries": 9,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "nye-county-commission",
+      "providerName": "Nye County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Nye County, NV",
+      "requirementIds": [
+        "county-nye"
+      ],
+      "communityIds": [
+        "nye-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.nyecountynv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicplus",
+        "granicus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:49:46.436Z",
+        "lastSucceededAt": "2026-07-25T21:49:46.436Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "bill",
+          "rawHtml"
+        ],
+        "cachedEntries": 14,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "pershing-county-commission",
+      "providerName": "Pershing County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Pershing County, NV",
+      "requirementIds": [
+        "county-pershing"
+      ],
+      "communityIds": [
+        "pershing-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.pershingcountynv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:49:51.362Z",
+        "lastSucceededAt": "2026-07-25T21:49:51.362Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 7,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "storey-county-commission",
+      "providerName": "Storey County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Storey County, NV",
+      "requirementIds": [
+        "county-storey"
+      ],
+      "communityIds": [
+        "storey-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.storeycounty.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicplus",
+        "municode_meetings"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:50:00.687Z",
+        "lastSucceededAt": "2026-07-25T21:50:00.687Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "bill",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 14,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "washoe-county-commission",
+      "providerName": "Washoe County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "Washoe County, NV",
+      "requirementIds": [
+        "county-washoe"
+      ],
+      "communityIds": [
+        "washoe-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://washoe-nv.legistar.com/"
+      ],
+      "scraperType": "legistar",
+      "platformHints": [
+        "legistar",
+        "granicus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:50:10.504Z",
+        "lastSucceededAt": "2026-07-25T21:50:10.504Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "bill",
+          "minutes",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 10,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "white-pine-county-commission",
+      "providerName": "White Pine County Commission",
+      "providerGroup": "county",
+      "jurisdiction": "White Pine County, NV",
+      "requirementIds": [
+        "county-white-pine"
+      ],
+      "communityIds": [
+        "white-pine-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.whitepinecounty.net/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicplus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:50:17.238Z",
+        "lastSucceededAt": "2026-07-25T21:50:17.238Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 15,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "boulder-city-council",
+      "providerName": "Boulder City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Boulder City, NV",
+      "requirementIds": [
+        "city-boulder-city"
+      ],
+      "communityIds": [
+        "boulder-city"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.bcnv.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicplus",
+        "granicus",
+        "legistar",
+        "municode_meetings",
+        "primegov"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:41:33.958Z",
+        "lastSucceededAt": "2026-07-25T21:41:33.958Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 80,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "caliente-city-council",
+      "providerName": "Caliente City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Caliente, NV",
+      "requirementIds": [
+        "city-caliente"
+      ],
+      "communityIds": [
+        "caliente"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.cityofcaliente.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:50:23.535Z",
+        "lastSucceededAt": "2026-07-25T21:50:23.535Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 7,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "carlin-city-council",
+      "providerName": "Carlin City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Carlin, NV",
+      "requirementIds": [
+        "city-carlin"
+      ],
+      "communityIds": [
+        "carlin"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.explorecarlinnv.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:50:28.222Z",
+        "lastSucceededAt": "2026-07-25T21:50:28.222Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "rawHtml",
+          "vote"
+        ],
+        "cachedEntries": 10,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "elko-city-council",
+      "providerName": "Elko City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Elko, NV",
+      "requirementIds": [
+        "city-elko"
+      ],
+      "communityIds": [
+        "elko"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://ob.elkocitynv.gov/onbaseagendaonline",
+        "https://www.elkocity.com/government/agendas/minutes.php",
+        "https://www.elkocity.com/government/minutes.php",
+        "https://www.elkocity.com/government/city_meetings__live_broadcst_and_archives/index.php"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "onbase"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:50:35.764Z",
+        "lastSucceededAt": "2026-07-25T21:50:35.764Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "packet",
+          "video"
+        ],
+        "cachedEntries": 29,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "ely-city-council",
+      "providerName": "Ely City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Ely, NV",
+      "requirementIds": [
+        "city-ely"
+      ],
+      "communityIds": [
+        "ely"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.cityofelynv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:50:51.910Z",
+        "lastSucceededAt": "2026-07-25T21:50:51.910Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 9,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "fallon-city-council",
+      "providerName": "Fallon City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Fallon, NV",
+      "requirementIds": [
+        "city-fallon"
+      ],
+      "communityIds": [
+        "fallon"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.fallonnevada.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:50:59.395Z",
+        "lastSucceededAt": "2026-07-25T21:50:59.395Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "bill",
+          "rawHtml"
+        ],
+        "cachedEntries": 7,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "fernley-city-council",
+      "providerName": "Fernley City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Fernley, NV",
+      "requirementIds": [
+        "city-fernley"
+      ],
+      "communityIds": [
+        "fernley"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.cityoffernley.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicclerk",
+        "civicplus",
+        "municode_meetings"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:13.595Z",
+        "lastSucceededAt": "2026-07-25T21:51:13.595Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "bill",
+          "minutes",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 21,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "henderson-city-council",
+      "providerName": "Henderson City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Henderson, NV",
+      "requirementIds": [
+        "city-henderson"
+      ],
+      "communityIds": [
+        "henderson"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.cityofhenderson.com/government/public-meeting-agendas"
+      ],
+      "scraperType": "html",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:14.582Z",
+        "lastSucceededAt": "2026-07-25T21:51:14.582Z",
+        "pagesVisited": 1,
+        "pagesSucceeded": 1,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "bill",
+          "minutes",
+          "rawHtml",
+          "vote"
+        ],
+        "cachedEntries": 16,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "las-vegas-city-council",
+      "providerName": "Las Vegas City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Las Vegas, NV",
+      "requirementIds": [
+        "city-las-vegas"
+      ],
+      "communityIds": [
+        "las-vegas"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://lasvegas.primegov.com/public/portal"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "primegov",
+        "granicus",
+        "legistar"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:43:27.013Z",
+        "lastSucceededAt": "2026-07-25T21:43:27.013Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 136,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "lovelock-city-council",
+      "providerName": "Lovelock City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Lovelock, NV",
+      "requirementIds": [
+        "city-lovelock"
+      ],
+      "communityIds": [
+        "lovelock"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://cityoflovelock.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:30.271Z",
+        "lastSucceededAt": "2026-07-25T21:51:30.271Z",
+        "pagesVisited": 1,
+        "pagesSucceeded": 1,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 1,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "mesquite-city-council",
+      "providerName": "Mesquite City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Mesquite, NV",
+      "requirementIds": [
+        "city-mesquite"
+      ],
+      "communityIds": [
+        "mesquite"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.mesquitenv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "granicus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:36.342Z",
+        "lastSucceededAt": "2026-07-25T21:51:36.342Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "bill",
+          "rawHtml"
+        ],
+        "cachedEntries": 8,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "north-las-vegas-city-council",
+      "providerName": "North Las Vegas City Council",
+      "providerGroup": "city",
+      "jurisdiction": "North Las Vegas, NV",
+      "requirementIds": [
+        "city-north-las-vegas"
+      ],
+      "communityIds": [
+        "north-las-vegas"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+        "https://cityofnorthlasvegas.primegov.com/public/portal"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "primegov",
+        "granicus",
+        "legistar"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:43:26.945Z",
+        "lastSucceededAt": "2026-07-25T21:43:26.945Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 79,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "reno-city-council",
+      "providerName": "Reno City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Reno, NV",
+      "requirementIds": [
+        "city-reno"
+      ],
+      "communityIds": [
+        "reno"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://reno.primegov.com/public/portal",
+        "https://www.reno.gov/services/watch-and-learn"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "primegov",
+        "granicus",
+        "legistar"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:44.579Z",
+        "lastSucceededAt": "2026-07-25T21:51:44.579Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "packet",
+          "rawHtml"
+        ],
+        "cachedEntries": 147,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "sparks-city-council",
+      "providerName": "Sparks City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Sparks, NV",
+      "requirementIds": [
+        "city-sparks"
+      ],
+      "communityIds": [
+        "sparks"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
+        "https://www.youtube.com/@cityofsparksmeetings"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "municode_meetings",
+        "onbase"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:49.719Z",
+        "lastSucceededAt": "2026-07-25T21:51:49.719Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "rawHtml"
+        ],
+        "cachedEntries": 8,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "wells-city-council",
+      "providerName": "Wells City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Wells, NV",
+      "requirementIds": [
+        "city-wells"
+      ],
+      "communityIds": [
+        "wells"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.cityofwellsnv.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:51.811Z",
+        "lastSucceededAt": "2026-07-25T21:51:51.811Z",
+        "pagesVisited": 1,
+        "pagesSucceeded": 1,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 1,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "west-wendover-city-council",
+      "providerName": "West Wendover City Council",
+      "providerGroup": "city",
+      "jurisdiction": "West Wendover, NV",
+      "requirementIds": [
+        "city-west-wendover"
+      ],
+      "communityIds": [
+        "west-wendover"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.westwendovercity.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:52.826Z",
+        "lastSucceededAt": "2026-07-25T21:51:52.826Z",
+        "pagesVisited": 1,
+        "pagesSucceeded": 1,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 1,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "winnemucca-city-council",
+      "providerName": "Winnemucca City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Winnemucca, NV",
+      "requirementIds": [
+        "city-winnemucca"
+      ],
+      "communityIds": [
+        "winnemucca"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.winnemuccacity.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "municode_meetings"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:51:55.575Z",
+        "lastSucceededAt": "2026-07-25T21:51:55.575Z",
+        "pagesVisited": 1,
+        "pagesSucceeded": 1,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 1,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "yerington-city-council",
+      "providerName": "Yerington City Council",
+      "providerGroup": "city",
+      "jurisdiction": "Yerington, NV",
+      "requirementIds": [
+        "city-yerington"
+      ],
+      "communityIds": [
+        "yerington"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.yerington.net/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "civicplus"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:52:02.895Z",
+        "lastSucceededAt": "2026-07-25T21:52:02.895Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 14,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "carson-city-school-district",
+      "providerName": "Carson City School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Carson City School District, NV",
+      "requirementIds": [
+        "school-carson-city"
+      ],
+      "communityIds": [
+        "carson-city",
+        "carson-city-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.carsoncityschools.com/our-district/school-board",
+        "https://go.boarddocs.com/nv/carson/Board.nsf/Public"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "boarddocs"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:52:03.517Z",
+        "lastSucceededAt": "2026-07-25T21:52:03.517Z",
+        "pagesVisited": 1,
+        "pagesSucceeded": 1,
+        "discoveredKinds": [
+          "apiJson",
+          "rawHtml"
+        ],
+        "cachedEntries": 4,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "churchill-county-school-district",
+      "providerName": "Churchill County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Churchill County School District, NV",
+      "requirementIds": [
+        "school-churchill"
+      ],
+      "communityIds": [
+        "churchill-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.churchillcsd.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:52:09.977Z",
+        "lastSucceededAt": "2026-07-25T21:52:09.977Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "clark-county-school-district",
+      "providerName": "Clark County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Clark County School District, NV",
+      "requirementIds": [
+        "school-clark"
+      ],
+      "communityIds": [
+        "clark-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.boarddocs.com/nv/ccsdlv/Board.nsf/Public",
+        "https://go.boarddocs.com/nv/ccsdlv/Board.nsf/Public"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "boarddocs"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:42:51.013Z",
+        "lastSucceededAt": "2026-07-25T21:42:51.013Z",
+        "pagesVisited": 1,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [
+          "apiJson",
+          "rawHtml"
+        ],
+        "cachedEntries": 4,
+        "failures": 2
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "douglas-county-school-district",
+      "providerName": "Douglas County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Douglas County School District, NV",
+      "requirementIds": [
+        "school-douglas"
+      ],
+      "communityIds": [
+        "douglas-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.dcsd.net/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:52:35.304Z",
+        "lastSucceededAt": "2026-07-25T21:52:35.304Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "elko-county-school-district",
+      "providerName": "Elko County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Elko County School District, NV",
+      "requirementIds": [
+        "school-elko"
+      ],
+      "communityIds": [
+        "elko-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.ecsdnv.net/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:53:21.850Z",
+        "lastSucceededAt": "2026-07-25T21:53:21.850Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 2,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "esmeralda-county-school-district",
+      "providerName": "Esmeralda County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Esmeralda County School District, NV",
+      "requirementIds": [
+        "school-esmeralda"
+      ],
+      "communityIds": [
+        "esmeralda-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.esmeralda.k12.nv.us/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:53:47.348Z",
+        "lastSucceededAt": "2026-07-25T21:53:47.348Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "eureka-county-school-district",
+      "providerName": "Eureka County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Eureka County School District, NV",
+      "requirementIds": [
+        "school-eureka"
+      ],
+      "communityIds": [
+        "eureka-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.eureka.k12.nv.us/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:53:57.639Z",
+        "lastSucceededAt": "2026-07-25T21:53:57.639Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "apiJson",
+          "rawHtml"
+        ],
+        "cachedEntries": 11,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "humboldt-county-school-district",
+      "providerName": "Humboldt County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Humboldt County School District, NV",
+      "requirementIds": [
+        "school-humboldt"
+      ],
+      "communityIds": [
+        "humboldt-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.hcsdnv.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "boarddocs"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:54:22.298Z",
+        "lastSucceededAt": "2026-07-25T21:54:22.298Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 6,
+        "failures": 1
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "lander-county-school-district",
+      "providerName": "Lander County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Lander County School District, NV",
+      "requirementIds": [
+        "school-lander"
+      ],
+      "communityIds": [
+        "lander-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.lander.k12.nv.us/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "boarddocs"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:54:27.869Z",
+        "lastSucceededAt": "2026-07-25T21:54:27.869Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 1
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "lincoln-county-school-district",
+      "providerName": "Lincoln County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Lincoln County School District, NV",
+      "requirementIds": [
+        "school-lincoln"
+      ],
+      "communityIds": [
+        "lincoln-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://lcsdnv.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:54:33.948Z",
+        "lastSucceededAt": "2026-07-25T21:54:33.948Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "lyon-county-school-district",
+      "providerName": "Lyon County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Lyon County School District, NV",
+      "requirementIds": [
+        "school-lyon"
+      ],
+      "communityIds": [
+        "lyon-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.lyoncsd.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:54:39.264Z",
+        "lastSucceededAt": "2026-07-25T21:54:39.264Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 4,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "mineral-county-school-district",
+      "providerName": "Mineral County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Mineral County School District, NV",
+      "requirementIds": [
+        "school-mineral"
+      ],
+      "communityIds": [
+        "mineral-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://nvmcsd.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:54:47.114Z",
+        "lastSucceededAt": "2026-07-25T21:54:47.114Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "agenda",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 6,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "nye-county-school-district",
+      "providerName": "Nye County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Nye County School District, NV",
+      "requirementIds": [
+        "school-nye"
+      ],
+      "communityIds": [
+        "nye-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.nye.k12.nv.us/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:55:33.592Z",
+        "lastSucceededAt": "2026-07-25T21:55:33.592Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "pershing-county-school-district",
+      "providerName": "Pershing County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Pershing County School District, NV",
+      "requirementIds": [
+        "school-pershing"
+      ],
+      "communityIds": [
+        "pershing-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.pcsdnv.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:56:20.557Z",
+        "lastSucceededAt": "2026-07-25T21:56:20.557Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "storey-county-school-district",
+      "providerName": "Storey County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Storey County School District, NV",
+      "requirementIds": [
+        "school-storey"
+      ],
+      "communityIds": [
+        "storey-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.storeynv.com/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:56:26.133Z",
+        "lastSucceededAt": "2026-07-25T21:56:26.133Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "rawHtml"
+        ],
+        "cachedEntries": 3,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "washoe-county-school-district",
+      "providerName": "Washoe County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "Washoe County School District, NV",
+      "requirementIds": [
+        "school-washoe"
+      ],
+      "communityIds": [
+        "washoe-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
+        "https://www.washoeschools.net/trustees/board-of-trustees/board-meeting-archive"
+      ],
+      "scraperType": "html",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:56:35.167Z",
+        "lastSucceededAt": "2026-07-25T21:56:35.167Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 3,
+        "discoveredKinds": [
+          "apiJson",
+          "bill",
+          "minutes",
+          "rawHtml"
+        ],
+        "cachedEntries": 5,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    },
+    {
+      "providerId": "white-pine-county-school-district",
+      "providerName": "White Pine County School District Board of Trustees",
+      "providerGroup": "school",
+      "jurisdiction": "White Pine County School District, NV",
+      "requirementIds": [
+        "school-white-pine"
+      ],
+      "communityIds": [
+        "white-pine-county"
+      ],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.whitepine.k12.nv.us/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": "2026-07-25T21:42:57.245Z",
+        "lastSucceededAt": "2026-07-25T21:42:57.245Z",
+        "pagesVisited": 3,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [
+          "apiJson",
+          "rawHtml"
+        ],
+        "cachedEntries": 7,
+        "failures": 0
+      },
+      "status": "advanced_collection_active"
+    }
+  ],
+  "jurisdictionRows": [
+    {
+      "jurisdictionId": "state-nevada-legislature",
+      "jurisdictionName": "Nevada Legislature",
+      "kind": "state",
+      "communityIds": [
+        "nevada"
+      ],
+      "providerId": "nv-legislature",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "state-nevada-executive-boards",
+      "jurisdictionName": "Nevada executive boards",
+      "kind": "state",
+      "communityIds": [
+        "nevada"
+      ],
+      "providerId": "nv-governor-executive-boards",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "state-nevada-regents",
+      "jurisdictionName": "Nevada Board of Regents",
+      "kind": "state",
+      "communityIds": [
+        "nevada"
+      ],
+      "providerId": "nshe-board-of-regents",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-carson-city",
+      "jurisdictionName": "Carson City county-equivalent",
+      "kind": "county",
+      "communityIds": [
+        "carson-city-county"
+      ],
+      "providerId": "carson-city-board-of-supervisors",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-churchill",
+      "jurisdictionName": "Churchill County",
+      "kind": "county",
+      "communityIds": [
+        "churchill-county"
+      ],
+      "providerId": "churchill-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-clark",
+      "jurisdictionName": "Clark County",
+      "kind": "county",
+      "communityIds": [
+        "clark-county"
+      ],
+      "providerId": "clark-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-douglas",
+      "jurisdictionName": "Douglas County",
+      "kind": "county",
+      "communityIds": [
+        "douglas-county"
+      ],
+      "providerId": "douglas-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-elko",
+      "jurisdictionName": "Elko County",
+      "kind": "county",
+      "communityIds": [
+        "elko-county"
+      ],
+      "providerId": "elko-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-esmeralda",
+      "jurisdictionName": "Esmeralda County",
+      "kind": "county",
+      "communityIds": [
+        "esmeralda-county"
+      ],
+      "providerId": "esmeralda-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-eureka",
+      "jurisdictionName": "Eureka County",
+      "kind": "county",
+      "communityIds": [
+        "eureka-county"
+      ],
+      "providerId": "eureka-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-humboldt",
+      "jurisdictionName": "Humboldt County",
+      "kind": "county",
+      "communityIds": [
+        "humboldt-county"
+      ],
+      "providerId": "humboldt-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-lander",
+      "jurisdictionName": "Lander County",
+      "kind": "county",
+      "communityIds": [
+        "lander-county"
+      ],
+      "providerId": "lander-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-lincoln",
+      "jurisdictionName": "Lincoln County",
+      "kind": "county",
+      "communityIds": [
+        "lincoln-county"
+      ],
+      "providerId": "lincoln-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-lyon",
+      "jurisdictionName": "Lyon County",
+      "kind": "county",
+      "communityIds": [
+        "lyon-county"
+      ],
+      "providerId": "lyon-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-mineral",
+      "jurisdictionName": "Mineral County",
+      "kind": "county",
+      "communityIds": [
+        "mineral-county"
+      ],
+      "providerId": "mineral-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-nye",
+      "jurisdictionName": "Nye County",
+      "kind": "county",
+      "communityIds": [
+        "nye-county"
+      ],
+      "providerId": "nye-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-pershing",
+      "jurisdictionName": "Pershing County",
+      "kind": "county",
+      "communityIds": [
+        "pershing-county"
+      ],
+      "providerId": "pershing-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-storey",
+      "jurisdictionName": "Storey County",
+      "kind": "county",
+      "communityIds": [
+        "storey-county"
+      ],
+      "providerId": "storey-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-washoe",
+      "jurisdictionName": "Washoe County",
+      "kind": "county",
+      "communityIds": [
+        "washoe-county"
+      ],
+      "providerId": "washoe-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "county-white-pine",
+      "jurisdictionName": "White Pine County",
+      "kind": "county",
+      "communityIds": [
+        "white-pine-county"
+      ],
+      "providerId": "white-pine-county-commission",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-boulder-city",
+      "jurisdictionName": "Boulder City",
+      "kind": "city",
+      "communityIds": [
+        "boulder-city"
+      ],
+      "providerId": "boulder-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-caliente",
+      "jurisdictionName": "Caliente",
+      "kind": "city",
+      "communityIds": [
+        "caliente"
+      ],
+      "providerId": "caliente-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-carlin",
+      "jurisdictionName": "Carlin",
+      "kind": "city",
+      "communityIds": [
+        "carlin"
+      ],
+      "providerId": "carlin-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-carson-city",
+      "jurisdictionName": "Carson City",
+      "kind": "city",
+      "communityIds": [
+        "carson-city"
+      ],
+      "providerId": "carson-city-board-of-supervisors",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-elko",
+      "jurisdictionName": "Elko",
+      "kind": "city",
+      "communityIds": [
+        "elko"
+      ],
+      "providerId": "elko-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-ely",
+      "jurisdictionName": "Ely",
+      "kind": "city",
+      "communityIds": [
+        "ely"
+      ],
+      "providerId": "ely-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-fallon",
+      "jurisdictionName": "Fallon",
+      "kind": "city",
+      "communityIds": [
+        "fallon"
+      ],
+      "providerId": "fallon-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-fernley",
+      "jurisdictionName": "Fernley",
+      "kind": "city",
+      "communityIds": [
+        "fernley"
+      ],
+      "providerId": "fernley-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-henderson",
+      "jurisdictionName": "Henderson",
+      "kind": "city",
+      "communityIds": [
+        "henderson"
+      ],
+      "providerId": "henderson-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-las-vegas",
+      "jurisdictionName": "Las Vegas",
+      "kind": "city",
+      "communityIds": [
+        "las-vegas"
+      ],
+      "providerId": "las-vegas-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-lovelock",
+      "jurisdictionName": "Lovelock",
+      "kind": "city",
+      "communityIds": [
+        "lovelock"
+      ],
+      "providerId": "lovelock-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-mesquite",
+      "jurisdictionName": "Mesquite",
+      "kind": "city",
+      "communityIds": [
+        "mesquite"
+      ],
+      "providerId": "mesquite-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-north-las-vegas",
+      "jurisdictionName": "North Las Vegas",
+      "kind": "city",
+      "communityIds": [
+        "north-las-vegas"
+      ],
+      "providerId": "north-las-vegas-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-reno",
+      "jurisdictionName": "Reno",
+      "kind": "city",
+      "communityIds": [
+        "reno"
+      ],
+      "providerId": "reno-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-sparks",
+      "jurisdictionName": "Sparks",
+      "kind": "city",
+      "communityIds": [
+        "sparks"
+      ],
+      "providerId": "sparks-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-wells",
+      "jurisdictionName": "Wells",
+      "kind": "city",
+      "communityIds": [
+        "wells"
+      ],
+      "providerId": "wells-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-west-wendover",
+      "jurisdictionName": "West Wendover",
+      "kind": "city",
+      "communityIds": [
+        "west-wendover"
+      ],
+      "providerId": "west-wendover-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-winnemucca",
+      "jurisdictionName": "Winnemucca",
+      "kind": "city",
+      "communityIds": [
+        "winnemucca"
+      ],
+      "providerId": "winnemucca-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "city-yerington",
+      "jurisdictionName": "Yerington",
+      "kind": "city",
+      "communityIds": [
+        "yerington"
+      ],
+      "providerId": "yerington-city-council",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-carson-city",
+      "jurisdictionName": "Carson City School District",
+      "kind": "school",
+      "communityIds": [
+        "carson-city",
+        "carson-city-county"
+      ],
+      "providerId": "carson-city-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-churchill",
+      "jurisdictionName": "Churchill County School District",
+      "kind": "school",
+      "communityIds": [
+        "churchill-county"
+      ],
+      "providerId": "churchill-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-clark",
+      "jurisdictionName": "Clark County School District",
+      "kind": "school",
+      "communityIds": [
+        "clark-county"
+      ],
+      "providerId": "clark-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-douglas",
+      "jurisdictionName": "Douglas County School District",
+      "kind": "school",
+      "communityIds": [
+        "douglas-county"
+      ],
+      "providerId": "douglas-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-elko",
+      "jurisdictionName": "Elko County School District",
+      "kind": "school",
+      "communityIds": [
+        "elko-county"
+      ],
+      "providerId": "elko-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-esmeralda",
+      "jurisdictionName": "Esmeralda County School District",
+      "kind": "school",
+      "communityIds": [
+        "esmeralda-county"
+      ],
+      "providerId": "esmeralda-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-eureka",
+      "jurisdictionName": "Eureka County School District",
+      "kind": "school",
+      "communityIds": [
+        "eureka-county"
+      ],
+      "providerId": "eureka-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-humboldt",
+      "jurisdictionName": "Humboldt County School District",
+      "kind": "school",
+      "communityIds": [
+        "humboldt-county"
+      ],
+      "providerId": "humboldt-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-lander",
+      "jurisdictionName": "Lander County School District",
+      "kind": "school",
+      "communityIds": [
+        "lander-county"
+      ],
+      "providerId": "lander-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-lincoln",
+      "jurisdictionName": "Lincoln County School District",
+      "kind": "school",
+      "communityIds": [
+        "lincoln-county"
+      ],
+      "providerId": "lincoln-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-lyon",
+      "jurisdictionName": "Lyon County School District",
+      "kind": "school",
+      "communityIds": [
+        "lyon-county"
+      ],
+      "providerId": "lyon-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-mineral",
+      "jurisdictionName": "Mineral County School District",
+      "kind": "school",
+      "communityIds": [
+        "mineral-county"
+      ],
+      "providerId": "mineral-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-nye",
+      "jurisdictionName": "Nye County School District",
+      "kind": "school",
+      "communityIds": [
+        "nye-county"
+      ],
+      "providerId": "nye-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-pershing",
+      "jurisdictionName": "Pershing County School District",
+      "kind": "school",
+      "communityIds": [
+        "pershing-county"
+      ],
+      "providerId": "pershing-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-storey",
+      "jurisdictionName": "Storey County School District",
+      "kind": "school",
+      "communityIds": [
+        "storey-county"
+      ],
+      "providerId": "storey-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-washoe",
+      "jurisdictionName": "Washoe County School District",
+      "kind": "school",
+      "communityIds": [
+        "washoe-county"
+      ],
+      "providerId": "washoe-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    },
+    {
+      "jurisdictionId": "school-white-pine",
+      "jurisdictionName": "White Pine County School District",
+      "kind": "school",
+      "communityIds": [
+        "white-pine-county"
+      ],
+      "providerId": "white-pine-county-school-district",
+      "sourceConfigured": true,
+      "providerStatus": "advanced_collection_active"
+    }
+  ]
+}

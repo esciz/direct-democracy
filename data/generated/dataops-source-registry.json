@@ -1,15 +1,26 @@
 {
-  "generatedAt": "2026-07-24T18:25:20.916Z",
+  "generatedAt": "2026-07-25T22:09:21.292Z",
   "records": [
     {
-      "id": "meeting:nv-legislature:nevada_legislature:www.leg.state.nv.us",
+      "id": "meeting:nv-legislature",
       "sourceType": "meeting_system",
-      "sourceOwner": "nv-legislature",
+      "sourceOwner": "Nevada Legislature",
       "jurisdiction": "Nevada",
       "sourceHost": "www.leg.state.nv.us",
-      "sourcePlatform": "nevada_legislature",
+      "sourceHosts": [
+        "www.leg.state.nv.us"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "granicus",
+        "html",
+        "nevada_legislature"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
+        "https://www.leg.state.nv.us/app/calendar/a/",
+        "https://www.leg.state.nv.us/Granicus/",
+        "https://www.leg.state.nv.us/",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34894",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34838",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34907",
@@ -31,18 +42,15 @@
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34812",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34811",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34577",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34903",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34813",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34578",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35170"
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34903"
       ],
       "documentTypes": [
         "agenda",
-        "staff_report",
         "unknown"
       ],
-      "checkCadence": "PT1H",
-      "productionCadenceRecommendation": "15-60 minutes",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -53,14 +61,89 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:carson-city-board-of-supervisors:granicus:carsoncity.granicus.com",
+      "id": "meeting:nv-governor-executive-boards",
       "sourceType": "meeting_system",
-      "sourceOwner": "carson-city-board-of-supervisors",
-      "jurisdiction": "Carson City, NV",
-      "sourceHost": "carsoncity.granicus.com",
-      "sourcePlatform": "granicus",
+      "sourceOwner": "Governor / Executive Boards",
+      "jurisdiction": "Nevada",
+      "sourceHost": "www.gov.nv.gov",
+      "sourceHosts": [
+        "www.gov.nv.gov"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
+        "https://www.gov.nv.gov/board-appts/",
+        "https://www.gov.nv.gov/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:nshe-board-of-regents",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nevada System of Higher Education Board of Regents",
+      "jurisdiction": "Nevada System of Higher Education",
+      "sourceHost": "nshe.nevada.edu",
+      "sourceHosts": [
+        "nshe.nevada.edu"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "html"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://nshe.nevada.edu/regents/upcoming-meetings/",
+        "https://nshe.nevada.edu/regents/archive/",
+        "https://nshe.nevada.edu/regents/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:carson-city-board-of-supervisors",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Carson City Board of Supervisors",
+      "jurisdiction": "Carson City, NV",
+      "sourceHost": "www.carsoncity.gov",
+      "sourceHosts": [
+        "carsoncity.granicus.com",
+        "d3n9y02raazwpg.cloudfront.net",
+        "www.carsoncity.gov"
+      ],
+      "sourcePlatform": "granicus",
+      "sourcePlatforms": [
+        "civic_website",
+        "granicus"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.carsoncity.gov/government/city-meetings",
+        "https://www.carsoncity.gov/",
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2703",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2696",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2558",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2701",
@@ -82,18 +165,17 @@
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2638",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2561",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2898",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2870",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2846",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2806",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2745"
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2870"
       ],
       "documentTypes": [
         "agenda",
         "minutes",
+        "packet",
         "unknown"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -104,46 +186,335 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:carson-city-board-of-supervisors:civic_website:d3n9y02raazwpg.cloudfront.net",
+      "id": "meeting:churchill-county-commission",
       "sourceType": "meeting_system",
-      "sourceOwner": "carson-city-board-of-supervisors",
-      "jurisdiction": "Carson City, NV",
-      "sourceHost": "d3n9y02raazwpg.cloudfront.net",
+      "sourceOwner": "Churchill County Commission",
+      "jurisdiction": "Churchill County, NV",
+      "sourceHost": "www.churchillcountynv.gov",
+      "sourceHosts": [
+        "www.churchillcountynv.gov"
+      ],
       "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/8c904ed3-ac16-11ee-bb82-0050569183fa-72832d98-d599-4654-a647-d1ce4f3832d7-1722789941.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/d9366baa-7a26-11f1-9494-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1784582727.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/de9f97bc-cfa9-11f0-bb28-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1784735481.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/b8eb433f-8138-11f1-98fd-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1784578218.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/d2e20172-7ed2-11f1-94fc-005056a89546-ebcb7c00-45a4-41d2-8907-e73b9053097e-1784219421.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/3d230cc3-3443-11f1-bb28-005056a89546-ebcb7c00-45a4-41d2-8907-e73b9053097e-1776354611.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/3b8c4495-ed8f-11f0-bb28-005056a89546-ebcb7c00-45a4-41d2-8907-e73b9053097e-1769100344.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/70022e07-a2fb-11f0-8df7-005056a89546-ebcb7c00-45a4-41d2-8907-e73b9053097e-1760389820.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/56cc6d89-579c-11f0-b7f5-005056a89546-56c59df0-a5f9-42bd-b385-ead03c8473b8-1752105871.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/b8e338bd-df2e-11ef-a9e2-005056a89546-56c59df0-a5f9-42bd-b385-ead03c8473b8-1738714614.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/5940a2be-7f7d-11ef-ab4b-005056a89546-56c59df0-a5f9-42bd-b385-ead03c8473b8-1728508362.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/7c1c0dbe-3592-11ef-81ef-005056a89546-56c59df0-a5f9-42bd-b385-ead03c8473b8-1720648333.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/2f91e476-68cf-11f1-9494-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1781565296.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/5e0a8cff-4014-11f1-bb28-005056a89546-bee535a9-120d-4ef3-ac55-0d254895c11b-1777419900.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/b6a8f4a8-ed76-11f0-bb28-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1768582041.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/59d56fa7-8f45-11f0-8df7-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1758152580.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/22ce84a3-6bf7-11f0-b7f5-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1754406190.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/234a088f-1978-11f0-955d-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1745965531.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/1ca6c4ed-0a80-11f0-ab6a-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1743546775.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/74ef91ed-efd6-11ef-a9e2-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1740599308.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/cd89aa1a-cedc-11ef-a9e2-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1736974680.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/9c1a99a6-7201-11ef-9b71-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1726769449.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/a63063a2-510e-11ef-bafe-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1722959070.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/782843d5-2815-11ef-81ef-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1719268113.pdf",
-        "https://d3n9y02raazwpg.cloudfront.net/carsoncity/a43766b9-f75a-11ee-b231-0050569183fa-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1713971204.pdf"
+        "https://www.churchillcountynv.gov/",
+        "https://www.churchillcountynv.gov/DocumentCenter/View/18235/11-13-24-Agenda-Packet---CART"
+      ],
+      "documentTypes": [
+        "packet"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:clark-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Clark County Commission",
+      "jurisdiction": "Clark County, NV",
+      "sourceHost": "clark.legistar.com",
+      "sourceHosts": [
+        "clark.legistar.com",
+        "www.clarkcountynv.gov"
+      ],
+      "sourcePlatform": "legistar",
+      "sourcePlatforms": [
+        "legistar"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://clark.legistar.com/",
+        "https://www.clarkcountynv.gov/government/board_of_county_commissioners/county-meeting-agendas",
+        "https://www.clarkcountynv.gov/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:douglas-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Douglas County Commission",
+      "jurisdiction": "Douglas County, NV",
+      "sourceHost": "www.douglascountynv.gov",
+      "sourceHosts": [
+        "www.douglascountynv.gov"
+      ],
+      "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.douglascountynv.gov/",
+        "https://www.douglascountynv.gov/news/recent-news/may_28__2026__b_o_c_c_special_meeting",
+        "https://www.douglascountynv.gov/news/recent-news/virtual-option-for-february-19-2026-board-meeting",
+        "https://www.douglascountynv.gov/news/recent-news/september_10__2024_planning_commission_meeting",
+        "https://www.douglascountynv.gov/news/recent-news/march_1__2024_b_o_c_c_special_meeting_postponed"
+      ],
+      "documentTypes": [
+        "unknown"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:elko-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Elko County Commission",
+      "jurisdiction": "Elko County, NV",
+      "sourceHost": "www.elkocountynv.net",
+      "sourceHosts": [
+        "elkocounty.granicus.com",
+        "www.elkocountynv.net"
+      ],
+      "sourcePlatform": "granicus",
+      "sourcePlatforms": [
+        "granicus"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
+        "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+        "https://www.elkocountynv.net/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:esmeralda-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Esmeralda County Commission",
+      "jurisdiction": "Esmeralda County, NV",
+      "sourceHost": "www.accessesmeralda.com",
+      "sourceHosts": [
+        "www.accessesmeralda.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.accessesmeralda.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:eureka-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Eureka County Commission",
+      "jurisdiction": "Eureka County, NV",
+      "sourceHost": "www.eurekacountynv.gov",
+      "sourceHosts": [
+        "www.eurekacountynv.gov"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "civic_website",
+        "html"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+        "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-minutes/",
+        "https://www.eurekacountynv.gov/",
+        "https://www.eurekacountynv.gov/media/slvnfv2y/1-20-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/54idfeep/1-6-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/ndgo3got/2-03-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/vkwneya0/2-17-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/ipvoh1dh/3-03-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/4pnohwtl/3-17-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/3m3bnb5u/4-7-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/hf1asyvv/5-5-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/esvlrk4g/5-19-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/veohfdbc/6-2-26-agenda-and-backup.pdf"
+      ],
+      "documentTypes": [
+        "agenda"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:humboldt-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Humboldt County Commission",
+      "jurisdiction": "Humboldt County, NV",
+      "sourceHost": "www.humboldtcountynv.gov",
+      "sourceHosts": [
+        "www.humboldtcountynv.gov"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.humboldtcountynv.gov/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:lander-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lander County Commission",
+      "jurisdiction": "Lander County, NV",
+      "sourceHost": "www.landercountynv.org",
+      "sourceHosts": [
+        "www.landercountynv.org"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.landercountynv.org/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:lincoln-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lincoln County Commission",
+      "jurisdiction": "Lincoln County, NV",
+      "sourceHost": "lincolncountynv.org",
+      "sourceHosts": [
+        "lincolncountynv.org"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://lincolncountynv.org/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:lyon-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lyon County Commission",
+      "jurisdiction": "Lyon County, NV",
+      "sourceHost": "www.lyon-county.org",
+      "sourceHosts": [
+        "www.lyon-county.org"
+      ],
+      "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.lyon-county.org/",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07022026-2059",
+        "https://www.lyon-county.org/CivicAlerts.aspx?AID=399"
       ],
       "documentTypes": [
         "agenda",
-        "packet"
+        "unknown"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -154,14 +525,166 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:washoe-county-commission:legistar:washoe-nv.legistar.com",
+      "id": "meeting:mineral-county-commission",
       "sourceType": "meeting_system",
-      "sourceOwner": "washoe-county-commission",
-      "jurisdiction": "Washoe County, NV",
-      "sourceHost": "washoe-nv.legistar.com",
-      "sourcePlatform": "legistar",
+      "sourceOwner": "Mineral County Commission",
+      "jurisdiction": "Mineral County, NV",
+      "sourceHost": "mineralcountynv.us",
+      "sourceHosts": [
+        "mineralcountynv.us"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
+        "https://mineralcountynv.us/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:nye-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nye County Commission",
+      "jurisdiction": "Nye County, NV",
+      "sourceHost": "www.nyecountynv.gov",
+      "sourceHosts": [
+        "www.nyecountynv.gov"
+      ],
+      "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.nyecountynv.gov/",
+        "https://www.nyecountynv.gov/AgendaCenter"
+      ],
+      "documentTypes": [
+        "agenda",
+        "unknown"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:pershing-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Pershing County Commission",
+      "jurisdiction": "Pershing County, NV",
+      "sourceHost": "www.pershingcountynv.gov",
+      "sourceHosts": [
+        "www.pershingcountynv.gov"
+      ],
+      "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.pershingcountynv.gov/",
+        "https://www.pershingcountynv.gov/news_detail_T10_R149.php",
+        "https://www.pershingcountynv.gov/news_detail_T10_R181.php",
+        "https://www.pershingcountynv.gov/news_detail_T10_R179.php",
+        "https://www.pershingcountynv.gov/news_detail_T10_R151.php",
+        "https://www.pershingcountynv.gov/news_detail_T10_R148.php",
+        "https://www.pershingcountynv.gov/news_detail_T10_R145.php",
+        "https://www.pershingcountynv.gov/news_detail_T10_R142.php",
+        "https://www.pershingcountynv.gov/news_detail_T10_R138.php"
+      ],
+      "documentTypes": [
+        "agenda",
+        "packet",
+        "unknown"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:storey-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Storey County Commission",
+      "jurisdiction": "Storey County, NV",
+      "sourceHost": "www.storeycounty.org",
+      "sourceHosts": [
+        "www.storeycounty.org"
+      ],
+      "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.storeycounty.org/",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07212026-1399",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07072026-1395"
+      ],
+      "documentTypes": [
+        "packet"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:washoe-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Washoe County Commission",
+      "jurisdiction": "Washoe County, NV",
+      "sourceHost": "washoe-nv.legistar.com",
+      "sourceHosts": [
+        "washoe-nv.legistar.com",
+        "www.washoecounty.gov"
+      ],
+      "sourcePlatform": "legistar",
+      "sourcePlatforms": [
+        "legistar"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://washoe-nv.legistar.com/",
+        "https://www.washoecounty.gov/",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134961&GUID=C076565D-0936-4546-9AB0-AB0314A3FEED",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134970&GUID=2B4CAABF-0D0D-485A-846F-7F840DAA56D3",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134980&GUID=8A2D1E74-23B0-4988-8954-B59EC06F0C53",
@@ -184,9 +707,7 @@
         "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1134980&GUID=8A2D1E74-23B0-4988-8954-B59EC06F0C53",
         "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1134982&GUID=908642B6-423B-4517-92F4-6D129CADDCC5",
         "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1134988&GUID=21C0127D-F86C-437C-86EA-A17D9692CF11",
-        "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1134990&GUID=DC096042-24D0-409A-BDBC-B942081FACD6",
-        "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1134991&GUID=AEDDA8BC-D21E-49F1-A52D-2CAF00679D0D",
-        "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1134992&GUID=8231C4C3-2F16-449F-8582-09821F36297E"
+        "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1134990&GUID=DC096042-24D0-409A-BDBC-B942081FACD6"
       ],
       "documentTypes": [
         "agenda",
@@ -194,8 +715,9 @@
         "packet",
         "unknown"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -206,37 +728,26 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:reno-city-council:primegov:reno.primegov.com",
+      "id": "meeting:white-pine-county-commission",
       "sourceType": "meeting_system",
-      "sourceOwner": "reno-city-council",
-      "jurisdiction": "Reno, NV",
-      "sourceHost": "reno.primegov.com",
-      "sourcePlatform": "primegov",
+      "sourceOwner": "White Pine County Commission",
+      "jurisdiction": "White Pine County, NV",
+      "sourceHost": "www.whitepinecounty.net",
+      "sourceHosts": [
+        "www.whitepinecounty.net"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
-        "https://reno.primegov.com/api/systemitemtype/list",
-        "https://reno.primegov.com/api/committeemember/list",
-        "https://reno.primegov.com/api/user/GetSponsorList",
-        "https://reno.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal",
-        "https://reno.primegov.com/api/meetingtype/list/?hideInactive=true",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784864850442",
-        "https://reno.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal?showInactive=true",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1784898049070",
-        "https://reno.primegov.com/public/portal",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=9113",
-        "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9096&compileOutputType=1",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784898049069",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1781650877293",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784865145787",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=9115",
-        "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1"
+        "https://www.whitepinecounty.net/"
       ],
-      "documentTypes": [
-        "agenda",
-        "packet"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -247,45 +758,34 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:reno-city-council:civic_website:local",
+      "id": "meeting:boulder-city-council",
       "sourceType": "meeting_system",
-      "sourceOwner": "reno-city-council",
-      "jurisdiction": "Reno, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda",
-        "packet"
+      "sourceOwner": "Boulder City Council",
+      "jurisdiction": "Boulder City, NV",
+      "sourceHost": "www.bcnv.org",
+      "sourceHosts": [
+        "bcnv.primegov.com",
+        "www.bcnv.org"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:nv-legislature:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-legislature",
-      "jurisdiction": "Nevada",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
+      "sourcePlatform": "primegov",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual",
+        "primegov"
+      ],
       "sourceCategory": "meetings",
-      "sourceUrls": [],
+      "sourceUrls": [
+        "https://www.bcnv.org/",
+        "https://bcnv.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015688679",
+        "https://bcnv.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1785015688680"
+      ],
       "documentTypes": [
         "agenda",
-        "staff_report",
         "unknown"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -296,123 +796,31 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:nv-senate:nevada_legislature:www.leg.state.nv.us",
+      "id": "meeting:caliente-city-council",
       "sourceType": "meeting_system",
-      "sourceOwner": "nv-senate",
-      "jurisdiction": "Nevada",
-      "sourceHost": "www.leg.state.nv.us",
-      "sourcePlatform": "nevada_legislature",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://www.leg.state.nv.us/App/Legislator/A/Senate/Current"
+      "sourceOwner": "Caliente City Council",
+      "jurisdiction": "Caliente, NV",
+      "sourceHost": "www.cityofcaliente.com",
+      "sourceHosts": [
+        "www.cityofcaliente.com"
       ],
-      "documentTypes": [
-        "agenda"
-      ],
-      "checkCadence": "PT1H",
-      "productionCadenceRecommendation": "15-60 minutes",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:nv-assembly:nevada_legislature:www.leg.state.nv.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-assembly",
-      "jurisdiction": "Nevada",
-      "sourceHost": "www.leg.state.nv.us",
-      "sourcePlatform": "nevada_legislature",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://www.leg.state.nv.us/App/Legislator/A/Assembly/Current"
-      ],
-      "documentTypes": [
-        "agenda"
-      ],
-      "checkCadence": "PT1H",
-      "productionCadenceRecommendation": "15-60 minutes",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:sparks-city-council:civic_website:agendas.cityofsparks.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "sparks-city-council",
-      "jurisdiction": "Sparks, NV",
-      "sourceHost": "agendas.cityofsparks.us",
       "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
-        "https://agendas.cityofsparks.us/OnBaseAgendaOnline",
-        "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Meetings"
-      ],
-      "documentTypes": [
-        "agenda"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:sparks-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "sparks-city-council",
-      "jurisdiction": "Sparks, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda",
-        "minutes"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:sparks-city-council:civic_website:www.cityofsparks.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "sparks-city-council",
-      "jurisdiction": "Sparks, NV",
-      "sourceHost": "www.cityofsparks.us",
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://www.cityofsparks.us/enotify/index.php",
-        "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php"
+        "https://www.cityofcaliente.com/",
+        "https://www.cityofcaliente.com/july-16-2026-city-council-meetin-agenda/"
       ],
       "documentTypes": [
         "agenda",
-        "minutes"
+        "unknown"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -423,22 +831,26 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:clark-county-commission:legistar:clark.legistar.com",
+      "id": "meeting:carlin-city-council",
       "sourceType": "meeting_system",
-      "sourceOwner": "clark-county-commission",
-      "jurisdiction": "Clark County, NV",
-      "sourceHost": "clark.legistar.com",
-      "sourcePlatform": "legistar",
+      "sourceOwner": "Carlin City Council",
+      "jurisdiction": "Carlin, NV",
+      "sourceHost": "www.explorecarlinnv.com",
+      "sourceHosts": [
+        "www.explorecarlinnv.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
-        "https://clark.legistar.com/Legislation.aspx",
-        "https://clark.legistar.com/View.ashx?M=A&ID=1416035&GUID=2A7935C7-0823-41FB-86C6-16EC33EA9835"
+        "https://www.explorecarlinnv.com/"
       ],
-      "documentTypes": [
-        "agenda"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -449,19 +861,50 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:clark-county-commission:civic_website:local",
+      "id": "meeting:elko-city-council",
       "sourceType": "meeting_system",
-      "sourceOwner": "clark-county-commission",
-      "jurisdiction": "Clark County, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
+      "sourceOwner": "Elko City Council",
+      "jurisdiction": "Elko, NV",
+      "sourceHost": "ob.elkocitynv.gov",
+      "sourceHosts": [
+        "ob.elkocitynv.gov",
+        "www.elkocity.com"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "civic_website",
+        "html"
+      ],
       "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda"
+      "sourceUrls": [
+        "https://ob.elkocitynv.gov/onbaseagendaonline",
+        "https://www.elkocity.com/government/agendas/minutes.php",
+        "https://www.elkocity.com/government/minutes.php",
+        "https://www.elkocity.com/government/city_meetings__live_broadcst_and_archives/index.php",
+        "https://www.elkocity.com/",
+        "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
+        "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470",
+        "https://www.elkocity.com/03-01-16%20PC%20Minutes.pdf?t=202305301202470",
+        "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
+        "https://www.elkocity.com/08-02-16%20PC%20Min.pdf?t=202305301202500",
+        "https://www.elkocity.com/09-06-16%20PC%20Min.pdf?t=202305301202500",
+        "https://www.elkocity.com/10-04-16%20PC%20Minutes.pdf?t=202305301202500",
+        "https://www.elkocity.com/12-6-16%20PC%20Minutes.pdf?t=202305301202500",
+        "https://www.elkocity.com/01-03-17%20PC%20Mintues.pdf?t=202307240404490",
+        "https://www.elkocity.com/02-07-17%20PC%20Minutes.pdf?t=202305301202510",
+        "https://www.elkocity.com/03-07-17%20PC%20Minutes.pdf?t=202305301202510",
+        "https://www.elkocity.com/04-04-17%20PC%20Minutes.pdf?t=202305301202510",
+        "https://www.elkocity.com/05-02-17%20PC%20Minutes.pdf?t=202305301202510",
+        "https://www.elkocity.com/06-06-17%20PC%20Minutes.pdf?t=202305301202520",
+        "https://www.elkocity.com/08-01-17%20PC%20Minutes.pdf?t=202305301202520",
+        "https://www.elkocity.com/07-18-17%20PC%20Minutes.pdf?t=202305301202520"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "documentTypes": [
+        "minutes"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -472,235 +915,157 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:las-vegas-city-council:primegov:lasvegas.primegov.com",
+      "id": "meeting:ely-city-council",
       "sourceType": "meeting_system",
-      "sourceOwner": "las-vegas-city-council",
+      "sourceOwner": "Ely City Council",
+      "jurisdiction": "Ely, NV",
+      "sourceHost": "www.cityofelynv.gov",
+      "sourceHosts": [
+        "www.cityofelynv.gov"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.cityofelynv.gov/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:fallon-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Fallon City Council",
+      "jurisdiction": "Fallon, NV",
+      "sourceHost": "www.fallonnevada.gov",
+      "sourceHosts": [
+        "www.fallonnevada.gov"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.fallonnevada.gov/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:fernley-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Fernley City Council",
+      "jurisdiction": "Fernley, NV",
+      "sourceHost": "www.cityoffernley.org",
+      "sourceHosts": [
+        "www.cityoffernley.org"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.cityoffernley.org/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:henderson-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Henderson City Council",
+      "jurisdiction": "Henderson, NV",
+      "sourceHost": "www.cityofhenderson.com",
+      "sourceHosts": [
+        "www.cityofhenderson.com"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "html"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.cityofhenderson.com/government/public-meeting-agendas",
+        "https://www.cityofhenderson.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:las-vegas-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Las Vegas City Council",
       "jurisdiction": "Las Vegas, NV",
       "sourceHost": "lasvegas.primegov.com",
-      "sourcePlatform": "primegov",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://lasvegas.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal",
-        "https://lasvegas.primegov.com/api/user/GetSponsorList",
-        "https://lasvegas.primegov.com/api/systemitemtype/list",
-        "https://lasvegas.primegov.com/api/meetingtype/list/?hideInactive=true",
-        "https://lasvegas.primegov.com/api/committeemember/list",
-        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784898132693",
-        "https://lasvegas.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal?showInactive=true",
-        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1784898132694",
-        "https://lasvegas.primegov.com/public/portal",
-        "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=43626",
-        "https://lasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=43626&compileOutputType=1",
-        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784865220125",
-        "https://lasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=43653&compileOutputType=1",
-        "https://lasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=43648&compileOutputType=1"
+      "sourceHosts": [
+        "lasvegas.primegov.com",
+        "www.lasvegasnevada.gov"
       ],
-      "documentTypes": [
-        "agenda",
-        "minutes",
-        "packet"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:las-vegas-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "las-vegas-city-council",
-      "jurisdiction": "Las Vegas, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda",
-        "minutes",
-        "packet"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:henderson-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "henderson-city-council",
-      "jurisdiction": "Henderson, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda",
-        "minutes",
-        "unknown",
-        "vote_record"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:north-las-vegas-city-council:primegov:cityofnorthlasvegas.primegov.com",
-      "sourceType": "meeting_system",
-      "sourceOwner": "north-las-vegas-city-council",
-      "jurisdiction": "North Las Vegas, NV",
-      "sourceHost": "cityofnorthlasvegas.primegov.com",
-      "sourcePlatform": "primegov",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://cityofnorthlasvegas.primegov.com/api/systemitemtype/list",
-        "https://cityofnorthlasvegas.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal",
-        "https://cityofnorthlasvegas.primegov.com/api/meetingtype/list/?hideInactive=true",
-        "https://cityofnorthlasvegas.primegov.com/api/committeemember/list",
-        "https://cityofnorthlasvegas.primegov.com/api/user/GetSponsorList",
-        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784865230299",
-        "https://cityofnorthlasvegas.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal?showInactive=true",
-        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1784898143334",
-        "https://cityofnorthlasvegas.primegov.com/public/portal",
-        "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16576",
-        "https://cityofnorthlasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=16749&compileOutputType=1",
-        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784898143333",
-        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1782442560853",
-        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784864940267",
-        "https://cityofnorthlasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=16751&compileOutputType=1"
-      ],
-      "documentTypes": [
-        "agenda",
-        "packet"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:north-las-vegas-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "north-las-vegas-city-council",
-      "jurisdiction": "North Las Vegas, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda",
-        "packet"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:nshe-board-of-regents:civic_website:nshe.nevada.edu",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nshe-board-of-regents",
-      "jurisdiction": "Nevada System of Higher Education",
-      "sourceHost": "nshe.nevada.edu",
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://nshe.nevada.edu/regents/archive/",
-        "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf",
-        "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/BOR5sm.pdf",
-        "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/public-comment/borpc022026.pdf",
-        "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/NSU4sm.pdf",
-        "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC3sm.pdf",
-        "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4asm.pdf",
-        "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4bsm.pdf",
-        "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf"
-      ],
-      "documentTypes": [
-        "agenda",
-        "minutes"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:nshe-board-of-regents:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nshe-board-of-regents",
-      "jurisdiction": "Nevada System of Higher Education",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda",
-        "minutes",
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:nv-legislature:granicus:www.leg.state.nv.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-legislature",
-      "jurisdiction": "Nevada",
-      "sourceHost": "www.leg.state.nv.us",
       "sourcePlatform": "granicus",
+      "sourcePlatforms": [
+        "civic_website",
+        "granicus",
+        "primegov"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
-        "https://www.leg.state.nv.us/Granicus/"
+        "https://lasvegas.primegov.com/public/portal",
+        "https://www.lasvegasnevada.gov/",
+        "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=43676",
+        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015799942",
+        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1785015799943"
       ],
       "documentTypes": [
+        "agenda",
         "unknown"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -711,44 +1076,26 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:reno-city-council:primegov:local",
+      "id": "meeting:lovelock-city-council",
       "sourceType": "meeting_system",
-      "sourceOwner": "reno-city-council",
-      "jurisdiction": "Reno, NV",
-      "sourceHost": null,
-      "sourcePlatform": "primegov",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
+      "sourceOwner": "Lovelock City Council",
+      "jurisdiction": "Lovelock, NV",
+      "sourceHost": "cityoflovelock.com",
+      "sourceHosts": [
+        "cityoflovelock.com"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:nv-legislature:nevada_legislature:search.leg.state.nv.us",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-legislature",
-      "jurisdiction": "Nevada",
-      "sourceHost": "search.leg.state.nv.us",
-      "sourcePlatform": "nevada_legislature",
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
-        "http://search.leg.state.nv.us/83rd2025/Bills/83rd2025_Bills.html"
+        "https://cityoflovelock.com/"
       ],
-      "documentTypes": [
-        "unknown"
-      ],
-      "checkCadence": "PT1H",
-      "productionCadenceRecommendation": "15-60 minutes",
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -759,19 +1106,31 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:nv-senate:civic_website:local",
+      "id": "meeting:mesquite-city-council",
       "sourceType": "meeting_system",
-      "sourceOwner": "nv-senate",
-      "jurisdiction": "Nevada",
-      "sourceHost": null,
+      "sourceOwner": "Mesquite City Council",
+      "jurisdiction": "Mesquite, NV",
+      "sourceHost": "www.mesquitenv.gov",
+      "sourceHosts": [
+        "www.mesquitenv.gov"
+      ],
       "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
       "sourceCategory": "meetings",
-      "sourceUrls": [],
+      "sourceUrls": [
+        "https://www.mesquitenv.gov/",
+        "https://www.mesquitenv.gov/news/mesquite-city-council-meeting-july-28-2026",
+        "https://www.mesquitenv.gov/news/thank-you-to-our-amazing-sponsors-4th-of-july-rockets-over-the-red-mesa-2026"
+      ],
       "documentTypes": [
         "unknown"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -782,129 +1141,724 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:nv-assembly:civic_website:local",
+      "id": "meeting:north-las-vegas-city-council",
       "sourceType": "meeting_system",
-      "sourceOwner": "nv-assembly",
-      "jurisdiction": "Nevada",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:las-vegas-city-council:primegov:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "las-vegas-city-council",
-      "jurisdiction": "Las Vegas, NV",
-      "sourceHost": null,
-      "sourcePlatform": "primegov",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:north-las-vegas-city-council:primegov:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "north-las-vegas-city-council",
+      "sourceOwner": "North Las Vegas City Council",
       "jurisdiction": "North Las Vegas, NV",
-      "sourceHost": null,
-      "sourcePlatform": "primegov",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
+      "sourceHost": "www.cityofnorthlasvegas.com",
+      "sourceHosts": [
+        "cityofnorthlasvegas.primegov.com",
+        "www.cityofnorthlasvegas.com"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:clark-county-school-district:boarddocs:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "clark-county-school-district",
-      "jurisdiction": "Clark County School District, NV",
-      "sourceHost": null,
-      "sourcePlatform": "boarddocs",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
+      "sourcePlatform": "granicus",
+      "sourcePlatforms": [
+        "civic_website",
+        "granicus",
+        "primegov"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:clark-county-school-district:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "clark-county-school-district",
-      "jurisdiction": "Clark County School District, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:washoe-county-school-district:diligent:washoeschools.diligent.community",
-      "sourceType": "meeting_system",
-      "sourceOwner": "washoe-county-school-district",
-      "jurisdiction": "Washoe County School District, NV",
-      "sourceHost": "washoeschools.diligent.community",
-      "sourcePlatform": "diligent",
       "sourceCategory": "meetings",
       "sourceUrls": [
+        "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+        "https://cityofnorthlasvegas.primegov.com/public/portal",
+        "https://www.cityofnorthlasvegas.com/",
+        "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16883",
+        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015799874",
+        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1785015799875"
+      ],
+      "documentTypes": [
+        "agenda",
+        "unknown"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:reno-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Reno City Council",
+      "jurisdiction": "Reno, NV",
+      "sourceHost": "reno.primegov.com",
+      "sourceHosts": [
+        "reno.primegov.com",
+        "www.reno.gov"
+      ],
+      "sourcePlatform": "granicus",
+      "sourcePlatforms": [
+        "civic_website",
+        "granicus",
+        "primegov"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://reno.primegov.com/public/portal",
+        "https://www.reno.gov/services/watch-and-learn",
+        "https://www.reno.gov/",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785016297116",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1785016297117",
+        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8925",
+        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8927"
+      ],
+      "documentTypes": [
+        "agenda",
+        "packet",
+        "unknown"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:sparks-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Sparks City Council",
+      "jurisdiction": "Sparks, NV",
+      "sourceHost": "www.cityofsparks.us",
+      "sourceHosts": [
+        "www.cityofsparks.us",
+        "www.youtube.com"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "html"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
+        "https://www.youtube.com/@cityofsparksmeetings",
+        "https://www.cityofsparks.us/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:wells-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Wells City Council",
+      "jurisdiction": "Wells, NV",
+      "sourceHost": "www.cityofwellsnv.com",
+      "sourceHosts": [
+        "www.cityofwellsnv.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.cityofwellsnv.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:west-wendover-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "West Wendover City Council",
+      "jurisdiction": "West Wendover, NV",
+      "sourceHost": "www.westwendovercity.com",
+      "sourceHosts": [
+        "www.westwendovercity.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.westwendovercity.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:winnemucca-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Winnemucca City Council",
+      "jurisdiction": "Winnemucca, NV",
+      "sourceHost": "www.winnemuccacity.org",
+      "sourceHosts": [
+        "www.winnemuccacity.org"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.winnemuccacity.org/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:yerington-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Yerington City Council",
+      "jurisdiction": "Yerington, NV",
+      "sourceHost": "www.yerington.net",
+      "sourceHosts": [
+        "www.yerington.net"
+      ],
+      "sourcePlatform": "civic_website",
+      "sourcePlatforms": [
+        "civic_website",
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.yerington.net/",
+        "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_05042026-57"
+      ],
+      "documentTypes": [
+        "agenda"
+      ],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:carson-city-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Carson City School District Board of Trustees",
+      "jurisdiction": "Carson City School District, NV",
+      "sourceHost": "www.carsoncityschools.com",
+      "sourceHosts": [
+        "go.boarddocs.com",
+        "www.carsoncityschools.com"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "html"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.carsoncityschools.com/our-district/school-board",
+        "https://go.boarddocs.com/nv/carson/Board.nsf/Public",
+        "https://www.carsoncityschools.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:churchill-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Churchill County School District Board of Trustees",
+      "jurisdiction": "Churchill County School District, NV",
+      "sourceHost": "www.churchillcsd.com",
+      "sourceHosts": [
+        "www.churchillcsd.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.churchillcsd.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:clark-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Clark County School District Board of Trustees",
+      "jurisdiction": "Clark County School District, NV",
+      "sourceHost": "www.boarddocs.com",
+      "sourceHosts": [
+        "go.boarddocs.com",
+        "www.boarddocs.com",
+        "www.ccsd.net"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "html"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.boarddocs.com/nv/ccsdlv/Board.nsf/Public",
+        "https://www.ccsd.net/",
+        "https://go.boarddocs.com/nv/ccsdlv/Board.nsf/Public"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:douglas-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Douglas County School District Board of Trustees",
+      "jurisdiction": "Douglas County School District, NV",
+      "sourceHost": "www.dcsd.net",
+      "sourceHosts": [
+        "www.dcsd.net"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.dcsd.net/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:elko-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Elko County School District Board of Trustees",
+      "jurisdiction": "Elko County School District, NV",
+      "sourceHost": "www.ecsdnv.net",
+      "sourceHosts": [
+        "www.ecsdnv.net"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.ecsdnv.net/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:esmeralda-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Esmeralda County School District Board of Trustees",
+      "jurisdiction": "Esmeralda County School District, NV",
+      "sourceHost": "www.esmeralda.k12.nv.us",
+      "sourceHosts": [
+        "www.esmeralda.k12.nv.us"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.esmeralda.k12.nv.us/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:eureka-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Eureka County School District Board of Trustees",
+      "jurisdiction": "Eureka County School District, NV",
+      "sourceHost": "www.eureka.k12.nv.us",
+      "sourceHosts": [
+        "www.eureka.k12.nv.us"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.eureka.k12.nv.us/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:humboldt-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Humboldt County School District Board of Trustees",
+      "jurisdiction": "Humboldt County School District, NV",
+      "sourceHost": "www.hcsdnv.com",
+      "sourceHosts": [
+        "www.hcsdnv.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.hcsdnv.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:lander-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lander County School District Board of Trustees",
+      "jurisdiction": "Lander County School District, NV",
+      "sourceHost": "www.lander.k12.nv.us",
+      "sourceHosts": [
+        "www.lander.k12.nv.us"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.lander.k12.nv.us/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:lincoln-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lincoln County School District Board of Trustees",
+      "jurisdiction": "Lincoln County School District, NV",
+      "sourceHost": "lcsdnv.com",
+      "sourceHosts": [
+        "lcsdnv.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://lcsdnv.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:lyon-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lyon County School District Board of Trustees",
+      "jurisdiction": "Lyon County School District, NV",
+      "sourceHost": "www.lyoncsd.org",
+      "sourceHosts": [
+        "www.lyoncsd.org"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.lyoncsd.org/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:mineral-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Mineral County School District Board of Trustees",
+      "jurisdiction": "Mineral County School District, NV",
+      "sourceHost": "nvmcsd.org",
+      "sourceHosts": [
+        "nvmcsd.org"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://nvmcsd.org/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:nye-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nye County School District Board of Trustees",
+      "jurisdiction": "Nye County School District, NV",
+      "sourceHost": "www.nye.k12.nv.us",
+      "sourceHosts": [
+        "www.nye.k12.nv.us"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.nye.k12.nv.us/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:pershing-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Pershing County School District Board of Trustees",
+      "jurisdiction": "Pershing County School District, NV",
+      "sourceHost": "www.pcsdnv.com",
+      "sourceHosts": [
+        "www.pcsdnv.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.pcsdnv.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:storey-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Storey County School District Board of Trustees",
+      "jurisdiction": "Storey County School District, NV",
+      "sourceHost": "www.storeynv.com",
+      "sourceHosts": [
+        "www.storeynv.com"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.storeynv.com/"
+      ],
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
+      "lastCheckedAt": null,
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": null,
+      "healthStatus": "unknown",
+      "freshnessStatus": "not_checked",
+      "failureReason": null,
+      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
+    },
+    {
+      "id": "meeting:washoe-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Washoe County School District Board of Trustees",
+      "jurisdiction": "Washoe County School District, NV",
+      "sourceHost": "www.washoeschools.net",
+      "sourceHosts": [
+        "washoeschools.community.diligentoneplatform.com",
+        "washoeschools.diligent.community",
+        "www.washoeschools.net"
+      ],
+      "sourcePlatform": "html",
+      "sourcePlatforms": [
+        "diligent",
+        "html"
+      ],
+      "sourceCategory": "meetings",
+      "sourceUrls": [
+        "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
+        "https://www.washoeschools.net/trustees/board-of-trustees/board-meeting-archive",
+        "https://www.washoeschools.net/",
         "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1207",
         "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1236",
         "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1209",
@@ -926,16 +1880,14 @@
         "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1303",
         "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1304",
         "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1305",
-        "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1306",
-        "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1307",
-        "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1323",
-        "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1324"
+        "https://washoeschools.diligent.community/Portal/MeetingInformation.aspx?Id=1306"
       ],
       "documentTypes": [
         "agenda"
       ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -946,286 +1898,26 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:washoe-county-school-district:diligent:washoeschools.community.diligentoneplatform.com",
+      "id": "meeting:white-pine-county-school-district",
       "sourceType": "meeting_system",
-      "sourceOwner": "washoe-county-school-district",
-      "jurisdiction": "Washoe County School District, NV",
-      "sourceHost": "washoeschools.community.diligentoneplatform.com",
-      "sourcePlatform": "diligent",
+      "sourceOwner": "White Pine County School District Board of Trustees",
+      "jurisdiction": "White Pine County School District, NV",
+      "sourceHost": "www.whitepine.k12.nv.us",
+      "sourceHosts": [
+        "www.whitepine.k12.nv.us"
+      ],
+      "sourcePlatform": "manual",
+      "sourcePlatforms": [
+        "manual"
+      ],
       "sourceCategory": "meetings",
       "sourceUrls": [
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1350",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1415",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1351",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1352",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1353",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1354",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1355",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1356",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1357",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1358",
-        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1359"
+        "https://www.whitepine.k12.nv.us/"
       ],
-      "documentTypes": [
-        "agenda"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:elko-city-council:civic_website:ob.elkocitynv.gov",
-      "sourceType": "meeting_system",
-      "sourceOwner": "elko-city-council",
-      "jurisdiction": "Elko, NV",
-      "sourceHost": "ob.elkocitynv.gov",
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://ob.elkocitynv.gov/OnBaseAgendaOnline/Meetings/ViewMeeting?id=900&doctype=1",
-        "https://ob.elkocitynv.gov/onbaseagendaonline",
-        "https://ob.elkocitynv.gov/OnBaseAgendaOnline/Meetings/ViewMeeting?id=850&doctype=2",
-        "https://ob.elkocitynv.gov/OnBaseAgendaOnline/Documents/DownloadFile/Regular_Meeting_900_Agenda_Packet_6_23_2026_3_00_00_PM.pdf?documentType=5&meetingId=900&isAttachment=True",
-        "https://ob.elkocitynv.gov/OnBaseAgendaOnline/Documents/DownloadFile/Regular_Meeting_850_Minutes_Packet_6_23_2026_4_00_00_PM.pdf?documentType=6&meetingId=850&isAttachment=True"
-      ],
-      "documentTypes": [
-        "agenda",
-        "minutes",
-        "packet"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:elko-city-council:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "elko-city-council",
-      "jurisdiction": "Elko, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda",
-        "minutes",
-        "packet",
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:elko-city-council:civic_website:www.elkocity.com",
-      "sourceType": "meeting_system",
-      "sourceOwner": "elko-city-council",
-      "jurisdiction": "Elko, NV",
-      "sourceHost": "www.elkocity.com",
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://www.elkocity.com/_assets_/plugins/revizeWeather/main.php?unit=f&zip=89801&city_name=&country_code=",
-        "https://www.elkocity.com/government/agendas/minutes.php",
-        "https://www.elkocity.com/government/minutes.php",
-        "https://www.elkocity.com/agendalist/index.php",
-        "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
-        "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470",
-        "https://www.elkocity.com/03-01-16%20PC%20Minutes.pdf?t=202305301202470",
-        "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
-        "https://www.elkocity.com/08-02-16%20PC%20Min.pdf?t=202305301202500",
-        "https://www.elkocity.com/09-06-16%20PC%20Min.pdf?t=202305301202500",
-        "https://www.elkocity.com/10-04-16%20PC%20Minutes.pdf?t=202305301202500",
-        "https://www.elkocity.com/12-6-16%20PC%20Minutes.pdf?t=202305301202500",
-        "https://www.elkocity.com/01-03-17%20PC%20Mintues.pdf?t=202307240404490",
-        "https://www.elkocity.com/02-07-17%20PC%20Minutes.pdf?t=202305301202510",
-        "https://www.elkocity.com/03-07-17%20PC%20Minutes.pdf?t=202305301202510",
-        "https://www.elkocity.com/04-04-17%20PC%20Minutes.pdf?t=202305301202510",
-        "https://www.elkocity.com/05-02-17%20PC%20Minutes.pdf?t=202305301202510",
-        "https://www.elkocity.com/06-06-17%20PC%20Minutes.pdf?t=202305301202520",
-        "https://www.elkocity.com/08-01-17%20PC%20Minutes.pdf?t=202305301202520",
-        "https://www.elkocity.com/07-18-17%20PC%20Minutes.pdf?t=202305301202520",
-        "https://www.elkocity.com/government/city_meetings__live_broadcst_and_archives/index.php"
-      ],
-      "documentTypes": [
-        "agenda",
-        "minutes",
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:elko-county-commission:civic_website:www.elkocountynv.net",
-      "sourceType": "meeting_system",
-      "sourceOwner": "elko-county-commission",
-      "jurisdiction": "Elko County, NV",
-      "sourceHost": "www.elkocountynv.net",
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://www.elkocountynv.net/_assets_/plugins/revizeWeather/main.php?unit=f&zip=89801&city_name=&country_code=",
-        "https://www.elkocountynv.net/your_services_2/forms_center.php",
-        "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php"
-      ],
-      "documentTypes": [
-        "agenda",
-        "minutes"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:elko-county-commission:granicus:elkocounty.granicus.com",
-      "sourceType": "meeting_system",
-      "sourceOwner": "elko-county-commission",
-      "jurisdiction": "Elko County, NV",
-      "sourceHost": "elkocounty.granicus.com",
-      "sourcePlatform": "granicus",
-      "sourceCategory": "meetings",
-      "sourceUrls": [
-        "https://elkocounty.granicus.com/appstore/customer/showClientApplication/civicideas.json",
-        "https://elkocounty.granicus.com/ViewPublisherRSS.php?view_id=5&mode=agendas",
-        "https://elkocounty.granicus.com/AgendaViewer.php?view_id=5&clip_id=3373",
-        "https://elkocounty.granicus.com/ViewPublisherRSS.php?view_id=5&mode=minutes",
-        "https://elkocounty.granicus.com/MinutesViewer.php?view_id=5&clip_id=3373&doc_id=3a239a05-0b16-4e67-84b3-a5004b2ce3e8"
-      ],
-      "documentTypes": [
-        "agenda",
-        "minutes"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:elko-county-commission:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "elko-county-commission",
-      "jurisdiction": "Elko County, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "agenda",
-        "minutes"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:nv-governor-executive-boards:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-governor-executive-boards",
-      "jurisdiction": "Nevada",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:carson-city-school-district:boarddocs:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "carson-city-school-district",
-      "jurisdiction": "Carson City School District, NV",
-      "sourceHost": null,
-      "sourcePlatform": "boarddocs",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
-      "lastCheckedAt": null,
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": null,
-      "healthStatus": "unknown",
-      "freshnessStatus": "not_checked",
-      "failureReason": null,
-      "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
-    },
-    {
-      "id": "meeting:carson-city-school-district:civic_website:local",
-      "sourceType": "meeting_system",
-      "sourceOwner": "carson-city-school-district",
-      "jurisdiction": "Carson City School District, NV",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
-      "sourceCategory": "meetings",
-      "sourceUrls": [],
-      "documentTypes": [
-        "unknown"
-      ],
-      "checkCadence": "PT6H",
-      "productionCadenceRecommendation": "1-6 hours",
+      "documentTypes": [],
+      "checkCadence": "P1D",
+      "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
+      "registrationStatus": "configured",
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -1252,6 +1944,12 @@
       "checkCadence": "PT1H",
       "productionCadenceRecommendation": "15-60 minutes for official updates; hourly/daily for community news",
       "rssStatus": "registered",
+      "sourceHosts": [
+        "www.carsoncity.gov"
+      ],
+      "sourcePlatforms": [
+        "rss"
+      ],
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
@@ -1279,13 +1977,19 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "implemented",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-07-24T18:25:20.916Z",
+      "lastCheckedAt": "2026-07-25T22:09:21.292Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-25T18:25:20.916Z",
+      "nextCheckAt": "2026-07-26T22:09:21.292Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
+      "sourceHosts": [
+        "www.carsoncity.gov"
+      ],
+      "sourcePlatforms": [
+        "official_directory"
+      ],
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
@@ -1306,13 +2010,19 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "implemented",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-07-24T18:25:20.916Z",
+      "lastCheckedAt": "2026-07-25T22:09:21.292Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-25T18:25:20.916Z",
+      "nextCheckAt": "2026-07-26T22:09:21.292Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
+      "sourceHosts": [
+        "www.carsoncity.gov"
+      ],
+      "sourcePlatforms": [
+        "official_directory"
+      ],
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
@@ -1336,10 +2046,16 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-24T18:25:20.916Z",
+      "nextCheckAt": "2026-07-25T22:09:21.292Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
+      "sourceHosts": [
+        "www.carsoncity.gov"
+      ],
+      "sourcePlatforms": [
+        "official_directory"
+      ],
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
@@ -1360,13 +2076,19 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "configured",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-07-24T18:25:20.916Z",
+      "lastCheckedAt": "2026-07-25T22:09:21.292Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-25T18:25:20.916Z",
+      "nextCheckAt": "2026-07-26T22:09:21.292Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
+      "sourceHosts": [
+        "www.carsoncityschools.com"
+      ],
+      "sourcePlatforms": [
+        "official_directory"
+      ],
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
@@ -1390,10 +2112,16 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-24T18:25:20.916Z",
+      "nextCheckAt": "2026-07-25T22:09:21.292Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
+      "sourceHosts": [
+        "www.elkocity.com"
+      ],
+      "sourcePlatforms": [
+        "official_directory"
+      ],
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
@@ -1417,10 +2145,16 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-24T18:25:20.916Z",
+      "nextCheckAt": "2026-07-25T22:09:21.292Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
+      "sourceHosts": [
+        "www.elkocity.com"
+      ],
+      "sourcePlatforms": [
+        "official_directory"
+      ],
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
@@ -1444,21 +2178,27 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-24T18:25:20.916Z",
+      "nextCheckAt": "2026-07-25T22:09:21.292Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
+      "sourceHosts": [
+        "www.elkocountynv.net"
+      ],
+      "sourcePlatforms": [
+        "official_directory"
+      ],
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     }
   ],
   "audit": {
-    "generatedAt": "2026-07-24T18:25:20.916Z",
+    "generatedAt": "2026-07-25T22:09:21.292Z",
     "totals": {
-      "sources": 49,
-      "meetingSources": 41,
+      "sources": 63,
+      "meetingSources": 55,
       "rssSources": 1,
       "officialDirectorySources": 7,
-      "jurisdictions": 19
+      "jurisdictions": 58
     }
   }
 }

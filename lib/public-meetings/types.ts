@@ -105,6 +105,7 @@ export type PublicMeetingSourceSeed = {
   name: string;
   jurisdiction: string;
   level: PublicBodyLevel;
+  providerGroup?: "state" | "county" | "city" | "school";
   website?: string | null;
   sourceUrl?: string | null;
   meetingIndexUrl: string | null;
@@ -112,6 +113,12 @@ export type PublicMeetingSourceSeed = {
   minutesArchiveUrl?: string | null;
   packetArchiveUrl?: string | null;
   videoArchiveUrl?: string | null;
+  discoveryUrls?: string[];
+  allowedHosts?: string[];
+  platformHints?: string[];
+  coverageJurisdictionIds?: string[];
+  directCollectionCadenceDays?: number;
+  advancedCollectionCadenceDays?: number;
   scraperType: PublicMeetingScraperType;
   active: boolean;
   notes?: string | null;

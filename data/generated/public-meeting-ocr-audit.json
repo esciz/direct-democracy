@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T13:04:40.538Z",
+  "generatedAt": "2026-07-25T22:08:32.370Z",
   "records": [
     {
       "documentId": "meeting-source-document-2e8888c354762bce37ee1e2fdc7b95de46faabb17d38c171ebfcb6a0a9c27b7f",
@@ -30,230 +30,6 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-4c0606d518a0ed29022f2856fc22f79b0e87750162e62cb407973e791a13cf66",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-26-6edbab48",
-      "documentType": "agenda",
-      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf",
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/c6130581a77447e406c4f6b20e9c92a7dc46c459411132824b62b9a034bdf584.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 12566,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-d98b87c57866541ea058744425ba1765e75b8ba1db8e5cad6a417ec7d6585645",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-13-6f9c2ffd",
-      "documentType": "agenda",
-      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/BOR5sm.pdf",
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/59d7fc34d917870a49c20afb4778066dab017056d98cfc1804fb14a7cd00b9eb.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 182578,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-e24ae9745830b03861e1e31c4ea8b2b4cc98268c1278e23f8dda12122736f64d",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-20-aa70c97e",
-      "documentType": "agenda",
-      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/public-comment/borpc022026.pdf",
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/61971b1ba22bfa34ab2658ac0404c968ebb036b9735e7f7249c07c3ae790d27e.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 10360,
-      "nativeExtractionQuality": "medium",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.84,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-04e58ee52126dd6d3c69f07c04cf93ef97a42b32b7054f412ef5e350b6803a02",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-03-30-edabc7ff",
-      "documentType": "agenda",
-      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/NSU4sm.pdf",
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/2099ab032079e2c050782f439771b5dc4f75d8b6c8a632310d95633be450766e.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 24603,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-26543d9769f5368df30338038c8136daa78e15e81c03e54e238061a2317bbef3",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3",
-      "documentType": "agenda",
-      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC3sm.pdf",
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/557d008a0096a7ecfe3f6354058201c56f3eaabecf77aceb2e3059a42a274618.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 31233,
-      "nativeExtractionQuality": "medium",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.84,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-aa6abec3d0ad52bc77f9df389dca52c5e67e25fde4f23df981b04084aaea1545",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-a3fd4be8",
-      "documentType": "agenda",
-      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4asm.pdf",
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/59ec63f3ac45b37d4aeb04ad5d51a711ea3b1beffd0c0ec600d02b2236a5585a.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 8895,
-      "nativeExtractionQuality": "medium",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.84,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-c3ea80dec09920b56f87e5cbe06679e7fcb0782a38f67f1118a41e2ef0dc1e69",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955",
-      "documentType": "agenda",
-      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4bsm.pdf",
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/0d5fe586ca38425a2b7017d68eaf3e91588213393858dc80484ec81a15f760ab.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 450000,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-a367b4b6f0947c5a7eb2e9efdd8bacc16078ca67ccb828688d10e119831a54d3",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5",
-      "documentType": "minutes",
-      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-board-of-regents-minutes-2026-02-20-26-b/c4a778eb66d2554df2be01db43f4e2bed2577be41f50976baaeaf6acc7b83e4c.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 21203,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
       "documentId": "meeting-source-document-fb129b08dacece426001b997e5de80ab1ff9c40cdb106ca1142fdf8d0a1c10b1",
       "meetingId": "meeting-carson-city-board-of-supervisors-administrative-hearing-2026-07-29-eae23183",
       "documentType": "packet",
@@ -263,7 +39,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-d9366baa-7a26-11f1-9494-005056a89546-e5/5a545879fa67398397f198159f8449652895bf6a71d83351e4e32d1e165cfe5c.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 23458,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -282,32 +58,32 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-387c378aff388a6ddb910c71bfa45bcd9aa2d174d16135139ffa787ad76b6731",
-      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-8c5c231d",
+      "documentId": "meeting-source-document-5287af0ec50387bd1c18e57f2c85b506672fcbbdd383ff605222d7b307a56adc",
+      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-eeeb7eb6",
       "documentType": "packet",
-      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/de9f97bc-cfa9-11f0-bb28-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1784735481.pdf",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/de9f97bc-cfa9-11f0-bb28-005056a89546-c4b7aef4-c5cb-4f08-b9f0-3200f86073a7-1784914295.pdf",
       "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-de9f97bc-cfa9-11f0-bb28-005056a89546-c4/a89dd64ef4aae08837b66662b1f8d72197ddf12931ccf667f75f7fbb338ece78.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 284789,
+      "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "no_cached_binary_available"
+          "status": "native_text_available"
         }
       ],
-      "failureReason": "No cached binary is available for OCR."
+      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-1d9550ca2303b17cbc9e1d678efe4eac7f5ca318d2546c6f8a4844c50c7e6064",
@@ -319,7 +95,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-b8eb433f-8138-11f1-98fd-005056a89546-e5/77703e86556239e60b7d91b86eb93ac926fc459ddb7f5e1be7a6a11a94ee6643.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 8464,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -347,7 +123,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-d2e20172-7ed2-11f1-94fc-005056a89546-eb/55cd7fba245de5f5c608bba41c8212f7fc4ed61b16a9a506a2ca1f6066b5eb47.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 12110,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -567,27 +343,27 @@
       "documentType": "packet",
       "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/2f91e476-68cf-11f1-9494-005056a89546-6818ffdb-711b-4cab-85e3-4e303bf4ac98-1781565296.pdf",
       "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-2f91e476-68cf-11f1-9494-005056a89546-68/f1b7e831c16d0566bb9a91ea27cda199b5f60f9ac820e0cfb4f720bf5e2c5a50.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "no_cached_binary_available"
+          "status": "native_text_available"
         }
       ],
-      "failureReason": "No cached binary is available for OCR."
+      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-c723a3d3b93a4ff9dca1f2617da2ffac86a67089ce08ebe23e3040df38b817d9",
@@ -1379,27 +1155,27 @@
       "documentType": "packet",
       "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/e0d96e0c-c3e3-11f0-a7da-005056a89546-395ad23b-967a-4108-90e3-d31ee6d342b3-1783625967.pdf",
       "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-e0d96e0c-c3e3-11f0-a7da-005056a89546-39/308212e6a9525ae549b78285102f34c1eab121b8fd1bb88fca97785329bd951b.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "no_cached_binary_available"
+          "status": "native_text_available"
         }
       ],
-      "failureReason": "No cached binary is available for OCR."
+      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-b678cc90bfc457765e254c623129d304a809865fb2b6fa83e06082e114f80863",
@@ -1411,7 +1187,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-9aea2238-c3e3-11f0-a7da-005056a89546-39/3084f7c9513bbdac68d02458ad9a5739009c4cfbd9992d0e5782e93a6b247e36.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -1435,27 +1211,27 @@
       "documentType": "packet",
       "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/7cecc3f7-c3e3-11f0-a7da-005056a89546-395ad23b-967a-4108-90e3-d31ee6d342b3-1781221001.pdf",
       "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-7cecc3f7-c3e3-11f0-a7da-005056a89546-39/319b7d25e5dbc3cffb453d65d7d4def34a52b46f434b31f60cb6a89ca4a563df.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "no_cached_binary_available"
+          "status": "native_text_available"
         }
       ],
-      "failureReason": "No cached binary is available for OCR."
+      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-51c3bad7b2b93059c84dfcad00054aceb492ed3eb2ac825bba6c035ac1af03c9",
@@ -4799,7 +4575,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-de84f9fc-6e7b-11f1-9494-005056a89546-24/2c2748e98f32760d57474d378e0f8cafc3e0da8f065b6903d70eab607b30fe63.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 62553,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -5243,27 +5019,27 @@
       "documentType": "packet",
       "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/a44801c7-e516-11f0-bb28-005056a89546-72832d98-d599-4654-a647-d1ce4f3832d7-1783037561.pdf",
       "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-a44801c7-e516-11f0-bb28-005056a89546-72/06888b9303b67704df482f86d37fa979eb94269192f5089364e80e6cd14d6db8.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 48024,
+      "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "no_cached_binary_available"
+          "status": "native_text_available"
         }
       ],
-      "failureReason": "No cached binary is available for OCR."
+      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-38d2640ac89cd26df3c33c1937c920560d572ac37a67d02db5b759c5b9db3b01",
@@ -8486,8 +8262,288 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-940350061b9905c0c0f9222fde0440a2037e8f189a869280ca390a2a94f45f2b",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/slvnfv2y/1-20-26-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-eurekacountynv-gov-media-slvnfv2y-1-20-26-bocc-agenda-and-backup-pdf/b57fc9378596294a74a3b36c8492dd7f48f56b3c81f460d7ef720544a5ab0233.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-bc47599f408883efcfae26cfe8dcfc0ca855b33075f2f8d8011e6f033856aba9",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/54idfeep/1-6-26-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-eurekacountynv-gov-media-54idfeep-1-6-26-bocc-agenda-and-backup-pdf/b0dec3136ba9c7cd4922a580f9033fbfae3cb2d8b38aeb8e89bff88f37f6784a.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 275340,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-e5e38c7e6633705c2733ed259cff66f7a896ab87fe3509819fb728beb190b6f0",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/ndgo3got/2-03-26-euco-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-eurekacountynv-gov-media-ndgo3got-2-03-26-euco-bocc-agenda-and-backup-pdf/0e3e0189dc40400a5f7d9f5522b9add230c7852d2a56973181a916d111c240eb.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 386510,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-f61489738763e81501669babea033f0f6768b22cbb32478a199a60d53601acf8",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/vkwneya0/2-17-26-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-eurekacountynv-gov-media-vkwneya0-2-17-26-bocc-agenda-and-backup-pdf/bb42cb7054bdfd52b08069f4cf39182b31f8937be02254081789f1d79955c2d6.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 422043,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-e6e1de5ce3edf2a72f779e264489d29342f4549ee9d65f50b26174fb63094d08",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/ipvoh1dh/3-03-26-euco-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-eurekacountynv-gov-media-ipvoh1dh-3-03-26-euco-bocc-agenda-and-backup-pdf/408bad517d7d4cd02718fb6fd5dfcf43934774b976154a5c7e8acf4598c02202.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 154750,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-222d69bdc598347e92c729a8456ad0474326ae2da10e180a1329604c382a477f",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/4pnohwtl/3-17-26-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-eurekacountynv-gov-media-4pnohwtl-3-17-26-bocc-agenda-and-backup-pdf/57f477a2134747c976a8819b119d3fab175879e097fcd38012d5b6b155ddb74a.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-4f0caf630e319064901aad0114cfc9ca076e4637b4874aac7475645be407674f",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-10cb9a15",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/3m3bnb5u/4-7-26-euco-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-eurekacountynv-gov-media-3m3bnb5u-4-7-26-euco-bocc-agenda-and-backup-pdf/94542512ee715e7a0f96d7fd85debfbe0f2f80feeb4ae6430cf66f443e4d560e.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 362420,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-28fc03057d50b332a8ca4da535f33e925019d0c6bff576e6d4356559931ef6a8",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/hf1asyvv/5-5-26-euco-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-8d036374ddeadd278fc51cb7d0d100b0983508804e02400cd0faeccc2a5c29e1",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-2ad7a023",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/esvlrk4g/5-19-26-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-e434b975572ce5143cee674658522f76c53042f68f5faf476292e835179718d4",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/veohfdbc/6-2-26-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
       "documentId": "meeting-source-document-c3ab0c85c1387a7c3af0a0f4761e5becf84a8d1d2e279d1bfff3aca211413009",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
       "sourcePath": null,
@@ -8515,7 +8571,7 @@
     },
     {
       "documentId": "meeting-source-document-6be07ee1552148ea8460e6d05495f0206f0070ae542a4540378fe388d3cc7cf1",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-02-02-9ae9d1f3",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470",
       "sourcePath": null,
@@ -8543,63 +8599,63 @@
     },
     {
       "documentId": "meeting-source-document-4a66b40aaaf3ca71473627886ba4d04f0063481b8404112e5073728fee819401",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2015-12-01-2462d4ea",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/03-01-16%20PC%20Minutes.pdf?t=202305301202470",
       "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-elkocity-com-03-01-16-20pc-20minutes-pdf-t-202305301202470/f68852da1b0e74745779ed091894e22fd881d02be6e2485698e83a5e064fbf71.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 35343,
+      "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "no_cached_binary_available"
+          "status": "native_text_available"
         }
       ],
-      "failureReason": "No cached binary is available for OCR."
+      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-fa9404edf14868a2b3e51a3bf442bb52d059e2808cc1d1d6f7e7677ddaa203e6",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-06-07-eedd5f1d",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
       "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/www-elkocity-com-06-07-16-20pc-20min-pdf-t-202305301202500/53f77329e7f0ed11f085a9724fc80698db13c856af6bd456d817d1f90bbef1ad.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 49685,
+      "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "no_cached_binary_available"
+          "status": "native_text_available"
         }
       ],
-      "failureReason": "No cached binary is available for OCR."
+      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-11bdea3d6c322c45fb055c701c245ead6633f9ba9caa88ab4f2868ed3ea04792",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-08-02-e0baefbb",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-08-02-d51440b4",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/08-02-16%20PC%20Min.pdf?t=202305301202500",
       "sourcePath": null,
@@ -8627,7 +8683,7 @@
     },
     {
       "documentId": "meeting-source-document-46d5c6631df0dbb2298e52a00d3fde1fe25d3ecfd2c49978fe0a6acde579585b",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-09-06-621088d5",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-09-06-62554d46",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/09-06-16%20PC%20Min.pdf?t=202305301202500",
       "sourcePath": null,
@@ -8655,7 +8711,7 @@
     },
     {
       "documentId": "meeting-source-document-9720eccd030dd911f5683ab4b901df0d288938b1f22dc0ffc19f372c8a4ded3f",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-b2ab6bc6",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-10-04-612f9a7e",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/10-04-16%20PC%20Minutes.pdf?t=202305301202500",
       "sourcePath": null,
@@ -8683,7 +8739,7 @@
     },
     {
       "documentId": "meeting-source-document-76188efc2fd7262b16d311ff73e5f8e33a00a31e2f92f8b160c587b1dd487504",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-4a12b8c5",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-12-06-b92fa671",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/12-6-16%20PC%20Minutes.pdf?t=202305301202500",
       "sourcePath": null,
@@ -8711,7 +8767,7 @@
     },
     {
       "documentId": "meeting-source-document-ae5da6b3d123484ee82c9297d7f78595ccb98922a7dc3a71fffd4e59807dae60",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-5ae461b2",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-01-03-bbac8994",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/01-03-17%20PC%20Mintues.pdf?t=202307240404490",
       "sourcePath": null,
@@ -8739,7 +8795,7 @@
     },
     {
       "documentId": "meeting-source-document-bfccc3001f203411162b3d848c1bf46bd7f5a3e44d5fe1959cc6299ec3f1b304",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-8ec05634",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-02-07-b39e3c9e",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/02-07-17%20PC%20Minutes.pdf?t=202305301202510",
       "sourcePath": null,
@@ -8767,7 +8823,7 @@
     },
     {
       "documentId": "meeting-source-document-36122f7391bf070c64ee5941f62524f558301854b5b38d969aa3fdc97c60d46b",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-f67e33b1",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-03-07-f446eb1c",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/03-07-17%20PC%20Minutes.pdf?t=202305301202510",
       "sourcePath": null,
@@ -8795,7 +8851,7 @@
     },
     {
       "documentId": "meeting-source-document-01ba95962361b09333580dccc1ccf221968b9453fd7f91b2cea2b121b9b13c7a",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-cb958bb6",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-04-04-f06a4035",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/04-04-17%20PC%20Minutes.pdf?t=202305301202510",
       "sourcePath": null,
@@ -8823,7 +8879,7 @@
     },
     {
       "documentId": "meeting-source-document-a062a06ff4d071b87ebaf0dbb319f6291b0164f5a2e6c8cc0dea9ec991d77184",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-afabb470",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-05-02-7a840150",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/05-02-17%20PC%20Minutes.pdf?t=202305301202510",
       "sourcePath": null,
@@ -8851,7 +8907,7 @@
     },
     {
       "documentId": "meeting-source-document-9034331c68eb61c647c525ce5b69b05a5441fcb9f9451605fda71a3479179f6f",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-d2b4c80d",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-06-06-8a966bb9",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/06-06-17%20PC%20Minutes.pdf?t=202305301202520",
       "sourcePath": null,
@@ -8879,7 +8935,7 @@
     },
     {
       "documentId": "meeting-source-document-7b77f7a6192e4d8cb7c5875ee45e62a35618a17cbf7dd0f8054006d1835c0713",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-f11a9495",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-08-01-afe0ab9e",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/08-01-17%20PC%20Minutes.pdf?t=202305301202520",
       "sourcePath": null,
@@ -8907,65 +8963,9 @@
     },
     {
       "documentId": "meeting-source-document-071a58a3c2c2df642cc82435d9f5c020601c937642a5871c4e95a47f262d68d9",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-32babd7c",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-07-18-544d6c52",
       "documentType": "minutes",
       "sourceUrl": "https://www.elkocity.com/07-18-17%20PC%20Minutes.pdf?t=202305301202520",
-      "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "no_cached_binary_available"
-        }
-      ],
-      "failureReason": "No cached binary is available for OCR."
-    },
-    {
-      "documentId": "meeting-source-document-5d37ecfcc638aa78e9d95a396f8c0f7be4194825bb42d182cc13e8c41adefe19",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-a1e2d09b",
-      "documentType": "packet",
-      "sourceUrl": "https://ob.elkocitynv.gov/OnBaseAgendaOnline/Documents/DownloadFile/Regular_Meeting_900_Agenda_Packet_6_23_2026_3_00_00_PM.pdf?documentType=5&meetingId=900&isAttachment=True",
-      "sourcePath": null,
-      "localCached": false,
-      "cachedBinaryExists": false,
-      "cachedPath": null,
-      "verifiedPdf": false,
-      "contentClassification": null,
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "no_cached_binary_available",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "no_cached_binary_available"
-        }
-      ],
-      "failureReason": "No cached binary is available for OCR."
-    },
-    {
-      "documentId": "meeting-source-document-916f6a8aa0f6b1fcb466cabaf7541033cb5b508f8f39d29d72c11672a6652fe3",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-a49ca3f9",
-      "documentType": "packet",
-      "sourceUrl": "https://ob.elkocitynv.gov/OnBaseAgendaOnline/Documents/DownloadFile/Regular_Meeting_850_Minutes_Packet_6_23_2026_4_00_00_PM.pdf?documentType=6&meetingId=850&isAttachment=True",
       "sourcePath": null,
       "localCached": false,
       "cachedBinaryExists": false,
@@ -9354,6 +9354,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-04e58ee52126dd6d3c69f07c04cf93ef97a42b32b7054f412ef5e350b6803a02",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-03-30-edabc7ff",
+      "documentType": "agenda",
+      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/NSU4sm.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/2099ab032079e2c050782f439771b5dc4f75d8b6c8a632310d95633be450766e.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-05cbc4664b9f48c7f3ff9e7974ce9ec35a7c31b0296bb26642f938a07f55fc41",
       "meetingId": "meeting-carson-city-board-of-supervisors-parks-and-recreation-commission-2024-08-21-0ae5ab75",
       "documentType": "agenda",
@@ -9559,7 +9587,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-minutesviewer-php-view-id-2-clip-id-2871-doc-id-3e4e1285/47f88cd6d0211a4330024cbb39874c6483fede24509724bd142727e71a2f5dc3.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 18566,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -10226,25 +10254,25 @@
       "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-4-2-html-wp-content-uploads-file-boa.pdf",
+      "sourcePath": null,
       "localCached": true,
       "cachedBinaryExists": true,
       "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-4-2-html-wp-content-uploads-file-boa.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 450000,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -10317,6 +10345,62 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 6581,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-0dddba92da9ccc9f77521f3d1a8b6e50ccbf3f8e9b53a36db7fb1f66620a20c6",
+      "meetingId": "meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a",
+      "documentType": "packet",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-7-07-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-070.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-7-07-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-070.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-0e3e0189dc40400a5f7d9f5522b9add230c7852d2a56973181a916d111c240eb",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-2-03-26-euco-bocc-agenda-and-backup-media-ndgo3got-2-03-26-euco-bocc.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-2-03-26-euco-bocc-agenda-and-backup-media-ndgo3got-2-03-26-euco-bocc.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 386510,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -11129,6 +11213,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 8335,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-182c34f1ac5c477b8b3ea1e8f7638a1fed28b97be242bfcba6d2d6a2ee11b93d",
+      "meetingId": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-07-02-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-070.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-07-02-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-070.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -12242,25 +12354,25 @@
       "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-03-30-edabc7ff",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-4-html-wp-content-uploads-file-boa.pdf",
+      "sourcePath": null,
       "localCached": true,
       "cachedBinaryExists": true,
       "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-4-html-wp-content-uploads-file-boa.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 24603,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -12798,6 +12910,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-26543d9769f5368df30338038c8136daa78e15e81c03e54e238061a2317bbef3",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3",
+      "documentType": "agenda",
+      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC3sm.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/557d008a0096a7ecfe3f6354058201c56f3eaabecf77aceb2e3059a42a274618.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-26cfba2b8b9b05d425ddf2c207ac8d30236317f22406bf4f42257e9a3ecb61c4",
       "meetingId": "meeting-carson-city-board-of-supervisors-board-of-equalization-2025-02-18-a44cb21b",
       "documentType": "minutes",
@@ -12911,7 +13051,7 @@
     },
     {
       "documentId": "meeting-source-document-289cc22b667dfbf5df54b2ee85579dc6eb1b74e4391af23ac10bce7a3ae0a76b",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-08-02-e0baefbb",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-08-02-d51440b4",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-08-02-16-minutes-08-02-16-20pc-20min-pdf.pdf",
@@ -13023,7 +13163,7 @@
     },
     {
       "documentId": "meeting-source-document-29adfc423ca1e627e12d831f589dfeb88fe640b3f5b8f6a486ba9c740e8dde4b",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-b2ab6bc6",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-10-04-612f9a7e",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-10-4-16-minutes-10-04-16-20pc-20minutes-pdf.pdf",
@@ -13386,6 +13526,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933",
+      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
+      "documentType": "packet",
+      "sourceUrl": "https://cityofnorthlasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=16751&compileOutputType=1",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/cityofnorthlasvegas-primegov-com-public-compileddocument-meetingtemplateid-16751/941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-2ea1e31aac00cac2f1b372de0425b49838b6f25b4fea339f8582a33bdba1dc61",
       "meetingId": "meeting-carson-city-board-of-supervisors-parks-and-recreation-commission-2024-06-18-709f5d0d",
       "documentType": "minutes",
@@ -13647,7 +13815,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-minutesviewer-php-view-id-2-clip-id-2889-doc-id-177fbd0c/55c44fee793cd8aa5d0b750b63a3a7f8ecc266bf44944e62f4e4743f9abe07fe.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 28462,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -14982,6 +15150,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-408bad517d7d4cd02718fb6fd5dfcf43934774b976154a5c7e8acf4598c02202",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-3-03-26-euco-bocc-agenda-and-backup-media-ipvoh1dh-3-03-26-euco-bocc.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-3-03-26-euco-bocc-agenda-and-backup-media-ipvoh1dh-3-03-26-euco-bocc.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 154750,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-40d2ec7dc738fee7a43855817e5df3abf1ab31e0a3d6d4de8bfec930917690c8",
       "meetingId": "meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7",
       "documentType": "agenda",
@@ -15207,7 +15403,7 @@
     },
     {
       "documentId": "meeting-source-document-42858023e563df99ebffbbd5f95bad54371928516570c30734aea182baddcccc",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-01-05-16-minutes-01-05-16-20pc-20minutes-pdf.pdf",
@@ -15385,6 +15581,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 4937,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-442c55ff1b1747cb22c4eeb2d6b13ecf9db2684709851d871123b1933031291d",
+      "meetingId": "meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-administrative-committee-meeting-05-04-2026-agendacenter-viewfile-agenda-050.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-administrative-committee-meeting-05-04-2026-agendacenter-viewfile-agenda-050.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 6839,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -16158,6 +16382,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-4c0606d518a0ed29022f2856fc22f79b0e87750162e62cb407973e791a13cf66",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-23-072521ab",
+      "documentType": "agenda",
+      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/AC022626.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/c6130581a77447e406c4f6b20e9c92a7dc46c459411132824b62b9a034bdf584.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-4ca022a40577fd50d60e30e304565441efdea349c1d342385054a9ad8650d552",
       "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2025-10-15-8a151d87",
       "documentType": "agenda",
@@ -16363,7 +16615,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-minutesviewer-php-view-id-2-clip-id-2866-doc-id-5abc43b4/c27f3c82f88f6bdb6b7e0567c7096b3c0706d90824efbae80b50c9a144138b8a.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 26146,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -17055,7 +17307,7 @@
     },
     {
       "documentId": "meeting-source-document-53f77329e7f0ed11f085a9724fc80698db13c856af6bd456d817d1f90bbef1ad",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-06-07-eedd5f1d",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-06-07-16-minutes-06-07-16-20pc-20min-pdf.pdf",
@@ -17065,34 +17317,6 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 49685,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-541aa49d6eb029fe15c09a7179f226ecf8b2bec07fd887588e0bef58eed1414e",
-      "meetingId": "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-20-b67db19f",
-      "documentType": "agenda",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/las-vegas-city-council/agendas/undated-agenda-public-compileddocument.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/las-vegas-city-council/agendas/undated-agenda-public-compileddocument.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 3131,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -17198,41 +17422,41 @@
       "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-3-html-wp-content-uploads-file-boa.pdf",
+      "sourcePath": null,
       "localCached": true,
       "cachedBinaryExists": true,
       "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-3-html-wp-content-uploads-file-boa.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 31233,
-      "nativeExtractionQuality": "medium",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.84,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-558e05e289b2c125446c50f7bdfb9cd0d8e22f6bbd218388da7e0cff99a5eb08",
-      "meetingId": "meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-de266869",
-      "documentType": "agenda",
+      "documentId": "meeting-source-document-567f4419f882c73b14c870ecc32983d9c697c254c731d6255333f1c1f84edb8c",
+      "meetingId": "meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5",
+      "documentType": "packet",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/elko-county-commission/agendas/undated-agenda-agendaviewer-php.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-7-21-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-combined-agendacenter-viewfile-agenda-072.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/elko-county-commission/agendas/undated-agenda-agendaviewer-php.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-7-21-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-combined-agendacenter-viewfile-agenda-072.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
-      "nativeTextLength": 19589,
+      "nativeTextLength": 329964,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -17373,6 +17597,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 22500,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-57f477a2134747c976a8819b119d3fab175879e097fcd38012d5b6b155ddb74a",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-3-17-26-bocc-agenda-and-backup-media-4pnohwtl-3-17-26-bocc-agen.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-3-17-26-bocc-agenda-and-backup-media-4pnohwtl-3-17-26-bocc-agen.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -17670,17 +17922,45 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-59d7fc34d917870a49c20afb4778066dab017056d98cfc1804fb14a7cd00b9eb",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-13-6f9c2ffd",
+      "documentId": "meeting-source-document-59ec63f3ac45b37d4aeb04ad5d51a711ea3b1beffd0c0ec600d02b2236a5585a",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-a3fd4be8",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-5-html-wp-content-uploads-file-boa.pdf",
+      "sourcePath": null,
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-5-html-wp-content-uploads-file-boa.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-4-1-html-wp-content-uploads-file-boa.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-5a69f9546429e15830ec3f1463ad3661e70786c9281c9e37636829ca65f9834f",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-6-2-26-agenda-and-backup-media-veohfdbc-6-2-26-agenda-and.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-6-2-26-agenda-and-backup-media-veohfdbc-6-2-26-agenda-and.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
-      "nativeTextLength": 182578,
+      "nativeTextLength": 182854,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -17688,34 +17968,6 @@
       "ocrStatus": "not_required",
       "extractionMethod": "native_text",
       "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-59ec63f3ac45b37d4aeb04ad5d51a711ea3b1beffd0c0ec600d02b2236a5585a",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-a3fd4be8",
-      "documentType": "agenda",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-4-1-html-wp-content-uploads-file-boa.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-item-4-1-html-wp-content-uploads-file-boa.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 8895,
-      "nativeExtractionQuality": "medium",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.84,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
@@ -17875,7 +18127,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/reno-primegov-com-public-compileddocument-meetingtemplateid-8899-compileoutputty/d644c52404658a3a5e4fafb1f53eacbf9751771a15f8f9229942516bbbde9eef.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
+      "contentClassification": "ocr_candidate",
       "nativeTextLength": 0,
       "nativeExtractionQuality": "insufficient",
       "scannedPdfLikely": true,
@@ -18007,7 +18259,7 @@
     },
     {
       "documentId": "meeting-source-document-5ceb13d4b6523b32b502c3e8f01e1c35cde3f17636f638f75fc4443309b1d768",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-09-06-621088d5",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-09-06-62554d46",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-09-06-16-minutes-09-06-16-20pc-20min-pdf.pdf",
@@ -18157,34 +18409,6 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 8143,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "documentType": "packet",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/reno-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/reno-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
-      "nativeTextLength": 35220,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -18455,7 +18679,7 @@
     },
     {
       "documentId": "meeting-source-document-61870afc185b23c7bf29dff54d13f9c99c9140c3549df3f5d21410b73639821f",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-afabb470",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-05-02-7a840150",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-05-02-17-minutes-05-02-17-20pc-20minutes-pdf.pdf",
@@ -18480,34 +18704,6 @@
         }
       ],
       "failureReason": "native_text_too_thin_ocr_unavailable"
-    },
-    {
-      "documentId": "meeting-source-document-61971b1ba22bfa34ab2658ac0404c968ebb036b9735e7f7249c07c3ae790d27e",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-20-aa70c97e",
-      "documentType": "agenda",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-written-public-comment-html-wp-content-uploads-file-boa.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-written-public-comment-html-wp-content-uploads-file-boa.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 10360,
-      "nativeExtractionQuality": "medium",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.84,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-61997a5bef1560ff73c2e2838fb05b7765af84c9215ffb45e31df8406ef61f5b",
@@ -18539,7 +18735,7 @@
     },
     {
       "documentId": "meeting-source-document-61d654ee1d1dc54c444f413cbf4353729024861e3c61982d0755fa7ad31fd670",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-8ec05634",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-02-07-b39e3c9e",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-02-7-17-minutes-02-07-17-20pc-20minutes-pdf.pdf",
@@ -21291,7 +21487,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-minutesviewer-php-view-id-2-clip-id-2893-doc-id-f9c01eac/400d83e708dad3fe47b62f97e103c4568d8cb6a80eb156c6cde5a8253bbd1aef.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 15604,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -21851,7 +22047,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-minutesviewer-php-view-id-2-clip-id-2856-doc-id-84e2ee07/d92fcd9dec2e78a14b6cd352834bb27e78b86aa678b1f3db941d8cb9fdd92d41.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 16014,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -21927,7 +22123,7 @@
     },
     {
       "documentId": "meeting-source-document-87459fa55e78dd2507f1dc6348305a79e3ed898e497310d757f66f96c3bff81f",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-f67e33b1",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-03-07-f446eb1c",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-03-07-17-minutes-03-07-17-20pc-20minutes-pdf.pdf",
@@ -22294,25 +22490,25 @@
       "meetingId": "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-22-a137651c",
       "documentType": "minutes",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/las-vegas-city-council/minutes/undated-action-minutes-public-compileddocument.pdf",
+      "sourcePath": null,
       "localCached": true,
       "cachedBinaryExists": true,
       "cachedPath": "data/manual-sources/public-meetings/las-vegas-city-council/minutes/undated-action-minutes-public-compileddocument.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 4716,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -22551,20 +22747,20 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/lasvegas-primegov-com-public-compileddocument-meetingtemplateid-43626-compileout/541aa49d6eb029fe15c09a7179f226ecf8b2bec07fd887588e0bef58eed1414e.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 3131,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -23018,6 +23214,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-917f9145c98390191dc2de359c6c5916f54ca5377f6d07d48d1391a60863754c",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "documentType": "packet",
+      "sourceUrl": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9155&compileOutputType=1",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/reno-primegov-com-public-compileddocument-meetingtemplateid-9155-compileoutputty/04d4b2f955a61ce21be64563a1544ccee7aeb727db092420d4ffd4b7158d9d38.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-91b3bbae2da0757a3bae4912b81a383b936159359d0fbccb6fc8aae8ac0bdd20",
       "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2025-04-30-239c2015",
       "documentType": "minutes",
@@ -23270,34 +23494,6 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1",
-      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
-      "documentType": "packet",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/north-las-vegas-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/north-las-vegas-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 122281,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
       "documentId": "meeting-source-document-9450f00d711706a63aff81d7f61fab106e7eef1e705c66cc2068d241e03b5024",
       "meetingId": "meeting-carson-city-board-of-supervisors-board-of-equalization-2026-02-24-1e928111",
       "documentType": "minutes",
@@ -23327,7 +23523,7 @@
     },
     {
       "documentId": "meeting-source-document-945dc017957212913f0d8749609c65e4c041d728a7844a492a765568c7f32162",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-4a12b8c5",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-12-06-b92fa671",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-12-6-16-minutes-12-6-16-20pc-20minutes-pdf.pdf",
@@ -23691,7 +23887,7 @@
     },
     {
       "documentId": "meeting-source-document-9a5666a7296b0a6e7b80519ca771c3f120ec9472bd6fcca01459c1c092dd58cd",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-32babd7c",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-07-18-544d6c52",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-07-18-17-minutes-07-18-17-20pc-20minutes-pdf.pdf",
@@ -24091,20 +24287,20 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/clark-legistar-com-view-ashx-m-a-id-1416035-guid-2a7935c7-0823-41fb-86c6-16ec33e/a9ed5c3e2a65f61ceb5da193f88a2260ad7d88060630dfc1ff9618ea4628eb01.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 23480,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -24447,7 +24643,7 @@
     },
     {
       "documentId": "meeting-source-document-a0e9cf2b7c97fd8cab94610803ef0c1d6e630232e3aec97bb1698bc7f7ac8676",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-cb958bb6",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-04-04-f06a4035",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-04-04-17-minutes-04-04-17-20pc-20minutes-pdf.pdf",
@@ -24559,7 +24755,7 @@
     },
     {
       "documentId": "meeting-source-document-a16fa237b6b3b5f6b956ed64be2073075ddfec54ce3dee82dbf6a6c82d679103",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-5ae461b2",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-01-03-bbac8994",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-01-03-17-minutes-01-03-17-20pc-20mintues-pdf.pdf",
@@ -24693,6 +24889,34 @@
           "pageStart": 1,
           "pageEnd": null,
           "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-a367b4b6f0947c5a7eb2e9efdd8bacc16078ca67ccb828688d10e119831a54d3",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5",
+      "documentType": "minutes",
+      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-board-of-regents-minutes-2026-02-20-26-b/c4a778eb66d2554df2be01db43f4e2bed2577be41f50976baaeaf6acc7b83e4c.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -24833,6 +25057,34 @@
           "pageStart": 1,
           "pageEnd": null,
           "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-a41a0250a75dc1ffeca729314968e645a6315f88b14e4e99651408efee2c99c4",
+      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2024-11-13-c05124e2",
+      "documentType": "packet",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/undated-11-13-24-agenda-packet-cart-documentcenter-view-18235-11-13-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/undated-11-13-24-agenda-packet-cart-documentcenter-view-18235-11-13-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 305,
+      "nativeExtractionQuality": "low",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.76,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
         }
       ],
       "failureReason": null
@@ -25286,34 +25538,6 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-a9ed5c3e2a65f61ceb5da193f88a2260ad7d88060630dfc1ff9618ea4628eb01",
-      "meetingId": "meeting-manual-clark-county-commission-clark-county-commission-2026-07-07-ecf0aaeb",
-      "documentType": "agenda",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/clark-county-commission/agendas/undated-agenda-view-ashx.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/clark-county-commission/agendas/undated-agenda-view-ashx.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 23480,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
       "documentId": "meeting-source-document-aa6575133843defceb18c74c8eb99a3855563be1274574ada6def98c83a0c8a5",
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2026-04-16-9e0fbebd",
       "documentType": "minutes",
@@ -25337,6 +25561,34 @@
           "pageStart": 1,
           "pageEnd": null,
           "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-aa6abec3d0ad52bc77f9df389dca52c5e67e25fde4f23df981b04084aaea1545",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-a3fd4be8",
+      "documentType": "agenda",
+      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4asm.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/59ec63f3ac45b37d4aeb04ad5d51a711ea3b1beffd0c0ec600d02b2236a5585a.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -25528,34 +25780,6 @@
       "ocrStatus": "not_required",
       "extractionMethod": "native_text",
       "extractionConfidence": 0.84,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-ad746f016a83f5aa64681297d3720c7d27031add0059193cd64bfcc115067e2c",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-a4e14956",
-      "documentType": "agenda",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/reno-city-council/agendas/undated-agenda-public-compileddocument.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/reno-city-council/agendas/undated-agenda-public-compileddocument.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
-      "nativeTextLength": 7442,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
@@ -25808,6 +26032,34 @@
       "ocrStatus": "not_required",
       "extractionMethod": "native_text",
       "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-b0dec3136ba9c7cd4922a580f9033fbfae3cb2d8b38aeb8e89bff88f37f6784a",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-1-6-26-bocc-agenda-and-backup-media-54idfeep-1-6-26-bocc-agend.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-1-6-26-bocc-agenda-and-backup-media-54idfeep-1-6-26-bocc-agend.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 275340,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
@@ -26154,8 +26406,36 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-b57fc9378596294a74a3b36c8492dd7f48f56b3c81f460d7ef720544a5ab0233",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-1-20-26-bocc-agenda-and-backup-media-slvnfv2y-1-20-26-bocc-agen.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-1-20-26-bocc-agenda-and-backup-media-slvnfv2y-1-20-26-bocc-agen.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-b5c97002cca1f4630aadef2251926a2214a499f2a22f8fb14b18d308462ec907",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-d2b4c80d",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-06-06-8a966bb9",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-06-06-17-minutes-06-06-17-20pc-20minutes-pdf.pdf",
@@ -26602,6 +26882,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-bb42cb7054bdfd52b08069f4cf39182b31f8937be02254081789f1d79955c2d6",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-2-17-26-bocc-agenda-and-backup-media-vkwneya0-2-17-26-bocc-agen.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-2-17-26-bocc-agenda-and-backup-media-vkwneya0-2-17-26-bocc-agen.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 422043,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-bb91d335fc62da37d0e325152553028a3ee575b8e6124f0676b29615aeee2928",
       "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2024-11-15-6e286f9a",
       "documentType": "agenda",
@@ -26752,19 +27060,19 @@
       "cachedPath": "data/generated/public-meeting-document-cache/lasvegas-primegov-com-public-compileddocument-meetingtemplateid-43653-compileout/897cffc2f35ca23277ef71454fd42404c186f75f33a8e56fad69f5e9b8c666d6.pdf",
       "verifiedPdf": true,
       "contentClassification": "ocr_candidate",
-      "nativeTextLength": 4716,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -27110,7 +27418,7 @@
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-a49ca3f9",
       "documentType": "packet",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-minutes-packet-onbaseagendaonline-documents-dow.pdf",
+      "sourcePath": null,
       "localCached": true,
       "cachedBinaryExists": true,
       "cachedPath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-minutes-packet-onbaseagendaonline-documents-dow.pdf",
@@ -27131,7 +27439,7 @@
           "status": "pending_ocr"
         }
       ],
-      "failureReason": "Invalid PDF structure."
+      "failureReason": null
     },
     {
       "documentId": "meeting-source-document-c0b2ae883998866b12545e1b53b0b7bfe5dbfdbb773ae7a8130934f47132ca3a",
@@ -27414,6 +27722,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-c3ea80dec09920b56f87e5cbe06679e7fcb0782a38f67f1118a41e2ef0dc1e69",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955",
+      "documentType": "agenda",
+      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4bsm.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/0d5fe586ca38425a2b7017d68eaf3e91588213393858dc80484ec81a15f760ab.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-c476bfd7f67fdaaa926676ba802d4737d29e2beba58ec629d3c45638a5374cec",
       "meetingId": "meeting-carson-city-board-of-supervisors-parks-and-recreation-commission-2025-04-02-0356c4d3",
       "documentType": "minutes",
@@ -27425,34 +27761,6 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 9970,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-c4a778eb66d2554df2be01db43f4e2bed2577be41f50976baaeaf6acc7b83e4c",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5",
-      "documentType": "minutes",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/minutes/undated-minutes-html-wp-content-uploads-board-of.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 21203,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -27582,34 +27890,6 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-c6130581a77447e406c4f6b20e9c92a7dc46c459411132824b62b9a034bdf584",
-      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-26-6edbab48",
-      "documentType": "agenda",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-agenda-html-wp-content-uploads-file-boa.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/nshe-board-of-regents/agendas/undated-agenda-html-wp-content-uploads-file-boa.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 12566,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
       "documentId": "meeting-source-document-c69eabad1199bba1cfede8b941bf4d3fb437587f3631807871ac18396a96203c",
       "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-05-13-bbda2189",
       "documentType": "agenda",
@@ -27705,6 +27985,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 10188,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-c749e1de2fd6da8b569f93fe50498f70522ad9d8ca9fae8b688b5e857ff0a90c",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-07-29-88a891b8",
+      "documentType": "agenda",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2703",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-agendaviewer-php-view-id-2-event-id-2703/4d3c42f42ebabc28c022338ba513b10d8118253f79f6ec32649d6d55b7efe05b.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 6543,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -27862,6 +28170,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-c8dfbb6b7890c0210241803dafc1e202f651e0e809909822e1c6458559c7fb69",
+      "meetingId": "meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-de266869",
+      "documentType": "agenda",
+      "sourceUrl": "https://elkocounty.granicus.com/AgendaViewer.php?view_id=5&clip_id=3373",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/elkocounty-granicus-com-agendaviewer-php-view-id-5-clip-id-3373/558e05e289b2c125446c50f7bdfb9cd0d8e22f6bbd218388da7e0cff99a5eb08.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-c916cdc69eaee5803d13711bc96d9af8b3e5e975fb6f103f4d6a236302dcf48a",
       "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2025-12-18-aacc55fb",
       "documentType": "minutes",
@@ -27901,6 +28237,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 14288,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-c9d3b95691de3e6a70b9dc8befe3cf1a9e72c2ce7c35a57d992b13e7a56f45ff",
+      "meetingId": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-07-16-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-071.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-07-16-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-071.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -28170,34 +28534,6 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-cc52887d3eff343352630e3c9585f08446831e739e8b39e6e8ebcd6212b423f5",
-      "meetingId": "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-05-3828f2db",
-      "documentType": "packet",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/las-vegas-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/las-vegas-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 105661,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
       "documentId": "meeting-source-document-cc93498a6f68abb822f434213d4e24e18592617ea635e442d629cf9795fa8e68",
       "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-6a484949",
       "documentType": "agenda",
@@ -28207,20 +28543,20 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/cityofnorthlasvegas-primegov-com-public-compileddocument-meetingtemplateid-16749/ef4c1e55808acf8072407371395641064b910ae7964be13e03881ed37322a46b.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 8503,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -28846,25 +29182,25 @@
       "meetingId": "meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-2c281141",
       "documentType": "minutes",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/elko-county-commission/minutes/undated-final-minutes-minutesviewer-php.pdf",
+      "sourcePath": null,
       "localCached": true,
       "cachedBinaryExists": true,
       "cachedPath": "data/manual-sources/public-meetings/elko-county-commission/minutes/undated-final-minutes-minutesviewer-php.pdf",
       "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 28875,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -28927,7 +29263,7 @@
     },
     {
       "documentId": "meeting-source-document-d4d73aaa3ae2823cfb518592ae1d6339a3f24f8313b3cb2ba69f82a47e8a238b",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-f11a9495",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2017-08-01-afe0ab9e",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-08-01-17-minutes-08-01-17-20pc-20minutes-pdf.pdf",
@@ -29122,6 +29458,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-d6c71a29b7ed48bb9d3d2b05cf4499c1cd1b0b85e12bef6b80d179b82d540710",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-2ad7a023",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-5-19-26-bocc-agenda-and-backup-media-esvlrk4g-5-19-26-bocc-agen.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-5-19-26-bocc-agenda-and-backup-media-esvlrk4g-5-19-26-bocc-agen.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "Bad (uncompressed) XRef entry: 2803R"
+    },
+    {
       "documentId": "meeting-source-document-d781a9398e4aaa8282884821aaa8ca50f3d3647bd68454d2358a923dcabeef0e",
       "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2026-06-18-bb02570a",
       "documentType": "agenda",
@@ -29133,6 +29497,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 5810,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-d832ef7acae430e037562f8d2ffac511bce5a96a8df7eb22c3ba836d505150e4",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-2026-05-21-5cbb568f",
+      "documentType": "minutes",
+      "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2882&doc_id=65753767-70aa-11f1-9494-005056a89546",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-minutesviewer-php-view-id-2-clip-id-2882-doc-id-65753767/9f4f59e9f3a13e555876d4a0221c18515d85e9850519c65f2075040c9b92a0bf.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 56152,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -29341,6 +29733,34 @@
           "pageStart": 1,
           "pageEnd": null,
           "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-d98b87c57866541ea058744425ba1765e75b8ba1db8e5cad6a417ec7d6585645",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-21-f7455d58",
+      "documentType": "agenda",
+      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/BOR5sm.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/59d7fc34d917870a49c20afb4778066dab017056d98cfc1804fb14a7cd00b9eb.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -29794,6 +30214,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-df1d4bc7529d4a6f0fa522ea7c5337aaa372263d894187d21b610de6c5fe6aed",
+      "meetingId": "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-05-3828f2db",
+      "documentType": "packet",
+      "sourceUrl": "https://lasvegas.primegov.com/Public/CompiledDocument?meetingTemplateId=43648&compileOutputType=1",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/lasvegas-primegov-com-public-compileddocument-meetingtemplateid-43648-compileout/cc52887d3eff343352630e3c9585f08446831e739e8b39e6e8ebcd6212b423f5.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-df2638ab56eda0248e42c1097f75d65d5bf0b1ffb04ccab6131ddbd2b8a337fa",
       "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2024-02-16-b9855b45",
       "documentType": "minutes",
@@ -30103,7 +30551,7 @@
     },
     {
       "documentId": "meeting-source-document-e1df6f7b18ad3ed0794acf95305a5b9b39308704e7b7262832c4c4e8c732379f",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-02-02-9ae9d1f3",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-02-02-16-minutes-02-02-16-20pc-20minutes-pdf.pdf",
@@ -30153,6 +30601,34 @@
           "pageStart": 1,
           "pageEnd": null,
           "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-e24ae9745830b03861e1e31c4ea8b2b4cc98268c1278e23f8dda12122736f64d",
+      "meetingId": "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-01-13-bf3dd256",
+      "documentType": "agenda",
+      "sourceUrl": "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/public-comment/borpc022026.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/nshe-nevada-edu-html-wp-content-uploads-file-boardofregents-agendas-2026-02-feb-/61971b1ba22bfa34ab2658ac0404c968ebb036b9735e7f7249c07c3ae790d27e.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -30364,19 +30840,19 @@
       "cachedPath": "data/generated/public-meeting-document-cache/reno-primegov-com-public-compileddocument-meetingtemplateid-9096-compileoutputty/ad746f016a83f5aa64681297d3720c7d27031add0059193cd64bfcc115067e2c.pdf",
       "verifiedPdf": true,
       "contentClassification": "ocr_candidate",
-      "nativeTextLength": 7442,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -30716,6 +31192,34 @@
         }
       ],
       "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-e9a7fc3bdac26d4ecccae566dee71a9fc4d65a8dce182964ef2be69958486a89",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-10cb9a15",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-4-7-26-euco-bocc-agenda-and-backup-media-3m3bnb5u-4-7-26-euco-bocc-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-4-7-26-euco-bocc-agenda-and-backup-media-3m3bnb5u-4-7-26-euco-bocc-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "Bad (uncompressed) XRef entry: 2521R"
     },
     {
       "documentId": "meeting-source-document-e9c0b3efd338a7f0dbff0bef067df88cbf3175e42a56d32f8459018dfb77a6cd",
@@ -31082,6 +31586,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-ee44b60f9466e939888366940475b80a11a7e2b51626984f0f083c28e5dcb912",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-a09d43cf",
+      "documentType": "agenda",
+      "sourceUrl": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9153&compileOutputType=1",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/reno-primegov-com-public-compileddocument-meetingtemplateid-9153-compileoutputty/974c8d9f456989b35fc96cd2642f07b6bd0953c4907ab1281ad3fd2cca3f1db7.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-ee4ef8e36a55bc22843ddf3663733fab2efcb0319721017da1d4e428c2ff4333",
       "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2024-02-07-8adc1be4",
       "documentType": "agenda",
@@ -31121,34 +31653,6 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 4550,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
-      "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-ef4c1e55808acf8072407371395641064b910ae7964be13e03881ed37322a46b",
-      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-6a484949",
-      "documentType": "agenda",
-      "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/north-las-vegas-city-council/agendas/undated-agenda-public-compileddocument.pdf",
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/north-las-vegas-city-council/agendas/undated-agenda-public-compileddocument.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 8503,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -31811,7 +32315,7 @@
     },
     {
       "documentId": "meeting-source-document-f68852da1b0e74745779ed091894e22fd881d02be6e2485698e83a5e064fbf71",
-      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2015-12-01-2462d4ea",
+      "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae",
       "documentType": "minutes",
       "sourceUrl": null,
       "sourcePath": "data/manual-sources/public-meetings/elko-city-council/minutes/undated-03-01-16-minutes-03-01-16-20pc-20minutes-pdf.pdf",
@@ -32379,8 +32883,36 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-minutesviewer-php-view-id-2-clip-id-2901-doc-id-11956ccb/3bba8f4f29e7f56d543b40bae5e238d696bfd18beaeb48590bd1bff73b8672c4.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 5362,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-fbbafb21b1eb659b7f3f81ba2760421a82fee712f2be779cd3a2ab7d466f1079",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-5-5-26-euco-bocc-agenda-and-backup-media-hf1asyvv-5-5-26-euco-bocc-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-5-5-26-euco-bocc-agenda-and-backup-media-hf1asyvv-5-5-26-euco-bocc-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -32679,23 +33211,23 @@
     }
   ],
   "audit": {
-    "generatedAt": "2026-07-24T13:04:40.538Z",
+    "generatedAt": "2026-07-25T22:08:32.370Z",
     "runtime": {
       "tesseractAvailable": true,
       "pdftoppmAvailable": true,
       "ocrAvailable": true
     },
     "totals": {
-      "pdfDocuments": 1167,
-      "localPdfDocuments": 1146,
-      "noCachedBinaryAvailable": 21,
-      "scannedPdfLikely": 25,
-      "ocrRequired": 25,
-      "ocrReady": 25,
+      "pdfDocuments": 1186,
+      "localPdfDocuments": 1171,
+      "noCachedBinaryAvailable": 15,
+      "scannedPdfLikely": 51,
+      "ocrRequired": 51,
+      "ocrReady": 51,
       "ocrBlocked": 0,
       "ocrSucceeded": 20,
       "ocrFailed": 0,
-      "nativeTextAvailable": 1121
+      "nativeTextAvailable": 1120
     }
   }
 }

@@ -1,25 +1,23 @@
 {
-  "generatedAt": "2026-06-26T03:08:23.785Z",
+  "generatedAt": "2026-07-25T22:05:59.722Z",
   "records": [
     {
       "jurisdictionId": "carson-city",
       "jurisdictionName": "Carson City",
       "meetingSources": 2,
       "activeMeetingSources": 2,
-      "officialDirectorySources": 3,
-      "officialRosterSources": 0,
-      "rosterSeeds": 0,
-      "currentRosterMembers": 0,
+      "officialDirectorySources": 4,
+      "officialRosterSources": 1,
+      "rosterSeeds": 1,
+      "currentRosterMembers": 7,
       "expectedGoverningMembers": 5,
       "hasAgendaSource": true,
       "hasMinutesSource": true,
       "hasPacketSource": true,
       "hasVideoSource": true,
       "manualBootstrapCommand": "npm run meetings:bootstrap:nevada-sources -- --provider=carson-city",
-      "sourcePackStatus": "incomplete",
-      "missing": [
-        "complete_governing_roster"
-      ]
+      "sourcePackStatus": "ready_for_acquisition",
+      "missing": []
     },
     {
       "jurisdictionId": "reno",
@@ -83,8 +81,8 @@
     {
       "jurisdictionId": "elko",
       "jurisdictionName": "Elko",
-      "meetingSources": 2,
-      "activeMeetingSources": 2,
+      "meetingSources": 3,
+      "activeMeetingSources": 3,
       "officialDirectorySources": 3,
       "officialRosterSources": 2,
       "rosterSeeds": 2,
@@ -101,8 +99,8 @@
     {
       "jurisdictionId": "elko-county",
       "jurisdictionName": "Elko County",
-      "meetingSources": 1,
-      "activeMeetingSources": 1,
+      "meetingSources": 2,
+      "activeMeetingSources": 2,
       "officialDirectorySources": 1,
       "officialRosterSources": 1,
       "rosterSeeds": 1,
@@ -229,18 +227,18 @@
   ],
   "totals": {
     "priorityJurisdictions": 12,
-    "readyForAcquisition": 8,
-    "incomplete": 4,
+    "readyForAcquisition": 9,
+    "incomplete": 3,
     "withMeetingSources": 12,
     "withOfficialSources": 10,
     "withOfficialDirectorySources": 3,
-    "withCompleteGoverningRoster": 9,
-    "statewideCommunities": 39,
-    "statewideCommunitiesWithMeetingSources": 15,
-    "statewideCommunitiesWithOfficialSources": 13,
+    "withCompleteGoverningRoster": 10,
+    "statewideCommunities": 43,
+    "statewideCommunitiesWithMeetingSources": 43,
+    "statewideCommunitiesWithOfficialSources": 16,
     "statewideCommunitiesWithFallbackPortalKnown": 18,
-    "statewideCommunitiesCoveredThroughCounty": 6,
-    "statewideCommunitiesNeedingSourceResearch": 5
+    "statewideCommunitiesCoveredThroughCounty": 0,
+    "statewideCommunitiesNeedingSourceResearch": 0
   },
   "statewideCommunityRecords": [
     {
@@ -248,14 +246,11 @@
       "communityName": "Carson City County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
-      "officialSources": 0,
+      "meetingSources": 2,
+      "officialSources": 5,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "source_research_needed",
-      "missing": [
-        "meeting_source",
-        "official_source"
-      ]
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
     },
     {
       "communityId": "clark-county",
@@ -286,12 +281,11 @@
       "communityName": "Douglas County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -300,12 +294,11 @@
       "communityName": "Lyon County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -314,12 +307,11 @@
       "communityName": "Nye County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -328,7 +320,7 @@
       "communityName": "Elko County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 1,
+      "meetingSources": 2,
       "officialSources": 2,
       "fallbackPortalSources": 1,
       "acquisitionPath": "configured_meeting_source",
@@ -339,12 +331,11 @@
       "communityName": "Churchill County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -353,12 +344,11 @@
       "communityName": "Humboldt County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -367,12 +357,11 @@
       "communityName": "White Pine County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -381,12 +370,11 @@
       "communityName": "Lander County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -395,12 +383,11 @@
       "communityName": "Lincoln County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -409,12 +396,11 @@
       "communityName": "Eureka County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -423,12 +409,11 @@
       "communityName": "Esmeralda County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -437,12 +422,11 @@
       "communityName": "Pershing County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -451,12 +435,11 @@
       "communityName": "Storey County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -465,12 +448,11 @@
       "communityName": "Mineral County",
       "kind": "county",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 1,
-      "acquisitionPath": "fallback_portal_known_needs_meeting_page",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -480,7 +462,7 @@
       "kind": "city",
       "countyContext": null,
       "meetingSources": 2,
-      "officialSources": 3,
+      "officialSources": 5,
       "fallbackPortalSources": 1,
       "acquisitionPath": "configured_meeting_source",
       "missing": []
@@ -545,8 +527,32 @@
       "communityName": "Elko",
       "kind": "city",
       "countyContext": null,
-      "meetingSources": 2,
+      "meetingSources": 3,
       "officialSources": 5,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
+    },
+    {
+      "communityId": "caliente",
+      "communityName": "Caliente",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": [
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "carlin",
+      "communityName": "Carlin",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
+      "officialSources": 2,
       "fallbackPortalSources": 0,
       "acquisitionPath": "configured_meeting_source",
       "missing": []
@@ -556,7 +562,7 @@
       "communityName": "Mesquite",
       "kind": "city",
       "countyContext": null,
-      "meetingSources": 2,
+      "meetingSources": 3,
       "officialSources": 2,
       "fallbackPortalSources": 0,
       "acquisitionPath": "configured_meeting_source",
@@ -567,7 +573,7 @@
       "communityName": "Boulder City",
       "kind": "city",
       "countyContext": null,
-      "meetingSources": 2,
+      "meetingSources": 3,
       "officialSources": 2,
       "fallbackPortalSources": 0,
       "acquisitionPath": "configured_meeting_source",
@@ -578,12 +584,11 @@
       "communityName": "Fallon",
       "kind": "city",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 3,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "source_research_needed",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -592,12 +597,11 @@
       "communityName": "Fernley",
       "kind": "city",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 3,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "source_research_needed",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -606,21 +610,44 @@
       "communityName": "Winnemucca",
       "kind": "city",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 3,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "source_research_needed",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
+    },
+    {
+      "communityId": "lovelock",
+      "communityName": "Lovelock",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
+      "officialSources": 0,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": [
+        "official_source"
+      ]
+    },
+    {
+      "communityId": "wells",
+      "communityName": "Wells",
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
+      "officialSources": 2,
+      "fallbackPortalSources": 0,
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
     },
     {
       "communityId": "west-wendover",
       "communityName": "West Wendover",
       "kind": "city",
       "countyContext": null,
-      "meetingSources": 1,
+      "meetingSources": 3,
       "officialSources": 2,
       "fallbackPortalSources": 0,
       "acquisitionPath": "configured_meeting_source",
@@ -631,12 +658,11 @@
       "communityName": "Yerington",
       "kind": "city",
       "countyContext": null,
-      "meetingSources": 0,
+      "meetingSources": 3,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "source_research_needed",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source",
         "official_source"
       ]
     },
@@ -645,38 +671,34 @@
       "communityName": "Tonopah",
       "kind": "community",
       "countyContext": "Nye County",
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "covered_through_county_until_local_source_exists",
-      "missing": [
-        "meeting_source"
-      ]
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
     },
     {
       "communityId": "pahrump",
       "communityName": "Pahrump",
       "kind": "community",
       "countyContext": "Nye County",
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "covered_through_county_until_local_source_exists",
-      "missing": [
-        "meeting_source"
-      ]
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
     },
     {
       "communityId": "ely",
       "communityName": "Ely",
-      "kind": "community",
-      "countyContext": "White Pine County",
-      "meetingSources": 0,
+      "kind": "city",
+      "countyContext": null,
+      "meetingSources": 3,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "covered_through_county_until_local_source_exists",
+      "acquisitionPath": "configured_meeting_source",
       "missing": [
-        "meeting_source"
+        "official_source"
       ]
     },
     {
@@ -695,26 +717,22 @@
       "communityName": "Gardnerville",
       "kind": "community",
       "countyContext": "Douglas County",
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "covered_through_county_until_local_source_exists",
-      "missing": [
-        "meeting_source"
-      ]
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
     },
     {
       "communityId": "minden",
       "communityName": "Minden",
       "kind": "community",
       "countyContext": "Douglas County",
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "covered_through_county_until_local_source_exists",
-      "missing": [
-        "meeting_source"
-      ]
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
     },
     {
       "communityId": "laughlin",
@@ -732,13 +750,11 @@
       "communityName": "Battle Mountain",
       "kind": "community",
       "countyContext": "Lander County",
-      "meetingSources": 0,
+      "meetingSources": 2,
       "officialSources": 0,
       "fallbackPortalSources": 0,
-      "acquisitionPath": "covered_through_county_until_local_source_exists",
-      "missing": [
-        "meeting_source"
-      ]
+      "acquisitionPath": "configured_meeting_source",
+      "missing": []
     }
   ]
 }

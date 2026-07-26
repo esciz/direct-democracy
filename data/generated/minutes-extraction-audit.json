@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T13:04:40.716Z",
+  "generatedAt": "2026-07-25T13:05:17.815Z",
   "totals": {
     "minutesScanned": 450,
     "minutesWithUsableText": 442,
@@ -13142,10 +13142,10 @@
         "data/manual-sources/public-meetings/elko-city-council/minutes/undated-minutes-onbaseagendaonline-meetings-view.html",
         "data/manual-sources/public-meetings/elko-city-council/minutes/undated-minutes-onbaseagendaonline-meetings-view.html",
         "meeting-source-document-d5c373fbed670da63dc92958db47a9c616cb5c454c3222f203c90ce59f5320a6",
-        "meeting-source-document-b9322b79a3bc7c756795b169bad9daee643606c3685b1b7b13bdb71d299f5a13"
+        "meeting-source-document-f371e4eab064a8e4bdc695c4c4dc5175805aa11fe50d42715a2110d8e9b5d312"
       ],
       "sourceDocumentCount": 5,
-      "cachedTextLength": 1232,
+      "cachedTextLength": 1554,
       "hasAttendanceSection": false,
       "hasRollCall": false,
       "hasActionResult": false,
@@ -13284,7 +13284,7 @@
         "meeting-source-document-f68852da1b0e74745779ed091894e22fd881d02be6e2485698e83a5e064fbf71"
       ],
       "sourceDocumentCount": 51,
-      "cachedTextLength": 189602,
+      "cachedTextLength": 224945,
       "hasAttendanceSection": false,
       "hasRollCall": false,
       "hasActionResult": true,
@@ -13371,7 +13371,7 @@
         "meeting-source-document-53f77329e7f0ed11f085a9724fc80698db13c856af6bd456d817d1f90bbef1ad"
       ],
       "sourceDocumentCount": 61,
-      "cachedTextLength": 141716,
+      "cachedTextLength": 191401,
       "hasAttendanceSection": false,
       "hasRollCall": true,
       "hasActionResult": true,

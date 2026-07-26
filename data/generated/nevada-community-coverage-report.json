@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-24T13:04:51.445Z",
-  "relationshipMapGeneratedAt": "2026-07-24T13:04:51.300Z",
+  "generatedAt": "2026-07-25T13:05:25.493Z",
+  "relationshipMapGeneratedAt": "2026-07-25T13:05:25.383Z",
   "roadmapScope": "Nevada local coverage plus federal overlay only",
   "totals": {
     "communities": 39,
@@ -40,15 +40,15 @@
     "communitiesWithProjects": 39,
     "communitiesWithLocalProjects": 17,
     "communitiesWithSourceDocuments": 39,
-    "sourceDocumentLinkCount": 47916,
+    "sourceDocumentLinkCount": 47941,
     "directLinkCount": 0,
-    "inferredLinkCount": 3709,
+    "inferredLinkCount": 3719,
     "statewideOnlyCount": 975,
     "federalOnlyCount": 0,
     "unlinkedCount": 32,
-    "needsReviewCount": 2305,
-    "lowConfidenceCount": 1850,
-    "recordsProcessed": 4716
+    "needsReviewCount": 2312,
+    "lowConfidenceCount": 1853,
+    "recordsProcessed": 4726
   },
   "sourceArtifacts": {
     "communities": "lib/community/communities.ts",
@@ -62,17 +62,17 @@
       {
         "domain": "meetings",
         "sourcePath": "data/generated/public-meetings.json",
-        "recordCount": 803
+        "recordCount": 808
       },
       {
         "domain": "agendaItems",
         "sourcePath": "data/generated/public-meeting-items.json",
-        "recordCount": 1658
+        "recordCount": 1660
       },
       {
         "domain": "votingCards",
         "sourcePath": "data/generated/public-meeting-voting-cards.json",
-        "recordCount": 699
+        "recordCount": 702
       },
       {
         "domain": "issues",
@@ -87,12 +87,12 @@
       {
         "domain": "courtCases",
         "sourcePath": "data/generated/public-cases-runtime.json",
-        "recordCount": 531
+        "recordCount": 536
       },
       {
         "domain": "spendingRecords",
         "sourcePath": "data/generated/public-meeting-items.json",
-        "recordCount": 369
+        "recordCount": 366
       },
       {
         "domain": "spendingRecords",
@@ -102,7 +102,7 @@
       {
         "domain": "projects",
         "sourcePath": "data/generated/nevada-community-projects.json",
-        "recordCount": 387
+        "recordCount": 385
       },
       {
         "domain": "elections",
@@ -128,13 +128,13 @@
       "namedSourceBackedOnly": true
     },
     "projects": {
-      "generatedRecords": 387,
+      "generatedRecords": 385,
       "coveredCommunities": 39,
       "localCoveredCommunities": 17,
       "inferredRecordsNeedReview": true
     },
     "events": {
-      "generatedRecords": 803,
+      "generatedRecords": 808,
       "communitiesWithEvents": 39,
       "artifact": "data/generated/nevada-community-events.json"
     },
@@ -167,7 +167,7 @@
           "name": "Carson City Board of Supervisors",
           "jurisdiction": "Carson City, NV",
           "historicalIngestionSupported": true,
-          "meetingsParsed": 497,
+          "meetingsParsed": 498,
           "minutesParsed": 342,
           "oldestMeetingFound": "2024-01-04T00:29:00.000Z",
           "newestMeetingFound": "2026-07-31T20:30:00.000Z",
@@ -321,7 +321,7 @@
           "name": "Reno City Council",
           "jurisdiction": null,
           "historicalIngestionSupported": null,
-          "meetingsParsed": 38,
+          "meetingsParsed": 39,
           "minutesParsed": null,
           "oldestMeetingFound": null,
           "newestMeetingFound": null,
@@ -442,7 +442,7 @@
           "name": "North Las Vegas City Council",
           "jurisdiction": null,
           "historicalIngestionSupported": null,
-          "meetingsParsed": 34,
+          "meetingsParsed": 37,
           "minutesParsed": null,
           "oldestMeetingFound": null,
           "newestMeetingFound": null,
@@ -571,7 +571,7 @@
       "slug": "carson-city-county",
       "name": "Carson City County",
       "href": "/community/carson-city-county",
-      "readyScore": 601,
+      "readyScore": 602,
       "missingSections": [
         "votes",
         "issues",
@@ -982,7 +982,7 @@
       "slug": "carson-city",
       "name": "Carson City",
       "href": "/community/carson-city",
-      "readyScore": 651,
+      "readyScore": 652,
       "missingSections": [
         "votes",
         "issues"
@@ -1003,7 +1003,7 @@
       "slug": "las-vegas",
       "name": "Las Vegas",
       "href": "/community/las-vegas",
-      "readyScore": 445,
+      "readyScore": 451,
       "missingSections": [],
       "internalLinks": 14,
       "sourceOnlyLinks": 7,
@@ -1039,7 +1039,7 @@
       "slug": "north-las-vegas",
       "name": "North Las Vegas",
       "href": "/community/north-las-vegas",
-      "readyScore": 370,
+      "readyScore": 376,
       "missingSections": [],
       "internalLinks": 14,
       "sourceOnlyLinks": 7,
@@ -1075,7 +1075,7 @@
       "slug": "sparks",
       "name": "Sparks",
       "href": "/community/sparks",
-      "readyScore": 1069,
+      "readyScore": 1070,
       "missingSections": [],
       "internalLinks": 14,
       "sourceOnlyLinks": 7,
@@ -1474,7 +1474,7 @@
       "slug": "sparks",
       "name": "Sparks",
       "href": "/community/sparks",
-      "readyScore": 1069,
+      "readyScore": 1070,
       "missingSections": [],
       "internalLinks": 14,
       "sourceOnlyLinks": 7,
@@ -1546,7 +1546,7 @@
       "slug": "carson-city",
       "name": "Carson City",
       "href": "/community/carson-city",
-      "readyScore": 651,
+      "readyScore": 652,
       "missingSections": [
         "votes",
         "issues"
@@ -1567,7 +1567,7 @@
       "slug": "carson-city-county",
       "name": "Carson City County",
       "href": "/community/carson-city-county",
-      "readyScore": 601,
+      "readyScore": 602,
       "missingSections": [
         "votes",
         "issues",
@@ -1589,7 +1589,7 @@
       "slug": "las-vegas",
       "name": "Las Vegas",
       "href": "/community/las-vegas",
-      "readyScore": 445,
+      "readyScore": 451,
       "missingSections": [],
       "internalLinks": 14,
       "sourceOnlyLinks": 7,
@@ -1625,7 +1625,7 @@
       "slug": "north-las-vegas",
       "name": "North Las Vegas",
       "href": "/community/north-las-vegas",
-      "readyScore": 370,
+      "readyScore": 376,
       "missingSections": [],
       "internalLinks": 14,
       "sourceOnlyLinks": 7,
@@ -1910,7 +1910,7 @@
       "parentCountyId": "carson-city-county",
       "href": "/community/carson-city-county",
       "counts": {
-        "meetings": 559,
+        "meetings": 560,
         "agendaItems": 422,
         "votingCards": 108,
         "issues": 1,
@@ -1919,10 +1919,10 @@
         "projects": 67,
         "elections": 1,
         "officialActionRecords": 100,
-        "sourceDocuments": 2948
+        "sourceDocuments": 2950
       },
       "localCounts": {
-        "meetings": 497,
+        "meetings": 498,
         "agendaItems": 1,
         "votingCards": 0,
         "issues": 0,
@@ -1944,9 +1944,9 @@
         "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 524,
+        "local": 525,
         "statewideOverlay": 443,
-        "useful": 967,
+        "useful": 968,
         "displayedItems": 19
       },
       "dashboardLinkAudit": {
@@ -1979,7 +1979,7 @@
       "acquisitionGapScore": 3,
       "linkCounts": {
         "direct": 0,
-        "inferred": 525,
+        "inferred": 526,
         "statewideOverlay": 864,
         "federalOverlay": 0
       },
@@ -1987,13 +1987,13 @@
         "approved": 25,
         "ready": 2,
         "needsReview": 650,
-        "unknown": 712
+        "unknown": 713
       },
       "confidenceCounts": {
         "high": 103,
         "medium": 87,
         "low": 615,
-        "unknown": 584
+        "unknown": 585
       },
       "coverage": {
         "navigable": true,
@@ -3987,7 +3987,7 @@
       "parentCountyId": null,
       "href": "/community/carson-city",
       "counts": {
-        "meetings": 563,
+        "meetings": 564,
         "agendaItems": 428,
         "votingCards": 108,
         "issues": 1,
@@ -3996,10 +3996,10 @@
         "projects": 68,
         "elections": 1,
         "officialActionRecords": 107,
-        "sourceDocuments": 2968
+        "sourceDocuments": 2970
       },
       "localCounts": {
-        "meetings": 501,
+        "meetings": 502,
         "agendaItems": 7,
         "votingCards": 0,
         "issues": 0,
@@ -4021,9 +4021,9 @@
         "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 539,
+        "local": 540,
         "statewideOverlay": 443,
-        "useful": 982,
+        "useful": 983,
         "displayedItems": 19
       },
       "dashboardLinkAudit": {
@@ -4055,7 +4055,7 @@
       "acquisitionGapScore": 2,
       "linkCounts": {
         "direct": 0,
-        "inferred": 546,
+        "inferred": 547,
         "statewideOverlay": 864,
         "federalOverlay": 0
       },
@@ -4063,13 +4063,13 @@
         "approved": 25,
         "ready": 2,
         "needsReview": 657,
-        "unknown": 726
+        "unknown": 727
       },
       "confidenceCounts": {
         "high": 110,
         "medium": 91,
         "low": 621,
-        "unknown": 588
+        "unknown": 589
       },
       "coverage": {
         "navigable": true,
@@ -4106,25 +4106,25 @@
       "parentCountyId": null,
       "href": "/community/las-vegas",
       "counts": {
-        "meetings": 132,
-        "agendaItems": 647,
-        "votingCards": 172,
+        "meetings": 135,
+        "agendaItems": 650,
+        "votingCards": 173,
         "issues": 9,
-        "courtCases": 79,
+        "courtCases": 80,
         "spendingRecords": 101,
-        "projects": 106,
+        "projects": 107,
         "elections": 2,
         "officialActionRecords": 105,
-        "sourceDocuments": 1556
+        "sourceDocuments": 1565
       },
       "localCounts": {
-        "meetings": 70,
-        "agendaItems": 226,
-        "votingCards": 64,
+        "meetings": 73,
+        "agendaItems": 229,
+        "votingCards": 65,
         "issues": 8,
-        "courtCases": 44,
+        "courtCases": 45,
         "spendingRecords": 6,
-        "projects": 40,
+        "projects": 41,
         "elections": 1,
         "officialActionRecords": 30
       },
@@ -4140,9 +4140,9 @@
         "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 263,
+        "local": 269,
         "statewideOverlay": 443,
-        "useful": 706,
+        "useful": 712,
         "displayedItems": 21
       },
       "dashboardLinkAudit": {
@@ -4171,21 +4171,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 489,
+        "inferred": 498,
         "statewideOverlay": 864,
         "federalOverlay": 0
       },
       "reviewCounts": {
         "approved": 25,
         "ready": 13,
-        "needsReview": 916,
-        "unknown": 399
+        "needsReview": 922,
+        "unknown": 402
       },
       "confidenceCounts": {
         "high": 108,
         "medium": 265,
-        "low": 823,
-        "unknown": 157
+        "low": 829,
+        "unknown": 160
       },
       "coverage": {
         "navigable": true,
@@ -4338,25 +4338,25 @@
       "parentCountyId": null,
       "href": "/community/north-las-vegas",
       "counts": {
-        "meetings": 101,
-        "agendaItems": 599,
-        "votingCards": 161,
+        "meetings": 104,
+        "agendaItems": 602,
+        "votingCards": 162,
         "issues": 9,
-        "courtCases": 65,
+        "courtCases": 66,
         "spendingRecords": 99,
-        "projects": 96,
+        "projects": 97,
         "elections": 2,
         "officialActionRecords": 98,
-        "sourceDocuments": 1435
+        "sourceDocuments": 1444
       },
       "localCounts": {
-        "meetings": 39,
-        "agendaItems": 178,
-        "votingCards": 53,
+        "meetings": 42,
+        "agendaItems": 181,
+        "votingCards": 54,
         "issues": 8,
-        "courtCases": 30,
+        "courtCases": 31,
         "spendingRecords": 4,
-        "projects": 30,
+        "projects": 31,
         "elections": 1,
         "officialActionRecords": 23
       },
@@ -4372,9 +4372,9 @@
         "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 188,
+        "local": 194,
         "statewideOverlay": 443,
-        "useful": 631,
+        "useful": 637,
         "displayedItems": 21
       },
       "dashboardLinkAudit": {
@@ -4403,21 +4403,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 366,
+        "inferred": 375,
         "statewideOverlay": 864,
         "federalOverlay": 0
       },
       "reviewCounts": {
         "approved": 25,
         "ready": 9,
-        "needsReview": 851,
-        "unknown": 345
+        "needsReview": 857,
+        "unknown": 348
       },
       "confidenceCounts": {
         "high": 101,
         "medium": 242,
-        "low": 761,
-        "unknown": 126
+        "low": 767,
+        "unknown": 129
       },
       "coverage": {
         "navigable": true,
@@ -4454,25 +4454,25 @@
       "parentCountyId": null,
       "href": "/community/reno",
       "counts": {
-        "meetings": 176,
-        "agendaItems": 888,
-        "votingCards": 451,
+        "meetings": 177,
+        "agendaItems": 887,
+        "votingCards": 453,
         "issues": 12,
-        "courtCases": 139,
-        "spendingRecords": 347,
-        "projects": 189,
+        "courtCases": 143,
+        "spendingRecords": 344,
+        "projects": 185,
         "elections": 1,
         "officialActionRecords": 88,
-        "sourceDocuments": 2337
+        "sourceDocuments": 2339
       },
       "localCounts": {
-        "meetings": 114,
-        "agendaItems": 467,
-        "votingCards": 343,
+        "meetings": 115,
+        "agendaItems": 466,
+        "votingCards": 345,
         "issues": 11,
-        "courtCases": 104,
-        "spendingRecords": 252,
-        "projects": 123,
+        "courtCases": 108,
+        "spendingRecords": 249,
+        "projects": 119,
         "elections": 0,
         "officialActionRecords": 13
       },
@@ -4519,21 +4519,21 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1427,
+        "inferred": 1426,
         "statewideOverlay": 864,
         "federalOverlay": 0
       },
       "reviewCounts": {
         "approved": 282,
-        "ready": 72,
+        "ready": 73,
         "needsReview": 942,
-        "unknown": 995
+        "unknown": 993
       },
       "confidenceCounts": {
         "high": 418,
-        "medium": 946,
-        "low": 726,
-        "unknown": 201
+        "medium": 948,
+        "low": 722,
+        "unknown": 202
       },
       "coverage": {
         "navigable": true,
@@ -4576,10 +4576,10 @@
         "issues": 12,
         "courtCases": 126,
         "spendingRecords": 344,
-        "projects": 183,
+        "projects": 184,
         "elections": 1,
         "officialActionRecords": 86,
-        "sourceDocuments": 2217
+        "sourceDocuments": 2218
       },
       "localCounts": {
         "meetings": 80,
@@ -4588,7 +4588,7 @@
         "issues": 11,
         "courtCases": 91,
         "spendingRecords": 249,
-        "projects": 117,
+        "projects": 118,
         "elections": 0,
         "officialActionRecords": 11
       },
@@ -4604,9 +4604,9 @@
         "officialActionRecords": 75
       },
       "dashboardCounts": {
-        "local": 887,
+        "local": 888,
         "statewideOverlay": 443,
-        "useful": 1330,
+        "useful": 1331,
         "displayedItems": 21
       },
       "dashboardLinkAudit": {
@@ -4635,20 +4635,20 @@
       "acquisitionGapScore": 0,
       "linkCounts": {
         "direct": 0,
-        "inferred": 1304,
+        "inferred": 1305,
         "statewideOverlay": 864,
         "federalOverlay": 0
       },
       "reviewCounts": {
         "approved": 282,
         "ready": 70,
-        "needsReview": 881,
+        "needsReview": 882,
         "unknown": 935
       },
       "confidenceCounts": {
         "high": 416,
         "medium": 910,
-        "low": 675,
+        "low": 676,
         "unknown": 167
       },
       "coverage": {

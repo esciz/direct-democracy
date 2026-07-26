@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-07-24T13:04:47.832Z",
+  "generatedAt": "2026-07-25T13:05:22.942Z",
   "sourceArtifacts": [
     "data/generated/public-meeting-items.json",
     "data/generated/public-meetings.json",
     "data/generated/public-meeting-bodies.json"
   ],
   "totals": {
-    "meetingItems": 1658,
+    "meetingItems": 1660,
     "totalVoteLikeActions": 392,
-    "unanimousActionsFound": 139,
-    "aggregateVoteCountActionsFound": 22,
+    "unanimousActionsFound": 143,
+    "aggregateVoteCountActionsFound": 21,
     "attendanceRostersParsed": 31,
-    "fullRosterMatches": 19,
-    "parsedNamedVotes": 287,
-    "explicitNamedVotesParsed": 194,
-    "parsedNamedVoteActions": 43,
-    "individualVotesInferredFromUnanimousOutcomes": 63,
+    "fullRosterMatches": 22,
+    "parsedNamedVotes": 297,
+    "explicitNamedVotesParsed": 198,
+    "parsedNamedVoteActions": 47,
+    "individualVotesInferredFromUnanimousOutcomes": 69,
     "individualVotesInferredFromAggregateCounts": 30,
-    "aggregateOnlyOutcomes": 278,
-    "motionSecondParsed": 582,
-    "ambiguousVoteActionsNeedingReview": 3,
+    "aggregateOnlyOutcomes": 276,
+    "motionSecondParsed": 597,
+    "ambiguousVoteActionsNeedingReview": 1,
     "actionsNeedingAttendanceReview": 118,
-    "actionsNeedingDistributionReview": 7,
-    "unnamedVoteActions": 281,
-    "needsReview": 128,
-    "remainingUnresolvedVoteActions": 128,
-    "skippedDueToInsufficientEvidence": 1330
+    "actionsNeedingDistributionReview": 6,
+    "unnamedVoteActions": 277,
+    "needsReview": 125,
+    "remainingUnresolvedVoteActions": 125,
+    "skippedDueToInsufficientEvidence": 1332
   },
   "aggregateOnlyOutcomes": [
     {
@@ -702,33 +702,6 @@
       "sourceSnippet": "approved, authorize the chair to sign a resolution to this effect approved, authorize the chair to sign a resolution to this effect approved, authorize the chair to sign a resolution to this effect",
       "outcome": "approved, authorize the chair to sign a resolution to this effect",
       "evidenceType": "aggregate_only"
-    },
-    {
-      "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167.39.25-53fe7e7f5f",
-      "meeting_id": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "title": "Reno - 2026 Watershed Assessments for Tributary to the Truckee River Approved for payment upon approval by SWPCC on 07/23/2026 -- 9 of 52 -- Date 07/10/2026 Invoice number 16739...",
-      "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
-      "sourceSnippet": "Approved for payment upon approval by SWPCC on 07/23/2026 -- 9 of 52 -- Date 07/10/2026 Invoice number 167392502 City of Reno 167 Approved for payment upon approval by SWPCC on 07/23/2026 -- 9 of 52 -- Date 07/10/2026 Invoice number 167392502 City of Reno 167 Approved for payment upon approval by SWPCC on 07/23/2026 -- 9 of 52 -- Date 07/10/2026 Invoice n...",
-      "outcome": "Approved for payment upon approval by SWPCC on 07/23/2026 -- 9 of 52 -- Date 07/10/2026 Invoice number 167392502 City of Reno 167",
-      "evidenceType": "aggregate_only"
-    },
-    {
-      "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-17-cc9e98f7e9",
-      "meeting_id": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "title": "of 52 -- -- 18 of 52 -- Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Bi...",
-      "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
-      "sourceSnippet": "Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Billed WRWC Total Billed NDOT Total Budget Remaining % Spent % Rem.... 17 of 52 -- -- 18 of 52 -- Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget...",
-      "outcome": "Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Billed WRWC Total Billed NDOT Total Budget Remaining % Spent % Rem...",
-      "evidenceType": "aggregate_only",
-      "structuredOutcome": {
-        "kind": "count",
-        "yesVotes": 7,
-        "noVotes": 13,
-        "abstainVotes": 26,
-        "absentVotes": null,
-        "sourceSnippet": "Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Billed WRWC Total Billed NDOT Total Budget Remaining % Spent % Rem.... 17 of 52 -- -- 18 of 52 -- Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Billed WRWC Total Billed NDOT Total Budget Remaining % Spent % Remain Notes USGS $ 14,625.",
-        "raw": "Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Billed WRWC Total Billed NDOT Total Budget Remaining % Spent % Rem..."
-      }
     },
     {
       "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e-1-e36b2a3858",
@@ -3413,7 +3386,7 @@
       "evidenceType": "aggregate_only"
     },
     {
-      "meeting_item_id": "item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e",
+      "meeting_item_id": "item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40",
       "meeting_id": "meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c",
       "title": "Needs review: rawHtml source review needed",
       "source_url": "https://www.cityofhenderson.com/government/public-meeting-agendas",
@@ -3657,24 +3630,6 @@
     }
   ],
   "ambiguousVoteActions": [
-    {
-      "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-A.3-e5f5472b51",
-      "meeting_id": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "title": "Approval of the Agenda (For Possible Action) – June 25, 2026 COORDINATOR HOLMAN MADE A MOTION TO APPROVE THE AGENDA, SECONDED BY MEMBER PEHRSON",
-      "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
-      "reason": "Vote-related language exists, but no supported explicit name-to-vote evidence was found.",
-      "sourceSnippet": ". A.3 Approval of the Agenda (For Possible Action) – June 25, 2026 COORDINATOR HOLMAN MADE A MOTION TO APPROVE THE AGENDA, SECONDED BY MEMBER PEHRSON. A.3 Approval of the Agenda (For Possible Action) – June 25, 2026 COORDINATOR HOLMAN MADE A MOTION TO APPROVE THE AGENDA, SECONDED BY MEMBER PEHRSON",
-      "evidenceType": "ambiguous_vote_language"
-    },
-    {
-      "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-A.4-74fb39f795",
-      "meeting_id": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "title": "Approval of the Minutes (For Possible Action) – May 28, 2026 MEMBER PEHRSON MADE A MOTION TO APPROVE THE MINUTES, SECONDED BY CHAIR WIMER",
-      "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
-      "reason": "Vote-related language exists, but no supported explicit name-to-vote evidence was found.",
-      "sourceSnippet": ". A.4 Approval of the Minutes (For Possible Action) – May 28, 2026 MEMBER PEHRSON MADE A MOTION TO APPROVE THE MINUTES, SECONDED BY CHAIR WIMER. A.4 Approval of the Minutes (For Possible Action) – May 28, 2026 MEMBER PEHRSON MADE A MOTION TO APPROVE THE MINUTES, SECONDED BY CHAIR WIMER",
-      "evidenceType": "ambiguous_vote_language"
-    },
     {
       "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-08-02-e0baefbb-4-cbbc8d1323",
       "meeting_id": "meeting-manual-elko-city-council-elko-city-council-2016-08-02-e0baefbb",
@@ -5625,22 +5580,6 @@
       }
     },
     {
-      "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-17-cc9e98f7e9",
-      "meeting_id": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "title": "of 52 -- -- 18 of 52 -- Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Bi...",
-      "source_url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
-      "reason": "attendance_exceeds_known_membership, unidentified_abstentions, vote_count_does_not_match_present_members, needs_vote_distribution_review",
-      "outcome": {
-        "kind": "count",
-        "yesVotes": 7,
-        "noVotes": 13,
-        "abstainVotes": 26,
-        "absentVotes": null,
-        "sourceSnippet": "Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Billed WRWC Total Billed NDOT Total Budget Remaining % Spent % Rem.... 17 of 52 -- -- 18 of 52 -- Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Billed WRWC Total Billed NDOT Total Budget Remaining % Spent % Remain Notes USGS $ 14,625.",
-        "raw": "Approved By: Daniel Moss, PE City of Reno Date: 7-13-26 -- 19 of 52 -- Category Budget Items Program Budget WRWC Contribution NDOT Participation Total Billed WRWC Total Billed NDOT Total Budget Remaining % Spent % Rem..."
-      }
-    },
-    {
       "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-06-07-eedd5f1d-55-b940d1fb97",
       "meeting_id": "meeting-manual-elko-city-council-elko-city-council-2016-06-07-eedd5f1d",
       "title": "Needs review: and the Fire Department could navigate the turn. Commissioner Freistroffer, asked if they wanted a motion concerning the length of time and need more design information from the...",
@@ -5690,18 +5629,18 @@
     }
   ],
   "voteChoiceCounts": {
-    "unknown": 582,
-    "yes": 100,
-    "absent": 177,
+    "unknown": 597,
+    "yes": 106,
+    "absent": 181,
     "no": 10
   },
   "evidenceTypeCounts": {
-    "motion_mover": 323,
-    "motion_second": 259,
+    "motion_mover": 331,
+    "motion_second": 266,
     "aggregate_full_roster_match": 30,
-    "inline_named_vote": 143,
-    "explicit_roll_call_group": 51,
-    "unanimous_with_attendance_roster": 63
+    "unanimous_with_attendance_roster": 69,
+    "inline_named_vote": 147,
+    "explicit_roll_call_group": 51
   },
   "parserPolicy": {
     "namedVotesOnly": true,

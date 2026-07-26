@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-24T13:04:51.445Z",
-  "relationshipMapGeneratedAt": "2026-07-24T13:04:51.300Z",
+  "generatedAt": "2026-07-25T13:05:25.493Z",
+  "relationshipMapGeneratedAt": "2026-07-25T13:05:25.383Z",
   "purpose": "Prioritize Nevada communities that need additional local source acquisition before expansion.",
   "priorityOrder": [
     {
@@ -441,7 +441,7 @@
         "issues",
         "cases"
       ],
-      "localDashboardRecords": 524,
+      "localDashboardRecords": 525,
       "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
@@ -455,7 +455,7 @@
         "votes",
         "issues"
       ],
-      "localDashboardRecords": 539,
+      "localDashboardRecords": 540,
       "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
@@ -532,7 +532,7 @@
       "href": "/community/north-las-vegas",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 188,
+      "localDashboardRecords": 194,
       "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
@@ -554,7 +554,7 @@
       "href": "/community/las-vegas",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 263,
+      "localDashboardRecords": 269,
       "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },
@@ -598,7 +598,7 @@
       "href": "/community/sparks",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 887,
+      "localDashboardRecords": 888,
       "overlayDashboardRecords": 443,
       "recommendation": "Maintain source refresh and add missing categories."
     },

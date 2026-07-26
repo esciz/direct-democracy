@@ -24,6 +24,22 @@ type RssSource = {
   status: string;
 };
 
+type MeetingSeed = {
+  id: string;
+  name: string;
+  jurisdiction: string;
+  website?: string | null;
+  sourceUrl?: string | null;
+  meetingIndexUrl?: string | null;
+  agendaArchiveUrl?: string | null;
+  minutesArchiveUrl?: string | null;
+  packetArchiveUrl?: string | null;
+  videoArchiveUrl?: string | null;
+  discoveryUrls?: string[];
+  scraperType: string;
+  active: boolean;
+};
+
 function hostFor(value: string | null) {
   if (!value) return null;
   try {
@@ -41,13 +57,52 @@ function readJson<T>(fileName: string, fallback: T): T {
   }
 }
 
+function readProjectJson<T>(relativePath: string, fallback: T): T {
+  try {
+    return JSON.parse(readFileSync(path.join(process.cwd(), relativePath), "utf8")) as T;
+  } catch {
+    return fallback;
+  }
+}
+
 const generatedAt = new Date().toISOString();
 const documents = readJson<{ records?: SourceDocument[] }>("public-meeting-source-documents.json", { records: [] }).records ?? [];
 const rss = readJson<{ records?: RssSource[] }>("rss-source-registry.json", { records: [] }).records ?? [];
+const meetingSeeds = readProjectJson<MeetingSeed[]>("data/seed/public-meeting-sources.json", []).filter((source) => source.active);
 const sourceMap = new Map<string, any>();
 
+for (const source of meetingSeeds) {
+  const sourceUrls = [
+    source.meetingIndexUrl,
+    source.agendaArchiveUrl,
+    source.minutesArchiveUrl,
+    source.packetArchiveUrl,
+    source.videoArchiveUrl,
+    source.sourceUrl,
+    source.website,
+    ...(source.discoveryUrls ?? []),
+  ].filter((url, index, urls): url is string => Boolean(url) && urls.indexOf(url) === index);
+  const sourceHosts = [...new Set(sourceUrls.map(hostFor).filter(Boolean))];
+  sourceMap.set(`meeting:${source.id}`, {
+    id: `meeting:${source.id}`,
+    sourceType: "meeting_system",
+    sourceOwner: source.name,
+    jurisdiction: source.jurisdiction,
+    sourceHost: sourceHosts[0] ?? null,
+    sourceHosts: new Set(sourceHosts),
+    sourcePlatform: source.scraperType || "discovery",
+    sourcePlatforms: new Set([source.scraperType || "discovery"]),
+    sourceCategory: "meetings",
+    sourceUrls: new Set(sourceUrls),
+    documentTypes: new Set<string>(),
+    checkCadence: "P1D",
+    productionCadenceRecommendation: "once daily direct check; advanced browser collection at least once every 7 days",
+    registrationStatus: "configured",
+  });
+}
+
 for (const document of documents) {
-  const key = `meeting:${document.organizationId ?? "unknown"}:${document.sourcePlatform}:${document.sourceHost ?? "local"}`;
+  const key = `meeting:${document.organizationId ?? "unknown"}`;
   const existing = sourceMap.get(key) ?? {
     id: key,
     sourceType: "meeting_system",
@@ -58,10 +113,18 @@ for (const document of documents) {
     sourceCategory: "meetings",
     sourceUrls: new Set<string>(),
     documentTypes: new Set<string>(),
-    checkCadence: document.sourcePlatform === "nevada_legislature" ? "PT1H" : "PT6H",
-    productionCadenceRecommendation: document.sourcePlatform === "nevada_legislature" ? "15-60 minutes" : "1-6 hours",
+    sourceHosts: new Set<string>(),
+    sourcePlatforms: new Set<string>(),
+    checkCadence: "P1D",
+    productionCadenceRecommendation: "once daily direct check; advanced browser collection at least once every 7 days",
   };
   if (document.sourceUrl) existing.sourceUrls.add(document.sourceUrl);
+  if (document.sourceHost) existing.sourceHosts.add(document.sourceHost);
+  if (document.sourcePlatform) existing.sourcePlatforms.add(document.sourcePlatform);
+  if (!existing.sourceHost && document.sourceHost) existing.sourceHost = document.sourceHost;
+  if ((!existing.sourcePlatform || existing.sourcePlatform === "manual") && document.sourcePlatform) {
+    existing.sourcePlatform = document.sourcePlatform;
+  }
   existing.documentTypes.add(document.documentType);
   sourceMap.set(key, existing);
 }
@@ -110,6 +173,8 @@ for (const source of getOfficialDirectorySources(generatedAt)) {
 
 const records = [...sourceMap.values()].map((record) => ({
   ...record,
+  sourceHosts: [...(record.sourceHosts ?? new Set(record.sourceHost ? [record.sourceHost] : []))].sort(),
+  sourcePlatforms: [...(record.sourcePlatforms ?? new Set(record.sourcePlatform ? [record.sourcePlatform] : []))].sort(),
   sourceUrls: [...record.sourceUrls].slice(0, 25),
   documentTypes: [...record.documentTypes].sort(),
   lastCheckedAt: record.lastCheckedAt ?? null,

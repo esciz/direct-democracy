@@ -62,10 +62,27 @@ const registry = readJson<{ records?: RegistrySource[] }>("dataops-source-regist
 const sourceHealth = readJson<{ sourceHealth?: SourceHealth[] }>("public-meeting-source-health.json", { sourceHealth: [] }).sourceHealth ?? [];
 const sourceCompleteness = readJson<SourceCompleteness>("public-meeting-source-completeness.json", {});
 const healthByKey = new Map(sourceHealth.map((record) => [`${record.organizationId ?? "unknown"}:${record.sourcePlatform}:${record.sourceHost ?? "local"}`, record]));
+const healthByOrganization = new Map<string, SourceHealth>();
+for (const record of sourceHealth) {
+  const key = record.organizationId ?? "unknown";
+  const existing = healthByOrganization.get(key);
+  if (!existing) {
+    healthByOrganization.set(key, { ...record });
+    continue;
+  }
+  existing.documents += record.documents;
+  existing.queued += record.queued;
+  existing.cached += record.cached;
+  existing.extracted += record.extracted;
+  existing.ocrRequired += record.ocrRequired;
+  existing.failed += record.failed;
+  existing.sourceGaps += record.sourceGaps;
+}
 
 const records = registry.map((source) => {
   const key = source.id.startsWith("meeting:") ? source.id.replace(/^meeting:/, "") : "";
-  const health = healthByKey.get(key);
+  const organizationId = source.id.startsWith("meeting:") ? source.id.split(":")[1] : "";
+  const health = healthByKey.get(key) ?? healthByOrganization.get(organizationId);
   const status = healthStatus(source, health);
   return {
     sourceId: source.id,

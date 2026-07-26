@@ -206,12 +206,17 @@ npm run dataops:daily
 npm run sources:refresh:daily
 npm run site:launch-audit
 npm run meetings:upcoming-audit
+npm run meetings:coverage:nevada
+npm run meetings:bootstrap:nevada-scheduled
+npm run meetings:bootstrap:nevada-sources
 npm run dataops:dev
 ```
 
 The orchestrator records a run ID, network status, stage start/end/status, skips network stages when offline or DNS-blocked, prevents overlapping runs with a lock file, and supports `--from` / `--to` stage ranges. Complete runs write `dataops-pipeline-run.json`; targeted diagnostic runs write `dataops-pipeline-targeted-run.json` so they cannot overwrite evidence of the latest complete daily refresh.
 
-Every run writes `data/generated/upcoming-meeting-coverage-audit.json`. It checks each configured meeting provider independently, records the next known meeting, and flags zero-upcoming calendars, source failures, and adapter gaps. A statewide meeting total is never treated as proof that every jurisdiction has current coverage.
+Every run writes `data/generated/nevada-jurisdiction-meeting-coverage.json` and `data/generated/upcoming-meeting-coverage-audit.json`. The statewide contract requires 17 county or county-equivalent governments, 19 incorporated cities, 17 county school districts, and three statewide layers. The audits check the required denominator, each provider independently, the next known meeting, zero-upcoming calendars, source failures, and adapter gaps. A statewide meeting total is never treated as proof that every jurisdiction has current coverage.
+
+The advanced collector starts from official roots verified through the Nevada Association of Counties, Nevada League of Cities, and Nevada Department of Education. It follows bounded meeting-related links, hands off only to known public civic platforms, renders JavaScript pages, captures public JSON loaded by those pages, expands dated API meeting records, downloads linked agendas/packets/minutes, and feeds documents into native text extraction and OCR. CAPTCHA or authenticated content is not bypassed.
 
 ## Scheduled Automation
 
@@ -219,7 +224,7 @@ The canonical source refresh runs once daily at 6:00 AM America/Los_Angeles thro
 
 The daily process is:
 
-1. Refresh all registered Nevada meeting calendars, including browser-rendered official pages.
+1. Regenerate and validate the statewide provider registry, refresh every direct/API-capable calendar, and run one of seven deterministic advanced-browser shards.
 2. Import direct calendar records and merge reviewed official-source caches.
 3. Check every configured provider for upcoming-meeting coverage, then retrieve a bounded batch of changed documents.
 4. Verify cache content, extract text, and run bounded OCR where required.
@@ -229,7 +234,9 @@ The daily process is:
 The public site integrity artifact is `data/generated/public-site-integrity-audit.json`. It separates critical code-integrity regressions from high-severity collection barriers so a clean build cannot be mistaken for complete source coverage. In particular, a registered provider with zero parsed records is reported as a barrier even when no exception was thrown.
 
 Meeting calendars and source-health checks run daily. Nevada SOS campaign-finance acquisition should run weekly, or sooner during an active filing window, because it requires a usable browser challenge session. The daily pipeline regenerates the cached finance quality and operational-status reports without retrying blocked live URLs. When `data/generated/nv-sos-operational-status.json` reports `stale_blocked_session`, run `npm run nv-sos:bootstrap` interactively and then `npm run nv-sos:all`; do not schedule repeated blocked fetches.
-7. Write `data/generated/dataops-pipeline-run.json`, including sources checked, upcoming meetings, source-backed issues, and provider failures.
+7. Write `data/generated/dataops-pipeline-run.json`, including required and configured jurisdictions, sources checked, upcoming meetings, source-backed issues, and provider failures.
+
+Direct source checks and statewide coverage audits run once daily. Advanced rendered-browser collection is divided into seven stable shards, so every provider receives an advanced pass at least once every seven days without adding a second recurring job. `npm run meetings:bootstrap:nevada-sources` remains the explicit full-state recovery command.
 
 `.github/workflows/dataops-daily.yml` remains a manual recovery hook. It can execute the same pipeline, refresh Carson City official-directory sources, typecheck the repo, and upload generated artifacts, but it has no recurring schedule. It does not push generated files to the primary branch; durable production storage remains a future storage adapter concern.
 
@@ -305,21 +312,14 @@ Official scorecards remain blocked until a later readiness decision explicitly e
 
 ## Scheduled Ingestion Guidance
 
-Development cadences:
+Current production cadence:
 
-- manual
-- hourly
-- every 6 hours
-- daily
-
-Production-ready recommendations:
-
-- RSS/public notices: 15-60 minutes
-- legislature: 15-60 minutes
-- meeting systems: 1-6 hours
-- campaign finance: daily
-- court records: daily
-- community news: hourly or daily depending on source
+- canonical pipeline: once daily
+- meeting direct/API and source-health checks: once daily
+- advanced rendered-browser meeting collection: one stable shard daily, every provider within 7 days
+- campaign finance: weekly, with manual session recovery when challenged
+- cached document extraction and OCR: once daily
+- RSS/public notices: once daily until a separate approved scheduler replaces the canonical job
 
 Suggested loops:
 

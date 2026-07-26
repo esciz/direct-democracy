@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T13:04:48.742Z",
+  "generatedAt": "2026-07-25T13:05:23.555Z",
   "sourceArtifacts": [
     "data/generated/public-meetings.json",
     "data/generated/voting-cards.json",
@@ -7,12 +7,12 @@
     "data/generated/public-meeting-attendance.json"
   ],
   "totals": {
-    "nodes": 5773,
-    "edges": 6477,
+    "nodes": 5776,
+    "edges": 6480,
     "communities": 10,
-    "decisions": 699,
-    "projects": 267,
-    "spendingNodes": 276
+    "decisions": 702,
+    "projects": 266,
+    "spendingNodes": 275
   },
   "nodes": [
     {
@@ -22,76 +22,76 @@
       "href": "/community/reno"
     },
     {
-      "id": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "id": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "type": "meeting",
       "label": "Packet",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "metadata": {
-        "date": "2026-07-23T07:00:00.000Z",
+        "date": "2026-08-04T07:00:00.000Z",
         "jurisdiction": "Reno, NV"
       }
     },
     {
-      "id": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167.39.25-53fe7e7f5f",
+      "id": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e",
       "type": "agenda_item",
-      "label": "Agenda item for Should the city approve for payment upon approval by SWPCC on 07/23/2026 -- 9 of 52 -- Date 07/10/2026 Invoice number 167392502 City of Reno 167?",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8#item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167.39.25-53fe7e7f5f",
+      "label": "Agenda item for Should the city approve unanimously?",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680#item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e",
       "metadata": {
-        "agendaItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167.39.25-53fe7e7f5f"
+        "agendaItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e"
       }
     },
     {
-      "id": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89",
+      "id": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181",
       "type": "decision",
-      "label": "Should the city approve for payment upon approval by SWPCC on 07/23/2026 -- 9 of 52 -- Date 07/10/2026 Invoice number 167392502 City of Reno 167?",
-      "href": "/decisions/voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89",
+      "label": "Should the city approve unanimously?",
+      "href": "/decisions/voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181",
       "metadata": {
         "confidence": 0.96,
         "jurisdiction": "Reno, NV"
       }
     },
     {
-      "id": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89",
+      "id": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181",
       "type": "vote",
-      "label": "Vote count not parsed",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "label": "2-0",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "metadata": {
-        "totalKnown": 0,
+        "totalKnown": 2,
         "officials": []
       }
     },
     {
-      "id": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:approved",
+      "id": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:approved",
       "type": "outcome",
       "label": "approved",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8"
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680"
     },
     {
-      "id": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0",
+      "id": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0",
       "type": "source",
       "label": "Primary source",
-      "href": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
+      "href": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9155&compileOutputType=1",
       "metadata": {
         "path": "data/manual-sources/public-meetings/reno-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-        "snippet": "167.39.25 Reno - 2026 Watershed Assessments for Tributary to the Truckee River Approved for payment upon approval by SWPCC on 07/23/2026 -- 9 of 52 -- Date 07/10/2026 Invoice number 167392502 City of Reno 167"
+        "snippet": "2026 MOTION: Upon motion by Board Member Mayes, seconded by Board Member Milligan, the agenda for April 7, 2026, was approved unanimously"
       }
     },
     {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-robert-wimer-present",
+      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-jack-mayes-present",
       "type": "attendance",
-      "label": "Robert Wimer · present",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "label": "Jack Mayes · present",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
         "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "Members Present: Robert Wimer, Chair; Chris Holman, Coordinator; James Pehrson; Timber Weiss",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
+        "sourceSnippet": "Roll Call: Chair Moss called the Access Advisory Board meeting to order at 5:42 PM. Staff Liaison took roll call. Board Members Craig Moss, Jack Mayes, Dora Martinez, and Jim Milligan were present. Council Liaison Brendi Anderson was also present. A2:",
+        "sourceDocument": "meeting-source-document-917f9145c98390191dc2de359c6c5916f54ca5377f6d07d48d1391a60863754c"
       }
     },
     {
-      "id": "official:robert-wimer",
+      "id": "official:jack-mayes",
       "type": "official",
-      "label": "Robert Wimer",
+      "label": "Jack Mayes",
       "href": null,
       "metadata": {
         "matchedOfficialId": null,
@@ -99,21 +99,43 @@
       }
     },
     {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-chris-holman-present",
+      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-miguel-martinez-present",
       "type": "attendance",
-      "label": "Chris Holman · present",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "label": "Miguel Martinez · present",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
         "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "Members Present: Robert Wimer, Chair; Chris Holman, Coordinator; James Pehrson; Timber Weiss",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
+        "sourceSnippet": "Roll Call: Chair Moss called the Access Advisory Board meeting to order at 5:42 PM. Staff Liaison took roll call. Board Members Craig Moss, Jack Mayes, Dora Martinez, and Jim Milligan were present. Council Liaison Brendi Anderson was also present. A2:",
+        "sourceDocument": "meeting-source-document-917f9145c98390191dc2de359c6c5916f54ca5377f6d07d48d1391a60863754c"
       }
     },
     {
-      "id": "official:chris-holman",
+      "id": "official:current-official-89f15d0e002f9bb6",
       "type": "official",
-      "label": "Chris Holman",
+      "label": "Miguel Martinez",
+      "href": "/officials/current-official-89f15d0e002f9bb6",
+      "metadata": {
+        "matchedOfficialId": "current-official-89f15d0e002f9bb6",
+        "matchStatus": "matched"
+      }
+    },
+    {
+      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-ada-compliance-non-voting-present",
+      "type": "attendance",
+      "label": "ADA compliance · non_voting_present",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "metadata": {
+        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+        "votingEligibility": "non_voting",
+        "sourceSnippet": "Staff presented the draft 2026 Access Advisory Board Annual Report and reviewed sections requiring Board input, including the Board's purpose, functional roles, strategic plan alignment, accomplishments, and recommendations to City Council. The Board discussed strategic priorities supported by its work, including accessibility improvements, public safety, ADA compliance, audible pedestrian signals, multimodal transportation, and bicycle and pedestrian safety. Members also identified emerging concerns related to e-bikes, transit accessibility, and gaps in bus service coverage, particularly in northwest Reno. The Board discussed potential recommendations for inclusion in the annual report, including continued investment in accessibility improvements, improved transit access, and ongoing collaboration with RTC to address safety and mobility needs. Staff will incorporate the Board's feedb...",
+        "sourceDocument": "meeting-source-document-917f9145c98390191dc2de359c6c5916f54ca5377f6d07d48d1391a60863754c"
+      }
+    },
+    {
+      "id": "official:ada-compliance",
+      "type": "official",
+      "label": "ADA compliance",
       "href": null,
       "metadata": {
         "matchedOfficialId": null,
@@ -121,228 +143,93 @@
       }
     },
     {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-coordinator-present",
-      "type": "attendance",
-      "label": "Coordinator · present",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-        "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "Members Present: Robert Wimer, Chair; Chris Holman, Coordinator; James Pehrson; Timber Weiss",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
-      }
-    },
-    {
-      "id": "official:coordinator",
-      "type": "official",
-      "label": "Coordinator",
-      "href": null,
-      "metadata": {
-        "matchedOfficialId": null,
-        "matchStatus": "unmatched"
-      }
-    },
-    {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-james-pehrson-present",
-      "type": "attendance",
-      "label": "James Pehrson · present",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-        "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "Members Present: Robert Wimer, Chair; Chris Holman, Coordinator; James Pehrson; Timber Weiss",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
-      }
-    },
-    {
-      "id": "official:james-pehrson",
-      "type": "official",
-      "label": "James Pehrson",
-      "href": null,
-      "metadata": {
-        "matchedOfficialId": null,
-        "matchStatus": "unmatched"
-      }
-    },
-    {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-timber-weiss-present",
-      "type": "attendance",
-      "label": "Timber Weiss · present",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-        "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "Members Present: Robert Wimer, Chair; Chris Holman, Coordinator; James Pehrson; Timber Weiss",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
-      }
-    },
-    {
-      "id": "official:timber-weiss",
-      "type": "official",
-      "label": "Timber Weiss",
-      "href": null,
-      "metadata": {
-        "matchedOfficialId": null,
-        "matchStatus": "unmatched"
-      }
-    },
-    {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-c-standing-present",
-      "type": "attendance",
-      "label": "C. Standing · present",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-        "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "MEMBERS PRESENT. C. Standing",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
-      }
-    },
-    {
-      "id": "official:c-standing",
-      "type": "official",
-      "label": "C. Standing",
-      "href": null,
-      "metadata": {
-        "matchedOfficialId": null,
-        "matchStatus": "unmatched"
-      }
-    },
-    {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-cody-mcdougall-absent",
-      "type": "attendance",
-      "label": "Cody McDougall · absent",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-        "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "Members Absent: Cody McDougall; Replacement for Ashley Elson TBD Staff and Guests Present: Susan Ball Rothe, Legal Counsel A.2",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
-      }
-    },
-    {
-      "id": "official:cody-mcdougall",
-      "type": "official",
-      "label": "Cody McDougall",
-      "href": null,
-      "metadata": {
-        "matchedOfficialId": null,
-        "matchStatus": "unmatched"
-      }
-    },
-    {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-replacement-for-ashley-elson-tbd-staff-absent",
-      "type": "attendance",
-      "label": "Replacement for Ashley Elson TBD Staff · absent",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-        "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "Members Absent: Cody McDougall; Replacement for Ashley Elson TBD Staff and Guests Present: Susan Ball Rothe, Legal Counsel A.2",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
-      }
-    },
-    {
-      "id": "official:replacement-for-ashley-elson-tbd-staff",
-      "type": "official",
-      "label": "Replacement for Ashley Elson TBD Staff",
-      "href": null,
-      "metadata": {
-        "matchedOfficialId": null,
-        "matchStatus": "unmatched"
-      }
-    },
-    {
-      "id": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-legal-counsel-a-absent",
-      "type": "attendance",
-      "label": "Legal Counsel A. · absent",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "metadata": {
-        "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-        "votingEligibility": "eligible_voting_member",
-        "sourceSnippet": "Members Absent: Cody McDougall; Replacement for Ashley Elson TBD Staff and Guests Present: Susan Ball Rothe, Legal Counsel A.2",
-        "sourceDocument": "meeting-source-document-5eefe8a7879583f62f14cbec77d9ce9779bc2edb5a42d833c0f0c3ef73e9ba74"
-      }
-    },
-    {
-      "id": "official:legal-counsel-a",
-      "type": "official",
-      "label": "Legal Counsel A.",
-      "href": null,
-      "metadata": {
-        "matchedOfficialId": null,
-        "matchStatus": "unmatched"
-      }
-    },
-    {
-      "id": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575.00-e6b6c6039f",
+      "id": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd",
       "type": "agenda_item",
-      "label": "Agenda item for Should the city approve INVOICE SUMMARY Description Contract Amount Percent Complete Previously Invoiced Current Invoice Total Invoiced Remaining B...?",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8#item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575.00-e6b6c6039f",
+      "label": "Agenda item for Should the city approve unanimously?",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680#item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd",
       "metadata": {
-        "agendaItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575.00-e6b6c6039f"
+        "agendaItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd"
       }
     },
     {
-      "id": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
+      "id": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6",
       "type": "decision",
-      "label": "Should the city approve INVOICE SUMMARY Description Contract Amount Percent Complete Previously Invoiced Current Invoice Total Invoiced Remaining B...?",
-      "href": "/decisions/voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
+      "label": "Should the city approve unanimously?",
+      "href": "/decisions/voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6",
       "metadata": {
         "confidence": 0.96,
         "jurisdiction": "Reno, NV"
       }
     },
     {
-      "id": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
+      "id": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6",
       "type": "vote",
-      "label": "Vote count not parsed",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "label": "2-0",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "metadata": {
-        "totalKnown": 0,
+        "totalKnown": 2,
         "officials": []
       }
     },
     {
-      "id": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:unknown",
+      "id": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:approved",
       "type": "outcome",
-      "label": "unknown",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8"
+      "label": "approved",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680"
     },
     {
-      "id": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0",
+      "id": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:0",
       "type": "source",
       "label": "Primary source",
-      "href": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
+      "href": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9155&compileOutputType=1",
       "metadata": {
         "path": "data/manual-sources/public-meetings/reno-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-        "snippet": "575.00 INVOICE SUMMARY Description Contract Amount Percent Complete Previously Invoiced Current Invoice Total Invoiced Remaining Balance -- 10 of 52 -- Chris Holman City of Reno 1 East First Street 7th Floor Reno, NV 89501 INVOICE Project Manager: Project Number: Job Description: Billing Through: Contract/PO#: Invoice # Date Amount Due 213136-0626 7/9/2026 $17,357"
+        "snippet": "2026 MOTION: Upon motion by Board Member Mayes, seconded by Board Member Milligan, the minutes of the meeting of April 7, 2026, were approved unanimously"
       }
     },
     {
-      "id": "spending:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
-      "type": "spending",
-      "label": "The source lists a financial impact, but does not state whether this directly changes voter taxes or fees.",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "id": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.4-dbc78f1ba8",
+      "type": "agenda_item",
+      "label": "Agenda item for Should the city approve unanimously approved recommending Kelly Orr to the Reno City Council for appointment to the Access Advisory Board?",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680#item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.4-dbc78f1ba8",
       "metadata": {
-        "amount": 17357,
-        "raw": "$17,357"
+        "agendaItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.4-dbc78f1ba8"
       }
     },
     {
-      "id": "issue:transportation",
-      "type": "issue",
-      "label": "Transportation",
-      "href": "/issues/transportation"
+      "id": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c",
+      "type": "decision",
+      "label": "Should the city approve unanimously approved recommending Kelly Orr to the Reno City Council for appointment to the Access Advisory Board?",
+      "href": "/decisions/voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c",
+      "metadata": {
+        "confidence": 0.96,
+        "jurisdiction": "Reno, NV"
+      }
     },
     {
-      "id": "project:project-reno-nv-invoice-summary-description-contract-amount-percent-complete-previously-",
-      "type": "project",
-      "label": "INVOICE SUMMARY Description Contract Amount Percent Complete Previously Invoiced Current Invoice Total Invo...",
-      "href": "/projects/project-reno-nv-invoice-summary-description-contract-amount-percent-complete-previously-",
+      "id": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c",
+      "type": "vote",
+      "label": "2-0",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "metadata": {
-        "budget": 17357,
-        "status": "funded"
+        "totalKnown": 2,
+        "officials": []
+      }
+    },
+    {
+      "id": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:approved",
+      "type": "outcome",
+      "label": "approved",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680"
+    },
+    {
+      "id": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:0",
+      "type": "source",
+      "label": "Primary source",
+      "href": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9155&compileOutputType=1",
+      "metadata": {
+        "path": "data/manual-sources/public-meetings/reno-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
+        "snippet": "A.4 Attachment: AAB Draft Minutes - May -- 6 of 8 -- MOTION: Upon motion by Board Member Mayes, seconded by Board Member Milligan, the Board unanimously approved recommending Kelly Orr to the Reno City Council for appointment to the Access Advisory Board"
       }
     },
     {
@@ -885,7 +772,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -907,7 +794,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -929,7 +816,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -951,7 +838,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -973,7 +860,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -995,7 +882,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1017,7 +904,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1039,7 +926,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1061,7 +948,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ROLL CALL COMMISSIONERS PRESENT Chairwoman Zeiler Vice Chairwoman Villeda (Not Present) Commissioner Greer Commissioner Calhoun Commissioner Vega Commissioner Menzies Commissioner Charles STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1083,7 +970,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ABSENT: 1 CONSENT",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1105,7 +992,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ABSENT: 1 BUSINESS 3. AMP-03-2026 LOSEE AND TROPICAL (Public Hearing). Applicant: PN II, Inc. Request: An amendment to the Comprehensive Master Plan to change the land use designation from Employment to Single-Family Medium. Location: On Losee Road approximately 360 feet north of the northwest corner of Tropical Parkway and Losee Road. (APNs 124-26-605-004 and 124-26-605-008) (Ward 2) (For Possible",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1127,7 +1014,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ABSENT: 1 Chairwoman Zeiler recognized Councilman Cherchio and apologized for not acknowledging him at the beginning of the meeting. STAFF COMMENTS Director of Land Development and Community Services, Alfredo Melesio clarified that",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1149,7 +1036,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "eligible_voting_member",
         "sourceSnippet": "ABSENT: 1 Chairwoman Zeiler recognized Councilman Cherchio and apologized for not acknowledging him at the beginning of the meeting. STAFF COMMENTS Director of Land Development and Community Services, Alfredo Melesio clarified that",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1171,7 +1058,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "non_voting",
         "sourceSnippet": "STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1183,7 +1070,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "non_voting",
         "sourceSnippet": "STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1195,7 +1082,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "non_voting",
         "sourceSnippet": "STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1207,7 +1094,7 @@
         "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-08-327a44c9",
         "votingEligibility": "non_voting",
         "sourceSnippet": "STAFF PRESENT Chief Deputy City Attorney Rhiann Jarvis Denman Director of Land Development & Community Services Alfredo Melesio Planning and Zoning Manager Amanda Hernandez Principal Planner Sharianne Dotson Planner Miranda Cain Planner Bryan Saylor City Clerk Jackie Rodgers Deputy City Clerk Karina Rosales Deputy City Clerk Jazmyne McDonald Deputy City Clerk Catherine Gonzalez",
-        "sourceDocument": "meeting-source-document-941d10da0cd34cf40a2b2d12384b26df92468b3b27e691c21ca913b0abdd97f1"
+        "sourceDocument": "meeting-source-document-2e34f3d8917475e9c6682a4c84149d43a6697183dc498bd8f36e4e98bb73e933"
       }
     },
     {
@@ -1411,6 +1298,12 @@
         "path": "data/manual-sources/public-meetings/clark-county-commission/agendas/undated-agenda-view-ashx.pdf",
         "snippet": "5. Approve and authorize the Chair to sign Interlocal Agreement No. R121-26-013 with Nevada Department of Transportation, for CBE No. 607977-26, for Coyote Springs Wildlife Crossings"
       }
+    },
+    {
+      "id": "issue:transportation",
+      "type": "issue",
+      "label": "Transportation",
+      "href": "/issues/transportation"
     },
     {
       "id": "agenda_item:item-meeting-manual-clark-county-commission-clark-county-commission-2026-07-07-ecf0aaeb-6-f9334744ac",
@@ -3620,6 +3513,61 @@
       "href": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784898049069",
       "metadata": {
         "path": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-6-api-v2-publicportal-listupcoming.json",
+        "snippet": "[ { \"id\": 2234, \"meetingTypeId\": 189, \"committeeId\": 21, \"dateTime\": \"2026-07-28T09:30:00\", \"endDateTime\": \"2026-07-28T18:30:00\", \"date\": \"Jul 28, 2026\", \"time\": \"09:30 AM\", \"endTime\": null, \"documentList\": [ { \"id\": 20986, \"language\": \"en-US\", \"compileOutputType\": 1, \"publishStatus\": 1, \"publishDate\": \"2026-07-22T20:02:22.017\", \"templateId\": 9132, \"meetingId\": 2234, \"sortOrder\": 2, \"templateSortOrder\": 1, \"link\": null, \"templateName\": \"Agenda\" }, { \"id\": 20987, \"language\": \"en-US\", \"compileOutputType\": 1, \"publishStatus\": 1, \"publishDate\": \"2026-07-22T20:02:29.603\", \"templateId\": 9134, \"meetingId\": 2234, \"sortOrder\": 2, \"templateSortOrder\": 3, \"link\": null, \"templateName\": \"Packet\" } ], \"allowPublicSpeaker\": false, \"allowPublicComment\": false, \"isZoomMeeting\": false, \"videoUrl\": null, \"swagitId\": null, \"isShowVideoIcon\": false, \"isMediaManagerVideo\": false, \"externalProviderMeetingId..."
+      }
+    },
+    {
+      "id": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e",
+      "type": "meeting",
+      "label": "Reno City Council public JSON response",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e",
+      "metadata": {
+        "date": "2026-07-02T16:00:00.000Z",
+        "jurisdiction": "Reno, NV"
+      }
+    },
+    {
+      "id": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222",
+      "type": "agenda_item",
+      "label": "Agenda item for Should the city approve spending for [ { \"id\": 2234, \"meetingTypeId\": 189, \"committeeId\": 21, \"dateTime\": \"2026-07-28T09:30:00\", \"endDateTime\": \"20...?",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e#item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222",
+      "metadata": {
+        "agendaItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222"
+      }
+    },
+    {
+      "id": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe",
+      "type": "decision",
+      "label": "Should the city approve spending for [ { \"id\": 2234, \"meetingTypeId\": 189, \"committeeId\": 21, \"dateTime\": \"2026-07-28T09:30:00\", \"endDateTime\": \"20...?",
+      "href": "/decisions/voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe",
+      "metadata": {
+        "confidence": 0.22,
+        "jurisdiction": "Reno, NV"
+      }
+    },
+    {
+      "id": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe",
+      "type": "vote",
+      "label": "Vote count not parsed",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e",
+      "metadata": {
+        "totalKnown": 0,
+        "officials": []
+      }
+    },
+    {
+      "id": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:unknown",
+      "type": "outcome",
+      "label": "unknown",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e"
+    },
+    {
+      "id": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:0",
+      "type": "source",
+      "label": "Primary source",
+      "href": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784984500056",
+      "metadata": {
+        "path": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-3-api-v2-publicportal-listupcoming.json",
         "snippet": "[ { \"id\": 2234, \"meetingTypeId\": 189, \"committeeId\": 21, \"dateTime\": \"2026-07-28T09:30:00\", \"endDateTime\": \"2026-07-28T18:30:00\", \"date\": \"Jul 28, 2026\", \"time\": \"09:30 AM\", \"endTime\": null, \"documentList\": [ { \"id\": 20986, \"language\": \"en-US\", \"compileOutputType\": 1, \"publishStatus\": 1, \"publishDate\": \"2026-07-22T20:02:22.017\", \"templateId\": 9132, \"meetingId\": 2234, \"sortOrder\": 2, \"templateSortOrder\": 1, \"link\": null, \"templateName\": \"Agenda\" }, { \"id\": 20987, \"language\": \"en-US\", \"compileOutputType\": 1, \"publishStatus\": 1, \"publishDate\": \"2026-07-22T20:02:29.603\", \"templateId\": 9134, \"meetingId\": 2234, \"sortOrder\": 2, \"templateSortOrder\": 3, \"link\": null, \"templateName\": \"Packet\" } ], \"allowPublicSpeaker\": false, \"allowPublicComment\": false, \"isZoomMeeting\": false, \"videoUrl\": null, \"swagitId\": null, \"isShowVideoIcon\": false, \"isMediaManagerVideo\": false, \"externalProviderMeetingId..."
       }
     },
@@ -53121,26 +53069,26 @@
       }
     },
     {
-      "id": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c",
+      "id": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376",
       "type": "agenda_item",
-      "label": "Agenda item for Should the city approve spending for [ { \"name\": \"City Council\", \"id\": 1 }, { \"name\": \"Redevelopment Agency Board\", \"id\": 104 }, { \"name\": \"Reno Ci...?",
-      "href": "/events/meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6#item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c",
+      "label": "Agenda item for Should the city approve spending for [{\"name\":\"City Council\",\"id\":1},{\"name\":\"Redevelopment Agency Board\",\"id\":104},{\"name\":\"Reno City Planning Com...?",
+      "href": "/events/meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6#item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376",
       "metadata": {
-        "agendaItemId": "item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c"
+        "agendaItemId": "item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376"
       }
     },
     {
-      "id": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
+      "id": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
       "type": "decision",
-      "label": "Should the city approve spending for [ { \"name\": \"City Council\", \"id\": 1 }, { \"name\": \"Redevelopment Agency Board\", \"id\": 104 }, { \"name\": \"Reno Ci...?",
-      "href": "/decisions/voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
+      "label": "Should the city approve spending for [{\"name\":\"City Council\",\"id\":1},{\"name\":\"Redevelopment Agency Board\",\"id\":104},{\"name\":\"Reno City Planning Com...?",
+      "href": "/decisions/voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
       "metadata": {
         "confidence": 0.22,
         "jurisdiction": "Reno, NV"
       }
     },
     {
-      "id": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
+      "id": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
       "type": "vote",
       "label": "Vote count not parsed",
       "href": "/events/meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6",
@@ -53150,19 +53098,19 @@
       }
     },
     {
-      "id": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:unknown",
+      "id": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:unknown",
       "type": "outcome",
       "label": "unknown",
       "href": "/events/meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6"
     },
     {
-      "id": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0",
+      "id": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0",
       "type": "source",
       "label": "Primary source",
-      "href": "https://reno.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal?showInactive=true",
+      "href": "https://reno.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal",
       "metadata": {
         "path": "data/manual-sources/public-meetings/reno-city-council/metadata/undated-api-json-8-api-committee-getcommitteeeslist.json",
-        "snippet": "[ { \"name\": \"City Council\", \"id\": 1 }, { \"name\": \"Redevelopment Agency Board\", \"id\": 104 }, { \"name\": \"Reno City Planning Commission\", \"id\": 2 }, { \"name\": \"Access Advisory Board\", \"id\": 3 }, { \"name\": \"Arts and Culture Advisory Board\", \"id\": 88 }, { \"name\": \"Building Enterprise Fund Advisory Committee\", \"id\": 21 }, { \"name\": \"Capital Projects Surcharge Advisory Committee\", \"id\": 22 }, { \"name\": \"City of Reno Capital Improvements Advisory Committee\", \"id\": 20 }, { \"name\": \"Civil Service Commission\", \"id\": 4 }, { \"name\": \"Community Development Block Grant (CDBG) Subcommittee\", \"id\": 73 }, { \"name\": \"Financial Advisory Board\", \"id\": 5 }, { \"name\": \"Historical Resources Commission\", \"id\": 82 }, { \"name\": \"HxGN OnCall Suite Change Management Board\", \"id\": 115 }, { \"name\": \"HxGN OnCall Suite Emergency Medical Dispatch Working Group\", \"id\": 125 }, { \"name\": \"HxGN OnCall Suite Executive Boar..."
+        "snippet": "[{\"name\":\"City Council\",\"id\":1},{\"name\":\"Redevelopment Agency Board\",\"id\":104},{\"name\":\"Reno City Planning Commission\",\"id\":2},{\"name\":\"Access Advisory Board\",\"id\":3},{\"name\":\"Arts and Culture Advisory Board\",\"id\":88},{\"name\":\"Building Enterprise Fund Advisory Committee\",\"id\":21},{\"name\":\"Capital Projects Surcharge Advisory Committee\",\"id\":22},{\"name\":\"City of Reno Capital Improvements Advisory Committee\",\"id\":20},{\"name\":\"Civil Service Commission\",\"id\":4},{\"name\":\"Community Development Block Grant (CDBG) Subcommittee\",\"id\":73},{\"name\":\"Financial Advisory Board\",\"id\":5},{\"name\":\"Historical Resources Commission\",\"id\":82},{\"name\":\"HxGN OnCall Suite Change Management Board\",\"id\":115},{\"name\":\"HxGN OnCall Suite Emergency Medical Dispatch Working Group\",\"id\":125},{\"name\":\"HxGN OnCall Suite Executive Board\",\"id\":113},{\"name\":\"HxGN OnCall Suite Managers Board\",\"id\":114},{\"name\":\"North Valley..."
       }
     },
     {
@@ -53641,26 +53589,26 @@
       }
     },
     {
-      "id": "agenda_item:item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-cfd97b3e51",
+      "id": "agenda_item:item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-f6590cb580",
       "type": "agenda_item",
       "label": "Agenda item for Should the state approve 404 Not Found Skip Nav NV.gov State Agencies State Jobs ADA Assistance Select Language ​ ▼ Nevada Governor Joe Lombardo Ab...?",
-      "href": "/events/meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4#item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-cfd97b3e51",
+      "href": "/events/meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4#item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-f6590cb580",
       "metadata": {
-        "agendaItemId": "item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-cfd97b3e51"
+        "agendaItemId": "item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-f6590cb580"
       }
     },
     {
-      "id": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
+      "id": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
       "type": "decision",
       "label": "Should the state approve 404 Not Found Skip Nav NV.gov State Agencies State Jobs ADA Assistance Select Language ​ ▼ Nevada Governor Joe Lombardo Ab...?",
-      "href": "/decisions/voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
+      "href": "/decisions/voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
       "metadata": {
         "confidence": 0.22,
         "jurisdiction": "Nevada"
       }
     },
     {
-      "id": "vote:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
+      "id": "vote:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
       "type": "vote",
       "label": "Vote count not parsed",
       "href": "/events/meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4",
@@ -53670,13 +53618,13 @@
       }
     },
     {
-      "id": "outcome:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:unknown",
+      "id": "outcome:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:unknown",
       "type": "outcome",
       "label": "unknown",
       "href": "/events/meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4"
     },
     {
-      "id": "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0",
+      "id": "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0",
       "type": "source",
       "label": "Primary source",
       "href": "https://gov.nv.gov/Boards/",
@@ -54287,26 +54235,26 @@
       }
     },
     {
-      "id": "agenda_item:item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e",
+      "id": "agenda_item:item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40",
       "type": "agenda_item",
       "label": "Agenda item for Should the city reject Denied Access Denied You don't have permission to access \"http://www?",
-      "href": "/events/meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c#item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e",
+      "href": "/events/meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c#item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40",
       "metadata": {
-        "agendaItemId": "item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e"
+        "agendaItemId": "item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40"
       }
     },
     {
-      "id": "decision:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39",
+      "id": "decision:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a",
       "type": "decision",
       "label": "Should the city reject Denied Access Denied You don't have permission to access \"http://www?",
-      "href": "/decisions/voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39",
+      "href": "/decisions/voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a",
       "metadata": {
         "confidence": 0.3,
         "jurisdiction": "Henderson, NV"
       }
     },
     {
-      "id": "vote:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39",
+      "id": "vote:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a",
       "type": "vote",
       "label": "Vote count not parsed",
       "href": "/events/meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c",
@@ -54316,19 +54264,19 @@
       }
     },
     {
-      "id": "outcome:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:denied",
+      "id": "outcome:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:denied",
       "type": "outcome",
       "label": "denied",
       "href": "/events/meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c"
     },
     {
-      "id": "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:0",
+      "id": "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:0",
       "type": "source",
       "label": "Primary source",
       "href": "https://www.cityofhenderson.com/government/public-meeting-agendas",
       "metadata": {
         "path": "data/manual-sources/public-meetings/henderson-city-council/raw-pages/undated-access-denied-government-public-meeting-agenda.html",
-        "snippet": "Access Denied Access Denied You don't have permission to access \"http://www.cityofhenderson.com/$(SERVE_403)/government/public-meeting-agendas?\" on this server. Reference #18.4960d017.1784898141.cb7ff752 https://errors.edgesuite.net/18.4960d017.1784898141.cb7ff752"
+        "snippet": "Access Denied Access Denied You don't have permission to access \"http://www.cityofhenderson.com/$(SERVE_403)/government/public-meeting-agendas?\" on this server. Reference #18.4960d017.1784984594.ecd3ed1 https://errors.edgesuite.net/18.4960d017.1784984594.ecd3ed1"
       }
     },
     {
@@ -54605,295 +54553,260 @@
         "path": "data/manual-sources/public-meetings/north-las-vegas-city-council/metadata/undated-api-json-5-api-committee-getcommitteeeslist.json",
         "snippet": "[ { \"name\": \"City Council\", \"id\": 1 }, { \"name\": \"North Las Vegas Charter Committee Regular Meeting \", \"id\": 25 }, { \"name\": \"North Las Vegas Charter Committee Special Meeting \", \"id\": 74 }, { \"name\": \"Planning Commission\", \"id\": 48 }, { \"name\": \"Redevelopment Agency\", \"id\": 49 }, { \"name\": \"American with Disabilities Act Advisory Committee\", \"id\": 16 }, { \"name\": \"Citizens Advisory Committee\", \"id\": 42 }, { \"name\": \"Citizens Advisory Committee Special Meeting\", \"id\": 73 }, { \"name\": \"Civil Service Board of Trustees\", \"id\": 43 }, { \"name\": \"Civilian Military Council of Southern Nevada Executive Committee\", \"id\": 5 }, { \"name\": \"Clark County Community Development Advisory Committee\", \"id\": 29 }, { \"name\": \"Clark County Debt Management Commission\", \"id\": 30 }, { \"name\": \"Clark County Development Advisory Committee\", \"id\": 52 }, { \"name\": \"Clark County Regional Flood Control District\", \"..."
       }
+    },
+    {
+      "id": "meeting:meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d",
+      "type": "meeting",
+      "label": "North Las Vegas City Council public JSON response",
+      "href": "/events/meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d",
+      "metadata": {
+        "date": null,
+        "jurisdiction": "North Las Vegas, NV"
+      }
+    },
+    {
+      "id": "agenda_item:item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-9ea3053544",
+      "type": "agenda_item",
+      "label": "Agenda item for Should the city approve [ { \"name\": \"City Council\", \"id\": 1 }, { \"name\": \"North Las Vegas Charter Committee Regular Meeting \", \"id\": 25 }, { \"name\"...?",
+      "href": "/events/meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d#item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-9ea3053544",
+      "metadata": {
+        "agendaItemId": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-9ea3053544"
+      }
+    },
+    {
+      "id": "decision:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "type": "decision",
+      "label": "Should the city approve [ { \"name\": \"City Council\", \"id\": 1 }, { \"name\": \"North Las Vegas Charter Committee Regular Meeting \", \"id\": 25 }, { \"name\"...?",
+      "href": "/decisions/voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "metadata": {
+        "confidence": 0.22,
+        "jurisdiction": "North Las Vegas, NV"
+      }
+    },
+    {
+      "id": "vote:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "type": "vote",
+      "label": "Vote count not parsed",
+      "href": "/events/meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d",
+      "metadata": {
+        "totalKnown": 0,
+        "officials": []
+      }
+    },
+    {
+      "id": "outcome:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:unknown",
+      "type": "outcome",
+      "label": "unknown",
+      "href": "/events/meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d"
+    },
+    {
+      "id": "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0",
+      "type": "source",
+      "label": "Primary source",
+      "href": "https://cityofnorthlasvegas.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal",
+      "metadata": {
+        "path": "data/manual-sources/public-meetings/north-las-vegas-city-council/metadata/undated-api-json-2-api-committee-getcommitteeeslist.json",
+        "snippet": "[ { \"name\": \"City Council\", \"id\": 1 }, { \"name\": \"North Las Vegas Charter Committee Regular Meeting \", \"id\": 25 }, { \"name\": \"North Las Vegas Charter Committee Special Meeting \", \"id\": 74 }, { \"name\": \"Planning Commission\", \"id\": 48 }, { \"name\": \"Redevelopment Agency\", \"id\": 49 }, { \"name\": \"American with Disabilities Act Advisory Committee\", \"id\": 16 }, { \"name\": \"Citizens Advisory Committee\", \"id\": 42 }, { \"name\": \"Citizens Advisory Committee Special Meeting\", \"id\": 73 }, { \"name\": \"Civil Service Board of Trustees\", \"id\": 43 }, { \"name\": \"Civilian Military Council of Southern Nevada Executive Committee\", \"id\": 5 }, { \"name\": \"Clark County Community Development Advisory Committee\", \"id\": 29 }, { \"name\": \"Clark County Debt Management Commission\", \"id\": 30 }, { \"name\": \"Clark County Development Advisory Committee\", \"id\": 52 }, { \"name\": \"Clark County Regional Flood Control District\", \"..."
+      }
     }
   ],
   "edges": [
     {
-      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89",
-      "to": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0",
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181",
+      "to": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0",
       "type": "supported_by_source",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
       "from": "community:reno",
-      "to": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "to": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "type": "has_meeting",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167.39.25-53fe7e7f5f",
+      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "to": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e",
       "type": "has_agenda_item",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167.39.25-53fe7e7f5f",
-      "to": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89",
+      "from": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e",
+      "to": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181",
       "type": "translated_to_decision",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89",
-      "to": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89",
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181",
+      "to": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181",
       "type": "has_vote",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89",
-      "to": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:approved",
+      "from": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181",
+      "to": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:approved",
       "type": "produced_outcome",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-robert-wimer-present",
+      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-jack-mayes-present",
       "type": "has_attendance",
       "confidence": 0.8,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-robert-wimer-present",
-      "to": "official:robert-wimer",
+      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-jack-mayes-present",
+      "to": "official:jack-mayes",
       "type": "attendance_mentions_unmatched_person",
       "confidence": 0.8,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-chris-holman-present",
+      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-miguel-martinez-present",
       "type": "has_attendance",
-      "confidence": 0.8,
+      "confidence": 0.84,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-chris-holman-present",
-      "to": "official:chris-holman",
-      "type": "attendance_mentions_unmatched_person",
-      "confidence": 0.8,
+      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-miguel-martinez-present",
+      "to": "official:current-official-89f15d0e002f9bb6",
+      "type": "attendance_matches_official",
+      "confidence": 0.84,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-coordinator-present",
+      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-ada-compliance-non-voting-present",
       "type": "has_attendance",
-      "confidence": 0.8,
+      "confidence": 0.78,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-coordinator-present",
-      "to": "official:coordinator",
+      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-ada-compliance-non-voting-present",
+      "to": "official:ada-compliance",
       "type": "attendance_mentions_unmatched_person",
-      "confidence": 0.8,
+      "confidence": 0.78,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e-edf7d6b181:0"
       ]
     },
     {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-james-pehrson-present",
-      "type": "has_attendance",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-james-pehrson-present",
-      "to": "official:james-pehrson",
-      "type": "attendance_mentions_unmatched_person",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-timber-weiss-present",
-      "type": "has_attendance",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-timber-weiss-present",
-      "to": "official:timber-weiss",
-      "type": "attendance_mentions_unmatched_person",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-c-standing-present",
-      "type": "has_attendance",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-c-standing-present",
-      "to": "official:c-standing",
-      "type": "attendance_mentions_unmatched_person",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-cody-mcdougall-absent",
-      "type": "has_attendance",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-cody-mcdougall-absent",
-      "to": "official:cody-mcdougall",
-      "type": "attendance_mentions_unmatched_person",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-replacement-for-ashley-elson-tbd-staff-absent",
-      "type": "has_attendance",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-replacement-for-ashley-elson-tbd-staff-absent",
-      "to": "official:replacement-for-ashley-elson-tbd-staff",
-      "type": "attendance_mentions_unmatched_person",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-legal-counsel-a-absent",
-      "type": "has_attendance",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "attendance:attendance-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-legal-counsel-a-absent",
-      "to": "official:legal-counsel-a",
-      "type": "attendance_mentions_unmatched_person",
-      "confidence": 0.8,
-      "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167-39-25-53fe7e7f5f-5458368f89:0"
-      ]
-    },
-    {
-      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
-      "to": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0",
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6",
+      "to": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:0",
       "type": "supported_by_source",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:0"
       ]
     },
     {
-      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "to": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575.00-e6b6c6039f",
+      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "to": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd",
       "type": "has_agenda_item",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:0"
       ]
     },
     {
-      "from": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575.00-e6b6c6039f",
-      "to": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
+      "from": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd",
+      "to": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6",
       "type": "translated_to_decision",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:0"
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
-      "to": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6",
+      "to": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6",
       "type": "has_vote",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:0"
       ]
     },
     {
-      "from": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
-      "to": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:unknown",
+      "from": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6",
+      "to": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:approved",
       "type": "produced_outcome",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd-3883555ef6:0"
       ]
     },
     {
-      "from": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:unknown",
-      "to": "spending:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
-      "type": "may_authorize_spending",
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c",
+      "to": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:0",
+      "type": "supported_by_source",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:0"
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
-      "to": "issue:transportation",
-      "type": "connects_to_issue",
+      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "to": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.4-dbc78f1ba8",
+      "type": "has_agenda_item",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:0"
       ]
     },
     {
-      "from": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:unknown",
-      "to": "project:project-reno-nv-invoice-summary-description-contract-amount-percent-complete-previously-",
-      "type": "advances_project",
+      "from": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.4-dbc78f1ba8",
+      "to": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c",
+      "type": "translated_to_decision",
       "confidence": 0.96,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:0"
+      ]
+    },
+    {
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c",
+      "to": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c",
+      "type": "has_vote",
+      "confidence": 0.96,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:0"
+      ]
+    },
+    {
+      "from": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c",
+      "to": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:approved",
+      "type": "produced_outcome",
+      "confidence": 0.96,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-a-4-dbc78f1ba8-3e8c20ee2c:0"
       ]
     },
     {
@@ -58314,6 +58227,60 @@
       "confidence": 0.22,
       "sourceReferenceIds": [
         "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-d9014123-1-6ecc4a2222-f1d7ee884d:0"
+      ]
+    },
+    {
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe",
+      "to": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:0",
+      "type": "supported_by_source",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:0"
+      ]
+    },
+    {
+      "from": "community:reno",
+      "to": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e",
+      "type": "has_meeting",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:0"
+      ]
+    },
+    {
+      "from": "meeting:meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e",
+      "to": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222",
+      "type": "has_agenda_item",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:0"
+      ]
+    },
+    {
+      "from": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222",
+      "to": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe",
+      "type": "translated_to_decision",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:0"
+      ]
+    },
+    {
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe",
+      "to": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe",
+      "type": "has_vote",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:0"
+      ]
+    },
+    {
+      "from": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe",
+      "to": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:unknown",
+      "type": "produced_outcome",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222-86a1665fbe:0"
       ]
     },
     {
@@ -120210,12 +120177,12 @@
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
-      "to": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0",
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
+      "to": "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0",
       "type": "supported_by_source",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0"
       ]
     },
     {
@@ -120224,52 +120191,52 @@
       "type": "has_meeting",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0"
       ]
     },
     {
       "from": "meeting:meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6",
-      "to": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c",
+      "to": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376",
       "type": "has_agenda_item",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0"
       ]
     },
     {
-      "from": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c",
-      "to": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
+      "from": "agenda_item:item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376",
+      "to": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
       "type": "translated_to_decision",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0"
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
-      "to": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
+      "to": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
       "type": "has_vote",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0"
       ]
     },
     {
-      "from": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
-      "to": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:unknown",
+      "from": "vote:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
+      "to": "outcome:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:unknown",
       "type": "produced_outcome",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0"
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad",
+      "from": "decision:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31",
       "to": "issue:housing",
       "type": "connects_to_issue",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c-c465b095ad:0"
+        "source:voting-card-item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376-6dbf286d31:0"
       ]
     },
     {
@@ -120759,12 +120726,12 @@
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
-      "to": "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0",
+      "from": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
+      "to": "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0",
       "type": "supported_by_source",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0"
+        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0"
       ]
     },
     {
@@ -120773,52 +120740,52 @@
       "type": "has_meeting",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0"
+        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0"
       ]
     },
     {
       "from": "meeting:meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4",
-      "to": "agenda_item:item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-cfd97b3e51",
+      "to": "agenda_item:item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-f6590cb580",
       "type": "has_agenda_item",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0"
+        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0"
       ]
     },
     {
-      "from": "agenda_item:item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-cfd97b3e51",
-      "to": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
+      "from": "agenda_item:item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-f6590cb580",
+      "to": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
       "type": "translated_to_decision",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0"
+        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0"
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
-      "to": "vote:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
+      "from": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
+      "to": "vote:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
       "type": "has_vote",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0"
+        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0"
       ]
     },
     {
-      "from": "vote:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
-      "to": "outcome:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:unknown",
+      "from": "vote:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
+      "to": "outcome:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:unknown",
       "type": "produced_outcome",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0"
+        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0"
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166",
+      "from": "decision:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406",
       "to": "issue:public-safety",
       "type": "connects_to_issue",
       "confidence": 0.22,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--169f983166:0"
+        "source:voting-card-item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4--4d76c97406:0"
       ]
     },
     {
@@ -121497,12 +121464,12 @@
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39",
-      "to": "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:0",
+      "from": "decision:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a",
+      "to": "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:0",
       "type": "supported_by_source",
       "confidence": 0.3,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:0"
+        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:0"
       ]
     },
     {
@@ -121511,43 +121478,43 @@
       "type": "has_meeting",
       "confidence": 0.3,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:0"
+        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:0"
       ]
     },
     {
       "from": "meeting:meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c",
-      "to": "agenda_item:item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e",
+      "to": "agenda_item:item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40",
       "type": "has_agenda_item",
       "confidence": 0.3,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:0"
+        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:0"
       ]
     },
     {
-      "from": "agenda_item:item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e",
-      "to": "decision:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39",
+      "from": "agenda_item:item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40",
+      "to": "decision:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a",
       "type": "translated_to_decision",
       "confidence": 0.3,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:0"
+        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:0"
       ]
     },
     {
-      "from": "decision:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39",
-      "to": "vote:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39",
+      "from": "decision:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a",
+      "to": "vote:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a",
       "type": "has_vote",
       "confidence": 0.3,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:0"
+        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:0"
       ]
     },
     {
-      "from": "vote:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39",
-      "to": "outcome:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:denied",
+      "from": "vote:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a",
+      "to": "outcome:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:denied",
       "type": "produced_outcome",
       "confidence": 0.3,
       "sourceReferenceIds": [
-        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e-df651f2c39:0"
+        "source:voting-card-item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40-14d056078a:0"
       ]
     },
     {
@@ -121864,6 +121831,69 @@
       "sourceReferenceIds": [
         "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-10d00f8d-1-2ee9244299:0"
       ]
+    },
+    {
+      "from": "decision:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "to": "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0",
+      "type": "supported_by_source",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0"
+      ]
+    },
+    {
+      "from": "community:north-las-vegas",
+      "to": "meeting:meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d",
+      "type": "has_meeting",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0"
+      ]
+    },
+    {
+      "from": "meeting:meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d",
+      "to": "agenda_item:item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-9ea3053544",
+      "type": "has_agenda_item",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0"
+      ]
+    },
+    {
+      "from": "agenda_item:item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-9ea3053544",
+      "to": "decision:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "type": "translated_to_decision",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0"
+      ]
+    },
+    {
+      "from": "decision:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "to": "vote:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "type": "has_vote",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0"
+      ]
+    },
+    {
+      "from": "vote:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "to": "outcome:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:unknown",
+      "type": "produced_outcome",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0"
+      ]
+    },
+    {
+      "from": "decision:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
+      "to": "issue:schools",
+      "type": "connects_to_issue",
+      "confidence": 0.22,
+      "sourceReferenceIds": [
+        "source:voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351:0"
+      ]
     }
   ],
   "communitySummaries": {
@@ -122049,7 +122079,7 @@
     },
     "north-las-vegas": {
       "communityName": "North Las Vegas",
-      "decisions": 12,
+      "decisions": 13,
       "projects": 0,
       "spendingApproved": 0,
       "officialsInvolved": 0,
@@ -122058,12 +122088,12 @@
     },
     "reno": {
       "communityName": "Reno",
-      "decisions": 16,
-      "projects": 1,
-      "spendingApproved": 17357,
+      "decisions": 18,
+      "projects": 0,
+      "spendingApproved": 0,
       "officialsInvolved": 0,
-      "votesParsed": 0,
-      "lastActivityAt": "2026-07-23T07:00:00.000Z"
+      "votesParsed": 6,
+      "lastActivityAt": "2026-08-04T07:00:00.000Z"
     },
     "sparks": {
       "communityName": "Sparks",

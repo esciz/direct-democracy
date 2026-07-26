@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T13:04:50.103Z",
+  "generatedAt": "2026-07-25T13:05:24.526Z",
   "runtimePath": "data/generated/issues-runtime.json",
   "auditPath": "data/generated/issues-audit-report.json",
   "counts": {
@@ -52,7 +52,7 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 191,
-        "agendaItems": 470,
+        "agendaItems": 468,
         "votingCards": 191,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -62,7 +62,7 @@
         "spendingRecords": 305,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 470
+        "sourceDocuments": 468
       }
     },
     {
@@ -128,7 +128,7 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 76,
-        "agendaItems": 238,
+        "agendaItems": 239,
         "votingCards": 76,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -138,7 +138,7 @@
         "spendingRecords": 22,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 238
+        "sourceDocuments": 239
       }
     },
     {
@@ -154,18 +154,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 61,
-        "agendaItems": 210,
-        "votingCards": 61,
+        "meetings": 60,
+        "agendaItems": 205,
+        "votingCards": 60,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 17,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 48,
+        "spendingRecords": 45,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 210
+        "sourceDocuments": 205
       }
     },
     {
@@ -179,9 +179,9 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 42,
-        "agendaItems": 149,
-        "votingCards": 42,
+        "meetings": 43,
+        "agendaItems": 151,
+        "votingCards": 43,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 8,
@@ -190,7 +190,7 @@
         "spendingRecords": 21,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 149
+        "sourceDocuments": 151
       }
     },
     {
@@ -281,7 +281,7 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 8,
-        "agendaItems": 32,
+        "agendaItems": 31,
         "votingCards": 8,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -291,7 +291,7 @@
         "spendingRecords": 7,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 32
+        "sourceDocuments": 31
       }
     },
     {

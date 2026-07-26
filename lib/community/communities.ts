@@ -22,7 +22,7 @@ const nevadaCommunitySeeds: NevadaCommunitySeed[] = [
     name: "Carson City County",
     kind: "county",
     descriptor: "A county-equivalent view for Carson City public services, schools, elections, spending, and civic institutions.",
-    aliases: ["Carson City, Nevada"],
+    aliases: ["Carson City", "Carson City, Nevada", "Carson City, NV"],
     imagePath: CARSON_CITY_IMAGE_PATH,
   },
   {
@@ -174,6 +174,20 @@ const nevadaCommunitySeeds: NevadaCommunitySeed[] = [
     descriptor: "A city community page for northeastern Nevada services, growth, public safety, elections, meetings, and budgets.",
   },
   {
+    id: "caliente",
+    name: "Caliente",
+    kind: "city",
+    countyId: "lincoln-county",
+    descriptor: "A city community page for Lincoln County services, public lands, transportation, city meetings, elections, and spending.",
+  },
+  {
+    id: "carlin",
+    name: "Carlin",
+    kind: "city",
+    countyId: "elko-county",
+    descriptor: "A city community page for northeastern Nevada services, mining-region growth, meetings, elections, and local spending.",
+  },
+  {
     id: "mesquite",
     name: "Mesquite",
     kind: "city",
@@ -209,6 +223,20 @@ const nevadaCommunitySeeds: NevadaCommunitySeed[] = [
     descriptor: "A city community page for Humboldt County services, transportation, public safety, meetings, elections, and budgets.",
   },
   {
+    id: "lovelock",
+    name: "Lovelock",
+    kind: "city",
+    countyId: "pershing-county",
+    descriptor: "A city community page for Pershing County services, public lands, city meetings, elections, and local spending.",
+  },
+  {
+    id: "wells",
+    name: "Wells",
+    kind: "city",
+    countyId: "elko-county",
+    descriptor: "A city community page for transportation, rural services, public safety, meetings, elections, and local spending.",
+  },
+  {
     id: "west-wendover",
     name: "West Wendover",
     kind: "city",
@@ -239,9 +267,9 @@ const nevadaCommunitySeeds: NevadaCommunitySeed[] = [
   {
     id: "ely",
     name: "Ely",
-    kind: "community",
+    kind: "city",
     countyId: "white-pine-county",
-    descriptor: "A major community page for eastern Nevada services, public lands, courts, meetings, elections, and local spending.",
+    descriptor: "A city community page for eastern Nevada services, public lands, courts, meetings, elections, and local spending.",
   },
   {
     id: "incline-village",

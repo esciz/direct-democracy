@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-24T13:04:44.300Z",
+  "generatedAt": "2026-07-25T13:05:20.423Z",
   "totals": {
-    "meetingsScored": 803,
+    "meetingsScored": 808,
     "highQualityMeetings": 12,
-    "mediumQualityMeetings": 16,
-    "lowQualityMeetings": 194,
-    "insufficientMeetings": 581,
+    "mediumQualityMeetings": 15,
+    "lowQualityMeetings": 196,
+    "insufficientMeetings": 585,
     "meetingsReadyForAccountability": 12,
-    "meetingsBlockedBySourceGaps": 104,
+    "meetingsBlockedBySourceGaps": 109,
     "meetingsBlockedByOcr": 4,
     "meetingsBlockedByParserGaps": 12
   },
@@ -28,9 +28,9 @@
       "sourceQuality": "insufficient",
       "accountabilityReadinessScore": 0.07,
       "documentsDiscovered": 2,
-      "localDocuments": 1,
-      "extractedDocuments": 1,
-      "queuedDocuments": 1,
+      "localDocuments": 2,
+      "extractedDocuments": 2,
+      "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 0,
       "missingFields": [
@@ -733,6 +733,36 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-07-29-88a891b8",
+      "bodyId": "body-carson-city-board-of-supervisors-carson-city-school-board",
+      "organizationId": "carson-city-board-of-supervisors",
+      "bodyName": "Carson City School Board",
+      "jurisdiction": "Carson City, NV",
+      "meetingDate": "2026-07-29T01:00:00.000Z",
+      "documentCoverageScore": 0.4,
+      "attendanceCoverage": 0,
+      "motionSecondCoverage": 0,
+      "voteAttributionCoverage": 0,
+      "fiscalDetailCoverage": 0,
+      "agendaItemLinkageConfidence": 0,
+      "sourceQuality": "insufficient",
+      "accountabilityReadinessScore": 0.07,
+      "documentsDiscovered": 2,
+      "localDocuments": 2,
+      "extractedDocuments": 1,
+      "queuedDocuments": 0,
+      "ocrRequiredDocuments": 0,
+      "actionResults": 0,
+      "missingFields": [
+        "minutes_document",
+        "attendance",
+        "motion_second",
+        "vote_outcome",
+        "fiscal_detail"
+      ],
+      "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
+    },
+    {
       "meetingId": "meeting-carson-city-board-of-supervisors-administrative-hearing-2026-07-29-eae23183",
       "bodyId": "body-carson-city-board-of-supervisors-administrative-hearing",
       "organizationId": "carson-city-board-of-supervisors",
@@ -747,8 +777,8 @@
       "agendaItemLinkageConfidence": 0,
       "sourceQuality": "insufficient",
       "accountabilityReadinessScore": 0.1,
-      "documentsDiscovered": 3,
-      "localDocuments": 3,
+      "documentsDiscovered": 2,
+      "localDocuments": 2,
       "extractedDocuments": 2,
       "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
@@ -763,34 +793,35 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-8c5c231d",
+      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-eeeb7eb6",
       "bodyId": "body-carson-city-board-of-supervisors-planning-commission",
       "organizationId": "carson-city-board-of-supervisors",
       "bodyName": "Planning Commission",
       "jurisdiction": "Carson City, NV",
       "meetingDate": "2026-07-30T00:00:00.000Z",
-      "documentCoverageScore": 0.6,
+      "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
       "voteAttributionCoverage": 0,
       "fiscalDetailCoverage": 0,
       "agendaItemLinkageConfidence": 0,
       "sourceQuality": "insufficient",
-      "accountabilityReadinessScore": 0.1,
+      "accountabilityReadinessScore": 0.07,
       "documentsDiscovered": 2,
       "localDocuments": 1,
-      "extractedDocuments": 1,
+      "extractedDocuments": 0,
       "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 0,
       "missingFields": [
         "minutes_document",
+        "full_document_text",
         "attendance",
         "motion_second",
         "vote_outcome",
         "fiscal_detail"
       ],
-      "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
+      "recommendedNextAction": "recover_or_extract_full_source_document"
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-e9629438",
@@ -9853,17 +9884,17 @@
       "jurisdiction": "Carson City, NV",
       "meetingDate": "2026-07-10T00:28:00.000Z",
       "documentCoverageScore": 0.6,
-      "attendanceCoverage": 0,
+      "attendanceCoverage": 0.5,
       "motionSecondCoverage": 0,
       "voteAttributionCoverage": 0,
       "fiscalDetailCoverage": 0,
       "agendaItemLinkageConfidence": 0,
       "sourceQuality": "insufficient",
-      "accountabilityReadinessScore": 0.1,
+      "accountabilityReadinessScore": 0.18,
       "documentsDiscovered": 2,
-      "localDocuments": 1,
-      "extractedDocuments": 1,
-      "queuedDocuments": 1,
+      "localDocuments": 2,
+      "extractedDocuments": 2,
+      "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 0,
       "missingFields": [
@@ -17495,28 +17526,29 @@
       "bodyName": "Reno City Council",
       "jurisdiction": "Reno, NV",
       "meetingDate": null,
-      "documentCoverageScore": 0.4,
+      "documentCoverageScore": 0.2,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
       "voteAttributionCoverage": 0,
       "fiscalDetailCoverage": 0,
       "agendaItemLinkageConfidence": 0,
       "sourceQuality": "insufficient",
-      "accountabilityReadinessScore": 0.07,
-      "documentsDiscovered": 1,
-      "localDocuments": 1,
-      "extractedDocuments": 1,
+      "accountabilityReadinessScore": 0.03,
+      "documentsDiscovered": 0,
+      "localDocuments": 0,
+      "extractedDocuments": 0,
       "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 0,
       "missingFields": [
         "minutes_document",
+        "full_document_text",
         "attendance",
         "motion_second",
         "vote_outcome",
         "fiscal_detail"
       ],
-      "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
+      "recommendedNextAction": "recover_or_extract_full_source_document"
     },
     {
       "meetingId": "meeting-manual-reno-city-council-reno-city-council-undated-0f7a50b6",
@@ -17587,13 +17619,13 @@
       "jurisdiction": "Reno, NV",
       "meetingDate": "2026-07-28T16:30:00.000Z",
       "documentCoverageScore": 0.6,
-      "attendanceCoverage": 0,
+      "attendanceCoverage": 1,
       "motionSecondCoverage": 0,
       "voteAttributionCoverage": 0,
       "fiscalDetailCoverage": 0,
       "agendaItemLinkageConfidence": 0,
-      "sourceQuality": "insufficient",
-      "accountabilityReadinessScore": 0.1,
+      "sourceQuality": "low",
+      "accountabilityReadinessScore": 0.27,
       "documentsDiscovered": 2,
       "localDocuments": 3,
       "extractedDocuments": 1,
@@ -17602,20 +17634,19 @@
       "actionResults": 0,
       "missingFields": [
         "minutes_document",
-        "attendance",
         "motion_second",
         "vote_outcome",
         "fiscal_detail"
       ],
-      "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
+      "recommendedNextAction": "ready_for_accountability_review"
     },
     {
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-3c4c9d77",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-244787dc",
       "bodyId": "body-manual-reno-city-council-reno-city-council",
       "organizationId": "reno-city-council",
       "bodyName": "Reno City Council",
       "jurisdiction": "Reno, NV",
-      "meetingDate": "2026-07-23T07:00:00.000Z",
+      "meetingDate": "2026-08-04T07:00:00.000Z",
       "documentCoverageScore": 0.6,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -17640,12 +17671,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-a4e14956",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-a09d43cf",
       "bodyId": "body-manual-reno-city-council-reno-city-council",
       "organizationId": "reno-city-council",
       "bodyName": "Reno City Council",
       "jurisdiction": "Reno, NV",
-      "meetingDate": "2026-07-23T07:00:00.000Z",
+      "meetingDate": "2026-08-04T07:00:00.000Z",
       "documentCoverageScore": 0.6,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -17670,12 +17701,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-530a6ff1",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-88e1e7d0",
       "bodyId": "body-manual-reno-city-council-reno-city-council",
       "organizationId": "reno-city-council",
       "bodyName": "Reno City Council",
       "jurisdiction": "Reno, NV",
-      "meetingDate": "2026-07-23T07:00:00.000Z",
+      "meetingDate": "2026-08-04T07:00:00.000Z",
       "documentCoverageScore": 0.6,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -17685,9 +17716,9 @@
       "sourceQuality": "insufficient",
       "accountabilityReadinessScore": 0.1,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
-      "queuedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
+      "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 0,
       "missingFields": [
@@ -17700,29 +17731,30 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "bodyId": "body-manual-reno-city-council-reno-city-council",
       "organizationId": "reno-city-council",
       "bodyName": "Reno City Council",
       "jurisdiction": "Reno, NV",
-      "meetingDate": "2026-07-23T07:00:00.000Z",
+      "meetingDate": "2026-08-04T07:00:00.000Z",
       "documentCoverageScore": 0.6,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 1,
       "voteAttributionCoverage": 0.35,
-      "fiscalDetailCoverage": 1,
+      "fiscalDetailCoverage": 0,
       "agendaItemLinkageConfidence": 1,
-      "sourceQuality": "medium",
-      "accountabilityReadinessScore": 0.66,
+      "sourceQuality": "low",
+      "accountabilityReadinessScore": 0.49,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
-      "queuedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
+      "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
-      "actionResults": 4,
+      "actionResults": 3,
       "missingFields": [
         "minutes_document",
-        "attendance"
+        "attendance",
+        "fiscal_detail"
       ],
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
@@ -18437,12 +18469,42 @@
       "recommendedNextAction": "recover_or_extract_full_source_document"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-f16df65f",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e",
+      "bodyId": "body-manual-reno-city-council-reno-city-council",
+      "organizationId": "reno-city-council",
+      "bodyName": "Reno City Council",
+      "jurisdiction": "Reno, NV",
+      "meetingDate": "2026-07-02T16:00:00.000Z",
+      "documentCoverageScore": 0.4,
+      "attendanceCoverage": 0,
+      "motionSecondCoverage": 0,
+      "voteAttributionCoverage": 0,
+      "fiscalDetailCoverage": 0,
+      "agendaItemLinkageConfidence": 0,
+      "sourceQuality": "insufficient",
+      "accountabilityReadinessScore": 0.07,
+      "documentsDiscovered": 1,
+      "localDocuments": 1,
+      "extractedDocuments": 1,
+      "queuedDocuments": 0,
+      "ocrRequiredDocuments": 0,
+      "actionResults": 0,
+      "missingFields": [
+        "minutes_document",
+        "attendance",
+        "motion_second",
+        "vote_outcome",
+        "fiscal_detail"
+      ],
+      "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
+    },
+    {
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-c6187a34",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.2,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18468,12 +18530,12 @@
       "recommendedNextAction": "recover_or_extract_full_source_document"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-e6fe3e60",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-0b2d9247",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18618,12 +18680,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-c725b86d",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-854b1757",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18709,12 +18771,12 @@
       "recommendedNextAction": "recover_or_extract_full_source_document"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-a052f300",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a8bf1642",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.2,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18740,12 +18802,12 @@
       "recommendedNextAction": "recover_or_extract_full_source_document"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-41954cd4",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-2b38b5ac",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18770,12 +18832,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7295aaea",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-11164652",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18800,12 +18862,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-4f7d6fce",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a635b46d",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18861,12 +18923,12 @@
       "recommendedNextAction": "recover_or_extract_full_source_document"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-cfea2ad3",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-e38ae579",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18922,12 +18984,12 @@
       "recommendedNextAction": "recover_or_extract_full_source_document"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7d057725",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-dab2b2e1",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18952,12 +19014,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-8431e4ba",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-b23d394d",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -18982,12 +19044,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-519e280c",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-f8a7ffe6",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -19012,12 +19074,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-5281b259",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-fb746c73",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -19042,12 +19104,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-370d5972",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a51e6c29",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -19072,12 +19134,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-43c99ef2",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-73a4ba86",
       "bodyId": "body-manual-nv-legislature-nevada-legislature",
       "organizationId": "nv-legislature",
       "bodyName": "Nevada Legislature",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -19163,12 +19225,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-senate-nevada-senate-2026-07-24-bd343f01",
+      "meetingId": "meeting-manual-nv-senate-nevada-senate-2026-07-25-cb4e0669",
       "bodyId": "body-manual-nv-senate-nevada-senate",
       "organizationId": "nv-senate",
       "bodyName": "Nevada Senate",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.2,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -19255,12 +19317,12 @@
       "recommendedNextAction": "review_minutes_for_attendance_or_confirm_not_published"
     },
     {
-      "meetingId": "meeting-manual-nv-assembly-nevada-assembly-2026-07-24-9c281ca3",
+      "meetingId": "meeting-manual-nv-assembly-nevada-assembly-2026-07-25-41aa4450",
       "bodyId": "body-manual-nv-assembly-nevada-assembly",
       "organizationId": "nv-assembly",
       "bodyName": "Nevada Assembly",
       "jurisdiction": "Nevada",
-      "meetingDate": "2026-07-24T07:00:00.000Z",
+      "meetingDate": "2026-07-25T07:00:00.000Z",
       "documentCoverageScore": 0.4,
       "attendanceCoverage": 0,
       "motionSecondCoverage": 0,
@@ -19450,8 +19512,8 @@
       "sourceQuality": "insufficient",
       "accountabilityReadinessScore": 0.07,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
       "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 0,
@@ -19744,8 +19806,8 @@
       "sourceQuality": "insufficient",
       "accountabilityReadinessScore": 0.07,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
       "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 0,
@@ -19859,15 +19921,15 @@
       "motionSecondCoverage": 1,
       "voteAttributionCoverage": 0.2,
       "fiscalDetailCoverage": 1,
-      "agendaItemLinkageConfidence": 0.63,
+      "agendaItemLinkageConfidence": 0.61,
       "sourceQuality": "medium",
-      "accountabilityReadinessScore": 0.74,
+      "accountabilityReadinessScore": 0.73,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
       "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
-      "actionResults": 32,
+      "actionResults": 33,
       "missingFields": [
         "agenda_item_linkage"
       ],
@@ -19889,8 +19951,8 @@
       "sourceQuality": "medium",
       "accountabilityReadinessScore": 0.73,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
       "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 40,
@@ -20447,8 +20509,8 @@
       "sourceQuality": "medium",
       "accountabilityReadinessScore": 0.52,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
       "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 5,
@@ -20954,9 +21016,9 @@
       "sourceQuality": "low",
       "accountabilityReadinessScore": 0.47,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
-      "queuedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
+      "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 1,
       "missingFields": [
@@ -22375,9 +22437,9 @@
       "sourceQuality": "medium",
       "accountabilityReadinessScore": 0.62,
       "documentsDiscovered": 2,
-      "localDocuments": 2,
-      "extractedDocuments": 1,
-      "queuedDocuments": 1,
+      "localDocuments": 3,
+      "extractedDocuments": 2,
+      "queuedDocuments": 0,
       "ocrRequiredDocuments": 0,
       "actionResults": 1,
       "missingFields": [
@@ -22975,6 +23037,99 @@
     },
     {
       "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-66c22c57",
+      "bodyId": "body-manual-north-las-vegas-city-council-north-las-vegas-city-council",
+      "organizationId": "north-las-vegas-city-council",
+      "bodyName": "North Las Vegas City Council",
+      "jurisdiction": "North Las Vegas, NV",
+      "meetingDate": null,
+      "documentCoverageScore": 0.2,
+      "attendanceCoverage": 0,
+      "motionSecondCoverage": 0,
+      "voteAttributionCoverage": 0,
+      "fiscalDetailCoverage": 0,
+      "agendaItemLinkageConfidence": 0,
+      "sourceQuality": "insufficient",
+      "accountabilityReadinessScore": 0.03,
+      "documentsDiscovered": 0,
+      "localDocuments": 0,
+      "extractedDocuments": 0,
+      "queuedDocuments": 0,
+      "ocrRequiredDocuments": 0,
+      "actionResults": 0,
+      "missingFields": [
+        "minutes_document",
+        "full_document_text",
+        "attendance",
+        "motion_second",
+        "vote_outcome",
+        "fiscal_detail"
+      ],
+      "recommendedNextAction": "recover_or_extract_full_source_document"
+    },
+    {
+      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d",
+      "bodyId": "body-manual-north-las-vegas-city-council-north-las-vegas-city-council",
+      "organizationId": "north-las-vegas-city-council",
+      "bodyName": "North Las Vegas City Council",
+      "jurisdiction": "North Las Vegas, NV",
+      "meetingDate": null,
+      "documentCoverageScore": 0.2,
+      "attendanceCoverage": 0,
+      "motionSecondCoverage": 0,
+      "voteAttributionCoverage": 0,
+      "fiscalDetailCoverage": 0,
+      "agendaItemLinkageConfidence": 0,
+      "sourceQuality": "insufficient",
+      "accountabilityReadinessScore": 0.03,
+      "documentsDiscovered": 0,
+      "localDocuments": 0,
+      "extractedDocuments": 0,
+      "queuedDocuments": 0,
+      "ocrRequiredDocuments": 0,
+      "actionResults": 0,
+      "missingFields": [
+        "minutes_document",
+        "full_document_text",
+        "attendance",
+        "motion_second",
+        "vote_outcome",
+        "fiscal_detail"
+      ],
+      "recommendedNextAction": "recover_or_extract_full_source_document"
+    },
+    {
+      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-13a8163c",
+      "bodyId": "body-manual-north-las-vegas-city-council-north-las-vegas-city-council",
+      "organizationId": "north-las-vegas-city-council",
+      "bodyName": "North Las Vegas City Council",
+      "jurisdiction": "North Las Vegas, NV",
+      "meetingDate": null,
+      "documentCoverageScore": 0.2,
+      "attendanceCoverage": 0,
+      "motionSecondCoverage": 0,
+      "voteAttributionCoverage": 0,
+      "fiscalDetailCoverage": 0,
+      "agendaItemLinkageConfidence": 0,
+      "sourceQuality": "insufficient",
+      "accountabilityReadinessScore": 0.03,
+      "documentsDiscovered": 0,
+      "localDocuments": 0,
+      "extractedDocuments": 0,
+      "queuedDocuments": 0,
+      "ocrRequiredDocuments": 0,
+      "actionResults": 0,
+      "missingFields": [
+        "minutes_document",
+        "full_document_text",
+        "attendance",
+        "motion_second",
+        "vote_outcome",
+        "fiscal_detail"
+      ],
+      "recommendedNextAction": "recover_or_extract_full_source_document"
+    },
+    {
+      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e658e9d5",
       "bodyId": "body-manual-north-las-vegas-city-council-north-las-vegas-city-council",
       "organizationId": "north-las-vegas-city-council",
       "bodyName": "North Las Vegas City Council",
@@ -27468,7 +27623,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-9b30b0447c",
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6-1-3c5a5f0376",
       "meetingId": "meeting-manual-reno-city-council-reno-city-council-undated-df33c3f6",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -27536,19 +27691,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-3c4c9d77-1-b16b7e7b43",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-3c4c9d77",
-      "agendaItemLinkageConfidence": 0.2,
-      "sourceQuality": "insufficient",
-      "sourceCompletenessScore": 0.2,
-      "missingFields": [
-        "agenda_item_number",
-        "action_result"
-      ]
-    },
-    {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-a4e14956-2-cf3a506c50",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-a4e14956",
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-244787dc-A.2-fd4e5362b9",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-244787dc",
       "agendaItemLinkageConfidence": 0.9,
       "sourceQuality": "low",
       "sourceCompletenessScore": 0.4,
@@ -27557,19 +27701,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-530a6ff1-1-14562cd486",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-530a6ff1",
-      "agendaItemLinkageConfidence": 0.2,
-      "sourceQuality": "insufficient",
-      "sourceCompletenessScore": 0.2,
-      "missingFields": [
-        "agenda_item_number",
-        "action_result"
-      ]
-    },
-    {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-2-f403f7a454",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-a09d43cf-A.2-181a81c7cb",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-a09d43cf",
       "agendaItemLinkageConfidence": 0.9,
       "sourceQuality": "low",
       "sourceCompletenessScore": 0.4,
@@ -27578,28 +27711,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-A.3-e5f5472b51",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "agendaItemLinkageConfidence": 0.9,
-      "sourceQuality": "medium",
-      "sourceCompletenessScore": 0.6,
-      "missingFields": [
-        "action_result"
-      ]
-    },
-    {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-A.4-74fb39f795",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "agendaItemLinkageConfidence": 0.9,
-      "sourceQuality": "medium",
-      "sourceCompletenessScore": 0.6,
-      "missingFields": [
-        "action_result"
-      ]
-    },
-    {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-C.2-3662190022",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-88e1e7d0-A.2-fd4e5362b9",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-88e1e7d0",
       "agendaItemLinkageConfidence": 0.9,
       "sourceQuality": "low",
       "sourceCompletenessScore": 0.4,
@@ -27608,50 +27721,68 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-167.39.25-53fe7e7f5f",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-1-e76f95b2dc",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "agendaItemLinkageConfidence": 0.9,
-      "sourceQuality": "medium",
-      "sourceCompletenessScore": 0.6,
+      "sourceQuality": "low",
+      "sourceCompletenessScore": 0.4,
+      "missingFields": [
+        "action_result"
+      ]
+    },
+    {
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.2-181a81c7cb",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "agendaItemLinkageConfidence": 0.9,
+      "sourceQuality": "low",
+      "sourceCompletenessScore": 0.4,
+      "missingFields": [
+        "action_result"
+      ]
+    },
+    {
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-1b4461189e",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "agendaItemLinkageConfidence": 0.9,
+      "sourceQuality": "high",
+      "sourceCompletenessScore": 0.8,
       "missingFields": []
     },
     {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575.00-e6b6c6039f",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-2026-46fecfedbd",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
       "agendaItemLinkageConfidence": 0.9,
-      "sourceQuality": "medium",
-      "sourceCompletenessScore": 0.6,
-      "missingFields": [
-        "action_result"
-      ]
-    },
-    {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-11-bcd8e179d2",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "agendaItemLinkageConfidence": 0.9,
-      "sourceQuality": "medium",
-      "sourceCompletenessScore": 0.6,
-      "missingFields": [
-        "action_result"
-      ]
-    },
-    {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-05-0e492c391b",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "agendaItemLinkageConfidence": 0.9,
-      "sourceQuality": "medium",
-      "sourceCompletenessScore": 0.6,
-      "missingFields": [
-        "action_result"
-      ]
-    },
-    {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-17-cc9e98f7e9",
-      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-      "agendaItemLinkageConfidence": 0.9,
-      "sourceQuality": "medium",
-      "sourceCompletenessScore": 0.6,
+      "sourceQuality": "high",
+      "sourceCompletenessScore": 0.8,
       "missingFields": []
+    },
+    {
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.4-4390cd744d",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "agendaItemLinkageConfidence": 0.9,
+      "sourceQuality": "low",
+      "sourceCompletenessScore": 0.4,
+      "missingFields": [
+        "action_result"
+      ]
+    },
+    {
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.4-dbc78f1ba8",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "agendaItemLinkageConfidence": 0.9,
+      "sourceQuality": "high",
+      "sourceCompletenessScore": 0.8,
+      "missingFields": []
+    },
+    {
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680-A.4-308a2c027f",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
+      "agendaItemLinkageConfidence": 0.9,
+      "sourceQuality": "low",
+      "sourceCompletenessScore": 0.4,
+      "missingFields": [
+        "action_result"
+      ]
     },
     {
       "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-undated-4f130406-1-27d8c8593d",
@@ -27666,12 +27797,13 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-undated-9a99a4cb-1-0f903c2025",
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-undated-9a99a4cb-1-9a5a1d8d37",
       "meetingId": "meeting-manual-reno-city-council-reno-city-council-undated-9a99a4cb",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
-      "sourceCompletenessScore": 0.2,
+      "sourceCompletenessScore": 0,
       "missingFields": [
+        "source_document_text",
         "agenda_item_number",
         "action_result"
       ]
@@ -27956,8 +28088,19 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-f16df65f-1-4a5ba5618e",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-f16df65f",
+      "meetingItemId": "item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e-1-6ecc4a2222",
+      "meetingId": "meeting-manual-reno-city-council-reno-city-council-2026-07-02-4b5a614e",
+      "agendaItemLinkageConfidence": 0.2,
+      "sourceQuality": "insufficient",
+      "sourceCompletenessScore": 0.2,
+      "missingFields": [
+        "agenda_item_number",
+        "action_result"
+      ]
+    },
+    {
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-c6187a34-1-4a5ba5618e",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-c6187a34",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0,
@@ -27968,8 +28111,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-e6fe3e60-1-0b818742b1",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-e6fe3e60",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-0b2d9247-1-abc124103b",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-0b2d9247",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28027,8 +28170,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-c725b86d-1-4a5ba5618e",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-c725b86d",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-854b1757-1-4a5ba5618e",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-854b1757",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28062,8 +28205,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-a052f300-1-4a5ba5618e",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-a052f300",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a8bf1642-1-4a5ba5618e",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a8bf1642",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0,
@@ -28074,8 +28217,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-41954cd4-1-4a5ba5618e",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-41954cd4",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-2b38b5ac-1-4a5ba5618e",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-2b38b5ac",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28085,8 +28228,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7295aaea-1-4eafa5c072",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7295aaea",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-11164652-1-012d07d3a5",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-11164652",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28096,8 +28239,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-4f7d6fce-1-80095e0643",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-4f7d6fce",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a635b46d-1-e0eb70b18c",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a635b46d",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28119,8 +28262,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-cfea2ad3-1-08b1f31131",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-cfea2ad3",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-e38ae579-1-08b1f31131",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-e38ae579",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28142,8 +28285,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7d057725-1-4eafa5c072",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7d057725",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-dab2b2e1-1-012d07d3a5",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-dab2b2e1",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28153,8 +28296,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-8431e4ba-1-4eafa5c072",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-8431e4ba",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-b23d394d-1-012d07d3a5",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-b23d394d",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28164,8 +28307,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-519e280c-1-4eafa5c072",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-519e280c",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-f8a7ffe6-1-012d07d3a5",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-f8a7ffe6",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28175,8 +28318,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-5281b259-1-4eafa5c072",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-5281b259",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-fb746c73-1-012d07d3a5",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-fb746c73",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28186,8 +28329,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-370d5972-1-4eafa5c072",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-370d5972",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a51e6c29-1-012d07d3a5",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a51e6c29",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28197,8 +28340,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-24-43c99ef2-1-4eafa5c072",
-      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-43c99ef2",
+      "meetingItemId": "item-meeting-manual-nv-legislature-nevada-legislature-2026-07-25-73a4ba86-1-012d07d3a5",
+      "meetingId": "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-73a4ba86",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28231,8 +28374,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-senate-nevada-senate-2026-07-24-bd343f01-1-4a5ba5618e",
-      "meetingId": "meeting-manual-nv-senate-nevada-senate-2026-07-24-bd343f01",
+      "meetingItemId": "item-meeting-manual-nv-senate-nevada-senate-2026-07-25-cb4e0669-1-4a5ba5618e",
+      "meetingId": "meeting-manual-nv-senate-nevada-senate-2026-07-25-cb4e0669",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0,
@@ -28266,8 +28409,8 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-assembly-nevada-assembly-2026-07-24-9c281ca3-1-4a5ba5618e",
-      "meetingId": "meeting-manual-nv-assembly-nevada-assembly-2026-07-24-9c281ca3",
+      "meetingItemId": "item-meeting-manual-nv-assembly-nevada-assembly-2026-07-25-41aa4450-1-4a5ba5618e",
+      "meetingId": "meeting-manual-nv-assembly-nevada-assembly-2026-07-25-41aa4450",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0.2,
@@ -28277,7 +28420,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-cfd97b3e51",
+      "meetingItemId": "item-meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4-1-f6590cb580",
       "meetingId": "meeting-manual-nv-governor-executive-boards-nevada-boards-and-commissions-undated-115007f4",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -28310,7 +28453,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-2-852a5d0895",
+      "meetingItemId": "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-2-9272377a71",
       "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -28321,7 +28464,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-3-d05852d28a",
+      "meetingItemId": "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-3-7390cc5493",
       "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -28332,7 +28475,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-4-150dfa1de2",
+      "meetingItemId": "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-4-273af818cd",
       "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -28343,7 +28486,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-5-7d3682c5fc",
+      "meetingItemId": "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-5-c3e05d78be",
       "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -28419,7 +28562,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-5908a079-1-390d51e8df",
+      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-5908a079-1-52430f72a7",
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-5908a079",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -29216,7 +29359,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-b52478f7-1-67c03ee1e2",
+      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-b52478f7-1-7005579834",
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-b52478f7",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -29228,7 +29371,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-b52478f7-2-6c306257f0",
+      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-b52478f7-2-9e4936d64e",
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-b52478f7",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -29262,7 +29405,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-2a6f61c4-1-67c03ee1e2",
+      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-2a6f61c4-1-7005579834",
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-2a6f61c4",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -29273,7 +29416,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-2a6f61c4-2-6c306257f0",
+      "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-undated-2a6f61c4-2-9e4936d64e",
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-undated-2a6f61c4",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -29743,11 +29886,10 @@
       "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-2015-12-01-2462d4ea-47-79d0a70781",
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-2015-12-01-2462d4ea",
       "agendaItemLinkageConfidence": 0.2,
-      "sourceQuality": "insufficient",
-      "sourceCompletenessScore": 0.2,
+      "sourceQuality": "medium",
+      "sourceCompletenessScore": 0.6,
       "missingFields": [
-        "agenda_item_number",
-        "action_result"
+        "agenda_item_number"
       ]
     },
     {
@@ -30278,8 +30420,8 @@
       "meetingItemId": "item-meeting-manual-elko-city-council-elko-city-council-2016-06-07-eedd5f1d-1-f2b27da408",
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-06-07-eedd5f1d",
       "agendaItemLinkageConfidence": 0.9,
-      "sourceQuality": "medium",
-      "sourceCompletenessScore": 0.6,
+      "sourceQuality": "high",
+      "sourceCompletenessScore": 0.8,
       "missingFields": []
     },
     {
@@ -31079,7 +31221,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-elko-county-commission-elko-county-commission-undated-c800d3e1-1-9cd1bc3167",
+      "meetingItemId": "item-meeting-manual-elko-county-commission-elko-county-commission-undated-c800d3e1-1-83036c09b2",
       "meetingId": "meeting-manual-elko-county-commission-elko-county-commission-undated-c800d3e1",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
@@ -34992,7 +35134,7 @@
       ]
     },
     {
-      "meetingItemId": "item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-9fbe8f6b1e",
+      "meetingItemId": "item-meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c-1-870d51ec40",
       "meetingId": "meeting-manual-henderson-city-council-henderson-city-council-undated-3d7d2f8c",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "low",
@@ -35835,6 +35977,42 @@
     {
       "meetingItemId": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-66c22c57-1-9acaf8fd06",
       "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-66c22c57",
+      "agendaItemLinkageConfidence": 0.2,
+      "sourceQuality": "insufficient",
+      "sourceCompletenessScore": 0,
+      "missingFields": [
+        "source_document_text",
+        "agenda_item_number",
+        "action_result"
+      ]
+    },
+    {
+      "meetingItemId": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-9ea3053544",
+      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d",
+      "agendaItemLinkageConfidence": 0.2,
+      "sourceQuality": "insufficient",
+      "sourceCompletenessScore": 0,
+      "missingFields": [
+        "source_document_text",
+        "agenda_item_number",
+        "action_result"
+      ]
+    },
+    {
+      "meetingItemId": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-13a8163c-1-4e25328299",
+      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-13a8163c",
+      "agendaItemLinkageConfidence": 0.2,
+      "sourceQuality": "insufficient",
+      "sourceCompletenessScore": 0,
+      "missingFields": [
+        "source_document_text",
+        "agenda_item_number",
+        "action_result"
+      ]
+    },
+    {
+      "meetingItemId": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e658e9d5-1-1562ae2047",
+      "meetingId": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e658e9d5",
       "agendaItemLinkageConfidence": 0.2,
       "sourceQuality": "insufficient",
       "sourceCompletenessScore": 0,

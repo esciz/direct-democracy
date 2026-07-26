@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T13:04:49.999Z",
+  "generatedAt": "2026-07-25T13:05:24.459Z",
   "output": "data/generated/issues-audit-report.json",
   "currentSchema": {
     "hasPrimaryIssueModel": false,
@@ -257,8 +257,8 @@
       ]
     },
     "sourceBackedInputs": {
-      "meetingVotingCards": 699,
-      "agendaItems": 1658,
+      "meetingVotingCards": 702,
+      "agendaItems": 1660,
       "publicCourtCases": 25,
       "issueReviewRequests": 0
     },

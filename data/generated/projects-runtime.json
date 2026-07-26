@@ -1,61 +1,15 @@
 {
-  "generatedAt": "2026-07-24T13:04:48.632Z",
+  "generatedAt": "2026-07-25T13:05:23.484Z",
   "sourceArtifacts": [
     "data/generated/voting-cards.json"
   ],
   "totals": {
-    "sourceVotingCards": 699,
-    "generatedProjects": 267,
-    "projectsWithBudget": 187,
-    "projectsWithSourceMeetings": 267
+    "sourceVotingCards": 702,
+    "generatedProjects": 266,
+    "projectsWithBudget": 186,
+    "projectsWithSourceMeetings": 266
   },
   "records": [
-    {
-      "id": "project-reno-nv-invoice-summary-description-contract-amount-percent-complete-previously-",
-      "name": "INVOICE SUMMARY Description Contract Amount Percent Complete Previously Invoiced Current Invoice Total Invo...",
-      "description": "INVOICE SUMMARY Description Contract Amount Percent Complete Previously Invoiced Current Invoice Total Invoiced Remaining Balance -- 10 of 52 -- Chris Holman City of Reno 1 East...",
-      "status": "funded",
-      "statusReason": "Source text identifies funding, budget, grant, contract, or award activity.",
-      "lastPublicAction": "Should the city approve INVOICE SUMMARY Description Contract Amount Percent Complete Previously Invoiced Current Invoice Total Invoiced Remaining B...?",
-      "nextKnownMilestone": null,
-      "responsibleBody": "Reno City Council",
-      "jurisdiction": "Reno, NV",
-      "budget": 17357,
-      "budgetDescription": "The source lists a financial impact, but does not state whether this directly changes voter taxes or fees.",
-      "startDate": "2026-07-23T07:00:00.000Z",
-      "sourceMeetings": [
-        {
-          "id": "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-          "title": "Packet",
-          "date": "2026-07-23T07:00:00.000Z",
-          "href": "/events/meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8"
-        }
-      ],
-      "relatedMeetings": [
-        "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8"
-      ],
-      "relatedVotes": [
-        "voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450"
-      ],
-      "relatedVotingCards": [
-        "voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450"
-      ],
-      "relatedIssues": [
-        "Transportation"
-      ],
-      "sourceReferences": [
-        {
-          "label": "Primary source",
-          "url": "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
-          "path": "data/manual-sources/public-meetings/reno-city-council/agenda-packets/undated-packet-public-compileddocument.pdf",
-          "snippet": "575.00 INVOICE SUMMARY Description Contract Amount Percent Complete Previously Invoiced Current Invoice Total Invoiced Remaining Balance -- 10 of 52 -- Chris Holman City of Reno 1 East First Street 7th Floor Reno, NV 89501 INVOICE Project Manager: Project Number: Job Description: Billing Through: Contract/PO#: Invoice # Date Amount Due 213136-0626 7/9/2026 $17,357"
-        }
-      ],
-      "confidence": 0.96,
-      "needsReview": true,
-      "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
-    },
     {
       "id": "project-clark-county-nv-an-amendment-to-the-contract-with-hr-and-a-advisors-inc-for-cbe-",
       "name": "an Amendment to the Contract with HR&A Advisors, Inc. for CBE No. 607342-24, for Services for Broadband and...",
@@ -100,7 +54,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-approved-budget-item-meeting-manual-clark-county-commission-clar",
@@ -146,7 +100,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-contract-or-take-other-action-as-possible-for-possible-action-it",
@@ -192,7 +146,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-an-amendment-to-the-contract-with-nls-grounds-management-llc-for",
@@ -238,7 +192,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-an-amendment-to-the-contract-with-smart-cleaning-solutions-llc-f",
@@ -284,7 +238,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-the-contract-with-opportunity-village-for-cbe-no-607909-26-for-j",
@@ -330,7 +284,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-ratify-the-annual-renewal-of-the-contract-with-the-animal-founda",
@@ -376,7 +330,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-the-termination-of-the-contract-with-homes-and-building-cleaning",
@@ -422,7 +376,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-the-selection-of-and-shf-international-llc-for-rfp-no-607857-25-",
@@ -468,7 +422,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-the-award-of-project-3133-aracc-restroom-modernization-project-a",
@@ -514,7 +468,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-the-award-of-project-3092-arff-station-improvements-at-las-proje",
@@ -560,7 +514,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-ratify-the-county-manager-or-his-designee-to-sign-supplemental-n",
@@ -606,7 +560,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-authorize-the-chair-to-sign-an-interlocal-contract-between-clark",
@@ -652,7 +606,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-authorize-the-chair-to-sign-interlocal-contract-no-3269-between-",
@@ -698,7 +652,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-spending-for-action-as-appropriate-for-possible-action-budget-an",
@@ -744,7 +698,7 @@
       "confidence": 0.36,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-adopt-approved-document-to-the-state-of-nevada-department-of-tax",
@@ -790,7 +744,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-approve-authorize-the-chair-to-sign-the-first-amended-and-restat",
@@ -836,7 +790,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-clark-county-nv-ratify-the-acceptance-of-the-title-iv-e-reimbursement-program-fo",
@@ -882,7 +836,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-las-vegas-nv-approved-funding-to-kautz-environmental-consultants-inc-item-meetin",
@@ -928,7 +882,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-las-vegas-nv-anticipated-total-15-950-historic-preservation-commission-july-22-2",
@@ -974,7 +928,7 @@
       "confidence": 0.66,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-540-court-street-elko-nevada-89801-phone-775-738-5398-fax-775-753",
@@ -1020,7 +974,7 @@
       "confidence": 0.36,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-approved-budget-item-meeting-manual-elko-county-commission-elko-c",
@@ -1066,7 +1020,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-discussion-and-consideration-to-approval-of-an-interlocal-contrac",
@@ -1112,7 +1066,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-interlocal-contract-with-nevada-secretary-of-states-office-for-kn",
@@ -1158,7 +1112,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-discussion-and-consideration-of-approval-for-the-elko-county-ambu",
@@ -1204,7 +1158,7 @@
       "confidence": 0.72,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-spending-for-n-1-discussion-and-consideration-of-approval-to-subm",
@@ -1250,7 +1204,7 @@
       "confidence": 0.36,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-fiscal-year-2026-2027-tentative-budget-elko-county-fiscal-year-20",
@@ -1296,7 +1250,7 @@
       "confidence": 0.45,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-in-accordance-with-nrs-chapters-533-and-534-consideration-to-appr",
@@ -1357,7 +1311,7 @@
       "confidence": 0.76,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-127-754-68-for-public-safety-services-item-meeting-manual-elko-co",
@@ -1403,7 +1357,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-11-for-approved-budget-item-meeting-manual-elko-county-commission",
@@ -1449,7 +1403,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-motion-passed-unanimously-item-meeting-manual-elko-county-commiss",
@@ -1500,7 +1454,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-discussion-and-consideration-of-approval-of-an-interlocal-contrac",
@@ -1546,7 +1500,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-opportunities-for-equipment-and-resource-expansion-not-otherwise-",
@@ -1592,7 +1546,7 @@
       "confidence": 0.68,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-2-730-661-on-carnegie-classification",
@@ -1638,7 +1592,7 @@
       "confidence": 0.44,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-8-for-transportation-and-road-work-i",
@@ -1684,7 +1638,7 @@
       "confidence": 0.44,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-spending-for-p0022374-executive-budg",
@@ -1730,7 +1684,7 @@
       "confidence": 0.36,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-spending-for-p0095263-interim-vice-p",
@@ -1776,7 +1730,7 @@
       "confidence": 0.36,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-spending-for-p0127865-associate-vice",
@@ -1822,7 +1776,7 @@
       "confidence": 0.36,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-county-nv-document-seq-sign-up-for-text-reminders-no-documents-water-and-se",
@@ -1868,7 +1822,7 @@
       "confidence": 0.68,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-37-386-86-donation-for-public-safety-services-item-mee",
@@ -1938,7 +1892,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-14-337-donation-for-school-services-item-meeting-washo",
@@ -2008,7 +1962,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-187-00-donation-for-donation-recommendation-to-1-accep",
@@ -2078,7 +2032,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-139-690-17-for-approved-allocation-of-american-rescue-plan-act-",
@@ -2146,7 +2100,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-197-017-96-for-approved-allocations-of-american-rescue-plan-act",
@@ -2216,7 +2170,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-142-863-00-for-approved-authorize-the-chief-medical-examiner-an",
@@ -2286,7 +2240,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-63-875-00-for-approved-authorize-the-chief-medical-examiner-and",
@@ -2356,7 +2310,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-47-367-00-for-action-to-approve-budget-amendment-totaling-an-in",
@@ -2426,7 +2380,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-5-000-00-donation-for-action-to-approve-budget-amendme",
@@ -2496,7 +2450,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-private-grant-award-of-up-to-3-300-401-14-from-the-dav",
@@ -2566,7 +2520,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-and-accept-a-grant-of-trail-easement-from-truckee-meadows-water",
@@ -2636,7 +2590,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-the-arrowcreek-homeowners-association-open-space-access-agreeme",
@@ -2706,7 +2660,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-the-board-of-county-commissioners-to-retroactively-acknowledge-",
@@ -2856,7 +2810,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-2-500-00-for-resolution-recommendation-to-approve-pursuant-to-n",
@@ -2926,7 +2880,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-10-000-00-for-housing-and-homelessness-response-item-meeting-wa",
@@ -2996,7 +2950,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-fiscal-year-2026-our-rescue-grant-award-amount-not-to-",
@@ -3066,7 +3020,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-award-a-bid-and-approve-the-agreement-to-the-lowest-responsive-",
@@ -3258,7 +3212,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-acknowledge-receipt-of-the-reissued-washoe-county-ann",
@@ -3328,7 +3282,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-600-000-for-permitting-and-safety-operations-item-meeting-washo",
@@ -3398,7 +3352,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-1-048-589-00-for-action-to-approve-budget-amendments-totaling-a",
@@ -3468,7 +3422,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-lifeset-implementing-partner-incentive-program-from-yout",
@@ -3538,7 +3492,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-approved-will-use-this-grant-money-in-its-efforts-to-prov",
@@ -3608,7 +3562,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-fiscal-year-2022-residential-substance-abuse-treatment",
@@ -3678,7 +3632,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-fiscal-year-2026-victims-of-crime-act-voca-grant-award",
@@ -3748,7 +3702,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-appointment-recommendation-to-approve-pursuant-to-nrs-278b-150-",
@@ -3818,7 +3772,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-continuum-of-care-permanent-supportive-housing-program",
@@ -3927,7 +3881,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-resolution-presentation-department-of-agriculture-the-vir",
@@ -3995,7 +3949,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-5-681-00-donation-for-public-safety-services-item-meet",
@@ -4065,7 +4019,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-the-fy26-medical-marijuana-subgrant-award-from-the-state",
@@ -4135,7 +4089,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-an-fy26-child-death-review-cdr-subaward-from-the-state-o",
@@ -4205,7 +4159,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-an-fy26-john-h-chafee-foster-care-program-subgrant-award",
@@ -4275,7 +4229,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-150-000-00-for-accept-an-fy26-fund-to-assist-former-foster-yout",
@@ -4345,7 +4299,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-approved-the-local-emergency-planning-committee-lepc-chai",
@@ -4417,7 +4371,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-5-000-00-for-resolution-recommendation-to-approve-pursuant-to-n",
@@ -4487,7 +4441,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-resolution-recommendation-in-accordance-with-nrs-244-1505",
@@ -4597,7 +4551,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-9-568-80-for-action-to-approve-budget-amendments-totaling-an-in",
@@ -4667,7 +4621,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-award-washoe-county-bid-no-3275-25-and-approve-the-agreement-fo",
@@ -4737,7 +4691,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-authorize-interim-county-manager-kate-thomas-to-award",
@@ -4807,7 +4761,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-approve-amendment-no-2-to-an-agreement-for-professional-consult",
@@ -4877,7 +4831,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-1-112-440-00-for-approved-authorize-finance-to-process-a-cross-",
@@ -4947,7 +4901,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-approve-the-purchasing-and-contracts-manager-to-execute-the-agr",
@@ -5060,7 +5014,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-43-379-05-donation-for-accept-cash-donations-totaling-",
@@ -5130,7 +5084,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-74-092-64-for-utility-services-item-meeting-washoe-county-commi",
@@ -5200,7 +5154,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-resolution-recommendation-to-acknowledge-receipt-of-the-c",
@@ -5270,7 +5224,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-2-500-00-for-housing-and-homelessness-response-item-meeting-was",
@@ -5340,7 +5294,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-86-272-17-for-public-safety-services-item-meeting-washoe-county",
@@ -5410,7 +5364,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-656-143-218-on-page-3-of-15-3-of-15-",
@@ -5456,7 +5410,7 @@
       "confidence": 0.44,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-implement-risk-based-monitoring-poli",
@@ -5502,7 +5456,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-spending-for-depreciation-and-outsta",
@@ -5546,7 +5500,7 @@
       "confidence": 0.4,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-137-for-school-services-item-meeting",
@@ -5592,7 +5546,7 @@
       "confidence": 0.52,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-157-for-approved-by-the-board-and-be",
@@ -5638,7 +5592,7 @@
       "confidence": 0.52,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-decrease-change-operating-revenues-p",
@@ -5684,7 +5638,7 @@
       "confidence": 0.68,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-1-435-for-school-services-item-meeti",
@@ -5730,7 +5684,7 @@
       "confidence": 0.52,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-1-286-for-school-services-item-meeti",
@@ -5776,7 +5730,7 @@
       "confidence": 0.4,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-capital-facilities-in-addition-reven",
@@ -5822,7 +5776,7 @@
       "confidence": 0.68,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-payments-of-patient-receivables-are-",
@@ -5868,7 +5822,7 @@
       "confidence": 0.68,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-spending-for-return-are-recorded-as-",
@@ -5914,7 +5868,7 @@
       "confidence": 0.32,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-conditions-include-specifications-re",
@@ -5960,7 +5914,7 @@
       "confidence": 0.76,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-2-882-98-donation-for-accept-monetary-donations-from-v",
@@ -6030,7 +5984,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-a-lease-agreement-between-the-gerlach-general-improvement-distr",
@@ -6100,7 +6054,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-continued-occupancy-of-gerlach-senior-center-consisting-of-1-44",
@@ -6170,7 +6124,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-the-fy25-federal-title-iv-b-subpart-2-caseworker-visits-",
@@ -6240,7 +6194,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-6-550-for-approved-direct-finance-to-make-the-necessary-budget-",
@@ -6310,7 +6264,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-7-500-00-for-public-safety-services-item-meeting-washoe-county-",
@@ -6380,7 +6334,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-20-000-00-for-transportation-and-road-work-item-meeting-washoe-",
@@ -6450,7 +6404,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-resolution-recommendation-to-reappoint-adam-kramer-as-the",
@@ -6520,7 +6474,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-7-543-49-for-action-to-approve-budget-amendments-totaling-an-in",
@@ -6590,7 +6544,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-114-010-49-for-action-to-approve-budget-amendments-totaling-an-",
@@ -6660,7 +6614,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-nevada-division-of-emergency-management-grant-award-am",
@@ -6730,7 +6684,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-292-493-00-for-public-safety-services-item-meeting-washoe-count",
@@ -6800,7 +6754,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-79-036-00-for-public-safety-services-item-meeting-washoe-county",
@@ -6870,7 +6824,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-contract-recommendation-to-1-award-a-bid-and-approve-the-agreem",
@@ -7187,7 +7141,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-an-agreement-for-services-between-washoe-county-and-h-and-k-arc",
@@ -7257,7 +7211,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-retroactively-approve-the-forensic-support-services-agreements-",
@@ -7327,7 +7281,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-130-563-00-for-accept-the-opioid-settlement-funds-subaward-thro",
@@ -7397,7 +7351,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-160-152-19-for-action-to-approve-budget-amendments-totaling-an-",
@@ -7467,7 +7421,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-continued-delivery-of-chemical-through-the-end-of-the-contract-",
@@ -7537,7 +7491,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-approve-staff-will-submit-the-notification-of-to-the-nevada-dep",
@@ -7646,7 +7600,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-an-award-from-anthem-inc-in-the-amount-of-400-000-no-cou",
@@ -7716,7 +7670,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-public-hearing-public-hearing-to-1-consider-objections-to",
@@ -7786,7 +7740,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-75-00-donation-for-acknowledge-retroactively-various-o",
@@ -7856,7 +7810,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-approve-the-regional-street-naming-committee-s-recomm",
@@ -7926,7 +7880,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-grant-request-that-the-board-of-county-commissioners-retroactiv",
@@ -7999,7 +7953,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-the-2025-agreement-to-use-account-for-affordable-housing",
@@ -8069,7 +8023,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-25-000-00-for-resolution-recommendation-to-approve-pursuant-to-",
@@ -8139,7 +8093,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-10-000-00-for-resolution-recommendation-to-approve-pursuant-to-",
@@ -8209,7 +8163,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-the-memorandum-of-understanding-mou-between-truckee-meadows-com",
@@ -8279,7 +8233,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-819-094-00-for-approved-authorize-the-chief-medical-examiner-an",
@@ -8349,7 +8303,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-resolution-presentation-by-george-robison-to-briefly-outl",
@@ -8419,7 +8373,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-informational-report-presentation-and-update-on-fy-25-second-qu",
@@ -8489,7 +8443,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-7-243-00-donation-for-donation-recommendation-to-1-acc",
@@ -8559,7 +8513,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-12-627-00-donation-for-donation-recommendation-to-1-ac",
@@ -8629,7 +8583,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-17-274-00-donation-for-housing-and-homelessness-respon",
@@ -8699,7 +8653,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-32-400-donation-for-accept-such-generously-donated-fun",
@@ -8769,7 +8723,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-approve-a-resolution-supporting-the-use-of-state-of-nevada-affo",
@@ -8839,7 +8793,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-an-amendment-to-lease-agreement-for-the-occupancy-of-sober-24-c",
@@ -8909,7 +8863,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-approved-the-conveyance-would-contribute-to-the-onewater-",
@@ -8979,7 +8933,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-an-mou-that-creates-a-framework-for-a-cooperative-effort-",
@@ -9047,7 +9001,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-an-agreement-between-truckee-meadows-parks-foundation-tmpf-and-",
@@ -9117,7 +9071,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-31-for-informational-report-recommendation-to-acknowledge-recei",
@@ -9185,7 +9139,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-and-approval-of-revisions-to-the-washoe-county-employee-",
@@ -9255,7 +9209,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-20-000-00-for-public-safety-services-item-meeting-washoe-county",
@@ -9325,7 +9279,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-57-284-00-for-public-safety-services-item-meeting-washoe-county",
@@ -9395,7 +9349,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-189-491-32-for-utility-services-item-meeting-washoe-county-comm",
@@ -9465,7 +9419,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-approve-a-grant-of-easement-agreement-at-a-value-of-1",
@@ -9535,7 +9489,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-an-fy25-federal-title-iv-b-subpart-2-promoting-safe-and-",
@@ -9605,7 +9559,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-authorize-the-purchasing-and-contracts-manager-to-execute-the-a",
@@ -9675,7 +9629,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-63-235-00-for-transportation-and-road-work-item-meeting-washoe-",
@@ -9745,7 +9699,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-1-accept-a-grant-from-the-community-foundation-of-nor",
@@ -9815,7 +9769,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-informational-report-recommendation-to-acknowledge-receipt-of-u",
@@ -9885,7 +9839,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-informational-report-recommendation-to-acknowledge-receipt-of-s",
@@ -9955,7 +9909,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-authorize-the-grant-application-for-the-2024-justice-assistance",
@@ -10025,7 +9979,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-acknowledge-receipt-of-the-washoe-county-annual-comprehensive-f",
@@ -10134,7 +10088,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-13-334-827-76-for-utility-services-item-meeting-washoe-county-c",
@@ -10204,7 +10158,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-two-subgrant-awards-from-the-state-of-nevada-aging-and-d",
@@ -10274,7 +10228,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-328-198-62-for-public-safety-services-item-meeting-washoe-count",
@@ -10344,7 +10298,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-1-219-519-for-land-use-and-development-decisions-item-meeting-w",
@@ -10414,7 +10368,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-350-000-00-for-retroactively-approve-the-acceptance-of-grant-fu",
@@ -10484,7 +10438,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-public-hearing-public-hearing-subject-to-a-finding-of-conforman",
@@ -10554,7 +10508,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-18-809-87-donation-for-accept-cash-donations-totaling-",
@@ -10624,7 +10578,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-2-500-00-donation-for-acknowledge-donation-of-2-500-00",
@@ -10694,7 +10648,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-an-easement-deed-between-washoe-county-grantor-and-nv-energy-gr",
@@ -10764,7 +10718,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-a-public-trail-easement-deed-and-maintenance-agreement-between-",
@@ -10873,7 +10827,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-award-washoe-county-bid-no-3259-24-and-approve-the-agreement-fo",
@@ -10943,7 +10897,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-the-board-of-county-commissioners-to-approve-an-easement-exchan",
@@ -11013,7 +10967,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-57-for-action-to-acknowledge-receipt-of-the-interim-financial-r",
@@ -11081,7 +11035,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-grant-acknowledge-the-grant-award-from-the-office-of-traffic-sa",
@@ -11151,7 +11105,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-approve-the-reclassification-of-a-librarian-ii-pay-gr",
@@ -11221,7 +11175,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-approve-revisions-to-article-27-section-e-retiree-hea",
@@ -11291,7 +11245,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-ffy23-continuum-of-care-planning-grant-award-from-the-",
@@ -11361,7 +11315,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-the-fy25-subaward-for-senior-nutrition-program-through-t",
@@ -11431,7 +11385,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-subaward-amendment-2-for-years-2-and-3-of-the-subgrant-a",
@@ -11501,7 +11455,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-160-000-00-for-accept-an-fy25-fund-to-assist-former-foster-yout",
@@ -11571,7 +11525,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-authorize-the-purchasing-and-contracts-manager-to-sign-the-agre",
@@ -11641,7 +11595,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-approve-the-chair-to-execute-the-agreement-item-meeting-washoe-",
@@ -11714,7 +11668,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-1-500-00-for-resolution-recommendation-to-approve-pursuant-to-n",
@@ -11784,7 +11738,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-77-000-00-for-public-safety-services-item-meeting-washoe-county",
@@ -11854,7 +11808,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-approved-projects-from-july-1-2024-through-september-30-2",
@@ -11924,7 +11878,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-63-872-00-for-approved-authorize-the-chief-medical-examiner-and",
@@ -11994,7 +11948,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-2-265-71-for-action-to-approve-budget-amendments-totaling-an-in",
@@ -12064,7 +12018,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-5-376-00-for-public-safety-services-item-meeting-washoe-county-",
@@ -12134,7 +12088,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-acknowledge-receipt-of-an-updated-report-to-an-emerge",
@@ -12204,7 +12158,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-approve-the-purchase-of-a-new-2026-western-star-47x-t",
@@ -12274,7 +12228,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-contract-recommendation-to-authorize-plenium-builders-inc-the-p",
@@ -12344,7 +12298,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-an-agreement-for-services-between-washoe-county-and-arrington-w",
@@ -12414,7 +12368,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-grant-recommendation-to-1-accept-the-william-n-pennington-found",
@@ -12484,7 +12438,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-fy25-temporary-assistance-for-needy-families-tanf-emer",
@@ -12554,7 +12508,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-federal-title-iv-e-subgrant-award-from-the-state-of-ne",
@@ -12624,7 +12578,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-the-first-amendment-to-the-master-services-and-purchasing-agree",
@@ -12694,7 +12648,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-63-000-00-for-transportation-and-road-work-item-meeting-washoe-",
@@ -12764,7 +12718,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-reject-action-to-reject-the-single-bid-received-for-the-washoe-",
@@ -12834,7 +12788,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-150-000-for-approved-direct-the-comptroller-s-office-to-make-th",
@@ -12904,7 +12858,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-200-000-00-for-approve-allocation-of-american-rescue-plan-act-a",
@@ -12974,7 +12928,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-acknowledge-community-court-program-allocation-from-the-judicia",
@@ -13044,7 +12998,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-20-250-00-for-acknowledge-specialty-court-general-fund-allocati",
@@ -13114,7 +13068,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-acknowledge-court-assistance-program-allocation-from-the-judici",
@@ -13184,7 +13138,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-7-500-00-for-transportation-and-road-work-item-meeting-washoe-c",
@@ -13254,7 +13208,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-5-000-00-for-transportation-and-road-work-item-meeting-washoe-c",
@@ -13324,7 +13278,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-64-000-00-for-transportation-and-road-work-item-meeting-washoe-",
@@ -13394,7 +13348,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-an-agreement-for-professional-consulting-services-between-washo",
@@ -13464,7 +13418,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-an-fy25-title-xx-subgrant-award-from-the-nevada-departme",
@@ -13534,7 +13488,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-87-000-00-for-utility-services-item-meeting-washoe-county-commi",
@@ -13604,7 +13558,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-1-057-812-89-for-public-safety-services-item-meeting-washoe-cou",
@@ -13674,7 +13628,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-37-389-15-donation-for-public-safety-services-item-mee",
@@ -13744,7 +13698,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-200-000-00-donation-for-accept-200-000-00-in-donations",
@@ -13814,7 +13768,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-8-970-00-donation-for-accept-8-970-00-in-donation-from",
@@ -13884,7 +13838,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-11-619-29-donation-for-acknowledge-various-one-time-in",
@@ -13952,7 +13906,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-continued-conveyance-of-sanitary-sewer-flows-from-a-washoe-coun",
@@ -14022,7 +13976,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-a-cooperative-working-and-access-agreement-for-ground-and-groun",
@@ -14092,7 +14046,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-acknowledge-interlocal-contract-between-public-agencies-for-acc",
@@ -14162,7 +14116,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-the-board-of-county-commissioners-to-acknowledge-a-grant-of-30-",
@@ -14232,7 +14186,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-the-board-of-county-commissioners-to-acknowledge-a-grant-of-27-",
@@ -14302,7 +14256,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-informational-report-acknowledge-the-addition-of-a-new-classifi",
@@ -14372,7 +14326,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-approve-an-agreement-between-washoe-county-and-the-re",
@@ -14442,7 +14396,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-subaward-amendment-1-for-a-ffy24-nutrition-services-ince",
@@ -14512,7 +14466,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-subaward-amendment-1-to-the-title-iv-b-subpart-2-promoti",
@@ -14582,7 +14536,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-3-172-00-for-transportation-and-road-work-item-meeting-washoe-c",
@@ -14652,7 +14606,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-17-701-00-for-public-safety-services-item-meeting-washoe-county",
@@ -14722,7 +14676,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-accept-a-grant-from-the-nevada-secretary-of-state-and-app",
@@ -14792,7 +14746,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-grant-recommendation-to-1-accept-the-state-of-nevada-nevada-con",
@@ -14862,7 +14816,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-364-731-88-for-accept-additional-incentive-funds-for-the-distri",
@@ -14932,7 +14886,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-retroactively-acknowledge-the-grant-award-from-the-state-of-nev",
@@ -15002,7 +14956,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-2-819-570-for-approve-fy2025-university-of-nevada-reno-extensio",
@@ -15072,7 +15026,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-100-000-for-approved-direct-the-comptroller-s-office-to-make-th",
@@ -15142,7 +15096,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-215-510-00-for-contract-recommendation-to-1-approve-a-non-funde",
@@ -15212,7 +15166,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-2-419-345-for-action-to-approve-budget-amendments-totaling-an-i",
@@ -15282,7 +15236,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-and-direction-to-staff-regarding-potential-bill-draft-re",
@@ -15352,7 +15306,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-1-516-778-46-for-approved-allocations-of-american-rescue-plan-a",
@@ -15422,7 +15376,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-the-three-year-agreement-and-approve-the-payment-for-the-fiscal",
@@ -15492,7 +15446,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-approve-retroactively-authorize-on-behalf-of-the-washoe-county-",
@@ -15562,7 +15516,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-approve-retroactively-the-purchasing-and-contracts-manager-to-e",
@@ -15632,7 +15586,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-10-000-00-for-approved-or-disbursed-item-meeting-washoe-county-",
@@ -15702,7 +15656,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-accept-s-would-help-mitigate-risks-a",
@@ -15748,7 +15702,7 @@
       "confidence": 0.77,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-nevada-system-of-higher-education-the-state-vcc-processing-fees-transitioning-to",
@@ -15794,7 +15748,7 @@
       "confidence": 0.68,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-continued-operation-maintenance-and-or-replacement-of-an-existi",
@@ -15864,7 +15818,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-41-599-34-donation-for-housing-and-homelessness-respon",
@@ -15934,7 +15888,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-accept-a-fy24-adoption-savings-subgrant-from-the-state-of",
@@ -16004,7 +15958,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-77-500-for-public-safety-services-item-meeting-washoe-county-co",
@@ -16074,7 +16028,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-to-approve-the-updated-washoe-county-code-of-conduct-whi",
@@ -16144,7 +16098,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-public-hearing-public-hearing-appeal-of-the-washoe-county-plann",
@@ -16214,7 +16168,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-public-hearing-public-hearing-for-the-second-reading-and-",
@@ -16284,7 +16238,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-200-00-donation-for-acknowledge-donation-of-200-00-ret",
@@ -16354,7 +16308,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-a-100-00-donation-for-acknowledge-retroactively-a-one-ti",
@@ -16424,7 +16378,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-112-446-for-approved-direct-the-comptroller-to-make-the-necessa",
@@ -16494,7 +16448,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-accept-the-locals-foods-in-schools-grant-from-the-nevada-depart",
@@ -16564,7 +16518,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-30-000-00-for-transportation-and-road-work-item-meeting-washoe-",
@@ -16634,7 +16588,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-89-183-67-for-public-safety-services-item-meeting-washoe-county",
@@ -16704,7 +16658,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-informational-report-recommendation-to-accept-the-status-report",
@@ -16774,7 +16728,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-award-washoe-county-bid-no-3231-24-and-approve-the-agreement-fo",
@@ -16844,7 +16798,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-action-and-possible-action-to-initiate-amendments-to-wcc-chapte",
@@ -16914,7 +16868,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-18-618-598-96-for-approve-a-resolution-to-augment-the-capital-i",
@@ -16984,7 +16938,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-washoe-county-nv-adopt-passed-the-proposed-ordinance-will-modify-1-the-definitio",
@@ -17052,7 +17006,7 @@
       "confidence": 0.96,
       "needsReview": false,
       "reviewStatus": "source_backed",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-the-final-plat-6-16-for-the-copper-trails-phase-1-unit-2-subdivision-ite",
@@ -17098,7 +17052,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-continue-the-subject-property-is-located-generally-north-of-copper-stree",
@@ -17144,7 +17098,7 @@
       "confidence": 0.49,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-the-engineering-department-from-the-staff-memo-he-clarified-that-dakota-",
@@ -17190,7 +17144,7 @@
       "confidence": 0.32,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-property-is-located-generally-east-of-12th-street-on-sharps-access-road-",
@@ -17236,7 +17190,7 @@
       "confidence": 0.77,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-of-phase-1-of-the-downtown-corridor-project-item-meeting-manual-elko-cit",
@@ -17280,7 +17234,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-to-the-redevelopment-agency-to-establish-a-storefront-improvement-reimbu",
@@ -17326,7 +17280,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-continue-continued-explaining-the-storm-water-path-from-the-preliminary-",
@@ -17372,7 +17326,7 @@
       "confidence": 0.44,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-off-street-parking-so-when-a-lot-is-developed-two-off-street-parking-spa",
@@ -17418,7 +17372,7 @@
       "confidence": 0.44,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-continue-the-subject-property-is-located-generally-north-of-clarkson-dri",
@@ -17464,7 +17418,7 @@
       "confidence": 0.49,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-gutter-and-sidewalk-is-heard-mr-draper-said-staffhas-those-same-concerns",
@@ -17510,7 +17464,7 @@
       "confidence": 0.32,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-the-civil-improvement-plans-and-did-not-take-zoning-into-consideration-w",
@@ -17556,7 +17510,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-this-condition-could-exist-on-additional-properties-so-we-re-considering",
@@ -17602,7 +17556,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-business-noise-item-meeting-manual-elko-city-council-elko-city-council-2",
@@ -17648,7 +17602,7 @@
       "confidence": 0.96,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-1-priority-one-is-revising-the-zoning-along-5th-street-addressing-proxim",
@@ -17694,7 +17648,7 @@
       "confidence": 0.32,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     },
     {
       "id": "project-elko-nv-spending-for-commercial-transitional-type-uses-on-51h-street-that-don-t-",
@@ -17740,7 +17694,7 @@
       "confidence": 0.32,
       "needsReview": true,
       "reviewStatus": "needs_review",
-      "generatedAt": "2026-07-24T13:04:48.632Z"
+      "generatedAt": "2026-07-25T13:05:23.484Z"
     }
   ]
 }

@@ -48,11 +48,15 @@ type PublicMeetingSourceSeed = {
   id: string;
   name: string;
   jurisdiction: string;
+  website?: string | null;
   meetingIndexUrl: string | null;
   agendaArchiveUrl?: string | null;
   minutesArchiveUrl?: string | null;
   packetArchiveUrl?: string | null;
   videoArchiveUrl?: string | null;
+  discoveryUrls?: string[];
+  allowedHosts?: string[];
+  platformHints?: string[];
 };
 
 type SavedStats = {
@@ -77,6 +81,11 @@ const providerArg = process.argv.find((arg) => arg.startsWith("--provider="))?.s
 const DEFAULT_STORAGE_STATE = path.join(CACHE_ROOT, "_browser-state", "public-meetings-storage-state.json");
 const STORAGE_STATE = path.resolve(ROOT, storageStateArg ?? DEFAULT_STORAGE_STATE);
 const MAX_LINK_DOWNLOADS_PER_PROVIDER = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_DOWNLOADS ?? "16");
+const MAX_DISCOVERY_PAGES_PER_PROVIDER = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_PAGES ?? "5");
+const MAX_DISCOVERY_DEPTH = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_DEPTH ?? "2");
+const SCHEDULED = process.argv.includes("--scheduled");
+const PENDING_FIRST_PASS = process.argv.includes("--pending-first-pass");
+const SCHEDULE_SHARDS = Math.max(1, Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_SHARDS ?? "7"));
 const nsheArchiveHost = ["nshe", "nevada", "edu"].join(".");
 const nsheArchiveUrl = `https://${nsheArchiveHost}/regents/archive/`;
 
@@ -359,9 +368,10 @@ function providerFromSeed(seed: PublicMeetingSourceSeed): ProviderConfig | null 
     seed.minutesArchiveUrl,
     seed.packetArchiveUrl,
     seed.videoArchiveUrl,
+    ...(seed.discoveryUrls ?? []),
   ].filter((url, index, urls): url is string => Boolean(url) && urls.indexOf(url) === index);
   if (!urls.length) return null;
-  const hosts = [...new Set(urls.map(hostFor).filter(Boolean))];
+  const hosts = [...new Set([...urls, seed.website].map((url) => (url ? hostFor(url) : "")).filter(Boolean).concat(seed.allowedHosts ?? []))];
   return {
     id: seed.id,
     sourceName: seed.name,
@@ -373,7 +383,7 @@ function providerFromSeed(seed: PublicMeetingSourceSeed): ProviderConfig | null 
       url,
       sourceKind: sourceKindForSeedUrl(seed, url),
       titleHint: `${seed.name} public meeting source`,
-      notes: `Rendered official ${seed.jurisdiction} public meeting source from data/seed/public-meeting-sources.json.`,
+      notes: `Rendered official ${seed.jurisdiction} meeting or discovery source from the statewide Nevada source catalog.`,
     })),
   };
 }
@@ -464,8 +474,13 @@ function recordManifestFailure(manifest: { failures?: ManifestFailure[] }, failu
 
 function inferDateFromText(value: string) {
   const text = value.replace(/\s+/g, " ");
-  const iso = text.match(/\b(20\d{2})[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12]\d|3[01])(?:[T\s]+(\d{1,2}):(\d{2}))?/);
+  const iso = text.match(/\b(20\d{2})[-/](1[0-2]|0?[1-9])[-/](3[01]|[12]\d|0?[1-9])(?!\d)(?:[T\s]+(\d{1,2}):(\d{2}))?/);
   if (iso) return `${iso[1]}-${iso[2].padStart(2, "0")}-${iso[3].padStart(2, "0")}${iso[4] ? `T${iso[4].padStart(2, "0")}:${iso[5] ?? "00"}:00-07:00` : "T09:00:00-07:00"}`;
+  const numeric = text.match(/\b(1[0-2]|0?[1-9])[-_.\s](3[01]|[12]\d|0?[1-9])[-_.\s](20\d{2}|\d{2})\b/);
+  if (numeric) {
+    const year = numeric[3].length === 2 ? `20${numeric[3]}` : numeric[3];
+    return `${year}-${numeric[1].padStart(2, "0")}-${numeric[2].padStart(2, "0")}T09:00:00-07:00`;
+  }
   const longDate = text.match(/\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?\s+\d{1,2},?\s+20\d{2}(?:\s+\d{1,2}:\d{2}\s*(?:AM|PM))?/i);
   if (!longDate) return null;
   const parsed = Date.parse(`${longDate[0]} GMT-0700`);
@@ -552,7 +567,19 @@ async function saveRenderedPage(provider: ProviderConfig, page: Page, pageConfig
 function sameAllowedHost(provider: ProviderConfig, rawUrl: string) {
   try {
     const host = new URL(rawUrl).host;
-    return provider.includeHosts.some((allowed) => host === allowed || host.endsWith(`.${allowed}`));
+    return (
+      provider.includeHosts.some((allowed) => host === allowed || host.endsWith(`.${allowed}`)) ||
+      [
+        "legistar.com",
+        "primegov.com",
+        "boarddocs.com",
+        "granicus.com",
+        "civicclerk.com",
+        "municode.com",
+        "novusagenda.com",
+        "agendaquick.com",
+      ].some((allowed) => host === allowed || host.endsWith(`.${allowed}`))
+    );
   } catch {
     return false;
   }
@@ -586,6 +613,87 @@ async function discoverLinks(provider: ProviderConfig, page: Page) {
       return true;
     })
     .slice(0, MAX_LINK_DOWNLOADS_PER_PROVIDER);
+}
+
+function isNavigableMeetingPage(url: string, label: string) {
+  const haystack = `${url} ${label}`.toLowerCase();
+  if (/^(mailto|tel|javascript):/i.test(url)) return false;
+  if (/\.(?:pdf|docx?|xlsx?|csv|zip)(?:$|[?#])/i.test(url)) return false;
+  if (/compileddocument|document(?:s)?\/download|viewfile|downloadfile|attachment/i.test(url)) return false;
+  return /\b(meetings?|agendas?|minutes?|calendar|council|commission|commissioners|board|trustees|public[-_\s]+notices?|legislative)\b/i.test(
+    haystack,
+  );
+}
+
+async function discoverNavigationLinks(provider: ProviderConfig, page: Page) {
+  const links = await page.$$eval("a[href]", (anchors) =>
+    anchors.map((anchor) => ({
+      href: (anchor as HTMLAnchorElement).href,
+      label: (anchor.textContent ?? "").replace(/\s+/g, " ").trim(),
+    })),
+  );
+  const seen = new Set<string>();
+  return links
+    .map((link) => ({ ...link, href: normalizePublicUrl(provider, link.href) }))
+    .filter((link) => sameAllowedHost(provider, link.href) && isNavigableMeetingPage(link.href, link.label))
+    .filter((link) => !isOutOfRequestedDateScope(link.href, link.label))
+    .filter((link) => {
+      if (seen.has(link.href)) return false;
+      seen.add(link.href);
+      return true;
+    });
+}
+
+function detectPlatforms(value: string) {
+  const text = value.toLowerCase();
+  return [
+    ["legistar", /\blegistar\b/],
+    ["primegov", /\bprimegov\b/],
+    ["boarddocs", /\bboarddocs\b/],
+    ["granicus", /\bgranicus\b/],
+    ["civicclerk", /\bcivicclerk\b/],
+    ["onbase", /\bonbase(?:agendaonline)?\b/],
+    ["municode_meetings", /\bmunicode\b/],
+    ["novusagenda", /\bnovusagenda\b/],
+    ["agendaquick", /\bagendaquick\b/],
+    ["civicplus", /\bcivicplus\b/],
+  ]
+    .filter(([, pattern]) => (pattern as RegExp).test(text))
+    .map(([platform]) => platform as string);
+}
+
+function meetingRecordsFromJson(body: Buffer) {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(body.toString("utf8"));
+  } catch {
+    return [];
+  }
+  const records: Array<{ id: string; title: string; meetingDate: string; value: Record<string, unknown> }> = [];
+  const seen = new Set<string>();
+  const visit = (value: unknown) => {
+    if (Array.isArray(value)) {
+      value.forEach(visit);
+      return;
+    }
+    if (!value || typeof value !== "object") return;
+    const record = value as Record<string, unknown>;
+    const titleValue = record.title ?? record.meetingTitle ?? record.name ?? record.committeeName ?? record.bodyName;
+    const dateValue = record.dateTime ?? record.meetingDate ?? record.startDateTime ?? record.startDate ?? record.date;
+    const idValue = record.id ?? record.meetingId ?? record.meetingTemplateId ?? record.eventId;
+    const title = typeof titleValue === "string" ? titleValue.trim() : "";
+    const meetingDate = inferDateFromText(typeof dateValue === "string" ? dateValue : "");
+    if (title && meetingDate && idValue != null) {
+      const key = `${idValue}:${meetingDate}:${title}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        records.push({ id: String(idValue), title, meetingDate, value: record });
+      }
+    }
+    Object.values(record).forEach(visit);
+  };
+  visit(parsed);
+  return records.slice(0, 100);
 }
 
 async function fetchPublicLinkedFile(provider: ProviderConfig, context: BrowserContext, link: { href: string; label: string; sourceKind: ManifestEntry["sourceKind"] }) {
@@ -653,11 +761,23 @@ function shouldCaptureJson(provider: ProviderConfig, url: string, contentType: s
 async function collectProvider(provider: ProviderConfig, context: BrowserContext) {
   await ensureProviderFolders(provider);
   const manifest = await readManifest(provider.id);
+  if (FORCE) {
+    manifest.failures = [];
+    manifest.entries = manifest.entries.filter(
+      (entry) => entry.notes !== "Expanded from a dated public meeting record returned by an official page JSON response.",
+    );
+  }
   const stats: SavedStats = { pagesSaved: 0, filesSaved: 0, jsonSaved: 0, manifestEntries: 0, skipped: 0, failed: 0, needsReview: 0 };
   const page = await context.newPage();
   const capturedJson = new Set<string>();
-  page.on("response", async (response) => {
-    try {
+  const discoveredPlatforms = new Set<string>();
+  const visitedPages = new Set<string>();
+  const downloadedLinks = new Set<string>();
+  let successfulPages = 0;
+  const responseTasks = new Set<Promise<void>>();
+  page.on("response", (response) => {
+    const task = (async () => {
+      try {
       const url = response.url();
       const contentType = response.headers()["content-type"] ?? "";
       if (!response.ok() || !shouldCaptureJson(provider, url, contentType) || capturedJson.has(url)) return;
@@ -685,16 +805,58 @@ async function collectProvider(provider: ProviderConfig, context: BrowserContext
         },
         stats,
       );
-    } catch {
-      stats.failed += 1;
-    }
+      for (const meetingRecord of meetingRecordsFromJson(body)) {
+        const meetingFilename = `${meetingRecord.meetingDate.slice(0, 10)}-api-meeting-${safeFileBase(meetingRecord.id)}-${safeFileBase(meetingRecord.title).slice(0, 48)}.json`;
+        const meetingLocalPath = relativeProviderPath(provider, "apiJson", meetingFilename);
+        const meetingSaved = await writeIfNeeded(
+          absoluteProviderPath(provider, meetingLocalPath),
+          `${JSON.stringify(meetingRecord.value, null, 2)}\n`,
+          stats,
+        );
+        if (meetingSaved) stats.jsonSaved += 1;
+        upsertManifestEntry(
+          manifest,
+          {
+            providerId: provider.id,
+            sourceName: provider.sourceName,
+            officialSourceUrl: url,
+            downloadedAt: new Date().toISOString(),
+            fileType: "json",
+            meetingDate: meetingRecord.meetingDate,
+            meetingTitle: meetingRecord.title,
+            governingBody: meetingRecord.title.replace(/\s+meetings?$/i, "").trim() || provider.governingBody,
+            sourceKind: "apiJson",
+            localPath: meetingLocalPath,
+            notes: "Expanded from a dated public meeting record returned by an official page JSON response.",
+            parserStatus: "cached",
+          },
+          stats,
+        );
+      }
+      } catch {
+        stats.failed += 1;
+      }
+    })();
+    responseTasks.add(task);
+    void task.finally(() => responseTasks.delete(task));
   });
 
-  for (const pageConfig of provider.pages) {
+  const queue = provider.pages.map((pageConfig) => ({ pageConfig, depth: 0 }));
+  while (queue.length && visitedPages.size < MAX_DISCOVERY_PAGES_PER_PROVIDER) {
+    const next = queue.shift();
+    if (!next || visitedPages.has(next.pageConfig.url)) continue;
+    const { pageConfig, depth } = next;
+    visitedPages.add(pageConfig.url);
     try {
       await saveRenderedPage(provider, page, pageConfig, manifest, stats);
+      successfulPages += 1;
+      const pageContent = await page.content().catch(() => "");
+      for (const platform of detectPlatforms(`${page.url()} ${pageContent}`)) discoveredPlatforms.add(platform);
       const links = await discoverLinks(provider, page);
       for (const link of links) {
+        if (downloadedLinks.size >= MAX_LINK_DOWNLOADS_PER_PROVIDER || downloadedLinks.has(link.href)) continue;
+        downloadedLinks.add(link.href);
+        for (const platform of detectPlatforms(link.href)) discoveredPlatforms.add(platform);
         await saveLinkedFile(provider, context, link, manifest, stats).catch((error) => {
           stats.failed += 1;
           recordManifestFailure(manifest, {
@@ -706,12 +868,51 @@ async function collectProvider(provider: ProviderConfig, context: BrowserContext
           });
         });
       }
+      if (depth < MAX_DISCOVERY_DEPTH) {
+        const navigationLinks = await discoverNavigationLinks(provider, page);
+        for (const link of navigationLinks) {
+          if (visitedPages.has(link.href) || queue.some((entry) => entry.pageConfig.url === link.href)) continue;
+          queue.push({
+            depth: depth + 1,
+            pageConfig: {
+              url: link.href,
+              sourceKind: classifyLink(link.href, link.label) ?? "rawHtml",
+              titleHint: link.label || `${provider.sourceName} discovered meeting page`,
+              notes: `Discovered from a public link on an official ${provider.sourceName} source page.`,
+            },
+          });
+        }
+      }
     } catch (error) {
       stats.failed += 1;
+      recordManifestFailure(manifest, {
+        url: pageConfig.url,
+        label: pageConfig.titleHint,
+        sourceKind: pageConfig.sourceKind,
+        reason: error instanceof Error ? error.message : String(error),
+        attemptedAt: new Date().toISOString(),
+      });
       console.error(`[${provider.id}] failed ${pageConfig.url}:`, error instanceof Error ? error.message : String(error));
     }
   }
+  await Promise.all([...responseTasks]);
   markOutOfScopeManifestEntries(manifest);
+  manifest.collection = {
+    lastAttemptedAt: new Date().toISOString(),
+    lastSucceededAt: successfulPages > 0 ? new Date().toISOString() : null,
+    pagesVisited: visitedPages.size,
+    pagesSucceeded: successfulPages,
+    linkedFilesAttempted: downloadedLinks.size,
+    publicJsonResponsesCaptured: capturedJson.size,
+    discoveredPlatforms: [...discoveredPlatforms].sort(),
+    strategy: [
+      "rendered_browser_discovery",
+      "trusted_platform_handoff",
+      "official_link_following",
+      "public_json_capture",
+      "linked_document_download",
+    ],
+  };
   await writeManifest(provider.id, manifest);
   await page.close();
   return stats;
@@ -723,8 +924,27 @@ function providersForRun() {
   if (!BLOCKED_RETRY && !includeAllNevada) return BASE_PROVIDERS;
   const byId = new Map<string, ProviderConfig>();
   for (const provider of [...seeded, ...BLOCKED_RETRY_PROVIDERS, ...BASE_PROVIDERS]) byId.set(provider.id, provider);
-  const providers = [...byId.values()];
-  return providerArg ? providers.filter((provider) => provider.id === providerArg) : providers;
+  let providers = [...byId.values()];
+  if (providerArg) return providers.filter((provider) => provider.id === providerArg);
+  if (PENDING_FIRST_PASS) {
+    providers = providers.filter((provider) => {
+      const manifest = existsSync(manifestPath(provider.id))
+        ? (JSON.parse(readFileSync(manifestPath(provider.id), "utf8")) as { collection?: { lastAttemptedAt?: string | null } })
+        : null;
+      return !manifest?.collection?.lastAttemptedAt;
+    });
+    console.log(`Pending first advanced collection pass: ${providers.length} providers`);
+  }
+  if (SCHEDULED) {
+    const currentShard = Math.floor(Date.now() / 86_400_000) % SCHEDULE_SHARDS;
+    providers = providers.filter((provider) => {
+      let hash = 0;
+      for (const character of provider.id) hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
+      return hash % SCHEDULE_SHARDS === currentShard;
+    });
+    console.log(`Scheduled advanced collection shard ${currentShard + 1}/${SCHEDULE_SHARDS}: ${providers.length} providers`);
+  }
+  return providers;
 }
 
 async function pauseForInteractiveSession(context: BrowserContext, providers: ProviderConfig[]) {

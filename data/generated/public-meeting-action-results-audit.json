@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-07-24T13:04:43.745Z",
+  "generatedAt": "2026-07-25T13:05:20.036Z",
   "totals": {
-    "meetingItemsScanned": 1658,
+    "meetingItemsScanned": 1660,
     "actionResultsExtracted": 329,
-    "withMotion": 148,
-    "withMover": 145,
-    "withSeconder": 135,
-    "withOutcome": 313,
-    "withVoteCount": 22,
-    "withNamedVotes": 22,
-    "unanimousActions": 145,
-    "needsReview": 55,
-    "unlinkedToAgendaItem": 162
+    "withMotion": 150,
+    "withMover": 147,
+    "withSeconder": 138,
+    "withOutcome": 315,
+    "withVoteCount": 21,
+    "withNamedVotes": 23,
+    "unanimousActions": 149,
+    "needsReview": 53,
+    "unlinkedToAgendaItem": 163
   },
   "organizationReports": [
     {
       "organizationId": "elko-city-council",
-      "actionResults": 178,
-      "withOutcome": 173,
+      "actionResults": 179,
+      "withOutcome": 174,
       "withVoteCount": 12,
-      "withNamedVotes": 19,
+      "withNamedVotes": 20,
       "needsReview": 20,
-      "unlinkedToAgendaItem": 81
+      "unlinkedToAgendaItem": 82
     },
     {
       "organizationId": "nshe-board-of-regents",
@@ -60,15 +60,6 @@
       "unlinkedToAgendaItem": 7
     },
     {
-      "organizationId": "reno-city-council",
-      "actionResults": 4,
-      "withOutcome": 2,
-      "withVoteCount": 1,
-      "withNamedVotes": 0,
-      "needsReview": 2,
-      "unlinkedToAgendaItem": 0
-    },
-    {
       "organizationId": "clark-county-commission",
       "actionResults": 4,
       "withOutcome": 4,
@@ -83,6 +74,15 @@
       "withOutcome": 4,
       "withVoteCount": 0,
       "withNamedVotes": 3,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "reno-city-council",
+      "actionResults": 3,
+      "withOutcome": 3,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
       "needsReview": 0,
       "unlinkedToAgendaItem": 0
     },

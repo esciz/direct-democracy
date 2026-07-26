@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-07-24T13:04:48.632Z",
+  "generatedAt": "2026-07-25T13:05:23.484Z",
   "totals": {
-    "projects": 267,
-    "needsReview": 95,
-    "withBudget": 187,
+    "projects": 266,
+    "needsReview": 94,
+    "withBudget": 186,
     "withNextKnownMilestone": 26,
-    "withResponsibleBody": 267,
-    "withSourceReferences": 267
+    "withResponsibleBody": 266,
+    "withSourceReferences": 266
   },
   "statusCounts": {
-    "funded": 215,
+    "funded": 214,
     "in_progress": 12,
     "approved": 5,
     "unknown": 19,

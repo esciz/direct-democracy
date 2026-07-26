@@ -126,20 +126,24 @@ function normalizeManifest(raw: unknown): ManualPublicMeetingManifestEntry[] {
   const entries = Array.isArray(raw) ? raw : typeof raw === "object" && raw && "entries" in raw ? (raw as { entries?: unknown[] }).entries ?? [] : [];
   return entries
     .filter((entry): entry is Record<string, unknown> => typeof entry === "object" && entry !== null)
-    .map((entry) => ({
-      providerId: String(entry.providerId ?? entry.provider_id ?? "").trim(),
-      sourceName: String(entry.sourceName ?? entry.source_name ?? "").trim(),
-      officialSourceUrl: stringOrNull(entry.officialSourceUrl ?? entry.official_source_url),
-      downloadedAt: stringOrNull(entry.downloadedAt ?? entry.downloaded_at),
-      fileType: String(entry.fileType ?? entry.file_type ?? "").trim(),
-      meetingDate: stringOrNull(entry.meetingDate ?? entry.meeting_date),
-      meetingTitle: stringOrNull(entry.meetingTitle ?? entry.meeting_title),
-      governingBody: stringOrNull(entry.governingBody ?? entry.governing_body),
-      sourceKind: normalizeSourceKind(entry.sourceKind ?? entry.source_kind),
-      localPath: String(entry.localPath ?? entry.local_path ?? "").trim(),
-      notes: stringOrNull(entry.notes),
-      parserStatus: normalizeParserStatus(entry.parserStatus ?? entry.parser_status),
-    }))
+    .map((entry) => {
+      const meetingTitle = stringOrNull(entry.meetingTitle ?? entry.meeting_title);
+      const localPath = String(entry.localPath ?? entry.local_path ?? "").trim();
+      return {
+        providerId: String(entry.providerId ?? entry.provider_id ?? "").trim(),
+        sourceName: String(entry.sourceName ?? entry.source_name ?? "").trim(),
+        officialSourceUrl: stringOrNull(entry.officialSourceUrl ?? entry.official_source_url),
+        downloadedAt: stringOrNull(entry.downloadedAt ?? entry.downloaded_at),
+        fileType: String(entry.fileType ?? entry.file_type ?? "").trim(),
+        meetingDate: stringOrNull(entry.meetingDate ?? entry.meeting_date) ?? inferDate(`${meetingTitle ?? ""} ${localPath}`),
+        meetingTitle,
+        governingBody: stringOrNull(entry.governingBody ?? entry.governing_body),
+        sourceKind: normalizeSourceKind(entry.sourceKind ?? entry.source_kind),
+        localPath,
+        notes: stringOrNull(entry.notes),
+        parserStatus: normalizeParserStatus(entry.parserStatus ?? entry.parser_status),
+      };
+    })
     .filter((entry) => entry.providerId && entry.localPath);
 }
 
@@ -306,9 +310,15 @@ export async function bootstrapManualPublicMeetingSources() {
 }
 
 function inferDate(value: string) {
-  const iso = value.match(/\b(20\d{2})[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12]\d|3[01])(?:[T\s]+(\d{1,2}):(\d{2}))?/);
+  const iso = value.match(/\b(20\d{2})[-/](1[0-2]|0?[1-9])[-/](3[01]|[12]\d|0?[1-9])(?!\d)(?:[T\s]+(\d{1,2}):(\d{2}))?/);
   if (iso) {
     const parsed = Date.parse(`${iso[1]}-${iso[2].padStart(2, "0")}-${iso[3].padStart(2, "0")}T${(iso[4] ?? "09").padStart(2, "0")}:${iso[5] ?? "00"}:00-07:00`);
+    return Number.isFinite(parsed) ? new Date(parsed).toISOString() : null;
+  }
+  const numeric = value.match(/\b(1[0-2]|0?[1-9])[-_.\s](3[01]|[12]\d|0?[1-9])[-_.\s](20\d{2}|\d{2})\b/);
+  if (numeric) {
+    const year = numeric[3].length === 2 ? `20${numeric[3]}` : numeric[3];
+    const parsed = Date.parse(`${year}-${numeric[1].padStart(2, "0")}-${numeric[2].padStart(2, "0")}T09:00:00-07:00`);
     return Number.isFinite(parsed) ? new Date(parsed).toISOString() : null;
   }
   const longDate = value.match(/\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?\s+\d{1,2},?\s+20\d{2}(?:\s+\d{1,2}:\d{2}\s*(?:AM|PM))?/i);
@@ -765,7 +775,27 @@ function isProviderCalendarIndex(meeting: PublicMeetingRecord, providers: Manual
   const providerUrl = normalizeUrl(provider.officialSourceUrl);
   const sourceUrls = [...meetingSourceUrls(meeting)].map(normalizeUrl);
   const hasMeetingSpecificUrl = sourceUrls.some((url) => /\/meeting\/\d+|meetingdetail|event_id=|clip_id=|agendaviewer/i.test(url));
-  return /\b(calendar|events|home)\b/i.test(meeting.title) && (sourceUrls.includes(providerUrl) || !hasMeetingSpecificUrl);
+  return /\b(calendar|events|home|search|public portal)\b/i.test(meeting.title) && (sourceUrls.includes(providerUrl) || !hasMeetingSpecificUrl);
+}
+
+function isGenericMeetingDocumentTitle(value: string) {
+  return /^(?:html\s+)?(?:agenda|packet|minutes?|meeting materials?|public portal|search(?:\s+-\s+.*portal)?|api json)(?:\s+source review needed)?$/i.test(
+    normalizeWhitespace(value),
+  );
+}
+
+function isMeetingRecordManifestEntry(entry: ManualPublicMeetingManifestEntry) {
+  const url = entry.officialSourceUrl ?? "";
+  const notes = entry.notes ?? "";
+  const meetingSpecificUrl =
+    /\/meeting\/\d+|meetingdetail|meetingtemplateid=|event_id=|agendaviewer|viewfile\/agenda|viewfile\/minutes|clip_id=/i.test(url);
+  if (notes === "Expanded from a dated public meeting record returned by an official page JSON response.") return true;
+  if (!entry.meetingDate) return false;
+  if (entry.sourceKind === "apiJson") return meetingSpecificUrl;
+  if (/^Rendered official |^Discovered from a public link on an official /i.test(notes)) return meetingSpecificUrl;
+  if (entry.fileType.toLowerCase() === "pdf") return true;
+  if (notes === "Downloaded from a public link visible on an official source page.") return true;
+  return meetingSpecificUrl || !["rawHtml", "apiJson"].includes(entry.sourceKind);
 }
 
 function dedupeQuestions(questions: CitizenVoteQuestionRecord[]) {
@@ -793,6 +823,24 @@ async function providerDefinitions(includeFixtures: boolean) {
       officialSourceUrl: seed.sourceUrl ?? seed.meetingIndexUrl ?? seed.website ?? "",
       folders: ["raw-pages", "agenda-packets", "agendas", "minutes", "metadata"],
       readme: "Blocked or partial provider. Save public official pages or files here and add manifest entries.",
+    });
+  }
+  for (const seed of seeds) {
+    if (
+      definitions.has(seed.id) ||
+      isStudentGovernmentScope(`${seed.id} ${seed.name} ${seed.notes ?? ""}`) ||
+      !existsSync(absolutePublicMeetingPath(providerManifestPath(seed.id)))
+    ) {
+      continue;
+    }
+    definitions.set(seed.id, {
+      id: seed.id,
+      name: seed.name,
+      jurisdiction: seed.jurisdiction,
+      level: seed.level,
+      officialSourceUrl: seed.sourceUrl ?? seed.meetingIndexUrl ?? seed.website ?? "",
+      folders: ["raw-pages", "agenda-packets", "agendas", "minutes", "metadata"],
+      readme: "Browser-discovered official public source cache from the statewide Nevada acquisition catalog.",
     });
   }
   if (!includeFixtures) return [...definitions.values()];
@@ -888,6 +936,7 @@ export async function importManualPublicMeetingSources(options: { includeFixture
       if (/\bmeeting\s+cancel(?:led|ed)\b|\(\s*cancel(?:led|ed)\s*\)/i.test(text)) {
         continue;
       }
+      if (!isMeetingRecordManifestEntry(entry)) continue;
       const { meeting, items: meetingItems } = buildManualRecords(provider, entry, text, sourceMethod);
       for (const item of meetingItems) {
         item.vote_outcome = item.vote_outcome ?? extractTopicOutcome(item.source_text);
@@ -977,8 +1026,31 @@ export async function importManualPublicMeetingSources(options: { includeFixture
   const calendarIndexMeetingIds = new Set(
     realMeetings.filter((meeting) => isProviderCalendarIndex(meeting, providers)).map((meeting) => meeting.id),
   );
+  for (const meeting of realMeetings) {
+    if (!meeting.meeting_date || !isGenericMeetingDocumentTitle(meeting.title)) continue;
+    const providerId = processedProviderIds.find((candidate) => meeting.id.startsWith(`meeting-manual-${candidate}-`));
+    if (!providerId) continue;
+    const sameDaySpecificMeetings = realMeetings.filter(
+      (candidate) =>
+        candidate.id !== meeting.id &&
+        candidate.id.startsWith(`meeting-manual-${providerId}-`) &&
+        candidate.meeting_date?.slice(0, 10) === meeting.meeting_date?.slice(0, 10) &&
+        !isGenericMeetingDocumentTitle(candidate.title) &&
+        !isProviderCalendarIndex(candidate, providers),
+    );
+    if (sameDaySpecificMeetings.length !== 1) continue;
+    const canonical = sameDaySpecificMeetings[0];
+    canonical.agenda_url = canonical.agenda_url ?? meeting.agenda_url;
+    canonical.minutes_url = canonical.minutes_url ?? meeting.minutes_url;
+    canonical.packet_url = canonical.packet_url ?? meeting.packet_url;
+    canonical.video_url = canonical.video_url ?? meeting.video_url;
+    canonical.source_urls = [...new Set([...canonical.source_urls, ...meeting.source_urls])];
+    canonical.source_document_count = Math.max(canonical.source_document_count, canonical.source_urls.length);
+    meetingAliases.set(meeting.id, canonical.id);
+  }
   realMeetings = realMeetings.filter((meeting) => {
     if (calendarIndexMeetingIds.has(meeting.id)) return false;
+    if (meetingAliases.has(meeting.id)) return false;
     const existing = retainedMeetings.find((candidate) => meetingsRepresentSameEvent(candidate, meeting));
     if (!existing) return true;
     meetingAliases.set(meeting.id, existing.id);

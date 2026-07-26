@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T13:04:49.913Z",
+  "generatedAt": "2026-07-25T13:05:24.395Z",
   "records": [
     {
       "id": "issue_real_taxes-and-spending",
@@ -30,7 +30,7 @@
       ],
       "relationshipCounts": {
         "meetings": 191,
-        "agendaItems": 470,
+        "agendaItems": 468,
         "votingCards": 191,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -40,7 +40,7 @@
         "spendingRecords": 305,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 470
+        "sourceDocuments": 468
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -74,15 +74,15 @@
         "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3",
         "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-a3fd4be8",
         "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955",
-        "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
-        "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-e6fe3e60",
+        "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-0b2d9247",
         "meeting-manual-nv-legislature-nevada-legislature-2026-06-16-6ed19abb",
         "meeting-manual-nv-legislature-nevada-legislature-2026-06-25-d4bad703",
         "meeting-manual-nv-legislature-nevada-legislature-2026-06-30-a68e0c59",
         "meeting-manual-nv-legislature-nevada-legislature-2026-07-09-cd44ec08",
-        "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7295aaea",
-        "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-4f7d6fce",
-        "meeting-manual-nv-legislature-nevada-legislature-2026-07-24-7d057725"
+        "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-11164652",
+        "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-a635b46d",
+        "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-dab2b2e1",
+        "meeting-manual-nv-legislature-nevada-legislature-2026-07-25-b23d394d"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-7-4e813a26a5",
@@ -202,7 +202,6 @@
         "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC3sm.pdf",
         "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4asm.pdf",
         "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4bsm.pdf",
-        "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
         "https://www.leg.state.nv.us/App/NELIS/REL/84th2027/Bdrs/Forms",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35170",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34843",
@@ -210,7 +209,8 @@
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35178",
         "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bills",
         "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Reports",
-        "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bills?selectedBillTypes=AB"
+        "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bills?selectedBillTypes=AB",
+        "https://www.leg.state.nv.us/App/NELIS/REL/83rd2025/Bills?selectedBillTypes=AR"
       ],
       "latestActivityAt": "2026-07-07T07:00:00.000Z",
       "confidence": 0.66
@@ -400,7 +400,6 @@
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245085&GUID=6E9E0511-006E-4399-A4EC-5C8C7286692B",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1347265&GUID=E6A3DAF3-5735-4CFF-B40F-8727651BE849",
         "https://reno.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal",
-        "https://reno.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal?showInactive=true",
         "https://www.cityofsparks.us/enotify/index.php",
         "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
         "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470",
@@ -422,7 +421,8 @@
         "https://www.cityofhenderson.com/government/departments/city-clerk/city-council-and-redevelopment-agency/agendas-back-up-minutes-video#",
         "https://www.cityofhenderson.com/residents/sign-up/agenda-requests",
         "https://www.cityofhenderson.com/government/departments/city-clerk/city-council-and-redevelopment-agency/agenda-requests",
-        "https://cityofnorthlasvegas.primegov.com/public/portal"
+        "https://cityofnorthlasvegas.primegov.com/public/portal",
+        "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16576"
       ],
       "latestActivityAt": "2026-07-08T07:00:00.000Z",
       "confidence": 0.61
@@ -664,7 +664,7 @@
       ],
       "relationshipCounts": {
         "meetings": 76,
-        "agendaItems": 238,
+        "agendaItems": 239,
         "votingCards": 76,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -674,7 +674,7 @@
         "spendingRecords": 22,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 238
+        "sourceDocuments": 239
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -829,7 +829,7 @@
         "https://nshe.nevada.edu/html/wp-content/uploads/file/BoardOfRegents/Agendas/2026/02-feb-mtgs/supp-mat/AC4bsm.pdf",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134988&GUID=21C0127D-F86C-437C-86EA-A17D9692CF11",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245081&GUID=FFDD3420-F957-4B40-A60E-E852CD56D5C8",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1784898049070",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1784984500057",
         "https://agendas.cityofsparks.us/OnBaseAgendaOnline",
         "https://www.elkocity.com/government/agendas/minutes.php",
         "https://www.elkocity.com/government/minutes.php",
@@ -864,7 +864,6 @@
       ],
       "communities": [
         "Washoe County, NV",
-        "Reno, NV",
         "Elko, NV",
         "Elko County, NV",
         "Clark County, NV",
@@ -878,18 +877,18 @@
         "Other"
       ],
       "relationshipCounts": {
-        "meetings": 61,
-        "agendaItems": 210,
-        "votingCards": 61,
+        "meetings": 60,
+        "agendaItems": 205,
+        "votingCards": 60,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 17,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 48,
+        "spendingRecords": 45,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 210
+        "sourceDocuments": 205
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -904,7 +903,6 @@
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-03-18-5c211014",
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-04-08-66fcbbae",
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191",
-        "meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8",
         "meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9",
         "meeting-manual-elko-city-council-elko-city-council-2015-12-01-2462d4ea",
         "meeting-manual-elko-city-council-elko-city-council-2016-06-07-eedd5f1d",
@@ -927,11 +925,12 @@
         "meeting-manual-henderson-city-council-henderson-city-council-2011-11-10-02b7661f",
         "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-05-21-24c55aa5",
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-10-21-458f5606",
-        "meeting-manual-reno-city-council-reno-city-council-2026-07-23-3c4c9d77",
-        "meeting-manual-reno-city-council-reno-city-council-2026-07-23-a4e14956",
-        "meeting-manual-reno-city-council-reno-city-council-2026-07-23-530a6ff1",
+        "meeting-manual-reno-city-council-reno-city-council-2026-08-04-32a9d680",
         "meeting-manual-nv-senate-nevada-senate-undated-fb88a8f6",
-        "meeting-manual-nv-assembly-nevada-assembly-undated-c12dc67c"
+        "meeting-manual-nv-assembly-nevada-assembly-undated-c12dc67c",
+        "meeting-manual-sparks-city-council-sparks-city-council-undated-1e7ea7ec",
+        "meeting-manual-elko-city-council-elko-city-council-undated-b591546d",
+        "meeting-manual-elko-city-council-elko-city-council-2016-01-05-a5df1b1e"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-12.G.1-a1b8e1f319",
@@ -962,7 +961,6 @@
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-04-08-66fcbbae-8.F.3-ee2b8a8e16",
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-04-08-66fcbbae-11-1a8ede9ac5",
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191-9-0b6d6df90c",
-        "item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575.00-e6b6c6039f",
         "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-I-5c95007b7b",
         "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-1751-7a2a3ba5fd",
         "item-meeting-manual-elko-city-council-elko-city-council-2015-12-01-2462d4ea-I-1ba698b3e3",
@@ -973,7 +971,8 @@
         "item-meeting-manual-elko-city-council-elko-city-council-2016-08-02-e0baefbb-6-b4595c20fd",
         "item-meeting-manual-elko-city-council-elko-city-council-2016-08-02-e0baefbb-1-b6c3c9f3f2",
         "item-meeting-manual-elko-city-council-elko-city-council-2016-09-06-621088d5-12-c23130da03",
-        "item-meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-de266869-540-cb43c5963c"
+        "item-meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-de266869-540-cb43c5963c",
+        "item-meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-de266869-5-b5d51524b1"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-12-g-1-a-2846b396dc",
@@ -1004,7 +1003,6 @@
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2025-04-08-66fcbbae-8-f-3-ee-8243c61011",
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2025-04-08-66fcbbae-11-1a8ed-5a1cc82b18",
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191-9-0b6d6d-8f45f1c8c6",
-        "meeting-voting-card-item-meeting-manual-reno-city-council-reno-city-council-2026-07-23-9cafb8c8-575-00-e6b6c6039f-c9a8589450",
         "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-i-5c95007b7b-9ec4605f5d",
         "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-20c4fdd9-1751-7a2a3ba5fd-329c170aff",
         "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2015-12-01-2462d4ea-i-1ba698b3e3-ee89282904",
@@ -1015,7 +1013,8 @@
         "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-08-02-e0baefbb-6-b4595c20fd-27fea60dc7",
         "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-08-02-e0baefbb-1-b6c3c9f3f2-5d59cf6e91",
         "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-09-06-621088d5-12-c23130da03-61200acec7",
-        "meeting-voting-card-item-meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-de266869-540-cb43c5-129975f5fb"
+        "meeting-voting-card-item-meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-de266869-540-cb43c5-129975f5fb",
+        "meeting-voting-card-item-meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-de266869-5-b5d51524-9f5d80098a"
       ],
       "relatedCourtCaseIds": [],
       "relatedIssueReviewRequestIds": [],
@@ -1032,7 +1031,6 @@
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245065&GUID=15933512-43DE-4CB6-B1AB-6781D6AF42FF",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245066&GUID=95260B24-2C6A-46FF-A868-1576786DEB36",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245081&GUID=FFDD3420-F957-4B40-A60E-E852CD56D5C8",
-        "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9098&compileOutputType=1",
         "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470",
         "https://www.elkocity.com/03-01-16%20PC%20Minutes.pdf?t=202305301202470",
         "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
@@ -1050,18 +1048,19 @@
         "https://www.cityofhenderson.com/government/departments/city-clerk/city-council-and-redevelopment-agency/agenda-requests",
         "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245085&GUID=6E9E0511-006E-4399-A4EC-5C8C7286692B",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=9113",
-        "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9096&compileOutputType=1",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=9115",
+        "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9155&compileOutputType=1",
         "https://www.leg.state.nv.us/App/Legislator/A/Senate/Current",
         "https://www.leg.state.nv.us/App/Legislator/A/Assembly/Current",
         "https://www.cityofsparks.us/enotify/index.php",
         "https://www.elkocity.com/agendalist/index.php",
         "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
         "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
-        "https://www.elkocountynv.net/your_services_2/forms_center.php"
+        "https://www.elkocountynv.net/your_services_2/forms_center.php",
+        "https://elkocounty.granicus.com/ViewPublisherRSS.php?view_id=5&mode=agendas",
+        "https://elkocounty.granicus.com/ViewPublisherRSS.php?view_id=5&mode=minutes",
+        "https://elkocounty.granicus.com/MinutesViewer.php?view_id=5&clip_id=3373&doc_id=3a239a05-0b16-4e67-84b3-a5004b2ce3e8"
       ],
-      "latestActivityAt": "2026-07-23T07:00:00.000Z",
+      "latestActivityAt": "2026-07-07T07:00:00.000Z",
       "confidence": 0.56
     },
     {
@@ -1087,9 +1086,9 @@
         "Schools"
       ],
       "relationshipCounts": {
-        "meetings": 42,
-        "agendaItems": 149,
-        "votingCards": 42,
+        "meetings": 43,
+        "agendaItems": 151,
+        "votingCards": 43,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 8,
@@ -1098,7 +1097,7 @@
         "spendingRecords": 21,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 149
+        "sourceDocuments": 151
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -1112,6 +1111,7 @@
         "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-6dc69297",
         "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-6968d17e",
         "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-10d00f8d",
+        "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d",
         "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-13-6f9c2ffd",
         "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-03-30-edabc7ff",
         "meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3",
@@ -1141,6 +1141,7 @@
         "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-6dc69297-1-9ea3053544",
         "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-6968d17e-1-abe77d2d66",
         "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-10d00f8d-1-9ea3053544",
+        "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-9ea3053544",
         "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-13-6f9c2ffd-26-e5ba67b1fa",
         "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-13-6f9c2ffd-28-f6b014627d",
         "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2026-02-13-6f9c2ffd-29-0db129d396",
@@ -1168,8 +1169,7 @@
         "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3-1-3f8227fb38",
         "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3-5-fbc5e48772",
         "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3-19-41e3e04319",
-        "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3-21-c7e23607cb",
-        "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-a3fd4be8-2-93b2f53f60"
+        "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2024-07-01-d2e4a8f3-21-c7e23607cb"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-12-f-1-d-e43801c55e",
@@ -1183,6 +1183,7 @@
         "meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-6dc69297-1-c91db7ebf7",
         "meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-6968d17e-1-c8992d326a",
         "meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-10d00f8d-1-2ee9244299",
+        "meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-undated-e97fb33d-1-3ce07f9351",
         "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-dd4ed75379",
         "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-a9f6935f7d",
         "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-4453dfd455",
@@ -1210,8 +1211,7 @@
         "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-c21d1b5dd8",
         "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-5a9369c5a6",
         "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-5c21c69e08",
-        "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-73e7d86904",
-        "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-101ebf9779"
+        "meeting-voting-card-item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-202-73e7d86904"
       ],
       "relatedCourtCaseIds": [],
       "relatedIssueReviewRequestIds": [],
@@ -1242,7 +1242,7 @@
         "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf"
       ],
       "latestActivityAt": "2026-03-30T07:00:00.000Z",
-      "confidence": 0.48
+      "confidence": 0.47
     },
     {
       "id": "issue_real_water-access",
@@ -1340,7 +1340,7 @@
         "item-meeting-manual-reno-city-council-reno-city-council-undated-e67dbec9-1-0f903c2025",
         "item-meeting-manual-reno-city-council-reno-city-council-2026-07-02-9d0005f0-1-fb86dbaa66",
         "item-meeting-manual-reno-city-council-reno-city-council-2026-01-05-3ba70983-3-c221df529f",
-        "item-meeting-manual-reno-city-council-reno-city-council-undated-9a99a4cb-1-0f903c2025",
+        "item-meeting-manual-reno-city-council-reno-city-council-undated-9a99a4cb-1-9a5a1d8d37",
         "item-meeting-manual-reno-city-council-reno-city-council-undated-960a2b64-1-9a5a1d8d37",
         "item-meeting-manual-reno-city-council-reno-city-council-undated-182212d7-1-0f903c2025",
         "item-meeting-manual-reno-city-council-reno-city-council-undated-470f9227-1-9a5a1d8d37",
@@ -1397,7 +1397,7 @@
         "https://nshe.nevada.edu/html/wp-content/uploads/Board-of-Regents/minutes/2026/02.20.26_BOR.pdf",
         "https://reno.primegov.com/api/meetingtype/list/?hideInactive=true",
         "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784864850442",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1784898049070",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1784984500057",
         "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1784865145787",
         "https://www.elkocity.com/agendalist/index.php",
         "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
@@ -1618,7 +1618,7 @@
       ],
       "relationshipCounts": {
         "meetings": 8,
-        "agendaItems": 32,
+        "agendaItems": 31,
         "votingCards": 8,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -1628,7 +1628,7 @@
         "spendingRecords": 7,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 32
+        "sourceDocuments": 31
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-08-27-773b0e9f",
@@ -1654,8 +1654,7 @@
         "item-meeting-manual-nshe-board-of-regents-nevada-system-of-higher-education-board-of-regents-2025-06-30-80114955-51-fcdd6bf7a3",
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0-7.A.3-28f5cbfd19",
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7-6-d92699c870",
-        "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-3-d05852d28a",
-        "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-4-150dfa1de2",
+        "item-meeting-manual-sparks-city-council-sparks-city-council-undated-4e796928-4-273af818cd",
         "item-meeting-manual-elko-county-commission-elko-county-commission-2026-07-27-6f04cf36-25-be0c175566",
         "item-meeting-manual-elko-county-commission-elko-county-commission-2026-07-27-6f04cf36-43-e343c52b57",
         "item-meeting-manual-clark-county-commission-clark-county-commission-2026-07-07-ecf0aaeb-90-b71433d1b4",

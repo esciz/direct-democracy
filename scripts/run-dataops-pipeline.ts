@@ -60,7 +60,8 @@ const stages: Stage[] = [
     description: "Refresh Nevada meeting calendars and current-official directory sources.",
     network: true,
     commands: [
-      runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--force"]),
+      runNodeScript("scripts/generate-nevada-public-meeting-source-seeds.ts"),
+      runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--scheduled", "--force"]),
       runNodeScript("scripts/run-officials-refresh.ts"),
     ],
   },
@@ -82,6 +83,7 @@ const stages: Stage[] = [
       runNodeScript("scripts/generate-dataops-source-registry.ts"),
       runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"),
       runNodeScript("scripts/monitor-civic-sources.ts"),
+      runNodeScript("scripts/audit-nevada-jurisdiction-meeting-coverage.ts", ["--strict"]),
       runNodeScript("scripts/audit-upcoming-meeting-coverage.ts"),
     ],
   },
@@ -142,6 +144,7 @@ function artifactMetrics() {
   const sourceRegistry = readJson<{ records?: unknown[] }>("dataops-source-registry.json", {});
   const meetingImport = readJson<{ errors?: unknown[] }>("public-meeting-ingestion-report.json", {});
   const upcomingCoverage = readJson<{ totals?: Record<string, number> }>("upcoming-meeting-coverage-audit.json", {});
+  const statewideCoverage = readJson<{ totals?: Record<string, number> }>("nevada-jurisdiction-meeting-coverage.json", {});
   const now = Date.now();
   return {
     registeredSourcesChecked: sourceRegistry.records?.length ?? 0,
@@ -150,6 +153,9 @@ function artifactMetrics() {
       return Number.isFinite(date) && date >= now;
     }).length,
     meetingProvidersWithUpcoming: upcomingCoverage.totals?.providersWithUpcomingMeetings ?? 0,
+    requiredNevadaJurisdictions: statewideCoverage.totals?.requiredJurisdictions ?? 0,
+    configuredNevadaJurisdictions: statewideCoverage.totals?.jurisdictionsWithConfiguredSource ?? 0,
+    nevadaProvidersPendingAdvancedPass: statewideCoverage.totals?.pendingFirstAdvancedPass ?? 0,
     meetingProvidersZeroUpcoming: upcomingCoverage.totals?.zeroUpcomingReview ?? 0,
     meetingProviderAdapterGaps: upcomingCoverage.totals?.adapterGaps ?? 0,
     meetingProviderSourceFailures: upcomingCoverage.totals?.sourceFailures ?? 0,

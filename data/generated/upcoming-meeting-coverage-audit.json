@@ -1,20 +1,35 @@
 {
-  "generatedAt": "2026-07-24T18:25:21.113Z",
+  "generatedAt": "2026-07-25T22:06:06.431Z",
   "totals": {
-    "configuredProviders": 18,
-    "providersWithUpcomingMeetings": 6,
-    "upcomingMeetings": 31,
+    "requiredJurisdictions": 56,
+    "requiredProviders": 55,
+    "configuredRequiredProviders": 55,
+    "configuredProviders": 57,
+    "providersWithUpcomingMeetings": 7,
+    "upcomingMeetings": 45,
     "zeroUpcomingReview": 12,
     "sourceFailures": 0,
-    "adapterGaps": 0,
+    "adapterGaps": 38,
     "sourceGaps": 0
   },
   "rows": [
     {
-      "providerId": "carson-city-school-district",
-      "providerName": "Carson City School District Board of Trustees",
-      "jurisdiction": "Carson City School District, NV",
-      "status": "zero_upcoming_review",
+      "providerId": "boulder-city-council",
+      "providerName": "Boulder City Council",
+      "jurisdiction": "Boulder City, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-boulder-city",
+          "name": "Boulder City",
+          "kind": "city",
+          "communityIds": [
+            "boulder-city"
+          ]
+        }
+      ],
+      "status": "upcoming_found",
       "sourceConfigured": true,
       "directProviderStatus": {
         "meetingsDiscovered": 0,
@@ -22,30 +37,157 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 48,
+      "upcomingMeetings": 1,
+      "nextUpcomingAt": "2026-07-27T23:45:00.000Z",
+      "newestKnownMeetingAt": "2026-07-27T23:45:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-boulder-city-council-parks-and-recreation-commission-2026-07-27-b39e75e6",
+          "title": "Parks and Recreation Commission Meeting",
+          "meetingDate": "2026-07-27T23:45:00.000Z",
+          "sourceUrl": "https://bcnv.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015688679"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "caliente-city-council",
+      "providerName": "Caliente City Council",
+      "jurisdiction": "Caliente, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-caliente",
+          "name": "Caliente",
+          "kind": "city",
+          "communityIds": [
+            "caliente"
+          ]
+        }
+      ],
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 1,
+        "meetingsParsed": 1,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 2,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-07-16T15:30:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "carlin-city-council",
+      "providerName": "Carlin City Council",
+      "jurisdiction": "Carlin, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-carlin",
+          "name": "Carlin",
+          "kind": "city",
+          "communityIds": [
+            "carlin"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
       "totalDatedMeetings": 0,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
       "newestKnownMeetingAt": null,
       "upcomingExamples": [],
-      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "carson-city-school-district",
+      "providerName": "Carson City School District Board of Trustees",
+      "jurisdiction": "Carson City School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-carson-city",
+          "name": "Carson City School District",
+          "kind": "school",
+          "communityIds": [
+            "carson-city",
+            "carson-city-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
     },
     {
       "providerId": "carson-city-board-of-supervisors",
       "providerName": "Carson City Board of Supervisors",
       "jurisdiction": "Carson City, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-carson-city",
+          "name": "Carson City county-equivalent",
+          "kind": "county",
+          "communityIds": [
+            "carson-city-county"
+          ]
+        },
+        {
+          "id": "city-carson-city",
+          "name": "Carson City",
+          "kind": "city",
+          "communityIds": [
+            "carson-city"
+          ]
+        }
+      ],
       "status": "upcoming_found",
       "sourceConfigured": true,
       "directProviderStatus": {
-        "meetingsDiscovered": 497,
-        "meetingsParsed": 497,
+        "meetingsDiscovered": 498,
+        "meetingsParsed": 498,
         "failures": 0
       },
-      "manualProviderStatus": null,
-      "totalDatedMeetings": 497,
-      "upcomingMeetings": 3,
-      "nextUpcomingAt": "2026-07-29T20:30:00.000Z",
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 498,
+      "upcomingMeetings": 4,
+      "nextUpcomingAt": "2026-07-29T01:00:00.000Z",
       "newestKnownMeetingAt": "2026-07-31T20:30:00.000Z",
       "upcomingExamples": [
+        {
+          "id": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-07-29-88a891b8",
+          "title": "Carson City School Board - Regular meeting",
+          "meetingDate": "2026-07-29T01:00:00.000Z",
+          "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2703"
+        },
         {
           "id": "meeting-carson-city-board-of-supervisors-administrative-hearing-2026-07-29-eae23183",
           "title": "Administrative Hearing - Public hearing",
@@ -53,7 +195,7 @@
           "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2696"
         },
         {
-          "id": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-8c5c231d",
+          "id": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-eeeb7eb6",
           "title": "Planning Commission - Regular meeting",
           "meetingDate": "2026-07-30T00:00:00.000Z",
           "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2558"
@@ -68,28 +210,52 @@
       "nextAction": "Continue daily monitoring."
     },
     {
-      "providerId": "clark-county-school-district",
-      "providerName": "Clark County School District Board of Trustees",
-      "jurisdiction": "Clark County School District, NV",
-      "status": "zero_upcoming_review",
+      "providerId": "churchill-county-school-district",
+      "providerName": "Churchill County School District Board of Trustees",
+      "jurisdiction": "Churchill County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-churchill",
+          "name": "Churchill County School District",
+          "kind": "school",
+          "communityIds": [
+            "churchill-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
       "sourceConfigured": true,
       "directProviderStatus": {
         "meetingsDiscovered": 0,
         "meetingsParsed": 0,
         "failures": 0
       },
-      "manualProviderStatus": "parsed",
+      "manualProviderStatus": "cached",
       "totalDatedMeetings": 0,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
       "newestKnownMeetingAt": null,
       "upcomingExamples": [],
-      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
     },
     {
-      "providerId": "clark-county-commission",
-      "providerName": "Clark County Commission",
-      "jurisdiction": "Clark County, NV",
+      "providerId": "churchill-county-commission",
+      "providerName": "Churchill County Commission",
+      "jurisdiction": "Churchill County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-churchill",
+          "name": "Churchill County",
+          "kind": "county",
+          "communityIds": [
+            "churchill-county"
+          ]
+        }
+      ],
       "status": "zero_upcoming_review",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -101,40 +267,212 @@
       "totalDatedMeetings": 1,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-07-07T07:00:00.000Z",
+      "newestKnownMeetingAt": "2024-11-13T16:00:00.000Z",
       "upcomingExamples": [],
       "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
     },
     {
-      "providerId": "elko-county-commission",
-      "providerName": "Elko County Commission",
-      "jurisdiction": "Elko County, NV",
-      "status": "upcoming_found",
+      "providerId": "clark-county-school-district",
+      "providerName": "Clark County School District Board of Trustees",
+      "jurisdiction": "Clark County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-clark",
+          "name": "Clark County School District",
+          "kind": "school",
+          "communityIds": [
+            "clark-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
       "sourceConfigured": true,
       "directProviderStatus": {
         "meetingsDiscovered": 0,
         "meetingsParsed": 0,
         "failures": 0
       },
-      "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 5,
-      "upcomingMeetings": 1,
-      "nextUpcomingAt": "2026-07-27T07:00:00.000Z",
-      "newestKnownMeetingAt": "2026-07-27T07:00:00.000Z",
-      "upcomingExamples": [
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "clark-county-commission",
+      "providerName": "Clark County Commission",
+      "jurisdiction": "Clark County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
         {
-          "id": "meeting-manual-elko-county-commission-elko-county-commission-2026-07-27-6f04cf36",
-          "title": "Agenda",
-          "meetingDate": "2026-07-27T07:00:00.000Z",
-          "sourceUrl": "https://elkocounty.granicus.com/ViewPublisherRSS.php?view_id=5&mode=agendas"
+          "id": "county-clark",
+          "name": "Clark County",
+          "kind": "county",
+          "communityIds": [
+            "clark-county"
+          ]
         }
       ],
-      "nextAction": "Continue daily monitoring."
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "douglas-county-school-district",
+      "providerName": "Douglas County School District Board of Trustees",
+      "jurisdiction": "Douglas County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-douglas",
+          "name": "Douglas County School District",
+          "kind": "school",
+          "communityIds": [
+            "douglas-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "douglas-county-commission",
+      "providerName": "Douglas County Commission",
+      "jurisdiction": "Douglas County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-douglas",
+          "name": "Douglas County",
+          "kind": "county",
+          "communityIds": [
+            "douglas-county"
+          ]
+        }
+      ],
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 4,
+        "meetingsParsed": 4,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 4,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-05-28T15:30:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "elko-county-school-district",
+      "providerName": "Elko County School District Board of Trustees",
+      "jurisdiction": "Elko County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-elko",
+          "name": "Elko County School District",
+          "kind": "school",
+          "communityIds": [
+            "elko-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "elko-county-commission",
+      "providerName": "Elko County Commission",
+      "jurisdiction": "Elko County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-elko",
+          "name": "Elko County",
+          "kind": "county",
+          "communityIds": [
+            "elko-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
     },
     {
       "providerId": "elko-city-council",
       "providerName": "Elko City Council",
       "jurisdiction": "Elko, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-elko",
+          "name": "Elko",
+          "kind": "city",
+          "communityIds": [
+            "elko"
+          ]
+        }
+      ],
       "status": "zero_upcoming_review",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -143,17 +481,153 @@
         "failures": 0
       },
       "manualProviderStatus": "partially_parsed",
-      "totalDatedMeetings": 7,
+      "totalDatedMeetings": 16,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2022-01-11T07:00:00.000Z",
+      "newestKnownMeetingAt": "2017-08-01T16:00:00.000Z",
       "upcomingExamples": [],
       "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
     },
     {
-      "providerId": "henderson-city-council",
-      "providerName": "Henderson City Council",
-      "jurisdiction": "Henderson, NV",
+      "providerId": "ely-city-council",
+      "providerName": "Ely City Council",
+      "jurisdiction": "Ely, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-ely",
+          "name": "Ely",
+          "kind": "city",
+          "communityIds": [
+            "ely"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "esmeralda-county-school-district",
+      "providerName": "Esmeralda County School District Board of Trustees",
+      "jurisdiction": "Esmeralda County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-esmeralda",
+          "name": "Esmeralda County School District",
+          "kind": "school",
+          "communityIds": [
+            "esmeralda-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "esmeralda-county-commission",
+      "providerName": "Esmeralda County Commission",
+      "jurisdiction": "Esmeralda County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-esmeralda",
+          "name": "Esmeralda County",
+          "kind": "county",
+          "communityIds": [
+            "esmeralda-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "eureka-county-school-district",
+      "providerName": "Eureka County School District Board of Trustees",
+      "jurisdiction": "Eureka County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-eureka",
+          "name": "Eureka County School District",
+          "kind": "school",
+          "communityIds": [
+            "eureka-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "eureka-county-commission",
+      "providerName": "Eureka County Commission",
+      "jurisdiction": "Eureka County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-eureka",
+          "name": "Eureka County",
+          "kind": "county",
+          "communityIds": [
+            "eureka-county"
+          ]
+        }
+      ],
       "status": "zero_upcoming_review",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -161,48 +635,283 @@
         "meetingsParsed": 0,
         "failures": 0
       },
-      "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 7,
+      "manualProviderStatus": "partially_parsed",
+      "totalDatedMeetings": 10,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-06-09T07:00:00.000Z",
+      "newestKnownMeetingAt": "2026-06-02T16:00:00.000Z",
       "upcomingExamples": [],
       "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "fallon-city-council",
+      "providerName": "Fallon City Council",
+      "jurisdiction": "Fallon, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-fallon",
+          "name": "Fallon",
+          "kind": "city",
+          "communityIds": [
+            "fallon"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "fernley-city-council",
+      "providerName": "Fernley City Council",
+      "jurisdiction": "Fernley, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-fernley",
+          "name": "Fernley",
+          "kind": "city",
+          "communityIds": [
+            "fernley"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "henderson-city-council",
+      "providerName": "Henderson City Council",
+      "jurisdiction": "Henderson, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-henderson",
+          "name": "Henderson",
+          "kind": "city",
+          "communityIds": [
+            "henderson"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "humboldt-county-school-district",
+      "providerName": "Humboldt County School District Board of Trustees",
+      "jurisdiction": "Humboldt County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-humboldt",
+          "name": "Humboldt County School District",
+          "kind": "school",
+          "communityIds": [
+            "humboldt-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "humboldt-county-commission",
+      "providerName": "Humboldt County Commission",
+      "jurisdiction": "Humboldt County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-humboldt",
+          "name": "Humboldt County",
+          "kind": "county",
+          "communityIds": [
+            "humboldt-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
     },
     {
       "providerId": "nv-assembly",
       "providerName": "Nevada Assembly",
       "jurisdiction": "Jurisdiction pending",
-      "status": "zero_upcoming_review",
+      "requiredByStatewideCatalog": false,
+      "providerGroup": null,
+      "coverageRequirements": [],
+      "status": "adapter_gap",
       "sourceConfigured": true,
       "directProviderStatus": null,
-      "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 1,
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-07-24T07:00:00.000Z",
+      "newestKnownMeetingAt": null,
       "upcomingExamples": [],
-      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
     },
     {
       "providerId": "nv-senate",
       "providerName": "Nevada Senate",
       "jurisdiction": "Jurisdiction pending",
-      "status": "zero_upcoming_review",
+      "requiredByStatewideCatalog": false,
+      "providerGroup": null,
+      "coverageRequirements": [],
+      "status": "adapter_gap",
       "sourceConfigured": true,
       "directProviderStatus": null,
-      "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 1,
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-07-24T07:00:00.000Z",
+      "newestKnownMeetingAt": null,
       "upcomingExamples": [],
-      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "lander-county-school-district",
+      "providerName": "Lander County School District Board of Trustees",
+      "jurisdiction": "Lander County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-lander",
+          "name": "Lander County School District",
+          "kind": "school",
+          "communityIds": [
+            "lander-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "lander-county-commission",
+      "providerName": "Lander County Commission",
+      "jurisdiction": "Lander County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-lander",
+          "name": "Lander County",
+          "kind": "county",
+          "communityIds": [
+            "lander-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
     },
     {
       "providerId": "las-vegas-city-council",
       "providerName": "Las Vegas City Council",
       "jurisdiction": "Las Vegas, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-las-vegas",
+          "name": "Las Vegas",
+          "kind": "city",
+          "communityIds": [
+            "las-vegas"
+          ]
+        }
+      ],
       "status": "upcoming_found",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -211,43 +920,334 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 8,
-      "upcomingMeetings": 1,
+      "totalDatedMeetings": 103,
+      "upcomingMeetings": 3,
       "nextUpcomingAt": "2026-07-27T21:00:00.000Z",
-      "newestKnownMeetingAt": "2026-07-27T21:00:00.000Z",
+      "newestKnownMeetingAt": "2026-07-28T23:00:00.000Z",
       "upcomingExamples": [
         {
-          "id": "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-27-da575123",
-          "title": "Search - PrimeGov Portal",
+          "id": "meeting-manual-las-vegas-city-council-commission-for-the-las-vegas-centennial-2026-07-27-9ccda4b1",
+          "title": "Commission for the Las Vegas Centennial",
           "meetingDate": "2026-07-27T21:00:00.000Z",
-          "sourceUrl": "https://lasvegas.primegov.com/public/portal"
+          "sourceUrl": "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015799942"
+        },
+        {
+          "id": "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-28-5ba85158",
+          "title": "Meeting",
+          "meetingDate": "2026-07-28T23:00:00.000Z",
+          "sourceUrl": "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=43676"
+        },
+        {
+          "id": "meeting-manual-las-vegas-city-council-citizens-advisory-committee-to-the-las-vegas-redevelopment-agency-2026-07-28-abe6289f",
+          "title": "Citizens Advisory Committee to the Las Vegas Redevelopment Agency",
+          "meetingDate": "2026-07-28T23:00:00.000Z",
+          "sourceUrl": "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015799942"
         }
       ],
       "nextAction": "Continue daily monitoring."
     },
     {
-      "providerId": "nv-governor-executive-boards",
-      "providerName": "Governor / Executive Boards",
-      "jurisdiction": "Nevada",
-      "status": "zero_upcoming_review",
+      "providerId": "lincoln-county-school-district",
+      "providerName": "Lincoln County School District Board of Trustees",
+      "jurisdiction": "Lincoln County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-lincoln",
+          "name": "Lincoln County School District",
+          "kind": "school",
+          "communityIds": [
+            "lincoln-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
       "sourceConfigured": true,
       "directProviderStatus": {
         "meetingsDiscovered": 0,
         "meetingsParsed": 0,
         "failures": 0
       },
-      "manualProviderStatus": "parsed",
+      "manualProviderStatus": "cached",
       "totalDatedMeetings": 0,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
       "newestKnownMeetingAt": null,
       "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "lincoln-county-commission",
+      "providerName": "Lincoln County Commission",
+      "jurisdiction": "Lincoln County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-lincoln",
+          "name": "Lincoln County",
+          "kind": "county",
+          "communityIds": [
+            "lincoln-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "lovelock-city-council",
+      "providerName": "Lovelock City Council",
+      "jurisdiction": "Lovelock, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-lovelock",
+          "name": "Lovelock",
+          "kind": "city",
+          "communityIds": [
+            "lovelock"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "lyon-county-school-district",
+      "providerName": "Lyon County School District Board of Trustees",
+      "jurisdiction": "Lyon County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-lyon",
+          "name": "Lyon County School District",
+          "kind": "school",
+          "communityIds": [
+            "lyon-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "lyon-county-commission",
+      "providerName": "Lyon County Commission",
+      "jurisdiction": "Lyon County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-lyon",
+          "name": "Lyon County",
+          "kind": "county",
+          "communityIds": [
+            "lyon-county"
+          ]
+        }
+      ],
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 1,
+        "meetingsParsed": 1,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 3,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-07-16T16:00:00.000Z",
+      "upcomingExamples": [],
       "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "mesquite-city-council",
+      "providerName": "Mesquite City Council",
+      "jurisdiction": "Mesquite, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-mesquite",
+          "name": "Mesquite",
+          "kind": "city",
+          "communityIds": [
+            "mesquite"
+          ]
+        }
+      ],
+      "status": "upcoming_found",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 2,
+        "meetingsParsed": 2,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 2,
+      "upcomingMeetings": 1,
+      "nextUpcomingAt": "2026-07-28T15:30:00.000Z",
+      "newestKnownMeetingAt": "2026-07-28T15:30:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-mesquite-city-council-2026-07-28-b85edd23",
+          "title": "Mesquite City Council - Regular meeting",
+          "meetingDate": "2026-07-28T15:30:00.000Z",
+          "sourceUrl": "https://www.mesquitenv.gov/news/mesquite-city-council-meeting-july-28-2026"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "mineral-county-school-district",
+      "providerName": "Mineral County School District Board of Trustees",
+      "jurisdiction": "Mineral County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-mineral",
+          "name": "Mineral County School District",
+          "kind": "school",
+          "communityIds": [
+            "mineral-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "mineral-county-commission",
+      "providerName": "Mineral County Commission",
+      "jurisdiction": "Mineral County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-mineral",
+          "name": "Mineral County",
+          "kind": "county",
+          "communityIds": [
+            "mineral-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "nv-governor-executive-boards",
+      "providerName": "Governor / Executive Boards",
+      "jurisdiction": "Nevada",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "state",
+      "coverageRequirements": [
+        {
+          "id": "state-nevada-executive-boards",
+          "name": "Nevada executive boards",
+          "kind": "state",
+          "communityIds": [
+            "nevada"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
     },
     {
       "providerId": "nv-legislature",
       "providerName": "Nevada Legislature",
       "jurisdiction": "Nevada",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "state",
+      "coverageRequirements": [
+        {
+          "id": "state-nevada-legislature",
+          "name": "Nevada Legislature",
+          "kind": "state",
+          "communityIds": [
+            "nevada"
+          ]
+        }
+      ],
       "status": "upcoming_found",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -256,7 +1256,7 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 43,
+      "totalDatedMeetings": 24,
       "upcomingMeetings": 24,
       "nextUpcomingAt": "2026-07-31T20:00:00.000Z",
       "newestKnownMeetingAt": "2027-01-28T16:00:00.000Z",
@@ -298,51 +1298,235 @@
       "providerId": "nshe-board-of-regents",
       "providerName": "Nevada System of Higher Education Board of Regents",
       "jurisdiction": "Nevada System of Higher Education",
-      "status": "zero_upcoming_review",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "state",
+      "coverageRequirements": [
+        {
+          "id": "state-nevada-regents",
+          "name": "Nevada Board of Regents",
+          "kind": "state",
+          "communityIds": [
+            "nevada"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
       "sourceConfigured": true,
       "directProviderStatus": {
         "meetingsDiscovered": 0,
         "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "north-las-vegas-city-council",
+      "providerName": "North Las Vegas City Council",
+      "jurisdiction": "North Las Vegas, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-north-las-vegas",
+          "name": "North Las Vegas",
+          "kind": "city",
+          "communityIds": [
+            "north-las-vegas"
+          ]
+        }
+      ],
+      "status": "upcoming_found",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 42,
+      "upcomingMeetings": 5,
+      "nextUpcomingAt": "2026-07-29T00:00:00.000Z",
+      "newestKnownMeetingAt": "2026-11-12T00:30:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-north-las-vegas-city-council-library-district-board-of-trustees-2026-07-29-81d79c7d",
+          "title": "Library District Board of Trustees Meeting",
+          "meetingDate": "2026-07-29T00:00:00.000Z",
+          "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015799874"
+        },
+        {
+          "id": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-29-d97a1dfe",
+          "title": "Meeting",
+          "meetingDate": "2026-07-29T07:00:00.000Z",
+          "sourceUrl": "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16883"
+        },
+        {
+          "id": "meeting-manual-north-las-vegas-city-council-charter-committee-special-2026-07-29-d39041fc",
+          "title": "Charter Committee Special Meeting",
+          "meetingDate": "2026-07-29T23:00:00.000Z",
+          "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015799874"
+        },
+        {
+          "id": "meeting-manual-north-las-vegas-city-council-education-advisory-committee-2026-08-04-687e3468",
+          "title": "Education Advisory Committee Meeting",
+          "meetingDate": "2026-08-04T00:00:00.000Z",
+          "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015799874"
+        },
+        {
+          "id": "meeting-manual-north-las-vegas-city-council-planning-commission-2026-11-12-6b1a8088",
+          "title": "Planning Commission Meeting",
+          "meetingDate": "2026-11-12T00:30:00.000Z",
+          "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785015799874"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
+    },
+    {
+      "providerId": "nye-county-school-district",
+      "providerName": "Nye County School District Board of Trustees",
+      "jurisdiction": "Nye County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-nye",
+          "name": "Nye County School District",
+          "kind": "school",
+          "communityIds": [
+            "nye-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "nye-county-commission",
+      "providerName": "Nye County Commission",
+      "jurisdiction": "Nye County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-nye",
+          "name": "Nye County",
+          "kind": "county",
+          "communityIds": [
+            "nye-county"
+          ]
+        }
+      ],
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 1,
+        "meetingsParsed": 1,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 1,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-07-21T15:30:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "pershing-county-school-district",
+      "providerName": "Pershing County School District Board of Trustees",
+      "jurisdiction": "Pershing County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-pershing",
+          "name": "Pershing County School District",
+          "kind": "school",
+          "communityIds": [
+            "pershing-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "pershing-county-commission",
+      "providerName": "Pershing County Commission",
+      "jurisdiction": "Pershing County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-pershing",
+          "name": "Pershing County",
+          "kind": "county",
+          "communityIds": [
+            "pershing-county"
+          ]
+        }
+      ],
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 8,
+        "meetingsParsed": 8,
         "failures": 0
       },
       "manualProviderStatus": "parsed",
       "totalDatedMeetings": 9,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-05-21T07:00:00.000Z",
+      "newestKnownMeetingAt": "2026-05-12T15:30:00.000Z",
       "upcomingExamples": [],
       "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
-    },
-    {
-      "providerId": "north-las-vegas-city-council",
-      "providerName": "North Las Vegas City Council",
-      "jurisdiction": "North Las Vegas, NV",
-      "status": "upcoming_found",
-      "sourceConfigured": true,
-      "directProviderStatus": {
-        "meetingsDiscovered": 0,
-        "meetingsParsed": 0,
-        "failures": 0
-      },
-      "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 9,
-      "upcomingMeetings": 1,
-      "nextUpcomingAt": "2026-07-29T00:00:00.000Z",
-      "newestKnownMeetingAt": "2026-07-29T00:00:00.000Z",
-      "upcomingExamples": [
-        {
-          "id": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-07-29-06321fb8",
-          "title": "Search - PrimeGov Portal",
-          "meetingDate": "2026-07-29T00:00:00.000Z",
-          "sourceUrl": "https://cityofnorthlasvegas.primegov.com/public/portal"
-        }
-      ],
-      "nextAction": "Continue daily monitoring."
     },
     {
       "providerId": "reno-city-council",
       "providerName": "Reno City Council",
       "jurisdiction": "Reno, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-reno",
+          "name": "Reno",
+          "kind": "city",
+          "communityIds": [
+            "reno"
+          ]
+        }
+      ],
       "status": "upcoming_found",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -351,16 +1535,40 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 10,
-      "upcomingMeetings": 1,
+      "totalDatedMeetings": 104,
+      "upcomingMeetings": 7,
       "nextUpcomingAt": "2026-07-28T16:30:00.000Z",
-      "newestKnownMeetingAt": "2026-07-28T16:30:00.000Z",
+      "newestKnownMeetingAt": "2026-08-05T00:30:00.000Z",
       "upcomingExamples": [
         {
-          "id": "meeting-manual-reno-city-council-reno-city-council-2026-07-28-1f17cec5",
-          "title": "Search - PrimeGov Portal",
+          "id": "meeting-manual-reno-city-council-building-enterprise-fund-advisory-committee-2026-07-28-21f5332b",
+          "title": "Building Enterprise Fund Advisory Committee Meeting",
           "meetingDate": "2026-07-28T16:30:00.000Z",
-          "sourceUrl": "https://reno.primegov.com/public/portal"
+          "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785016297116"
+        },
+        {
+          "id": "meeting-manual-reno-city-council-reno-city-council-2026-07-29-484211b8",
+          "title": "Meeting",
+          "meetingDate": "2026-07-29T07:00:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8925"
+        },
+        {
+          "id": "meeting-manual-reno-city-council-reno-city-council-2026-07-29-8802e971",
+          "title": "Meeting",
+          "meetingDate": "2026-07-29T07:00:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8927"
+        },
+        {
+          "id": "meeting-manual-reno-city-council-reno-city-council-2026-07-29-ee359879",
+          "title": "Reno City Council Meeting",
+          "meetingDate": "2026-07-29T17:00:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785016297116"
+        },
+        {
+          "id": "meeting-manual-reno-city-council-redevelopment-agency-board-2026-07-29-1094359e",
+          "title": "Redevelopment Agency Board Meeting",
+          "meetingDate": "2026-07-29T17:00:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785016297116"
         }
       ],
       "nextAction": "Continue daily monitoring."
@@ -369,6 +1577,80 @@
       "providerId": "sparks-city-council",
       "providerName": "Sparks City Council",
       "jurisdiction": "Sparks, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-sparks",
+          "name": "Sparks",
+          "kind": "city",
+          "communityIds": [
+            "sparks"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "storey-county-school-district",
+      "providerName": "Storey County School District Board of Trustees",
+      "jurisdiction": "Storey County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-storey",
+          "name": "Storey County School District",
+          "kind": "school",
+          "communityIds": [
+            "storey-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "storey-county-commission",
+      "providerName": "Storey County Commission",
+      "jurisdiction": "Storey County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-storey",
+          "name": "Storey County",
+          "kind": "county",
+          "communityIds": [
+            "storey-county"
+          ]
+        }
+      ],
       "status": "zero_upcoming_review",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -377,10 +1659,10 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 0,
+      "totalDatedMeetings": 2,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": null,
+      "newestKnownMeetingAt": "2026-07-21T16:00:00.000Z",
       "upcomingExamples": [],
       "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
     },
@@ -388,6 +1670,18 @@
       "providerId": "washoe-county-school-district",
       "providerName": "Washoe County School District Board of Trustees",
       "jurisdiction": "Washoe County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-washoe",
+          "name": "Washoe County School District",
+          "kind": "school",
+          "communityIds": [
+            "washoe-county"
+          ]
+        }
+      ],
       "status": "zero_upcoming_review",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -395,7 +1689,7 @@
         "meetingsParsed": 59,
         "failures": 0
       },
-      "manualProviderStatus": null,
+      "manualProviderStatus": "cached",
       "totalDatedMeetings": 59,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
@@ -407,6 +1701,18 @@
       "providerId": "washoe-county-commission",
       "providerName": "Washoe County Commission",
       "jurisdiction": "Washoe County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-washoe",
+          "name": "Washoe County",
+          "kind": "county",
+          "communityIds": [
+            "washoe-county"
+          ]
+        }
+      ],
       "status": "zero_upcoming_review",
       "sourceConfigured": true,
       "directProviderStatus": {
@@ -414,11 +1720,197 @@
         "meetingsParsed": 17,
         "failures": 0
       },
-      "manualProviderStatus": null,
+      "manualProviderStatus": "cached",
       "totalDatedMeetings": 17,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
       "newestKnownMeetingAt": "2025-10-28T17:00:00.000Z",
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+    },
+    {
+      "providerId": "wells-city-council",
+      "providerName": "Wells City Council",
+      "jurisdiction": "Wells, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-wells",
+          "name": "Wells",
+          "kind": "city",
+          "communityIds": [
+            "wells"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "west-wendover-city-council",
+      "providerName": "West Wendover City Council",
+      "jurisdiction": "West Wendover, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-west-wendover",
+          "name": "West Wendover",
+          "kind": "city",
+          "communityIds": [
+            "west-wendover"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "white-pine-county-school-district",
+      "providerName": "White Pine County School District Board of Trustees",
+      "jurisdiction": "White Pine County School District, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "school",
+      "coverageRequirements": [
+        {
+          "id": "school-white-pine",
+          "name": "White Pine County School District",
+          "kind": "school",
+          "communityIds": [
+            "white-pine-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "white-pine-county-commission",
+      "providerName": "White Pine County Commission",
+      "jurisdiction": "White Pine County, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "county",
+      "coverageRequirements": [
+        {
+          "id": "county-white-pine",
+          "name": "White Pine County",
+          "kind": "county",
+          "communityIds": [
+            "white-pine-county"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "winnemucca-city-council",
+      "providerName": "Winnemucca City Council",
+      "jurisdiction": "Winnemucca, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-winnemucca",
+          "name": "Winnemucca",
+          "kind": "city",
+          "communityIds": [
+            "winnemucca"
+          ]
+        }
+      ],
+      "status": "adapter_gap",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "cached",
+      "totalDatedMeetings": 0,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": null,
+      "upcomingExamples": [],
+      "nextAction": "Add or repair the provider adapter; the configured source is not producing dated meetings."
+    },
+    {
+      "providerId": "yerington-city-council",
+      "providerName": "Yerington City Council",
+      "jurisdiction": "Yerington, NV",
+      "requiredByStatewideCatalog": true,
+      "providerGroup": "city",
+      "coverageRequirements": [
+        {
+          "id": "city-yerington",
+          "name": "Yerington",
+          "kind": "city",
+          "communityIds": [
+            "yerington"
+          ]
+        }
+      ],
+      "status": "zero_upcoming_review",
+      "sourceConfigured": true,
+      "directProviderStatus": {
+        "meetingsDiscovered": 0,
+        "meetingsParsed": 0,
+        "failures": 0
+      },
+      "manualProviderStatus": "parsed",
+      "totalDatedMeetings": 1,
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
+      "newestKnownMeetingAt": "2026-05-04T16:00:00.000Z",
       "upcomingExamples": [],
       "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
     }

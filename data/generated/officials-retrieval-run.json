@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-24T13:02:59.964Z",
-  "runId": "20260724130259-local-network-enabled-vzs6d3",
+  "generatedAt": "2026-07-25T13:03:52.898Z",
+  "runId": "20260725130352-local-network-enabled-ro96x4",
   "environment": "local_network_enabled",
   "networkCapability": "available",
   "networkDiagnostics": {
-    "generatedAt": "2026-07-24T13:02:59.964Z",
+    "generatedAt": "2026-07-25T13:03:52.898Z",
     "environment": "local_network_enabled",
     "runnerType": "local",
     "commitSha": null,
@@ -43,8 +43,8 @@
       "actualContentType": "html",
       "verified": true,
       "cachedPath": "data/raw/official-directories/carson-city-department-directory/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-department-directory/20260724130259-44d8d83888274370.html",
-      "contentHash": "44d8d83888274370eab155d834a921e1d7cfed0d33e0c4e00dea1d9c585cad28",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-department-directory/20260725130352-f61130c4a0c5393c.html",
+      "contentHash": "f61130c4a0c5393c535546972053e3c149c9257a3b069e9887804f4e9d5ebe12",
       "previousContentHash": "20de7bb85affcc3d9215e203d8f5851fb0ab5fd01e930711f0e369b5e9209146",
       "bytes": 200548,
       "verification": {
@@ -72,13 +72,13 @@
         "parserEligibility": "eligible",
         "expectedHostMatched": true,
         "redirectCount": 0,
-        "responseHash": "44d8d83888274370eab155d834a921e1d7cfed0d33e0c4e00dea1d9c585cad28",
+        "responseHash": "f61130c4a0c5393c535546972053e3c149c9257a3b069e9887804f4e9d5ebe12",
         "quarantinePath": null
       },
       "firstSeenAt": "2026-06-22T02:32:11.320Z",
-      "lastSeenAt": "2026-07-24T13:02:59.964Z",
-      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
-      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "lastSeenAt": "2026-07-25T13:03:52.898Z",
+      "lastCheckedAt": "2026-07-25T13:03:52.898Z",
+      "lastChangedAt": "2026-07-25T13:03:52.898Z",
       "errorMessage": null,
       "rejectionReason": null
     },
@@ -96,8 +96,8 @@
       "actualContentType": "html",
       "verified": true,
       "cachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/20260724130259-be133ad53da36086.html",
-      "contentHash": "be133ad53da3608646e03ea1690aa736f2c8d0bafcd31d9d2d290e48cba32c72",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/20260725130352-82d1612361cba819.html",
+      "contentHash": "82d1612361cba8199a69e3f9043962d1f2d9df68280dc58026e69f2454642ead",
       "previousContentHash": "2fa00888064a2c9d6e127f434f76d994db2eff4183bea887fe9d45ff5610b902",
       "bytes": 180894,
       "verification": {
@@ -126,13 +126,13 @@
         "parserEligibility": "eligible",
         "expectedHostMatched": true,
         "redirectCount": 0,
-        "responseHash": "be133ad53da3608646e03ea1690aa736f2c8d0bafcd31d9d2d290e48cba32c72",
+        "responseHash": "82d1612361cba8199a69e3f9043962d1f2d9df68280dc58026e69f2454642ead",
         "quarantinePath": null
       },
       "firstSeenAt": "2026-06-22T02:32:11.320Z",
-      "lastSeenAt": "2026-07-24T13:02:59.964Z",
-      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
-      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "lastSeenAt": "2026-07-25T13:03:52.898Z",
+      "lastCheckedAt": "2026-07-25T13:03:52.898Z",
+      "lastChangedAt": "2026-07-25T13:03:52.898Z",
       "errorMessage": null,
       "rejectionReason": null
     },
@@ -150,8 +150,8 @@
       "actualContentType": "html",
       "verified": true,
       "cachedPath": "data/raw/official-directories/carson-city-staff-directory/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-staff-directory/20260724130259-e57538b3a84fa8fb.html",
-      "contentHash": "e57538b3a84fa8fb9297b00d60b76fce45469a16ad17f5a6c7e2793f296429f0",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-staff-directory/20260725130352-17827ebbbcd17df7.html",
+      "contentHash": "17827ebbbcd17df7f9ca7c3afa9e033ddb33835bedf5069d8432b9a60f527c02",
       "previousContentHash": "bc907b1798f20dd80f3578a7e1b136b25629e04a1b27451be870370b1ad4e2d8",
       "bytes": 241104,
       "verification": {
@@ -179,13 +179,13 @@
         "parserEligibility": "eligible",
         "expectedHostMatched": true,
         "redirectCount": 0,
-        "responseHash": "e57538b3a84fa8fb9297b00d60b76fce45469a16ad17f5a6c7e2793f296429f0",
+        "responseHash": "17827ebbbcd17df7f9ca7c3afa9e033ddb33835bedf5069d8432b9a60f527c02",
         "quarantinePath": null
       },
       "firstSeenAt": "2026-06-22T02:32:11.320Z",
-      "lastSeenAt": "2026-07-24T13:02:59.964Z",
-      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
-      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "lastSeenAt": "2026-07-25T13:03:52.898Z",
+      "lastCheckedAt": "2026-07-25T13:03:52.898Z",
+      "lastChangedAt": "2026-07-25T13:03:52.898Z",
       "errorMessage": null,
       "rejectionReason": null
     },
@@ -203,10 +203,10 @@
       "actualContentType": "html",
       "verified": true,
       "cachedPath": "data/raw/official-directories/carson-city-school-district-board/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-school-district-board/20260724130259-9659024e6eff1cfa.html",
-      "contentHash": "9659024e6eff1cfa4c5da4bc5dd9cdeee1e911a14208aa2abdb7c5b7dac1151a",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-school-district-board/20260725130352-e93a23d456f59457.html",
+      "contentHash": "e93a23d456f59457d625b5cee1a514ed9d3ec66ebfb33ef1b3e90367d64ab3e5",
       "previousContentHash": null,
-      "bytes": 73416,
+      "bytes": 73435,
       "verification": {
         "verified": true,
         "actualContentType": "html",
@@ -227,13 +227,13 @@
         "parserEligibility": "eligible",
         "expectedHostMatched": true,
         "redirectCount": 0,
-        "responseHash": "9659024e6eff1cfa4c5da4bc5dd9cdeee1e911a14208aa2abdb7c5b7dac1151a",
+        "responseHash": "e93a23d456f59457d625b5cee1a514ed9d3ec66ebfb33ef1b3e90367d64ab3e5",
         "quarantinePath": null
       },
-      "firstSeenAt": "2026-07-24T13:02:59.964Z",
-      "lastSeenAt": "2026-07-24T13:02:59.964Z",
-      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
-      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "firstSeenAt": "2026-07-25T13:03:52.898Z",
+      "lastSeenAt": "2026-07-25T13:03:52.898Z",
+      "lastCheckedAt": "2026-07-25T13:03:52.898Z",
+      "lastChangedAt": "2026-07-25T13:03:52.898Z",
       "errorMessage": null,
       "rejectionReason": null
     },
@@ -274,11 +274,11 @@
         "expectedHostMatched": true,
         "redirectCount": 0,
         "responseHash": "5dda30f9662c6f8b258540a14f8e104bb5938922e4632c766182a1a09ffbdd34",
-        "quarantinePath": "data/raw/official-directories-quarantine/elko-city-council/20260724130259-5dda30f9662c6f8b.html"
+        "quarantinePath": "data/raw/official-directories-quarantine/elko-city-council/20260725130352-5dda30f9662c6f8b.html"
       },
       "firstSeenAt": null,
       "lastSeenAt": null,
-      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
+      "lastCheckedAt": "2026-07-25T13:03:52.898Z",
       "lastChangedAt": null,
       "errorMessage": null,
       "rejectionReason": "javascript_shell_without_meaningful_source_content"
@@ -326,11 +326,11 @@
         "expectedHostMatched": true,
         "redirectCount": 0,
         "responseHash": "6188dd5e6bf447f78b577c31078a75a0848f44fded08bfdc5209039a0f07542c",
-        "quarantinePath": "data/raw/official-directories-quarantine/elko-city-staff-directory/20260724130259-6188dd5e6bf447f7.html"
+        "quarantinePath": "data/raw/official-directories-quarantine/elko-city-staff-directory/20260725130352-6188dd5e6bf447f7.html"
       },
       "firstSeenAt": null,
       "lastSeenAt": null,
-      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
+      "lastCheckedAt": "2026-07-25T13:03:52.898Z",
       "lastChangedAt": null,
       "errorMessage": null,
       "rejectionReason": "maintenance_or_unavailable"
@@ -349,7 +349,7 @@
       "actualContentType": "html",
       "verified": true,
       "cachedPath": "data/raw/official-directories/elko-county-commission/current.html",
-      "versionedCachedPath": "data/raw/official-directories/elko-county-commission/20260724130259-4fe7b2d5cb099ada.html",
+      "versionedCachedPath": "data/raw/official-directories/elko-county-commission/20260725130352-4fe7b2d5cb099ada.html",
       "contentHash": "4fe7b2d5cb099ada7c78fde5d71a0436f151cf5aacc54750674b5c66f2bb0060",
       "previousContentHash": null,
       "bytes": 87907,
@@ -375,10 +375,10 @@
         "responseHash": "4fe7b2d5cb099ada7c78fde5d71a0436f151cf5aacc54750674b5c66f2bb0060",
         "quarantinePath": null
       },
-      "firstSeenAt": "2026-07-24T13:02:59.964Z",
-      "lastSeenAt": "2026-07-24T13:02:59.964Z",
-      "lastCheckedAt": "2026-07-24T13:02:59.964Z",
-      "lastChangedAt": "2026-07-24T13:02:59.964Z",
+      "firstSeenAt": "2026-07-25T13:03:52.898Z",
+      "lastSeenAt": "2026-07-25T13:03:52.898Z",
+      "lastCheckedAt": "2026-07-25T13:03:52.898Z",
+      "lastChangedAt": "2026-07-25T13:03:52.898Z",
       "errorMessage": null,
       "rejectionReason": null
     }
@@ -397,7 +397,7 @@
   "artifacts": [
     "data/generated/carson-city-officials-source-evidence.json",
     "data/generated/carson-city-officials-source-manifest.json",
-    "data/generated/audits/20260724130259-local-network-enabled-vzs6d3/carson-city-officials-source-evidence.json",
+    "data/generated/audits/20260725130352-local-network-enabled-ro96x4/carson-city-officials-source-evidence.json",
     "data/generated/carson-city-officials-source-evidence.local-network-enabled.json"
   ],
   "note": "A source is marked retrieved only when verified HTML is written to a local cache. Raw HTML is never written into generated public artifacts."
