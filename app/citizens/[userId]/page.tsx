@@ -163,6 +163,7 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
     .slice(0, 6);
   const externalLinks = Array.isArray(content.externalLinks) ? content.externalLinks : [];
   const isBrightProfile = content.profileTheme === "bright";
+  const isDaylightProfile = content.profileTheme === "daylight";
 
   return (
     <div className="space-y-6 py-8">
@@ -174,15 +175,20 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
 
       <section
         className={`overflow-hidden rounded-lg border shadow-card ${
-          isBrightProfile ? "border-[#ff8a70]/35 bg-[#101522]" : "border-white/70 bg-white/90 backdrop-blur"
+          isBrightProfile
+            ? "border-[#ff8a70]/35 bg-[#101522]"
+            : isDaylightProfile
+              ? "border-[#1f5ea8]/20 bg-white"
+              : "border-white/70 bg-white/90 backdrop-blur"
         }`}
       >
-        {isBrightProfile ? (
+        {isBrightProfile || isDaylightProfile ? (
           <div className="flex h-1.5" aria-hidden="true">
-            <span className="flex-1 bg-[#ff8a70]" />
-            <span className="flex-1 bg-[#54d6d0]" />
-            <span className="flex-1 bg-[#b9f66b]" />
-            <span className="flex-1 bg-[#ffd166]" />
+            <span className={`flex-1 ${isDaylightProfile ? "bg-[#c72f45]" : "bg-[#ff8a70]"}`} />
+            <span className={`flex-1 ${isDaylightProfile ? "bg-white" : "bg-[#54d6d0]"}`} />
+            <span className={`flex-1 ${isDaylightProfile ? "bg-[#1f5ea8]" : "bg-[#b9f66b]"}`} />
+            <span className={`flex-1 ${isDaylightProfile ? "bg-[#e66b24]" : "bg-[#ffd166]"}`} />
+            {isDaylightProfile ? <span className="flex-1 bg-[#0f766e]" /> : null}
           </div>
         ) : null}
         <div className="relative h-56 overflow-hidden sm:h-64">
@@ -192,7 +198,7 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
               backgroundImage: `url("${content.bannerImageUrl || "/community/cc.webp"}")`,
             }}
           />
-          <div className={`absolute inset-0 ${isBrightProfile ? "bg-[#17101e]/50" : "bg-slate-950/65"}`} />
+          <div className={`dd-media-overlay absolute inset-0 ${isBrightProfile ? "bg-[#17101e]/50" : "bg-slate-950/65"}`} />
           <div className="absolute inset-x-0 bottom-0 px-5 pb-20 sm:px-6 sm:pb-24">
             <div className="flex flex-wrap items-center gap-2">
               <RoleBadge role={user.role} />
@@ -220,10 +226,10 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
           </div>
         </div>
 
-        <div className={`px-5 pb-6 sm:px-6 ${isBrightProfile ? "bg-[#101522]" : ""}`}>
+        <div className={`px-5 pb-6 sm:px-6 ${isBrightProfile ? "bg-[#101522]" : isDaylightProfile ? "bg-white" : ""}`}>
           <div
             className={`-mt-14 w-fit rounded-full p-1 shadow-xl sm:-mt-16 ${
-              isBrightProfile ? "bg-[#ffd166]" : "bg-white"
+              isBrightProfile ? "bg-[#ffd166]" : isDaylightProfile ? "bg-white ring-2 ring-[#1f5ea8]/20" : "bg-white"
             }`}
           >
             <ProfileImagePlaceholder name={user.name} size="lg" imageUrl={content.profileImageUrl || undefined} />

@@ -2,35 +2,25 @@
 
 import { useEffect, useState } from "react";
 
-type Theme = "dark" | "civic-light";
-
-const THEME_STORAGE_KEY = "dd-theme";
-
-function applyTheme(theme: Theme) {
-  document.documentElement.dataset.theme = theme;
-  document.documentElement.style.colorScheme = theme === "civic-light" ? "light" : "dark";
-
-  const themeColor = document.querySelector('meta[name="theme-color"]');
-  themeColor?.setAttribute("content", theme === "civic-light" ? "#f5f8fd" : "#0f172a");
-}
+import { APP_THEME_STORAGE_KEY, applyAppTheme, type AppTheme } from "@/lib/ui/app-theme";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<AppTheme>("dark");
 
   useEffect(() => {
-    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-    const initialTheme: Theme = storedTheme === "civic-light" ? "civic-light" : "dark";
+    const storedTheme = window.localStorage.getItem(APP_THEME_STORAGE_KEY);
+    const initialTheme: AppTheme = storedTheme === "civic-light" ? "civic-light" : "dark";
 
     setTheme(initialTheme);
-    applyTheme(initialTheme);
+    applyAppTheme(initialTheme);
   }, []);
 
   function toggleTheme() {
-    const nextTheme: Theme = theme === "dark" ? "civic-light" : "dark";
+    const nextTheme: AppTheme = theme === "dark" ? "civic-light" : "dark";
 
     setTheme(nextTheme);
-    window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-    applyTheme(nextTheme);
+    window.localStorage.setItem(APP_THEME_STORAGE_KEY, nextTheme);
+    applyAppTheme(nextTheme);
   }
 
   const isLight = theme === "civic-light";
@@ -60,7 +50,7 @@ export function ThemeToggle() {
           />
         </svg>
       )}
-      <span>{isLight ? "Light" : "Dark"}</span>
+      <span>Theme: {isLight ? "Light" : "Dark"}</span>
     </button>
   );
 }

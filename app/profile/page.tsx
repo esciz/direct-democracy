@@ -125,6 +125,7 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
   const safeProfileImageUrl = normalizeMediaUrl(profileContent.profileImageUrl);
   const safeBannerImageUrl = normalizeMediaUrl(profileContent.bannerImageUrl);
   const isBrightProfile = profileContent.profileTheme === "bright";
+  const isDaylightProfile = profileContent.profileTheme === "daylight";
   const progression = getSafeUserProgressionSummary(currentUser.role);
   const reputation = getSafeReputationSummary(currentUser);
   const participationReadiness = getParticipationReadiness(currentUser);
@@ -194,7 +195,13 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
                 borderColor: "rgba(255, 138, 112, 0.34)",
                 boxShadow: "0 28px 70px -44px rgba(255, 138, 112, 0.72)",
               }
-            : undefined
+            : isDaylightProfile
+              ? {
+                  background: "#ffffff",
+                  borderColor: "rgba(31, 94, 168, 0.2)",
+                  boxShadow: "0 28px 70px -48px rgba(31, 94, 168, 0.48)",
+                }
+              : undefined
         }
       >
         {safeBannerImageUrl ? (
@@ -204,15 +211,16 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
             role="img"
             aria-label={`${safeName}'s cover photo`}
           >
-            <div className={`absolute inset-0 ${isBrightProfile ? "bg-[#17101e]/20" : "bg-slate-950/35"}`} />
+            <div className={`dd-media-overlay absolute inset-0 ${isBrightProfile ? "bg-[#17101e]/20" : "bg-slate-950/35"}`} />
           </div>
         ) : null}
-        {isBrightProfile ? (
+        {isBrightProfile || isDaylightProfile ? (
           <div className="flex h-1.5" aria-hidden="true">
-            <span className="flex-1 bg-[#ff8a70]" />
-            <span className="flex-1 bg-[#54d6d0]" />
-            <span className="flex-1 bg-[#b9f66b]" />
-            <span className="flex-1 bg-[#ffd166]" />
+            <span className={`flex-1 ${isDaylightProfile ? "bg-[#c72f45]" : "bg-[#ff8a70]"}`} />
+            <span className={`flex-1 ${isDaylightProfile ? "bg-white" : "bg-[#54d6d0]"}`} />
+            <span className={`flex-1 ${isDaylightProfile ? "bg-[#1f5ea8]" : "bg-[#b9f66b]"}`} />
+            <span className={`flex-1 ${isDaylightProfile ? "bg-[#e66b24]" : "bg-[#ffd166]"}`} />
+            {isDaylightProfile ? <span className="flex-1 bg-[#0f766e]" /> : null}
           </div>
         ) : null}
         <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[minmax(0,1fr)_20rem]">
@@ -220,7 +228,9 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
             <div
               className={
                 safeBannerImageUrl
-                  ? `-mt-14 w-fit rounded-full p-1 shadow-xl ${isBrightProfile ? "bg-[#ffd166]" : "bg-[#08101e]"}`
+                  ? `-mt-14 w-fit rounded-full p-1 shadow-xl ${
+                      isBrightProfile ? "bg-[#ffd166]" : isDaylightProfile ? "bg-white ring-2 ring-[#1f5ea8]/20" : "bg-[#08101e]"
+                    }`
                   : ""
               }
             >

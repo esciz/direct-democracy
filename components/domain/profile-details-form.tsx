@@ -1,6 +1,7 @@
 import { FavoriteSpotsInput } from "@/components/domain/favorite-spots-input";
 import { ProfileMediaFields } from "@/components/domain/profile-media-fields";
 import { ProfileTagInput } from "@/components/domain/profile-tag-input";
+import { ProfileThemeSelector } from "@/components/domain/profile-theme-selector";
 import { StructuredOptionInput } from "@/components/domain/structured-option-input";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import {
@@ -74,6 +75,7 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
   const externalLinkValues = new Map((content.externalLinks ?? []).map((link) => [link.platform, link.url] as const));
   const externalLinkCount = content.externalLinks?.length ?? 0;
   const isBright = content.profileTheme === "bright";
+  const selectedTheme = content.profileTheme ?? "classic";
   const fieldClass = isBright
     ? "mt-2 min-h-11 w-full rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-[#ff8a70] focus:ring-2 focus:ring-[#ff8a70]/15"
     : "mt-2 min-h-11 w-full rounded-lg border border-white/12 bg-slate-950/70 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/10";
@@ -148,55 +150,10 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
             icon={Palette}
             iconClassName={isBright ? "border-[#ffd166]/30 bg-[#ffd166]/12 text-[#ffe29a]" : classicIcon}
             eyebrow="Color"
-            title="Choose your profile mood"
-            detail="Keep the civic palette restrained or add brighter accents to your profile."
+            title="Choose your profile and app theme"
+            detail="Choose a dark profile or switch the whole app to a high-contrast daylight theme."
           />
-          <div className="mt-5 grid max-w-2xl gap-3 sm:grid-cols-2" aria-labelledby="profile-color-heading">
-            <label className="cursor-pointer">
-              <input
-                type="radio"
-                name="profileTheme"
-                value="classic"
-                defaultChecked={!isBright}
-                className="peer sr-only"
-              />
-              <span className="flex min-h-20 items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 transition peer-checked:border-cyan-300/60 peer-checked:bg-cyan-300/[0.07]">
-                <span>
-                  <span className="block text-sm font-semibold text-slate-100">Classic civic</span>
-                  <span className="mt-1 block text-xs text-slate-400">Calm and focused</span>
-                </span>
-                <span className="grid grid-cols-2 gap-1" aria-hidden="true">
-                  <span className="h-5 w-5 rounded bg-[#07111f]" />
-                  <span className="h-5 w-5 rounded bg-cyan-300" />
-                  <span className="h-5 w-5 rounded bg-emerald-300" />
-                  <span className="h-5 w-5 rounded bg-amber-200" />
-                </span>
-              </span>
-            </label>
-            <label className="cursor-pointer">
-              <input
-                type="radio"
-                name="profileTheme"
-                value="bright"
-                defaultChecked={isBright}
-                className="peer sr-only"
-              />
-              <span className="flex min-h-20 items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 transition peer-checked:border-[#ff8a70] peer-checked:bg-[#ff8a70]/[0.08]">
-                <span>
-                  <span className="flex items-center gap-2 text-sm font-semibold text-slate-100">
-                    Bright civic
-                  </span>
-                  <span className="mt-1 block text-xs text-slate-400">Warm and energetic</span>
-                </span>
-                <span className="grid grid-cols-2 gap-1" aria-hidden="true">
-                  <span className="h-5 w-5 rounded bg-[#ff8a70]" />
-                  <span className="h-5 w-5 rounded bg-[#54d6d0]" />
-                  <span className="h-5 w-5 rounded bg-[#b9f66b]" />
-                  <span className="h-5 w-5 rounded bg-[#ffd166]" />
-                </span>
-              </span>
-            </label>
-          </div>
+          <ProfileThemeSelector selectedTheme={selectedTheme} />
         </fieldset>
 
         <ProfileMediaFields

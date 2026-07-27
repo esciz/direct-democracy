@@ -454,7 +454,10 @@ function isProfileContent(value: unknown): value is UserProfileContentSummary {
     typeof profile.userId === "string" &&
     typeof profile.profileImageUrl === "string" &&
     typeof profile.bannerImageUrl === "string" &&
-    (typeof profile.profileTheme === "undefined" || profile.profileTheme === "classic" || profile.profileTheme === "bright") &&
+    (typeof profile.profileTheme === "undefined" ||
+      profile.profileTheme === "classic" ||
+      profile.profileTheme === "bright" ||
+      profile.profileTheme === "daylight") &&
     typeof profile.primaryCommunityId === "string" &&
     Array.isArray(profile.localIssues) &&
     Array.isArray(profile.stateIssues) &&
@@ -509,7 +512,10 @@ function canonicalizeIssueEntries(entries: StructuredProfileValueSummary[]) {
 function canonicalizeProfileContent(content: UserProfileContentSummary): UserProfileContentSummary {
   return {
     ...content,
-    profileTheme: content.profileTheme === "bright" ? "bright" : "classic",
+    profileTheme:
+      content.profileTheme === "bright" || content.profileTheme === "daylight"
+        ? content.profileTheme
+        : "classic",
     localIssues: canonicalizeIssueEntries(content.localIssues),
     stateIssues: canonicalizeIssueEntries(content.stateIssues),
     nationalIssues: canonicalizeIssueEntries(content.nationalIssues),

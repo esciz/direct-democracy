@@ -181,6 +181,11 @@ export async function updateProfileDetails(formData: FormData) {
 
   const removeProfileImage = formData.get("removeProfileImage") === "true";
   const removeBannerImage = formData.get("removeBannerImage") === "true";
+  const requestedProfileTheme = formData.get("profileTheme");
+  const profileTheme =
+    requestedProfileTheme === "bright" || requestedProfileTheme === "daylight"
+      ? requestedProfileTheme
+      : "classic";
   const storedMediaUrls: string[] = [];
   let nextProfileImageUrl = removeProfileImage ? "" : currentContent.profileImageUrl;
   let nextBannerImageUrl = removeBannerImage ? "" : currentContent.bannerImageUrl;
@@ -204,7 +209,7 @@ export async function updateProfileDetails(formData: FormData) {
   await updateUserProfileContent(currentUser.id, {
     profileImageUrl: nextProfileImageUrl,
     bannerImageUrl: nextBannerImageUrl,
-    profileTheme: formData.get("profileTheme") === "bright" ? "bright" : "classic",
+    profileTheme,
     primaryCommunityId: validPrimaryCommunityId,
     localIssues: parsedLocalIssues,
     stateIssues: parsedStateIssues,
