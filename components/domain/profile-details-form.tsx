@@ -89,6 +89,25 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
       </p>
 
       <form action={updateProfileDetails} className="mt-7 grid gap-8">
+        <div className="sticky top-3 z-20 -mx-2 flex flex-col gap-3 rounded-xl border border-emerald-300/30 bg-slate-950/95 p-3 shadow-[0_20px_55px_-20px_rgba(16,185,129,0.7)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
+          <div className="px-1">
+            <p className="text-sm font-semibold text-slate-100">Save your profile</p>
+            <p className="mt-0.5 text-xs leading-5 text-slate-400">Photo previews and card edits are not applied until you save.</p>
+          </div>
+          <FormSubmitButton
+            idleLabel={
+              <span className="inline-flex items-center gap-2">
+                <Check size={17} strokeWidth={2} aria-hidden="true" />
+                Save all changes
+              </span>
+            }
+            pendingLabel="Saving changes..."
+            className={`min-h-12 w-full shrink-0 rounded-lg px-6 py-3 text-sm font-bold text-slate-950 shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400 sm:w-auto ${
+              isBright ? "bg-[#ff8a70] hover:bg-[#ff9c86]" : "bg-emerald-300 hover:bg-emerald-200"
+            }`}
+          />
+        </div>
+
         <section aria-labelledby="profile-home-heading" className="border-b border-white/10 pb-8">
           <SectionHeading
             id="profile-home-heading"
@@ -356,7 +375,7 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
           </div>
         </details>
 
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
           <label className="flex items-start gap-3 text-sm leading-6 text-slate-300">
             <input
               type="checkbox"
@@ -369,20 +388,8 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
               <span className="block text-slate-500">You can turn this off at any time.</span>
             </span>
           </label>
-
-          <FormSubmitButton
-            idleLabel={
-              <span className="inline-flex items-center gap-2">
-                <Check size={17} strokeWidth={2} aria-hidden="true" />
-                Save profile
-              </span>
-            }
-            pendingLabel="Saving..."
-            className={`min-h-11 shrink-0 rounded-lg px-5 py-2.5 text-sm font-semibold text-slate-950 transition disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400 ${
-              isBright ? "bg-[#ff8a70] hover:bg-[#ff9c86]" : "bg-emerald-300 hover:bg-emerald-200"
-            }`}
-          />
         </div>
+
       </form>
     </section>
   );

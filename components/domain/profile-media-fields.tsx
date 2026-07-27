@@ -49,6 +49,8 @@ export function ProfileMediaFields({
   const bannerPreviewUrl = usePreviewUrl(bannerFile);
   const visibleProfileUrl = removeProfileImage ? "" : profilePreviewUrl || profileImageUrl;
   const visibleBannerUrl = removeBannerImage ? "" : bannerPreviewUrl || bannerImageUrl;
+  const hasPendingMediaChange =
+    Boolean(profileFile || bannerFile) || removeProfileImage || removeBannerImage;
 
   function clearProfileImage() {
     setProfileFile(null);
@@ -183,6 +185,20 @@ export function ProfileMediaFields({
           <input type="hidden" name="removeBannerImage" value={removeBannerImage ? "true" : "false"} />
         </div>
       </div>
+
+      {hasPendingMediaChange ? (
+        <div
+          role="status"
+          className={`mt-4 flex items-center gap-2 rounded-lg border px-3 py-2.5 text-sm font-semibold ${
+            isBright
+              ? "border-[#ffd166]/35 bg-[#ffd166]/10 text-[#ffe29a]"
+              : "border-amber-300/30 bg-amber-300/10 text-amber-100"
+          }`}
+        >
+          <span className="h-2 w-2 shrink-0 rounded-full bg-current" aria-hidden="true" />
+          Photo changes are ready. Select “Save all changes” to publish them.
+        </div>
+      ) : null}
     </section>
   );
 }
