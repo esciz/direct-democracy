@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 
 import { CaseDetail } from "@/components/domain/case-detail";
-import { PageIntro } from "@/components/ui/page-intro";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getCaseById } from "@/lib/cases/store";
@@ -43,22 +42,6 @@ export default async function CaseDetailPage({ params, searchParams }: CaseDetai
 
   return (
     <div className="space-y-6 py-8">
-      <PageIntro
-        eyebrow="Case"
-        title={caseItem.title}
-        description="Reviewed public court record. Direct Democracy shows stored public metadata only and does not provide legal advice."
-        meta={
-          <>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-              {caseItem.jurisdictionName}
-            </span>
-            <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
-              Public data only
-            </span>
-          </>
-        }
-      />
-
       {resolvedSearchParams?.follow ? (
         <section className="rounded-[1.75rem] border border-civic-200 bg-civic-50 p-5 text-sm text-civic-900 shadow-card">
           Case follow status updated.

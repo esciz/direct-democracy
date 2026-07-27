@@ -65,31 +65,55 @@ export async function CaseDetail({
           <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-slate-200">{caseItem.jurisdictionName}</span>
         </div>
         {caseItem.isRealCourtRecord ? (
-          <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Court</p>
-              <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.courtName ?? "Court pending"}</p>
+          <details className="group mt-6 rounded-2xl border border-white/10 bg-white/[0.04]">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-4">
+              <div>
+                <p className="text-sm font-semibold text-slate-100">Court record at a glance</p>
+                <p className="mt-1 text-xs text-slate-400">
+                  {caseItem.courtName ?? "Court pending"} · {caseItem.caseNumber ?? "Case number pending"}
+                </p>
+              </div>
+              <span className="text-xs font-semibold text-cyan-200 group-open:hidden">Show details</span>
+              <span className="hidden text-xs font-semibold text-cyan-200 group-open:inline">Hide details</span>
+            </summary>
+            <div className="grid gap-3 border-t border-white/10 p-4 md:grid-cols-2 xl:grid-cols-4">
+              <div className="rounded-xl border border-white/10 bg-slate-950/30 p-4">
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Court</p>
+                <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.courtName ?? "Court pending"}</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-slate-950/30 p-4">
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Case number</p>
+                <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.caseNumber ?? "Pending"}</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-slate-950/30 p-4">
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Case type</p>
+                <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.caseType?.replaceAll("_", " ") ?? "Unknown"}</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-slate-950/30 p-4">
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Last checked</p>
+                <p className="mt-2 text-sm font-semibold text-slate-50">{displayDate(caseItem.lastCheckedAt)}</p>
+              </div>
+              {caseItem.keyDates.map((entry) => (
+                <div key={`${entry.label}-${entry.date}`} className="rounded-xl border border-white/10 bg-slate-950/30 p-4">
+                  <p className="text-xs uppercase tracking-[0.16em] text-slate-400">{entry.label}</p>
+                  <p className="mt-2 text-sm font-semibold text-slate-50">
+                    {new Date(`${entry.date}T12:00:00Z`).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Case number</p>
-              <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.caseNumber ?? "Pending"}</p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Case type</p>
-              <p className="mt-2 text-sm font-semibold text-slate-50">{caseItem.caseType?.replaceAll("_", " ") ?? "Unknown"}</p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-xs uppercase tracking-[0.16em] text-slate-400">Last checked</p>
-              <p className="mt-2 text-sm font-semibold text-slate-50">{displayDate(caseItem.lastCheckedAt)}</p>
-            </div>
-          </div>
+          </details>
         ) : null}
         {!caseItem.isRealCourtRecord ? (
           <div className="mt-6">
           <SentimentHistoryChart data={history} title="Sentiment over time" currentValue={currentSupport} />
           </div>
         ) : null}
-        {caseItem.keyDates.length ? (
+        {!caseItem.isRealCourtRecord && caseItem.keyDates.length ? (
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             {caseItem.keyDates.map((entry) => (
               <div key={`${entry.label}-${entry.date}`} className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
@@ -111,8 +135,44 @@ export async function CaseDetail({
         Public court metadata only. This page is not a legal filing, not legal advice, and not direct amicus participation. Criminal records are displayed neutrally; charges are allegations unless a sourced disposition says otherwise.
       </section>
 
+      <CaseSupportPanel caseItem={caseItem} user={user} returnPath={returnPath} />
+
+      {voteQuestion ? (
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Structured case vote</p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Vote on how convincing this case is</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
+                This does not decide the legal outcome. It records whether the visible case record is persuasive.
+              </p>
+            </div>
+            <Link
+              href="/voting"
+              className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+            >
+              Explore all votes
+            </Link>
+          </div>
+
+          <div className="mt-6">
+            <VoteCard question={voteQuestion} compact returnPath={returnPath} canAnswer={canUserVote(user)} />
+          </div>
+        </section>
+      ) : null}
+
       {caseItem.isRealCourtRecord ? (
-        <>
+        <details className="group rounded-[1.5rem] border border-white/10 bg-white/[0.03]">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Official record</p>
+              <h2 className="mt-1 text-xl font-semibold tracking-tight text-slate-50">Docket, parties, documents, and sources</h2>
+              <p className="mt-1 text-sm text-slate-400">Open the complete public court record when you need to verify details.</p>
+            </div>
+            <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-cyan-200 group-open:hidden">Open</span>
+            <span className="hidden shrink-0 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-cyan-200 group-open:inline">Close</span>
+          </summary>
+          <div className="space-y-5 border-t border-white/10 p-4 sm:p-6">
           <section className="dd-panel-muted rounded-[1.75rem] p-6 sm:p-8">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-50">Timeline / docket</h2>
             <div className="mt-5 space-y-3">
@@ -197,58 +257,37 @@ export async function CaseDetail({
               )}
             </div>
           </section>
-        </>
+          </div>
+        </details>
       ) : null}
 
-      {voteQuestion ? (
-        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Structured case vote</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Vote on how convincing this case is</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
-                This vote does not decide the legal outcome. It captures whether the public finds the case record persuasive based on the visible claim, evidence, and access context.
-              </p>
-            </div>
-            <Link
-              href="/voting"
-              className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-            >
-              Explore all vote objects
-            </Link>
+      <details className="group rounded-[1.5rem] border border-white/70 bg-white/90 shadow-card backdrop-blur">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Community record</p>
+            <h2 className="mt-1 text-xl font-semibold tracking-tight text-ink">Public statements and community brief themes</h2>
+            <p className="mt-1 text-sm text-slate-600">See what residents want emphasized and how submitted statements were rated.</p>
           </div>
+          <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:hidden">Open</span>
+          <span className="hidden shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:inline">Close</span>
+        </summary>
+        <div className="space-y-5 border-t border-slate-200 p-4 sm:p-6">
+          <Suspense fallback={<CaseSupportStatementsFallback />}>
+            <CaseSupportStatementsSection caseItem={caseItem} user={user} returnPath={returnPath} />
+          </Suspense>
 
-          <div className="mt-6">
-            <VoteCard question={voteQuestion} compact returnPath={returnPath} canAnswer={canUserVote(user)} />
-          </div>
-        </section>
-      ) : null}
-
-      <CaseSupportPanel caseItem={caseItem} user={user} returnPath={returnPath} />
-
-      <Suspense fallback={<CaseSupportStatementsFallback />}>
-        <CaseSupportStatementsSection caseItem={caseItem} user={user} returnPath={returnPath} />
-      </Suspense>
-
-      <Suspense fallback={<CaseCommunityBriefThemesFallback />}>
-        <CaseCommunityBriefThemesSection caseItem={caseItem} user={user} returnPath={returnPath} />
-      </Suspense>
-
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-ink">Next step context</h2>
-        <p className="mt-3 text-sm leading-6 text-slate-600">
-          Community-backed themes can help clarify what matters publicly here. In a future version, those themes could be reviewed by outside legal
-          partners before any real court-facing work happens.
-        </p>
-        <div className="mt-5">
-          <Link
-            href="/cases"
-            className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-          >
-            Back to cases
-          </Link>
+          <Suspense fallback={<CaseCommunityBriefThemesFallback />}>
+            <CaseCommunityBriefThemesSection caseItem={caseItem} user={user} returnPath={returnPath} />
+          </Suspense>
         </div>
-      </section>
+      </details>
+
+      <Link
+        href="/cases"
+        className="inline-flex w-fit rounded-full border border-white/10 bg-white/[0.05] px-4 py-3 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/30 hover:text-cyan-100"
+      >
+        Back to cases
+      </Link>
     </div>
   );
 }

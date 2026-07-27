@@ -504,10 +504,6 @@ function getSideTheme(side: IssueSide) {
       };
 }
 
-function getIssueBeginnerActionHref(issueId: string) {
-  return `/issues/${issueId}?filter=ballotMeasures`;
-}
-
 function toBattlegroundItem(
   id: string,
   href: string,
@@ -2111,7 +2107,7 @@ export default async function IssueDetailPage({ params, searchParams }: IssueDet
       <PageIntro
         eyebrow="Issue"
         title={issue.plainTitle ?? issue.issueText}
-        description={`${issue.whyThisMatters ?? getIssueSummary(issue.issueText)} Official records, platform explanations, and community input are separated below so source-backed facts stay distinct from submitted concerns.`}
+        description={issue.whyThisMatters ?? getIssueSummary(issue.issueText)}
         meta={
           <>
             <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">{issue.jurisdictionName}</span>
@@ -2135,12 +2131,6 @@ export default async function IssueDetailPage({ params, searchParams }: IssueDet
               returnPath={`/issues/${issue.id}`}
               guestMode
             />
-            <Link
-              href={`/voting?search=${encodeURIComponent(issue.issueText)}`}
-              className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-            >
-              Vote on related questions
-            </Link>
             <Link
               href="/issues"
               className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
@@ -2192,73 +2182,31 @@ async function IssueDetailContent({
 
   return (
     <>
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+      <section className="rounded-[1.5rem] border border-white/70 bg-white/90 p-4 shadow-card backdrop-blur sm:p-5">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Platform explanation</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink">Understand the issue before you go deep</h2>
-            <div className="mt-5 grid gap-3 md:grid-cols-2">
-              <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">What this issue is</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">{getIssueSummary(safeIssue.issueText)}</p>
-              </div>
-              <div className="rounded-2xl bg-slate-50 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Why people disagree</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">
-                  People are usually arguing over cost, urgency, fairness, tradeoffs, or who should be responsible for the next move. The battleground below shows the clearest visible case on both sides.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-civic-50/70 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">What happens next</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">
-                  This issue can move through public posts, petitions, events, debates, ballot measures, and official responses. You do not need to open everything at once.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-amber-50/80 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">One thing you can do now</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">
-                  Save the issue, read the short brief, and then choose one next step: see both sides, check related ballot items, or open the related cases.
-                </p>
-              </div>
-            </div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Choose a next step</p>
+            <h2 className="mt-1 text-lg font-semibold tracking-tight text-ink">What do you want to do?</h2>
           </div>
-
-          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Participation ladder</p>
-            <h2 className="mt-3 text-xl font-semibold tracking-tight text-ink">A beginner-safe path into this issue</h2>
-            <div className="mt-4 space-y-2">
-              {[
-                "Read the short summary",
-                "See both sides",
-                "Follow the issue",
-                "Check one related poll, petition, or ballot item",
-                "Open the full sourcebook only if you want the deeper record",
-              ].map((step) => (
-                <div key={step} className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                  {step}
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Link
-                href={buildIssueHref(issueId, "all")}
-                className="inline-flex rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-              >
-                Read the short brief
-              </Link>
-              <Link
-                href="#issue-battleground"
-                className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-              >
-                See both sides
-              </Link>
-              <Link
-                href={getIssueBeginnerActionHref(issueId)}
-                className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
-              >
-                Check related ballot items
-              </Link>
-            </div>
+          <div className="grid gap-2 sm:grid-cols-3">
+            <Link
+              href={`/voting?search=${encodeURIComponent(safeIssue.issueText)}`}
+              className="inline-flex min-h-11 items-center justify-center rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+            >
+              Vote on this issue
+            </Link>
+            <Link
+              href="#issue-perspectives"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+            >
+              Compare perspectives
+            </Link>
+            <Link
+              href="#issue-records"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"
+            >
+              Check official records
+            </Link>
           </div>
         </div>
       </section>
@@ -2273,75 +2221,112 @@ async function IssueDetailContent({
         <IssueBriefSection issueId={safeIssue.id} issueText={safeIssue.issueText} currentUser={currentUser} />
       </Suspense>
 
-      <Suspense
-        fallback={
-          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading source-backed issue records…</div>
-          </section>
-        }
-      >
-        <IssueHubRecordSection issueParam={safeIssue.id} />
-      </Suspense>
+      <details id="issue-records" className="group rounded-[1.5rem] border border-white/70 bg-white/90 shadow-card backdrop-blur">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">Official record</p>
+            <h2 className="mt-1 text-xl font-semibold tracking-tight text-ink">Sources, submitted evidence, and reviewed positions</h2>
+            <p className="mt-1 text-sm text-slate-600">Open this when you want to verify where the issue information came from.</p>
+          </div>
+          <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:hidden">Open</span>
+          <span className="hidden shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:inline">Close</span>
+        </summary>
+        <div className="space-y-5 border-t border-slate-200 p-4 sm:p-6">
+          <Suspense
+            fallback={
+              <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+                <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading source-backed issue records…</div>
+              </section>
+            }
+          >
+            <IssueHubRecordSection issueParam={safeIssue.id} />
+          </Suspense>
 
-      <Suspense
-        fallback={
-          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading review requests…</div>
-          </section>
-        }
-      >
-        <IssueReviewRequestsSection issueText={safeIssue.issueText} />
-      </Suspense>
+          <Suspense
+            fallback={
+              <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+                <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading review requests…</div>
+              </section>
+            }
+          >
+            <IssueReviewRequestsSection issueText={safeIssue.issueText} />
+          </Suspense>
 
-      <Suspense
-        fallback={
-          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading sourced positions…</div>
-          </section>
-        }
-      >
-        <IssuePositionsSectionLoader issueText={safeIssue.issueText} />
-      </Suspense>
-
-      <Suspense
-        fallback={
-          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading citizen voices…</div>
-          </section>
-        }
-      >
-        <CitizenIssueVoicesSection issue={safeIssue} currentUser={currentUser} compareCommunityId={compareCommunityId} status={issuePostStatus} error={issuePostError} />
-      </Suspense>
-
-      <Suspense
-        fallback={
-          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading related news…</div>
-          </section>
-        }
-      >
-        <NewsSectionLoader issueId={issueId} filter="all" issueText={safeIssue.issueText} currentUserId={currentUser.id} />
-      </Suspense>
-
-      <Suspense
-        fallback={
-          <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-            <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading issue battleground…</div>
-          </section>
-        }
-      >
-        <div id="issue-battleground">
-          <IssueBattlegroundSection issue={safeIssue} currentUser={currentUser} guestMode={guestMode} />
+          <Suspense
+            fallback={
+              <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+                <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading sourced positions…</div>
+              </section>
+            }
+          >
+            <IssuePositionsSectionLoader issueText={safeIssue.issueText} />
+          </Suspense>
         </div>
-      </Suspense>
+      </details>
 
-      <PoliticalAdsSection
-        title="Political ads about this issue"
-        description="Compare ads that support, oppose, or mention this issue across sponsors, source types, geography, and truth ratings."
-        ads={relatedAds}
-        repositoryHref={`/ads?issueId=${encodeURIComponent(safeIssue.id)}`}
-        emptyText="No political ads are attached to this issue yet."
-      />
+      <details id="issue-community" className="group rounded-[1.5rem] border border-white/70 bg-white/90 shadow-card backdrop-blur">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Community</p>
+            <h2 className="mt-1 text-xl font-semibold tracking-tight text-ink">Local voices and related news</h2>
+            <p className="mt-1 text-sm text-slate-600">Read community experiences, questions, proposals, and current reporting.</p>
+          </div>
+          <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:hidden">Open</span>
+          <span className="hidden shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:inline">Close</span>
+        </summary>
+        <div className="space-y-5 border-t border-slate-200 p-4 sm:p-6">
+          <Suspense
+            fallback={
+              <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+                <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading citizen voices…</div>
+              </section>
+            }
+          >
+            <CitizenIssueVoicesSection issue={safeIssue} currentUser={currentUser} compareCommunityId={compareCommunityId} status={issuePostStatus} error={issuePostError} />
+          </Suspense>
+
+          <Suspense
+            fallback={
+              <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+                <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading related news…</div>
+              </section>
+            }
+          >
+            <NewsSectionLoader issueId={issueId} filter="all" issueText={safeIssue.issueText} currentUserId={currentUser.id} />
+          </Suspense>
+        </div>
+      </details>
+
+      <details id="issue-perspectives" className="group rounded-[1.5rem] border border-white/70 bg-white/90 shadow-card backdrop-blur">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-violet-700">Perspectives</p>
+            <h2 className="mt-1 text-xl font-semibold tracking-tight text-ink">Compare arguments and political messages</h2>
+            <p className="mt-1 text-sm text-slate-600">See the strongest visible cases on both sides and who is paying to shape the issue.</p>
+          </div>
+          <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:hidden">Open</span>
+          <span className="hidden shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 group-open:inline">Close</span>
+        </summary>
+        <div className="space-y-5 border-t border-slate-200 p-4 sm:p-6">
+          <Suspense
+            fallback={
+              <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+                <div className="rounded-3xl bg-slate-50 p-6 text-sm text-slate-600">Loading issue perspectives…</div>
+              </section>
+            }
+          >
+            <IssueBattlegroundSection issue={safeIssue} currentUser={currentUser} guestMode={guestMode} />
+          </Suspense>
+
+          <PoliticalAdsSection
+            title="Political ads about this issue"
+            description="Compare ads that support, oppose, or mention this issue across sponsors, source types, geography, and truth ratings."
+            ads={relatedAds}
+            repositoryHref={`/ads?issueId=${encodeURIComponent(safeIssue.id)}`}
+            emptyText="No political ads are attached to this issue yet."
+          />
+        </div>
+      </details>
 
       <details id="issue-sourcebook" className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur" open={activeFilter !== "all"}>
         <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
