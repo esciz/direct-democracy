@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Camera, ImagePlus, RefreshCw, Trash2 } from "lucide-react";
 
+const MAX_PROFILE_MEDIA_BYTES = 5 * 1024 * 1024;
+const ACCEPTED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+
 type ProfileMediaFieldsProps = {
   userName: string;
   profileImageUrl: string;
@@ -43,6 +46,7 @@ export function ProfileMediaFields({
   const [bannerFile, setBannerFile] = useState<File | null>(null);
   const [removeProfileImage, setRemoveProfileImage] = useState(false);
   const [removeBannerImage, setRemoveBannerImage] = useState(false);
+  const [mediaError, setMediaError] = useState("");
   const profileInputRef = useRef<HTMLInputElement>(null);
   const bannerInputRef = useRef<HTMLInputElement>(null);
   const profilePreviewUrl = usePreviewUrl(profileFile);
@@ -52,15 +56,39 @@ export function ProfileMediaFields({
   const hasPendingMediaChange =
     Boolean(profileFile || bannerFile) || removeProfileImage || removeBannerImage;
 
+  function validateSelectedFile(file: File | null, input: HTMLInputElement, label: string) {
+    if (!file) {
+      setMediaError("");
+      return null;
+    }
+
+    if (!ACCEPTED_IMAGE_TYPES.has(file.type)) {
+      input.value = "";
+      setMediaError(`${label} must be a JPEG, PNG, or WebP image.`);
+      return null;
+    }
+
+    if (file.size > MAX_PROFILE_MEDIA_BYTES) {
+      input.value = "";
+      setMediaError(`${label} must be 5 MB or smaller.`);
+      return null;
+    }
+
+    setMediaError("");
+    return file;
+  }
+
   function clearProfileImage() {
     setProfileFile(null);
     setRemoveProfileImage(true);
+    setMediaError("");
     if (profileInputRef.current) profileInputRef.current.value = "";
   }
 
   function clearBannerImage() {
     setBannerFile(null);
     setRemoveBannerImage(true);
+    setMediaError("");
     if (bannerInputRef.current) bannerInputRef.current.value = "";
   }
 
@@ -106,7 +134,7 @@ export function ProfileMediaFields({
                 accept="image/jpeg,image/png,image/webp"
                 className="sr-only"
                 onChange={(event) => {
-                  const file = event.target.files?.[0] ?? null;
+                  const file = validateSelectedFile(event.target.files?.[0] ?? null, event.currentTarget, "Profile photo");
                   setProfileFile(file);
                   if (file) setRemoveProfileImage(false);
                 }}
@@ -155,7 +183,7 @@ export function ProfileMediaFields({
                 accept="image/jpeg,image/png,image/webp"
                 className="sr-only"
                 onChange={(event) => {
-                  const file = event.target.files?.[0] ?? null;
+                  const file = validateSelectedFile(event.target.files?.[0] ?? null, event.currentTarget, "Cover photo");
                   setBannerFile(file);
                   if (file) setRemoveBannerImage(false);
                 }}
@@ -185,6 +213,15 @@ export function ProfileMediaFields({
           <input type="hidden" name="removeBannerImage" value={removeBannerImage ? "true" : "false"} />
         </div>
       </div>
+
+      {mediaError ? (
+        <div
+          role="alert"
+          className="mt-4 rounded-lg border border-rose-300/20 bg-rose-500/10 px-3 py-2.5 text-sm font-semibold text-rose-50"
+        >
+          {mediaError}
+        </div>
+      ) : null}
 
       {hasPendingMediaChange ? (
         <div
