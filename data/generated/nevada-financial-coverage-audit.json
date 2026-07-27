@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-26T18:53:08.698Z",
-  "coverageGeneratedAt": "2026-07-26T18:50:15.412Z",
+  "generatedAt": "2026-07-27T13:08:10.027Z",
+  "coverageGeneratedAt": "2026-07-27T13:05:11.252Z",
   "strictPassed": false,
   "totals": {
     "expectedEntities": 366,
@@ -26,7 +26,7 @@
     "missingCampaignSources": 0,
     "missingDisclosureSources": 0,
     "invalidZeroSubstitutions": 0,
-    "aggregateReconciliationWarnings": 172
+    "aggregateReconciliationWarnings": 187
   },
   "gaps": {
     "missingEntities": [],
@@ -36,6 +36,15 @@
     "missingDisclosureSources": [],
     "invalidZeroSubstitutions": [],
     "aggregateReconciliationWarnings": [
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107swz00aplnoxiifv2lhg",
+        "name": "Francisco \"Cisco\" Aguilar",
+        "allReportedRaised": 4209021,
+        "itemizedCycleRaised": 1031043,
+        "allReportedSpent": 3843517,
+        "itemizedCycleSpent": 351330
+      },
       {
         "entityType": "candidate",
         "entityId": "cmq107tx700cplnox7pvy8q3g",
@@ -74,15 +83,6 @@
       },
       {
         "entityType": "candidate",
-        "entityId": "cmq107vo300g5lnoxhsjlrlfz",
-        "name": "Darin A. Balaam",
-        "allReportedRaised": 1025373,
-        "itemizedCycleRaised": 415468,
-        "allReportedSpent": 551287,
-        "itemizedCycleSpent": 57007
-      },
-      {
-        "entityType": "candidate",
         "entityId": "cmq107w6c00h5lnoxpe9jjzhl",
         "name": "Aimee E. Banales",
         "allReportedRaised": 0,
@@ -110,12 +110,30 @@
       },
       {
         "entityType": "candidate",
-        "entityId": "cmq107wpt00i7lnoxz8e27577",
-        "name": "Charlene Bybee",
-        "allReportedRaised": 148042,
-        "itemizedCycleRaised": 49684,
-        "allReportedSpent": 134378,
-        "itemizedCycleSpent": 55539
+        "entityId": "cmq107tcv00bllnox19rd91el",
+        "name": "Nicole Jeanette Cannizzaro",
+        "allReportedRaised": 4678291,
+        "itemizedCycleRaised": 1453438,
+        "allReportedSpent": 4502181,
+        "itemizedCycleSpent": 1670325
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmrwg73sj002jlnpcohx5q22g",
+        "name": "Nicole Jeanette Cannizzaro",
+        "allReportedRaised": 4678291,
+        "itemizedCycleRaised": 1453438,
+        "allReportedSpent": 4502181,
+        "itemizedCycleSpent": 1670325
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107u8c00dblnoxv2sgyro1",
+        "name": "Michael E. Clark",
+        "allReportedRaised": 207611,
+        "itemizedCycleRaised": 45508,
+        "allReportedSpent": 180655,
+        "itemizedCycleSpent": 39298
       },
       {
         "entityType": "candidate",
@@ -146,6 +164,15 @@
       },
       {
         "entityType": "candidate",
+        "entityId": "cmq107tu300cjlnoxo1fr5ot9",
+        "name": "Richard DeLong",
+        "allReportedRaised": 442100,
+        "itemizedCycleRaised": 56165,
+        "allReportedSpent": 347575,
+        "itemizedCycleSpent": 51260
+      },
+      {
+        "entityType": "candidate",
         "entityId": "cmq107vh000frlnoxghn1yk4z",
         "name": "Brian L. DiMambro",
         "allReportedRaised": 0,
@@ -173,21 +200,21 @@
       },
       {
         "entityType": "candidate",
+        "entityId": "cmq107vp400g7lnoxot3bja0h",
+        "name": "Derek C. Dreiling",
+        "allReportedRaised": 96272,
+        "itemizedCycleRaised": 92272,
+        "allReportedSpent": 26655,
+        "itemizedCycleSpent": 22655
+      },
+      {
+        "entityType": "candidate",
         "entityId": "cmq107wkm00hxlnoxtrr336w7",
         "name": "Meghan Ebert",
         "allReportedRaised": 84731,
         "itemizedCycleRaised": 27972,
         "allReportedSpent": 72387,
         "itemizedCycleSpent": 18056
-      },
-      {
-        "entityType": "candidate",
-        "entityId": "cmq107x2400ivlnoxxov48h3e",
-        "name": "Shirle T. Eiting",
-        "allReportedRaised": 72569,
-        "itemizedCycleRaised": 0,
-        "allReportedSpent": 72799,
-        "itemizedCycleSpent": 2703
       },
       {
         "entityType": "candidate",
@@ -206,6 +233,15 @@
         "itemizedCycleRaised": 4285307,
         "allReportedSpent": 11411055,
         "itemizedCycleSpent": 2786816
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107ser009plnox16ctgsvc",
+        "name": "Danielle Ford",
+        "allReportedRaised": 43350,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 44796,
+        "itemizedCycleSpent": 0
       },
       {
         "entityType": "candidate",
@@ -254,15 +290,6 @@
       },
       {
         "entityType": "candidate",
-        "entityId": "cmq107u1500cxlnoxfymh1b3y",
-        "name": "Alexis M. Hansen",
-        "allReportedRaised": 398840,
-        "itemizedCycleRaised": 41333,
-        "allReportedSpent": 351768,
-        "itemizedCycleSpent": 66606
-      },
-      {
-        "entityType": "candidate",
         "entityId": "cmq107tju00bzlnoxumltxcax",
         "name": "Ira D. Hansen",
         "allReportedRaised": 298490,
@@ -299,15 +326,6 @@
       },
       {
         "entityType": "candidate",
-        "entityId": "cmq107usk00eflnoxo0ndz9lm",
-        "name": "Douglas Herndon",
-        "allReportedRaised": 974520,
-        "itemizedCycleRaised": 0,
-        "allReportedSpent": 949638,
-        "itemizedCycleSpent": 6196
-      },
-      {
-        "entityType": "candidate",
         "entityId": "cmq107umh00e3lnox35iktssj",
         "name": "Chris Hicks",
         "allReportedRaised": 647974,
@@ -317,39 +335,12 @@
       },
       {
         "entityType": "candidate",
-        "entityId": "cmq107shs009vlnox8ne1cqtj",
-        "name": "Alexis Hill",
-        "allReportedRaised": 1318800,
-        "itemizedCycleRaised": 777277,
-        "allReportedSpent": 1359310,
-        "itemizedCycleSpent": 872877
-      },
-      {
-        "entityType": "candidate",
         "entityId": "cmq107vkz00fzlnoxn4wrb4r8",
         "name": "Hud Horton",
         "allReportedRaised": 0,
         "itemizedCycleRaised": 0,
         "allReportedSpent": 174,
         "itemizedCycleSpent": 0
-      },
-      {
-        "entityType": "candidate",
-        "entityId": "cmq107stx00ajlnox7fw9ntqu",
-        "name": "Sandra Jauregui",
-        "allReportedRaised": 2185694,
-        "itemizedCycleRaised": 482926,
-        "allReportedSpent": 1933140,
-        "itemizedCycleSpent": 347221
-      },
-      {
-        "entityType": "candidate",
-        "entityId": "cmrwg71u4000vlnpcfh84wmxa",
-        "name": "Sandra Jauregui",
-        "allReportedRaised": 2185694,
-        "itemizedCycleRaised": 482926,
-        "allReportedSpent": 1933140,
-        "itemizedCycleSpent": 347221
       },
       {
         "entityType": "candidate",
@@ -389,30 +380,12 @@
       },
       {
         "entityType": "candidate",
-        "entityId": "cmq107rtn008llnoxns74zt9u",
-        "name": "Johnny E. Kerns",
-        "allReportedRaised": 1255,
-        "itemizedCycleRaised": 255,
-        "allReportedSpent": 950,
-        "itemizedCycleSpent": 255
-      },
-      {
-        "entityType": "candidate",
         "entityId": "cmq107uoi00e7lnoxlcafy82m",
         "name": "Nicole Klitzke",
         "allReportedRaised": 21372,
         "itemizedCycleRaised": 8791,
         "allReportedSpent": 16911,
         "itemizedCycleSpent": 2615
-      },
-      {
-        "entityType": "candidate",
-        "entityId": "cmq107tkw00c1lnoxl27p8st6",
-        "name": "Lisa Krasner",
-        "allReportedRaised": 689266,
-        "itemizedCycleRaised": 127989,
-        "allReportedSpent": 637268,
-        "itemizedCycleSpent": 181628
       },
       {
         "entityType": "candidate",
@@ -449,15 +422,6 @@
         "itemizedCycleRaised": 2275075,
         "allReportedSpent": 9120735,
         "itemizedCycleSpent": 3388835
-      },
-      {
-        "entityType": "candidate",
-        "entityId": "cmq107w7b00h7lnox8xky02ug",
-        "name": "George \"Eddie\" Lorton",
-        "allReportedRaised": 688656,
-        "itemizedCycleRaised": 215697,
-        "allReportedSpent": 429650,
-        "itemizedCycleSpent": 64867
       },
       {
         "entityType": "candidate",
@@ -551,6 +515,15 @@
       },
       {
         "entityType": "candidate",
+        "entityId": "cmq107uih00dvlnoxneaps436",
+        "name": "Chris Sarman",
+        "allReportedRaised": 57269,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 62111,
+        "itemizedCycleSpent": 0
+      },
+      {
+        "entityType": "candidate",
         "entityId": "cmq107w4c00h1lnoxzjl0e7ca",
         "name": "Tamatha Schreinert",
         "allReportedRaised": 423,
@@ -566,6 +539,15 @@
         "itemizedCycleRaised": 2695,
         "allReportedSpent": 281996,
         "itemizedCycleSpent": 2695
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107tn000c5lnoxg7ahwwkj",
+        "name": "Monica Jaye Stabbert",
+        "allReportedRaised": 127041,
+        "itemizedCycleRaised": 44166,
+        "allReportedSpent": 144417,
+        "itemizedCycleSpent": 46887
       },
       {
         "entityType": "candidate",
@@ -587,11 +569,56 @@
       },
       {
         "entityType": "candidate",
+        "entityId": "cmq107wdd00hjlnoxxovgmsuf",
+        "name": "Kathleen Taylor",
+        "allReportedRaised": 859528,
+        "itemizedCycleRaised": 469721,
+        "allReportedSpent": 803201,
+        "itemizedCycleSpent": 437534
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107x1400itlnoxnvid7acl",
+        "name": "Tracey Thomas",
+        "allReportedRaised": 12009,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 17426,
+        "itemizedCycleSpent": 1855
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107w1900gvlnox1awf3in8",
+        "name": "Sandra A. Unsworth",
+        "allReportedRaised": 10150,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 9727,
+        "itemizedCycleSpent": 0
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107wwy00illnoxaxv2ltd0",
+        "name": "Dian VanderWell",
+        "allReportedRaised": 173124,
+        "itemizedCycleRaised": 77499,
+        "allReportedSpent": 144399,
+        "itemizedCycleSpent": 54839
+      },
+      {
+        "entityType": "candidate",
         "entityId": "cmq107vw600gllnoxa3ye69ag",
         "name": "Egan K. Walker",
         "allReportedRaised": 0,
         "itemizedCycleRaised": 0,
         "allReportedSpent": 150,
+        "itemizedCycleSpent": 0
+      },
+      {
+        "entityType": "candidate",
+        "entityId": "cmq107uzm00etlnox8ba4szlb",
+        "name": "Brooke M. Westlake",
+        "allReportedRaised": 200,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 1967,
         "itemizedCycleSpent": 0
       },
       {
@@ -647,15 +674,6 @@
         "itemizedCycleRaised": 4285307,
         "allReportedSpent": 11411055,
         "itemizedCycleSpent": 2786816
-      },
-      {
-        "entityType": "official",
-        "entityId": "cmpzxdzrl00hvln896vijbavf",
-        "name": "Alexis Hill",
-        "allReportedRaised": 1318800,
-        "itemizedCycleRaised": 777277,
-        "allReportedSpent": 1359310,
-        "itemizedCycleSpent": 872877
       },
       {
         "entityType": "official",
@@ -722,6 +740,15 @@
       },
       {
         "entityType": "official",
+        "entityId": "cmqipcr4j0028lnb6kgq3ueik",
+        "name": "Brian Knudsen",
+        "allReportedRaised": 1719360,
+        "itemizedCycleRaised": 13800,
+        "allReportedSpent": 1531501,
+        "itemizedCycleSpent": 77566
+      },
+      {
+        "entityType": "official",
         "entityId": "cmpzxe0i400imln89ufmhd5pu",
         "name": "Brian Sandoval",
         "allReportedRaised": 174,
@@ -740,12 +767,12 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmpzxd0tx009vln07mokwa80x",
-        "name": "Carrie Ann Buck",
-        "allReportedRaised": 1098206,
-        "itemizedCycleRaised": 1500,
-        "allReportedSpent": 1024059,
-        "itemizedCycleSpent": 23354
+        "entityId": "cmpzxd0uw009xln07tdyvrskg",
+        "name": "Nicole J. Cannizzaro",
+        "allReportedRaised": 4678291,
+        "itemizedCycleRaised": 1453438,
+        "allReportedSpent": 4502181,
+        "itemizedCycleSpent": 1670325
       },
       {
         "entityType": "official",
@@ -767,12 +794,21 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmqipcrps003clnb69342zq0v",
-        "name": "Charlene Bybee",
-        "allReportedRaised": 148042,
-        "itemizedCycleRaised": 49684,
-        "allReportedSpent": 134378,
-        "itemizedCycleSpent": 55539
+        "entityId": "cmqu6nf6l003rlnucvkz500ps",
+        "name": "Chip Stone",
+        "allReportedRaised": 3971,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 3051,
+        "itemizedCycleSpent": 0
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxd2h300c0ln074lr2ztff",
+        "name": "Cisco Aguilar",
+        "allReportedRaised": 4209021,
+        "itemizedCycleRaised": 1031043,
+        "allReportedSpent": 3843517,
+        "itemizedCycleSpent": 351330
       },
       {
         "entityType": "official",
@@ -782,6 +818,24 @@
         "itemizedCycleRaised": 0,
         "allReportedSpent": 1976,
         "itemizedCycleSpent": 0
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxdzot00hrln89kjcxp1ki",
+        "name": "Clara Andriola",
+        "allReportedRaised": 342548,
+        "itemizedCycleRaised": 5000,
+        "allReportedSpent": 341555,
+        "itemizedCycleSpent": 9965
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxczsr007rln070nil84sl",
+        "name": "Lisa K. Cole",
+        "allReportedRaised": 820152,
+        "itemizedCycleRaised": 236864,
+        "allReportedSpent": 712320,
+        "itemizedCycleSpent": 182574
       },
       {
         "entityType": "official",
@@ -812,15 +866,6 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmpzxczxl0081ln07tsh5sd69",
-        "name": "Reuben D'Silva",
-        "allReportedRaised": 422333,
-        "itemizedCycleRaised": 112569,
-        "allReportedSpent": 209434,
-        "itemizedCycleSpent": 65010
-      },
-      {
-        "entityType": "official",
         "entityId": "cmpzxczur007vln079hq1wthl",
         "name": "Joe Dalia",
         "allReportedRaised": 696920,
@@ -848,12 +893,30 @@
       },
       {
         "entityType": "official",
+        "entityId": "cmpzxczvp007xln07w3ngxip7",
+        "name": "Rich DeLong",
+        "allReportedRaised": 442100,
+        "itemizedCycleRaised": 56165,
+        "allReportedSpent": 347575,
+        "itemizedCycleSpent": 51260
+      },
+      {
+        "entityType": "official",
         "entityId": "cmpzxd5gv00f8ln07e8b8roji",
         "name": "Devon Reese",
         "allReportedRaised": 1000601,
         "itemizedCycleRaised": 359314,
         "allReportedSpent": 1017055,
         "itemizedCycleSpent": 453858
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqipcrnu0038lnb6slvzjpq4",
+        "name": "Dian VanderWell",
+        "allReportedRaised": 173124,
+        "itemizedCycleRaised": 77499,
+        "allReportedSpent": 144399,
+        "itemizedCycleSpent": 54839
       },
       {
         "entityType": "official",
@@ -947,6 +1010,15 @@
       },
       {
         "entityType": "official",
+        "entityId": "cmqipcr7n002elnb6q05h3cln",
+        "name": "Francis Allen-Palenske",
+        "allReportedRaised": 1237993,
+        "itemizedCycleRaised": 700518,
+        "allReportedSpent": 528281,
+        "itemizedCycleSpent": 214572
+      },
+      {
+        "entityType": "official",
         "entityId": "cmpzxd00n0087ln07b83g1j3r",
         "name": "Danielle Gallant",
         "allReportedRaised": 518479,
@@ -974,21 +1046,21 @@
       },
       {
         "entityType": "official",
+        "entityId": "cmpzxd03k008dln07298gr5wd",
+        "name": "Bert K. Gurr",
+        "allReportedRaised": 406011,
+        "itemizedCycleRaised": 80668,
+        "allReportedSpent": 316658,
+        "itemizedCycleSpent": 87346
+      },
+      {
+        "entityType": "official",
         "entityId": "cmpzxd04h008fln07whjccz1o",
         "name": "Gregory T.  II Hafen",
         "allReportedRaised": 899006,
         "itemizedCycleRaised": 235077,
         "allReportedSpent": 779687,
         "itemizedCycleSpent": 247585
-      },
-      {
-        "entityType": "official",
-        "entityId": "cmpzxd05f008hln07ye6srgnf",
-        "name": "Alexis M. Hansen",
-        "allReportedRaised": 398840,
-        "itemizedCycleRaised": 41333,
-        "allReportedSpent": 351768,
-        "itemizedCycleSpent": 66606
       },
       {
         "entityType": "official",
@@ -1001,12 +1073,30 @@
       },
       {
         "entityType": "official",
+        "entityId": "cmpzxd06k008jln078zqr9p0f",
+        "name": "Melissa R.. Hardy",
+        "allReportedRaised": 846612,
+        "itemizedCycleRaised": 109261,
+        "allReportedSpent": 684011,
+        "itemizedCycleSpent": 107160
+      },
+      {
+        "entityType": "official",
         "entityId": "cmpzxd07j008lln07bf9pf13y",
         "name": "Brian Hibbetts",
         "allReportedRaised": 489502,
         "itemizedCycleRaised": 121832,
         "allReportedSpent": 362157,
         "itemizedCycleSpent": 102783
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxd5a000eyln079t1ck71s",
+        "name": "Hillary Schieve",
+        "allReportedRaised": 916272,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 922706,
+        "itemizedCycleSpent": 0
       },
       {
         "entityType": "official",
@@ -1046,21 +1136,12 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmpzxd09k008pln076ptmbe55",
-        "name": "Jovan A. Jackson",
-        "allReportedRaised": 180967,
-        "itemizedCycleRaised": 94918,
-        "allReportedSpent": 180837,
-        "itemizedCycleSpent": 116567
-      },
-      {
-        "entityType": "official",
-        "entityId": "cmpzxd0ah008rln07mcfgsnzi",
-        "name": "Sandra Jauregui",
-        "allReportedRaised": 2185694,
-        "itemizedCycleRaised": 482926,
-        "allReportedSpent": 1933140,
-        "itemizedCycleSpent": 347221
+        "entityId": "cmqipcqd1000tlnb6whgra5ql",
+        "name": "James B. Gibson",
+        "allReportedRaised": 3617488,
+        "itemizedCycleRaised": 839510,
+        "allReportedSpent": 3162846,
+        "itemizedCycleSpent": 584846
       },
       {
         "entityType": "official",
@@ -1091,12 +1172,12 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmqipcqc1000rlnb6ktek0v7e",
-        "name": "Justin Jones",
-        "allReportedRaised": 3892746,
-        "itemizedCycleRaised": 585600,
-        "allReportedSpent": 3926838,
-        "itemizedCycleSpent": 575937
+        "entityId": "cmqipcrqs003elnb6nij8c0ts",
+        "name": "Joe Rodriguez",
+        "allReportedRaised": 137186,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 131719,
+        "itemizedCycleSpent": 0
       },
       {
         "entityType": "official",
@@ -1109,12 +1190,12 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmpzxd0ch008vln07derb391t",
-        "name": "Heidi Kasama",
-        "allReportedRaised": 1913095,
-        "itemizedCycleRaised": 813409,
-        "allReportedSpent": 1474028,
-        "itemizedCycleSpent": 546718
+        "entityId": "cmpzxd5bz00f0ln07g5zikimw",
+        "name": "Kathleen Taylor",
+        "allReportedRaised": 859528,
+        "itemizedCycleRaised": 469721,
+        "allReportedSpent": 803201,
+        "itemizedCycleSpent": 437534
       },
       {
         "entityType": "official",
@@ -1124,15 +1205,6 @@
         "itemizedCycleRaised": 78639,
         "allReportedSpent": 169758,
         "itemizedCycleSpent": 85106
-      },
-      {
-        "entityType": "official",
-        "entityId": "cmpzxd12n00adln075z2u7ylu",
-        "name": "Lisa Krasner",
-        "allReportedRaised": 689266,
-        "itemizedCycleRaised": 127989,
-        "allReportedSpent": 637268,
-        "itemizedCycleSpent": 181628
       },
       {
         "entityType": "official",
@@ -1190,6 +1262,15 @@
       },
       {
         "entityType": "official",
+        "entityId": "cmryckizo001rln26amamsgaj",
+        "name": "Lupe Ramirez",
+        "allReportedRaised": 11468,
+        "itemizedCycleRaised": 4800,
+        "allReportedSpent": 8938,
+        "itemizedCycleSpent": 2574
+      },
+      {
+        "entityType": "official",
         "entityId": "cmqipcqj90014lnb6q17bbe6d",
         "name": "Lydia Dominguez",
         "allReportedRaised": 16260,
@@ -1235,15 +1316,6 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmryckj26001vln26xr4a9ya8",
-        "name": "Matt Clapham",
-        "allReportedRaised": 200,
-        "itemizedCycleRaised": 0,
-        "allReportedSpent": 453,
-        "itemizedCycleSpent": 0
-      },
-      {
-        "entityType": "official",
         "entityId": "cmpzxd6el00ghln07lggje3x2",
         "name": "Maurice \"Mo\" White",
         "allReportedRaised": 21497,
@@ -1259,6 +1331,15 @@
         "itemizedCycleRaised": 27972,
         "allReportedSpent": 72387,
         "itemizedCycleSpent": 18056
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxdzsk00hxln89p5cajnpz",
+        "name": "Michael Clark",
+        "allReportedRaised": 207611,
+        "itemizedCycleRaised": 45508,
+        "allReportedSpent": 180655,
+        "itemizedCycleSpent": 39298
       },
       {
         "entityType": "official",
@@ -1325,12 +1406,30 @@
       },
       {
         "entityType": "official",
+        "entityId": "cmpzxd0ha0095ln075ccxhlgc",
+        "name": "Daniele Monroe-Moreno",
+        "allReportedRaised": 2196300,
+        "itemizedCycleRaised": 417238,
+        "allReportedSpent": 2112573,
+        "itemizedCycleSpent": 555660
+      },
+      {
+        "entityType": "official",
         "entityId": "cmpzxd0ia0097ln07tgs7fse2",
         "name": "Cinthia Zermeño Moore",
         "allReportedRaised": 173568,
         "itemizedCycleRaised": 50465,
         "allReportedSpent": 140027,
         "itemizedCycleSpent": 49278
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxd0ja0099ln07y41ib71b",
+        "name": "Erica Mosca",
+        "allReportedRaised": 624811,
+        "itemizedCycleRaised": 268413,
+        "allReportedSpent": 544077,
+        "itemizedCycleSpent": 222234
       },
       {
         "entityType": "official",
@@ -1370,6 +1469,15 @@
       },
       {
         "entityType": "official",
+        "entityId": "cmpzxd0l8009dln071tke3wes",
+        "name": "Duy Nguyen",
+        "allReportedRaised": 800528,
+        "itemizedCycleRaised": 251034,
+        "allReportedSpent": 761851,
+        "itemizedCycleSpent": 218234
+      },
+      {
+        "entityType": "official",
         "entityId": "cmpzxd15n00ajln07ndjs0bmn",
         "name": "Rochelle T. Nguyen",
         "allReportedRaised": 1558593,
@@ -1385,6 +1493,15 @@
         "itemizedCycleRaised": 92025,
         "allReportedSpent": 564712,
         "itemizedCycleSpent": 26947
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqipcr6m002clnb6xb0ppo6p",
+        "name": "Olivia Diaz",
+        "allReportedRaised": 1345617,
+        "itemizedCycleRaised": 16500,
+        "allReportedSpent": 1366899,
+        "itemizedCycleSpent": 38968
       },
       {
         "entityType": "official",
@@ -1406,12 +1523,21 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmqipcrdv002plnb6wrr4t1xl",
-        "name": "Pamela Goynes-Brown",
-        "allReportedRaised": 922729,
-        "itemizedCycleRaised": 1750,
-        "allReportedSpent": 905088,
-        "itemizedCycleSpent": 21392
+        "entityId": "cmpzxd0m8009fln07um184q2h",
+        "name": "PK O’Neill",
+        "allReportedRaised": 487184,
+        "itemizedCycleRaised": 1333,
+        "allReportedSpent": 476785,
+        "itemizedCycleSpent": 47501
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmqipcrou003alnb67hbukg5v",
+        "name": "Paul Anderson",
+        "allReportedRaised": 164964,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 238562,
+        "itemizedCycleSpent": 664
       },
       {
         "entityType": "official",
@@ -1433,12 +1559,12 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmqipcrhr002xlnb69i40pumh",
-        "name": "Richard Cherchio",
-        "allReportedRaised": 585672,
-        "itemizedCycleRaised": 5907,
-        "allReportedSpent": 419280,
-        "itemizedCycleSpent": 10021
+        "entityId": "cmqu6nfg60048lnucpz5l0sdx",
+        "name": "Rex Steninger",
+        "allReportedRaised": 0,
+        "itemizedCycleRaised": 0,
+        "allReportedSpent": 330,
+        "itemizedCycleSpent": 0
       },
       {
         "entityType": "official",
@@ -1478,15 +1604,6 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmqipcr3i0026lnb6kgfbgkwv",
-        "name": "Shelley Berkley",
-        "allReportedRaised": 2394912,
-        "itemizedCycleRaised": 47324,
-        "allReportedSpent": 2343914,
-        "itemizedCycleSpent": 89108
-      },
-      {
-        "entityType": "official",
         "entityId": "cmqipcr8r002glnb61nayrlvg",
         "name": "Shondra Summers-Armstrong",
         "allReportedRaised": 529357,
@@ -1502,6 +1619,15 @@
         "itemizedCycleRaised": 397072,
         "allReportedSpent": 2553972,
         "itemizedCycleSpent": 94081
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxd1ah00atln0782dybe7e",
+        "name": "John C. Steinbeck",
+        "allReportedRaised": 560139,
+        "itemizedCycleRaised": 24440,
+        "allReportedSpent": 515181,
+        "itemizedCycleSpent": 46216
       },
       {
         "entityType": "official",
@@ -1532,21 +1658,21 @@
       },
       {
         "entityType": "official",
-        "entityId": "cmqipcqb0000plnb6vlb9ex6e",
-        "name": "Tick Segerblom",
-        "allReportedRaised": 2791516,
-        "itemizedCycleRaised": 554107,
-        "allReportedSpent": 2693142,
-        "itemizedCycleSpent": 481755
-      },
-      {
-        "entityType": "official",
         "entityId": "cmpzxd1de00azln07l6s8k3y5",
         "name": "Robin L. Titus",
         "allReportedRaised": 731676,
         "itemizedCycleRaised": 186200,
         "allReportedSpent": 642793,
         "itemizedCycleSpent": 107479
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxd0r2009pln07w9dvm2px",
+        "name": "Selena Torres-Fossett",
+        "allReportedRaised": 640922,
+        "itemizedCycleRaised": 114534,
+        "allReportedSpent": 570127,
+        "itemizedCycleSpent": 132397
       },
       {
         "entityType": "official",
@@ -1574,6 +1700,15 @@
         "itemizedCycleRaised": 17250,
         "allReportedSpent": 1482948,
         "itemizedCycleSpent": 101144
+      },
+      {
+        "entityType": "official",
+        "entityId": "cmpzxd0sy009tln07b6bm70k2",
+        "name": "Steve Yeager",
+        "allReportedRaised": 2575140,
+        "itemizedCycleRaised": 12500,
+        "allReportedSpent": 2428638,
+        "itemizedCycleSpent": 216371
       },
       {
         "entityType": "official",
