@@ -174,7 +174,7 @@ export function NavLinks() {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden min-w-max flex-nowrap items-center gap-2 rounded-full border border-white/10 bg-white/5 p-1 md:flex">
+    <nav className="dd-nav-shell hidden min-w-max flex-nowrap items-center gap-2 rounded-full border border-white/10 bg-white/5 p-1 md:flex">
       {PRIMARY_NAV_ITEMS.map((link) => {
         const isActive = isNavItemActive(pathname, link.matches);
 
@@ -184,8 +184,8 @@ export function NavLinks() {
             href={link.href}
             className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition ${
               isActive
-                ? "bg-[linear-gradient(135deg,rgba(52,211,153,0.92),rgba(34,211,238,0.82))] text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.75)]"
-                : "text-slate-300 hover:bg-white/8 hover:text-white"
+                ? "dd-nav-link-active bg-[linear-gradient(135deg,rgba(52,211,153,0.92),rgba(34,211,238,0.82))] text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.75)]"
+                : "dd-nav-link-idle text-slate-300 hover:bg-white/8 hover:text-white"
             }`}
           >
             <span>{link.label}</span>
@@ -200,7 +200,7 @@ export function MobileBottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="mobile-bottom-nav fixed inset-x-3 z-30 rounded-[1.4rem] border border-white/10 bg-[rgba(5,11,22,0.92)] p-1 shadow-[0_24px_50px_-26px_rgba(2,8,23,0.95)] backdrop-blur md:hidden">
+    <nav className="dd-mobile-nav mobile-bottom-nav fixed inset-x-3 z-30 rounded-[1.4rem] border border-white/10 bg-[rgba(5,11,22,0.92)] p-1 shadow-[0_24px_50px_-26px_rgba(2,8,23,0.95)] backdrop-blur md:hidden">
       <div className="grid grid-cols-5 gap-1">
         {MOBILE_NAV_ITEMS.map((link) => {
           const isActive = isNavItemActive(pathname, link.matches);
@@ -211,8 +211,8 @@ export function MobileBottomNav() {
               href={link.href}
               className={`rounded-[1.05rem] px-1.5 py-2 text-center text-[11px] font-semibold transition ${
                 isActive
-                  ? "bg-[linear-gradient(135deg,rgba(52,211,153,0.92),rgba(34,211,238,0.84))] text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.7)]"
-                  : "text-slate-300 hover:bg-white/5 hover:text-white"
+                  ? "dd-nav-link-active bg-[linear-gradient(135deg,rgba(52,211,153,0.92),rgba(34,211,238,0.84))] text-slate-950 shadow-[0_14px_28px_-18px_rgba(45,212,191,0.7)]"
+                  : "dd-nav-link-idle text-slate-300 hover:bg-white/5 hover:text-white"
               }`}
             >
               <span className="flex flex-col items-center gap-1">

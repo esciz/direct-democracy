@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { Logo } from "@/components/ui/brand-logo";
 import { NavLinks } from "@/components/ui/nav-links";
 import { NotificationMenu } from "@/components/ui/notification-menu";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { signOutCurrentUser } from "@/lib/auth/actions";
 import { getRoleLabel } from "@/lib/auth/roles";
 import { isGuestUser } from "@/lib/auth/session";
@@ -27,6 +28,25 @@ function NotificationMenuFallback() {
   );
 }
 
+function BrandActions() {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <Link href="/" className="flex items-center">
+        <Logo size="sm" darkSurface />
+      </Link>
+      <div className="flex items-center gap-2">
+        <ThemeToggle />
+        <Link
+          href="/voting"
+          className="dd-button-primary inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition hover:-translate-y-0.5 md:hidden"
+        >
+          Vote
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export async function MainNav() {
   const currentSessionUser = await getCurrentSessionUser();
 
@@ -34,17 +54,7 @@ export async function MainNav() {
     return (
       <header className="sticky top-0 z-20 mb-6 pt-1 sm:mb-8 sm:pt-3">
         <div className="dd-panel flex flex-col gap-4 rounded-[1.75rem] px-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:px-5 lg:py-5">
-          <div className="flex items-center justify-between gap-5">
-            <Link href="/" className="flex items-center">
-              <Logo size="sm" darkSurface />
-            </Link>
-            <Link
-              href="/voting"
-              className="dd-button-primary inline-flex min-h-11 items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5 md:hidden"
-            >
-              Vote Now
-            </Link>
-          </div>
+          <BrandActions />
 
           <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-5">
             <NavLinks />
@@ -80,17 +90,7 @@ export async function MainNav() {
     return (
       <header className="sticky top-0 z-20 mb-6 pt-1 sm:mb-8 sm:pt-3">
         <div className="dd-panel flex flex-col gap-4 rounded-[1.75rem] px-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:px-5 lg:py-5">
-          <div className="flex items-center justify-between gap-5">
-            <Link href="/" className="flex items-center">
-              <Logo size="sm" darkSurface />
-            </Link>
-            <Link
-              href="/voting"
-              className="dd-button-primary inline-flex min-h-11 items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5 md:hidden"
-            >
-              Vote Now
-            </Link>
-          </div>
+          <BrandActions />
 
           <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-5">
             <NavLinks />
@@ -123,17 +123,7 @@ export async function MainNav() {
   return (
     <header className="sticky top-0 z-20 mb-6 pt-1 sm:mb-8 sm:pt-3">
       <div className="dd-panel flex flex-col gap-4 rounded-[1.75rem] px-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:px-5 lg:py-5">
-        <div className="flex items-center justify-between gap-5">
-          <Link href="/" className="flex items-center">
-            <Logo size="sm" darkSurface />
-          </Link>
-          <Link
-            href="/voting"
-            className="dd-button-primary inline-flex min-h-11 items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition hover:-translate-y-0.5 md:hidden"
-          >
-            Vote Now
-          </Link>
-        </div>
+        <BrandActions />
 
         <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-5">
           <NavLinks />

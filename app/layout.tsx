@@ -48,8 +48,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
-      <body className="bg-[#050b16] text-slate-100 antialiased">
+    <html lang="en" data-scroll-behavior="smooth" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var theme=localStorage.getItem('dd-theme');if(theme==='civic-light'){document.documentElement.dataset.theme='civic-light';document.documentElement.style.colorScheme='light'}}catch(e){}",
+          }}
+        />
+      </head>
+      <body className="antialiased">
         <div className="app-shell mx-auto flex min-h-screen w-full max-w-7xl flex-col px-3 sm:px-5 lg:px-8">
           <MainNav />
           <AdminPreviewBanner />
