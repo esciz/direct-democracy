@@ -30,6 +30,23 @@ function HeartIcon({ filled }: { filled: boolean }) {
   );
 }
 
+function FollowIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4.5 w-4.5"
+      fill={filled ? "currentColor" : "none"}
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M6.5 4.5h11v15L12 16l-5.5 3.5v-15Z" />
+    </svg>
+  );
+}
+
 export function FavoriteToggleButton({
   targetType,
   targetId,
@@ -40,11 +57,12 @@ export function FavoriteToggleButton({
   const [favorited, setFavorited] = useState(initialFavorited);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const isIssue = targetType === "issue";
   const label = isPending
-    ? "Saving favorite status"
+    ? isIssue ? "Saving issue follow status" : "Saving saved status"
     : favorited
-      ? "Remove from favorites"
-      : "Add to favorites";
+      ? isIssue ? "Stop following issue" : "Remove from saved items"
+      : isIssue ? "Follow issue" : "Save item";
 
   return (
     <div className="flex flex-col items-start gap-1">
@@ -62,7 +80,7 @@ export function FavoriteToggleButton({
             const result = await toggleFavoriteAction({ targetType, targetId });
 
             if (!result.ok) {
-              setError(result.message ?? "Favorite status could not be updated.");
+              setError(result.message ?? (isIssue ? "Issue follow status could not be updated." : "Saved status could not be updated."));
               return;
             }
 
@@ -72,11 +90,13 @@ export function FavoriteToggleButton({
         className={
           className ??
           (favorited
-            ? "inline-flex h-10 w-10 items-center justify-center rounded-full border border-rose-200 bg-rose-50 text-rose-600 transition hover:border-rose-300 hover:text-rose-700"
+            ? isIssue
+              ? "inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-200 bg-cyan-50 text-cyan-700 transition hover:border-cyan-300 hover:text-cyan-800"
+              : "inline-flex h-10 w-10 items-center justify-center rounded-full border border-rose-200 bg-rose-50 text-rose-600 transition hover:border-rose-300 hover:text-rose-700"
             : "inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition hover:border-civic-500 hover:text-civic-700")
         }
       >
-        <HeartIcon filled={favorited} />
+        {isIssue ? <FollowIcon filled={favorited} /> : <HeartIcon filled={favorited} />}
         {visibleLabel ? <span className="ml-2">{visibleLabel}</span> : null}
         <span className="sr-only">{label}</span>
       </button>

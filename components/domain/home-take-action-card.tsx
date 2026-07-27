@@ -65,7 +65,7 @@ type TabId = "vote" | "issues" | "meetings" | "signal" | "polls" | "petitions";
 
 const tabs: Array<{ id: TabId; label: string; description: string }> = [
   { id: "vote", label: "Vote", description: "Answer the next formal civic question." },
-  { id: "issues", label: "Issues", description: "Track active, trending, and saved issues." },
+  { id: "issues", label: "Issues", description: "Track active, trending, and followed issues." },
   { id: "meetings", label: "Meetings", description: "Prepare for upcoming and recent meetings." },
   { id: "signal", label: "Voices", description: "Read useful local comments with counterpoints." },
   { id: "polls", label: "Polls", description: "Respond to quick citizen questions." },
@@ -154,11 +154,11 @@ export function HomeTakeActionCard({
     return [
       ...activeIssues.map((issue) => ({
         ...issue,
-        label: savedIds.has(issue.id) ? "Saved" : "System generated",
+        label: savedIds.has(issue.id) ? "Following" : "System generated",
       })),
       ...savedIssues
         .filter((issue) => !generatedIds.has(issue.id))
-        .map((issue) => ({ ...issue, label: "Saved" })),
+        .map((issue) => ({ ...issue, label: "Following" })),
     ];
   }, [activeIssues, savedIssues]);
   const upcomingMeetings = meetings.filter((meeting) => meeting.status === "upcoming");

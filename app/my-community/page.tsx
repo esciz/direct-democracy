@@ -6,7 +6,7 @@ import { CommunitySelector } from "@/components/domain/community-selector";
 import { HomeUpcomingElectionsPane } from "@/components/domain/home-upcoming-elections-pane";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getDecisionCards } from "@/lib/civic/decision-pages";
-import type { FavoriteTargetType } from "@/lib/favorites/types";
+import type { FavoriteTargetType, IssueFollowStance } from "@/lib/favorites/types";
 import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getAllPetitions } from "@/lib/petitions/store";
@@ -274,7 +274,7 @@ function getFavoriteLabel(targetType: FavoriteTargetType) {
     case "community":
       return "Community";
     case "issue":
-      return "Saved issue";
+      return "Following issue";
     case "candidate":
       return "Followed candidate";
     case "official":
@@ -295,6 +295,19 @@ function getFavoriteLabel(targetType: FavoriteTargetType) {
       return "Followed decision";
     case "project":
       return "Followed project";
+  }
+}
+
+function getIssueFollowLabel(stance: IssueFollowStance | undefined) {
+  switch (stance) {
+    case "support":
+      return "Support";
+    case "concerned":
+      return "Concerned";
+    case "oppose":
+      return "Oppose";
+    default:
+      return "Just tracking";
   }
 }
 
@@ -826,7 +839,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
           if (!issue) return null;
           return {
             id: `${record.targetType}-${record.targetId}`,
-            label: getFavoriteLabel(record.targetType),
+            label: `${getFavoriteLabel(record.targetType)} · ${getIssueFollowLabel(record.stance)}`,
             title: issue.issueText,
             summary: `${issue.jurisdictionName} · ${issue.upvoteCount} people elevating this issue`,
             href: `/issues/${slugifyIssueText(issue.issueText)}`,
@@ -1336,9 +1349,9 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="Favorites"
-            title="Saved civic items"
-            description="A short list of the communities, issues, officials, candidates, petitions, and civic items you want to keep close."
+            eyebrow="Following"
+            title="Your civic tracker"
+            description="Issues you support or oppose can live beside the people, places, and civic items you want to keep close."
           />
           <Link
             href={`/explore?communityId=${selectedCommunityId}`}
@@ -1370,7 +1383,7 @@ export default async function MyCommunityPage({ searchParams }: MyCommunityPageP
           </div>
         ) : (
           <div className="mt-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400">
-            Save communities, issues, officials, or petitions to see them here.
+            Follow an issue or save a civic item to see it here.
           </div>
         )}
       </section>

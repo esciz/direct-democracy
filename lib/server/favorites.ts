@@ -4,7 +4,8 @@ import { cookies } from "next/headers";
 import { cache } from "react";
 
 import { getCurrentUser } from "@/lib/server/auth-session";
-import type { FavoriteRecord, FavoriteTargetType } from "@/lib/favorites/types";
+import { isIssueFollowStance } from "@/lib/favorites/types";
+import type { FavoriteRecord, FavoriteTargetType, IssueFollowStance } from "@/lib/favorites/types";
 
 const FAVORITES_COOKIE = "dd_favorites";
 
@@ -57,7 +58,8 @@ function isFavoriteRecord(value: unknown): value is FavoriteRecord {
     typeof record.userId === "string" &&
     typeof record.targetType === "string" &&
     typeof record.targetId === "string" &&
-    typeof record.createdAt === "string"
+    typeof record.createdAt === "string" &&
+    (record.stance === undefined || (typeof record.stance === "string" && isIssueFollowStance(record.stance)))
   );
 }
 
@@ -104,6 +106,7 @@ export async function addFavoriteForUser(userId: string, targetType: FavoriteTar
       targetType,
       targetId,
       createdAt: new Date().toISOString(),
+      ...(targetType === "issue" ? { stance: "tracking" as const } : {}),
     },
     ...stored,
   ]);
@@ -154,6 +157,7 @@ export async function toggleFavoriteForUser(userId: string, targetType: Favorite
       targetType,
       targetId,
       createdAt: new Date().toISOString(),
+      ...(targetType === "issue" ? { stance: "tracking" as const } : {}),
     } satisfies FavoriteRecord,
   ];
   await setStoredFavorites(next);
@@ -170,3 +174,37 @@ export const isFavoriteForCurrentViewer = cache(async (targetType: FavoriteTarge
   const { favorites } = await getCurrentViewerFavorites();
   return favorites.some((record) => record.targetType === targetType && record.targetId === targetId);
 });
+
+export const getFavoriteForCurrentViewer = cache(async (targetType: FavoriteTargetType, targetId: string) => {
+  const { favorites } = await getCurrentViewerFavorites();
+  return favorites.find((record) => record.targetType === targetType && record.targetId === targetId) ?? null;
+});
+
+export async function setIssueFollowStanceForUser(
+  userId: string,
+  targetId: string,
+  stance: IssueFollowStance | null,
+) {
+  const stored = await getStoredFavorites();
+  const withoutIssue = stored.filter(
+    (record) => !(record.userId === userId && record.targetType === "issue" && record.targetId === targetId),
+  );
+
+  if (!stance) {
+    await setStoredFavorites(withoutIssue);
+    return { stance: null };
+  }
+
+  await setStoredFavorites([
+    {
+      userId,
+      targetType: "issue",
+      targetId,
+      createdAt: new Date().toISOString(),
+      stance,
+    },
+    ...withoutIssue,
+  ]);
+
+  return { stance };
+}

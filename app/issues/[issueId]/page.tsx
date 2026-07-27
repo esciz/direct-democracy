@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
-import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { IssueFollowControl } from "@/components/domain/issue-follow-control";
 import { IssuePositionsSection } from "@/components/domain/issue-positions-section";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { OrganizationCard } from "@/components/domain/organization-card";
@@ -2118,7 +2118,7 @@ export default async function IssueDetailPage({ params, searchParams }: IssueDet
         }
         actions={
           <div className="flex flex-wrap items-center gap-3">
-            <FavoriteToggleControl targetType="issue" targetId={issue.id} />
+            <IssueFollowControl targetId={issue.id} />
             <ShareActionMenu
               target={{
                 entityType: "issue",

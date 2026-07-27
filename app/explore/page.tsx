@@ -352,12 +352,16 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
 
   const activeCategoryLabel = getCategoryLabel(activeCategory);
   const resultsTitle = favoritesOnly
-    ? `${activeCategoryLabel} you favorited`
+    ? activeCategory === "issues"
+      ? "Issues you follow"
+      : `${activeCategoryLabel} you saved`
     : query
       ? `${activeCategoryLabel} matching “${query}”`
       : `${activeCategoryLabel} to browse`;
   const resultsDescription = favoritesOnly
-    ? `A reusable favorites view for ${activeCategoryLabel.toLowerCase()}.`
+    ? activeCategory === "issues"
+      ? "Issues you support, oppose, are concerned about, or simply want to track."
+      : `Your saved ${activeCategoryLabel.toLowerCase()} in one place.`
     : query
       ? `Search is currently scoped to ${activeCategoryLabel.toLowerCase()} only.`
       : activeFilterSummary
@@ -549,7 +553,9 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
             ) : (
               <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-400 xl:col-span-2">
                 {favoritesOnly
-                  ? `No saved ${activeCategoryLabel.toLowerCase()} yet.`
+                  ? activeCategory === "issues"
+                    ? "You are not following any issues yet."
+                    : `No saved ${activeCategoryLabel.toLowerCase()} yet.`
                   : query
                     ? activePreview.emptyReason ?? `No ${activeCategoryLabel.toLowerCase()} match “${query}” yet.`
                     : activePreview.emptyReason ?? `No ${activeCategoryLabel.toLowerCase()} are available for this browse preview yet.`}
