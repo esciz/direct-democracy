@@ -4,7 +4,6 @@ import { Suspense } from "react";
 import { Logo } from "@/components/ui/brand-logo";
 import { NavLinks } from "@/components/ui/nav-links";
 import { NotificationMenu } from "@/components/ui/notification-menu";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { signOutCurrentUser } from "@/lib/auth/actions";
 import { getRoleLabel } from "@/lib/auth/roles";
 import { isGuestUser } from "@/lib/auth/session";
@@ -34,15 +33,12 @@ function BrandActions() {
       <Link href="/" className="flex items-center">
         <Logo size="sm" darkSurface />
       </Link>
-      <div className="flex items-center gap-2">
-        <ThemeToggle />
-        <Link
-          href="/voting"
-          className="dd-button-primary inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition hover:-translate-y-0.5 md:hidden"
-        >
-          Vote
-        </Link>
-      </div>
+      <Link
+        href="/voting"
+        className="dd-button-primary inline-flex min-h-10 items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition hover:-translate-y-0.5 md:hidden"
+      >
+        Vote
+      </Link>
     </div>
   );
 }
