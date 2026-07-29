@@ -77,17 +77,11 @@ function formatFetchedDate(value: string | null) {
   });
 }
 
-function EventSourceLink({ href, label, description }: { href: string | null; label: string; description?: string }) {
+function InlineSourceLink({ href, label }: { href: string | null; label: string }) {
   if (!href) return null;
   return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="block rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4 transition hover:border-civic-300 hover:bg-white"
-    >
-      <span className="text-sm font-semibold text-ink">{label}</span>
-      {description ? <span className="mt-1 block text-sm leading-6 text-slate-600">{description}</span> : null}
+    <Link href={href} target="_blank" rel="noreferrer" className="inline-flex text-xs font-semibold text-civic-700 hover:text-civic-900">
+      {label}
     </Link>
   );
 }
@@ -100,6 +94,14 @@ function IntelligenceBadge({ children, tone = "slate" }: { children: string; ton
     blue: "bg-sky-50 text-sky-700",
   };
   return <span className={`rounded-full px-3 py-1 text-xs font-semibold ${classes[tone]}`}>{children}</span>;
+}
+
+function summarizeList(values: string[], fallback: string, limit = 3) {
+  const cleaned = [...new Set(values.map((value) => value.trim()).filter(Boolean))];
+  if (!cleaned.length) return fallback;
+  const visible = cleaned.slice(0, limit).join(", ");
+  const remaining = cleaned.length - limit;
+  return remaining > 0 ? `${visible}, and ${remaining} more` : visible;
 }
 
 function renderEventPostPreview(post: PostSummary) {
@@ -266,6 +268,51 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
       votesByItemId.set(vote.meeting_item_id, [...(votesByItemId.get(vote.meeting_item_id) ?? []), vote]);
     }
   }
+  const parsedVoteRecords = agendaItems.flatMap((item) => votesByItemId.get(item.id) ?? []);
+  const actionableAgendaItems = agendaItems.filter((item) =>
+    item.item_type !== "public_comment" &&
+    item.item_type !== "closed_session" &&
+    !/^(?:roll call|pledge|adjourn|approval of agenda|public comment)$/i.test(item.title.trim()),
+  );
+  const agendaTopicSummary = summarizeList(
+    actionableAgendaItems.map((item) => item.one_sentence_summary || item.title),
+    event.status === "upcoming"
+      ? "The agenda source is connected, but detailed agenda item summaries have not been extracted yet."
+      : "No parsed agenda item summaries are available yet for this imported meeting record.",
+    2,
+  );
+  const minutesSummary = event.status === "upcoming"
+    ? "Minutes are expected after the meeting occurs and the host body posts an approved record."
+    : event.meetingSummary ?? event.summary ?? "Minutes extraction has not produced a plain-language summary yet.";
+  const actionsSummary = event.keyActions.length
+    ? summarizeList(event.keyActions, "No key actions have been extracted yet.", 3)
+    : event.actionsTaken.length
+      ? summarizeList(event.actionsTaken.map((action) => [action.title, action.result].filter(Boolean).join(": ")), "No key actions have been extracted yet.", 3)
+      : relatedVotingCards.length
+        ? summarizeList(relatedVotingCards.map((card) => card.outcome_text ?? card.public_title ?? card.title), "No key actions have been extracted yet.", 3)
+        : event.status === "upcoming"
+          ? "Actions will appear here after the meeting is completed or when the agenda parser identifies action items."
+          : "No action summary has been extracted from minutes or agenda materials yet.";
+  const parsedVoteItemCount = new Set(parsedVoteRecords.map((vote) => vote.meeting_item_id)).size;
+  const voteSummary = parsedVoteRecords.length
+    ? `${parsedVoteRecords.length} named vote record${parsedVoteRecords.length === 1 ? "" : "s"} parsed across ${parsedVoteItemCount} agenda item${parsedVoteItemCount === 1 ? "" : "s"}.`
+    : event.voteResults.length
+      ? summarizeList(event.voteResults.map((vote) => [vote.motion, vote.result, vote.voteText].filter(Boolean).join(": ")), "Vote results are not summarized yet.", 2)
+      : event.status === "upcoming"
+        ? "Vote outcomes are not available before the meeting. Any roll-call or aggregate result will appear after minutes or action records are parsed."
+        : "No named votes or aggregate vote results have been parsed for this meeting yet.";
+  const packetSummary = event.packetUrl
+    ? relatedVotingCards.length
+      ? `${relatedVotingCards.length} citizen voting card${relatedVotingCards.length === 1 ? "" : "s"} or issue prompt${relatedVotingCards.length === 1 ? "" : "s"} were generated from meeting materials.`
+      : "Packet or supporting document material is linked for source review; item-level document summaries are still pending."
+    : "No separate packet or supporting document source has been imported for this record.";
+  const sourceLinks = [
+    { href: event.agendaUrl, label: "Open agenda" },
+    { href: event.packetUrl, label: "Open packet" },
+    { href: event.minutesUrl, label: "Open minutes" },
+    { href: event.videoUrl ?? event.virtualUrl, label: "Open video" },
+    { href: event.sourceUrl, label: "Open source page" },
+  ];
 
   return (
     <div className="space-y-8 py-8">
@@ -524,18 +571,70 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
         <div className="space-y-6">
           <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Meeting materials</p>
-            <h2 className="mt-2 text-2xl font-semibold text-ink">Official links</h2>
+            <h2 className="mt-2 text-2xl font-semibold text-ink">In-page meeting digest</h2>
             <div className="mt-5 space-y-3">
-              <EventSourceLink href={event.agendaUrl} label="Agenda" description="Agenda or agenda archive from the hosting body." />
-              <EventSourceLink href={event.packetUrl} label="Packet / documents" description="Meeting packet, supporting documents, or item materials." />
-              <EventSourceLink href={event.minutesUrl} label="Minutes" description="Approved minutes or minutes archive when available." />
-              <EventSourceLink href={event.videoUrl ?? event.virtualUrl} label="Video / recording" description="Public stream, recording, or video archive." />
-              <EventSourceLink href={event.sourceUrl} label="Source page" description="Primary official source for this event record." />
+              <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-sm font-semibold text-ink">Agenda</h3>
+                  <InlineSourceLink href={event.agendaUrl} label="Source" />
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {actionableAgendaItems.length
+                    ? `${actionableAgendaItems.length} parsed review topic${actionableAgendaItems.length === 1 ? "" : "s"}: ${agendaTopicSummary}.`
+                    : agendaTopicSummary}
+                </p>
+              </article>
+              <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-sm font-semibold text-ink">Minutes</h3>
+                  <InlineSourceLink href={event.minutesUrl} label="Source" />
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{minutesSummary}</p>
+              </article>
+              <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-sm font-semibold text-ink">Actions</h3>
+                  <InlineSourceLink href={event.sourceUrl} label="Source" />
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{actionsSummary}</p>
+              </article>
+              <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-sm font-semibold text-ink">Votes</h3>
+                  <InlineSourceLink href={event.minutesUrl ?? event.sourceUrl} label="Source" />
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{voteSummary}</p>
+              </article>
+              <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-sm font-semibold text-ink">Packet / Documents</h3>
+                  <InlineSourceLink href={event.packetUrl} label="Source" />
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{packetSummary}</p>
+              </article>
+              {event.videoUrl || event.virtualUrl ? (
+                <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="text-sm font-semibold text-ink">Video / Recording</h3>
+                    <InlineSourceLink href={event.videoUrl ?? event.virtualUrl} label="Source" />
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    Public video is connected for this record. Transcript or clip-level summaries will appear when recording extraction is available.
+                  </p>
+                </article>
+              ) : null}
             </div>
             {!materialCount ? (
               <p className="mt-5 rounded-[1.25rem] border border-dashed border-slate-300 bg-slate-50 p-4 text-sm leading-6 text-slate-600">
                 No meeting materials have been imported yet. The source registry entry still keeps this public body visible in Events.
               </p>
+            ) : null}
+            {sourceLinks.some((link) => link.href) ? (
+              <div className="mt-4 flex flex-wrap gap-3 border-t border-slate-200 pt-4">
+                {sourceLinks.map((link) => (
+                  <InlineSourceLink key={`${link.label}-${link.href ?? "missing"}`} href={link.href} label={link.label} />
+                ))}
+              </div>
             ) : null}
           </section>
 

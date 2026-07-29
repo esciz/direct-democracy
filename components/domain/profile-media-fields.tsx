@@ -36,6 +36,24 @@ function initialsForName(name: string) {
     .join("");
 }
 
+async function uploadProfileMedia(file: File, kind: "profile" | "banner") {
+  const formData = new FormData();
+  formData.set("kind", kind);
+  formData.set("file", file);
+
+  const response = await fetch("/api/profile-media", {
+    method: "POST",
+    body: formData,
+  });
+  const payload = (await response.json().catch(() => null)) as { ok?: boolean; url?: string; message?: string } | null;
+
+  if (!response.ok || !payload?.ok || typeof payload.url !== "string") {
+    throw new Error(payload?.message || "The image could not be uploaded.");
+  }
+
+  return payload.url;
+}
+
 export function ProfileMediaFields({
   userName,
   profileImageUrl,
@@ -47,14 +65,66 @@ export function ProfileMediaFields({
   const [removeProfileImage, setRemoveProfileImage] = useState(false);
   const [removeBannerImage, setRemoveBannerImage] = useState(false);
   const [mediaError, setMediaError] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
   const profileInputRef = useRef<HTMLInputElement>(null);
   const bannerInputRef = useRef<HTMLInputElement>(null);
+  const profileUrlInputRef = useRef<HTMLInputElement>(null);
+  const bannerUrlInputRef = useRef<HTMLInputElement>(null);
+  const bypassUploadRef = useRef(false);
   const profilePreviewUrl = usePreviewUrl(profileFile);
   const bannerPreviewUrl = usePreviewUrl(bannerFile);
   const visibleProfileUrl = removeProfileImage ? "" : profilePreviewUrl || profileImageUrl;
   const visibleBannerUrl = removeBannerImage ? "" : bannerPreviewUrl || bannerImageUrl;
   const hasPendingMediaChange =
     Boolean(profileFile || bannerFile) || removeProfileImage || removeBannerImage;
+
+  useEffect(() => {
+    const form = bannerInputRef.current?.form;
+    if (!form) return;
+    const profileForm = form;
+
+    async function handleSubmit(event: SubmitEvent) {
+      if (bypassUploadRef.current) {
+        bypassUploadRef.current = false;
+        return;
+      }
+
+      if (!profileFile && !bannerFile) return;
+
+      event.preventDefault();
+      setIsUploading(true);
+      setMediaError("");
+
+      try {
+        const [profileUrl, bannerUrl] = await Promise.all([
+          profileFile ? uploadProfileMedia(profileFile, "profile") : Promise.resolve(""),
+          bannerFile ? uploadProfileMedia(bannerFile, "banner") : Promise.resolve(""),
+        ]);
+
+        if (profileUrlInputRef.current && profileUrl) {
+          profileUrlInputRef.current.value = profileUrl;
+        }
+
+        if (bannerUrlInputRef.current && bannerUrl) {
+          bannerUrlInputRef.current.value = bannerUrl;
+        }
+
+        if (profileInputRef.current) profileInputRef.current.value = "";
+        if (bannerInputRef.current) bannerInputRef.current.value = "";
+        setProfileFile(null);
+        setBannerFile(null);
+        bypassUploadRef.current = true;
+        profileForm.requestSubmit(event.submitter instanceof HTMLElement ? event.submitter : undefined);
+      } catch (error) {
+        setMediaError(error instanceof Error ? error.message : "The image could not be uploaded.");
+      } finally {
+        setIsUploading(false);
+      }
+    }
+
+    profileForm.addEventListener("submit", handleSubmit);
+    return () => profileForm.removeEventListener("submit", handleSubmit);
+  }, [bannerFile, profileFile]);
 
   function validateSelectedFile(file: File | null, input: HTMLInputElement, label: string) {
     if (!file) {
@@ -233,9 +303,11 @@ export function ProfileMediaFields({
           }`}
         >
           <span className="h-2 w-2 shrink-0 rounded-full bg-current" aria-hidden="true" />
-          Photo changes are ready. Select “Save all changes” to publish them.
+          {isUploading ? "Uploading photos..." : "Photo changes are ready. Select “Save all changes” to publish them."}
         </div>
       ) : null}
+      <input ref={profileUrlInputRef} type="hidden" name="uploadedProfileImageUrl" />
+      <input ref={bannerUrlInputRef} type="hidden" name="uploadedBannerImageUrl" />
     </section>
   );
 }

@@ -116,6 +116,20 @@ function parseExternalLinks(formData: FormData) {
   return { links, invalidLabels };
 }
 
+function isAppOwnedProfileMediaUrl(value: unknown) {
+  if (typeof value !== "string") return false;
+  const trimmed = value.trim();
+
+  if (trimmed.startsWith("/api/profile-media/")) return true;
+
+  try {
+    const url = new URL(trimmed);
+    return url.protocol === "https:" && url.hostname.endsWith(".blob.vercel-storage.com");
+  } catch {
+    return false;
+  }
+}
+
 export async function togglePublicCitizenVisibility(formData: FormData) {
   const currentUser = await getCurrentUser();
   const nextVisible = formData.get("nextVisible");
@@ -168,6 +182,8 @@ export async function updateProfileDetails(formData: FormData) {
       : currentContent.primaryCommunityId || getDefaultCommunityForJurisdiction(currentUser.jurisdictionName).id;
   let profileImageUpload: Awaited<ReturnType<typeof validateProfileMediaUpload>> = null;
   let bannerImageUpload: Awaited<ReturnType<typeof validateProfileMediaUpload>> = null;
+  const uploadedProfileImageUrl = formData.get("uploadedProfileImageUrl");
+  const uploadedBannerImageUrl = formData.get("uploadedBannerImageUrl");
 
   try {
     [profileImageUpload, bannerImageUpload] = await Promise.all([
@@ -187,8 +203,16 @@ export async function updateProfileDetails(formData: FormData) {
       ? requestedProfileTheme
       : "classic";
   const storedMediaUrls: string[] = [];
-  let nextProfileImageUrl = removeProfileImage ? "" : currentContent.profileImageUrl;
-  let nextBannerImageUrl = removeBannerImage ? "" : currentContent.bannerImageUrl;
+  let nextProfileImageUrl = removeProfileImage
+    ? ""
+    : isAppOwnedProfileMediaUrl(uploadedProfileImageUrl)
+      ? String(uploadedProfileImageUrl).trim()
+      : currentContent.profileImageUrl;
+  let nextBannerImageUrl = removeBannerImage
+    ? ""
+    : isAppOwnedProfileMediaUrl(uploadedBannerImageUrl)
+      ? String(uploadedBannerImageUrl).trim()
+      : currentContent.bannerImageUrl;
 
   try {
     if (profileImageUpload) {
