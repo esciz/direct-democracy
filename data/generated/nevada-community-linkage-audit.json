@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T22:02:33.105Z",
+  "generatedAt": "2026-08-10T15:08:45.410Z",
   "auditGoal": "Determine whether Nevada community coverage gaps are missing data or missing canonical community relationships.",
   "canonicalCommunityScope": {
     "coverageCommunities": 43,
@@ -83,26 +83,26 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 946,
-        "recordsLinkedToCanonicalCommunities": 946,
-        "recordsLinkedToCoverageCommunities": 922,
-        "recordsNotLinkedToCoverageCommunities": 24,
-        "recordsCountedInCoverageReport": 922,
-        "recordsNotCountedInCoverageReport": 24
+        "totalRecordsInDatabaseOrRuntime": 1031,
+        "recordsLinkedToCanonicalCommunities": 1031,
+        "recordsLinkedToCoverageCommunities": 1001,
+        "recordsNotLinkedToCoverageCommunities": 30,
+        "recordsCountedInCoverageReport": 1001,
+        "recordsNotCountedInCoverageReport": 30
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "no_direct_community_id_field",
-          "count": 24
+          "count": 30
         },
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 24
+          "count": 30
         }
       ],
       "sampleUncountedRecords": [
         {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-legislative-operations-and-elections-2026-07-31-d4cf25e7",
+          "id": "meeting-nv-legislature-agenda-2026-08-11-0303f3fd",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -116,7 +116,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-health-and-human-services-2026-08-11-0303f3fd",
+          "id": "meeting-nv-legislature-agenda-2026-08-12-1e0632a3",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -130,21 +130,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-natural-resources-2026-08-12-1e0632a3",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-interim-finance-committee-2026-08-13-dd2b2900",
+          "id": "meeting-nv-legislature-agenda-2026-08-13-dd2b2900",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -312,6 +298,20 @@
           "linkBasis": "meeting_body"
         },
         {
+          "id": "meeting-nv-legislature-joint-special-committee-to-examine-functions-at-hotels-for-housekeeping-staff-2026-08-27-3635d39d",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
           "id": "meeting-nv-legislature-joint-interim-standing-committee-on-government-affairs-2026-08-27-a1e17634",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
@@ -326,7 +326,35 @@
           "linkBasis": "meeting_body"
         },
         {
+          "id": "meeting-nv-legislature-economic-forum-2026-09-09-e853eeab",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
           "id": "meeting-nv-legislature-nevada-youth-legislature-2026-09-24-f533baae",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-nv-legislature-economic-forum-2026-10-14-fd38ec85",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -355,6 +383,20 @@
         },
         {
           "id": "meeting-nv-legislature-nevada-youth-legislature-2026-10-20-3ea4c43e",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-nv-legislature-economic-forum-2026-11-16-33a11bac",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -408,40 +450,12 @@
             "no_direct_community_id_field"
           ],
           "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-nevada-youth-legislature-2027-01-13-20beac62",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-interim-finance-committee-2027-01-28-b87d07a2",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
         }
       ],
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meetings.json",
-          "totalRecords": 946
+          "totalRecords": 1031
         }
       ]
     },
@@ -550,17 +564,17 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 773,
-        "recordsLinkedToCanonicalCommunities": 773,
-        "recordsLinkedToCoverageCommunities": 748,
-        "recordsNotLinkedToCoverageCommunities": 25,
-        "recordsCountedInCoverageReport": 748,
-        "recordsNotCountedInCoverageReport": 25
+        "totalRecordsInDatabaseOrRuntime": 1992,
+        "recordsLinkedToCanonicalCommunities": 1992,
+        "recordsLinkedToCoverageCommunities": 1965,
+        "recordsNotLinkedToCoverageCommunities": 27,
+        "recordsCountedInCoverageReport": 1965,
+        "recordsNotCountedInCoverageReport": 27
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 25
+          "count": 27
         }
       ],
       "sampleUncountedRecords": [
@@ -893,11 +907,11 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-court-cases-runtime.json",
-          "totalRecords": 25
+          "totalRecords": 27
         },
         {
           "path": "data/generated/public-cases-runtime.json",
-          "totalRecords": 748
+          "totalRecords": 1965
         }
       ]
     },
@@ -918,11 +932,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 594,
-        "recordsLinkedToCanonicalCommunities": 565,
-        "recordsLinkedToCoverageCommunities": 565,
+        "totalRecordsInDatabaseOrRuntime": 1188,
+        "recordsLinkedToCanonicalCommunities": 1159,
+        "recordsLinkedToCoverageCommunities": 1159,
         "recordsNotLinkedToCoverageCommunities": 29,
-        "recordsCountedInCoverageReport": 565,
+        "recordsCountedInCoverageReport": 1159,
         "recordsNotCountedInCoverageReport": 29
       },
       "topReasonsRecordsAreNotCounted": [
@@ -1303,7 +1317,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-items.json",
-          "totalRecords": 540
+          "totalRecords": 1134
         },
         {
           "path": "data/generated/nv-sos-campaign-finance-records.json",
@@ -1327,11 +1341,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 1282,
-        "recordsLinkedToCanonicalCommunities": 1282,
-        "recordsLinkedToCoverageCommunities": 1282,
+        "totalRecordsInDatabaseOrRuntime": 3000,
+        "recordsLinkedToCanonicalCommunities": 3000,
+        "recordsLinkedToCoverageCommunities": 3000,
         "recordsNotLinkedToCoverageCommunities": 0,
-        "recordsCountedInCoverageReport": 1282,
+        "recordsCountedInCoverageReport": 3000,
         "recordsNotCountedInCoverageReport": 0
       },
       "topReasonsRecordsAreNotCounted": [],
@@ -1339,7 +1353,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-voting-cards.json",
-          "totalRecords": 1282
+          "totalRecords": 3000
         }
       ]
     },
@@ -1359,38 +1373,38 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 16,
-        "recordsLinkedToCanonicalCommunities": 13,
-        "recordsLinkedToCoverageCommunities": 12,
-        "recordsNotLinkedToCoverageCommunities": 4,
-        "recordsCountedInCoverageReport": 13,
-        "recordsNotCountedInCoverageReport": 3
+        "totalRecordsInDatabaseOrRuntime": 19,
+        "recordsLinkedToCanonicalCommunities": 18,
+        "recordsLinkedToCoverageCommunities": 16,
+        "recordsNotLinkedToCoverageCommunities": 3,
+        "recordsCountedInCoverageReport": 18,
+        "recordsNotCountedInCoverageReport": 1
       },
       "topReasonsRecordsAreNotCounted": [
         {
+          "reason": "low_confidence_parse_or_match",
+          "count": 1
+        },
+        {
           "reason": "no_canonical_community_match",
-          "count": 3
+          "count": 1
         },
         {
           "reason": "no_canonical_local_community_match",
-          "count": 3
+          "count": 1
         },
         {
           "reason": "no_direct_community_id_field",
-          "count": 3
+          "count": 1
         },
         {
           "reason": "record_needs_review",
-          "count": 3
-        },
-        {
-          "reason": "low_confidence_parse_or_match",
           "count": 1
         }
       ],
       "sampleUncountedRecords": [
         {
-          "id": "issue_real_education",
+          "id": "issue_real_campaign-finance-transparency",
           "sourcePath": "data/generated/issues-runtime.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [],
@@ -1403,40 +1417,12 @@
             "low_confidence_parse_or_match"
           ],
           "linkBasis": "none"
-        },
-        {
-          "id": "issue_real_public-meeting-access",
-          "sourcePath": "data/generated/issues-runtime.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "record_needs_review"
-          ],
-          "linkBasis": "none"
-        },
-        {
-          "id": "issue_real_criminal-justice",
-          "sourcePath": "data/generated/issues-runtime.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "record_needs_review"
-          ],
-          "linkBasis": "none"
         }
       ],
       "sourceBreakdown": [
         {
           "path": "data/generated/issues-runtime.json",
-          "totalRecords": 16
+          "totalRecords": 19
         }
       ]
     }

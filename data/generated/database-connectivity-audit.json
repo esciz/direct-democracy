@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T14:26:03.775Z",
+  "generatedAt": "2026-08-08T13:18:39.923Z",
   "safe": {
     "credentialsRedacted": true,
     "readOnlyQuery": true,
@@ -37,8 +37,8 @@
     "migrationTable": {
       "status": "ok",
       "reason": null,
-      "appliedMigrations": 1,
-      "localMigrations": 1
+      "appliedMigrations": 2,
+      "localMigrations": 2
     },
     "schema": {
       "status": "ok",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T22:08:32.370Z",
+  "generatedAt": "2026-08-10T15:08:30.745Z",
   "records": [
     {
       "documentId": "meeting-source-document-2e8888c354762bce37ee1e2fdc7b95de46faabb17d38c171ebfcb6a0a9c27b7f",
@@ -30,88 +30,312 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-fb129b08dacece426001b997e5de80ab1ff9c40cdb106ca1142fdf8d0a1c10b1",
-      "meetingId": "meeting-carson-city-board-of-supervisors-administrative-hearing-2026-07-29-eae23183",
-      "documentType": "packet",
-      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/d9366baa-7a26-11f1-9494-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1784582727.pdf",
+      "documentId": "meeting-source-document-86bbbfb729ee2b4ecb943c73dd805037fc60111725cd8ac21bf83a19337cb0ea",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-07-27-661024be",
+      "documentType": "agenda",
+      "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_City_Council_Meeting_1252_Agenda_7_27_2026_2_00_00_PM.pdf?documentType=1&meetingId=1252",
       "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-d9366baa-7a26-11f1-9494-005056a89546-e5/5a545879fa67398397f198159f8449652895bf6a71d83351e4e32d1e165cfe5c.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 23458,
-      "nativeExtractionQuality": "high",
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "no_cached_binary_available"
         }
       ],
-      "failureReason": null
+      "failureReason": "No cached binary is available for OCR."
     },
     {
-      "documentId": "meeting-source-document-5287af0ec50387bd1c18e57f2c85b506672fcbbdd383ff605222d7b307a56adc",
-      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-eeeb7eb6",
-      "documentType": "packet",
-      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/de9f97bc-cfa9-11f0-bb28-005056a89546-c4b7aef4-c5cb-4f08-b9f0-3200f86073a7-1784914295.pdf",
+      "documentId": "meeting-source-document-289c27e67550b93a625dea54302c3a95f47261a3f8ee90e0532a534d87f59d9f",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-07-27-5a9c88bb",
+      "documentType": "agenda",
+      "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_Redevelopment_Agency_Meeting_1253_Agenda_7_27_2026_2_00_00_PM.pdf?documentType=1&meetingId=1253",
       "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-de9f97bc-cfa9-11f0-bb28-005056a89546-c4/a89dd64ef4aae08837b66662b1f8d72197ddf12931ccf667f75f7fbb338ece78.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
-      "nativeTextLength": 284789,
-      "nativeExtractionQuality": "high",
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "no_cached_binary_available"
         }
       ],
-      "failureReason": null
+      "failureReason": "No cached binary is available for OCR."
     },
     {
-      "documentId": "meeting-source-document-1d9550ca2303b17cbc9e1d678efe4eac7f5ca318d2546c6f8a4844c50c7e6064",
-      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-e9629438",
-      "documentType": "packet",
-      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/b8eb433f-8138-11f1-98fd-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1784578218.pdf",
+      "documentId": "meeting-source-document-08d1cfc5aa83a1b1d3bcd2c47bc55445e179227d2e69200780fbaf95e49400ad",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-05-30-d5561cee",
+      "documentType": "agenda",
+      "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_Charter_Committee_Meeting_1267_Agenda_7_30_2026_5_30_00_PM.pdf?documentType=1&meetingId=1267",
       "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-b8eb433f-8138-11f1-98fd-005056a89546-e5/77703e86556239e60b7d91b86eb93ac926fc459ddb7f5e1be7a6a11a94ee6643.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "verified_pdf",
-      "nativeTextLength": 8464,
-      "nativeExtractionQuality": "high",
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
       "scannedPdfLikely": false,
       "ocrRequired": false,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "no_cached_binary_available"
         }
       ],
-      "failureReason": null
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-dfc57a28fed6fdbf8eaf5268c6e030e1c39d5101ab5513c15ef2fcd0665d4b31",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-08-04-003271a8",
+      "documentType": "agenda",
+      "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/CANCELLED_-_Planning_Commission_Study_Session_1270_Agenda_8_4_2026_12_00_00_PM.pdf?documentType=1&meetingId=1270",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-4fce307629a42222e863bb891ecba56cc06b12fb9dc8956f9c04beec298df969",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-08-06-c49548d0",
+      "documentType": "agenda",
+      "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/CANCELLED_-_Planning_Commission_Meeting_1274_Agenda_8_6_2026_6_00_00_PM.pdf?documentType=1&meetingId=1274",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-46110448047f861afb814268fd6d0d9a860494f82fc63d4362a4aa28bb2d7a7d",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-08-10-5997d899",
+      "documentType": "agenda",
+      "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_City_Council_1255_Agenda_8_10_2026_2_00_00_PM.pdf?documentType=1&meetingId=1255",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-528a977a3974f7a4715c213d7ff12bf2ba7c9bf278d815f719633f488534c059",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife-2026-08-12-0eb72f40",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/ea98ebbb-8d37-11f1-bb61-005056a89546-bee535a9-120d-4ef3-ac55-0d254895c11b-1786032649.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-b3697fee81c1d36ab0552c5841d645c39706db350de4ade8658ddfd00abaf00e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization-2026-08-12-d0848073",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/be6a4fbc-cfca-11f0-bb28-005056a89546-9d6aaddd-e738-4e0e-9288-52aa96f0a98c-1786050918.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-50e51444028585a8126687d9d0df801b373111f232e1629afdcff80b4ba099a8",
+      "meetingId": "meeting-carson-city-board-of-supervisors-regional-transportation-commission-2026-08-12-c2dca740",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/e540419a-cfca-11f0-bb28-005056a89546-9d6aaddd-e738-4e0e-9288-52aa96f0a98c-1786055097.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-e792c343d52defd90423be4b52256c701afe0bf584d02f04ae6a139eff3088d8",
+      "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-08-14-57b36392",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/b578fdcd-e516-11f0-bb28-005056a89546-72832d98-d599-4654-a647-d1ce4f3832d7-1786128876.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-9f45273c6bcdac1c75e5628f5742a5c6ff618eabc827c106bc0caefb103f646c",
+      "meetingId": "meeting-carson-city-board-of-supervisors-debt-management-commission-2026-08-18-271fbfbb",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/36547326-6b5b-11f1-9494-005056a89546-26298f80-cbea-46ce-997d-c3333f8a2f3c-1785881363.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
     },
     {
       "documentId": "meeting-source-document-079b3492c1b7d770eae893bc54748e5835494051a937c54ed879267aeeb484d0",
@@ -347,7 +571,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-2f91e476-68cf-11f1-9494-005056a89546-68/f1b7e831c16d0566bb9a91ea27cda199b5f60f9ac820e0cfb4f720bf5e2c5a50.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -1150,6 +1374,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-3961c53c84b8a64ea246dc117422ee09b7a3de3ef6666dc7cdc1db99e896e804",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-08-06-b4645b91",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/509944ed-c3e4-11f0-a7da-005056a89546-9eacd081-8cb0-4b77-8ee9-9db9b8d926b3-1785522868.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
       "documentId": "meeting-source-document-6a400d0dac6139cf27f09d82bcf0ff29f318c82be2677abc61f5921675582dce",
       "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-07-16-e50f5c0b",
       "documentType": "packet",
@@ -1159,7 +1411,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-e0d96e0c-c3e3-11f0-a7da-005056a89546-39/308212e6a9525ae549b78285102f34c1eab121b8fd1bb88fca97785329bd951b.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -1179,7 +1431,7 @@
     },
     {
       "documentId": "meeting-source-document-b678cc90bfc457765e254c623129d304a809865fb2b6fa83e06082e114f80863",
-      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-07-02-e9280f05",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-07-02-c29f20f2",
       "documentType": "packet",
       "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/9aea2238-c3e3-11f0-a7da-005056a89546-395ad23b-967a-4108-90e3-d31ee6d342b3-1782412397.pdf",
       "sourcePath": null,
@@ -1207,7 +1459,7 @@
     },
     {
       "documentId": "meeting-source-document-b1fa685e5e30a8cfa152c68b5fdfb9d265f65616219725b36a33e3f71263e3d4",
-      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-06-18-1800824e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-06-18-448e7a9d",
       "documentType": "packet",
       "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/7cecc3f7-c3e3-11f0-a7da-005056a89546-395ad23b-967a-4108-90e3-d31ee6d342b3-1781221001.pdf",
       "sourcePath": null,
@@ -1215,7 +1467,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-7cecc3f7-c3e3-11f0-a7da-005056a89546-39/319b7d25e5dbc3cffb453d65d7d4def34a52b46f434b31f60cb6a89ca4a563df.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -6610,8 +6862,36 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-9b25d60048271715a8155d88e30e7a51abe2803cd536527645d7ef847075a189",
+      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-29-733aa119",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/de9f97bc-cfa9-11f0-bb28-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1785282129.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
       "documentId": "meeting-source-document-39d2f3a25a1ae3ccdd6377e43c8f19107d0bec48812f2d4d004c55a4a6f76a4a",
-      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-06-24-78dd6238",
+      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-06-24-d83ef5c4",
       "documentType": "packet",
       "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/d277b5c4-cfa9-11f0-bb28-005056a89546-24e0a98e-923c-40a3-a2bc-36d046a726b9-1782259104.pdf",
       "sourcePath": null,
@@ -8542,6 +8822,566 @@
       "failureReason": "No cached binary is available for OCR."
     },
     {
+      "documentId": "meeting-source-document-36e9890a1318da0496dd9dd24e0c22a6cb936d0188b27e517719fdeec1320feb",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/2aohsbvm/6-18-26-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-e2bde29a2ffb269d16fded440b33727a38ab30752aaab2fa6a9149e800a03600",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-07-f4a3b12a",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/f3ublxow/7-7-26-euco-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-3afdc0b53e97b034014f4e03dde79591afdf4ff6c3eb9815e167ba6c7ecb44f0",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/35qnxeaw/7-21-26-euco-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-a8c0c9c8ae7ea354f147f68e21cbc862aff105ff6e769c0335a6d4831208ea22",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-08-04-5c807112",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/vkngb0v3/8-4-26-euco-bocc-agenda-and-backup.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-a5b08d21a78c33d543910108530e3701e2c4052cc521019305a7ea9614380971",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-12-18-84c7dca9",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-12-18-commissioners-agn.pdf?t=202412121800260",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-64e41a33c3eab813ec872fc97a4c2a84b4d4d0f60513a1c64929659518d30b98",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-12-04-6e21878a",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-12-04-commissioners-agn.pdf?t=202411261717210",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-2826655cc828c8c669c3ecdacb1f3e98cdeaf267dc5178c078c968ebbbe2d172",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-20-6646a459",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-20-commissioners-agn.pdf?t=202411141920410",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-8a829817903ecfeaaf4b31fa62140e9fd1b76eb9573d7d63f2978239d3ebf9d6",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-15-143474b6",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-15-commissioners-spagn.pdf?t=202411121303460",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-223c9ae22420fd51f017434f9f7615e2944bf5bac9f02ea35b9c9c877c36cc16",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-06-095f5c89",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-06-commissioners-agn.pdf?t=202411051414150",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-28af427815cbbac207cf00239febdf69c599c71b5bd4b8dd2168e303b42f58f9",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-16-3ded03bc",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-10-16-commissioners-agn.pdf?t=202410101921050",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-d3878c8f774e44359291d044c66fc023b81a67a9c1e9b848c51216119f97186c",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-02-1edaeda4",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-10-02-commisioners-agn.pdf?t=202409261948410",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-29d10b9528b8256aa52e97476826f8cf7d81eee2e5c0dce15085dd82677cf2a0",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-02-8735c0ef",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-10-02-commissioners-special-mtg.pdf?t=202409261958470",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-8f47236a76792f5a18a677f50e16e9b7fdd9a22e34a19cd36528b96b004c6690",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-09-18-90d933e1",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-09-18-commissioners-agn.pdf?t=202409121728480",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-e0efc82515ded856c686b195be366e1bf89367b41c9b24d57fb7a3652b4247be",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-09-13-8796bcc0",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-09-13-commissioners-spagn.pdf?t=202409061816530",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-87d42f5d37d1810070cb2e884dc1efae01d6ee087e302f5ab325c5a034658710",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-09-04-ebd7cee9",
+      "documentType": "agenda",
+      "sourceUrl": "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-09-04-commissioners-agn.pdf?t=202408281827350",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-8ceef7d68b5ba28150b8167072b1a9b613a2f360d301f5f7b8072aec7c78c16a",
+      "meetingId": "meeting-eureka-county-commission-2026-01-06-614b563a",
+      "documentType": "minutes",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/rdagiosf/jan-6-2026-liquor-board-minutes.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-3583cfc170ecedcc3b4c855e626dccbaf733213a7b1878d3ee5c1bac76406af9",
+      "meetingId": "meeting-eureka-county-commission-2026-03-03-966620b9",
+      "documentType": "minutes",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/koajtnwg/march-3-2026-bocc-minutes.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-09a33245602918e87df21f28a674acccc0cff9cb2cacde6245dca13f9a7f697b",
+      "meetingId": "meeting-eureka-county-commission-2024-03-05-164b8873",
+      "documentType": "minutes",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/s5njnuo1/march-5-2024-bocc-meeting-minutes-approved.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-ee9dc4f46df736cc4fda0e3d5b75dbfb016b9404488c6f318af65bf8a66cea5e",
+      "meetingId": "meeting-eureka-county-commission-2024-03-19-63b75b45",
+      "documentType": "minutes",
+      "sourceUrl": "https://www.eurekacountynv.gov/media/wcjnnvsm/march-19-2024-bocc-meeting-minutes-approved.pdf",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
+      "documentId": "meeting-source-document-9ba57ccd2a6e30ecc44bf454f7a56b626ba1bc2edf9b6328549c437f182dca30",
+      "meetingId": "meeting-manual-carlin-city-council-carlin-city-council-2026-03-25-d6b7b6b2",
+      "documentType": "minutes",
+      "sourceUrl": "https://www.explorecarlinnv.com/03-25-2026%20Meeting%20Minutes%20Signed.pdf?t=202605221130250",
+      "sourcePath": null,
+      "localCached": false,
+      "cachedBinaryExists": false,
+      "cachedPath": null,
+      "verifiedPdf": false,
+      "contentClassification": null,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "no_cached_binary_available",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "no_cached_binary_available"
+        }
+      ],
+      "failureReason": "No cached binary is available for OCR."
+    },
+    {
       "documentId": "meeting-source-document-c3ab0c85c1387a7c3af0a0f4761e5becf84a8d1d2e279d1bfff3aca211413009",
       "meetingId": "meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d",
       "documentType": "minutes",
@@ -10054,6 +10894,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-0b69055c4466f1717479b02283cd03f553b4803e0dd792dc8fc6aafaf8d5e041",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-15-143474b6",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-11-15-11-15-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-11-15-11-15-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 3442,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-0ba15a8e792a3e31e39ab528ea9f07a70facfcd49c6692d6a3418f4bc14f9299",
       "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-06-09-ed0b0e0e",
       "documentType": "minutes",
@@ -10391,13 +11259,13 @@
     },
     {
       "documentId": "meeting-source-document-0e3e0189dc40400a5f7d9f5522b9add230c7852d2a56973181a916d111c240eb",
-      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-ae78bcb6",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-2-03-26-euco-bocc-agenda-and-backup-media-ndgo3got-2-03-26-euco-bocc.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-02-03-2-03-26-euco-bocc-agenda-and-backup-media-ndgo3got-2-03-26-euco-bocc.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-2-03-26-euco-bocc-agenda-and-backup-media-ndgo3got-2-03-26-euco-bocc.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-02-03-2-03-26-euco-bocc-agenda-and-backup-media-ndgo3got-2-03-26-euco-bocc.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 386510,
@@ -10457,6 +11325,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 7803,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-0eefa4ba0a7b6e52b01733c62c6674488c938241790a4316bbdfa26d96f2f748",
+      "meetingId": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-05-21-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-052.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-05-21-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-052.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 394807,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -10754,6 +11650,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-110caa3d8f43426a4b0c416ed2089105c0d853c0191eb17904f3f1633d9d0fef",
+      "meetingId": "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
+      "documentType": "packet",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-6-16-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-061.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-6-16-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-061.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 332338,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-11277e89d7f452a95f822565aa6fb98bbb322f3b0cafa8a5e82d6252f46b618f",
       "meetingId": "meeting-carson-city-board-of-supervisors-joint-meeting-of-the-open-space-advisory-committee-and-the-parks-and-recreation-commission-2025-12-03-8bf74bf2",
       "documentType": "agenda",
@@ -10800,6 +11724,34 @@
       "ocrStatus": "not_required",
       "extractionMethod": "native_text",
       "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-11daf47cafc7c25b8c97418666cf9b2d7263a46cbb80a6361b8cbe6a3b8820ec",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-16-3ded03bc",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-10-16-10-16-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-10-16-10-16-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 9036,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
@@ -12098,6 +13050,62 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-1d94bedbc2e6949260a6bacd10e2874e9b2eb0545f245d1c2edaf1d9e2bb3d05",
+      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848",
+      "documentType": "packet",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/2026-08-11-city-of-fallon-churchill-county-fire-board-pdf-documentcenter-view-19243-fire-b.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/2026-08-11-city-of-fallon-churchill-county-fire-board-pdf-documentcenter-view-19243-fire-b.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 11995,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-1d9550ca2303b17cbc9e1d678efe4eac7f5ca318d2546c6f8a4844c50c7e6064",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-e9629438",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/b8eb433f-8138-11f1-98fd-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1784578218.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-b8eb433f-8138-11f1-98fd-005056a89546-e5/77703e86556239e60b7d91b86eb93ac926fc459ddb7f5e1be7a6a11a94ee6643.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-1de18863a7008bec0098f8acaceeb60f10e51e802044e316733bfde56d9a505b",
       "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-2024-01-04-81d79d0a",
       "documentType": "agenda",
@@ -12221,6 +13229,62 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 11419,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-1eed2d00b2d127850c61f4616a6fc7923ccdc96c8ff59624a6e7091e007058f4",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-09-18-90d933e1",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-09-18-09-18-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-09-18-09-18-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 9236,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-1f34310be764922d30a5c1ee29090eccccf6548e220397d5fd38be35515cb77e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-08-12-bf09db2e",
+      "documentType": "agenda",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2706",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-agendaviewer-php-view-id-2-event-id-2706/9d267841a80391f0447052e4ad15ea629228d0485e7b8fc5db3140c7b5cc3805.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 7502,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -12389,6 +13453,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 6882,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-20cb2841ff60434e754ad9a329a460cab7735e3f48eddc3def7ecaccb106990d",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2026-08-10-d5df7089",
+      "documentType": "agenda",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2707",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-agendaviewer-php-view-id-2-event-id-2707/93be5989dee126a8d31e08e690e92c25acb7098ed1c00321b2e7ef6d61ad71f9.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 7160,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -13190,6 +14282,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-29c1de9822b37db6b8ee35cbbfaf752597883f4736811b4bc9395b15cc72afaa",
+      "meetingId": "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
+      "documentType": "packet",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-5-19-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-051.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-5-19-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-051.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 254585,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-29d768e72697ecb8ab613b5603e8521b970a3311d939d87c751405ccba77543c",
       "meetingId": "meeting-carson-city-board-of-supervisors-open-space-advisory-committee-2025-08-19-516f6cb7",
       "documentType": "agenda",
@@ -13817,6 +14937,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 28462,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-30eb70d4422c28e7add018fc2a73adde3333889899d7b213c7dc33e2f7852b82",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-07-21-7-21-26-euco-bocc-agenda-and-backup-media-35qnxeaw-7-21-26-euco-bocc.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-07-21-7-21-26-euco-bocc-agenda-and-backup-media-35qnxeaw-7-21-26-euco-bocc.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 284823,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -15151,13 +16299,13 @@
     },
     {
       "documentId": "meeting-source-document-408bad517d7d4cd02718fb6fd5dfcf43934774b976154a5c7e8acf4598c02202",
-      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-ce5763d5",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-3-03-26-euco-bocc-agenda-and-backup-media-ipvoh1dh-3-03-26-euco-bocc.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-03-03-3-03-26-euco-bocc-agenda-and-backup-media-ipvoh1dh-3-03-26-euco-bocc.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-3-03-26-euco-bocc-agenda-and-backup-media-ipvoh1dh-3-03-26-euco-bocc.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-03-03-3-03-26-euco-bocc-agenda-and-backup-media-ipvoh1dh-3-03-26-euco-bocc.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 154750,
@@ -16242,6 +17390,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-49cfdcb33f8f30c8e1ad5b0a7173a461c225ef1c4d3cef32fa4e291d4e776d22",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-08-04-5c807112",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-08-04-8-4-26-euco-bocc-agenda-and-backup-media-vkngb0v3-8-4-26-euco-bocc-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-08-04-8-4-26-euco-bocc-agenda-and-backup-media-vkngb0v3-8-4-26-euco-bocc-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 381809,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-4a7deb0802ae4542c8c6b4126513169000cd4d5983a5ffa0df253f53467124ae",
       "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2025-04-11-7128efc4",
       "documentType": "agenda",
@@ -16260,6 +17436,34 @@
       "ocrStatus": "not_required",
       "extractionMethod": "native_text",
       "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-4a9d23e6a78fda1b9778db97abd522a05a7b1bb9bd71bf38311459ab0db62bd0",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-20-6646a459",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-11-20-11-20-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-11-20-11-20-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 11515,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
@@ -16886,6 +18090,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-4fd61a21b6c2b3092fa2a3e483585e724190fcac9b77d30cdf2f4831f862fa80",
+      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-27-eb201b40",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agendas/2026-07-27-churchill-library-association-documentcenter-view-19233-07-27-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agendas/2026-07-27-churchill-library-association-documentcenter-view-19233-07-27-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 38,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "native_text_too_thin_ocr_unavailable"
+    },
+    {
       "documentId": "meeting-source-document-50e944b9e3cf3141bcb879b1e7f837101f0cce472ab339a688230f7088a56bf1",
       "meetingId": "meeting-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway-2025-06-25-5ded95e2",
       "documentType": "agenda",
@@ -17161,6 +18393,34 @@
           "pageStart": 1,
           "pageEnd": null,
           "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-5287af0ec50387bd1c18e57f2c85b506672fcbbdd383ff605222d7b307a56adc",
+      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-30-eeeb7eb6",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/de9f97bc-cfa9-11f0-bb28-005056a89546-c4b7aef4-c5cb-4f08-b9f0-3200f86073a7-1784914295.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-de9f97bc-cfa9-11f0-bb28-005056a89546-c4/a89dd64ef4aae08837b66662b1f8d72197ddf12931ccf667f75f7fbb338ece78.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -17615,13 +18875,13 @@
     },
     {
       "documentId": "meeting-source-document-57f477a2134747c976a8819b119d3fab175879e097fcd38012d5b6b155ddb74a",
-      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-3-17-26-bocc-agenda-and-backup-media-4pnohwtl-3-17-26-bocc-agen.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-03-17-3-17-26-bocc-agenda-and-backup-media-4pnohwtl-3-17-26-bocc-agen.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-3-17-26-bocc-agenda-and-backup-media-4pnohwtl-3-17-26-bocc-agen.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-03-17-3-17-26-bocc-agenda-and-backup-media-4pnohwtl-3-17-26-bocc-agen.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 450000,
@@ -17951,13 +19211,13 @@
     },
     {
       "documentId": "meeting-source-document-5a69f9546429e15830ec3f1463ad3661e70786c9281c9e37636829ca65f9834f",
-      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-6-2-26-agenda-and-backup-media-veohfdbc-6-2-26-agenda-and.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-06-02-6-2-26-agenda-and-backup-media-veohfdbc-6-2-26-agenda-and.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-6-2-26-agenda-and-backup-media-veohfdbc-6-2-26-agenda-and.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-06-02-6-2-26-agenda-and-backup-media-veohfdbc-6-2-26-agenda-and.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 182854,
@@ -18521,6 +19781,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 7060,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-602ea85b0667a6796a8bc6acbccab586ec7760dee6aa1564112d8cc791cd9c31",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-06-095f5c89",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-11-06-11-06-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-11-06-11-06-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 11052,
       "nativeExtractionQuality": "medium",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -19182,6 +20470,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-661303863e28058fef4321547c732aa668bd647347f8035b1465a46e08ce6ee9",
+      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2025-09-16-b953b68d",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agendas/2025-09-16-cart-agenda-documentcenter-view-18769-09-16-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agendas/2025-09-16-cart-agenda-documentcenter-view-18769-09-16-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 25,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "native_text_too_thin_ocr_unavailable"
+    },
+    {
       "documentId": "meeting-source-document-665d7143b42fa2336f3883800e82661e942197657d7c10867b2e0ad9651e1fcd",
       "meetingId": "meeting-carson-city-board-of-supervisors-regional-transportation-commission-2025-03-13-eec01ad4",
       "documentType": "agenda",
@@ -19630,6 +20946,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-6c04f902acace7ca647d1da3f37250ffa978e130545ca80f7c518a5dae961405",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-80d70311",
+      "documentType": "agenda",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2914",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-agendaviewer-php-view-id-2-clip-id-2914/003a3c9b0224d8e208c6807b89283071371444ebf1db2a9c76aa11691872b442.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 4100,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-6c210a29487816af6fc0ee1aad3a94549efdd9221862ff4a7ced81478eeb9bd1",
       "meetingId": "meeting-carson-city-board-of-supervisors-audit-committee-2024-11-12-217def77",
       "documentType": "agenda",
@@ -19714,6 +21058,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-6e5c335e7fcc90618eeb4ed29cf83e2171e858e8698e3ec3c861044756967113",
+      "meetingId": "meeting-manual-yerington-city-council-yerington-city-council-2026-07-13-013d9fa6",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-07-13-2026-agendacenter-viewfile-agenda-071.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-07-13-2026-agendacenter-viewfile-agenda-071.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 152894,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-6e752212c8501c99f9e4e05bf143ef0f82a25ea23517e20c4bb5093b290e1c50",
       "meetingId": "meeting-carson-city-board-of-supervisors-parks-and-recreation-commission-2025-04-02-0356c4d3",
       "documentType": "agenda",
@@ -19781,6 +21153,62 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 5046,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-6ea0c17f7aedd05edc0669e25c09c7c8a20a1afb7072df3f87a9df5c83a43d98",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-02-1edaeda4",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-10-02-10-02-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-10-02-10-02-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 9291,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-6f1492ba08ba6c2fcb88a7a74bc6d34a331f63b3c029d8c294b0129cda5b6fbb",
+      "meetingId": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-08-06-2026-agenda-and-backup-agendacenter-viewfile-agenda-080.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-08-06-2026-agenda-and-backup-agendacenter-viewfile-agenda-080.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -19949,6 +21377,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 11318,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-70aa3a5edacdf20fa704085685a6d1dfc42cddaca2ee4247bdde6c3080d52d88",
+      "meetingId": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-06-04-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-060.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-06-04-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-060.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 127862,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -20190,6 +21646,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-7397e9df8d41503ae1c38e9420cb359d22654170cba7715662fe3bb27ed22a4e",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-07-f4a3b12a",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-07-07-7-7-26-euco-bocc-agenda-and-backup-media-f3ublxow-7-7-26-euco-bocc-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-07-07-7-7-26-euco-bocc-agenda-and-backup-media-f3ublxow-7-7-26-euco-bocc-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 434460,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-73c3a0793e569d846187e714192fc9b468c9679a83f7a88475dfaebb9ffda024",
       "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-and-board-of-health-2024-06-06-d6c3f869",
       "documentType": "minutes",
@@ -20236,6 +21720,34 @@
       "ocrStatus": "not_required",
       "extractionMethod": "mixed",
       "extractionConfidence": 0.88,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-74a295e1087c577eae2f768f2e8b80592bf22a00dcfc0ece6162313d978c9c91",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-12-04-6e21878a",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-12-04-12-04-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-12-04-12-04-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 9214,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
@@ -20369,6 +21881,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 7243,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-7678ce8d3634283473ee2ed2979628dc3dde940c01ae800b8cdd37a810a10008",
+      "meetingId": "meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-06-22-2026-agendacenter-viewfile-agenda-062.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-06-22-2026-agendacenter-viewfile-agenda-062.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 146662,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -21086,6 +22626,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-7c05987bfe1c80e86c339a1fe1055b068f68930ac43dfa44a10d76de914e0823",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-05-19-5-19-26-bocc-agenda-and-backup-media-esvlrk4g-5-19-26-bocc-agen.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-05-19-5-19-26-bocc-agenda-and-backup-media-esvlrk4g-5-19-26-bocc-agen.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 442729,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-7c0a7d33ed7bbd966673eb1ee56532a94f18725b62012df6f7d399458b0f7984",
       "meetingId": "meeting-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization-2025-06-11-6b0414be",
       "documentType": "agenda",
@@ -21280,6 +22848,34 @@
         }
       ],
       "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-7e325e449a99940e45a8681dc508e3beac7ee5480246f916744f99147c92a167",
+      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-09-a0dfb16a",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agendas/2026-07-09-mosquito-vector-and-noxious-weed-abatement-district-agend-documentcenter-view-19217-07-09-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agendas/2026-07-09-mosquito-vector-and-noxious-weed-abatement-district-agend-documentcenter-view-19217-07-09-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 51,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "native_text_too_thin_ocr_unavailable"
     },
     {
       "documentId": "meeting-source-document-7e98136355682b44d86f2c3f6370e408f364f14b8b818efcec5f955ad44bce7f",
@@ -21700,6 +23296,34 @@
         }
       ],
       "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-824a59b4e6a905f71a46bb585d26c5635ede22e46db92aa5a09f34861c59c61c",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-08-10-5997d899",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-sparks-city-council-1255-agenda-8-10-2026-2-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-sparks-city-council-1255-agenda-8-10-2026-2-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "html_saved_as_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "Invalid PDF structure."
     },
     {
       "documentId": "meeting-source-document-829058a09642a389ea9b4e3bc72e5c15f666eb9dc301f16abafcb31c71e7fff9",
@@ -22486,34 +24110,6 @@
       "failureReason": null
     },
     {
-      "documentId": "meeting-source-document-897cffc2f35ca23277ef71454fd42404c186f75f33a8e56fad69f5e9b8c666d6",
-      "meetingId": "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-07-22-a137651c",
-      "documentType": "minutes",
-      "sourceUrl": null,
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/las-vegas-city-council/minutes/undated-action-minutes-public-compileddocument.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
-      "scannedPdfLikely": true,
-      "ocrRequired": true,
-      "ocrAvailable": true,
-      "ocrStatus": "ready",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "pending_ocr"
-        }
-      ],
-      "failureReason": null
-    },
-    {
       "documentId": "meeting-source-document-89b9e6ac4c8f7c169d992065517f8b107daa25d723536d34c0af42a932a273bc",
       "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-and-liquor-and-entertainment-board-2024-04-04-35e23ce2",
       "documentType": "agenda",
@@ -23046,6 +24642,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-8f3a13d42c0d3d3f0ef3747d1ec7bede7196ffdca62111fa117273561fdd1cdb",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-05-30-d5561cee",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-sparks-charter-committee-meeting-1267-agenda-7-30-2026-5-30-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-sparks-charter-committee-meeting-1267-agenda-7-30-2026-5-30-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "html_saved_as_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "Invalid PDF structure."
+    },
+    {
       "documentId": "meeting-source-document-8fcff6205a722e3cf55a8dcdcac54b290bb8190257245f5cb0d054cc8d02b60c",
       "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-02-10-c2c52692",
       "documentType": "agenda",
@@ -23505,6 +25129,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 35880,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-94542512ee715e7a0f96d7fd85debfbe0f2f80feeb4ae6430cf66f443e4d560e",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-04-07-4-7-26-euco-bocc-agenda-and-backup-media-3m3bnb5u-4-7-26-euco-bocc-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-04-07-4-7-26-euco-bocc-agenda-and-backup-media-3m3bnb5u-4-7-26-euco-bocc-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 362420,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -25063,13 +26715,13 @@
     },
     {
       "documentId": "meeting-source-document-a41a0250a75dc1ffeca729314968e645a6315f88b14e4e99651408efee2c99c4",
-      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2024-11-13-c05124e2",
+      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2024-11-13-07d580bf",
       "documentType": "packet",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/undated-11-13-24-agenda-packet-cart-documentcenter-view-18235-11-13-.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/2024-11-13-11-13-24-agenda-packet-cart-documentcenter-view-18235-11-13-.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/undated-11-13-24-agenda-packet-cart-documentcenter-view-18235-11-13-.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/2024-11-13-11-13-24-agenda-packet-cart-documentcenter-view-18235-11-13-.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 305,
@@ -25650,6 +27302,62 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-aaeb2f97a84c4d2713be66943d800f1e31000ea34ece0554d4f0c27dab84db64",
+      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-14-41e873b1",
+      "documentType": "packet",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/2026-07-14-city-of-fallon-churchill-county-fire-board-pdf-documentcenter-view-19218-fire-b.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agenda-packets/2026-07-14-city-of-fallon-churchill-county-fire-board-pdf-documentcenter-view-19218-fire-b.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 13719,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-ab082cfa22f50e1cc20361bed9dc887a44f5b7a13f5cce3b904c9326e23ca3a3",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-09-04-ebd7cee9",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-09-04-09-04-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-09-04-09-04-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 9906,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-ab0cc8489b6dd2309c1790c74ef55d12a041889d46ca54f78ad416b92b015be8",
       "meetingId": "meeting-carson-city-board-of-supervisors-audit-committee-2026-02-18-001f095a",
       "documentType": "minutes",
@@ -25732,6 +27440,34 @@
         }
       ],
       "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-abd528f82b241158255c9c656a5e11c530da3e438dd53c17c4ee38861cf2ec5e",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-07-27-661024be",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-sparks-city-council-meeting-1252-agenda-7-27-2026-2-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-sparks-city-council-meeting-1252-agenda-7-27-2026-2-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "html_saved_as_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "Invalid PDF structure."
     },
     {
       "documentId": "meeting-source-document-ac514aac3980519cbcdab73c5959f048f4b428838803846c42f64650f511a3d6",
@@ -26043,13 +27779,13 @@
     },
     {
       "documentId": "meeting-source-document-b0dec3136ba9c7cd4922a580f9033fbfae3cb2d8b38aeb8e89bff88f37f6784a",
-      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-1-6-26-bocc-agenda-and-backup-media-54idfeep-1-6-26-bocc-agend.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-01-06-1-6-26-bocc-agenda-and-backup-media-54idfeep-1-6-26-bocc-agend.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-1-6-26-bocc-agenda-and-backup-media-54idfeep-1-6-26-bocc-agend.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-01-06-1-6-26-bocc-agenda-and-backup-media-54idfeep-1-6-26-bocc-agend.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 275340,
@@ -26266,6 +28002,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-b2eb1971d795014f38aacc6757c55b82656107633247f1b50dd51b2967ac417b",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-06-18-6-18-26-bocc-agenda-and-backup-media-2aohsbvm-6-18-26-bocc-agen.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-06-18-6-18-26-bocc-agenda-and-backup-media-2aohsbvm-6-18-26-bocc-agen.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-b323662859f765e7ba8b776ca432e2608539dbd468372167aff58551fcbf9549",
       "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2025-03-26-a0e53fba",
       "documentType": "minutes",
@@ -26407,13 +28171,13 @@
     },
     {
       "documentId": "meeting-source-document-b57fc9378596294a74a3b36c8492dd7f48f56b3c81f460d7ef720544a5ab0233",
-      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-1-20-26-bocc-agenda-and-backup-media-slvnfv2y-1-20-26-bocc-agen.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-01-20-1-20-26-bocc-agenda-and-backup-media-slvnfv2y-1-20-26-bocc-agen.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-1-20-26-bocc-agenda-and-backup-media-slvnfv2y-1-20-26-bocc-agen.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-01-20-1-20-26-bocc-agenda-and-backup-media-slvnfv2y-1-20-26-bocc-agen.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 450000,
@@ -26473,6 +28237,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 5015,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-b5e84e195c5caa2fbf09008d4c485738a08424ae239fd0d30c73765bb75ac85c",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-09-13-8796bcc0",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-09-13-09-13-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-09-13-09-13-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 1574,
       "nativeExtractionQuality": "medium",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -26883,13 +28675,13 @@
     },
     {
       "documentId": "meeting-source-document-bb42cb7054bdfd52b08069f4cf39182b31f8937be02254081789f1d79955c2d6",
-      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-2-17-26-bocc-agenda-and-backup-media-vkwneya0-2-17-26-bocc-agen.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-02-17-2-17-26-bocc-agenda-and-backup-media-vkwneya0-2-17-26-bocc-agen.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-2-17-26-bocc-agenda-and-backup-media-vkwneya0-2-17-26-bocc-agen.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-02-17-2-17-26-bocc-agenda-and-backup-media-vkwneya0-2-17-26-bocc-agen.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 422043,
@@ -26905,6 +28697,34 @@
           "pageStart": 1,
           "pageEnd": null,
           "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-bb548b7114481ab9f6bb28c0e0e4156c95e615d3fbb1c95e2b5882da4f2f6060",
+      "meetingId": "meeting-manual-carlin-city-council-carlin-city-council-2026-03-25-d6b7b6b2",
+      "documentType": "minutes",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/carlin-city-council/minutes/2026-03-25-minutes-03-25-2026-20meeting-20minutes-2.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/carlin-city-council/minutes/2026-03-25-minutes-03-25-2026-20meeting-20minutes-2.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 140,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.72,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -27358,6 +29178,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-be9dd4add34b9c508cef4d46568a34e9f4e44b0fbe5148a804d0fb99074835d5",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-08-06-c49548d0",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-cancelled-planning-commission-meeting-1274-agenda-8-6-2026-6-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-cancelled-planning-commission-meeting-1274-agenda-8-6-2026-6-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "html_saved_as_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "Invalid PDF structure."
+    },
+    {
       "documentId": "meeting-source-document-bf22a043a38a07c1d03bc4de55a73e0747dec2e39b4c4a711fb3d7babfa6dfd7",
       "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2024-02-23-58684a42",
       "documentType": "minutes",
@@ -27778,6 +29626,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-c4f7ddb3508bd8350f2e905254f49884ae7cad9d1e4ddc69fb44b10c5c01240b",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-07-29-23d37f93",
+      "documentType": "agenda",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2910",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-agendaviewer-php-view-id-2-clip-id-2910/4d3c42f42ebabc28c022338ba513b10d8118253f79f6ec32649d6d55b7efe05b.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 6543,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-c52e48a78f25619717c1ea5aca35ff7b3bca0a4bbebec7f6582a4d9b3b6c161b",
       "meetingId": "meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0",
       "documentType": "agenda",
@@ -27824,6 +29700,34 @@
       "ocrStatus": "not_required",
       "extractionMethod": "native_text",
       "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-c578a90209bc07c7af4d6ff4ec4c216e66770b2658d9c68742484f0f34d76035",
+      "meetingId": "meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-07-29-b4a20c13",
+      "documentType": "agenda",
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2913",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-agendaviewer-php-view-id-2-clip-id-2913/32e2f7b6177b73a7edbfbb1a6292d01549f411aba6cd6cf94054d4f7ae0db073.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 5934,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
@@ -28012,19 +29916,19 @@
       "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-agendaviewer-php-view-id-2-event-id-2703/4d3c42f42ebabc28c022338ba513b10d8118253f79f6ec32649d6d55b7efe05b.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
-      "nativeTextLength": 6543,
-      "nativeExtractionQuality": "high",
-      "scannedPdfLikely": false,
-      "ocrRequired": false,
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
       "ocrAvailable": true,
-      "ocrStatus": "not_required",
-      "extractionMethod": "native_text",
-      "extractionConfidence": 0.92,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
           "pageEnd": null,
-          "status": "native_text_available"
+          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -28730,6 +30634,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-cfbd822f761e147b60cd1a94e5c7c2adb9a3bfcce21e1317d59e98504176e75e",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-08-04-003271a8",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-cancelled-planning-commission-study-session-1270-agenda-8-4-2026-12-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-cancelled-planning-commission-study-session-1270-agenda-8-4-2026-12-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "html_saved_as_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "Invalid PDF structure."
+    },
+    {
       "documentId": "meeting-source-document-cfca2670d268ab09fa6654198450b60075fc1b2aa3e2e329e2a6ccd38f15ef25",
       "meetingId": "meeting-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization-2025-09-10-a0d1bcd2",
       "documentType": "agenda",
@@ -29066,6 +30998,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-d358a5909d265bf6e3c83f89c90560ada5a3fe6e512eb3fe507c7c52b9695e9b",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-12-18-84c7dca9",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-12-18-12-18-2024-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-12-18-12-18-2024-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 9898,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-d37b6038df90552c7e182bd94e19c9ea1194ba947434ef9417e5f31e23eaf8b6",
       "meetingId": "meeting-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees-2024-11-20-56fd57af",
       "documentType": "minutes",
@@ -29173,34 +31133,6 @@
           "pageStart": 1,
           "pageEnd": null,
           "status": "native_text_available"
-        }
-      ],
-      "failureReason": null
-    },
-    {
-      "documentId": "meeting-source-document-d4a4395cc4a597436471cbfa10db463de8a70e63f823e4b050cec1e41241a457",
-      "meetingId": "meeting-manual-elko-county-commission-elko-county-commission-2026-04-15-2c281141",
-      "documentType": "minutes",
-      "sourceUrl": null,
-      "sourcePath": null,
-      "localCached": true,
-      "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/elko-county-commission/minutes/undated-final-minutes-minutesviewer-php.pdf",
-      "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
-      "nativeTextLength": 0,
-      "nativeExtractionQuality": "insufficient",
-      "scannedPdfLikely": true,
-      "ocrRequired": true,
-      "ocrAvailable": true,
-      "ocrStatus": "ready",
-      "extractionMethod": "failed",
-      "extractionConfidence": 0,
-      "pageLevelProvenance": [
-        {
-          "pageStart": 1,
-          "pageEnd": null,
-          "status": "pending_ocr"
         }
       ],
       "failureReason": null
@@ -29523,7 +31455,7 @@
       "cachedBinaryExists": true,
       "cachedPath": "data/generated/public-meeting-document-cache/carsoncity-granicus-com-minutesviewer-php-view-id-2-clip-id-2882-doc-id-65753767/9f4f59e9f3a13e555876d4a0221c18515d85e9850519c65f2075040c9b92a0bf.pdf",
       "verifiedPdf": true,
-      "contentClassification": "ocr_candidate",
+      "contentClassification": "verified_pdf",
       "nativeTextLength": 56152,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
@@ -29805,6 +31737,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 6323,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-d9fcdd71b82ee64ee54c2676226a2841305fe0732a2387f4568b981c3b74029f",
+      "meetingId": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-08-03-2026-agenda-and-late-backup-special-meeting-data-center-ordinance-workshop-agendacenter-viewfile-agenda-080.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-08-03-2026-agenda-and-late-backup-special-meeting-data-center-ordinance-workshop-agendacenter-viewfile-agenda-080.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 210770,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -30130,6 +32090,62 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-dd62d68d151d2560e4365cfd6312075f5356a8fc06685a08020307ae31c40427",
+      "meetingId": "meeting-manual-yerington-city-council-yerington-city-council-2026-06-08-ac60a4a8",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-06-08-2026-agendacenter-viewfile-agenda-060.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-06-08-2026-agendacenter-viewfile-agenda-060.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 47269,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-dd753fc31d8f8cb0a3ca0333a9411f754bdbc2875c3a502a1a4ae77d5f5026c7",
+      "meetingId": "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+      "documentType": "packet",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-05-05-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-050.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-05-05-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-050.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 149983,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-dda2fa94b439510ec28cccb6fd926f67225a9b075e8bd1d803e0ec3cba9a434f",
       "meetingId": "meeting-carson-city-board-of-supervisors-regional-transportation-commission-2024-12-12-d454d2c8",
       "documentType": "minutes",
@@ -30354,6 +32370,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-df8c94c19652e5ed0171ae0963e773bbede73bd2b44226edf453283510607be4",
+      "meetingId": "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-02-8735c0ef",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-10-02-10-02-2024-workshop-document-center-agendas-commissi.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/pershing-county-commission/agendas/2024-10-02-10-02-2024-workshop-document-center-agendas-commissi.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 2474,
+      "nativeExtractionQuality": "medium",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-dfcb4e658e6621b5592f8d099f37b048574fba32c0ff9ba82379d21ba1c3d3d5",
       "meetingId": "meeting-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees-2024-02-21-2178cf44",
       "documentType": "minutes",
@@ -30477,6 +32521,34 @@
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 154566,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-e0d6d7fb53e3f602a136cadd85a15b09b2ba3f6150a7032928b5d4e51b4e1ff6",
+      "meetingId": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-18-ee3c5f7a",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-06-18-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-061.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-06-18-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-061.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 450000,
       "nativeExtractionQuality": "high",
       "scannedPdfLikely": false,
       "ocrRequired": false,
@@ -30876,6 +32948,34 @@
       "ocrStatus": "not_required",
       "extractionMethod": "native_text",
       "extractionConfidence": 0.84,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-e6452078e1fcffbe8c1765ae36858e9ea818dba134c099a334392f890d7daa29",
+      "meetingId": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
+      "documentType": "packet",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-8-04-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-080.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/storey-county-commission/agenda-packets/undated-8-04-2026-storey-county-board-of-county-commissioners-meeting-agenda-and-packet-agendacenter-viewfile-agenda-080.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 189632,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
       "pageLevelProvenance": [
         {
           "pageStart": 1,
@@ -31894,6 +33994,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-f132cc3189688180c25f1ba4fd66a6cc9260b18f6ae06f6f6406d8b55b263090",
+      "meetingId": "meeting-manual-churchill-county-commission-churchill-county-commission-2024-06-25-820698c6",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/churchill-county-commission/agendas/2024-06-25-06-25-24-agenda-library-association-documentcenter-view-18029-06-25-.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/churchill-county-commission/agendas/2024-06-25-06-25-24-agenda-library-association-documentcenter-view-18029-06-25-.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 38,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "native_text_too_thin_ocr_unavailable"
+    },
+    {
       "documentId": "meeting-source-document-f1682351e9246a9bb5f8fbbfbb4bc415b2c2eca80df5276e9003fb3e4cb60f25",
       "meetingId": "meeting-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization-2024-03-13-e381bb1f",
       "documentType": "agenda",
@@ -32482,6 +34610,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-f725d13efa65abb961f2b38ef3357ac74dae059ca6ff71338ea70a1341c1bd20",
+      "meetingId": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-08-06-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-080.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/lyon-county-commission/agendas/undated-bocc-08-06-2026-agenda-and-late-backup-agendacenter-viewfile-agenda-080.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 450000,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-f75dd486b7a2428390a50c23040ca6c2f23abb78cecf17a135aa9a47799fc8e4",
       "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2024-12-13-3f834828",
       "documentType": "minutes",
@@ -32508,6 +34664,34 @@
         }
       ],
       "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-f788f230562a979bee3038fd67b3c1c75a306fb44121488d188510bc2a1ca476",
+      "meetingId": "meeting-manual-sparks-city-council-sparks-city-council-2026-07-27-5a9c88bb",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-sparks-redevelopment-agency-meeting-1253-agenda-7-27-2026-2-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/sparks-city-council/agendas/undated-sparks-redevelopment-agency-meeting-1253-agenda-7-27-2026-2-00-00-pm-pdf-onbaseagendaonline-documents-dow.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "html_saved_as_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": "Invalid PDF structure."
     },
     {
       "documentId": "meeting-source-document-f7b0ab6f6c3535f7a618619130c03c546708768f0c94042f36fa0b5f045dfbb0",
@@ -32874,6 +35058,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-fb129b08dacece426001b997e5de80ab1ff9c40cdb106ca1142fdf8d0a1c10b1",
+      "meetingId": "meeting-carson-city-board-of-supervisors-administrative-hearing-2026-07-29-eae23183",
+      "documentType": "packet",
+      "sourceUrl": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/d9366baa-7a26-11f1-9494-005056a89546-e531cdd4-0506-44b6-8a37-8351d989094c-1784582727.pdf",
+      "sourcePath": null,
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-d9366baa-7a26-11f1-9494-005056a89546-e5/5a545879fa67398397f198159f8449652895bf6a71d83351e4e32d1e165cfe5c.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "verified_pdf",
+      "nativeTextLength": 0,
+      "nativeExtractionQuality": "insufficient",
+      "scannedPdfLikely": true,
+      "ocrRequired": true,
+      "ocrAvailable": true,
+      "ocrStatus": "ready",
+      "extractionMethod": "failed",
+      "extractionConfidence": 0,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "pending_ocr"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-fb9147d5822432732d12f246fb622d220d35227ca35fb8a666fd0a95890aad49",
       "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-06-23-fe005736",
       "documentType": "minutes",
@@ -32903,13 +35115,13 @@
     },
     {
       "documentId": "meeting-source-document-fbbafb21b1eb659b7f3f81ba2760421a82fee712f2be779cd3a2ab7d466f1079",
-      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7",
+      "meetingId": "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-06eb3f24",
       "documentType": "agenda",
       "sourceUrl": null,
-      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-5-5-26-euco-bocc-agenda-and-backup-media-hf1asyvv-5-5-26-euco-bocc-.pdf",
+      "sourcePath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-05-05-5-5-26-euco-bocc-agenda-and-backup-media-hf1asyvv-5-5-26-euco-bocc-.pdf",
       "localCached": true,
       "cachedBinaryExists": true,
-      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/undated-5-5-26-euco-bocc-agenda-and-backup-media-hf1asyvv-5-5-26-euco-bocc-.pdf",
+      "cachedPath": "data/manual-sources/public-meetings/eureka-county-commission/agendas/2026-05-05-5-5-26-euco-bocc-agenda-and-backup-media-hf1asyvv-5-5-26-euco-bocc-.pdf",
       "verifiedPdf": true,
       "contentClassification": "verified_pdf",
       "nativeTextLength": 450000,
@@ -33154,6 +35366,34 @@
       "failureReason": null
     },
     {
+      "documentId": "meeting-source-document-ff2a75a8c5079c189d5ed7d01837251c761d84385e619a95518429107754fe64",
+      "meetingId": "meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-07-27-2026-agendacenter-viewfile-agenda-072.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-07-27-2026-agendacenter-viewfile-agenda-072.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 201988,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
+    },
+    {
       "documentId": "meeting-source-document-ff69a2d4ba9a1855fcd4e8a2042536d13abee64b72203825c7d3cb0f6411739a",
       "meetingId": "meeting-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway-2024-04-24-b6a13071",
       "documentType": "agenda",
@@ -33208,26 +35448,54 @@
         }
       ],
       "failureReason": null
+    },
+    {
+      "documentId": "meeting-source-document-fffcf68bed88cf72b30482f90cb3a49758b5927383f09ab36115e9db38953fca",
+      "meetingId": "meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f",
+      "documentType": "agenda",
+      "sourceUrl": null,
+      "sourcePath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-08-10-2026-agendacenter-viewfile-agenda-081.pdf",
+      "localCached": true,
+      "cachedBinaryExists": true,
+      "cachedPath": "data/manual-sources/public-meetings/yerington-city-council/agendas/undated-yerington-city-council-08-10-2026-agendacenter-viewfile-agenda-081.pdf",
+      "verifiedPdf": true,
+      "contentClassification": "ocr_candidate",
+      "nativeTextLength": 15528,
+      "nativeExtractionQuality": "high",
+      "scannedPdfLikely": false,
+      "ocrRequired": false,
+      "ocrAvailable": true,
+      "ocrStatus": "not_required",
+      "extractionMethod": "native_text",
+      "extractionConfidence": 0.92,
+      "pageLevelProvenance": [
+        {
+          "pageStart": 1,
+          "pageEnd": null,
+          "status": "native_text_available"
+        }
+      ],
+      "failureReason": null
     }
   ],
   "audit": {
-    "generatedAt": "2026-07-25T22:08:32.370Z",
+    "generatedAt": "2026-08-10T15:08:30.745Z",
     "runtime": {
       "tesseractAvailable": true,
       "pdftoppmAvailable": true,
       "ocrAvailable": true
     },
     "totals": {
-      "pdfDocuments": 1186,
-      "localPdfDocuments": 1171,
-      "noCachedBinaryAvailable": 15,
-      "scannedPdfLikely": 51,
-      "ocrRequired": 51,
-      "ocrReady": 51,
+      "pdfDocuments": 1267,
+      "localPdfDocuments": 1219,
+      "noCachedBinaryAvailable": 48,
+      "scannedPdfLikely": 64,
+      "ocrRequired": 64,
+      "ocrReady": 64,
       "ocrBlocked": 0,
       "ocrSucceeded": 20,
       "ocrFailed": 0,
-      "nativeTextAvailable": 1120
+      "nativeTextAvailable": 1155
     }
   }
 }

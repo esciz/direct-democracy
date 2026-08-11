@@ -1,40 +1,41 @@
 {
-  "generatedAt": "2026-07-25T13:05:24.526Z",
+  "generatedAt": "2026-08-10T15:08:42.292Z",
   "runtimePath": "data/generated/issues-runtime.json",
   "auditPath": "data/generated/issues-audit-report.json",
   "counts": {
-    "runtimeIssueCount": 16,
-    "publicSourceBackedCount": 16,
+    "runtimeIssueCount": 19,
+    "publicSourceBackedCount": 19,
     "demoFallbackCount": 38,
     "hiddenDemoCount": 38,
-    "productionVisibleIssueCount": 16,
-    "issuesWithMeetings": 12,
-    "issuesWithVotes": 10,
-    "issuesWithCourtRecords": 1,
-    "issuesNeedingReview": 15,
+    "productionVisibleIssueCount": 19,
+    "issuesWithMeetings": 16,
+    "issuesWithVotes": 14,
+    "issuesWithCourtRecords": 3,
+    "issuesNeedingReview": 17,
     "issuesMissingPlainEnglishTitle": 0,
     "issuesMissingSourceLinks": 0
   },
   "issuesByJurisdiction": {
     "Across the platform": 14,
-    "Nevada": 1,
-    "Elko County, NV": 1
+    "Nevada": 2,
+    "Storey County, NV": 2,
+    "Lyon County, NV": 1
   },
   "issuesByCategory": {
     "Budget": 1,
     "Taxes": 1,
-    "Other": 9,
-    "Housing": 1,
+    "Other": 13,
     "Public Safety": 1,
-    "Zoning": 1,
     "Transportation": 1,
     "Business Regulation": 1,
-    "Schools": 1,
+    "Housing": 1,
+    "Zoning": 1,
     "Utilities": 1,
-    "Courts and Legal Rights": 1,
     "Labor": 1,
-    "Healthcare": 1,
+    "Schools": 1,
     "Environment": 1,
+    "Healthcare": 1,
+    "Courts and Legal Rights": 3,
     "Elections": 1
   },
   "relationshipCoverage": [
@@ -51,43 +52,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 191,
-        "agendaItems": 468,
-        "votingCards": 191,
+        "meetings": 968,
+        "agendaItems": 2260,
+        "votingCards": 968,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 45,
+        "votes": 386,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 305,
+        "spendingRecords": 847,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 468
-      }
-    },
-    {
-      "id": "issue_real_affordable-housing",
-      "issueText": "Affordable Housing",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Housing"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 101,
-        "agendaItems": 231,
-        "votingCards": 101,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 40,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 55,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 231
+        "sourceDocuments": 2260
       }
     },
     {
@@ -95,50 +71,25 @@
       "issueText": "Public Safety",
       "jurisdictionName": "Across the platform",
       "categories": [
-        "Public Safety"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 74,
-        "agendaItems": 256,
-        "votingCards": 74,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 29,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 95,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 256
-      }
-    },
-    {
-      "id": "issue_real_land-use-and-zoning",
-      "issueText": "Land Use and Zoning",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Zoning",
+        "Public Safety",
         "Other"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 76,
-        "agendaItems": 239,
-        "votingCards": 76,
+        "meetings": 347,
+        "agendaItems": 1135,
+        "votingCards": 347,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 35,
+        "votes": 170,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 22,
+        "spendingRecords": 305,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 239
+        "sourceDocuments": 1135
       }
     },
     {
@@ -154,43 +105,69 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 60,
-        "agendaItems": 205,
-        "votingCards": 60,
+        "meetings": 217,
+        "agendaItems": 887,
+        "votingCards": 217,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 17,
+        "votes": 95,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 45,
+        "spendingRecords": 160,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 205
+        "sourceDocuments": 887
       }
     },
     {
-      "id": "issue_real_school-safety",
-      "issueText": "School Safety",
+      "id": "issue_real_affordable-housing",
+      "issueText": "Affordable Housing",
       "jurisdictionName": "Across the platform",
       "categories": [
-        "Schools"
+        "Housing"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 43,
-        "agendaItems": 151,
-        "votingCards": 43,
+        "meetings": 273,
+        "agendaItems": 640,
+        "votingCards": 273,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 8,
+        "votes": 116,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 21,
+        "spendingRecords": 136,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 151
+        "sourceDocuments": 640
+      }
+    },
+    {
+      "id": "issue_real_land-use-and-zoning",
+      "issueText": "Land Use and Zoning",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Zoning",
+        "Other"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 200,
+        "agendaItems": 577,
+        "votingCards": 200,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 97,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 48,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 577
       }
     },
     {
@@ -204,18 +181,119 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 19,
-        "agendaItems": 64,
-        "votingCards": 19,
+        "meetings": 163,
+        "agendaItems": 591,
+        "votingCards": 163,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 6,
+        "votes": 73,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 101,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 591
+      }
+    },
+    {
+      "id": "issue_real_labor",
+      "issueText": "Labor",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Labor"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 55,
+        "agendaItems": 177,
+        "votingCards": 55,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 28,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 23,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 177
+      }
+    },
+    {
+      "id": "issue_real_school-safety",
+      "issueText": "School Safety",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Schools"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 44,
+        "agendaItems": 134,
+        "votingCards": 44,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 14,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 50,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 134
+      }
+    },
+    {
+      "id": "issue_real_environment",
+      "issueText": "Environment",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Environment",
+        "Other"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 24,
+        "agendaItems": 91,
+        "votingCards": 24,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 10,
         "officials": 0,
         "newsStories": 0,
         "spendingRecords": 20,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 64
+        "sourceDocuments": 91
+      }
+    },
+    {
+      "id": "issue_real_healthcare-access",
+      "issueText": "Healthcare Access",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Healthcare"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 15,
+        "agendaItems": 96,
+        "votingCards": 15,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 5,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 15,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 96
       }
     },
     {
@@ -231,93 +309,93 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 0,
-        "agendaItems": 1,
+        "agendaItems": 5,
         "votingCards": 0,
         "courtCases": 25,
         "communitySubmissions": 0,
         "votes": 0,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 1,
+        "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 26
+        "sourceDocuments": 30
       }
     },
     {
-      "id": "issue_real_labor",
-      "issueText": "Labor",
+      "id": "issue_real_elections",
+      "issueText": "Elections",
       "jurisdictionName": "Across the platform",
       "categories": [
-        "Labor"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 13,
-        "agendaItems": 41,
-        "votingCards": 13,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 2,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 16,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 41
-      }
-    },
-    {
-      "id": "issue_real_healthcare-access",
-      "issueText": "Healthcare Access",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Healthcare"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 8,
-        "agendaItems": 31,
-        "votingCards": 8,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 1,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 7,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 31
-      }
-    },
-    {
-      "id": "issue_real_environment",
-      "issueText": "Environment",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Environment",
+        "Elections",
         "Other"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 5,
-        "agendaItems": 15,
-        "votingCards": 5,
+        "meetings": 9,
+        "agendaItems": 53,
+        "votingCards": 9,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 6,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 10,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 53
+      }
+    },
+    {
+      "id": "issue_real_public-meeting-access",
+      "issueText": "Public Meeting Access",
+      "jurisdictionName": "Storey County, NV",
+      "categories": [
+        "Other"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 1,
+        "agendaItems": 54,
+        "votingCards": 1,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 0,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 5,
+        "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 15
+        "sourceDocuments": 54
+      }
+    },
+    {
+      "id": "issue_real_growth-and-infrastructure",
+      "issueText": "Growth and Infrastructure",
+      "jurisdictionName": "Storey County, NV",
+      "categories": [
+        "Other"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 2,
+        "agendaItems": 38,
+        "votingCards": 2,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 2,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 4,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 38
       }
     },
     {
@@ -325,24 +403,50 @@
       "issueText": "Government Accountability",
       "jurisdictionName": "Across the platform",
       "categories": [
+        "Other",
+        "Courts and Legal Rights"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 2,
+        "agendaItems": 18,
+        "votingCards": 2,
+        "courtCases": 1,
+        "communitySubmissions": 0,
+        "votes": 0,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 20
+      }
+    },
+    {
+      "id": "issue_real_criminal-justice",
+      "issueText": "Criminal Justice",
+      "jurisdictionName": "Lyon County, NV",
+      "categories": [
         "Other"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 4,
-        "agendaItems": 16,
-        "votingCards": 4,
+        "meetings": 2,
+        "agendaItems": 18,
+        "votingCards": 2,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 2,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 0,
+        "spendingRecords": 1,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 16
+        "sourceDocuments": 18
       }
     },
     {
@@ -356,35 +460,35 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 0,
-        "agendaItems": 17,
-        "votingCards": 0,
+        "meetings": 3,
+        "agendaItems": 8,
+        "votingCards": 3,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 0,
+        "votes": 3,
         "officials": 0,
         "newsStories": 0,
         "spendingRecords": 2,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 17
+        "sourceDocuments": 8
       }
     },
     {
-      "id": "issue_real_elections",
-      "issueText": "Elections",
-      "jurisdictionName": "Elko County, NV",
+      "id": "issue_real_civil-rights",
+      "issueText": "Civil rights",
+      "jurisdictionName": "Nevada",
       "categories": [
-        "Elections"
+        "Courts and Legal Rights"
       ],
-      "reviewStatus": "needs_review",
+      "reviewStatus": "generated",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 1,
-        "agendaItems": 4,
-        "votingCards": 1,
-        "courtCases": 0,
+        "meetings": 0,
+        "agendaItems": 0,
+        "votingCards": 0,
+        "courtCases": 1,
         "communitySubmissions": 0,
         "votes": 0,
         "officials": 0,
@@ -392,12 +496,12 @@
         "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 4
+        "sourceDocuments": 1
       }
     },
     {
-      "id": "issue_real_public-meeting-access",
-      "issueText": "Public Meeting Access",
+      "id": "issue_real_campaign-finance-transparency",
+      "issueText": "Campaign Finance Transparency",
       "jurisdictionName": "Across the platform",
       "categories": [
         "Other"
@@ -407,7 +511,7 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 0,
-        "agendaItems": 5,
+        "agendaItems": 1,
         "votingCards": 0,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -417,32 +521,7 @@
         "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 5
-      }
-    },
-    {
-      "id": "issue_real_criminal-justice",
-      "issueText": "Criminal Justice",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Other"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 0,
-        "agendaItems": 3,
-        "votingCards": 0,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 0,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 0,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 3
+        "sourceDocuments": 1
       }
     }
   ],

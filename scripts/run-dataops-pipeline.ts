@@ -20,6 +20,34 @@ function argValue(name: string) {
   return process.argv.find((arg) => arg.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
 }
 
+if (process.argv.includes("--help")) {
+  console.log([
+    "Usage: node --import tsx scripts/run-dataops-pipeline.ts [--limit=N] [--from=stage] [--to=stage] [--offline] [--force]",
+    "",
+    "Runs the DataOps refresh pipeline. Use --from/--to for targeted recovery runs.",
+    "Known stages:",
+    ...[
+      "refresh-meeting-calendars",
+      "public-records",
+      "import-meetings",
+      "register-sources",
+      "discover-documents",
+      "monitor-sources",
+      "retrieve-documents",
+      "verify-cache",
+      "extract-native-text",
+      "ocr",
+      "source-completeness",
+      "attendance",
+      "votes",
+      "accountability",
+      "communities",
+      "freshness-audit",
+    ].map((stage) => `- ${stage}`),
+  ].join("\n"));
+  process.exit(0);
+}
+
 const isTargetedRun = Boolean(argValue("from") || argValue("to"));
 const OUTPUT_PATH = isTargetedRun ? TARGETED_OUTPUT_PATH : CANONICAL_OUTPUT_PATH;
 
@@ -103,7 +131,7 @@ const stages: Stage[] = [
       runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"),
       runNodeScript("scripts/monitor-civic-sources.ts"),
       runNodeScript("scripts/audit-nevada-jurisdiction-meeting-coverage.ts", ["--strict"]),
-      runNodeScript("scripts/audit-upcoming-meeting-coverage.ts"),
+      runNodeScript("scripts/audit-upcoming-meeting-coverage.ts", ["--strict"]),
     ],
   },
   { id: "retrieve-documents", description: "Retrieve/cache queued remote documents.", network: true, commands: [runNodeScript("scripts/retrieve-public-meeting-documents.ts", retrieveArgs)] },

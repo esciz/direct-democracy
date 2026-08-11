@@ -1,45 +1,63 @@
 {
-  "generatedAt": "2026-07-25T13:05:20.036Z",
+  "generatedAt": "2026-08-10T15:08:33.498Z",
   "totals": {
-    "meetingItemsScanned": 1660,
-    "actionResultsExtracted": 329,
-    "withMotion": 150,
-    "withMover": 147,
-    "withSeconder": 138,
-    "withOutcome": 315,
-    "withVoteCount": 21,
-    "withNamedVotes": 23,
-    "unanimousActions": 149,
-    "needsReview": 53,
-    "unlinkedToAgendaItem": 163
+    "meetingItemsScanned": 7769,
+    "actionResultsExtracted": 848,
+    "withMotion": 52,
+    "withMover": 43,
+    "withSeconder": 312,
+    "withOutcome": 837,
+    "withVoteCount": 319,
+    "withNamedVotes": 12,
+    "unanimousActions": 52,
+    "needsReview": 57,
+    "unlinkedToAgendaItem": 445
   },
   "organizationReports": [
     {
+      "organizationId": "eureka-county-commission",
+      "actionResults": 434,
+      "withOutcome": 434,
+      "withVoteCount": 307,
+      "withNamedVotes": 1,
+      "needsReview": 8,
+      "unlinkedToAgendaItem": 241
+    },
+    {
+      "organizationId": "lyon-county-commission",
+      "actionResults": 155,
+      "withOutcome": 155,
+      "withVoteCount": 0,
+      "withNamedVotes": 3,
+      "needsReview": 11,
+      "unlinkedToAgendaItem": 88
+    },
+    {
+      "organizationId": "storey-county-commission",
+      "actionResults": 112,
+      "withOutcome": 111,
+      "withVoteCount": 0,
+      "withNamedVotes": 4,
+      "needsReview": 14,
+      "unlinkedToAgendaItem": 58
+    },
+    {
       "organizationId": "elko-city-council",
-      "actionResults": 179,
-      "withOutcome": 174,
-      "withVoteCount": 12,
-      "withNamedVotes": 20,
-      "needsReview": 20,
-      "unlinkedToAgendaItem": 82
-    },
-    {
-      "organizationId": "nshe-board-of-regents",
-      "actionResults": 78,
-      "withOutcome": 78,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 16,
-      "unlinkedToAgendaItem": 64
-    },
-    {
-      "organizationId": "elko-county-commission",
-      "actionResults": 26,
-      "withOutcome": 26,
-      "withVoteCount": 0,
+      "actionResults": 56,
+      "withOutcome": 55,
+      "withVoteCount": 3,
       "withNamedVotes": 0,
       "needsReview": 2,
-      "unlinkedToAgendaItem": 9
+      "unlinkedToAgendaItem": 34
+    },
+    {
+      "organizationId": "yerington-city-council",
+      "actionResults": 56,
+      "withOutcome": 56,
+      "withVoteCount": 0,
+      "withNamedVotes": 4,
+      "needsReview": 8,
+      "unlinkedToAgendaItem": 24
     },
     {
       "organizationId": "washoe-county-commission",
@@ -51,58 +69,13 @@
       "unlinkedToAgendaItem": 0
     },
     {
-      "organizationId": "henderson-city-council",
-      "actionResults": 7,
-      "withOutcome": 7,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 0,
-      "unlinkedToAgendaItem": 7
-    },
-    {
-      "organizationId": "clark-county-commission",
-      "actionResults": 4,
-      "withOutcome": 4,
+      "organizationId": "churchill-county-commission",
+      "actionResults": 10,
+      "withOutcome": 10,
       "withVoteCount": 0,
       "withNamedVotes": 0,
       "needsReview": 0,
       "unlinkedToAgendaItem": 0
-    },
-    {
-      "organizationId": "las-vegas-city-council",
-      "actionResults": 4,
-      "withOutcome": 4,
-      "withVoteCount": 0,
-      "withNamedVotes": 3,
-      "needsReview": 0,
-      "unlinkedToAgendaItem": 0
-    },
-    {
-      "organizationId": "reno-city-council",
-      "actionResults": 3,
-      "withOutcome": 3,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 0,
-      "unlinkedToAgendaItem": 0
-    },
-    {
-      "organizationId": "north-las-vegas-city-council",
-      "actionResults": 2,
-      "withOutcome": 2,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 1,
-      "unlinkedToAgendaItem": 0
-    },
-    {
-      "organizationId": "carson-city-school-district",
-      "actionResults": 1,
-      "withOutcome": 1,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 0,
-      "unlinkedToAgendaItem": 1
     }
   ]
 }

@@ -11,6 +11,8 @@ type MeetingSource = {
   name: string;
   jurisdiction: string;
   active: boolean;
+  scraperType?: string | null;
+  directCollectionCadenceDays?: number | null;
 };
 
 type PublicBody = {
@@ -65,8 +67,30 @@ function parseTime(value: string | null | undefined) {
   return Number.isFinite(time) ? time : null;
 }
 
+function numberArg(name: string, fallback: number) {
+  const raw = process.argv.find((arg) => arg.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
+  const value = Number(raw);
+  return Number.isFinite(value) && value >= 0 ? value : fallback;
+}
+
+function hasFlag(name: string) {
+  return process.argv.includes(`--${name}`);
+}
+
+if (hasFlag("help")) {
+  console.log([
+    "Usage: node --import tsx scripts/audit-upcoming-meeting-coverage.ts [--strict] [--max-stale-days=N]",
+    "",
+    "Checks every configured meeting provider for future-dated meeting coverage.",
+    "--strict exits non-zero when direct, non-manual providers are stale or failing.",
+  ].join("\n"));
+  process.exit(0);
+}
+
 const generatedAt = new Date().toISOString();
 const now = Date.now();
+const maxStaleDays = numberArg("max-stale-days", 3);
+const strict = hasFlag("strict");
 const sources = readJson<MeetingSource[]>(SEED_PATH, []).filter((source) => source.active);
 const coverage = readJson<CoverageCatalog>(COVERAGE_PATH, {});
 const requiredProviders = coverage.providers ?? [];
@@ -109,6 +133,19 @@ const rows = [...providerIds].map((providerId) => {
     manual?.status === "partially_parsed",
   );
   const failures = direct?.failures ?? 0;
+  const newestKnownMeetingAt = newestKnownMeeting?.meeting_date ?? direct?.newest_meeting_found ?? manual?.newest_meeting_found ?? null;
+  const newestKnownTime = parseTime(newestKnownMeetingAt);
+  const staleCutoff = now - maxStaleDays * 86_400_000;
+  const isAutomatedDailySource = Boolean(source && source.scraperType !== "manual" && (source.directCollectionCadenceDays ?? 1) <= 1);
+  const freshnessStatus = upcomingMeetings.length
+    ? "current"
+    : !hasParsedProvider
+      ? "not_parsed"
+      : newestKnownTime === null
+        ? "unknown_latest_meeting"
+        : newestKnownTime < staleCutoff
+          ? "stale_latest_meeting"
+          : "recent_past_meeting_only";
   const status = upcomingMeetings.length
     ? "upcoming_found"
     : !source && !direct && !manual
@@ -118,6 +155,16 @@ const rows = [...providerIds].map((providerId) => {
         : hasParsedProvider
           ? "zero_upcoming_review"
           : "adapter_gap";
+  const strictBlocking = Boolean(
+    isAutomatedDailySource &&
+      (
+        status === "source_failure" ||
+        status === "source_gap" ||
+        status === "adapter_gap" ||
+        freshnessStatus === "stale_latest_meeting" ||
+        freshnessStatus === "unknown_latest_meeting"
+      ),
+  );
 
   return {
     providerId,
@@ -132,7 +179,15 @@ const rows = [...providerIds].map((providerId) => {
       communityIds: requirement.communityIds,
     })),
     status,
+    freshnessStatus,
+    strictBlocking,
     sourceConfigured: Boolean(source || direct || manual),
+    sourceCadence: source
+      ? {
+          scraperType: source.scraperType ?? null,
+          directCollectionCadenceDays: source.directCollectionCadenceDays ?? null,
+        }
+      : null,
     directProviderStatus: direct
       ? {
           meetingsDiscovered: direct.meetings_discovered,
@@ -144,7 +199,7 @@ const rows = [...providerIds].map((providerId) => {
     totalDatedMeetings: providerMeetings.length,
     upcomingMeetings: upcomingMeetings.length,
     nextUpcomingAt: upcomingMeetings[0]?.meeting_date ?? null,
-    newestKnownMeetingAt: newestKnownMeeting?.meeting_date ?? direct?.newest_meeting_found ?? manual?.newest_meeting_found ?? null,
+    newestKnownMeetingAt,
     upcomingExamples: upcomingMeetings.slice(0, 5).map((meeting) => ({
       id: meeting.id,
       title: meeting.title,
@@ -154,6 +209,8 @@ const rows = [...providerIds].map((providerId) => {
     nextAction:
       status === "upcoming_found"
         ? "Continue daily monitoring."
+        : strictBlocking
+          ? "Blocking daily freshness gap: inspect the official calendar, refresh the source, or repair the adapter before trusting coverage."
         : status === "zero_upcoming_review"
           ? "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
           : status === "source_failure"
@@ -175,9 +232,20 @@ const totals = {
   sourceFailures: rows.filter((row) => row.status === "source_failure").length,
   adapterGaps: rows.filter((row) => row.status === "adapter_gap").length,
   sourceGaps: rows.filter((row) => row.status === "source_gap").length,
+  strictBlockingProviders: rows.filter((row) => row.strictBlocking).length,
+  staleLatestMeetingProviders: rows.filter((row) => row.freshnessStatus === "stale_latest_meeting").length,
+  recentPastOnlyProviders: rows.filter((row) => row.freshnessStatus === "recent_past_meeting_only").length,
 };
 
 mkdirSync(GENERATED_DIR, { recursive: true });
-writeFileSync(OUTPUT_PATH, `${JSON.stringify({ generatedAt, totals, rows }, null, 2)}\n`);
+writeFileSync(OUTPUT_PATH, `${JSON.stringify({ generatedAt, strict, maxStaleDays, totals, rows }, null, 2)}\n`);
 console.log(JSON.stringify(totals, null, 2));
 console.log(`Wrote ${path.relative(process.cwd(), OUTPUT_PATH)}`);
+
+if (strict && totals.strictBlockingProviders > 0) {
+  console.error("Upcoming meeting coverage strict audit failed:");
+  for (const row of rows.filter((row) => row.strictBlocking).slice(0, 25)) {
+    console.error(`- ${row.providerName} (${row.jurisdiction}): ${row.status}/${row.freshnessStatus}; newest ${row.newestKnownMeetingAt ?? "unknown"}`);
+  }
+  process.exit(1);
+}

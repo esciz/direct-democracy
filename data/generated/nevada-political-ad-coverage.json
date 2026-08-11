@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-26T01:42:07.821Z",
-  "adsGeneratedAt": "2026-07-26T01:41:52.841Z",
+  "generatedAt": "2026-08-10T15:03:18.935Z",
+  "adsGeneratedAt": "2026-08-10T15:03:17.556Z",
   "sourceCatalogVersion": 1,
   "sourceCatalogUpdatedAt": "2026-07-25",
   "historicalCycles": [
@@ -19,9 +19,9 @@
     "candidates": 212,
     "currentOfficials": 154,
     "sourceRoutes": 6,
-    "repositoryRecords": 1038,
+    "repositoryRecords": 1056,
     "creativeRecords": 7,
-    "filingOnlyRecords": 1031,
+    "filingOnlyRecords": 1049,
     "entitiesWithMatchedRecords": 20,
     "candidatesWithMatchedRecords": 12,
     "officialsWithMatchedRecords": 8,
@@ -3750,20 +3750,27 @@
         "fec-nv-ie-SE24.7112",
         "fec-nv-ie-4063020261523241302",
         "fec-nv-ie-E-1908",
+        "fec-nv-ie-4063020261523241327",
+        "fec-nv-ie-4063020261523241299",
         "fec-nv-ie-E-1889",
         "fec-nv-ie-E-1882",
+        "fec-nv-ie-4063020261523241288",
         "fec-nv-ie-SE.4200",
         "fec-nv-ie-EB1108FBCE9534AB384D",
+        "fec-nv-ie-4070820261533620494",
+        "fec-nv-ie-4070820261533620493",
+        "fec-nv-ie-4062920261523119229",
+        "fec-nv-ie-4051920261510743127",
         "fec-nv-ie-SE.4189",
         "fec-nv-ie-SE.4174",
         "fec-nv-ie-SE.4172"
       ],
       "totals": {
-        "matchedRecords": 31,
+        "matchedRecords": 38,
         "creativeRecords": 0,
-        "filingOnlyRecords": 31,
+        "filingOnlyRecords": 38,
         "recordsWithClaims": 0,
-        "reportedSpend": 915921.5299999999,
+        "reportedSpend": 1228662.6400000001,
         "cyclesCovered": [
           2026
         ]
@@ -3812,7 +3819,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "0 creative record(s) and 31 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "0 creative record(s) and 38 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "candidate",
@@ -6302,15 +6309,16 @@
         "fec-nv-ie-VSG8M9YTTS6",
         "fec-nv-ie-SE.201340",
         "fec-nv-ie-VSG8M9YPG31",
+        "fec-nv-ie-4050120171400773929",
         "fec-nv-ie-SE.5760",
         "fec-nv-ie-73474956"
       ],
       "totals": {
-        "matchedRecords": 87,
+        "matchedRecords": 88,
         "creativeRecords": 1,
-        "filingOnlyRecords": 86,
+        "filingOnlyRecords": 87,
         "recordsWithClaims": 1,
-        "reportedSpend": 2845531.53,
+        "reportedSpend": 2845696.36,
         "cyclesCovered": [
           2026,
           2024,
@@ -6362,7 +6370,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "1 creative record(s) and 86 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "1 creative record(s) and 87 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "candidate",
@@ -14930,6 +14938,10 @@
         "fec-nv-ie-WFT20223271159-1",
         "fec-nv-ie-SE.5887",
         "fec-nv-ie-SE.5872",
+        "fec-nv-ie-4051720171404979341",
+        "fec-nv-ie-4031720171380311293",
+        "fec-nv-ie-4051720171404979305",
+        "fec-nv-ie-4050120171400773924",
         "fec-nv-ie-EDT.E.35",
         "fec-nv-ie-74328118",
         "fec-nv-ie-SE43020100",
@@ -14947,11 +14959,11 @@
         "fec-nv-ie-A500A14808E64499FBD0"
       ],
       "totals": {
-        "matchedRecords": 59,
+        "matchedRecords": 63,
         "creativeRecords": 0,
-        "filingOnlyRecords": 59,
+        "filingOnlyRecords": 63,
         "recordsWithClaims": 0,
-        "reportedSpend": 2869889.52,
+        "reportedSpend": 2911886.77,
         "cyclesCovered": [
           2024,
           2022,
@@ -15003,7 +15015,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "0 creative record(s) and 59 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "0 creative record(s) and 63 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "official",
@@ -16176,19 +16188,21 @@
         "fec-nv-ie-VVBANAR8MD9",
         "fec-nv-ie-VVBANAR8MB3",
         "fec-nv-ie-F57.4349",
+        "fec-nv-ie-4050120171400773927",
         "fec-nv-ie-SE.5762"
       ],
       "totals": {
-        "matchedRecords": 29,
+        "matchedRecords": 30,
         "creativeRecords": 0,
-        "filingOnlyRecords": 29,
+        "filingOnlyRecords": 30,
         "recordsWithClaims": 0,
-        "reportedSpend": 136053.37000000002,
+        "reportedSpend": 136155.97000000003,
         "cyclesCovered": [
           2024,
           2022,
           2020,
-          2018
+          2018,
+          2016
         ]
       },
       "sourceRoutes": [
@@ -16235,7 +16249,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "0 creative record(s) and 29 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "0 creative record(s) and 30 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "official",
@@ -18032,15 +18046,16 @@
         "fec-nv-ie-VSG8M9YTTS6",
         "fec-nv-ie-SE.201340",
         "fec-nv-ie-VSG8M9YPG31",
+        "fec-nv-ie-4050120171400773929",
         "fec-nv-ie-SE.5760",
         "fec-nv-ie-73474956"
       ],
       "totals": {
-        "matchedRecords": 87,
+        "matchedRecords": 88,
         "creativeRecords": 1,
-        "filingOnlyRecords": 86,
+        "filingOnlyRecords": 87,
         "recordsWithClaims": 1,
-        "reportedSpend": 2845531.53,
+        "reportedSpend": 2845696.36,
         "cyclesCovered": [
           2026,
           2024,
@@ -18092,7 +18107,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "1 creative record(s) and 86 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "1 creative record(s) and 87 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "official",

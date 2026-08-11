@@ -1,46 +1,8 @@
 {
-  "generatedAt": "2026-07-25T13:05:25.493Z",
-  "relationshipMapGeneratedAt": "2026-07-25T13:05:25.383Z",
+  "generatedAt": "2026-08-10T15:08:44.907Z",
+  "relationshipMapGeneratedAt": "2026-08-10T15:08:44.667Z",
   "purpose": "Prioritize Nevada communities that need additional local source acquisition before expansion.",
   "priorityOrder": [
-    {
-      "id": "nye-county",
-      "name": "Nye County",
-      "kind": "county",
-      "href": "/community/nye-county",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "churchill-county",
-      "name": "Churchill County",
-      "kind": "county",
-      "href": "/community/churchill-county",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
     {
       "id": "humboldt-county",
       "name": "Humboldt County",
@@ -57,7 +19,26 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
+    },
+    {
+      "id": "white-pine-county",
+      "name": "White Pine County",
+      "kind": "county",
+      "href": "/community/white-pine-county",
+      "acquisitionGapScore": 12,
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "localDashboardRecords": 0,
+      "overlayDashboardRecords": 135,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -76,7 +57,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
+      "overlayDashboardRecords": 135,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -95,26 +76,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "eureka-county",
-      "name": "Eureka County",
-      "kind": "county",
-      "href": "/community/eureka-county",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
+      "overlayDashboardRecords": 135,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -133,45 +95,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "pershing-county",
-      "name": "Pershing County",
-      "kind": "county",
-      "href": "/community/pershing-county",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "storey-county",
-      "name": "Storey County",
-      "kind": "county",
-      "href": "/community/storey-county",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
+      "overlayDashboardRecords": 135,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -190,83 +114,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "fallon",
-      "name": "Fallon",
-      "kind": "city",
-      "href": "/community/fallon",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "winnemucca",
-      "name": "Winnemucca",
-      "kind": "city",
-      "href": "/community/winnemucca",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "tonopah",
-      "name": "Tonopah",
-      "kind": "community",
-      "href": "/community/tonopah",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
-    },
-    {
-      "id": "pahrump",
-      "name": "Pahrump",
-      "kind": "community",
-      "href": "/community/pahrump",
-      "acquisitionGapScore": 12,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "spending",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
+      "overlayDashboardRecords": 135,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -285,50 +133,32 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 443,
+      "overlayDashboardRecords": 135,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
-      "id": "lyon-county",
-      "name": "Lyon County",
+      "id": "nye-county",
+      "name": "Nye County",
       "kind": "county",
-      "href": "/community/lyon-county",
+      "href": "/community/nye-county",
       "acquisitionGapScore": 8,
       "missingCategories": [
-        "meetings",
         "votes",
         "issues",
+        "spending",
         "cases",
         "officials",
         "projects"
       ],
       "localDashboardRecords": 1,
-      "overlayDashboardRecords": 443,
+      "overlayDashboardRecords": 135,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
-      "id": "white-pine-county",
-      "name": "White Pine County",
-      "kind": "county",
-      "href": "/community/white-pine-county",
-      "acquisitionGapScore": 8,
-      "missingCategories": [
-        "meetings",
-        "votes",
-        "issues",
-        "cases",
-        "officials",
-        "projects"
-      ],
-      "localDashboardRecords": 1,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
-    },
-    {
-      "id": "yerington",
-      "name": "Yerington",
+      "id": "winnemucca",
+      "name": "Winnemucca",
       "kind": "city",
-      "href": "/community/yerington",
+      "href": "/community/winnemucca",
       "acquisitionGapScore": 8,
       "missingCategories": [
         "meetings",
@@ -339,43 +169,75 @@
         "projects"
       ],
       "localDashboardRecords": 1,
-      "overlayDashboardRecords": 443,
+      "overlayDashboardRecords": 135,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
-      "id": "fernley",
-      "name": "Fernley",
-      "kind": "city",
-      "href": "/community/fernley",
+      "id": "tonopah",
+      "name": "Tonopah",
+      "kind": "community",
+      "href": "/community/tonopah",
       "acquisitionGapScore": 8,
       "missingCategories": [
-        "meetings",
+        "votes",
+        "issues",
+        "spending",
+        "cases",
+        "officials",
+        "projects"
+      ],
+      "localDashboardRecords": 1,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
+    },
+    {
+      "id": "pahrump",
+      "name": "Pahrump",
+      "kind": "community",
+      "href": "/community/pahrump",
+      "acquisitionGapScore": 7,
+      "missingCategories": [
         "votes",
         "issues",
         "cases",
         "officials",
         "projects"
       ],
-      "localDashboardRecords": 2,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 3,
+      "overlayDashboardRecords": 135,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
+    },
+    {
+      "id": "caliente",
+      "name": "Caliente",
+      "kind": "city",
+      "href": "/community/caliente",
+      "acquisitionGapScore": 5,
+      "missingCategories": [
+        "votes",
+        "issues",
+        "spending",
+        "officials",
+        "projects"
+      ],
+      "localDashboardRecords": 6,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
     },
     {
       "id": "douglas-county",
       "name": "Douglas County",
       "kind": "county",
       "href": "/community/douglas-county",
-      "acquisitionGapScore": 6,
+      "acquisitionGapScore": 4,
       "missingCategories": [
-        "meetings",
         "votes",
         "issues",
-        "cases",
         "officials",
         "projects"
       ],
-      "localDashboardRecords": 27,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 35,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -383,17 +245,15 @@
       "name": "Gardnerville",
       "kind": "community",
       "href": "/community/gardnerville",
-      "acquisitionGapScore": 6,
+      "acquisitionGapScore": 4,
       "missingCategories": [
-        "meetings",
         "votes",
         "issues",
-        "cases",
         "officials",
         "projects"
       ],
-      "localDashboardRecords": 27,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 35,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -401,23 +261,21 @@
       "name": "Minden",
       "kind": "community",
       "href": "/community/minden",
-      "acquisitionGapScore": 6,
+      "acquisitionGapScore": 4,
       "missingCategories": [
-        "meetings",
         "votes",
         "issues",
-        "cases",
         "officials",
         "projects"
       ],
-      "localDashboardRecords": 27,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 35,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
       "id": "ely",
       "name": "Ely",
-      "kind": "community",
+      "kind": "city",
       "href": "/community/ely",
       "acquisitionGapScore": 4,
       "missingCategories": [
@@ -426,8 +284,193 @@
         "issues",
         "officials"
       ],
-      "localDashboardRecords": 43,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 65,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "elko-county",
+      "name": "Elko County",
+      "kind": "county",
+      "href": "/community/elko-county",
+      "acquisitionGapScore": 3,
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 10,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "west-wendover",
+      "name": "West Wendover",
+      "kind": "city",
+      "href": "/community/west-wendover",
+      "acquisitionGapScore": 3,
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 10,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "wells",
+      "name": "Wells",
+      "kind": "city",
+      "href": "/community/wells",
+      "acquisitionGapScore": 3,
+      "missingCategories": [
+        "meetings",
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 16,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "carlin",
+      "name": "Carlin",
+      "kind": "city",
+      "href": "/community/carlin",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 11,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "clark-county",
+      "name": "Clark County",
+      "kind": "county",
+      "href": "/community/clark-county",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 26,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "mesquite",
+      "name": "Mesquite",
+      "kind": "city",
+      "href": "/community/mesquite",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 28,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "laughlin",
+      "name": "Laughlin",
+      "kind": "community",
+      "href": "/community/laughlin",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 32,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "henderson",
+      "name": "Henderson",
+      "kind": "city",
+      "href": "/community/henderson",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 33,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "churchill-county",
+      "name": "Churchill County",
+      "kind": "county",
+      "href": "/community/churchill-county",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "spending",
+        "officials"
+      ],
+      "localDashboardRecords": 39,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "north-las-vegas",
+      "name": "North Las Vegas",
+      "kind": "city",
+      "href": "/community/north-las-vegas",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 79,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "boulder-city",
+      "name": "Boulder City",
+      "kind": "city",
+      "href": "/community/boulder-city",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "votes",
+        "issues"
+      ],
+      "localDashboardRecords": 85,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "pershing-county",
+      "name": "Pershing County",
+      "kind": "county",
+      "href": "/community/pershing-county",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "officials",
+        "projects"
+      ],
+      "localDashboardRecords": 189,
+      "overlayDashboardRecords": 135,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "lovelock",
+      "name": "Lovelock",
+      "kind": "city",
+      "href": "/community/lovelock",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "officials",
+        "projects"
+      ],
+      "localDashboardRecords": 189,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -435,14 +478,13 @@
       "name": "Carson City County",
       "kind": "county",
       "href": "/community/carson-city-county",
-      "acquisitionGapScore": 3,
+      "acquisitionGapScore": 2,
       "missingCategories": [
         "votes",
-        "issues",
-        "cases"
+        "issues"
       ],
-      "localDashboardRecords": 525,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 558,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -455,96 +497,88 @@
         "votes",
         "issues"
       ],
-      "localDashboardRecords": 540,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 558,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
-      "id": "clark-county",
-      "name": "Clark County",
+      "id": "lyon-county",
+      "name": "Lyon County",
       "kind": "county",
-      "href": "/community/clark-county",
-      "acquisitionGapScore": 0,
-      "missingCategories": [],
-      "localDashboardRecords": 112,
-      "overlayDashboardRecords": 443,
+      "href": "/community/lyon-county",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "officials",
+        "projects"
+      ],
+      "localDashboardRecords": 1178,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
-      "id": "mesquite",
-      "name": "Mesquite",
+      "id": "fernley",
+      "name": "Fernley",
       "kind": "city",
-      "href": "/community/mesquite",
-      "acquisitionGapScore": 0,
-      "missingCategories": [],
-      "localDashboardRecords": 112,
-      "overlayDashboardRecords": 443,
+      "href": "/community/fernley",
+      "acquisitionGapScore": 2,
+      "missingCategories": [
+        "officials",
+        "projects"
+      ],
+      "localDashboardRecords": 1179,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
-      "id": "boulder-city",
-      "name": "Boulder City",
+      "id": "fallon",
+      "name": "Fallon",
       "kind": "city",
-      "href": "/community/boulder-city",
-      "acquisitionGapScore": 0,
-      "missingCategories": [],
-      "localDashboardRecords": 112,
-      "overlayDashboardRecords": 443,
+      "href": "/community/fallon",
+      "acquisitionGapScore": 1,
+      "missingCategories": [
+        "officials"
+      ],
+      "localDashboardRecords": 42,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
-      "id": "laughlin",
-      "name": "Laughlin",
-      "kind": "community",
-      "href": "/community/laughlin",
-      "acquisitionGapScore": 0,
-      "missingCategories": [],
-      "localDashboardRecords": 118,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "elko-county",
-      "name": "Elko County",
+      "id": "storey-county",
+      "name": "Storey County",
       "kind": "county",
-      "href": "/community/elko-county",
-      "acquisitionGapScore": 0,
-      "missingCategories": [],
-      "localDashboardRecords": 129,
-      "overlayDashboardRecords": 443,
+      "href": "/community/storey-county",
+      "acquisitionGapScore": 1,
+      "missingCategories": [
+        "officials"
+      ],
+      "localDashboardRecords": 1182,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
-      "id": "west-wendover",
-      "name": "West Wendover",
+      "id": "yerington",
+      "name": "Yerington",
       "kind": "city",
-      "href": "/community/west-wendover",
-      "acquisitionGapScore": 0,
-      "missingCategories": [],
-      "localDashboardRecords": 129,
-      "overlayDashboardRecords": 443,
+      "href": "/community/yerington",
+      "acquisitionGapScore": 1,
+      "missingCategories": [
+        "officials"
+      ],
+      "localDashboardRecords": 1716,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
-      "id": "north-las-vegas",
-      "name": "North Las Vegas",
-      "kind": "city",
-      "href": "/community/north-las-vegas",
-      "acquisitionGapScore": 0,
-      "missingCategories": [],
-      "localDashboardRecords": 194,
-      "overlayDashboardRecords": 443,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "henderson",
-      "name": "Henderson",
-      "kind": "city",
-      "href": "/community/henderson",
-      "acquisitionGapScore": 0,
-      "missingCategories": [],
-      "localDashboardRecords": 210,
-      "overlayDashboardRecords": 443,
+      "id": "eureka-county",
+      "name": "Eureka County",
+      "kind": "county",
+      "href": "/community/eureka-county",
+      "acquisitionGapScore": 1,
+      "missingCategories": [
+        "officials"
+      ],
+      "localDashboardRecords": 3022,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -554,8 +588,8 @@
       "href": "/community/las-vegas",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 269,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 280,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -565,8 +599,8 @@
       "href": "/community/elko",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 550,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 414,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -576,8 +610,8 @@
       "href": "/community/washoe-county",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 868,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 883,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -587,8 +621,8 @@
       "href": "/community/incline-village",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 868,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 883,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -598,8 +632,8 @@
       "href": "/community/sparks",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 888,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 895,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -609,8 +643,8 @@
       "href": "/community/reno",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 960,
-      "overlayDashboardRecords": 443,
+      "localDashboardRecords": 1056,
+      "overlayDashboardRecords": 135,
       "recommendation": "Maintain source refresh and add missing categories."
     }
   ]

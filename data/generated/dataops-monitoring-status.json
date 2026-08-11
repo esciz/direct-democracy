@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T22:09:21.512Z",
+  "generatedAt": "2026-08-10T15:08:47.056Z",
   "records": [
     {
       "sourceId": "meeting:nv-legislature",
@@ -9,26 +9,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.leg.state.nv.us",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 25,
+        "discovered": 31,
         "queued": 0,
         "cached": 0,
-        "extracted": 25,
+        "extracted": 31,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -39,10 +39,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.gov.nv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -55,10 +55,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -69,10 +69,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "nshe.nevada.edu",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -85,10 +85,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -99,26 +99,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "granicus",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 1123,
-        "queued": 0,
+        "discovered": 1138,
+        "queued": 10,
         "cached": 0,
-        "extracted": 1122,
+        "extracted": 1127,
         "ocrRequired": 1,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -129,26 +129,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.churchillcountynv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 2,
+        "discovered": 15,
         "queued": 0,
         "cached": 0,
-        "extracted": 1,
-        "ocrRequired": 0,
+        "extracted": 4,
+        "ocrRequired": 4,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -159,26 +159,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "legistar",
       "sourceHost": "clark.legistar.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 0,
+        "discovered": 6,
         "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 6,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -189,10 +189,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.douglascountynv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "stale",
       "freshnessStatus": "stale",
       "failureReason": "Most documents are discovered but not cached or extracted.",
@@ -205,10 +205,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -219,10 +219,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "granicus",
       "sourceHost": "www.elkocountynv.net",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -235,10 +235,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -249,10 +249,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.accessesmeralda.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -265,10 +265,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -279,26 +279,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.eurekacountynv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 20,
+        "discovered": 43,
         "queued": 0,
         "cached": 2,
-        "extracted": 15,
+        "extracted": 29,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -309,10 +309,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.humboldtcountynv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -325,10 +325,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -339,10 +339,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.landercountynv.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -355,10 +355,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -369,10 +369,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "lincolncountynv.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -385,10 +385,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -399,26 +399,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.lyon-county.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 6,
+        "discovered": 18,
         "queued": 0,
         "cached": 0,
-        "extracted": 2,
+        "extracted": 8,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -429,10 +429,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "mineralcountynv.us",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -445,10 +445,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -459,10 +459,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.nyecountynv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -475,10 +475,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -489,26 +489,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.pershingcountynv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
       "documentCounts": {
-        "discovered": 10,
+        "discovered": 32,
         "queued": 0,
         "cached": 0,
-        "extracted": 2,
+        "extracted": 13,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -519,26 +519,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.storeycounty.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 4,
+        "discovered": 12,
         "queued": 0,
         "cached": 0,
-        "extracted": 2,
+        "extracted": 6,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -549,26 +549,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "legistar",
       "sourceHost": "washoe-nv.legistar.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
-      "healthStatus": "healthy",
-      "freshnessStatus": "current",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 85,
-        "queued": 0,
+        "discovered": 87,
+        "queued": 1,
         "cached": 0,
-        "extracted": 85,
+        "extracted": 86,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -579,10 +579,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.whitepinecounty.net",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -595,10 +595,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -609,26 +609,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "primegov",
       "sourceHost": "www.bcnv.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 50,
+        "discovered": 52,
         "queued": 0,
         "cached": 0,
-        "extracted": 48,
+        "extracted": 50,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -639,26 +639,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.cityofcaliente.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 3,
+        "discovered": 5,
         "queued": 0,
         "cached": 0,
-        "extracted": 2,
+        "extracted": 3,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -667,28 +667,28 @@
       "sourceOwner": "Carlin City Council",
       "jurisdiction": "Carlin, NV",
       "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
+      "sourcePlatform": "civic_website",
       "sourceHost": "www.explorecarlinnv.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
-      "healthStatus": "unknown",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 0,
+        "discovered": 2,
         "queued": 0,
-        "cached": 0,
+        "cached": 1,
         "extracted": 0,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -699,10 +699,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "ob.elkocitynv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -715,10 +715,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -729,10 +729,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.cityofelynv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -745,10 +745,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -759,10 +759,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.fallonnevada.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -775,10 +775,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -789,10 +789,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.cityoffernley.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -805,10 +805,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -819,10 +819,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.cityofhenderson.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -835,10 +835,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -849,10 +849,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "granicus",
       "sourceHost": "lasvegas.primegov.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -865,10 +865,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -879,10 +879,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "cityoflovelock.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -895,10 +895,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -909,10 +909,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.mesquitenv.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "stale",
       "freshnessStatus": "stale",
       "failureReason": "Most documents are discovered but not cached or extracted.",
@@ -925,10 +925,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -939,26 +939,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "granicus",
       "sourceHost": "www.cityofnorthlasvegas.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
-      "healthStatus": "healthy",
-      "freshnessStatus": "current",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 45,
-        "queued": 0,
+        "discovered": 48,
+        "queued": 2,
         "cached": 0,
-        "extracted": 45,
+        "extracted": 46,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -969,26 +969,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "granicus",
       "sourceHost": "reno.primegov.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
-      "healthStatus": "healthy",
-      "freshnessStatus": "current",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 108,
-        "queued": 0,
+        "discovered": 109,
+        "queued": 1,
         "cached": 0,
         "extracted": 108,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -999,26 +999,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.cityofsparks.us",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
-      "healthStatus": "unknown",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
+        "discovered": 12,
+        "queued": 6,
+        "cached": 6,
         "extracted": 0,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1029,10 +1029,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.cityofwellsnv.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1045,10 +1045,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1059,10 +1059,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.westwendovercity.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1075,10 +1075,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1089,10 +1089,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.winnemuccacity.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1105,10 +1105,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1119,26 +1119,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.yerington.net",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 2,
+        "discovered": 12,
         "queued": 0,
         "cached": 0,
-        "extracted": 1,
+        "extracted": 6,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1149,10 +1149,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.carsoncityschools.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1165,10 +1165,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1179,10 +1179,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.churchillcsd.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1195,10 +1195,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1209,10 +1209,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.boarddocs.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1225,10 +1225,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1239,10 +1239,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.dcsd.net",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1255,10 +1255,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1269,10 +1269,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.ecsdnv.net",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1285,10 +1285,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1299,10 +1299,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.esmeralda.k12.nv.us",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1315,10 +1315,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1329,10 +1329,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.eureka.k12.nv.us",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1345,10 +1345,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1359,10 +1359,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.hcsdnv.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1375,10 +1375,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1389,10 +1389,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.lander.k12.nv.us",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1405,10 +1405,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1419,10 +1419,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "lcsdnv.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1435,10 +1435,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1449,10 +1449,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.lyoncsd.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1465,10 +1465,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1479,10 +1479,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "nvmcsd.org",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1495,10 +1495,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1509,10 +1509,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.nye.k12.nv.us",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1525,10 +1525,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1539,10 +1539,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.pcsdnv.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1555,10 +1555,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1569,10 +1569,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.storeynv.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1585,10 +1585,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1599,10 +1599,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.washoeschools.net",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
-      "lastSuccessAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -1615,10 +1615,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1629,10 +1629,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.whitepine.k12.nv.us",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1645,10 +1645,70 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
+      }
+    },
+    {
+      "sourceId": "meeting:nv-senate",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-senate",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 1,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
+      }
+    },
+    {
+      "sourceId": "meeting:nv-assembly",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-assembly",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": null,
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
+      "lastSuccessAt": "2026-08-10T15:08:47.056Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 1,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1659,10 +1719,10 @@
       "sourceCategory": "rss_or_public_notice",
       "sourcePlatform": "rss",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-25T23:09:21.512Z",
+      "nextCheckAt": "2026-08-10T16:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1675,10 +1735,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1689,10 +1749,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1705,10 +1765,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1719,10 +1779,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1735,10 +1795,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1749,10 +1809,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1765,10 +1825,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1779,10 +1839,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.carsoncityschools.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1795,10 +1855,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1809,10 +1869,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.elkocity.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1825,10 +1885,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1839,10 +1899,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.elkocity.com",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1855,10 +1915,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     },
     {
@@ -1869,10 +1929,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.elkocountynv.net",
-      "lastCheckedAt": "2026-07-25T22:09:21.512Z",
+      "lastCheckedAt": "2026-08-10T15:08:47.056Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-07-26T22:09:21.512Z",
+      "nextCheckAt": "2026-08-11T15:08:47.056Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1885,28 +1945,28 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 12,
-        "meetingsBlockedBySourceGaps": 109,
-        "meetingsBlockedByOcr": 4,
-        "meetingsBlockedByParserGaps": 12
+        "meetingsReadyForAccountability": 11,
+        "meetingsBlockedBySourceGaps": 80,
+        "meetingsBlockedByOcr": 6,
+        "meetingsBlockedByParserGaps": 6
       }
     }
   ],
   "audit": {
-    "generatedAt": "2026-07-25T22:09:21.512Z",
+    "generatedAt": "2026-08-10T15:08:47.056Z",
     "totals": {
-      "sourcesMonitored": 63,
+      "sourcesMonitored": 65,
       "healthy": 6,
-      "stale": 3,
-      "degraded": 10,
+      "stale": 2,
+      "degraded": 16,
       "failing": 0,
       "blocked": 0,
-      "unknown": 44,
-      "documentsDiscovered": 1690,
-      "queuedRetrievals": 0,
-      "downloadedDocuments": 1644,
-      "extractedDocuments": 1635,
-      "ocrCandidates": 3
+      "unknown": 41,
+      "documentsDiscovered": 1831,
+      "queuedRetrievals": 20,
+      "downloadedDocuments": 1718,
+      "extractedDocuments": 1702,
+      "ocrCandidates": 7
     }
   }
 }

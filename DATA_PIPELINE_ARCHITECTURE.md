@@ -92,6 +92,14 @@ Provider ingestion snapshot:
 - Issue runtime reporting is active through `npm run issues:report`; current output shows 17 production-visible source-backed hubs, 38 hidden demo/fallback rows, 12 issues with meetings, 8 issues with votes, and 1 issue with court records.
 - Current-officeholder generation is active through `npm run officials:audit`; Carson City currently publishes 25 current official/leadership records, including the mayor and four supervisors. `npm run officials:refresh` retrieves, verifies, and reconciles official-directory evidence when network access is available. `npm run officials:promote -- --jurisdiction=carson-city --run-id=<run-id> --confirm=promote-carson-city-officials` is the canonical promotion boundary.
 
+Freshness contract:
+
+- `.github/workflows/dataops-daily.yml` is scheduled daily at 11:15 UTC and remains manually dispatchable for recovery runs.
+- `sources:refresh:daily` is the canonical full refresh. It refreshes meeting calendars, officials, campaign-finance, public records, source documents, derived runtime artifacts, and integrity audits.
+- `meetings:upcoming-audit:strict` is the meeting-calendar gate. Direct non-manual providers with stale latest meetings, unknown latest meetings, source failures, source gaps, or adapter gaps fail the DataOps monitor stage.
+- `meetings:refresh-and-audit` is the fast local recovery path when a public meeting is missing from the app.
+- `data/generated/upcoming-meeting-coverage-audit.json` is the operator handoff artifact. Rows with `strictBlocking: true` must be investigated before public coverage is treated as complete.
+
 ## Change Log
 
 ### 2026-06-21 - Carson City Current Officials Runtime

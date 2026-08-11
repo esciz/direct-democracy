@@ -1,6 +1,9 @@
 name: DataOps Daily
 
 on:
+  schedule:
+    # Refresh before the Nevada business day so newly posted agendas are in the demo before meetings start.
+    - cron: "15 11 * * *"
   workflow_dispatch:
     inputs:
       limit:

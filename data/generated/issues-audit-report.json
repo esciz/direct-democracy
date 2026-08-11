@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T13:05:24.459Z",
+  "generatedAt": "2026-08-10T15:08:42.164Z",
   "output": "data/generated/issues-audit-report.json",
   "currentSchema": {
     "hasPrimaryIssueModel": false,
@@ -257,17 +257,17 @@
       ]
     },
     "sourceBackedInputs": {
-      "meetingVotingCards": 702,
-      "agendaItems": 1660,
-      "publicCourtCases": 25,
+      "meetingVotingCards": 3000,
+      "agendaItems": 7769,
+      "publicCourtCases": 27,
       "issueReviewRequests": 0
     },
     "generatedIssueHubs": {
-      "count": 16,
+      "count": 19,
       "metrics": {
-        "issueCount": 16,
-        "sourceBackedCount": 16,
-        "needsReviewCount": 15,
+        "issueCount": 19,
+        "sourceBackedCount": 19,
+        "needsReviewCount": 17,
         "sourceTypes": [
           "agenda_item",
           "meeting_voting_card",

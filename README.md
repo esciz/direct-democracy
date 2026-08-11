@@ -102,6 +102,14 @@ Generated artifacts include `data/generated/public-meeting-source-documents.json
 
 `sources:refresh:daily` is the canonical once-daily refresh. It checks official meeting calendars, merges reviewed caches, refreshes bounded source documents, republishes source-backed issue and event records, and runs freshness and no-demo audits. The GitHub workflow remains available for manual recovery runs; recurring execution is owned by one scheduler so the sources are not fetched more than once per day.
 
+The daily refresh is enforced by `.github/workflows/dataops-daily.yml`, which runs every day at 11:15 UTC and can also be started manually. Its monitor stage runs `npm run meetings:upcoming-audit:strict`; direct non-manual meeting providers fail the run when they cannot prove current or future meeting coverage. If a public calendar looks wrong, run the fast recovery path:
+
+```bash
+npm run meetings:refresh-and-audit
+```
+
+Inspect `data/generated/upcoming-meeting-coverage-audit.json` after each run. Providers marked `strictBlocking: true` need immediate source or adapter review before the app treats coverage as complete.
+
 `site:launch-audit` is the public integrity gate. It fails on civic fixture imports, retired government links, and legacy issue surfaces that no longer route to the source-backed issue system. It also reports unresolved meeting-provider, official-roster, campaign-finance, source-document, pipeline-completeness, and freshness barriers in `data/generated/public-site-integrity-audit.json`. A command exit code of zero means there are no critical code-integrity regressions; use the artifact's `launchReady` field for the full data-readiness decision.
 
 Remote public URLs are preserved as discovered sources. A document is marked downloaded only when a real local cache file exists. In network-restricted environments, retrieval attempts are recorded as `blocked_by_network` instead of pretending that source evidence was recovered.

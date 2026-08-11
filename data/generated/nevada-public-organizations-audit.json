@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-26T02:54:11.392Z",
-  "coverageGeneratedAt": "2026-07-26T02:49:38.263Z",
+  "generatedAt": "2026-08-10T15:03:32.141Z",
+  "coverageGeneratedAt": "2026-08-10T15:03:32.000Z",
   "strictPassed": true,
   "totals": {
     "organizations": 127,
     "categories": 19,
     "statewide": 46,
     "localOrRegional": 81,
-    "websitesChecked": 57,
-    "websitesReachable": 57,
+    "websitesChecked": 67,
+    "websitesReachable": 67,
     "irsRegistryMatches": 26,
     "politicalPartyOrganizations": 81,
     "democraticPartyNetwork": 32,
@@ -148,7 +148,7 @@
       {
         "id": "public-org-nevada-state-democratic-party",
         "name": "Nevada State Democratic Party",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-dem-carson-city",
@@ -183,7 +183,7 @@
       {
         "id": "public-org-dem-eureka-county",
         "name": "Eureka County Democratic Party",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-dem-humboldt-county",
@@ -208,7 +208,7 @@
       {
         "id": "public-org-dem-mineral-county",
         "name": "Mineral County Democratic Party",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-dem-nye-county",
@@ -353,7 +353,7 @@
       {
         "id": "public-org-gop-lander-county",
         "name": "Lander County Republican Central Committee",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-lincoln-county",
@@ -373,7 +373,7 @@
       {
         "id": "public-org-gop-nye-county",
         "name": "Nye County Republican Central Committee",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-pershing-county",
@@ -388,7 +388,7 @@
       {
         "id": "public-org-gop-washoe-county",
         "name": "Washoe County Republican Central Committee",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-white-pine-county",
@@ -408,7 +408,7 @@
       {
         "id": "public-org-gop-boulder-city-republican-women",
         "name": "Boulder City Republican Women",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-carson-city-republican-women",
@@ -433,7 +433,7 @@
       {
         "id": "public-org-gop-incline-republican-women",
         "name": "Incline Village Crystal Bay Republican Women",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-lahontan-republican-women",
@@ -498,7 +498,7 @@
       {
         "id": "public-org-gop-siena-conservatives",
         "name": "Siena Conservatives",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-sierra-republican-club",
@@ -543,7 +543,7 @@
       {
         "id": "public-org-gop-unr-college-republicans",
         "name": "UNR College Republicans",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-washoe-republican-women",

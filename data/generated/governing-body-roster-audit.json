@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-25T13:05:20.603Z",
+  "generatedAt": "2026-08-10T15:08:34.717Z",
   "totals": {
     "priorityBodies": 7,
-    "bodiesCovered": 7,
-    "rosterRecords": 94,
-    "votingMembers": 89,
-    "unmatchedMembers": 38,
+    "bodiesCovered": 6,
+    "rosterRecords": 81,
+    "votingMembers": 76,
+    "unmatchedMembers": 25,
     "expiredMemberships": 0,
-    "averageConfidence": 0.86
+    "averageConfidence": 0.88
   },
   "bodyReports": [
     {
@@ -58,12 +58,12 @@
       "label": "NSHE Board of Regents",
       "bodyId": "body-nshe-board-of-regents",
       "organizationId": "nshe-board-of-regents",
-      "covered": true,
-      "votingMembers": 13,
-      "unmatchedMembers": 13,
+      "covered": false,
+      "votingMembers": 0,
+      "unmatchedMembers": 0,
       "expiredMemberships": 0,
-      "confidence": 0.76,
-      "blocker": null
+      "confidence": 0,
+      "blocker": "missing_source_backed_roster"
     },
     {
       "label": "Nevada Senate",

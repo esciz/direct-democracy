@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-26T01:42:23.916Z",
+  "generatedAt": "2026-08-10T15:08:47.458Z",
   "launchReady": false,
   "totals": {
     "critical": 0,
-    "high": 6,
+    "high": 8,
     "medium": 4,
     "publicAggregationFilesChecked": 16,
     "meetingProvidersChecked": 57
@@ -13,31 +13,28 @@
       "id": "meeting-provider-zero-yield",
       "severity": "high",
       "area": "meeting collection",
-      "summary": "36 registered meeting providers returned zero parsed meetings; zero yield is a collection barrier even when the importer reports no exception.",
+      "summary": "33 registered meeting providers returned zero parsed meetings; zero yield is a collection barrier even when the importer reports no exception.",
       "evidence": [
         "Governor / Executive Boards (nv-governor-executive-boards): ",
         "Nevada System of Higher Education Board of Regents (nshe-board-of-regents): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
-        "Clark County Commission (clark-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
         "Elko County Commission (elko-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
         "Esmeralda County Commission (esmeralda-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
         "Humboldt County Commission (humboldt-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
-        "Lander County Commission (lander-county-commission): ",
+        "Lander County Commission (lander-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
         "Lincoln County Commission (lincoln-county-commission): ",
-        "Mineral County Commission (mineral-county-commission): ",
+        "Mineral County Commission (mineral-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
         "White Pine County Commission (white-pine-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
-        "Carlin City Council (carlin-city-council): ",
         "Ely City Council (ely-city-council): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
         "Fallon City Council (fallon-city-council): ",
         "Fernley City Council (fernley-city-council): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
         "Henderson City Council (henderson-city-council): ",
         "Lovelock City Council (lovelock-city-council): ",
-        "Sparks City Council (sparks-city-council): ",
         "Wells City Council (wells-city-council): ",
         "West Wendover City Council (west-wendover-city-council): ",
         "Winnemucca City Council (winnemucca-city-council): ",
         "Carson City School District Board of Trustees (carson-city-school-district): Some saved source records need manual review.",
         "Churchill County School District Board of Trustees (churchill-county-school-district): ",
-        "Clark County School District Board of Trustees (clark-county-school-district): Some public linked downloads failed and need review. Some saved source records need manual review.",
+        "Clark County School District Board of Trustees (clark-county-school-district): Some saved source records need manual review.",
         "Douglas County School District Board of Trustees (douglas-county-school-district): ",
         "Elko County School District Board of Trustees (elko-county-school-district): ",
         "Esmeralda County School District Board of Trustees (esmeralda-county-school-district): ",
@@ -91,6 +88,19 @@
       ]
     },
     {
+      "id": "statewide-financial-source-coverage",
+      "severity": "high",
+      "area": "financial transparency",
+      "summary": "The statewide candidate and official financial-source coverage contract is missing or failed.",
+      "evidence": [
+        "366 entities expected",
+        "0 entities missing from the coverage artifact",
+        "0 campaign-finance sources missing",
+        "0 personal-disclosure sources missing",
+        "0 invalid zero substitutions"
+      ]
+    },
+    {
       "id": "statewide-financial-extraction-backlog",
       "severity": "medium",
       "area": "financial transparency",
@@ -112,7 +122,7 @@
       "evidence": [
         "25 appellate cases published",
         "0 local trial cases published",
-        "0 federal cases published",
+        "2 federal cases published",
         "0 administrative cases published"
       ]
     },
@@ -123,7 +133,7 @@
       "summary": "Most matched political-ad records establish reported spend or dissemination but do not include reviewed creative.",
       "evidence": [
         "7 reviewed creative records",
-        "1031 filing-only records",
+        "1049 filing-only records",
         "20 entities with matched records",
         "4 entities with reviewed creative"
       ]
@@ -134,9 +144,9 @@
       "area": "data operations",
       "summary": "The latest recorded DataOps run was not a complete successful daily pipeline execution.",
       "evidence": [
-        "15 of 16 stages attempted",
-        "0 stages failed",
-        "completed 2026-07-25T13:05:27.281Z"
+        "1 of 16 stages attempted",
+        "1 stages failed",
+        "completed 2026-08-08T13:18:00.474Z"
       ]
     },
     {
@@ -147,7 +157,7 @@
       "evidence": [
         "109 meetings blocked by source gaps",
         "12 meetings blocked by parser gaps",
-        "36 upcoming meetings currently published"
+        "33 upcoming meetings currently published"
       ]
     },
     {
@@ -156,11 +166,9 @@
       "area": "meeting calendar coverage",
       "summary": "One or more configured meeting providers cannot currently establish whether upcoming meetings exist.",
       "evidence": [
-        "Carlin City Council (Carlin, NV): adapter_gap",
         "Carson City School District Board of Trustees (Carson City School District, NV): adapter_gap",
         "Churchill County School District Board of Trustees (Churchill County School District, NV): adapter_gap",
         "Clark County School District Board of Trustees (Clark County School District, NV): adapter_gap",
-        "Clark County Commission (Clark County, NV): adapter_gap",
         "Douglas County School District Board of Trustees (Douglas County School District, NV): adapter_gap",
         "Elko County School District Board of Trustees (Elko County School District, NV): adapter_gap",
         "Elko County Commission (Elko County, NV): adapter_gap",
@@ -173,8 +181,6 @@
         "Henderson City Council (Henderson, NV): adapter_gap",
         "Humboldt County School District Board of Trustees (Humboldt County School District, NV): adapter_gap",
         "Humboldt County Commission (Humboldt County, NV): adapter_gap",
-        "Nevada Assembly (Jurisdiction pending): adapter_gap",
-        "Nevada Senate (Jurisdiction pending): adapter_gap",
         "Lander County School District Board of Trustees (Lander County School District, NV): adapter_gap",
         "Lander County Commission (Lander County, NV): adapter_gap",
         "Lincoln County School District Board of Trustees (Lincoln County School District, NV): adapter_gap",
@@ -187,7 +193,6 @@
         "Nevada System of Higher Education Board of Regents (Nevada System of Higher Education): adapter_gap",
         "Nye County School District Board of Trustees (Nye County School District, NV): adapter_gap",
         "Pershing County School District Board of Trustees (Pershing County School District, NV): adapter_gap",
-        "Sparks City Council (Sparks, NV): adapter_gap",
         "Storey County School District Board of Trustees (Storey County School District, NV): adapter_gap",
         "Wells City Council (Wells, NV): adapter_gap",
         "West Wendover City Council (West Wendover, NV): adapter_gap",
@@ -197,23 +202,44 @@
       ]
     },
     {
+      "id": "strict-upcoming-meeting-freshness-blocks",
+      "severity": "high",
+      "area": "meeting calendar coverage",
+      "summary": "Direct meeting-calendar providers are stale or cannot prove current upcoming coverage.",
+      "evidence": [
+        "Carson City School District Board of Trustees (Carson City School District, NV): adapter_gap/not_parsed; newest unknown",
+        "Clark County School District Board of Trustees (Clark County School District, NV): adapter_gap/not_parsed; newest unknown",
+        "Clark County Commission (Clark County, NV): zero_upcoming_review/stale_latest_meeting; newest 2026-08-06T16:00:00.000Z",
+        "Elko County Commission (Elko County, NV): adapter_gap/not_parsed; newest unknown",
+        "Elko City Council (Elko, NV): zero_upcoming_review/stale_latest_meeting; newest 2017-08-01T16:00:00.000Z",
+        "Eureka County Commission (Eureka County, NV): zero_upcoming_review/stale_latest_meeting; newest 2026-08-04T16:00:00.000Z",
+        "Henderson City Council (Henderson, NV): adapter_gap/not_parsed; newest unknown",
+        "Nevada System of Higher Education Board of Regents (Nevada System of Higher Education): adapter_gap/not_parsed; newest unknown",
+        "Washoe County School District Board of Trustees (Washoe County School District, NV): zero_upcoming_review/stale_latest_meeting; newest 2026-06-09T15:30:00.000Z",
+        "Washoe County Commission (Washoe County, NV): zero_upcoming_review/stale_latest_meeting; newest 2025-10-28T17:00:00.000Z"
+      ]
+    },
+    {
       "id": "zero-upcoming-meeting-review",
       "severity": "medium",
       "area": "meeting calendar coverage",
       "summary": "Configured providers with no future-dated meetings require an official-calendar check before the public site treats the calendar as empty.",
       "evidence": [
-        "Caliente City Council (Caliente, NV): newest 2026-07-16T15:30:00.000Z",
-        "Churchill County Commission (Churchill County, NV): newest 2024-11-13T16:00:00.000Z",
+        "Boulder City Council (Boulder City, NV): newest 2026-08-04T00:00:00.000Z",
+        "Caliente City Council (Caliente, NV): newest 2026-08-06T15:30:00.000Z",
+        "Carlin City Council (Carlin, NV): newest 2026-03-25T16:00:00.000Z",
+        "Clark County Commission (Clark County, NV): newest 2026-08-06T16:00:00.000Z",
         "Douglas County Commission (Douglas County, NV): newest 2026-05-28T15:30:00.000Z",
         "Elko City Council (Elko, NV): newest 2017-08-01T16:00:00.000Z",
-        "Eureka County Commission (Eureka County, NV): newest 2026-06-02T16:00:00.000Z",
-        "Lyon County Commission (Lyon County, NV): newest 2026-07-16T16:00:00.000Z",
-        "Nye County Commission (Nye County, NV): newest 2026-07-21T15:30:00.000Z",
+        "Eureka County Commission (Eureka County, NV): newest 2026-08-04T16:00:00.000Z",
+        "Nevada Assembly (Jurisdiction pending): newest 2026-07-31T20:00:00.000Z",
+        "Nevada Senate (Jurisdiction pending): newest 2026-07-31T20:00:00.000Z",
+        "Lyon County Commission (Lyon County, NV): newest 2026-08-06T16:00:00.000Z",
+        "Nye County Commission (Nye County, NV): newest 2026-08-04T15:30:00.000Z",
         "Pershing County Commission (Pershing County, NV): newest 2026-05-12T15:30:00.000Z",
-        "Storey County Commission (Storey County, NV): newest 2026-07-21T16:00:00.000Z",
+        "Storey County Commission (Storey County, NV): newest 2026-08-04T16:00:00.000Z",
         "Washoe County School District Board of Trustees (Washoe County School District, NV): newest 2026-06-09T15:30:00.000Z",
-        "Washoe County Commission (Washoe County, NV): newest 2025-10-28T17:00:00.000Z",
-        "Yerington City Council (Yerington, NV): newest 2026-05-04T16:00:00.000Z"
+        "Washoe County Commission (Washoe County, NV): newest 2025-10-28T17:00:00.000Z"
       ]
     }
   ]

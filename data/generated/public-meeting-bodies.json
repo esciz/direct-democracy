@@ -11,8 +11,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Legislative meeting calendar and archived video should be treated as source-backed but structurally different from city agenda platforms.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-nv-governor-executive-boards",
@@ -26,8 +26,8 @@
     "active": true,
     "seed_source_id": "nv-governor-executive-boards",
     "notes": "Executive board records are distributed across appointed boards; use this as a registry seed until board-specific sources are added.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-nshe-board-of-regents",
@@ -41,8 +41,8 @@
     "active": true,
     "seed_source_id": "nshe-board-of-regents",
     "notes": "Regents pages include upcoming meetings and archives with agenda materials.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-carson-city-board-of-supervisors",
@@ -56,8 +56,8 @@
     "active": true,
     "seed_source_id": "carson-city-board-of-supervisors",
     "notes": "City meeting page exposes agendas, packets, minutes, motion records, and videos.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-churchill-county-commission",
@@ -71,23 +71,23 @@
     "active": true,
     "seed_source_id": "churchill-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-clark-county-commission",
     "name": "Clark County Commission",
     "jurisdiction": "Clark County, NV",
     "level": "county",
-    "website": "https://www.clarkcountynv.gov/government/board_of_county_commissioners/county-meeting-agendas",
+    "website": "https://www.clarkcountynv.gov/",
     "source_url": "https://clark.legistar.com/",
     "meeting_index_url": "https://clark.legistar.com/",
     "scraper_type": "legistar",
     "active": true,
     "seed_source_id": "clark-county-commission",
     "notes": "County page links agendas while Legistar is the structured meeting system.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-douglas-county-commission",
@@ -101,23 +101,23 @@
     "active": true,
     "seed_source_id": "douglas-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-elko-county-commission",
     "name": "Elko County Commission",
     "jurisdiction": "Elko County, NV",
     "level": "county",
-    "website": "https://www.elkocountynv.net/your_government/boards/commissioners/county_commission19.php",
+    "website": "https://www.elkocountynv.net/",
     "source_url": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
     "meeting_index_url": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
     "scraper_type": "granicus",
     "active": true,
     "seed_source_id": "elko-county-commission",
     "notes": "County meeting page links agendas, minutes, videos, and Granicus archives for the elected five-member commission.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-esmeralda-county-commission",
@@ -131,23 +131,23 @@
     "active": true,
     "seed_source_id": "esmeralda-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-eureka-county-commission",
     "name": "Eureka County Commission",
     "jurisdiction": "Eureka County, NV",
     "level": "county",
-    "website": "https://www.co.eureka.nv.us/",
-    "source_url": "https://www.co.eureka.nv.us/",
-    "meeting_index_url": "https://www.co.eureka.nv.us/",
-    "scraper_type": "manual",
+    "website": "https://www.eurekacountynv.gov/",
+    "source_url": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+    "meeting_index_url": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+    "scraper_type": "html",
     "active": true,
     "seed_source_id": "eureka-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-humboldt-county-commission",
@@ -161,8 +161,8 @@
     "active": true,
     "seed_source_id": "humboldt-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-lander-county-commission",
@@ -176,8 +176,8 @@
     "active": true,
     "seed_source_id": "lander-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-lincoln-county-commission",
@@ -191,8 +191,8 @@
     "active": true,
     "seed_source_id": "lincoln-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-lyon-county-commission",
@@ -206,8 +206,8 @@
     "active": true,
     "seed_source_id": "lyon-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-mineral-county-commission",
@@ -221,8 +221,8 @@
     "active": true,
     "seed_source_id": "mineral-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-nye-county-commission",
@@ -236,8 +236,8 @@
     "active": true,
     "seed_source_id": "nye-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-pershing-county-commission",
@@ -251,8 +251,8 @@
     "active": true,
     "seed_source_id": "pershing-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-storey-county-commission",
@@ -266,23 +266,23 @@
     "active": true,
     "seed_source_id": "storey-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-washoe-county-commission",
     "name": "Washoe County Commission",
     "jurisdiction": "Washoe County, NV",
     "level": "county",
-    "website": "https://www.washoecounty.gov/bcc/board_committees/index.php",
+    "website": "https://www.washoecounty.gov/",
     "source_url": "https://washoe-nv.legistar.com/",
     "meeting_index_url": "https://washoe-nv.legistar.com/",
     "scraper_type": "legistar",
     "active": true,
     "seed_source_id": "washoe-county-commission",
     "notes": "Legistar source should eventually provide structured agenda items and vote records.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-white-pine-county-commission",
@@ -296,8 +296,8 @@
     "active": true,
     "seed_source_id": "white-pine-county-commission",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-boulder-city-council",
@@ -311,8 +311,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-caliente-city-council",
@@ -326,8 +326,8 @@
     "active": true,
     "seed_source_id": "caliente-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-carlin-city-council",
@@ -341,23 +341,23 @@
     "active": true,
     "seed_source_id": "carlin-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-elko-city-council",
     "name": "Elko City Council",
     "jurisdiction": "Elko, NV",
     "level": "city",
-    "website": "https://www.elkocity.com/government/city_council.php",
+    "website": "https://www.elkocity.com/",
     "source_url": "https://ob.elkocitynv.gov/onbaseagendaonline",
     "meeting_index_url": "https://ob.elkocitynv.gov/onbaseagendaonline",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "elko-city-council",
     "notes": "City uses a public OnBase agenda portal plus city-hosted agenda/minutes and video archive pages. Treat as HTML/manual until an OnBase-specific adapter is promoted.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-ely-city-council",
@@ -371,8 +371,8 @@
     "active": true,
     "seed_source_id": "ely-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-fallon-city-council",
@@ -386,8 +386,8 @@
     "active": true,
     "seed_source_id": "fallon-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-fernley-city-council",
@@ -401,8 +401,8 @@
     "active": true,
     "seed_source_id": "fernley-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-henderson-city-council",
@@ -416,23 +416,23 @@
     "active": true,
     "seed_source_id": "henderson-city-council",
     "notes": "Public meeting agendas page is the first-stage discovery target.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-las-vegas-city-council",
     "name": "Las Vegas City Council",
     "jurisdiction": "Las Vegas, NV",
     "level": "city",
-    "website": "https://www.lasvegasnevada.gov/Government/Meetings",
+    "website": "https://www.lasvegasnevada.gov/",
     "source_url": "https://lasvegas.primegov.com/public/portal",
     "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
     "scraper_type": "granicus",
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "PrimeGov portal seed for agenda and packet discovery.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-lovelock-city-council",
@@ -446,8 +446,8 @@
     "active": true,
     "seed_source_id": "lovelock-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-mesquite-city-council",
@@ -461,8 +461,8 @@
     "active": true,
     "seed_source_id": "mesquite-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-north-las-vegas-city-council",
@@ -476,38 +476,38 @@
     "active": true,
     "seed_source_id": "north-las-vegas-city-council",
     "notes": "City page points to a PrimeGov portal for meeting records.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-reno-city-council",
     "name": "Reno City Council",
     "jurisdiction": "Reno, NV",
     "level": "city",
-    "website": "https://www.reno.gov/government/city-council",
+    "website": "https://www.reno.gov/",
     "source_url": "https://reno.primegov.com/public/portal",
     "meeting_index_url": "https://reno.primegov.com/public/portal",
     "scraper_type": "granicus",
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Reno uses a PrimeGov/Granicus public portal for agendas and meeting records.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-sparks-city-council",
     "name": "Sparks City Council",
     "jurisdiction": "Sparks, NV",
     "level": "city",
-    "website": "https://www.cityofsparks.us/your_government/public_meetings/city_council.php",
+    "website": "https://www.cityofsparks.us/",
     "source_url": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
     "meeting_index_url": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "sparks-city-council",
     "notes": "Agenda and minutes archive appears as city-hosted HTML/document links.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-wells-city-council",
@@ -521,8 +521,8 @@
     "active": true,
     "seed_source_id": "wells-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-west-wendover-city-council",
@@ -536,8 +536,8 @@
     "active": true,
     "seed_source_id": "west-wendover-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-winnemucca-city-council",
@@ -551,8 +551,8 @@
     "active": true,
     "seed_source_id": "winnemucca-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-yerington-city-council",
@@ -566,23 +566,23 @@
     "active": true,
     "seed_source_id": "yerington-city-council",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-carson-city-school-district",
     "name": "Carson City School District Board of Trustees",
     "jurisdiction": "Carson City School District, NV",
     "level": "school",
-    "website": "https://www.carsoncityschools.com/our-district/school-board",
+    "website": "https://www.carsoncityschools.com/",
     "source_url": "https://www.carsoncityschools.com/our-district/school-board",
     "meeting_index_url": "https://www.carsoncityschools.com/our-district/school-board",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "carson-city-school-district",
     "notes": "District page plus BoardDocs archive seed.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-churchill-county-school-district",
@@ -596,8 +596,8 @@
     "active": true,
     "seed_source_id": "churchill-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-clark-county-school-district",
@@ -611,8 +611,8 @@
     "active": true,
     "seed_source_id": "clark-county-school-district",
     "notes": "BoardDocs support belongs in the later automated scraper phase; keep as HTML/manual source until then.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-douglas-county-school-district",
@@ -626,8 +626,8 @@
     "active": true,
     "seed_source_id": "douglas-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-elko-county-school-district",
@@ -641,8 +641,8 @@
     "active": true,
     "seed_source_id": "elko-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-esmeralda-county-school-district",
@@ -656,8 +656,8 @@
     "active": true,
     "seed_source_id": "esmeralda-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-eureka-county-school-district",
@@ -671,8 +671,8 @@
     "active": true,
     "seed_source_id": "eureka-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-humboldt-county-school-district",
@@ -686,8 +686,8 @@
     "active": true,
     "seed_source_id": "humboldt-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-lander-county-school-district",
@@ -701,8 +701,8 @@
     "active": true,
     "seed_source_id": "lander-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-lincoln-county-school-district",
@@ -716,8 +716,8 @@
     "active": true,
     "seed_source_id": "lincoln-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-lyon-county-school-district",
@@ -731,8 +731,8 @@
     "active": true,
     "seed_source_id": "lyon-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-mineral-county-school-district",
@@ -746,8 +746,8 @@
     "active": true,
     "seed_source_id": "mineral-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-nye-county-school-district",
@@ -761,8 +761,8 @@
     "active": true,
     "seed_source_id": "nye-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-pershing-county-school-district",
@@ -776,8 +776,8 @@
     "active": true,
     "seed_source_id": "pershing-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-storey-county-school-district",
@@ -791,23 +791,23 @@
     "active": true,
     "seed_source_id": "storey-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-washoe-county-school-district",
     "name": "Washoe County School District Board of Trustees",
     "jurisdiction": "Washoe County School District, NV",
     "level": "school",
-    "website": "https://www.washoeschools.net/trustees",
+    "website": "https://www.washoeschools.net/",
     "source_url": "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
     "meeting_index_url": "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "washoe-county-school-district",
     "notes": "School district calendar and archive are HTML first-stage sources.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
     "id": "body-white-pine-county-school-district",
@@ -821,68 +821,23 @@
     "active": true,
     "seed_source_id": "white-pine-county-school-district",
     "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.278Z",
+    "updated_at": "2026-08-10T15:04:33.278Z"
   },
   {
-    "id": "body-nv-legislature-joint-interim-standing-committee-on-legislative-operations-and-elections",
-    "name": "Joint Interim Standing Committee on Legislative Operations and Elections",
+    "id": "body-nv-legislature-agenda",
+    "name": "Agenda",
     "jurisdiction": "Nevada",
     "level": "state",
     "website": null,
-    "source_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34894",
-    "meeting_index_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34894",
+    "source_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34576",
+    "meeting_index_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34576",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "nv-legislature",
-    "notes": "Discovered from the official Joint Interim Standing Committee on Legislative Operations and Elections meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-nv-legislature-joint-interim-standing-committee-on-health-and-human-services",
-    "name": "Joint Interim Standing Committee on Health and Human Services",
-    "jurisdiction": "Nevada",
-    "level": "state",
-    "website": null,
-    "source_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34838",
-    "meeting_index_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34838",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "nv-legislature",
-    "notes": "Discovered from the official Joint Interim Standing Committee on Health and Human Services meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-nv-legislature-joint-interim-standing-committee-on-natural-resources",
-    "name": "Joint Interim Standing Committee on Natural Resources",
-    "jurisdiction": "Nevada",
-    "level": "state",
-    "website": null,
-    "source_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34907",
-    "meeting_index_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34907",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "nv-legislature",
-    "notes": "Discovered from the official Joint Interim Standing Committee on Natural Resources meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-nv-legislature-interim-finance-committee",
-    "name": "Interim Finance Committee",
-    "jurisdiction": "Nevada",
-    "level": "state",
-    "website": null,
-    "source_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34578",
-    "meeting_index_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34578",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "nv-legislature",
-    "notes": "Discovered from the official Interim Finance Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "notes": "Discovered from the official Agenda meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-legislative-committee-on-senior-citizens-veterans-and-adults-with-special-needs",
@@ -896,8 +851,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Legislative Committee on Senior Citizens, Veterans and Adults With Special Needs meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-joint-interim-standing-committee-on-growth-and-infrastructure",
@@ -911,8 +866,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Joint Interim Standing Committee on Growth and Infrastructure meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-joint-interim-standing-committee-on-education",
@@ -926,8 +881,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Joint Interim Standing Committee on Education meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-legislative-commission-s-audit-subcommittee",
@@ -941,8 +896,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Legislative Commission's Audit Subcommittee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-joint-interim-standing-committee-on-commerce-and-labor",
@@ -956,8 +911,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Joint Interim Standing Committee on Commerce and Labor meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-legislative-committee-for-the-review-and-oversight-of-the-tahoe-regional-planning-agency-and-the",
@@ -971,8 +926,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Legislative Committee for the Review and Oversight of the Tahoe Regional Planning Agency and the Marlette Lake Water System meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-committee-on-public-lands",
@@ -986,8 +941,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Committee on Public Lands meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-sunset-committee",
@@ -1001,8 +956,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Sunset Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-joint-interim-standing-committee-on-the-judiciary",
@@ -1016,8 +971,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Joint Interim Standing Committee on the Judiciary meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-joint-interim-standing-committee-on-revenue",
@@ -1031,8 +986,8 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Joint Interim Standing Committee on Revenue meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-nevada-silver-haired-legislative-forum",
@@ -1046,8 +1001,23 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Nevada Silver Haired Legislative Forum meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
+  },
+  {
+    "id": "body-nv-legislature-joint-special-committee-to-examine-functions-at-hotels-for-housekeeping-staff",
+    "name": "Joint Special Committee to Examine Functions at Hotels for Housekeeping Staff",
+    "jurisdiction": "Nevada",
+    "level": "state",
+    "website": null,
+    "source_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35185",
+    "meeting_index_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35185",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "nv-legislature",
+    "notes": "Discovered from the official Joint Special Committee to Examine Functions at Hotels for Housekeeping Staff meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-joint-interim-standing-committee-on-government-affairs",
@@ -1061,8 +1031,23 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Joint Interim Standing Committee on Government Affairs meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
+  },
+  {
+    "id": "body-nv-legislature-economic-forum",
+    "name": "Economic Forum",
+    "jurisdiction": "Nevada",
+    "level": "state",
+    "website": null,
+    "source_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35184",
+    "meeting_index_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35184",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "nv-legislature",
+    "notes": "Discovered from the official Economic Forum meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-nv-legislature-nevada-youth-legislature",
@@ -1076,383 +1061,23 @@
     "active": true,
     "seed_source_id": "nv-legislature",
     "notes": "Discovered from the official Nevada Youth Legislature meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
-    "id": "body-carson-city-board-of-supervisors-carson-city-school-board",
-    "name": "Carson City School Board",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
+    "id": "body-nv-legislature-interim-finance-committee",
+    "name": "Interim Finance Committee",
+    "jurisdiction": "Nevada",
+    "level": "state",
     "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2350",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2350",
+    "source_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34578",
+    "meeting_index_url": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34578",
     "scraper_type": "html",
     "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Carson City School Board meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-administrative-hearing",
-    "name": "Administrative Hearing",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2582",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2582",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Administrative Hearing meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-planning-commission",
-    "name": "Planning Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2362",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2362",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Planning Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-liquor-hearings-officer",
-    "name": "Liquor Hearings Officer",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2473",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2473",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Liquor Hearings Officer meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
-    "name": "9-1-1 Surcharge Advisory Committee",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2482",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2482",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official 9-1-1 Surcharge Advisory Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-admin-appeal-hearing",
-    "name": "Admin Appeal Hearing",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2621&doc_id=b0073a2d-4003-11f0-b7f5-005056a89546",
-    "meeting_index_url": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2621&doc_id=b0073a2d-4003-11f0-b7f5-005056a89546",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Admin Appeal Hearing meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-administrative-permit-review",
-    "name": "Administrative Permit Review",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2561",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2561",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Administrative Permit Review meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife",
-    "name": "Carson City Advisory Board to Manage Wildlife",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2596",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2596",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Carson City Advisory Board to Manage Wildlife meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-advisory-board-to-manage-wildlife",
-    "name": "Advisory Board to Manage Wildlife",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2358",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2358",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Advisory Board to Manage Wildlife meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-airport-authority",
-    "name": "Airport Authority",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2356",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2356",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Airport Authority meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-airport-authority-special-meeting",
-    "name": "Airport Authority Special Meeting",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2446",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2446",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Airport Authority Special Meeting meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-audit-committee",
-    "name": "Audit Committee",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2349",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2349",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Audit Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-appeals",
-    "name": "Board of Appeals",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2790",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2790",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Appeals meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-equalization",
-    "name": "Board of Equalization",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2370",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2370",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Equalization meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors",
-    "name": "Board of Supervisors",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2376",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2376",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-board-of-health",
-    "name": "Board of Supervisors and Board of Health",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2389",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2389",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors and Board of Health meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority",
-    "name": "Board of Supervisors and Redevelopment Authority",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2347",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2347",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors and Redevelopment Authority meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-work-session",
-    "name": "Board of Supervisors Work Session",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2832",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2832",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors Work Session meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-and-board-of-health",
-    "name": "Board of Supervisors and Redevelopment Authority and Board of Health",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2451",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2451",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors and Redevelopment Authority and Board of Health meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-work-session-of-the-board-of-supervisors",
-    "name": "Work Session of the Board of Supervisors",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2622",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2622",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Work Session of the Board of Supervisors meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-liquor-and-entertainment-board",
-    "name": "Board of Supervisors and Liquor and Entertainment Board",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2368",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2368",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors and Liquor and Entertainment Board meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-the-joint-meeting-of-the-board-of-supervisors-and-the-planning-commissi",
-    "name": "Board of Supervisors and the Joint Meeting of the Board of Supervisors and the Planning Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2586",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2586",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors and the Joint Meeting of the Board of Supervisors and the Planning Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.548Z",
-    "updated_at": "2026-07-25T21:46:38.548Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-the-planning-commission",
-    "name": "Board of Supervisors and the Planning Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2361",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2361",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors and the Planning Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-regional-transportation-commission-work-sessions",
-    "name": "Board of Supervisors & Regional Transportation Commission Work Sessions",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2406",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2406",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Board of Supervisors & Regional Transportation Commission Work Sessions meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization",
-    "name": "Carson Area Metropolitan Planning Organization",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2393",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2393",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Carson Area Metropolitan Planning Organization meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "seed_source_id": "nv-legislature",
+    "notes": "Discovered from the official Interim Finance Committee meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
   },
   {
     "id": "body-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority",
@@ -1466,263 +1091,53 @@
     "active": true,
     "seed_source_id": "carson-city-board-of-supervisors",
     "notes": "Discovered from the official Carson City Culture & Tourism Authority meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
   },
   {
-    "id": "body-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees",
-    "name": "Other Post Employment Benefits Trust Fund Board of Trustees",
+    "id": "body-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife",
+    "name": "Carson City Advisory Board to Manage Wildlife",
     "jurisdiction": "Carson City, NV",
     "level": "city",
     "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2380",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2380",
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2596",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2596",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Other Post Employment Benefits Trust Fund Board of Trustees meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "notes": "Discovered from the official Carson City Advisory Board to Manage Wildlife meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.275Z",
+    "updated_at": "2026-08-10T15:04:33.275Z"
   },
   {
-    "id": "body-carson-city-board-of-supervisors-carson-city-school-board-employee-of-the-year",
-    "name": "Carson City School Board Employee of the Year",
+    "id": "body-carson-city-board-of-supervisors-carson-city-school-board",
+    "name": "Carson City School Board",
     "jurisdiction": "Carson City, NV",
     "level": "city",
     "website": null,
-    "source_url": "https://carsoncity.granicus.com/MediaPlayer.php?view_id=2&clip_id=2867",
-    "meeting_index_url": "https://carsoncity.granicus.com/MediaPlayer.php?view_id=2&clip_id=2867",
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2350",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2350",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Carson City School Board Employee of the Year meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "notes": "Discovered from the official Carson City School Board meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
   },
   {
-    "id": "body-carson-city-board-of-supervisors-school-district-2025-employees-of-the-year",
-    "name": "School District 2025 Employees of the Year",
+    "id": "body-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization",
+    "name": "Carson Area Metropolitan Planning Organization",
     "jurisdiction": "Carson City, NV",
     "level": "city",
     "website": null,
-    "source_url": "https://carsoncity.granicus.com/MediaPlayer.php?view_id=2&clip_id=2654",
-    "meeting_index_url": "https://carsoncity.granicus.com/MediaPlayer.php?view_id=2&clip_id=2654",
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2393",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2393",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official School District 2025 Employees of the Year meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-charter-review-committee",
-    "name": "Charter Review Committee",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2396",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2396",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Charter Review Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-cultural-commission",
-    "name": "Cultural Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2391",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2391",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Cultural Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-debt-management-commission",
-    "name": "Debt Management Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2378",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2378",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Debt Management Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-historic-resources-commission",
-    "name": "Historic Resources Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2346",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2346",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Historic Resources Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-library-board-of-trustees",
-    "name": "Library Board of Trustees",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2382",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2382",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Library Board of Trustees meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-local-emergency-planning-committee",
-    "name": "Local Emergency Planning Committee",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2545",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2545",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Local Emergency Planning Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway",
-    "name": "NV Commission for Reconstruction of V&T Railway",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2360",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2360",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official NV Commission for Reconstruction of V&T Railway meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-open-space-advisory-committee",
-    "name": "Open Space Advisory Committee",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2379",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2379",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Open Space Advisory Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-joint-meeting-of-the-open-space-advisory-committee-and-the-parks-and-recreation-commission",
-    "name": "Joint Meeting of the Open Space Advisory Committee & the Parks and Recreation Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2690",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2690",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Joint Meeting of the Open Space Advisory Committee & the Parks and Recreation Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-parks-and-recreation-commission",
-    "name": "Parks and Recreation Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2366",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2366",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Parks and Recreation Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-growth-management-commission-and-planning-commission",
-    "name": "Growth Management Commission and Planning Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2677",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2677",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Growth Management Commission and Planning Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-planning-commission-workshop",
-    "name": "Planning Commission Workshop",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2527",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2527",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Planning Commission Workshop meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-growth-management-and-planning-commission",
-    "name": "Growth Management and Planning Commission",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2431",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2431",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Growth Management and Planning Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-carson-city-board-of-supervisors-redevelopment-authority-citizens-committee",
-    "name": "Redevelopment Authority Citizens Committee",
-    "jurisdiction": "Carson City, NV",
-    "level": "city",
-    "website": null,
-    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2386",
-    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2386",
-    "scraper_type": "html",
-    "active": true,
-    "seed_source_id": "carson-city-board-of-supervisors",
-    "notes": "Discovered from the official Redevelopment Authority Citizens Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "notes": "Discovered from the official Carson Area Metropolitan Planning Organization meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-carson-city-board-of-supervisors-regional-transportation-commission",
@@ -1736,8 +1151,593 @@
     "active": true,
     "seed_source_id": "carson-city-board-of-supervisors",
     "notes": "Discovered from the official Regional Transportation Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-library-board-of-trustees",
+    "name": "Library Board of Trustees",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2382",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2382",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Library Board of Trustees meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-debt-management-commission",
+    "name": "Debt Management Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2378",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2378",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Debt Management Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee",
+    "name": "9-1-1 Surcharge Advisory Committee",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2482",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2482",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official 9-1-1 Surcharge Advisory Committee meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-admin-appeal-hearing",
+    "name": "Admin Appeal Hearing",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2621&doc_id=b0073a2d-4003-11f0-b7f5-005056a89546",
+    "meeting_index_url": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2621&doc_id=b0073a2d-4003-11f0-b7f5-005056a89546",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Admin Appeal Hearing meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-administrative-hearing",
+    "name": "Administrative Hearing",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2582",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2582",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Administrative Hearing meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.270Z",
+    "updated_at": "2026-08-10T15:04:33.270Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-administrative-permit-review",
+    "name": "Administrative Permit Review",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2561",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2561",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Administrative Permit Review meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.271Z",
+    "updated_at": "2026-08-10T15:04:33.271Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-advisory-board-to-manage-wildlife",
+    "name": "Advisory Board to Manage Wildlife",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2358",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2358",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Advisory Board to Manage Wildlife meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.275Z",
+    "updated_at": "2026-08-10T15:04:33.275Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-airport-authority",
+    "name": "Airport Authority",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2356",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2356",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Airport Authority meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.275Z",
+    "updated_at": "2026-08-10T15:04:33.275Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-airport-authority-special-meeting",
+    "name": "Airport Authority Special Meeting",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2446",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2446",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Airport Authority Special Meeting meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.275Z",
+    "updated_at": "2026-08-10T15:04:33.275Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-audit-committee",
+    "name": "Audit Committee",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2349",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2349",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Audit Committee meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.275Z",
+    "updated_at": "2026-08-10T15:04:33.275Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-appeals",
+    "name": "Board of Appeals",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2790",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2790",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Appeals meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.275Z",
+    "updated_at": "2026-08-10T15:04:33.275Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-equalization",
+    "name": "Board of Equalization",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2370",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2370",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Equalization meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.275Z",
+    "updated_at": "2026-08-10T15:04:33.275Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors",
+    "name": "Board of Supervisors",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2376",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2376",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-board-of-health",
+    "name": "Board of Supervisors and Board of Health",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2389",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2389",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors and Board of Health meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority",
+    "name": "Board of Supervisors and Redevelopment Authority",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2347",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2347",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors and Redevelopment Authority meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-work-session",
+    "name": "Board of Supervisors Work Session",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2832",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2832",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors Work Session meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.275Z",
+    "updated_at": "2026-08-10T15:04:33.275Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-and-board-of-health",
+    "name": "Board of Supervisors and Redevelopment Authority and Board of Health",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2451",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2451",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors and Redevelopment Authority and Board of Health meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-work-session-of-the-board-of-supervisors",
+    "name": "Work Session of the Board of Supervisors",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2622",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2622",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Work Session of the Board of Supervisors meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-liquor-and-entertainment-board",
+    "name": "Board of Supervisors and Liquor and Entertainment Board",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2368",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2368",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors and Liquor and Entertainment Board meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-the-joint-meeting-of-the-board-of-supervisors-and-the-planning-commissi",
+    "name": "Board of Supervisors and the Joint Meeting of the Board of Supervisors and the Planning Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2586",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2586",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors and the Joint Meeting of the Board of Supervisors and the Planning Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-the-planning-commission",
+    "name": "Board of Supervisors and the Planning Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2361",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2361",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors and the Planning Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-board-of-supervisors-and-regional-transportation-commission-work-sessions",
+    "name": "Board of Supervisors & Regional Transportation Commission Work Sessions",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2406",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2406",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Board of Supervisors & Regional Transportation Commission Work Sessions meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees",
+    "name": "Other Post Employment Benefits Trust Fund Board of Trustees",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2380",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2380",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Other Post Employment Benefits Trust Fund Board of Trustees meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-carson-city-school-board-employee-of-the-year",
+    "name": "Carson City School Board Employee of the Year",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/MediaPlayer.php?view_id=2&clip_id=2867",
+    "meeting_index_url": "https://carsoncity.granicus.com/MediaPlayer.php?view_id=2&clip_id=2867",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Carson City School Board Employee of the Year meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-school-district-2025-employees-of-the-year",
+    "name": "School District 2025 Employees of the Year",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/MediaPlayer.php?view_id=2&clip_id=2654",
+    "meeting_index_url": "https://carsoncity.granicus.com/MediaPlayer.php?view_id=2&clip_id=2654",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official School District 2025 Employees of the Year meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-charter-review-committee",
+    "name": "Charter Review Committee",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2396",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2396",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Charter Review Committee meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-cultural-commission",
+    "name": "Cultural Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2391",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2391",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Cultural Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-historic-resources-commission",
+    "name": "Historic Resources Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2346",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2346",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Historic Resources Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-liquor-hearings-officer",
+    "name": "Liquor Hearings Officer",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2473",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2473",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Liquor Hearings Officer meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-local-emergency-planning-committee",
+    "name": "Local Emergency Planning Committee",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2545",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2545",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Local Emergency Planning Committee meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway",
+    "name": "NV Commission for Reconstruction of V&T Railway",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2360",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2360",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official NV Commission for Reconstruction of V&T Railway meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-open-space-advisory-committee",
+    "name": "Open Space Advisory Committee",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2379",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2379",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Open Space Advisory Committee meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-joint-meeting-of-the-open-space-advisory-committee-and-the-parks-and-recreation-commission",
+    "name": "Joint Meeting of the Open Space Advisory Committee & the Parks and Recreation Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2690",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2690",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Joint Meeting of the Open Space Advisory Committee & the Parks and Recreation Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-parks-and-recreation-commission",
+    "name": "Parks and Recreation Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2366",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2366",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Parks and Recreation Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.276Z",
+    "updated_at": "2026-08-10T15:04:33.276Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-planning-commission",
+    "name": "Planning Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2362",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2362",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Planning Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-growth-management-commission-and-planning-commission",
+    "name": "Growth Management Commission and Planning Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2677",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2677",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Growth Management Commission and Planning Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-planning-commission-workshop",
+    "name": "Planning Commission Workshop",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2527",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2527",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Planning Commission Workshop meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-growth-management-and-planning-commission",
+    "name": "Growth Management and Planning Commission",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2431",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2431",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Growth Management and Planning Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
+  },
+  {
+    "id": "body-carson-city-board-of-supervisors-redevelopment-authority-citizens-committee",
+    "name": "Redevelopment Authority Citizens Committee",
+    "jurisdiction": "Carson City, NV",
+    "level": "city",
+    "website": null,
+    "source_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2386",
+    "meeting_index_url": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2386",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "carson-city-board-of-supervisors",
+    "notes": "Discovered from the official Redevelopment Authority Citizens Committee meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-carson-city-board-of-supervisors-regional-transportation-commission-rtc",
@@ -1751,8 +1751,8 @@
     "active": true,
     "seed_source_id": "carson-city-board-of-supervisors",
     "notes": "Discovered from the official Regional Transportation Commission (RTC) meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-carson-city-board-of-supervisors-utility-finance-oversight-committee",
@@ -1766,8 +1766,8 @@
     "active": true,
     "seed_source_id": "carson-city-board-of-supervisors",
     "notes": "Discovered from the official Utility Finance Oversight Committee meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-douglas-county-commission-douglas-county-commission",
@@ -1781,8 +1781,23 @@
     "active": true,
     "seed_source_id": "douglas-county-commission",
     "notes": "Discovered from the official Douglas County Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
+  },
+  {
+    "id": "body-eureka-county-commission-eureka-county-commission",
+    "name": "Eureka County Commission",
+    "jurisdiction": "Eureka County, NV",
+    "level": "county",
+    "website": null,
+    "source_url": "https://www.eurekacountynv.gov/media/wcjnnvsm/march-19-2024-bocc-meeting-minutes-approved.pdf",
+    "meeting_index_url": "https://www.eurekacountynv.gov/media/wcjnnvsm/march-19-2024-bocc-meeting-minutes-approved.pdf",
+    "scraper_type": "html",
+    "active": true,
+    "seed_source_id": "eureka-county-commission",
+    "notes": "Discovered from the official Eureka County Commission meeting calendar and archive.",
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-lyon-county-commission-lyon-county-commission",
@@ -1790,14 +1805,14 @@
     "jurisdiction": "Lyon County, NV",
     "level": "county",
     "website": null,
-    "source_url": "https://www.lyon-county.org/CivicAlerts.aspx?AID=399",
-    "meeting_index_url": "https://www.lyon-county.org/CivicAlerts.aspx?AID=399",
+    "source_url": "https://www.lyon-county.org/CivicAlerts.aspx?AID=401",
+    "meeting_index_url": "https://www.lyon-county.org/CivicAlerts.aspx?AID=401",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "lyon-county-commission",
     "notes": "Discovered from the official Lyon County Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-nye-county-commission-nye-county-commission",
@@ -1811,8 +1826,8 @@
     "active": true,
     "seed_source_id": "nye-county-commission",
     "notes": "Discovered from the official Nye County Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-pershing-county-commission-pershing-county-commission",
@@ -1826,8 +1841,8 @@
     "active": true,
     "seed_source_id": "pershing-county-commission",
     "notes": "Discovered from the official Pershing County Commission meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-washoe-county-commission-board-of-county-commissioners",
@@ -1841,8 +1856,8 @@
     "active": true,
     "seed_source_id": "washoe-county-commission",
     "notes": "Discovered from the official Board of County Commissioners meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-caliente-city-council-caliente-city-council",
@@ -1856,8 +1871,8 @@
     "active": true,
     "seed_source_id": "caliente-city-council",
     "notes": "Discovered from the official Caliente City Council meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-mesquite-city-council-mesquite-city-council",
@@ -1865,14 +1880,14 @@
     "jurisdiction": "Mesquite, NV",
     "level": "city",
     "website": null,
-    "source_url": "https://www.mesquitenv.gov/news/thank-you-to-our-amazing-sponsors-4th-of-july-rockets-over-the-red-mesa-2026",
-    "meeting_index_url": "https://www.mesquitenv.gov/news/thank-you-to-our-amazing-sponsors-4th-of-july-rockets-over-the-red-mesa-2026",
+    "source_url": "https://www.mesquitenv.gov/news/proclamation-for-constitution-week---september-17-23-2026",
+    "meeting_index_url": "https://www.mesquitenv.gov/news/proclamation-for-constitution-week---september-17-23-2026",
     "scraper_type": "html",
     "active": true,
     "seed_source_id": "mesquite-city-council",
     "notes": "Discovered from the official Mesquite City Council meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-washoe-county-school-district-washoe-county-school-district-board-of-trustees",
@@ -1886,23 +1901,8 @@
     "active": true,
     "seed_source_id": "washoe-county-school-district",
     "notes": "Discovered from the official Washoe County School District Board of Trustees meeting calendar and archive.",
-    "created_at": "2026-07-25T21:46:38.549Z",
-    "updated_at": "2026-07-25T21:46:38.549Z"
-  },
-  {
-    "id": "body-manual-reno-city-council-building-enterprise-fund-advisory-committee",
-    "name": "Building Enterprise Fund Advisory Committee",
-    "jurisdiction": "Reno, NV",
-    "level": "city",
-    "website": "https://reno.primegov.com/public/portal",
-    "source_url": "https://reno.primegov.com/public/portal",
-    "meeting_index_url": "https://reno.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "reno-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.777Z",
-    "updated_at": "2026-07-25T22:01:16.777Z"
+    "created_at": "2026-08-10T15:04:33.277Z",
+    "updated_at": "2026-08-10T15:04:33.277Z"
   },
   {
     "id": "body-manual-reno-city-council-reno-city-council",
@@ -1916,12 +1916,12 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.809Z",
-    "updated_at": "2026-07-25T22:01:16.809Z"
+    "created_at": "2026-08-10T15:04:39.938Z",
+    "updated_at": "2026-08-10T15:04:39.938Z"
   },
   {
-    "id": "body-manual-reno-city-council-redevelopment-agency-board",
-    "name": "Redevelopment Agency Board",
+    "id": "body-manual-reno-city-council-ward-3-neighborhood-advisory-board-regular",
+    "name": "Ward 3 Neighborhood Advisory Board Regular",
     "jurisdiction": "Reno, NV",
     "level": "city",
     "website": "https://reno.primegov.com/public/portal",
@@ -1931,23 +1931,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.801Z",
-    "updated_at": "2026-07-25T22:01:16.801Z"
-  },
-  {
-    "id": "body-manual-reno-city-council-other-post-employment-benefits-board",
-    "name": "Other Post-Employment Benefits Board",
-    "jurisdiction": "Reno, NV",
-    "level": "city",
-    "website": "https://reno.primegov.com/public/portal",
-    "source_url": "https://reno.primegov.com/public/portal",
-    "meeting_index_url": "https://reno.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "reno-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.779Z",
-    "updated_at": "2026-07-25T22:01:16.779Z"
+    "created_at": "2026-08-10T15:04:39.892Z",
+    "updated_at": "2026-08-10T15:04:39.892Z"
   },
   {
     "id": "body-manual-reno-city-council-access-advisory-board-regular",
@@ -1961,12 +1946,12 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.779Z",
-    "updated_at": "2026-07-25T22:01:16.779Z"
+    "created_at": "2026-08-10T15:04:39.893Z",
+    "updated_at": "2026-08-10T15:04:39.893Z"
   },
   {
-    "id": "body-manual-reno-city-council-redevelopment-agency-advisory-board",
-    "name": "Redevelopment Agency Advisory Board",
+    "id": "body-manual-reno-city-council-truckee-meadows-water-reclamation-facility-joint-coordinating-committee",
+    "name": "Truckee Meadows Water Reclamation Facility Joint Coordinating Committee",
     "jurisdiction": "Reno, NV",
     "level": "city",
     "website": "https://reno.primegov.com/public/portal",
@@ -1976,53 +1961,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.799Z",
-    "updated_at": "2026-07-25T22:01:16.799Z"
-  },
-  {
-    "id": "body-manual-reno-city-council-ward-6-nab-regular",
-    "name": "Ward 6 NAB Regular",
-    "jurisdiction": "Reno, NV",
-    "level": "city",
-    "website": "https://reno.primegov.com/public/portal",
-    "source_url": "https://reno.primegov.com/public/portal",
-    "meeting_index_url": "https://reno.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "reno-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.800Z",
-    "updated_at": "2026-07-25T22:01:16.800Z"
-  },
-  {
-    "id": "body-manual-reno-city-council-ward-3-nab-regular",
-    "name": "Ward 3 NAB Regular",
-    "jurisdiction": "Reno, NV",
-    "level": "city",
-    "website": "https://reno.primegov.com/public/portal",
-    "source_url": "https://reno.primegov.com/public/portal",
-    "meeting_index_url": "https://reno.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "reno-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.800Z",
-    "updated_at": "2026-07-25T22:01:16.800Z"
-  },
-  {
-    "id": "body-manual-reno-city-council-access-advisory-committee-regular",
-    "name": "Access Advisory Committee Regular",
-    "jurisdiction": "Reno, NV",
-    "level": "city",
-    "website": "https://reno.primegov.com/public/portal",
-    "source_url": "https://reno.primegov.com/public/portal",
-    "meeting_index_url": "https://reno.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "reno-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.786Z",
-    "updated_at": "2026-07-25T22:01:16.786Z"
+    "created_at": "2026-08-10T15:04:39.894Z",
+    "updated_at": "2026-08-10T15:04:39.894Z"
   },
   {
     "id": "body-manual-reno-city-council-planning-commission",
@@ -2036,8 +1976,98 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.803Z",
-    "updated_at": "2026-07-25T22:01:16.803Z"
+    "created_at": "2026-08-10T15:04:39.943Z",
+    "updated_at": "2026-08-10T15:04:39.943Z"
+  },
+  {
+    "id": "body-manual-reno-city-council-revised-capital-projects-surcharge-advisory-committee",
+    "name": "REVISED Capital Projects Surcharge Advisory Committee",
+    "jurisdiction": "Reno, NV",
+    "level": "city",
+    "website": "https://reno.primegov.com/public/portal",
+    "source_url": "https://reno.primegov.com/public/portal",
+    "meeting_index_url": "https://reno.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "reno-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:39.894Z",
+    "updated_at": "2026-08-10T15:04:39.894Z"
+  },
+  {
+    "id": "body-manual-reno-city-council-public-art-task-force-cyan-park-public-art",
+    "name": "Public Art Task Force - Cyan Park Public Art",
+    "jurisdiction": "Reno, NV",
+    "level": "city",
+    "website": "https://reno.primegov.com/public/portal",
+    "source_url": "https://reno.primegov.com/public/portal",
+    "meeting_index_url": "https://reno.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "reno-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:39.895Z",
+    "updated_at": "2026-08-10T15:04:39.895Z"
+  },
+  {
+    "id": "body-manual-reno-city-council-redevelopment-agency-advisory-board",
+    "name": "Redevelopment Agency Advisory Board",
+    "jurisdiction": "Reno, NV",
+    "level": "city",
+    "website": "https://reno.primegov.com/public/portal",
+    "source_url": "https://reno.primegov.com/public/portal",
+    "meeting_index_url": "https://reno.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "reno-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:39.935Z",
+    "updated_at": "2026-08-10T15:04:39.935Z"
+  },
+  {
+    "id": "body-manual-reno-city-council-ward-6-nab-regular",
+    "name": "Ward 6 NAB Regular",
+    "jurisdiction": "Reno, NV",
+    "level": "city",
+    "website": "https://reno.primegov.com/public/portal",
+    "source_url": "https://reno.primegov.com/public/portal",
+    "meeting_index_url": "https://reno.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "reno-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:39.936Z",
+    "updated_at": "2026-08-10T15:04:39.936Z"
+  },
+  {
+    "id": "body-manual-reno-city-council-ward-3-nab-regular",
+    "name": "Ward 3 NAB Regular",
+    "jurisdiction": "Reno, NV",
+    "level": "city",
+    "website": "https://reno.primegov.com/public/portal",
+    "source_url": "https://reno.primegov.com/public/portal",
+    "meeting_index_url": "https://reno.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "reno-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:39.937Z",
+    "updated_at": "2026-08-10T15:04:39.937Z"
+  },
+  {
+    "id": "body-manual-reno-city-council-access-advisory-committee-regular",
+    "name": "Access Advisory Committee Regular",
+    "jurisdiction": "Reno, NV",
+    "level": "city",
+    "website": "https://reno.primegov.com/public/portal",
+    "source_url": "https://reno.primegov.com/public/portal",
+    "meeting_index_url": "https://reno.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "reno-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:39.909Z",
+    "updated_at": "2026-08-10T15:04:39.909Z"
   },
   {
     "id": "body-manual-reno-city-council-financial-advisory-board-regular",
@@ -2051,8 +2081,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.802Z",
-    "updated_at": "2026-07-25T22:01:16.802Z"
+    "created_at": "2026-08-10T15:04:39.939Z",
+    "updated_at": "2026-08-10T15:04:39.939Z"
   },
   {
     "id": "body-manual-reno-city-council-civil-service-commission-regular",
@@ -2066,8 +2096,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.802Z",
-    "updated_at": "2026-07-25T22:01:16.802Z"
+    "created_at": "2026-08-10T15:04:39.939Z",
+    "updated_at": "2026-08-10T15:04:39.939Z"
   },
   {
     "id": "body-manual-reno-city-council-ward-1-nab-regular",
@@ -2081,8 +2111,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.802Z",
-    "updated_at": "2026-07-25T22:01:16.802Z"
+    "created_at": "2026-08-10T15:04:39.940Z",
+    "updated_at": "2026-08-10T15:04:39.940Z"
   },
   {
     "id": "body-manual-reno-city-council-senior-citizen-advisory-committee",
@@ -2096,8 +2126,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.782Z",
-    "updated_at": "2026-07-25T22:01:16.782Z"
+    "created_at": "2026-08-10T15:04:39.899Z",
+    "updated_at": "2026-08-10T15:04:39.899Z"
   },
   {
     "id": "body-manual-reno-city-council-redevelopment-agency-board-meeting-agenda",
@@ -2111,8 +2141,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.782Z",
-    "updated_at": "2026-07-25T22:01:16.782Z"
+    "created_at": "2026-08-10T15:04:39.900Z",
+    "updated_at": "2026-08-10T15:04:39.900Z"
   },
   {
     "id": "body-manual-reno-city-council-historical-resources-commission",
@@ -2126,8 +2156,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.802Z",
-    "updated_at": "2026-07-25T22:01:16.802Z"
+    "created_at": "2026-08-10T15:04:39.939Z",
+    "updated_at": "2026-08-10T15:04:39.939Z"
   },
   {
     "id": "body-manual-reno-city-council-ward-4-nab-regular",
@@ -2141,8 +2171,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.804Z",
-    "updated_at": "2026-07-25T22:01:16.804Z"
+    "created_at": "2026-08-10T15:04:39.945Z",
+    "updated_at": "2026-08-10T15:04:39.945Z"
   },
   {
     "id": "body-manual-reno-city-council-ward-2-nab-regular",
@@ -2156,8 +2186,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.796Z",
-    "updated_at": "2026-07-25T22:01:16.796Z"
+    "created_at": "2026-08-10T15:04:39.927Z",
+    "updated_at": "2026-08-10T15:04:39.927Z"
   },
   {
     "id": "body-manual-reno-city-council-urban-forestry-commission-regular",
@@ -2171,8 +2201,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.803Z",
-    "updated_at": "2026-07-25T22:01:16.803Z"
+    "created_at": "2026-08-10T15:04:39.943Z",
+    "updated_at": "2026-08-10T15:04:39.943Z"
   },
   {
     "id": "body-manual-reno-city-council-truckee-meadows-stormwater-permit-coordinating-committee-regular",
@@ -2186,8 +2216,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.783Z",
-    "updated_at": "2026-07-25T22:01:16.783Z"
+    "created_at": "2026-08-10T15:04:39.902Z",
+    "updated_at": "2026-08-10T15:04:39.902Z"
   },
   {
     "id": "body-manual-reno-city-council-arts-and-culture-advisory-board-regular",
@@ -2201,8 +2231,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.784Z",
-    "updated_at": "2026-07-25T22:01:16.784Z"
+    "created_at": "2026-08-10T15:04:39.903Z",
+    "updated_at": "2026-08-10T15:04:39.903Z"
   },
   {
     "id": "body-manual-reno-city-council-building-enterprise-fund-advisory-committee-regular",
@@ -2216,8 +2246,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.784Z",
-    "updated_at": "2026-07-25T22:01:16.784Z"
+    "created_at": "2026-08-10T15:04:39.904Z",
+    "updated_at": "2026-08-10T15:04:39.904Z"
   },
   {
     "id": "body-manual-reno-city-council-parks-and-recreation-advisory-board-meeting-agenda",
@@ -2231,8 +2261,23 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.784Z",
-    "updated_at": "2026-07-25T22:01:16.784Z"
+    "created_at": "2026-08-10T15:04:39.904Z",
+    "updated_at": "2026-08-10T15:04:39.904Z"
+  },
+  {
+    "id": "body-manual-reno-city-council-redevelopment-agency-board",
+    "name": "Redevelopment Agency Board",
+    "jurisdiction": "Reno, NV",
+    "level": "city",
+    "website": "https://reno.primegov.com/public/portal",
+    "source_url": "https://reno.primegov.com/public/portal",
+    "meeting_index_url": "https://reno.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "reno-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:39.938Z",
+    "updated_at": "2026-08-10T15:04:39.938Z"
   },
   {
     "id": "body-manual-reno-city-council-youth-city-council-regular",
@@ -2246,8 +2291,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.797Z",
-    "updated_at": "2026-07-25T22:01:16.797Z"
+    "created_at": "2026-08-10T15:04:39.930Z",
+    "updated_at": "2026-08-10T15:04:39.930Z"
   },
   {
     "id": "body-manual-reno-city-council-other-post-employment-benefits-opeb-board-regular",
@@ -2261,8 +2306,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.785Z",
-    "updated_at": "2026-07-25T22:01:16.785Z"
+    "created_at": "2026-08-10T15:04:39.906Z",
+    "updated_at": "2026-08-10T15:04:39.906Z"
   },
   {
     "id": "body-manual-reno-city-council-capital-projects-surcharge-advisory-committee",
@@ -2276,8 +2321,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.786Z",
-    "updated_at": "2026-07-25T22:01:16.786Z"
+    "created_at": "2026-08-10T15:04:39.908Z",
+    "updated_at": "2026-08-10T15:04:39.908Z"
   },
   {
     "id": "body-manual-reno-city-council-hxgn-oncall-suite-emergency-medical-dispatch-working-group",
@@ -2291,8 +2336,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.786Z",
-    "updated_at": "2026-07-25T22:01:16.786Z"
+    "created_at": "2026-08-10T15:04:39.908Z",
+    "updated_at": "2026-08-10T15:04:39.908Z"
   },
   {
     "id": "body-manual-reno-city-council-canceled-truckee-meadows-water-reclamation-facility-joint-coordinating-committee",
@@ -2306,8 +2351,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.786Z",
-    "updated_at": "2026-07-25T22:01:16.786Z"
+    "created_at": "2026-08-10T15:04:39.909Z",
+    "updated_at": "2026-08-10T15:04:39.909Z"
   },
   {
     "id": "body-manual-reno-city-council-hxgn-oncall-suite-executive-board",
@@ -2321,8 +2366,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.787Z",
-    "updated_at": "2026-07-25T22:01:16.787Z"
+    "created_at": "2026-08-10T15:04:39.911Z",
+    "updated_at": "2026-08-10T15:04:39.911Z"
   },
   {
     "id": "body-manual-reno-city-council-ward-5-nab-regular",
@@ -2336,8 +2381,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.787Z",
-    "updated_at": "2026-07-25T22:01:16.787Z"
+    "created_at": "2026-08-10T15:04:39.911Z",
+    "updated_at": "2026-08-10T15:04:39.911Z"
   },
   {
     "id": "body-manual-reno-city-council-truckee-meadows-stormwater-reclamation-facility-joint-coordinating-committee",
@@ -2351,8 +2396,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.789Z",
-    "updated_at": "2026-07-25T22:01:16.789Z"
+    "created_at": "2026-08-10T15:04:39.913Z",
+    "updated_at": "2026-08-10T15:04:39.913Z"
   },
   {
     "id": "body-manual-reno-city-council-public-art-task-force-art-signals",
@@ -2366,8 +2411,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.789Z",
-    "updated_at": "2026-07-25T22:01:16.789Z"
+    "created_at": "2026-08-10T15:04:39.913Z",
+    "updated_at": "2026-08-10T15:04:39.913Z"
   },
   {
     "id": "body-manual-reno-city-council-canceled-ward-2-nab-regular",
@@ -2381,8 +2426,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.789Z",
-    "updated_at": "2026-07-25T22:01:16.789Z"
+    "created_at": "2026-08-10T15:04:39.914Z",
+    "updated_at": "2026-08-10T15:04:39.914Z"
   },
   {
     "id": "body-manual-reno-city-council-urban-forestry-commission",
@@ -2396,8 +2441,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.790Z",
-    "updated_at": "2026-07-25T22:01:16.790Z"
+    "created_at": "2026-08-10T15:04:39.914Z",
+    "updated_at": "2026-08-10T15:04:39.914Z"
   },
   {
     "id": "body-manual-reno-city-council-canceled-community-development-block-grant-cdbg-subcommittee",
@@ -2411,8 +2456,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.790Z",
-    "updated_at": "2026-07-25T22:01:16.790Z"
+    "created_at": "2026-08-10T15:04:39.915Z",
+    "updated_at": "2026-08-10T15:04:39.915Z"
   },
   {
     "id": "body-manual-reno-city-council-canceled-ward-4-nab-regular",
@@ -2426,8 +2471,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.798Z",
-    "updated_at": "2026-07-25T22:01:16.798Z"
+    "created_at": "2026-08-10T15:04:39.931Z",
+    "updated_at": "2026-08-10T15:04:39.931Z"
   },
   {
     "id": "body-manual-reno-city-council-parks-and-recreation-advisory-board",
@@ -2441,8 +2486,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.790Z",
-    "updated_at": "2026-07-25T22:01:16.790Z"
+    "created_at": "2026-08-10T15:04:39.916Z",
+    "updated_at": "2026-08-10T15:04:39.916Z"
   },
   {
     "id": "body-manual-reno-city-council-truckee-meadows-stormwater-permit-coordinating-committee-meeting-agenda",
@@ -2456,8 +2501,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.791Z",
-    "updated_at": "2026-07-25T22:01:16.791Z"
+    "created_at": "2026-08-10T15:04:39.917Z",
+    "updated_at": "2026-08-10T15:04:39.917Z"
   },
   {
     "id": "body-manual-reno-city-council-reno-city-charter-committee",
@@ -2471,8 +2516,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.804Z",
-    "updated_at": "2026-07-25T22:01:16.804Z"
+    "created_at": "2026-08-10T15:04:39.944Z",
+    "updated_at": "2026-08-10T15:04:39.944Z"
   },
   {
     "id": "body-manual-reno-city-council-senior-resident-advisory-board",
@@ -2486,8 +2531,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.793Z",
-    "updated_at": "2026-07-25T22:01:16.793Z"
+    "created_at": "2026-08-10T15:04:39.919Z",
+    "updated_at": "2026-08-10T15:04:39.919Z"
   },
   {
     "id": "body-manual-reno-city-council-cancelled-hxgn-oncall-suite-emergency-medical-dispatch-emd-working-group",
@@ -2501,8 +2546,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.793Z",
-    "updated_at": "2026-07-25T22:01:16.793Z"
+    "created_at": "2026-08-10T15:04:39.920Z",
+    "updated_at": "2026-08-10T15:04:39.920Z"
   },
   {
     "id": "body-manual-reno-city-council-special-reno-city-council-meeting-budget-workshop",
@@ -2516,8 +2561,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.793Z",
-    "updated_at": "2026-07-25T22:01:16.793Z"
+    "created_at": "2026-08-10T15:04:39.921Z",
+    "updated_at": "2026-08-10T15:04:39.921Z"
   },
   {
     "id": "body-manual-reno-city-council-special-redevelopment-agency-board-meeting-budget-workshop",
@@ -2531,8 +2576,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.793Z",
-    "updated_at": "2026-07-25T22:01:16.793Z"
+    "created_at": "2026-08-10T15:04:39.921Z",
+    "updated_at": "2026-08-10T15:04:39.921Z"
   },
   {
     "id": "body-manual-reno-city-council-revised-truckee-meadows-water-reclamation-facility-joint-coordinating-committee",
@@ -2546,8 +2591,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.796Z",
-    "updated_at": "2026-07-25T22:01:16.796Z"
+    "created_at": "2026-08-10T15:04:39.926Z",
+    "updated_at": "2026-08-10T15:04:39.926Z"
   },
   {
     "id": "body-manual-reno-city-council-reno-arts-and-culture-advisory-board-regular",
@@ -2561,8 +2606,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.796Z",
-    "updated_at": "2026-07-25T22:01:16.796Z"
+    "created_at": "2026-08-10T15:04:39.927Z",
+    "updated_at": "2026-08-10T15:04:39.927Z"
   },
   {
     "id": "body-manual-reno-city-council-parks-and-recreation-advisory-board-regular",
@@ -2576,8 +2621,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.796Z",
-    "updated_at": "2026-07-25T22:01:16.796Z"
+    "created_at": "2026-08-10T15:04:39.928Z",
+    "updated_at": "2026-08-10T15:04:39.928Z"
   },
   {
     "id": "body-manual-reno-city-council-community-development-block-grant-subcommittee",
@@ -2591,8 +2636,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.798Z",
-    "updated_at": "2026-07-25T22:01:16.798Z"
+    "created_at": "2026-08-10T15:04:39.931Z",
+    "updated_at": "2026-08-10T15:04:39.931Z"
   },
   {
     "id": "body-manual-reno-city-council-truckee-meadows-stormwater-permit-coordinating-committee",
@@ -2606,8 +2651,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.799Z",
-    "updated_at": "2026-07-25T22:01:16.799Z"
+    "created_at": "2026-08-10T15:04:39.934Z",
+    "updated_at": "2026-08-10T15:04:39.934Z"
   },
   {
     "id": "body-manual-reno-city-council-hxgn-oncall-suite-emergency-medical-dispatch-emd-working-group-regular",
@@ -2621,8 +2666,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.800Z",
-    "updated_at": "2026-07-25T22:01:16.800Z"
+    "created_at": "2026-08-10T15:04:39.936Z",
+    "updated_at": "2026-08-10T15:04:39.936Z"
   },
   {
     "id": "body-manual-reno-city-council-access-advisory-board",
@@ -2636,8 +2681,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.800Z",
-    "updated_at": "2026-07-25T22:01:16.800Z"
+    "created_at": "2026-08-10T15:04:39.937Z",
+    "updated_at": "2026-08-10T15:04:39.937Z"
   },
   {
     "id": "body-manual-reno-city-council-hxgn-oncall-suite-executive-board-hybrid",
@@ -2651,8 +2696,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.801Z",
-    "updated_at": "2026-07-25T22:01:16.801Z"
+    "created_at": "2026-08-10T15:04:39.938Z",
+    "updated_at": "2026-08-10T15:04:39.938Z"
   },
   {
     "id": "body-manual-reno-city-council-community-development-block-grant-cdbg-subcommittee",
@@ -2666,8 +2711,8 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.803Z",
-    "updated_at": "2026-07-25T22:01:16.803Z"
+    "created_at": "2026-08-10T15:04:39.941Z",
+    "updated_at": "2026-08-10T15:04:39.941Z"
   },
   {
     "id": "body-manual-reno-city-council-capital-improvements-advisory-committee",
@@ -2681,8 +2726,53 @@
     "active": true,
     "seed_source_id": "reno-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:16.803Z",
-    "updated_at": "2026-07-25T22:01:16.803Z"
+    "created_at": "2026-08-10T15:04:39.942Z",
+    "updated_at": "2026-08-10T15:04:39.942Z"
+  },
+  {
+    "id": "body-manual-nv-legislature-nevada-legislature",
+    "name": "Nevada Legislature",
+    "jurisdiction": "Nevada",
+    "level": "state",
+    "website": "https://www.leg.state.nv.us/App/Calendar/A/",
+    "source_url": "https://www.leg.state.nv.us/App/Calendar/A/",
+    "meeting_index_url": "https://www.leg.state.nv.us/App/Calendar/A/",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "nv-legislature",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:40.207Z",
+    "updated_at": "2026-08-10T15:04:40.207Z"
+  },
+  {
+    "id": "body-manual-nv-senate-nevada-senate",
+    "name": "Nevada Senate",
+    "jurisdiction": "Nevada",
+    "level": "state",
+    "website": "https://www.leg.state.nv.us/",
+    "source_url": "https://www.leg.state.nv.us/",
+    "meeting_index_url": "https://www.leg.state.nv.us/",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "nv-senate",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:40.229Z",
+    "updated_at": "2026-08-10T15:04:40.229Z"
+  },
+  {
+    "id": "body-manual-nv-assembly-nevada-assembly",
+    "name": "Nevada Assembly",
+    "jurisdiction": "Nevada",
+    "level": "state",
+    "website": "https://www.leg.state.nv.us/",
+    "source_url": "https://www.leg.state.nv.us/",
+    "meeting_index_url": "https://www.leg.state.nv.us/",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "nv-assembly",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:40.249Z",
+    "updated_at": "2026-08-10T15:04:40.249Z"
   },
   {
     "id": "body-manual-churchill-county-commission-churchill-county-commission",
@@ -2696,23 +2786,23 @@
     "active": true,
     "seed_source_id": "churchill-county-commission",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:18.162Z",
-    "updated_at": "2026-07-25T22:01:18.162Z"
+    "created_at": "2026-08-10T15:04:42.495Z",
+    "updated_at": "2026-08-10T15:04:42.495Z"
   },
   {
-    "id": "body-manual-eureka-county-commission-eureka-county-commission",
-    "name": "Eureka County Commission",
-    "jurisdiction": "Eureka County, NV",
+    "id": "body-manual-clark-county-commission-clark-county-commission",
+    "name": "Clark County Commission",
+    "jurisdiction": "Clark County, NV",
     "level": "county",
-    "website": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
-    "source_url": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
-    "meeting_index_url": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+    "website": "https://clark.legistar.com/",
+    "source_url": "https://clark.legistar.com/",
+    "meeting_index_url": "https://clark.legistar.com/",
     "scraper_type": "manual",
     "active": true,
-    "seed_source_id": "eureka-county-commission",
+    "seed_source_id": "clark-county-commission",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:24.684Z",
-    "updated_at": "2026-07-25T22:01:24.684Z"
+    "created_at": "2026-08-10T15:04:42.684Z",
+    "updated_at": "2026-08-10T15:04:42.684Z"
   },
   {
     "id": "body-manual-storey-county-commission-storey-county-commission",
@@ -2726,12 +2816,12 @@
     "active": true,
     "seed_source_id": "storey-county-commission",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.151Z",
-    "updated_at": "2026-07-25T22:01:26.151Z"
+    "created_at": "2026-08-10T15:04:46.538Z",
+    "updated_at": "2026-08-10T15:04:46.538Z"
   },
   {
-    "id": "body-manual-boulder-city-council-parks-and-recreation-commission",
-    "name": "Parks and Recreation Commission",
+    "id": "body-manual-boulder-city-council-boulder-city-council",
+    "name": "Boulder City Council",
     "jurisdiction": "Boulder City, NV",
     "level": "city",
     "website": "https://www.bcnv.org/",
@@ -2741,8 +2831,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.390Z",
-    "updated_at": "2026-07-25T22:01:26.390Z"
+    "created_at": "2026-08-10T15:04:47.367Z",
+    "updated_at": "2026-08-10T15:04:47.367Z"
   },
   {
     "id": "body-manual-boulder-city-council-audit-review-committee",
@@ -2756,8 +2846,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.383Z",
-    "updated_at": "2026-07-25T22:01:26.383Z"
+    "created_at": "2026-08-10T15:04:47.369Z",
+    "updated_at": "2026-08-10T15:04:47.369Z"
   },
   {
     "id": "body-manual-boulder-city-council-city-council",
@@ -2771,8 +2861,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.393Z",
-    "updated_at": "2026-07-25T22:01:26.393Z"
+    "created_at": "2026-08-10T15:04:47.378Z",
+    "updated_at": "2026-08-10T15:04:47.378Z"
   },
   {
     "id": "body-manual-boulder-city-council-utility-advisory-committee",
@@ -2786,8 +2876,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.392Z",
-    "updated_at": "2026-07-25T22:01:26.392Z"
+    "created_at": "2026-08-10T15:04:47.378Z",
+    "updated_at": "2026-08-10T15:04:47.378Z"
   },
   {
     "id": "body-manual-boulder-city-council-planning-commission-regular",
@@ -2801,8 +2891,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.393Z",
-    "updated_at": "2026-07-25T22:01:26.393Z"
+    "created_at": "2026-08-10T15:04:47.378Z",
+    "updated_at": "2026-08-10T15:04:47.378Z"
   },
   {
     "id": "body-manual-boulder-city-council-business-license-liquor-board",
@@ -2816,8 +2906,23 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.393Z",
-    "updated_at": "2026-07-25T22:01:26.393Z"
+    "created_at": "2026-08-10T15:04:47.378Z",
+    "updated_at": "2026-08-10T15:04:47.378Z"
+  },
+  {
+    "id": "body-manual-boulder-city-council-parks-and-recreation-commission",
+    "name": "Parks and Recreation Commission",
+    "jurisdiction": "Boulder City, NV",
+    "level": "city",
+    "website": "https://www.bcnv.org/",
+    "source_url": "https://www.bcnv.org/",
+    "meeting_index_url": "https://www.bcnv.org/",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "boulder-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:47.379Z",
+    "updated_at": "2026-08-10T15:04:47.379Z"
   },
   {
     "id": "body-manual-boulder-city-council-redevelopment-agency",
@@ -2831,8 +2936,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.390Z",
-    "updated_at": "2026-07-25T22:01:26.390Z"
+    "created_at": "2026-08-10T15:04:47.376Z",
+    "updated_at": "2026-08-10T15:04:47.376Z"
   },
   {
     "id": "body-manual-boulder-city-council-historic-preservation-commission-regular",
@@ -2846,8 +2951,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.394Z",
-    "updated_at": "2026-07-25T22:01:26.394Z"
+    "created_at": "2026-08-10T15:04:47.379Z",
+    "updated_at": "2026-08-10T15:04:47.379Z"
   },
   {
     "id": "body-manual-boulder-city-council-planning-commission",
@@ -2861,8 +2966,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.385Z",
-    "updated_at": "2026-07-25T22:01:26.385Z"
+    "created_at": "2026-08-10T15:04:47.371Z",
+    "updated_at": "2026-08-10T15:04:47.371Z"
   },
   {
     "id": "body-manual-boulder-city-council-historic-preservation-commission",
@@ -2876,8 +2981,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.387Z",
-    "updated_at": "2026-07-25T22:01:26.387Z"
+    "created_at": "2026-08-10T15:04:47.373Z",
+    "updated_at": "2026-08-10T15:04:47.373Z"
   },
   {
     "id": "body-manual-boulder-city-council-special-city-council",
@@ -2891,8 +2996,8 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.388Z",
-    "updated_at": "2026-07-25T22:01:26.388Z"
+    "created_at": "2026-08-10T15:04:47.374Z",
+    "updated_at": "2026-08-10T15:04:47.374Z"
   },
   {
     "id": "body-manual-boulder-city-council-business-license-liquor",
@@ -2906,8 +3011,38 @@
     "active": true,
     "seed_source_id": "boulder-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.388Z",
-    "updated_at": "2026-07-25T22:01:26.388Z"
+    "created_at": "2026-08-10T15:04:47.375Z",
+    "updated_at": "2026-08-10T15:04:47.375Z"
+  },
+  {
+    "id": "body-manual-boulder-city-council-allotment-committee-special",
+    "name": "Allotment Committee Special",
+    "jurisdiction": "Boulder City, NV",
+    "level": "city",
+    "website": "https://www.bcnv.org/",
+    "source_url": "https://www.bcnv.org/",
+    "meeting_index_url": "https://www.bcnv.org/",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "boulder-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:47.379Z",
+    "updated_at": "2026-08-10T15:04:47.379Z"
+  },
+  {
+    "id": "body-manual-carlin-city-council-carlin-city-council",
+    "name": "Carlin City Council",
+    "jurisdiction": "Carlin, NV",
+    "level": "city",
+    "website": "https://www.explorecarlinnv.com/",
+    "source_url": "https://www.explorecarlinnv.com/",
+    "meeting_index_url": "https://www.explorecarlinnv.com/",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "carlin-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:48.416Z",
+    "updated_at": "2026-08-10T15:04:48.416Z"
   },
   {
     "id": "body-manual-elko-city-council-elko-city-council",
@@ -2921,8 +3056,8 @@
     "active": true,
     "seed_source_id": "elko-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:26.617Z",
-    "updated_at": "2026-07-25T22:01:26.617Z"
+    "created_at": "2026-08-10T15:04:48.654Z",
+    "updated_at": "2026-08-10T15:04:48.654Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-las-vegas-city-council",
@@ -2936,113 +3071,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.954Z",
-    "updated_at": "2026-07-25T22:01:28.954Z"
-  },
-  {
-    "id": "body-manual-las-vegas-city-council-commission-for-the-las-vegas-centennial",
-    "name": "Commission for the Las Vegas Centennial",
-    "jurisdiction": "Las Vegas, NV",
-    "level": "city",
-    "website": "https://lasvegas.primegov.com/public/portal",
-    "source_url": "https://lasvegas.primegov.com/public/portal",
-    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.967Z",
-    "updated_at": "2026-07-25T22:01:28.967Z"
-  },
-  {
-    "id": "body-manual-las-vegas-city-council-citizens-advisory-committee-to-the-las-vegas-redevelopment-agency",
-    "name": "Citizens Advisory Committee to the Las Vegas Redevelopment Agency",
-    "jurisdiction": "Las Vegas, NV",
-    "level": "city",
-    "website": "https://lasvegas.primegov.com/public/portal",
-    "source_url": "https://lasvegas.primegov.com/public/portal",
-    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.972Z",
-    "updated_at": "2026-07-25T22:01:28.972Z"
-  },
-  {
-    "id": "body-manual-las-vegas-city-council-recommending-committee",
-    "name": "Recommending Committee",
-    "jurisdiction": "Las Vegas, NV",
-    "level": "city",
-    "website": "https://lasvegas.primegov.com/public/portal",
-    "source_url": "https://lasvegas.primegov.com/public/portal",
-    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.977Z",
-    "updated_at": "2026-07-25T22:01:28.977Z"
-  },
-  {
-    "id": "body-manual-las-vegas-city-council-parks-and-recreation-advisory-commission",
-    "name": "Parks and Recreation Advisory Commission",
-    "jurisdiction": "Las Vegas, NV",
-    "level": "city",
-    "website": "https://lasvegas.primegov.com/public/portal",
-    "source_url": "https://lasvegas.primegov.com/public/portal",
-    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.976Z",
-    "updated_at": "2026-07-25T22:01:28.976Z"
-  },
-  {
-    "id": "body-manual-las-vegas-city-council-city-council",
-    "name": "City Council",
-    "jurisdiction": "Las Vegas, NV",
-    "level": "city",
-    "website": "https://lasvegas.primegov.com/public/portal",
-    "source_url": "https://lasvegas.primegov.com/public/portal",
-    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.978Z",
-    "updated_at": "2026-07-25T22:01:28.978Z"
-  },
-  {
-    "id": "body-manual-las-vegas-city-council-southern-nevada-enterprise-community-board",
-    "name": "Southern Nevada Enterprise Community Board",
-    "jurisdiction": "Las Vegas, NV",
-    "level": "city",
-    "website": "https://lasvegas.primegov.com/public/portal",
-    "source_url": "https://lasvegas.primegov.com/public/portal",
-    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.976Z",
-    "updated_at": "2026-07-25T22:01:28.976Z"
-  },
-  {
-    "id": "body-manual-las-vegas-city-council-audit-oversight-committee",
-    "name": "Audit Oversight Committee",
-    "jurisdiction": "Las Vegas, NV",
-    "level": "city",
-    "website": "https://lasvegas.primegov.com/public/portal",
-    "source_url": "https://lasvegas.primegov.com/public/portal",
-    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.971Z",
-    "updated_at": "2026-07-25T22:01:28.971Z"
+    "created_at": "2026-08-10T15:04:53.904Z",
+    "updated_at": "2026-08-10T15:04:53.904Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-planning-commission",
@@ -3056,8 +3086,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.977Z",
-    "updated_at": "2026-07-25T22:01:28.977Z"
+    "created_at": "2026-08-10T15:04:53.937Z",
+    "updated_at": "2026-08-10T15:04:53.937Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-board-of-civil-service-trustees",
@@ -3071,8 +3101,83 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.977Z",
-    "updated_at": "2026-07-25T22:01:28.977Z"
+    "created_at": "2026-08-10T15:04:53.936Z",
+    "updated_at": "2026-08-10T15:04:53.936Z"
+  },
+  {
+    "id": "body-manual-las-vegas-city-council-recommending-committee",
+    "name": "Recommending Committee",
+    "jurisdiction": "Las Vegas, NV",
+    "level": "city",
+    "website": "https://lasvegas.primegov.com/public/portal",
+    "source_url": "https://lasvegas.primegov.com/public/portal",
+    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:53.937Z",
+    "updated_at": "2026-08-10T15:04:53.937Z"
+  },
+  {
+    "id": "body-manual-las-vegas-city-council-parks-and-recreation-advisory-commission",
+    "name": "Parks and Recreation Advisory Commission",
+    "jurisdiction": "Las Vegas, NV",
+    "level": "city",
+    "website": "https://lasvegas.primegov.com/public/portal",
+    "source_url": "https://lasvegas.primegov.com/public/portal",
+    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:53.935Z",
+    "updated_at": "2026-08-10T15:04:53.935Z"
+  },
+  {
+    "id": "body-manual-las-vegas-city-council-city-council",
+    "name": "City Council",
+    "jurisdiction": "Las Vegas, NV",
+    "level": "city",
+    "website": "https://lasvegas.primegov.com/public/portal",
+    "source_url": "https://lasvegas.primegov.com/public/portal",
+    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:53.938Z",
+    "updated_at": "2026-08-10T15:04:53.938Z"
+  },
+  {
+    "id": "body-manual-las-vegas-city-council-southern-nevada-enterprise-community-board",
+    "name": "Southern Nevada Enterprise Community Board",
+    "jurisdiction": "Las Vegas, NV",
+    "level": "city",
+    "website": "https://lasvegas.primegov.com/public/portal",
+    "source_url": "https://lasvegas.primegov.com/public/portal",
+    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:53.935Z",
+    "updated_at": "2026-08-10T15:04:53.935Z"
+  },
+  {
+    "id": "body-manual-las-vegas-city-council-audit-oversight-committee",
+    "name": "Audit Oversight Committee",
+    "jurisdiction": "Las Vegas, NV",
+    "level": "city",
+    "website": "https://lasvegas.primegov.com/public/portal",
+    "source_url": "https://lasvegas.primegov.com/public/portal",
+    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:53.927Z",
+    "updated_at": "2026-08-10T15:04:53.927Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-arts-commission",
@@ -3086,8 +3191,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.978Z",
-    "updated_at": "2026-07-25T22:01:28.978Z"
+    "created_at": "2026-08-10T15:04:53.938Z",
+    "updated_at": "2026-08-10T15:04:53.938Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-youth-leadership-advisory-council",
@@ -3101,8 +3206,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.972Z",
-    "updated_at": "2026-07-25T22:01:28.972Z"
+    "created_at": "2026-08-10T15:04:53.928Z",
+    "updated_at": "2026-08-10T15:04:53.928Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-redevelopment-agency",
@@ -3116,8 +3221,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.978Z",
-    "updated_at": "2026-07-25T22:01:28.978Z"
+    "created_at": "2026-08-10T15:04:53.937Z",
+    "updated_at": "2026-08-10T15:04:53.937Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-city-parkway-v-inc-board",
@@ -3131,8 +3236,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.976Z",
-    "updated_at": "2026-07-25T22:01:28.976Z"
+    "created_at": "2026-08-10T15:04:53.935Z",
+    "updated_at": "2026-08-10T15:04:53.935Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-las-vegas-economic-recovery-corporation-board",
@@ -3146,8 +3251,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.960Z",
-    "updated_at": "2026-07-25T22:01:28.960Z"
+    "created_at": "2026-08-10T15:04:53.912Z",
+    "updated_at": "2026-08-10T15:04:53.912Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-las-vegas-medical-district-corporation-board",
@@ -3161,8 +3266,38 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.960Z",
-    "updated_at": "2026-07-25T22:01:28.960Z"
+    "created_at": "2026-08-10T15:04:53.913Z",
+    "updated_at": "2026-08-10T15:04:53.913Z"
+  },
+  {
+    "id": "body-manual-las-vegas-city-council-commission-for-the-las-vegas-centennial",
+    "name": "Commission for the Las Vegas Centennial",
+    "jurisdiction": "Las Vegas, NV",
+    "level": "city",
+    "website": "https://lasvegas.primegov.com/public/portal",
+    "source_url": "https://lasvegas.primegov.com/public/portal",
+    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:53.921Z",
+    "updated_at": "2026-08-10T15:04:53.921Z"
+  },
+  {
+    "id": "body-manual-las-vegas-city-council-citizens-advisory-committee-to-the-las-vegas-redevelopment-agency",
+    "name": "Citizens Advisory Committee to the Las Vegas Redevelopment Agency",
+    "jurisdiction": "Las Vegas, NV",
+    "level": "city",
+    "website": "https://lasvegas.primegov.com/public/portal",
+    "source_url": "https://lasvegas.primegov.com/public/portal",
+    "meeting_index_url": "https://lasvegas.primegov.com/public/portal",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:53.929Z",
+    "updated_at": "2026-08-10T15:04:53.929Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-historic-preservation-commission",
@@ -3176,8 +3311,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.978Z",
-    "updated_at": "2026-07-25T22:01:28.978Z"
+    "created_at": "2026-08-10T15:04:53.939Z",
+    "updated_at": "2026-08-10T15:04:53.939Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-senior-citizens-advisory-board",
@@ -3191,8 +3326,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.968Z",
-    "updated_at": "2026-07-25T22:01:28.968Z"
+    "created_at": "2026-08-10T15:04:53.923Z",
+    "updated_at": "2026-08-10T15:04:53.923Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-community-development-recommending-board",
@@ -3206,8 +3341,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.965Z",
-    "updated_at": "2026-07-25T22:01:28.965Z"
+    "created_at": "2026-08-10T15:04:53.918Z",
+    "updated_at": "2026-08-10T15:04:53.918Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-planning-commission-workshop",
@@ -3221,8 +3356,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.963Z",
-    "updated_at": "2026-07-25T22:01:28.963Z"
+    "created_at": "2026-08-10T15:04:53.916Z",
+    "updated_at": "2026-08-10T15:04:53.916Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-southern-nevada-council-of-governments",
@@ -3236,8 +3371,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.975Z",
-    "updated_at": "2026-07-25T22:01:28.975Z"
+    "created_at": "2026-08-10T15:04:53.934Z",
+    "updated_at": "2026-08-10T15:04:53.934Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-special-commission-for-the-las-vegas-centennial",
@@ -3251,8 +3386,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.974Z",
-    "updated_at": "2026-07-25T22:01:28.974Z"
+    "created_at": "2026-08-10T15:04:53.931Z",
+    "updated_at": "2026-08-10T15:04:53.931Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-neighborhood-partners-fund-board",
@@ -3266,8 +3401,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.972Z",
-    "updated_at": "2026-07-25T22:01:28.972Z"
+    "created_at": "2026-08-10T15:04:53.927Z",
+    "updated_at": "2026-08-10T15:04:53.927Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-neighborhood-partners-fund-board-addendum",
@@ -3281,8 +3416,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.969Z",
-    "updated_at": "2026-07-25T22:01:28.969Z"
+    "created_at": "2026-08-10T15:04:53.924Z",
+    "updated_at": "2026-08-10T15:04:53.924Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-building-and-safety-enterprise-fund-advisory-committee",
@@ -3296,8 +3431,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.970Z",
-    "updated_at": "2026-07-25T22:01:28.970Z"
+    "created_at": "2026-08-10T15:04:53.926Z",
+    "updated_at": "2026-08-10T15:04:53.926Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-special-historic-preservation-commission",
@@ -3311,8 +3446,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.972Z",
-    "updated_at": "2026-07-25T22:01:28.972Z"
+    "created_at": "2026-08-10T15:04:53.929Z",
+    "updated_at": "2026-08-10T15:04:53.929Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-special-traffic-and-parking-commission",
@@ -3326,8 +3461,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.973Z",
-    "updated_at": "2026-07-25T22:01:28.973Z"
+    "created_at": "2026-08-10T15:04:53.929Z",
+    "updated_at": "2026-08-10T15:04:53.929Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-special-joint-city-council-and-redevelopment-agency-budget",
@@ -3341,8 +3476,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.975Z",
-    "updated_at": "2026-07-25T22:01:28.975Z"
+    "created_at": "2026-08-10T15:04:53.933Z",
+    "updated_at": "2026-08-10T15:04:53.933Z"
   },
   {
     "id": "body-manual-las-vegas-city-council-special-city-council",
@@ -3356,8 +3491,8 @@
     "active": true,
     "seed_source_id": "las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:28.978Z",
-    "updated_at": "2026-07-25T22:01:28.978Z"
+    "created_at": "2026-08-10T15:04:53.938Z",
+    "updated_at": "2026-08-10T15:04:53.938Z"
   },
   {
     "id": "body-manual-north-las-vegas-city-council-north-las-vegas-city-council",
@@ -3371,98 +3506,8 @@
     "active": true,
     "seed_source_id": "north-las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.072Z",
-    "updated_at": "2026-07-25T22:01:29.072Z"
-  },
-  {
-    "id": "body-manual-north-las-vegas-city-council-library-district-board-of-trustees",
-    "name": "Library District Board of Trustees",
-    "jurisdiction": "North Las Vegas, NV",
-    "level": "city",
-    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "north-las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.081Z",
-    "updated_at": "2026-07-25T22:01:29.081Z"
-  },
-  {
-    "id": "body-manual-north-las-vegas-city-council-charter-committee-special",
-    "name": "Charter Committee Special",
-    "jurisdiction": "North Las Vegas, NV",
-    "level": "city",
-    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "north-las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.073Z",
-    "updated_at": "2026-07-25T22:01:29.073Z"
-  },
-  {
-    "id": "body-manual-north-las-vegas-city-council-education-advisory-committee",
-    "name": "Education Advisory Committee",
-    "jurisdiction": "North Las Vegas, NV",
-    "level": "city",
-    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "north-las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.076Z",
-    "updated_at": "2026-07-25T22:01:29.076Z"
-  },
-  {
-    "id": "body-manual-north-las-vegas-city-council-planning-commission",
-    "name": "Planning Commission",
-    "jurisdiction": "North Las Vegas, NV",
-    "level": "city",
-    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "north-las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.082Z",
-    "updated_at": "2026-07-25T22:01:29.082Z"
-  },
-  {
-    "id": "body-manual-north-las-vegas-city-council-citizens-advisory-committee",
-    "name": "Citizens Advisory Committee",
-    "jurisdiction": "North Las Vegas, NV",
-    "level": "city",
-    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "north-las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.078Z",
-    "updated_at": "2026-07-25T22:01:29.078Z"
-  },
-  {
-    "id": "body-manual-north-las-vegas-city-council-city-council-rda",
-    "name": "City Council/RDA",
-    "jurisdiction": "North Las Vegas, NV",
-    "level": "city",
-    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "scraper_type": "manual",
-    "active": true,
-    "seed_source_id": "north-las-vegas-city-council",
-    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.082Z",
-    "updated_at": "2026-07-25T22:01:29.082Z"
+    "created_at": "2026-08-10T15:04:54.088Z",
+    "updated_at": "2026-08-10T15:04:54.088Z"
   },
   {
     "id": "body-manual-north-las-vegas-city-council-parks-arts-recreation-and-culture-advisory-board",
@@ -3476,8 +3521,53 @@
     "active": true,
     "seed_source_id": "north-las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.080Z",
-    "updated_at": "2026-07-25T22:01:29.080Z"
+    "created_at": "2026-08-10T15:04:54.098Z",
+    "updated_at": "2026-08-10T15:04:54.098Z"
+  },
+  {
+    "id": "body-manual-north-las-vegas-city-council-planning-commission",
+    "name": "Planning Commission",
+    "jurisdiction": "North Las Vegas, NV",
+    "level": "city",
+    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "north-las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:54.101Z",
+    "updated_at": "2026-08-10T15:04:54.101Z"
+  },
+  {
+    "id": "body-manual-north-las-vegas-city-council-citizens-advisory-committee",
+    "name": "Citizens Advisory Committee",
+    "jurisdiction": "North Las Vegas, NV",
+    "level": "city",
+    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "north-las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:54.095Z",
+    "updated_at": "2026-08-10T15:04:54.095Z"
+  },
+  {
+    "id": "body-manual-north-las-vegas-city-council-city-council-rda",
+    "name": "City Council/RDA",
+    "jurisdiction": "North Las Vegas, NV",
+    "level": "city",
+    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "north-las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:54.103Z",
+    "updated_at": "2026-08-10T15:04:54.103Z"
   },
   {
     "id": "body-manual-north-las-vegas-city-council-city-council",
@@ -3491,8 +3581,38 @@
     "active": true,
     "seed_source_id": "north-las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.083Z",
-    "updated_at": "2026-07-25T22:01:29.083Z"
+    "created_at": "2026-08-10T15:04:54.102Z",
+    "updated_at": "2026-08-10T15:04:54.102Z"
+  },
+  {
+    "id": "body-manual-north-las-vegas-city-council-library-district-board-of-trustees",
+    "name": "Library District Board of Trustees",
+    "jurisdiction": "North Las Vegas, NV",
+    "level": "city",
+    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "north-las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:54.102Z",
+    "updated_at": "2026-08-10T15:04:54.102Z"
+  },
+  {
+    "id": "body-manual-north-las-vegas-city-council-education-advisory-committee",
+    "name": "Education Advisory Committee",
+    "jurisdiction": "North Las Vegas, NV",
+    "level": "city",
+    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "north-las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:54.103Z",
+    "updated_at": "2026-08-10T15:04:54.103Z"
   },
   {
     "id": "body-manual-north-las-vegas-city-council-veterans-community-commission",
@@ -3506,8 +3626,8 @@
     "active": true,
     "seed_source_id": "north-las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.081Z",
-    "updated_at": "2026-07-25T22:01:29.081Z"
+    "created_at": "2026-08-10T15:04:54.099Z",
+    "updated_at": "2026-08-10T15:04:54.099Z"
   },
   {
     "id": "body-manual-north-las-vegas-city-council-city-council-special",
@@ -3521,8 +3641,8 @@
     "active": true,
     "seed_source_id": "north-las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.082Z",
-    "updated_at": "2026-07-25T22:01:29.082Z"
+    "created_at": "2026-08-10T15:04:54.100Z",
+    "updated_at": "2026-08-10T15:04:54.100Z"
   },
   {
     "id": "body-manual-north-las-vegas-city-council-charter-committee",
@@ -3536,8 +3656,8 @@
     "active": true,
     "seed_source_id": "north-las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.082Z",
-    "updated_at": "2026-07-25T22:01:29.082Z"
+    "created_at": "2026-08-10T15:04:54.101Z",
+    "updated_at": "2026-08-10T15:04:54.101Z"
   },
   {
     "id": "body-manual-north-las-vegas-city-council-civil-service-board-of-trustees-regular",
@@ -3551,8 +3671,38 @@
     "active": true,
     "seed_source_id": "north-las-vegas-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.083Z",
-    "updated_at": "2026-07-25T22:01:29.083Z"
+    "created_at": "2026-08-10T15:04:54.102Z",
+    "updated_at": "2026-08-10T15:04:54.102Z"
+  },
+  {
+    "id": "body-manual-north-las-vegas-city-council-charter-committee-special",
+    "name": "Charter Committee Special",
+    "jurisdiction": "North Las Vegas, NV",
+    "level": "city",
+    "website": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "source_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "meeting_index_url": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "north-las-vegas-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:54.103Z",
+    "updated_at": "2026-08-10T15:04:54.103Z"
+  },
+  {
+    "id": "body-manual-sparks-city-council-sparks-city-council",
+    "name": "Sparks City Council",
+    "jurisdiction": "Sparks, NV",
+    "level": "city",
+    "website": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
+    "source_url": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
+    "meeting_index_url": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "sparks-city-council",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:04:54.119Z",
+    "updated_at": "2026-08-10T15:04:54.119Z"
   },
   {
     "id": "body-manual-yerington-city-council-yerington-city-council",
@@ -3566,8 +3716,23 @@
     "active": true,
     "seed_source_id": "yerington-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:29.109Z",
-    "updated_at": "2026-07-25T22:01:29.109Z"
+    "created_at": "2026-08-10T15:04:55.893Z",
+    "updated_at": "2026-08-10T15:04:55.893Z"
+  },
+  {
+    "id": "body-manual-eureka-county-commission-eureka-county-commission",
+    "name": "Eureka County Commission",
+    "jurisdiction": "Eureka County, NV",
+    "level": "county",
+    "website": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+    "source_url": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+    "meeting_index_url": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "eureka-county-commission",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:05:16.594Z",
+    "updated_at": "2026-08-10T15:05:16.594Z"
   },
   {
     "id": "body-manual-lyon-county-commission-lyon-county-commission",
@@ -3581,8 +3746,8 @@
     "active": true,
     "seed_source_id": "lyon-county-commission",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:33.159Z",
-    "updated_at": "2026-07-25T22:01:33.159Z"
+    "created_at": "2026-08-10T15:05:36.268Z",
+    "updated_at": "2026-08-10T15:05:36.268Z"
   },
   {
     "id": "body-manual-pershing-county-commission-pershing-county-commission",
@@ -3596,8 +3761,23 @@
     "active": true,
     "seed_source_id": "pershing-county-commission",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:33.300Z",
-    "updated_at": "2026-07-25T22:01:33.300Z"
+    "created_at": "2026-08-10T15:05:36.693Z",
+    "updated_at": "2026-08-10T15:05:36.693Z"
+  },
+  {
+    "id": "body-manual-washoe-county-commission-washoe-county-commission",
+    "name": "Washoe County Commission",
+    "jurisdiction": "Washoe County, NV",
+    "level": "county",
+    "website": "https://washoe-nv.legistar.com/",
+    "source_url": "https://washoe-nv.legistar.com/",
+    "meeting_index_url": "https://washoe-nv.legistar.com/",
+    "scraper_type": "manual",
+    "active": true,
+    "seed_source_id": "washoe-county-commission",
+    "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
+    "created_at": "2026-08-10T15:05:36.818Z",
+    "updated_at": "2026-08-10T15:05:36.818Z"
   },
   {
     "id": "body-manual-caliente-city-council-caliente-city-council",
@@ -3611,7 +3791,7 @@
     "active": true,
     "seed_source_id": "caliente-city-council",
     "notes": "Manual browser-assisted cache source. Imported from saved official public records.",
-    "created_at": "2026-07-25T22:01:33.424Z",
-    "updated_at": "2026-07-25T22:01:33.424Z"
+    "created_at": "2026-08-10T15:05:36.827Z",
+    "updated_at": "2026-08-10T15:05:36.827Z"
   }
 ]

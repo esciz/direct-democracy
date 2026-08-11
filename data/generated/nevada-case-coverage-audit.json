@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-26T02:30:15.797Z",
-  "coverageGeneratedAt": "2026-07-26T02:30:11.468Z",
+  "generatedAt": "2026-08-10T15:03:15.637Z",
+  "coverageGeneratedAt": "2026-08-10T15:03:15.500Z",
   "strictPassed": true,
   "totals": {
     "sourceRoutes": 11,
-    "reachableSourceRoutes": 11,
+    "reachableSourceRoutes": 10,
     "requiredCounties": 17,
     "countiesWithSourceRoutes": 17,
     "publishedPublicCases": 27,

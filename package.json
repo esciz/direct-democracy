@@ -131,6 +131,8 @@
     "dataops:audit": "npm run dataops:monitor && npm run dataops:reprocess && npm run meetings:documents:cache-audit && node --import tsx scripts/audit-dataops-freshness.ts",
     "site:launch-audit": "node --import tsx scripts/audit-public-site-integrity.ts",
     "meetings:upcoming-audit": "node --import tsx scripts/audit-upcoming-meeting-coverage.ts",
+    "meetings:upcoming-audit:strict": "node --import tsx scripts/audit-upcoming-meeting-coverage.ts --strict",
+    "meetings:refresh-and-audit": "npm run meetings:import && npm run meetings:import:manual && npm run meetings:upcoming-audit:strict",
     "dataops:pipeline": "node --import tsx scripts/run-dataops-pipeline.ts",
     "dataops:daily": "node --import tsx scripts/run-dataops-pipeline.ts",
     "sources:refresh:daily": "node --import tsx scripts/run-dataops-pipeline.ts --limit=25",

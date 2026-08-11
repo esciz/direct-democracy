@@ -427,6 +427,8 @@ const upcomingCoverage = readJson<{
     providerName?: string;
     jurisdiction?: string;
     status?: string;
+    freshnessStatus?: string;
+    strictBlocking?: boolean;
     newestKnownMeetingAt?: string | null;
   }>;
 }>("data/generated/upcoming-meeting-coverage-audit.json", {});
@@ -444,6 +446,17 @@ if (upcomingCoverageFailures > 0) {
     evidence: (upcomingCoverage.rows ?? [])
       .filter((row) => row.status === "source_failure" || row.status === "adapter_gap" || row.status === "source_gap")
       .map((row) => `${row.providerName ?? "Unknown provider"} (${row.jurisdiction ?? "jurisdiction pending"}): ${row.status}`),
+  });
+}
+
+const strictMeetingBlocks = (upcomingCoverage.rows ?? []).filter((row) => row.strictBlocking);
+if (strictMeetingBlocks.length > 0) {
+  addFinding({
+    id: "strict-upcoming-meeting-freshness-blocks",
+    severity: "high",
+    area: "meeting calendar coverage",
+    summary: "Direct meeting-calendar providers are stale or cannot prove current upcoming coverage.",
+    evidence: strictMeetingBlocks.map((row) => `${row.providerName ?? "Unknown provider"} (${row.jurisdiction ?? "jurisdiction pending"}): ${row.status ?? "unknown"}/${row.freshnessStatus ?? "unknown"}; newest ${row.newestKnownMeetingAt ?? "unknown"}`),
   });
 }
 
