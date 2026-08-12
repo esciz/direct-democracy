@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { CivicAvatar } from "@/components/domain/civic-avatar";
+import { CommunityEmergencyAlerts } from "@/components/domain/community-emergency-alerts";
 import { CommunityPageNav } from "@/components/domain/community-page-nav";
 import { CivicDetails } from "@/components/ui/civic-details";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -14,6 +15,7 @@ import { decisionCardSummary, decisionHeadline, highLevelSummary, plainLanguageT
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 import { getCommunityHubData, getStoryDestination, type CommunityHubDecision, type CommunityHubEvent, type CommunityHubOfficial, type CommunityHubProject } from "@/lib/community/product-hub";
 import type { CommunityRelationshipRecord } from "@/lib/community/relationships";
+import { getCommunityEmergencyState } from "@/lib/emergency/community-alerts";
 
 type CommunityPageProps = {
   params: Promise<{
@@ -308,12 +310,15 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
   const { communitySlug } = await params;
   const data = await getCommunityHubData(communitySlug);
   if (!data) notFound();
-  const residentAnswers = await getResidentQuestionAnswersForTarget({
-    targetType: "community",
-    targetId: data.community.id,
-    community: data.community.name,
-    limit: 4,
-  });
+  const [residentAnswers, emergencyState] = await Promise.all([
+    getResidentQuestionAnswersForTarget({
+      targetType: "community",
+      targetId: data.community.id,
+      community: data.community.name,
+      limit: 4,
+    }),
+    getCommunityEmergencyState(data.community.id),
+  ]);
   const dataops = readGenerated<DataopsMonitoring>("dataops-monitoring-status.json", { records: [] });
   const communitySourceRecords = (dataops.records ?? []).filter((record) => {
     const jurisdiction = record.jurisdiction ?? "";
@@ -394,6 +399,8 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
           {sourceFreshness.ocrPending ? <p>{sourceFreshness.ocrPending} documents await text extraction or manual review.</p> : null}
         </CivicDetails>
       </section>
+
+      <CommunityEmergencyAlerts communityName={data.community.name} state={emergencyState} />
 
       <CommunityPageNav />
 

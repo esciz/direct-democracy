@@ -19,6 +19,8 @@ It is not yet a production-grade verified-voter release.
 
 The statewide Nevada coverage plan lives in [docs/nevada-statewide-roadmap.md](docs/nevada-statewide-roadmap.md). It defines the Phase 1 launch jurisdictions, statewide and federal layers, full Nevada jurisdiction coverage, generated community-page expectations, and source-backed success criteria.
 
+Community emergency-alert coverage and its safety rules are documented in [docs/community-emergency-alerts.md](docs/community-emergency-alerts.md). The current release uses live official NWS alerts and recent OpenFEMA declarations on applicable Nevada community pages; browser push is a later opt-in phase.
+
 ## Tech stack
 
 - Next.js App Router

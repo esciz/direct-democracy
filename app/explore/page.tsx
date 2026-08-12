@@ -565,6 +565,35 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
         </div>
       </section>
 
+      <section className="dd-panel overflow-hidden rounded-[2rem] p-6 sm:p-8 lg:p-10">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.7fr)]">
+          <div className="max-w-3xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="dd-chip-accent rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]">Perspective lab</span>
+              <span className="dd-chip rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]">Private reflection</span>
+            </div>
+            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.035em] text-slate-50 sm:text-4xl">What’s the strongest case you may be missing?</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+              Choose a political statement, record your current leaning, and explore the best challenge—not a partisan caricature. Find shared ground, disputed evidence, affected people, and possible policy paths.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+              <span className="dd-chip rounded-full px-3 py-2">Take a position</span>
+              <span className="dd-chip rounded-full px-3 py-2">Turn the issue</span>
+              <span className="dd-chip rounded-full px-3 py-2">Test evidence</span>
+              <span className="dd-chip rounded-full px-3 py-2">Reflect privately</span>
+            </div>
+          </div>
+          <div className="relative rounded-[1.5rem] border border-violet-300/20 bg-[radial-gradient(circle_at_50%_35%,rgba(167,139,250,0.2),transparent_34%),rgba(15,23,42,0.72)] p-6 text-center">
+            <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-violet-200/35 bg-violet-400/10 text-center text-xs font-bold leading-4 text-violet-100 shadow-[0_0_50px_rgba(167,139,250,0.18)]">YOUR<br />VIEW</div>
+            <div className="mx-auto h-8 w-px bg-gradient-to-b from-violet-300/70 to-cyan-300/50" aria-hidden="true" />
+            <div className="rounded-2xl border border-cyan-300/20 bg-cyan-400/10 p-4 text-sm font-semibold text-cyan-100">Strongest challenge</div>
+            <Link href="/challenge-my-view" className="dd-button-primary mt-5 inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3 text-sm font-bold">
+              Challenge my view <span aria-hidden="true" className="ml-2">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="dd-root-striker-promo relative overflow-hidden rounded-[2rem] border border-cyan-300/15 bg-[radial-gradient(circle_at_18%_30%,rgba(34,211,238,0.14),transparent_30%),radial-gradient(circle_at_78%_24%,rgba(167,139,250,0.14),transparent_28%),linear-gradient(145deg,rgba(2,6,23,0.98),rgba(8,20,35,0.96))] p-6 shadow-[0_28px_80px_-42px_rgba(34,211,238,0.42)] sm:p-8 lg:p-10">
         <div className="pointer-events-none absolute inset-0 opacity-35" aria-hidden="true">
           <div className="absolute left-[12%] top-[28%] h-px w-[32%] rotate-[12deg] bg-gradient-to-r from-cyan-300/20 to-violet-300/70" />

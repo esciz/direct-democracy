@@ -8,6 +8,7 @@ import { MobileBottomNav } from "@/components/ui/nav-links";
 import { MainNav } from "@/components/ui/main-nav";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.directyourdemocracy.com"),
   title: "Direct Democracy",
   description: "A civic platform for voters, trusted citizens, and officials.",
   applicationName: "Direct Democracy",
