@@ -564,6 +564,43 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           </div>
         </div>
       </section>
+
+      <section className="relative overflow-hidden rounded-[2rem] border border-cyan-300/15 bg-[radial-gradient(circle_at_18%_30%,rgba(34,211,238,0.14),transparent_30%),radial-gradient(circle_at_78%_24%,rgba(167,139,250,0.14),transparent_28%),linear-gradient(145deg,rgba(2,6,23,0.98),rgba(8,20,35,0.96))] p-6 shadow-[0_28px_80px_-42px_rgba(34,211,238,0.42)] sm:p-8 lg:p-10">
+        <div className="pointer-events-none absolute inset-0 opacity-35" aria-hidden="true">
+          <div className="absolute left-[12%] top-[28%] h-px w-[32%] rotate-[12deg] bg-gradient-to-r from-cyan-300/20 to-violet-300/70" />
+          <div className="absolute left-[42%] top-[42%] h-px w-[36%] -rotate-[14deg] bg-gradient-to-r from-violet-300/60 to-emerald-300/30" />
+          <div className="absolute left-[34%] top-[65%] h-px w-[28%] rotate-[22deg] bg-gradient-to-r from-amber-300/50 to-cyan-300/30" />
+          <span className="absolute left-[10%] top-[24%] h-4 w-4 rounded-full border border-cyan-200/60 bg-cyan-300/20 shadow-[0_0_28px_rgba(34,211,238,0.65)]" />
+          <span className="absolute left-[43%] top-[38%] h-7 w-7 rounded-full border border-rose-200/60 bg-rose-400/20 shadow-[0_0_34px_rgba(251,113,133,0.65)]" />
+          <span className="absolute left-[77%] top-[24%] h-4 w-4 rounded-full border border-violet-200/60 bg-violet-300/20 shadow-[0_0_28px_rgba(167,139,250,0.65)]" />
+          <span className="absolute left-[61%] top-[64%] h-4 w-4 rounded-full border border-emerald-200/60 bg-emerald-300/20 shadow-[0_0_28px_rgba(52,211,153,0.65)]" />
+        </div>
+
+        <div className="relative grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
+          <div className="max-w-3xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-rose-300/20 bg-rose-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-rose-100">Experimental lab</span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-300">Money · systems · outcomes</span>
+            </div>
+            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">Don’t just browse the issues. Find the roots beneath them.</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+              Root Striker connects money in politics to healthcare, food and farming, housing, climate, taxation, civil rights, public safety, and the incentives that shape public outcomes.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-300">
+              <span className="rounded-full border border-white/10 bg-black/20 px-3 py-2">Trace causal paths</span>
+              <span className="rounded-full border border-white/10 bg-black/20 px-3 py-2">Compare partisan lenses</span>
+              <span className="rounded-full border border-white/10 bg-black/20 px-3 py-2">Debate, petition, contribute, vote</span>
+              <span className="rounded-full border border-white/10 bg-black/20 px-3 py-2">Suggest reviewed connections</span>
+            </div>
+          </div>
+          <Link
+            href="/root-striker-lab"
+            className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#fb7185,#f59e0b)] px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_18px_36px_-18px_rgba(251,113,133,0.85)] transition hover:-translate-y-0.5 hover:brightness-110"
+          >
+            Enter Root Striker Lab <span aria-hidden="true" className="ml-2">→</span>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

@@ -10,9 +10,10 @@ type PetitionCreateFormProps = {
     name: string;
   } | null;
   issueOptions?: string[];
+  defaultIssueText?: string;
 };
 
-export function PetitionCreateForm({ jurisdictionName, error, organization, issueOptions = [] }: PetitionCreateFormProps) {
+export function PetitionCreateForm({ jurisdictionName, error, organization, issueOptions = [], defaultIssueText }: PetitionCreateFormProps) {
   return (
     <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur sm:p-8">
       <div className="flex flex-wrap items-center gap-2">
@@ -67,6 +68,7 @@ export function PetitionCreateForm({ jurisdictionName, error, organization, issu
           options={issueOptions}
           placeholder="Select a shared issue"
           helpText="Petitions tagged to an issue can be discovered from that issue page and use the shared canonical issue list."
+          defaultValue={defaultIssueText}
           allowCustom={false}
         />
 

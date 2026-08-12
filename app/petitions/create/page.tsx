@@ -10,6 +10,7 @@ type CreatePetitionPageProps = {
   searchParams?: Promise<{
     error?: string;
     organizationId?: string;
+    issueText?: string;
   }>;
 };
 
@@ -40,6 +41,7 @@ export default async function CreatePetitionPage({ searchParams }: CreatePetitio
         error={params?.error}
         organization={organization?.canManage ? organization : null}
         issueOptions={issueOptions}
+        defaultIssueText={params?.issueText}
       />
     </div>
   );

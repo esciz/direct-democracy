@@ -18,6 +18,7 @@ function isPubliclyReachablePath(pathname: string) {
     pathname.startsWith("/auth/") ||
     pathname === "/account/verify-email" ||
     pathname === "/manifest.webmanifest" ||
+    pathname === "/root-striker-lab" ||
     pathname.startsWith("/infographics/") ||
     pathname.startsWith("/api/") ||
     pathname.startsWith("/_next/") ||

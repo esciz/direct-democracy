@@ -82,7 +82,7 @@ export async function getIssueDirectoryForUser(user: AuthUser, options?: { commu
 export async function getIssuePickerOptions(user: AuthUser, communityId?: string) {
   void user;
   void communityId;
-  return getCanonicalIssueTitles();
+  return [...new Set([...getCanonicalIssueTitles(), ...PUBLIC_DISCUSSION_ISSUES.map((issue) => issue.issueText)])];
 }
 
 export async function getPeopleForIssue(user: AuthUser, issueText: string) {
@@ -131,7 +131,11 @@ export async function ensureIssueReferenceForUser(
   issueText: string,
   options?: { scope?: VoteQuestionScope; jurisdictionName?: string },
 ) {
-  const sanitized = getCanonicalIssueTextOrNull(issueText)?.trim();
+  const normalizedInput = normalizeIssueText(issueText);
+  const discussionMatch = PUBLIC_DISCUSSION_ISSUES.find(
+    (issue) => normalizeIssueText(issue.issueText) === normalizedInput || slugifyIssueText(issue.issueText) === slugifyIssueText(issueText),
+  );
+  const sanitized = discussionMatch?.issueText ?? getCanonicalIssueTextOrNull(issueText)?.trim();
   if (!sanitized) {
     return null;
   }

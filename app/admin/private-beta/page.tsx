@@ -111,6 +111,9 @@ export default async function AdminPrivateBetaLaunchPage() {
         }
         actions={
           <div className="flex flex-wrap gap-2">
+            <Link href="/admin/root-map-suggestions" className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30">
+              Root-map queue
+            </Link>
             <Link href="/admin/private-beta-feedback" className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30">
               Feedback queue
             </Link>

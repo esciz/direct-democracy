@@ -108,6 +108,26 @@ const ISSUE_FRAMES: Array<{ match: string[]; frame: IssueFrame }> = [
     },
   },
   {
+    match: ["drug addiction", "overdose", "opioid", "substance use"],
+    frame: {
+      supportLabel: "Expand treatment and harm-reduction access",
+      opposeLabel: "Prioritize enforcement or tighter controls",
+      supportActionLabel: "Support treatment-first policy",
+      opposeActionLabel: "Support stronger enforcement",
+      neutralPrompt: "Explain the treatment and enforcement tradeoff",
+    },
+  },
+  {
+    match: ["lgbtq", "gender policy", "religious liberty", "transgender"],
+    frame: {
+      supportLabel: "Expand LGBTQ+ rights and protections",
+      opposeLabel: "Prioritize sex-based rules or religious liberty",
+      supportActionLabel: "Support expanded protections",
+      opposeActionLabel: "Support narrower rules or exemptions",
+      neutralPrompt: "Explain the rights and liberty tradeoff",
+    },
+  },
+  {
     match: ["energy", "environment", "climate", "water"],
     frame: {
       supportLabel: "Expand conservation, resilience, or regulation",
@@ -175,6 +195,20 @@ export const PUBLIC_DISCUSSION_ISSUES: PublicDiscussionIssue[] = [
     jurisdictionName: "United States",
     category: "Education",
     whyThisMatters: "This issue includes curriculum, parental authority, student support, school boards, book challenges, classroom speech, and public education trust.",
+  },
+  {
+    issueText: "Drug addiction, treatment, and overdose prevention",
+    scope: "national",
+    jurisdictionName: "United States",
+    category: "Public Health",
+    whyThisMatters: "People disagree about treatment access, harm reduction, prescribing rules, criminal enforcement, recovery support, and how government should respond to overdose deaths.",
+  },
+  {
+    issueText: "LGBTQ+ rights, gender policy, and religious liberty",
+    scope: "national",
+    jurisdictionName: "United States",
+    category: "Civil Rights",
+    whyThisMatters: "This issue weighs equal protection, healthcare and school policy, sex-based rules, family authority, free exercise, and exemptions for religious institutions or individuals.",
   },
 ];
 
