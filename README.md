@@ -21,6 +21,8 @@ The statewide Nevada coverage plan lives in [docs/nevada-statewide-roadmap.md](d
 
 Community emergency-alert coverage and its safety rules are documented in [docs/community-emergency-alerts.md](docs/community-emergency-alerts.md). The current release uses live official NWS alerts and recent OpenFEMA declarations on applicable Nevada community pages; browser push is a later opt-in phase.
 
+The moderated Challenge My View contribution workflow is documented in [docs/perspective-contributions.md](docs/perspective-contributions.md). Verified and trusted citizens can propose balanced, sourced perspectives, but only admin-approved submissions become public explorer topics.
+
 ## Tech stack
 
 - Next.js App Router

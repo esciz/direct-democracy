@@ -42,6 +42,7 @@ export default async function AdminRootMapSuggestionsPage({ searchParams }: Admi
         actions={
           <div className="flex flex-wrap gap-2">
             <Link href="/root-striker-lab" className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">Open map</Link>
+            <Link href="/admin/perspective-suggestions" className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">Perspective queue</Link>
             <Link href="/admin/operations" className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">Operations</Link>
           </div>
         }

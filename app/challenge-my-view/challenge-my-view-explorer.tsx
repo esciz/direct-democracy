@@ -4,30 +4,11 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, BookOpenCheck, GitBranch, Handshake, Heart, RotateCcw, Scale, Sparkles, Users } from "lucide-react";
 import { useState } from "react";
 
+import type { ChallengeTopic } from "@/lib/perspectives/types";
 import styles from "./challenge-my-view.module.css";
 
 type Stance = "agree" | "unsure" | "disagree";
 type LensKey = "shared" | "evidence" | "people" | "options";
-
-type Perspective = {
-  label: string;
-  headline: string;
-  summary: string;
-  question: string;
-};
-
-type ChallengeTopic = {
-  id: string;
-  category: string;
-  statement: string;
-  context: string;
-  caseFor: Perspective;
-  caseAgainst: Perspective;
-  shared: string[];
-  evidence: string[];
-  people: string[];
-  options: string[];
-};
 
 const TOPICS: ChallengeTopic[] = [
   {
@@ -140,6 +121,226 @@ const TOPICS: ChallengeTopic[] = [
     people: ["Survivors and communities experiencing violence", "Lawful owners and people seeking protection", "Families, police, retailers, and mental-health responders"],
     options: ["Universal checks with rapid appeals", "Targeted risk-based interventions", "Storage incentives, education, and owner-supported safety programs"],
   },
+  {
+    id: "race-conscious-opportunity",
+    category: "Race-conscious policy",
+    statement: "Public institutions should sometimes consider race when addressing unequal opportunity.",
+    context: "The disagreement is about how institutions should respond to persistent racial disparities while also protecting individual treatment, equal rules, and public trust.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Race-neutral rules can preserve unequal conditions created by past and present barriers",
+      summary: "Supporters argue that institutions cannot remedy exclusion they refuse to measure, and that carefully limited consideration of race may help identify barriers, broaden opportunity, and prevent formally neutral systems from reproducing unequal access.",
+      question: "When does ignoring race make it harder to identify or repair a barrier that operates along racial lines?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "Government should not sort individuals by race to pursue group outcomes",
+      summary: "Critics argue that race-conscious decisions can stereotype people, disadvantage individuals who did not cause past injustice, obscure class and other hardship, and weaken the principle that public institutions should treat citizens without racial preference.",
+      question: "How can institutions address unequal opportunity without assigning benefits or burdens through racial categories?",
+    },
+    shared: ["Wider access to genuine opportunity", "Individual dignity rather than racial stereotyping", "Transparent standards the public can evaluate"],
+    evidence: ["Which barriers remain after income and geography are considered", "Outcomes of race-conscious and race-neutral alternatives", "How different policies affect trust, mobility, and institutional access"],
+    people: ["Students, workers, and applicants from historically excluded communities", "Applicants who fear unfair individual treatment", "Schools, employers, agencies, and the public they serve"],
+    options: ["Race-conscious outreach with race-neutral selection", "Socioeconomic and neighborhood-based preferences", "Time-limited remedies with public outcome reviews"],
+  },
+  {
+    id: "reparations",
+    category: "Reparations",
+    statement: "Government should provide targeted reparative benefits for the lasting harms of slavery and legally enforced racial discrimination.",
+    context: "The debate concerns historical responsibility, present-day effects, eligibility, cost, evidence, and whether repair should be individual, community-based, universal, or symbolic.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Documented public harms can create a public obligation to repair their lasting effects",
+      summary: "Supporters argue that slavery, segregation, exclusion from public programs, and discriminatory policy transferred wealth and opportunity across generations, making targeted repair a response to specific government action rather than collective guilt.",
+      question: "If government-created losses remain measurable, what form of repair would be proportional and administratively fair?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "Assigning present benefits and costs by ancestry can create new unfairness",
+      summary: "Critics argue that eligibility and causation are difficult to define, current taxpayers are not personally responsible for historic wrongdoing, and broad investments based on present need may help disadvantaged people without dividing citizens by ancestry.",
+      question: "Can repair address historically specific harm without imposing an inherited system of entitlement and liability?",
+    },
+    shared: ["Honest recognition of documented injustice", "More mobility and less inherited disadvantage", "A remedy that can be administered transparently"],
+    evidence: ["Traceable effects of specific discriminatory public policies", "Distributional effects of cash, housing, education, or community investment", "Eligibility accuracy, administrative costs, and public legitimacy"],
+    people: ["Descendants of people harmed by slavery and discriminatory law", "Other families experiencing intergenerational poverty", "Taxpayers and communities receiving or funding remedies"],
+    options: ["Eligibility tied to documented government harm", "Place-based housing and wealth-building investment", "Universal programs paired with targeted enforcement and historical acknowledgment"],
+  },
+  {
+    id: "policing-disparities",
+    category: "Race and policing",
+    statement: "Racial disparities in policing require structural reform, not only better enforcement of existing rules.",
+    context: "People disagree about what disparities demonstrate, how crime exposure and deployment affect data, whether institutions or individuals drive unequal outcomes, and which reforms improve both safety and legitimacy.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Repeated disparities can reflect incentives and practices larger than individual misconduct",
+      summary: "Supporters argue that deployment patterns, stop standards, use-of-force policy, accountability systems, and neighborhood conditions can produce unequal treatment even without explicit prejudice by every officer.",
+      question: "Which institutional rules continue to generate unequal outcomes after individual intent is set aside?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "Disparity alone does not identify its cause or prove a system is discriminatory",
+      summary: "Critics argue that police contact differs with reported crime, victim requests, location, and exposure, and that broad structural accusations can demoralize effective officers or produce pullbacks that harm the same communities reform is intended to protect.",
+      question: "Which comparisons can distinguish biased practice from differences in exposure, deployment, and public requests for service?",
+    },
+    shared: ["Safe neighborhoods", "Equal treatment and accountable authority", "Reliable data that supports correction rather than slogans"],
+    evidence: ["Comparable stop, search, force, clearance, and complaint outcomes", "Effects of deployment and enforcement changes on victimization", "Performance of independent review, training, supervision, and alternative response"],
+    people: ["Residents in heavily policed and high-crime neighborhoods", "Crime victims and people wrongly stopped or harmed", "Officers, dispatchers, social workers, and local governments"],
+    options: ["Clearer standards and independent accountability", "Focused enforcement paired with community oversight", "Alternative responders for appropriate calls and stronger violence-prevention services"],
+  },
+  {
+    id: "systemic-racism-curriculum",
+    category: "Race in schools",
+    statement: "Public schools should explicitly teach how systemic racism has shaped American institutions and present-day outcomes.",
+    context: "The dispute is about historical accuracy, age-appropriate instruction, contested interpretations, parental trust, national identity, and whether teaching systems assigns guilt to children.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Students cannot understand current institutions without studying how past rules shaped them",
+      summary: "Supporters argue that slavery, segregation, exclusionary law, and civil-rights struggles are central to American history, and that examining institutional effects develops civic understanding rather than assigning personal blame.",
+      question: "How can students evaluate today’s debates if major historical systems and their consequences are softened or omitted?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "A broad systemic framework can become ideological and flatten a complex national history",
+      summary: "Critics argue that some curricula present contested claims as settled, reduce people to racial groups, imply inherited guilt, or understate progress and individual agency. They favor teaching documented events while distinguishing fact from interpretation.",
+      question: "How should schools teach injustice fully while making clear which claims are historical facts and which are debated frameworks?",
+    },
+    shared: ["Historically accurate education", "Students treated as individuals rather than racial representatives", "The ability to discuss difficult history without intimidation"],
+    evidence: ["Actual curriculum materials rather than political summaries", "Student learning, belonging, and civic-reasoning outcomes", "Clarity between primary evidence, scholarly interpretation, and advocacy"],
+    people: ["Students from every racial and family background", "Teachers asked to lead difficult discussions", "Parents, historians, school boards, and local communities"],
+    options: ["Primary-source-centered instruction", "Multiple scholarly interpretations with age-appropriate framing", "Public curriculum review and clear rules against compelled personal belief"],
+  },
+  {
+    id: "voter-identification",
+    category: "Voting rules",
+    statement: "Voters should generally present government-issued identification when voting in person.",
+    context: "The argument weighs election confidence and consistent identity checks against access barriers, unequal document possession, administrative burdens, and the actual frequency of identity-related fraud.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "A clear identity check is a modest safeguard that can strengthen confidence",
+      summary: "Supporters argue that identification is routine for consequential transactions, helps maintain accurate voting records, and can reassure voters that each ballot belongs to an eligible person if IDs are readily available.",
+      question: "If identification is free and accessible, what reason remains not to use a consistent check?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "A solution to rare impersonation can impose unequal costs on eligible voters",
+      summary: "Critics argue that obtaining underlying documents, transportation, time, and matching records can burden older, poor, disabled, rural, and frequently moving voters, while in-person impersonation is not the main election-security vulnerability.",
+      question: "What level of prevented risk justifies rejecting or delaying an otherwise eligible voter’s ballot?",
+    },
+    shared: ["Only eligible voters casting one ballot", "No eligible citizen blocked by avoidable bureaucracy", "Results the public can verify and trust"],
+    evidence: ["Rates and types of documented election irregularity", "ID possession and provisional-ballot cure rates", "Effects of free ID, alternatives, and outreach"],
+    people: ["Eligible voters without current documents", "Election workers and officials", "Voters concerned about access or integrity"],
+    options: ["Free IDs with mobile issuance and broad alternatives", "Signature or database verification", "Provisional ballots with simple, well-funded cure processes"],
+  },
+  {
+    id: "citizenship-pathway",
+    category: "Immigration status",
+    statement: "Long-term undocumented residents who meet defined requirements should have a pathway to citizenship.",
+    context: "The issue combines the rule of law, family and community ties, labor, deterrence, fairness to legal immigrants, administrative feasibility, and what requirements should accompany legal status.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Permanent exclusion is costly when people have built durable lives and responsibilities here",
+      summary: "Supporters argue that earned legalization can bring workers into full compliance, stabilize families, improve tax and labor enforcement, and recognize years of contribution while reserving removal for serious threats.",
+      question: "What realistic outcome is better for the country than indefinitely keeping millions of established residents outside lawful civic life?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "Citizenship after unlawful presence can undermine deterrence and fairness to legal applicants",
+      summary: "Critics argue that legal status is a valuable benefit, repeated amnesties encourage future unauthorized migration, and reform should first create credible enforcement and respect people who waited or complied with legal pathways.",
+      question: "How can an earned pathway avoid communicating that violating immigration law will ultimately be rewarded?",
+    },
+    shared: ["A workable legal immigration system", "Families and workers protected from exploitation", "Rules that discourage future unlawful entry"],
+    evidence: ["Fiscal, wage, enforcement, and family effects of past legalization", "Effects on future migration and legal-processing backlogs", "Administrative capacity to verify residence, taxes, and disqualifying conduct"],
+    people: ["Long-term undocumented residents and mixed-status families", "Legal immigrants and people waiting abroad", "Workers, employers, schools, and local communities"],
+    options: ["Earned citizenship with fines and background checks", "Renewable legal status without citizenship", "Legalization paired with employment verification and expanded lawful pathways"],
+  },
+  {
+    id: "homeless-encampments",
+    category: "Homelessness",
+    statement: "Cities should be able to clear public encampments even when permanent housing is not immediately available.",
+    context: "The conflict concerns public-space access, health and safety, personal property, disability, shelter capacity, neighborhood impacts, and whether enforcement helps people exit homelessness or merely moves them.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Public spaces cannot safely become indefinite unsheltered settlements",
+      summary: "Supporters argue that cities have duties to maintain sidewalks, parks, sanitation, fire access, and neighborhood safety, and that allowing dangerous encampments to persist can abandon both housed residents and people living there.",
+      question: "What should a city do when an encampment creates immediate hazards but adequate permanent housing does not yet exist?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "Displacement without a safe alternative can worsen instability while hiding the problem",
+      summary: "Critics argue that sweeps can destroy medication and documents, separate people from outreach, impose fines they cannot pay, and repeatedly relocate residents without addressing housing, treatment, income, or disability needs.",
+      question: "If a person has nowhere lawful and safe to go, what public benefit is achieved by repeatedly moving them?",
+    },
+    shared: ["Safe and usable public spaces", "Fewer people living outdoors", "Responses that reduce rather than recycle crisis"],
+    evidence: ["Housing and health outcomes after different encampment interventions", "Availability and suitability of shelter at the time of enforcement", "Neighborhood safety, sanitation, and public-cost effects"],
+    people: ["People living in encampments", "Nearby residents, businesses, and public-space users", "Outreach workers, police, sanitation crews, and service providers"],
+    options: ["Notice and storage protections paired with safe shelter", "Sanctioned sites with services and deadlines", "Housing-first capacity plus targeted enforcement of specific hazards"],
+  },
+  {
+    id: "religious-exemptions",
+    category: "Religion and civil rights",
+    statement: "Religious organizations and individuals should receive limited exemptions from some nondiscrimination requirements.",
+    context: "The dispute involves free exercise, equal access, compelled participation, public accommodations, government funding, harm to third parties, and where private belief becomes public conduct.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Pluralism sometimes requires room not to participate in conduct that violates conscience",
+      summary: "Supporters argue that narrow exemptions protect religious diversity and prevent government from forcing people or faith communities to affirm, facilitate, or fund practices contrary to sincere beliefs when alternatives are reasonably available.",
+      question: "When can an accommodation preserve equal access without compelling an individual’s speech or religious participation?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "Exemptions can transfer the burden of another person’s belief onto people seeking equal treatment",
+      summary: "Critics argue that public businesses, licensed professionals, or publicly funded services should not deny otherwise available goods or care based on a customer’s identity, especially where alternatives are scarce or delay creates harm.",
+      question: "At what point does protecting conscience authorize discrimination that civil-rights rules were enacted to prevent?",
+    },
+    shared: ["Freedom of belief and worship", "Equal access to essential goods and services", "Narrow rules that minimize harm to others"],
+    evidence: ["Availability and burden of alternative providers", "Difference between expressive and routine services", "Effects of exemptions in healthcare, employment, education, and commerce"],
+    people: ["Religious individuals and institutions", "LGBTQ people and others protected by nondiscrimination law", "Employees, customers, patients, and publicly funded service users"],
+    options: ["Exemptions limited to expressive services", "Accommodation only when equal access is immediate", "Stricter obligations for public funding, monopolies, and essential care"],
+  },
+  {
+    id: "climate-mandates",
+    category: "Climate policy",
+    statement: "Government should require a faster transition away from fossil fuels even if near-term energy costs rise.",
+    context: "The debate weighs climate damages and technological transition against affordability, reliability, regional employment, permitting, national competitiveness, and who bears near-term costs.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Delayed transition shifts larger costs and risks onto the public and future generations",
+      summary: "Supporters argue that markets do not fully price pollution and climate damage, that clear standards accelerate investment, and that near-term transition costs can be offset while avoiding more expensive disasters and stranded infrastructure.",
+      question: "If voluntary change remains too slow, what policy can reduce emissions at the speed the risk requires?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "Mandates can raise essential costs faster than infrastructure and technology can adjust",
+      summary: "Critics argue that households and industry need reliable, affordable energy; premature deadlines can strain grids, shift production abroad, punish lower-income families, and provoke backlash that makes durable climate progress harder.",
+      question: "How should policy respond when an emissions deadline advances faster than reliable replacement capacity?",
+    },
+    shared: ["Reliable and affordable energy", "Less pollution and climate risk", "A transition workers and communities can sustain"],
+    evidence: ["Full system costs, reliability, and emissions by technology", "Household and regional distribution of transition costs", "Performance of mandates, carbon pricing, subsidies, permitting, and research"],
+    people: ["Low-income households and energy-burdened communities", "Workers and regions tied to fossil-energy production", "People exposed to pollution, heat, fire, drought, and flooding"],
+    options: ["Technology-neutral clean-energy standards", "Carbon pricing with household dividends", "Faster permitting, firm clean power, and targeted transition support"],
+  },
+  {
+    id: "wealth-taxation",
+    category: "Taxing wealth",
+    statement: "Extremely wealthy households should pay an annual tax based partly on their net wealth, not only realized income.",
+    context: "The disagreement concerns tax fairness, unrealized gains, constitutional and administrative limits, valuation, avoidance, investment incentives, and whether other tax reforms would work better.",
+    caseFor: {
+      label: "Strongest case for",
+      headline: "Income-only taxation can miss enormous increases in economic power",
+      summary: "Supporters argue that the wealthiest households can defer taxable gains while borrowing against appreciating assets, so a carefully designed wealth tax could reduce unequal treatment and fund public investments without burdening ordinary savings.",
+      question: "How should the tax system treat vast gains in ability to pay that may never appear as ordinary income?",
+    },
+    caseAgainst: {
+      label: "Strongest challenge",
+      headline: "Annual wealth taxation is difficult to value, enforce, and separate from productive investment",
+      summary: "Critics argue that private businesses, property, and intellectual assets lack clear yearly prices, that taxpayers may be forced to sell illiquid assets, and that avoidance, capital flight, litigation, and reduced investment could yield less revenue than promised.",
+      question: "Why create a difficult new tax base if existing income, estate, and capital-gains rules can be strengthened?",
+    },
+    shared: ["A tax system people view as legitimate", "Strong investment and broad economic opportunity", "Rules wealthy taxpayers cannot easily avoid"],
+    evidence: ["Revenue and avoidance in jurisdictions using wealth taxes", "Valuation and liquidity challenges across asset types", "Comparison with capital-gains-at-death, estate, property, and minimum-income taxes"],
+    people: ["Households holding extreme concentrations of wealth", "Workers and communities affected by public investment", "Entrepreneurs, family businesses, investors, and tax administrators"],
+    options: ["Annual net-wealth tax above a high threshold", "Minimum tax on gains with deferral rules for illiquid assets", "Stronger estate, capital-gains, enforcement, and anti-avoidance rules"],
+  },
 ];
 
 const LENSES: Array<{ key: LensKey; label: string; icon: typeof Handshake }> = [
@@ -149,13 +350,14 @@ const LENSES: Array<{ key: LensKey; label: string; icon: typeof Handshake }> = [
   { key: "options", label: "Policy paths", icon: GitBranch },
 ];
 
-export function ChallengeMyViewExplorer() {
-  const [topicId, setTopicId] = useState(TOPICS[0].id);
+export function ChallengeMyViewExplorer({ communityTopics = [] }: { communityTopics?: ChallengeTopic[] }) {
+  const topics = [...TOPICS, ...communityTopics];
+  const [topicId, setTopicId] = useState(topics[0].id);
   const [stance, setStance] = useState<Stance | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [activeLens, setActiveLens] = useState<LensKey>("shared");
   const [reflection, setReflection] = useState<string | null>(null);
-  const topic = TOPICS.find((entry) => entry.id === topicId) ?? TOPICS[0];
+  const topic = topics.find((entry) => entry.id === topicId) ?? topics[0];
 
   const perspectives = stance === "agree" ? [topic.caseAgainst] : stance === "disagree" ? [topic.caseFor] : [topic.caseFor, topic.caseAgainst];
   const lensItems = topic[activeLens];
@@ -182,9 +384,9 @@ export function ChallengeMyViewExplorer() {
 
       <main className={styles.main}>
         <nav aria-label="Choose a statement" className={styles.topicRail}>
-          {TOPICS.map((entry) => (
+          {topics.map((entry) => (
             <button key={entry.id} type="button" onClick={() => selectTopic(entry.id)} aria-pressed={topic.id === entry.id} className={topic.id === entry.id ? styles.topicActive : styles.topicButton}>
-              {entry.category}
+              {entry.category}{entry.communityAdded ? " · Community" : ""}
             </button>
           ))}
         </nav>
