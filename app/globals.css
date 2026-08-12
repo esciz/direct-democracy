@@ -439,3 +439,77 @@ html[data-theme="civic-light"] .dd-root-striker-promo-cta {
   color: #ffffff !important;
   box-shadow: 0 18px 36px -20px rgba(31, 94, 168, 0.58) !important;
 }
+
+@layer components {
+  .dd-simple-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.35rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 1.125rem;
+  }
+
+  .dd-civic-details {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.75rem;
+  }
+
+  .dd-civic-details summary {
+    display: flex;
+    cursor: pointer;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 650;
+  }
+
+  .dd-civic-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .dd-civic-details-icon {
+    display: inline-flex;
+    height: 1.5rem;
+    width: 1.5rem;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    color: #cbd5e1;
+    transition: transform 160ms ease;
+  }
+
+  .dd-civic-details[open] .dd-civic-details-icon {
+    transform: rotate(45deg);
+  }
+
+  .dd-civic-details-content {
+    margin-top: 0.75rem;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    line-height: 1.65;
+  }
+}
+
+html[data-theme="civic-light"] .dd-simple-card {
+  border-color: rgba(31, 94, 168, 0.14);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+html[data-theme="civic-light"] .dd-civic-details {
+  border-color: rgba(31, 94, 168, 0.12);
+}
+
+html[data-theme="civic-light"] .dd-civic-details summary,
+html[data-theme="civic-light"] .dd-civic-details-content {
+  color: #60728b;
+}
+
+html[data-theme="civic-light"] .dd-civic-details-icon {
+  border-color: rgba(31, 94, 168, 0.15);
+  color: #294b75;
+}

@@ -2,12 +2,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
+import type { ReactNode } from "react";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { CommunityPageNav } from "@/components/domain/community-page-nav";
+import { CivicDetails } from "@/components/ui/civic-details";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getResidentQuestionAnswersForTarget } from "@/lib/cases/resident-intake-store";
+import { highLevelSummary, plainLanguageTitle } from "@/lib/civic/plain-language";
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 import { getCommunityHubData, getStoryDestination, type CommunityHubDecision, type CommunityHubEvent, type CommunityHubOfficial, type CommunityHubProject } from "@/lib/community/product-hub";
 import type { CommunityRelationshipRecord } from "@/lib/community/relationships";
@@ -54,8 +57,31 @@ function confidenceLabel(value: number | null | undefined) {
   return `${Math.round(value * 100)}% confidence`;
 }
 
+function isReaderReady(...values: Array<string | null | undefined>) {
+  const text = values.filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+  if (!text || text.length > 420) return false;
+  return ![
+    /^[/$\d]/,
+    /\bsection\s+\d+[a-z]?\b/i,
+    /\bherewith\s+submits\b/i,
+    /\bnot\s+to\s+be\s+construed\b/i,
+    /\band\s+possible\s+consideration\b/i,
+    /\bentity\s*:/i,
+    /\bmeeting\s+record\s+discovered\b/i,
+    /\b\d{5}(?:-\d{4})?\b.*\b\d{5}(?:-\d{4})?\b/i,
+    /(?:\s-\s[^-]+){4,}/,
+  ].some((pattern) => pattern.test(text));
+}
+
+function meetingHighLevelSummary(event: CommunityHubEvent) {
+  if (!isReaderReady(event.summary)) {
+    return `A public meeting of ${event.body_name ?? event.agency ?? "a local public body"}. Open it for agenda topics and participation details.`;
+  }
+  return highLevelSummary(event.summary, "Open the meeting for agenda topics and participation details.");
+}
+
 function EmptyCard({ text }: { text: string }) {
-  return <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">{text}</div>;
+  return <div className="dd-simple-card border-dashed text-sm leading-6 text-slate-400">{highLevelSummary(text, text)}</div>;
 }
 
 function Badge({ children, tone = "slate" }: { children: string; tone?: "slate" | "cyan" | "amber" | "green" }) {
@@ -65,91 +91,92 @@ function Badge({ children, tone = "slate" }: { children: string; tone?: "slate" 
     amber: "border-amber-300/20 bg-amber-500/10 text-amber-200",
     green: "border-emerald-300/20 bg-emerald-500/10 text-emerald-200",
   };
-  return <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${classes[tone]}`}>{children}</span>;
+  return <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold ${classes[tone]}`}>{children}</span>;
 }
 
 function BriefingCard({ eyebrow, title, summary, href, badge = "source backed", tone = "cyan" }: { eyebrow: string; title: string; summary: string; href?: string | null; badge?: string; tone?: "slate" | "cyan" | "amber" | "green" }) {
   const content = (
     <>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex items-center justify-between gap-3">
         <Badge tone={tone}>{eyebrow}</Badge>
-        <Badge tone={badge.includes("limited") || badge.includes("review") ? "amber" : "green"}>{badge}</Badge>
+        <span className={`text-[11px] font-medium ${badge.includes("limited") || badge.includes("review") ? "text-amber-200" : "text-slate-500"}`}>{badge}</span>
       </div>
-      <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{summary}</p>
+      <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{plainLanguageTitle(title)}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{highLevelSummary(summary, "More information is being reviewed.", 155)}</p>
+      {href ? <span className="mt-4 inline-flex text-xs font-semibold text-cyan-200">Learn more →</span> : null}
     </>
   );
 
   if (href?.startsWith("http")) {
-    return <a href={href} target="_blank" rel="noreferrer" className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">{content}</a>;
+    return <a href={href} target="_blank" rel="noreferrer" className="dd-simple-card block transition hover:border-cyan-300/25">{content}</a>;
   }
   if (href) {
-    return <Link href={href} className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">{content}</Link>;
+    return <Link href={href} className="dd-simple-card block transition hover:border-cyan-300/25">{content}</Link>;
   }
-  return <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</article>;
+  return <article className="dd-simple-card">{content}</article>;
 }
 
 function StoryCard({ record }: { record: CommunityRelationshipRecord }) {
   const destination = getStoryDestination(record);
-  const content = (
-    <>
-      <div className="flex flex-wrap gap-2">
-        <Badge tone="cyan">{record.storyType ?? "story"}</Badge>
-        <Badge>{record.relationshipScope.replaceAll("_", " ")}</Badge>
-        {record.needsReview ? <Badge tone="amber">needs review</Badge> : <Badge tone="green">source backed</Badge>}
-      </div>
-      <h3 className="mt-3 text-base font-semibold text-slate-50">{record.storyHeadline ?? record.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{record.storySummary ?? record.title}</p>
-      <p className="mt-3 text-sm leading-6 text-slate-400">Why it matters: {record.storyWhyItMatters ?? "This may affect residents, services, rules, oversight, or public resources."}</p>
-      <div className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-slate-500">
-        <p>{record.storyJurisdiction ?? "Jurisdiction pending"} · {confidenceLabel(record.confidence)} · {formatShortDate(record.date)}</p>
-        <p>Source: {record.storySourceDetail ?? record.storySourceLabel ?? record.sourcePath}</p>
-      </div>
-      <span className="mt-3 inline-flex text-xs font-semibold text-cyan-200">{destination.kind === "source" ? "Source" : destination.kind === "internal" ? "Open" : "Destination pending"}</span>
-    </>
-  );
+  const title = plainLanguageTitle(record.storyHeadline ?? record.title);
+  const summary = highLevelSummary(record.storySummary ?? record.title, "This local item is being reviewed.");
+  const whyItMatters = highLevelSummary(record.storyWhyItMatters, "This may affect local services, rules, or public money.", 145);
 
-  if (destination.href && destination.kind === "internal") {
-    return <Link href={destination.href} className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">{content}</Link>;
-  }
-  if (destination.href) {
-    return <a href={destination.href} target="_blank" rel="noreferrer" className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">{content}</a>;
-  }
-  return <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</article>;
+  return (
+    <article className="dd-simple-card">
+      <Badge tone={record.needsReview ? "amber" : "cyan"}>{record.storyType ?? "local update"}</Badge>
+      <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{summary}</p>
+      <p className="mt-3 text-sm leading-6 text-slate-400"><span className="font-semibold text-slate-300">Why it matters:</span> {whyItMatters}</p>
+      {destination.href && destination.kind === "internal" ? <Link href={destination.href} className="mt-4 inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">Read more</Link> : null}
+      {destination.href && destination.kind === "source" ? <a href={destination.href} target="_blank" rel="noreferrer" className="mt-4 inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">Read source</a> : null}
+      <CivicDetails>
+        <p>{record.storyJurisdiction ?? "Jurisdiction pending"} · {formatShortDate(record.date)}</p>
+        <p>{record.relationshipScope.replaceAll("_", " ")} · {record.needsReview ? "review in progress" : "source backed"} · {confidenceLabel(record.confidence)}</p>
+        <p className="break-words">Source: {record.storySourceDetail ?? record.storySourceLabel ?? record.sourcePath}</p>
+      </CivicDetails>
+    </article>
+  );
 }
 
 function EventCard({ event }: { event: CommunityHubEvent }) {
   const sourceHref = event.meeting_id ? `/events/${event.meeting_id}` : event.source_url;
-  const content = (
-    <>
-      <div className="flex flex-wrap gap-2">
-        <Badge tone={event.status === "upcoming" ? "green" : "slate"}>{event.status}</Badge>
-        {event.needsReview ? <Badge tone="amber">needs review</Badge> : <Badge tone="green">source backed</Badge>}
+  const title = plainLanguageTitle(event.title);
+  return (
+    <article className="dd-simple-card">
+      <div className="flex items-center justify-between gap-3">
+        <Badge tone={event.status === "upcoming" ? "green" : "slate"}>{event.status === "upcoming" ? "Coming up" : "Past meeting"}</Badge>
+        <span className="text-xs text-slate-500">{formatDate(event.start_at)}</span>
       </div>
-      <h3 className="mt-3 text-base font-semibold text-slate-50">{event.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{event.summary}</p>
-      <p className="mt-3 text-sm leading-6 text-slate-400">Held by {event.body_name ?? event.agency ?? "public body pending"} on {formatDate(event.start_at)}.</p>
-      {event.related_topics.length ? <p className="mt-2 text-xs leading-5 text-slate-500">Topics: {event.related_topics.slice(0, 3).join(" · ")}</p> : null}
-      <p className="mt-2 text-xs leading-5 text-slate-500">{event.public_comment_info ?? "Public comment details are not parsed yet; review the source agenda when available."}</p>
-    </>
+      <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{meetingHighLevelSummary(event)}</p>
+      {sourceHref?.startsWith("http") ? <a href={sourceHref} target="_blank" rel="noreferrer" className="mt-4 inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">View meeting</a> : <Link href={sourceHref ?? "/events"} className="mt-4 inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">View meeting</Link>}
+      <CivicDetails label="Meeting details">
+        {title !== event.title ? <p><span className="font-semibold text-slate-300">Official title:</span> {event.title}</p> : null}
+        <p>Held by {event.body_name ?? event.agency ?? "public body pending"}.</p>
+        {event.related_topics.length ? <p>Topics: {event.related_topics.slice(0, 3).join(" · ")}</p> : null}
+        <p>{event.public_comment_info ?? "Public-comment details have not been added yet; check the official agenda."}</p>
+        <p>{event.needsReview ? "Review in progress" : "Source backed"}</p>
+      </CivicDetails>
+    </article>
   );
-  return sourceHref?.startsWith("http") ? <a href={sourceHref} target="_blank" rel="noreferrer" className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</a> : <Link href={sourceHref ?? "/events"} className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</Link>;
 }
 
 function ProjectCard({ project }: { project: CommunityHubProject }) {
+  const title = plainLanguageTitle(project.name ?? project.project_title ?? project.title);
   return (
-    <Link href={`/projects/${project.id}`} className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">
-      <div className="flex flex-wrap gap-2">
-        <Badge tone="cyan">project</Badge>
-        {project.needsReview ? <Badge tone="amber">needs review</Badge> : <Badge tone="green">source backed</Badge>}
-      </div>
-      <h3 className="mt-3 text-base font-semibold text-slate-50">{project.name ?? project.project_title ?? project.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{project.description ?? project.summary}</p>
-      <p className="mt-3 text-xs leading-5 text-slate-500">
-        {project.agency ?? project.sourceMeetings?.[0]?.title ?? "Agency pending"} · {project.status} · {project.cost ?? (project.budget ? `$${project.budget.toLocaleString()}` : "Cost not parsed")} · {formatShortDate(project.timeline ?? project.startDate)}
-      </p>
-      {project.relatedIssues?.length ? <p className="mt-2 text-xs leading-5 text-slate-500">Related issue: {project.relatedIssues.slice(0, 2).join(" · ")}</p> : null}
-    </Link>
+    <article className="dd-simple-card">
+      <Badge tone={project.needsReview ? "amber" : "cyan"}>{project.status.replaceAll("_", " ")}</Badge>
+      <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{highLevelSummary(project.description ?? project.summary, "This local project is being reviewed.")}</p>
+      <Link href={`/projects/${project.id}`} className="mt-4 inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">View project</Link>
+      <CivicDetails label="Project details">
+        <p>{project.agency ?? project.sourceMeetings?.[0]?.title ?? "Agency pending"}</p>
+        <p>{project.cost ?? (project.budget ? `$${project.budget.toLocaleString()}` : "Cost not available")} · {formatShortDate(project.timeline ?? project.startDate)}</p>
+        {project.relatedIssues?.length ? <p>Related: {project.relatedIssues.slice(0, 2).join(" · ")}</p> : null}
+        <p>{project.needsReview ? "Review in progress" : "Source backed"}</p>
+      </CivicDetails>
+    </article>
   );
 }
 
@@ -163,29 +190,26 @@ function DecisionCard({ decision }: { decision: CommunityHubDecision }) {
       : hasAggregateOutcome
         ? "Only the aggregate outcome is currently available from public records."
         : "This action needs review before individual votes can be shown.";
+  const title = plainLanguageTitle(decision.title);
   return (
-    <Link href={`/decisions/${decision.id}`} className={`block rounded-[1.35rem] border p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06] ${trust.state === "needs_review" ? "border-amber-300/20 bg-amber-500/[0.06]" : "border-white/10 bg-white/[0.04]"}`}>
-      <div className="flex flex-wrap gap-2">
-        <Badge tone="cyan">decision</Badge>
-        <Badge tone="cyan">{decision.decisionType}</Badge>
-        <Badge tone={trust.tone}>{trust.label}</Badge>
+    <article className={`dd-simple-card ${trust.state === "needs_review" ? "border-amber-300/20 bg-amber-500/[0.04]" : ""}`}>
+      <div className="flex items-center justify-between gap-3">
         <Badge tone={decision.voteOutcome === "approved" ? "green" : decision.voteOutcome === "denied" ? "amber" : "slate"}>{decision.voteOutcome}</Badge>
-        <Badge>{decision.voteCount.display}</Badge>
-        <Badge tone={decision.voteCount.totalKnown > 0 ? "green" : hasAggregateOutcome ? "amber" : "slate"}>{attributionStatus}</Badge>
+        <span className="text-xs text-slate-500">{formatShortDate(decision.meeting.date)}</span>
       </div>
-      <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Question for residents</p>
-      <h3 className="mt-3 text-base font-semibold text-slate-50">{decision.title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{decision.summary}</p>
-      <p className="mt-3 text-sm leading-6 text-slate-400">Impact: {decision.whyItMatters}</p>
-      <p className={`mt-3 rounded-xl border px-3 py-2 text-xs leading-5 ${trust.state === "approved" ? "border-emerald-300/15 bg-emerald-500/10 text-emerald-100" : trust.state === "ready" ? "border-cyan-300/15 bg-cyan-500/10 text-cyan-100" : "border-amber-300/20 bg-amber-500/10 text-amber-100"}`}>
-        {trust.description}
-      </p>
-      <p className="mt-3 rounded-xl border border-white/10 bg-slate-950/35 px-3 py-2 text-xs leading-5 text-slate-400">{attributionMessage}</p>
-      <div className="mt-4 border-t border-white/10 pt-3 text-xs leading-5 text-slate-500">
-        <p>{decision.jurisdiction} · {decision.meeting.bodyName} · {formatShortDate(decision.meeting.date)}</p>
-        <p>{decision.financialImpact.description ?? decision.financialImpact.raw ?? "No financial impact parsed"} · {confidenceLabel(decision.confidence)}</p>
-      </div>
-    </Link>
+      <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{highLevelSummary(decision.summary, "This public decision is being summarized.")}</p>
+      <p className="mt-3 text-sm leading-6 text-slate-400"><span className="font-semibold text-slate-300">Why it matters:</span> {highLevelSummary(decision.whyItMatters, "It may affect local rules, services, or public money.", 150)}</p>
+      <Link href={`/decisions/${decision.id}`} className="mt-4 inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">See decision</Link>
+      <CivicDetails label="Vote & source details">
+        {title !== decision.title ? <p><span className="font-semibold text-slate-300">Official title:</span> {decision.title}</p> : null}
+        <p>{decision.decisionType} · {decision.voteCount.display} · {attributionStatus}</p>
+        <p>{trust.description}</p>
+        <p>{attributionMessage}</p>
+        <p>{decision.jurisdiction} · {decision.meeting.bodyName}</p>
+        <p>{decision.financialImpact.description ?? decision.financialImpact.raw ?? "No financial impact is available"} · {confidenceLabel(decision.confidence)}</p>
+      </CivicDetails>
+    </article>
   );
 }
 
@@ -194,29 +218,25 @@ function OfficialCard({ official }: { official: CommunityHubOfficial }) {
   const roleLabel = official.role_category?.replaceAll("_", " ") ?? official.level ?? "official";
   const methodLabel = official.selection_method?.replaceAll("_", " ") ?? "source backed";
   const statusLabel = official.acting_or_interim ? official.current_status?.replaceAll("_", " ") ?? "acting" : methodLabel;
-  const content = (
-    <>
+  return (
+    <article className="dd-simple-card">
       <div className="flex items-start gap-3">
         <CivicAvatar name={official.name} imageUrl={official.image_url} entityType="official" size="md" verified />
         <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap gap-2">
-        <Badge tone="cyan">{roleLabel}</Badge>
-        <Badge tone={official.selection_method === "elected" ? "green" : official.acting_or_interim ? "amber" : "slate"}>{statusLabel}</Badge>
-        <Badge tone="green">source backed</Badge>
-      </div>
-      <h3 className="mt-3 text-base font-semibold text-slate-50">{official.name}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{official.office}</p>
-      <p className="mt-2 text-sm leading-6 text-slate-400">
-        {[official.district, official.department].filter(Boolean).join(" · ") || "Office details verified from source"}
-      </p>
-      <p className="mt-3 text-xs leading-5 text-slate-500">{official.jurisdiction} · verified {formatShortDate(official.last_verified_at)}</p>
-      <p className="mt-1 text-xs leading-5 text-slate-500">{confidenceLabel(official.confidence)} · Source: {official.source_label}</p>
-      <p className="mt-1 text-xs leading-5 text-slate-500">Related parsed actions: {official.related_action_count ?? 0}</p>
+          <h3 className="text-base font-semibold text-slate-50">{official.name}</h3>
+          <p className="mt-1 text-sm leading-6 text-slate-300">{official.office}</p>
+          <p className="mt-1 text-xs text-slate-500">{[official.district, official.department].filter(Boolean).join(" · ") || roleLabel}</p>
+          {href ? <a href={href} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-sm font-semibold text-cyan-200">View profile →</a> : null}
         </div>
       </div>
-    </>
+      <CivicDetails>
+        <p>{roleLabel} · {statusLabel}</p>
+        <p>{official.jurisdiction} · verified {formatShortDate(official.last_verified_at)}</p>
+        <p>{confidenceLabel(official.confidence)} · Source: {official.source_label}</p>
+        <p>Related public actions: {official.related_action_count ?? 0}</p>
+      </CivicDetails>
+    </article>
   );
-  return href ? <a href={href} target="_blank" rel="noreferrer" className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</a> : <article className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">{content}</article>;
 }
 
 function OfficialsGroup({ title, description, officials, emptyText }: { title: string; description: string; officials: CommunityHubOfficial[]; emptyText: string }) {
@@ -231,6 +251,22 @@ function OfficialsGroup({ title, description, officials, emptyText }: { title: s
         {officials.map((official) => <OfficialCard key={official.id} official={official} />)}
       </div>
     </div>
+  );
+}
+
+function ExpandablePanel({ eyebrow, title, description, children, id }: { eyebrow: string; title: string; description: string; children: ReactNode; id?: string }) {
+  return (
+    <details id={id} className="group scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 [&::-webkit-details-marker]:hidden">
+        <div>
+          <p className="text-xs font-semibold text-cyan-200">{eyebrow}</p>
+          <h2 className="mt-2 text-xl font-semibold text-slate-50 sm:text-2xl">{title}</h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">{description}</p>
+        </div>
+        <span aria-hidden="true" className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 text-lg text-slate-300 transition group-open:rotate-45">+</span>
+      </summary>
+      <div className="mt-6 border-t border-white/10 pt-6">{children}</div>
+    </details>
   );
 }
 
@@ -254,17 +290,23 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
     documentsRecovered: communitySourceRecords.reduce((sum, record) => sum + record.documentCounts.cached + record.documentCounts.extracted, 0),
     queuedDocuments: communitySourceRecords.reduce((sum, record) => sum + record.documentCounts.queued, 0),
     ocrPending: communitySourceRecords.reduce((sum, record) => sum + record.documentCounts.ocrRequired, 0),
-    hasLimitedCoverage: communitySourceRecords.some((record) => record.healthStatus === "stale" || record.healthStatus === "degraded" || record.healthStatus === "blocked"),
   };
 
   const upcomingEvents = data.events.filter((event) => event.status === "upcoming").sort((a, b) => (Date.parse(a.start_at ?? "") || 0) - (Date.parse(b.start_at ?? "") || 0)).slice(0, 6);
-  const completedEvents = data.events.filter((event) => event.status === "completed").sort((a, b) => (Date.parse(b.start_at ?? "") || 0) - (Date.parse(a.start_at ?? "") || 0)).slice(0, 6);
   const publicReadyDecisions = data.decisions.filter((decision) => getDecisionTrustView(decision).isPublicSpotlightReady);
   const recentDecisions = publicReadyDecisions.slice(0, 4);
   const limitedReviewDecisions = data.decisions.filter((decision) => !getDecisionTrustView(decision).isPublicSpotlightReady).slice(0, 4);
-  const topDecision = recentDecisions[0] ?? data.decisions[0] ?? null;
-  const topStory = data.storyRecords[0] ?? null;
-  const topProject = data.projects.find((project) => ["proposed", "approved", "funded", "in_progress"].includes(project.status)) ?? data.projects[0] ?? null;
+  const topDecision = recentDecisions.find((decision) => isReaderReady(decision.title, decision.summary, decision.whyItMatters)) ?? null;
+  const topStory = data.storyRecords.find((record) =>
+    !record.needsReview &&
+    (record.storyJurisdiction ?? "").toLowerCase().includes(data.community.name.toLowerCase()) &&
+    isReaderReady(record.storyHeadline ?? record.title, record.storySummary, record.storyWhyItMatters),
+  ) ?? null;
+  const topProject = data.projects.find((project) =>
+    !project.needsReview &&
+    ["proposed", "approved", "funded", "in_progress"].includes(project.status) &&
+    isReaderReady(project.name ?? project.project_title ?? project.title, project.description ?? project.summary),
+  ) ?? null;
   const nextEvent = upcomingEvents[0] ?? null;
   const limitedDataBadge = data.coverageRow?.missingCategories.length ? "limited local data" : "source backed";
   const spendingStories = data.storyRecords.filter((record) => record.storyType === "spending").slice(0, 4);
@@ -305,24 +347,14 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
             </div>
             </div>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-300">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Coverage</p>
-            <p className="mt-2 font-semibold text-slate-100">{data.kind} · {data.coverageRow?.dashboardCounts.useful ?? 0} linked civic records</p>
-            <p className="mt-1 text-xs text-slate-500">Generated {formatShortDate(data.coverageGeneratedAt)}</p>
-            <p className="mt-1 text-xs text-slate-500">Source last checked {formatShortDate(sourceFreshness.lastCheckedAt)}</p>
-          </div>
         </div>
-        {data.coverageRow?.missingCategories.length ? (
-          <div className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
-            Limited data: missing reviewed local {data.coverageRow.missingCategories.join(", ")} coverage. Broader Nevada records may still affect residents here.
-          </div>
-        ) : null}
-        <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.035] p-4 text-sm leading-6 text-slate-400">
-          Source freshness: {sourceFreshness.documentsRecovered} source documents recovered for related monitored sources.
-          {sourceFreshness.queuedDocuments ? ` ${sourceFreshness.queuedDocuments} documents are awaiting retrieval.` : " No queued source documents are currently attached to this community."}
-          {sourceFreshness.ocrPending ? ` ${sourceFreshness.ocrPending} documents await OCR/manual review.` : ""}
-          {sourceFreshness.hasLimitedCoverage ? " Source coverage is limited while retrieval and extraction continue." : ""}
-        </div>
+        <CivicDetails label="About this page's data">
+          <p>{data.kind} · {data.coverageRow?.dashboardCounts.useful ?? 0} linked civic records · generated {formatShortDate(data.coverageGeneratedAt)}</p>
+          <p>Sources last checked {formatShortDate(sourceFreshness.lastCheckedAt)} · {sourceFreshness.documentsRecovered} documents recovered.</p>
+          {data.coverageRow?.missingCategories.length ? <p>Coverage is still limited for: {data.coverageRow.missingCategories.join(", ")}.</p> : null}
+          {sourceFreshness.queuedDocuments ? <p>{sourceFreshness.queuedDocuments} documents are awaiting retrieval.</p> : null}
+          {sourceFreshness.ocrPending ? <p>{sourceFreshness.ocrPending} documents await text extraction or manual review.</p> : null}
+        </CivicDetails>
       </section>
 
       <CommunityPageNav />
@@ -331,20 +363,20 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
         <SectionHeading
           eyebrow="Resident briefing"
           title="What should I pay attention to?"
-          description="A plain-language first pass across decisions, meetings, projects, and source coverage for this community."
+          description="Four quick things to know. Open only what interests you."
         />
-        <div className="mt-6 grid gap-4 lg:grid-cols-4">
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
           <BriefingCard
             eyebrow="happening"
-            title={topStory?.storyHeadline ?? topDecision?.title ?? "Local civic activity is still being organized"}
-            summary={topStory?.storySummary ?? topDecision?.summary ?? "Direct Democracy has the community page ready, but reviewed local story records are still limited."}
+            title={topStory?.storyHeadline ?? topDecision?.title ?? "No major reviewed update yet"}
+            summary={topStory?.storySummary ?? topDecision?.summary ?? "We are still reviewing local records before highlighting a major development."}
             href={topStory ? getStoryDestination(topStory).href : topDecision ? `/decisions/${topDecision.id}` : null}
             badge={topStory?.needsReview ? "needs review" : limitedDataBadge}
             tone="cyan"
           />
           <BriefingCard
             eyebrow="changed"
-            title={topDecision?.title ?? "No recent reviewed decision is available yet"}
+            title={topDecision?.title ?? "No reviewed decision is ready yet"}
             summary={topDecision ? `${topDecision.voteOutcome} · ${topDecision.voteCount.display}. ${topDecision.whyItMatters}` : "When a reviewed vote, ordinance, spending item, or action is parsed, it will appear here first."}
             href={topDecision ? `/decisions/${topDecision.id}` : null}
             badge={topDecision ? getDecisionTrustView(topDecision).shortLabel : limitedDataBadge}
@@ -352,7 +384,7 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
           />
           <BriefingCard
             eyebrow="watch"
-            title={topProject?.name ?? topProject?.project_title ?? "No active project is highlighted yet"}
+            title={topProject?.name ?? topProject?.project_title ?? "No major project is ready to highlight"}
             summary={topProject ? `${topProject.status}. ${topProject.lastPublicAction ?? topProject.description ?? topProject.summary}` : "Projects appear when spending, contracts, capital work, or major initiatives can be connected to official actions."}
             href={topProject ? `/projects/${topProject.id}` : null}
             badge={topProject?.needsReview ? "needs review" : topProject ? "source backed" : limitedDataBadge}
@@ -361,7 +393,7 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
           <BriefingCard
             eyebrow="next"
             title={nextEvent?.title ?? "No upcoming meeting is parsed yet"}
-            summary={nextEvent ? `${formatDate(nextEvent.start_at)} · ${nextEvent.body_name ?? nextEvent.agency ?? "Public body pending"}. ${nextEvent.summary}` : "Upcoming events appear when agendas or meeting records are imported from official public sources."}
+            summary={nextEvent ? `${formatDate(nextEvent.start_at)}. ${meetingHighLevelSummary(nextEvent)}` : "Upcoming meetings appear when an official agenda or calendar is available."}
             href={nextEvent?.meeting_id ? `/events/${nextEvent.meeting_id}` : nextEvent?.source_url ?? null}
             badge={nextEvent?.needsReview ? "needs review" : nextEvent ? "source backed" : limitedDataBadge}
             tone="green"
@@ -369,28 +401,24 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
         </div>
       </section>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading
-          eyebrow="Reviewed answers"
-          title="Questions residents have asked here"
-          description="Published only after review. Raw resident submissions and internal routing notes stay private."
-        />
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+      <ExpandablePanel
+        eyebrow="Questions"
+        title="Answers from local public sources"
+        description="Optional: open this when you want reviewed answers to resident questions."
+      >
+        <div className="grid gap-4 lg:grid-cols-2">
           {residentAnswers.length ? (
             residentAnswers.map((answer) => (
-              <article key={answer.id} className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-                <div className="flex flex-wrap gap-2">
-                  <Badge tone="green">reviewed answer</Badge>
-                  <Badge>{answer.recipientType.replaceAll("_", " ")}</Badge>
-                </div>
-                <h3 className="mt-3 text-base font-semibold text-slate-50">{answer.questionTitle}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{answer.answerSummary}</p>
-                <p className="mt-3 text-xs text-slate-500">Routed to {answer.recipientName ?? "reviewed civic body"}</p>
+              <article key={answer.id} className="dd-simple-card">
+                <Badge tone="green">Reviewed answer</Badge>
+                <h3 className="mt-3 text-base font-semibold text-slate-50">{plainLanguageTitle(answer.questionTitle)}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{highLevelSummary(answer.answerSummary, "A reviewed answer is available.")}</p>
                 {answer.sourceUrl ? (
                   <a href={answer.sourceUrl} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-xs font-semibold text-cyan-200 hover:text-cyan-100">
                     Open source
                   </a>
                 ) : null}
+                <CivicDetails><p>Routed to {answer.recipientName ?? "reviewed civic body"} · {answer.recipientType.replaceAll("_", " ")}</p></CivicDetails>
               </article>
             ))
           ) : (
@@ -400,79 +428,74 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
         <Link href="/answers" className="mt-5 inline-flex rounded-full border border-cyan-300/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">
           View all reviewed answers
         </Link>
-      </section>
+      </ExpandablePanel>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading eyebrow="Pay attention first" title="Most important civic stories" description="Prioritized by local relevance, upcoming actions, projects, spending, cases, officials, and elections." />
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+      <ExpandablePanel eyebrow="Local context" title="More stories worth knowing" description="Optional background on local spending, cases, elections, and public actions.">
+        <div className="grid gap-4 lg:grid-cols-2">
           {data.storyRecords.length ? data.storyRecords.slice(0, 4).map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="No reviewed civic stories are available yet." />}
         </div>
-      </section>
+      </ExpandablePanel>
 
       <section id="events" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading eyebrow="Upcoming events" title="What is coming next?" description="Public meetings and civic events residents may be able to attend, watch, or comment on." />
+        <SectionHeading eyebrow="Next meetings" title="What can I join or watch?" description="Upcoming public meetings where residents may be able to attend, watch, or comment." />
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {upcomingEvents.slice(0, 4).length ? upcomingEvents.slice(0, 4).map((event) => <EventCard key={event.id} event={event} />) : <EmptyCard text="No upcoming local events are currently parsed. Check source links and statewide records for broader activity." />}
         </div>
       </section>
 
       <section id="decisions" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading eyebrow="Recent decisions" title="What changed recently?" description="Completed meetings, source-backed decisions, and meeting records with citizen-readable summaries." />
+        <SectionHeading eyebrow="Recent decisions" title="What did local government decide?" description="Short summaries first. Vote records and official source language are available inside each card." />
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {recentDecisions.length ? recentDecisions.map((decision) => <DecisionCard key={decision.id} decision={decision} />) : <EmptyCard text="No source-backed decision cards are currently generated for this community." />}
         </div>
         {limitedReviewDecisions.length ? (
-          <div className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-500/10 p-4">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge tone="amber">limited data</Badge>
-              <p className="text-sm font-semibold text-amber-100">Some related decisions are still being reviewed.</p>
-            </div>
-            <p className="mt-2 text-sm leading-6 text-amber-100/90">
-              These items have official-source signals, but extraction or review gaps keep them out of the main decision spotlight.
-            </p>
+          <CivicDetails label={`${limitedReviewDecisions.length} more decisions still under review`} className="mt-6">
+            <p className="mb-4">These have official-source signals, but some details still need review.</p>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               {limitedReviewDecisions.map((decision) => <DecisionCard key={decision.id} decision={decision} />)}
             </div>
-          </div>
+          </CivicDetails>
         ) : null}
       </section>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading eyebrow="Projects" title="Active projects and capital work" description="Project leads inferred from source-backed agenda and budget records. Review badges stay visible when confidence is limited." />
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+      <ExpandablePanel eyebrow="Projects" title="What is the city working on?" description="Open for major construction, spending, and public-work updates.">
+        <div className="grid gap-4 lg:grid-cols-2">
           {data.projects.length ? data.projects.slice(0, 4).map((project) => <ProjectCard key={project.id} project={project} />) : <EmptyCard text="No reviewed local project records currently available." />}
         </div>
-      </section>
+      </ExpandablePanel>
 
-      <section id="more" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading eyebrow="Accountability" title="Who voted, what passed, and what it connects to" description="Graph-backed counts connect meetings, agenda items, decisions, votes, outcomes, spending, projects, and issues." />
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <ExpandablePanel id="more" eyebrow="Accountability" title="How much public information do we have?" description="Optional: counts showing decisions, votes, projects, and gaps in the public record.">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {[
             ["Recent decisions", data.accountabilityScoreboard.recentDecisions],
             ["Reviewed decisions", data.accountabilityScoreboard.approvedDecisions],
-            ["Source-backed previews", data.accountabilityScoreboard.readyDecisions],
-            ["Decisions needing review", data.accountabilityScoreboard.decisionsNeedingReview],
             ["Active projects", data.accountabilityScoreboard.activeProjects],
-            ["No recent project update", data.accountabilityScoreboard.projectsWithNoRecentUpdate],
             ["Votes parsed", data.accountabilityScoreboard.votesParsed],
-            ["Votes needing review", data.accountabilityScoreboard.votesNeedingRollCallReview],
-            ["Attendance verified", data.accountabilityScoreboard.attendanceVerifiedVoteActions],
-            ["Attendance missing", data.accountabilityScoreboard.voteActionsMissingAttendance],
-            ["Distribution review", data.accountabilityScoreboard.voteActionsNeedingDistributionReview],
-            ["Attendance-inferred votes", data.accountabilityScoreboard.votesInferredFromAttendance],
-            ["Resident concerns pending", data.accountabilityScoreboard.residentConcernsPendingReview],
-            ["Officials involved", data.accountabilitySummary?.officialsInvolved ?? recentDecisions.reduce((sum, decision) => sum + decision.relatedOfficials.length, 0)],
-            ["Spending approved", data.accountabilitySummary?.spendingApproved ? `$${data.accountabilitySummary.spendingApproved.toLocaleString()}` : "Review needed"],
           ].map(([label, value]) => (
-            <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
+            <div key={label} className="dd-simple-card">
+              <p className="text-xs font-semibold text-slate-500">{label}</p>
               <p className="mt-2 text-lg font-semibold text-slate-50">{value}</p>
             </div>
           ))}
         </div>
-        <div className="mt-5 grid gap-4 lg:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Bodies connected to the most actions</p>
+        <CivicDetails label="All accountability data">
+          <div className="grid gap-x-6 gap-y-2 sm:grid-cols-2">
+            {[
+              ["Source-backed previews", data.accountabilityScoreboard.readyDecisions],
+              ["Decisions needing review", data.accountabilityScoreboard.decisionsNeedingReview],
+              ["Projects without a recent update", data.accountabilityScoreboard.projectsWithNoRecentUpdate],
+              ["Votes needing review", data.accountabilityScoreboard.votesNeedingRollCallReview],
+              ["Attendance verified", data.accountabilityScoreboard.attendanceVerifiedVoteActions],
+              ["Attendance missing", data.accountabilityScoreboard.voteActionsMissingAttendance],
+              ["Vote distribution review", data.accountabilityScoreboard.voteActionsNeedingDistributionReview],
+              ["Attendance-inferred votes", data.accountabilityScoreboard.votesInferredFromAttendance],
+              ["Resident concerns pending", data.accountabilityScoreboard.residentConcernsPendingReview],
+              ["Officials involved", data.accountabilitySummary?.officialsInvolved ?? recentDecisions.reduce((sum, decision) => sum + decision.relatedOfficials.length, 0)],
+              ["Spending approved", data.accountabilitySummary?.spendingApproved ? `$${data.accountabilitySummary.spendingApproved.toLocaleString()}` : "Review needed"],
+            ].map(([label, value]) => <p key={label} className="flex justify-between gap-3"><span>{label}</span><strong className="text-slate-300">{value}</strong></p>)}
+          </div>
+          <div className="mt-5">
+            <p className="font-semibold text-slate-300">Public bodies connected to the most actions</p>
             <div className="mt-3 space-y-2">
               {data.accountabilityScoreboard.topActionBodies.length ? (
                 data.accountabilityScoreboard.topActionBodies.map((body) => (
@@ -486,16 +509,13 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
               )}
             </div>
           </div>
-          <div className="rounded-2xl border border-amber-300/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
-            Data coverage note: roll-call rows are shown when named officials are present in source text. Aggregate outcomes stay visible, but individual attribution requires verified attendance; attendance-missing and distribution-review items remain review-gated. Resident stories remain private pending review and are not treated as verified civic facts.
-          </div>
-        </div>
-        {data.accountabilitySummary?.lastActivityAt ? <p className="mt-4 text-xs text-slate-500">Last graph activity: {formatShortDate(data.accountabilitySummary.lastActivityAt)}</p> : null}
-      </section>
+          <p className="mt-4">Individual votes appear only when attendance and roll-call records support them. Unverified resident submissions remain private.</p>
+          {data.accountabilitySummary?.lastActivityAt ? <p className="mt-2">Last activity: {formatShortDate(data.accountabilitySummary.lastActivityAt)}</p> : null}
+        </CivicDetails>
+      </ExpandablePanel>
 
-      <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading eyebrow="Civic data coverage" title="Why some votes can or cannot be attributed" description="Source completeness indicators show which records are imported, which have minutes or attendance, and where aggregate outcomes remain attribution-limited." />
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <ExpandablePanel eyebrow="Data details" title="Why some votes do not name each official" description="For readers who want to understand source completeness and attribution limits.">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {[
             ["Meetings imported", data.civicDataCoverage.meetingsImported],
             ["With minutes", data.civicDataCoverage.meetingsWithMinutes],
@@ -506,87 +526,72 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
             ["Aggregate outcome only", data.civicDataCoverage.aggregateOnlyVotes],
             ["Projects awaiting updates", data.civicDataCoverage.projectsAwaitingUpdates],
           ].map(([label, value]) => (
-            <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
+            <div key={label} className="dd-simple-card">
+              <p className="text-xs font-semibold text-slate-500">{label}</p>
               <p className="mt-2 text-lg font-semibold text-slate-50">{value}</p>
             </div>
           ))}
         </div>
         <p className="mt-4 text-sm leading-6 text-slate-400">
-          Aggregate actions stay visible even when individual votes are unavailable. If a record says an item passed but lacks verified attendance or a resolvable vote distribution, the action remains source-backed and attribution-limited.
+          We show that an item passed when the source supports it. We name individual votes only when attendance and roll-call records are clear.
         </p>
-      </section>
+      </ExpandablePanel>
 
       <section id="officials" className="scroll-mt-24 dd-panel rounded-[1.75rem] p-6 sm:p-8">
-        <SectionHeading eyebrow="Officials" title="Officials & City Leadership" description="Current officeholders are shown from compact source-backed runtime records. Historical votes and actions remain separate." />
+        <SectionHeading eyebrow="Local officials" title="Who represents or runs the city?" description="Start with elected officials. Appointed leadership appears below when verified." />
         <div className="mt-6 space-y-8">
           <OfficialsGroup
-            title="Your Elected Governing Officials"
-            description="Mayor and ward supervisors or equivalent governing-body members when verified."
+            title="Your elected city leaders"
+            description="The mayor and governing-board members who make city decisions."
             officials={governingOfficials}
             emptyText="Current governing officials have not yet been verified from an official source."
           />
-          {otherElectedOfficials.length ? (
-            <OfficialsGroup
-              title="Other Elected Offices"
-              description="Other source-verified elected offices and judicial offices where product policy includes them."
-              officials={otherElectedOfficials}
-              emptyText="No reviewed other elected offices currently available."
-            />
-          ) : null}
-          {cityLeadership.length ? (
-            <OfficialsGroup
-              title="City Leadership"
-              description="Appointed, acting, and department leadership are shown separately from elected officials."
-              officials={cityLeadership}
-              emptyText="No reviewed appointed leadership currently available."
-            />
-          ) : null}
-          {otherOfficials.length ? (
-            <OfficialsGroup
-              title="Other Officials"
-              description="Additional reviewed public officials that do not fit the primary groups."
-              officials={otherOfficials}
-              emptyText="No other reviewed officials currently available."
-            />
+          {otherElectedOfficials.length || cityLeadership.length || otherOfficials.length ? (
+            <CivicDetails label="More elected and appointed officials">
+              <div className="space-y-8 pt-2">
+                {otherElectedOfficials.length ? <OfficialsGroup title="Other elected offices" description="Other locally relevant elected and judicial offices." officials={otherElectedOfficials} emptyText="No other elected offices are available." /> : null}
+                {cityLeadership.length ? <OfficialsGroup title="Appointed city leadership" description="Department and administrative leaders who are not elected." officials={cityLeadership} emptyText="No appointed leadership is available." /> : null}
+                {otherOfficials.length ? <OfficialsGroup title="Other public officials" description="Additional verified public officials." officials={otherOfficials} emptyText="No other officials are available." /> : null}
+              </div>
+            </CivicDetails>
           ) : null}
         </div>
       </section>
 
-      <section className="grid gap-4 lg:grid-cols-2">
-        <div className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-          <SectionHeading eyebrow="Spending" title="Budget and fiscal signals" description="Spending stories are shown when source records mention budget, grants, contracts, fees, or fiscal impact." />
-          <div className="mt-6 space-y-4">{spendingStories.length ? spendingStories.map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="No reviewed local spending stories currently available." />}</div>
-        </div>
-        <div className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-          <SectionHeading eyebrow="Cases" title="Court cases and case leads" description="Reviewed public cases appear here. Residents can also flag public case leads for later source verification." />
-          <div className="mt-6 space-y-4">
-            {caseStories.length ? caseStories.map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="No reviewed local court cases currently available." />}
-            <Link href="/cases/lead" className="block rounded-[1.35rem] border border-cyan-300/20 bg-cyan-500/10 p-4 text-sm leading-6 text-cyan-100">
-              Know about a public case? Submit a case number, court, jurisdiction, and public source link. Nothing publishes until public records are verified.
-            </Link>
+      <ExpandablePanel eyebrow="More local records" title="Spending, courts, elections, and notices" description="Optional source-backed records for deeper research.">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div>
+            <h3 className="text-lg font-semibold text-slate-50">Public spending</h3>
+            <p className="mt-1 text-sm text-slate-400">Budgets, grants, contracts, and fees.</p>
+            <div className="mt-4 space-y-4">{spendingStories.length ? spendingStories.map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="No reviewed local spending stories are available." />}</div>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-slate-50">Public court cases</h3>
+            <p className="mt-1 text-sm text-slate-400">Reviewed cases connected to this community.</p>
+            <div className="mt-4 space-y-4">
+              {caseStories.length ? caseStories.map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="No reviewed local court cases are available." />}
+              <Link href="/cases/lead" className="inline-flex text-sm font-semibold text-cyan-200">Submit a public case lead →</Link>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-slate-50">Elections</h3>
+            <p className="mt-1 text-sm text-slate-400">Election and voting records connected to this community.</p>
+            <div className="mt-4 space-y-4">{electionStories.length ? electionStories.map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="No local election records are available yet." />}</div>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-slate-50">Official notices</h3>
+            <p className="mt-1 text-sm text-slate-400">Updates published by public agencies.</p>
+            <div className="mt-4 space-y-4">
+              {rssItems.length ? rssItems.map((item) => (
+                <a key={item.id} href={"rssUrl" in item ? item.rssUrl : item.sourceUrl ?? "#"} target="_blank" rel="noreferrer" className="dd-simple-card block">
+                  <h3 className="text-base font-semibold text-slate-50">{item.sourceName}</h3>
+                  <p className="mt-2 text-sm text-slate-400">Official updates for {item.jurisdiction}.</p>
+                </a>
+              )) : <EmptyCard text="No official notice feed is attached yet." />}
+            </div>
           </div>
         </div>
-      </section>
-
-      <section className="grid gap-4 lg:grid-cols-2">
-        <div className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-          <SectionHeading eyebrow="Elections" title="Votes and election signals" description="Existing election and voting-card relationships appear here when available." />
-          <div className="mt-6 space-y-4">{electionStories.length ? electionStories.map((record) => <StoryCard key={`${record.id}-${record.linkType}`} record={record} />) : <EmptyCard text="Election data acquisition needed for this community." />}</div>
-        </div>
-        <div className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
-          <SectionHeading eyebrow="Official updates" title="News, RSS, and public notices" description="RSS is supplemental and source-backed; it does not replace agendas, minutes, budgets, elections, or court records." />
-          <div className="mt-6 space-y-4">
-            {rssItems.length ? rssItems.map((item) => (
-              <a key={item.id} href={"rssUrl" in item ? item.rssUrl : item.sourceUrl ?? "#"} target="_blank" rel="noreferrer" className="block rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-                <Badge tone="cyan">RSS</Badge>
-                <h3 className="mt-3 text-base font-semibold text-slate-50">{item.sourceName}</h3>
-                <p className="mt-2 text-sm text-slate-400">Supplemental official updates for {item.jurisdiction}.</p>
-              </a>
-            )) : <EmptyCard text="No reviewed RSS/public notice source is attached to this community yet." />}
-          </div>
-        </div>
-      </section>
+      </ExpandablePanel>
     </div>
   );
 }

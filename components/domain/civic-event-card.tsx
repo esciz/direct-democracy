@@ -2,7 +2,9 @@ import Link from "next/link";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { ShareActionMenu } from "@/components/domain/share-action-menu";
+import { CivicDetails } from "@/components/ui/civic-details";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
+import { highLevelSummary, plainLanguageTitle } from "@/lib/civic/plain-language";
 import { getCivicEventStatusLabel, getCivicEventTypeLabel } from "@/lib/events/civic-events";
 import { updateEventRsvp } from "@/lib/community/event-participation-actions";
 import type { CivicEvent } from "@/lib/events/types";
@@ -67,39 +69,28 @@ export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guest
   const calendarHref = buildCalendarHref(event);
   const canRsvp = !event.isOfficialMeeting && Boolean(event.communityEventId);
   const isAttending = event.viewerStatus === "attending" || event.viewerStatus === "confirmed";
+  const displayTitle = event.isOfficialMeeting ? plainLanguageTitle(event.title) : event.title;
+  const displaySummary = highLevelSummary(event.description, "Open the event for the latest public information.");
 
   return (
-    <article className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 shadow-sm">
+    <article className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white">
+            <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold text-white">
               {typeLabel}
             </span>
-            <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] ${event.status === "completed" ? "bg-slate-200 text-slate-700" : "bg-civic-50 text-civic-700"}`}>
+            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${event.status === "completed" ? "bg-slate-200 text-slate-700" : "bg-civic-50 text-civic-700"}`}>
               {statusLabel}
             </span>
-            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${event.isOfficialMeeting ? "bg-sky-50 text-sky-700" : "bg-orange-50 text-orange-700"}`}>
-              {event.sourceProviderLabel}
-            </span>
-            {event.distanceLabel ? (
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
-                {event.distanceLabel}
-              </span>
-            ) : null}
-            {event.momentumLabel ? (
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700">
-                {event.momentumLabel}
-              </span>
-            ) : null}
           </div>
           <h3 className="mt-3 text-lg font-semibold text-ink">
             <Link href={eventHref} className="transition hover:text-civic-700">
-              {event.title}
+              {displayTitle}
             </Link>
           </h3>
           <p className="mt-2 text-sm text-slate-500">
-            {formatDateTime(event.startsAt)} · {event.jurisdiction}
+            {formatDateTime(event.startsAt)}{event.distanceLabel ? ` · ${event.distanceLabel}` : ""}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -120,50 +111,10 @@ export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guest
         </div>
       </div>
 
-      <p className="mt-3 text-sm leading-6 text-slate-600">{event.description}</p>
-
-      <div className="mt-4 grid gap-2 text-sm text-slate-600 md:grid-cols-2">
-        <p>
-          <span className="font-semibold text-slate-800">Host:</span> {event.hostName}
-        </p>
-        <p>
-          <span className="font-semibold text-slate-800">Location:</span> {event.locationName ?? event.address ?? (event.virtualUrl ? "Virtual" : "Location pending")}
-        </p>
-        <p>
-          <span className="font-semibold text-slate-800">Format:</span> {formatMode(event.eventMode)}
-        </p>
-        <p>
-          <span className="font-semibold text-slate-800">Community:</span> {event.jurisdiction}
-        </p>
-        {event.relatedEntityLabels.length ? (
-          <p className="md:col-span-2">
-            <span className="font-semibold text-slate-800">Linked:</span> {event.relatedEntityLabels.join(", ")}
-          </p>
-        ) : null}
-        {event.relatedIssueLabels.length ? (
-          <p className="md:col-span-2">
-            <span className="font-semibold text-slate-800">Related issues:</span> {event.relatedIssueLabels.join(", ")}
-          </p>
-        ) : null}
-        {typeof event.attendanceCount === "number" && !event.isOfficialMeeting ? (
-          <p>
-            {event.attendanceCount} attending · {event.confirmedCount} confirmed
-          </p>
-        ) : null}
-      </div>
+      <p className="mt-3 text-sm leading-6 text-slate-600">{displaySummary}</p>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        <SourceLink href={event.agendaUrl} label={event.status === "completed" ? "Agenda" : "Agenda / packet"} />
-        <SourceLink href={event.packetUrl} label="Packet" />
-        <SourceLink href={event.minutesUrl} label="Minutes" />
-        <SourceLink href={event.videoUrl ?? event.virtualUrl} label={event.status === "completed" ? "Video / recording" : "Virtual / video"} />
-        <SourceLink href={event.sourceUrl} label={event.isOfficialMeeting ? "Official source" : "Source"} />
-        {calendarHref ? (
-          <Link href={calendarHref} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-civic-400 hover:text-civic-700">
-            Add to calendar
-          </Link>
-        ) : null}
-        <Link href={eventHref} className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-slate-800">
+        <Link href={eventHref} className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
           View event
         </Link>
       </div>
@@ -200,6 +151,28 @@ export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guest
           </form>
         </div>
       ) : null}
+
+      <CivicDetails>
+        <div className="grid gap-2 sm:grid-cols-2">
+          <p><span className="font-semibold text-slate-700">Host:</span> {event.hostName}</p>
+          <p><span className="font-semibold text-slate-700">Location:</span> {event.locationName ?? event.address ?? (event.virtualUrl ? "Virtual" : "Location pending")}</p>
+          <p><span className="font-semibold text-slate-700">Format:</span> {formatMode(event.eventMode)}</p>
+          <p><span className="font-semibold text-slate-700">Community:</span> {event.jurisdiction}</p>
+          {displayTitle !== event.title ? <p className="sm:col-span-2"><span className="font-semibold text-slate-700">Official title:</span> {event.title}</p> : null}
+          {event.relatedEntityLabels.length ? <p className="sm:col-span-2"><span className="font-semibold text-slate-700">Linked:</span> {event.relatedEntityLabels.join(", ")}</p> : null}
+          {event.relatedIssueLabels.length ? <p className="sm:col-span-2"><span className="font-semibold text-slate-700">Issues:</span> {event.relatedIssueLabels.join(", ")}</p> : null}
+          {typeof event.attendanceCount === "number" && !event.isOfficialMeeting ? <p>{event.attendanceCount} attending · {event.confirmedCount} confirmed</p> : null}
+          <p className="sm:col-span-2">Source: {event.sourceProviderLabel}{event.momentumLabel ? ` · ${event.momentumLabel}` : ""}</p>
+        </div>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <SourceLink href={event.agendaUrl} label={event.status === "completed" ? "Agenda" : "Agenda / packet"} />
+          <SourceLink href={event.packetUrl} label="Packet" />
+          <SourceLink href={event.minutesUrl} label="Minutes" />
+          <SourceLink href={event.videoUrl ?? event.virtualUrl} label={event.status === "completed" ? "Recording" : "Join online"} />
+          <SourceLink href={event.sourceUrl} label="Official source" />
+          {calendarHref ? <Link href={calendarHref} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700">Add to calendar</Link> : null}
+        </div>
+      </CivicDetails>
     </article>
   );
 }

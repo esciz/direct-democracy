@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { getCivicJurisdictionContext } from "@/lib/civic/jurisdiction-context";
+import { highLevelSummary, plainLanguageTitle } from "@/lib/civic/plain-language";
 import { submitQuickVoteInline } from "@/lib/feed/vote-actions";
 import { extractTaxCostContext, stripTaxCostContext, taxCostImpactBadge } from "@/lib/public-meetings/financial-impact";
 import { getResultComparisonText, getVoteObjectLabel, getVoteParticipationPrompt, getVoteResponseLabels } from "@/lib/votes/presentation";
@@ -334,17 +335,6 @@ function ContextDetails({
   );
 }
 
-function getOptionSubLabels(question: VoteQuestionCardSummary) {
-  if (question.questionType === "BALLOT_MEASURE_DECISION") return { yes: "yes", no: "no", skip: "undecided" };
-  if (question.questionType === "LEGISLATION_DECISION") return { yes: "support", no: "oppose", skip: "undecided" };
-  if (question.questionType === "CANDIDATE_PERFORMANCE" || question.questionType === "ELECTED_OFFICIAL_PERFORMANCE") {
-    return { yes: "approve", no: "disapprove", skip: "unsure" };
-  }
-  if (question.questionType === "COMMUNITY_PRIORITY_POLL") return { yes: "priority", no: "priority", skip: "another" };
-
-  return { yes: "support", no: "oppose", skip: "neutral" };
-}
-
 export function VoteCard({
   question,
   compact = false,
@@ -361,7 +351,6 @@ export function VoteCard({
   const [isEditingVote, setIsEditingVote] = useState(false);
   const [isPending, startTransition] = useTransition();
   const responseLabels = getVoteResponseLabels(currentQuestion);
-  const optionSubLabels = getOptionSubLabels(currentQuestion);
   const comparisonText = getResultComparisonText(currentQuestion);
   const extractedTaxCostImpact = extractTaxCostContext(currentQuestion.contextSummary);
   const fallbackTaxCostImpact = currentQuestion.fiscalImpactSummary && !/^no official fiscal note found yet\.?$/i.test(currentQuestion.fiscalImpactSummary)
@@ -374,6 +363,7 @@ export function VoteCard({
     currentQuestion.officialPositionSummary ??
     currentQuestion.officialVoteSummary ??
     null;
+  const displayQuestion = plainLanguageTitle(currentQuestion.questionText, 170);
   const jurisdictionContext = getCivicJurisdictionContext({
     jurisdictionName: currentQuestion.jurisdictionName,
     officialBody: currentQuestion.officialBody,
@@ -429,9 +419,6 @@ export function VoteCard({
             Vote {currentQuestion.onboardingPosition} of {currentQuestion.onboardingTotal}
           </span>
         ) : null}
-        <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-semibold text-slate-300">
-          {jurisdictionContext.primaryLabel}
-        </span>
         {currentQuestion.status && getStatusLabel(currentQuestion.status) !== "Active" ? (
           <span className="rounded-full border border-amber-300/18 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-100">
             {getStatusLabel(currentQuestion.status)}
@@ -455,17 +442,13 @@ export function VoteCard({
           </div>
         </div>
       ) : null}
-      {currentQuestion.shortTitle ? (
-        <p className="relative mt-4 text-sm font-medium text-slate-400">{currentQuestion.shortTitle}</p>
-      ) : null}
       <h2 className={`relative mt-3 font-semibold tracking-tight text-slate-50 ${compact ? "text-xl" : "text-2xl leading-8 sm:text-[1.75rem]"}`}>
-        {currentQuestion.questionText}
+        {displayQuestion}
       </h2>
-      <p className="relative mt-3 text-sm text-emerald-200">{getVoteParticipationPrompt(currentQuestion)}</p>
       {contextPreview ? (
         <div className="relative mt-5 border-l-2 border-cyan-300/50 pl-4">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Why this matters</p>
-          <p className="mt-2 text-sm leading-6 text-slate-300">{contextPreview}</p>
+          <p className="mt-2 text-sm leading-6 text-slate-300">{highLevelSummary(contextPreview, contextPreview)}</p>
         </div>
       ) : null}
       {taxCostImpact ? (
@@ -473,13 +456,6 @@ export function VoteCard({
           <TaxCostImpactBlock summary={taxCostImpact} compact />
         </div>
       ) : null}
-      <details className="relative mt-4 text-xs text-slate-400">
-        <summary className="cursor-pointer font-semibold text-cyan-100 hover:text-cyan-50">How your response is used</summary>
-        <p className="mt-2 max-w-3xl leading-5">
-          Your individual answer stays private. Dashboards show only qualifying aggregate groups with enough responses.
-        </p>
-      </details>
-
       {showResults && !isEditingVote ? (
         <div className="relative mt-5 space-y-3">
           {comparisonText ? <p className="text-sm text-slate-400">{comparisonText}</p> : null}
@@ -557,7 +533,6 @@ export function VoteCard({
               className={`flex min-h-14 min-w-[12rem] flex-1 items-center justify-between gap-3 rounded-lg border px-4 py-3.5 text-left text-sm font-semibold transition ${!canAnswer || isPending ? "cursor-not-allowed opacity-55" : ""} ${optionStyles.yes}`}
             >
               <span>{responseLabels.yes}</span>
-              <span className="text-xs uppercase tracking-[0.16em] text-emerald-200/80">{optionSubLabels.yes}</span>
             </button>
             <button
               type="button"
@@ -570,7 +545,6 @@ export function VoteCard({
               className={`flex min-h-14 min-w-[12rem] flex-1 items-center justify-between gap-3 rounded-lg border px-4 py-3.5 text-left text-sm font-semibold transition ${!canAnswer || isPending ? "cursor-not-allowed opacity-55" : ""} ${optionStyles.no}`}
             >
               <span>{responseLabels.no}</span>
-              <span className="text-xs uppercase tracking-[0.16em] text-rose-200/80">{optionSubLabels.no}</span>
             </button>
             <button
               type="button"
@@ -583,7 +557,6 @@ export function VoteCard({
               className={`flex min-h-14 min-w-[12rem] flex-1 items-center justify-between gap-3 rounded-lg border px-4 py-3.5 text-left text-sm font-semibold transition ${!canAnswer || isPending ? "cursor-not-allowed opacity-55" : ""} ${optionStyles.skip}`}
             >
               <span>{responseLabels.skip}</span>
-              <span className="text-xs uppercase tracking-[0.16em] text-slate-400">{optionSubLabels.skip}</span>
             </button>
           </div>
           {!canAnswer ? (
@@ -617,6 +590,9 @@ export function VoteCard({
         </button>
         {showContext ? (
           <div className="space-y-4 border-t border-white/10 px-4 pb-4 pt-4">
+            <p className="text-sm leading-6 text-slate-400">{getVoteParticipationPrompt(currentQuestion)} Your individual answer stays private; dashboards show only qualifying groups.</p>
+            <p className="text-xs text-slate-500">{jurisdictionContext.primaryLabel}{currentQuestion.shortTitle ? ` · ${currentQuestion.shortTitle}` : ""}</p>
+            {displayQuestion !== currentQuestion.questionText ? <p className="text-xs leading-5 text-slate-500"><span className="font-semibold text-slate-300">Official wording:</span> {currentQuestion.questionText}</p> : null}
             <ContextDetails question={currentQuestion} responseLabels={responseLabels} />
             <ContextItem label="Source links">
               <SourceLinks question={currentQuestion} />
