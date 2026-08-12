@@ -424,3 +424,18 @@ html[data-theme="civic-light"] .text-orange-200,
 html[data-theme="civic-light"] .text-amber-50 {
   color: #9a4317 !important;
 }
+
+html[data-theme="civic-light"] .dd-root-striker-promo {
+  border-color: rgba(31, 94, 168, 0.18) !important;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(31, 94, 168, 0.1), transparent 30%),
+    radial-gradient(circle at 78% 24%, rgba(199, 47, 69, 0.08), transparent 28%),
+    linear-gradient(145deg, #ffffff, #f4f8fd) !important;
+  box-shadow: 0 28px 72px -44px rgba(31, 94, 168, 0.38) !important;
+}
+
+html[data-theme="civic-light"] .dd-root-striker-promo-cta {
+  background: linear-gradient(135deg, var(--civic-blue), var(--civic-red)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 36px -20px rgba(31, 94, 168, 0.58) !important;
+}

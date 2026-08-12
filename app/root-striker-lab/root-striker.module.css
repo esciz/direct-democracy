@@ -1188,3 +1188,243 @@
     animation: none;
   }
 }
+
+/* The lab is full-screen, but it still follows the profile-selected app theme. */
+:global(html[data-theme="civic-light"]) .experimentShell {
+  --panel: rgba(255, 255, 255, 0.92);
+  --border: rgba(31, 94, 168, 0.16);
+  color: #111827;
+  background:
+    radial-gradient(circle at 51% 46%, rgba(199, 47, 69, 0.055), transparent 25%),
+    radial-gradient(circle at 12% 12%, rgba(31, 94, 168, 0.08), transparent 28%),
+    #f7faff;
+}
+
+:global(html[data-theme="civic-light"]) .experimentShell::before {
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(31, 94, 168, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 94, 168, 0.075) 1px, transparent 1px);
+}
+
+:global(html[data-theme="civic-light"]) .ambientGlow {
+  background: rgba(199, 47, 69, 0.045);
+}
+
+:global(html[data-theme="civic-light"]) .topbar,
+:global(html[data-theme="civic-light"]) .controlBar,
+:global(html[data-theme="civic-light"]) .footerBar {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 30px -28px rgba(16, 45, 85, 0.42);
+}
+
+:global(html[data-theme="civic-light"]) .backButton,
+:global(html[data-theme="civic-light"]) .searchBox,
+:global(html[data-theme="civic-light"]) .filters button,
+:global(html[data-theme="civic-light"]) .traceButton,
+:global(html[data-theme="civic-light"]) .zoomControls,
+:global(html[data-theme="civic-light"]) .actionGrid a,
+:global(html[data-theme="civic-light"]) .sectionHeading > span {
+  border-color: rgba(31, 94, 168, 0.16);
+  color: #425a78;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+:global(html[data-theme="civic-light"]) .backButton:hover,
+:global(html[data-theme="civic-light"]) .zoomControls button:hover,
+:global(html[data-theme="civic-light"]) .closeDetails:hover,
+:global(html[data-theme="civic-light"]) .closeSuggestion:hover {
+  color: #102d55;
+  background: rgba(31, 94, 168, 0.08);
+}
+
+:global(html[data-theme="civic-light"]) .titleRow h1,
+:global(html[data-theme="civic-light"]) .detailPanel h2,
+:global(html[data-theme="civic-light"]) .suggestionDialog h2,
+:global(html[data-theme="civic-light"]) .pathBlock h3,
+:global(html[data-theme="civic-light"]) .sectionHeading h3,
+:global(html[data-theme="civic-light"]) .connectionStat strong,
+:global(html[data-theme="civic-light"]) .viewpoints strong {
+  color: #111827;
+}
+
+:global(html[data-theme="civic-light"]) .brandBlock p,
+:global(html[data-theme="civic-light"]) .headerMeta,
+:global(html[data-theme="civic-light"]) .filterLabel,
+:global(html[data-theme="civic-light"]) .mapInstructions,
+:global(html[data-theme="civic-light"]) .summary,
+:global(html[data-theme="civic-light"]) .scoreCard p,
+:global(html[data-theme="civic-light"]) .connectionStat > div,
+:global(html[data-theme="civic-light"]) .pathTrail p,
+:global(html[data-theme="civic-light"]) .viewpoints p,
+:global(html[data-theme="civic-light"]) .suggestionDialog > p,
+:global(html[data-theme="civic-light"]) .footerBar,
+:global(html[data-theme="civic-light"]) .footerBar > div {
+  color: #526176;
+}
+
+:global(html[data-theme="civic-light"]) .searchBox input {
+  color: #102d55 !important;
+  background: transparent !important;
+}
+
+:global(html[data-theme="civic-light"]) .searchBox input::placeholder {
+  color: #7a8aa0;
+}
+
+:global(html[data-theme="civic-light"]) .filters button:hover,
+:global(html[data-theme="civic-light"]) .filters .filterActive {
+  color: #102d55;
+  background: color-mix(in srgb, var(--kind-color) 11%, white);
+}
+
+:global(html[data-theme="civic-light"]) .traceButton:hover,
+:global(html[data-theme="civic-light"]) .traceActive {
+  border-color: rgba(199, 47, 69, 0.38);
+  color: #a11d38;
+  background: rgba(199, 47, 69, 0.07);
+}
+
+:global(html[data-theme="civic-light"]) .suggestButton {
+  border-color: rgba(230, 107, 36, 0.3);
+  color: #9a4317;
+  background: rgba(230, 107, 36, 0.07);
+}
+
+:global(html[data-theme="civic-light"]) .submissionNotice {
+  border-color: rgba(15, 118, 110, 0.24);
+  color: #0b5f59;
+  background: rgba(240, 253, 250, 0.97);
+  box-shadow: 0 16px 40px rgba(28, 65, 122, 0.14);
+}
+
+:global(html[data-theme="civic-light"]) .edge {
+  stroke: rgba(51, 76, 112, 0.32);
+}
+
+:global(html[data-theme="civic-light"]) .edgeActive {
+  stroke: rgba(199, 47, 69, 0.76);
+  filter: drop-shadow(0 0 4px rgba(199, 47, 69, 0.32));
+}
+
+:global(html[data-theme="civic-light"]) .edgeLabel rect {
+  fill: rgba(255, 255, 255, 0.96);
+  stroke: rgba(199, 47, 69, 0.28);
+}
+
+:global(html[data-theme="civic-light"]) .edgeLabel text {
+  fill: #8f2940;
+}
+
+:global(html[data-theme="civic-light"]) .nodeBody {
+  fill: color-mix(in srgb, var(--node-color) 12%, white);
+  stroke: color-mix(in srgb, var(--node-color) 72%, #102d55);
+  filter: drop-shadow(0 5px 12px rgba(28, 65, 122, 0.16));
+}
+
+:global(html[data-theme="civic-light"]) .nodeHalo {
+  fill: color-mix(in srgb, var(--node-color) 8%, transparent);
+}
+
+:global(html[data-theme="civic-light"]) .nodeText {
+  fill: #15243a;
+}
+
+:global(html[data-theme="civic-light"]) .rootIcon circle {
+  fill: rgba(255, 255, 255, 0.66);
+  stroke: rgba(199, 47, 69, 0.5);
+}
+
+:global(html[data-theme="civic-light"]) .rootIcon text {
+  fill: #a11d38;
+}
+
+:global(html[data-theme="civic-light"]) .detailPanel {
+  border-color: rgba(31, 94, 168, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 255, 0.99));
+  box-shadow: -28px 0 65px rgba(28, 65, 122, 0.08);
+}
+
+:global(html[data-theme="civic-light"]) .scoreCard,
+:global(html[data-theme="civic-light"]) .civicActions {
+  border-color: rgba(31, 94, 168, 0.14);
+  background: radial-gradient(circle at 90% 20%, rgba(199, 47, 69, 0.07), transparent 48%), rgba(255, 255, 255, 0.76);
+}
+
+:global(html[data-theme="civic-light"]) .scoreCard > div:first-child span,
+:global(html[data-theme="civic-light"]) .scoreCard small,
+:global(html[data-theme="civic-light"]) .sectionHeading > span {
+  color: #60728b;
+}
+
+:global(html[data-theme="civic-light"]) .scoreCard strong,
+:global(html[data-theme="civic-light"]) .connectionStat button,
+:global(html[data-theme="civic-light"]) .pathTrail span {
+  color: #a11d38;
+}
+
+:global(html[data-theme="civic-light"]) .scoreTrack {
+  background-color: rgba(31, 94, 168, 0.07);
+}
+
+:global(html[data-theme="civic-light"]) .viewpoints > div:not(.sectionHeading) {
+  border-color: rgba(31, 94, 168, 0.1);
+}
+
+:global(html[data-theme="civic-light"]) .primaryCivicAction {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1f5ea8, #0f766e);
+}
+
+:global(html[data-theme="civic-light"]) .actionGrid a:hover {
+  border-color: rgba(31, 94, 168, 0.28);
+  color: #102d55;
+  background: rgba(31, 94, 168, 0.08);
+}
+
+:global(html[data-theme="civic-light"]) .pathTrail span {
+  border-color: rgba(199, 47, 69, 0.28);
+  background: #ffffff;
+}
+
+:global(html[data-theme="civic-light"]) .evidenceNotice {
+  border-color: rgba(230, 107, 36, 0.2);
+  color: #a84b18;
+  background: rgba(255, 247, 237, 0.9);
+}
+
+:global(html[data-theme="civic-light"]) .evidenceNotice p,
+:global(html[data-theme="civic-light"]) .evidenceNotice strong {
+  color: #7d4a2f;
+}
+
+:global(html[data-theme="civic-light"]) .suggestionOverlay {
+  background: rgba(16, 45, 85, 0.42);
+}
+
+:global(html[data-theme="civic-light"]) .suggestionDialog {
+  border-color: rgba(230, 107, 36, 0.24);
+  background: radial-gradient(circle at 90% 0%, rgba(230, 107, 36, 0.08), transparent 34%), #ffffff;
+  box-shadow: 0 30px 90px rgba(28, 65, 122, 0.22);
+}
+
+:global(html[data-theme="civic-light"]) .suggestionForm label > span {
+  color: #425a78;
+}
+
+:global(html[data-theme="civic-light"]) .reviewPromise {
+  border-color: rgba(15, 118, 110, 0.2);
+  color: #0b5f59;
+  background: #f0fdfa;
+}
+
+:global(html[data-theme="civic-light"]) .submitSuggestion {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1f5ea8, #c72f45);
+}
+
+:global(html[data-theme="civic-light"]) .formError {
+  border-color: rgba(199, 47, 69, 0.2);
+  color: #a11d38;
+  background: #fff1f2;
+}

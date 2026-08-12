@@ -565,7 +565,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden rounded-[2rem] border border-cyan-300/15 bg-[radial-gradient(circle_at_18%_30%,rgba(34,211,238,0.14),transparent_30%),radial-gradient(circle_at_78%_24%,rgba(167,139,250,0.14),transparent_28%),linear-gradient(145deg,rgba(2,6,23,0.98),rgba(8,20,35,0.96))] p-6 shadow-[0_28px_80px_-42px_rgba(34,211,238,0.42)] sm:p-8 lg:p-10">
+      <section className="dd-root-striker-promo relative overflow-hidden rounded-[2rem] border border-cyan-300/15 bg-[radial-gradient(circle_at_18%_30%,rgba(34,211,238,0.14),transparent_30%),radial-gradient(circle_at_78%_24%,rgba(167,139,250,0.14),transparent_28%),linear-gradient(145deg,rgba(2,6,23,0.98),rgba(8,20,35,0.96))] p-6 shadow-[0_28px_80px_-42px_rgba(34,211,238,0.42)] sm:p-8 lg:p-10">
         <div className="pointer-events-none absolute inset-0 opacity-35" aria-hidden="true">
           <div className="absolute left-[12%] top-[28%] h-px w-[32%] rotate-[12deg] bg-gradient-to-r from-cyan-300/20 to-violet-300/70" />
           <div className="absolute left-[42%] top-[42%] h-px w-[36%] -rotate-[14deg] bg-gradient-to-r from-violet-300/60 to-emerald-300/30" />
@@ -582,7 +582,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
               <span className="rounded-full border border-rose-300/20 bg-rose-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-rose-100">Experimental lab</span>
               <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-300">Money · systems · outcomes</span>
             </div>
-            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">Don’t just browse the issues. Find the roots beneath them.</h2>
+            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.035em] text-slate-50 sm:text-4xl">Don’t just browse the issues. Find the roots beneath them.</h2>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
               Root Striker connects money in politics to healthcare, food and farming, housing, climate, taxation, civil rights, public safety, and the incentives that shape public outcomes.
             </p>
@@ -595,7 +595,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
           </div>
           <Link
             href="/root-striker-lab"
-            className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#fb7185,#f59e0b)] px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_18px_36px_-18px_rgba(251,113,133,0.85)] transition hover:-translate-y-0.5 hover:brightness-110"
+            className="dd-root-striker-promo-cta inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#fb7185,#f59e0b)] px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_18px_36px_-18px_rgba(251,113,133,0.85)] transition hover:-translate-y-0.5 hover:brightness-110"
           >
             Enter Root Striker Lab <span aria-hidden="true" className="ml-2">→</span>
           </Link>
