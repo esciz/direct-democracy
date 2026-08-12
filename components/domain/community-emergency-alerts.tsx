@@ -15,10 +15,14 @@ export function CommunityEmergencyAlerts({ communityName, state }: { communityNa
 
   const primary = state.notices[0];
   const otherNotices = state.notices.slice(1);
+  const prominentNotices = otherNotices.filter(
+    (notice) => notice.kind === "alert" && (notice.severity === "Extreme" || notice.severity === "Severe"),
+  );
+  const expandableNotices = otherNotices.filter((notice) => !prominentNotices.includes(notice));
   const isImmediateAlert = primary.kind === "alert";
 
   return (
-    <section aria-labelledby="community-emergency-heading" className="overflow-hidden rounded-[1.75rem] border border-amber-300/30 bg-[linear-gradient(145deg,rgba(69,26,3,0.82),rgba(15,23,42,0.96))] shadow-[0_26px_70px_-38px_rgba(251,146,60,0.7)]">
+    <section aria-labelledby="community-emergency-heading" className="dd-emergency-alert overflow-hidden rounded-[1.75rem] border border-amber-300/30 bg-[linear-gradient(145deg,rgba(69,26,3,0.82),rgba(15,23,42,0.96))] shadow-[0_26px_70px_-38px_rgba(251,146,60,0.7)]">
       <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_19rem]">
         <div className="p-6 sm:p-8">
           <div className="flex items-start gap-4">
@@ -27,27 +31,27 @@ export function CommunityEmergencyAlerts({ communityName, state }: { communityNa
             </span>
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">{isImmediateAlert ? "Active official alert" : "Recent official declaration"}</p>
-                <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] font-semibold text-slate-200">{primary.severity}</span>
-                {primary.urgency ? <span className="rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] font-semibold text-slate-300">{primary.urgency}</span> : null}
+                <p className="dd-emergency-label text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">{isImmediateAlert ? "Active official alert" : "Recent official declaration"}</p>
+                <span className="dd-emergency-chip rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] font-semibold text-slate-200">{primary.severity}</span>
+                {primary.urgency ? <span className="dd-emergency-chip rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] font-semibold text-slate-300">{primary.urgency}</span> : null}
               </div>
-              <h2 id="community-emergency-heading" className="mt-3 text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl">{primary.title}</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-200">{primary.summary}</p>
+              <h2 id="community-emergency-heading" className="dd-emergency-headline mt-3 text-2xl font-semibold leading-tight text-slate-50 sm:text-3xl">{primary.title}</h2>
+              <p className="dd-emergency-body mt-3 max-w-3xl text-sm leading-6 text-slate-200">{primary.summary}</p>
               {primary.instruction ? (
                 <div className="mt-4 rounded-2xl border border-amber-200/20 bg-black/20 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber-200">Official guidance</p>
-                  <p className="mt-2 text-sm leading-6 text-slate-100">{primary.instruction}</p>
+                  <p className="dd-emergency-label text-xs font-semibold uppercase tracking-[0.14em] text-amber-200">Official guidance</p>
+                  <p className="dd-emergency-body mt-2 text-sm leading-6 text-slate-100">{primary.instruction}</p>
                 </div>
               ) : null}
               <div className="mt-5 flex flex-wrap gap-3">
                 <a href={primary.sourceUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-amber-300 px-4 py-2 text-sm font-bold text-amber-950 hover:bg-amber-200">
                   Open official alert <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
-                <a href="tel:211" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-semibold text-slate-100 hover:border-white/30">
+                <a href="tel:211" className="dd-emergency-secondary-action inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-semibold text-slate-100 hover:border-white/30">
                   <Phone className="h-4 w-4" aria-hidden="true" /> Call 211 for local help
                 </a>
               </div>
-              <CivicDetails label="Area, timing, and source" className="mt-5 border-white/12 text-slate-300">
+              <CivicDetails label="Area, timing, and source" className="dd-emergency-details mt-5 border-white/12 text-slate-300">
                 <p><strong className="text-slate-100">Affected area:</strong> {primary.area}</p>
                 <p><strong className="text-slate-100">Effective:</strong> {formatAlertTime(primary.effectiveAt) ?? "See official alert"}</p>
                 <p><strong className="text-slate-100">Expires:</strong> {formatAlertTime(primary.expiresAt) ?? "No end time provided"}</p>
@@ -57,14 +61,47 @@ export function CommunityEmergencyAlerts({ communityName, state }: { communityNa
             </div>
           </div>
 
-          {otherNotices.length ? (
-            <CivicDetails label={`${otherNotices.length} more official notice${otherNotices.length === 1 ? "" : "s"}`} className="mt-5 border-white/12">
+          {prominentNotices.length ? (
+            <div className="mt-6" aria-label="Other severe active alerts">
+              <p className="dd-emergency-label text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">
+                Also active now
+              </p>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                {prominentNotices.map((notice) => (
+                  <a
+                    key={notice.id}
+                    href={notice.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="dd-emergency-prominent-notice rounded-2xl border border-amber-200/30 bg-black/25 p-4 transition hover:border-amber-200/55"
+                  >
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="dd-emergency-chip rounded-full border border-white/10 bg-black/20 px-2.5 py-1 text-[11px] font-semibold text-slate-100">
+                        {notice.severity} alert
+                      </span>
+                      {notice.expiresAt ? (
+                        <span className="dd-emergency-muted text-xs text-slate-300">Until {formatAlertTime(notice.expiresAt)}</span>
+                      ) : null}
+                    </div>
+                    <h3 className="dd-emergency-headline mt-3 text-base font-semibold leading-6 text-slate-50">{notice.title}</h3>
+                    <p className="dd-emergency-muted mt-2 text-xs leading-5 text-slate-300">{notice.area}</p>
+                    <span className="dd-emergency-link mt-3 inline-flex items-center gap-1 text-xs font-semibold text-amber-200">
+                      Open official alert <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {expandableNotices.length ? (
+            <CivicDetails label={`${expandableNotices.length} more official notice${expandableNotices.length === 1 ? "" : "s"}`} className="dd-emergency-details mt-5 border-white/12">
               <div className="grid gap-3 sm:grid-cols-2">
-                {otherNotices.map((notice) => (
+                {expandableNotices.map((notice) => (
                   <a key={notice.id} href={notice.sourceUrl} target="_blank" rel="noreferrer" className="rounded-2xl border border-white/10 bg-black/15 p-4 hover:border-amber-200/25">
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber-200">{notice.kind === "alert" ? notice.severity : "Declaration"}</p>
-                    <p className="mt-2 text-sm font-semibold leading-5 text-slate-50">{notice.title}</p>
-                    <p className="mt-2 text-xs leading-5 text-slate-300">{notice.area}</p>
+                    <p className="dd-emergency-label text-xs font-semibold uppercase tracking-[0.14em] text-amber-200">{notice.kind === "alert" ? notice.severity : "Declaration"}</p>
+                    <p className="dd-emergency-headline mt-2 text-sm font-semibold leading-5 text-slate-50">{notice.title}</p>
+                    <p className="dd-emergency-muted mt-2 text-xs leading-5 text-slate-300">{notice.area}</p>
                   </a>
                 ))}
               </div>
@@ -73,7 +110,7 @@ export function CommunityEmergencyAlerts({ communityName, state }: { communityNa
         </div>
 
         <aside className="border-t border-white/10 bg-black/15 p-6 lg:border-l lg:border-t-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">Find help near {communityName}</p>
+          <p className="dd-emergency-label text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">Find help near {communityName}</p>
           <div className="mt-4 space-y-3">
             {[
               { href: "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html", label: "Open shelters", detail: "Red Cross shelter finder", icon: MapPinned },
@@ -93,7 +130,7 @@ export function CommunityEmergencyAlerts({ communityName, state }: { communityNa
               );
             })}
           </div>
-          <p className="mt-4 text-[11px] leading-5 text-slate-400">Official feeds checked {formatAlertTime(state.checkedAt)}. Resource availability can change quickly; confirm before traveling.</p>
+          <p className="dd-emergency-muted mt-4 text-[11px] leading-5 text-slate-400">Official feeds checked {formatAlertTime(state.checkedAt)}. Resource availability can change quickly; confirm before traveling.</p>
         </aside>
       </div>
     </section>

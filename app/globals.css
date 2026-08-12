@@ -513,3 +513,50 @@ html[data-theme="civic-light"] .dd-civic-details-icon {
   border-color: rgba(31, 94, 168, 0.15);
   color: #294b75;
 }
+
+/* Emergency alerts intentionally stay dark in every theme. Keep their safety copy
+   on an explicit, high-contrast palette instead of inheriting daylight text colors. */
+.dd-emergency-alert .dd-emergency-headline {
+  color: #fff7ed !important;
+}
+
+.dd-emergency-alert .dd-emergency-body {
+  color: #e7edf6 !important;
+}
+
+.dd-emergency-alert .dd-emergency-muted,
+.dd-emergency-alert .dd-emergency-details,
+.dd-emergency-alert .dd-emergency-details summary,
+.dd-emergency-alert .dd-emergency-details .dd-civic-details-content {
+  color: #cbd5e1 !important;
+}
+
+.dd-emergency-alert .dd-emergency-details strong {
+  color: #f8fafc !important;
+}
+
+.dd-emergency-alert .dd-emergency-label,
+.dd-emergency-alert .dd-emergency-link {
+  color: #fde68a !important;
+}
+
+.dd-emergency-alert .dd-emergency-chip {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  background: rgba(15, 23, 42, 0.58) !important;
+  color: #f8fafc !important;
+}
+
+.dd-emergency-alert .dd-emergency-secondary-action {
+  border-color: rgba(255, 255, 255, 0.34) !important;
+  background: #f8fafc !important;
+  color: #172033 !important;
+}
+
+.dd-emergency-alert .dd-emergency-details {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dd-emergency-alert .dd-emergency-details .dd-civic-details-icon {
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  color: #f8fafc !important;
+}
