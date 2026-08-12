@@ -2,9 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { CivicDetails } from "@/components/ui/civic-details";
 import { PageIntro } from "@/components/ui/page-intro";
 import { getResidentQuestionAnswersForTarget } from "@/lib/cases/resident-intake-store";
 import { getDecisionCards } from "@/lib/civic/decision-pages";
+import { decisionCardSummary, decisionHeadline, projectCardSummary, projectHeadline } from "@/lib/civic/plain-language";
 import { getProjectById } from "@/lib/community/product-hub";
 
 type ProjectDetailPageProps = {
@@ -41,13 +43,16 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   const relatedDecisions = decisionCards.filter((decision) => relatedDecisionIds.has(decision.id) || relatedDecisionIds.has(decision.sourceVotingCardId ?? ""));
   const budgetLabel = project.cost ?? formatMoney(project.budget) ?? project.budgetDescription ?? "Not parsed yet";
   const responsibleBody = project.responsibleBody ?? project.agency ?? project.sourceMeetings?.[0]?.title ?? "Responsible body pending";
+  const rawProjectTitle = project.project_title || project.title;
+  const displayTitle = projectHeadline({ title: rawProjectTitle, description: project.summary, sourceText: project.lastPublicAction, responsibleBody, jurisdiction: project.jurisdiction, needsReview: project.needsReview });
+  const displaySummary = projectCardSummary({ title: rawProjectTitle, description: project.summary, sourceText: project.lastPublicAction, responsibleBody, jurisdiction: project.jurisdiction, needsReview: project.needsReview });
 
   return (
     <div className="space-y-6 py-8">
       <PageIntro
         eyebrow="Project"
-        title={project.project_title || project.title}
-        description="Source-backed project lead. Inferred project records stay marked for review until a capital plan, budget, public works page, or agenda source confirms details."
+        title={displayTitle}
+        description={project.needsReview ? "This project lead came from an official record, but its scope still needs review." : "A plain-language view of the project, responsible public body, cost, and timeline."}
         meta={
           <>
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{project.jurisdiction || "Jurisdiction pending"}</span>
@@ -63,7 +68,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               visibleLabel="Follow project"
               className="inline-flex min-h-11 items-center justify-center rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
             />
-            <Link href={`/cases/submit?targetType=project&targetId=${encodeURIComponent(project.id)}&topic=${encodeURIComponent(project.project_title || project.title)}&agency=${encodeURIComponent(responsibleBody)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
+            <Link href={`/cases/submit?targetType=project&targetId=${encodeURIComponent(project.id)}&topic=${encodeURIComponent(displayTitle)}&agency=${encodeURIComponent(responsibleBody)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700">
               Ask about this project
             </Link>
           </div>
@@ -72,7 +77,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
       <section className="dd-panel rounded-[1.75rem] p-6 sm:p-8">
         <h2 className="text-2xl font-semibold tracking-tight text-slate-50">What is happening?</h2>
-        <p className="mt-3 text-sm leading-6 text-slate-300">{project.summary}</p>
+        <p className="mt-3 text-sm leading-6 text-slate-300">{displaySummary}</p>
+        {displayTitle !== rawProjectTitle ? <CivicDetails label="Official project wording"><p>{rawProjectTitle}</p></CivicDetails> : null}
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Responsible body</p>
@@ -100,17 +106,20 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         </p>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
           {relatedDecisions.length ? (
-            relatedDecisions.map((decision) => (
-              <Link key={decision.id} href={`/decisions/${decision.id}`} className="block rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">
+            relatedDecisions.map((decision) => {
+              const trustNeedsReview = decision.reviewStatus === "needs_review";
+              const title = decisionHeadline({ title: decision.title, summary: decision.summary, sourceText: decision.sourceReferences.map((reference) => reference.snippet).filter(Boolean).join(" "), bodyName: decision.meeting.bodyName, jurisdiction: decision.jurisdiction, needsReview: trustNeedsReview });
+              const summary = decisionCardSummary({ title: decision.title, summary: decision.summary, sourceText: decision.sourceReferences.map((reference) => reference.snippet).filter(Boolean).join(" "), bodyName: decision.meeting.bodyName, jurisdiction: decision.jurisdiction, needsReview: trustNeedsReview });
+              return <Link key={decision.id} href={`/decisions/${decision.id}`} className="block rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-full border border-cyan-300/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyan-200">{decision.voteOutcome}</span>
                   <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-300">{decision.voteCount.display}</span>
                 </div>
-                <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{decision.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{decision.summary}</p>
+                <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{summary}</p>
                 <p className="mt-3 text-xs leading-5 text-slate-500">{decision.jurisdiction} · {decision.meeting.bodyName} · {formatDate(decision.meeting.date)}</p>
-              </Link>
-            ))
+              </Link>;
+            })
           ) : (
             <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
               No canonical decision card is linked to this project yet. The source meeting links below remain available while relationship coverage improves.

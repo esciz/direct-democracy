@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { CivicDetails } from "@/components/ui/civic-details";
 import { getResidentQuestionAnswersForTarget } from "@/lib/cases/resident-intake-store";
 import { getDecisionPageData, type DecisionVoteRecord } from "@/lib/civic/decision-pages";
+import { decisionCardSummary, decisionHeadline, highLevelSummary, projectCardSummary, projectHeadline } from "@/lib/civic/plain-language";
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 
 type DecisionPageProps = {
@@ -108,6 +110,25 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
         ? decision.voteCount.display
         : "Individual votes not parsed";
   const voteAttribution = voteAttributionSummary({ namedVotes, voteCountDisplay: decision.voteCount.display, totalKnown: decision.voteCount.totalKnown });
+  const displayTitle = decisionHeadline({
+    title: decision.title,
+    summary: decision.summary,
+    sourceText: decision.sourceReferences.map((reference) => reference.snippet).filter(Boolean).join(" "),
+    bodyName: decision.meeting.bodyName,
+    jurisdiction: decision.jurisdiction,
+    needsReview,
+  });
+  const displaySummary = decisionCardSummary({
+    title: decision.title,
+    summary: decision.summary,
+    sourceText: decision.sourceReferences.map((reference) => reference.snippet).filter(Boolean).join(" "),
+    bodyName: decision.meeting.bodyName,
+    jurisdiction: decision.jurisdiction,
+    needsReview,
+  });
+  const displayImpact = /needs review before public interpretation/i.test(decision.whyItMatters)
+    ? "This item could affect public operations, services, or spending, but the exact impact still needs review."
+    : highLevelSummary(decision.whyItMatters, "The public impact is still being reviewed.");
 
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-8 text-slate-100 sm:px-6 lg:px-8">
@@ -127,10 +148,10 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
           <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Citizen decision</p>
-              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">{decision.title}</h1>
-              <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300">{decision.summary}</p>
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">{displayTitle}</h1>
+              <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300">{displaySummary}</p>
               <p className="mt-5 max-w-3xl rounded-2xl border border-cyan-300/15 bg-cyan-500/10 p-4 text-sm leading-6 text-cyan-50">
-                Why it matters: {decision.whyItMatters}
+                Why it matters: {displayImpact}
               </p>
               <p className="mt-3 max-w-3xl rounded-2xl border border-white/10 bg-slate-950/35 p-4 text-sm leading-6 text-slate-300">
                 Vote attribution: {voteAttribution.description}
@@ -142,13 +163,14 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
                   visibleLabel="Follow decision"
                   className="inline-flex min-h-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-500/15"
                 />
-                <Link href={`/cases/submit?targetType=decision&targetId=${encodeURIComponent(decision.id)}&topic=${encodeURIComponent(decision.title)}&agency=${encodeURIComponent(decision.meeting.bodyName)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
+                <Link href={`/cases/submit?targetType=decision&targetId=${encodeURIComponent(decision.id)}&topic=${encodeURIComponent(displayTitle)}&agency=${encodeURIComponent(decision.meeting.bodyName)}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
                   Ask about this decision
                 </Link>
                 <Link href="/profile" className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300/30 hover:text-cyan-100">
                   View watchlist
                 </Link>
               </div>
+              {displayTitle !== decision.title ? <CivicDetails label="Official decision wording"><p>{decision.title}</p></CivicDetails> : null}
             </div>
             <aside className="rounded-2xl border border-white/10 bg-slate-950/45 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">At a glance</p>
@@ -263,17 +285,19 @@ export default async function DecisionPage({ params }: DecisionPageProps) {
             <Section eyebrow="Accountability" title="Projects and issues connected to this decision">
               <div className="grid gap-4">
                 {projects.length ? (
-                  projects.map((project) => (
-                    <Link key={project.id} href={`/projects/${project.id}`} className="block rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">
+                  projects.map((project) => {
+                    const title = projectHeadline({ title: project.name, description: project.description, responsibleBody: project.responsibleBody, jurisdiction: project.jurisdiction, needsReview: project.needsReview });
+                    const summary = projectCardSummary({ title: project.name, description: project.description, responsibleBody: project.responsibleBody, jurisdiction: project.jurisdiction, needsReview: project.needsReview });
+                    return <Link key={project.id} href={`/projects/${project.id}`} className="block rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan-300/25 hover:bg-white/[0.06]">
                       <div className="flex flex-wrap gap-2">
                         <Pill tone="cyan">project</Pill>
                         <Pill tone={project.needsReview ? "amber" : "green"}>{project.status}</Pill>
                       </div>
-                      <h3 className="mt-3 font-semibold text-slate-50">{project.name}</h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-400">{project.description}</p>
+                      <h3 className="mt-3 font-semibold text-slate-50">{title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-400">{summary}</p>
                       <p className="mt-3 text-xs text-slate-500">{project.responsibleBody ?? project.jurisdiction} · {formatMoney(project.budget) ?? project.budgetDescription ?? "Budget not parsed"}</p>
-                    </Link>
-                  ))
+                    </Link>;
+                  })
                 ) : (
                   <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">No project record is currently linked to this decision.</div>
                 )}

@@ -10,7 +10,7 @@ import { CommunityPageNav } from "@/components/domain/community-page-nav";
 import { CivicDetails } from "@/components/ui/civic-details";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getResidentQuestionAnswersForTarget } from "@/lib/cases/resident-intake-store";
-import { highLevelSummary, plainLanguageTitle } from "@/lib/civic/plain-language";
+import { decisionCardSummary, decisionHeadline, highLevelSummary, plainLanguageTitle, projectCardSummary, projectHeadline } from "@/lib/civic/plain-language";
 import { getDecisionTrustView } from "@/lib/civic/public-decision-trust";
 import { getCommunityHubData, getStoryDestination, type CommunityHubDecision, type CommunityHubEvent, type CommunityHubOfficial, type CommunityHubProject } from "@/lib/community/product-hub";
 import type { CommunityRelationshipRecord } from "@/lib/community/relationships";
@@ -163,15 +163,34 @@ function EventCard({ event }: { event: CommunityHubEvent }) {
 }
 
 function ProjectCard({ project }: { project: CommunityHubProject }) {
-  const title = plainLanguageTitle(project.name ?? project.project_title ?? project.title);
+  const rawTitle = project.name ?? project.project_title ?? project.title;
+  const title = projectHeadline({
+    title: rawTitle,
+    description: project.description ?? project.summary,
+    sourceText: project.lastPublicAction,
+    responsibleBody: project.responsibleBody,
+    agency: project.agency,
+    jurisdiction: project.jurisdiction,
+    needsReview: project.needsReview,
+  });
+  const summary = projectCardSummary({
+    title: rawTitle,
+    description: project.description ?? project.summary,
+    sourceText: project.lastPublicAction,
+    responsibleBody: project.responsibleBody,
+    agency: project.agency,
+    jurisdiction: project.jurisdiction,
+    needsReview: project.needsReview,
+  });
   return (
     <article className="dd-simple-card">
       <Badge tone={project.needsReview ? "amber" : "cyan"}>{project.status.replaceAll("_", " ")}</Badge>
       <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{highLevelSummary(project.description ?? project.summary, "This local project is being reviewed.")}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{summary}</p>
       <Link href={`/projects/${project.id}`} className="mt-4 inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">View project</Link>
       <CivicDetails label="Project details">
-        <p>{project.agency ?? project.sourceMeetings?.[0]?.title ?? "Agency pending"}</p>
+        {title !== rawTitle ? <p><span className="font-semibold text-slate-300">Official wording:</span> {rawTitle}</p> : null}
+        <p>{project.responsibleBody ?? project.agency ?? project.sourceMeetings?.[0]?.title ?? "Agency pending"}</p>
         <p>{project.cost ?? (project.budget ? `$${project.budget.toLocaleString()}` : "Cost not available")} · {formatShortDate(project.timeline ?? project.startDate)}</p>
         {project.relatedIssues?.length ? <p>Related: {project.relatedIssues.slice(0, 2).join(" · ")}</p> : null}
         <p>{project.needsReview ? "Review in progress" : "Source backed"}</p>
@@ -190,7 +209,22 @@ function DecisionCard({ decision }: { decision: CommunityHubDecision }) {
       : hasAggregateOutcome
         ? "Only the aggregate outcome is currently available from public records."
         : "This action needs review before individual votes can be shown.";
-  const title = plainLanguageTitle(decision.title);
+  const title = decisionHeadline({
+    title: decision.title,
+    summary: decision.summary,
+    sourceText: decision.sourceReferences.map((reference) => reference.snippet).filter(Boolean).join(" "),
+    bodyName: decision.meeting.bodyName,
+    jurisdiction: decision.jurisdiction,
+    needsReview: trust.state === "needs_review",
+  });
+  const summary = decisionCardSummary({
+    title: decision.title,
+    summary: decision.summary,
+    sourceText: decision.sourceReferences.map((reference) => reference.snippet).filter(Boolean).join(" "),
+    bodyName: decision.meeting.bodyName,
+    jurisdiction: decision.jurisdiction,
+    needsReview: trust.state === "needs_review",
+  });
   return (
     <article className={`dd-simple-card ${trust.state === "needs_review" ? "border-amber-300/20 bg-amber-500/[0.04]" : ""}`}>
       <div className="flex items-center justify-between gap-3">
@@ -198,7 +232,7 @@ function DecisionCard({ decision }: { decision: CommunityHubDecision }) {
         <span className="text-xs text-slate-500">{formatShortDate(decision.meeting.date)}</span>
       </div>
       <h3 className="mt-3 text-base font-semibold leading-6 text-slate-50">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{highLevelSummary(decision.summary, "This public decision is being summarized.")}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-300">{summary}</p>
       <p className="mt-3 text-sm leading-6 text-slate-400"><span className="font-semibold text-slate-300">Why it matters:</span> {highLevelSummary(decision.whyItMatters, "It may affect local rules, services, or public money.", 150)}</p>
       <Link href={`/decisions/${decision.id}`} className="mt-4 inline-flex rounded-full bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-100">See decision</Link>
       <CivicDetails label="Vote & source details">
@@ -223,9 +257,9 @@ function OfficialCard({ official }: { official: CommunityHubOfficial }) {
       <div className="flex items-start gap-3">
         <CivicAvatar name={official.name} imageUrl={official.image_url} entityType="official" size="md" verified />
         <div className="min-w-0 flex-1">
-          <h3 className="text-base font-semibold text-slate-50">{official.name}</h3>
-          <p className="mt-1 text-sm leading-6 text-slate-300">{official.office}</p>
-          <p className="mt-1 text-xs text-slate-500">{[official.district, official.department].filter(Boolean).join(" · ") || roleLabel}</p>
+          <h3 className="text-base font-semibold text-slate-50">{official.office}</h3>
+          <p className="mt-1 text-sm font-medium leading-6 text-slate-300">{official.name}</p>
+          <p className="mt-1 text-xs text-slate-500">{[official.body_name, official.district, official.department].filter(Boolean).join(" · ") || roleLabel}</p>
           {href ? <a href={href} target="_blank" rel="noreferrer" className="mt-3 inline-flex text-sm font-semibold text-cyan-200">View profile →</a> : null}
         </div>
       </div>
@@ -293,16 +327,20 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
   };
 
   const upcomingEvents = data.events.filter((event) => event.status === "upcoming").sort((a, b) => (Date.parse(a.start_at ?? "") || 0) - (Date.parse(b.start_at ?? "") || 0)).slice(0, 6);
-  const publicReadyDecisions = data.decisions.filter((decision) => getDecisionTrustView(decision).isPublicSpotlightReady);
+  const communityName = data.community.name.toLowerCase();
+  const isLocalJurisdiction = (value: string | null | undefined) => (value ?? "").toLowerCase().includes(communityName);
+  const localDecisions = data.decisions.filter((decision) => isLocalJurisdiction(decision.jurisdiction) || isLocalJurisdiction(decision.meeting.bodyName));
+  const localProjects = data.projects.filter((project) => isLocalJurisdiction(project.communityName) || isLocalJurisdiction(project.jurisdiction));
+  const publicReadyDecisions = localDecisions.filter((decision) => getDecisionTrustView(decision).isPublicSpotlightReady);
   const recentDecisions = publicReadyDecisions.slice(0, 4);
-  const limitedReviewDecisions = data.decisions.filter((decision) => !getDecisionTrustView(decision).isPublicSpotlightReady).slice(0, 4);
+  const limitedReviewDecisions = localDecisions.filter((decision) => !getDecisionTrustView(decision).isPublicSpotlightReady).slice(0, 4);
   const topDecision = recentDecisions.find((decision) => isReaderReady(decision.title, decision.summary, decision.whyItMatters)) ?? null;
   const topStory = data.storyRecords.find((record) =>
     !record.needsReview &&
     (record.storyJurisdiction ?? "").toLowerCase().includes(data.community.name.toLowerCase()) &&
     isReaderReady(record.storyHeadline ?? record.title, record.storySummary, record.storyWhyItMatters),
   ) ?? null;
-  const topProject = data.projects.find((project) =>
+  const topProject = localProjects.find((project) =>
     !project.needsReview &&
     ["proposed", "approved", "funded", "in_progress"].includes(project.status) &&
     isReaderReady(project.name ?? project.project_title ?? project.title, project.description ?? project.summary),
@@ -460,7 +498,7 @@ export default async function CommunityProductPage({ params }: CommunityPageProp
 
       <ExpandablePanel eyebrow="Projects" title="What is the city working on?" description="Open for major construction, spending, and public-work updates.">
         <div className="grid gap-4 lg:grid-cols-2">
-          {data.projects.length ? data.projects.slice(0, 4).map((project) => <ProjectCard key={project.id} project={project} />) : <EmptyCard text="No reviewed local project records currently available." />}
+          {localProjects.length ? localProjects.slice(0, 4).map((project) => <ProjectCard key={project.id} project={project} />) : <EmptyCard text="No reviewed Carson City project records are available yet." />}
         </div>
       </ExpandablePanel>
 
