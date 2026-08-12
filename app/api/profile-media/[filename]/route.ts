@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { get } from "@vercel/blob";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -24,6 +25,25 @@ export async function GET(_request: Request, { params }: ProfileMediaRouteProps)
   }
 
   const extension = filename.split(".").pop()?.toLowerCase() ?? "";
+
+  if (process.env.VERCEL_ENV) {
+    const result = await get(`profile-media/${filename}`, { access: "private" }).catch(() => null);
+
+    if (!result || result.statusCode !== 200 || !CONTENT_TYPES[extension]) {
+      return new NextResponse("Not found", { status: 404 });
+    }
+
+    return new NextResponse(result.stream, {
+      headers: {
+        "content-type": CONTENT_TYPES[extension],
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-length": String(result.blob.size),
+        etag: result.blob.etag,
+        "x-content-type-options": "nosniff",
+      },
+    });
+  }
+
   const buffer = await fs.readFile(path.join(LOCAL_MEDIA_ROOT, filename)).catch(() => null);
 
   if (!buffer || !CONTENT_TYPES[extension]) {

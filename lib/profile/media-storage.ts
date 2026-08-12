@@ -95,14 +95,14 @@ export async function storeProfileMedia(
       );
     }
 
-    const blob = await put(`profile-media/${filename}`, media.buffer, {
-      access: "public",
+    await put(`profile-media/${filename}`, media.buffer, {
+      access: "private",
       contentType: media.contentType,
       cacheControlMaxAge: 60 * 60 * 24 * 365,
       maximumSizeInBytes: MAX_PROFILE_MEDIA_BYTES,
     });
 
-    return blob.url;
+    return `/api/profile-media/${filename}`;
   }
 
   await fs.mkdir(LOCAL_MEDIA_ROOT, { recursive: true });
@@ -117,7 +117,11 @@ export async function deleteProfileMedia(mediaUrl: string) {
     const filename = path.basename(mediaUrl);
 
     if (/^[a-z0-9_-]+\.(?:jpg|png|webp)$/i.test(filename)) {
-      await fs.unlink(path.join(LOCAL_MEDIA_ROOT, filename)).catch(() => undefined);
+      if (process.env.VERCEL_ENV && blobStorageIsConfigured()) {
+        await del(`profile-media/${filename}`).catch(() => undefined);
+      } else {
+        await fs.unlink(path.join(LOCAL_MEDIA_ROOT, filename)).catch(() => undefined);
+      }
     }
 
     return;
