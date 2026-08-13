@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T15:07:57.812Z",
+  "generatedAt": "2026-08-12T14:17:50.740Z",
   "environment": {
     "githubActions": false,
     "allowExternalCache": false
@@ -11,17 +11,48 @@
     "recordsWithHashes": 2413,
     "recordsWithVersions": 2413,
     "pdfs": 1243,
-    "extractionPending": 384,
+    "extractionPending": 0,
     "ocrRequired": 20,
-    "verifiedPdf": 1127,
-    "verifiedHtml": 772,
+    "verifiedPdf": 1162,
+    "verifiedHtml": 770,
     "verifiedText": 6,
     "mimeMismatch": 0,
-    "quarantined": 31,
-    "hashMismatches": 0,
-    "hashMismatchesForPresentFiles": 0,
+    "quarantined": 61,
+    "hashMismatches": 30,
+    "hashMismatchesForPresentFiles": 30,
     "externalCacheMissingFilesSuppressed": 0,
-    "failures": 0
+    "failures": 30
   },
-  "failures": []
+  "failures": [
+    "Cache record meeting-source-document-1318e5b409e53aedcd45c03eb01168c0eeea4f9980b6c7d3233943dde4e9a759 failed verification hash check",
+    "Cache record meeting-source-document-1d88ef51cd7e2420faa1ac3f8673bd717d8ac1c844a49eadc6c22e18897c019c failed verification hash check",
+    "Cache record meeting-source-document-1d94bedbc2e6949260a6bacd10e2874e9b2eb0545f245d1c2edaf1d9e2bb3d05 failed verification hash check",
+    "Cache record meeting-source-document-2397be45cebf6c78089a28414e1e34259e3b2aabffd936b3b5240c0f382bd48f failed verification hash check",
+    "Cache record meeting-source-document-25fca73c8ad35e298dbf03368e7545fd5472489350f141418ed93e148ed6b51f failed verification hash check",
+    "Cache record meeting-source-document-3bed8ae8f9cd84654a44f5cb0c0f0d6f01adec90bac4de2eb5392aac5206c4fc failed verification hash check",
+    "Cache record meeting-source-document-4382b4b0d07a3d8f238f8525e2fd2dd127d1f9c3d2abbf9c0f78ba849cb7bb26 failed verification hash check",
+    "Cache record meeting-source-document-5e1b3b6a20882ecf35ceee3451247061048054e28e26682b11f21d4e44406713 failed verification hash check",
+    "Cache record meeting-source-document-606cecdd4cd46e62d328af828659cd5a378004e7a7665d6310548f69699c1520 failed verification hash check",
+    "Cache record meeting-source-document-68574b53775c9f54f44fb528fee8dbb4ed3b12375473db83fd25af6eaed8622a failed verification hash check",
+    "Cache record meeting-source-document-6c15be35b46b09623e378eb81ceb1cad911f67ee08b562c55f5f82831a808a3b failed verification hash check",
+    "Cache record meeting-source-document-6e0a51954424ab79e00415c3ba202f9de76bb6f272c19ab2c06ec5958a0f515b failed verification hash check",
+    "Cache record meeting-source-document-6ec1c31b3ade7870b0d65a836f7f3ed8402ef6140c944ee80f8c40075967c3be failed verification hash check",
+    "Cache record meeting-source-document-70200cf3df2f77540834f35bd924446e7efbad52a6c5325ca504fdc7adaf05a2 failed verification hash check",
+    "Cache record meeting-source-document-70ec4ac713bb24e64edec866f1534c7214b2248bacd8b0dbeffd15624f417894 failed verification hash check",
+    "Cache record meeting-source-document-742067869f4ea2db288ce16ee4d4b4a7c7f5e24c51f70749433c3f2c57178802 failed verification hash check",
+    "Cache record meeting-source-document-885b6033a5852aba39c86a3c76d67c3ebf66da27b816f44558be5cbee9616301 failed verification hash check",
+    "Cache record meeting-source-document-8d0db76ad4b41b38b9fc2241d53f41d457190ad617c277862a9cf7a6e50d958d failed verification hash check",
+    "Cache record meeting-source-document-90fe9974ef83af56d8682d280e82c37d6e6c7f89dbfad1db9acc887720686429 failed verification hash check",
+    "Cache record meeting-source-document-954f7c953adbfb8d0aa1b53c9f8a6a8ce8d7853bb6e282b830ab0a68d4346b3e failed verification hash check",
+    "Cache record meeting-source-document-a2a9a3aaa51ded492e300a85b7206ee493d07ff6e27b93f25605c7cc86261069 failed verification hash check",
+    "Cache record meeting-source-document-a56d1ff5bd008e30156c0225f894d9f7dd410ea1e0f4e963c08a5e95f6461cab failed verification hash check",
+    "Cache record meeting-source-document-a6405d87ae9ba941799f5f479084e6fac5c7e1783ab600e79b409c6c65d9fcc3 failed verification hash check",
+    "Cache record meeting-source-document-c2d2ebce091407f9edd713483ec9c6dde3c225326a0d01f5ad33ead4b4abe483 failed verification hash check",
+    "Cache record meeting-source-document-ca71f4012e37f3b68c2704c42dfbb3a1408bfa94f67cc3d0a701844b8405511d failed verification hash check",
+    "Cache record meeting-source-document-d180a92dd243ac36d719fb3676716435d44dc3bcdfe0f8893936e6056e5da468 failed verification hash check",
+    "Cache record meeting-source-document-d9ada8bd3a609894a633ab82f6dd4b82118daa101c71498bc230a6f58ee22aee failed verification hash check",
+    "Cache record meeting-source-document-db8a72763021a5e3e4096b04b42b26251537eb439b20ad4d73450ef2ef98d058 failed verification hash check",
+    "Cache record meeting-source-document-e40e3ff0f21a43d08bd6eab62be17bfc56de6469d2d97d7c232bfc5a4d4882d2 failed verification hash check",
+    "Cache record meeting-source-document-e551afdb03e98837e39f69b2dbcd96fd738f7ecc49ea78f8b3d253b6bcc56c99 failed verification hash check"
+  ]
 }
