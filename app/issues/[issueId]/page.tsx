@@ -4,6 +4,7 @@ import { Suspense } from "react";
 
 import { IssueFollowControl } from "@/components/domain/issue-follow-control";
 import { IssuePositionsSection } from "@/components/domain/issue-positions-section";
+import { CivicEventCard } from "@/components/domain/civic-event-card";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { OrganizationCard } from "@/components/domain/organization-card";
 import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
@@ -24,6 +25,8 @@ import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getCommunityEventTypeLabel } from "@/lib/community/events";
 import { getDebatesForUser } from "@/lib/debates/store";
 import { getFeedPostPreviews } from "@/lib/feed/posts";
+import { getQuickVoteCardsForUser } from "@/lib/feed/quick-votes";
+import { getAllCivicEventsForUser } from "@/lib/events/civic-events";
 import { getIssueHubRecordByRouteParam } from "@/lib/issues/civic-hub";
 import { canPostToIssueScope, canSubmitIssueVoice, isIssueVoiceAccount, isPlatformWideIssue } from "@/lib/issues/posting-eligibility";
 import { valuesMatchIssueText } from "@/lib/issues/utils";
@@ -34,7 +37,7 @@ import { getContentDetailHref } from "@/lib/news/links";
 import { getFeedMediaPreviews } from "@/lib/media/store";
 import { getAllPetitions } from "@/lib/petitions/store";
 import { getPoliticalAdsForIssue } from "@/lib/political-ads/store";
-import { getFeedPollPreviews } from "@/lib/polls/store";
+import { getFeedPollPreviews, getNormalizedPollAttachments } from "@/lib/polls/store";
 import { getElectionSummaries } from "@/lib/server/elections-context";
 import { getIssueByRouteParam, getIssueSummary, getOrganizationsForIssue, getPeopleForIssue } from "@/lib/server/issues";
 import { getContentTypeTheme } from "@/lib/ui/content-type-theme";
@@ -53,7 +56,7 @@ type IssueDetailPageProps = {
   }>;
 };
 
-type IssueFilter = "all" | "posts" | "events" | "news" | "debates" | "petitions" | "cases" | "ballotMeasures";
+type IssueFilter = "all" | "meetings" | "polls" | "votes" | "posts" | "events" | "news" | "debates" | "petitions" | "cases" | "ballotMeasures";
 
 type IssuePreviewCard = {
   id: string;
@@ -429,6 +432,9 @@ function RelatedOrganizationsSection({
 function normalizeFilter(value: string | undefined): IssueFilter {
   switch (value) {
     case "posts":
+    case "meetings":
+    case "polls":
+    case "votes":
     case "events":
     case "news":
     case "debates":
@@ -1960,6 +1966,86 @@ async function EventsSectionLoader({ issueId, filter, issueText, currentUser }: 
   return <Section issueId={issueId} filter={filter} title="Events" description="Issue-linked public meetings, rallies, interviews, and community events." items={items} sectionKey="events" />;
 }
 
+async function MeetingsSectionLoader({ issueId, issueText, currentUser }: { issueId: string; issueText: string; currentUser: AuthUser }) {
+  const [record, events] = await Promise.all([
+    getIssueHubRecordByRouteParam(issueId).catch(() => null),
+    getAllCivicEventsForUser(currentUser).catch(() => []),
+  ]);
+  const relatedMeetingIds = new Set(record?.relatedMeetingIds ?? []);
+  const meetings = events
+    .filter((event) => event.isOfficialMeeting)
+    .filter((event) =>
+      relatedMeetingIds.has(event.id) ||
+      Boolean(event.meetingRecordId && relatedMeetingIds.has(event.meetingRecordId)) ||
+      valuesMatchIssueText(issueText, ...event.relatedIssueLabels, event.title, event.description, event.meetingSummary),
+    )
+    .sort((left, right) => (Date.parse(right.startsAt ?? "") || 0) - (Date.parse(left.startsAt ?? "") || 0))
+    .slice(0, 6);
+
+  return (
+    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Meetings</p>
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">Public meetings connected to this issue</h2>
+          <p className="mt-2 text-sm text-slate-600">Official meetings linked through reviewed issue records or matching agenda policy areas.</p>
+        </div>
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+          {meetings.length} meeting{meetings.length === 1 ? "" : "s"}
+        </span>
+      </div>
+      <div className="mt-6 grid gap-4 xl:grid-cols-2">
+        {meetings.length ? meetings.map((event) => (
+          <CivicEventCard key={event.id} event={event} returnPath={`/issues/${issueId}`} guestMode={isGuestUserId(currentUser.id)} />
+        )) : (
+          <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 xl:col-span-2">
+            No public meetings are linked to this issue yet.
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+async function PollsSectionLoader({ issueId, filter, issueText, currentUserId }: { issueId: string; filter: IssueFilter; issueText: string; currentUserId: string }) {
+  const polls = await getFeedPollPreviews({ viewerUserId: currentUserId, limit: -1 }).catch(() => []);
+  const items: IssuePreviewCard[] = polls
+    .filter((poll) => valuesMatchIssueText(
+      issueText,
+      ...getNormalizedPollAttachments(poll).filter((attachment) => attachment.type === "issue").map((attachment) => attachment.label),
+      poll.question,
+      ...poll.options,
+    ))
+    .map((poll) => ({
+      id: poll.id,
+      href: "/polls",
+      label: "Poll",
+      title: poll.question,
+      subtitle: `${poll.creatorName} · ${poll.jurisdictionName}`,
+      description: `${poll.totalVotes} response${poll.totalVotes === 1 ? "" : "s"} across ${poll.options.length} choices.`,
+      meta: [poll.votingPeriodStatus === "closed" ? "Closed" : "Open", formatDate(poll.createdAt)],
+    }));
+
+  return <Section issueId={issueId} filter={filter} title="Polls" description="Citizen polls explicitly attached to this issue." items={items} sectionKey="polls" />;
+}
+
+async function VotesSectionLoader({ issueId, filter, issueText, currentUser }: { issueId: string; filter: IssueFilter; issueText: string; currentUser: AuthUser }) {
+  const votes = await getQuickVoteCardsForUser(currentUser).catch(() => []);
+  const items: IssuePreviewCard[] = votes
+    .filter((vote) => valuesMatchIssueText(issueText, vote.relatedIssueLabel, vote.issueTag, vote.questionText, vote.contextSummary))
+    .map((vote) => ({
+      id: vote.id,
+      href: "/voting/all?filter=issues",
+      label: "Vote",
+      title: vote.questionText,
+      subtitle: vote.jurisdictionName,
+      description: vote.plainLanguageSummary ?? vote.contextSummary ?? "Open the voting card to review the source-backed context.",
+      meta: [`${vote.totalResponses} response${vote.totalResponses === 1 ? "" : "s"}`, vote.votingPeriodStatus === "closed" ? "Closed" : "Open"],
+    }));
+
+  return <Section issueId={issueId} filter={filter} title="Votes" description="Formal civic vote cards connected to this issue." items={items} sectionKey="votes" />;
+}
+
 async function NewsSectionLoader({ issueId, filter, issueText, currentUserId }: { issueId: string; filter: IssueFilter; issueText: string; currentUserId: string }) {
   const stories = await getFeedMediaPreviews({ viewerUserId: currentUserId, limit: -1 }).catch(() => []);
   const items: IssuePreviewCard[] = stories
@@ -2221,6 +2307,10 @@ async function IssueDetailContent({
         <IssueBriefSection issueId={safeIssue.id} issueText={safeIssue.issueText} currentUser={currentUser} />
       </Suspense>
 
+      <Suspense fallback={<SectionFallback title="Meetings" description="Official meetings connected to this issue." />}>
+        <MeetingsSectionLoader issueId={safeIssue.id} issueText={safeIssue.issueText} currentUser={currentUser} />
+      </Suspense>
+
       <details id="issue-records" className="group rounded-[1.5rem] border border-white/70 bg-white/90 shadow-card backdrop-blur">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:p-6">
           <div>
@@ -2343,6 +2433,9 @@ async function IssueDetailContent({
           <div className="flex flex-wrap gap-2">
             {[
               { key: "all" as const, label: "All" },
+              { key: "meetings" as const, label: "Meetings" },
+              { key: "polls" as const, label: "Polls" },
+              { key: "votes" as const, label: "Votes" },
               { key: "posts" as const, label: "Posts" },
               { key: "events" as const, label: "Events" },
               { key: "news" as const, label: "News" },
@@ -2387,6 +2480,24 @@ async function IssueDetailContent({
                 <RelatedOrganizationsSectionLoader issueText={safeIssue.issueText} currentUser={currentUser} />
               </Suspense>
             </div>
+          ) : null}
+
+          {activeFilter === "meetings" ? (
+            <Suspense fallback={<SectionFallback title="Meetings" description="Official meetings connected to this issue." />}>
+              <MeetingsSectionLoader issueId={safeIssue.id} issueText={safeIssue.issueText} currentUser={currentUser} />
+            </Suspense>
+          ) : null}
+
+          {activeFilter === "all" || activeFilter === "polls" ? (
+            <Suspense fallback={<SectionFallback title="Polls" description="Citizen polls explicitly attached to this issue." />}>
+              <PollsSectionLoader issueId={safeIssue.id} filter={activeFilter} issueText={safeIssue.issueText} currentUserId={currentUser.id} />
+            </Suspense>
+          ) : null}
+
+          {activeFilter === "all" || activeFilter === "votes" ? (
+            <Suspense fallback={<SectionFallback title="Votes" description="Formal civic vote cards connected to this issue." />}>
+              <VotesSectionLoader issueId={safeIssue.id} filter={activeFilter} issueText={safeIssue.issueText} currentUser={currentUser} />
+            </Suspense>
           ) : null}
 
           {activeFilter === "all" || activeFilter === "posts" ? (

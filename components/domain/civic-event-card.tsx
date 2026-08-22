@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { IssueTag } from "@/components/domain/issue-tag";
 import { ShareActionMenu } from "@/components/domain/share-action-menu";
 import { CivicDetails } from "@/components/ui/civic-details";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
@@ -84,6 +85,13 @@ export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guest
               {statusLabel}
             </span>
           </div>
+          {event.relatedIssueLabels.length ? (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {event.relatedIssueLabels.slice(0, 3).map((issue) => (
+                <IssueTag key={`${event.id}-${issue}`} label={issue} />
+              ))}
+            </div>
+          ) : null}
           <h3 className="mt-3 text-lg font-semibold text-ink">
             <Link href={eventHref} className="transition hover:text-civic-700">
               {displayTitle}

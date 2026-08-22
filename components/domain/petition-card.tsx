@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { IssueTag } from "@/components/domain/issue-tag";
 import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
-import { slugifyIssueText } from "@/lib/issues/utils";
 import { buildSentimentHistory } from "@/lib/sentiment/history";
 import type { PetitionSummary } from "@/types/domain";
 
@@ -43,13 +43,7 @@ export function PetitionCard({ petition }: PetitionCardProps) {
       {petition.issueTags?.length ? (
         <div className="mt-4 flex flex-wrap gap-2">
           {petition.issueTags.map((tag) => (
-            <Link
-              key={`${petition.id}-${tag}`}
-              href={`/issues/${slugifyIssueText(tag)}`}
-              className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700 transition hover:text-civic-900"
-            >
-              {tag}
-            </Link>
+            <IssueTag key={`${petition.id}-${tag}`} label={tag} />
           ))}
         </div>
       ) : null}

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-12T13:16:54.311Z",
-  "runId": "20260812131654-local-network-enabled-9bxo1d",
+  "generatedAt": "2026-08-22T15:16:37.443Z",
+  "runId": "20260822151637-local-network-enabled-sq0v3e",
   "jurisdiction": "carson-city",
   "evidencePersistence": {
     "mode": "local_cache",
@@ -16,9 +16,9 @@
       "status": "changed",
       "diagnosticClassification": "changed",
       "cachedPath": "data/raw/official-directories/carson-city-department-directory/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-department-directory/20260812131654-1ca136da6a082afd.html",
-      "contentHash": "1ca136da6a082afdf0ee4ceb151426cbe70847867b346fe55ff30dc4fe7dcbe1",
-      "bytes": 200548,
+      "versionedCachedPath": "data/raw/official-directories/carson-city-department-directory/20260822151637-f36c13b35364f7c5.html",
+      "contentHash": "f36c13b35364f7c515773c3e6190ee5b837e581d553d1dcd26ab8f1e8e4a3677",
+      "bytes": 200636,
       "pageTitle": "Department Directory | Carson City",
       "verifierClassification": "changed",
       "positiveSignals": [
@@ -37,8 +37,8 @@
         "cookie_or_browser_experience_notice"
       ],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-12T13:16:54.311Z",
-      "lastSeenAt": "2026-08-12T13:16:54.311Z"
+      "lastCheckedAt": "2026-08-22T15:16:37.443Z",
+      "lastSeenAt": "2026-08-22T15:16:37.443Z"
     },
     {
       "sourceId": "carson-city-board-of-supervisors",
@@ -47,9 +47,9 @@
       "status": "changed",
       "diagnosticClassification": "changed",
       "cachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/20260812131654-0f3d4bb5daa1660e.html",
-      "contentHash": "0f3d4bb5daa1660ec7902893bd1df3f20d1ce7281c40ae905a046925d66d0668",
-      "bytes": 180894,
+      "versionedCachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/20260822151637-9f0dae2805051c15.html",
+      "contentHash": "9f0dae2805051c156955389baae06c5dea2d65417e30b8a67cc47ddd98272063",
+      "bytes": 180986,
       "pageTitle": "Board of Supervisors | Carson City",
       "verifierClassification": "changed",
       "positiveSignals": [
@@ -69,8 +69,8 @@
         "cookie_or_browser_experience_notice"
       ],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-12T13:16:54.311Z",
-      "lastSeenAt": "2026-08-12T13:16:54.311Z"
+      "lastCheckedAt": "2026-08-22T15:16:37.443Z",
+      "lastSeenAt": "2026-08-22T15:16:37.443Z"
     },
     {
       "sourceId": "carson-city-staff-directory",
@@ -79,9 +79,9 @@
       "status": "changed",
       "diagnosticClassification": "changed",
       "cachedPath": "data/raw/official-directories/carson-city-staff-directory/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-staff-directory/20260812131654-642be77203c4402f.html",
-      "contentHash": "642be77203c4402f1df7d971556e28d97ba1e80e368ae2e52db2f35175b992a6",
-      "bytes": 241103,
+      "versionedCachedPath": "data/raw/official-directories/carson-city-staff-directory/20260822151637-11233910008aa08a.html",
+      "contentHash": "11233910008aa08afa07352141f754d80d5c12d54d6e5e7b3a5d49fa1e678ba7",
+      "bytes": 241198,
       "pageTitle": "Staff Directory | Carson City",
       "verifierClassification": "changed",
       "positiveSignals": [
@@ -100,8 +100,8 @@
         "generic_javascript_notice"
       ],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-12T13:16:54.311Z",
-      "lastSeenAt": "2026-08-12T13:16:54.311Z"
+      "lastCheckedAt": "2026-08-22T15:16:37.443Z",
+      "lastSeenAt": "2026-08-22T15:16:37.443Z"
     },
     {
       "sourceId": "carson-city-school-district-board",
@@ -110,9 +110,9 @@
       "status": "retrieved_verified",
       "diagnosticClassification": "verified_retrieval",
       "cachedPath": "data/raw/official-directories/carson-city-school-district-board/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-school-district-board/20260812131654-76028048bc051657.html",
-      "contentHash": "76028048bc051657b824e8a2aec91c2d24a4a7bd288392b2631215a7a275896e",
-      "bytes": 73935,
+      "versionedCachedPath": "data/raw/official-directories/carson-city-school-district-board/20260822151637-26f8c4d85aa78faf.html",
+      "contentHash": "26f8c4d85aa78faf542da22831b3f865c9086eef5e0fa2e2ce0497352fe0106c",
+      "bytes": 74059,
       "pageTitle": "School Board - Carson City School District",
       "verifierClassification": "verified_retrieval",
       "positiveSignals": [
@@ -126,8 +126,8 @@
       ],
       "negativeSignals": [],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-12T13:16:54.311Z",
-      "lastSeenAt": "2026-08-12T13:16:54.311Z"
+      "lastCheckedAt": "2026-08-22T15:16:37.443Z",
+      "lastSeenAt": "2026-08-22T15:16:37.443Z"
     },
     {
       "sourceId": "elko-city-council",
@@ -150,7 +150,7 @@
       ],
       "negativeSignals": [],
       "parserEligibility": "needs_playwright",
-      "lastCheckedAt": "2026-08-12T13:16:54.311Z",
+      "lastCheckedAt": "2026-08-22T15:16:37.443Z",
       "lastSeenAt": null
     },
     {
@@ -180,7 +180,7 @@
         "maintenance_or_unavailable"
       ],
       "parserEligibility": "rejected",
-      "lastCheckedAt": "2026-08-12T13:16:54.311Z",
+      "lastCheckedAt": "2026-08-22T15:16:37.443Z",
       "lastSeenAt": null
     },
     {
@@ -190,7 +190,7 @@
       "status": "retrieved_verified",
       "diagnosticClassification": "verified_retrieval",
       "cachedPath": "data/raw/official-directories/elko-county-commission/current.html",
-      "versionedCachedPath": "data/raw/official-directories/elko-county-commission/20260812131654-4fe7b2d5cb099ada.html",
+      "versionedCachedPath": "data/raw/official-directories/elko-county-commission/20260822151637-4fe7b2d5cb099ada.html",
       "contentHash": "4fe7b2d5cb099ada7c78fde5d71a0436f151cf5aacc54750674b5c66f2bb0060",
       "bytes": 87907,
       "pageTitle": "Elko County, NV",
@@ -205,8 +205,8 @@
       ],
       "negativeSignals": [],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-12T13:16:54.311Z",
-      "lastSeenAt": "2026-08-12T13:16:54.311Z"
+      "lastCheckedAt": "2026-08-22T15:16:37.443Z",
+      "lastSeenAt": "2026-08-22T15:16:37.443Z"
     }
   ],
   "sensitiveValuesIncluded": false

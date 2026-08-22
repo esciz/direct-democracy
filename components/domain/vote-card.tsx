@@ -4,6 +4,7 @@ import { useEffect, useState, useTransition } from "react";
 import type { ReactNode } from "react";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
+import { IssueTag } from "@/components/domain/issue-tag";
 import { getCivicJurisdictionContext } from "@/lib/civic/jurisdiction-context";
 import { highLevelSummary, plainLanguageTitle } from "@/lib/civic/plain-language";
 import { submitQuickVoteInline } from "@/lib/feed/vote-actions";
@@ -368,6 +369,7 @@ export function VoteCard({
     jurisdictionName: currentQuestion.jurisdictionName,
     officialBody: currentQuestion.officialBody,
   });
+  const relatedIssueLabel = currentQuestion.relatedIssueLabel ?? currentQuestion.issueTag ?? null;
 
   useEffect(() => {
     setCurrentQuestion(question);
@@ -414,6 +416,9 @@ export function VoteCard({
         <span className="rounded-full border border-cyan-300/18 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
           {getVoteObjectLabel(currentQuestion)}
         </span>
+        {relatedIssueLabel ? (
+          <IssueTag label={relatedIssueLabel} href={currentQuestion.relatedIssueHref} tone="dark" />
+        ) : null}
         {currentQuestion.onboardingPosition && currentQuestion.onboardingTotal ? (
           <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
             Vote {currentQuestion.onboardingPosition} of {currentQuestion.onboardingTotal}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { IssueTag } from "@/components/domain/issue-tag";
 import { FilterTabs } from "@/components/ui/filter-tabs";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getVotingLibrary } from "@/lib/feed/quick-votes";
@@ -80,9 +81,7 @@ export default async function VotingAllPage({ searchParams }: VotingAllPageProps
                   {question.communityLabel ?? question.jurisdictionName}
                 </span>
                 {question.relatedIssueLabel ? (
-                  <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
-                    {question.relatedIssueLabel}
-                  </span>
+                  <IssueTag label={question.relatedIssueLabel} href={question.relatedIssueHref} />
                 ) : null}
               </div>
             </div>

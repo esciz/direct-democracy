@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useTransition } from "react";
 
 import { voteOnPollFromFeed } from "@/lib/polls/actions";
+import { IssueTag } from "@/components/domain/issue-tag";
 import { getContentTypeTheme } from "@/lib/ui/content-type-theme";
 import type { PollSummary } from "@/types/domain";
 
@@ -51,6 +52,7 @@ export function FeedPollCard({ poll }: FeedPollCardProps) {
 
   const topResults = currentPoll.results.slice().sort((a, b) => b.voteCount - a.voteCount).slice(0, 3);
   const showResults = Boolean(currentPoll.viewerVote) || !currentPoll.canVote;
+  const relatedIssues = (currentPoll.attachments ?? []).filter((attachment) => attachment.type === "issue");
 
   function handleVote(option: string, event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
@@ -111,6 +113,14 @@ export function FeedPollCard({ poll }: FeedPollCardProps) {
           <h2 className="text-xl font-semibold text-ink">{currentPoll.question}</h2>
         </div>
       </Link>
+
+      {relatedIssues.length ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {relatedIssues.map((issue) => (
+            <IssueTag key={`${currentPoll.id}-${issue.id}`} label={issue.label} href={`/issues/${issue.id}`} />
+          ))}
+        </div>
+      ) : null}
 
       {showResults ? (
         <div className="mt-4 space-y-3 rounded-2xl bg-slate-50/80 p-4">

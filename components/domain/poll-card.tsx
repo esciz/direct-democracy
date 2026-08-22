@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
+import { IssueTag } from "@/components/domain/issue-tag";
 import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { RoleBadge } from "@/components/domain/role-badge";
@@ -15,6 +16,7 @@ type PollCardProps = {
 };
 
 export function PollCard({ poll, returnPath = "/my-community", viewerRole = "citizen" }: PollCardProps) {
+  const relatedIssues = (poll.attachments ?? []).filter((attachment) => attachment.type === "issue");
   const showResults = Boolean(poll.viewerVote) || !poll.canVote;
   const canPromote = viewerRole === "trustedCitizen" && poll.promotionEligible && !poll.promotedPetitionId && !poll.promotedVoteQuestionId;
   const currentSupport = poll.results[0]?.percentage ?? Math.min(78, Math.max(30, 40 + poll.totalVotes * 4));
@@ -28,6 +30,9 @@ export function PollCard({ poll, returnPath = "/my-community", viewerRole = "cit
         </span>
         <RoleBadge role={poll.creatorRole} />
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{poll.jurisdictionName}</span>
+        {relatedIssues.map((issue) => (
+          <IssueTag key={`${poll.id}-${issue.id}`} label={issue.label} href={`/issues/${issue.id}`} />
+        ))}
       </div>
 
       <div className="mt-4">

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
+import { IssueTag } from "@/components/domain/issue-tag";
 import { ShareActionMenu } from "@/components/domain/share-action-menu";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { getCommunityEventTypeLabel } from "@/lib/community/events";
@@ -67,7 +68,7 @@ export function CommunityEventCard({
                 {event.sponsorType}
               </span>
               {event.issueLabel ? (
-                <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">{event.issueLabel}</span>
+                <IssueTag label={event.issueLabel} href={event.issueSlug ? `/issues/${event.issueSlug}` : null} />
               ) : null}
               {distanceLabel ? (
                 <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-sky-700">

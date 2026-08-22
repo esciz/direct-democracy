@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { IssueTag } from "@/components/domain/issue-tag";
 import type { PetitionSummary } from "@/types/domain";
 
 type CommunityPetitionCardProps = {
@@ -14,6 +15,11 @@ export function CommunityPetitionCard({ petition }: CommunityPetitionCardProps) 
       <p className="mt-3 text-sm text-slate-600">
         {petition.signatureCount.toLocaleString()} signatures · {petition.status.toLowerCase().replaceAll("_", " ")}
       </p>
+      {petition.issueTags?.length ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {petition.issueTags.map((issue) => <IssueTag key={`${petition.id}-${issue}`} label={issue} />)}
+        </div>
+      ) : null}
       <div className="mt-4 flex flex-wrap gap-3">
         <Link
           href={`/petitions/${petition.id}`}

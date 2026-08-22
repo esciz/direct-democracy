@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { CivicDetails } from "@/components/ui/civic-details";
+import { IssueTag } from "@/components/domain/issue-tag";
 import { highLevelSummary, plainLanguageTitle } from "@/lib/civic/plain-language";
 import type { MeetingActionCard } from "@/lib/public-meetings/action-cards";
 
@@ -38,6 +39,11 @@ export function MeetingActionCardView({ card, admin = false }: MeetingActionCard
         <p className="text-xs font-semibold text-cyan-200">{formatDate(card.meetingDate)}</p>
         {card.badges.some((badge) => badge.includes("pending") || badge.includes("Needs")) ? <Badge label="Review in progress" /> : null}
       </div>
+      {card.policyArea !== "Other" ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          <IssueTag label={card.policyArea} tone="dark" />
+        </div>
+      ) : null}
       <h2 className="mt-3 text-lg font-semibold leading-7 text-slate-50">{title}</h2>
       <p className="mt-2 text-sm leading-6 text-slate-300">{summary}</p>
       {keyOutcome ? (

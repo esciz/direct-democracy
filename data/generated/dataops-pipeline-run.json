@@ -1,7 +1,7 @@
 {
-  "runId": "dataops-2026-08-12T13:04:10.017Z",
-  "startedAt": "2026-08-12T13:04:10.018Z",
-  "updatedAt": "2026-08-12T13:27:13.820Z",
+  "runId": "dataops-2026-08-22T15:15:19.553Z",
+  "startedAt": "2026-08-22T15:15:19.554Z",
+  "updatedAt": "2026-08-22T15:19:23.902Z",
   "environment": {
     "offline": false,
     "networkAvailable": true,
@@ -13,20 +13,20 @@
       "id": "refresh-meeting-calendars",
       "description": "Refresh Nevada meetings, current-official directories, and statewide financial coverage.",
       "status": "failed",
-      "startedAt": "2026-08-12T13:04:10.106Z",
-      "completedAt": "2026-08-12T13:27:13.820Z",
-      "durationMs": 1383714,
-      "error": "Command failed: node --import tsx scripts/collect-nevada-financials.ts --scheduled"
+      "startedAt": "2026-08-22T15:15:19.639Z",
+      "completedAt": "2026-08-22T15:19:23.901Z",
+      "durationMs": 244263,
+      "error": "Command failed: node --import tsx scripts/audit-nevada-financial-coverage.ts --strict"
     }
   ],
   "metrics": {
     "registeredSourcesChecked": 65,
-    "upcomingMeetings": 34,
-    "meetingProvidersWithUpcoming": 9,
+    "upcomingMeetings": 17,
+    "meetingProvidersWithUpcoming": 5,
     "requiredNevadaJurisdictions": 56,
     "configuredNevadaJurisdictions": 56,
     "nevadaProvidersPendingAdvancedPass": 0,
-    "meetingProvidersZeroUpcoming": 15,
+    "meetingProvidersZeroUpcoming": 19,
     "meetingProviderAdapterGaps": 33,
     "meetingProviderSourceFailures": 0,
     "sourceBackedIssues": 19,
