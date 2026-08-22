@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { NewMessageForm } from "@/components/domain/new-message-form";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import type {
   GuidedMessageRecipientSummary,
   MessageLevel,
@@ -42,7 +43,7 @@ type IssueTypeOption = {
 };
 
 const levelLabels: Record<MessageLevel, string> = {
-  local: "Local",
+  local: LOCAL_SCOPE_LABEL,
   state: "State",
   federal: "Federal",
 };

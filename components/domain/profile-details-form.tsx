@@ -15,6 +15,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { getGeographicCommunities } from "@/lib/community/communities";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import { updateProfileDetails } from "@/lib/profile/actions";
 import { EXTERNAL_LINK_FIELDS } from "@/lib/profile/external-links";
 import { PREDEFINED_GROUP_TAG_OPTIONS, PREDEFINED_ISSUE_OPTIONS } from "@/lib/profile/options";
@@ -174,13 +175,13 @@ export function ProfileDetailsForm({ user, content }: ProfileDetailsFormProps) {
           />
           <div className="mt-5 grid gap-x-6 gap-y-8 xl:grid-cols-3">
             <StructuredOptionInput
-              label="Local"
+              label={LOCAL_SCOPE_LABEL}
               inputName="localIssues"
               options={PREDEFINED_ISSUE_OPTIONS.local}
               values={content.localIssues}
               maxItems={3}
               allowCustom={false}
-              helpText="City, county, and nearby concerns."
+              helpText="Your city and county are shown together throughout the site."
             />
             <StructuredOptionInput
               label="Nevada"

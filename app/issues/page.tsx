@@ -6,6 +6,9 @@ import { getIssueReviewRequests } from "@/lib/issues/review-requests";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { slugifyIssueText } from "@/lib/issues/utils";
 import { getIssueDirectoryForUser, getIssueSummary } from "@/lib/server/issues";
+import { getDefaultCommunityForUser } from "@/lib/community/communities";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
+import { getCivicJurisdictionTag } from "@/lib/civic/jurisdiction-context";
 import type { PublicIssueHubSummary } from "@/types/domain";
 
 type IssueScopeFilter = "all" | "local" | "state" | "national";
@@ -36,7 +39,9 @@ function formatDate(value?: string | null) {
 function renderIssueBadges(issue: PublicIssueHubSummary) {
   return (
     <>
-      <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold capitalize text-civic-700">{issue.scope}</span>
+      <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">
+        {issue.scope === "local" ? getCivicJurisdictionTag({ jurisdictionName: issue.jurisdictionName }) : issue.scope === "state" ? "State" : "National"}
+      </span>
       {issue.scope === "national" ? (
         <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">Available to all users</span>
       ) : null}
@@ -116,7 +121,11 @@ export default async function IssuesIndexPage({ searchParams }: IssuesIndexPageP
   const params = searchParams ? await searchParams : undefined;
   const query = params?.q?.trim() ?? "";
   const scope = normalizeScope(params?.scope);
-  const [issues, reviewRequests] = await Promise.all([getIssueDirectoryForUser(user, { query, scope }), getIssueReviewRequests()]);
+  const defaultCommunity = getDefaultCommunityForUser(user);
+  const [issues, reviewRequests] = await Promise.all([
+    getIssueDirectoryForUser(user, { communityId: defaultCommunity.id, query, scope }),
+    getIssueReviewRequests(),
+  ]);
   const nationalIssues = issues.filter((issue) => issue.scope === "national");
   const regionalIssues = issues.filter((issue) => issue.scope !== "national");
 
@@ -158,7 +167,7 @@ export default async function IssuesIndexPage({ searchParams }: IssuesIndexPageP
             ["all", "All issues"],
             ["national", "National"],
             ["state", "State"],
-            ["local", "Local"],
+            ["local", LOCAL_SCOPE_LABEL],
           ] as const).map(([value, label]) => (
             <Link
               key={value}

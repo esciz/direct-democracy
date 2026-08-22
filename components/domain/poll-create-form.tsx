@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import { createPoll } from "@/lib/polls/actions";
 import type { VoteQuestionScope } from "@/types/domain";
 
@@ -18,7 +19,7 @@ type PollCreateFormProps = {
 };
 
 const scopeHelperText: Record<VoteQuestionScope, string> = {
-  local: "Targets your local jurisdiction and shows up in the matching community view.",
+  local: "Targets your city + county bundle; the poll keeps its specific City or County tag.",
   state: "Targets the Nevada-wide community context.",
   national: "Targets the national community context.",
 };
@@ -126,7 +127,7 @@ export function PollCreateForm({ roleLabel, jurisdictionName, defaultJurisdictio
             defaultValue="local"
             className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
           >
-            <option value="local">Local</option>
+            <option value="local">{LOCAL_SCOPE_LABEL}</option>
             <option value="state">State</option>
             <option value="national">National</option>
           </select>

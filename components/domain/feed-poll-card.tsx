@@ -5,7 +5,9 @@ import { useState, useTransition } from "react";
 
 import { voteOnPollFromFeed } from "@/lib/polls/actions";
 import { IssueTag } from "@/components/domain/issue-tag";
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
 import { getContentTypeTheme } from "@/lib/ui/content-type-theme";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import type { PollSummary } from "@/types/domain";
 
 type FeedPollCardProps = {
@@ -39,7 +41,7 @@ function getRelativeFeedDate(value: string) {
 }
 
 function getPollScopeLabel(poll: PollSummary) {
-  if (poll.scope === "local") return "Local Poll";
+  if (poll.scope === "local") return `${LOCAL_SCOPE_LABEL} Poll`;
   if (poll.scope === "state") return "State Poll";
   return "National Poll";
 }
@@ -102,7 +104,7 @@ export function FeedPollCard({ poll }: FeedPollCardProps) {
         <div className="flex flex-wrap items-center gap-2">
           <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] ${pollTheme.badge}`}>Poll</span>
           <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{formatFeedDate(currentPoll.createdAt)}</span>
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{currentPoll.jurisdictionName}</span>
+          <JurisdictionTag jurisdictionName={currentPoll.jurisdictionName} />
         </div>
         <div className="mt-4 space-y-4">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-500">

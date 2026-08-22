@@ -1,4 +1,5 @@
 import type { OrganizationSummary, OrganizationType } from "@/types/domain";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 
 export const ORGANIZATION_FILTERS: Array<{ key: "all" | OrganizationType; label: string }> = [
   { key: "all", label: "All" },
@@ -38,6 +39,13 @@ export function getOrganizationTypeLabel(type: OrganizationType) {
   }
 }
 
+export function getPublicOrganizationScopeLabel(scope: "local" | "regional" | "statewide" | "national") {
+  if (scope === "local") return LOCAL_SCOPE_LABEL;
+  if (scope === "regional") return "Regional";
+  if (scope === "statewide") return "State";
+  return "National";
+}
+
 export function getOrganizationScopeLabel(organization: Pick<OrganizationSummary, "scopeLabel" | "communityId" | "organizationType">) {
   if (organization.scopeLabel) {
     return organization.scopeLabel;
@@ -51,7 +59,7 @@ export function getOrganizationScopeLabel(organization: Pick<OrganizationSummary
     return "State";
   }
 
-  return "Local";
+  return LOCAL_SCOPE_LABEL;
 }
 
 export const PUBLIC_ORGANIZATION_CATEGORIES = [

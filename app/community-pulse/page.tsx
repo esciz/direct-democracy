@@ -4,6 +4,7 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getCommunityPulsePageData } from "@/lib/community/dashboard";
 import type { VoteQuestionScope } from "@/types/domain";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 
 type CommunityPulsePageProps = {
   searchParams?: Promise<{
@@ -26,7 +27,7 @@ export default async function CommunityPulsePage({ searchParams }: CommunityPuls
   const data = await getCommunityPulsePageData(user, scope);
   const tabs = [
     { label: "All", href: "/community-pulse?scope=all", active: scope === "all" },
-    { label: "Local", href: "/community-pulse?scope=local", active: scope === "local" },
+    { label: LOCAL_SCOPE_LABEL, href: "/community-pulse?scope=local", active: scope === "local" },
     { label: "State", href: "/community-pulse?scope=state", active: scope === "state" },
     { label: "National", href: "/community-pulse?scope=national", active: scope === "national" },
   ];

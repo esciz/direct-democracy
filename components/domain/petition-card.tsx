@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
+
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { IssueTag } from "@/components/domain/issue-tag";
@@ -28,7 +30,7 @@ export function PetitionCard({ petition }: PetitionCardProps) {
             verified={Boolean(petition.organizationId)}
           />
           <div>
-            <p className="text-sm font-semibold text-civic-700">{petition.jurisdictionName}</p>
+            <JurisdictionTag jurisdictionName={petition.jurisdictionName} />
             <h2 className="mt-2 text-xl font-semibold text-ink">{petition.title}</h2>
           </div>
         </div>

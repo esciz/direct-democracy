@@ -5,6 +5,8 @@ import { IssuePickerField } from "@/components/domain/issue-picker-field";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { PageIntro } from "@/components/ui/page-intro";
 import { canUserCreateDebate } from "@/lib/auth/guards";
+import { getDefaultCommunityForUser } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { seedUsers } from "@/lib/auth/mock-users";
 import { createPhaseOneDebate } from "@/lib/debates/actions";
@@ -32,7 +34,10 @@ export default async function NewDebatePage({ searchParams }: NewDebatePageProps
   }
 
   const trustedOpponents = seedUsers.filter(
-    (entry) => entry.role === "trustedCitizen" && entry.id !== user.id && entry.jurisdictionName === user.jurisdictionName,
+    (entry) =>
+      entry.role === "trustedCitizen" &&
+      entry.id !== user.id &&
+      communityMatchesJurisdiction(getDefaultCommunityForUser(user).id, entry.jurisdictionName),
   );
   const issueOptions = await getIssuePickerOptions(user);
 

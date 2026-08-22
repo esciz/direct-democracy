@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { IssueFollowControl } from "@/components/domain/issue-follow-control";
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
 import { IssuePositionsSection } from "@/components/domain/issue-positions-section";
 import { CivicEventCard } from "@/components/domain/civic-event-card";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
@@ -19,6 +20,7 @@ import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { toggleTopIssueUpvote } from "@/lib/community/actions";
 import { getCommunityById, getDefaultCommunityForUser, getGeographicCommunities } from "@/lib/community/communities";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
@@ -197,8 +199,8 @@ function getIssueScopeCopy(issue: TopIssueSummary) {
   }
 
   return {
-    label: `${issue.jurisdictionName} room`,
-    rule: "Only verified residents from this local jurisdiction can contribute. This keeps local issues from being overrun by outside voices.",
+    label: `${LOCAL_SCOPE_LABEL} room`,
+    rule: "Verified residents from the connected city and county can contribute. Every contribution keeps its City or County tag so readers can distinguish the source.",
   };
 }
 
@@ -1146,6 +1148,7 @@ async function CitizenIssueVoicesSection({
         </div>
         <div className="flex flex-wrap gap-2">
           <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">{scopeCopy.label}</span>
+          {issue.scope === "local" ? <JurisdictionTag jurisdictionName={issue.jurisdictionName} /> : null}
           <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
             {citizenPosts.length} contribution{citizenPosts.length === 1 ? "" : "s"}
           </span>

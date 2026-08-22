@@ -7,7 +7,7 @@ import { ActionLabel, ThumbsDownIcon, ThumbsUpIcon } from "@/components/ui/actio
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { PageIntro } from "@/components/ui/page-intro";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { getOrganizationTypeLabel, getPublicOrganizationCategoryLabel } from "@/lib/organizations/presentation";
+import { getOrganizationTypeLabel, getPublicOrganizationCategoryLabel, getPublicOrganizationScopeLabel } from "@/lib/organizations/presentation";
 import {
   approveOrganizationMembership,
   createOrganizationAnnouncement,
@@ -253,7 +253,7 @@ function PublicOrganizationDetailPage({
               </span>
             ) : null}
             <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-slate-200">
-              {organization.scope}
+              {getPublicOrganizationScopeLabel(organization.scope)}
             </span>
             <span className="rounded-full bg-white/8 px-3 py-1 text-xs font-semibold text-slate-200">
               {organization.headquarters}
@@ -301,7 +301,7 @@ function PublicOrganizationDetailPage({
             </div>
             <div>
               <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Scope</dt>
-              <dd className="mt-2 text-sm font-semibold capitalize text-white">{organization.scope}</dd>
+              <dd className="mt-2 text-sm font-semibold text-white">{getPublicOrganizationScopeLabel(organization.scope)}</dd>
             </div>
             <div>
               <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Headquarters</dt>

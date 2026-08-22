@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import type { BallotInitiativeSummary } from "@/types/domain";
 
 type BallotInitiativeCardProps = {
@@ -11,7 +12,7 @@ export function BallotInitiativeCard({ initiative }: BallotInitiativeCardProps) 
     <article className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
       <div className="flex flex-wrap items-center gap-2">
         <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
-          {initiative.scope === "local" ? "Local initiative" : "State initiative"}
+          {initiative.scope === "local" ? `${LOCAL_SCOPE_LABEL} initiative` : "State initiative"}
         </span>
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
           {initiative.jurisdictionName}

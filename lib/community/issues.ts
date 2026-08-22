@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 
-import { getCommunityById } from "@/lib/community/communities";
+import { getCommunityById, getDefaultCommunityForUser } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { getAllPetitions } from "@/lib/petitions/store";
 import type {
   AuthUser,
@@ -53,10 +54,10 @@ function scopeMatchesCommunity(issue: Pick<TopIssueSummary, "scope" | "jurisdict
   const community = getCommunityById(communityId);
 
   if (!community) {
-    return issue.jurisdictionName === user.jurisdictionName;
+    return communityMatchesJurisdiction(getDefaultCommunityForUser(user).id, issue.jurisdictionName);
   }
 
-  return community.jurisdictionMatches.includes(issue.jurisdictionName);
+  return communityMatchesJurisdiction(community.id, issue.jurisdictionName);
 }
 
 function scopeMatchesFilter(scope: VoteQuestionScope, selectedScope?: VoteQuestionScope | "all") {

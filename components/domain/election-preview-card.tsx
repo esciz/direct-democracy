@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
+
 import type { ElectionSummary } from "@/types/domain";
 
 type ElectionPreviewCardProps = {
@@ -9,7 +11,7 @@ type ElectionPreviewCardProps = {
 export function ElectionPreviewCard({ election }: ElectionPreviewCardProps) {
   return (
     <article className="rounded-3xl bg-slate-50 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{election.jurisdictionName}</p>
+      <JurisdictionTag jurisdictionName={election.jurisdictionName} />
       <h3 className="mt-2 text-lg font-semibold text-ink">{election.title}</h3>
       <p className="mt-2 text-sm text-slate-600">
         {new Date(election.electionDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} ·{" "}

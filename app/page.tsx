@@ -14,7 +14,9 @@ import { slugifyIssueText } from "@/lib/issues/utils";
 import { getAllPetitions } from "@/lib/petitions/store";
 import { getFeedPollPreviews } from "@/lib/polls/store";
 import { getCurrentSessionUser, getCurrentUser } from "@/lib/server/auth-session";
-import { getDefaultCommunityForUser } from "@/lib/community/communities";
+import { getDefaultCommunityForUser, getGeographicCommunities, getLocalCommunityBundle } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
+import { getCivicJurisdictionContext } from "@/lib/civic/jurisdiction-context";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getFeedDebatePreviews } from "@/lib/debates/store";
 import { getDailyVoteExperience } from "@/lib/feed/quick-votes";
@@ -65,7 +67,7 @@ function getElectionLevelLabel(election: ElectionSummary) {
   if (jurisdiction === "united states") return "Federal";
   if (jurisdiction === "nevada") return "State";
   if (jurisdiction.includes("county")) return "County";
-  return "Local";
+  return "City";
 }
 
 function getNextElectionMilestone(election: ElectionSummary) {
@@ -103,8 +105,9 @@ function getElectionRelevanceNote(
     return "Statewide election";
   }
 
-  if (election.jurisdictionName === user.jurisdictionName) {
-    return /county/i.test(user.jurisdictionName) ? "This applies to your county" : "This applies to your city";
+  if (communityMatchesJurisdiction(defaultCommunity.id, election.jurisdictionName)) {
+    const layer = getCivicJurisdictionContext({ jurisdictionName: election.jurisdictionName }).civicLayer;
+    return layer === "county" ? "This applies to your county" : "This applies to your city";
   }
 
   if (election.communityId === defaultCommunity.id) {
@@ -128,10 +131,10 @@ function getUpcomingElectionsForUser(
     "Nevada",
     user.jurisdictionName,
     defaultCommunity.primaryJurisdictionName,
-    ...defaultCommunity.jurisdictionMatches,
+    ...getLocalCommunityBundle(defaultCommunity.id).jurisdictionNames,
   ]);
   const communityMatches = new Set<string>([
-    defaultCommunity.id,
+    ...getLocalCommunityBundle(defaultCommunity.id).communityIds,
     "nevada",
     "united-states",
   ]);
@@ -199,6 +202,15 @@ export default async function HomePage() {
 
   const user = await getCurrentUser();
   const defaultCommunity = getDefaultCommunityForUser(user);
+  const localCommunityLabel = getLocalCommunityBundle(defaultCommunity.id).label;
+  const availableCommunities = getGeographicCommunities()
+    .filter((community) => community.scope === "local")
+    .map((community) => ({
+      id: community.id,
+      name: community.name,
+      locationLabel: community.locationLabel,
+    }))
+    .sort((left, right) => left.name.localeCompare(right.name));
 
   const [
     elections,
@@ -376,8 +388,11 @@ export default async function HomePage() {
   return (
     <div className="space-y-6 py-8">
       <HomeGuidedActionCard
+        communityId={defaultCommunity.id}
         communityName={defaultCommunity.name}
+        localCommunityLabel={localCommunityLabel}
         communityHref={`/my-community?communityId=${defaultCommunity.id}`}
+        availableCommunities={availableCommunities}
         primaryElectionHref={upcomingElectionItems[0]?.href ?? "/elections"}
         primaryIssueHref={generatedIssues[0] ? `/issues/${slugifyIssueText(generatedIssues[0].issueText)}` : "/issues"}
       />

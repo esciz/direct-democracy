@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
+
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { IssueTag } from "@/components/domain/issue-tag";
@@ -88,8 +90,9 @@ export function CommunityEventCard({
             </h3>
             <p className="mt-2 text-sm text-slate-500">
               {startsAt.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })} ·{" "}
-              {startsAt.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })} · {event.jurisdictionName}
+              {startsAt.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
             </p>
+            <JurisdictionTag jurisdictionName={event.jurisdictionName} className="mt-2" />
           </div>
         </div>
         <div className="flex items-center gap-2">

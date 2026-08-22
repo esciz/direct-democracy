@@ -4,6 +4,7 @@ import { PostCard } from "@/components/domain/post-card";
 import { PoliticalAdsSection } from "@/components/domain/political-ads-section";
 import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
 import { PageIntro } from "@/components/ui/page-intro";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { getPoliticalAdsForEntity } from "@/lib/political-ads/store";
 import { buildSentimentHistory } from "@/lib/sentiment/history";
@@ -68,11 +69,11 @@ export default async function BallotInitiativePage({ params }: BallotInitiativeP
       <PageIntro
         eyebrow="Ballot Initiative"
         title={initiative.title}
-        description={`${initiative.jurisdictionName} · ${initiative.scope === "local" ? "Local initiative" : "State initiative"}`}
+        description={`${initiative.jurisdictionName} · ${initiative.scope === "local" ? `${LOCAL_SCOPE_LABEL} initiative` : "State initiative"}`}
         meta={
           <>
             <span className="rounded-full border border-cyan-300/18 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
-              {initiative.scope === "local" ? "Local initiative" : "State initiative"}
+              {initiative.scope === "local" ? `${LOCAL_SCOPE_LABEL} initiative` : "State initiative"}
             </span>
             <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs font-semibold text-slate-200">
               {initiative.jurisdictionName}

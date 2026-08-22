@@ -1,6 +1,7 @@
 import "server-only";
 
 import { getTopIssuesForUser } from "@/lib/community/issues";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { getAllOrganizations } from "@/lib/organizations/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
 import { getIssueHubRecordByRouteParam, getIssueHubRecords, issueHubRecordToTopIssueSummary } from "@/lib/issues/civic-hub";
@@ -21,21 +22,22 @@ function dedupeIssues<T extends TopIssueSummary>(issues: T[]) {
   const unique = new Map<string, T>();
 
   for (const issue of issues) {
-    const canonicalIssueText = getCanonicalIssueText(issue.issueText);
-    const key = normalizeIssueText(canonicalIssueText);
+    const isPublicCatalogIssue = issue.id.startsWith("issue_topic_");
+    const displayIssueText = isPublicCatalogIssue ? issue.issueText : getCanonicalIssueText(issue.issueText);
+    const key = normalizeIssueText(displayIssueText);
     const existing = unique.get(key);
 
     if (!existing) {
       unique.set(key, {
         ...issue,
-        issueText: canonicalIssueText,
+        issueText: displayIssueText,
       });
       continue;
     }
 
     unique.set(key, {
       ...existing,
-      issueText: canonicalIssueText,
+      issueText: displayIssueText,
       jurisdictionName: existing.source === "curated" || issue.source === "curated" ? "Across the platform" : existing.jurisdictionName,
       source: existing.source === "curated" || issue.source === "curated" ? "curated" : "writeIn",
       createdAt: Date.parse(existing.createdAt) > Date.parse(issue.createdAt) ? existing.createdAt : issue.createdAt,
@@ -68,7 +70,6 @@ export async function getIssueDirectoryForUser(
   options?: { communityId?: string; query?: string; scope?: VoteQuestionScope | "all" },
 ): Promise<PublicIssueHubSummary[]> {
   void user;
-  void options?.communityId;
   const generatedIssueHubs = (await getIssueHubRecords())
     .filter((record) => record.sourceBacked)
     .map(issueHubRecordToTopIssueSummary);
@@ -77,8 +78,10 @@ export async function getIssueDirectoryForUser(
 
   return issues.filter((issue) => {
     const matchesScope = !options?.scope || options.scope === "all" || issue.scope === options.scope;
+    const matchesCommunity =
+      issue.scope !== "local" || !options?.communityId || communityMatchesJurisdiction(options.communityId, issue.jurisdictionName);
     const matchesQuery = !options?.query?.trim() || issueTextMatchesQuery(issue.issueText, options.query);
-    return matchesScope && matchesQuery;
+    return matchesScope && matchesCommunity && matchesQuery;
   });
 }
 

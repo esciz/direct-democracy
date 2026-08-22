@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import { sendThreadReply, updateInterviewRequestStatus, updateMessageRequestState } from "@/lib/messages/actions";
 import type { MessagingThreadDetail } from "@/types/domain";
 
@@ -39,7 +40,7 @@ function issueCategoryLabel(value: NonNullable<MessagingThreadDetail["messages"]
 }
 
 function levelLabel(value: NonNullable<MessagingThreadDetail["messages"][number]["level"]>) {
-  if (value === "local") return "Local";
+  if (value === "local") return LOCAL_SCOPE_LABEL;
   if (value === "state") return "State";
   return "Federal";
 }

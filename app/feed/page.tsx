@@ -21,6 +21,9 @@ import { type CivicBriefCadence, getCivicBrief } from "@/lib/server/civic-brief"
 import { getCurrentFeedViewer } from "@/lib/server/auth-session";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { getCommunityEventTypeLabel, getFeedEventPreviews, type FeedEventPreview } from "@/lib/community/events";
+import { getDefaultCommunityForJurisdiction, getLocalCommunityBundle } from "@/lib/community/communities";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
+import { getCivicJurisdictionTag } from "@/lib/civic/jurisdiction-context";
 import { getFeedDebatePreviews, type DebateFeedPreview } from "@/lib/debates/store";
 import { getFeedPostPreviews, type FeedMode } from "@/lib/feed/posts";
 import { slugifyIssueText } from "@/lib/issues/utils";
@@ -207,7 +210,7 @@ function getPostTypeLabel(post: PostSummary) {
 }
 
 function getPollScopeLabel(poll: PollSummary) {
-  if (poll.scope === "local") return "Local Poll";
+  if (poll.scope === "local") return `${LOCAL_SCOPE_LABEL} Poll`;
   if (poll.scope === "state") return "State Poll";
   return "National Poll";
 }
@@ -306,14 +309,15 @@ async function getSafeCurrentUser() {
 
 function getScopedJurisdictions(scope: FeedScope, localJurisdiction: string) {
   if (scope === "all") return undefined;
-  if (scope === "local") return [localJurisdiction];
+  if (scope === "local") return getLocalCommunityBundle(getDefaultCommunityForJurisdiction(localJurisdiction).id).jurisdictionNames;
   if (scope === "state") return ["Nevada"];
   return ["United States"];
 }
 
 function getItemScope(jurisdictionName: string | null | undefined, localJurisdiction: string): FeedScope {
   if (!jurisdictionName) return "all";
-  if (jurisdictionName === localJurisdiction) return "local";
+  const localJurisdictions = getLocalCommunityBundle(getDefaultCommunityForJurisdiction(localJurisdiction).id).jurisdictionNames;
+  if (localJurisdictions.includes(jurisdictionName)) return "local";
   if (jurisdictionName === "Nevada") return "state";
   if (jurisdictionName === "United States") return "national";
   return "all";
@@ -424,7 +428,9 @@ function renderPostPreview(post: PostSummary, viewerRole: UserRole, returnPath: 
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
               {formatFeedDate(post.createdAt)}
             </span>
-            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{post.jurisdictionName}</span>
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+              {getCivicJurisdictionTag({ jurisdictionName: post.jurisdictionName })}
+            </span>
             {post.viewerFollowsAuthor ? (
               <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
                 Following
@@ -606,7 +612,9 @@ function renderPetitionPreview(petition: FeedPetitionPreview, viewerUserId?: str
           Petition
         </span>
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{formatFeedDate(petition.createdAt)}</span>
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{petition.jurisdictionName}</span>
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+          {getCivicJurisdictionTag({ jurisdictionName: petition.jurisdictionName })}
+        </span>
       </div>
       <div className="mt-4 space-y-4">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-500">
@@ -672,7 +680,9 @@ function renderDebatePreview(debate: DebateFeedPreview) {
           Debate
         </span>
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{formatFeedDate(debate.createdAt)}</span>
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{debate.jurisdictionName}</span>
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+          {getCivicJurisdictionTag({ jurisdictionName: debate.jurisdictionName })}
+        </span>
       </div>
       <div className="mt-4 space-y-4">
         <div className="flex flex-wrap gap-2">
@@ -719,7 +729,7 @@ function renderMediaPreview(mediaItem: MediaFeedPreview, viewerUserId?: string) 
       <div className="mt-4 space-y-4">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-500">
           <span className="font-semibold text-ink">{mediaItem.sourceName}</span>
-          <span>{mediaItem.jurisdictionName}</span>
+          <span>{getCivicJurisdictionTag({ jurisdictionName: mediaItem.jurisdictionName })}</span>
         </div>
         <h2 className="text-xl font-semibold text-ink">{mediaItem.title}</h2>
         <div className="flex flex-wrap gap-2">
@@ -760,7 +770,7 @@ function renderEventPreview(event: FeedEventPreview) {
       <div className="mt-4 space-y-4">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-500">
           <span className="font-semibold text-ink">{getCommunityEventTypeLabel(event.eventType)}</span>
-          <span>{event.jurisdictionName}</span>
+          <span>{getCivicJurisdictionTag({ jurisdictionName: event.jurisdictionName })}</span>
           {event.locationLabel ? <span>{event.locationLabel}</span> : <span>Location to be announced</span>}
         </div>
         <h2 className="text-xl font-semibold text-ink">{event.title}</h2>

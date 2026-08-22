@@ -398,6 +398,7 @@ export function getGeographicCommunities() {
 export function getCommunityByJurisdictionName(jurisdictionName: string) {
   return (
     seededCommunities.find((community) => community.primaryJurisdictionName === jurisdictionName) ??
+    seededCommunities.find((community) => community.name === jurisdictionName) ??
     seededCommunities.find((community) => community.jurisdictionMatches.includes(jurisdictionName))
   );
 }
@@ -470,6 +471,43 @@ function getCountyForCommunity(communityId: string) {
   const seed = getCommunitySeedById(communityId);
   const countyId = seed?.kind === "county" ? seed.id : seed?.countyId;
   return countyId ? getCommunityById(countyId) : null;
+}
+
+export function getLocalCommunityBundle(communityId: string) {
+  const selected = getCommunityById(communityId);
+
+  if (!selected || selected.scope !== "local") {
+    return {
+      communityIds: selected ? [selected.id] : [],
+      jurisdictionNames: selected?.jurisdictionMatches ?? [],
+      city: null,
+      county: null,
+      label: selected?.name ?? "Local community",
+    };
+  }
+
+  const kind = getNevadaCommunityKind(selected.id);
+  const county = getCountyForCommunity(selected.id);
+  const city = kind === "city" || kind === "community" ? selected : null;
+  const includedCommunities =
+    kind === "county"
+      ? [selected, ...getCitiesForCounty(selected.id), ...getMajorCommunitiesForCounty(selected.id)]
+      : [selected, ...(county ? [county] : [])];
+  const uniqueCommunities = [...new Map(includedCommunities.map((community) => [community.id, community])).values()];
+  const jurisdictionNames = [...new Set(uniqueCommunities.flatMap((community) => community.jurisdictionMatches))];
+
+  return {
+    communityIds: uniqueCommunities.map((community) => community.id),
+    jurisdictionNames,
+    city,
+    county,
+    label: city && county ? `${city.name} + ${county.name}` : county ? `${county.name} + its cities` : selected.name,
+  };
+}
+
+export function getLocalJurisdictionNamesForUser(user: Pick<AuthUser, "jurisdictionName" | "primaryCommunityId">) {
+  const community = getDefaultCommunityForUser(user);
+  return getLocalCommunityBundle(community.id).jurisdictionNames;
 }
 
 export function getCommunityHierarchy(communityId: string) {

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { RevealIconChip } from "@/components/domain/reveal-icon-chip";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { toggleTopIssueUpvote } from "@/lib/community/actions";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
+import { getCivicJurisdictionTag } from "@/lib/civic/jurisdiction-context";
 import { getIssueVisualToken } from "@/lib/ui/visual-tokens";
 import type { TopIssueSummary } from "@/types/domain";
 
@@ -13,7 +15,7 @@ type TopIssueCardProps = {
 
 function scopeLabel(scope: TopIssueSummary["scope"]) {
   if (scope === "local") {
-    return "Local";
+    return LOCAL_SCOPE_LABEL;
   }
 
   if (scope === "state") {
@@ -33,6 +35,11 @@ export function TopIssueCard({ issue, returnPath }: TopIssueCardProps) {
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
           {issue.source === "curated" ? "System selected" : "Write-in"}
         </span>
+        {issue.scope === "local" ? (
+          <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+            {getCivicJurisdictionTag({ jurisdictionName: issue.jurisdictionName })}
+          </span>
+        ) : null}
       </div>
       <div className="mt-3">
         <RevealIconChip {...getIssueVisualToken(issue.issueText)} tone="civic" />

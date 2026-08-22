@@ -1,4 +1,4 @@
-import { getCommunityById } from "@/lib/community/communities";
+import { getCommunityById, getLocalCommunityBundle } from "@/lib/community/communities";
 import type { PublicCitizenProfileSummary, UserSummary } from "@/types/domain";
 
 export function communityMatchesJurisdiction(communityId: string, jurisdictionName: string) {
@@ -16,7 +16,7 @@ export function communityMatchesJurisdiction(communityId: string, jurisdictionNa
     return jurisdictionName === community.name || jurisdictionName.includes(community.name);
   }
 
-  return community.jurisdictionMatches.includes(jurisdictionName);
+  return getLocalCommunityBundle(community.id).jurisdictionNames.includes(jurisdictionName);
 }
 
 export function communityMatchesMembership(

@@ -1,7 +1,7 @@
 import { getFeedPosts } from "@/lib/feed/posts";
 import { getDailyVoteExperience, getStoredVoteResponses, getVotingLibrary } from "@/lib/feed/quick-votes";
 import { getAllCases } from "@/lib/cases/store";
-import { getCommunityById } from "@/lib/community/communities";
+import { getCommunityById, getLocalCommunityBundle } from "@/lib/community/communities";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getAvailableCommunityGroupFilters } from "@/lib/community/groups";
 import { getOfficials } from "@/lib/officials/store";
@@ -71,7 +71,7 @@ export async function getMyCommunityData(
 ) {
   const community = getCommunityById(options.communityId);
   const communityScope = community?.scope ?? "local";
-  const jurisdictionMatches = community?.jurisdictionMatches ?? [];
+  const jurisdictionMatches = community ? getLocalCommunityBundle(community.id).jurisdictionNames : [];
   const [posts, petitions, elections, officials, publicCitizens, storedVoteResponses, polls, cases] = await Promise.all([
     getFeedPosts("forYou", user.id, { jurisdictionNames: jurisdictionMatches, limit: 4 }),
     getAllPetitions(),

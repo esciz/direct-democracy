@@ -1,4 +1,5 @@
 import { CivicAvatar } from "@/components/domain/civic-avatar";
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
 import type { VoteQuestionCardSummary } from "@/types/domain";
 
 type CommunityPulseCardProps = {
@@ -20,6 +21,7 @@ export function CommunityPulseCard({ question }: CommunityPulseCardProps) {
             <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">
               {question.communityLabel}
             </span>
+            <JurisdictionTag jurisdictionName={question.jurisdictionName} bodyName={question.officialBody} />
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
               {question.voteType ? question.voteType.replace(/([A-Z])/g, " $1") : "Public vote"}
             </span>

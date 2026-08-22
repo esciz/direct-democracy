@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 
-type GuidedActionStepType = "select" | "search" | "location" | "text";
+type GuidedActionStepType = "select" | "search" | "location" | "text" | "community-scope";
 
 type GuidedActionStepOption = {
   value: string;
@@ -39,19 +40,29 @@ type CivicActionIntent = {
 };
 
 type GuidedActionContext = {
+  communityId: string;
   communityName: string;
+  localCommunityLabel: string;
   communityHref: string;
   primaryElectionHref: string;
   primaryIssueHref: string;
+  availableCommunities: Array<{
+    id: string;
+    name: string;
+    locationLabel?: string | null;
+  }>;
 };
 
 type HomeGuidedActionCardProps = Partial<GuidedActionContext>;
 
 const defaultContext: GuidedActionContext = {
+  communityId: "",
   communityName: "your community",
+  localCommunityLabel: "Your saved city and county",
   communityHref: "/my-community",
   primaryElectionHref: "/elections",
   primaryIssueHref: "/issues",
+  availableCommunities: [],
 };
 
 const civicActionIntents: CivicActionIntent[] = [
@@ -139,10 +150,9 @@ const civicActionIntents: CivicActionIntent[] = [
         ],
       },
       {
-        id: "community",
+        id: "communityScope",
         question: "Which community should we show?",
-        type: "location",
-        placeholder: "Use your saved community, or type a community",
+        type: "community-scope",
       },
     ],
   },
@@ -337,6 +347,51 @@ function buildAdsHref(search?: string) {
   return trimmedSearch ? `/ads?q=${encodeURIComponent(trimmedSearch)}` : "/ads";
 }
 
+function getSentimentCommunity(answers: Record<string, string>, context: GuidedActionContext) {
+  const scope = answers.communityScope || "local";
+
+  if (scope === "state") {
+    return { id: "nevada", name: "Nevada", href: "/community/nevada", pulseHref: "/community-pulse?scope=state", badge: "State" };
+  }
+
+  if (scope === "national") {
+    return { id: "united-states", name: "United States", href: "/community/united-states", pulseHref: "/community-pulse?scope=national", badge: "National" };
+  }
+
+  if (scope === "other") {
+    const query = (answers.communityOther ?? "").trim().toLowerCase();
+    const selected = context.availableCommunities.find(
+      (community) => community.id.toLowerCase() === query || community.name.toLowerCase() === query,
+    );
+
+    if (selected) {
+      return {
+        id: selected.id,
+        name: selected.name,
+        href: `/community/${selected.id}`,
+        pulseHref: "/community-pulse?scope=local",
+        badge: "Other community",
+      };
+    }
+
+    return {
+      id: "",
+      name: answers.communityOther?.trim() || "another community",
+      href: "/communities",
+      pulseHref: "/communities",
+      badge: "Other community",
+    };
+  }
+
+  return {
+    id: context.communityId,
+    name: context.localCommunityLabel,
+    href: context.communityHref,
+    pulseHref: "/community-pulse?scope=local",
+    badge: LOCAL_SCOPE_LABEL,
+  };
+}
+
 function resolveResults(
   intentId: string,
   answers: Record<string, string>,
@@ -424,14 +479,15 @@ function resolveResults(
           priority: 3,
         },
       ];
-    case "community-sentiment":
+    case "community-sentiment": {
+      const selectedCommunity = getSentimentCommunity(answers, context);
       return [
         {
           id: "community-pulse",
           title: "Community pulse",
-          description: "See local sentiment, citizen polls, and the topics people around you are elevating.",
+          description: `See sentiment, citizen polls, and topics connected to ${selectedCommunity.name}.`,
           type: "page",
-          href: "/community-pulse",
+          href: selectedCommunity.pulseHref,
           actionLabel: "View pulse",
           badge: "Sentiment",
           priority: 1,
@@ -448,15 +504,16 @@ function resolveResults(
         },
         {
           id: "community-hub",
-          title: `${context.communityName} community hub`,
-          description: "Open the local hub to see officials, petitions, events, and trusted community voices.",
+          title: `${selectedCommunity.name} community hub`,
+          description: "Open this community hub to see its officials, petitions, events, issues, and trusted community voices.",
           type: "page",
-          href: context.communityHref,
+          href: selectedCommunity.href,
           actionLabel: "Open community",
-          badge: "Local",
+          badge: selectedCommunity.badge,
           priority: 3,
         },
       ];
+    }
     case "learn": {
       const learnType = answers.learnType;
       const targetHref =
@@ -729,7 +786,15 @@ function getAnswerLabel(step: GuidedActionStep, value: string) {
 }
 
 export function HomeGuidedActionCard(props: HomeGuidedActionCardProps) {
-  const context = { ...defaultContext, ...props };
+  const context = useMemo(() => ({ ...defaultContext, ...props }), [
+    props.availableCommunities,
+    props.communityHref,
+    props.communityId,
+    props.communityName,
+    props.localCommunityLabel,
+    props.primaryElectionHref,
+    props.primaryIssueHref,
+  ]);
   const [selectedIntentId, setSelectedIntentId] = useState("");
   const [answers, setAnswers] = useState<Record<string, string>>({});
 
@@ -739,11 +804,18 @@ export function HomeGuidedActionCard(props: HomeGuidedActionCardProps) {
     return resolveResults(selectedIntent.id, answers, context).sort((left, right) => left.priority - right.priority);
   }, [answers, context, selectedIntent]);
 
-  const completedAnswers = selectedIntent?.steps.filter((step) => answers[step.id]?.trim()).length ?? 0;
+  const completedAnswers = selectedIntent?.steps.filter((step) => {
+    if (step.type !== "community-scope") return Boolean(answers[step.id]?.trim());
+    if (answers.communityScope !== "other") return Boolean(answers.communityScope);
+    const query = (answers.communityOther ?? "").trim().toLowerCase();
+    return context.availableCommunities.some(
+      (community) => community.id.toLowerCase() === query || community.name.toLowerCase() === query,
+    );
+  }).length ?? 0;
 
   function updateIntent(intentId: string) {
     setSelectedIntentId(intentId);
-    setAnswers({});
+    setAnswers(intentId === "community-sentiment" ? { communityScope: "local" } : {});
   }
 
   function updateAnswer(stepId: string, value: string) {
@@ -816,9 +888,13 @@ export function HomeGuidedActionCard(props: HomeGuidedActionCardProps) {
                 const value = answers[step.id] ?? "";
                 return (
                   <div key={step.id} className="space-y-2">
-                    <label htmlFor={`guided-action-${step.id}`} className="block text-sm font-semibold text-slate-100">
-                      {step.question}
-                    </label>
+                    {step.type === "community-scope" ? (
+                      <p id={`guided-action-${step.id}-label`} className="text-sm font-semibold text-slate-100">{step.question}</p>
+                    ) : (
+                      <label htmlFor={`guided-action-${step.id}`} className="block text-sm font-semibold text-slate-100">
+                        {step.question}
+                      </label>
+                    )}
                     {step.type === "select" ? (
                       <select
                         id={`guided-action-${step.id}`}
@@ -833,6 +909,63 @@ export function HomeGuidedActionCard(props: HomeGuidedActionCardProps) {
                           </option>
                         ))}
                       </select>
+                    ) : step.type === "community-scope" ? (
+                      <fieldset className="space-y-3" aria-labelledby={`guided-action-${step.id}-label`} aria-describedby="guided-action-community-help">
+                        <legend className="sr-only">Choose community level</legend>
+                        <div className="grid gap-2 sm:grid-cols-2">
+                          {[
+                            { value: "local", label: LOCAL_SCOPE_LABEL, detail: context.localCommunityLabel },
+                            { value: "state", label: "State", detail: "Nevada" },
+                            { value: "national", label: "National", detail: "United States" },
+                            { value: "other", label: "Other", detail: "Choose another available community" },
+                          ].map((option) => (
+                            <label
+                              key={option.value}
+                              className={`flex cursor-pointer items-start gap-3 rounded-2xl border p-3 transition ${value === option.value ? "border-cyan-300/40 bg-cyan-300/10" : "border-white/10 bg-white/[0.035] hover:border-white/20"}`}
+                            >
+                              <input
+                                type="radio"
+                                name="guided-community-scope"
+                                value={option.value}
+                                checked={value === option.value}
+                                onChange={(event) => updateAnswer(step.id, event.target.value)}
+                                className="mt-1 h-4 w-4 accent-cyan-400"
+                              />
+                              <span>
+                                <span className="block text-sm font-semibold text-slate-100">{option.label}</span>
+                                <span className="mt-1 block text-xs leading-5 text-slate-400">{option.detail}</span>
+                              </span>
+                            </label>
+                          ))}
+                        </div>
+                        {value === "other" ? (
+                          <div className="space-y-2">
+                            <label htmlFor="guided-action-community-other" className="block text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+                              Search available communities
+                            </label>
+                            <input
+                              id="guided-action-community-other"
+                              type="search"
+                              list="guided-action-community-options"
+                              value={answers.communityOther ?? ""}
+                              onChange={(event) => updateAnswer("communityOther", event.target.value)}
+                              placeholder="Start typing a city, county, or community"
+                              autoComplete="off"
+                              className="dd-input min-h-12 w-full rounded-2xl px-4 py-3 text-sm normal-case tracking-normal outline-none focus:border-cyan-300/40"
+                            />
+                            <datalist id="guided-action-community-options">
+                              {context.availableCommunities.map((community) => (
+                                <option key={community.id} value={community.name}>
+                                  {community.locationLabel ?? "Nevada"}
+                                </option>
+                              ))}
+                            </datalist>
+                          </div>
+                        ) : null}
+                        <p id="guided-action-community-help" className="text-xs leading-5 text-slate-500">
+                          Local uses your saved city and county automatically. Other searches communities currently available in Direct Democracy.
+                        </p>
+                      </fieldset>
                     ) : (
                       <input
                         id={`guided-action-${step.id}`}
@@ -843,7 +976,7 @@ export function HomeGuidedActionCard(props: HomeGuidedActionCardProps) {
                         type={step.type === "search" ? "search" : "text"}
                       />
                     )}
-                    {value ? (
+                    {value && step.type !== "community-scope" ? (
                       <p className="text-xs text-slate-500">
                         Selected: <span className="text-slate-300">{getAnswerLabel(step, value)}</span>
                       </p>

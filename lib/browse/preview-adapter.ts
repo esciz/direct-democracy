@@ -1,12 +1,14 @@
 import { existsSync, readFileSync, statSync } from "fs";
 import path from "path";
 
-import { getCommunityById, getCommunityPageHref, seededCommunities } from "@/lib/community/communities";
+import { getCommunityById, getCommunityPageHref, getLocalCommunityBundle, seededCommunities } from "@/lib/community/communities";
 import { communityMatchesMembership } from "@/lib/community/membership";
+import { getCivicJurisdictionContext, getCivicJurisdictionTag } from "@/lib/civic/jurisdiction-context";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { getGeneratedPoliticalAds, POLITICAL_AD_SOURCE_LABELS } from "@/lib/political-ads/store";
 import { getDurablePublicPeopleDirectory } from "@/lib/profile/public-people";
 import { prisma } from "@/lib/prisma";
+import { getIssueDirectoryForUser } from "@/lib/server/issues";
 import type { AuthUser, PublicCitizenDirectorySummary } from "@/types/domain";
 
 export type BrowsePreviewCategory =
@@ -172,7 +174,7 @@ function getCommunityNeedles(communityId: string) {
     community.shortName ?? "",
     community.primaryJurisdictionName,
     community.locationLabel ?? "",
-    ...community.jurisdictionMatches,
+    ...getLocalCommunityBundle(community.id).jurisdictionNames,
   ]
     .map(normalizeForMatch)
     .filter(Boolean);
@@ -248,7 +250,22 @@ function inferGovernmentLevel(...values: Array<unknown>) {
 }
 
 function filterItems(items: BrowsePreviewItem[], query: string, favoriteIds?: string[], filters?: Record<string, string | undefined>) {
-  const favoriteFiltered = favoriteIds ? items.filter((item) => favoriteIds.includes(item.id)) : items;
+  const taggedItems = items.map((item) => {
+    const jurisdictionName = item.facets?.location?.[0];
+    if (!jurisdictionName) return item;
+
+    const context = getCivicJurisdictionContext({ jurisdictionName });
+    if (context.civicLayer !== "city" && context.civicLayer !== "county") return item;
+
+    const jurisdictionTag = getCivicJurisdictionTag({ jurisdictionName });
+    if (item.badges?.some((badge) => badge.label === jurisdictionTag)) return item;
+
+    return {
+      ...item,
+      badges: [...(item.badges ?? []), { label: jurisdictionTag, tone: "civic" as const }],
+    };
+  });
+  const favoriteFiltered = favoriteIds ? taggedItems.filter((item) => favoriteIds.includes(item.id)) : taggedItems;
   return favoriteFiltered.filter((item) => matchesQuery(query, item.title, item.subtitle, item.description) && matchesFilters(item, filters));
 }
 
@@ -360,37 +377,34 @@ function buildCommunitiesPreview({ communityId, query, limit = 8, favoriteIds, f
   );
 }
 
-function buildIssuesPreview({ communityId, query, limit = 8, favoriteIds, filters }: BrowsePreviewOptions): BrowsePreviewData {
+async function buildIssuesPreview({ communityId, query, limit = 8, favoriteIds, viewerUser, filters }: BrowsePreviewOptions): Promise<BrowsePreviewData> {
   const runtime = readJsonFile<{ records?: Array<Record<string, unknown>>; generatedAt?: string }>("issues-runtime.json", {});
   const records = recordsFrom<Record<string, unknown>>(runtime.data);
-  const sourceBacked = records.filter((record) => record.sourceBacked === true);
-  const localRecords = sourceBacked.filter((record) =>
-    matchesCommunity(communityId, record.jurisdictionName, Array.isArray(record.communities) ? record.communities.join(" ") : ""),
-  );
-  const candidates = localRecords.length ? localRecords : sourceBacked;
-  const ordered = orderLocalThenStatewide(communityId, candidates, (record) => [
-    record.jurisdictionName,
-    Array.isArray(record.communities) ? record.communities.join(" ") : "",
-  ]);
+  const community = getCommunityById(communityId);
+  const scope = community?.scope === "national" ? "national" : community?.scope === "state" ? "state" : "local";
+  const issues = await getIssueDirectoryForUser(viewerUser ?? ({ id: "browse-audit-viewer" } as AuthUser), { communityId, scope });
+  const sourceBackedCount = issues.filter((issue) => issue.sourceBacked).length;
 
   const items = filterItems(
-    ordered.map((record) => ({
-      id: asText(record.id) || asText(record.issueSlug),
-      title: asText(record.issueText) || "Source-backed issue",
-      subtitle: `${asText(record.jurisdictionName) || "Nevada"} · ${asText(record.scope) || "civic issue"}`,
-      description: asText(record.summary),
-      href: `/issues/${asText(record.issueSlug) || asText(record.id)}`,
+    issues.map((issue) => ({
+      id: issue.id,
+      title: issue.plainTitle || issue.issueText,
+      subtitle: `${issue.jurisdictionName} · ${issue.category}`,
+      description: issue.whyThisMatters,
+      href: `/issues/${issue.id}`,
       ctaLabel: "Open issue",
-      avatar: { name: asText(record.issueText), entityType: "issue" as const },
+      avatar: { name: issue.issueText, entityType: "issue" as const },
       badges: [
-        { label: "Source-backed", tone: "emerald" as const },
-        { label: `${asNumber((record.relationshipCounts as Record<string, unknown> | undefined)?.votingCards).toLocaleString()} voting cards`, tone: "civic" as const },
+        issue.sourceBacked
+          ? { label: "Source-backed", tone: "emerald" as const }
+          : { label: "National issue catalog", tone: "civic" as const },
+        { label: issue.scope === "national" ? "National" : issue.scope === "state" ? "State" : "Local", tone: "slate" as const },
       ],
       facets: {
-        scope: facetValues(record.scope),
-        location: facetValues(record.jurisdictionName, Array.isArray(record.communities) ? record.communities : []),
+        scope: facetValues(issue.scope),
+        location: facetValues(issue.jurisdictionName),
       },
-      favorite: { targetType: "issue" as const, targetId: asText(record.id) },
+      favorite: { targetType: "issue" as const, targetId: issue.id },
     })),
     query ?? "",
     favoriteIds,
@@ -401,14 +415,14 @@ function buildIssuesPreview({ communityId, query, limit = 8, favoriteIds, filter
     {
       category: "issues",
       items,
-      sourceCount: sourceBacked.length,
-      availableGeneratedCount: records.length,
-      lastGeneratedAt: runtime.lastGeneratedAt,
-      isSourceBacked: sourceBacked.length > 0,
+      sourceCount: issues.length,
+      availableGeneratedCount: sourceBackedCount,
+      lastGeneratedAt: sourceBackedCount ? runtime.lastGeneratedAt : null,
+      isSourceBacked: sourceBackedCount > 0,
       usesDemoData: false,
       fullHref: CATEGORY_HREFS.issues,
     },
-    "No generated source-backed issue hubs are available for this community yet.",
+    `No ${scope} issues match this search yet.`,
   );
 }
 
@@ -945,7 +959,7 @@ export async function getBrowsePreviewCategory(options: BrowsePreviewOptions): P
     case "communities":
       return buildCommunitiesPreview(options);
     case "issues":
-      return buildIssuesPreview(options);
+      return await buildIssuesPreview(options);
     case "people":
       return await buildPeoplePreview(options);
     case "candidates":

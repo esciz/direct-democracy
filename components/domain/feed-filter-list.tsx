@@ -2,6 +2,8 @@
 
 import { Children, useMemo, useState, type ReactNode } from "react";
 
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
+
 type FeedScopeFilter = "all" | "local" | "state" | "national";
 type FeedTypeFilter = "all" | "post" | "poll" | "petition" | "debate" | "event" | "media";
 
@@ -22,7 +24,7 @@ type FeedFilterListProps = {
 
 const scopeOptions: Array<{ value: FeedScopeFilter; label: string }> = [
   { value: "all", label: "All" },
-  { value: "local", label: "Local" },
+  { value: "local", label: LOCAL_SCOPE_LABEL },
   { value: "state", label: "State" },
   { value: "national", label: "National" },
 ];

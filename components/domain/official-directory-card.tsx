@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
+
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { FollowButton } from "@/components/domain/follow-button";
@@ -39,9 +41,8 @@ export function OfficialDirectoryCard({ official, returnPath = "/officials" }: O
               </span>
             ) : null}
           </div>
-          <p className="mt-1 text-xs text-slate-500">
-            {official.officeTitle} · {official.jurisdictionName}
-          </p>
+          <p className="mt-1 text-xs text-slate-500">{official.officeTitle}</p>
+          <JurisdictionTag jurisdictionName={official.jurisdictionName} className="mt-2" />
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
             {!isImported && official.truthScore?.media ? (
               <span className="rounded-full bg-civic-50 px-2.5 py-1 text-[11px] font-semibold text-civic-700">

@@ -1,6 +1,7 @@
 import { submitTopIssue } from "@/lib/community/actions";
 import { IssuePickerField } from "@/components/domain/issue-picker-field";
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 
 type TopIssueFormProps = {
   jurisdictionName: string;
@@ -11,7 +12,7 @@ type TopIssueFormProps = {
 
 export function TopIssueForm({ jurisdictionName, selectedScope, issueOptions, returnPath = "/my-community" }: TopIssueFormProps) {
   const scopeLabel =
-    selectedScope === "local" ? jurisdictionName : selectedScope === "state" ? "Nevada" : "United States";
+    selectedScope === "local" ? `${LOCAL_SCOPE_LABEL} (${jurisdictionName})` : selectedScope === "state" ? "Nevada" : "United States";
 
   return (
     <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">

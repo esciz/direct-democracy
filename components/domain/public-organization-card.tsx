@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { CivicAvatar } from "@/components/domain/civic-avatar";
-import { getOrganizationTypeLabel, getPublicOrganizationCategoryLabel } from "@/lib/organizations/presentation";
+import { getOrganizationTypeLabel, getPublicOrganizationCategoryLabel, getPublicOrganizationScopeLabel } from "@/lib/organizations/presentation";
 import type { PublicOrganizationDetail } from "@/lib/organizations/store";
 
 export function PublicOrganizationCard({ organization }: { organization: PublicOrganizationDetail }) {
@@ -28,7 +28,7 @@ export function PublicOrganizationCard({ organization }: { organization: PublicO
               {getPublicOrganizationCategoryLabel(organization.category)}
             </span>
             <span className="rounded-full bg-white/[0.06] px-3 py-1 text-slate-300">
-              {organization.scope}
+              {getPublicOrganizationScopeLabel(organization.scope)}
             </span>
             {partyProfile ? (
               <span className="rounded-full bg-amber-500/12 px-3 py-1 text-amber-100">

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { PageIntro } from "@/components/ui/page-intro";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import { submitIssueReviewRequest } from "@/lib/issues/submission-actions";
 import { getCurrentUser } from "@/lib/server/auth-session";
 
@@ -57,7 +58,7 @@ export default async function IssueReportPage({ searchParams }: IssueReportPageP
           {params.error === "verification" && "Voter verification is required before reporting an issue."}
           {params.error === "title" && "Add a clear issue title."}
           {params.error === "category" && "Choose an issue category."}
-          {params.error === "scope" && "Choose whether this is a local, state, or national issue."}
+          {params.error === "scope" && "Choose whether this belongs to your city + county bundle, the state, or the national layer."}
           {params.error === "community" && "Add the affected community or jurisdiction."}
         </section>
       ) : null}
@@ -85,7 +86,7 @@ export default async function IssueReportPage({ searchParams }: IssueReportPageP
             <label className="space-y-2 text-sm text-slate-700">
               <span className="font-semibold text-ink">Issue level</span>
               <select name="scope" defaultValue="local" className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500">
-                <option value="local">Local / community</option>
+                <option value="local">{LOCAL_SCOPE_LABEL}</option>
                 <option value="state">Statewide — Nevada</option>
                 <option value="national">National — United States</option>
               </select>

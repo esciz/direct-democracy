@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
+
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { FavoriteToggleControl } from "@/components/domain/favorite-toggle-control";
 import { FollowButton } from "@/components/domain/follow-button";
@@ -73,11 +75,8 @@ export function CandidateDirectoryCard({ candidate, dataCoverage, returnPath = "
                 {" · "}
                 {raceLabel}
               </p>
-              <p>
-                {candidate.jurisdictionName}
-                {" · "}
-                {imported.districtName ?? "District not listed"}
-              </p>
+              <p>{imported.districtName ?? "District not listed"}</p>
+              <JurisdictionTag jurisdictionName={candidate.jurisdictionName} />
             </div>
           ) : typeof candidate.followerCount === "number" ? (
             <div className="mt-1.5 flex flex-wrap items-center gap-1.5">

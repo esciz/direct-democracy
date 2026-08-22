@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
+
 import { CivicAvatar } from "@/components/domain/civic-avatar";
 import { IssueTag } from "@/components/domain/issue-tag";
 import { SentimentHistoryChart } from "@/components/domain/sentiment-history-chart";
@@ -29,7 +31,7 @@ export function PollCard({ poll, returnPath = "/my-community", viewerRole = "cit
           Citizen poll
         </span>
         <RoleBadge role={poll.creatorRole} />
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{poll.jurisdictionName}</span>
+        <JurisdictionTag jurisdictionName={poll.jurisdictionName} />
         {relatedIssues.map((issue) => (
           <IssueTag key={`${poll.id}-${issue.id}`} label={issue.label} href={`/issues/${issue.id}`} />
         ))}

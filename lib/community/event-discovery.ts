@@ -1,7 +1,8 @@
 import { seedUsers } from "@/lib/auth/mock-users";
 import { getAllEventAttendance } from "@/lib/community/event-participation";
 import { getAllCommunityEvents } from "@/lib/community/events";
-import { getCommunityById } from "@/lib/community/communities";
+import { getCommunityById, getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { getUserProfileContent } from "@/lib/profile/details";
 import type { AuthUser, CommunityEventType, EventDiscoverySummary, VoteQuestionScope } from "@/types/domain";
 
@@ -22,7 +23,7 @@ function tokenize(value: string) {
 
 function eventMatchesScope(scope: VoteQuestionScope | "all", jurisdictionName: string, userJurisdictionName: string) {
   if (scope === "all") return true;
-  if (scope === "local") return jurisdictionName === userJurisdictionName;
+  if (scope === "local") return communityMatchesJurisdiction(getDefaultCommunityForJurisdiction(userJurisdictionName).id, jurisdictionName);
   if (scope === "state") return jurisdictionName === "Nevada";
   return jurisdictionName === "United States";
 }

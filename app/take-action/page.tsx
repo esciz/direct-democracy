@@ -10,6 +10,8 @@ import {
 } from "@/lib/auth/guards";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getCommunityHierarchy, getDefaultCommunityForUser } from "@/lib/community/communities";
+import { getCommunityScopeLabel } from "@/lib/community/scope-labels";
+import { getCivicJurisdictionTag } from "@/lib/civic/jurisdiction-context";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getEventPhotobook } from "@/lib/community/event-participation";
 import { getElectionSummaries } from "@/lib/server/elections-context";
@@ -522,7 +524,8 @@ export default async function TakeActionPage() {
                   href={`/issues/${slugifyIssueText(issue.issueText)}`}
                   meta={
                     <>
-                      {issue.scope} · {issue.source === "curated" ? "canonical issue hub" : "community issue activity"}
+                      {issue.scope === "local" ? getCivicJurisdictionTag({ jurisdictionName: issue.jurisdictionName }) : getCommunityScopeLabel(issue.scope)} ·{" "}
+                      {issue.source === "curated" ? "canonical issue hub" : "community issue activity"}
                     </>
                   }
                   cta="Open issue"

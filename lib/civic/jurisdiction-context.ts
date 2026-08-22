@@ -32,10 +32,13 @@ export function getCivicJurisdictionContext(record: JurisdictionInput): CivicJur
 
   let civicLayer: CivicLayer = "special_district";
   if (/\bunited states\b|\bfederal\b|\bu\.s\./i.test(haystack)) civicLayer = "federal";
-  else if (/\bstate\b|\bnevada\b|\bsenate\b|\bassembly\b|\blegislature\b/i.test(haystack) && !/\bschool district\b/i.test(haystack)) civicLayer = "state";
   else if (/\bschool district\b|\bboard of trustees\b|\beducation\b/i.test(haystack)) civicLayer = "school_district";
   else if (/\bcounty\b|\bcommission\b|\bcommissioners\b/i.test(haystack)) civicLayer = "county";
-  else if (/\bcity\b|\bcouncil\b|\bmayor\b|\bmunicipal\b/i.test(haystack)) civicLayer = "city";
+  else if (
+    /\bcity\b|\bcouncil\b|\bmayor\b|\bmunicipal\b/i.test(haystack) ||
+    (/,\s*(?:nevada|nv)$/i.test(jurisdictionName) && !/^nevada$/i.test(jurisdictionName))
+  ) civicLayer = "city";
+  else if (/\bstate\b|\bnevada\b|\bsenate\b|\bassembly\b|\blegislature\b/i.test(haystack)) civicLayer = "state";
 
   const labels: Record<CivicLayer, { layer: string; badge: string }> = {
     city: { layer: "My City", badge: "City issue" },
@@ -55,4 +58,10 @@ export function getCivicJurisdictionContext(record: JurisdictionInput): CivicJur
     primaryLabel: jurisdictionName,
     secondaryLabel: governingBodyName,
   };
+}
+
+export function getCivicJurisdictionTag(record: JurisdictionInput) {
+  const context = getCivicJurisdictionContext(record);
+  const level = context.civicLayerLabel.replace(/^My /, "");
+  return `${level} · ${context.jurisdictionName}`;
 }

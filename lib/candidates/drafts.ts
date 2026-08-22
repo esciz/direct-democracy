@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 
+import { getDefaultCommunityForUser } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { getElectionById, getElectionSummaries } from "@/lib/server/elections-context";
 import type { AuthUser, CampaignPromiseSummary, CandidateDraftSummary, RunForOfficeOpportunitySummary } from "@/types/domain";
 
@@ -92,7 +94,7 @@ export async function upsertCandidateDraft(nextDraft: CandidateDraftSummary) {
 
 function electionMatchesUserCommunity(user: AuthUser, jurisdictionName: string) {
   return (
-    jurisdictionName === user.jurisdictionName ||
+    communityMatchesJurisdiction(getDefaultCommunityForUser(user).id, jurisdictionName) ||
     jurisdictionName === "Nevada" ||
     jurisdictionName === "United States"
   );

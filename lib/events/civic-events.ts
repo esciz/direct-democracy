@@ -4,7 +4,8 @@ import { cache } from "react";
 
 import { getAllEventAttendance } from "@/lib/community/event-participation";
 import { getAllCommunityEvents } from "@/lib/community/events";
-import { getCommunityById, getCommunityByJurisdictionName, seededCommunities } from "@/lib/community/communities";
+import { getCommunityById, getCommunityByJurisdictionName, getDefaultCommunityForJurisdiction, seededCommunities } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { getPublicMeetingAdminDashboard } from "@/lib/public-meetings/public";
 import type { PublicBodyLevel, PublicBodyRecord, PublicMeetingItemRecord, PublicMeetingRecord, PublicMeetingSourceSeed, VoteRecord } from "@/lib/public-meetings/types";
 import type { CivicEvent, CivicEventHostType, CivicEventKind, CivicEventStatus, CivicEventType } from "@/lib/events/types";
@@ -547,7 +548,7 @@ function communityEventToEvent({
 
 function eventMatchesScope(scope: VoteQuestionScope | "all", jurisdictionName: string, userJurisdictionName: string) {
   if (scope === "all") return true;
-  if (scope === "local") return normalizeJurisdiction(jurisdictionName) === normalizeJurisdiction(userJurisdictionName);
+  if (scope === "local") return communityMatchesJurisdiction(getDefaultCommunityForJurisdiction(userJurisdictionName).id, jurisdictionName);
   if (scope === "state") return normalizeJurisdiction(jurisdictionName).includes("nevada");
   return normalizeJurisdiction(jurisdictionName).includes("united states");
 }

@@ -5,7 +5,8 @@ import { PageIntro } from "@/components/ui/page-intro";
 import { PreserveScrollQueryForm } from "@/components/ui/preserve-scroll-query-form";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getBrowsePreviewCategory, type BrowsePreviewBadgeTone, type BrowsePreviewCategory, type BrowsePreviewItem } from "@/lib/browse/preview-adapter";
-import { getCommunityById, getDefaultCommunityForUser, getGeographicCommunities } from "@/lib/community/communities";
+import { getCommunityById, getDefaultCommunityForUser, getGeographicCommunities, getLocalCommunityBundle } from "@/lib/community/communities";
+import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import type { FavoriteTargetType } from "@/lib/favorites/types";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getFavoritesForUser } from "@/lib/server/favorites";
@@ -76,9 +77,6 @@ const FILTER_PARAM_BY_KEY: Record<ExploreFilterKey, keyof ExploreSearchParams> =
 const FILTERS_BY_CATEGORY: Partial<Record<ExploreCategory, ExploreFilterControl[]>> = {
   communities: [
     { key: "scope", name: "filterScope", label: "Community type", options: ["County", "City", "Community", "State", "Federal"] },
-  ],
-  issues: [
-    { key: "scope", name: "filterScope", label: "Issue scope", options: ["local", "state", "national"] },
   ],
   people: [
     { key: "role", name: "filterRole", label: "Profile type", options: ["Registered citizen", "Trusted citizen"] },
@@ -274,32 +272,50 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
   const user = await getCurrentUser();
   const params = searchParams ? await searchParams : undefined;
   const defaultCommunity = getDefaultCommunityForUser(user);
-  const selectedCommunityId = resolveCommunityId(params?.communityId, defaultCommunity.id);
-  const currentCommunity = getCommunityById(selectedCommunityId) ?? defaultCommunity;
   const query = params?.q?.trim() ?? "";
   const activeCategory = normalizeCategory(params?.category);
+  const legacyIssueScopeCommunityId =
+    activeCategory === "issues" && params?.filterScope === "national"
+      ? "united-states"
+      : activeCategory === "issues" && params?.filterScope === "state"
+        ? "nevada"
+        : undefined;
+  const selectedCommunityId = resolveCommunityId(legacyIssueScopeCommunityId ?? params?.communityId, defaultCommunity.id);
+  const currentCommunity = getCommunityById(selectedCommunityId) ?? defaultCommunity;
+  const currentLocalBundle = getLocalCommunityBundle(currentCommunity.id);
   const filterControls = FILTERS_BY_CATEGORY[activeCategory] ?? [];
   const activeFilters = getActiveFilterValues(params, filterControls);
   const activeFilterSummary = getFilterSummary(filterControls, activeFilters);
   const favoritesOnly = params?.favorites === "1";
-  const locationChoices = getGeographicCommunities()
-    .filter((community) =>
-      [
-        "nevada",
-        "carson-city-county",
-        "carson-city",
-        "washoe-county",
-        "reno",
-        "sparks",
-        "clark-county",
-        "las-vegas",
-        "henderson",
-        "north-las-vegas",
-      ].includes(community.id),
-    )
+  const geographicCommunities = getGeographicCommunities();
+  const standardLocationIds = [
+    "nevada",
+    "carson-city-county",
+    "carson-city",
+    "washoe-county",
+    "reno",
+    "sparks",
+    "clark-county",
+    "las-vegas",
+    "henderson",
+    "north-las-vegas",
+  ];
+  const issueLocationIds = [
+    ...(defaultCommunity.scope === "local" ? [defaultCommunity.id] : []),
+    ...(currentCommunity.scope === "local" ? [currentCommunity.id] : []),
+    "nevada",
+    "united-states",
+  ];
+  const locationIds = activeCategory === "issues" ? [...new Set(issueLocationIds)] : standardLocationIds;
+  const locationChoices = geographicCommunities
+    .filter((community) => locationIds.includes(community.id))
     .sort((a, b) => {
       if (a.id === selectedCommunityId) return -1;
       if (b.id === selectedCommunityId) return 1;
+      if (activeCategory === "issues") {
+        const scopeOrder = { local: 0, state: 1, national: 2 };
+        return scopeOrder[a.scope] - scopeOrder[b.scope];
+      }
       return a.name.localeCompare(b.name);
     });
   const favoriteRecords = await getFavoritesForUser(user.id);
@@ -342,13 +358,14 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
     category: activeCategory,
     communityId: selectedCommunityId,
     query: favoritesOnly ? "" : query,
-    limit: favoritesOnly ? 24 : query ? 12 : 8,
+    limit: favoritesOnly ? 24 : query ? 12 : activeCategory === "issues" && currentCommunity.scope === "national" ? 12 : 8,
     favoriteIds: favoritesOnly ? (activeFavoriteTargetType ? favoriteIdsByType[activeFavoriteTargetType] : []) : undefined,
     viewerUser: user,
     filters: activeFilters,
   });
   const activeItems = activePreview.items;
   const eventPreviewTimingStatus = activeCategory === "events" ? getEventPreviewTimingStatus(activeItems) : null;
+  const isNationalIssueCatalog = activeCategory === "issues" && currentCommunity.scope === "national";
 
   const activeCategoryLabel = getCategoryLabel(activeCategory);
   const resultsTitle = favoritesOnly
@@ -366,6 +383,10 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
       ? `Search is currently scoped to ${activeCategoryLabel.toLowerCase()} only.`
       : activeFilterSummary
         ? `Filtered to ${activeFilterSummary} in and around ${currentCommunity.name}.`
+      : activeCategory === "issues"
+        ? currentCommunity.scope === "local"
+          ? `Showing ${LOCAL_SCOPE_LABEL} issues for ${currentLocalBundle.label}.`
+          : `Showing ${currentCommunity.scope} issues for ${currentCommunity.name}.`
       : `Browse ${activeCategoryLabel.toLowerCase()} in and around ${currentCommunity.name}.`;
 
   return (
@@ -428,9 +449,11 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
         <PreserveScrollQueryForm action="/explore" className="mt-5 grid gap-3">
           <input type="hidden" name="category" value={activeCategory} />
           {favoritesOnly ? <input type="hidden" name="favorites" value="1" /> : null}
-          <div className="flex flex-wrap gap-3">
-            <label className="min-w-[13rem] flex-1">
-              <span className="sr-only">Location</span>
+          <div className="grid gap-3 md:grid-cols-[minmax(13rem,0.8fr)_minmax(18rem,2fr)_auto] md:items-end">
+            <label>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+                {activeCategory === "issues" ? "Show issues for" : "Location"}
+              </span>
               <select
                 name="communityId"
                 defaultValue={selectedCommunityId}
@@ -438,18 +461,25 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
               >
                 {locationChoices.map((community) => (
                   <option key={community.id} value={community.id}>
-                    {community.name}
+                    {activeCategory === "issues"
+                      ? community.scope === "local"
+                        ? `${LOCAL_SCOPE_LABEL} — ${getLocalCommunityBundle(community.id).label}`
+                        : `${community.scope === "national" ? "National" : "State"} — ${community.name}`
+                      : community.name}
                   </option>
                 ))}
               </select>
             </label>
-            <input
-              type="search"
-              name="q"
-              defaultValue={query}
-              placeholder={getCategoryPlaceholder(activeCategory)}
-              className="dd-input min-w-[18rem] flex-[2] rounded-full px-4 py-3 text-sm outline-none focus:border-cyan-300/30"
-            />
+            <label>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">Search within {activeCategoryLabel.toLowerCase()}</span>
+              <input
+                type="search"
+                name="q"
+                defaultValue={query}
+                placeholder={getCategoryPlaceholder(activeCategory)}
+                className="dd-input w-full rounded-full px-4 py-3 text-sm outline-none focus:border-cyan-300/30"
+              />
+            </label>
             <button type="submit" className="dd-button-primary rounded-full px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
               Search
             </button>
@@ -492,7 +522,9 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">{activeCategoryLabel}</p>
               <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50">{resultsTitle}</h3>
-              <p className="mt-2 text-sm text-slate-400">{query || favoritesOnly ? resultsDescription : getCategoryDescription(activeCategory)}</p>
+              <p className="mt-2 text-sm text-slate-400">
+                {query || favoritesOnly || activeCategory === "issues" ? resultsDescription : getCategoryDescription(activeCategory)}
+              </p>
               {eventPreviewTimingStatus ? (
                 <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">
                   {eventPreviewTimingStatus.label} · {eventPreviewTimingStatus.note}
@@ -516,7 +548,10 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
               ) : null}
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              {renderBadge(activePreview.statusLabel, activePreview.isSourceBacked ? "emerald" : "orange")}
+              {renderBadge(
+                isNationalIssueCatalog ? "National issue catalog" : activePreview.statusLabel,
+                isNationalIssueCatalog ? "civic" : activePreview.isSourceBacked ? "emerald" : "orange",
+              )}
               {eventPreviewTimingStatus ? renderBadge(eventPreviewTimingStatus.label, eventPreviewTimingStatus.tone) : null}
               {activePreview.lastGeneratedAt ? renderBadge(`Updated ${new Date(activePreview.lastGeneratedAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`) : null}
               <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200">

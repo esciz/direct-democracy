@@ -3,7 +3,8 @@ import { readFile } from "node:fs/promises";
 
 import { Prisma, VoteAnswer } from "@prisma/client";
 
-import { getCommunityById } from "@/lib/community/communities";
+import { getCommunityById, getDefaultCommunityForUser, getLocalCommunityBundle } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { generateVoteQuestionsFromApprovedIssuePositions } from "@/lib/issue-positions/store";
 import { prisma } from "@/lib/prisma";
 import { appendTaxCostContext } from "@/lib/public-meetings/financial-impact";
@@ -125,7 +126,7 @@ function getCommunityLabel(question: VoteQuestionSummary) {
 }
 
 function getScopePriority(question: VoteQuestionSummary, user: AuthUser) {
-  if (question.jurisdictionName === user.jurisdictionName) return 3;
+  if (communityMatchesJurisdiction(getDefaultCommunityForUser(user).id, question.jurisdictionName)) return 3;
   if (question.scope === "local") return 2;
   if (question.scope === "state") return 1;
   return 0;
@@ -135,14 +136,14 @@ function isRelevantQuestion(question: VoteQuestionSummary, user: AuthUser, commu
   const community = communityId ? getCommunityById(communityId) : null;
 
   if (community) {
-    return community.jurisdictionMatches.includes(question.jurisdictionName);
+    return communityMatchesJurisdiction(community.id, question.jurisdictionName);
   }
 
   if (question.scope === "national" || question.jurisdictionName === "Nevada") {
     return true;
   }
 
-  return question.jurisdictionName === user.jurisdictionName;
+  return communityMatchesJurisdiction(getDefaultCommunityForUser(user).id, question.jurisdictionName);
 }
 
 function getObjectPriority(question: VoteQuestionSummary) {
@@ -881,6 +882,7 @@ function civicEntityTypesForVotingFilter(filter: "all" | "people" | "issues" | "
 
 function votingQuestionWhere(user: AuthUser, filter: "all" | "people" | "issues" | "cases") {
   const entityTypes = civicEntityTypesForVotingFilter(filter);
+  const localJurisdictions = getLocalCommunityBundle(getDefaultCommunityForUser(user).id).jurisdictionNames;
   return {
     generatedFromRealData: true,
     reviewStatus: { in: [...PUBLIC_REVIEW_STATUSES] },
@@ -888,7 +890,7 @@ function votingQuestionWhere(user: AuthUser, filter: "all" | "people" | "issues"
     ...(entityTypes ? { civicEntityType: { in: [...entityTypes] } } : {}),
     OR: [
       { scope: { in: ["state", "national"] } },
-      { jurisdiction: { name: user.jurisdictionName } },
+      { jurisdiction: { name: { in: localJurisdictions } } },
     ],
   } satisfies Prisma.VoteQuestionWhereInput;
 }

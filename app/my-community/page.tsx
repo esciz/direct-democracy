@@ -14,7 +14,9 @@ import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
 import { getOfficials } from "@/lib/officials/store";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
-import { getCommunityById, getDefaultCommunityForUser, seededCommunities } from "@/lib/community/communities";
+import { getCommunityById, getDefaultCommunityForUser, getLocalCommunityBundle, seededCommunities } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
+import { getCivicJurisdictionContext } from "@/lib/civic/jurisdiction-context";
 import { getDiscoverableEventsForUser } from "@/lib/community/event-discovery";
 import { getTopIssuesForUser } from "@/lib/community/issues";
 import { getCommunityHero } from "@/lib/community/place-data";
@@ -142,7 +144,7 @@ function getElectionLevelLabel(election: ElectionSummary) {
   if (jurisdiction === "united states") return "Federal";
   if (jurisdiction === "nevada") return "State";
   if (jurisdiction.includes("county")) return "County";
-  return "Local";
+  return "City";
 }
 
 function getNextElectionMilestone(election: ElectionSummary) {
@@ -183,8 +185,9 @@ function getElectionRelevanceNote(
     return "Statewide election";
   }
 
-  if (election.jurisdictionName === user.jurisdictionName || election.communityId === currentCommunity.id) {
-    return /county/i.test(currentCommunity.name) ? "This applies to your county" : "This applies to your city";
+  if (communityMatchesJurisdiction(currentCommunity.id, election.jurisdictionName)) {
+    const layer = getCivicJurisdictionContext({ jurisdictionName: election.jurisdictionName }).civicLayer;
+    return layer === "county" ? "This applies to your county" : "This applies to your city";
   }
 
   if (/county/i.test(election.jurisdictionName)) {
@@ -204,10 +207,10 @@ function getUpcomingElectionsForUser(
     "Nevada",
     user.jurisdictionName,
     currentCommunity.primaryJurisdictionName,
-    ...currentCommunity.jurisdictionMatches,
+    ...getLocalCommunityBundle(currentCommunity.id).jurisdictionNames,
   ]);
   const communityMatches = new Set<string>([
-    currentCommunity.id,
+    ...getLocalCommunityBundle(currentCommunity.id).communityIds,
     "nevada",
     "united-states",
   ]);

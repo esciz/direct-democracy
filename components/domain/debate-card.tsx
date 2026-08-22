@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { JurisdictionTag } from "@/components/domain/jurisdiction-tag";
+
 import { AvatarStack } from "@/components/domain/avatar-stack";
 import type { DebateSummary } from "@/types/domain";
 
@@ -91,9 +93,10 @@ export function DebateCard({ debate }: DebateCardProps) {
             ]}
           />
           <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-            {debate.jurisdictionName} · {debate.turnCount} official turn{debate.turnCount === 1 ? "" : "s"} · {debate.followerCount} follower
+            {debate.turnCount} official turn{debate.turnCount === 1 ? "" : "s"} · {debate.followerCount} follower
             {debate.followerCount === 1 ? "" : "s"}
           </span>
+          <JurisdictionTag jurisdictionName={debate.jurisdictionName} />
         </div>
         <Link
           href={`/debates/${debate.id}`}
