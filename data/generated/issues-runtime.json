@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T15:08:41.996Z",
+  "generatedAt": "2026-08-22T19:07:52.377Z",
   "records": [
     {
       "id": "issue_real_taxes-and-spending",
@@ -21,6 +21,7 @@
         "Storey County, NV",
         "Elko, NV",
         "Las Vegas, NV",
+        "North Las Vegas, NV",
         "Yerington, NV",
         "Eureka County, NV",
         "Lyon County, NV",
@@ -32,18 +33,18 @@
         "Other"
       ],
       "relationshipCounts": {
-        "meetings": 968,
-        "agendaItems": 2260,
-        "votingCards": 968,
+        "meetings": 1004,
+        "agendaItems": 2360,
+        "votingCards": 1004,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 386,
+        "votes": 401,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 847,
+        "spendingRecords": 864,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 2260
+        "sourceDocuments": 2360
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -73,9 +74,10 @@
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-elko-city-council-elko-city-council-2016-08-02-d51440b4",
-        "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-08-05-6853cd60",
         "meeting-manual-las-vegas-city-council-special-joint-city-council-and-redevelopment-agency-budget-2026-05-20-8323b15f",
+        "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-13-013d9fa6",
@@ -84,8 +86,7 @@
         "meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c"
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-7-4e813a26a5",
@@ -190,7 +191,7 @@
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245081&GUID=FFDD3420-F957-4B40-A60E-E852CD56D5C8",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245085&GUID=6E9E0511-006E-4399-A4EC-5C8C7286692B",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1347265&GUID=E6A3DAF3-5735-4CFF-B40F-8727651BE849",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1785849844424",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787058510285",
         "https://www.churchillcountynv.gov/DocumentCenter/View/19218/FIre-Board-Agenda-Packet-07-14-26",
         "https://www.churchillcountynv.gov/DocumentCenter/View/19243/FIre-Board-Agenda-Packet-08-11-26",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07212026-1399",
@@ -199,9 +200,10 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.elkocity.com/08-02-16%20PC%20Min.pdf?t=202305301202500",
-        "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=42884",
-        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1786194710323",
+        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787424879087",
+        "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16600",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_05042026-57",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07272026-69",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07132026-67",
@@ -212,10 +214,9 @@
         "https://www.eurekacountynv.gov/media/54idfeep/1-6-26-bocc-agenda-and-backup.pdf",
         "https://www.eurekacountynv.gov/media/ndgo3got/2-03-26-euco-bocc-agenda-and-backup.pdf",
         "https://www.eurekacountynv.gov/media/vkwneya0/2-17-26-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/ipvoh1dh/3-03-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/4pnohwtl/3-17-26-bocc-agenda-and-backup.pdf"
+        "https://www.eurekacountynv.gov/media/ipvoh1dh/3-03-26-euco-bocc-agenda-and-backup.pdf"
       ],
-      "latestActivityAt": "2026-08-11T16:00:00.000Z",
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
       "confidence": 0.62
     },
     {
@@ -236,7 +237,6 @@
         "Churchill County, NV",
         "Storey County, NV",
         "Elko, NV",
-        "Las Vegas, NV",
         "Yerington, NV",
         "Eureka County, NV",
         "Lyon County, NV",
@@ -247,18 +247,18 @@
         "Other"
       ],
       "relationshipCounts": {
-        "meetings": 347,
-        "agendaItems": 1135,
-        "votingCards": 347,
+        "meetings": 356,
+        "agendaItems": 1167,
+        "votingCards": 356,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 170,
+        "votes": 173,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 305,
+        "spendingRecords": 296,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 1135
+        "sourceDocuments": 1167
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -284,10 +284,10 @@
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b",
         "meeting-manual-elko-city-council-elko-city-council-2016-08-02-d51440b4",
         "meeting-manual-elko-city-council-elko-city-council-2016-09-06-62554d46",
-        "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-08-05-6853cd60",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-13-013d9fa6",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-06-08-ac60a4a8",
@@ -412,10 +412,10 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
         "https://www.elkocity.com/08-02-16%20PC%20Min.pdf?t=202305301202500",
         "https://www.elkocity.com/09-06-16%20PC%20Min.pdf?t=202305301202500",
-        "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=42884",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07132026-67",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06222026-65",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06082026-64",
@@ -430,7 +430,7 @@
         "https://www.eurekacountynv.gov/media/3m3bnb5u/4-7-26-euco-bocc-agenda-and-backup.pdf",
         "https://www.eurekacountynv.gov/media/esvlrk4g/5-19-26-bocc-agenda-and-backup.pdf"
       ],
-      "latestActivityAt": "2026-08-11T16:00:00.000Z",
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
       "confidence": 0.57
     },
     {
@@ -450,7 +450,6 @@
         "Washoe County, NV",
         "Storey County, NV",
         "Elko, NV",
-        "Las Vegas, NV",
         "Yerington, NV",
         "Eureka County, NV",
         "Lyon County, NV",
@@ -462,18 +461,18 @@
         "Other"
       ],
       "relationshipCounts": {
-        "meetings": 217,
-        "agendaItems": 887,
-        "votingCards": 217,
+        "meetings": 222,
+        "agendaItems": 922,
+        "votingCards": 222,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 95,
+        "votes": 99,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 160,
+        "spendingRecords": 159,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 887
+        "sourceDocuments": 922
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -494,12 +493,12 @@
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-elko-city-council-elko-city-council-2016-02-02-9ae9d1f3",
         "meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae",
         "meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b",
         "meeting-manual-elko-city-council-elko-city-council-2016-08-02-d51440b4",
         "meeting-manual-elko-city-council-elko-city-council-2016-09-06-62554d46",
-        "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-08-05-6853cd60",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-13-013d9fa6",
@@ -622,12 +621,12 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470",
         "https://www.elkocity.com/03-01-16%20PC%20Minutes.pdf?t=202305301202470",
         "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
         "https://www.elkocity.com/08-02-16%20PC%20Min.pdf?t=202305301202500",
         "https://www.elkocity.com/09-06-16%20PC%20Min.pdf?t=202305301202500",
-        "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=42884",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_05042026-57",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07272026-69",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07132026-67",
@@ -645,7 +644,7 @@
         "https://www.eurekacountynv.gov/media/esvlrk4g/5-19-26-bocc-agenda-and-backup.pdf",
         "https://www.eurekacountynv.gov/media/2aohsbvm/6-18-26-bocc-agenda-and-backup.pdf"
       ],
-      "latestActivityAt": "2026-08-10T16:00:00.000Z",
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
       "confidence": 0.56
     },
     {
@@ -663,7 +662,6 @@
       ],
       "communities": [
         "Washoe County, NV",
-        "Reno, NV",
         "Storey County, NV",
         "Elko, NV",
         "Yerington, NV",
@@ -674,18 +672,18 @@
         "Housing"
       ],
       "relationshipCounts": {
-        "meetings": 273,
-        "agendaItems": 640,
-        "votingCards": 273,
+        "meetings": 279,
+        "agendaItems": 666,
+        "votingCards": 279,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 116,
+        "votes": 118,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 136,
+        "spendingRecords": 149,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 640
+        "sourceDocuments": 666
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -704,13 +702,12 @@
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191",
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-10-21-458f5606",
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-10-28-b7cdeb7b",
-        "meeting-manual-reno-city-council-reno-city-council-2026-08-04-5d4bce28",
-        "meeting-manual-reno-city-council-reno-city-council-2026-08-04-70eb7ee0",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d",
         "meeting-manual-elko-city-council-elko-city-council-2016-02-02-9ae9d1f3",
         "meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae",
@@ -727,7 +724,8 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04"
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-12.I.1-fa24951f9a",
@@ -832,13 +830,12 @@
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245081&GUID=FFDD3420-F957-4B40-A60E-E852CD56D5C8",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245085&GUID=6E9E0511-006E-4399-A4EC-5C8C7286692B",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1347265&GUID=E6A3DAF3-5735-4CFF-B40F-8727651BE849",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8985",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8987",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07212026-1399",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07072026-1395",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
         "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470",
         "https://www.elkocity.com/03-01-16%20PC%20Minutes.pdf?t=202305301202470",
@@ -855,9 +852,10 @@
         "https://www.eurekacountynv.gov/media/ipvoh1dh/3-03-26-euco-bocc-agenda-and-backup.pdf",
         "https://www.eurekacountynv.gov/media/4pnohwtl/3-17-26-bocc-agenda-and-backup.pdf",
         "https://www.eurekacountynv.gov/media/hf1asyvv/5-5-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/veohfdbc/6-2-26-agenda-and-backup.pdf"
+        "https://www.eurekacountynv.gov/media/veohfdbc/6-2-26-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/3m3bnb5u/4-7-26-euco-bocc-agenda-and-backup.pdf"
       ],
-      "latestActivityAt": "2026-08-06T16:00:00.000Z",
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
       "confidence": 0.59
     },
     {
@@ -887,18 +885,18 @@
         "Other"
       ],
       "relationshipCounts": {
-        "meetings": 200,
-        "agendaItems": 577,
-        "votingCards": 200,
+        "meetings": 215,
+        "agendaItems": 609,
+        "votingCards": 215,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 97,
+        "votes": 106,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 48,
+        "spendingRecords": 52,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 577
+        "sourceDocuments": 609
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -919,6 +917,7 @@
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d",
         "meeting-manual-elko-city-council-elko-city-council-2016-02-02-9ae9d1f3",
         "meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae",
@@ -939,8 +938,7 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-18-ee3c5f7a"
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-21-037ba41eaf",
@@ -1047,6 +1045,7 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
         "https://www.elkocity.com/02-02-16%20PC%20Minutes.pdf?t=202305301202470",
         "https://www.elkocity.com/03-01-16%20PC%20Minutes.pdf?t=202305301202470",
@@ -1067,10 +1066,9 @@
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07022026-2059",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06182026-2053",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_05212026-2036"
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044"
       ],
-      "latestActivityAt": "2026-08-06T16:00:00.000Z",
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
       "confidence": 0.55
     },
     {
@@ -1090,6 +1088,7 @@
         "Washoe County, NV",
         "Storey County, NV",
         "Elko, NV",
+        "North Las Vegas, NV",
         "Yerington, NV",
         "Eureka County, NV",
         "Lyon County, NV",
@@ -1099,18 +1098,18 @@
         "Utilities"
       ],
       "relationshipCounts": {
-        "meetings": 163,
-        "agendaItems": 591,
-        "votingCards": 163,
+        "meetings": 168,
+        "agendaItems": 605,
+        "votingCards": 168,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 73,
+        "votes": 74,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 101,
+        "spendingRecords": 105,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 591
+        "sourceDocuments": 605
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-07-16-88dec481",
@@ -1127,7 +1126,9 @@
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d",
+        "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-13-013d9fa6",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f",
@@ -1150,9 +1151,7 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-06eb3f24",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-08-04-5c807112",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d"
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-07-16-88dec481-11-ca89270a07",
@@ -1181,7 +1180,9 @@
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-13.118.010-544bb2eb5b",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-500-8cddfd2175",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-1-9803cdf2c1",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-22-0dd53ef94b",
         "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-4-d6bd05fd30",
+        "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7-2027-241e77e293",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2-6-cec61f833c",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-13-013d9fa6-6-cec61f833c",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-12-c8364d1fde",
@@ -1192,9 +1193,7 @@
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-80-27f79525bd",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-2-da53a4cd0d",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-92-5cc9b90f05",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-3-e9785b9e93",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-94-dc35d21d16",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-2-9434853eee"
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-3-e9785b9e93"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-07-16-88dec481-11-ca892-fdf4555b08",
@@ -1223,7 +1222,9 @@
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-13-118-236aee1015",
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-500-8c-01447c924a",
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-1-9803-066961d4c3",
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-22-0dd-b4b25e6665",
         "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-4-d6bd05fd30-58fdc423c6",
+        "meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b-cdb986ee43",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2-6-cec61f83-ec1d76cee6",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-13-013d9fa6-6-cec61f83-aec2defb3e",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-12-c8364d1-72bdd9ae50",
@@ -1234,9 +1235,7 @@
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-80-27f-00875d7d02",
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-2-da53-609971e45f",
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-92-5cc-2a643ba246",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-3-e978-a6706f315f",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-94-dc3-63b3d5b6a6",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-2-9434-753d3ade69"
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-3-e978-a6706f315f"
       ],
       "relatedCourtCaseIds": [],
       "relatedIssueReviewRequestIds": [],
@@ -1255,7 +1254,9 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
+        "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16600",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07272026-69",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07132026-67",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06222026-65",
@@ -1278,11 +1279,9 @@
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06182026-2053",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_05212026-2036",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08062026-2081",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08032026-2079",
-        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-12-18-commissioners-agn.pdf?t=202412121800260"
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08062026-2081"
       ],
-      "latestActivityAt": "2026-08-10T16:00:00.000Z",
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
       "confidence": 0.57
     },
     {
@@ -1310,18 +1309,18 @@
         "Labor"
       ],
       "relationshipCounts": {
-        "meetings": 55,
-        "agendaItems": 177,
-        "votingCards": 55,
+        "meetings": 60,
+        "agendaItems": 195,
+        "votingCards": 60,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 28,
+        "votes": 30,
         "officials": 0,
         "newsStories": 0,
         "spendingRecords": 23,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 177
+        "sourceDocuments": 195
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-03-19-0a398f6e",
@@ -1332,6 +1331,7 @@
         "meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41",
@@ -1350,6 +1350,7 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-08-04-5c807112",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-18-ee3c5f7a",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
         "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-20-6646a459",
         "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-06-095f5c89",
         "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-16-3ded03bc",
@@ -1361,9 +1362,7 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c",
-        "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-02-1edaeda4"
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-03-19-0a398f6e-7.D.1-ddd485342f",
@@ -1383,6 +1382,9 @@
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-II-43e793ccb0",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-152-877e2d5fb9",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-II-7f205a3745",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-1.2-5659c89422",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-1.2-2630d04df8",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-126-b2032e8551",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-1-59e265126a",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-129-7e04cfd934",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-617-fef920bafe",
@@ -1402,10 +1404,7 @@
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-3-fbbf615573",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-2-7591fa7aa2",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-3-be4ea42834",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-99-e43d4e3eb9",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-07-f4a3b12a-1-a149cc5938",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8-2-844c3158b2",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8-1-a149cc5938"
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-99-e43d4e3eb9"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-03-19-0a398f6e-7-d-1-dd-d0e4d73e9c",
@@ -1425,6 +1424,9 @@
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-ii-43e-77c4627a9c",
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-152-87-482f52a8be",
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-ii-7f2-76484b8103",
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-1-2-56-47005daa0b",
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-1-2-26-c76965b699",
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-126-b2-b4c3e18f25",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-1-59e26512-74ebad5301",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-129-7e04cf-b666e26438",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-617-fef920-bf27a2dcfc",
@@ -1444,10 +1446,7 @@
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-3-fbbf-5f4228e64e",
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-2-7591-87c71d141e",
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-3-be4e-45a884e7fd",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-99-e43-a4d88d8c2f",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-07-f4a3b12a-1-a149-80d910d107",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8-2-844c-eeae073e6b",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8-1-a149-9acfcf81fa"
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-99-e43-a4d88d8c2f"
       ],
       "relatedCourtCaseIds": [],
       "relatedIssueReviewRequestIds": [],
@@ -1460,6 +1459,7 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07072026-1395",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06222026-65",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08102026-70",
         "https://www.eurekacountynv.gov/media/54idfeep/1-6-26-bocc-agenda-and-backup.pdf",
@@ -1473,6 +1473,7 @@
         "https://www.eurekacountynv.gov/media/vkngb0v3/8-4-26-euco-bocc-agenda-and-backup.pdf",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06182026-2053",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
         "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-20-commissioners-agn.pdf?t=202411141920410",
         "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-06-commissioners-agn.pdf?t=202411051414150",
         "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-10-16-commissioners-agn.pdf?t=202410101921050",
@@ -1487,10 +1488,11 @@
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07022026-2059",
         "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-10-02-commisioners-agn.pdf?t=202409261948410",
         "https://www.cityofcaliente.com/july-16-2026-city-council-meetin-agenda/",
-        "https://www.cityofcaliente.com/august-6-2026-city-council-meeting-agenda/"
+        "https://www.cityofcaliente.com/august-6-2026-city-council-meeting-agenda/",
+        "https://www.cityofcaliente.com/august-20-2026-city-council-agenda/"
       ],
-      "latestActivityAt": "2026-08-10T16:00:00.000Z",
-      "confidence": 0.59
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
+      "confidence": 0.58
     },
     {
       "id": "issue_real_school-safety",
@@ -1509,7 +1511,7 @@
         "Washoe County, NV",
         "Storey County, NV",
         "Elko, NV",
-        "Las Vegas, NV",
+        "North Las Vegas, NV",
         "Yerington, NV",
         "Eureka County, NV",
         "Lyon County, NV"
@@ -1518,18 +1520,18 @@
         "Schools"
       ],
       "relationshipCounts": {
-        "meetings": 44,
-        "agendaItems": 134,
-        "votingCards": 44,
+        "meetings": 46,
+        "agendaItems": 140,
+        "votingCards": 46,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 14,
+        "votes": 16,
         "officials": 0,
         "newsStories": 0,
         "spendingRecords": 50,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 134
+        "sourceDocuments": 140
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
@@ -1538,8 +1540,9 @@
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7",
         "meeting-washoe-county-commission-board-of-county-commissioners-2025-10-28-b7cdeb7b",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d",
-        "meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-08-05-6853cd60",
+        "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209",
@@ -1555,6 +1558,7 @@
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-08-27-773b0e9f",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
@@ -1569,8 +1573,7 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-18-ee3c5f7a",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b"
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-12.F.1-d282195c44",
@@ -1579,8 +1582,9 @@
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7-9.C.3-eca2c16dff",
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-10-28-b7cdeb7b-7.B.1-2e51c796c8",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-15-c584ab2d0c",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-90-da95ee6545",
         "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-26-a54e7c1ce5",
-        "item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-08-05-6853cd60-350-645d8a6a0f",
+        "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7-10493-e2b2608953",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-2025-77ba748511",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-70-58ad0e5258",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-76-87f461d502",
@@ -1611,8 +1615,7 @@
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-5-1c4879e8a5",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-5-f8b3dfb861",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-103-c79d740e45",
-        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-45-48550934a8",
-        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-2025-69a96a0cf5"
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-45-48550934a8"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-12-f-1-d-e43801c55e",
@@ -1621,8 +1624,9 @@
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7-9-c-3-ec-ad60b81ee2",
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2025-10-28-b7cdeb7b-7-b-1-2e-7145416790",
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-15-c58-cf10dbcbed",
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-90-da9-84dca07755",
         "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-26-a54e7c1ce5-5783aaf484",
-        "meeting-voting-card-item-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-08-05-6853cd60-350-645d8a-13115dbc0e",
+        "meeting-voting-card-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b-1a865aac25",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-2025-77ba7-a2d9046370",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-70-58ad0e5-6c3cb6735b",
         "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-76-87f461d-24b1ab6d15",
@@ -1653,8 +1657,7 @@
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-5-1c48-1ab3c9683f",
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-5-f8b3-5db0dcb7ce",
         "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-103-c7-b337c382ac",
-        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-45-4855093-60ad377565",
-        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-2025-69a96-9cc6c36da8"
+        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-45-4855093-60ad377565"
       ],
       "relatedCourtCaseIds": [],
       "relatedIssueReviewRequestIds": [],
@@ -1665,8 +1668,9 @@
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245061&GUID=88A75381-7676-4B04-960C-891684394CCA",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1347265&GUID=E6A3DAF3-5735-4CFF-B40F-8727651BE849",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.elkocity.com/01-05-16%20PC%20Minutes.pdf?t=202307240358120",
-        "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=42884",
+        "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16600",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06222026-65",
         "https://www.eurekacountynv.gov/media/slvnfv2y/1-20-26-bocc-agenda-and-backup.pdf",
         "https://www.eurekacountynv.gov/media/ipvoh1dh/3-03-26-euco-bocc-agenda-and-backup.pdf",
@@ -1677,6 +1681,7 @@
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_05212026-2036",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134982&GUID=908642B6-423B-4517-92F4-6D129CADDCC5",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07212026-1399",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
@@ -1692,8 +1697,204 @@
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08062026-2081",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08032026-2079"
       ],
-      "latestActivityAt": "2026-08-05T16:00:00.000Z",
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
       "confidence": 0.59
+    },
+    {
+      "id": "issue_real_reproductive-rights-abortion-and-birth-control-access",
+      "issueText": "Reproductive rights, abortion, and birth control access",
+      "issueSlug": "reproductive-rights-abortion-and-birth-control-access",
+      "summary": "Abortion, contraception, reproductive healthcare, privacy, and the state and federal rules that shape access.",
+      "scope": "local",
+      "jurisdictionName": "Across the platform",
+      "sourceBacked": true,
+      "reviewStatus": "needs_review",
+      "sourceTypes": [
+        "agenda_item",
+        "meeting_voting_card"
+      ],
+      "communities": [
+        "Washoe County, NV",
+        "Storey County, NV",
+        "Elko, NV",
+        "Yerington, NV",
+        "Eureka County, NV",
+        "Lyon County, NV"
+      ],
+      "policyAreas": [
+        "Other",
+        "Healthcare"
+      ],
+      "relationshipCounts": {
+        "meetings": 25,
+        "agendaItems": 136,
+        "votingCards": 25,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 6,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 17,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 136
+      },
+      "relatedMeetingIds": [
+        "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
+        "meeting-washoe-county-commission-board-of-county-commissioners-2024-08-27-773b0e9f",
+        "meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0",
+        "meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+        "meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b",
+        "meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f",
+        "meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+        "meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7",
+        "meeting-manual-nv-legislature-nevada-legislature-2026-08-12-080f48a3",
+        "meeting-manual-nv-assembly-nevada-assembly-2026-08-12-4c492736",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-ae78bcb6",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-06eb3f24",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-07-f4a3b12a",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8",
+        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-08-04-5c807112",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76"
+      ],
+      "relatedAgendaItemIds": [
+        "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-12.D.1-f7f8ebee4f",
+        "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-08-27-773b0e9f-12-7685e446c8",
+        "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0-7.A.2-44912e2871",
+        "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191-14-e91d397c5c",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-III-b2d2bb0478",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-134-992088db32",
+        "item-meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b-53-b778d2f13e",
+        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-1-6c60e0a964",
+        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f-8-645af67778",
+        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f-8-4ad744c64f",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-3-78558bbb2c",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3-2-24ffe7eff4",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-4-dce9412957",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-3-78558bbb2c",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-2-24ffe7eff4",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126-2-8b2dd45153",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126-2-da1a06e9cb",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-4-23700807b3",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-4-dce9412957",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-2-ca0ea2170a",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-0f534ae67b",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-1a3b1f1d52",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-11.g-3e9c778855",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-26-4828de9c3d",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-9-d28ed1b34a",
+        "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0-7.A.3-28f5cbfd19",
+        "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7-6-d92699c870",
+        "item-meeting-manual-nv-legislature-nevada-legislature-2026-08-12-080f48a3-5-4d079672d4",
+        "item-meeting-manual-nv-assembly-nevada-assembly-2026-08-12-4c492736-5-4d079672d4",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-28-0fc00e8f6b",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-45-866661cdb0",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-45-74d0c139da",
+        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-2-e66eaec4a1",
+        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f-1-0d9c460336",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-1-0c0acae62d",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-22-584e7a3420",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85-450.00-23883e7534",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85-393.75-1960714753",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85-942.99-c788871dbe",
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c-3-9885151034"
+      ],
+      "relatedVotingCardIds": [
+        "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-12-d-1-f-331c0a165d",
+        "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-08-27-773b0e9f-12-7685e-f21f847744",
+        "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0-7-a-2-44-33a4ba510b",
+        "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191-14-e91d3-7ab83f98a8",
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-iii-b2-223f7713c1",
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-134-99-bfefc01407",
+        "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b-53-b778d2f13e-e4f0f4c367",
+        "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-1-6c60e0a9-995d725c03",
+        "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f-8-645af677-9f888cdd53",
+        "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f-8-4ad744c6-001087248c",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-3-7855-a68c3220fc",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3-2-24ff-03079f297f",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-4-dce9-13b3a16602",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-3-7855-455f19d461",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-2-24ff-5124a6a7b7",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126-2-8b2d-24269d3ade",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126-2-da1a-74201091c2",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-4-2370-70be7ef966",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-4-dce9-d8bef7f00d",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-2-ca0e-692123a387",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-0f53-2290dd773f",
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-1a3b-bbd2e21a3b",
+        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-11-g-3e9c7-c032700fd1",
+        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-26-4828de9-b6a0211756",
+        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-9-d28ed1b3-892173e62a"
+      ],
+      "relatedCourtCaseIds": [],
+      "relatedIssueReviewRequestIds": [],
+      "relatedSourceUrls": [
+        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134961&GUID=C076565D-0936-4546-9AB0-AB0314A3FEED",
+        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134982&GUID=908642B6-423B-4517-92F4-6D129CADDCC5",
+        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134991&GUID=AEDDA8BC-D21E-49F1-A52D-2CAF00679D0D",
+        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245081&GUID=FFDD3420-F957-4B40-A60E-E852CD56D5C8",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
+        "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06222026-65",
+        "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08102026-70",
+        "https://www.eurekacountynv.gov/media/54idfeep/1-6-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/4pnohwtl/3-17-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/veohfdbc/6-2-26-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/3m3bnb5u/4-7-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/esvlrk4g/5-19-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/2aohsbvm/6-18-26-bocc-agenda-and-backup.pdf",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_05212026-2036",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245061&GUID=88A75381-7676-4B04-960C-891684394CCA",
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34907",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07212026-1399",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
+        "https://www.eurekacountynv.gov/media/slvnfv2y/1-20-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/ndgo3got/2-03-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/vkwneya0/2-17-26-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/hf1asyvv/5-5-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/f3ublxow/7-7-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/35qnxeaw/7-21-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.eurekacountynv.gov/media/vkngb0v3/8-4-26-euco-bocc-agenda-and-backup.pdf",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07022026-2059",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08032026-2079",
+        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-12-18-commissioners-agn.pdf?t=202412121800260",
+        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-12-04-commissioners-agn.pdf?t=202411261717210",
+        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-20-commissioners-agn.pdf?t=202411141920410",
+        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-06-commissioners-agn.pdf?t=202411051414150",
+        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-10-16-commissioners-agn.pdf?t=202410101921050",
+        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-09-04-commissioners-agn.pdf?t=202408281827350",
+        "https://washoe-nv.legistar.com/MeetingDetail.aspx?ID=1427975&GUID=3B5F0B57-E361-4DC7-B468-8330928F8439&Options=info|&Search="
+      ],
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
+      "confidence": 0.56
     },
     {
       "id": "issue_real_environment",
@@ -1721,7 +1922,7 @@
       ],
       "relationshipCounts": {
         "meetings": 24,
-        "agendaItems": 91,
+        "agendaItems": 93,
         "votingCards": 24,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -1731,7 +1932,7 @@
         "spendingRecords": 20,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 91
+        "sourceDocuments": 93
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-03-19-0a398f6e",
@@ -1755,6 +1956,7 @@
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b",
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f",
+        "meeting-manual-nv-legislature-nevada-legislature-2026-08-18-0aa91a1b",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
@@ -1767,7 +1969,8 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d"
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-03-19-0a398f6e-18-5e2f39abe9",
@@ -1795,6 +1998,7 @@
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76-1-90e4c621e8",
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b-2.2-c7c3ed009e",
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-01-16-925c740f-9-46e86f2cec",
+        "item-meeting-manual-nv-legislature-nevada-legislature-2026-08-18-0aa91a1b-17-799e9286d4",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-115-6d968f4779",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-28-32e22a128f",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-28-411463a604",
@@ -1808,8 +2012,7 @@
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-1-4628a1158b",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7-1-b8a312319b",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-ae78bcb6-45-b445d7c17e",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66-1-ef699a9bd8",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-53-c211e9f7eb"
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66-1-ef699a9bd8"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-03-19-0a398f6e-18-5e2f3-15bbb1c8c6",
@@ -1856,6 +2059,7 @@
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08062026-2081",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08032026-2079",
         "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134961&GUID=C076565D-0936-4546-9AB0-AB0314A3FEED",
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34884",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
@@ -1865,186 +2069,11 @@
         "https://www.eurekacountynv.gov/media/2aohsbvm/6-18-26-bocc-agenda-and-backup.pdf",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07022026-2059",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044"
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089"
       ],
       "latestActivityAt": "2026-08-06T16:00:00.000Z",
-      "confidence": 0.57
-    },
-    {
-      "id": "issue_real_healthcare-access",
-      "issueText": "Healthcare Access",
-      "issueSlug": "healthcare-access",
-      "summary": "Healthcare affordability, insurance costs, access to care, and the day-to-day burden of staying healthy.",
-      "scope": "local",
-      "jurisdictionName": "Across the platform",
-      "sourceBacked": true,
-      "reviewStatus": "needs_review",
-      "sourceTypes": [
-        "agenda_item",
-        "meeting_voting_card"
-      ],
-      "communities": [
-        "Washoe County, NV",
-        "Storey County, NV",
-        "Elko, NV",
-        "Yerington, NV",
-        "Eureka County, NV",
-        "Lyon County, NV"
-      ],
-      "policyAreas": [
-        "Healthcare"
-      ],
-      "relationshipCounts": {
-        "meetings": 15,
-        "agendaItems": 96,
-        "votingCards": 15,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 5,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 15,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 96
-      },
-      "relatedMeetingIds": [
-        "meeting-washoe-county-commission-board-of-county-commissioners-2024-08-27-773b0e9f",
-        "meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0",
-        "meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191",
-        "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
-        "meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b",
-        "meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f",
-        "meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4",
-        "meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7",
-        "meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5",
-        "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-ae78bcb6",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-06eb3f24",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-07-f4a3b12a",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-08-04-5c807112",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76",
-        "meeting-manual-pershing-county-commission-pershing-county-commission-2024-12-18-84c7dca9",
-        "meeting-manual-pershing-county-commission-pershing-county-commission-2024-12-04-6e21878a",
-        "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-20-6646a459",
-        "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-06-095f5c89",
-        "meeting-manual-pershing-county-commission-pershing-county-commission-2024-10-16-3ded03bc",
-        "meeting-manual-pershing-county-commission-pershing-county-commission-2024-09-04-ebd7cee9",
-        "meeting-manual-washoe-county-commission-washoe-county-commission-2024-12-03-4dab7289"
-      ],
-      "relatedAgendaItemIds": [
-        "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-08-27-773b0e9f-12-7685e446c8",
-        "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0-7.A.2-44912e2871",
-        "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191-14-e91d397c5c",
-        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-134-992088db32",
-        "item-meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b-53-b778d2f13e",
-        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-1-6c60e0a964",
-        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f-8-4ad744c64f",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-4-dce9412957",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-4-23700807b3",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-4-dce9412957",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-2-ca0ea2170a",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-0f534ae67b",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-1a3b1f1d52",
-        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-11.g-3e9c778855",
-        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-26-4828de9c3d",
-        "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0-7.A.3-28f5cbfd19",
-        "item-meeting-washoe-county-commission-board-of-county-commissioners-2025-02-11-6596f5d7-6-d92699c870",
-        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-28-0fc00e8f6b",
-        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-45-866661cdb0",
-        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-2-e66eaec4a1",
-        "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f-1-0d9c460336",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-1-0c0acae62d",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-22-584e7a3420",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85-450.00-23883e7534",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85-393.75-1960714753",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-b831ff85-942.99-c788871dbe",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c-3-9885151034",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c-1-912fbc125f",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c-143.79-880f659269",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7-1-319f87a4c6",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7-400.00-c3049c831a",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7-300.00-009693f345",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7-135.00-505b098673",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-5-49e8561d56",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-10-245d0d0018",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7-1-0c0acae62d",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-22-584e7a3420",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-ae78bcb6-450.00-23883e7534",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-ae78bcb6-393.75-1960714753",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-03-ae78bcb6-942.99-c788871dbe"
-      ],
-      "relatedVotingCardIds": [
-        "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-08-27-773b0e9f-12-7685e-f21f847744",
-        "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-11-19-9a2f9fd0-7-a-2-44-33a4ba510b",
-        "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2025-09-09-8fec7191-14-e91d3-7ab83f98a8",
-        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-134-99-bfefc01407",
-        "meeting-voting-card-item-meeting-manual-elko-city-council-elko-city-council-2016-06-07-9ec1652b-53-b778d2f13e-e4f0f4c367",
-        "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-1-6c60e0a9-995d725c03",
-        "meeting-voting-card-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f-8-4ad744c6-001087248c",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-4-dce9-13b3a16602",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-4-2370-70be7ef966",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-4-dce9-d8bef7f00d",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-2-ca0e-692123a387",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-0f53-2290dd773f",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-1a3b-bbd2e21a3b",
-        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-11-g-3e9c7-c032700fd1",
-        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-26-4828de9-b6a0211756"
-      ],
-      "relatedCourtCaseIds": [],
-      "relatedIssueReviewRequestIds": [],
-      "relatedSourceUrls": [
-        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134982&GUID=908642B6-423B-4517-92F4-6D129CADDCC5",
-        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1134991&GUID=AEDDA8BC-D21E-49F1-A52D-2CAF00679D0D",
-        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245081&GUID=FFDD3420-F957-4B40-A60E-E852CD56D5C8",
-        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
-        "https://www.elkocity.com/06-07-16%20PC%20Min.pdf?t=202305301202500",
-        "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06222026-65",
-        "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08102026-70",
-        "https://www.eurekacountynv.gov/media/veohfdbc/6-2-26-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/esvlrk4g/5-19-26-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/2aohsbvm/6-18-26-bocc-agenda-and-backup.pdf",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_05212026-2036",
-        "https://washoe-nv.legistar.com/View.ashx?M=A&ID=1245061&GUID=88A75381-7676-4B04-960C-891684394CCA",
-        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07212026-1399",
-        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
-        "https://www.eurekacountynv.gov/media/slvnfv2y/1-20-26-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/54idfeep/1-6-26-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/ndgo3got/2-03-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/vkwneya0/2-17-26-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/hf1asyvv/5-5-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/3m3bnb5u/4-7-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/f3ublxow/7-7-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/vkngb0v3/8-4-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07022026-2059",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08032026-2079",
-        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-12-18-commissioners-agn.pdf?t=202412121800260",
-        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-12-04-commissioners-agn.pdf?t=202411261717210",
-        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-20-commissioners-agn.pdf?t=202411141920410",
-        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-06-commissioners-agn.pdf?t=202411051414150",
-        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-10-16-commissioners-agn.pdf?t=202410101921050",
-        "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-09-04-commissioners-agn.pdf?t=202408281827350",
-        "https://washoe-nv.legistar.com/MeetingDetail.aspx?ID=1427975&GUID=3B5F0B57-E361-4DC7-B468-8330928F8439&Options=info|&Search="
-      ],
-      "latestActivityAt": "2026-08-10T16:00:00.000Z",
-      "confidence": 0.55
+      "confidence": 0.56
     },
     {
       "id": "issue_real_courts-and-legal-rights",
@@ -2068,7 +2097,7 @@
       ],
       "relationshipCounts": {
         "meetings": 0,
-        "agendaItems": 5,
+        "agendaItems": 1,
         "votingCards": 0,
         "courtCases": 25,
         "communitySubmissions": 0,
@@ -2078,21 +2107,13 @@
         "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 30
+        "sourceDocuments": 26
       },
       "relatedMeetingIds": [
-        "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
-        "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-07-f4a3b12a",
-        "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76"
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66"
       ],
       "relatedAgendaItemIds": [
-        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-3-1c19fe4567",
-        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-45-74d0c139da",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-07-f4a3b12a-4-c879a56739",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8-4-6dafbbd95d",
-        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76-1-a2da1b0c7a"
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-3-1c19fe4567"
       ],
       "relatedVotingCardIds": [],
       "relatedCourtCaseIds": [
@@ -2125,14 +2146,10 @@
       "relatedIssueReviewRequestIds": [],
       "relatedSourceUrls": [
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
-        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
-        "https://www.eurekacountynv.gov/media/f3ublxow/7-7-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.eurekacountynv.gov/media/35qnxeaw/7-21-26-euco-bocc-agenda-and-backup.pdf",
-        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08032026-2079",
         "https://nvcourts.gov/supreme/decisions/advance_opinions_enterprise"
       ],
       "latestActivityAt": "2026-06-18",
-      "confidence": 0.85
+      "confidence": 0.9
     },
     {
       "id": "issue_real_elections",
@@ -2157,7 +2174,7 @@
       ],
       "relationshipCounts": {
         "meetings": 9,
-        "agendaItems": 53,
+        "agendaItems": 54,
         "votingCards": 9,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -2167,7 +2184,7 @@
         "spendingRecords": 10,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 53
+        "sourceDocuments": 54
       },
       "relatedMeetingIds": [
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41",
@@ -2192,6 +2209,7 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-07-21-b81a3ce8",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
         "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-15-143474b6",
         "meeting-manual-pershing-county-commission-pershing-county-commission-2024-11-06-095f5c89"
       ],
@@ -2268,6 +2286,7 @@
         "https://www.eurekacountynv.gov/media/35qnxeaw/7-21-26-euco-bocc-agenda-and-backup.pdf",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07022026-2059",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
         "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-15-commissioners-spagn.pdf?t=202411121303460",
         "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-11-06-commissioners-agn.pdf?t=202411051414150"
       ],
@@ -2295,7 +2314,7 @@
       ],
       "relationshipCounts": {
         "meetings": 1,
-        "agendaItems": 54,
+        "agendaItems": 55,
         "votingCards": 1,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -2305,7 +2324,7 @@
         "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 54
+        "sourceDocuments": 55
       },
       "relatedMeetingIds": [
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
@@ -2314,6 +2333,7 @@
         "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-13-013d9fa6",
@@ -2353,6 +2373,7 @@
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-6-9d5ccfc6a1",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-33-949c989d44",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-7-ccc3f2f223",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-30-72a6d6271f",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78-12-18042a4bea",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2-18-ace1a3caa8",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2-7-7da285b322",
@@ -2382,8 +2403,7 @@
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66-2-612a0c822d",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66-86-6e7e87fea8",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-ce5763d5-2-cbc728d438",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-ce5763d5-11-d0c2f7a3de",
-        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126-2-3660b6e6a6"
+        "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-ce5763d5-11-d0c2f7a3de"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-105-2e-58fc683972"
@@ -2397,6 +2417,7 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_05042026-57",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07272026-69",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07132026-67",
@@ -2443,22 +2464,23 @@
         "Other"
       ],
       "relationshipCounts": {
-        "meetings": 2,
-        "agendaItems": 38,
-        "votingCards": 2,
+        "meetings": 3,
+        "agendaItems": 39,
+        "votingCards": 3,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 2,
+        "votes": 3,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 4,
+        "spendingRecords": 6,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 38
+        "sourceDocuments": 39
       },
       "relatedMeetingIds": [
         "meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0",
+        "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2",
@@ -2487,6 +2509,7 @@
       "relatedAgendaItemIds": [
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a-37-c4ab97847d",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-22-73d8343fa5",
+        "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-15-1b0e8b61e8",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a-27-5fa6384cff",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-14-38fa193377",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-126-70b7d6cffc",
@@ -2511,7 +2534,6 @@
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-18-ee3c5f7a-I-fa9d913b1e",
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5-3.13.2-6f26825ea7",
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76-4-e7819011b1",
-        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76-4-1d36592b4c",
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76-11-9ce0e09d92",
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76-2-228432bc68",
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b-3.13.2-6f26825ea7",
@@ -2525,13 +2547,15 @@
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a-37-c4a-41263a1d91",
-        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-22-73d-f04ccc921b"
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-22-73d-f04ccc921b",
+        "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-15-1b0-b4ae173cf8"
       ],
       "relatedCourtCaseIds": [],
       "relatedIssueReviewRequestIds": [],
       "relatedSourceUrls": [
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07072026-1395",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07272026-69",
@@ -2553,7 +2577,7 @@
         "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-09-18-commissioners-agn.pdf?t=202409121728480",
         "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-09-04-commissioners-agn.pdf?t=202408281827350"
       ],
-      "latestActivityAt": "2026-07-07T16:00:00.000Z",
+      "latestActivityAt": "2026-08-18T16:00:00.000Z",
       "confidence": 0.48
     },
     {
@@ -2580,17 +2604,17 @@
       ],
       "relationshipCounts": {
         "meetings": 2,
-        "agendaItems": 18,
+        "agendaItems": 22,
         "votingCards": 2,
         "courtCases": 1,
         "communitySubmissions": 0,
         "votes": 0,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 0,
+        "spendingRecords": 1,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 20
+        "sourceDocuments": 24
       },
       "relatedMeetingIds": [
         "meeting-washoe-county-commission-board-of-county-commissioners-2024-07-16-88dec481",
@@ -2602,7 +2626,8 @@
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-08-04-5c807112",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d",
-        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4"
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8"
       ],
       "relatedAgendaItemIds": [
         "item-meeting-washoe-county-commission-board-of-county-commissioners-2024-07-16-88dec481-9.C.3-76cc02439b",
@@ -2620,7 +2645,11 @@
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-08-04-5c807112-241.00-c6d7a0391e",
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-6.2-b39e607cf1",
         "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-2-69771a2c9f",
-        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-8-001ebbf7f7"
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-8-001ebbf7f7",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-1-4c8e0d20ea",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-5-49a42aabcd",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-6-ea47fc1d6b",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-7-8872cc2485"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-washoe-county-commission-board-of-county-commissioners-2024-07-16-88dec481-9-c-3-76-e974a86345",
@@ -2641,10 +2670,11 @@
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_07162026-2072",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_05212026-2036",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
         "https://www.supremecourt.gov/Search.aspx?FileName=%2Fdocketfiles%2F10-568.htm"
       ],
       "latestActivityAt": "2025-07-15T17:00:00.000Z",
-      "confidence": 0.57
+      "confidence": 0.55
     },
     {
       "id": "issue_real_criminal-justice",
@@ -2741,15 +2771,16 @@
       ],
       "communities": [
         "Storey County, NV",
-        "Eureka County, NV"
+        "Eureka County, NV",
+        "Lyon County, NV"
       ],
       "policyAreas": [
         "Other"
       ],
       "relationshipCounts": {
-        "meetings": 3,
-        "agendaItems": 8,
-        "votingCards": 3,
+        "meetings": 4,
+        "agendaItems": 11,
+        "votingCards": 4,
         "courtCases": 0,
         "communitySubmissions": 0,
         "votes": 3,
@@ -2758,12 +2789,13 @@
         "spendingRecords": 2,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 8
+        "sourceDocuments": 11
       },
       "relatedMeetingIds": [
         "meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5",
         "meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063",
         "meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc",
+        "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
         "meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f",
         "meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d"
       ],
@@ -2771,13 +2803,16 @@
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-22-bc1d582856",
         "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-21-e4afe33214",
         "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-99-e12d9d6ddb",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-13-fc383a1fc6",
         "item-meeting-manual-yerington-city-council-yerington-city-council-2026-06-22-112eb42f-11-93f9baee00",
-        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-10-4bf515f262"
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-10-4bf515f262",
+        "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-1-32e2906c8d"
       ],
       "relatedVotingCardIds": [
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-22-bc1-2d9ae3c37b",
         "meeting-voting-card-item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-21-e4a-a4273d672a",
-        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-99-e12-49032fe4b9"
+        "meeting-voting-card-item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-99-e12-49032fe4b9",
+        "meeting-voting-card-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-13-fc383a1-b921f6f71f"
       ],
       "relatedCourtCaseIds": [],
       "relatedIssueReviewRequestIds": [],
@@ -2785,11 +2820,12 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_07212026-1399",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
         "https://www.eurekacountynv.gov/media/2aohsbvm/6-18-26-bocc-agenda-and-backup.pdf",
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06222026-65",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_06042026-2044"
       ],
-      "latestActivityAt": "2026-08-04T16:00:00.000Z",
-      "confidence": 0.52
+      "latestActivityAt": "2026-08-20T16:00:00.000Z",
+      "confidence": 0.54
     },
     {
       "id": "issue_real_civil-rights",

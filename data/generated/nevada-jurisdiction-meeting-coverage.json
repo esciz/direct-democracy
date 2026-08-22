@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T14:17:43.604Z",
+  "generatedAt": "2026-08-22T19:07:04.847Z",
   "catalogVersion": 1,
   "scope": {
     "description": "Statewide baseline for Nevada public-meeting acquisition. Covers every county or county-equivalent government, incorporated city, county school district, and the primary statewide meeting layers.",
@@ -122,15 +122,15 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:13:59.185Z",
-        "lastSucceededAt": "2026-08-11T14:13:59.185Z",
+        "lastAttemptedAt": "2026-08-18T13:07:07.365Z",
+        "lastSucceededAt": "2026-08-18T13:07:07.365Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
           "agenda",
           "bill"
         ],
-        "cachedEntries": 52,
+        "cachedEntries": 57,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -167,8 +167,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-06T15:10:28.560Z",
-        "lastSucceededAt": "2026-08-06T15:10:28.560Z",
+        "lastAttemptedAt": "2026-08-13T13:08:06.760Z",
+        "lastSucceededAt": "2026-08-13T13:08:06.760Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -213,8 +213,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-08T13:11:49.114Z",
-        "lastSucceededAt": "2026-08-08T13:11:49.114Z",
+        "lastAttemptedAt": "2026-08-22T18:54:38.152Z",
+        "lastSucceededAt": "2026-08-22T18:54:38.152Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -261,8 +261,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:07:26.080Z",
-        "lastSucceededAt": "2026-08-07T13:07:26.080Z",
+        "lastAttemptedAt": "2026-08-14T13:06:58.754Z",
+        "lastSucceededAt": "2026-08-14T13:06:58.754Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -307,8 +307,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-12T13:04:28.497Z",
-        "lastSucceededAt": "2026-08-12T13:04:28.497Z",
+        "lastAttemptedAt": "2026-08-19T13:07:29.452Z",
+        "lastSucceededAt": "2026-08-19T13:07:29.452Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -318,7 +318,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 53,
+        "cachedEntries": 59,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -357,17 +357,17 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-06T15:10:48.418Z",
-        "lastSucceededAt": "2026-08-06T15:10:48.418Z",
+        "lastAttemptedAt": "2026-08-13T13:08:21.525Z",
+        "lastSucceededAt": "2026-08-13T13:08:21.525Z",
         "pagesVisited": 5,
-        "pagesSucceeded": 5,
+        "pagesSucceeded": 4,
         "discoveredKinds": [
           "agenda",
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 13,
-        "failures": 2
+        "cachedEntries": 14,
+        "failures": 3
       },
       "status": "advanced_collection_active"
     },
@@ -404,8 +404,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:03:20.844Z",
-        "lastSucceededAt": "2026-08-10T13:03:20.844Z",
+        "lastAttemptedAt": "2026-08-17T13:12:09.796Z",
+        "lastSucceededAt": "2026-08-17T13:12:09.796Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -455,8 +455,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-09T13:03:05.895Z",
-        "lastSucceededAt": "2026-08-09T13:03:05.895Z",
+        "lastAttemptedAt": "2026-08-16T13:06:26.006Z",
+        "lastSucceededAt": "2026-08-16T13:06:26.006Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -501,8 +501,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-09T13:03:15.817Z",
-        "lastSucceededAt": "2026-08-09T13:03:15.817Z",
+        "lastAttemptedAt": "2026-08-16T13:06:34.502Z",
+        "lastSucceededAt": "2026-08-16T13:06:34.502Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -553,8 +553,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-09T13:03:35.382Z",
-        "lastSucceededAt": "2026-08-09T13:03:35.382Z",
+        "lastAttemptedAt": "2026-08-16T13:06:55.193Z",
+        "lastSucceededAt": "2026-08-16T13:06:55.193Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -600,8 +600,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:07:59.664Z",
-        "lastSucceededAt": "2026-08-07T13:07:59.664Z",
+        "lastAttemptedAt": "2026-08-14T13:07:31.784Z",
+        "lastSucceededAt": "2026-08-14T13:07:31.784Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -647,8 +647,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-06T15:11:20.375Z",
-        "lastSucceededAt": "2026-08-06T15:11:20.375Z",
+        "lastAttemptedAt": "2026-08-13T13:08:51.228Z",
+        "lastSucceededAt": "2026-08-13T13:08:51.228Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -692,8 +692,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-12T13:04:37.081Z",
-        "lastSucceededAt": "2026-08-12T13:04:37.081Z",
+        "lastAttemptedAt": "2026-08-19T13:07:38.738Z",
+        "lastSucceededAt": "2026-08-19T13:07:38.738Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -737,8 +737,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-09T13:04:00.609Z",
-        "lastSucceededAt": "2026-08-09T13:04:00.609Z",
+        "lastAttemptedAt": "2026-08-16T13:07:18.595Z",
+        "lastSucceededAt": "2026-08-16T13:07:18.595Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -747,7 +747,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 37,
+        "cachedEntries": 41,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -782,8 +782,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:08:25.122Z",
-        "lastSucceededAt": "2026-08-07T13:08:25.122Z",
+        "lastAttemptedAt": "2026-08-14T13:07:57.227Z",
+        "lastSucceededAt": "2026-08-14T13:07:57.227Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -794,7 +794,7 @@
           "rawHtml",
           "vote"
         ],
-        "cachedEntries": 20,
+        "cachedEntries": 21,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -832,8 +832,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:03:40.037Z",
-        "lastSucceededAt": "2026-08-10T13:03:40.037Z",
+        "lastAttemptedAt": "2026-08-17T13:12:25.709Z",
+        "lastSucceededAt": "2026-08-17T13:12:25.709Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -842,7 +842,7 @@
           "bill",
           "rawHtml"
         ],
-        "cachedEntries": 35,
+        "cachedEntries": 40,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -877,8 +877,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-09T13:04:27.195Z",
-        "lastSucceededAt": "2026-08-09T13:04:27.195Z",
+        "lastAttemptedAt": "2026-08-16T13:07:28.975Z",
+        "lastSucceededAt": "2026-08-16T13:07:28.975Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -926,8 +926,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:08:36.999Z",
-        "lastSucceededAt": "2026-08-07T13:08:36.999Z",
+        "lastAttemptedAt": "2026-08-14T13:08:28.790Z",
+        "lastSucceededAt": "2026-08-14T13:08:28.790Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -937,7 +937,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 28,
+        "cachedEntries": 29,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -975,8 +975,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:08:57.112Z",
-        "lastSucceededAt": "2026-08-07T13:08:57.112Z",
+        "lastAttemptedAt": "2026-08-14T13:08:59.873Z",
+        "lastSucceededAt": "2026-08-14T13:08:59.873Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -987,7 +987,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 16,
+        "cachedEntries": 18,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1024,8 +1024,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-12T13:04:51.873Z",
-        "lastSucceededAt": "2026-08-12T13:04:51.873Z",
+        "lastAttemptedAt": "2026-08-19T13:07:55.941Z",
+        "lastSucceededAt": "2026-08-19T13:07:55.941Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1075,8 +1075,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:14:25.039Z",
-        "lastSucceededAt": "2026-08-11T14:14:25.039Z",
+        "lastAttemptedAt": "2026-08-18T13:07:35.601Z",
+        "lastSucceededAt": "2026-08-18T13:07:35.601Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1085,7 +1085,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 103,
+        "cachedEntries": 106,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1120,8 +1120,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:03:49.384Z",
-        "lastSucceededAt": "2026-08-10T13:03:49.384Z",
+        "lastAttemptedAt": "2026-08-17T13:12:34.423Z",
+        "lastSucceededAt": "2026-08-17T13:12:34.423Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1129,7 +1129,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 10,
+        "cachedEntries": 11,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1164,8 +1164,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:14:49.538Z",
-        "lastSucceededAt": "2026-08-11T14:14:49.538Z",
+        "lastAttemptedAt": "2026-08-18T13:07:46.336Z",
+        "lastSucceededAt": "2026-08-18T13:07:46.336Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1216,8 +1216,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-09T13:10:19.487Z",
-        "lastSucceededAt": "2026-08-09T13:10:19.487Z",
+        "lastAttemptedAt": "2026-08-16T13:07:39.942Z",
+        "lastSucceededAt": "2026-08-16T13:07:39.942Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1228,7 +1228,7 @@
           "rawHtml",
           "video"
         ],
-        "cachedEntries": 30,
+        "cachedEntries": 31,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1263,8 +1263,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:04:13.078Z",
-        "lastSucceededAt": "2026-08-10T13:04:13.078Z",
+        "lastAttemptedAt": "2026-08-17T13:12:54.691Z",
+        "lastSucceededAt": "2026-08-17T13:12:54.691Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1307,17 +1307,17 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:14:59.940Z",
-        "lastSucceededAt": "2026-08-11T14:14:59.940Z",
-        "pagesVisited": 5,
-        "pagesSucceeded": 5,
+        "lastAttemptedAt": "2026-08-18T13:07:46.995Z",
+        "lastSucceededAt": null,
+        "pagesVisited": 1,
+        "pagesSucceeded": 0,
         "discoveredKinds": [
           "agenda",
           "bill",
           "rawHtml"
         ],
         "cachedEntries": 8,
-        "failures": 0
+        "failures": 1
       },
       "status": "advanced_collection_active"
     },
@@ -1355,8 +1355,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:16:49.347Z",
-        "lastSucceededAt": "2026-08-11T14:16:49.347Z",
+        "lastAttemptedAt": "2026-08-18T13:08:11.265Z",
+        "lastSucceededAt": "2026-08-18T13:08:11.265Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1367,8 +1367,8 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 43,
-        "failures": 1
+        "cachedEntries": 49,
+        "failures": 0
       },
       "status": "advanced_collection_active"
     },
@@ -1402,8 +1402,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:04:13.811Z",
-        "lastSucceededAt": "2026-08-10T13:04:13.811Z",
+        "lastAttemptedAt": "2026-08-17T13:12:55.416Z",
+        "lastSucceededAt": "2026-08-17T13:12:55.416Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1453,8 +1453,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-08T13:12:45.542Z",
-        "lastSucceededAt": "2026-08-08T13:12:45.542Z",
+        "lastAttemptedAt": "2026-08-22T18:54:58.913Z",
+        "lastSucceededAt": "2026-08-22T18:54:58.913Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1464,7 +1464,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 138,
+        "cachedEntries": 142,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1499,8 +1499,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:17:05.125Z",
-        "lastSucceededAt": "2026-08-11T14:17:05.125Z",
+        "lastAttemptedAt": "2026-08-18T13:08:26.620Z",
+        "lastSucceededAt": "2026-08-18T13:08:26.620Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1543,8 +1543,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-12T13:05:16.675Z",
-        "lastSucceededAt": "2026-08-12T13:05:16.675Z",
+        "lastAttemptedAt": "2026-08-19T13:08:21.211Z",
+        "lastSucceededAt": "2026-08-19T13:08:21.211Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1593,8 +1593,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-08T13:13:07.155Z",
-        "lastSucceededAt": "2026-08-08T13:13:07.155Z",
+        "lastAttemptedAt": "2026-08-22T18:55:19.112Z",
+        "lastSucceededAt": "2026-08-22T18:55:19.112Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1603,7 +1603,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 86,
+        "cachedEntries": 92,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1643,8 +1643,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:17:22.213Z",
-        "lastSucceededAt": "2026-08-11T14:17:22.213Z",
+        "lastAttemptedAt": "2026-08-18T13:08:47.797Z",
+        "lastSucceededAt": "2026-08-18T13:08:47.797Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1653,7 +1653,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 155,
+        "cachedEntries": 153,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1692,8 +1692,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:08:12.555Z",
-        "lastSucceededAt": "2026-08-10T13:08:12.555Z",
+        "lastAttemptedAt": "2026-08-17T13:32:39.194Z",
+        "lastSucceededAt": "2026-08-17T13:32:39.194Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1701,8 +1701,8 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 20,
-        "failures": 0
+        "cachedEntries": 21,
+        "failures": 3
       },
       "status": "advanced_collection_active"
     },
@@ -1736,8 +1736,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:17:24.944Z",
-        "lastSucceededAt": "2026-08-11T14:17:24.944Z",
+        "lastAttemptedAt": "2026-08-18T13:08:50.379Z",
+        "lastSucceededAt": "2026-08-18T13:08:50.379Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1778,8 +1778,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:17:26.004Z",
-        "lastSucceededAt": "2026-08-11T14:17:26.004Z",
+        "lastAttemptedAt": "2026-08-18T13:08:51.110Z",
+        "lastSucceededAt": "2026-08-18T13:08:51.110Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1822,8 +1822,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:08:14.771Z",
-        "lastSucceededAt": "2026-08-10T13:08:14.771Z",
+        "lastAttemptedAt": "2026-08-17T13:32:41.473Z",
+        "lastSucceededAt": "2026-08-17T13:32:41.473Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1866,8 +1866,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:09:12.721Z",
-        "lastSucceededAt": "2026-08-10T13:09:12.721Z",
+        "lastAttemptedAt": "2026-08-17T13:33:09.686Z",
+        "lastSucceededAt": "2026-08-17T13:33:09.686Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1915,8 +1915,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:08:57.760Z",
-        "lastSucceededAt": "2026-08-07T13:08:57.760Z",
+        "lastAttemptedAt": "2026-08-14T13:09:00.523Z",
+        "lastSucceededAt": "2026-08-14T13:09:00.523Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1958,8 +1958,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:17:38.304Z",
-        "lastSucceededAt": "2026-08-11T14:17:38.304Z",
+        "lastAttemptedAt": "2026-08-18T13:09:00.192Z",
+        "lastSucceededAt": "2026-08-18T13:09:00.192Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2004,8 +2004,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-08T13:13:07.813Z",
-        "lastSucceededAt": "2026-08-08T13:13:07.813Z",
+        "lastAttemptedAt": "2026-08-22T18:55:19.765Z",
+        "lastSucceededAt": "2026-08-22T18:55:19.765Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -2047,8 +2047,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-12T13:06:00.576Z",
-        "lastSucceededAt": "2026-08-12T13:06:00.576Z",
+        "lastAttemptedAt": "2026-08-19T13:08:54.804Z",
+        "lastSucceededAt": "2026-08-19T13:08:54.804Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2089,10 +2089,10 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:09:44.124Z",
-        "lastSucceededAt": "2026-08-10T13:09:44.124Z",
-        "pagesVisited": 2,
-        "pagesSucceeded": 2,
+        "lastAttemptedAt": "2026-08-17T13:36:11.634Z",
+        "lastSucceededAt": "2026-08-17T13:36:11.634Z",
+        "pagesVisited": 4,
+        "pagesSucceeded": 4,
         "discoveredKinds": [
           "rawHtml"
         ],
@@ -2131,10 +2131,10 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:10:14.059Z",
-        "lastSucceededAt": "2026-08-10T13:10:14.059Z",
-        "pagesVisited": 4,
-        "pagesSucceeded": 4,
+        "lastAttemptedAt": "2026-08-17T13:36:36.648Z",
+        "lastSucceededAt": "2026-08-17T13:36:36.648Z",
+        "pagesVisited": 2,
+        "pagesSucceeded": 2,
         "discoveredKinds": [
           "rawHtml"
         ],
@@ -2173,8 +2173,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:09:19.466Z",
-        "lastSucceededAt": "2026-08-07T13:09:19.466Z",
+        "lastAttemptedAt": "2026-08-14T13:09:21.893Z",
+        "lastSucceededAt": "2026-08-14T13:09:21.893Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2203,7 +2203,9 @@
         "https://www.hcsdnv.com/"
       ],
       "scraperType": "manual",
-      "platformHints": [],
+      "platformHints": [
+        "boarddocs"
+      ],
       "acquisitionMethods": [
         "daily_direct_source_check",
         "weekly_rendered_browser_discovery",
@@ -2217,10 +2219,10 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-06T15:11:33.073Z",
-        "lastSucceededAt": null,
-        "pagesVisited": 1,
-        "pagesSucceeded": 0,
+        "lastAttemptedAt": "2026-08-13T13:12:51.658Z",
+        "lastSucceededAt": "2026-08-13T13:12:51.658Z",
+        "pagesVisited": 5,
+        "pagesSucceeded": 5,
         "discoveredKinds": [
           "agenda",
           "minutes",
@@ -2263,8 +2265,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:09:59.130Z",
-        "lastSucceededAt": "2026-08-07T13:09:59.130Z",
+        "lastAttemptedAt": "2026-08-14T13:10:14.185Z",
+        "lastSucceededAt": "2026-08-14T13:10:14.185Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2305,8 +2307,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-06T13:02:55.027Z",
-        "lastSucceededAt": "2026-08-06T13:02:55.027Z",
+        "lastAttemptedAt": "2026-08-13T13:13:03.866Z",
+        "lastSucceededAt": "2026-08-13T13:13:03.866Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [
@@ -2348,8 +2350,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-06T13:03:06.036Z",
-        "lastSucceededAt": "2026-08-06T13:03:06.036Z",
+        "lastAttemptedAt": "2026-08-13T13:13:13.914Z",
+        "lastSucceededAt": "2026-08-13T13:13:13.914Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2391,8 +2393,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-11T14:17:52.645Z",
-        "lastSucceededAt": "2026-08-11T14:17:52.645Z",
+        "lastAttemptedAt": "2026-08-18T13:09:13.712Z",
+        "lastSucceededAt": "2026-08-18T13:09:13.712Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2435,8 +2437,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-10T13:11:00.741Z",
-        "lastSucceededAt": "2026-08-10T13:11:00.741Z",
+        "lastAttemptedAt": "2026-08-17T13:41:47.344Z",
+        "lastSucceededAt": "2026-08-17T13:41:47.344Z",
         "pagesVisited": 3,
         "pagesSucceeded": 3,
         "discoveredKinds": [
@@ -2477,8 +2479,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-12T13:16:41.604Z",
-        "lastSucceededAt": "2026-08-12T13:16:41.604Z",
+        "lastAttemptedAt": "2026-08-19T13:14:22.160Z",
+        "lastSucceededAt": "2026-08-19T13:14:22.160Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [
@@ -2519,8 +2521,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-07T13:10:07.048Z",
-        "lastSucceededAt": "2026-08-07T13:10:07.048Z",
+        "lastAttemptedAt": "2026-08-14T13:10:29.184Z",
+        "lastSucceededAt": "2026-08-14T13:10:29.184Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [
@@ -2562,8 +2564,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-06T13:03:19.085Z",
-        "lastSucceededAt": "2026-08-06T13:03:19.085Z",
+        "lastAttemptedAt": "2026-08-13T13:13:27.035Z",
+        "lastSucceededAt": "2026-08-13T13:13:27.035Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2607,8 +2609,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-08T13:13:17.232Z",
-        "lastSucceededAt": "2026-08-08T13:13:17.232Z",
+        "lastAttemptedAt": "2026-08-22T18:55:28.656Z",
+        "lastSucceededAt": "2026-08-22T18:55:28.656Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [

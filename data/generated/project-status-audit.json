@@ -1,24 +1,39 @@
 {
-  "generatedAt": "2026-08-10T15:08:39.521Z",
+  "generatedAt": "2026-08-22T19:07:49.792Z",
   "totals": {
-    "projects": 851,
-    "needsReview": 603,
-    "withBudget": 398,
-    "withNextKnownMilestone": 30,
-    "withResponsibleBody": 851,
-    "withSourceReferences": 851
+    "projects": 867,
+    "needsReview": 618,
+    "withBudget": 395,
+    "withNextKnownMilestone": 29,
+    "withResponsibleBody": 867,
+    "withSourceReferences": 867
   },
   "statusCounts": {
-    "funded": 587,
+    "funded": 593,
+    "in_progress": 55,
+    "approved": 38,
+    "unknown": 82,
     "proposed": 79,
-    "approved": 35,
-    "unknown": 79,
-    "in_progress": 51,
     "delayed": 13,
     "completed": 4,
     "canceled": 3
   },
   "unclearStatusReasons": [
+    {
+      "id": "project-lyon-county-nv-supply-chain-dependencies-whether-tax-revenue-from-the-project-wi",
+      "name": "supply chain dependencies, whether tax revenue from the project will be used to abate real estate taxes, tr...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-lyon-county-nv-adopt-standards-if-changes-are-made-the-ordinance-should-be-set-u",
+      "name": "adopt standards if changes are made, the Ordinance should be set up to any probable project be done on its...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-storey-county-nv-spending-for-22-discussion-only-fy26-financial-review-of-the-wa",
+      "name": "spending for 22. DISCUSSION ONLY: FY26 Financial Review of the Water and Sewer Funds, Including Revenues, E...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
     {
       "id": "project-lyon-county-nv-carried-over-from-the-specific-plan-staff-report-item-meeting-man",
       "name": "carried over from the Specific Plan staff report",
@@ -252,21 +267,6 @@
     {
       "id": "project-eureka-county-nv-reject-discuss-or-deny-waiving-facility-and-service-fees-relati",
       "name": "reject Discuss, or deny waiving facility and service fees relating to funeral services for Maycie",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-490-cemetery-road-dayton-nevada-apn-016-151-14-community-developm",
-      "name": "490 Cemetery Road, Dayton, Nevada, APN 016-151-14 (Community Development Director, Gavin Henderson). Prepar...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-storey-county-nv-353-150-to-353-246-inclusive-any-expenditure-exceeding-yearly-b",
-      "name": "353.150 to 353.246, inclusive. Any expenditure exceeding yearly budgeted amounts will not be reimbursed by...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-eureka-county-nv-reject-discuss-or-deny-applications-for-a-3-4-inch-residential-",
-      "name": "reject Discuss, or deny applications for a 3/4-inch residential water service for APN 002-038-",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     }
   ]

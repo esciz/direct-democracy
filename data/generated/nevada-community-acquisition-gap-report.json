@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-10T15:08:44.907Z",
-  "relationshipMapGeneratedAt": "2026-08-10T15:08:44.667Z",
+  "generatedAt": "2026-08-22T19:07:55.166Z",
+  "relationshipMapGeneratedAt": "2026-08-22T19:07:55.008Z",
   "purpose": "Prioritize Nevada communities that need additional local source acquisition before expansion.",
   "priorityOrder": [
     {
@@ -19,7 +19,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -38,7 +38,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -57,7 +57,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -76,7 +76,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -95,7 +95,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -114,7 +114,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -133,7 +133,7 @@
         "projects"
       ],
       "localDashboardRecords": 0,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Acquire local meeting, official, election, spending, and case sources first; this page currently relies on overlays."
     },
     {
@@ -151,7 +151,7 @@
         "projects"
       ],
       "localDashboardRecords": 1,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
@@ -169,7 +169,7 @@
         "projects"
       ],
       "localDashboardRecords": 1,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
@@ -187,7 +187,7 @@
         "projects"
       ],
       "localDashboardRecords": 1,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
@@ -204,7 +204,7 @@
         "projects"
       ],
       "localDashboardRecords": 3,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Backfill local meeting/vote/spending/case sources and review inferred links."
     },
     {
@@ -220,8 +220,8 @@
         "officials",
         "projects"
       ],
-      "localDashboardRecords": 6,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 8,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -237,7 +237,7 @@
         "projects"
       ],
       "localDashboardRecords": 35,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -253,7 +253,7 @@
         "projects"
       ],
       "localDashboardRecords": 35,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -269,7 +269,7 @@
         "projects"
       ],
       "localDashboardRecords": 35,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -284,8 +284,8 @@
         "issues",
         "officials"
       ],
-      "localDashboardRecords": 65,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 66,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -300,7 +300,7 @@
         "issues"
       ],
       "localDashboardRecords": 10,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -315,7 +315,7 @@
         "issues"
       ],
       "localDashboardRecords": 10,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -330,7 +330,52 @@
         "issues"
       ],
       "localDashboardRecords": 16,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "clark-county",
+      "name": "Clark County",
+      "kind": "county",
+      "href": "/community/clark-county",
+      "acquisitionGapScore": 3,
+      "missingCategories": [
+        "votes",
+        "issues",
+        "projects"
+      ],
+      "localDashboardRecords": 27,
+      "overlayDashboardRecords": 161,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "mesquite",
+      "name": "Mesquite",
+      "kind": "city",
+      "href": "/community/mesquite",
+      "acquisitionGapScore": 3,
+      "missingCategories": [
+        "votes",
+        "issues",
+        "projects"
+      ],
+      "localDashboardRecords": 29,
+      "overlayDashboardRecords": 161,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "henderson",
+      "name": "Henderson",
+      "kind": "city",
+      "href": "/community/henderson",
+      "acquisitionGapScore": 3,
+      "missingCategories": [
+        "votes",
+        "issues",
+        "projects"
+      ],
+      "localDashboardRecords": 34,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -344,35 +389,7 @@
         "issues"
       ],
       "localDashboardRecords": 11,
-      "overlayDashboardRecords": 135,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "clark-county",
-      "name": "Clark County",
-      "kind": "county",
-      "href": "/community/clark-county",
-      "acquisitionGapScore": 2,
-      "missingCategories": [
-        "votes",
-        "issues"
-      ],
-      "localDashboardRecords": 26,
-      "overlayDashboardRecords": 135,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "mesquite",
-      "name": "Mesquite",
-      "kind": "city",
-      "href": "/community/mesquite",
-      "acquisitionGapScore": 2,
-      "missingCategories": [
-        "votes",
-        "issues"
-      ],
-      "localDashboardRecords": 28,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -385,22 +402,8 @@
         "votes",
         "issues"
       ],
-      "localDashboardRecords": 32,
-      "overlayDashboardRecords": 135,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "henderson",
-      "name": "Henderson",
-      "kind": "city",
-      "href": "/community/henderson",
-      "acquisitionGapScore": 2,
-      "missingCategories": [
-        "votes",
-        "issues"
-      ],
       "localDashboardRecords": 33,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -413,22 +416,8 @@
         "spending",
         "officials"
       ],
-      "localDashboardRecords": 39,
-      "overlayDashboardRecords": 135,
-      "recommendation": "Maintain source refresh and add missing categories."
-    },
-    {
-      "id": "north-las-vegas",
-      "name": "North Las Vegas",
-      "kind": "city",
-      "href": "/community/north-las-vegas",
-      "acquisitionGapScore": 2,
-      "missingCategories": [
-        "votes",
-        "issues"
-      ],
-      "localDashboardRecords": 79,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 40,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -441,8 +430,8 @@
         "votes",
         "issues"
       ],
-      "localDashboardRecords": 85,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 89,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -456,7 +445,7 @@
         "projects"
       ],
       "localDashboardRecords": 189,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -470,7 +459,7 @@
         "projects"
       ],
       "localDashboardRecords": 189,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -483,8 +472,8 @@
         "votes",
         "issues"
       ],
-      "localDashboardRecords": 558,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 563,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -497,8 +486,8 @@
         "votes",
         "issues"
       ],
-      "localDashboardRecords": 558,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 563,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -511,8 +500,8 @@
         "officials",
         "projects"
       ],
-      "localDashboardRecords": 1178,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 1312,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -525,8 +514,8 @@
         "officials",
         "projects"
       ],
-      "localDashboardRecords": 1179,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 1313,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -538,8 +527,8 @@
       "missingCategories": [
         "officials"
       ],
-      "localDashboardRecords": 42,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 43,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -551,8 +540,8 @@
       "missingCategories": [
         "officials"
       ],
-      "localDashboardRecords": 1182,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 1319,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -564,8 +553,8 @@
       "missingCategories": [
         "officials"
       ],
-      "localDashboardRecords": 1716,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 1850,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -577,8 +566,19 @@
       "missingCategories": [
         "officials"
       ],
-      "localDashboardRecords": 3022,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 2998,
+      "overlayDashboardRecords": 161,
+      "recommendation": "Maintain source refresh and add missing categories."
+    },
+    {
+      "id": "north-las-vegas",
+      "name": "North Las Vegas",
+      "kind": "city",
+      "href": "/community/north-las-vegas",
+      "acquisitionGapScore": 0,
+      "missingCategories": [],
+      "localDashboardRecords": 94,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -588,8 +588,8 @@
       "href": "/community/las-vegas",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 280,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 259,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -600,7 +600,7 @@
       "acquisitionGapScore": 0,
       "missingCategories": [],
       "localDashboardRecords": 414,
-      "overlayDashboardRecords": 135,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -610,8 +610,8 @@
       "href": "/community/washoe-county",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 883,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 884,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -621,8 +621,8 @@
       "href": "/community/incline-village",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 883,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 884,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -632,8 +632,8 @@
       "href": "/community/sparks",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 895,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 896,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     },
     {
@@ -643,8 +643,8 @@
       "href": "/community/reno",
       "acquisitionGapScore": 0,
       "missingCategories": [],
-      "localDashboardRecords": 1056,
-      "overlayDashboardRecords": 135,
+      "localDashboardRecords": 1050,
+      "overlayDashboardRecords": 161,
       "recommendation": "Maintain source refresh and add missing categories."
     }
   ]

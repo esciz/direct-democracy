@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T15:07:26.385Z",
+  "generatedAt": "2026-08-22T19:07:04.526Z",
   "records": [
     {
       "id": "meeting:nv-legislature",
@@ -13,7 +13,6 @@
       "sourcePlatform": "html",
       "sourcePlatforms": [
         "civic_website",
-        "granicus",
         "html",
         "nevada_legislature"
       ],
@@ -22,28 +21,12 @@
         "https://www.leg.state.nv.us/app/calendar/a/",
         "https://www.leg.state.nv.us/Granicus/",
         "https://www.leg.state.nv.us/",
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34894",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34838",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34907",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34576",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34847",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34884",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34872",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34904",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35174",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35181",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35172",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34898",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35180",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34842",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35185",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35179",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35182",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34609",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35183",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34575",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34812",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35184"
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34872"
       ],
       "documentTypes": [
         "agenda",
@@ -144,13 +127,7 @@
       "sourceUrls": [
         "https://www.carsoncity.gov/government/city-meetings",
         "https://www.carsoncity.gov/",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2707",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2704",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2706",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2571",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2583",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2622",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2690",
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2682",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2908",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2869",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2807",
@@ -166,7 +143,13 @@
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2887",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2853",
         "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2797",
-        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2715"
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2715",
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2638",
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2561",
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2898",
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2870",
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2846",
+        "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2806"
       ],
       "documentTypes": [
         "agenda",
@@ -207,6 +190,7 @@
         "https://www.churchillcountynv.gov/DocumentCenter/View/19233/07-27-2026-Agenda---Churchill-Library-Association",
         "https://www.churchillcountynv.gov/DocumentCenter/View/18029/06-25-24-Agenda---Library-Association",
         "https://www.churchillcountynv.gov/DocumentCenter/View/19217/07-09-2026-Agenda---Mosquito-Board",
+        "https://www.churchillcountynv.gov/DocumentCenter/View/19258/08-24-2026-Revised-CLA-Agenda",
         "https://www.churchillcountynv.gov/DocumentCenter/View/18235/11-13-24-Agenda-Packet---CART",
         "https://www.churchillcountynv.gov/DocumentCenter/View/19218/FIre-Board-Agenda-Packet-07-14-26",
         "https://www.churchillcountynv.gov/DocumentCenter/View/19243/FIre-Board-Agenda-Packet-08-11-26"
@@ -249,7 +233,8 @@
         "https://www.clarkcountynv.gov/",
         "https://clark.legistar.com/MeetingDetail.aspx?ID=1424069&GUID=D28CF3AB-C5E4-4169-B7CD-212C99815D66&Options=info|&Search=",
         "https://clark.legistar.com/MeetingDetail.aspx?ID=1432739&GUID=46319ECF-2D84-4A0C-8BF7-0D07D0683FE7&Options=info|&Search=",
-        "https://clark.legistar.com/MeetingDetail.aspx?ID=1429948&GUID=FF7ED9A7-39EB-474B-8B46-38F2A5933CDF&Options=info|&Search="
+        "https://clark.legistar.com/MeetingDetail.aspx?ID=1429948&GUID=FF7ED9A7-39EB-474B-8B46-38F2A5933CDF&Options=info|&Search=",
+        "https://clark.legistar.com/MeetingDetail.aspx?ID=1427651&GUID=15416E14-6B01-4BC7-9121-8AEBEFD487B2&Options=info|&Search="
       ],
       "documentTypes": [
         "agenda",
@@ -535,8 +520,8 @@
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_05212026-2036",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08062026-2081",
         "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08032026-2079",
-        "https://www.lyon-county.org/CivicAlerts.aspx?AID=402",
-        "https://www.lyon-county.org/CivicAlerts.aspx?AID=401"
+        "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+        "https://www.lyon-county.org/CivicAlerts.aspx?AID=403"
       ],
       "documentTypes": [
         "agenda",
@@ -695,7 +680,8 @@
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08042026-1402",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_06162026-1393",
         "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05192026-1391",
-        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388"
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_05052026-1388",
+        "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403"
       ],
       "documentTypes": [
         "packet"
@@ -823,7 +809,8 @@
       "sourceUrls": [
         "https://www.bcnv.org/",
         "https://bcnv.primegov.com/Portal/Meeting?meetingTemplateId=3862",
-        "https://bcnv.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1785849262909"
+        "https://bcnv.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787058432040",
+        "https://bcnv.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787058432041"
       ],
       "documentTypes": [
         "agenda",
@@ -858,6 +845,7 @@
       "sourceCategory": "meetings",
       "sourceUrls": [
         "https://www.cityofcaliente.com/",
+        "https://www.cityofcaliente.com/august-20-2026-city-council-agenda/",
         "https://www.cityofcaliente.com/august-6-2026-city-council-meeting-agenda/",
         "https://www.cityofcaliente.com/july-16-2026-city-council-meetin-agenda/"
       ],
@@ -1106,9 +1094,9 @@
       "sourceUrls": [
         "https://lasvegas.primegov.com/public/portal",
         "https://www.lasvegasnevada.gov/",
-        "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=42884",
-        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1786194710322",
-        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1786194710323"
+        "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=43786",
+        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787424879086",
+        "https://lasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787424879087"
       ],
       "documentTypes": [
         "agenda",
@@ -1173,7 +1161,7 @@
       "sourceCategory": "meetings",
       "sourceUrls": [
         "https://www.mesquitenv.gov/",
-        "https://www.mesquitenv.gov/news/mesquite-city-council-meeting-august-11-2026",
+        "https://www.mesquitenv.gov/news/mesquite-city-council-meeting-august-25-2026",
         "https://www.mesquitenv.gov/news/proclamation-for-constitution-week---september-17-23-2026"
       ],
       "documentTypes": [
@@ -1212,9 +1200,9 @@
         "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
         "https://cityofnorthlasvegas.primegov.com/public/portal",
         "https://www.cityofnorthlasvegas.com/",
-        "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16883",
-        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1786194766481",
-        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1786194766482"
+        "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16600",
+        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787424899801",
+        "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787424899802"
       ],
       "documentTypes": [
         "agenda",
@@ -1253,10 +1241,10 @@
         "https://reno.primegov.com/public/portal",
         "https://www.reno.gov/services/watch-and-learn",
         "https://www.reno.gov/",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8985",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785849844423",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1785849844424",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8987"
+        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8994",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787058510284",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787058510285",
+        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8996"
       ],
       "documentTypes": [
         "agenda",
@@ -1994,20 +1982,26 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:nv-senate",
+      "id": "meeting:nv-assembly",
       "sourceType": "meeting_system",
-      "sourceOwner": "nv-senate",
+      "sourceOwner": "nv-assembly",
       "jurisdiction": "Nevada",
-      "sourceHost": null,
-      "sourcePlatform": "civic_website",
+      "sourceHost": "www.leg.state.nv.us",
+      "sourcePlatform": "nevada_legislature",
       "sourceCategory": "meetings",
-      "sourceUrls": [],
+      "sourceUrls": [
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34904"
+      ],
       "documentTypes": [
+        "agenda",
         "unknown"
       ],
-      "sourceHosts": [],
+      "sourceHosts": [
+        "www.leg.state.nv.us"
+      ],
       "sourcePlatforms": [
-        "civic_website"
+        "civic_website",
+        "nevada_legislature"
       ],
       "checkCadence": "P1D",
       "productionCadenceRecommendation": "once daily direct check; advanced browser collection at least once every 7 days",
@@ -2021,9 +2015,9 @@
       "accountabilityReadinessImpact": "not_scored_until_monitor_runs"
     },
     {
-      "id": "meeting:nv-assembly",
+      "id": "meeting:nv-senate",
       "sourceType": "meeting_system",
-      "sourceOwner": "nv-assembly",
+      "sourceOwner": "nv-senate",
       "jurisdiction": "Nevada",
       "sourceHost": null,
       "sourcePlatform": "civic_website",
@@ -2097,10 +2091,10 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "implemented",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-08-10T15:07:26.385Z",
+      "lastCheckedAt": "2026-08-22T19:07:04.526Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-11T15:07:26.385Z",
+      "nextCheckAt": "2026-08-23T19:07:04.526Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
@@ -2130,10 +2124,10 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "implemented",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-08-10T15:07:26.385Z",
+      "lastCheckedAt": "2026-08-22T19:07:04.526Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-11T15:07:26.385Z",
+      "nextCheckAt": "2026-08-23T19:07:04.526Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
@@ -2166,7 +2160,7 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-10T15:07:26.385Z",
+      "nextCheckAt": "2026-08-22T19:07:04.526Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
@@ -2196,10 +2190,10 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "configured",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-08-10T15:07:26.385Z",
+      "lastCheckedAt": "2026-08-22T19:07:04.526Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-11T15:07:26.385Z",
+      "nextCheckAt": "2026-08-23T19:07:04.526Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
@@ -2232,7 +2226,7 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-10T15:07:26.385Z",
+      "nextCheckAt": "2026-08-22T19:07:04.526Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
@@ -2265,7 +2259,7 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-10T15:07:26.385Z",
+      "nextCheckAt": "2026-08-22T19:07:04.526Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
@@ -2298,7 +2292,7 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-10T15:07:26.385Z",
+      "nextCheckAt": "2026-08-22T19:07:04.526Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
@@ -2312,7 +2306,7 @@
     }
   ],
   "audit": {
-    "generatedAt": "2026-08-10T15:07:26.385Z",
+    "generatedAt": "2026-08-22T19:07:04.526Z",
     "totals": {
       "sources": 65,
       "meetingSources": 57,

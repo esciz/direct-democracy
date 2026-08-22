@@ -1,7 +1,7 @@
 {
-  "runId": "dataops-2026-08-11T14:13:27.035Z",
-  "startedAt": "2026-08-11T14:13:27.036Z",
-  "updatedAt": "2026-08-11T14:21:19.071Z",
+  "runId": "dataops-2026-08-22T19:07:11.404Z",
+  "startedAt": "2026-08-22T19:07:11.405Z",
+  "updatedAt": "2026-08-22T19:07:55.829Z",
   "environment": {
     "offline": false,
     "networkAvailable": true,
@@ -10,36 +10,108 @@
   },
   "stages": [
     {
-      "id": "refresh-meeting-calendars",
-      "description": "Refresh Nevada meetings, current-official directories, and statewide financial coverage.",
+      "id": "retrieve-documents",
+      "description": "Retrieve/cache queued remote documents.",
+      "status": "succeeded",
+      "startedAt": "2026-08-22T19:07:11.490Z",
+      "completedAt": "2026-08-22T19:07:21.327Z",
+      "durationMs": 9837,
+      "error": null
+    },
+    {
+      "id": "verify-cache",
+      "description": "Verify cached content and reconcile cache counts.",
+      "status": "succeeded",
+      "startedAt": "2026-08-22T19:07:21.358Z",
+      "completedAt": "2026-08-22T19:07:28.892Z",
+      "durationMs": 7534,
+      "error": null
+    },
+    {
+      "id": "extract-native-text",
+      "description": "Extract native text from cached documents.",
+      "status": "succeeded",
+      "startedAt": "2026-08-22T19:07:28.928Z",
+      "completedAt": "2026-08-22T19:07:33.417Z",
+      "durationMs": 4489,
+      "error": null
+    },
+    {
+      "id": "ocr",
+      "description": "Audit OCR capabilities and execute bounded OCR candidates.",
+      "status": "succeeded",
+      "startedAt": "2026-08-22T19:07:33.439Z",
+      "completedAt": "2026-08-22T19:07:41.074Z",
+      "durationMs": 7635,
+      "error": null
+    },
+    {
+      "id": "source-completeness",
+      "description": "Regenerate source completeness and accountability readiness.",
+      "status": "succeeded",
+      "startedAt": "2026-08-22T19:07:41.106Z",
+      "completedAt": "2026-08-22T19:07:44.953Z",
+      "durationMs": 3847,
+      "error": null
+    },
+    {
+      "id": "attendance",
+      "description": "Regenerate rosters and attendance.",
+      "status": "succeeded",
+      "startedAt": "2026-08-22T19:07:44.978Z",
+      "completedAt": "2026-08-22T19:07:48.007Z",
+      "durationMs": 3029,
+      "error": null
+    },
+    {
+      "id": "votes",
+      "description": "Regenerate votes and attribution readiness.",
+      "status": "succeeded",
+      "startedAt": "2026-08-22T19:07:48.033Z",
+      "completedAt": "2026-08-22T19:07:49.187Z",
+      "durationMs": 1154,
+      "error": null
+    },
+    {
+      "id": "accountability",
+      "description": "Regenerate voting cards, projects, and accountability graph.",
+      "status": "succeeded",
+      "startedAt": "2026-08-22T19:07:49.208Z",
+      "completedAt": "2026-08-22T19:07:50.940Z",
+      "durationMs": 1732,
+      "error": null
+    },
+    {
+      "id": "communities",
+      "description": "Publish source-backed issues, events, and community relationships, then audit the public views.",
       "status": "failed",
-      "startedAt": "2026-08-11T14:13:27.166Z",
-      "completedAt": "2026-08-11T14:21:19.071Z",
-      "durationMs": 471905,
-      "error": "Command failed: node --import tsx scripts/collect-nevada-financials.ts --scheduled"
+      "startedAt": "2026-08-22T19:07:50.963Z",
+      "completedAt": "2026-08-22T19:07:55.829Z",
+      "durationMs": 4866,
+      "error": "Command failed: node --import tsx scripts/audit-browse-previews.ts"
     }
   ],
   "metrics": {
     "registeredSourcesChecked": 65,
-    "upcomingMeetings": 42,
-    "meetingProvidersWithUpcoming": 9,
+    "upcomingMeetings": 13,
+    "meetingProvidersWithUpcoming": 6,
     "requiredNevadaJurisdictions": 56,
     "configuredNevadaJurisdictions": 56,
     "nevadaProvidersPendingAdvancedPass": 0,
-    "meetingProvidersZeroUpcoming": 15,
+    "meetingProvidersZeroUpcoming": 18,
     "meetingProviderAdapterGaps": 33,
     "meetingProviderSourceFailures": 0,
     "sourceBackedIssues": 19,
     "meetingProviderFailures": 0,
     "documentsDownloaded": 25,
     "documentsChanged": 0,
-    "documentsExtracted": 1710,
+    "documentsExtracted": 1721,
     "pagesOcrd": 0,
     "ocrSucceeded": 0,
-    "meetingsReadyForAccountability": 11,
-    "sourceGapMeetings": 80,
-    "parserGapMeetings": 6,
-    "parsedNamedVotes": 253,
+    "meetingsReadyForAccountability": 18,
+    "sourceGapMeetings": 81,
+    "parserGapMeetings": 23,
+    "parsedNamedVotes": 256,
     "publishedNevadaCases": 27,
     "nevadaCaseSourceRoutes": 11,
     "nevadaNinthCircuitCases": 1,

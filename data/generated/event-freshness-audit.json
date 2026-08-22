@@ -1,218 +1,218 @@
 {
-  "generatedAt": "2026-08-10T15:08:45.520Z",
+  "generatedAt": "2026-08-22T19:07:55.679Z",
   "sourceArtifact": "data/generated/nevada-community-events.json",
-  "sourceGeneratedAt": "2026-08-10T15:08:44.709Z",
+  "sourceGeneratedAt": "2026-08-22T19:07:55.012Z",
   "sourceAgeHours": 0,
   "totals": {
-    "records": 1031,
-    "sourceBacked": 1011,
-    "upcoming": 45,
-    "completed": 986,
+    "records": 1035,
+    "sourceBacked": 1016,
+    "upcoming": 13,
+    "completed": 1022,
     "unknownDate": 0,
     "staleStatusRecords": 0
   },
   "nextUpcoming": [
     {
-      "id": "event-meeting-manual-sparks-city-council-sparks-city-council-2026-08-10-5997d899",
-      "title": "Sparks_City_Council_1255_Agenda_8_10_2026_2_00_00_PM.pdf",
-      "jurisdiction": "Sparks, NV",
-      "bodyName": "Sparks City Council",
-      "startAt": "2026-08-10T16:00:00.000Z",
+      "id": "event-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-24-3efa60d5",
+      "title": "Churchill Library Association",
+      "jurisdiction": "Churchill County, NV",
+      "bodyName": "Churchill County Commission",
+      "startAt": "2026-08-24T16:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_City_Council_1255_Agenda_8_10_2026_2_00_00_PM.pdf?documentType=1&meetingId=1255"
+      "sourceUrl": "https://www.churchillcountynv.gov/DocumentCenter/View/19258/08-24-2026-Revised-CLA-Agenda"
     },
     {
-      "id": "event-meeting-manual-yerington-city-council-yerington-city-council-2026-08-10-0df9a80f",
-      "title": "Yerington City Council 08/10/2026",
-      "jurisdiction": "Yerington, NV",
-      "bodyName": "Yerington City Council",
-      "startAt": "2026-08-10T16:00:00.000Z",
-      "currentStatus": "upcoming",
-      "expectedStatus": "upcoming",
-      "sourceUrl": "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08102026-70"
-    },
-    {
-      "id": "event-meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2026-08-10-d5df7089",
-      "title": "Carson City Culture & Tourism Authority - Regular meeting",
-      "jurisdiction": "Carson City, NV",
-      "bodyName": "Carson City Culture & Tourism Authority",
-      "startAt": "2026-08-10T23:00:00.000Z",
-      "currentStatus": "upcoming",
-      "expectedStatus": "upcoming",
-      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2707"
-    },
-    {
-      "id": "event-meeting-mesquite-city-council-2026-08-11-5aef780d",
+      "id": "event-meeting-mesquite-city-council-2026-08-25-41e8ae02",
       "title": "Mesquite City Council - Regular meeting",
       "jurisdiction": "Mesquite, NV",
       "bodyName": "Mesquite City Council",
-      "startAt": "2026-08-11T15:30:00.000Z",
+      "startAt": "2026-08-25T15:30:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
       "sourceUrl": ""
     },
     {
-      "id": "event-meeting-nv-legislature-agenda-2026-08-11-0303f3fd",
-      "title": "Agenda",
-      "jurisdiction": "Nevada",
-      "bodyName": "Agenda",
-      "startAt": "2026-08-11T16:00:00.000Z",
+      "id": "event-meeting-manual-las-vegas-city-council-southern-nevada-council-of-governments-2026-08-25-32906633",
+      "title": "Southern Nevada Council of Governments",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Southern Nevada Council of Governments",
+      "startAt": "2026-08-25T23:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34838"
+      "sourceUrl": "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787424879086"
     },
     {
-      "id": "event-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848",
-      "title": "City of Fallon-Churchill County Fire Board (PDF)",
-      "jurisdiction": "Churchill County, NV",
-      "bodyName": "Churchill County Commission",
-      "startAt": "2026-08-11T16:00:00.000Z",
+      "id": "event-meeting-manual-las-vegas-city-council-historic-preservation-commission-2026-08-26-446eabf7",
+      "title": "Historic Preservation Commission",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Historic Preservation Commission",
+      "startAt": "2026-08-26T19:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://www.churchillcountynv.gov/DocumentCenter/View/19243/FIre-Board-Agenda-Packet-08-11-26"
+      "sourceUrl": "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787424879086"
     },
     {
-      "id": "event-meeting-manual-reno-city-council-revised-capital-projects-surcharge-advisory-committee-2026-08-11-ea9f8762",
-      "title": "REVISED Capital Projects Surcharge Advisory Committee Meeting",
-      "jurisdiction": "Reno, NV",
-      "bodyName": "REVISED Capital Projects Surcharge Advisory Committee",
-      "startAt": "2026-08-11T20:30:00.000Z",
+      "id": "event-meeting-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees-2026-08-26-8c9da801",
+      "title": "Other Post Employment Benefits Trust Fund Board of Trustees - Regular meeting",
+      "jurisdiction": "Carson City, NV",
+      "bodyName": "Other Post Employment Benefits Trust Fund Board of Trustees",
+      "startAt": "2026-08-26T20:30:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785849844423"
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2682"
     },
     {
-      "id": "event-meeting-manual-north-las-vegas-city-council-parks-arts-recreation-and-culture-advisory-board-2026-08-12-84527cd4",
-      "title": "Parks, Arts, Recreation and Culture Advisory Board Meeting",
+      "id": "event-meeting-manual-las-vegas-city-council-board-of-civil-service-trustees-2026-08-26-9340463c",
+      "title": "Board of Civil Service Trustees",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Board of Civil Service Trustees",
+      "startAt": "2026-08-26T23:30:00.000Z",
+      "currentStatus": "upcoming",
+      "expectedStatus": "upcoming",
+      "sourceUrl": "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787424879086"
+    },
+    {
+      "id": "event-meeting-manual-north-las-vegas-city-council-veterans-community-commission-2026-08-27-6b4e2d8f",
+      "title": "Veterans Community Commission Meeting",
       "jurisdiction": "North Las Vegas, NV",
-      "bodyName": "Parks, Arts, Recreation and Culture Advisory Board",
-      "startAt": "2026-08-12T00:00:00.000Z",
+      "bodyName": "Veterans Community Commission",
+      "startAt": "2026-08-27T00:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1786194766481"
+      "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787424899801"
     },
     {
-      "id": "event-meeting-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife-2026-08-12-0eb72f40",
-      "title": "Carson City Advisory Board to Manage Wildlife - Regular meeting",
-      "jurisdiction": "Carson City, NV",
-      "bodyName": "Carson City Advisory Board to Manage Wildlife",
-      "startAt": "2026-08-12T00:30:00.000Z",
+      "id": "event-meeting-manual-las-vegas-city-council-las-vegas-city-council-2026-08-27-59b1b761",
+      "title": "Meeting",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Las Vegas City Council",
+      "startAt": "2026-08-27T20:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2704"
+      "sourceUrl": "https://lasvegas.primegov.com/Portal/Meeting?meetingTemplateId=43786"
     },
     {
-      "id": "event-meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-08-12-bf09db2e",
-      "title": "Carson City School Board - Regular meeting",
-      "jurisdiction": "Carson City, NV",
-      "bodyName": "Carson City School Board",
-      "startAt": "2026-08-12T01:00:00.000Z",
+      "id": "event-meeting-manual-las-vegas-city-council-traffic-and-parking-commission-2026-08-27-877f810d",
+      "title": "Traffic and Parking Commission",
+      "jurisdiction": "Las Vegas, NV",
+      "bodyName": "Traffic and Parking Commission",
+      "startAt": "2026-08-27T20:00:00.000Z",
       "currentStatus": "upcoming",
       "expectedStatus": "upcoming",
-      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&event_id=2706"
+      "sourceUrl": "https://lasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787424879086"
+    },
+    {
+      "id": "event-meeting-manual-north-las-vegas-city-council-joint-city-council-and-planning-commission-special-2026-08-27-83f1f43d",
+      "title": "Joint City Council and Planning Commission Special Meeting",
+      "jurisdiction": "North Las Vegas, NV",
+      "bodyName": "Joint City Council and Planning Commission Special",
+      "startAt": "2026-08-27T20:00:00.000Z",
+      "currentStatus": "upcoming",
+      "expectedStatus": "upcoming",
+      "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787424899801"
     }
   ],
   "latestCompleted": [
     {
-      "id": "event-meeting-manual-clark-county-commission-clark-county-commission-2026-08-06-8244b562",
-      "title": "Clark County - Meeting of Police Fatality Public Fact-finding Review on 8/6/2026 at 9:00 AM",
-      "jurisdiction": "Clark County, NV",
-      "bodyName": "Clark County Commission",
-      "startAt": "2026-08-06T16:00:00.000Z",
+      "id": "event-meeting-manual-reno-city-council-ward-4-neighborhood-advisory-board-regular-2026-08-21-559123e6",
+      "title": "Ward 4 Neighborhood Advisory Board Regular Meeting",
+      "jurisdiction": "Reno, NV",
+      "bodyName": "Ward 4 Neighborhood Advisory Board Regular",
+      "startAt": "2026-08-21T01:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://clark.legistar.com/MeetingDetail.aspx?ID=1432739&GUID=46319ECF-2D84-4A0C-8BF7-0D07D0683FE7&Options=info|&Search="
+      "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787058510284"
     },
     {
-      "id": "event-meeting-manual-sparks-city-council-sparks-city-council-2026-08-06-c49548d0",
-      "title": "CANCELLED_-_Planning_Commission_Meeting_1274_Agenda_8_6_2026_6_00_00_PM.pdf",
-      "jurisdiction": "Sparks, NV",
-      "bodyName": "Sparks City Council",
-      "startAt": "2026-08-06T16:00:00.000Z",
+      "id": "event-meeting-manual-nv-assembly-nevada-assembly-2026-08-20-6e3ed1ef",
+      "title": "Legislative Commission's Audit Subcommittee - Thursday, August 20, 2026 9:00 AM",
+      "jurisdiction": "Nevada",
+      "bodyName": "Nevada Assembly",
+      "startAt": "2026-08-20T16:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/CANCELLED_-_Planning_Commission_Meeting_1274_Agenda_8_6_2026_6_00_00_PM.pdf?documentType=1&meetingId=1274"
+      "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34904"
     },
     {
-      "id": "event-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5",
-      "title": "BOCC 08/06/2026 Agenda and Backup",
+      "id": "event-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "BOCC 08/20/2026 Agenda and Backup",
       "jurisdiction": "Lyon County, NV",
       "bodyName": "Lyon County Commission",
-      "startAt": "2026-08-06T16:00:00.000Z",
+      "startAt": "2026-08-20T16:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08062026-2081"
+      "sourceUrl": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089"
     },
     {
-      "id": "event-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b",
-      "title": "BOCC 08/06/2026 Agenda and Late Backup",
-      "jurisdiction": "Lyon County, NV",
-      "bodyName": "Lyon County Commission",
-      "startAt": "2026-08-06T16:00:00.000Z",
-      "currentStatus": "completed",
-      "expectedStatus": "completed",
-      "sourceUrl": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08062026-2081"
-    },
-    {
-      "id": "event-meeting-lyon-county-commission-2026-08-06-24b09663",
+      "id": "event-meeting-lyon-county-commission-2026-08-20-77ee5224",
       "title": "Lyon County Commission - Regular meeting",
       "jurisdiction": "Lyon County, NV",
       "bodyName": "Lyon County Commission",
-      "startAt": "2026-08-06T15:30:00.000Z",
+      "startAt": "2026-08-20T15:30:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
       "sourceUrl": ""
     },
     {
-      "id": "event-meeting-caliente-city-council-2026-08-06-09fee202",
+      "id": "event-meeting-caliente-city-council-2026-08-20-05baa4fe",
       "title": "Caliente City Council - Regular meeting",
       "jurisdiction": "Caliente, NV",
       "bodyName": "Caliente City Council",
-      "startAt": "2026-08-06T15:30:00.000Z",
+      "startAt": "2026-08-20T15:30:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://www.cityofcaliente.com/august-6-2026-city-council-meeting-agenda/"
+      "sourceUrl": "https://www.cityofcaliente.com/august-20-2026-city-council-agenda/"
     },
     {
-      "id": "event-meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-08-06-b4645b91",
+      "id": "event-meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-08-20-8c4cc5e3",
       "title": "Board of Supervisors - Regular meeting",
       "jurisdiction": "Carson City, NV",
       "bodyName": "Board of Supervisors",
-      "startAt": "2026-08-06T15:16:00.000Z",
+      "startAt": "2026-08-20T15:25:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2912"
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2924"
     },
     {
-      "id": "event-meeting-manual-caliente-city-council-caliente-city-council-2026-08-06-b8e89c3d",
-      "title": "August 6, 2026 City Council Meeting Agenda",
+      "id": "event-meeting-manual-caliente-city-council-caliente-city-council-2026-08-20-5e70a3b8",
+      "title": "August 20, 2026 City Council Agenda",
       "jurisdiction": "Caliente, NV",
       "bodyName": "Caliente City Council",
-      "startAt": "2026-08-06T07:00:00.000Z",
+      "startAt": "2026-08-20T07:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://www.cityofcaliente.com/august-6-2026-city-council-meeting-agenda/"
+      "sourceUrl": "https://www.cityofcaliente.com/august-20-2026-city-council-agenda/"
     },
     {
-      "id": "event-meeting-manual-reno-city-council-planning-commission-2026-08-06-ed718976",
+      "id": "event-meeting-manual-reno-city-council-planning-commission-2026-08-20-4459fc6f",
       "title": "Planning Commission Meeting",
       "jurisdiction": "Reno, NV",
       "bodyName": "Planning Commission",
-      "startAt": "2026-08-06T01:00:00.000Z",
+      "startAt": "2026-08-20T01:00:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1785849844423"
+      "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787058510284"
     },
     {
-      "id": "event-meeting-manual-north-las-vegas-city-council-city-council-rda-2026-08-05-13d085c6",
-      "title": "City Council/RDA Meeting",
-      "jurisdiction": "North Las Vegas, NV",
-      "bodyName": "City Council/RDA",
-      "startAt": "2026-08-05T23:00:00.000Z",
+      "id": "event-meeting-carson-city-board-of-supervisors-airport-authority-2026-08-20-816d0e05",
+      "title": "Airport Authority - Regular meeting",
+      "jurisdiction": "Carson City, NV",
+      "bodyName": "Airport Authority",
+      "startAt": "2026-08-20T00:30:00.000Z",
       "currentStatus": "completed",
       "expectedStatus": "completed",
-      "sourceUrl": "https://cityofnorthlasvegas.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1786194766482"
+      "sourceUrl": "https://carsoncity.granicus.com/AgendaViewer.php?view_id=2&clip_id=2923"
+    },
+    {
+      "id": "event-meeting-manual-reno-city-council-urban-forestry-commission-regular-2026-08-20-24129d38",
+      "title": "Urban Forestry Commission Regular Meeting",
+      "jurisdiction": "Reno, NV",
+      "bodyName": "Urban Forestry Commission Regular",
+      "startAt": "2026-08-20T00:30:00.000Z",
+      "currentStatus": "completed",
+      "expectedStatus": "completed",
+      "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787058510284"
     }
   ],
   "staleStatusSamples": []

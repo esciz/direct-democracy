@@ -78,9 +78,14 @@ async function main() {
   const aggregateReconciliationWarnings = coverage.records.flatMap((record) => {
     const campaign = record.campaignFinance as CoverageRecord["campaignFinance"] & {
       cycleHistory?: Array<{ totalRaised?: number; totalSpent?: number }>;
-      allReportedTotals?: { totalRaised?: number; totalSpent?: number } | null;
+      allReportedTotals?: { totalRaised?: number; totalSpent?: number; aggregationMethod?: string } | null;
     };
     if (!campaign.allReportedTotals || !campaign.cycleHistory?.length) return [];
+    // Transparency USA's all-cycle aggregate covers published activity since 2017,
+    // while cycleHistory is intentionally bounded to the current/historical cycles
+    // fetched for this run. It is therefore not comparable to the partial cycle sum.
+    // FEC aggregates use the explicit non-overlapping-period method and remain checked.
+    if (campaign.allReportedTotals.aggregationMethod?.startsWith("Published all-cycle aggregate")) return [];
     const cycleRaised = campaign.cycleHistory.reduce((sum, cycle) => sum + (Number(cycle.totalRaised) || 0), 0);
     const cycleSpent = campaign.cycleHistory.reduce((sum, cycle) => sum + (Number(cycle.totalSpent) || 0), 0);
     const allRaised = Number(campaign.allReportedTotals.totalRaised) || 0;

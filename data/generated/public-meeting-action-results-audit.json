@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-08-10T15:08:33.498Z",
+  "generatedAt": "2026-08-22T19:07:43.791Z",
   "totals": {
-    "meetingItemsScanned": 7769,
-    "actionResultsExtracted": 848,
+    "meetingItemsScanned": 8180,
+    "actionResultsExtracted": 891,
     "withMotion": 52,
     "withMover": 43,
-    "withSeconder": 312,
-    "withOutcome": 837,
-    "withVoteCount": 319,
-    "withNamedVotes": 12,
-    "unanimousActions": 52,
-    "needsReview": 57,
-    "unlinkedToAgendaItem": 445
+    "withSeconder": 313,
+    "withOutcome": 880,
+    "withVoteCount": 320,
+    "withNamedVotes": 13,
+    "unanimousActions": 53,
+    "needsReview": 67,
+    "unlinkedToAgendaItem": 466
   },
   "organizationReports": [
     {
@@ -25,21 +25,21 @@
     },
     {
       "organizationId": "lyon-county-commission",
-      "actionResults": 155,
-      "withOutcome": 155,
-      "withVoteCount": 0,
+      "actionResults": 180,
+      "withOutcome": 180,
+      "withVoteCount": 1,
       "withNamedVotes": 3,
-      "needsReview": 11,
-      "unlinkedToAgendaItem": 88
+      "needsReview": 20,
+      "unlinkedToAgendaItem": 100
     },
     {
       "organizationId": "storey-county-commission",
-      "actionResults": 112,
-      "withOutcome": 111,
+      "actionResults": 128,
+      "withOutcome": 127,
       "withVoteCount": 0,
-      "withNamedVotes": 4,
-      "needsReview": 14,
-      "unlinkedToAgendaItem": 58
+      "withNamedVotes": 5,
+      "needsReview": 15,
+      "unlinkedToAgendaItem": 67
     },
     {
       "organizationId": "elko-city-council",
@@ -72,6 +72,15 @@
       "organizationId": "churchill-county-commission",
       "actionResults": 10,
       "withOutcome": 10,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "north-las-vegas-city-council",
+      "actionResults": 2,
+      "withOutcome": 2,
       "withVoteCount": 0,
       "withNamedVotes": 0,
       "needsReview": 0,

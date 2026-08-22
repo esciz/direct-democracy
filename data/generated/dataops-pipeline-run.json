@@ -1,7 +1,7 @@
 {
-  "runId": "dataops-2026-08-22T15:15:19.553Z",
-  "startedAt": "2026-08-22T15:15:19.554Z",
-  "updatedAt": "2026-08-22T15:19:23.902Z",
+  "runId": "dataops-2026-08-22T18:54:08.498Z",
+  "startedAt": "2026-08-22T18:54:08.499Z",
+  "updatedAt": "2026-08-22T18:57:56.133Z",
   "environment": {
     "offline": false,
     "networkAvailable": true,
@@ -13,9 +13,9 @@
       "id": "refresh-meeting-calendars",
       "description": "Refresh Nevada meetings, current-official directories, and statewide financial coverage.",
       "status": "failed",
-      "startedAt": "2026-08-22T15:15:19.639Z",
-      "completedAt": "2026-08-22T15:19:23.901Z",
-      "durationMs": 244263,
+      "startedAt": "2026-08-22T18:54:08.591Z",
+      "completedAt": "2026-08-22T18:57:56.133Z",
+      "durationMs": 227542,
       "error": "Command failed: node --import tsx scripts/audit-nevada-financial-coverage.ts --strict"
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T15:08:45.410Z",
+  "generatedAt": "2026-08-22T19:07:55.589Z",
   "auditGoal": "Determine whether Nevada community coverage gaps are missing data or missing canonical community relationships.",
   "canonicalCommunityScope": {
     "coverageCommunities": 43,
@@ -83,26 +83,26 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 1031,
-        "recordsLinkedToCanonicalCommunities": 1031,
-        "recordsLinkedToCoverageCommunities": 1001,
-        "recordsNotLinkedToCoverageCommunities": 30,
-        "recordsCountedInCoverageReport": 1001,
-        "recordsNotCountedInCoverageReport": 30
+        "totalRecordsInDatabaseOrRuntime": 1035,
+        "recordsLinkedToCanonicalCommunities": 1035,
+        "recordsLinkedToCoverageCommunities": 1020,
+        "recordsNotLinkedToCoverageCommunities": 15,
+        "recordsCountedInCoverageReport": 1020,
+        "recordsNotCountedInCoverageReport": 15
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "no_direct_community_id_field",
-          "count": 30
+          "count": 15
         },
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 30
+          "count": 15
         }
       ],
       "sampleUncountedRecords": [
         {
-          "id": "meeting-nv-legislature-agenda-2026-08-11-0303f3fd",
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-07-31-6a917f41",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -116,7 +116,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-agenda-2026-08-12-1e0632a3",
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-11-79d8dba8",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -130,7 +130,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-agenda-2026-08-13-dd2b2900",
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-12-080f48a3",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -144,7 +144,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-legislative-committee-on-senior-citizens-veterans-and-adults-with-special-needs-2026-08-17-5cb60c8c",
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-13-7711f45f",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -158,7 +158,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-growth-and-infrastructure-2026-08-18-eb2a43ca",
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-18-0aa91a1b",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -172,7 +172,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-education-2026-08-18-25b4102d",
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-18-20583755",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -186,7 +186,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-legislative-commission-s-audit-subcommittee-2026-08-20-2434828e",
+          "id": "meeting-manual-nv-senate-nevada-senate-2026-07-31-68ea6621",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -200,7 +200,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-commerce-and-labor-2026-08-20-5c38f775",
+          "id": "meeting-manual-nv-senate-nevada-senate-2026-08-11-d1414178",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -214,7 +214,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-legislative-committee-for-the-review-and-oversight-of-the-tahoe-regional-planning-agency-and-the-2026-08-20-ffa1a7a9",
+          "id": "meeting-manual-nv-senate-nevada-senate-2026-08-12-3c47c1d1",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -228,7 +228,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-committee-on-public-lands-2026-08-21-4c3f8785",
+          "id": "meeting-manual-nv-senate-nevada-senate-2026-08-13-27b01fad",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -242,7 +242,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-sunset-committee-2026-08-21-cdec987d",
+          "id": "meeting-manual-nv-assembly-nevada-assembly-2026-07-31-f36ad530",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -256,7 +256,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-the-judiciary-2026-08-25-b8b50a90",
+          "id": "meeting-manual-nv-assembly-nevada-assembly-2026-08-11-5e723aba",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -270,7 +270,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-revenue-2026-08-26-23a5c6bd",
+          "id": "meeting-manual-nv-assembly-nevada-assembly-2026-08-12-4c492736",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -284,7 +284,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-nevada-silver-haired-legislative-forum-2026-08-26-8c409c75",
+          "id": "meeting-manual-nv-assembly-nevada-assembly-2026-08-13-67d04cda",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -298,147 +298,7 @@
           "linkBasis": "meeting_body"
         },
         {
-          "id": "meeting-nv-legislature-joint-special-committee-to-examine-functions-at-hotels-for-housekeeping-staff-2026-08-27-3635d39d",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-joint-interim-standing-committee-on-government-affairs-2026-08-27-a1e17634",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-economic-forum-2026-09-09-e853eeab",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-nevada-youth-legislature-2026-09-24-f533baae",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-economic-forum-2026-10-14-fd38ec85",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-interim-finance-committee-2026-10-15-7261173d",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-nevada-youth-legislature-2026-10-20-3ea4c43e",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-economic-forum-2026-11-16-33a11bac",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-nevada-youth-legislature-2026-11-17-2eca4024",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-interim-finance-committee-2026-12-10-a84e38e3",
-          "sourcePath": "data/generated/public-meetings.json",
-          "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [
-            "nevada"
-          ],
-          "countedInCoverageReport": false,
-          "notCountedReasons": [
-            "statewide_record_not_linked_to_local_community",
-            "no_direct_community_id_field"
-          ],
-          "linkBasis": "meeting_body"
-        },
-        {
-          "id": "meeting-nv-legislature-legislative-commission-s-audit-subcommittee-2027-01-13-918683e6",
+          "id": "meeting-manual-nv-assembly-nevada-assembly-2026-08-20-6e3ed1ef",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -455,7 +315,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meetings.json",
-          "totalRecords": 1031
+          "totalRecords": 1035
         }
       ]
     },
@@ -564,17 +424,29 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 1992,
-        "recordsLinkedToCanonicalCommunities": 1992,
-        "recordsLinkedToCoverageCommunities": 1965,
-        "recordsNotLinkedToCoverageCommunities": 27,
-        "recordsCountedInCoverageReport": 1965,
-        "recordsNotCountedInCoverageReport": 27
+        "totalRecordsInDatabaseOrRuntime": 2107,
+        "recordsLinkedToCanonicalCommunities": 2107,
+        "recordsLinkedToCoverageCommunities": 2044,
+        "recordsNotLinkedToCoverageCommunities": 63,
+        "recordsCountedInCoverageReport": 2044,
+        "recordsNotCountedInCoverageReport": 63
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 27
+          "count": 63
+        },
+        {
+          "reason": "low_confidence_parse_or_match",
+          "count": 36
+        },
+        {
+          "reason": "no_direct_community_id_field",
+          "count": 36
+        },
+        {
+          "reason": "record_needs_review",
+          "count": 36
         }
       ],
       "sampleUncountedRecords": [
@@ -911,7 +783,7 @@
         },
         {
           "path": "data/generated/public-cases-runtime.json",
-          "totalRecords": 1965
+          "totalRecords": 2080
         }
       ]
     },
@@ -932,11 +804,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 1188,
-        "recordsLinkedToCanonicalCommunities": 1159,
-        "recordsLinkedToCoverageCommunities": 1159,
+        "totalRecordsInDatabaseOrRuntime": 1220,
+        "recordsLinkedToCanonicalCommunities": 1191,
+        "recordsLinkedToCoverageCommunities": 1191,
         "recordsNotLinkedToCoverageCommunities": 29,
-        "recordsCountedInCoverageReport": 1159,
+        "recordsCountedInCoverageReport": 1191,
         "recordsNotCountedInCoverageReport": 29
       },
       "topReasonsRecordsAreNotCounted": [
@@ -1317,7 +1189,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-items.json",
-          "totalRecords": 1134
+          "totalRecords": 1166
         },
         {
           "path": "data/generated/nv-sos-campaign-finance-records.json",
@@ -1341,11 +1213,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 3000,
-        "recordsLinkedToCanonicalCommunities": 3000,
-        "recordsLinkedToCoverageCommunities": 3000,
+        "totalRecordsInDatabaseOrRuntime": 3104,
+        "recordsLinkedToCanonicalCommunities": 3104,
+        "recordsLinkedToCoverageCommunities": 3104,
         "recordsNotLinkedToCoverageCommunities": 0,
-        "recordsCountedInCoverageReport": 3000,
+        "recordsCountedInCoverageReport": 3104,
         "recordsNotCountedInCoverageReport": 0
       },
       "topReasonsRecordsAreNotCounted": [],
@@ -1353,7 +1225,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-voting-cards.json",
-          "totalRecords": 3000
+          "totalRecords": 3104
         }
       ]
     },

@@ -4,14 +4,14 @@
     "provider_name": "Nevada Legislature",
     "jurisdiction": "Nevada",
     "scraper_type": "html",
-    "historical_ingestion_supported": true,
-    "meetings_discovered": 27,
-    "meetings_parsed": 27,
+    "historical_ingestion_supported": false,
+    "meetings_discovered": 0,
+    "meetings_parsed": 0,
     "minutes_parsed": 0,
     "agenda_packets_parsed": 0,
     "failures": 0,
-    "oldest_meeting_found": "2026-08-11T16:00:00.000Z",
-    "newest_meeting_found": "2027-01-28T16:00:00.000Z",
+    "oldest_meeting_found": null,
+    "newest_meeting_found": null,
     "notes": null
   },
   {
@@ -50,13 +50,13 @@
     "jurisdiction": "Carson City, NV",
     "scraper_type": "granicus",
     "historical_ingestion_supported": true,
-    "meetings_discovered": 506,
-    "meetings_parsed": 506,
-    "minutes_parsed": 345,
-    "agenda_packets_parsed": 309,
+    "meetings_discovered": 510,
+    "meetings_parsed": 510,
+    "minutes_parsed": 350,
+    "agenda_packets_parsed": 312,
     "failures": 0,
     "oldest_meeting_found": "2024-01-04T00:29:00.000Z",
-    "newest_meeting_found": "2026-08-18T20:45:00.000Z",
+    "newest_meeting_found": "2026-08-26T20:30:00.000Z",
     "notes": null
   },
   {
@@ -200,13 +200,13 @@
     "jurisdiction": "Lyon County, NV",
     "scraper_type": "manual",
     "historical_ingestion_supported": true,
-    "meetings_discovered": 2,
-    "meetings_parsed": 2,
+    "meetings_discovered": 1,
+    "meetings_parsed": 1,
     "minutes_parsed": 0,
     "agenda_packets_parsed": 0,
     "failures": 0,
-    "oldest_meeting_found": "2026-08-03T15:30:00.000Z",
-    "newest_meeting_found": "2026-08-06T15:30:00.000Z",
+    "oldest_meeting_found": "2026-08-20T15:30:00.000Z",
+    "newest_meeting_found": "2026-08-20T15:30:00.000Z",
     "notes": null
   },
   {
@@ -235,8 +235,8 @@
     "minutes_parsed": 0,
     "agenda_packets_parsed": 0,
     "failures": 0,
-    "oldest_meeting_found": "2026-08-04T15:30:00.000Z",
-    "newest_meeting_found": "2026-08-04T15:30:00.000Z",
+    "oldest_meeting_found": "2026-08-18T15:30:00.000Z",
+    "newest_meeting_found": "2026-08-18T15:30:00.000Z",
     "notes": null
   },
   {
@@ -325,8 +325,8 @@
     "minutes_parsed": 0,
     "agenda_packets_parsed": 0,
     "failures": 0,
-    "oldest_meeting_found": "2026-07-16T15:30:00.000Z",
-    "newest_meeting_found": "2026-08-06T15:30:00.000Z",
+    "oldest_meeting_found": "2026-08-06T15:30:00.000Z",
+    "newest_meeting_found": "2026-08-20T15:30:00.000Z",
     "notes": null
   },
   {
@@ -461,7 +461,7 @@
     "agenda_packets_parsed": 0,
     "failures": 0,
     "oldest_meeting_found": "2026-06-09T15:30:00.000Z",
-    "newest_meeting_found": "2026-08-11T15:30:00.000Z",
+    "newest_meeting_found": "2026-08-25T15:30:00.000Z",
     "notes": null
   },
   {

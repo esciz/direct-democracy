@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T15:08:42.164Z",
+  "generatedAt": "2026-08-22T19:07:52.537Z",
   "output": "data/generated/issues-audit-report.json",
   "currentSchema": {
     "hasPrimaryIssueModel": false,
@@ -232,8 +232,9 @@
       "note": "No campus/student-government issue topic assumptions found in canonical issue topics."
     },
     "canonicalIssueTopics": {
-      "count": 20,
+      "count": 21,
       "titles": [
+        "Reproductive rights, abortion, and birth control access",
         "Teacher Pay",
         "Education",
         "School Safety",
@@ -257,8 +258,8 @@
       ]
     },
     "sourceBackedInputs": {
-      "meetingVotingCards": 3000,
-      "agendaItems": 7769,
+      "meetingVotingCards": 3104,
+      "agendaItems": 8180,
       "publicCourtCases": 27,
       "issueReviewRequests": 0
     },

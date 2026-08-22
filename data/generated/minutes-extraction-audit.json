@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-08-10T15:08:30.950Z",
+  "generatedAt": "2026-08-22T19:07:41.277Z",
   "totals": {
-    "minutesScanned": 442,
-    "minutesWithUsableText": 429,
+    "minutesScanned": 448,
+    "minutesWithUsableText": 430,
     "meetingsWithUsableAttendanceText": 324,
     "meetingsWithActionResultText": 359,
     "meetingsWithVoteResultText": 328,
-    "minutesInNameOnly": 13,
-    "cachedSourceTooThin": 10,
+    "minutesInNameOnly": 18,
+    "cachedSourceTooThin": 15,
     "adjournmentOnlyOrNoAction": 4
   },
   "qualityCounts": {
-    "full_text": 420,
-    "metadata_only": 13,
+    "full_text": 421,
+    "metadata_only": 18,
     "partial_text": 9
   },
   "organizationReports": [
@@ -20,12 +20,12 @@
       "organizationId": "carson-city-board-of-supervisors",
       "bodyName": "9-1-1 Surcharge Advisory Committee",
       "jurisdiction": "Carson City, NV",
-      "meetingsWithMinutes": 345,
+      "meetingsWithMinutes": 350,
       "usableAttendanceText": 304,
       "actionResultText": 336,
       "voteResultText": 305,
-      "minutesInNameOnly": 3,
-      "cachedSourceTooThin": 3
+      "minutesInNameOnly": 8,
+      "cachedSourceTooThin": 8
     },
     {
       "organizationId": "washoe-county-school-district",
@@ -42,7 +42,7 @@
       "organizationId": "washoe-county-commission",
       "bodyName": "Board of County Commissioners",
       "jurisdiction": "Washoe County, NV",
-      "meetingsWithMinutes": 17,
+      "meetingsWithMinutes": 18,
       "usableAttendanceText": 17,
       "actionResultText": 17,
       "voteResultText": 17,
@@ -493,6 +493,34 @@
       "minutesInNameOnly": false,
       "cachedSourceTooThin": false,
       "sourceSnippet": "Administrative Hearing meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing. -- 1 of 2 -- -- 2 of 2 -- CARSON CITY CONSOLIDATED MUNICIPALITY NOTICE OF ADMINISTRATIVE HEARING Day: Monday Date: November 4, 2024 Time: Beginning at 11:00 am Location: Carson City Community Development, BRIC Conference Room “A” 108 E. Proctor Street Carson City, NV 89701 AGENDA ik Call to Order 2. Agenda Item 2.4 CODE-2024-0637: Hearing regarding a notice of..."
+    },
+    {
+      "meetingId": "meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-07-29-5d9a93de",
+      "bodyId": "body-carson-city-board-of-supervisors-administrative-permit-review",
+      "organizationId": "carson-city-board-of-supervisors",
+      "bodyName": "Administrative Permit Review",
+      "jurisdiction": "Carson City, NV",
+      "meetingDate": "2026-07-29T20:30:00.000Z",
+      "minutesUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2913&doc_id=e82ccc5a-973f-11f1-bb61-005056a89546",
+      "extractionQuality": "metadata_only",
+      "sourceDocuments": [
+        "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2913&doc_id=e82ccc5a-973f-11f1-bb61-005056a89546",
+        "meeting-source-document-ce6b15807d633dc65a4bce708082e46b59eb852b0b69d07020dd40de0253fd33"
+      ],
+      "sourceDocumentCount": 2,
+      "cachedTextLength": 161,
+      "hasAttendanceSection": false,
+      "hasRollCall": false,
+      "hasActionResult": false,
+      "hasMotion": false,
+      "hasSecond": false,
+      "hasVoteCount": false,
+      "hasNamedVotes": false,
+      "hasUnanimousLanguage": false,
+      "isAdjournmentOnly": false,
+      "minutesInNameOnly": true,
+      "cachedSourceTooThin": true,
+      "sourceSnippet": "Administrative Permit Review meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing."
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-05-27-e231ca57",
@@ -3840,6 +3868,34 @@
       "sourceSnippet": "Board of Supervisors and Redevelopment Authority meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing. Day: Date: Time: Thursday January 4, 2024 Beginning at 8:30 am Location: Community Center, Robert 'Bob' Crowell Board Room 851 East William Carson City, NV 89701 1. Call to Order - Board of Supervisors 2. Roll Call 3. Invocation - Bruce Henderson, Minister, Airport Rd. Church of Christ 4. Pledge of Allegiance 5. Public Comment:** 5.a..."
     },
     {
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization-2026-05-13-37f68ecd",
+      "bodyId": "body-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization",
+      "organizationId": "carson-city-board-of-supervisors",
+      "bodyName": "Carson Area Metropolitan Planning Organization",
+      "jurisdiction": "Carson City, NV",
+      "meetingDate": "2026-05-13T23:23:00.000Z",
+      "minutesUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2876&doc_id=abad82e6-972c-11f1-bb61-005056a89546",
+      "extractionQuality": "metadata_only",
+      "sourceDocuments": [
+        "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2876&doc_id=abad82e6-972c-11f1-bb61-005056a89546",
+        "meeting-source-document-1e962eaa7d75f0435009232af3b3703f79d1854a2c389597cd1eb9619845f4b9"
+      ],
+      "sourceDocumentCount": 2,
+      "cachedTextLength": 179,
+      "hasAttendanceSection": false,
+      "hasRollCall": false,
+      "hasActionResult": false,
+      "hasMotion": false,
+      "hasSecond": false,
+      "hasVoteCount": false,
+      "hasNamedVotes": false,
+      "hasUnanimousLanguage": false,
+      "isAdjournmentOnly": false,
+      "minutesInNameOnly": true,
+      "cachedSourceTooThin": true,
+      "sourceSnippet": "Carson Area Metropolitan Planning Organization meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing."
+    },
+    {
       "meetingId": "meeting-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization-2026-04-08-0d5c97c5",
       "bodyId": "body-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization",
       "organizationId": "carson-city-board-of-supervisors",
@@ -6161,6 +6217,34 @@
       "sourceSnippet": "Historic Resources Commission meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing. Day: Date: Time: Wednesday January 3, 2024 Beginning at 5:30 pm Location: Community Center, Robert 'Bob' Crowell Board Room 1. Call to Order 2. Roll Call 3. Public Comment:** 4. For Possible Action: Approval of the Minutes - September 8, 2023 5. Meeting Items 5.A HRC-2023-0462 For possible action: Discussion and possible action regarding the Historic Re..."
     },
     {
+      "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2",
+      "bodyId": "body-carson-city-board-of-supervisors-library-board-of-trustees",
+      "organizationId": "carson-city-board-of-supervisors",
+      "bodyName": "Library Board of Trustees",
+      "jurisdiction": "Carson City, NV",
+      "meetingDate": "2026-07-10T00:28:00.000Z",
+      "minutesUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2905&doc_id=fb71843d-97f5-11f1-bb61-005056a89546",
+      "extractionQuality": "metadata_only",
+      "sourceDocuments": [
+        "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2905&doc_id=fb71843d-97f5-11f1-bb61-005056a89546",
+        "meeting-source-document-cc5ef899680c781328dab875ea5c7cf7466305f49ed587dd9fd34f0d92928750"
+      ],
+      "sourceDocumentCount": 2,
+      "cachedTextLength": 158,
+      "hasAttendanceSection": false,
+      "hasRollCall": false,
+      "hasActionResult": false,
+      "hasMotion": false,
+      "hasSecond": false,
+      "hasVoteCount": false,
+      "hasNamedVotes": false,
+      "hasUnanimousLanguage": false,
+      "isAdjournmentOnly": false,
+      "minutesInNameOnly": true,
+      "cachedSourceTooThin": true,
+      "sourceSnippet": "Library Board of Trustees meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing."
+    },
+    {
       "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-06-12-f6310a2e",
       "bodyId": "body-carson-city-board-of-supervisors-library-board-of-trustees",
       "organizationId": "carson-city-board-of-supervisors",
@@ -7024,6 +7108,34 @@
       "minutesInNameOnly": false,
       "cachedSourceTooThin": false,
       "sourceSnippet": "Library Board of Trustees meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing. Day: Date: Time: Thursday February 22, 2024 Beginning at 5:30 pm Location: Community Center, Robert 'Bob' Crowell Board Room I. Call to Order - Roll Call II. Public Comment CARSON CITY CONSOLIDATED MUNICIPALITY NOTICE OF THE MEETING OF THE LIBRARY BOARD OF TRUSTEES THIS IS A RESCHEDULED MEETING. ORIGINAL MEETING WAS SCHEDULED FOR FEBRUARY 8, 2024 BUT WAS CA..."
+    },
+    {
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-adf8de80",
+      "bodyId": "body-carson-city-board-of-supervisors-liquor-hearings-officer",
+      "organizationId": "carson-city-board-of-supervisors",
+      "bodyName": "Liquor Hearings Officer",
+      "jurisdiction": "Carson City, NV",
+      "meetingDate": "2026-07-31T20:30:00.000Z",
+      "minutesUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2914&doc_id=e8e2e862-97fd-11f1-bb61-005056a89546",
+      "extractionQuality": "metadata_only",
+      "sourceDocuments": [
+        "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2914&doc_id=e8e2e862-97fd-11f1-bb61-005056a89546",
+        "meeting-source-document-9ae7e827899d82b9d99fdea3b2704e04afdf46819a16ef3478c87c95e2889eb2"
+      ],
+      "sourceDocumentCount": 2,
+      "cachedTextLength": 156,
+      "hasAttendanceSection": false,
+      "hasRollCall": false,
+      "hasActionResult": false,
+      "hasMotion": false,
+      "hasSecond": false,
+      "hasVoteCount": false,
+      "hasNamedVotes": false,
+      "hasUnanimousLanguage": false,
+      "isAdjournmentOnly": false,
+      "minutesInNameOnly": true,
+      "cachedSourceTooThin": true,
+      "sourceSnippet": "Liquor Hearings Officer meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing."
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-06-23-fe005736",
@@ -9446,6 +9558,34 @@
       "minutesInNameOnly": false,
       "cachedSourceTooThin": false,
       "sourceSnippet": "Redevelopment Authority Citizens Committee meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing. Day: Date: Time: Monday March 4, 2024 Beginning at 5:00 pm Location: Community Center, Robert 'Bob' Crowell Board Room 851 East William Street Carson City, Nevada 1. Call to Order, Roll Call, and Determination of Quorum 2. Public Comment 3. For Possible Action: Approval of Minutes - October 2, 2023 3.A October 2, 2023 4. Meeting Items: 4.A..."
+    },
+    {
+      "meetingId": "meeting-carson-city-board-of-supervisors-regional-transportation-commission-2026-06-10-0ddc5f73",
+      "bodyId": "body-carson-city-board-of-supervisors-regional-transportation-commission",
+      "organizationId": "carson-city-board-of-supervisors",
+      "bodyName": "Regional Transportation Commission",
+      "jurisdiction": "Carson City, NV",
+      "meetingDate": "2026-06-10T23:26:00.000Z",
+      "minutesUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2892&doc_id=bce498f0-972c-11f1-bb61-005056a89546",
+      "extractionQuality": "metadata_only",
+      "sourceDocuments": [
+        "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2892&doc_id=bce498f0-972c-11f1-bb61-005056a89546",
+        "meeting-source-document-77d242f8dd74cb2210b04e06379a2107be9b8281c52a074bb59b6d5392c375ad"
+      ],
+      "sourceDocumentCount": 2,
+      "cachedTextLength": 167,
+      "hasAttendanceSection": false,
+      "hasRollCall": false,
+      "hasActionResult": false,
+      "hasMotion": false,
+      "hasSecond": false,
+      "hasVoteCount": false,
+      "hasNamedVotes": false,
+      "hasUnanimousLanguage": false,
+      "isAdjournmentOnly": false,
+      "minutesInNameOnly": true,
+      "cachedSourceTooThin": true,
+      "sourceSnippet": "Regional Transportation Commission meeting record discovered from the official Carson City Granicus calendar with minutes available for civic intelligence processing."
     },
     {
       "meetingId": "meeting-carson-city-board-of-supervisors-regional-transportation-commission-2026-05-13-0293a36b",
@@ -13768,6 +13908,49 @@
       "minutesInNameOnly": true,
       "cachedSourceTooThin": false,
       "sourceSnippet": "-- 1 of 20 -- -- 2 of 20 -- -- 3 of 20 -- -- 4 of 20 -- -- 5 of 20 -- -- 6 of 20 -- -- 7 of 20 -- -- 8 of 20 -- -- 9 of 20 -- -- 10 of 20 -- -- 11 of 20 -- -- 12 of 20 -- -- 13 of 20 -- -- 14 of 20 -- -- 15 of 20 -- -- 16 of 20 -- -- 17 of 20 -- -- 18 of 20 -- -- 19 of 20 -- -- 20 of 20 -- -- 1 of 20 -- -- 2 of 20 -- -- 3 of 20 -- -- 4 of 20 -- -- 5 of 20 -- -- 6 of 20 -- -- 7 of 20 -- -- 8 of 20 -- -- 9 of 20 -- -- 10 of 20 -- -- 11 of 20 -- -- 12 of 20 -- -- 13 of 20 -- -- 14 of 20 -- -- 15 of 20 -- -- 16 of 2..."
+    },
+    {
+      "meetingId": "meeting-manual-washoe-county-commission-washoe-county-commission-2026-05-06-283c167b",
+      "bodyId": "body-manual-washoe-county-commission-washoe-county-commission",
+      "organizationId": "washoe-county-commission",
+      "bodyName": "Washoe County Commission",
+      "jurisdiction": "Washoe County, NV",
+      "meetingDate": "2026-05-06T16:00:00.000Z",
+      "minutesUrl": "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1432932&GUID=4CB9970E-F43D-4240-BF2F-8B3C736141D4",
+      "extractionQuality": "full_text",
+      "sourceDocuments": [
+        "https://washoe-nv.legistar.com/View.ashx?M=M&ID=1432932&GUID=4CB9970E-F43D-4240-BF2F-8B3C736141D4",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "data/manual-sources/public-meetings/washoe-county-commission/minutes/2026-05-06-5-6-2026-dcc-meeting-minutes-final-view-ashx.html",
+        "meeting-source-document-65dd256578843377d43d8e6f497d294a74a34dc8847e85b59638b679034f2eeb",
+        "meeting-source-document-6593ab50278a6a9e0cd58d870e06a2bf14bf711c2050fa4f92cfb7509d088f52"
+      ],
+      "sourceDocumentCount": 17,
+      "cachedTextLength": 62777,
+      "hasAttendanceSection": false,
+      "hasRollCall": false,
+      "hasActionResult": false,
+      "hasMotion": false,
+      "hasSecond": false,
+      "hasVoteCount": false,
+      "hasNamedVotes": false,
+      "hasUnanimousLanguage": false,
+      "isAdjournmentOnly": false,
+      "minutesInNameOnly": false,
+      "cachedSourceTooThin": false,
+      "sourceSnippet": "PK\u0003\u0004\u0014\u0000\u0006\u0000\b\u0000\u0000\u0000!\u0000}sUT�\u0001\u0000\u0000# \u0000\u0000\u0013\u0000\b\u0002[Content_Types].xml �\u0004\u0002(�\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000..."
     }
   ]
 }

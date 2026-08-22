@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-08-10T15:08:37.878Z",
+  "generatedAt": "2026-08-22T19:07:48.114Z",
   "sourceArtifacts": [
     "data/generated/public-meeting-items.json",
     "data/generated/public-meetings.json",
     "data/generated/public-meeting-bodies.json"
   ],
   "totals": {
-    "meetingItems": 7769,
-    "totalVoteLikeActions": 1351,
-    "unanimousActionsFound": 66,
-    "aggregateVoteCountActionsFound": 378,
-    "attendanceRostersParsed": 61,
+    "meetingItems": 8180,
+    "totalVoteLikeActions": 1407,
+    "unanimousActionsFound": 67,
+    "aggregateVoteCountActionsFound": 379,
+    "attendanceRostersParsed": 64,
     "fullRosterMatches": 59,
-    "parsedNamedVotes": 253,
-    "explicitNamedVotesParsed": 66,
-    "parsedNamedVoteActions": 82,
+    "parsedNamedVotes": 256,
+    "explicitNamedVotesParsed": 69,
+    "parsedNamedVoteActions": 83,
     "individualVotesInferredFromUnanimousOutcomes": 22,
     "individualVotesInferredFromAggregateCounts": 165,
-    "aggregateOnlyOutcomes": 960,
-    "motionSecondParsed": 596,
+    "aggregateOnlyOutcomes": 1004,
+    "motionSecondParsed": 597,
     "ambiguousVoteActionsNeedingReview": 106,
     "actionsNeedingAttendanceReview": 50,
-    "actionsNeedingDistributionReview": 332,
-    "unnamedVoteActions": 1066,
-    "needsReview": 488,
-    "remainingUnresolvedVoteActions": 488,
-    "skippedDueToInsufficientEvidence": 6620
+    "actionsNeedingDistributionReview": 333,
+    "unnamedVoteActions": 1110,
+    "needsReview": 489,
+    "remainingUnresolvedVoteActions": 489,
+    "skippedDueToInsufficientEvidence": 6986
   },
   "aggregateOnlyOutcomes": [
     {
@@ -776,7 +776,7 @@
       }
     },
     {
-      "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848-5-88fcb49679",
+      "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848-5-1eadcaef8d",
       "meeting_id": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848",
       "title": "Consideration and possible action re: Approval of Minutes of the meeting held on: A. April 14, 2026 Regular Meeting Paul Harmon moved to approve the April 14, 2026 minutes of th...",
       "source_url": "https://www.churchillcountynv.gov/DocumentCenter/View/19243/FIre-Board-Agenda-Packet-08-11-26",
@@ -794,7 +794,7 @@
       }
     },
     {
-      "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848-7-7d71b129ec",
+      "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848-7-618fb562e8",
       "meeting_id": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848",
       "title": "Needs review: Review of Possible Updates for FY27 Budget: Mr. Blakey asked if everything was approved that the department needed. It was confirmed that their requests for the budget were appr...",
       "source_url": "https://www.churchillcountynv.gov/DocumentCenter/View/19243/FIre-Board-Agenda-Packet-08-11-26",
@@ -803,12 +803,12 @@
       "evidenceType": "aggregate_only"
     },
     {
-      "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848-12-773101be5d",
+      "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848-12-006765ee57",
       "meeting_id": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848",
       "title": "Needs review: Meeting Adjournment There being no further business to come before the Fire Board, the meeting adjourned at 5:26 p.m. Approved: __________________________________________ Erik F...",
       "source_url": "https://www.churchillcountynv.gov/DocumentCenter/View/19243/FIre-Board-Agenda-Packet-08-11-26",
-      "sourceSnippet": "Approved: __________________________________________ Erik Fain, Fire Board Chair Alexa Robinson, Recording Secretary -- 7 of 80 -- -- 8 of 80 -- -- 9 of 80 -- -- 10 of 80 -- -- 11 of 80 -- -- 12 of 80 -- -- 13 of 80 -",
-      "outcome": "Approved: __________________________________________ Erik Fain, Fire Board Chair Alexa Robinson, Recording Secretary -- 7 of 80 -- -- 8 of 80 -- -- 9 of 80 -- -- 10 of 80 -- -- 11 of 80 -- -- 12 of 80 -- -- 13 of 80 -...",
+      "sourceSnippet": "Approved: __________________________________________ Erik Fain, Fire Board Chair Alexa Robinson, Recording Secretary -- 7 of 122 -- -- 8 of 122 -- -- 9 of 122 -- -- 10 of 122 -- -- 11 of 122 -- -- 12 of 122 -- -- 13 o",
+      "outcome": "Approved: __________________________________________ Erik Fain, Fire Board Chair Alexa Robinson, Recording Secretary -- 7 of 122 -- -- 8 of 122 -- -- 9 of 122 -- -- 10 of 122 -- -- 11 of 122 -- -- 12 of 122 -- -- 13 o...",
       "evidenceType": "aggregate_only"
     },
     {
@@ -1739,6 +1739,114 @@
       "evidenceType": "aggregate_only"
     },
     {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-45-6a64785974",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "• Fiscal Impact: • Legal review required: False • Reviewed by: Department Head Department Name: ____ County Manager Other Agency Review: -- 401 of 403 -- • Board Action: [ ] App...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "Approved [ ] Approved with Modification [ ] Denied [ ] Continued -- 402 of 403 -- Storey County Community Development Approved [ ] Approved with Modification [ ] Denied [ ] Continued -- 402 of 403 -- Storey County Community Development Approved [ ] Approved with Modification [ ] Denied [ ] Continued -- 402 of 403 -- Storey County Community Development",
+      "outcome": "Approved [ ] Approved with Modification [ ] Denied [ ] Continued -- 402 of 403 -- Storey County Community Development",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-46-825945a3ec",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "• Title: For possible action, approval of business license first readings: • A. 3rd Dimension Design LLC – Out of County / 5725 S. Valley View Blvd Ste. 5 #965718 ~ Las Vegas, N...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "approved as part of the Consent Agenda) I move to approve all first readings (if removed from consent agenda by request) • Title: For possible action, approval of business license first readings: • A",
+      "outcome": "approved as part of the Consent Agenda) I move to approve all first readings (if removed from consent agenda by request)",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-47-9d7a5d5658",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "• Fiscal Impact: • Legal review required: False -- 9 of 403 -- • Reviewed by: Department Head Department Name: ____ County Manager Other Agency Review: • Board Action: [ ] Appro...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "Approved [ ] Approved with Modification [ ] Denied [ ] Continued -- 10 of 403 -- Storey County Community Development Approved [ ] Approved with Modification [ ] Denied [ ] Continued -- 10 of 403 -- Storey County Community Development Approved [ ] Approved with Modification [ ] Denied [ ] Continued -- 10 of 403 -- Storey County Community Development",
+      "outcome": "Approved [ ] Approved with Modification [ ] Denied [ ] Continued -- 10 of 403 -- Storey County Community Development",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-4-72a7b55132",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "Staff summary: This resolution is in recognition of the lifesaving efforts made by Storey County Fire District Firefighter Jesse Richardson. On July 26th Jesse responded along w...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "carried a 24’ ladder around to the C side of the structure locating the victim on the balcony carried a 24’ ladder around to the C side of the structure locating the victim on the balcony carried a 24’ ladder around to the C side of the structure locating the victim on the balcony",
+      "outcome": "carried a 24’ ladder around to the C side of the structure locating the victim on the balcony",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-9-0076da181c",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "Board action: [ ] Approved [ ] Approved with Modifications [ ] Denied [ ] Continued Agenda Item No. -- 19 of 403 -- Resolution No. 26-835 RESOLUTION NO. 26-835 A RESOLUTION RECO...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "Approved [ ] Approved with Modifications [ ] Denied [ ] Continued Agenda Item No Approved [ ] Approved with Modifications [ ] Denied [ ] Continued Agenda Item No Approved [ ] Approved with Modifications [ ] Denied [ ] Continued Agenda Item No",
+      "outcome": "Approved [ ] Approved with Modifications [ ] Denied [ ] Continued Agenda Item No",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-78-00f0986ec6",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "Needs review: Appraisal Practice as adopted by the State of Nevada's Commission of Appraisers. -- 25 of 403 --",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "adopted by the State of Nevada's Commission of Appraisers adopted by the State of Nevada's Commission of Appraisers adopted by the State of Nevada's Commission of Appraisers",
+      "outcome": "adopted by the State of Nevada's Commission of Appraisers",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-4-e86dbb72df",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "Needs review: The rent reflects specified terms and conditions, such as permitted uses, use restrictions, expense obligations, duration, concessions, rental adjustments and revaluations, rene...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "adopted these standards for all licensed and certified appraisers conducting appraisals in the State of Nevada adopted these standards for all licensed and certified appraisers conducting appraisals in the State of Nevada adopted these standards for all licensed and certified appraisers conducting appraisals in the State of Nevada",
+      "outcome": "adopted these standards for all licensed and certified appraisers conducting appraisals in the State of Nevada",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-I-236b3d3bfd",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "Needs review: certify that, to the best of my knowledge and belief:  I have conducted a personal inspection of the property that is the subject of this report.  The statements of fact conta...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "adopted by the State of Nevada adopted by the State of Nevada adopted by the State of Nevada",
+      "outcome": "adopted by the State of Nevada",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-26-b737365dd3",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "South “B” Street Virginia City, NV 89440 Section 3.02. Annual Increase. An annual increase of three percent (TBD%) will apply on each anniversary of the Effective Date to the mo...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "adopted by the Storey County Board of Commissioners pursuant to Resolution 26-834 and shall be adjusted annually adopted by the Storey County Board of Commissioners pursuant to Resolution 26-834 and shall be adjusted annually adopted by the Storey County Board of Commissioners pursuant to Resolution 26-834 and shall be adjusted annually",
+      "outcome": "adopted by the Storey County Board of Commissioners pursuant to Resolution 26-834 and shall be adjusted annually",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-117-7637ec049c",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "Needs review: sewage disposal; and electrical system. LESSOR will also maintain fire extinguishers, emergency exit lighting and replace as necessary; LESSEE will cooperate as needed for neces...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "approved by Storey County approved by Storey County approved by Storey County",
+      "outcome": "approved by Storey County",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-121-a4e7276fa7",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "include the following provisions: a. On insurance policies where the Storey County is named as an additional insured, “Storey County” shall be an additional insured to the full...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "approved by the LESSOR as required by this Lease approved by the LESSOR as required by this Lease approved by the LESSOR as required by this Lease",
+      "outcome": "approved by the LESSOR as required by this Lease",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-122-66d1974e1d",
+      "meeting_id": "meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f",
+      "title": "bind coverage on its behalf. All certificates and any required endorsements are to be received and approved by Storey County before the Lease commences. Each insurance policy re...",
+      "source_url": "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_08182026-1403",
+      "sourceSnippet": "approved by Storey County before the Lease commences approved by Storey County before the Lease commences approved by Storey County before the Lease commences",
+      "outcome": "approved by Storey County before the Lease commences",
+      "evidenceType": "aggregate_only"
+    },
+    {
       "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-1-e36b2a3858",
       "meeting_id": "meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d",
       "title": "Page 1of 12 Elko City Planning Commission Minutes January 5, 2016 ***Motion: Approve the October 6, 2015 minutes in their entirety. Moved by David Freistroffer, Seconded by Jose...",
@@ -2529,6 +2637,24 @@
         "sourceSnippet": "approved the Final Plat 6-16 for the Copper Trails Phase 1 Unit 2 Subdivision. II. REPORTS A. Summary of City Council Actions. Ms. Laughlin said at the City Council Meeting on August 9th, they conditionally approved the Final Plat 6-16 for the Copper Trails Phase 1 Unit 2 Subdivision. They did agree with all of the Planning Commission conditions. At the City Council Meeting on August 23rd, they approved Resolution 26-16 for the Rezone on Silver Street that was filed by Jose and Alfredo Uribe. They approved Resolution 27-16 for the Rezone on the corner of E Street and W. Cedar Street that was filed by Robert Nielson. They also approved an application for a Revocable Permit for two monitori...",
         "raw": "approved the Final Plat 6-16 for the Copper Trails Phase 1 Unit 2 Subdivision"
       }
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7-000.00-8179396985",
+      "meeting_id": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7",
+      "title": "Funded by the Self Insurance Fund to Resolve Litigation Matter and Authorization for the City Manager or Designee to Execute Any Ancillary Documents Necessary to Effectuate the...",
+      "source_url": "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16600",
+      "sourceSnippet": "Approved by the City Attorney’s Office Approved by the City Attorney’s Office Approved by the City Attorney’s Office",
+      "outcome": "Approved by the City Attorney’s Office",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7-10493-e2b2608953",
+      "meeting_id": "meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7",
+      "title": "School Safety RTC ILC CA approved 15",
+      "source_url": "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16600",
+      "sourceSnippet": "approved 15 approved 15 approved 15",
+      "outcome": "approved 15",
+      "evidenceType": "aggregate_only"
     },
     {
       "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2-11-ec38c99b70",
@@ -12105,6 +12231,285 @@
       "sourceSnippet": "approved December 2025) within the Rural Character Designation approved December 2025) within the Rural Character Designation approved December 2025) within the Rural Character Designation",
       "outcome": "approved December 2025) within the Rural Character Designation",
       "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-8-c86e7be787",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Approve the changes on Assessor's tax roll due to correction in assessments and review of tax roll changes. Financial Department Comments: Approved As To Le...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: Approve the changes on Assessor's tax roll due to correction in assessments and review of tax roll ATTACHMENTS -- 38 of 371 -- Meeting: 8/20/2026 Tax",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: Approve the changes on Assessor's tax roll due to correction in assessments and review of tax roll ATTACHMENTS -- 38 of 371 -- Meeting: 8/20/2026 Tax...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-10-9be57c18fb",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Accept a grant award from the Nevada Department of Health and Human Services for the FY27 Nevada Clinical Services - Respite program, in the amount of $80,2...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: Accept a grant award from the Nevada Department of Health and Human Services for the FY27 Nevada Clinical Services - Respite program, in the amount o",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: Accept a grant award from the Nevada Department of Health and Human Services for the FY27 Nevada Clinical Services - Respite program, in the amount o...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-18-b8849c4796",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Approve a contract between Lyon County and Healthy Communities Coalition, not to exceed $18,350, for services funded through the FY27 Family Planning Servic...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: Approve a contract between Lyon County and Healthy Communities Coalition, not to exceed $18,350, for services funded through the FY27 Family Planning",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: Approve a contract between Lyon County and Healthy Communities Coalition, not to exceed $18,350, for services funded through the FY27 Family Planning...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-19-8abeb63784",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: To approve the request by NV Energy for an Amendment to the Conditional Use Permit PLZ-2026-024, authorizing the construction of three 345-kV transmission l...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 177 of 371 -- LYON COUNTY COMMUNITY DEVELOPMENT DEPARTMENT B U I L D I N G * D E V E L O P M E N T E N G I N E E R I N G * P L A N N I",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 177 of 371 -- LYON COUNTY COMMUNITY DEVELOPMENT DEPARTMENT B U I L D I N G * D E V E L O P M E N T E N G I N E E R I N G * P L A N N I...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-20-0154cdeacf",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: To propose an ordinance amending Lyon County Development Code Title 15, Chapter 320, Table 4 thereby establishing Post-Secondary, Trade, or Technical Educat...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 286 of 371 -- Page 1 of 2 BILL NO For Possible Action: To propose an ordinance amending Lyon County Development Code Title 15, Chapter 320, Table 4 thereby establishing Post-Secondary, Trade, or Technical Education as a Conditional Use in the Heavy Industrial-Rural and Heav...",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 286 of 371 -- Page 1 of 2 BILL NO",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-21-84a709a521",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Review and approve a resolution requesting a Bill Draft for the 84th Nevada Legislature establishing a statutory funding formula for county assessments for...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: Review and approve a resolution requesting a Bill Draft for the 84th Nevada Legislature establishing a statutory funding formula for county assessmen",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: Review and approve a resolution requesting a Bill Draft for the 84th Nevada Legislature establishing a statutory funding formula for county assessmen...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-27-ddcb322a8d",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Approve Amendment No. 3 to Task Order 116, Rolling 'A' Wastewater Treatment Facility (WWTF) Phase 4 Expansion Project - Construction Administration, with DO...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "approved by the Board of County Commissioners (BOCC) on August 4, 2022, in an amount not to exceed $2,142,650 for providing construction management and engineering services during construction of the Rolling 'A' WWTF",
+      "outcome": "approved by the Board of County Commissioners (BOCC) on August 4, 2022, in an amount not to exceed $2,142,650 for providing construction management and engineering services during construction of the Rolling 'A' WWTF...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-28-9f9e0d997e",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Accept the donation of a large, framed map from Bill Miles. (County Manager, Andrew Haskin) Financial Department Comments: Approved As To Legal Form: County...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: -- 371 of 371 -- For Possible Action: Accept the donation of a large, framed map from Bill Miles",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: -- 371 of 371 --",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-35-4a0cae7df4",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Award\". (Sheriff, Brad Pope) Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 6 of 371 -- -- 7 of 371 -- -- 8 of...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 6 of 371 -- -- 7 of 371 -- -- 8 of 371 -- • Cooper, Fettic, Patchen Meritorious Award Lyon County Board of County Commissioners Agenda",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 6 of 371 -- -- 7 of 371 -- -- 8 of 371 -- • Cooper, Fettic, Patchen Meritorious Award Lyon County Board of County Commissioners Agenda...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-36-0c47c7daed",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 18 of 371 -- Planning Building Code Enforcement Engineering Eco...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 18 of 371 -- Planning Building Code Enforcement Engineering Economic Development Community Development Department Community Developmen",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 18 of 371 -- Planning Building Code Enforcement Engineering Economic Development Community Development Department Community Developmen...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-40-3bff550236",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "▪ Staff is currently review comments from the public and commissioners and looks to make the appropriate changes. ▪ Development Agreement Ordinance ▪ Staff will work with Govern...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "approved Conditional Use Permit approved Conditional Use Permit approved Conditional Use Permit",
+      "outcome": "approved Conditional Use Permit",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-41-32b196faf7",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "▪ The project consists of a proposed 10,594 square foot (sf) building in the middle of three lots proposed for the development located at the southwest corner of the intersectio...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "approved approved approved",
+      "outcome": "approved",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-42-3ccf0e5236",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Needs review: • Location: North of HWY 50 and West of Hwy 95A (North of NDOT Maintenance Yard) in Silver Springs, NV. • Administrative design review for the project has been completed and iss...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "approved approved approved",
+      "outcome": "approved",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-43-6eb517d5c0",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Review and accept claims and financial reports. Under NRS 244, the Comptroller approves bills for payment and the Board reviews the claims report. Financial...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: Accept claims and financial reports For Possible Action: Review and accept claims and financial reports",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: Accept claims and financial reports",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-48-e8e32bf1fa",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Review and accept travel claims. The Board of Commissioners has requested to have the travel report presented to them. It is not required by statute. Financ...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: Accept travel claims For Possible Action: Review and accept travel claims",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: Accept travel claims",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-53-9bcc419bf0",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTAC...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 41 of 371 -- Lyon County Board of County Commissioners August 3, 2026 Page 1 of 7 Board of County Commissioners Lyon County, Nevada Th",
+      "outcome": "Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 41 of 371 -- Lyon County Board of County Commissioners August 3, 2026 Page 1 of 7 Board of County Commissioners Lyon County, Nevada Th...",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-3-65582c9a8e",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Public Participation Chair Keller asked for public comment. Numerous people made public comment that included any or all of the following: requests that a moratorium be put into...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "denied or continued until additional information is available, expression of opposition to the data center project and Ordinance, and concerns and/or suggestions regarding the project 3",
+      "outcome": "denied or continued until additional information is available, expression of opposition to the data center project and Ordinance, and concerns and/or suggestions regarding the project",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-4-8fb19034b0",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "motion passed 4",
+      "outcome": "motion passed",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-60-a258dc3a1c",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Section 3 included: Parking Requirements, and Why This Standard, and Section 4 included: Use Definition in Chapter 1200. Throughout the presentation, Mr. Henderson was available...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "denied or continued until additional information is available, expression of opposition to the data center project and Ordinance, and concerns and/or suggestions regarding the project Section 3 included: Parking Requirements, and Why This Standard, and Section 4 included: Use Definition in Chapter 1200",
+      "outcome": "denied or continued until additional information is available, expression of opposition to the data center project and Ordinance, and concerns and/or suggestions regarding the project",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-65-fff702bfff",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "publicly ridiculed that are making whispered comments to one another because it's being disruptive, and expressed Copia, NV Energy and the Senior Planner taking a ten-minute rec...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "adopted responsibly adopted responsibly adopted responsibly",
+      "outcome": "adopted responsibly",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-67-ee7a960690",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Needs review: August 3, 2026 Page 6 of 7 Comm. Hendrix moved that Staff has heard the recommendations from the Board and the public, and will come back with back with a new draft version base...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "motion passed 5-0. August 3, 2026 Page 6 of 7 Comm. Hendrix moved that Staff has heard the recommendations from the Board and the public, and will come back with back with a new draft version based on the information they’ve been provided; Comm. Jacobson seconded, and the motion passed 5-0..",
+      "outcome": "motion passed 5-0",
+      "evidenceType": "aggregate_only",
+      "structuredOutcome": {
+        "kind": "count",
+        "yesVotes": 5,
+        "noVotes": 0,
+        "abstainVotes": 0,
+        "absentVotes": null,
+        "sourceSnippet": "motion passed 5-0. August 3, 2026 Page 6 of 7 Comm. Hendrix moved that Staff has heard the recommendations from the Board and the public, and will come back with back with a new draft version based on the information they’ve been provided; Comm. Jacobson seconded, and the motion passed 5-0..",
+        "raw": "motion passed 5-0"
+      }
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-208-ef8e098458",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "in Smith Valley on August 18, 2026 from 6PM to 8PM for an open house with HudBay Minerals on the Smith Valley mining project. Melanie Mc Falls, Walker River Paiute Tribe Chairma...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "approved Thursday approved Thursday approved Thursday",
+      "outcome": "approved Thursday",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-8-5bc94982e8",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Indirect Costs $0.00 TOTAL APPROVED BUDGET $120,744.00 Approved Budget Categories: FEDERAL AWARD COMPUTATION: Total Obligated by this Action: Cumulative Prior Awards this Budget...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "APPROVED BUDGET $120,744 APPROVED BUDGET $120,744 APPROVED BUDGET $120,744",
+      "outcome": "APPROVED BUDGET $120,744",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-100-e7f353b1ef",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Needs review: N/A N/A N/A N/A Agency Approved Indirect Rate: N/A Subrecipient Approved Indirect Rate: 0% Terms and Conditions: In accepting these grant funds, it is understood that:",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved Indirect Rate: N/A Subrecipient Approved Indirect Rate: 0% Terms and Conditions: In accepting these grant funds, it is understood that: Approved Indirect Rate: N/A Subrecipient Approved Indirect Rate: 0% Terms and Conditions: In accepting these grant funds, it is understood that: Approved Indirect Rate: N/A Subrecipient Approved Indirect Rate: 0%...",
+      "outcome": "Approved Indirect Rate: N/A Subrecipient Approved Indirect Rate: 0% Terms and Conditions: In accepting these grant funds, it is understood that:",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-3-b22036c875",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Needs review: Expenditures must be consistent with the narrative, goals and objectives, and budget as approved and documented",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "approved and documented approved and documented approved and documented",
+      "outcome": "approved and documented",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-6-c7302513f4",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Needs review: Compliance with the Americans with Disabilities Act of 1990 (P.L. 101-136), 42 U.S.C. 12101, as amended, and regulations adopted there under contained in 28 CFR 26.101-36.999 in...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "adopted there under contained in 28 CFR 26 adopted there under contained in 28 CFR 26 adopted there under contained in 28 CFR 26",
+      "outcome": "adopted there under contained in 28 CFR 26",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-102-433868d9a8",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Needs review: entity, including, without limitation, efforts to influence state or local officials to engage in a similar lobbying activity. • Any attempt to influence: o The introduction or...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "carried on in support of or in knowing preparation for an effort to engage in an activity prohibited pursuant to subsections 1 to 5, inclusive carried on in support of or in knowing preparation for an effort to engage in an activity prohibited pursuant to subsections 1 to 5, inclusive carried on in support of or in knowing preparation for an effort to eng...",
+      "outcome": "carried on in support of or in knowing preparation for an effort to engage in an activity prohibited pursuant to subsections 1 to 5, inclusive",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-123-bd600f0b00",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "DIVISION OF CHILD & FAMILY SERVICES NOTICE OF SUBAWARD Subaward Packet (BAA) Page 8 of 15 Agency Ref.#: 314567-27-002 Revised 1/2026 • Department of Human Services policy allows...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "approved Scope of Work/Budget approved Scope of Work/Budget approved Scope of Work/Budget",
+      "outcome": "approved Scope of Work/Budget",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-125-68f5c10697",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "shall not be effective until 30 days after a party has served written notice upon the other party. This agreement may be terminated by mutual consent of both parties or unilater...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "approved within the Notice of Subaward approved within the Notice of Subaward approved within the Notice of Subaward",
+      "outcome": "approved within the Notice of Subaward",
+      "evidenceType": "aggregate_only"
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-8-dc5eb336da",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Indirect $0.00 $0.00 $0.00 $0.00 $0.00 - Total $0.00 $0.00 $0.00 $0.00 $0.00 - MATCH REPORTING Approved Match Total Prior Reported Match Current Match Year to Date Total Match B...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "sourceSnippet": "Approved Match Total Prior Reported Match Current Match Year to Date Total Match Balance Percent INSERT MONTH/QUARTER $0 Approved Match Total Prior Reported Match Current Match Year to Date Total Match Balance Percent INSERT MONTH/QUARTER $0 Approved Match Total Prior Reported Match Current Match Year to Date Total Match Balance Percent INSERT MONTH/QUART...",
+      "outcome": "Approved Match Total Prior Reported Match Current Match Year to Date Total Match Balance Percent INSERT MONTH/QUARTER $0",
+      "evidenceType": "aggregate_only"
     }
   ],
   "ambiguousVoteActions": [
@@ -13113,7 +13518,7 @@
       }
     },
     {
-      "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848-5-88fcb49679",
+      "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848-5-1eadcaef8d",
       "meeting_id": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-11-70b45848",
       "title": "Consideration and possible action re: Approval of Minutes of the meeting held on: A. April 14, 2026 Regular Meeting Paul Harmon moved to approve the April 14, 2026 minutes of th...",
       "source_url": "https://www.churchillcountynv.gov/DocumentCenter/View/19243/FIre-Board-Agenda-Packet-08-11-26",
@@ -19177,20 +19582,36 @@
         "sourceSnippet": "voted 4-3",
         "raw": "voted 4-3"
       }
+    },
+    {
+      "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-67-ee7a960690",
+      "meeting_id": "meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8",
+      "title": "Needs review: August 3, 2026 Page 6 of 7 Comm. Hendrix moved that Staff has heard the recommendations from the Board and the public, and will come back with back with a new draft version base...",
+      "source_url": "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_08202026-2089",
+      "reason": "vote_count_does_not_match_present_members",
+      "outcome": {
+        "kind": "count",
+        "yesVotes": 5,
+        "noVotes": 0,
+        "abstainVotes": 0,
+        "absentVotes": null,
+        "sourceSnippet": "motion passed 5-0. August 3, 2026 Page 6 of 7 Comm. Hendrix moved that Staff has heard the recommendations from the Board and the public, and will come back with back with a new draft version based on the information they’ve been provided; Comm. Jacobson seconded, and the motion passed 5-0..",
+        "raw": "motion passed 5-0"
+      }
     }
   ],
   "voteChoiceCounts": {
-    "unknown": 596,
-    "yes": 203,
+    "unknown": 597,
+    "yes": 204,
     "absent": 30,
-    "no": 20
+    "no": 22
   },
   "evidenceTypeCounts": {
     "motion_mover": 111,
-    "motion_second": 485,
+    "motion_second": 486,
     "aggregate_full_roster_match": 165,
     "explicit_roll_call_group": 37,
-    "inline_named_vote": 29,
+    "inline_named_vote": 32,
     "unanimous_with_attendance_roster": 22
   },
   "parserPolicy": {
