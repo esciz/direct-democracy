@@ -7,12 +7,17 @@ import { getCurrentUser } from "@/lib/server/auth-session";
 
 const ISSUE_CATEGORIES = [
   "Government Accountability",
+  "Civil Liberties",
+  "Civil Rights",
   "Criminal Justice",
   "Education",
   "Elections",
   "Environment",
+  "Foreign Policy",
+  "Immigration",
   "Housing",
   "Infrastructure",
+  "Public Health",
   "Public Safety",
   "Transportation",
   "Taxes and Spending",
@@ -52,6 +57,7 @@ export default async function IssueReportPage({ searchParams }: IssueReportPageP
           {params.error === "verification" && "Voter verification is required before reporting an issue."}
           {params.error === "title" && "Add a clear issue title."}
           {params.error === "category" && "Choose an issue category."}
+          {params.error === "scope" && "Choose whether this is a local, state, or national issue."}
           {params.error === "community" && "Add the affected community or jurisdiction."}
         </section>
       ) : null}
@@ -75,7 +81,15 @@ export default async function IssueReportPage({ searchParams }: IssueReportPageP
             </label>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-3">
+            <label className="space-y-2 text-sm text-slate-700">
+              <span className="font-semibold text-ink">Issue level</span>
+              <select name="scope" defaultValue="local" className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500">
+                <option value="local">Local / community</option>
+                <option value="state">Statewide — Nevada</option>
+                <option value="national">National — United States</option>
+              </select>
+            </label>
             <label className="space-y-2 text-sm text-slate-700">
               <span className="font-semibold text-ink">Category</span>
               <select name="category" className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500">
@@ -93,6 +107,7 @@ export default async function IssueReportPage({ searchParams }: IssueReportPageP
                 defaultValue={user.jurisdictionName}
                 className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-civic-500"
               />
+              <span className="block text-xs leading-5 text-slate-500">National submissions are automatically assigned to the United States; statewide submissions are assigned to Nevada.</span>
             </label>
           </div>
 

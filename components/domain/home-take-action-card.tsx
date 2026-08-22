@@ -9,6 +9,7 @@ import type { VoteQuestionCardSummary } from "@/types/domain";
 
 export type HomeTakeActionIssue = {
   id: string;
+  label?: string;
   title: string;
   summary: string;
   meta: string;
@@ -154,7 +155,7 @@ export function HomeTakeActionCard({
     return [
       ...activeIssues.map((issue) => ({
         ...issue,
-        label: savedIds.has(issue.id) ? "Following" : "System generated",
+        label: savedIds.has(issue.id) ? "Following" : issue.label ?? "System generated",
       })),
       ...savedIssues
         .filter((issue) => !generatedIds.has(issue.id))

@@ -8,11 +8,26 @@ import { slugifyIssueText } from "@/lib/issues/utils";
 import { getIssueDirectoryForUser, getIssueSummary } from "@/lib/server/issues";
 import type { PublicIssueHubSummary } from "@/types/domain";
 
+type IssueScopeFilter = "all" | "local" | "state" | "national";
+
 type IssuesIndexPageProps = {
   searchParams?: Promise<{
     q?: string;
+    scope?: string;
   }>;
 };
+
+function normalizeScope(value?: string): IssueScopeFilter {
+  return value === "local" || value === "state" || value === "national" ? value : "all";
+}
+
+function buildScopeHref(scope: IssueScopeFilter, query: string) {
+  const params = new URLSearchParams();
+  if (scope !== "all") params.set("scope", scope);
+  if (query) params.set("q", query);
+  const suffix = params.toString();
+  return suffix ? `/issues?${suffix}` : "/issues";
+}
 
 function formatDate(value?: string | null) {
   return value ? new Date(value).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "Update pending";
@@ -21,7 +36,10 @@ function formatDate(value?: string | null) {
 function renderIssueBadges(issue: PublicIssueHubSummary) {
   return (
     <>
-      <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">{issue.scope}</span>
+      <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold capitalize text-civic-700">{issue.scope}</span>
+      {issue.scope === "national" ? (
+        <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">Available to all users</span>
+      ) : null}
       <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
         {issue.category}
       </span>
@@ -38,11 +56,69 @@ function renderIssueBadges(issue: PublicIssueHubSummary) {
   );
 }
 
+function IssueDirectoryCard({ issue }: { issue: PublicIssueHubSummary }) {
+  return (
+    <ExploreResultCard
+      title={issue.plainTitle ?? issue.issueText}
+      subtitle={`${issue.jurisdictionName} · ${issue.category ?? issue.scope}`}
+      description={issue.whyThisMatters ?? getIssueSummary(issue.issueText)}
+      href={`/issues/${slugifyIssueText(issue.issueText)}`}
+      ctaLabel="Open issue"
+      badges={renderIssueBadges(issue)}
+      avatar={{ name: issue.issueText, entityType: "issue" }}
+      chart={
+        <div className="grid min-w-[16rem] grid-cols-2 gap-2 text-xs font-semibold text-slate-600">
+          <span className="rounded-2xl bg-slate-100 px-3 py-2">{issue.sourceCount ?? 0} sources</span>
+          <span className="rounded-2xl bg-slate-100 px-3 py-2">{issue.linkedMeetingsCount ?? 0} meetings</span>
+          <span className="rounded-2xl bg-slate-100 px-3 py-2">{issue.linkedVotesCount ?? 0} votes</span>
+          <span className="rounded-2xl bg-slate-100 px-3 py-2">{issue.linkedCourtRecordsCount ?? 0} court records</span>
+          <span className="rounded-2xl bg-slate-100 px-3 py-2">Updated {formatDate(issue.lastUpdatedAt ?? issue.createdAt)}</span>
+          <span className="rounded-2xl bg-slate-100 px-3 py-2">{Math.round((issue.confidence ?? 0) * 100)}% confidence</span>
+        </div>
+      }
+      favorite={{ targetType: "issue", targetId: issue.id }}
+    />
+  );
+}
+
+function IssueDirectorySection({
+  eyebrow,
+  title,
+  description,
+  issues,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  issues: PublicIssueHubSummary[];
+}) {
+  if (!issues.length) return null;
+
+  return (
+    <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">{eyebrow}</p>
+          <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">{title}</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{description}</p>
+        </div>
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{issues.length} issues</span>
+      </div>
+      <div className="mt-6 grid gap-4 xl:grid-cols-2">
+        {issues.map((issue) => <IssueDirectoryCard key={issue.id} issue={issue} />)}
+      </div>
+    </section>
+  );
+}
+
 export default async function IssuesIndexPage({ searchParams }: IssuesIndexPageProps) {
   const user = await getCurrentUser();
   const params = searchParams ? await searchParams : undefined;
   const query = params?.q?.trim() ?? "";
-  const [issues, reviewRequests] = await Promise.all([getIssueDirectoryForUser(user, { query }), getIssueReviewRequests()]);
+  const scope = normalizeScope(params?.scope);
+  const [issues, reviewRequests] = await Promise.all([getIssueDirectoryForUser(user, { query, scope }), getIssueReviewRequests()]);
+  const nationalIssues = issues.filter((issue) => issue.scope === "national");
+  const regionalIssues = issues.filter((issue) => issue.scope !== "national");
 
   return (
     <div className="space-y-6 py-8">
@@ -65,6 +141,7 @@ export default async function IssuesIndexPage({ searchParams }: IssuesIndexPageP
 
       <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
         <PreserveScrollQueryForm action="/issues" className="flex flex-wrap gap-3">
+          {scope !== "all" ? <input type="hidden" name="scope" value={scope} /> : null}
           <input
             type="search"
             name="q"
@@ -76,7 +153,32 @@ export default async function IssuesIndexPage({ searchParams }: IssuesIndexPageP
             Search
           </button>
         </PreserveScrollQueryForm>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {([
+            ["all", "All issues"],
+            ["national", "National"],
+            ["state", "State"],
+            ["local", "Local"],
+          ] as const).map(([value, label]) => (
+            <Link
+              key={value}
+              href={buildScopeHref(value, query)}
+              className={value === scope
+                ? "rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white"
+                : "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-civic-500 hover:text-civic-700"}
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
       </section>
+
+      <IssueDirectorySection
+        eyebrow="National layer"
+        title="National issues for every user"
+        description="These shared United States issue hubs are available to every account, regardless of local community. They can accumulate national polls, petitions, votes, meetings, court records, debates, and sourced perspectives over time."
+        issues={nationalIssues}
+      />
 
       <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
         <div className="flex flex-wrap items-end justify-between gap-4">
@@ -118,39 +220,15 @@ export default async function IssuesIndexPage({ searchParams }: IssuesIndexPageP
         </div>
       </section>
 
-      <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-        <div className="grid gap-4 xl:grid-cols-2">
-          {issues.length ? (
-            issues.map((issue) => (
-              <ExploreResultCard
-                key={issue.id}
-                title={issue.plainTitle ?? issue.issueText}
-                subtitle={`${issue.jurisdictionName} · ${issue.category ?? issue.scope}`}
-                description={
-                  issue.whyThisMatters ??
-                  getIssueSummary(issue.issueText)
-                }
-                href={`/issues/${slugifyIssueText(issue.issueText)}`}
-                ctaLabel="Open issue"
-                badges={renderIssueBadges(issue)}
-                avatar={{
-                  name: issue.issueText,
-                  entityType: "issue",
-                }}
-                chart={
-                  <div className="grid min-w-[16rem] grid-cols-2 gap-2 text-xs font-semibold text-slate-600">
-                    <span className="rounded-2xl bg-slate-100 px-3 py-2">{issue.sourceCount ?? 0} sources</span>
-                    <span className="rounded-2xl bg-slate-100 px-3 py-2">{issue.linkedMeetingsCount ?? 0} meetings</span>
-                    <span className="rounded-2xl bg-slate-100 px-3 py-2">{issue.linkedVotesCount ?? 0} votes</span>
-                    <span className="rounded-2xl bg-slate-100 px-3 py-2">{issue.linkedCourtRecordsCount ?? 0} court records</span>
-                    <span className="rounded-2xl bg-slate-100 px-3 py-2">Updated {formatDate(issue.lastUpdatedAt ?? issue.createdAt)}</span>
-                    <span className="rounded-2xl bg-slate-100 px-3 py-2">{Math.round((issue.confidence ?? 0) * 100)}% confidence</span>
-                  </div>
-                }
-                favorite={{ targetType: "issue", targetId: issue.id }}
-              />
-            ))
-          ) : (
+      <IssueDirectorySection
+        eyebrow={scope === "national" ? "National catalog" : "State and local layer"}
+        title={scope === "national" ? "All national issues" : "State and local issue hubs"}
+        description={scope === "national" ? "The current national starter catalog." : "Issue hubs tied to state, county, city, district, and community records."}
+        issues={scope === "national" ? [] : regionalIssues}
+      />
+
+      {!issues.length ? (
+        <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
             <div className="rounded-3xl bg-slate-50 p-6 text-sm leading-6 text-slate-600 xl:col-span-2">
               <p className="font-semibold text-ink">
                 {query ? `No source-backed issues match “${query}” yet.` : "No source-backed issues are available yet for this community."}
@@ -173,9 +251,8 @@ export default async function IssuesIndexPage({ searchParams }: IssuesIndexPageP
                 </Link>
               </div>
             </div>
-          )}
-        </div>
-      </section>
+        </section>
+      ) : null}
     </div>
   );
 }

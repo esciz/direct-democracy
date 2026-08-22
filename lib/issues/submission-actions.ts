@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/lib/server/auth-session";
+import type { VoteQuestionScope } from "@/types/domain";
 
 const ISSUE_REVIEW_REQUESTS_COOKIE = "dd_issue_review_requests";
 
@@ -13,6 +14,7 @@ type StoredIssueReviewRequest = {
   title: string;
   category: string;
   community: string;
+  scope?: VoteQuestionScope;
   description?: string | null;
   evidenceUrls: string[];
   status: "submitted";
@@ -67,13 +69,17 @@ export async function submitIssueReviewRequest(formData: FormData) {
   const title = formData.get("title");
   const category = formData.get("category");
   const community = formData.get("community");
+  const scope = formData.get("scope");
   const description = formData.get("description");
   const evidenceUrls = splitEvidenceUrls(formData.get("evidenceUrls"));
 
   if (!user.isVerifiedVoter) redirect("/issues/report?error=verification");
   if (typeof title !== "string" || title.trim().length < 6) redirect("/issues/report?error=title");
   if (typeof category !== "string" || !category.trim()) redirect("/issues/report?error=category");
+  if (scope !== "local" && scope !== "state" && scope !== "national") redirect("/issues/report?error=scope");
   if (typeof community !== "string" || community.trim().length < 2) redirect("/issues/report?error=community");
+
+  const jurisdictionName = scope === "national" ? "United States" : scope === "state" ? "Nevada" : community.trim();
 
   const existing = await getStoredIssueReviewRequests();
   await setStoredIssueReviewRequests([
@@ -82,7 +88,8 @@ export async function submitIssueReviewRequest(formData: FormData) {
       userId: user.id,
       title: title.trim(),
       category: category.trim(),
-      community: community.trim(),
+      community: jurisdictionName,
+      scope,
       description: typeof description === "string" && description.trim() ? description.trim() : null,
       evidenceUrls,
       status: "submitted",

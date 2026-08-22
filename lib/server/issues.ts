@@ -63,7 +63,10 @@ function getPublicDiscussionIssueSummaries() {
   return PUBLIC_DISCUSSION_ISSUES.map(publicDiscussionIssueToSummary);
 }
 
-export async function getIssueDirectoryForUser(user: AuthUser, options?: { communityId?: string; query?: string }): Promise<PublicIssueHubSummary[]> {
+export async function getIssueDirectoryForUser(
+  user: AuthUser,
+  options?: { communityId?: string; query?: string; scope?: VoteQuestionScope | "all" },
+): Promise<PublicIssueHubSummary[]> {
   void user;
   void options?.communityId;
   const generatedIssueHubs = (await getIssueHubRecords())
@@ -72,11 +75,11 @@ export async function getIssueDirectoryForUser(user: AuthUser, options?: { commu
   const publicDiscussionIssues = getPublicDiscussionIssueSummaries();
   const issues = dedupeIssues([...generatedIssueHubs, ...publicDiscussionIssues]);
 
-  if (!options?.query?.trim()) {
-    return issues;
-  }
-
-  return issues.filter((issue) => issueTextMatchesQuery(issue.issueText, options.query ?? ""));
+  return issues.filter((issue) => {
+    const matchesScope = !options?.scope || options.scope === "all" || issue.scope === options.scope;
+    const matchesQuery = !options?.query?.trim() || issueTextMatchesQuery(issue.issueText, options.query);
+    return matchesScope && matchesQuery;
+  });
 }
 
 export async function getIssuePickerOptions(user: AuthUser, communityId?: string) {

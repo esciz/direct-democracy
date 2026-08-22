@@ -252,14 +252,28 @@ export default async function HomePage() {
   const canVoteNow = canUserVote(user);
   const votePreviewQuestions = dailyVotes.dailyQuestions.slice(0, 3);
   const generatedIssues = issueDirectory.filter((issue) => issue.sourceBacked && (issue.sourceCount ?? 0) > 0);
+  const generatedIssueIds = new Set(generatedIssues.map((issue) => issue.id));
+  const nationalStarterIssues = issueDirectory
+    .filter((issue) => issue.scope === "national" && !generatedIssueIds.has(issue.id))
+    .slice(0, 4);
 
-  const activeIssues: HomeTakeActionIssue[] = generatedIssues.map((issue) => ({
-    id: issue.id,
-    title: issue.issueText,
-    summary: issue.whyThisMatters ?? "Generated from reviewed civic records linked to this issue.",
-    meta: `${issue.sourceCount ?? 0} source${issue.sourceCount === 1 ? "" : "s"} · ${issue.linkedMeetingsCount ?? 0} meeting${issue.linkedMeetingsCount === 1 ? "" : "s"}`,
-    href: `/issues/${slugifyIssueText(issue.issueText)}`,
-  }));
+  const activeIssues: HomeTakeActionIssue[] = [
+    ...generatedIssues.map((issue) => ({
+      id: issue.id,
+      title: issue.issueText,
+      summary: issue.whyThisMatters ?? "Generated from reviewed civic records linked to this issue.",
+      meta: `${issue.sourceCount ?? 0} source${issue.sourceCount === 1 ? "" : "s"} · ${issue.linkedMeetingsCount ?? 0} meeting${issue.linkedMeetingsCount === 1 ? "" : "s"}`,
+      href: `/issues/${slugifyIssueText(issue.issueText)}`,
+    })),
+    ...nationalStarterIssues.map((issue) => ({
+      id: issue.id,
+      label: "National issue",
+      title: issue.issueText,
+      summary: issue.whyThisMatters ?? "A shared national issue available to every user.",
+      meta: "United States · Available to everyone",
+      href: `/issues/${slugifyIssueText(issue.issueText)}`,
+    })),
+  ];
 
   const savedIssues: HomeTakeActionIssue[] = favoriteRecords
     .filter((record) => record.targetType === "issue")

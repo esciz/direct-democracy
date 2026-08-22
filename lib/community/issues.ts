@@ -45,7 +45,11 @@ function isTopIssueUpvote(value: unknown): value is TopIssueUpvoteSummary {
   );
 }
 
-function scopeMatchesCommunity(issue: Pick<TopIssueSummary, "jurisdictionName">, communityId: string, user: AuthUser) {
+function scopeMatchesCommunity(issue: Pick<TopIssueSummary, "scope" | "jurisdictionName">, communityId: string, user: AuthUser) {
+  if (issue.scope === "national" || issue.jurisdictionName === "United States") {
+    return true;
+  }
+
   const community = getCommunityById(communityId);
 
   if (!community) {
