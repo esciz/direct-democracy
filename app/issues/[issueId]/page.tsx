@@ -19,7 +19,8 @@ import { isGuestUserId } from "@/lib/auth/session";
 import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { toggleTopIssueUpvote } from "@/lib/community/actions";
-import { getCommunityById, getDefaultCommunityForUser, getGeographicCommunities } from "@/lib/community/communities";
+import { getCommunityById, getDefaultCommunityForUser, getGeographicCommunities, getLocalCommunityBundle } from "@/lib/community/communities";
+import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { LOCAL_SCOPE_LABEL } from "@/lib/community/scope-labels";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { getAllCases } from "@/lib/cases/store";
@@ -31,7 +32,7 @@ import { getQuickVoteCardsForUser } from "@/lib/feed/quick-votes";
 import { getAllCivicEventsForUser } from "@/lib/events/civic-events";
 import { getIssueHubRecordByRouteParam } from "@/lib/issues/civic-hub";
 import { canPostToIssueScope, canSubmitIssueVoice, isIssueVoiceAccount, isPlatformWideIssue } from "@/lib/issues/posting-eligibility";
-import { valuesMatchIssueText } from "@/lib/issues/utils";
+import { valuesStronglyMatchIssueText } from "@/lib/issues/utils";
 import { getIssueReviewRequestsForIssue } from "@/lib/issues/review-requests";
 import { getIssueFrame, type IssueFrame } from "@/lib/issues/framing";
 import { getIssuePositionsByIssue } from "@/lib/issue-positions/store";
@@ -322,7 +323,7 @@ function sortCitizenIssuePosts(posts: PostSummary[], currentUser: AuthUser) {
 }
 
 function mediaStoryMatchesIssue(issueText: string, story: { title: string; summary?: string; issueTags?: string[] }) {
-  return valuesMatchIssueText(issueText, ...(story.issueTags ?? []), story.title, story.summary);
+  return valuesStronglyMatchIssueText(issueText, ...(story.issueTags ?? []), story.title, story.summary);
 }
 
 function withSectionTimeout<T>(promise: Promise<T>, label: string, timeoutMs = 1800): Promise<T> {
@@ -1119,7 +1120,7 @@ async function CitizenIssueVoicesSection({
   const citizenPosts = sortCitizenIssuePosts(
     posts
       .filter(isRealCitizenIssuePost)
-      .filter((post) => valuesMatchIssueText(issue.issueText, ...(post.issueTags ?? []), post.title, post.content))
+      .filter((post) => valuesStronglyMatchIssueText(issue.issueText, ...(post.issueTags ?? []), post.title, post.content))
       .filter((post) => post.authorRole === "citizen" || post.authorRole === "trustedCitizen" || post.authorRole === "verified_resident"),
     currentUser,
   );
@@ -1311,17 +1312,17 @@ async function IssueBriefSection({
 
   const relatedPosts = posts
     .filter(isRealCitizenIssuePost)
-    .filter((post) => valuesMatchIssueText(issueText, ...(post.issueTags ?? []), post.title, post.content));
-  const relatedEvents = events.filter((event) => valuesMatchIssueText(issueText, event.issueLabel, event.title, event.description));
+    .filter((post) => valuesStronglyMatchIssueText(issueText, ...(post.issueTags ?? []), post.title, post.content));
+  const relatedEvents = events.filter((event) => valuesStronglyMatchIssueText(issueText, event.issueLabel, event.title, event.description));
   const relatedDebates = debates
     .filter((debate) => isRealIssueDebate(debate.id))
-    .filter((debate) => valuesMatchIssueText(issueText, debate.issueText, debate.title, debate.description));
-  const relatedPetitions = petitions.filter((petition) => valuesMatchIssueText(issueText, ...(petition.issueTags ?? []), petition.title, petition.summary, petition.body));
-  const relatedCases = cases.filter((caseItem) => valuesMatchIssueText(issueText, ...caseItem.issueTags, caseItem.title, caseItem.summary));
-  const relatedPolls = polls.filter((poll) => valuesMatchIssueText(issueText, poll.question, ...poll.options));
+    .filter((debate) => valuesStronglyMatchIssueText(issueText, debate.issueText, debate.title, debate.description));
+  const relatedPetitions = petitions.filter((petition) => valuesStronglyMatchIssueText(issueText, ...(petition.issueTags ?? []), petition.title, petition.summary, petition.body));
+  const relatedCases = cases.filter((caseItem) => valuesStronglyMatchIssueText(issueText, ...caseItem.issueTags, caseItem.title, caseItem.summary));
+  const relatedPolls = polls.filter((poll) => valuesStronglyMatchIssueText(issueText, poll.question, ...poll.options));
   const relatedNews = media.filter((story) => mediaStoryMatchesIssue(issueText, story));
   const relatedMeasures = elections.flatMap((election) =>
-    election.ballotInitiatives.filter((initiative) => valuesMatchIssueText(issueText, ...initiative.relatedIssues, initiative.title, initiative.summary)),
+    election.ballotInitiatives.filter((initiative) => valuesStronglyMatchIssueText(issueText, ...initiative.relatedIssues, initiative.title, initiative.summary)),
   );
 
   const publicResponses = relatedPosts.filter((post) => post.authorRole === "candidate" || post.authorRole === "official" || post.authorRole === "trustedCitizen");
@@ -1524,7 +1525,7 @@ async function IssueBattlegroundSection({
 
   const relatedPosts = posts
     .filter(isRealCitizenIssuePost)
-    .filter((post) => valuesMatchIssueText(issue.issueText, ...(post.issueTags ?? []), post.title, post.content));
+    .filter((post) => valuesStronglyMatchIssueText(issue.issueText, ...(post.issueTags ?? []), post.title, post.content));
   const relatedAudioPosts = relatedPosts
     .filter((post) => isAudioPost(post))
     .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
@@ -1589,7 +1590,7 @@ async function IssueBattlegroundSection({
     });
   }
 
-  const relatedEvents = events.filter((event) => valuesMatchIssueText(issue.issueText, event.issueLabel, event.title, event.description));
+  const relatedEvents = events.filter((event) => valuesStronglyMatchIssueText(issue.issueText, event.issueLabel, event.title, event.description));
   for (const event of relatedEvents) {
     const side = classifyIssuePosition(event.title, event.description);
     const item = toBattlegroundItem(
@@ -1607,7 +1608,7 @@ async function IssueBattlegroundSection({
     });
   }
 
-  const relatedPetitions = petitions.filter((petition) => valuesMatchIssueText(issue.issueText, ...(petition.issueTags ?? []), petition.title, petition.summary, petition.body));
+  const relatedPetitions = petitions.filter((petition) => valuesStronglyMatchIssueText(issue.issueText, ...(petition.issueTags ?? []), petition.title, petition.summary, petition.body));
   for (const petition of relatedPetitions) {
     support.evidence.push(
       toBattlegroundItem(
@@ -1621,7 +1622,7 @@ async function IssueBattlegroundSection({
     );
   }
 
-  const relatedCases = cases.filter((caseItem) => valuesMatchIssueText(issue.issueText, ...caseItem.issueTags, caseItem.title, caseItem.summary));
+  const relatedCases = cases.filter((caseItem) => valuesStronglyMatchIssueText(issue.issueText, ...caseItem.issueTags, caseItem.title, caseItem.summary));
   for (const caseItem of relatedCases) {
     const side = classifyIssuePosition(caseItem.title, caseItem.summary);
     const item = toBattlegroundItem(
@@ -1641,7 +1642,7 @@ async function IssueBattlegroundSection({
 
   const relatedMeasures = elections.flatMap((election) =>
     election.ballotInitiatives
-      .filter((initiative) => valuesMatchIssueText(issue.issueText, ...initiative.relatedIssues, initiative.title, initiative.summary))
+      .filter((initiative) => valuesStronglyMatchIssueText(issue.issueText, ...initiative.relatedIssues, initiative.title, initiative.summary))
       .map((initiative) =>
         toBattlegroundItem(
           `measure-${initiative.id}`,
@@ -1658,7 +1659,7 @@ async function IssueBattlegroundSection({
 
   const relatedDebates = debates
     .filter((debate) => isRealIssueDebate(debate.id))
-    .filter((debate) => valuesMatchIssueText(issue.issueText, debate.issueText, debate.title, debate.description));
+    .filter((debate) => valuesStronglyMatchIssueText(issue.issueText, debate.issueText, debate.title, debate.description));
   const battlegroundDebates = relatedDebates.slice(0, 3).map((debate) =>
     toBattlegroundItem(
       `debate-${debate.id}`,
@@ -1669,7 +1670,7 @@ async function IssueBattlegroundSection({
       [debate.jurisdictionName],
     ),
   );
-  const relatedPolls = polls.filter((poll) => valuesMatchIssueText(issue.issueText, poll.question, ...poll.options));
+  const relatedPolls = polls.filter((poll) => valuesStronglyMatchIssueText(issue.issueText, poll.question, ...poll.options));
   const battlegroundPolls = relatedPolls.slice(0, 3).map((poll) =>
     toBattlegroundItem(
       `poll-${poll.id}`,
@@ -1938,7 +1939,7 @@ async function PostsSectionLoader({ issueId, filter, issueText, currentUserId }:
   const posts = await getFeedPostPreviews("forYou", { viewerUserId: currentUserId, limit: 18 }).catch(() => []);
   const items: IssuePreviewCard[] = posts
     .filter(isRealCitizenIssuePost)
-    .filter((post) => valuesMatchIssueText(issueText, ...(post.issueTags ?? []), post.title, post.content))
+    .filter((post) => valuesStronglyMatchIssueText(issueText, ...(post.issueTags ?? []), post.title, post.content))
     .map((post) => ({
       id: post.id,
       href: getContentDetailHref(post),
@@ -1955,7 +1956,7 @@ async function PostsSectionLoader({ issueId, filter, issueText, currentUserId }:
 async function EventsSectionLoader({ issueId, filter, issueText, currentUser }: { issueId: string; filter: IssueFilter; issueText: string; currentUser: AuthUser }) {
   const events = await getDiscoverableEventsForUser(currentUser, { limit: 18 }).catch(() => []);
   const items: IssuePreviewCard[] = events
-    .filter((event) => valuesMatchIssueText(issueText, event.issueLabel, event.title, event.description))
+    .filter((event) => valuesStronglyMatchIssueText(issueText, event.issueLabel, event.title, event.description))
     .map((event) => ({
       id: event.id,
       href: `/events/${event.id}`,
@@ -1970,20 +1971,38 @@ async function EventsSectionLoader({ issueId, filter, issueText, currentUser }: 
 }
 
 async function MeetingsSectionLoader({ issueId, issueText, currentUser }: { issueId: string; issueText: string; currentUser: AuthUser }) {
-  const [record, events] = await Promise.all([
-    getIssueHubRecordByRouteParam(issueId).catch(() => null),
-    getAllCivicEventsForUser(currentUser).catch(() => []),
-  ]);
-  const relatedMeetingIds = new Set(record?.relatedMeetingIds ?? []);
+  const events = await getAllCivicEventsForUser(currentUser).catch(() => []);
+  const localCommunity = getDefaultCommunityForUser(currentUser);
+  const localBundle = getLocalCommunityBundle(localCommunity.id);
   const meetings = events
     .filter((event) => event.isOfficialMeeting)
-    .filter((event) =>
-      relatedMeetingIds.has(event.id) ||
-      Boolean(event.meetingRecordId && relatedMeetingIds.has(event.meetingRecordId)) ||
-      valuesMatchIssueText(issueText, ...event.relatedIssueLabels, event.title, event.description, event.meetingSummary),
-    )
-    .sort((left, right) => (Date.parse(right.startsAt ?? "") || 0) - (Date.parse(left.startsAt ?? "") || 0))
-    .slice(0, 6);
+    .filter((event) => valuesStronglyMatchIssueText(issueText, ...event.relatedIssueLabels, event.title, event.description))
+    .sort((left, right) => (Date.parse(right.startsAt ?? "") || 0) - (Date.parse(left.startsAt ?? "") || 0));
+  const isNationalMeeting = (event: (typeof meetings)[number]) =>
+    event.communityId === "united-states" || /united states|federal|congress/i.test(`${event.jurisdiction} ${event.hostName}`);
+  const isLocalMeeting = (event: (typeof meetings)[number]) =>
+    Boolean(event.communityId && localBundle.communityIds.includes(event.communityId)) ||
+    communityMatchesJurisdiction(localCommunity.id, event.jurisdiction);
+  const meetingGroups = [
+    {
+      key: "local",
+      title: `Your local community · ${localBundle.label}`,
+      description: "Topic-matched city and county meetings near you.",
+      items: meetings.filter((event) => !isNationalMeeting(event) && isLocalMeeting(event)).slice(0, 4),
+    },
+    {
+      key: "state",
+      title: "Nevada statewide and regional",
+      description: "Topic-matched Nevada boards, agencies, and regional public bodies.",
+      items: meetings.filter((event) => !isNationalMeeting(event) && !isLocalMeeting(event)).slice(0, 4),
+    },
+    {
+      key: "national",
+      title: "National",
+      description: "Topic-matched federal meetings and hearings available to everyone.",
+      items: meetings.filter(isNationalMeeting).slice(0, 4),
+    },
+  ];
 
   return (
     <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
@@ -1991,20 +2010,35 @@ async function MeetingsSectionLoader({ issueId, issueText, currentUser }: { issu
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-civic-700">Meetings</p>
           <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">Public meetings connected to this issue</h2>
-          <p className="mt-2 text-sm text-slate-600">Official meetings linked through reviewed issue records or matching agenda policy areas.</p>
+          <p className="mt-2 text-sm text-slate-600">Only meetings with an explicit issue link or a strong agenda-topic match are shown.</p>
         </div>
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
           {meetings.length} meeting{meetings.length === 1 ? "" : "s"}
         </span>
       </div>
-      <div className="mt-6 grid gap-4 xl:grid-cols-2">
-        {meetings.length ? meetings.map((event) => (
-          <CivicEventCard key={event.id} event={event} returnPath={`/issues/${issueId}`} guestMode={isGuestUserId(currentUser.id)} />
-        )) : (
-          <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 xl:col-span-2">
-            No public meetings are linked to this issue yet.
+      <div className="mt-6 space-y-6">
+        {meetingGroups.map((group) => (
+          <div key={group.key}>
+            <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
+              <div>
+                <h3 className="text-base font-semibold text-ink">{group.title}</h3>
+                <p className="mt-1 text-xs text-slate-600">{group.description}</p>
+              </div>
+              <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">{group.items.length}</span>
+            </div>
+            {group.items.length ? (
+              <div className="grid gap-4 xl:grid-cols-2">
+                {group.items.map((event) => (
+                  <CivicEventCard key={event.id} event={event} returnPath={`/issues/${issueId}`} guestMode={isGuestUserId(currentUser.id)} />
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+                No strongly related meetings are available in this geography yet.
+              </div>
+            )}
           </div>
-        )}
+        ))}
       </div>
     </section>
   );
@@ -2013,7 +2047,7 @@ async function MeetingsSectionLoader({ issueId, issueText, currentUser }: { issu
 async function PollsSectionLoader({ issueId, filter, issueText, currentUserId }: { issueId: string; filter: IssueFilter; issueText: string; currentUserId: string }) {
   const polls = await getFeedPollPreviews({ viewerUserId: currentUserId, limit: -1 }).catch(() => []);
   const items: IssuePreviewCard[] = polls
-    .filter((poll) => valuesMatchIssueText(
+    .filter((poll) => valuesStronglyMatchIssueText(
       issueText,
       ...getNormalizedPollAttachments(poll).filter((attachment) => attachment.type === "issue").map((attachment) => attachment.label),
       poll.question,
@@ -2035,7 +2069,7 @@ async function PollsSectionLoader({ issueId, filter, issueText, currentUserId }:
 async function VotesSectionLoader({ issueId, filter, issueText, currentUser }: { issueId: string; filter: IssueFilter; issueText: string; currentUser: AuthUser }) {
   const votes = await getQuickVoteCardsForUser(currentUser).catch(() => []);
   const items: IssuePreviewCard[] = votes
-    .filter((vote) => valuesMatchIssueText(issueText, vote.relatedIssueLabel, vote.issueTag, vote.questionText, vote.contextSummary))
+    .filter((vote) => valuesStronglyMatchIssueText(issueText, vote.relatedIssueLabel, vote.issueTag, vote.questionText, vote.contextSummary))
     .map((vote) => ({
       id: vote.id,
       href: "/voting/all?filter=issues",
@@ -2070,7 +2104,7 @@ async function DebatesSectionLoader({ issueId, filter, issueText, currentUser }:
   const debates = await getDebatesForUser(currentUser, { status: "all" }).catch(() => []);
   const items: IssuePreviewCard[] = debates
     .filter((debate) => isRealIssueDebate(debate.id))
-    .filter((debate) => valuesMatchIssueText(issueText, debate.issueText, debate.title, debate.description))
+    .filter((debate) => valuesStronglyMatchIssueText(issueText, debate.issueText, debate.title, debate.description))
     .map((debate) => ({
       id: debate.id,
       href: `/debates/${debate.id}`,
@@ -2087,7 +2121,7 @@ async function DebatesSectionLoader({ issueId, filter, issueText, currentUser }:
 async function PetitionsSectionLoader({ issueId, filter, issueText }: { issueId: string; filter: IssueFilter; issueText: string }) {
   const petitions = await getAllPetitions().catch(() => []);
   const items: IssuePreviewCard[] = petitions
-    .filter((petition) => valuesMatchIssueText(issueText, ...(petition.issueTags ?? []), petition.title, petition.summary, petition.body))
+    .filter((petition) => valuesStronglyMatchIssueText(issueText, ...(petition.issueTags ?? []), petition.title, petition.summary, petition.body))
     .map((petition) => ({
       id: petition.id,
       href: `/petitions/${petition.id}`,
@@ -2104,7 +2138,7 @@ async function PetitionsSectionLoader({ issueId, filter, issueText }: { issueId:
 async function CasesSectionLoader({ issueId, filter, issueText, currentUser }: { issueId: string; filter: IssueFilter; issueText: string; currentUser: AuthUser }) {
   const cases = await getAllCases(currentUser).catch(() => []);
   const items: IssuePreviewCard[] = cases
-    .filter((caseItem) => valuesMatchIssueText(issueText, ...caseItem.issueTags, caseItem.title, caseItem.summary))
+    .filter((caseItem) => valuesStronglyMatchIssueText(issueText, ...caseItem.issueTags, caseItem.title, caseItem.summary))
     .map((caseItem) => ({
       id: caseItem.id,
       href: `/cases/${caseItem.id}`,
@@ -2123,7 +2157,7 @@ async function BallotMeasuresSectionLoader({ issueId, filter, issueText, current
   const items: IssuePreviewCard[] = elections
     .flatMap((election) =>
       election.ballotInitiatives
-        .filter((initiative) => valuesMatchIssueText(issueText, ...initiative.relatedIssues, initiative.title, initiative.summary))
+        .filter((initiative) => valuesStronglyMatchIssueText(issueText, ...initiative.relatedIssues, initiative.title, initiative.summary))
         .map((initiative) => ({
           id: initiative.id,
           href: `/initiatives/${initiative.id}`,

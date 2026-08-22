@@ -397,7 +397,7 @@ async function buildIssuesPreview({ communityId, query, limit = 8, favoriteIds, 
       badges: [
         issue.sourceBacked
           ? { label: "Source-backed", tone: "emerald" as const }
-          : { label: "National issue catalog", tone: "civic" as const },
+          : { label: issue.scope === "national" ? "National issue catalog" : "Local starter hub", tone: "civic" as const },
         { label: issue.scope === "national" ? "National" : issue.scope === "state" ? "State" : "Local", tone: "slate" as const },
       ],
       facets: {

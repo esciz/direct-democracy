@@ -6,6 +6,8 @@ import { getAllOrganizations } from "@/lib/organizations/store";
 import { getPublicPeopleDirectory } from "@/lib/profile/discovery";
 import { getIssueHubRecordByRouteParam, getIssueHubRecords, issueHubRecordToTopIssueSummary } from "@/lib/issues/civic-hub";
 import { PUBLIC_DISCUSSION_ISSUES, publicDiscussionIssueToSummary } from "@/lib/issues/framing";
+import { getAnyNevadaLocalIssueByRouteParam, getNevadaLocalIssueSummaries } from "@/lib/issues/nevada-local-catalog";
+import { getCommunityById } from "@/lib/community/communities";
 import {
   getCanonicalIssueText,
   getCanonicalIssueTextOrNull,
@@ -70,11 +72,25 @@ export async function getIssueDirectoryForUser(
   options?: { communityId?: string; query?: string; scope?: VoteQuestionScope | "all" },
 ): Promise<PublicIssueHubSummary[]> {
   void user;
+  const requestedCommunity = getCommunityById(options?.communityId);
   const generatedIssueHubs = (await getIssueHubRecords())
     .filter((record) => record.sourceBacked)
-    .map(issueHubRecordToTopIssueSummary);
+    .filter((record) =>
+      record.scope !== "local" ||
+      !options?.communityId ||
+      record.communities.some((jurisdictionName) => communityMatchesJurisdiction(options.communityId!, jurisdictionName)),
+    )
+    .map((record) => ({
+      ...issueHubRecordToTopIssueSummary(record),
+      jurisdictionName: record.scope === "local" && requestedCommunity?.scope === "local"
+        ? requestedCommunity.primaryJurisdictionName
+        : record.jurisdictionName,
+    }));
   const publicDiscussionIssues = getPublicDiscussionIssueSummaries();
-  const issues = dedupeIssues([...generatedIssueHubs, ...publicDiscussionIssues]);
+  const localStarterIssues = options?.communityId && (!options.scope || options.scope === "all" || options.scope === "local")
+    ? getNevadaLocalIssueSummaries(options.communityId)
+    : [];
+  const issues = [...dedupeIssues([...generatedIssueHubs, ...publicDiscussionIssues]), ...localStarterIssues];
 
   return issues.filter((issue) => {
     const matchesScope = !options?.scope || options.scope === "all" || issue.scope === options.scope;
@@ -127,6 +143,11 @@ export async function getIssueByRouteParam(user: AuthUser, issueParam: string, c
 
   if (publicDiscussionMatch) {
     return publicDiscussionMatch;
+  }
+
+  const localStarterMatch = getAnyNevadaLocalIssueByRouteParam(issueParam);
+  if (localStarterMatch) {
+    return localStarterMatch;
   }
 
   return null;

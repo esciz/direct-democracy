@@ -6,6 +6,11 @@ type CanonicalIssueTopic = {
 
 const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
   {
+    title: "Reproductive rights, abortion, and birth control access",
+    summary: "Abortion, contraception, reproductive healthcare, privacy, and the state and federal rules that shape access.",
+    aliases: ["reproductive rights", "abortion access", "birth control access", "contraception access", "reproductive healthcare", "ivf access"],
+  },
+  {
     title: "Teacher Pay",
     summary: "Teacher compensation, retention, staffing stability, and the classroom support needed to keep schools staffed well.",
     aliases: [
@@ -300,6 +305,33 @@ export function valuesMatchIssueText(issueText: string, ...values: Array<string 
 
       const haystack = new Set(tokenizeIssueText(value));
       return tokenizeIssueText(variant).some((token) => haystack.has(token));
+    });
+  });
+}
+
+const DISTINCTIVE_ISSUE_TOKENS = new Set([
+  "abortion", "contraception", "reproductive", "ivf", "immigration", "medicaid", "medicare", "wildfire",
+  "zoning", "transit", "housing", "election", "climate", "energy", "teacher", "school", "water",
+]);
+
+/** Stronger matching for relationship cards, where one generic shared word is not enough. */
+export function valuesStronglyMatchIssueText(issueText: string, ...values: Array<string | null | undefined>) {
+  const variants = [...new Set([issueText, ...getIssueTopicAliases(issueText)])];
+
+  return values.some((value) => {
+    if (!value) return false;
+    const normalizedValue = normalizeIssueText(value);
+    const valueTokens = new Set(tokenizeIssueText(value));
+
+    return variants.some((variant) => {
+      const normalizedVariant = normalizeIssueText(variant);
+      if (normalizedValue === normalizedVariant || normalizedValue.includes(normalizedVariant)) {
+        return true;
+      }
+
+      const issueTokens = [...new Set(tokenizeIssueText(variant))];
+      const overlap = issueTokens.filter((token) => valueTokens.has(token));
+      return overlap.length >= 2 || overlap.some((token) => DISTINCTIVE_ISSUE_TOKENS.has(token));
     });
   });
 }

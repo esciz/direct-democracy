@@ -21,12 +21,13 @@ type IssuesIndexPageProps = {
 };
 
 function normalizeScope(value?: string): IssueScopeFilter {
-  return value === "local" || value === "state" || value === "national" ? value : "all";
+  if (value === "all" || value === "local" || value === "state" || value === "national") return value;
+  return "national";
 }
 
 function buildScopeHref(scope: IssueScopeFilter, query: string) {
   const params = new URLSearchParams();
-  if (scope !== "all") params.set("scope", scope);
+  if (scope !== "national") params.set("scope", scope);
   if (query) params.set("q", query);
   const suffix = params.toString();
   return suffix ? `/issues?${suffix}` : "/issues";
@@ -50,6 +51,8 @@ function renderIssueBadges(issue: PublicIssueHubSummary) {
       </span>
       {issue.sourceBacked ? (
         <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Real civic records</span>
+      ) : issue.scope === "local" ? (
+        <span className="rounded-full bg-civic-50 px-3 py-1 text-xs font-semibold text-civic-700">Starter hub</span>
       ) : null}
       {issue.reviewStatus ? (
         <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">

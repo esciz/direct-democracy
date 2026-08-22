@@ -280,7 +280,8 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
       : activeCategory === "issues" && params?.filterScope === "state"
         ? "nevada"
         : undefined;
-  const selectedCommunityId = resolveCommunityId(legacyIssueScopeCommunityId ?? params?.communityId, defaultCommunity.id);
+  const defaultBrowseCommunityId = activeCategory === "issues" ? "united-states" : defaultCommunity.id;
+  const selectedCommunityId = resolveCommunityId(legacyIssueScopeCommunityId ?? params?.communityId, defaultBrowseCommunityId);
   const currentCommunity = getCommunityById(selectedCommunityId) ?? defaultCommunity;
   const currentLocalBundle = getLocalCommunityBundle(currentCommunity.id);
   const filterControls = FILTERS_BY_CATEGORY[activeCategory] ?? [];
