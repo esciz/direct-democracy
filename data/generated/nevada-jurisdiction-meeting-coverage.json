@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T19:07:04.847Z",
+  "generatedAt": "2026-08-23T13:09:42.513Z",
   "catalogVersion": 1,
   "scope": {
     "description": "Statewide baseline for Nevada public-meeting acquisition. Covers every county or county-equivalent government, incorporated city, county school district, and the primary statewide meeting layers.",
@@ -455,8 +455,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-16T13:06:26.006Z",
-        "lastSucceededAt": "2026-08-16T13:06:26.006Z",
+        "lastAttemptedAt": "2026-08-23T13:00:43.531Z",
+        "lastSucceededAt": "2026-08-23T13:00:43.531Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -501,8 +501,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-16T13:06:34.502Z",
-        "lastSucceededAt": "2026-08-16T13:06:34.502Z",
+        "lastAttemptedAt": "2026-08-23T13:00:59.804Z",
+        "lastSucceededAt": "2026-08-23T13:00:59.804Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -553,8 +553,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-16T13:06:55.193Z",
-        "lastSucceededAt": "2026-08-16T13:06:55.193Z",
+        "lastAttemptedAt": "2026-08-23T13:01:59.063Z",
+        "lastSucceededAt": "2026-08-23T13:01:59.063Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -737,8 +737,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-16T13:07:18.595Z",
-        "lastSucceededAt": "2026-08-16T13:07:18.595Z",
+        "lastAttemptedAt": "2026-08-23T13:02:20.922Z",
+        "lastSucceededAt": "2026-08-23T13:02:20.922Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -747,7 +747,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 41,
+        "cachedEntries": 44,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -877,8 +877,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-16T13:07:28.975Z",
-        "lastSucceededAt": "2026-08-16T13:07:28.975Z",
+        "lastAttemptedAt": "2026-08-23T13:02:32.049Z",
+        "lastSucceededAt": "2026-08-23T13:02:32.049Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1216,8 +1216,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-16T13:07:39.942Z",
-        "lastSucceededAt": "2026-08-16T13:07:39.942Z",
+        "lastAttemptedAt": "2026-08-23T13:02:43.042Z",
+        "lastSucceededAt": "2026-08-23T13:02:43.042Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T15:03:32.000Z",
+  "generatedAt": "2026-08-23T13:06:03.012Z",
   "catalogVersion": 1,
   "catalogUpdatedAt": "2026-07-25",
-  "scheduledShard": 4,
+  "scheduledShard": 3,
   "schedule": "Official websites and party directories are checked in daily shards; the IRS Nevada exempt-organization file refreshes weekly.",
   "sourceBoundary": "An IRS match confirms a tax-exempt registry record, not endorsement, activity, membership size, or political position. Party platforms, priorities, leadership, news, and affiliate labels are party-authored material. A club directory listing establishes only that the party published the listing; it does not independently prove legal affiliation.",
   "totals": {
@@ -704,7 +704,7 @@
         "AMERICAN FEDERATION OF LABOR & CONGRESS OF INDUSTRIAL ORGS"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:27.846Z",
+        "checkedAt": "2026-08-23T13:05:54.012Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.nvaflcio.org/en",
@@ -749,7 +749,7 @@
             "city": "HENDERSON",
             "subsection": "05",
             "statusCode": "01",
-            "taxPeriod": "202412",
+            "taxPeriod": "202512",
             "nteeCode": null,
             "sourceUrl": "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search"
           },
@@ -767,7 +767,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T02:49:27.846Z"
+      "lastCheckedAt": "2026-08-23T13:05:54.012Z"
     },
     {
       "id": "public-org-carson-city-chamber",
@@ -914,7 +914,7 @@
         "HENDERSON CHAMBER OF COMMERCE"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:29.004Z",
+        "checkedAt": "2026-08-23T13:05:54.447Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.hendersonchamber.com/",
@@ -937,7 +937,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T02:49:29.004Z"
+      "lastCheckedAt": "2026-08-23T13:05:54.447Z"
     },
     {
       "id": "public-org-latin-chamber-nevada",
@@ -1336,7 +1336,7 @@
         "UNITED WAY OF NORTHERN NEVADA AND THE SIERRA"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:29.595Z",
+        "checkedAt": "2026-08-23T13:05:55.019Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.uwnns.org/",
@@ -1359,7 +1359,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T02:49:29.595Z"
+      "lastCheckedAt": "2026-08-23T13:05:55.019Z"
     },
     {
       "id": "public-org-united-way-southern-nevada",
@@ -1385,7 +1385,7 @@
         "UNITED WAY OF SOUTHERN NEVADA INC"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:29.848Z",
+        "checkedAt": "2026-08-23T13:05:55.317Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://uwsn.org/",
@@ -1408,7 +1408,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T02:49:29.848Z"
+      "lastCheckedAt": "2026-08-23T13:05:55.317Z"
     },
     {
       "id": "public-org-catholic-charities-northern-nevada",
@@ -1996,7 +1996,7 @@
             "city": "ZEPHYR COVE",
             "subsection": "04",
             "statusCode": "01",
-            "taxPeriod": "202506",
+            "taxPeriod": "202606",
             "nteeCode": null,
             "sourceUrl": "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search"
           },
@@ -2080,7 +2080,7 @@
         "ROTARY INTERNATIONAL DISTRICT 5300 INC"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:29.961Z",
+        "checkedAt": "2026-08-23T13:05:55.413Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.rotary5300.org/",
@@ -2103,7 +2103,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T02:49:29.961Z"
+      "lastCheckedAt": "2026-08-23T13:05:55.413Z"
     },
     {
       "id": "public-org-nshe",
@@ -2342,7 +2342,7 @@
       ],
       "irsNames": [],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:33.391Z",
+        "checkedAt": "2026-08-23T13:05:56.510Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.gbcnv.edu/",
@@ -2354,7 +2354,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "official_website_checked",
-      "lastCheckedAt": "2026-07-26T02:49:33.391Z"
+      "lastCheckedAt": "2026-08-23T13:05:56.510Z"
     },
     {
       "id": "public-org-western-nevada-college",
@@ -2983,7 +2983,7 @@
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:33.709Z",
+        "checkedAt": "2026-08-23T13:05:56.801Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvdems.com/club/humboldt/",
@@ -2995,7 +2995,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:33.709Z"
+      "lastCheckedAt": "2026-08-23T13:05:56.801Z"
     },
     {
       "id": "public-org-dem-lander-county",
@@ -3337,7 +3337,7 @@
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:34.440Z",
+        "checkedAt": "2026-08-23T13:05:57.535Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvdems.com/club/pershing/",
@@ -3349,7 +3349,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:34.440Z"
+      "lastCheckedAt": "2026-08-23T13:05:57.535Z"
     },
     {
       "id": "public-org-dem-storey-county",
@@ -3400,7 +3400,7 @@
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:35.073Z",
+        "checkedAt": "2026-08-23T13:05:58.247Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvdems.com/club/storey/",
@@ -3412,7 +3412,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:35.073Z"
+      "lastCheckedAt": "2026-08-23T13:05:58.247Z"
     },
     {
       "id": "public-org-dem-washoe-county",
@@ -3748,7 +3748,7 @@
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:35.206Z",
+        "checkedAt": "2026-08-23T13:05:59.054Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvdems.com/club/black-democratic-caucus/",
@@ -3760,7 +3760,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:35.206Z"
+      "lastCheckedAt": "2026-08-23T13:05:59.054Z"
     },
     {
       "id": "public-org-dem-jewish-caucus",
@@ -4210,7 +4210,7 @@
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:35.325Z",
+        "checkedAt": "2026-08-23T13:05:59.691Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvdems.com/club/veterans-caucus/",
@@ -4222,7 +4222,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:35.325Z"
+      "lastCheckedAt": "2026-08-23T13:05:59.691Z"
     },
     {
       "id": "public-org-dem-womens-caucus",
@@ -4273,7 +4273,7 @@
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:35.955Z",
+        "checkedAt": "2026-08-23T13:06:00.353Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvdems.com/club/womens-democratic-caucus-2/",
@@ -4285,7 +4285,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:35.955Z"
+      "lastCheckedAt": "2026-08-23T13:06:00.353Z"
     },
     {
       "id": "public-org-dem-young-democrats",
@@ -4336,7 +4336,7 @@
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:36.690Z",
+        "checkedAt": "2026-08-23T13:06:01.090Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvdems.com/club/young-democrats-of-nevada/",
@@ -4348,7 +4348,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:36.690Z"
+      "lastCheckedAt": "2026-08-23T13:06:01.090Z"
     },
     {
       "id": "public-org-nevada-republican-party",
@@ -4459,7 +4459,7 @@
         "listingSourceUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:37.453Z",
+        "checkedAt": "2026-08-23T13:06:01.900Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.carsoncityrepublicans.com/",
@@ -4471,7 +4471,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:37.453Z"
+      "lastCheckedAt": "2026-08-23T13:06:01.900Z"
     },
     {
       "id": "public-org-gop-churchill-county",
@@ -4636,7 +4636,7 @@
         "listingSourceUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:37.651Z",
+        "checkedAt": "2026-08-23T13:06:02.080Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.douglasnvgop.org/",
@@ -4648,7 +4648,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:37.651Z"
+      "lastCheckedAt": "2026-08-23T13:06:02.080Z"
     },
     {
       "id": "public-org-gop-elko-county",
@@ -5104,7 +5104,7 @@
         "listingSourceUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:38.074Z",
+        "checkedAt": "2026-08-23T13:06:02.453Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/",
@@ -5116,7 +5116,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:38.074Z"
+      "lastCheckedAt": "2026-08-23T13:06:02.453Z"
     },
     {
       "id": "public-org-gop-nye-county",
@@ -5641,7 +5641,7 @@
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
       "websiteHealth": {
-        "checkedAt": "2026-07-26T02:49:38.165Z",
+        "checkedAt": "2026-08-23T13:06:02.546Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
@@ -5653,7 +5653,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_checked",
-      "lastCheckedAt": "2026-07-26T02:49:38.165Z"
+      "lastCheckedAt": "2026-08-23T13:06:02.546Z"
     },
     {
       "id": "public-org-gop-churchill-republican-women",

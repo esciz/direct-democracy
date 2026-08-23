@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T19:07:41.152Z",
+  "generatedAt": "2026-08-23T13:09:42.373Z",
   "sourceHealth": [
     {
       "organizationId": "carson-city-board-of-supervisors",
@@ -534,15 +534,15 @@
       "jurisdiction": "Lyon County, NV",
       "sourcePlatform": "civic_website",
       "sourceHost": null,
-      "documents": 9,
+      "documents": 10,
       "queued": 0,
-      "cached": 0,
+      "cached": 1,
       "extracted": 9,
       "ocrRequired": 0,
       "failed": 0,
       "sourceGaps": 0,
       "retrievalHealth": 1,
-      "extractionHealth": 1,
+      "extractionHealth": 0.9,
       "ocrHealth": 1
     },
     {
@@ -707,14 +707,14 @@
     }
   ],
   "audit": {
-    "generatedAt": "2026-08-22T19:07:41.152Z",
+    "generatedAt": "2026-08-23T13:09:42.373Z",
     "totals": {
-      "documents": 1854,
+      "documents": 1855,
       "discovered": 90,
       "queued": 23,
-      "downloaded": 427,
-      "cachedByDataops": 1741,
-      "cached": 8,
+      "downloaded": 428,
+      "cachedByDataops": 1742,
+      "cached": 9,
       "attempted": 1314,
       "changed": 0,
       "unchanged": 0,
@@ -731,7 +731,7 @@
       "queued": 23,
       "ocr_required": 8,
       "discovered": 90,
-      "cached": 8
+      "cached": 9
     }
   }
 }

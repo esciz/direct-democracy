@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T15:03:15.500Z",
+  "generatedAt": "2026-08-23T13:05:50.331Z",
   "catalogVersion": 1,
   "sourceCatalogUpdatedAt": "2026-07-25",
   "collectionPolicy": {
@@ -9,7 +9,7 @@
   },
   "totals": {
     "sourceRoutes": 11,
-    "reachableSourceRoutes": 10,
+    "reachableSourceRoutes": 11,
     "requiredCounties": 17,
     "countiesWithSourceRoutes": 17,
     "publishedPublicCases": 27,
@@ -40,7 +40,7 @@
       "cadenceDays": 1,
       "privacyRule": "Publish only public opinion metadata and public documents after review.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:58.018Z",
+        "checkedAt": "2026-08-23T13:05:36.186Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://acis.nvcourts.gov/portal/search/document/results?criteria=~(advanced~false~courtID~%27dc01122c-a19d-4eb7-bfe9-5b96e93c26fd~paging~(totalItems~0~itemsPerPage~25~page~1~sortBy~%27docketEntryHeader.filedDate~sortDesc~true)~document~(docketEntrySubTypeID~%27typeID*3a1000014)~case~(excludeClosed~false))",
@@ -66,7 +66,7 @@
       "cadenceDays": 7,
       "privacyRule": "No protected-portal bypass or bulk harvesting. Publish only reviewed public fields.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:58.487Z",
+        "checkedAt": "2026-08-23T13:05:36.656Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://acis.nvcourts.gov/portal/home",
@@ -108,7 +108,7 @@
       "cadenceDays": 7,
       "privacyRule": "Court directory coverage is not a case count. Trial records require a court-specific adapter and privacy review.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:58.712Z",
+        "checkedAt": "2026-08-23T13:05:36.904Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvcourts.gov/find_a_court/district_courts",
@@ -150,7 +150,7 @@
       "cadenceDays": 7,
       "privacyRule": "Court directory coverage is not a case count. Publish no evictions, protection orders, or small-claims parties without record-level review.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:58.854Z",
+        "checkedAt": "2026-08-23T13:05:39.654Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvcourts.gov/find_a_court/justice_courts",
@@ -176,7 +176,7 @@
       "cadenceDays": 7,
       "privacyRule": "Court directory coverage is not a case count. Municipal records require a court-specific public-record adapter.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:59.134Z",
+        "checkedAt": "2026-08-23T13:05:42.882Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvcourts.gov/find_a_court/municipal_courts",
@@ -202,7 +202,7 @@
       "cadenceDays": 7,
       "privacyRule": "Use public RECAP material only. PACER billing and credentials are outside the unattended collector.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:59.275Z",
+        "checkedAt": "2026-08-23T13:05:44.758Z",
         "ok": true,
         "status": 403,
         "finalUrl": "https://www.courtlistener.com/recap/",
@@ -228,7 +228,7 @@
       "cadenceDays": 7,
       "privacyRule": "Publish only reviewed public opinions whose official record identifies the District of Nevada or another verified Nevada connection.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:59.347Z",
+        "checkedAt": "2026-08-23T13:05:44.863Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.ca9.uscourts.gov/decisions/opinions/",
@@ -254,7 +254,7 @@
       "cadenceDays": 7,
       "privacyRule": "Publish only reviewed public merits records with a verified Nevada lower court, Nevada party, or direct Nevada legal connection.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:59.461Z",
+        "checkedAt": "2026-08-23T13:05:44.966Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.supremecourt.gov/opinions/opinions.aspx",
@@ -280,7 +280,7 @@
       "cadenceDays": 7,
       "privacyRule": "Publish final public opinions and public panel determinations only; confidential matters stay excluded.",
       "health": {
-        "checkedAt": "2026-08-10T15:02:59.898Z",
+        "checkedAt": "2026-08-23T13:05:45.241Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.ethics.nv.gov/opinions/",
@@ -306,11 +306,11 @@
       "cadenceDays": 7,
       "privacyRule": "Do not publish taxpayer records or proprietary material. Only public final decisions with an approved record-level review are eligible.",
       "health": {
-        "checkedAt": "2026-08-10T15:03:00.191Z",
-        "ok": false,
-        "status": null,
+        "checkedAt": "2026-08-23T13:05:45.505Z",
+        "ok": true,
+        "status": 200,
         "finalUrl": "https://tax.nv.gov/boards-meetings/",
-        "error": "This operation was aborted"
+        "error": null
       },
       "publishedCaseCount": 0,
       "coverageLayer": "source_route"
@@ -332,7 +332,7 @@
       "cadenceDays": 7,
       "privacyRule": "Public discipline only. Pending and private discipline is excluded.",
       "health": {
-        "checkedAt": "2026-08-10T15:03:15.202Z",
+        "checkedAt": "2026-08-23T13:05:50.004Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvbar.org/for-the-public/attorney-discipline/",

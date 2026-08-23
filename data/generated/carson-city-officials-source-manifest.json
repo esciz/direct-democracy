@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-22T18:55:28.984Z",
-  "runId": "20260822185528-local-network-enabled-x9blwu",
+  "generatedAt": "2026-08-23T13:02:43.465Z",
+  "runId": "20260823130243-local-network-enabled-znmimt",
   "jurisdiction": "carson-city",
   "evidencePersistence": {
     "mode": "local_cache",
@@ -16,8 +16,8 @@
       "status": "changed",
       "diagnosticClassification": "changed",
       "cachedPath": "data/raw/official-directories/carson-city-department-directory/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-department-directory/20260822185528-02f8c26a9c79743d.html",
-      "contentHash": "02f8c26a9c79743d65a4d718e0c967a6dd75374167cbe9881c865afd1f447399",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-department-directory/20260823130243-75d876b6aec06b5a.html",
+      "contentHash": "75d876b6aec06b5a9d807f97d329fc109a79cb47ceb77ef96f11014a1e6548bf",
       "bytes": 200640,
       "pageTitle": "Department Directory | Carson City",
       "verifierClassification": "changed",
@@ -37,8 +37,8 @@
         "cookie_or_browser_experience_notice"
       ],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-22T18:55:28.984Z",
-      "lastSeenAt": "2026-08-22T18:55:28.984Z"
+      "lastCheckedAt": "2026-08-23T13:02:43.465Z",
+      "lastSeenAt": "2026-08-23T13:02:43.465Z"
     },
     {
       "sourceId": "carson-city-board-of-supervisors",
@@ -47,8 +47,8 @@
       "status": "changed",
       "diagnosticClassification": "changed",
       "cachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/20260822185528-4e4e9490dde731b6.html",
-      "contentHash": "4e4e9490dde731b69ce68628f68f6043b9b72def06251544a5b1b40fa6e1bb96",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-board-of-supervisors/20260823130243-58d21ab9e6b31c48.html",
+      "contentHash": "58d21ab9e6b31c48da700c91a4b383a3141ad52c0ffbeb07fe09a5f1cada85a3",
       "bytes": 180986,
       "pageTitle": "Board of Supervisors | Carson City",
       "verifierClassification": "changed",
@@ -69,8 +69,8 @@
         "cookie_or_browser_experience_notice"
       ],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-22T18:55:28.984Z",
-      "lastSeenAt": "2026-08-22T18:55:28.984Z"
+      "lastCheckedAt": "2026-08-23T13:02:43.465Z",
+      "lastSeenAt": "2026-08-23T13:02:43.465Z"
     },
     {
       "sourceId": "carson-city-staff-directory",
@@ -79,8 +79,8 @@
       "status": "changed",
       "diagnosticClassification": "changed",
       "cachedPath": "data/raw/official-directories/carson-city-staff-directory/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-staff-directory/20260822185528-1f2b4c1f7bf7185e.html",
-      "contentHash": "1f2b4c1f7bf7185e426ba8fec6ebf50748c7d3d86e97fa34ee3c2aab905bc2e3",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-staff-directory/20260823130243-b63dddc1fcfa7da4.html",
+      "contentHash": "b63dddc1fcfa7da4d68602d990ec50415ff49266dc005dc93faac8ebbbfea3b8",
       "bytes": 241198,
       "pageTitle": "Staff Directory | Carson City",
       "verifierClassification": "changed",
@@ -100,8 +100,8 @@
         "generic_javascript_notice"
       ],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-22T18:55:28.984Z",
-      "lastSeenAt": "2026-08-22T18:55:28.984Z"
+      "lastCheckedAt": "2026-08-23T13:02:43.465Z",
+      "lastSeenAt": "2026-08-23T13:02:43.465Z"
     },
     {
       "sourceId": "carson-city-school-district-board",
@@ -110,8 +110,8 @@
       "status": "retrieved_verified",
       "diagnosticClassification": "verified_retrieval",
       "cachedPath": "data/raw/official-directories/carson-city-school-district-board/current.html",
-      "versionedCachedPath": "data/raw/official-directories/carson-city-school-district-board/20260822185528-c46f4571eddfc7c5.html",
-      "contentHash": "c46f4571eddfc7c536fc8451eba51291e2ed63af1f2ba1f519a161f69f7cd194",
+      "versionedCachedPath": "data/raw/official-directories/carson-city-school-district-board/20260823130243-eedcade0ecd9601b.html",
+      "contentHash": "eedcade0ecd9601b65bbc3ffeb59a3a41a6c8fb42a024294a9a5493b617441d8",
       "bytes": 74059,
       "pageTitle": "School Board - Carson City School District",
       "verifierClassification": "verified_retrieval",
@@ -126,8 +126,8 @@
       ],
       "negativeSignals": [],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-22T18:55:28.984Z",
-      "lastSeenAt": "2026-08-22T18:55:28.984Z"
+      "lastCheckedAt": "2026-08-23T13:02:43.465Z",
+      "lastSeenAt": "2026-08-23T13:02:43.465Z"
     },
     {
       "sourceId": "elko-city-council",
@@ -150,7 +150,7 @@
       ],
       "negativeSignals": [],
       "parserEligibility": "needs_playwright",
-      "lastCheckedAt": "2026-08-22T18:55:28.984Z",
+      "lastCheckedAt": "2026-08-23T13:02:43.465Z",
       "lastSeenAt": null
     },
     {
@@ -180,7 +180,7 @@
         "maintenance_or_unavailable"
       ],
       "parserEligibility": "rejected",
-      "lastCheckedAt": "2026-08-22T18:55:28.984Z",
+      "lastCheckedAt": "2026-08-23T13:02:43.465Z",
       "lastSeenAt": null
     },
     {
@@ -190,7 +190,7 @@
       "status": "retrieved_verified",
       "diagnosticClassification": "verified_retrieval",
       "cachedPath": "data/raw/official-directories/elko-county-commission/current.html",
-      "versionedCachedPath": "data/raw/official-directories/elko-county-commission/20260822185528-4fe7b2d5cb099ada.html",
+      "versionedCachedPath": "data/raw/official-directories/elko-county-commission/20260823130243-4fe7b2d5cb099ada.html",
       "contentHash": "4fe7b2d5cb099ada7c78fde5d71a0436f151cf5aacc54750674b5c66f2bb0060",
       "bytes": 87907,
       "pageTitle": "Elko County, NV",
@@ -205,8 +205,8 @@
       ],
       "negativeSignals": [],
       "parserEligibility": "eligible",
-      "lastCheckedAt": "2026-08-22T18:55:28.984Z",
-      "lastSeenAt": "2026-08-22T18:55:28.984Z"
+      "lastCheckedAt": "2026-08-23T13:02:43.465Z",
+      "lastSeenAt": "2026-08-23T13:02:43.465Z"
     }
   ],
   "sensitiveValuesIncluded": false

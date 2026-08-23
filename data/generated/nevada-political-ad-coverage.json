@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-10T15:03:18.935Z",
-  "adsGeneratedAt": "2026-08-10T15:03:17.556Z",
+  "generatedAt": "2026-08-23T13:05:52.861Z",
+  "adsGeneratedAt": "2026-08-23T13:05:51.561Z",
   "sourceCatalogVersion": 1,
   "sourceCatalogUpdatedAt": "2026-07-25",
   "historicalCycles": [
@@ -19,9 +19,9 @@
     "candidates": 212,
     "currentOfficials": 154,
     "sourceRoutes": 6,
-    "repositoryRecords": 1056,
+    "repositoryRecords": 1099,
     "creativeRecords": 7,
-    "filingOnlyRecords": 1049,
+    "filingOnlyRecords": 1092,
     "entitiesWithMatchedRecords": 20,
     "candidatesWithMatchedRecords": 12,
     "officialsWithMatchedRecords": 8,
@@ -3726,6 +3726,9 @@
       "fecCandidateId": "H4NV04108",
       "status": "records_matched",
       "adIds": [
+        "fec-nv-ie-4081220261580879462",
+        "fec-nv-ie-4081320261580941411",
+        "fec-nv-ie-4081320261580941407",
         "fec-nv-ie-4060520261520378046",
         "fec-nv-ie-4060520261520378045",
         "fec-nv-ie-SE24.7160",
@@ -3740,6 +3743,11 @@
         "fec-nv-ie-SE24.7119",
         "fec-nv-ie-SE24.7126",
         "fec-nv-ie-E7773C2B4E9404C2BA2D",
+        "fec-nv-ie-4081320261580941429",
+        "fec-nv-ie-4081320261580941403",
+        "fec-nv-ie-4081320261580941402",
+        "fec-nv-ie-4081320261580941401",
+        "fec-nv-ie-4081220261580879446",
         "fec-nv-ie-4060320261520146491",
         "fec-nv-ie-4060320261520146490",
         "fec-nv-ie-4060320261520146489",
@@ -3748,6 +3756,10 @@
         "fec-nv-ie-SE24.7113",
         "fec-nv-ie-SE24.7116",
         "fec-nv-ie-SE24.7112",
+        "fec-nv-ie-4081320261580941428",
+        "fec-nv-ie-4081320261580941427",
+        "fec-nv-ie-4081320261580941414",
+        "fec-nv-ie-4081320261580941413",
         "fec-nv-ie-4063020261523241302",
         "fec-nv-ie-E-1908",
         "fec-nv-ie-4063020261523241327",
@@ -3766,11 +3778,11 @@
         "fec-nv-ie-SE.4172"
       ],
       "totals": {
-        "matchedRecords": 38,
+        "matchedRecords": 50,
         "creativeRecords": 0,
-        "filingOnlyRecords": 38,
+        "filingOnlyRecords": 50,
         "recordsWithClaims": 0,
-        "reportedSpend": 1228662.6400000001,
+        "reportedSpend": 1631955.4299999995,
         "cyclesCovered": [
           2026
         ]
@@ -3819,7 +3831,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "0 creative record(s) and 38 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "0 creative record(s) and 50 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "candidate",
@@ -6278,6 +6290,18 @@
         "fec-nv-ie-E-183",
         "fec-nv-ie-SE.119738",
         "fec-nv-ie-SE.102885",
+        "fec-nv-ie-4112320191680032527",
+        "fec-nv-ie-4112320191680032524",
+        "fec-nv-ie-4021620191640382395",
+        "fec-nv-ie-4112320191680032506",
+        "fec-nv-ie-4042120211278586619",
+        "fec-nv-ie-4122120181623133129",
+        "fec-nv-ie-4042120211278586381",
+        "fec-nv-ie-4042120211278586372",
+        "fec-nv-ie-4112320191680032461",
+        "fec-nv-ie-4112320191680032437",
+        "fec-nv-ie-4112320191680032434",
+        "fec-nv-ie-4110720181608816664",
         "fec-nv-ie-D376433",
         "fec-nv-ie-SE.4504",
         "fec-nv-ie-D39462",
@@ -6314,11 +6338,11 @@
         "fec-nv-ie-73474956"
       ],
       "totals": {
-        "matchedRecords": 88,
+        "matchedRecords": 100,
         "creativeRecords": 1,
-        "filingOnlyRecords": 87,
+        "filingOnlyRecords": 99,
         "recordsWithClaims": 1,
-        "reportedSpend": 2845696.36,
+        "reportedSpend": 2891835.21,
         "cyclesCovered": [
           2026,
           2024,
@@ -6370,7 +6394,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "1 creative record(s) and 87 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "1 creative record(s) and 99 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "candidate",
@@ -11485,6 +11509,7 @@
       "status": "records_matched",
       "adIds": [
         "fec-nv-ie-4060220261512603328",
+        "fec-nv-ie-4081220261580879447",
         "fec-nv-ie-E2B9A4AB1BF844FE3A1B",
         "fec-nv-ie-4063020261523241301",
         "fec-nv-ie-4063020261523241298",
@@ -11498,11 +11523,11 @@
         "fec-nv-ie-E9188161D97714D3D8A7"
       ],
       "totals": {
-        "matchedRecords": 12,
+        "matchedRecords": 13,
         "creativeRecords": 0,
-        "filingOnlyRecords": 12,
+        "filingOnlyRecords": 13,
         "recordsWithClaims": 0,
-        "reportedSpend": 365082.47,
+        "reportedSpend": 392474.50999999995,
         "cyclesCovered": [
           2026
         ]
@@ -11551,7 +11576,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "0 creative record(s) and 12 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "0 creative record(s) and 13 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "candidate",
@@ -12003,6 +12028,7 @@
       "fecCandidateId": null,
       "status": "records_matched",
       "adIds": [
+        "fec-nv-ie-4020520191637723419",
         "fec-nv-ie-SE.14342",
         "fec-nv-ie-VN7GDACQGN4",
         "fec-nv-ie-SE-984736",
@@ -12027,11 +12053,11 @@
         "fec-nv-ie-F57.4242"
       ],
       "totals": {
-        "matchedRecords": 22,
+        "matchedRecords": 23,
         "creativeRecords": 0,
-        "filingOnlyRecords": 22,
+        "filingOnlyRecords": 23,
         "recordsWithClaims": 0,
-        "reportedSpend": 2357988.5399999996,
+        "reportedSpend": 2357992.6899999995,
         "cyclesCovered": [
           2018,
           2016
@@ -12081,7 +12107,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "0 creative record(s) and 22 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "0 creative record(s) and 23 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "candidate",
@@ -18015,6 +18041,18 @@
         "fec-nv-ie-E-183",
         "fec-nv-ie-SE.119738",
         "fec-nv-ie-SE.102885",
+        "fec-nv-ie-4112320191680032527",
+        "fec-nv-ie-4112320191680032524",
+        "fec-nv-ie-4021620191640382395",
+        "fec-nv-ie-4112320191680032506",
+        "fec-nv-ie-4042120211278586619",
+        "fec-nv-ie-4122120181623133129",
+        "fec-nv-ie-4042120211278586381",
+        "fec-nv-ie-4042120211278586372",
+        "fec-nv-ie-4112320191680032461",
+        "fec-nv-ie-4112320191680032437",
+        "fec-nv-ie-4112320191680032434",
+        "fec-nv-ie-4110720181608816664",
         "fec-nv-ie-D376433",
         "fec-nv-ie-SE.4504",
         "fec-nv-ie-D39462",
@@ -18051,11 +18089,11 @@
         "fec-nv-ie-73474956"
       ],
       "totals": {
-        "matchedRecords": 88,
+        "matchedRecords": 100,
         "creativeRecords": 1,
-        "filingOnlyRecords": 87,
+        "filingOnlyRecords": 99,
         "recordsWithClaims": 1,
-        "reportedSpend": 2845696.36,
+        "reportedSpend": 2891835.21,
         "cyclesCovered": [
           2026,
           2024,
@@ -18107,7 +18145,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "1 creative record(s) and 87 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "1 creative record(s) and 99 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "official",
@@ -23088,6 +23126,7 @@
       "adIds": [
         "nv-video-ad-susie-lee-the-most-2024",
         "nv-video-ad-susie-lee-stark-choice-2022",
+        "fec-nv-ie-4082120261584498389",
         "fec-nv-ie-4070120261523416053",
         "fec-nv-ie-500724549",
         "fec-nv-ie-501214091",
@@ -23145,6 +23184,7 @@
         "fec-nv-ie-24-00-00068-00068",
         "fec-nv-ie-24-00-00072-00072",
         "fec-nv-ie-D385433",
+        "fec-nv-ie-4020520191637723417",
         "fec-nv-ie-500054933",
         "fec-nv-ie-SE-985079",
         "fec-nv-ie-A3E9E7E1C83A94F29A02",
@@ -23167,11 +23207,11 @@
         "fec-nv-ie-AFC02845AEF68447BBE4"
       ],
       "totals": {
-        "matchedRecords": 79,
+        "matchedRecords": 81,
         "creativeRecords": 2,
-        "filingOnlyRecords": 77,
+        "filingOnlyRecords": 79,
         "recordsWithClaims": 2,
-        "reportedSpend": 2922460.1799999997,
+        "reportedSpend": 2922766.1499999994,
         "cyclesCovered": [
           2026,
           2024,
@@ -23224,7 +23264,7 @@
           "creativeCoverage": true
         }
       ],
-      "coverageNote": "2 creative record(s) and 77 spend/dissemination filing(s) are matched by source identity."
+      "coverageNote": "2 creative record(s) and 79 spend/dissemination filing(s) are matched by source identity."
     },
     {
       "entityType": "official",

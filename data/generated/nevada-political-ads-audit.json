@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-10T15:03:17.651Z",
+  "generatedAt": "2026-08-23T13:05:51.641Z",
   "status": "ready",
   "totals": {
-    "generatedAds": 1056,
-    "publishedAds": 1056,
+    "generatedAds": 1099,
+    "publishedAds": 1099,
     "pendingAds": 0,
     "reviewQueueRecords": 1,
     "recordsMissingSource": 0,
@@ -22,11 +22,12 @@
     "candidateCampaign",
     "independentExpenditureGroup",
     "pac",
+    "politicalParty",
     "superPac",
     "unknownUndisclosed"
   ],
   "geographyCounts": {
-    "Nevada": 1056
+    "Nevada": 1099
   },
   "failures": [],
   "nextSteps": [

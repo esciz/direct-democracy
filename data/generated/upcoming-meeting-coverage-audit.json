@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T19:07:04.947Z",
+  "generatedAt": "2026-08-23T13:09:42.594Z",
   "strict": true,
   "maxStaleDays": 3,
   "totals": {
@@ -14,8 +14,8 @@
     "adapterGaps": 33,
     "sourceGaps": 0,
     "strictBlockingProviders": 11,
-    "staleLatestMeetingProviders": 13,
-    "recentPastOnlyProviders": 5
+    "staleLatestMeetingProviders": 14,
+    "recentPastOnlyProviders": 4
   },
   "rows": [
     {
@@ -35,7 +35,7 @@
         }
       ],
       "status": "zero_upcoming_review",
-      "freshnessStatus": "recent_past_meeting_only",
+      "freshnessStatus": "stale_latest_meeting",
       "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
@@ -1298,7 +1298,7 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 10,
+      "totalDatedMeetings": 11,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
       "newestKnownMeetingAt": "2026-08-20T16:00:00.000Z",
