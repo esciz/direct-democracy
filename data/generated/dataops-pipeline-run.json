@@ -1,7 +1,7 @@
 {
-  "runId": "dataops-2026-08-23T13:00:20.049Z",
-  "startedAt": "2026-08-23T13:00:20.050Z",
-  "updatedAt": "2026-08-23T13:09:42.611Z",
+  "runId": "dataops-2026-08-24T13:08:34.072Z",
+  "startedAt": "2026-08-24T13:08:34.072Z",
+  "updatedAt": "2026-08-24T13:35:13.495Z",
   "environment": {
     "offline": false,
     "networkAvailable": true,
@@ -12,56 +12,11 @@
     {
       "id": "refresh-meeting-calendars",
       "description": "Refresh Nevada meetings, current-official directories, and statewide financial coverage.",
-      "status": "succeeded",
-      "startedAt": "2026-08-23T13:00:20.134Z",
-      "completedAt": "2026-08-23T13:05:35.600Z",
-      "durationMs": 315466,
-      "error": null
-    },
-    {
-      "id": "public-records",
-      "description": "Refresh and reconcile statewide case, political-ad, and public-organization records.",
-      "status": "succeeded",
-      "startedAt": "2026-08-23T13:05:35.650Z",
-      "completedAt": "2026-08-23T13:06:03.140Z",
-      "durationMs": 27490,
-      "error": null
-    },
-    {
-      "id": "import-meetings",
-      "description": "Import current calendars and merge reviewed official-source caches.",
-      "status": "succeeded",
-      "startedAt": "2026-08-23T13:06:03.161Z",
-      "completedAt": "2026-08-23T13:08:04.048Z",
-      "durationMs": 120887,
-      "error": null
-    },
-    {
-      "id": "register-sources",
-      "description": "Register RSS/feed sources.",
-      "status": "succeeded",
-      "startedAt": "2026-08-23T13:08:04.083Z",
-      "completedAt": "2026-08-23T13:08:04.137Z",
-      "durationMs": 54,
-      "error": null
-    },
-    {
-      "id": "discover-documents",
-      "description": "Discover public meeting source documents.",
-      "status": "succeeded",
-      "startedAt": "2026-08-23T13:08:04.159Z",
-      "completedAt": "2026-08-23T13:09:42.231Z",
-      "durationMs": 98072,
-      "error": null
-    },
-    {
-      "id": "monitor-sources",
-      "description": "Monitor source health and upcoming-meeting coverage by configured provider.",
       "status": "failed",
-      "startedAt": "2026-08-23T13:09:42.260Z",
-      "completedAt": "2026-08-23T13:09:42.611Z",
-      "durationMs": 351,
-      "error": "Command failed: node --import tsx scripts/audit-upcoming-meeting-coverage.ts --strict"
+      "startedAt": "2026-08-24T13:08:34.163Z",
+      "completedAt": "2026-08-24T13:35:13.495Z",
+      "durationMs": 1599332,
+      "error": "Command failed: node --import tsx scripts/collect-nevada-financials.ts --scheduled"
     }
   ],
   "metrics": {
