@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T13:09:42.594Z",
+  "generatedAt": "2026-08-25T13:12:41.815Z",
   "strict": true,
   "maxStaleDays": 3,
   "totals": {
@@ -7,15 +7,15 @@
     "requiredProviders": 55,
     "configuredRequiredProviders": 55,
     "configuredProviders": 57,
-    "providersWithUpcomingMeetings": 6,
-    "upcomingMeetings": 13,
-    "zeroUpcomingReview": 18,
+    "providersWithUpcomingMeetings": 8,
+    "upcomingMeetings": 23,
+    "zeroUpcomingReview": 16,
     "sourceFailures": 0,
     "adapterGaps": 33,
     "sourceGaps": 0,
-    "strictBlockingProviders": 11,
-    "staleLatestMeetingProviders": 14,
-    "recentPastOnlyProviders": 4
+    "strictBlockingProviders": 9,
+    "staleLatestMeetingProviders": 13,
+    "recentPastOnlyProviders": 3
   },
   "rows": [
     {
@@ -34,8 +34,8 @@
           ]
         }
       ],
-      "status": "zero_upcoming_review",
-      "freshnessStatus": "stale_latest_meeting",
+      "status": "upcoming_found",
+      "freshnessStatus": "current",
       "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
@@ -48,12 +48,25 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 54,
-      "upcomingMeetings": 0,
-      "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-08-20T00:00:00.000Z",
-      "upcomingExamples": [],
-      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+      "totalDatedMeetings": 56,
+      "upcomingMeetings": 2,
+      "nextUpcomingAt": "2026-08-26T00:00:00.000Z",
+      "newestKnownMeetingAt": "2026-08-27T00:00:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-boulder-city-council-city-council-2026-08-26-fb11173b",
+          "title": "City Council Meeting",
+          "meetingDate": "2026-08-26T00:00:00.000Z",
+          "sourceUrl": "https://bcnv.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787662932760"
+        },
+        {
+          "id": "meeting-manual-boulder-city-council-historic-preservation-commission-regular-2026-08-27-f259b2e6",
+          "title": "Historic Preservation Commission Regular Meeting",
+          "meetingDate": "2026-08-27T00:00:00.000Z",
+          "sourceUrl": "https://bcnv.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787662932760"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
     },
     {
       "providerId": "caliente-city-council",
@@ -72,7 +85,7 @@
         }
       ],
       "status": "zero_upcoming_review",
-      "freshnessStatus": "recent_past_meeting_only",
+      "freshnessStatus": "stale_latest_meeting",
       "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
@@ -272,8 +285,8 @@
           ]
         }
       ],
-      "status": "upcoming_found",
-      "freshnessStatus": "current",
+      "status": "zero_upcoming_review",
+      "freshnessStatus": "recent_past_meeting_only",
       "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
@@ -287,18 +300,11 @@
       },
       "manualProviderStatus": "parsed",
       "totalDatedMeetings": 9,
-      "upcomingMeetings": 1,
-      "nextUpcomingAt": "2026-08-24T16:00:00.000Z",
+      "upcomingMeetings": 0,
+      "nextUpcomingAt": null,
       "newestKnownMeetingAt": "2026-08-24T16:00:00.000Z",
-      "upcomingExamples": [
-        {
-          "id": "meeting-manual-churchill-county-commission-churchill-county-commission-2026-08-24-3efa60d5",
-          "title": "Churchill Library Association",
-          "meetingDate": "2026-08-24T16:00:00.000Z",
-          "sourceUrl": "https://www.churchillcountynv.gov/DocumentCenter/View/19258/08-24-2026-Revised-CLA-Agenda"
-        }
-      ],
-      "nextAction": "Continue daily monitoring."
+      "upcomingExamples": [],
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
     },
     {
       "providerId": "clark-county-school-district",
@@ -944,7 +950,7 @@
       "providerGroup": null,
       "coverageRequirements": [],
       "status": "zero_upcoming_review",
-      "freshnessStatus": "recent_past_meeting_only",
+      "freshnessStatus": "stale_latest_meeting",
       "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": null,
@@ -1285,7 +1291,7 @@
         }
       ],
       "status": "zero_upcoming_review",
-      "freshnessStatus": "recent_past_meeting_only",
+      "freshnessStatus": "stale_latest_meeting",
       "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
@@ -1476,9 +1482,9 @@
           ]
         }
       ],
-      "status": "zero_upcoming_review",
-      "freshnessStatus": "stale_latest_meeting",
-      "strictBlocking": true,
+      "status": "upcoming_found",
+      "freshnessStatus": "current",
+      "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
         "scraperType": "html",
@@ -1490,12 +1496,31 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 6,
-      "upcomingMeetings": 0,
-      "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-08-18T16:00:00.000Z",
-      "upcomingExamples": [],
-      "nextAction": "Blocking daily freshness gap: inspect the official calendar, refresh the source, or repair the adapter before trusting coverage."
+      "totalDatedMeetings": 9,
+      "upcomingMeetings": 3,
+      "nextUpcomingAt": "2026-08-25T17:00:00.000Z",
+      "newestKnownMeetingAt": "2026-08-26T17:00:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-25-d9b373ee",
+          "title": "Joint Interim Standing Committee on the Judiciary - Tuesday, August 25, 2026 10:00 AM",
+          "meetingDate": "2026-08-25T17:00:00.000Z",
+          "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855"
+        },
+        {
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-26-f03b2db8",
+          "title": "Joint Interim Standing Committee on Revenue - Wednesday, August 26, 2026 9:30 AM",
+          "meetingDate": "2026-08-26T16:30:00.000Z",
+          "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35180"
+        },
+        {
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-26-8a2de256",
+          "title": "Nevada Silver Haired Legislative Forum - Wednesday, August 26, 2026 10:00 AM",
+          "meetingDate": "2026-08-26T17:00:00.000Z",
+          "sourceUrl": "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34842"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
     },
     {
       "providerId": "nshe-board-of-regents",
@@ -1760,8 +1785,8 @@
           ]
         }
       ],
-      "status": "zero_upcoming_review",
-      "freshnessStatus": "recent_past_meeting_only",
+      "status": "upcoming_found",
+      "freshnessStatus": "current",
       "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
@@ -1774,12 +1799,43 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 105,
-      "upcomingMeetings": 0,
-      "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-08-21T01:00:00.000Z",
-      "upcomingExamples": [],
-      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
+      "totalDatedMeetings": 103,
+      "upcomingMeetings": 6,
+      "nextUpcomingAt": "2026-08-26T07:00:00.000Z",
+      "newestKnownMeetingAt": "2026-08-28T00:30:00.000Z",
+      "upcomingExamples": [
+        {
+          "id": "meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0",
+          "title": "Meeting",
+          "meetingDate": "2026-08-26T07:00:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8917"
+        },
+        {
+          "id": "meeting-manual-reno-city-council-reno-city-council-2026-08-26-60969dc9",
+          "title": "Meeting",
+          "meetingDate": "2026-08-26T07:00:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8919"
+        },
+        {
+          "id": "meeting-manual-reno-city-council-reno-city-council-2026-08-26-89f94eb4",
+          "title": "Reno City Council Meeting",
+          "meetingDate": "2026-08-26T17:00:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787663015313"
+        },
+        {
+          "id": "meeting-manual-reno-city-council-redevelopment-agency-board-2026-08-26-23d433a3",
+          "title": "Redevelopment Agency Board",
+          "meetingDate": "2026-08-26T17:00:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787663015313"
+        },
+        {
+          "id": "meeting-manual-reno-city-council-truckee-meadows-stormwater-permit-coordinating-committee-2026-08-27-3a462629",
+          "title": "Truckee Meadows Stormwater Permit Coordinating Committee Meeting",
+          "meetingDate": "2026-08-27T16:15:00.000Z",
+          "sourceUrl": "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787663015313"
+        }
+      ],
+      "nextAction": "Continue daily monitoring."
     },
     {
       "providerId": "sparks-city-council",
@@ -1798,8 +1854,8 @@
         }
       ],
       "status": "zero_upcoming_review",
-      "freshnessStatus": "stale_latest_meeting",
-      "strictBlocking": true,
+      "freshnessStatus": "recent_past_meeting_only",
+      "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
         "scraperType": "html",
@@ -1811,12 +1867,12 @@
         "failures": 0
       },
       "manualProviderStatus": "partially_parsed",
-      "totalDatedMeetings": 6,
+      "totalDatedMeetings": 9,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-08-10T16:00:00.000Z",
+      "newestKnownMeetingAt": "2026-08-24T16:00:00.000Z",
       "upcomingExamples": [],
-      "nextAction": "Blocking daily freshness gap: inspect the official calendar, refresh the source, or repair the adapter before trusting coverage."
+      "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
     },
     {
       "providerId": "storey-county-school-district",
@@ -2168,7 +2224,7 @@
         }
       ],
       "status": "zero_upcoming_review",
-      "freshnessStatus": "stale_latest_meeting",
+      "freshnessStatus": "recent_past_meeting_only",
       "strictBlocking": false,
       "sourceConfigured": true,
       "sourceCadence": {
@@ -2181,10 +2237,10 @@
         "failures": 0
       },
       "manualProviderStatus": "parsed",
-      "totalDatedMeetings": 6,
+      "totalDatedMeetings": 7,
       "upcomingMeetings": 0,
       "nextUpcomingAt": null,
-      "newestKnownMeetingAt": "2026-08-10T16:00:00.000Z",
+      "newestKnownMeetingAt": "2026-08-24T16:00:00.000Z",
       "upcomingExamples": [],
       "nextAction": "Check the official calendar for a legitimately empty horizon, a late-posted agenda, or a date/parser change."
     }

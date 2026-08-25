@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T13:09:42.312Z",
+  "generatedAt": "2026-08-25T13:12:41.492Z",
   "records": [
     {
       "id": "meeting:nv-legislature",
@@ -26,7 +26,10 @@
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34907",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34576",
         "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34884",
-        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34872"
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34872",
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855",
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35180",
+        "https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34842"
       ],
       "documentTypes": [
         "agenda",
@@ -809,8 +812,8 @@
       "sourceUrls": [
         "https://www.bcnv.org/",
         "https://bcnv.primegov.com/Portal/Meeting?meetingTemplateId=3862",
-        "https://bcnv.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787058432040",
-        "https://bcnv.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787058432041"
+        "https://bcnv.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787662932760",
+        "https://bcnv.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787662932761"
       ],
       "documentTypes": [
         "agenda",
@@ -1241,10 +1244,10 @@
         "https://reno.primegov.com/public/portal",
         "https://www.reno.gov/services/watch-and-learn",
         "https://www.reno.gov/",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8994",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787058510284",
-        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787058510285",
-        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8996"
+        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8917",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings?_=1787663015313",
+        "https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=2026&_=1787663015314",
+        "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8919"
       ],
       "documentTypes": [
         "agenda",
@@ -1289,7 +1292,10 @@
         "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_Charter_Committee_Meeting_1267_Agenda_7_30_2026_5_30_00_PM.pdf?documentType=1&meetingId=1267",
         "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/CANCELLED_-_Planning_Commission_Study_Session_1270_Agenda_8_4_2026_12_00_00_PM.pdf?documentType=1&meetingId=1270",
         "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/CANCELLED_-_Planning_Commission_Meeting_1274_Agenda_8_6_2026_6_00_00_PM.pdf?documentType=1&meetingId=1274",
-        "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_City_Council_1255_Agenda_8_10_2026_2_00_00_PM.pdf?documentType=1&meetingId=1255"
+        "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_City_Council_1255_Agenda_8_10_2026_2_00_00_PM.pdf?documentType=1&meetingId=1255",
+        "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_City_Council_Meeting_1256_Agenda_8_24_2026_2_00_00_PM.pdf?documentType=1&meetingId=1256",
+        "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Sparks_Redevelopment_Agency_Meeting_1257_Agenda_8_24_2026_2_00_00_PM.pdf?documentType=1&meetingId=1257",
+        "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/Downloadfile/Planning_Commission_Meeting_1275_Agenda_8_20_2026_6_00_00_PM.pdf?documentType=1&meetingId=1275"
       ],
       "documentTypes": [
         "agenda"
@@ -1418,7 +1424,8 @@
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_07132026-67",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06222026-65",
         "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_06082026-64",
-        "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08102026-70"
+        "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08102026-70",
+        "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
       ],
       "documentTypes": [
         "agenda"
@@ -2091,10 +2098,10 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "implemented",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-08-23T13:09:42.312Z",
+      "lastCheckedAt": "2026-08-25T13:12:41.492Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-24T13:09:42.312Z",
+      "nextCheckAt": "2026-08-26T13:12:41.492Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
@@ -2124,10 +2131,10 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "implemented",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-08-23T13:09:42.312Z",
+      "lastCheckedAt": "2026-08-25T13:12:41.492Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-24T13:09:42.312Z",
+      "nextCheckAt": "2026-08-26T13:12:41.492Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
@@ -2160,7 +2167,7 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-23T13:09:42.312Z",
+      "nextCheckAt": "2026-08-25T13:12:41.492Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
@@ -2190,10 +2197,10 @@
       "productionCadenceRecommendation": "daily source check; weekly full validation",
       "officialDirectoryStatus": "configured",
       "retrievalStatus": "reviewed_baseline",
-      "lastCheckedAt": "2026-08-23T13:09:42.312Z",
+      "lastCheckedAt": "2026-08-25T13:12:41.492Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-24T13:09:42.312Z",
+      "nextCheckAt": "2026-08-26T13:12:41.492Z",
       "healthStatus": "partial",
       "freshnessStatus": "verified_baseline",
       "failureReason": null,
@@ -2226,7 +2233,7 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-23T13:09:42.312Z",
+      "nextCheckAt": "2026-08-25T13:12:41.492Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
@@ -2259,7 +2266,7 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-23T13:09:42.312Z",
+      "nextCheckAt": "2026-08-25T13:12:41.492Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
@@ -2292,7 +2299,7 @@
       "lastCheckedAt": null,
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-23T13:09:42.312Z",
+      "nextCheckAt": "2026-08-25T13:12:41.492Z",
       "healthStatus": "unknown",
       "freshnessStatus": "not_checked",
       "failureReason": null,
@@ -2306,7 +2313,7 @@
     }
   ],
   "audit": {
-    "generatedAt": "2026-08-23T13:09:42.312Z",
+    "generatedAt": "2026-08-25T13:12:41.492Z",
     "totals": {
       "sources": 65,
       "meetingSources": 57,

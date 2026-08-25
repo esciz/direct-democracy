@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T13:08:04.132Z",
+  "generatedAt": "2026-08-25T13:10:48.552Z",
   "records": [
     {
       "id": "carson-city-news-rss",
@@ -14,11 +14,11 @@
       "status": "registered",
       "role": "freshness_and_discovery",
       "policy": "RSS complements official ingestion; it does not replace agendas, minutes, packets, court, election, or budget records.",
-      "generatedAt": "2026-08-23T13:08:04.132Z"
+      "generatedAt": "2026-08-25T13:10:48.552Z"
     }
   ],
   "audit": {
-    "generatedAt": "2026-08-23T13:08:04.132Z",
+    "generatedAt": "2026-08-25T13:10:48.552Z",
     "totals": {
       "rssSources": 1,
       "registeredFeeds": 1,

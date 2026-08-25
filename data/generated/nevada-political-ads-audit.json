@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-23T13:05:51.641Z",
+  "generatedAt": "2026-08-25T13:08:10.006Z",
   "status": "ready",
   "totals": {
-    "generatedAds": 1099,
-    "publishedAds": 1099,
+    "generatedAds": 1139,
+    "publishedAds": 1139,
     "pendingAds": 0,
     "reviewQueueRecords": 1,
     "recordsMissingSource": 0,
@@ -27,7 +27,7 @@
     "unknownUndisclosed"
   ],
   "geographyCounts": {
-    "Nevada": 1099
+    "Nevada": 1139
   },
   "failures": [],
   "nextSteps": [

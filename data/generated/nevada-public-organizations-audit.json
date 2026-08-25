@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-08-23T13:06:03.136Z",
-  "coverageGeneratedAt": "2026-08-23T13:06:03.012Z",
+  "generatedAt": "2026-08-25T13:08:25.822Z",
+  "coverageGeneratedAt": "2026-08-25T13:08:25.640Z",
   "strictPassed": true,
   "totals": {
     "organizations": 127,
     "categories": 19,
     "statewide": 46,
     "localOrRegional": 81,
-    "websitesChecked": 67,
-    "websitesReachable": 67,
+    "websitesChecked": 79,
+    "websitesReachable": 79,
     "irsRegistryMatches": 26,
     "politicalPartyOrganizations": 81,
     "democraticPartyNetwork": 32,
@@ -153,7 +153,7 @@
       {
         "id": "public-org-dem-carson-city",
         "name": "Carson City Democratic Party",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-dem-churchill-county",
@@ -178,7 +178,7 @@
       {
         "id": "public-org-dem-esmeralda-county",
         "name": "Esmeralda County Democratic Party",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-dem-eureka-county",
@@ -243,7 +243,7 @@
       {
         "id": "public-org-dem-accessibility-caucus",
         "name": "Accessibility Caucus",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-dem-aian-caucus",
@@ -273,7 +273,7 @@
       {
         "id": "public-org-dem-lgbtqia-caucus",
         "name": "LGBTQIA+ Democratic Caucus",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-dem-muslim-caucus",
@@ -283,7 +283,7 @@
       {
         "id": "public-org-dem-rural-caucus",
         "name": "Rural Nevada Democratic Caucus",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-dem-senior-caucus",
@@ -343,7 +343,7 @@
       {
         "id": "public-org-gop-eureka-county",
         "name": "Eureka County Republican Central Committee",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-humboldt-county",
@@ -423,7 +423,7 @@
       {
         "id": "public-org-gop-douglas-republican-women",
         "name": "Douglas County Republican Women",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-fernley-republican-women",
@@ -443,7 +443,7 @@
       {
         "id": "public-org-gop-las-vegas-town-hall",
         "name": "Las Vegas Republican Town Hall Group",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-mesquite-patriots",
@@ -463,7 +463,7 @@
       {
         "id": "public-org-gop-federation-republican-women",
         "name": "Nevada Federation of Republican Women",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-nevada-republican-club",
@@ -483,7 +483,7 @@
       {
         "id": "public-org-gop-republican-jewish-coalition",
         "name": "Republican Jewish Coalition - Nevada chapters",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-republican-women-las-vegas",
@@ -513,7 +513,7 @@
       {
         "id": "public-org-gop-silver-state-republican-women",
         "name": "Silver State Republican Women",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-southern-hills-republican-women",
@@ -523,7 +523,7 @@
       {
         "id": "public-org-gop-sparks-republican-women",
         "name": "Sparks Republican Women's Club",
-        "verificationStatus": "party_source_registered"
+        "verificationStatus": "party_source_checked"
       },
       {
         "id": "public-org-gop-spring-mountain-republican-women",

@@ -23,7 +23,7 @@
     <link href="/App/Calendar/A/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://cdn.feedbackify.com/" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="/App/Calendar/A/Content/Site.css?v=3gj" rel="stylesheet" />
+    <link href="/App/Calendar/A/Content/Site.css?v=3y_r9" rel="stylesheet" />
     <!--Font lib-->
     <link rel="stylesheet" href="https://use.typekit.net/uje8eic.css">
     <script src="/App/Calendar/A/Scripts/jQuery/jquery-3.7.1.min.js"></script>
@@ -46,8 +46,16 @@
         <div class="navbar-brand">
             <div class="d-flex align-items-start lrg_margin">
                 <div class="lrg_margin ms-5">
-                    <a href="/">
-                        <img height="110" src="https://www.leg.state.nv.us/Home/image/graphic/COM_Header_Logo.png" alt="Nevada Legislature Seal">
+                    <a href="/" id="hdrImg">
+                        <img height="110" src="https://www.leg.state.nv.us/Home/image/graphic/Legislative_logoSEAL-White_2025.png" alt="Nevada Legislature Seal">
+                    </a>
+                </div>
+                <div class="mt-4 d-none d-sm-none d-md-block">
+                    <a href="/" class="anchorNoAnchor">
+                        <div class="ms-2 headerNvText mb-0">
+                            <div class="mb-0">Nevada</div>
+                            <div class="my-0">Legislature</div>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -74,7 +82,7 @@
 </nav>
 <!--mobile-->
 <div class="d-block d-md-none d-print-none" id="comMobileHeader">
-    <nav class="navbar bg-white">
+    <nav class="navbar">
         <div class="container-fluid row align-items-center m-0 px-0">
             <div class="col-4 d-flex justify-content-start">
                 <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +91,7 @@
             </div>
             <div class="col-4 d-flex justify-content-center">
                 <a class="navbar-brand" href="/">
-                    <img class="" src="https://www.leg.state.nv.us/Home/image/graphic/Legislative_logo_LCB-2025.png" alt="Nevada Legislature Seal" height="90">
+                    <img class="" src="https://www.leg.state.nv.us/Home/image/graphic/Legislative_logoSEAL-White_2025.png" alt="Nevada Legislature Seal" height="90">
                 </a>
             </div>
             <div class="col-4"></div>
@@ -153,13 +161,39 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button mb-2 bg-nvBlue h6 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      (0) Events for Sunday, August 23, 2026
+                      (1) Events for Tuesday, August 25, 2026
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                     <div class="accordion-body" id="todayAccordion">
                         
-    <div class='text-center h6 py-2'>There are no events today.</div>
+        <div class="row py-4 todayMtg">
+            <div class="col-md-2 text-center broadcastText mx-0 px-0">
+                10:00 AM<br />
+<a href='https://sg001-harmony.sliq.net/00324/Harmony/en/PowerBrowser/PowerBrowserV2/20260825/-1/?fk=17981&viewmode=1' target='_blank'><span class='broadcastLinks'>View Event</span></a><br />
+                <a href='https://www.youtube.com/watch?v=OxJmXePL9G0' target='_blank' rel='noopener noreferrer'><span class='broadcastLinks'>View Event on YouTube</span></a>                <div class="d-block d-sm-block d-md-none my-3">
+<a href='https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855' target='_blank'><span class='agenda'>Agenda</span></a><br />                 </div>
+                
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-10">
+                        <span class="mb-1 adjRemFont fw-bold"><a href='https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855' target='_blank'>Joint Interim Standing Committee on the Judiciary</a></span>
+                    </div>
+                    <div class="col-1 fw-bold ARight">
+                        <div class="d-none d-sm-none d-md-block">
+                            <a href='https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855' target='_blank'><span class='agenda'>Agenda</span></a>
+                        </div>
+                    </div>
+                    <div class="col-md-10 mt-2  locationSection">
+                            <div class="w100"><ul class='mb-1'><li>Room 165 of the Nevada Legislature Office Building, 7230 Amigo Street, Las Vegas, NV 89119</li><li><em>Videoconferenced to Room 4100 of the Legislative Building, 401 South Carson Street, Carson City, NV.</em></li></ul></div>
+                                                    <div class="w100">This is the sixth and final meeting of the 2025-2026 Interim. Please see the "Work Session Document" for details.
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
                     </div>
@@ -168,41 +202,12 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed bg-nvBlue h6 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                       Upcoming Events (40)
+                       Upcoming Events (39)
                     </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
                     <div class="accordion-body">
                                     <div class="h6 textOffWhite bg-nvBlue fw-bold p-3">
-                Tuesday, August 25, 2026<br />
-            </div>
-        <div class="row py-4">
-            <div class="col-md-2 text-center broadcastText mb-2">
-                10:00 AM<br />
-                    <div class="d-block d-sm-block d-md-none mb-3">
-                        <a href='https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855' target='_blank'><span class='agenda'>Agenda</span></a><br />
-                    </div>
-                
-            </div>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-10">
-                        <span class="mb-1 fw-bold adjRemFont"><a href='https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855' target='_blank'>Joint Interim Standing Committee on the Judiciary</a></span>
-                    </div>
-                    <div class="col-1 fw-bold ALeft">
-                        <div class="d-none d-sm-none d-md-block">
-                            <a href='https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/34855' target='_blank'><span class='agenda'>Agenda</span></a>
-                        </div>
-                    </div>
-                    <div class="col-md-10 mt-2 locationSection">
-                        <ul class='mb-1'><li>Room 165 of the Nevada Legislature Office Building, 7230 Amigo Street, Las Vegas, NV 89119</li><li><em>Videoconferenced to Room 4100 of the Legislative Building, 401 South Carson Street, Carson City, NV.</em></li></ul>
-                        This is the sixth and final meeting of the 2025-2026 Interim. Please see the "Work Session Document" for details.
-
-                    </div>
-                </div>
-            </div>
-        </div><div class="d-block d-sm-block d-md-none"><hr /></div>
-            <div class="h6 textOffWhite bg-nvBlue fw-bold p-3">
                 Wednesday, August 26, 2026<br />
             </div>
         <div class="row py-4">
@@ -415,7 +420,7 @@
                         </div>
                     </div>
                     <div class="col-md-10 mt-2 locationSection">
-                        <ul class='mb-1'><li>Room 4100 of the Legislative Building, 401 South Carson Street, Carson City, NV.</li><li><em>Videoconferenced to Room 165 of the Nevada Legislature Office Building, 7230 Amigo Street, Las Vegas, NV 89119</em></li></ul>
+                        <ul class='mb-1'><li>Room 165 of the Nevada Legislature Office Building, 7230 Amigo Street, Las Vegas, NV 89119</li><li><em>Videoconferenced to Room 4100 of the Legislative Building, 401 South Carson Street, Carson City, NV.</em></li></ul>
                         This is the fifth meeting in calendar year 2026.  The agenda is not yet available.
                     </div>
                 </div>
@@ -639,7 +644,7 @@
         </div><div class="d-block d-sm-block d-md-none"><hr /></div>
         <div class="row py-4">
             <div class="col-md-2 text-center broadcastText mb-2">
-                2:00 PM<br />
+                3:30 PM<br />
                 
             </div>
             <div class="col-md-10">
@@ -654,7 +659,7 @@
                     </div>
                     <div class="col-md-10 mt-2 locationSection">
                         <ul class='mb-1'><li> Room 1 of the Nevada Legislature Hearing Rooms, 7120 Amigo Street, Las Vegas, NV 89119</li><li><em>Videoconferenced to Room 2135 of the Legislative Building, 401 South Carson Street, Carson City, NV.</em></li></ul>
-                        This is the fourth meeting of the 2025-2026 Interim. **ROOM CHANGED** The agenda is not yet available. 
+                        This is the fourth meeting of the 2025-2026 Interim. **ROOM CHANGED** **TIME CHANGED** The agenda is not yet available. 
                     </div>
                 </div>
             </div>
@@ -828,7 +833,7 @@
                         </div>
                     </div>
                     <div class="col-md-10 mt-2 locationSection">
-                        <ul class='mb-1'><li>Room 2135 of the Legislative Building, 401 South Carson Street, Carson City, NV.</li><li><em>Videoconferenced to Room 165 of the Nevada Legislature Office Building, 7230 Amigo Street, Las Vegas, NV 89119</em></li></ul>
+                        <ul class='mb-1'><li>Room 165 of the Nevada Legislature Office Building, 7230 Amigo Street, Las Vegas, NV 89119</li><li><em>Videoconferenced to Room 2135 of the Legislative Building, 401 South Carson Street, Carson City, NV.</em></li></ul>
                         This is the fifth meeting of the 2025-2026 Interim. The meeting location is subject to change. The agenda is not yet available.
                     </div>
                 </div>

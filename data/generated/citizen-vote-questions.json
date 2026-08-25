@@ -5940,6 +5940,101 @@
     "confidence_score": 0.72
   },
   {
+    "id": "question-item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-B.7-8f4220e5df",
+    "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-B.7-8f4220e5df",
+    "jurisdiction": "Reno, NV",
+    "question_text": "Would you approve staff report (for possible action): award of contract to gerhardt & berry construction, inc?",
+    "short_summary": "Staff Report (For Possible Action): Award of Contract to Gerhardt & Berry Construction, Inc",
+    "neutral_context": "B.7 Staff Report (For Possible Action): Award of Contract to Gerhardt & Berry Construction, Inc",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8917"
+    ],
+    "confidence_score": 0.64
+  },
+  {
+    "id": "question-item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-B.8-504a5d43f5",
+    "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-B.8-504a5d43f5",
+    "jurisdiction": "Reno, NV",
+    "question_text": "Would you approve staff report (for possible action): award of contract to grandscapes llc for the grand canyon sidewalk connectivity project in an amount not to exceed $322,165?",
+    "short_summary": "Staff Report (For Possible Action): Award of Contract to Grandscapes LLC for the Grand Canyon Sidewalk Connectivity Project in an amount not to exceed $322,165",
+    "neutral_context": "B.8 Staff Report (For Possible Action): Award of Contract to Grandscapes LLC for the Grand Canyon Sidewalk Connectivity Project in an amount not to exceed $322,165",
+    "fiscal_impact": "$322,165",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Transportation",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8917"
+    ],
+    "confidence_score": 0.64
+  },
+  {
+    "id": "question-item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-B.9-d433b7fb63",
+    "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-B.9-d433b7fb63",
+    "jurisdiction": "Reno, NV",
+    "question_text": "Would you approve staff report (for possible action): approval of an interlocal agreement between the washoe county sheriff's office (wcso) and the city of reno, on behalf of the reno police depa...?",
+    "short_summary": "Staff Report (For Possible Action): Approval of an Interlocal Agreement between the Washoe County Sheriff's Office (WCSO) and the City of Reno, on behalf of the Reno Police Depa...",
+    "neutral_context": "B.9 Staff Report (For Possible Action): Approval of an Interlocal Agreement between the Washoe County Sheriff's Office (WCSO) and the City of Reno, on behalf of the Reno Police Department (RPD), for Crime Lab Services for Fiscal Year 26/27 in an amount not to exceed $1,500,000",
+    "fiscal_impact": "$1,500,000",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8917"
+    ],
+    "confidence_score": 0.64
+  },
+  {
+    "id": "question-item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-10-46e867aafc",
+    "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-10-46e867aafc",
+    "jurisdiction": "Reno, NV",
+    "question_text": "Would you approve staff report (for possible action): approval of agreement between the city of reno and thomson reuters to provide legal research database services to the city attorney's office...?",
+    "short_summary": "Staff Report (For Possible Action): Approval of agreement between the City of Reno and Thomson Reuters to provide legal research database services to the City Attorney's Office...",
+    "neutral_context": "10 Staff Report (For Possible Action): Approval of agreement between the City of Reno and Thomson Reuters to provide legal research database services to the City Attorney's Office for five years in an amount not to exceed $65,000 per year",
+    "fiscal_impact": "$65,000 per year",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8917"
+    ],
+    "confidence_score": 0.64
+  },
+  {
+    "id": "question-item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-B.11-b0abb8acf1",
+    "meeting_item_id": "item-meeting-manual-reno-city-council-reno-city-council-2026-08-26-bfc3fca0-B.11-b0abb8acf1",
+    "jurisdiction": "Reno, NV",
+    "question_text": "Would you approve staff report (for possible action): discussion and approval of reno fire department renovation grant agreement for improvements to station 12 fire station between the city and t...?",
+    "short_summary": "Staff Report (For Possible Action): Discussion and approval of Reno Fire Department renovation grant agreement for improvements to Station 12 Fire Station between the City and t...",
+    "neutral_context": "B.11 Staff Report (For Possible Action): Discussion and approval of Reno Fire Department renovation grant agreement for improvements to Station 12 Fire Station between the City and the Dave & Cheryl Duffield Foundation in the amount not to exceed $1,700,000",
+    "fiscal_impact": "$1,700,000",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://reno.primegov.com/Portal/Meeting?meetingTemplateId=8917"
+    ],
+    "confidence_score": 0.64
+  },
+  {
     "id": "question-item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-14-41e873b1-4-f8aadbe73f",
     "meeting_item_id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-14-41e873b1-4-f8aadbe73f",
     "jurisdiction": "Churchill County, NV",
@@ -12757,6 +12852,386 @@
     "review_status": "needs_financial_review",
     "source_urls": [
       "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08102026-70"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-8-b7f9c65961",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-8-b7f9c65961",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve for discussion only: review and discussion of resolution 2026-12, a resolution amending the city of yerington fee schedule as it pertains to various line items.?",
+    "short_summary": "For Discussion Only: Review and Discussion of Resolution 2026-12, a resolution amending the City of Yerington Fee Schedule as it pertains to various line items.",
+    "neutral_context": "8. For Discussion Only: Review and Discussion of Resolution 2026-12, a resolution amending the City of Yerington Fee Schedule as it pertains to various line items.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Taxes",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-10-5c350f586d",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-10-5c350f586d",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve for discussion only: review and discussion of a proposed salary and classification policy for city employees not covered by contract. (city manager jerry bryant)?",
+    "short_summary": "For Discussion Only: Review and Discussion of a proposed Salary and Classification Policy for City Employees not covered by contract. (City Manager Jerry Bryant)",
+    "neutral_context": "10. For Discussion Only: Review and Discussion of a proposed Salary and Classification Policy for City Employees not covered by contract. (City Manager Jerry Bryant)",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-3-5d3bb391b2",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-3-5d3bb391b2",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve agenda approval mayor pro tem martin stated the agenda would be approved as presented unless there were any objections or corrections. interim city manager bryant asked that ite...?",
+    "short_summary": "Agenda Approval Mayor Pro Tem Martin stated the agenda would be approved as presented unless there were any objections or corrections. Interim City Manager Bryant asked that ite...",
+    "neutral_context": "3. Agenda Approval Mayor Pro Tem Martin stated the agenda would be approved as presented unless there were any objections or corrections. Interim City Manager Bryant asked that item #7 be heard before item #6. Item #10 will be tabled for a future meeting. Councilman Galvin made a motion to approve the agenda with corrections, seconded by Councilman Lopez and the agenda was approved unanimously. Mayor Pro Tem Martin asked for comments and no comments were made at this time. -- 15 of 99 --",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-2026-71efa87165",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-2026-71efa87165",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve private activity bond volume cap to the nevada rural housing authority in the amount of $234,757.13; and other matters related thereto. shawn heusser, director of finance for ne...?",
+    "short_summary": "Private Activity Bond Volume Cap to the Nevada Rural Housing Authority in the amount of $234,757.13; and Other Matters Related Thereto. Shawn Heusser, Director of Finance for Ne...",
+    "neutral_context": "2026 Private Activity Bond Volume Cap to the Nevada Rural Housing Authority in the amount of $234,757.13; and Other Matters Related Thereto. Shawn Heusser, Director of Finance for Nevada Rural Housing Authority stated that they truly appreciate the relationship with the city. Over the past 50 years Nevada Rural Housing Authority has helped over 11,000 homebuyers throughout rural Nevada with $2.5 million of mortgage lending. Each year they help over 1300 renters with renter’s assistance program. Specifically for Yerington in the past 20 years we’ve helped with $11.7 million in mortgages with 63 homebuyers, $250,000 in down payment assistance. Last year, the city of Yerington had 2 home buy...",
+    "fiscal_impact": "$234,757.13; and Other Matters Related Thereto",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-39-e5e041b80e",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-39-e5e041b80e",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve has ruined? city manager bryant stated that mckenzie has taken the brunt of all this with that road needing repairs. ndot has improved the roads recently. the county wants to wa...?",
+    "short_summary": "has ruined? City Manager Bryant stated that McKenzie has taken the brunt of all this with that road needing repairs. NDOT has improved the roads recently. The county wants to wa...",
+    "neutral_context": "has ruined? City Manager Bryant stated that McKenzie has taken the brunt of all this with that road needing repairs. NDOT has improved the roads recently. The county wants to wait until the project is done before fixing the roads. The county commissioners approved this project. That road has needed to be done for years. Before Solar even began using them. Councilman Galvin stated the city does need to do their part and get the roads fixed. They’ve estimated to use 500 acre feet a year. Public Works Director, Paul Shapiro stated there were a few points brought up that he wants to clarify. He monitors the water very closely. They check this every day. By leasing the water rights allows us t...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Transportation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-40-14b9613a99",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-40-14b9613a99",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve you want to push this through. he stated that he lives on mckenzie and it is already bad. they don’t need to be on mckenzie or pursel. leah wilkinson stated once construction is...?",
+    "short_summary": "you want to push this through. He stated that he lives on Mckenzie and it is already bad. They don’t need to be on McKenzie or Pursel. Leah Wilkinson stated once construction is...",
+    "neutral_context": "you want to push this through. He stated that he lives on Mckenzie and it is already bad. They don’t need to be on McKenzie or Pursel. Leah Wilkinson stated once construction is completed how much water does Libra Solar need? Libra is paving the Walker River Road and this has improved the road to Walker River Nevada State Park. If you have any questions read the paper. Councilman Galvin stated that for wells on site, the state Engineer is going to give permission. The City has nothing to do with that. Councilman Beaton stated that we are only approving the application. City Manager Bryant stated that the final determination is up to State Engineer. State Engineer has final say on where th...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Transportation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-43-c940e75689",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-43-c940e75689",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve have to wait in that rotation to be heard. if somebody is filling in for our judge, and we happen to have one, this just establishes an hourly rate for them to get compensated f...?",
+    "short_summary": "have to wait in that rotation to be heard. If somebody is filling in for our judge, and we happen to have one, this just establishes an hourly rate for them to get compensated f...",
+    "neutral_context": "have to wait in that rotation to be heard. If somebody is filling in for our judge, and we happen to have one, this just establishes an hourly rate for them to get compensated for filling in. Councilman Lopez asked if the ones in color are the ones being added to the rotation. City Manager Bryant stated that that is correct. The ones in red are the ones being added. Councilman Beaton added that there’s some really, really, really good people being added to this list. He knows several of them personally and they’re very, very, very thorough and well-established in the judicial system. Councilman Lopez made a motion to accept item number 8 as presented, seconded by Councilman Beaton. Mayor...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-45-af08183e2f",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-45-af08183e2f",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve to keep going on with that. i’ve been working with former assemblyman tom roberts on this. i’m also working with miranda hoover who is going to lobby this for us if it makes it...?",
+    "short_summary": "to keep going on with that. I’ve been working with former Assemblyman Tom Roberts on this. I’m also working with Miranda Hoover who is going to lobby this for us if it makes it...",
+    "neutral_context": "to keep going on with that. I’ve been working with former Assemblyman Tom Roberts on this. I’m also working with Miranda Hoover who is going to lobby this for us if it makes it to the floor. Bobby B. Onion was created on a whiteboard when I worked for the Department of Agriculture. I graphic designed him and then came to Yerington, Hawthorne and Schurz two years ago. Councilman Lopez stated that he thinks this is awesome. He was walking around with his button on and everybody wanted one. We should give our buttons to advertise this because we don’t have a current state vegetable. Councilman Beaton stated that this is super cool initiative. The one thing I would ask is that as we look at t...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-50-31415bacda",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-50-31415bacda",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve councilman galvin made a motion to approve item number 11 as presented, seconded by councilman lopez. mayor pro tem martin asked for comments. ms. biggs stated that the city nee...?",
+    "short_summary": "Councilman Galvin made a motion to approve item number 11 as presented, seconded by Councilman Lopez. Mayor Pro Tem Martin asked for comments. Ms. Biggs stated that the city nee...",
+    "neutral_context": "Councilman Galvin made a motion to approve item number 11 as presented, seconded by Councilman Lopez. Mayor Pro Tem Martin asked for comments. Ms. Biggs stated that the city needs to get the company that did the water and sewer replacement project to pay for the repairs. No more comments were made and motion carries unanimously.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-52-91bbbab746",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-52-91bbbab746",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve square feet and it pays pretty close to what the rate is on item thirteen. councilman lopez asked if all of the hangars are owned by somebody or does the city own some? city man...?",
+    "short_summary": "square feet and it pays pretty close to what the rate is on item thirteen. Councilman Lopez asked if all of the hangars are owned by somebody or does the city own some? City Man...",
+    "neutral_context": "square feet and it pays pretty close to what the rate is on item thirteen. Councilman Lopez asked if all of the hangars are owned by somebody or does the city own some? City Manager Bryant stated that the city owns a good portion of them. There are a few privately owned. Councilman Lopez asked if they have to live in the city or can anybody own them. City Manager Bryant stated that they don’t have to live in the city and anybody can lease or rent one that goes before the council here for approval before they actually sign it. We’re going through and trying to audit our list annually to make sure that they’re all current and up to date, that they have insurance and that there’s a plane in...",
+    "fiscal_impact": "$0.80 per square foot which is industry or right around industry standard for that size hangar",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-40-ed9cccc8cd",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-40-ed9cccc8cd",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve years would be to grow our valuation to be able to grow the amount that we’re able to take on safely. city manager bryant stated that is correct. we would need to increase our a...?",
+    "short_summary": "years would be to grow our valuation to be able to grow the amount that we’re able to take on safely. City Manager Bryant stated that is correct. We would need to increase our a...",
+    "neutral_context": "40 years would be to grow our valuation to be able to grow the amount that we’re able to take on safely. City Manager Bryant stated that is correct. We would need to increase our assessed valuation to increase what that ability even is. Until our revenues reach a better sustainable level, I would be very cautious. Sometimes that bad positioning of being in debt with little revenue coming in may actually help us with particular grants that we’re seeking because we’re in a bad position. I’m not saying I like where we’re at, but when you realize you’re in a bad spot sometimes you do try use that to get improvements along the way. Councilman Galvin made a motion to approve item number",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Taxes",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-I-251c027955",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-I-251c027955",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve cody ogburn dba coeh corp. dba budget blinds, install window coverings, 6550 longley ln #115 reno, nv 89511-renewal j. roberto & sonia villanueva dba ar electric, llc, electrica...?",
+    "short_summary": "Cody Ogburn dba COEH Corp. dba Budget Blinds, Install Window Coverings, 6550 Longley Ln #115 Reno, NV 89511-Renewal J. Roberto & Sonia Villanueva dba AR Electric, LLC, Electrica...",
+    "neutral_context": "I. Cody Ogburn dba COEH Corp. dba Budget Blinds, Install Window Coverings, 6550 Longley Ln #115 Reno, NV 89511-Renewal J. Roberto & Sonia Villanueva dba AR Electric, LLC, Electrical Contractor, 1362 US Hwy 395 Ste. 102-96 Gardnerville, NV 89410-New Councilman Lopez made a motion to approve the consent agenda as presented. Second by Councilman Martin. Mayor Garry offered public comment, none was given. Item passed unanimously. Regular Agenda",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-7-b8f0fc2506",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-7-b8f0fc2506",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve for presentation only: recognition of the yerington animal shelter, on behalf of best friends animal society. presented by public works director paul shapiro. public works direc...?",
+    "short_summary": "For Presentation Only: Recognition of the Yerington Animal Shelter, on behalf of Best Friends Animal Society. Presented by Public Works Director Paul Shapiro. Public Works Direc...",
+    "neutral_context": "7. For Presentation Only: Recognition of the Yerington Animal Shelter, on behalf of Best Friends Animal Society. Presented by Public Works Director Paul Shapiro. Public Works Director Paul Shapiro presented this item, stating it is the second consecutive year that the Yerington Animal Shelter was presented with this award by Best Friends Animal Society. It recognizes our shelter for achieving a 90% or better save rate with animals. While our shelter is not truly a “no-kill” shelter by ordinance, our staff and volunteers work diligently to find successful outcomes for all animals in our care. While not all can be saved, often due to health-related issues, our staff and volunteers work extr...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Healthcare",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-8-12f5749580",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-8-12f5749580",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve for possible action: discussion and possible action to adopt resolution 2026-11 authorizing the transfer of $6,427.00 for fy2026-2027 from management/city hall to animal control...?",
+    "short_summary": "For Possible Action: Discussion and Possible Action to Adopt Resolution 2026-11 authorizing the transfer of $6,427.00 for FY2026-2027 from Management/City Hall to Animal Control...",
+    "neutral_context": "8. For Possible Action: Discussion and Possible Action to Adopt Resolution 2026-11 authorizing the transfer of $6,427.00 for FY2026-2027 from Management/City Hall to Animal Control, within the General Fund, as authorized by NRS 354.598005. -- 27 of 99 -- Manager Bryant presented this item, stating that every weekend Public Works staff is paid overtime to manage the operations at the animal shelter. Additionally, there were budgeted funds for a part time employee at City Hall, that are no longer intended to be utilized. This transfer, if approved, would shift those part time employee funds to the animal shelter to allow the hire of a part time employee to manage the day to day cleaning, re...",
+    "fiscal_impact": "$6,427.00 for FY2026-2027 from Management/City Hall to Animal Control, within the General Fund, as authorized by NRS 354",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Labor",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-2026-e69a21719f",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-2026-e69a21719f",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve councilman lopez made a motion to approve this item, second by councilman martin. public comment was offered, none was made. motion passed unanimously.?",
+    "short_summary": "Councilman Lopez made a motion to approve this item, second by Councilman Martin. Public Comment was offered, none was made. Motion passed unanimously.",
+    "neutral_context": "2026. Councilman Lopez made a motion to approve this item, second by Councilman Martin. Public Comment was offered, none was made. Motion passed unanimously.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-14-f8faf3278c",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-14-f8faf3278c",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve adjournment. being no further business this meeting was adjourned. -- 29 of 99 -- -- 30 of 99 -- -- 31 of 99 -- -- 32 of 99 -- -- 33 of 99 -- -- 34 of 99 -- -- 35 of 99 -- resol...?",
+    "short_summary": "Adjournment. Being no further business this meeting was adjourned. -- 29 of 99 -- -- 30 of 99 -- -- 31 of 99 -- -- 32 of 99 -- -- 33 of 99 -- -- 34 of 99 -- -- 35 of 99 -- RESOL...",
+    "neutral_context": "14. Adjournment. Being no further business this meeting was adjourned. -- 29 of 99 -- -- 30 of 99 -- -- 31 of 99 -- -- 32 of 99 -- -- 33 of 99 -- -- 34 of 99 -- -- 35 of 99 -- RESOLUTION NO. 2026-13 A RESOLUTION OF THE YERINGTON CITY COUNCIL DECLARING A NUISANCE TO EXIST AT 119 S. WEST ST., YERINGTON, NV 89447, AND ORDERING THE ABATEMENT THEREOF WHEREAS, the City Clerk has received a written complaint alleging the existence of a public nuisance was filed regarding real property located within the municipal boundaries of the City of Yerington at 119 S. West St., Yerington, NV 89447 (APN 001-185-04); and WHEREAS, pursuant to Yerington City Code 4-2-4, an investigation of said property was c...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Business Regulation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-2-2d58c17e2a",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-2-2d58c17e2a",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve to abate: the owner, occupant, or person in charge or control of the subject property is hereby ordered to abate and remove said nuisance in its entirety within five (5) c...?",
+    "short_summary": "ORDER TO ABATE: The owner, occupant, or person in charge or control of the subject property is hereby ordered to abate and remove said nuisance in its entirety within five (5) c...",
+    "neutral_context": "2. ORDER TO ABATE: The owner, occupant, or person in charge or control of the subject property is hereby ordered to abate and remove said nuisance in its entirety within five (5) calendar days from the date of service of this Order/Resolution, as prescribed in Yerington City Code 4-2-6 and 4-2-7.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-6-0c8002bccc",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-6-0c8002bccc",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve of refuse: the persons abating the nuisance may remove and dispose of all refuse, rubbish, garbage, and personal property forthwith, all at owner expense. passed, adopt...?",
+    "short_summary": "DISPOSAL OF REFUSE: The persons abating the nuisance may remove and dispose of all refuse, rubbish, garbage, and personal property forthwith, all at owner expense. PASSED, ADOPT...",
+    "neutral_context": "6. DISPOSAL OF REFUSE: The persons abating the nuisance may remove and dispose of all refuse, rubbish, garbage, and personal property forthwith, all at owner expense. PASSED, ADOPTED, AND APPROVED this ____ day of __________, 2026. CITY OF YERINGTON, NEVADA By: __________________________ John J. Garry, Mayor -- 36 of 99 -- By: __________________________ Stacy Stevenson, City Clerk -- 37 of 99 -- -- 38 of 99 -- -- 39 of 99 -- -- 40 of 99 -- -- 41 of 99 -- -- 42 of 99 -- -- 43 of 99 -- -- 44 of 99 -- -- 45 of 99 -- Jerry Bryant <jerryb@yerington.net> Re: 119 S. West St. Jerry Bryant <jerryb@yerington.net> Mon, Aug 10, 2026 at 8:33 AM To: Joshua Dini <dini.joshua3811@gmail.com> Good morning,...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-4.3-4ca9cb6312",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-4.3-4ca9cb6312",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve opportunities • pumpkin hollow mine restart: 300+ high-wage jobs, multiplier effects, and local supply chain opportunities. • critical minerals supply chain development (copper...?",
+    "short_summary": "Opportunities • Pumpkin Hollow mine restart: 300+ high-wage jobs, multiplier effects, and local supply chain opportunities. • Critical minerals supply chain development (copper...",
+    "neutral_context": "4.3 Opportunities • Pumpkin Hollow mine restart: 300+ high-wage jobs, multiplier effects, and local supply chain opportunities. • Critical minerals supply chain development (copper for EV/clean energy transition). • Walker River Corridor tourism development and agritourism expansion. • Federal infrastructure and economic development funding (EDA, USDA Rural Development, • Value-added agricultural processing to capture more of the food supply chain. -- 75 of 99 -- • Remote worker attraction leveraging affordable housing and quality of life. • Water market development supporting agricultural resilience and economic flexibility. • Expansion of Western Nevada College offerings in Yerington fo...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-160-b386c12365",
+    "meeting_item_id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-160-b386c12365",
+    "jurisdiction": "Yerington, NV",
+    "question_text": "Would you approve the 2025–2030 comprehensive economic development strategy charts a path that is both realistic about challenges and ambitious about opportunities. the pumpkin hollow mine restar...?",
+    "short_summary": "The 2025–2030 Comprehensive Economic Development Strategy charts a path that is both realistic about challenges and ambitious about opportunities. The Pumpkin Hollow mine restar...",
+    "neutral_context": "The 2025–2030 Comprehensive Economic Development Strategy charts a path that is both realistic about challenges and ambitious about opportunities. The Pumpkin Hollow mine restart, led by Kinterra Capital/Southwest Critical Materials, represents the most significant near-term economic catalyst—with the potential to add hundreds of high-wage jobs, stimulate a local supply chain, and generate tax revenues supporting community infrastructure. Alongside this, the diversification of agriculture, expansion of tourism along the Walker River, investment in downtown revitalization, and targeted workforce development programs will collectively strengthen the economic foundation. Success will require...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Taxes",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.yerington.net/AgendaCenter/ViewFile/Agenda/_08242026-71"
     ],
     "confidence_score": 0.66
   },

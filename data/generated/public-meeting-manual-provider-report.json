@@ -4,22 +4,22 @@
     "source_name": "Reno City Council",
     "status": "parsed",
     "manifest_path": "data/manual-sources/public-meetings/reno-city-council/manifest.json",
-    "cached_files": 153,
+    "cached_files": 152,
     "detail_pages_collected": 5,
     "pdfs_collected": 3,
-    "json_collected": 145,
-    "parsed_meetings": 108,
-    "parsed_items": 108,
-    "vote_action_records_parsed": 0,
+    "json_collected": 144,
+    "parsed_meetings": 106,
+    "parsed_items": 124,
+    "vote_action_records_parsed": 2,
     "official_action_records_parsed": 0,
     "roll_call_parsed_count": 0,
-    "roll_call_needs_review_count": 2,
+    "roll_call_needs_review_count": 20,
     "low_confidence_pdf_records": 0,
     "question_ready_count": 0,
-    "question_needs_context_count": 0,
-    "question_needs_financial_review_count": 0,
+    "question_needs_context_count": 2,
+    "question_needs_financial_review_count": 8,
     "question_needs_vote_outcome_count": 0,
-    "needs_review_count": 106,
+    "needs_review_count": 104,
     "parser_failures": 0,
     "failure_reasons": [],
     "boarddocs_failures": [],
@@ -31,23 +31,23 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:12.157Z"
+    "updated_at": "2026-08-25T13:09:41.290Z"
   },
   {
     "provider_id": "nv-legislature",
     "source_name": "Nevada Legislature",
     "status": "parsed",
     "manifest_path": "data/manual-sources/public-meetings/nv-legislature/manifest.json",
-    "cached_files": 47,
-    "detail_pages_collected": 47,
+    "cached_files": 51,
+    "detail_pages_collected": 51,
     "pdfs_collected": 0,
     "json_collected": 0,
-    "parsed_meetings": 7,
-    "parsed_items": 61,
+    "parsed_meetings": 11,
+    "parsed_items": 94,
     "vote_action_records_parsed": 1,
     "official_action_records_parsed": 0,
     "roll_call_parsed_count": 0,
-    "roll_call_needs_review_count": 0,
+    "roll_call_needs_review_count": 5,
     "low_confidence_pdf_records": 0,
     "question_ready_count": 0,
     "question_needs_context_count": 0,
@@ -59,10 +59,12 @@
     "boarddocs_failures": [],
     "fixture_files": 0,
     "interactive_session_needed": false,
-    "parser_gaps": [],
-    "next_recommended_action": "Run manual import after adding new official source files.",
-    "notes": null,
-    "updated_at": "2026-08-23T13:07:12.187Z"
+    "parser_gaps": [
+      "Vote/action text found but individual roll-call names need review."
+    ],
+    "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
+    "notes": "Vote/action text found but individual roll-call names need review.",
+    "updated_at": "2026-08-25T13:09:41.330Z"
   },
   {
     "provider_id": "nv-senate",
@@ -95,7 +97,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-08-23T13:07:12.201Z"
+    "updated_at": "2026-08-25T13:09:41.346Z"
   },
   {
     "provider_id": "nv-assembly",
@@ -128,7 +130,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-08-23T13:07:12.219Z"
+    "updated_at": "2026-08-25T13:09:41.372Z"
   },
   {
     "provider_id": "nv-governor-executive-boards",
@@ -159,7 +161,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:12.222Z"
+    "updated_at": "2026-08-25T13:09:41.376Z"
   },
   {
     "provider_id": "nshe-board-of-regents",
@@ -193,7 +195,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:13.651Z"
+    "updated_at": "2026-08-25T13:09:43.156Z"
   },
   {
     "provider_id": "churchill-county-commission",
@@ -228,7 +230,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:13.801Z"
+    "updated_at": "2026-08-25T13:09:43.383Z"
   },
   {
     "provider_id": "clark-county-commission",
@@ -266,7 +268,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:13.867Z"
+    "updated_at": "2026-08-25T13:09:43.463Z"
   },
   {
     "provider_id": "elko-county-commission",
@@ -300,7 +302,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:13.959Z"
+    "updated_at": "2026-08-25T13:09:43.567Z"
   },
   {
     "provider_id": "esmeralda-county-commission",
@@ -334,7 +336,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:14.089Z"
+    "updated_at": "2026-08-25T13:09:43.722Z"
   },
   {
     "provider_id": "humboldt-county-commission",
@@ -368,7 +370,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:14.119Z"
+    "updated_at": "2026-08-25T13:09:43.763Z"
   },
   {
     "provider_id": "lander-county-commission",
@@ -402,7 +404,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:14.133Z"
+    "updated_at": "2026-08-25T13:09:43.779Z"
   },
   {
     "provider_id": "lincoln-county-commission",
@@ -433,7 +435,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:14.140Z"
+    "updated_at": "2026-08-25T13:09:43.787Z"
   },
   {
     "provider_id": "mineral-county-commission",
@@ -467,7 +469,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:14.272Z"
+    "updated_at": "2026-08-25T13:09:43.961Z"
   },
   {
     "provider_id": "storey-county-commission",
@@ -502,7 +504,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:17.730Z"
+    "updated_at": "2026-08-25T13:09:47.729Z"
   },
   {
     "provider_id": "white-pine-county-commission",
@@ -536,19 +538,19 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:17.874Z"
+    "updated_at": "2026-08-25T13:09:47.895Z"
   },
   {
     "provider_id": "boulder-city-council",
     "source_name": "Boulder City Council",
     "status": "parsed",
     "manifest_path": "data/manual-sources/public-meetings/boulder-city-council/manifest.json",
-    "cached_files": 106,
+    "cached_files": 110,
     "detail_pages_collected": 9,
     "pdfs_collected": 2,
-    "json_collected": 95,
-    "parsed_meetings": 54,
-    "parsed_items": 54,
+    "json_collected": 99,
+    "parsed_meetings": 56,
+    "parsed_items": 56,
     "vote_action_records_parsed": 0,
     "official_action_records_parsed": 0,
     "roll_call_parsed_count": 0,
@@ -558,7 +560,7 @@
     "question_needs_context_count": 0,
     "question_needs_financial_review_count": 0,
     "question_needs_vote_outcome_count": 0,
-    "needs_review_count": 55,
+    "needs_review_count": 57,
     "parser_failures": 0,
     "failure_reasons": [],
     "boarddocs_failures": [],
@@ -570,7 +572,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:20.361Z"
+    "updated_at": "2026-08-25T13:09:48.082Z"
   },
   {
     "provider_id": "carlin-city-council",
@@ -604,7 +606,7 @@
     ],
     "next_recommended_action": "Some PDF packet records are low confidence.",
     "notes": "Some PDF packet records are low confidence.",
-    "updated_at": "2026-08-23T13:07:21.257Z"
+    "updated_at": "2026-08-25T13:09:49.034Z"
   },
   {
     "provider_id": "elko-city-council",
@@ -639,7 +641,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:21.449Z"
+    "updated_at": "2026-08-25T13:09:49.278Z"
   },
   {
     "provider_id": "ely-city-council",
@@ -673,7 +675,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:21.486Z"
+    "updated_at": "2026-08-25T13:09:49.310Z"
   },
   {
     "provider_id": "fallon-city-council",
@@ -697,28 +699,24 @@
     "question_needs_vote_outcome_count": 0,
     "needs_review_count": 0,
     "parser_failures": 0,
-    "failure_reasons": [
-      "page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.fallonnevada.gov/\nCall log:\n\u001b[2m  - navigating to \"https://www.fallonnevada.gov/\", waiting until \"domcontentloaded\"\u001b[22m\n"
-    ],
+    "failure_reasons": [],
     "boarddocs_failures": [],
     "fixture_files": 0,
     "interactive_session_needed": false,
-    "parser_gaps": [
-      "Some public linked downloads failed and need review."
-    ],
-    "next_recommended_action": "Some public linked downloads failed and need review.",
-    "notes": "Some public linked downloads failed and need review.",
-    "updated_at": "2026-08-23T13:07:21.491Z"
+    "parser_gaps": [],
+    "next_recommended_action": "Run manual import after adding new official source files.",
+    "notes": null,
+    "updated_at": "2026-08-25T13:09:49.315Z"
   },
   {
     "provider_id": "fernley-city-council",
     "source_name": "Fernley City Council",
     "status": "cached",
     "manifest_path": "data/manual-sources/public-meetings/fernley-city-council/manifest.json",
-    "cached_files": 49,
-    "detail_pages_collected": 11,
+    "cached_files": 56,
+    "detail_pages_collected": 13,
     "pdfs_collected": 7,
-    "json_collected": 31,
+    "json_collected": 36,
     "parsed_meetings": 0,
     "parsed_items": 0,
     "vote_action_records_parsed": 0,
@@ -742,7 +740,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:07:25.066Z"
+    "updated_at": "2026-08-25T13:09:53.795Z"
   },
   {
     "provider_id": "henderson-city-council",
@@ -773,7 +771,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:25.076Z"
+    "updated_at": "2026-08-25T13:09:53.807Z"
   },
   {
     "provider_id": "las-vegas-city-council",
@@ -807,7 +805,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:25.145Z"
+    "updated_at": "2026-08-25T13:09:53.883Z"
   },
   {
     "provider_id": "lovelock-city-council",
@@ -838,7 +836,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:25.146Z"
+    "updated_at": "2026-08-25T13:09:53.884Z"
   },
   {
     "provider_id": "north-las-vegas-city-council",
@@ -872,45 +870,41 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:25.580Z"
+    "updated_at": "2026-08-25T13:09:54.343Z"
   },
   {
     "provider_id": "sparks-city-council",
     "source_name": "Sparks City Council",
     "status": "partially_parsed",
     "manifest_path": "data/manual-sources/public-meetings/sparks-city-council/manifest.json",
-    "cached_files": 21,
+    "cached_files": 24,
     "detail_pages_collected": 14,
-    "pdfs_collected": 7,
+    "pdfs_collected": 10,
     "json_collected": 0,
-    "parsed_meetings": 6,
-    "parsed_items": 6,
+    "parsed_meetings": 9,
+    "parsed_items": 9,
     "vote_action_records_parsed": 0,
     "official_action_records_parsed": 0,
     "roll_call_parsed_count": 0,
     "roll_call_needs_review_count": 0,
-    "low_confidence_pdf_records": 6,
+    "low_confidence_pdf_records": 9,
     "question_ready_count": 0,
     "question_needs_context_count": 0,
     "question_needs_financial_review_count": 0,
     "question_needs_vote_outcome_count": 0,
-    "needs_review_count": 14,
-    "parser_failures": 7,
-    "failure_reasons": [
-      "HTTP 503 Service Unavailable",
-      "apiRequestContext.get: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - → GET http://portal.cityofsparks.us/agendas\u001b[22m\n\u001b[2m    - user-agent: Direct Democracy Playwright public-record preservation\u001b[22m\n\u001b[2m    - accept: application/pdf,application/json,text/html,text/plain,*/*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  - ← 302 Found\u001b[22m\n\u001b[2m    - date: Mon, 17 Aug 2026 13:15:14 GMT\u001b[22m\n\u001b[2m    - server: Apache\u001b[22m\n\u001b[2m    - location: https://agendas.cityofsparks.us/OnBaseAgendaOnline\u001b[22m\n\u001b[2m    - content-length: 274\u001b[22m\n\u001b[2m    - keep-alive: timeout=5, max=100\u001b[22m\n\u001b[2m    - connection: Keep-Alive\u001b[22m\n\u001b[2m    - content-type: text/html; charset=iso-8859-1\u001b[22m\n\u001b[2m  - → GET https://agendas.cityofsparks.us/OnBaseAgendaOnline\u001b[22m\n\u001b[2m    - user-agent: Direct Democracy Playwright public-record preservation\u001b[22m\n\u001b[2m    - accept: application/pdf,application/json,text/html,text/plain,*/*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - cookie: ASP.NET_SessionId=z2gftnbqxllobxywvl1ro3re; __RequestVerificationToken_L09uQmFzZUFnZW5kYU9ubGluZQ2=y___Qg1FX2_KzIzZ_bRtfDeGqD0kQM_ofRq3dH4jKLyseA8Wi-0nWMTyEroXSYF_gb97MQI1hkMzPtZ_NATfIvb9qo9g8W7dzswnODIKsVU1\u001b[22m\n"
-    ],
+    "needs_review_count": 20,
+    "parser_failures": 10,
+    "failure_reasons": [],
     "boarddocs_failures": [],
     "fixture_files": 0,
     "interactive_session_needed": true,
     "parser_gaps": [
       "Some PDF packet records are low confidence.",
-      "Some public linked downloads failed and need review.",
       "Some saved source records need manual review."
     ],
     "next_recommended_action": "Some PDF packet records are low confidence.",
     "notes": "Some PDF packet records are low confidence.",
-    "updated_at": "2026-08-23T13:07:25.593Z"
+    "updated_at": "2026-08-25T13:09:54.361Z"
   },
   {
     "provider_id": "wells-city-council",
@@ -941,7 +935,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:25.595Z"
+    "updated_at": "2026-08-25T13:09:54.362Z"
   },
   {
     "provider_id": "west-wendover-city-council",
@@ -972,7 +966,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:25.595Z"
+    "updated_at": "2026-08-25T13:09:54.363Z"
   },
   {
     "provider_id": "winnemucca-city-council",
@@ -1003,29 +997,29 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:25.596Z"
+    "updated_at": "2026-08-25T13:09:54.364Z"
   },
   {
     "provider_id": "yerington-city-council",
     "source_name": "Yerington City Council",
     "status": "parsed",
     "manifest_path": "data/manual-sources/public-meetings/yerington-city-council/manifest.json",
-    "cached_files": 30,
-    "detail_pages_collected": 9,
-    "pdfs_collected": 13,
+    "cached_files": 33,
+    "detail_pages_collected": 10,
+    "pdfs_collected": 15,
     "json_collected": 8,
-    "parsed_meetings": 6,
-    "parsed_items": 602,
-    "vote_action_records_parsed": 78,
-    "official_action_records_parsed": 43,
-    "roll_call_parsed_count": 436,
-    "roll_call_needs_review_count": 166,
-    "low_confidence_pdf_records": 475,
+    "parsed_meetings": 7,
+    "parsed_items": 762,
+    "vote_action_records_parsed": 105,
+    "official_action_records_parsed": 63,
+    "roll_call_parsed_count": 568,
+    "roll_call_needs_review_count": 194,
+    "low_confidence_pdf_records": 600,
     "question_ready_count": 0,
-    "question_needs_context_count": 76,
-    "question_needs_financial_review_count": 44,
-    "question_needs_vote_outcome_count": 3,
-    "needs_review_count": 488,
+    "question_needs_context_count": 95,
+    "question_needs_financial_review_count": 50,
+    "question_needs_vote_outcome_count": 9,
+    "needs_review_count": 615,
     "parser_failures": 0,
     "failure_reasons": [],
     "boarddocs_failures": [],
@@ -1038,7 +1032,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:27.245Z"
+    "updated_at": "2026-08-25T13:09:56.654Z"
   },
   {
     "provider_id": "carson-city-school-district",
@@ -1071,7 +1065,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-08-23T13:07:27.246Z"
+    "updated_at": "2026-08-25T13:09:56.657Z"
   },
   {
     "provider_id": "churchill-county-school-district",
@@ -1102,7 +1096,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.254Z"
+    "updated_at": "2026-08-25T13:09:56.665Z"
   },
   {
     "provider_id": "clark-county-school-district",
@@ -1135,7 +1129,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-08-23T13:07:27.266Z"
+    "updated_at": "2026-08-25T13:09:56.682Z"
   },
   {
     "provider_id": "douglas-county-school-district",
@@ -1166,7 +1160,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.273Z"
+    "updated_at": "2026-08-25T13:09:56.691Z"
   },
   {
     "provider_id": "elko-county-school-district",
@@ -1197,7 +1191,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.277Z"
+    "updated_at": "2026-08-25T13:09:56.696Z"
   },
   {
     "provider_id": "esmeralda-county-school-district",
@@ -1228,7 +1222,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.295Z"
+    "updated_at": "2026-08-25T13:09:56.700Z"
   },
   {
     "provider_id": "eureka-county-school-district",
@@ -1259,7 +1253,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.312Z"
+    "updated_at": "2026-08-25T13:09:56.729Z"
   },
   {
     "provider_id": "humboldt-county-school-district",
@@ -1301,7 +1295,7 @@
     ],
     "next_recommended_action": "Some public linked downloads failed and need review.",
     "notes": "Some public linked downloads failed and need review.",
-    "updated_at": "2026-08-23T13:07:27.318Z"
+    "updated_at": "2026-08-25T13:09:56.737Z"
   },
   {
     "provider_id": "lander-county-school-district",
@@ -1342,7 +1336,7 @@
     ],
     "next_recommended_action": "Some public linked downloads failed and need review.",
     "notes": "Some public linked downloads failed and need review.",
-    "updated_at": "2026-08-23T13:07:27.322Z"
+    "updated_at": "2026-08-25T13:09:56.742Z"
   },
   {
     "provider_id": "lincoln-county-school-district",
@@ -1373,7 +1367,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.332Z"
+    "updated_at": "2026-08-25T13:09:56.758Z"
   },
   {
     "provider_id": "lyon-county-school-district",
@@ -1404,7 +1398,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.335Z"
+    "updated_at": "2026-08-25T13:09:56.762Z"
   },
   {
     "provider_id": "mineral-county-school-district",
@@ -1435,7 +1429,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.340Z"
+    "updated_at": "2026-08-25T13:09:56.767Z"
   },
   {
     "provider_id": "nye-county-school-district",
@@ -1466,7 +1460,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.348Z"
+    "updated_at": "2026-08-25T13:09:56.776Z"
   },
   {
     "provider_id": "pershing-county-school-district",
@@ -1497,7 +1491,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.355Z"
+    "updated_at": "2026-08-25T13:09:56.786Z"
   },
   {
     "provider_id": "storey-county-school-district",
@@ -1528,7 +1522,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.358Z"
+    "updated_at": "2026-08-25T13:09:56.789Z"
   },
   {
     "provider_id": "white-pine-county-school-district",
@@ -1559,7 +1553,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.363Z"
+    "updated_at": "2026-08-25T13:09:56.796Z"
   },
   {
     "provider_id": "carson-city-board-of-supervisors",
@@ -1590,7 +1584,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:07:27.364Z"
+    "updated_at": "2026-08-25T13:09:56.796Z"
   },
   {
     "provider_id": "douglas-county-commission",
@@ -1615,7 +1609,7 @@
     "needs_review_count": 0,
     "parser_failures": 0,
     "failure_reasons": [
-      "apiRequestContext.get: getaddrinfo ENOTFOUND http\nCall log:\n\u001b[2m  - → GET https://www.douglascountynv.gov/residents/residents/where_do_i_vote_\u001b[22m\n\u001b[2m    - user-agent: Direct Democracy Playwright public-record preservation\u001b[22m\n\u001b[2m    - accept: application/pdf,application/json,text/html,text/plain,*/*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - cookie: ASP.NET_SessionId=jyqer3lqo1mmozctazni3yir; _ga_GK506XC3FG=GS2.1.s1786972289$o1$g0$t1786972289$j60$l0$h0; _ga=GA1.1.978255475.1786972290; _ga_7J2PRGV62K=GS2.1.s1786972289$o1$g0$t1786972289$j60$l0$h0; cf_clearance=wc7Tf.vTyjJYj13UYi2HUYN4BnIBoeEwbdVqATo0.TE-1786972290-1.2.1.1-RzlHNcjkvUhGsYcOB.t19DWNlNrrSS5TQEnBomb93b46XgJY484CUcIgB7DijOHFdjnxRBxNviX0okpXBh29paXGWdoX_T2ZryI8PSzJd5jlqOtToOYmnGF8lreanDtUX4g_pMMQNoDLq03cFCK11tpYL5tnM0oRVy.lb.c6NqtfCqUBoIct7N6s3pudHzPOSktHZ.gySEzy1foNJ.Xv8CyQMUqAEoFwsbJteZTEBwOSXKu6i_3Fhz19sNlknO0mDQ3EvMw2uhug6Rgvr7bq_I2kCLUSmtYMuLg_Pq8pUhBrmF2.x_j4B5MNaDY4WHaY2WSmNtrVKQhlwJsq3zZtkY7txpb72hn5YwSRtjNAcKg\u001b[22m\n\u001b[2m  - ← 302 Found\u001b[22m\n\u001b[2m    - date: Mon, 17 Aug 2026 13:11:47 GMT\u001b[22m\n\u001b[2m    - content-type: text/html; charset=utf-8\u001b[22m\n\u001b[2m    - transfer-encoding: chunked\u001b[22m\n\u001b[2m    - connection: keep-alive\u001b[22m\n\u001b[2m    - server-timing: cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=16,cfOrigin;dur=409, cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=10,cfOrigin;dur=426\u001b[22m\n\u001b[2m    - cf-cache-status: DYNAMIC\u001b[22m\n\u001b[2m    - server: cloudflare\u001b[22m\n\u001b[2m    - cache-control: private\u001b[22m\n\u001b[2m    - location: http://http\u001b[22m\n\u001b[2m    - strict-transport-security: max-age=31536000; includeSubDomains\u001b[22m\n\u001b[2m    - x-host: www.douglascountynv.gov\u001b[22m\n\u001b[2m    - x-resource: where_do_i_vote_\u001b[22m\n\u001b[2m    - x-urlscheme: https\u001b[22m\n\u001b[2m    - content-security-policy: default-src * data:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data: blob:; frame-ancestors 'self'; form-action 'self'\u001b[22m\n\u001b[2m    - permissions-policy: fullscreen=(self \"https://youtube.com/\" \"https://www.youtube.com/\" \"https://youtu.be/\")\u001b[22m\n\u001b[2m    - referrer-policy: strict-origin-when-cross-origin\u001b[22m\n\u001b[2m    - x-content-type-options: nosniff\u001b[22m\n\u001b[2m    - x-xss-protection: 1; mode=block\u001b[22m\n\u001b[2m    - x-frame-options: SAMEORIGIN\u001b[22m\n\u001b[2m    - x-powered-by: ASP.NET\u001b[22m\n\u001b[2m    - nel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\u001b[22m\n\u001b[2m    - speculation-rules: \"/cdn-cgi/speculation\"\u001b[22m\n\u001b[2m    - report-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=KPF8orCzMV0Q3cHGEOIZk9Rkg30g6KJnBffA4tbIO%2B1ATGiqTg9dr5A%2BK%2FfA3jsWOZOgvAtUlYZ3qQ%2B%2FD4f5KYSL7nDwZpojMGmuvVZR%2Bsmu4dTGGsXHnwqqJjqJqbg%2Bz8ZPHEvliw2r3Gkpmo7QE3hg40L3%2FA%3D%3D\"}]}\u001b[22m\n\u001b[2m    - cf-ray: a2c8ed39ca7af4c4-SJC\u001b[22m\n\u001b[2m    - alt-svc: h3=\":443\"; ma=86400\u001b[22m\n\u001b[2m  - → GET http://http/\u001b[22m\n\u001b[2m    - user-agent: Direct Democracy Playwright public-record preservation\u001b[22m\n\u001b[2m    - accept: application/pdf,application/json,text/html,text/plain,*/*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n"
+      "apiRequestContext.get: getaddrinfo ENOTFOUND http\nCall log:\n\u001b[2m  - → GET https://www.douglascountynv.gov/residents/residents/where_do_i_vote_\u001b[22m\n\u001b[2m    - user-agent: Direct Democracy Playwright public-record preservation\u001b[22m\n\u001b[2m    - accept: application/pdf,application/json,text/html,text/plain,*/*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m    - cookie: ASP.NET_SessionId=gi1hfyxkvdzne2gvzzabsyq0; _ga_GK506XC3FG=GS2.1.s1787576917$o1$g0$t1787576917$j60$l0$h0; _ga=GA1.1.1189743824.1787576917; cf_clearance=.FSjR96RbXk3s3NbX_EneazIJH902BFFy6mKpu9Qh2g-1787576918-1.2.1.1-zlrIlPX8NxKeIe_Mes9v2vumD1VvLdBxuPsOBT_ZfZ9Ab1zD7_ydRu0rFkC6dzUdpGfmxVE02zsQ2QsHj4uVQ..fp571zv1dP4_NwXyUOhuZd0JsmISQMrZ827t6yrhCcUTucvIK78cFJVWegMU1_09.n_qGdbJ7cN8pq4UnrXGaN0ReQ713CpljUPoBS2_KkoRpKlyQVfhutEiCij7WyJcMyXcrL9sirzWEKKDyQKdbo27MYDJMg5gxFLWpYaHImpTK8bXftJdbyww5K444NzIsLAOO5uX3gOM9tkx8u.5TZY4vtROHdX3OLb8C1M6faNuuTxUno3Oo2uhrc_v8mVw18tjBGj4OmPh0j0YpfKI; _ga_7J2PRGV62K=GS2.1.s1787576918$o1$g0$t1787576918$j60$l0$h0\u001b[22m\n\u001b[2m  - ← 302 Found\u001b[22m\n\u001b[2m    - date: Mon, 24 Aug 2026 13:08:55 GMT\u001b[22m\n\u001b[2m    - content-type: text/html; charset=utf-8\u001b[22m\n\u001b[2m    - transfer-encoding: chunked\u001b[22m\n\u001b[2m    - connection: keep-alive\u001b[22m\n\u001b[2m    - server-timing: cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=12,cfOrigin;dur=268, cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=10,cfOrigin;dur=282\u001b[22m\n\u001b[2m    - cf-cache-status: DYNAMIC\u001b[22m\n\u001b[2m    - server: cloudflare\u001b[22m\n\u001b[2m    - cache-control: private\u001b[22m\n\u001b[2m    - location: http://http\u001b[22m\n\u001b[2m    - strict-transport-security: max-age=31536000; includeSubDomains\u001b[22m\n\u001b[2m    - x-host: www.douglascountynv.gov\u001b[22m\n\u001b[2m    - x-resource: where_do_i_vote_\u001b[22m\n\u001b[2m    - x-urlscheme: https\u001b[22m\n\u001b[2m    - content-security-policy: default-src * data:; script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src * data: blob:; frame-ancestors 'self'; form-action 'self'\u001b[22m\n\u001b[2m    - permissions-policy: fullscreen=(self \"https://youtube.com/\" \"https://www.youtube.com/\" \"https://youtu.be/\")\u001b[22m\n\u001b[2m    - referrer-policy: strict-origin-when-cross-origin\u001b[22m\n\u001b[2m    - x-content-type-options: nosniff\u001b[22m\n\u001b[2m    - x-xss-protection: 1; mode=block\u001b[22m\n\u001b[2m    - x-frame-options: SAMEORIGIN\u001b[22m\n\u001b[2m    - x-powered-by: ASP.NET\u001b[22m\n\u001b[2m    - nel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\u001b[22m\n\u001b[2m    - speculation-rules: \"/cdn-cgi/speculation\"\u001b[22m\n\u001b[2m    - report-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=kHdVypKebCXaNifF%2FiEEImNtBaFE83WlhOIuQrDAVdCBvNix2I6JcRMWRU5XOJA992zZnJYC7iwD9cmTCNv5O9xcvztgKAM5qQRBR4mViYFVSvEV%2Bt6PaShiXNq%2Bpc7onFEcpd%2B%2FyLWzgjO318B4G4M3Cm1rDA%3D%3D\"}]}\u001b[22m\n\u001b[2m    - cf-ray: a30296a42ab20dac-SJC\u001b[22m\n\u001b[2m    - alt-svc: h3=\":443\"; ma=86400\u001b[22m\n\u001b[2m  - → GET http://http/\u001b[22m\n\u001b[2m    - user-agent: Direct Democracy Playwright public-record preservation\u001b[22m\n\u001b[2m    - accept: application/pdf,application/json,text/html,text/plain,*/*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n"
     ],
     "boarddocs_failures": [],
     "fixture_files": 0,
@@ -1625,7 +1619,7 @@
     ],
     "next_recommended_action": "Some public linked downloads failed and need review.",
     "notes": "Some public linked downloads failed and need review.",
-    "updated_at": "2026-08-23T13:07:27.406Z"
+    "updated_at": "2026-08-25T13:09:56.861Z"
   },
   {
     "provider_id": "eureka-county-commission",
@@ -1660,7 +1654,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:07:43.107Z"
+    "updated_at": "2026-08-25T13:10:14.789Z"
   },
   {
     "provider_id": "lyon-county-commission",
@@ -1695,7 +1689,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:08:02.631Z"
+    "updated_at": "2026-08-25T13:10:46.866Z"
   },
   {
     "provider_id": "nye-county-commission",
@@ -1729,7 +1723,7 @@
     ],
     "next_recommended_action": "PDF text extraction or packet chunking needs review.",
     "notes": "PDF text extraction or packet chunking needs review.",
-    "updated_at": "2026-08-23T13:08:02.867Z"
+    "updated_at": "2026-08-25T13:10:47.131Z"
   },
   {
     "provider_id": "pershing-county-commission",
@@ -1767,7 +1761,7 @@
     ],
     "next_recommended_action": "Vote/action text found but individual roll-call names need review.",
     "notes": "Vote/action text found but individual roll-call names need review.",
-    "updated_at": "2026-08-23T13:08:03.027Z"
+    "updated_at": "2026-08-25T13:10:47.319Z"
   },
   {
     "provider_id": "washoe-county-commission",
@@ -1800,7 +1794,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-08-23T13:08:03.095Z"
+    "updated_at": "2026-08-25T13:10:47.396Z"
   },
   {
     "provider_id": "caliente-city-council",
@@ -1833,7 +1827,7 @@
     ],
     "next_recommended_action": "Some saved source records need manual review.",
     "notes": "Some saved source records need manual review.",
-    "updated_at": "2026-08-23T13:08:03.101Z"
+    "updated_at": "2026-08-25T13:10:47.403Z"
   },
   {
     "provider_id": "mesquite-city-council",
@@ -1864,7 +1858,7 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:08:03.105Z"
+    "updated_at": "2026-08-25T13:10:47.408Z"
   },
   {
     "provider_id": "washoe-county-school-district",
@@ -1895,6 +1889,6 @@
     "parser_gaps": [],
     "next_recommended_action": "Run manual import after adding new official source files.",
     "notes": null,
-    "updated_at": "2026-08-23T13:08:03.115Z"
+    "updated_at": "2026-08-25T13:10:47.420Z"
   }
 ]

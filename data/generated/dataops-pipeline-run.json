@@ -1,7 +1,7 @@
 {
-  "runId": "dataops-2026-08-24T13:08:34.072Z",
-  "startedAt": "2026-08-24T13:08:34.072Z",
-  "updatedAt": "2026-08-24T13:35:13.495Z",
+  "runId": "dataops-2026-08-25T13:01:49.974Z",
+  "startedAt": "2026-08-25T13:01:49.975Z",
+  "updatedAt": "2026-08-25T13:12:41.833Z",
   "environment": {
     "offline": false,
     "networkAvailable": true,
@@ -12,21 +12,66 @@
     {
       "id": "refresh-meeting-calendars",
       "description": "Refresh Nevada meetings, current-official directories, and statewide financial coverage.",
+      "status": "succeeded",
+      "startedAt": "2026-08-25T13:01:50.059Z",
+      "completedAt": "2026-08-25T13:07:57.466Z",
+      "durationMs": 367407,
+      "error": null
+    },
+    {
+      "id": "public-records",
+      "description": "Refresh and reconcile statewide case, political-ad, and public-organization records.",
+      "status": "succeeded",
+      "startedAt": "2026-08-25T13:07:57.519Z",
+      "completedAt": "2026-08-25T13:08:25.833Z",
+      "durationMs": 28314,
+      "error": null
+    },
+    {
+      "id": "import-meetings",
+      "description": "Import current calendars and merge reviewed official-source caches.",
+      "status": "succeeded",
+      "startedAt": "2026-08-25T13:08:25.896Z",
+      "completedAt": "2026-08-25T13:10:48.449Z",
+      "durationMs": 142553,
+      "error": null
+    },
+    {
+      "id": "register-sources",
+      "description": "Register RSS/feed sources.",
+      "status": "succeeded",
+      "startedAt": "2026-08-25T13:10:48.492Z",
+      "completedAt": "2026-08-25T13:10:48.557Z",
+      "durationMs": 65,
+      "error": null
+    },
+    {
+      "id": "discover-documents",
+      "description": "Discover public meeting source documents.",
+      "status": "succeeded",
+      "startedAt": "2026-08-25T13:10:48.584Z",
+      "completedAt": "2026-08-25T13:12:41.345Z",
+      "durationMs": 112762,
+      "error": null
+    },
+    {
+      "id": "monitor-sources",
+      "description": "Monitor source health and upcoming-meeting coverage by configured provider.",
       "status": "failed",
-      "startedAt": "2026-08-24T13:08:34.163Z",
-      "completedAt": "2026-08-24T13:35:13.495Z",
-      "durationMs": 1599332,
-      "error": "Command failed: node --import tsx scripts/collect-nevada-financials.ts --scheduled"
+      "startedAt": "2026-08-25T13:12:41.389Z",
+      "completedAt": "2026-08-25T13:12:41.833Z",
+      "durationMs": 444,
+      "error": "Command failed: node --import tsx scripts/audit-upcoming-meeting-coverage.ts --strict"
     }
   ],
   "metrics": {
     "registeredSourcesChecked": 65,
-    "upcomingMeetings": 13,
-    "meetingProvidersWithUpcoming": 6,
+    "upcomingMeetings": 23,
+    "meetingProvidersWithUpcoming": 8,
     "requiredNevadaJurisdictions": 56,
     "configuredNevadaJurisdictions": 56,
     "nevadaProvidersPendingAdvancedPass": 0,
-    "meetingProvidersZeroUpcoming": 18,
+    "meetingProvidersZeroUpcoming": 16,
     "meetingProviderAdapterGaps": 33,
     "meetingProviderSourceFailures": 0,
     "sourceBackedIssues": 19,
@@ -44,7 +89,7 @@
     "nevadaCaseSourceRoutes": 11,
     "nevadaNinthCircuitCases": 1,
     "nevadaSupremeCourtCases": 1,
-    "nevadaPoliticalAdRecords": 1099,
+    "nevadaPoliticalAdRecords": 1139,
     "nevadaEntitiesWithMatchedAds": 20,
     "nevadaPublicOrganizations": 127,
     "nevadaOrganizationCategories": 19,
