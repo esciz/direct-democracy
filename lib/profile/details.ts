@@ -13,6 +13,7 @@ import { isExternalLinkSummary, normalizeExternalLinks } from "@/lib/profile/ext
 import { getUserReputationSignals } from "@/lib/profile/reputation";
 import { getVisibilityOverrides } from "@/lib/profile/visibility";
 import { FAVORITE_SPOT_CATEGORY_OPTIONS } from "@/lib/profile/options";
+import { prisma } from "@/lib/prisma";
 import { getFollowState } from "@/lib/social/follows";
 import { getAllCreditBoosts, getCreditBalance } from "@/lib/engagement/credits";
 import type {
@@ -558,8 +559,104 @@ export async function setStoredUserProfileContent(content: UserProfileContentSum
   });
 }
 
+async function resolveDurableUserId(profileUserId: string) {
+  if (profileUserId.startsWith("identity_")) {
+    const account = await prisma.identityAccount.findUnique({
+      where: { id: profileUserId },
+      select: { userId: true },
+    });
+
+    return account?.userId ?? null;
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: profileUserId },
+    select: { id: true },
+  });
+  return user?.id ?? null;
+}
+
+async function getDurableProfileMedia(profileUserId: string) {
+  try {
+    const durableUserId = await resolveDurableUserId(profileUserId);
+    if (!durableUserId) return null;
+
+    const user = await prisma.user.findUnique({
+      where: { id: durableUserId },
+      select: {
+        avatarUrl: true,
+        profileContent: {
+          select: {
+            profileImageUrl: true,
+            bannerImageUrl: true,
+            profileTheme: true,
+          },
+        },
+      },
+    });
+
+    if (!user) return null;
+
+    return {
+      hasProfileContent: Boolean(user.profileContent),
+      profileImageUrl: user.profileContent?.profileImageUrl ?? user.avatarUrl ?? "",
+      bannerImageUrl: user.profileContent?.bannerImageUrl ?? "",
+      profileTheme: user.profileContent?.profileTheme ?? "classic",
+    };
+  } catch (error) {
+    console.error("[profile-details] durable media read fallback", error);
+    return null;
+  }
+}
+
+async function setDurableProfileMedia(
+  profileUserId: string,
+  content: Omit<UserProfileContentSummary, "userId">,
+) {
+  try {
+    const durableUserId = await resolveDurableUserId(profileUserId);
+    if (!durableUserId) return;
+
+    await prisma.$transaction([
+      prisma.user.update({
+        where: { id: durableUserId },
+        data: { avatarUrl: content.profileImageUrl || null },
+      }),
+      prisma.userProfileContent.upsert({
+        where: { userId: durableUserId },
+        create: {
+          userId: durableUserId,
+          profileImageUrl: content.profileImageUrl || null,
+          bannerImageUrl: content.bannerImageUrl || null,
+          profileTheme: content.profileTheme ?? "classic",
+          localIssues: content.localIssues.map((entry) => entry.value),
+          stateIssues: content.stateIssues.map((entry) => entry.value),
+          nationalIssues: content.nationalIssues.map((entry) => entry.value),
+          groupTags: content.groupTags.map((entry) => entry.value),
+          profession: content.background.profession || null,
+          experience: content.background.experience || null,
+          professionPublic: content.background.professionPublic,
+          experiencePublic: content.background.experiencePublic,
+          recentVotesPublic: content.recentVotesPublic,
+          bookmarkedScopes: content.bookmarkedScopes,
+        },
+        update: {
+          profileImageUrl: content.profileImageUrl || null,
+          bannerImageUrl: content.bannerImageUrl || null,
+          profileTheme: content.profileTheme ?? "classic",
+        },
+      }),
+    ]);
+  } catch (error) {
+    console.error("[profile-details] durable media write fallback", error);
+  }
+}
+
 export async function getUserProfileContent(userId: string): Promise<UserProfileContentSummary> {
-  const stored = await getStoredUserProfileContent();
+  const [stored, durableMedia] = await Promise.all([
+    getStoredUserProfileContent(),
+    getDurableProfileMedia(userId),
+  ]);
   const merged = new Map<string, UserProfileContentSummary>();
 
   for (const entry of seededUserProfileContent) {
@@ -570,24 +667,36 @@ export async function getUserProfileContent(userId: string): Promise<UserProfile
     merged.set(entry.userId, entry);
   }
 
+  const content = merged.get(userId) ?? {
+    userId,
+    profileImageUrl: defaultProfileImageUrl(userId),
+    bannerImageUrl: defaultBannerImageUrl(userId),
+    profileTheme: "classic",
+    primaryCommunityId: getDefaultCommunityForJurisdiction(seedUsers.find((entry) => entry.id === userId)?.jurisdictionName ?? "Carson City, Nevada").id,
+    localIssues: [],
+    stateIssues: [],
+    nationalIssues: [],
+    favoriteSpots: [],
+    groupTags: [],
+    background: emptyBackground(),
+    identityTags: [],
+    externalLinks: [],
+    recentVotesPublic: false,
+    bookmarkedScopes: ["local"],
+  };
+
   return canonicalizeProfileContent(
-    merged.get(userId) ?? {
-      userId,
-      profileImageUrl: defaultProfileImageUrl(userId),
-      bannerImageUrl: defaultBannerImageUrl(userId),
-      profileTheme: "classic",
-      primaryCommunityId: getDefaultCommunityForJurisdiction(seedUsers.find((entry) => entry.id === userId)?.jurisdictionName ?? "Carson City, Nevada").id,
-      localIssues: [],
-      stateIssues: [],
-      nationalIssues: [],
-      favoriteSpots: [],
-      groupTags: [],
-      background: emptyBackground(),
-      identityTags: [],
-      externalLinks: [],
-      recentVotesPublic: false,
-      bookmarkedScopes: ["local"],
-    },
+    durableMedia?.hasProfileContent || durableMedia?.profileImageUrl
+      ? {
+          ...content,
+          profileImageUrl: durableMedia.profileImageUrl,
+          bannerImageUrl: durableMedia.bannerImageUrl,
+          profileTheme:
+            durableMedia.profileTheme === "bright" || durableMedia.profileTheme === "daylight"
+              ? durableMedia.profileTheme
+              : "classic",
+        }
+      : content,
   );
 }
 
@@ -604,7 +713,10 @@ export async function updateUserProfileContent(
     ...stored.filter((entry) => entry.userId !== userId),
   ];
 
-  await setStoredUserProfileContent(merged);
+  await Promise.all([
+    setStoredUserProfileContent(merged),
+    setDurableProfileMedia(userId, nextContent),
+  ]);
 }
 
 function scopeMatches(scope: VoteQuestionScope, selectedScope: VoteQuestionScope) {

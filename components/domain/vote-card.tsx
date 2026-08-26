@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState, useTransition } from "react";
 import type { ReactNode } from "react";
 
@@ -59,6 +60,14 @@ function getVoteAvatarType(question: VoteQuestionCardSummary) {
   }
 
   return "issue";
+}
+
+function getSubjectProfileHref(question: VoteQuestionCardSummary) {
+  if (question.subjectHref) return question.subjectHref;
+  if (!question.referenceProfileId) return null;
+  if (question.questionType === "CANDIDATE_PERFORMANCE") return `/candidates/${question.referenceProfileId}`;
+  if (question.objectType === "representative") return `/officials/${question.referenceProfileId}`;
+  return null;
 }
 
 function pendingText(text = "Plain-English summary pending review.") {
@@ -370,6 +379,7 @@ export function VoteCard({
     officialBody: currentQuestion.officialBody,
   });
   const relatedIssueLabel = currentQuestion.relatedIssueLabel ?? currentQuestion.issueTag ?? null;
+  const subjectProfileHref = getSubjectProfileHref(currentQuestion);
 
   useEffect(() => {
     setCurrentQuestion(question);
@@ -433,18 +443,42 @@ export function VoteCard({
 
       {currentQuestion.subjectName ? (
         <div className="relative mt-4 flex items-center gap-3">
-          <CivicAvatar
-            name={currentQuestion.subjectName}
-            entityType={getVoteAvatarType(currentQuestion)}
-            size="sm"
-            verified={currentQuestion.objectType === "representative"}
-          />
-          <div>
-            <p className="text-sm font-semibold text-slate-100">{currentQuestion.subjectName}</p>
-            <p className="mt-1 text-xs text-slate-400">
-              {currentQuestion.relatedIssueLabel ?? jurisdictionContext.issueBadge}
-            </p>
-          </div>
+          {subjectProfileHref ? (
+            <Link
+              href={subjectProfileHref}
+              aria-label={`View ${currentQuestion.subjectName}'s profile`}
+              className="group inline-flex items-center gap-3 rounded-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50"
+            >
+              <CivicAvatar
+                name={currentQuestion.subjectName}
+                entityType={getVoteAvatarType(currentQuestion)}
+                size="sm"
+                verified={currentQuestion.objectType === "representative"}
+              />
+              <div>
+                <p className="text-sm font-semibold text-slate-100 transition group-hover:text-cyan-100">{currentQuestion.subjectName}</p>
+                <p className="mt-1 text-xs text-slate-400">
+                  {currentQuestion.relatedIssueLabel ?? jurisdictionContext.issueBadge}
+                  <span className="ml-2 font-semibold text-cyan-300 transition group-hover:text-cyan-200">View profile →</span>
+                </p>
+              </div>
+            </Link>
+          ) : (
+            <>
+              <CivicAvatar
+                name={currentQuestion.subjectName}
+                entityType={getVoteAvatarType(currentQuestion)}
+                size="sm"
+                verified={currentQuestion.objectType === "representative"}
+              />
+              <div>
+                <p className="text-sm font-semibold text-slate-100">{currentQuestion.subjectName}</p>
+                <p className="mt-1 text-xs text-slate-400">
+                  {currentQuestion.relatedIssueLabel ?? jurisdictionContext.issueBadge}
+                </p>
+              </div>
+            </>
+          )}
         </div>
       ) : null}
       <h2 className={`relative mt-3 font-semibold tracking-tight text-slate-50 ${compact ? "text-xl" : "text-2xl leading-8 sm:text-[1.75rem]"}`}>

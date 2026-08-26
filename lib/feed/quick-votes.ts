@@ -170,6 +170,13 @@ function getQuestionVoteType(entityType: string | null | undefined): VoteQuestio
   return "publicVote";
 }
 
+function getQuestionSubjectHref(entityType: string | null | undefined, entityId: string | null | undefined) {
+  if (!entityId) return null;
+  if (entityType === "OFFICIAL") return `/officials/${entityId}`;
+  if (entityType === "CANDIDATE") return `/candidates/${entityId}`;
+  return null;
+}
+
 function inferPublicQuestionType(
   questionType: string | null | undefined,
   questionText = "",
@@ -419,6 +426,7 @@ function mapQuestion(row: QuestionWithRelations, userId: string): VoteQuestionCa
     origin: "officialDecision",
     shortTitle: row.civicEntityName ?? undefined,
     subjectName: row.civicEntityName,
+    subjectHref: getQuestionSubjectHref(row.civicEntityType, row.civicEntityId),
     contextSummary: nevadaQuestion1Context?.plainLanguageSummary ?? row.contextSummary,
     plainLanguageSummary: nevadaQuestion1Context?.plainLanguageSummary ?? row.contextSummary ?? undefined,
     whyItMatters: row.contextSummary ? "This question is tied to a reviewed, source-attributed public record." : undefined,
@@ -446,6 +454,10 @@ function mapQuestion(row: QuestionWithRelations, userId: string): VoteQuestionCa
     officialVoteSummary: row.officialVoteSummary ?? undefined,
     responseLabels: getResponseLabels(row.civicQuestionType, row.questionText, row.civicEntityType, row.jurisdiction.name),
     relatedIssueLabel: row.civicEntityType?.replace(/_/g, " ").toLowerCase().replace(/^./, (value) => value.toUpperCase()),
+    referenceProfileId:
+      row.civicEntityType === "OFFICIAL" || row.civicEntityType === "CANDIDATE"
+        ? row.civicEntityId
+        : null,
     weekOf: row.createdAt.toISOString(),
     sourceName: sourceNameValue,
     sourceUrl: sourceUrlValue,

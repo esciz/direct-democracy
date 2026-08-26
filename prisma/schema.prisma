@@ -1080,6 +1080,9 @@ model User {
 
 model UserProfileContent {
   userId             String   @id
+  profileImageUrl    String?
+  bannerImageUrl     String?
+  profileTheme       String   @default("classic")
   localIssues        String[]
   stateIssues        String[]
   nationalIssues     String[]
