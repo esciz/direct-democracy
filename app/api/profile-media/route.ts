@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 import {
+  profileMediaBlobStorageIsConfigured,
   ProfileMediaUploadError,
   storeProfileMedia,
   validateProfileMediaUpload,
@@ -36,8 +37,13 @@ export async function POST(request: Request) {
     }
 
     const url = await storeProfileMedia(currentUser.id, kind, media);
+    console.info("[profile-media] upload stored", {
+      kind,
+      storage: profileMediaBlobStorageIsConfigured() ? "blob" : "local",
+    });
     return NextResponse.json({ ok: true, url });
   } catch (error) {
+    console.error("[profile-media] upload failed", { error: String(error) });
     const code = error instanceof ProfileMediaUploadError ? error.code : "media-storage";
     const message =
       code === "media-format"

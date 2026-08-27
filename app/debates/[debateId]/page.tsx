@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { BookOpenCheck, Handshake, Lightbulb, Scale, Wrench } from "lucide-react";
 
 import { FormSubmitButton } from "@/components/ui/form-submit-button";
 import { PageIntro } from "@/components/ui/page-intro";
@@ -7,8 +8,9 @@ import { canUserCreateDebate } from "@/lib/auth/guards";
 import { PUBLIC_DEMO_DATA_ENABLED } from "@/lib/auth/constants";
 import { getDefaultSeedUser } from "@/lib/auth/mock-users";
 import { getCurrentUser } from "@/lib/server/auth-session";
-import { reactToDebateTurn, submitPhaseOneDebateStatement } from "@/lib/debates/actions";
+import { acknowledgeDebateTurn, reactToDebateTurn, submitPhaseOneDebateStatement } from "@/lib/debates/actions";
 import { getDebateParticipants, getPhaseOneDebateDetail, getStoredDebateTurns } from "@/lib/debates/store";
+import type { DebateTurnAcknowledgmentType } from "@/types/domain";
 
 type DebateDetailPageProps = {
   params: Promise<{
@@ -49,6 +51,18 @@ function turnLabel(turnType: "opening" | "response" | "closing") {
   if (turnType === "response") return "Response";
   return "Closing";
 }
+
+const ACKNOWLEDGMENT_OPTIONS: Array<{
+  value: DebateTurnAcknowledgmentType;
+  label: string;
+  icon: typeof BookOpenCheck;
+}> = [
+  { value: "wellSourced", label: "Well sourced", icon: BookOpenCheck },
+  { value: "helpedMeUnderstand", label: "Helped me understand", icon: Lightbulb },
+  { value: "fairRepresentation", label: "Fair representation", icon: Scale },
+  { value: "constructiveChallenge", label: "Constructive challenge", icon: Handshake },
+  { value: "practicalProposal", label: "Practical proposal", icon: Wrench },
+];
 
 export default async function DebateDetailPage({ params, searchParams }: DebateDetailPageProps) {
   const { debateId } = await params;
@@ -134,11 +148,15 @@ async function DebateDetailBody({
           ? "Support recorded for that statement."
           : resolvedSearchParams?.debate === "sentiment-oppose"
             ? "Opposition recorded for that statement."
-            : resolvedSearchParams?.debateError === "permissions"
-              ? "You are not allowed to submit that statement."
-              : resolvedSearchParams?.debateError === "invalid"
-                ? "Please review the statement details and try again."
-                : null;
+            : resolvedSearchParams?.debate === "acknowledgment-saved"
+              ? "Acknowledgment added to that contributor's civic record."
+              : resolvedSearchParams?.debate === "acknowledgment-removed"
+                ? "Acknowledgment removed."
+                : resolvedSearchParams?.debateError === "permissions"
+                  ? "You are not allowed to submit that statement."
+                  : resolvedSearchParams?.debateError === "invalid"
+                    ? "Please review the statement details and try again."
+                    : null;
 
   return (
     <>
@@ -236,6 +254,57 @@ async function DebateDetailBody({
                     />
                   </form>
                 </div>
+                <div className="mt-4 border-t border-white/10 pt-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">Recognize the civic value</p>
+                    <p className="text-xs text-slate-500">One acknowledgment per person</p>
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {ACKNOWLEDGMENT_OPTIONS.map((option) => {
+                      const Icon = option.icon;
+                      const active = statement.viewerAcknowledgment === option.value;
+                      const count = statement.acknowledgmentCounts[option.value];
+
+                      if (statement.createdByUserId === user.id) {
+                        return count > 0 ? (
+                          <span
+                            key={option.value}
+                            className="inline-flex min-h-9 items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 text-xs font-semibold text-slate-300"
+                          >
+                            <Icon size={14} aria-hidden="true" />
+                            {option.label}
+                            <span className="text-slate-500">{count}</span>
+                          </span>
+                        ) : null;
+                      }
+
+                      return (
+                        <form key={option.value} action={acknowledgeDebateTurn}>
+                          <input type="hidden" name="debateId" value={debate.id} />
+                          <input type="hidden" name="turnId" value={statement.id} />
+                          <input type="hidden" name="returnPath" value={`/debates/${debate.id}`} />
+                          <FormSubmitButton
+                            name="acknowledgment"
+                            value={option.value}
+                            idleLabel={
+                              <span className="inline-flex items-center gap-2">
+                                <Icon size={14} aria-hidden="true" />
+                                {option.label}
+                                {count ? <span className={active ? "text-cyan-950/70" : "text-slate-500"}>{count}</span> : null}
+                              </span>
+                            }
+                            pendingLabel="Saving..."
+                            className={`min-h-9 rounded-full border px-3 py-2 text-xs font-semibold transition ${
+                              active
+                                ? "border-cyan-200 bg-cyan-200 text-cyan-950"
+                                : "border-white/10 bg-white/[0.05] text-slate-300 hover:border-cyan-300/30 hover:text-white"
+                            }`}
+                          />
+                        </form>
+                      );
+                    })}
+                  </div>
+                </div>
               </article>
             ))
           ) : (
@@ -262,8 +331,9 @@ async function DebateDetailBody({
 
             <label className="block space-y-2">
               <span className="text-sm font-semibold text-ink">Side</span>
+              {viewerParticipant ? <input type="hidden" name="side" value={viewerParticipant.side} /> : null}
               <select
-                name="side"
+                name={viewerParticipant ? undefined : "side"}
                 defaultValue={viewerParticipant?.side ?? "A"}
                 disabled={Boolean(viewerParticipant)}
                 className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-civic-500 disabled:bg-slate-50 disabled:text-slate-500"

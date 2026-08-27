@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 
 import { canUserCreateDebate, canUserTagDebateFallacies } from "@/lib/auth/guards";
+import { isGuestUser } from "@/lib/auth/session";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import { DEBATE_FALLACY_TYPES } from "@/lib/debates/fallacies";
 import { awardCreditsForAction } from "@/lib/engagement/credits";
@@ -28,6 +29,7 @@ import {
   getStoredDebateOverrides,
   getStoredDebateParticipants,
   getStoredDebateReactions,
+  getStoredDebateAcknowledgments,
   getStoredDebateTurns,
   getRemovedDebateFollowKeys,
   hasSimilarActiveDebate,
@@ -41,6 +43,7 @@ import {
   setStoredDebateOverrides,
   setStoredDebateParticipants,
   setStoredDebateReactions,
+  setStoredDebateAcknowledgments,
   setStoredDebateTurns,
   setRemovedDebateFollowKeys,
 } from "@/lib/debates/store";
@@ -54,7 +57,7 @@ import {
 } from "@/lib/notifications/store";
 import { getFollowerUserIds } from "@/lib/social/follows";
 import { seedUsers } from "@/lib/auth/mock-users";
-import type { CitationSourceType, DebateCommunityVoteOption } from "@/types/domain";
+import type { CitationSourceType, DebateCommunityVoteOption, DebateTurnAcknowledgmentType } from "@/types/domain";
 
 function redirectWithStatus(path: string, key: string, value: string): never {
   redirect(`${path}${path.includes("?") ? "&" : "?"}${key}=${value}`);
@@ -1042,6 +1045,59 @@ export async function reactToDebateTurn(formData: FormData) {
   ]);
 
   redirectWithStatus(returnPath, "debate", reaction === "support" ? "sentiment-support" : "sentiment-oppose");
+}
+
+const ACKNOWLEDGMENT_TYPES = new Set<DebateTurnAcknowledgmentType>([
+  "wellSourced",
+  "helpedMeUnderstand",
+  "fairRepresentation",
+  "constructiveChallenge",
+  "practicalProposal",
+]);
+
+export async function acknowledgeDebateTurn(formData: FormData) {
+  const user = await getCurrentUser();
+  const turnId = sanitizeText(formData.get("turnId"));
+  const debateId = sanitizeText(formData.get("debateId"));
+  const acknowledgment = sanitizeText(formData.get("acknowledgment")) as DebateTurnAcknowledgmentType;
+  const returnPath = safeReturnPath(formData.get("returnPath"), debateId);
+
+  if (!turnId || !debateId || !ACKNOWLEDGMENT_TYPES.has(acknowledgment)) {
+    redirectWithStatus(returnPath, "debateError", "invalid");
+  }
+
+  if (isGuestUser(user)) {
+    redirectWithStatus(returnPath, "debateError", "permissions");
+  }
+
+  const turns = await getDebateTurnsForDebate(debateId);
+  const turn = turns.find((entry) => entry.id === turnId);
+
+  if (!turn || turn.createdByUserId === user.id) {
+    redirectWithStatus(returnPath, "debateError", "permissions");
+  }
+
+  const acknowledgments = await getStoredDebateAcknowledgments();
+  const existing = acknowledgments.find((entry) => entry.turnId === turnId && entry.userId === user.id);
+  const remaining = acknowledgments.filter((entry) => !(entry.turnId === turnId && entry.userId === user.id));
+
+  if (existing?.acknowledgment === acknowledgment) {
+    await setStoredDebateAcknowledgments(remaining);
+    redirectWithStatus(returnPath, "debate", "acknowledgment-removed");
+  }
+
+  await setStoredDebateAcknowledgments([
+    {
+      id: `debate_acknowledgment_${Date.now()}`,
+      turnId,
+      userId: user.id,
+      acknowledgment,
+      createdAt: new Date().toISOString(),
+    },
+    ...remaining,
+  ]);
+
+  redirectWithStatus(returnPath, "debate", "acknowledgment-saved");
 }
 
 export async function tagDebateTurnFallacy(formData: FormData) {

@@ -50,7 +50,7 @@ function detectImageType(buffer: Buffer): Pick<ValidatedProfileMedia, "contentTy
   return null;
 }
 
-function blobStorageIsConfigured() {
+export function profileMediaBlobStorageIsConfigured() {
   return Boolean(
     process.env.BLOB_READ_WRITE_TOKEN ||
       (process.env.VERCEL_OIDC_TOKEN && process.env.BLOB_STORE_ID),
@@ -87,14 +87,7 @@ export async function storeProfileMedia(
 ) {
   const filename = `${safeUserKey(userId)}-${kind}-${randomUUID()}.${media.extension}`;
 
-  if (process.env.VERCEL_ENV) {
-    if (!blobStorageIsConfigured()) {
-      throw new ProfileMediaUploadError(
-        "media-storage",
-        "Profile media storage is not configured for this deployment.",
-      );
-    }
-
+  if (profileMediaBlobStorageIsConfigured()) {
     await put(`profile-media/${filename}`, media.buffer, {
       access: "private",
       contentType: media.contentType,
@@ -103,6 +96,13 @@ export async function storeProfileMedia(
     });
 
     return `/api/profile-media/${filename}`;
+  }
+
+  if (process.env.VERCEL_ENV) {
+    throw new ProfileMediaUploadError(
+      "media-storage",
+      "Profile media storage is not configured for this deployment.",
+    );
   }
 
   await fs.mkdir(LOCAL_MEDIA_ROOT, { recursive: true });
@@ -117,7 +117,7 @@ export async function deleteProfileMedia(mediaUrl: string) {
     const filename = path.basename(mediaUrl);
 
     if (/^[a-z0-9_-]+\.(?:jpg|png|webp)$/i.test(filename)) {
-      if (process.env.VERCEL_ENV && blobStorageIsConfigured()) {
+      if (profileMediaBlobStorageIsConfigured()) {
         await del(`profile-media/${filename}`).catch(() => undefined);
       } else {
         await fs.unlink(path.join(LOCAL_MEDIA_ROOT, filename)).catch(() => undefined);
@@ -127,7 +127,7 @@ export async function deleteProfileMedia(mediaUrl: string) {
     return;
   }
 
-  if (!blobStorageIsConfigured()) return;
+  if (!profileMediaBlobStorageIsConfigured()) return;
 
   try {
     const url = new URL(mediaUrl);

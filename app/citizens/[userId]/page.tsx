@@ -12,6 +12,7 @@ import { getSafeReputationSummary } from "@/lib/profile/reputation";
 import { getSafeCivicActivitySummary } from "@/lib/server/profile-activity";
 import { getLightweightFollowState } from "@/lib/social/follows";
 import { FollowButton } from "@/components/domain/follow-button";
+import { CivicLeadershipRecord } from "@/components/domain/civic-leadership-record";
 import { ExternalLinksRow } from "@/components/domain/external-links-row";
 import { ProfileImagePlaceholder } from "@/components/domain/profile-image-placeholder";
 import { RoleBadge } from "@/components/domain/role-badge";
@@ -319,6 +320,16 @@ export default async function CitizenProfilePage({ params }: CitizenProfilePageP
           </div>
         </section>
       </section>
+
+      <Suspense
+        fallback={
+          <section className="rounded-lg border border-white/70 bg-white/90 p-6 shadow-card">
+            <p className="text-sm text-slate-500">Loading civic leadership record...</p>
+          </section>
+        }
+      >
+        <CivicLeadershipRecord userId={user.id} variant="light" />
+      </Suspense>
 
       <Suspense fallback={<PublicCitizenActivityFallback />}>
         <PublicCitizenActivitySection userId={user.id} />

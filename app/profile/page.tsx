@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Activity, ArrowRight, Eye } from "lucide-react";
 
 import { AccountParticipationStatusCard } from "@/components/domain/account-participation-status-card";
+import { CivicLeadershipRecord } from "@/components/domain/civic-leadership-record";
 import { ParticipationReadinessPanel } from "@/components/domain/participation-readiness-panel";
 import { ProfileCivicActivitySection } from "@/components/domain/profile-civic-activity-section";
 import { ProfileDetailsForm } from "@/components/domain/profile-details-form";
@@ -393,6 +394,16 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
           </Suspense>
         </div>
       </div>
+
+      <Suspense
+        fallback={
+          <section className="dd-panel-muted rounded-lg p-6">
+            <p className="text-sm text-slate-400">Loading your civic leadership record...</p>
+          </section>
+        }
+      >
+        <CivicLeadershipRecord userId={currentUser.id} isOwner />
+      </Suspense>
 
       <div className="space-y-3">
         <ProfileDisclosure title="Profile and privacy" detail="Edit your photos, priorities, public details, links, and visibility.">

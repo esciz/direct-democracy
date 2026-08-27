@@ -186,7 +186,7 @@ For testers on iPhone Safari:
 
 - Seeded users and role switching are intended for demos; public civic records remain source-backed or explicitly unavailable.
 - State is mostly cookie-backed, so testers can interact without creating real accounts.
-- Uploaded profile photo and banner references are stored in `UserProfileContent`; image bytes use local storage in development and configured Vercel Blob storage in deployments.
+- Uploaded profile photo and banner references are stored in `UserProfileContent`; image bytes use Vercel Blob whenever Blob credentials are configured, with local storage only as the development fallback.
 - The main navigation, vote flow, explore pages, profiles, debates, and petitions are all meant to be browsed as a prototype.
 
 ## Troubleshooting

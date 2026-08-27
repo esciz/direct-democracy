@@ -507,6 +507,12 @@ export type DebateSide = "A" | "B";
 export type DebateParticipantRole = "lead" | "member";
 export type DebateTurnType = "opening" | "response" | "closing";
 export type DebateTurnReactionType = "support" | "oppose";
+export type DebateTurnAcknowledgmentType =
+  | "wellSourced"
+  | "helpedMeUnderstand"
+  | "fairRepresentation"
+  | "constructiveChallenge"
+  | "practicalProposal";
 export type DebateFallacyReviewPosition = "agree" | "disagree";
 export type DebateFallacyStatus = "Supported" | "Contested" | "Rejected";
 export type DebateFallacyType =

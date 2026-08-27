@@ -28,6 +28,7 @@ import type {
   DebateStatus,
   DebateSummary,
   DebateTurnReactionType,
+  DebateTurnAcknowledgmentType,
   DebateTurnSummary,
   DebateTurnType,
   TruthRatingValue,
@@ -68,6 +69,8 @@ export type PhaseOneDebateDetail = PhaseOneDebateSummary & {
     supportCount: number;
     opposeCount: number;
     viewerReaction: DebateTurnReactionType | null;
+    acknowledgmentCounts: Record<DebateTurnAcknowledgmentType, number>;
+    viewerAcknowledgment: DebateTurnAcknowledgmentType | null;
   }>;
 };
 
@@ -75,6 +78,7 @@ const DEBATE_TURNS_COOKIE = "dd_debate_turns";
 const DEBATE_DRAFTS_COOKIE = "dd_debate_drafts";
 const DEBATE_DRAFT_VOTES_COOKIE = "dd_debate_draft_votes";
 const DEBATE_REACTIONS_COOKIE = "dd_debate_turn_reactions";
+const DEBATE_ACKNOWLEDGMENTS_COOKIE = "dd_debate_turn_acknowledgments";
 const DEBATE_FALLACY_TAGS_COOKIE = "dd_debate_fallacy_tags";
 const DEBATE_FALLACY_REVIEWS_COOKIE = "dd_debate_fallacy_reviews";
 const DEBATE_OVERRIDES_COOKIE = "dd_debate_overrides";
@@ -154,6 +158,14 @@ type DebateReactionRecord = {
   turnId: string;
   userId: string;
   reaction: DebateTurnReactionType;
+  createdAt: string;
+};
+
+export type DebateAcknowledgmentRecord = {
+  id: string;
+  turnId: string;
+  userId: string;
+  acknowledgment: DebateTurnAcknowledgmentType;
   createdAt: string;
 };
 
@@ -436,6 +448,37 @@ const seededReactions: DebateReactionRecord[] = [
   },
 ];
 
+const seededAcknowledgments: DebateAcknowledgmentRecord[] = [
+  {
+    id: "debate_acknowledgment_1",
+    turnId: "debate_turn_carson_open_a",
+    userId: "user_citizen_alicia_hart",
+    acknowledgment: "wellSourced",
+    createdAt: "2026-04-01T20:05:00.000Z",
+  },
+  {
+    id: "debate_acknowledgment_2",
+    turnId: "debate_turn_carson_open_b",
+    userId: "user_citizen_tiana_moore",
+    acknowledgment: "helpedMeUnderstand",
+    createdAt: "2026-04-01T21:05:00.000Z",
+  },
+  {
+    id: "debate_acknowledgment_3",
+    turnId: "debate_turn_housing_close_a",
+    userId: "user_citizen_miles_reed",
+    acknowledgment: "fairRepresentation",
+    createdAt: "2026-03-29T15:00:00.000Z",
+  },
+  {
+    id: "debate_acknowledgment_4",
+    turnId: "debate_turn_housing_close_b",
+    userId: "user_citizen_alicia_hart",
+    acknowledgment: "practicalProposal",
+    createdAt: "2026-03-29T15:20:00.000Z",
+  },
+];
+
 const seededFallacyTags: DebateFallacyTagRecord[] = [
   {
     id: "debate_fallacy_1",
@@ -616,6 +659,26 @@ function isDebateReactionRecord(value: unknown): value is DebateReactionRecord {
   );
 }
 
+const DEBATE_ACKNOWLEDGMENT_TYPES: DebateTurnAcknowledgmentType[] = [
+  "wellSourced",
+  "helpedMeUnderstand",
+  "fairRepresentation",
+  "constructiveChallenge",
+  "practicalProposal",
+];
+
+function isDebateAcknowledgmentRecord(value: unknown): value is DebateAcknowledgmentRecord {
+  if (!isRecordObject(value)) return false;
+  const acknowledgment = value as Record<string, unknown>;
+  return (
+    typeof acknowledgment.id === "string" &&
+    typeof acknowledgment.turnId === "string" &&
+    typeof acknowledgment.userId === "string" &&
+    DEBATE_ACKNOWLEDGMENT_TYPES.includes(acknowledgment.acknowledgment as DebateTurnAcknowledgmentType) &&
+    typeof acknowledgment.createdAt === "string"
+  );
+}
+
 function isDebateFallacyTagRecord(value: unknown): value is DebateFallacyTagRecord {
   if (!isRecordObject(value)) return false;
   const tag = value as Record<string, unknown>;
@@ -759,6 +822,14 @@ export async function getStoredDebateReactions() {
 
 export async function setStoredDebateReactions(reactions: DebateReactionRecord[]) {
   await writeCookieArray(DEBATE_REACTIONS_COOKIE, reactions.slice(0, 600));
+}
+
+export async function getStoredDebateAcknowledgments() {
+  return readCookieArray(DEBATE_ACKNOWLEDGMENTS_COOKIE, isDebateAcknowledgmentRecord);
+}
+
+export async function setStoredDebateAcknowledgments(acknowledgments: DebateAcknowledgmentRecord[]) {
+  await writeCookieArray(DEBATE_ACKNOWLEDGMENTS_COOKIE, acknowledgments.slice(0, 600));
 }
 
 export async function getStoredDebateFallacyTags() {
@@ -914,6 +985,17 @@ async function getAllDebateDraftVotes() {
 export async function getAllDebateReactionsForTrust() {
   const merged = new Map<string, DebateReactionRecord>();
   for (const reaction of await getStoredDebateReactions()) merged.set(`${reaction.turnId}:${reaction.userId}`, reaction);
+  return [...merged.values()];
+}
+
+export async function getAllDebateAcknowledgments() {
+  const merged = new Map<string, DebateAcknowledgmentRecord>();
+  for (const acknowledgment of seededAcknowledgments) {
+    merged.set(`${acknowledgment.turnId}:${acknowledgment.userId}`, acknowledgment);
+  }
+  for (const acknowledgment of await getStoredDebateAcknowledgments()) {
+    merged.set(`${acknowledgment.turnId}:${acknowledgment.userId}`, acknowledgment);
+  }
   return [...merged.values()];
 }
 
@@ -1244,16 +1326,26 @@ export async function getPhaseOneDebates() {
 }
 
 export async function getPhaseOneDebateDetail(debateId: string, viewerUserId?: string): Promise<PhaseOneDebateDetail | null> {
-  const [debate, turns, reactions] = await Promise.all([getDebateRecord(debateId), getDebateTurnsForDebate(debateId), getAllDebateReactionsForTrust()]);
+  const [debate, turns, reactions, acknowledgments] = await Promise.all([
+    getDebateRecord(debateId),
+    getDebateTurnsForDebate(debateId),
+    getAllDebateReactionsForTrust(),
+    getAllDebateAcknowledgments(),
+  ]);
 
   if (!debate) {
     return null;
   }
 
   const reactionMap = new Map<string, DebateReactionRecord[]>();
+  const acknowledgmentMap = new Map<string, DebateAcknowledgmentRecord[]>();
 
   for (const reaction of reactions.filter((entry) => turns.some((turn) => turn.id === entry.turnId))) {
     reactionMap.set(reaction.turnId, [...(reactionMap.get(reaction.turnId) ?? []), reaction]);
+  }
+
+  for (const acknowledgment of acknowledgments.filter((entry) => turns.some((turn) => turn.id === entry.turnId))) {
+    acknowledgmentMap.set(acknowledgment.turnId, [...(acknowledgmentMap.get(acknowledgment.turnId) ?? []), acknowledgment]);
   }
 
   return {
@@ -1267,6 +1359,7 @@ export async function getPhaseOneDebateDetail(debateId: string, viewerUserId?: s
     statementCount: turns.length,
     statements: turns.map((turn, index) => {
       const turnReactions = reactionMap.get(turn.id) ?? [];
+      const turnAcknowledgments = acknowledgmentMap.get(turn.id) ?? [];
 
       return {
         id: turn.id,
@@ -1281,6 +1374,16 @@ export async function getPhaseOneDebateDetail(debateId: string, viewerUserId?: s
         supportCount: turnReactions.filter((entry) => entry.reaction === "support").length,
         opposeCount: turnReactions.filter((entry) => entry.reaction === "oppose").length,
         viewerReaction: viewerUserId ? turnReactions.find((entry) => entry.userId === viewerUserId)?.reaction ?? null : null,
+        acknowledgmentCounts: {
+          wellSourced: turnAcknowledgments.filter((entry) => entry.acknowledgment === "wellSourced").length,
+          helpedMeUnderstand: turnAcknowledgments.filter((entry) => entry.acknowledgment === "helpedMeUnderstand").length,
+          fairRepresentation: turnAcknowledgments.filter((entry) => entry.acknowledgment === "fairRepresentation").length,
+          constructiveChallenge: turnAcknowledgments.filter((entry) => entry.acknowledgment === "constructiveChallenge").length,
+          practicalProposal: turnAcknowledgments.filter((entry) => entry.acknowledgment === "practicalProposal").length,
+        },
+        viewerAcknowledgment: viewerUserId
+          ? turnAcknowledgments.find((entry) => entry.userId === viewerUserId)?.acknowledgment ?? null
+          : null,
       };
     }),
   };
