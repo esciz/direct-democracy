@@ -40,7 +40,7 @@ export default async function LaunchHealthPage() {
       {stale && <p className="mt-3 text-sm text-amber-100">Check the cloud refresh and deployment before treating source coverage as current.</p>}
     </section>
     {release && <section className="grid grid-cols-2 gap-3 lg:grid-cols-5">
-      {[["Meeting records", "meetings"], ["Meeting topics", "meetingTopics"], ["Voting questions", "votingQuestions"], ["Financial entities", "financialEntities"], ["Ad filings", "adFilings"]].map(([label, key]) => <div key={key} className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-xs text-slate-400">{label}</p><p className="mt-2 text-2xl font-semibold text-slate-100">{(release.metrics[key] ?? 0).toLocaleString()}</p></div>)}
+      {[["Meeting records", "meetings"], ["Meeting topics", "meetingTopics"], ["Voting questions", "votingQuestions"], ["Financial entities", "financialEntities"], ["Ad records", "adFilings"]].map(([label, key]) => <div key={key} className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-xs text-slate-400">{label}</p><p className="mt-2 text-2xl font-semibold text-slate-100">{(release.metrics[key] ?? 0).toLocaleString()}</p></div>)}
     </section>}
     <section className="grid gap-3 md:grid-cols-2">
       {[["Meetings refresh", meetings], ["Broader civic refresh", civic]].map(([label, report]) => {
