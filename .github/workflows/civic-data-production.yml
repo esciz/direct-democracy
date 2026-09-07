@@ -91,6 +91,7 @@ jobs:
       - name: Validate application and source regressions
         run: |
           npm run dataops:release:test
+          node --import tsx scripts/test-dataops-freshness.ts
           node --import tsx scripts/test-packed-civic-runtime.ts
           node --import tsx scripts/test-retrieval-history.ts
           node --import tsx scripts/test-native-extraction-batches.ts
