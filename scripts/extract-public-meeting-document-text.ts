@@ -16,6 +16,8 @@ const MAX_TEXT_CHARS = 450_000;
 const PDF_WORKER_PATH = fileURLToPath(new URL("./workers/public-meeting-pdf-text.mjs", import.meta.url));
 const PDF_TIMEOUT_MS = Number(process.argv.find((arg) => arg.startsWith("--pdf-timeout-ms="))?.split("=")[1] ?? process.env.PUBLIC_MEETING_PDF_TIMEOUT_MS ?? "15000");
 const PDF_MAX_BYTES = Number(process.argv.find((arg) => arg.startsWith("--max-pdf-bytes="))?.split("=")[1] ?? process.env.PUBLIC_MEETING_PDF_MAX_BYTES ?? String(50 * 1024 * 1024));
+const MAX_DOCUMENTS = Number(process.argv.find((arg) => arg.startsWith("--max-documents="))?.split("=")[1] ?? "Infinity");
+const MAX_DURATION_MS = Number(process.argv.find((arg) => arg.startsWith("--max-duration-ms="))?.split("=")[1] ?? "Infinity");
 
 type ExtractionMethod = "native_text" | "ocr_text" | "mixed" | "failed";
 
@@ -61,6 +63,7 @@ type DocumentTextRecord = {
   ocrAvailable: boolean;
   failureReason: string | null;
   extractedAt: string;
+  lastAttemptAt?: string;
   sourceContentHash?: string | null;
   ocrTextHash?: string | null;
   evaluatedOcrTextHash?: string | null;
@@ -278,7 +281,9 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
 
 async function main() {
   if (![PDF_TIMEOUT_MS, PDF_MAX_BYTES].every((limit) => Number.isFinite(limit) && limit > 0)) throw new Error("PDF timeout and byte limits must be finite positive numbers");
+  if (!(MAX_DOCUMENTS > 0) || (Number.isFinite(MAX_DOCUMENTS) && !Number.isInteger(MAX_DOCUMENTS)) || !(MAX_DURATION_MS > 0)) throw new Error("Extraction batch limits must be positive; document count must be an integer");
   mkdirSync(TEXT_DIR, { recursive: true });
+  const startedAt = Date.now();
   const extractedAt = new Date().toISOString();
   const forceAll = process.argv.includes("--all");
   const allDocuments = readJson<{ records?: SourceDocumentRecord[] }>(DOCUMENTS_PATH, { records: [] }).records ?? [];
@@ -288,67 +293,96 @@ async function main() {
   const documents = allDocuments.filter((document) => (!sourceIds.size || sourceIds.has(document.organizationId ?? "")) && (!documentIds.size || documentIds.has(document.id)));
   if (scoped && !documents.length) throw new Error(`No source documents match the provided source/document filters`);
   const selectedDocumentIds = new Set(documents.map((document) => document.id));
-  const records: DocumentTextRecord[] = scoped ? [...existingTextByDocument.values()].filter((record) => !selectedDocumentIds.has(record.documentId)) : [];
+  // Retain deferred evidence exactly as it was. New work replaces one record at a
+  // time; a bounded pass must never publish a ledger containing only its batch.
+  const recordsByDocument = new Map([...existingTextByDocument.entries()].filter(([id]) => scoped || selectedDocumentIds.has(id)));
+  const updatedDocumentIds = new Set<string>();
+  const cached = (document: SourceDocumentRecord) => Boolean(cacheByDocument.has(document.id) || (document.retrievalStatus === "local_cached" && (document.cachedPath || document.sourcePath)));
+  const lastAttempt = (document: SourceDocumentRecord) => {
+    const record = existingTextByDocument.get(document.id);
+    return Date.parse(record?.lastAttemptAt ?? record?.extractedAt ?? "") || 0;
+  };
+  // Work on available minutes first. Old failures rotate behind previously
+  // unattempted documents instead of consuming the same batch every run.
+  documents.sort((a, b) => Number(cached(b)) - Number(cached(a)) || lastAttempt(a) - lastAttempt(b) || Number(b.documentType === "minutes") - Number(a.documentType === "minutes") || a.id.localeCompare(b.id));
   let reused = 0;
   let extracted = 0;
+  let scanned = 0;
+  let budgetReached = false;
   for (const [index, document] of documents.entries()) {
+    if (Date.now() - startedAt >= MAX_DURATION_MS) { budgetReached = true; break; }
+    scanned += 1;
     if (shouldReuseExisting(document, forceAll)) {
       const existing = existingTextByDocument.get(document.id);
       if (existing) {
-        records.push({ ...existing, meetingId: document.meetingId, meetingItemIds: document.meetingItemIds, documentType: document.documentType, sourceUrl: document.sourceUrl, sourcePath: document.sourcePath });
+        recordsByDocument.set(document.id, { ...existing, meetingId: document.meetingId, meetingItemIds: document.meetingItemIds, documentType: document.documentType, sourceUrl: document.sourceUrl, sourcePath: document.sourcePath });
+        updatedDocumentIds.add(document.id);
         reused += 1;
         continue;
       }
     }
-    records.push(await extractDocument(document, extractedAt));
+    if (extracted >= MAX_DOCUMENTS) continue;
+    const attemptAt = new Date().toISOString();
+    recordsByDocument.set(document.id, { ...await extractDocument(document, attemptAt), lastAttemptAt: attemptAt });
+    updatedDocumentIds.add(document.id);
     extracted += 1;
+    // A killed process can lose at most the in-flight batch, not an entire
+    // archive pass. Immutable sidecars remain safe for the previous ledger.
+    if (extracted % 20 === 0) persist(false);
     if ((index + 1) % 100 === 0) console.log(`Document text extraction progress: ${index + 1}/${documents.length} scanned, ${reused} reused, ${extracted} processed`);
   }
-  const audit = {
-    generatedAt: extractedAt,
-    scope: { sourceIds: [...sourceIds], documentIds: [...documentIds], documentsSelected: documents.length, pdfTimeoutMs: PDF_TIMEOUT_MS, pdfMaxBytes: PDF_MAX_BYTES },
-    totals: {
-      documentsScanned: documents.length,
-      documentsInLedger: records.length,
-      reusedExistingText: reused,
-      documentsProcessed: extracted,
-      textExtracted: records.filter((record) => record.extractionMethod !== "failed").length,
-      nativeText: records.filter((record) => record.extractionMethod === "native_text").length,
-      ocrText: records.filter((record) => record.extractionMethod === "ocr_text" || record.extractionMethod === "mixed").length,
-      mixedText: records.filter((record) => record.extractionMethod === "mixed").length,
-      failed: records.filter((record) => record.extractionMethod === "failed").length,
-      highQuality: records.filter((record) => record.extractionQuality === "high").length,
-      mediumQuality: records.filter((record) => record.extractionQuality === "medium").length,
-      lowQuality: records.filter((record) => record.extractionQuality === "low").length,
-      insufficient: records.filter((record) => record.extractionQuality === "insufficient").length,
-    },
-    failureReasons: records.reduce<Record<string, number>>((counts, record) => {
-      if (record.failureReason) counts[record.failureReason] = (counts[record.failureReason] ?? 0) + 1;
-      return counts;
-    }, {}),
-    nativeTextFailureReasons: records.reduce<Record<string, number>>((counts, record) => {
-      if (record.nativeTextFailureReason) counts[record.nativeTextFailureReason] = (counts[record.nativeTextFailureReason] ?? 0) + 1;
-      return counts;
-    }, {}),
-  };
-  const cacheIndex = readJson<{ generatedAt?: string; cacheRoot?: string; records?: Array<CacheIndexRecord & { extractionStatus?: string; ocrStatus?: string }> }>(CACHE_INDEX_PATH, { records: [] });
-  if (cacheIndex.records?.length) {
-    const textByDocument = new Map(records.map((record) => [record.documentId, record]));
-    const updatedCache = cacheIndex.records.map((record) => {
-      if (scoped && !selectedDocumentIds.has(record.documentId)) return record;
-      const text = textByDocument.get(record.documentId);
-      if (!text) return record;
-      return {
-        ...record,
-        extractionStatus: text.extractionMethod === "failed" ? "failed" : "extracted",
-        ocrStatus: text.ocrAttempted ? (text.ocrAvailable ? "required" : "engine_unavailable") : "not_required",
-      };
-    });
-    writeAtomically(CACHE_INDEX_PATH, `${JSON.stringify({ ...cacheIndex, generatedAt: cacheIndex.generatedAt ?? extractedAt, records: updatedCache }, null, 2)}\n`);
-  }
-  writeAtomically(OUTPUT_PATH, `${JSON.stringify({ generatedAt: extractedAt, records, audit }, null, 2)}\n`);
-  console.log(`Processed ${extracted}/${documents.length} selected documents, reused ${reused}; retained ${records.length} text ledger records at ${OUTPUT_PATH}`);
+  const audit = persist(true);
+  console.log(`Processed ${extracted}/${documents.length} selected documents, reused ${reused}, deferred ${audit.totals.documentsDeferred}; retained ${recordsByDocument.size} text ledger records at ${OUTPUT_PATH}`);
   console.log(JSON.stringify(audit.totals, null, 2));
+
+  function persist(completed: boolean) {
+    const records = [...recordsByDocument.values()];
+    const audit = {
+      generatedAt: extractedAt,
+      scope: { sourceIds: [...sourceIds], documentIds: [...documentIds], documentsSelected: documents.length, pdfTimeoutMs: PDF_TIMEOUT_MS, pdfMaxBytes: PDF_MAX_BYTES, maxDocuments: Number.isFinite(MAX_DOCUMENTS) ? MAX_DOCUMENTS : null, maxDurationMs: Number.isFinite(MAX_DURATION_MS) ? MAX_DURATION_MS : null, completed, budgetReached },
+      totals: {
+        documentsScanned: scanned,
+        documentsDeferred: documents.length - updatedDocumentIds.size,
+        documentsInLedger: records.length,
+        reusedExistingText: reused,
+        documentsProcessed: extracted,
+        textExtracted: records.filter((record) => record.extractionMethod !== "failed").length,
+        nativeText: records.filter((record) => record.extractionMethod === "native_text").length,
+        ocrText: records.filter((record) => record.extractionMethod === "ocr_text" || record.extractionMethod === "mixed").length,
+        mixedText: records.filter((record) => record.extractionMethod === "mixed").length,
+        failed: records.filter((record) => record.extractionMethod === "failed").length,
+        highQuality: records.filter((record) => record.extractionQuality === "high").length,
+        mediumQuality: records.filter((record) => record.extractionQuality === "medium").length,
+        lowQuality: records.filter((record) => record.extractionQuality === "low").length,
+        insufficient: records.filter((record) => record.extractionQuality === "insufficient").length,
+      },
+      failureReasons: records.reduce<Record<string, number>>((counts, record) => {
+        if (record.failureReason) counts[record.failureReason] = (counts[record.failureReason] ?? 0) + 1;
+        return counts;
+      }, {}),
+      nativeTextFailureReasons: records.reduce<Record<string, number>>((counts, record) => {
+        if (record.nativeTextFailureReason) counts[record.nativeTextFailureReason] = (counts[record.nativeTextFailureReason] ?? 0) + 1;
+        return counts;
+      }, {}),
+    };
+    const cacheIndex = readJson<{ generatedAt?: string; cacheRoot?: string; records?: Array<CacheIndexRecord & { extractionStatus?: string; ocrStatus?: string }> }>(CACHE_INDEX_PATH, { records: [] });
+    if (cacheIndex.records?.length) {
+      const textByDocument = new Map(records.map((record) => [record.documentId, record]));
+      const updatedCache = cacheIndex.records.map((record) => {
+        if (!updatedDocumentIds.has(record.documentId)) return record;
+        const text = textByDocument.get(record.documentId);
+        if (!text) return record;
+        return {
+          ...record,
+          extractionStatus: text.extractionMethod === "failed" ? "failed" : "extracted",
+          ocrStatus: text.ocrAttempted ? (text.ocrAvailable ? "required" : "engine_unavailable") : "not_required",
+        };
+      });
+      writeAtomically(CACHE_INDEX_PATH, `${JSON.stringify({ ...cacheIndex, generatedAt: cacheIndex.generatedAt ?? extractedAt, records: updatedCache }, null, 2)}\n`);
+    }
+    writeAtomically(OUTPUT_PATH, `${JSON.stringify({ generatedAt: extractedAt, records, audit }, null, 2)}\n`);
+    return audit;
+  }
 }
 
 main().catch((error) => {

@@ -18,15 +18,13 @@ const CANONICAL_ISSUE_TOPICS: CanonicalIssueTopic[] = [
       "teacher staffing",
       "teacher support",
       "teacher vacancy",
-      "classroom support",
       "school staffing",
-      "education funding",
     ],
   },
   {
     title: "Education",
     summary: "School district decisions, classroom resources, school board governance, student services, and public education outcomes.",
-    aliases: ["school district", "school board", "public education", "students", "teachers", "classroom", "curriculum"],
+    aliases: ["school district", "school board", "public education", "students", "teachers", "classroom", "curriculum", "classroom support", "education funding"],
   },
   {
     title: "School Safety",
@@ -188,7 +186,21 @@ function buildTopicVariants(topic: CanonicalIssueTopic) {
   return [topic.title, ...topic.aliases];
 }
 
+/** A narrow compensation/staffing topic needs its teaching subject in the source. */
+export function hasTeacherPaySubjectEvidence(value: string) {
+  const normalized = normalizeIssueText(value).replace(/[’']/g, " ");
+  if (/\b(?:school|classroom)\s+(?:staffing|teacher\s+vacancies)\b/.test(normalized)) return true;
+  const subject = "(?:teachers?|educators?|faculty|adjuncts?)";
+  const subjectMatter = "(?:pay(?:roll)?|salar(?:y|ies)|wages?|compensation|benefits?|staffing|retention|retain(?:ing)?|recruit(?:ment|ing)?|hiring|vacanc(?:y|ies)|shortages?)";
+  // Keep the two concepts in a short clause; words elsewhere in a long minutes
+  // excerpt (such as cannabis education and investor funding) are insufficient.
+  return new RegExp(`\\b${subject}\\b[^.!?;]{0,120}\\b${subjectMatter}\\b|\\b${subjectMatter}\\b[^.!?;]{0,120}\\b${subject}\\b`, "i").test(normalized);
+}
+
 function getIssueTopicMatchScore(issueText: string, topic: CanonicalIssueTopic) {
+  if (topic.title === "Teacher Pay") {
+    return hasTeacherPaySubjectEvidence(issueText) ? normalizeIssueText(issueText) === "teacher pay" ? 10 : 8 : 0;
+  }
   const normalizedIssue = normalizeIssueText(issueText);
   const issueTokens = new Set(tokenizeIssueText(issueText));
 
@@ -288,6 +300,7 @@ export function issueTextMatchesQuery(issueText: string, query: string) {
 }
 
 export function valuesMatchIssueText(issueText: string, ...values: Array<string | null | undefined>) {
+  if (getCanonicalIssueTextOrNull(issueText) === "Teacher Pay") return values.some(value => value && hasTeacherPaySubjectEvidence(value));
   const issueVariants = getIssueTopicAliases(issueText);
 
   return values.some((value) => {
@@ -316,6 +329,7 @@ const DISTINCTIVE_ISSUE_TOKENS = new Set([
 
 /** Stronger matching for relationship cards, where one generic shared word is not enough. */
 export function valuesStronglyMatchIssueText(issueText: string, ...values: Array<string | null | undefined>) {
+  if (getCanonicalIssueTextOrNull(issueText) === "Teacher Pay") return values.some(value => value && hasTeacherPaySubjectEvidence(value));
   const variants = [...new Set([issueText, ...getIssueTopicAliases(issueText)])];
 
   return values.some((value) => {

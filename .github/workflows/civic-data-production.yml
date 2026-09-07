@@ -93,10 +93,12 @@ jobs:
           npm run dataops:release:test
           node --import tsx scripts/test-packed-civic-runtime.ts
           node --import tsx scripts/test-retrieval-history.ts
+          node --import tsx scripts/test-native-extraction-batches.ts
           node --import tsx scripts/test-public-session-boundary.cjs
           node --import tsx scripts/test-durable-profile-content.ts
           node --import tsx scripts/test-profile-mutation-session.ts
           npm run minutes:evidence:test
+          npm run issues:integrity:test
           npm run meetings:items:test
           npm run financials:nevada:test
           npm run ads:nevada:test

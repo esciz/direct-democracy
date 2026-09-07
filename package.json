@@ -76,6 +76,7 @@
     "issues:review-requests:report": "tsx scripts/report-issue-review-requests.ts",
     "issues:generate": "tsx scripts/generate-issue-hubs.ts",
     "issues:audit": "tsx scripts/audit-issues.ts",
+    "issues:integrity:test": "node --import tsx scripts/test-public-issue-integrity.ts && node --import tsx scripts/test-issue-hub-reader.ts",
     "ads:sources": "node --import tsx scripts/generate-nevada-political-ad-sources.ts",
     "ads:fec:download": "node --import tsx scripts/download-nevada-fec-political-ads.ts --scheduled --limit=1600",
     "ads:fec:backfill": "node --import tsx scripts/download-nevada-fec-political-ads.ts --bulk-only --limit=1600",

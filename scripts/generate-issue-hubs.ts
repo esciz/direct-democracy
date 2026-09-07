@@ -1,7 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { getCanonicalIssueText, getCanonicalIssueTextOrNull, getIssueTopicSummary, slugifyIssueText } from "@/lib/issues/utils";
+import { getCanonicalIssueText, getCanonicalIssueTextOrNull, getIssueTopicSummary, hasTeacherPaySubjectEvidence, slugifyIssueText } from "@/lib/issues/utils";
+import { getPublicMeetingItems } from "@/lib/public-meetings/public-record-eligibility";
+import { getPublicMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
+import { cachedTopicNeedsEvidenceReview } from "@/lib/public-meetings/evidence-review";
+import type { MeetingVotingCardRecord, PublicMeetingItemRecord } from "@/lib/public-meetings/types";
 import type { VoteQuestionScope } from "@/types/domain";
 
 const GENERATED_DIR = path.join(process.cwd(), "data/generated");
@@ -22,6 +27,8 @@ type IssueAccumulator = {
   relatedCourtCaseIds: Set<string>;
   relatedIssueReviewRequestIds: Set<string>;
   relatedSourceUrls: Set<string>;
+  voteItemIds: Set<string>;
+  spendingItemIds: Set<string>;
   relationshipCounts: {
     meetings: number;
     agendaItems: number;
@@ -118,6 +125,8 @@ function getOrCreateIssue(issues: Map<string, IssueAccumulator>, issueText: stri
     relatedCourtCaseIds: new Set(),
     relatedIssueReviewRequestIds: new Set(),
     relatedSourceUrls: new Set(),
+    voteItemIds: new Set(),
+    spendingItemIds: new Set(),
     relationshipCounts: {
       meetings: 0,
       agendaItems: 0,
@@ -169,10 +178,12 @@ function addSources(issue: IssueAccumulator, ...values: unknown[]) {
   }
 }
 
-function deriveIssueTextFromPolicyArea(policyArea: string, fallbackText: string) {
+function deriveIssueTextFromPolicyArea(policyArea: string, fallbackText: string, sourceEvidence: string) {
+  if (hasTeacherPaySubjectEvidence(sourceEvidence)) return "Teacher Pay";
   if (policyArea && policyArea.toLowerCase() !== "other") {
     const canonicalPolicyArea = getCanonicalIssueTextOrNull(policyArea);
     if (canonicalPolicyArea) {
+      if (canonicalPolicyArea === "Teacher Pay") return null;
       return canonicalPolicyArea;
     }
 
@@ -182,18 +193,18 @@ function deriveIssueTextFromPolicyArea(policyArea: string, fallbackText: string)
 
     return null;
   }
-  return getCanonicalIssueTextOrNull(fallbackText);
+  const inferred = getCanonicalIssueTextOrNull(fallbackText);
+  return inferred === "Teacher Pay" ? null : inferred;
 }
 
-function ingestVotingCards(issues: Map<string, IssueAccumulator>) {
-  const cards = asRecords(readJson(path.join(GENERATED_DIR, "public-meeting-voting-cards.json")));
-
+function ingestVotingCards(issues: Map<string, IssueAccumulator>, cards: MeetingVotingCardRecord[]) {
   for (const card of cards) {
     const policyArea = text(card.policy_area);
     const title = text(card.public_title) || text(card.title) || text(card.source_title);
     const summary = text(card.plain_language_summary) || text(card.citizen_summary) || text(card.question_text);
     const jurisdiction = text(card.jurisdiction_display_name) || text(card.jurisdiction);
-    const issueText = deriveIssueTextFromPolicyArea(policyArea, `${title} ${summary}`);
+    const sourceEvidence = [card.source_title, card.agenda_language_original, ...(card.source_snippets ?? [])].map(text).join(" ");
+    const issueText = deriveIssueTextFromPolicyArea(policyArea, `${title} ${summary}`, sourceEvidence);
     if (!issueText) {
       continue;
     }
@@ -201,12 +212,8 @@ function ingestVotingCards(issues: Map<string, IssueAccumulator>) {
 
     issue.sourceTypes.add("meeting_voting_card");
     issue.policyAreas.add(policyArea || "Other");
-    issue.relationshipCounts.votingCards += 1;
-    issue.relationshipCounts.meetings += text(card.meeting_id) ? 1 : 0;
-    issue.relationshipCounts.agendaItems += text(card.topic_item_id) ? 1 : 0;
-    issue.relationshipCounts.votes += text(card.outcome_status) && text(card.outcome_status) !== "unknown" ? 1 : 0;
-    issue.relationshipCounts.spendingRecords += text(card.financial_impact) ? 1 : 0;
-    issue.relationshipCounts.sourceDocuments += Array.isArray(card.source_snippets) ? card.source_snippets.length : 0;
+    if (text(card.outcome_status) && text(card.outcome_status) !== "unknown") issue.voteItemIds.add(text(card.topic_item_id));
+    if (text(card.financial_impact)) issue.spendingItemIds.add(text(card.topic_item_id));
     issue.relatedVotingCardIds.add(text(card.id));
     issue.relatedMeetingIds.add(text(card.meeting_id));
     issue.relatedAgendaItemIds.add(text(card.topic_item_id));
@@ -217,14 +224,12 @@ function ingestVotingCards(issues: Map<string, IssueAccumulator>) {
   }
 }
 
-function ingestAgendaItems(issues: Map<string, IssueAccumulator>) {
-  const items = asRecords(readJson(path.join(GENERATED_DIR, "public-meeting-items.json")));
-
+function ingestAgendaItems(issues: Map<string, IssueAccumulator>, items: PublicMeetingItemRecord[]) {
   for (const item of items) {
     const policyArea = text(item.policy_area);
     const title = text(item.title);
     const explanation = text(item.plain_english_explanation) || text(item.one_sentence_summary) || text(item.description);
-    const issueText = deriveIssueTextFromPolicyArea(policyArea, `${title} ${explanation}`);
+    const issueText = deriveIssueTextFromPolicyArea(policyArea, `${title} ${explanation}`, `${title} ${text(item.source_text)}`);
     if (!issueText) {
       continue;
     }
@@ -232,9 +237,7 @@ function ingestAgendaItems(issues: Map<string, IssueAccumulator>) {
 
     issue.sourceTypes.add("agenda_item");
     issue.policyAreas.add(policyArea || "Other");
-    issue.relationshipCounts.agendaItems += 1;
-    issue.relationshipCounts.sourceDocuments += text(item.source_url) ? 1 : 0;
-    issue.relationshipCounts.spendingRecords += text(item.financial_impact) || text(item.fiscal_impact_summary) ? 1 : 0;
+    if (text(item.financial_impact) || text(item.fiscal_impact_summary)) issue.spendingItemIds.add(text(item.id));
     issue.relatedAgendaItemIds.add(text(item.id));
     issue.relatedMeetingIds.add(text(item.meeting_id));
     addSources(issue, item.source_url, item.source_page);
@@ -242,9 +245,7 @@ function ingestAgendaItems(issues: Map<string, IssueAccumulator>) {
   }
 }
 
-function ingestCourtCases(issues: Map<string, IssueAccumulator>) {
-  const cases = asRecords(readJson(path.join(GENERATED_DIR, "public-court-cases-runtime.json")));
-
+function ingestCourtCases(issues: Map<string, IssueAccumulator>, cases: AnyRecord[]) {
   for (const courtCase of cases) {
     const tags = Array.isArray(courtCase.issueTags) ? courtCase.issueTags.map(text).filter(Boolean) : [];
     const issueText = tags[1] ?? tags[0] ?? `${text(courtCase.caseType)} ${text(courtCase.courtName)}`;
@@ -253,26 +254,22 @@ function ingestCourtCases(issues: Map<string, IssueAccumulator>) {
 
     issue.sourceTypes.add("public_court_record");
     issue.policyAreas.add("Courts and Legal Rights");
-    issue.relationshipCounts.courtCases += 1;
-    issue.relationshipCounts.sourceDocuments += Array.isArray(courtCase.documents) ? courtCase.documents.length : 1;
     issue.relatedCourtCaseIds.add(text(courtCase.id));
     addJurisdiction(issue, jurisdiction);
     addSources(issue, courtCase.sourceUrl);
+    for (const document of asRecords(courtCase.documents)) addSources(issue, document.sourceUrl, document.url);
     issue.latestActivityAt = addLatest(issue.latestActivityAt, text(courtCase.dispositionDate) || text(courtCase.createdAt));
     issue.confidenceSignals.push(0.92);
   }
 }
 
-function ingestIssueReviewRequests(issues: Map<string, IssueAccumulator>) {
-  const requests = asRecords(readJson(path.join(GENERATED_DIR, "issue-review-requests-runtime.json")));
-
+function ingestIssueReviewRequests(issues: Map<string, IssueAccumulator>, requests: AnyRecord[]) {
   for (const request of requests) {
     const jurisdiction = text(request.jurisdictionName) || text(request.community);
     const issue = getOrCreateIssue(issues, text(request.category) || text(request.title), inferScope(jurisdiction));
 
     issue.sourceTypes.add("citizen_issue_submission");
     issue.policyAreas.add(text(request.category) || "Other");
-    issue.relationshipCounts.communitySubmissions += 1;
     issue.relatedIssueReviewRequestIds.add(text(request.id));
     addJurisdiction(issue, jurisdiction);
     issue.latestActivityAt = addLatest(issue.latestActivityAt, text(request.submittedAt));
@@ -295,22 +292,42 @@ function average(values: number[]) {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
-function main() {
-  const issues = new Map<string, IssueAccumulator>();
+function uniqueRecords(value: unknown) {
+  return [...new Map(asRecords(value).filter(record => text(record.id)).map(record => [text(record.id), record])).values()];
+}
 
-  ingestVotingCards(issues);
-  ingestAgendaItems(issues);
-  ingestCourtCases(issues);
-  ingestIssueReviewRequests(issues);
+export function buildPublicIssueHubRecords(input: { meetingItems: unknown; votingCards: unknown; meetings: unknown; courtCases?: unknown; issueReviewRequests?: unknown }) {
+  const issues = new Map<string, IssueAccumulator>();
+  const meetingIds = new Set(uniqueRecords(input.meetings).map(meeting => text(meeting.id)));
+  const publicItems = getPublicMeetingItems(uniqueRecords(input.meetingItems) as unknown as PublicMeetingItemRecord[])
+    .filter(item => meetingIds.has(text(item.meeting_id)));
+  const publicItemById = new Map(publicItems.map(item => [text(item.id), item]));
+  const publicCards = getPublicMeetingVotingCards(uniqueRecords(input.votingCards) as unknown as MeetingVotingCardRecord[])
+    .filter(card => {
+      const item = publicItemById.get(text(card.topic_item_id));
+      return meetingIds.has(text(card.meeting_id)) && item?.meeting_id === card.meeting_id && !cachedTopicNeedsEvidenceReview(item);
+    });
+
+  ingestVotingCards(issues, publicCards);
+  ingestAgendaItems(issues, publicItems);
+  ingestCourtCases(issues, uniqueRecords(input.courtCases));
+  ingestIssueReviewRequests(issues, uniqueRecords(input.issueReviewRequests));
 
   const records = [...issues.entries()]
     .map(([slug, issue]) => {
+      const countIds = (values: Set<string>) => [...values].filter(Boolean).length;
+      const relationshipCounts = { ...issue.relationshipCounts,
+        meetings: countIds(issue.relatedMeetingIds), agendaItems: countIds(issue.relatedAgendaItemIds),
+        votingCards: countIds(issue.relatedVotingCardIds), courtCases: countIds(issue.relatedCourtCaseIds),
+        communitySubmissions: countIds(issue.relatedIssueReviewRequestIds), sourceDocuments: countIds(issue.relatedSourceUrls),
+        votes: countIds(issue.voteItemIds), spendingRecords: countIds(issue.spendingItemIds),
+      };
       const confidence = Math.round(Math.min(0.98, Math.max(0.35, average(issue.confidenceSignals))) * 100) / 100;
       const sourceBacked =
-        issue.relationshipCounts.votingCards +
-          issue.relationshipCounts.agendaItems +
-          issue.relationshipCounts.courtCases +
-          issue.relationshipCounts.sourceDocuments >
+        relationshipCounts.votingCards +
+          relationshipCounts.agendaItems +
+          relationshipCounts.courtCases +
+          relationshipCounts.sourceDocuments >
         0;
 
       return {
@@ -321,11 +338,12 @@ function main() {
         scope: issue.scope,
         jurisdictionName: dominantJurisdiction(issue),
         sourceBacked,
+        publicRelationshipEvidenceVersion: 1 as const,
         reviewStatus: confidence >= 0.72 ? "generated" : "needs_review",
         sourceTypes: [...issue.sourceTypes].sort(),
         communities: compactSet(issue.communities, 24),
         policyAreas: compactSet(issue.policyAreas, 12),
-        relationshipCounts: issue.relationshipCounts,
+        relationshipCounts,
         relatedMeetingIds: compactSet(issue.relatedMeetingIds),
         relatedAgendaItemIds: compactSet(issue.relatedAgendaItemIds),
         relatedVotingCardIds: compactSet(issue.relatedVotingCardIds),
@@ -341,6 +359,18 @@ function main() {
       const scoreB = b.relationshipCounts.votingCards + b.relationshipCounts.agendaItems + b.relationshipCounts.courtCases * 3;
       return scoreB - scoreA;
     });
+
+  return records;
+}
+
+function main() {
+  const records = buildPublicIssueHubRecords({
+    meetingItems: readJson(path.join(GENERATED_DIR, "public-meeting-items.json")),
+    votingCards: readJson(path.join(GENERATED_DIR, "public-meeting-voting-cards.json")),
+    meetings: readJson(path.join(GENERATED_DIR, "public-meetings.json")),
+    courtCases: readJson(path.join(GENERATED_DIR, "public-court-cases-runtime.json")),
+    issueReviewRequests: readJson(path.join(GENERATED_DIR, "issue-review-requests-runtime.json")),
+  });
 
   fs.mkdirSync(GENERATED_DIR, { recursive: true });
   fs.writeFileSync(
@@ -364,4 +394,4 @@ function main() {
   console.log(`[issues] Generated ${records.length} issue hub records at ${path.relative(process.cwd(), OUTPUT_PATH)}`);
 }
 
-main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

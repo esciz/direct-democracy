@@ -90,7 +90,7 @@ const retrieveArgs = [
 ].filter(Boolean) as string[];
 // Match the minutes retrieval ceiling so large board minutes can be read after
 // download. Each PDF still runs in an isolated worker with a bounded timeout.
-const nativeExtractArgs = ["--max-pdf-bytes=250000000", "--pdf-timeout-ms=60000"];
+const nativeExtractArgs = ["--max-pdf-bytes=250000000", "--pdf-timeout-ms=60000", "--max-documents=400", "--max-duration-ms=600000"];
 
 const stages: Stage[] = [
   {
