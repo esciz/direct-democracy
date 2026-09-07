@@ -510,7 +510,7 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
                   const sourceExcerpt = item.parser_status === "source_excerpt";
                   const itemVotes = sourceExcerpt ? [] : votesByItemId.get(item.id) ?? [];
                   return (
-                    <article key={item.id} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+                    <article id={item.id} key={item.id} className="scroll-mt-24 rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                       <div className="flex flex-wrap items-center gap-2">
                         {item.item_number ? (
                           <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700">Item {item.item_number}</span>

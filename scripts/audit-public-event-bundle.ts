@@ -14,6 +14,7 @@ const workerManifests = [
   "data/generated/public-meeting-source-documents.json",
   "data/generated/public-meeting-document-cache-index.json",
   "data/generated/public-meeting-document-text.json",
+  "data/generated/public-meeting-document-association-review-candidates.json",
 ];
 const runtimeFiles = [
   "data/generated/accountability-graph-runtime.json",

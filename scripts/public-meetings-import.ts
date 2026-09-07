@@ -1,8 +1,10 @@
 import { runPublicMeetingImport } from "@/lib/public-meetings/importer";
+import { repairReviewedMeetingDocumentAssociations } from "@/lib/public-meetings/reviewed-document-association-store";
 
 async function main() {
   const sourceIds = process.argv.filter((arg) => arg.startsWith("--source=")).flatMap((arg) => arg.slice("--source=".length).split(",")).filter(Boolean);
   const report = await runPublicMeetingImport({ sourceIds });
+  repairReviewedMeetingDocumentAssociations();
 
   console.log("Public meeting import complete");
   console.log(`Seed sources: ${report.seed_sources}`);

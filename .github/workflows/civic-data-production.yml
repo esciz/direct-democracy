@@ -104,6 +104,7 @@ jobs:
           npm run meetings:priority-sources:test
           npm run meetings:identity:test
           npm run meetings:lifecycle:test
+          node --import tsx scripts/test-reviewed-document-associations.ts
           npm run meetings:runtime:test
           npm run auth:sessions:test
           npm run auth:recovery:test

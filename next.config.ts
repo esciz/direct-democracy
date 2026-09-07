@@ -34,6 +34,7 @@ const nextConfig: NextConfig = {
       "./data/generated/public-meeting-cache-quarantine.json",
       "./data/generated/public-meeting-item-processing-state.json",
       "./data/generated/public-meeting-document-refresh-state.json",
+      "./data/generated/public-meeting-document-association-review-candidates.json",
       "./data/generated/dataops-change-log.json",
       // Local Finder copies are not canonical generated artifacts or web inputs.
       "./data/generated/* 2.json",
