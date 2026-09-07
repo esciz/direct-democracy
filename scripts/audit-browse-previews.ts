@@ -1,7 +1,8 @@
 import { mkdirSync, writeFileSync } from "fs";
 import path from "path";
 
-import { getBrowsePreviewData, type BrowsePreviewCategory, type BrowsePreviewData } from "../lib/browse/preview-adapter";
+import type { BrowsePreviewCategory, BrowsePreviewData } from "../lib/browse/preview-adapter";
+import { installNextServerCliBoundary } from "./lib/register-next-server-cli";
 
 const categories: BrowsePreviewCategory[] = [
   "communities",
@@ -72,6 +73,7 @@ function auditPreview(category: BrowsePreviewCategory, preview: BrowsePreviewDat
 }
 
 async function main() {
+  const { getBrowsePreviewData } = await import("../lib/browse/preview-adapter");
   const previews = await getBrowsePreviewData({
     communityId: "carson-city-county",
     query: "",
@@ -139,7 +141,8 @@ async function main() {
   console.log(`Browse preview audit passed. Report written to ${path.join(outDir, "browse-preview-audit.json")}`);
 }
 
+const serverBoundary = installNextServerCliBoundary();
 main().catch((error) => {
   console.error("Browse preview audit failed:", error);
-  process.exit(1);
-});
+  process.exitCode = 1;
+}).finally(() => serverBoundary.deregister());

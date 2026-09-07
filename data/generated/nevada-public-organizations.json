@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-25T13:08:25.640Z",
+  "generatedAt": "2026-08-29T13:05:23.758Z",
   "catalogVersion": 1,
   "catalogUpdatedAt": "2026-07-25",
-  "scheduledShard": 5,
+  "scheduledShard": 2,
   "schedule": "Official websites and party directories are checked in daily shards; the IRS Nevada exempt-organization file refreshes weekly.",
   "sourceBoundary": "An IRS match confirms a tax-exempt registry record, not endorsement, activity, membership size, or political position. Party platforms, priorities, leadership, news, and affiliate labels are party-authored material. A club directory listing establishes only that the party published the listing; it does not independently prove legal affiliation.",
   "totals": {
@@ -10,8 +10,8 @@
     "categories": 19,
     "statewide": 46,
     "localOrRegional": 81,
-    "websitesChecked": 79,
-    "websitesReachable": 79,
+    "websitesChecked": 107,
+    "websitesReachable": 106,
     "irsRegistryMatches": 26,
     "politicalPartyOrganizations": 81,
     "democraticPartyNetwork": 32,
@@ -234,7 +234,7 @@
         "PROGRESSIVE LEADERSHIP ALLIANCE OF NEVADA"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:38.519Z",
+        "checkedAt": "2026-08-29T13:05:16.545Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://planevada.org/",
@@ -257,7 +257,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T01:24:38.519Z"
+      "lastCheckedAt": "2026-08-29T13:05:16.545Z"
     },
     {
       "id": "public-org-nevada-conservation-league",
@@ -458,9 +458,9 @@
       ],
       "irsNames": [],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:42.310Z",
+        "checkedAt": "2026-08-29T13:05:16.718Z",
         "ok": true,
-        "status": 200,
+        "status": 403,
         "finalUrl": "https://silverstateequality.org/",
         "error": null
       },
@@ -470,7 +470,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "official_website_checked",
-      "lastCheckedAt": "2026-07-26T01:24:42.310Z"
+      "lastCheckedAt": "2026-08-29T13:05:16.718Z"
     },
     {
       "id": "public-org-nevada-humanities",
@@ -494,7 +494,7 @@
         "NEVADA HUMANITIES INC"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:42.670Z",
+        "checkedAt": "2026-08-28T13:27:56.873Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.nevadahumanities.org/",
@@ -517,7 +517,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T01:24:42.670Z"
+      "lastCheckedAt": "2026-08-28T13:27:56.873Z"
     },
     {
       "id": "public-org-nsea",
@@ -541,7 +541,7 @@
         "NEVADA STATE EDUCATION ASSOCIATION"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:42.853Z",
+        "checkedAt": "2026-08-29T13:05:17.108Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.nsea-nv.org/",
@@ -564,7 +564,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T01:24:42.853Z"
+      "lastCheckedAt": "2026-08-29T13:05:17.108Z"
     },
     {
       "id": "public-org-culinary-226",
@@ -657,7 +657,7 @@
         "SERVICE EMPLOYEES INTERNATIONAL UNION"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:43.591Z",
+        "checkedAt": "2026-08-29T13:05:17.532Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.seiunv.org/",
@@ -680,7 +680,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T01:24:43.591Z"
+      "lastCheckedAt": "2026-08-29T13:05:17.532Z"
     },
     {
       "id": "public-org-nevada-afl-cio",
@@ -1435,7 +1435,7 @@
         "CATHOLIC CHARITIES OF NORTHERN NEVADA"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:52.254Z",
+        "checkedAt": "2026-08-28T13:27:57.083Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://ccsnn.org/",
@@ -1458,7 +1458,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T01:24:52.254Z"
+      "lastCheckedAt": "2026-08-28T13:27:57.083Z"
     },
     {
       "id": "public-org-catholic-charities-southern-nevada",
@@ -1569,7 +1569,7 @@
         "NEVADA PARTNERSHIP FOR HOMELESS YOUTH"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:52.754Z",
+        "checkedAt": "2026-08-29T13:05:17.732Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nphy.org/",
@@ -1592,7 +1592,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "website_and_irs_matched",
-      "lastCheckedAt": "2026-07-26T01:24:52.754Z"
+      "lastCheckedAt": "2026-08-29T13:05:17.732Z"
     },
     {
       "id": "public-org-nevada-american-legion",
@@ -2161,7 +2161,7 @@
       ],
       "irsNames": [],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:59.347Z",
+        "checkedAt": "2026-08-28T13:27:57.335Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.unr.edu/",
@@ -2173,7 +2173,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "official_website_checked",
-      "lastCheckedAt": "2026-07-26T01:24:59.347Z"
+      "lastCheckedAt": "2026-08-28T13:27:57.335Z"
     },
     {
       "id": "public-org-unlv",
@@ -2197,7 +2197,7 @@
       ],
       "irsNames": [],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:24:59.606Z",
+        "checkedAt": "2026-08-29T13:05:18.280Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.unlv.edu/",
@@ -2209,7 +2209,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "official_website_checked",
-      "lastCheckedAt": "2026-07-26T01:24:59.606Z"
+      "lastCheckedAt": "2026-08-29T13:05:18.280Z"
     },
     {
       "id": "public-org-nevada-state-university",
@@ -2413,7 +2413,7 @@
         "NEVADA ASSOCIATION OF COUNTIES"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:25:00.689Z",
+        "checkedAt": "2026-08-29T13:05:18.386Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://www.nvnaco.org/",
@@ -2425,7 +2425,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "official_website_checked",
-      "lastCheckedAt": "2026-07-26T01:25:00.689Z"
+      "lastCheckedAt": "2026-08-29T13:05:18.386Z"
     },
     {
       "id": "public-org-nevada-league-cities",
@@ -2449,7 +2449,7 @@
         "NEVADA LEAGUE OF CITIES AND MUNICIPALITIES"
       ],
       "websiteHealth": {
-        "checkedAt": "2026-07-26T01:25:00.902Z",
+        "checkedAt": "2026-08-28T13:27:57.574Z",
         "ok": true,
         "status": 200,
         "finalUrl": "https://nvleague.com/",
@@ -2461,7 +2461,7 @@
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "official_website_checked",
-      "lastCheckedAt": "2026-07-26T01:25:00.902Z"
+      "lastCheckedAt": "2026-08-28T13:27:57.574Z"
     },
     {
       "id": "public-org-nevada-state-democratic-party",
@@ -2697,14 +2697,20 @@
         "parentOrganizationName": "Nevada State Democratic Party",
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:18.596Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvdems.com/club/clark/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:18.596Z"
     },
     {
       "id": "public-org-dem-douglas-county",
@@ -2754,14 +2760,20 @@
         "parentOrganizationName": "Nevada State Democratic Party",
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:27:57.691Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvdems.com/club/douglas/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:27:57.691Z"
     },
     {
       "id": "public-org-dem-elko-county",
@@ -3057,14 +3069,20 @@
         "parentOrganizationName": "Nevada State Democratic Party",
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:01.460Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvdems.com/club/lander/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:01.460Z"
     },
     {
       "id": "public-org-dem-lincoln-county",
@@ -3114,14 +3132,20 @@
         "parentOrganizationName": "Nevada State Democratic Party",
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:02.170Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvdems.com/club/lincoln/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:02.170Z"
     },
     {
       "id": "public-org-dem-lyon-county",
@@ -3171,14 +3195,20 @@
         "parentOrganizationName": "Nevada State Democratic Party",
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:20.750Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvdems.com/club/lyon/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:20.750Z"
     },
     {
       "id": "public-org-dem-mineral-county",
@@ -3531,14 +3561,20 @@
         "parentOrganizationName": "Nevada State Democratic Party",
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:02.978Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvdems.com/club/white-pine/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:02.978Z"
     },
     {
       "id": "public-org-dem-aapi-caucus",
@@ -3708,14 +3744,20 @@
         "parentOrganizationName": "Nevada State Democratic Party",
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:21.470Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvdems.com/club/american-indian-alaska-native-democratic-caucus/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:21.470Z"
     },
     {
       "id": "public-org-dem-black-caucus",
@@ -3942,14 +3984,20 @@
         "parentOrganizationName": "Nevada State Democratic Party",
         "listingSourceUrl": "https://nvdems.com/party/counties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:03.734Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nvdems.com/club/latino-caucus/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:03.734Z"
     },
     {
       "id": "public-org-dem-lgbtqia-caucus",
@@ -4431,14 +4479,20 @@
         "parentOrganizationName": null,
         "listingSourceUrl": "https://nevadagop.org/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:22.284Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:22.284Z"
     },
     {
       "id": "public-org-gop-carson-city",
@@ -4608,14 +4662,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:22.380Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://ccrpnv.com/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:22.380Z"
     },
     {
       "id": "public-org-gop-douglas-county",
@@ -4785,14 +4845,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:22.730Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:22.730Z"
     },
     {
       "id": "public-org-gop-eureka-county",
@@ -4905,14 +4971,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:04.552Z",
+        "ok": false,
+        "status": null,
+        "finalUrl": "https://www.humboldtnvgop.org",
+        "error": "fetch failed"
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
       "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "lastCheckedAt": "2026-08-28T13:28:04.552Z"
     },
     {
       "id": "public-org-gop-lander-county",
@@ -5322,14 +5394,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/nevada-republican-county-parties/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.191Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://www.storeycountygop.com/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.191Z"
     },
     {
       "id": "public-org-gop-washoe-county",
@@ -5499,14 +5577,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.424Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.424Z"
     },
     {
       "id": "public-org-gop-battle-born-republican-women",
@@ -5739,14 +5823,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.424Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.424Z"
     },
     {
       "id": "public-org-gop-douglas-republican-women",
@@ -5859,14 +5949,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:04.608Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:04.608Z"
     },
     {
       "id": "public-org-gop-incline-republican-women",
@@ -6099,14 +6195,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:04.608Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:04.608Z"
     },
     {
       "id": "public-org-gop-mesquite-republican-women",
@@ -6156,14 +6258,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:04.608Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:04.608Z"
     },
     {
       "id": "public-org-gop-mt-rose-republican-women",
@@ -6213,14 +6321,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.490Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://mtroserepublicanwomen.org/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.490Z"
     },
     {
       "id": "public-org-gop-federation-republican-women",
@@ -6333,14 +6447,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.424Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.424Z"
     },
     {
       "id": "public-org-gop-nevada-republican-assembly",
@@ -6447,14 +6567,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:04.608Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:04.608Z"
     },
     {
       "id": "public-org-gop-republican-jewish-coalition",
@@ -6569,14 +6695,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.424Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.424Z"
     },
     {
       "id": "public-org-gop-republican-women-reno",
@@ -6626,14 +6758,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:04.608Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:04.608Z"
     },
     {
       "id": "public-org-gop-siena-conservatives",
@@ -6746,14 +6884,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.424Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.424Z"
     },
     {
       "id": "public-org-gop-sierra-nevada-republican-women",
@@ -6923,14 +7067,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.424Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.424Z"
     },
     {
       "id": "public-org-gop-sparks-republican-women",
@@ -7043,14 +7193,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:04.608Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:04.608Z"
     },
     {
       "id": "public-org-gop-sun-city-anthem",
@@ -7100,14 +7256,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-28T13:28:04.608Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-28T13:28:04.608Z"
     },
     {
       "id": "public-org-gop-unlv-young-republicans",
@@ -7157,14 +7319,20 @@
         "parentOrganizationName": "Nevada Republican Party",
         "listingSourceUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/"
       },
-      "websiteHealth": null,
+      "websiteHealth": {
+        "checkedAt": "2026-08-29T13:05:23.424Z",
+        "ok": true,
+        "status": 200,
+        "finalUrl": "https://nevadagop.org/about-us/republican-clubs-in-nevada/",
+        "error": null
+      },
       "registry": {
         "irsMatched": false,
         "irsRecords": [],
         "nevadaBusinessSearchUrl": "https://esos.nv.gov/EntitySearch/OnlineEntitySearch"
       },
-      "verificationStatus": "party_source_registered",
-      "lastCheckedAt": null
+      "verificationStatus": "party_source_checked",
+      "lastCheckedAt": "2026-08-29T13:05:23.424Z"
     },
     {
       "id": "public-org-gop-unr-college-republicans",

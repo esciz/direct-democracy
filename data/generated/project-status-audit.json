@@ -1,24 +1,134 @@
 {
-  "generatedAt": "2026-08-22T19:07:49.792Z",
+  "generatedAt": "2026-09-06T21:47:38.813Z",
   "totals": {
-    "projects": 867,
-    "needsReview": 618,
-    "withBudget": 395,
-    "withNextKnownMilestone": 29,
-    "withResponsibleBody": 867,
-    "withSourceReferences": 867
+    "projects": 1172,
+    "needsReview": 744,
+    "withBudget": 482,
+    "withNextKnownMilestone": 30,
+    "withResponsibleBody": 1172,
+    "withSourceReferences": 1172
   },
   "statusCounts": {
-    "funded": 593,
-    "in_progress": 55,
-    "approved": 38,
-    "unknown": 82,
-    "proposed": 79,
-    "delayed": 13,
-    "completed": 4,
-    "canceled": 3
+    "proposed": 93,
+    "approved": 100,
+    "funded": 754,
+    "unknown": 128,
+    "in_progress": 62,
+    "delayed": 26,
+    "canceled": 4,
+    "completed": 5
   },
   "unclearStatusReasons": [
+    {
+      "id": "project-lyon-county-nv-appointed-official-s-reports-item-meeting-manual-lyon-county-comm",
+      "name": "Appointed Official's reports",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-lyon-county-nv-utilities-item-meeting-manual-lyon-county-commission-lyon-county-",
+      "name": "Utilities",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-lyon-county-nv-adopt-water-enhancer-master-plan-violation-community-resistance-a",
+      "name": "adopt water enhancer, master plan violation, community resistance and local petitions, people scared to opp...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-lyon-county-nv-residence-potentially-intermittent-stream-or-lake-site-location-o",
+      "name": "residence/potentially intermittent stream or lake, site location on flood plain and potential for contamina...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-lyon-county-nv-appointed-officials-reports-item-meeting-manual-lyon-county-commi",
+      "name": "Appointed Officials’ Reports",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-lyon-county-nv-roadway-rather-than-requiring-the-utility-infrastructure-to-be-lo",
+      "name": "roadway, rather than requiring the utility infrastructure to be located closer to U.S. Highway 95A or exist...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-lyon-county-nv-the-pud-and-monarch-data-center-are-located-within-a-portion-of-l",
+      "name": "The PUD and Monarch Data Center are located within a portion of Lyon County where electrical utility corrid...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-storey-county-nv-ayes-3-nay-0-abstain-0-absent-0-nays-0-abstain-0-absent-0-item-",
+      "name": "Ayes: 3: Nay: 0: Abstain: 0: Absent: 0; Nays: 0: Abstain: 0: Absent: 0",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-storey-county-nv-8-6-2026-lyon-county-board-of-county-commissioners-public-heari",
+      "name": "• 8/6/2026: Lyon County Board of County Commissioners Public Hearing for Amendment to CUP Application. Amen...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-storey-county-nv-want-to-make-sure-the-commissioners-know-that-there-will-be-an-",
+      "name": "want to make sure the Commissioners know that there will be an additional SUP related to the GreenLink proj...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-storey-county-nv-reject-denied-if-the-project-proceeds-the-foregoing-would-be-an",
+      "name": "reject Denied If the project proceeds, the foregoing would be an unconstitutional taking because Sunny Hill...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-storey-county-nv-determine-that-the-project-is-inconsistent-with-the-public-inte",
+      "name": "determine that the Project is inconsistent with the public interest or otherwise should not proceed. As a r...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-discussion-and-possible-action-to-approve-a-lease-for-hangar-208-at",
+      "name": "Discussion and Possible Action to Approve a Lease for Hangar #208 at",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-82-percent-of-the-economic-growth-of-an-average-american-community-",
+      "name": "82 percent of the economic growth of an average American community results from the creation and expansion...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-objectives-3f-consider-and-facilitate-zone-changes-that-support-emp",
+      "name": "objectives. 3f) Consider and facilitate zone changes that support employment expansion within the 3g) Offer...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-spending-for-opportunity-sites-ensuring-infrastructure-exists-to-se",
+      "name": "spending for opportunity sites, ensuring infrastructure exists to serve them, and removing regulatory barri...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-9b-collaborate-with-local-secondary-and-higher-education-programs-f",
+      "name": "9b) Collaborate with local secondary and higher education programs for aviation training at the airport. --...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-pathway-programs-improve-infrastructure-and-connectivity-including-",
+      "name": "pathway programs. • Improve infrastructure and connectivity including broadband, transportation, and water...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-attract-ancillary-businesses-equipment-suppliers-environmental-serv",
+      "name": "• Attract ancillary businesses (equipment suppliers, environmental services, logistics) to Yerington’s indu...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-protect-long-term-water-security-evaluate-feasibility-of-commuter-t",
+      "name": "protect long-term water security. • Evaluate feasibility of commuter transit or vanpool services connecting...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-discussion-and-possible-action-to-approve-an-application-for-a-12-m",
+      "name": "Discussion and Possible Action to approve an application for a 12-month",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-work-with-yerington-s-main-street-committee-to-promote-local-artist",
+      "name": "Work with Yerington’s Main Street committee to promote local artists, art",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
     {
       "id": "project-lyon-county-nv-supply-chain-dependencies-whether-tax-revenue-from-the-project-wi",
       "name": "supply chain dependencies, whether tax revenue from the project will be used to abate real estate taxes, tr...",
@@ -32,6 +142,11 @@
     {
       "id": "project-storey-county-nv-spending-for-22-discussion-only-fy26-financial-review-of-the-wa",
       "name": "spending for 22. DISCUSSION ONLY: FY26 Financial Review of the Water and Sewer Funds, Including Revenues, E...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-carson-city-nv-approval-and-ratification-of-purchase-orders-and-payables-and-ite",
+      "name": "Approval and Ratification of Purchase Orders and Payables, and",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
@@ -62,6 +177,11 @@
     {
       "id": "project-storey-county-nv-26-south-b-street-po-box-190-virginia-city-nevada-89440-phone-7",
       "name": "26 South B Street, PO Box 190, Virginia City, Nevada 89440 Phone 775-847-1144 – Fax 775-847-0949 planning@s...",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-clark-county-nv-authorize-the-director-of-aviation-to-sign-the-first-amendment-t",
+      "name": "authorize the Director of Aviation to sign the First Amendment to the Concession Lease Agreement between Cl...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
@@ -110,11 +230,6 @@
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
-      "id": "project-lyon-county-nv-13-p-a-g-e-plume-and-toxic-gas-modeling-explosion-control-analysi",
-      "name": "13 | P a g e  Plume and toxic-gas modeling.  Explosion-control analysis.  Deflagration venting.  Fire-w...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
       "id": "project-lyon-county-nv-the-draft-requires-a-fiscal-impact-analysis-including-anticipated",
       "name": "The draft requires a fiscal impact analysis, including anticipated tax revenue, infrastructure costs, and p...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
@@ -135,6 +250,16 @@
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     },
     {
+      "id": "project-carson-city-nv-action-items-item-meeting-carson-city-board-of-supervisors-liquor",
+      "name": "Action Items -",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
+      "id": "project-yerington-nv-discussion-and-possible-action-to-approve-a-lease-for-hangar-315-at",
+      "name": "Discussion and Possible Action to Approve a Lease for Hangar #315 at the",
+      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
+    },
+    {
       "id": "project-storey-county-nv-d-special-use-permit-the-proposed-project-is-located-within-the",
       "name": "D. Special Use Permit. The proposed project is located within the I-2 Heavy Industrial zoning within the Ta...",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
@@ -142,131 +267,6 @@
     {
       "id": "project-storey-county-nv-recommended-conditions-of-approval-a-special-use-permit-this-ap",
       "name": "Recommended Conditions of Approval A. Special Use Permit. This approval is for Special Use Permit 2026-018...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-eureka-county-nv-reject-discuss-or-deny-ratification-of-amendment-no-1-to-the-mu",
-      "name": "reject Discuss, or deny ratification of Amendment No. 1 to the Municipal Water Exploration Access and Condi...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-eureka-county-nv-reject-discuss-or-deny-adopting-an-updated-eureka-county-road-m",
-      "name": "reject Discuss, or deny adopting an updated Eureka County Road Map which identifies Main",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-yerington-nv-safe-drinking-water-act-hazardous-materials-transportation-act-reso",
-      "name": " Safe Drinking Water Act  Hazardous Materials Transportation Act  Resource Conservation & Recovery Act ...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-storey-county-nv-days-prior-to-assignee-taking-over-operation-of-facility-the-op",
-      "name": "days prior to assignee taking over operation of facility. The operators of the facility must sign and accep...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-storey-county-nv-other-technical-experts-to-provide-review-and-assist-in-plan-re",
-      "name": "other technical experts to provide review and assist in plan review, inspections and code analysis. Z. Wate...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-20-facilities-spike-sculptures-shpo-answers-clc-transmittal-20260",
-      "name": "20. Facilities Spike Sculptures SHPO Answers CLC Transmittal 20260610 Silver City Park Sculptures Sketch of...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-i-introduction-and-general-information-a-summary-of-project-north",
-      "name": "I. INTRODUCTION AND GENERAL INFORMATION a. Summary of Project: Northern Nevada Industrial Center (“NNIC”) i...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-infrastructure-will-be-constructed-only-when-required-and-finance",
-      "name": "Infrastructure will be constructed only when required and financed by the beneficial user of that infrastru...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-rate-competitiveness-and-market-acceptance-although-the-rates-for",
-      "name": "Rate Competitiveness and Market Acceptance Although the rates for electric service within the District may...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-adopt-respectfully-ask-the-board-to-delay-approval-of-the-north-l",
-      "name": "adopt respectfully ask the Board to delay approval of the North Lyon County Power District Ordinance and re...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-transportation-infrastructure-neighboring-property-owners-water-r",
-      "name": "transportation infrastructure, neighboring property owners, water resources, and the overall character of L...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-spending-for-3-economic-development-needs-infrastructure-since-20",
-      "name": "spending for 3) economic development needs (infrastructure). Since 2011, the Nevada CDBG Program has been a...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-spending-for-sustainable-future-provide-training-and-technical-as",
-      "name": "spending for sustainable future. • Provide training and technical assistance to communities to build their...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-questions-regarding-the-eligibility-of-a-project-it-is-recommende",
-      "name": "questions regarding the eligibility of a project, it is recommended that CDBG staff be contacted prior to d...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-yerington-nv-government-action-through-advocacy-and-help-clients-build-relations",
-      "name": "government action through advocacy; and help clients build relationships and partnerships with third partie...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-yerington-nv-truckee-meadows-regional-planning-agency-smoky-valley-library-distr",
-      "name": "Truckee Meadows Regional Planning Agency Smoky Valley Library District School Districts: U.S. Board of Wate...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-eureka-county-nv-reject-discuss-or-deny-setting-a-public-hearing-to-invite-publi",
-      "name": "reject Discuss, or deny setting a public hearing to invite public comments and consider adopting an updated...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-eureka-county-nv-discuss-and-consider-accepting-invitation-to-participate-as-a-c",
-      "name": "Discuss and consider accepting invitation to participate as a cooperating agency on the Boulder Valley Tail...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-eureka-county-nv-adopt-the-proposed-ordinance-will-not-directly-restrict-the-for",
-      "name": "adopt The proposed ordinance will not directly restrict the formation, operation or expansion of a business...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-adopt-data-center-ordinance-workshop-set-a-date-soon-the-rules-sh",
-      "name": "adopt Data Center Ordinance Workshop : Set a date soon. The rules should require closed-loop water systems...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-adopt-gold-canyon-drainage-plan-when-you-adopt-this-make-sure-it-",
-      "name": "adopt Gold Canyon Drainage Plan : When you adopt this, make sure it helps fix road safety issues on US 95A...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-1-1-project-purpose-the-gold-canyon-area-drainage-master-plan-adm",
-      "name": "1.1 PROJECT PURPOSE The Gold Canyon Area Drainage Master Plan (ADMP) was developed to meet four primary obj...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-5-4-project-implementation-the-projects-identified-in-this-study-",
-      "name": "5.4 PROJECT IMPLEMENTATION The projects identified in this study are concept-level recommendations. Advance...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-lyon-county-nv-truckee-meadows-regional-planning-agency-smoky-valley-library-dis",
-      "name": "Truckee Meadows Regional Planning Agency Smoky Valley Library District School Districts: U.S. Board of Wate...",
-      "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
-    },
-    {
-      "id": "project-eureka-county-nv-reject-discuss-or-deny-waiving-facility-and-service-fees-relati",
-      "name": "reject Discuss, or deny waiving facility and service fees relating to funeral services for Maycie",
       "statusReason": "Source-backed project signal exists, but lifecycle status is unclear."
     }
   ]

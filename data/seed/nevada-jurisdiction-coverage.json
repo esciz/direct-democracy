@@ -30,6 +30,138 @@
   ],
   "providers": [
     {
+      "id": "nv-cannabis-public-meetings",
+      "name": "Nevada Cannabis Compliance Board and Cannabis Advisory Commission",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://ccb.nv.gov/public-meetings/",
+      "discoveryUrls": [
+        "https://ccb.nv.gov/public-meetings/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_cannabis_table",
+        "html",
+        "pdf"
+      ],
+      "notes": "Structured adapter preserves each CAC subcommittee, board, workshop, cancellation, and separately dated minutes."
+    },
+    {
+      "id": "nv-taxation-public-meetings",
+      "name": "Nevada Department of Taxation Boards and Committees",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://tax.nv.gov/boards-meetings/",
+      "discoveryUrls": [
+        "https://tax.nv.gov/boards-meetings/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_taxation_sections",
+        "html",
+        "pdf"
+      ],
+      "notes": "Structured adapter separates Tax Commission, Equalization, Mining Oversight, Local Government Finance and Appraiser Certification records. Cannabis Advisory Commission Taxation meetings are collected from CCB."
+    },
+    {
+      "id": "nv-state-board-of-education",
+      "name": "Nevada State Board of Education and Subcommittees",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://doe.nv.gov/boards-commissions-councils/state-board-of-education",
+      "discoveryUrls": [
+        "https://doe.nv.gov/boards-commissions-councils/state-board-of-education"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_education_headings",
+        "html",
+        "pdf"
+      ],
+      "notes": "Discovers current and adjacent published annual archives, including legislative, NRS 388G, and other subcommittee meetings. Unlinked minutes labels are not available documents.",
+      "allowedHosts": [
+        "doe.nv.gov",
+        "webapp-strapi-paas-prod-nde-001.azurewebsites.net",
+        "www.youtube.com"
+      ]
+    },
+    {
+      "id": "nv-statewide-public-notices",
+      "name": "Nevada Statewide Public Notice Discovery",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://notice.nv.gov/",
+      "discoveryUrls": [
+        "https://notice.nv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "official_notice"
+      ],
+      "notes": "Statewide new-body discovery queue across state, county, city, K-12, higher education, libraries and special districts. A listed link is not evidence that minutes are ingested."
+    },
+    {
+      "id": "nv-education-public-meetings-discovery",
+      "name": "Nevada Education Boards and Councils Discovery",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://doe.nv.gov/boards-commissions-councils/publicmeetings/",
+      "discoveryUrls": [
+        "https://doe.nv.gov/boards-commissions-councils/publicmeetings/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "education_calendar"
+      ],
+      "notes": "Discovery net for education councils and subcommittees beyond the State Board. Review linked body archives before importing."
+    },
+    {
+      "id": "nv-school-participation-discovery",
+      "name": "Nevada School and Parent Organization Discovery",
+      "jurisdiction": "Nevada",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://doe.nv.gov/school-and-district-information",
+      "discoveryUrls": [
+        "https://doe.nv.gov/school-and-district-information",
+        "https://www.nevadapta.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "school_directory",
+        "parent_organization"
+      ],
+      "notes": "Official statewide school and district directory plus Nevada PTA discovery. Private parent portals and unpublished PTA minutes require organizer-submitted public information; no inferred recurring dates."
+    },
+    {
+      "id": "carson-city-school-participation",
+      "name": "Carson City School and Parent Participation",
+      "jurisdiction": "Carson City, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.carsoncityschools.com/families-and-students/calendars",
+      "discoveryUrls": [
+        "https://www.carsoncityschools.com/families-and-students/calendars",
+        "https://www.carsoncityschools.com/",
+        "https://www.carsoncityschools.com/families-and-students"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "finalsite_parent_meetings",
+        "school_calendar",
+        "parent_organization"
+      ],
+      "notes": "First-priority Carson City school participation. Structured adapter imports only explicitly published PTA/PTO/PTSA meetings with a school and occurrence timestamp. Public school directory links feed source review; private or unpublished parent communications require organizer submission."
+    },
+    {
       "id": "nv-legislature",
       "name": "Nevada Legislature",
       "jurisdiction": "Nevada",
@@ -437,7 +569,12 @@
       "website": "https://www.carsoncityschools.com/",
       "discoveryUrls": ["https://www.carsoncityschools.com/our-district/school-board"],
       "scraperType": "html",
-      "platformHints": ["boarddocs"]
+      "agendaArchiveUrl": "https://drive.google.com/drive/folders/198r2RNzw25hyXzfwEUWurPGMfv5eUdax?usp=sharing",
+      "minutesArchiveUrl": "https://drive.google.com/drive/folders/1WrwzbT0KmHhQq3ezNqBjBGZGUqyayGsZ?usp=sharing",
+      "packetArchiveUrl": "https://drive.google.com/drive/folders/198r2RNzw25hyXzfwEUWurPGMfv5eUdax?usp=sharing",
+      "allowedHosts": ["drive.google.com", "drive.usercontent.google.com"],
+      "platformHints": ["finalsite", "public_drive_folders", "boarddocs_legacy"],
+      "notes": "Official board calendar and dynamically discovered public Drive agenda/minutes folders. Legacy BoardDocs access is unavailable; it is not counted as parsed coverage."
     },
     {
       "id": "churchill-county-school-district",

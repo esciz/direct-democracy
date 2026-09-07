@@ -1,63 +1,108 @@
 {
-  "generatedAt": "2026-08-22T19:07:43.791Z",
+  "generatedAt": "2026-09-06T21:47:25.276Z",
   "totals": {
-    "meetingItemsScanned": 8180,
-    "actionResultsExtracted": 891,
-    "withMotion": 52,
-    "withMover": 43,
-    "withSeconder": 313,
-    "withOutcome": 880,
-    "withVoteCount": 320,
-    "withNamedVotes": 13,
-    "unanimousActions": 53,
-    "needsReview": 67,
-    "unlinkedToAgendaItem": 466
+    "meetingItemsScanned": 15295,
+    "actionResultsExtracted": 3080,
+    "withMotion": 1190,
+    "withMover": 619,
+    "withSeconder": 1260,
+    "withOutcome": 2966,
+    "withVoteCount": 796,
+    "withNamedVotes": 161,
+    "unanimousActions": 238,
+    "needsReview": 873,
+    "unlinkedToAgendaItem": 607
   },
   "organizationReports": [
     {
+      "organizationId": "nv-taxation-public-meetings",
+      "actionResults": 761,
+      "withOutcome": 718,
+      "withVoteCount": 5,
+      "withNamedVotes": 56,
+      "needsReview": 93,
+      "unlinkedToAgendaItem": 1
+    },
+    {
+      "organizationId": "carson-city-school-district",
+      "actionResults": 525,
+      "withOutcome": 516,
+      "withVoteCount": 288,
+      "withNamedVotes": 5,
+      "needsReview": 234,
+      "unlinkedToAgendaItem": 4
+    },
+    {
       "organizationId": "eureka-county-commission",
-      "actionResults": 434,
-      "withOutcome": 434,
-      "withVoteCount": 307,
+      "actionResults": 517,
+      "withOutcome": 517,
+      "withVoteCount": 388,
       "withNamedVotes": 1,
-      "needsReview": 8,
-      "unlinkedToAgendaItem": 241
+      "needsReview": 10,
+      "unlinkedToAgendaItem": 245
+    },
+    {
+      "organizationId": "nv-cannabis-public-meetings",
+      "actionResults": 407,
+      "withOutcome": 406,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 348,
+      "unlinkedToAgendaItem": 2
     },
     {
       "organizationId": "lyon-county-commission",
-      "actionResults": 180,
-      "withOutcome": 180,
-      "withVoteCount": 1,
+      "actionResults": 249,
+      "withOutcome": 249,
+      "withVoteCount": 10,
       "withNamedVotes": 3,
-      "needsReview": 20,
-      "unlinkedToAgendaItem": 100
-    },
-    {
-      "organizationId": "storey-county-commission",
-      "actionResults": 128,
-      "withOutcome": 127,
-      "withVoteCount": 0,
-      "withNamedVotes": 5,
-      "needsReview": 15,
-      "unlinkedToAgendaItem": 67
+      "needsReview": 45,
+      "unlinkedToAgendaItem": 134
     },
     {
       "organizationId": "elko-city-council",
-      "actionResults": 56,
-      "withOutcome": 55,
-      "withVoteCount": 3,
-      "withNamedVotes": 0,
-      "needsReview": 2,
-      "unlinkedToAgendaItem": 34
+      "actionResults": 179,
+      "withOutcome": 174,
+      "withVoteCount": 12,
+      "withNamedVotes": 20,
+      "needsReview": 20,
+      "unlinkedToAgendaItem": 82
+    },
+    {
+      "organizationId": "storey-county-commission",
+      "actionResults": 143,
+      "withOutcome": 142,
+      "withVoteCount": 0,
+      "withNamedVotes": 5,
+      "needsReview": 16,
+      "unlinkedToAgendaItem": 81
+    },
+    {
+      "organizationId": "carson-city-board-of-supervisors",
+      "actionResults": 121,
+      "withOutcome": 83,
+      "withVoteCount": 84,
+      "withNamedVotes": 48,
+      "needsReview": 62,
+      "unlinkedToAgendaItem": 13
     },
     {
       "organizationId": "yerington-city-council",
-      "actionResults": 56,
-      "withOutcome": 56,
+      "actionResults": 91,
+      "withOutcome": 83,
       "withVoteCount": 0,
-      "withNamedVotes": 4,
+      "withNamedVotes": 12,
+      "needsReview": 23,
+      "unlinkedToAgendaItem": 37
+    },
+    {
+      "organizationId": "nv-state-board-of-education",
+      "actionResults": 48,
+      "withOutcome": 48,
+      "withVoteCount": 0,
+      "withNamedVotes": 11,
       "needsReview": 8,
-      "unlinkedToAgendaItem": 24
+      "unlinkedToAgendaItem": 8
     },
     {
       "organizationId": "washoe-county-commission",
@@ -70,17 +115,8 @@
     },
     {
       "organizationId": "churchill-county-commission",
-      "actionResults": 10,
-      "withOutcome": 10,
-      "withVoteCount": 0,
-      "withNamedVotes": 0,
-      "needsReview": 0,
-      "unlinkedToAgendaItem": 0
-    },
-    {
-      "organizationId": "north-las-vegas-city-council",
-      "actionResults": 2,
-      "withOutcome": 2,
+      "actionResults": 14,
+      "withOutcome": 14,
       "withVoteCount": 0,
       "withNamedVotes": 0,
       "needsReview": 0,

@@ -32,7 +32,7 @@ The moderated Challenge My View contribution workflow is documented in [docs/per
 
 ## Requirements
 
-- Node 20+ recommended
+- Node 24 recommended, matching the configured deployment and DataOps worker
 - npm
 
 ## Install
@@ -104,12 +104,12 @@ npm run trust:foundation-audit
 
 Generated artifacts include `data/generated/public-meeting-source-documents.json`, `data/generated/public-meeting-document-cache-index.json`, `data/generated/public-meeting-document-text.json`, `data/generated/public-meeting-retrieval-queue.json`, `data/generated/public-meeting-source-health.json`, `data/generated/dataops-source-registry.json`, `data/generated/dataops-monitoring-status.json`, `data/generated/dataops-retrieval-run.json`, `data/generated/dataops-change-log.json`, `data/generated/dataops-reprocessing-runs.json`, `data/generated/rss-source-registry.json`, `data/generated/public-meeting-source-completeness.json`, `data/generated/public-meeting-accountability-readiness.json`, and `data/generated/public-meeting-document-audit.json`.
 
-`sources:refresh:daily` is the canonical once-daily refresh. It checks official meeting calendars, merges reviewed caches, refreshes bounded source documents, republishes source-backed issue and event records, and runs freshness and no-demo audits. The GitHub workflow remains available for manual recovery runs; recurring execution is owned by one scheduler so the sources are not fetched more than once per day.
+`sources:refresh:daily` is the broader once-daily civic refresh. The existing local automation runs the isolated meeting workflow every six hours and the broader workflow on the first run of each Pacific calendar day. The updated `.github/workflows/dataops-daily.yml` is a manual recovery runner; its schedule change takes effect when this code reaches GitHub. Local collection and uploaded workflow artifacts do not publish data to the deployed site.
 
-The daily refresh is enforced by `.github/workflows/dataops-daily.yml`, which runs every day at 11:15 UTC and can also be started manually. Its monitor stage runs `npm run meetings:upcoming-audit:strict`; direct non-manual meeting providers fail the run when they cannot prove current or future meeting coverage. If a public calendar looks wrong, run the fast recovery path:
+The meeting workflow checks official calendars, retains historical records, retrieves late or revised minutes, and rebuilds local issue/event data. Its monitor stage runs `npm run meetings:upcoming-audit:strict`; unresolved coverage remains a failed audit while later document-recovery stages continue. If a public calendar looks wrong, run:
 
 ```bash
-npm run meetings:refresh-and-audit
+npm run meetings:refresh -- --limit=100
 ```
 
 Inspect `data/generated/upcoming-meeting-coverage-audit.json` after each run. Providers marked `strictBlocking: true` need immediate source or adapter review before the app treats coverage as complete.
@@ -133,6 +133,8 @@ npm run dataops:offline
 Trust and claims architecture is documented in [docs/trust-foundation.md](docs/trust-foundation.md). Verified Resident and Verified Voter are segmentation concepts with equal participation rights; Direct Democracy does not use hidden vote weighting.
 
 Data Operations architecture is documented in [docs/data-operations.md](docs/data-operations.md).
+
+Meeting coverage, committee and school/PTA discovery, archive retention, missing-minutes follow-up, and the public launch gate are documented in [docs/meeting-operations.md](docs/meeting-operations.md). Use `npm run meetings:refresh -- --limit=100` for the meeting workflow independently of financial/case collection; inspect `/admin/meeting-health` for gaps.
 
 Generated artifact commit boundaries are documented in [docs/generated-artifacts.md](docs/generated-artifacts.md).
 

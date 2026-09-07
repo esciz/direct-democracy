@@ -10329,6 +10329,386 @@
     "confidence_score": 0.66
   },
   {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-5-7abbe27d02",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-5-7abbe27d02",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve -- 1 of 639 -- the commission chair reserves the right to limit the time allotted for each individual to speak. public comment is limited to three minutes per individual. all it...?",
+    "short_summary": "-- 1 of 639 -- The Commission Chair reserves the right to limit the time allotted for each individual to speak. Public comment is limited to three minutes per individual. All it...",
+    "neutral_context": "-- 1 of 639 -- The Commission Chair reserves the right to limit the time allotted for each individual to speak. Public comment is limited to three minutes per individual. All items include discussion and possible action to approve, modify, deny, or continue unless marked otherwise.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-I-376c57616c",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-I-376c57616c",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve streathham lodge holdings llc – out of county / 2729 colden ave. ~ bronx, ny j. tacos la reyna – food truck / 770 brentwood dr. ~ reno, nv k. truckee meadows electric inc. – con...?",
+    "short_summary": "Streathham Lodge Holdings LLC – Out of County / 2729 Colden Ave. ~ Bronx, NY J. Tacos La Reyna – Food Truck / 770 Brentwood Dr. ~ Reno, NV K. Truckee Meadows Electric Inc. – Con...",
+    "neutral_context": "I. Streathham Lodge Holdings LLC – Out of County / 2729 Colden Ave. ~ Bronx, NY J. Tacos La Reyna – Food Truck / 770 Brentwood Dr. ~ Reno, NV K. Truckee Meadows Electric Inc. – Contractor / 350 Holcomb Ranch Ln # 110 ~ Reno, NV -- 12 of 639 -- L. Vantage Data Centers Management Company, LLC – General / 1121 USA Parkway, McCarran, NV • Motion Made to Approve the Consent agenda for July 21, 2026, meeting, by Commissioner Mitchell and Seconded by Commissioner Gilman. No public comment Aye: 3: Nay: 0: Abstain: 0: Absent: 0; Recused: 0: Voted For: Mitchell-Clay, Gilman-Donald, Carmona-Jay",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-73-7d3b56cb4d",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-73-7d3b56cb4d",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve discussed today on the record, move to approve special use permit 2026-017 to construct a natural gas fueled electrical generating facility. the electricity generated will be us...?",
+    "short_summary": "discussed today on the record, move to approve Special Use Permit 2026-017 to construct a natural gas fueled electrical generating facility. The electricity generated will be us...",
+    "neutral_context": "discussed today on the record, move to approve Special Use Permit 2026-017 to construct a natural gas fueled electrical generating facility. The electricity generated will be used onsite and is accessory to the proposed development. The project includes onsite storage of compressed natural gas (CNG). The property is located at 8990 USA Parkway, McCarran, Storey County, NV, Assessor’s Parcel Number 004-171-31, by Commissioner Mitchell and Seconded by Commissioner Gilman. Aye: 3: Nay: 0: Abstain: 0: Absent: 0; Recused: 0: Voted For: Mitchell-Clay, Gilman-Donald, Carmona-Jay",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-91-8f59926cc9",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-91-8f59926cc9",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve – lander 525/230 kv collector substation – lander to robinson summit 525 kv transmission line greenlink nevada transmission project -- 28 of 639 -- – redundancy • system compone...?",
+    "short_summary": "– Lander 525/230 kV Collector Substation – Lander to Robinson Summit 525 kV Transmission Line Greenlink Nevada Transmission Project -- 28 of 639 -- – Redundancy • System compone...",
+    "neutral_context": "– Lander 525/230 kV Collector Substation – Lander to Robinson Summit 525 kV Transmission Line Greenlink Nevada Transmission Project -- 28 of 639 -- – Redundancy • System components – transmission lines and substations – keep power flowing across the system in case of faults or during scheduled maintenance – Resiliency • Greenlink Nevada’s telecommunications system connects its transmission lines and substations to NV Energy’s control center for restoring power during emergency conditions, including severe weather – Reliability • Greenlink Nevada will provide a second critical statewide transmission connection, improving electric reliability across Nevada, and reducing the need to import e...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-400-2fcab68d2a",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-400-2fcab68d2a",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve people in and around storey county; however, this is subject to change depending on schedule progression and other -- 52 of 639 -- project contact email: greenlink@nvenergy.com...?",
+    "short_summary": "people in and around Storey County; however, this is subject to change depending on schedule progression and other -- 52 of 639 -- Project Contact Email: Greenlink@nvenergy.com...",
+    "neutral_context": "400 people in and around Storey County; however, this is subject to change depending on schedule progression and other -- 52 of 639 -- Project Contact Email: Greenlink@nvenergy.com Visit us at: https://www.nvenergy.com/cleanenergy/greenlink-nevada Project Contact Information -- 53 of 639 -- NV Energy and Sunny Hills Ranchos Coordination • November 2021 – SHR granted survey permission upon payment and Non-Disclosure Agreement • January-February 2022 – NV Energy shared maps from EIS; SHR shared maps of conceptual plans • April 2024 – NV Energy and SHR involved in further coordination • August 7, 2024 – SHR canceled meeting • September 20, 2024 – NV Energy and SHR held call • October 22, 202...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-I-1734a06f9e",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-I-1734a06f9e",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve want to make sure the commissioners know that there will be an additional sup related to the greenlink project for temporary access roads that are required for the pro.iect. i h...?",
+    "short_summary": "want to make sure the Commissioners know that there will be an additional SUP related to the GreenLink project for temporary access roads that are required for the pro.iect. I h...",
+    "neutral_context": "I want to make sure the Commissioners know that there will be an additional SUP related to the GreenLink project for temporary access roads that are required for the pro.iect. I have been in communications with NV Energy about the proiect's impact to my lots and had a verbal agreement in April with [\\,latt Lutey and his supervisor Bart Knox of contract Land staff, LLc. However, NVEnergy has gone silent on thls matter since we last heard from them on April 15th, Hi Gregg and Ann, Apologies for the delay on our end. We are in a holding pattem pending NV Energy's decision regarding those three APNs. Wll let you know as soon as I get word. Respectfully. Lead Right of Way Agent",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-184-fc1bbd1209",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-184-fc1bbd1209",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve alla breve ave henderson, nv 89011 (725) 772-12s9 the maps included in the agenda and permit application show proposed access roads at the time those documents were created, how...?",
+    "short_summary": "Alla Breve Ave Henderson, NV 89011 (725) 772-12s9 The maps included in the agenda and permit application show proposed access roads at the time those documents were created, how...",
+    "neutral_context": "184 Alla Breve Ave Henderson, NV 89011 (725) 772-12s9 The maps included in the agenda and permit application show proposed access roads at the time those documents were created, however there are some pending reroutes that could affect the number of your parcels NVE would reqwre an easement oveli so thaf ls Contract Land Staff. LLC m a ft h ew. I ute y@co ntr a ctl and staff . co m The only subsequent contact was on July 8th after I reached out on July 7th to them about this sUP application not matching the plans I had seen proposed for the temporary access roads. This response mentions an additional SUP application for those roads -- 59 of 639 -- why we haven't been able to get an update...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-184-e17506393b",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-184-e17506393b",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve alla breve ave henderson, nv 89011 (725) 772-1259 n atthew.lutev(acontractlandstaff.cont given the facts above, i want to make sure the commissioners are aware that the sup appl...?",
+    "short_summary": "Alla Breve Ave Henderson, NV 89011 (725) 772-1259 n atthew.lutev(Acontractlandstaff.cont Given the facts above, I want to make sure the commissioners are aware that the suP appl...",
+    "neutral_context": "184 Alla Breve Ave Henderson, NV 89011 (725) 772-1259 n atthew.lutev(Acontractlandstaff.cont Given the facts above, I want to make sure the commissioners are aware that the suP application may not reflect NV Energy's current plans. ln the NV Energy presentation shown during the planning commissioners meeting on July 16th 2026, there was no simulation of the impact on the view of the folks closest to the pro,ect. lnstead a view was shown from the VCH basin whrch of course showed no impact to the view as the location chosen to simulate is in a basin with no line of sight of the prqect. I view this as a serious omission in the suP application which makes it impossible for residents of the NW...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-110-17ba69a7ad",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-110-17ba69a7ad",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve members of the community can be properly informed of the potential pitfalls that may come from this project. for decades, i managed large-scale construction, infrastructure and...?",
+    "short_summary": "members of the community can be properly informed of the potential pitfalls that may come from this project. For decades, I managed large-scale construction, infrastructure and...",
+    "neutral_context": "members of the community can be properly informed of the potential pitfalls that may come from this project. For decades, I managed large-scale construction, infrastructure and government projects. I understand the logistical realities of high-tension transmission line projects, and I know that NV Energy's project will ultimately be built. However, looking at this proposed Special Use Permit, I see glaring omissions that violate standard operating procedures for major infrastructure. ln my construction career, you never move dirt without comprehensive due diligence. Yet, Storey County acknowledges in this very proposalthat NV Energy has failed to conduct a single impact report for the pro...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Environment",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-17.03.050-e66151d9f3",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-17.03.050-e66151d9f3",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve carve out an exception for public utilities. this situation is \"unique\" only because nv energy chose to violate standard procedures by filing an application for a sup that seeks...?",
+    "short_summary": "carve out an exception for public utilities. This situation is \"unique\" only because NV Energy chose to violate standard procedures by filing an application for a SUP that seeks...",
+    "neutral_context": "17.03.050 carve out an exception for public utilities. This situation is \"unique\" only because NV Energy chose to violate standard procedures by filing an application for a SUP that seeks permission to build upon land to which it has no legal right. Sunny Hills likewise objects to the conclusion that NV Energy can address this critical requirement at some later, undefined time before beginning construction. That position is inconsistent with the County Code's threshold completeness requirements. The issue is not whether NV Energy may ultimately acquire the necessary property interests prior to obtaining grading and building permits. Rather, the question is whether the SUP Application is c...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-III-be485520e5",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-III-be485520e5",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve conclusion for these reasons, sunny hills respectfully requests that the county decline to process or consider the sup application unless and until nv energy demonstrates that i...?",
+    "short_summary": "Conclusion For these reasons, Sunny Hills respectfully requests that the County decline to process or consider the SUP Application unless and until NV Energy demonstrates that i...",
+    "neutral_context": "III. Conclusion For these reasons, Sunny Hills respectfully requests that the County decline to process or consider the SUP Application unless and until NV Energy demonstrates that it has obtained the requisite property owner authorizations for all affected properties. At a minimum, the County should continue consideration of the SUP Application until NV Energy identifies with specificity the parcels through which the Mira Loma Corridor is proposed to pass and the corresponding property interests necessary for the Project. Although the Commission should decline to consider the application, if it is nonetheless inclined to approve the application, the condition should go further. Not only...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Business Regulation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-132-0763fbdb8a",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-132-0763fbdb8a",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve we would like to schedule a call to understand why the proposed alternatives were not feasible. how about 10:00 am on tuesday, september 30th? from: harlow, colin (nv energy) <c...?",
+    "short_summary": "We would like to schedule a call to understand why the proposed alternatives were not feasible. How about 10:00 am on Tuesday, September 30th? From: Harlow, Colin (NV Energy) <c...",
+    "neutral_context": "We would like to schedule a call to understand why the proposed alternatives were not feasible. How about 10:00 am on Tuesday, September 30th? From: Harlow, Colin (NV Energy) <colin.harlow@nvenergy.com> Sent: Monday, September 22, 2025 11:43 AM To: Gordon, Garrett <Garrett.Gordon@wbd-us.com>; Crow, Lucy <I ucy Crow@wbd-us com>; jduke@lkglawfirm.com Cc: Hayes, Dawn <Dawn Hayes@wbd-us com>; Vanillo, Samantha <Samantha Vanillo@wbd-us com> Subject: RE: (INTERNET] NV Energy- Greenlink Transmission Line// Sunny Hills Ranchos NRS 48.105 Offer of Compromise Discussion Garrett - my team has reviewed the proposed alternate alignments discussed in our meeting and for a number of reasons, conclude th...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-135-affc2d3d50",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-135-affc2d3d50",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve disrriburion of chis rransmission, including arrachmenrs, is prohibired. if you have received chis communicarion in error, please immediarely norify rhe sender and permanently d...?",
+    "short_summary": "disrriburion of chis rransmission, including arrachmenrs, is prohibired. if you have received chis communicarion in error, please immediarely norify rhe sender and permanently d...",
+    "neutral_context": "disrriburion of chis rransmission, including arrachmenrs, is prohibired. if you have received chis communicarion in error, please immediarely norify rhe sender and permanently delete any record of chis transmission. -- 74 of 639 -- NV Energy Greenlink NV-WA-CT-069.000 Acquisition Contact Landowner Company representative Frank Borghetti Other party Garrett Gordon Date and time 06/01/2025 07:27 PM PDT Description Frank Borghetti received the following email from the attorney representing Sunny Hills Ranchos: From: Gordon, Garrett <Garrett.Gordon@wbd-us.com> Sent: Sunday, June 1, 2025 7:23 PM To: Frank Borghetti <frank.borghetti@contractlandstaff.com> Cc: dford@intexcorp.com <dford@intexcorp...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-775.745.4207-db099262c0",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-775.745.4207-db099262c0",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve mobile sstrickland@woodrodgers.com c lscorporate\\bknox -- 87 of 639 -- nv energy greenlink t ract name nv-wa-ct -069.000 acquisition contact landowner company representative oth...?",
+    "short_summary": "Mobile SStrickland@WoodRodgers.com C LSCORPORATE\\bknox -- 87 of 639 -- NV Energy Greenlink T ract name NV-WA-CT -069.000 Acquisition Contact Landowner Company representative Oth...",
+    "neutral_context": "775.745.4207 Mobile SStrickland@WoodRodgers.com C LSCORPORATE\\bknox -- 87 of 639 -- NV Energy Greenlink T ract name NV-WA-CT -069.000 Acquisition Contact Landowner Company representative Other party Steve Strickland Date and time 03/24/2025 01 :42 PM MST Description The following email was sent by Bart Knox to Steve Strickland, the landowner's engineer: From: Bart Knox <bart.knox@contractlandstaff.com> Sent: Monday, March 24, 2025 1 :42 PM To: Steve Strickland <SStrickland@WoodRodgers.com> Cc: Frank Borghetti <frank.borghetti@contractlandstaff.com>; dford@intexcorp.com; Jeff Pierson <jpierson@intexcorp.com> Subject: RE: Greenlink Nevada CAUTION: This email originated from outside your org...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-142-b2b1d0d452",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-142-b2b1d0d452",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve dford@intexcorp.com; jeff pierson <jpierson@intexcorp.com> subject: re: greenlink nevada steve, is there a time on the 25th that will work for you, doug, and jeff for a meeting...?",
+    "short_summary": "dford@intexcorp.com; Jeff Pierson <jpierson@intexcorp.com> Subject: RE: Greenlink Nevada Steve, Is there a time on the 25th that will work for you, Doug, and Jeff for a meeting...",
+    "neutral_context": "dford@intexcorp.com; Jeff Pierson <jpierson@intexcorp.com> Subject: RE: Greenlink Nevada Steve, Is there a time on the 25th that will work for you, Doug, and Jeff for a meeting with NVE? I would like to get this on everyone's calendar. T hanks, Bart Knox Director, Utilities Contract Land Staff 319-240-1118 bart.knox@contractlandstaff.com Commitment, Leadership, Service CLSCORPORATE\\bknox -- 89 of 639 -- NV Energy Greenlink NV-WA-CT-069.000 Acquisition Contact Landowner Company representative Other party Steve Strickland Date and time 03/ 11/2025 05:16 PM MST Description The following email was sent by Steve Strickland, landowner's engineer, to Bart Knox: From: Steve Strickland <SStricklan...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-775-83ff3ce38a",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-775-83ff3ce38a",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve mobile sstrickland@woodrodgers.com clscorporate\\bknox -- 90 of 639 -- nv energy greenlink nv-wa-ct-069.000 acquisition contact landowner company representative other pa...?",
+    "short_summary": "745.4207 Mobile SStrickland@WoodRodgers.com CLSCORPORATE\\bknox -- 90 of 639 -- NV Energy Greenlink NV-WA-CT-069.000 Acquisition Contact Landowner Company representative Other pa...",
+    "neutral_context": "775. 745.4207 Mobile SStrickland@WoodRodgers.com CLSCORPORATE\\bknox -- 90 of 639 -- NV Energy Greenlink NV-WA-CT-069.000 Acquisition Contact Landowner Company representative Other party Steve Strickland Date and time 03/11/2025 12:57 PM PDT Description Bart Knox sent the following email to the Sunny Hills Ranchos Team: From: Bart Knox <bart.knox@contractlandstaff.com> Sent: Tuesday, March 11, 2025, 12:57 PM To: Steve Strickland <SStrickland@ WoodRodgers.com> Cc: Frank Borghetti <frank.borghetti@contractlandstaff.com>; dford@intexcorp.com; Jeff Pierson <jpierson@intexcorp.com> Subject: RE : Greenlink Nevada Steve, Let's plan on having a meeting on the 25th when Mr. Ford is in Reno. Please...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-145-1d215bbd47",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-145-1d215bbd47",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve red route appears to be feasible but i have attached an updated alignment of that route that moves the line further east to accommodate for the necessary row widths and separati...?",
+    "short_summary": "red route appears to be feasible but I have attached an updated alignment of that route that moves the line further east to accommodate for the necessary ROW widths and separati...",
+    "neutral_context": "red route appears to be feasible but I have attached an updated alignment of that route that moves the line further east to accommodate for the necessary ROW widths and separation from the existing line. Time is of the essence on this as the project will soon be ordering structure fabrication. Please reach out to me as soon as possible regarding the updated red route attached or if the green route on the KMZ you sent over would be less impactful. Thank you, Bart Knox Director, Utilities Contract Land Staff 319-240-1118 bart.knox@contractlandstaff.com Commitment, Leadership, Service www.contractlandstaff.com CLSCORPORATE\\bknox -- 93 of 639 -- NV Energy Greenlink NV-WA-CT-069.000 Acquisitio...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-151-8864e19129",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-151-8864e19129",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve route are limited by terrain (canyon and rugged terrain), the need to cross several existing power lines, and the need for additional large structures (called dead ends) towards...?",
+    "short_summary": "route are limited by terrain (canyon and rugged terrain), the need to cross several existing power lines, and the need for additional large structures (called dead ends) towards...",
+    "neutral_context": "route are limited by terrain (canyon and rugged terrain), the need to cross several existing power lines, and the need for additional large structures (called dead ends) towards the western part of the development. Please see the alternative in green shown below and in the attached KMZ. This route avoids bisecting development areas along the southern boundary (matches blue route), then runs north and avoids other Village areas, but does go through Village 1. The green route does run along an existing road in order to minimize greater impacts to the development. Per our Engineering team, running the blue line north to avoid Village 1 would necessitate the need for much taller structures al...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Transportation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-152-778dacda66",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-152-778dacda66",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve frank borghetti <frank.borghetti@contractlandstaff.com> sent: monday, november 4, 2024 10:03 am to: steve strickland <sstrickland@woodrodgers.com> cc: frank borghetti <frank.bor...?",
+    "short_summary": "Frank Borghetti <frank.borghetti@contractlandstaff.com> Sent: Monday, November 4, 2024 10:03 AM To: Steve Strickland <SStrickland@WoodRodgers.com> Cc: Frank Borghetti <frank.bor...",
+    "neutral_context": "Frank Borghetti <frank.borghetti@contractlandstaff.com> Sent: Monday, November 4, 2024 10:03 AM To: Steve Strickland <SStrickland@WoodRodgers.com> Cc: Frank Borghetti <frank.borghetti@contractlandstaff.com> Subject: Sunny Hills Ranchos Project Hello Steve, Top of the Day to You! Would you please send me the project plans for SHR's development in South Reno. The .kmz file would be fine. Thanking you in advance for your kind reply. Regards, Frank Borghetti, NAC-RW, REALT OR, SR/WA Senior Land Agent - Reno, Nevada Contract Land Staff, LLC Post Office Box 19128 Reno, NV",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-2024-bc589580a7",
+    "meeting_item_id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-2024-bc589580a7",
+    "jurisdiction": "Storey County, NV",
+    "question_text": "Would you approve 9:24 am to: jeff pierson <jpierson@intexcorp.com>; doug ford <dford@intexcorp.com> subject: conference call hello doug and jeff, top of the day to you both! how does your week l...?",
+    "short_summary": "9:24 AM To: Jeff Pierson <jpierson@intexcorp.com>; Doug Ford <dford@intexcorp.com> Subject: Conference call Hello Doug and Jeff, Top of the Day to You Both! How does your week l...",
+    "neutral_context": "2024 9:24 AM To: Jeff Pierson <jpierson@intexcorp.com>; Doug Ford <dford@intexcorp.com> Subject: Conference call Hello Doug and Jeff, Top of the Day to You Both! How does your week look for us to schedule a call to discuss Greenlink? Regards, Frank Borghetti, NAC-RW, REALTOR, SR/WA Senior Land Agent - Reno, Nevada Contract Land Staff, LLC Post Office Box 19128 Reno, NV 89511 Office: 775-357-",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.storeycounty.org/AgendaCenter/ViewFile/Agenda/_09012026-1405"
+    ],
+    "confidence_score": 0.66
+  },
+  {
     "id": "question-item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-1-e36b2a3858",
     "meeting_item_id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-1-e36b2a3858",
     "jurisdiction": "Elko, NV",
@@ -11296,44 +11676,6 @@
       "https://www.elkocity.com/09-06-16%20PC%20Min.pdf?t=202305301202500"
     ],
     "confidence_score": 0.66
-  },
-  {
-    "id": "question-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7-907.45-551c6f3a8c",
-    "meeting_item_id": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7-907.45-551c6f3a8c",
-    "jurisdiction": "North Las Vegas, NV",
-    "question_text": "Would you approve for program year 2026-2027 and authorization for the city manager or her designee to enter into related agreements and approve revised final funding allocations or contract amen...?",
-    "short_summary": "for Program Year 2026-2027 and Authorization for the City Manager or Her Designee to Enter into Related Agreements and Approve Revised Final Funding Allocations or Contract Amen...",
-    "neutral_context": "907.45 for Program Year 2026-2027 and Authorization for the City Manager or Her Designee to Enter into Related Agreements and Approve Revised Final Funding Allocations or Contract Amendments as Needed",
-    "fiscal_impact": null,
-    "arguments_for": [],
-    "arguments_against": [],
-    "affected_groups": [],
-    "policy_area": "Budget",
-    "status": "draft",
-    "review_status": "needs_context",
-    "source_urls": [
-      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16600"
-    ],
-    "confidence_score": 0.64
-  },
-  {
-    "id": "question-item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7-2-b5380da578",
-    "meeting_item_id": "item-meeting-manual-north-las-vegas-city-council-north-las-vegas-city-council-2026-08-19-0483a8b7-2-b5380da578",
-    "jurisdiction": "North Las Vegas, NV",
-    "question_text": "Would you approve to the professional engineering services agreement for the las vegas wash cartier channel project with c?",
-    "short_summary": "to the Professional Engineering Services Agreement for the Las Vegas Wash Cartier Channel Project with C",
-    "neutral_context": "2 to the Professional Engineering Services Agreement for the Las Vegas Wash Cartier Channel Project with C",
-    "fiscal_impact": null,
-    "arguments_for": [],
-    "arguments_against": [],
-    "affected_groups": [],
-    "policy_area": "Other",
-    "status": "draft",
-    "review_status": "needs_context",
-    "source_urls": [
-      "https://cityofnorthlasvegas.primegov.com/Portal/Meeting?meetingTemplateId=16600"
-    ],
-    "confidence_score": 0.64
   },
   {
     "id": "question-item-meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78-4-6b2eefff9d",
@@ -28793,6 +29135,785 @@
     "review_status": "needs_context",
     "source_urls": [
       "https://www.pershingcountynv.gov/document_center/Agendas/commissioners/2024/2024-09-04-commissioners-agn.pdf?t=202408281827350"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11-1c075eae02",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11-1c075eae02",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: accept a grant award from the nevada department of business and industry housing division for the fy27 emergency services grant program, in the amount of $7...?",
+    "short_summary": "For Possible Action: Accept a grant award from the Nevada Department of Business and Industry Housing Division for the FY27 Emergency Services Grant program, in the amount of $7...",
+    "neutral_context": "For Possible Action: Accept a grant award from the Nevada Department of Business and Industry Housing Division for the FY27 Emergency Services Grant program, in the amount of $72,000. This is an annual renewal of funding received through the State of Nevada Housing Division. The purpose of the grant is to provide case management services to re-house individuals and families experiencing homelessness and/or prevent them from becoming homeless. Financial Department Comments: There is not a match requirement. Approved As To Legal Form: County Manager Comments: Recommendation: Accept a grant award from the Nevada Department of Business and Industry Housing Division for the FY27 Emergency Serv...",
+    "fiscal_impact": "$72,000",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-12-c65c938533",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-12-c65c938533",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: approve a reimbursement from the lyon county school district in the amount of $4,350.50 for the attendance of four lyon county sheriff's office school resou...?",
+    "short_summary": "For Possible Action: Approve a reimbursement from the Lyon County School District in the amount of $4,350.50 for the attendance of four Lyon County Sheriff's Office School Resou...",
+    "neutral_context": "For Possible Action: Approve a reimbursement from the Lyon County School District in the amount of $4,350.50 for the attendance of four Lyon County Sheriff's Office School Resource Officers at the NASRO School Resource Officer Conference that was held June 29, 2026 through July 2, 2026 in Reno, Nevada. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 71 of 191 -- -- 72 of 191 -- -- 73 of 191 -- -- 74 of 191 --",
+    "fiscal_impact": "$4,350.50 for the attendance of four Lyon County Sheriff's Office School Resource Officers at the NASRO School Resource Officer Conference that was held June 29, 2026 th",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-13-b42b505a9a",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-13-b42b505a9a",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: to approve a request by winston fc solar, llc, for an amendment to the approved planned unit development (pud) for the winston energy project in mason valle...?",
+    "short_summary": "For Possible Action: To approve a request by Winston FC Solar, LLC, for an amendment to the approved Planned Unit Development (PUD) for the Winston Energy Project in Mason Valle...",
+    "neutral_context": "For Possible Action: To approve a request by Winston FC Solar, LLC, for an amendment to the approved Planned Unit Development (PUD) for the Winston Energy Project in Mason Valley. The proposed amendment is for the western setback for the solar energy conversion system associated with the PUD, reducing the setback along U.S. Highway 95A from 1,980 feet to 1,320 feet, in order to accommodate an easement along the eastern portion of the project site. APNs 014-091-[13, 15, 16, 17, 22] and 014-201-[14, 17, 18, 32, 33, 35]; PLZ-2026-061. (Senior Planner Louis Cariola) Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 75 of 191 -- L...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-23-9fb1186a3f",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-23-9fb1186a3f",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: approve a lease agreement with california internet llc from september 3, 2026 through november 30, 2032 for placing equipment at the pine grove communicatio...?",
+    "short_summary": "For Possible Action: Approve a lease agreement with California Internet LLC from September 3, 2026 through November 30, 2032 for placing equipment at the Pine Grove Communicatio...",
+    "neutral_context": "For Possible Action: Approve a lease agreement with California Internet LLC from September 3, 2026 through November 30, 2032 for placing equipment at the Pine Grove Communications Site. California Internet LLC has requested to put microwave equipment on the Pine Grove Communications Site. There is sufficient space on the tower and in the shelter for the equipment. It is also one of the provisions of our Forest Service lease to allow other tenants, if there is space, so that there are fewer towers and buildings. Financial Department Comments: The revenue should cover any additional utilities and lease costs to the County. Approved As To Legal Form: County Manager Comments: Recommendation:...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-24-7836a3f0ff",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-24-7836a3f0ff",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: to approve an agreement with sierra controls, in an amount not to exceed $160,216.25, to migrate the silver springs wastewater treatment plant's existing sc...?",
+    "short_summary": "For Possible Action: To approve an agreement with Sierra Controls, in an amount not to exceed $160,216.25, to migrate the Silver Springs Wastewater Treatment Plant's existing SC...",
+    "neutral_context": "For Possible Action: To approve an agreement with Sierra Controls, in an amount not to exceed $160,216.25, to migrate the Silver Springs Wastewater Treatment Plant's existing SCADA system to a new SCADA platform. (Utilities Director, Sean Sinclair) The utility-wide SCADA system has experienced ongoing reliability issues, and the FY27 budget includes funding for a SCADA Improvement Project. Before the project could begin, an electrical storm caused a complete failure of the SCADA computer at the Silver Springs Plant, significantly impacting plant operations. To restore reliable operational control, staff and the Consultant recommend beginning the SCADA improvement work at Silver Springs im...",
+    "fiscal_impact": "$160,216.25, to migrate the Silver Springs Wastewater Treatment Plant's existing SCADA system to a new SCADA platform",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-25-daceba3019",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-25-daceba3019",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: accept the proposal and approve the contract from frey spray llc for aerial black fly and mosquito control application for the period of september 3, 2026 t...?",
+    "short_summary": "For Possible Action: Accept the proposal and approve the contract from Frey Spray LLC for Aerial Black Fly and Mosquito Control application for the period of September 3, 2026 t...",
+    "neutral_context": "For Possible Action: Accept the proposal and approve the contract from Frey Spray LLC for Aerial Black Fly and Mosquito Control application for the period of September 3, 2026 to June 30, 2027 for a cost not to exceed $49,000. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 181 of 191 -- -- 182 of 191 -- Page 1 of 9 Revised 5-2021 CONTRACT FOR SERVICES OF INDEPENDENT CONTRACTOR A Contract between Central Lyon County Vector Control District, a political subdivision of the State of Nevada, Acting By and Through Its Board of County Commissioners",
+    "fiscal_impact": "$49,000",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-14-3a3ffd5682",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-14-3a3ffd5682",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve comptroller california internet llc pine grove site license agreement recess to reconvene as the silver springs general improvement district?",
+    "short_summary": "Comptroller California Internet LLC Pine Grove Site License Agreement RECESS TO RECONVENE AS THE SILVER SPRINGS GENERAL IMPROVEMENT DISTRICT",
+    "neutral_context": "14. Comptroller California Internet LLC Pine Grove Site License Agreement RECESS TO RECONVENE AS THE SILVER SPRINGS GENERAL IMPROVEMENT DISTRICT",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Business Regulation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-19-9e4c6f8b67",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-19-9e4c6f8b67",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve contracts -- 3 of 191 -- cost not to exceed $49,000. (county manager, andrew haskin) frey spray proposal for aerial black fly & mosquito control contract frey spray 2027?",
+    "short_summary": "Contracts -- 3 of 191 -- cost not to exceed $49,000. (County Manager, Andrew Haskin) Frey Spray Proposal for Aerial Black Fly & Mosquito Control Contract Frey Spray 2027",
+    "neutral_context": "19. Contracts -- 3 of 191 -- cost not to exceed $49,000. (County Manager, Andrew Haskin) Frey Spray Proposal for Aerial Black Fly & Mosquito Control Contract Frey Spray 2027",
+    "fiscal_impact": "$49,000",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-45-77147e142b",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-45-77147e142b",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: approve the august 6, 2026 minutes. financial department comments: approved as to legal form: county manager comments: recommendation: attachments -- 15 of...?",
+    "short_summary": "For Possible Action: Approve the August 6, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 15 of...",
+    "neutral_context": "For Possible Action: Approve the August 6, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 15 of 191 -- Lyon County Board of County Commissioners August 6, 2026 Page 1 of 13 Board of County Commissioners Lyon County, Nevada The Honorable Board of Lyon County Commissioners met this day, Thursday, August 6, 2026, at 9:00 A.M. in the LYON COUNTY ADMINISTRATIVE COMPLEX, 27 S. MAIN STREET, YERINGTON, NV",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Transportation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-4-dd51067446",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-4-dd51067446",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve public participation chair keller asked for public comment. numerous people made public comment that included any or all of the following: requests that a moratorium be put into...?",
+    "short_summary": "Public Participation Chair Keller asked for public comment. Numerous people made public comment that included any or all of the following: requests that a moratorium be put into...",
+    "neutral_context": "4. Public Participation Chair Keller asked for public comment. Numerous people made public comment that included any or all of the following: requests that a moratorium be put into effect and/or the project be denied or continued until additional information is available, expression of opposition to the data center project and Ordinance, and concerns, requests and/or suggestions regarding the Those who made comments including the aforementioned topics included: Jim De Chambeau, Laverne Roberts, Elwood Emm, Leo Solari, Vernon Rogers, David Janakos, Rick Rehmke, Kathie Merfeld-Huguenin, Kimberly Lawson, Kristine Stewart, Delmar Stevens, Terry Watford, Judith Harker, Laurie Thom, Shannon Wil...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-49-c787ff8c4b",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-49-c787ff8c4b",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve the sound generated by the data center potentially increasing earthquake activity, the valley being considered sacred to the tribe and a desire for wovoka to be honored, effects...?",
+    "short_summary": "the sound generated by the data center potentially increasing earthquake activity, the valley being considered sacred to the Tribe and a desire for Wovoka to be honored, effects...",
+    "neutral_context": "the sound generated by the data center potentially increasing earthquake activity, the valley being considered sacred to the Tribe and a desire for Wovoka to be honored, effects of lighting/water use/noise, more birds dying -- 16 of 191 -- Lyon County Board of County Commissioners August 6, 2026 Page 2 of 13 from flying into the power lines, Native burials being dug up at the data center site, a typo or change made to the date on the traffic impact report, need for a current traffic impact report, effects of increased traffic, lack of government to government and Federally mandated consultation with the Yerington and Walker River Paiute Tribes, Commissioners not upholding their oath to pr...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-51-9c8594fca2",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-51-9c8594fca2",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve water enhancer, master plan violation, community resistance and local petitions, people scared to oppose, bypass of a sovereign tribal resolution, ten-foot wall being insufficie...?",
+    "short_summary": "water enhancer, master plan violation, community resistance and local petitions, people scared to oppose, bypass of a sovereign tribal resolution, ten-foot wall being insufficie...",
+    "neutral_context": "water enhancer, master plan violation, community resistance and local petitions, people scared to oppose, bypass of a sovereign tribal resolution, ten-foot wall being insufficient to block light, and noise, ineffective and incomplete ordinances, hidden agenda regarding monitoring and storage of bitcoins and currency, dissatisfaction with Commissioner performance, oversimplification and lack of consideration of locals/data/conflicting information, lack of geotech studies and transparency for data center usage. insufficient setbacks, effects on future generations, increase of respiratory and cardiovascular disease/liver/blood/kidney damage, cancer and asthma rates, request to deny the zonin...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-52-6082f934dc",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-52-6082f934dc",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve justification of why, current lack of housing, lack of water for crops or fires, recommendation to lyon county residents to organize a recall petition on every commissioner who...?",
+    "short_summary": "justification of why, current lack of housing, lack of water for crops or fires, recommendation to Lyon County residents to organize a recall petition on every commissioner who...",
+    "neutral_context": "justification of why, current lack of housing, lack of water for crops or fires, recommendation to Lyon County residents to organize a recall petition on every commissioner who ignores federal laws being violated, project site in FEMA flood zone, ignoring of the Clean Water Act and the senior water rights of the Tribe, legal backing/financial resources/scientific infrastructure for the Tribe to fight this project, reminder that the Board -- 17 of 191 -- Lyon County Board of County Commissioners August 6, 2026 Page 3 of 13 works for the residents of Lyon County and not special interest groups, the ordinance not applying to this project, this PUD not meeting Findings D/E/F in Lyon County Co...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-53-4e7f9bc6e1",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-53-4e7f9bc6e1",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve community, construction workers spending money in town, innovation, capital to improve or replace schools, increased tax revenue, and the opportunity to set the standard for dat...?",
+    "short_summary": "community, construction workers spending money in town, innovation, capital to improve or replace schools, increased tax revenue, and the opportunity to set the standard for dat...",
+    "neutral_context": "community, construction workers spending money in town, innovation, capital to improve or replace schools, increased tax revenue, and the opportunity to set the standard for data centers. Chris Thompson provided statistics on taxes collected after abatements in Storey County after data centers were built, and water usage for the Tahoe-Reno Industrial Center. Thomas Foster, representing the sovereign nation of the Yerington Paiute Tribe and read into record their Resolution 26-16. Laura Jensen requested item 6b be removed from the consent agenda and expressed opposition to the data center; Chair Keller clarified this item is already a time specific agenda item to be discussed. Phyllis Hisk...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Taxes",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-54-c921735097",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-54-c921735097",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve construction group in fernley, which specializes in heavy civil construction specializing in all phases of groundwork, solar, and geothermal projects. she requested the board po...?",
+    "short_summary": "Construction Group in Fernley, which specializes in heavy civil construction specializing in all phases of groundwork, solar, and geothermal projects. She requested the Board po...",
+    "neutral_context": "Construction Group in Fernley, which specializes in heavy civil construction specializing in all phases of groundwork, solar, and geothermal projects. She requested the Board postpone any final actions on the data center until the Ethics Board can review her complaint. Melanie McFalls, Tribal Chairman for the Walker River Paiute Tribe, formally requested the Lyon County Commissioners deny all permits for the data center and to put a halt on the project until the Tribe’s concerns are fully addressed. She also referenced the presented Resolution WR532026. -- 18 of 191 -- Lyon County Board of County Commissioners August 6, 2026 Page 4 of 13 Gary Handzell quoted statements from each Commissio...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-6.b-c94dedcef9",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-6.b-c94dedcef9",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve time certain at 10:00 a.m.: for possible action: to approve the request from copia power devco, llc, for approval of a zone change to planned unit development for the monarch da...?",
+    "short_summary": "Time Certain at 10:00 A.M.: For Possible Action: To approve the request from Copia Power Devco, LLC, for approval of a zone change to Planned Unit Development for the Monarch Da...",
+    "neutral_context": "6.b Time Certain at 10:00 A.M.: For Possible Action: To approve the request from Copia Power Devco, LLC, for approval of a zone change to Planned Unit Development for the Monarch Data Center, a 4.6 million square foot, 1,000 Megawatt (MW) data center consisting of 8, two-story buildings up to 95 feet tall, a 500-MW battery energy storage system, a 500-MW natural gas backup system, an electrical substation, high voltage power lines and other accessory uses over two parcels subject to RR-20 (Rural Residential, 20-acre minimum) zoning totaling 505.40 acres in accordance with the Monarch Data Center Specific Plan (APNs 014-201-07 and 014-201-30); PLZ-2026-041. (Senior Planner Louis Cariola) C...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-59-afa7cb36ce",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-59-afa7cb36ce",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve wildlife resources, sound analysis, sound details, construction and operational light, tribal engagement, water use and wastewater, data center & bess safety, traffic and access...?",
+    "short_summary": "Wildlife Resources, Sound Analysis, Sound Details, Construction and Operational Light, Tribal Engagement, Water Use and Wastewater, Data Center & BESS Safety, Traffic and Access...",
+    "neutral_context": "Wildlife Resources, Sound Analysis, Sound Details, Construction and Operational Light, Tribal Engagement, Water Use and Wastewater, Data Center & BESS Safety, Traffic and Access Revisions, and the Next Steps in Planned Unit Development Process. Mr. Page clarified a parent company is buying Copia, so Copia will still be Copia. Other points of note included an estimated $2.5 billion in net local and state taxes over 25 years, and Copia committing to a Development Program that will define the economic benefits to the County, guaranteed to be higher than what the County would receive under a tax abatement program. Mr. Menahem stated they made a commitment to not seek tax abatements and reques...",
+    "fiscal_impact": "$2",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-61-311e0d3f15",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-61-311e0d3f15",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve residence/potentially intermittent stream or lake, site location on flood plain and potential for contaminants to enter intermittent water flows, the master plan should limit de...?",
+    "short_summary": "residence/potentially intermittent stream or lake, site location on flood plain and potential for contaminants to enter intermittent water flows, the Master Plan should limit de...",
+    "neutral_context": "residence/potentially intermittent stream or lake, site location on flood plain and potential for contaminants to enter intermittent water flows, the Master Plan should limit development in environmentally sensitive areas such as flood plains and critical wildlife habitat, violations of laws and health hazard risks, the traffic study still not addressing all of the projects coming and going, questions being skirted around and unanswered, gas-lighting of the public, legal team opinion that this project is grandfathered in, closed primary loop with a second evaporative loop is actually a hybrid system, Copia not having reached an agreement with NV Energy yet, how much money Yerington’s port...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Transportation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-62-057cf588aa",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-62-057cf588aa",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve of progress and what it means, concern regarding inconsistency of information within the presentation of $2.5 billion dollars of tax revenue to be generated but $1.7 billion wit...?",
+    "short_summary": "of progress and what it means, concern regarding inconsistency of information within the presentation of $2.5 billion dollars of tax revenue to be generated but $1.7 billion wit...",
+    "neutral_context": "of progress and what it means, concern regarding inconsistency of information within the presentation of $2.5 billion dollars of tax revenue to be generated but $1.7 billion with tax abatements that won’t be taken, inconsistencies in information on closed loop system refreshes/treatment/water usage, and request for answers to questions about water. Further concerns, requests, and suggestions included: request for an enforcement arm to shut down the project until in compliance rather than fines, health effects and destruction of the land, claim of Open Meeting Law violation because the screen can’t be seen when people are sitting down, the EPA taking sludge away, legality of NDOT report wi...",
+    "fiscal_impact": "$2",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Taxes",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-63-4581263940",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-63-4581263940",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve recommendation to change the zoning despite the residents and homeowners on penrose lane opposing the change., concern that the board is voting while disregarding public opposit...?",
+    "short_summary": "recommendation to change the zoning despite the residents and homeowners on Penrose Lane opposing the change., concern that the Board is voting while disregarding public opposit...",
+    "neutral_context": "recommendation to change the zoning despite the residents and homeowners on Penrose Lane opposing the change., concern that the Board is voting while disregarding public opposition and public demands, Walker River -- 21 of 191 -- Lyon County Board of County Commissioners August 6, 2026 Page 7 of 13 being unable to sustain its native wildlife and fish due to the historical selling of its water to exploitative industries, concern that pockets are being lined, the project not meeting findings and not protecting the interests of the public and residents, the developers not bringing engineers/hydrologist/anyone with technical experience that can answer high-level questions, need for a plan in...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-64-0e6fc8dac3",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-64-0e6fc8dac3",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve treasurer for liuna local 169), and corrado degasperis. reasons for support include construction and operational jobs, tax revenues, funds for building/expanding schools/wastewa...?",
+    "short_summary": "Treasurer for LIUNA Local 169), and Corrado DeGasperis. Reasons for support include construction and operational jobs, tax revenues, funds for building/expanding schools/wastewa...",
+    "neutral_context": "Treasurer for LIUNA Local 169), and Corrado DeGasperis. Reasons for support include construction and operational jobs, tax revenues, funds for building/expanding schools/wastewater treatment plants, sidewalks, etc., local investments, economic opportunities and impact, opportunities to build careers/support local businesses/invest in the future, pathway to a living wage, building safely to benefit the community, jobs for apprentices and journeymen, impactful solutions, bringing infrastructure Sir Mark Jones commented on accusations of pocket lining and disrespect. He called out commenters by asking where they are when it comes time to run for election or to fill volunteer Board positions....",
+    "fiscal_impact": "$240 million for one of the largest groundwater deposits left in the County",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-IV-8a801534e1",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-IV-8a801534e1",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve development, met with the us department of housing and urban development regarding the opportunity zones in lyon county, followed up with a zoom call with the governor’s office...?",
+    "short_summary": "development, met with the US Department of Housing and Urban Development regarding the opportunity zones in Lyon County, followed up with a Zoom call with the Governor’s Office...",
+    "neutral_context": "IV development, met with the US Department of Housing and Urban Development regarding the opportunity zones in Lyon County, followed up with a Zoom call with the Governor’s Office working on supporting opportunity zones in Silver Springs and Yerington, attended the Dayton Valley Conservation District meeting, met with Jeff Brigger and Andy Polisso of NV Energy, attended the monthly GOED (Governor’s Office of Economic Development) meeting and met with the representatives of that board, and met with several developers in the Dayton area including Project One, Legacy 49 and Comstock, Inc. He also attended the Data Center Development Ordinance Workshop, and met with the Dayton Tourism Co-oper...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11-ad5fc57529",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11-ad5fc57529",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve agenda chair keller asked for public comment, and there was none at this time. comm. cassinelli moved to approve the consent agenda items 11.a. through 11.g.; comm. hend...?",
+    "short_summary": "CONSENT AGENDA Chair Keller asked for public comment, and there was none at this time. Comm. Cassinelli moved to approve the consent agenda items 11.a. through 11.g.; Comm. Hend...",
+    "neutral_context": "11. CONSENT AGENDA Chair Keller asked for public comment, and there was none at this time. Comm. Cassinelli moved to approve the consent agenda items 11.a. through 11.g.; Comm. Hendrix seconded, and the motion passed 5-0.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.a-247fd3f32c",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.a-247fd3f32c",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: review and accept claims and financial reports. county claims totaled $ 2,828,374.13 and payroll totaled $ 2,088,680.60. the cash balance was $ 126,307,678.58.?",
+    "short_summary": "For Possible Action: Review and accept claims and financial reports. County claims totaled $ 2,828,374.13 and payroll totaled $ 2,088,680.60. The cash balance was $ 126,307,678.58.",
+    "neutral_context": "11.a. For Possible Action: Review and accept claims and financial reports. County claims totaled $ 2,828,374.13 and payroll totaled $ 2,088,680.60. The cash balance was $ 126,307,678.58.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.b-74c418aac6",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.b-74c418aac6",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: review and accept travel claims. the travel claims totaled $ 919.48. 11.c. approve the changes on assessor's tax roll due to correction in assessments and r...?",
+    "short_summary": "For Possible Action: Review and accept travel claims. The travel claims totaled $ 919.48. 11.c. Approve the changes on Assessor's tax roll due to correction in assessments and r...",
+    "neutral_context": "11.b. For Possible Action: Review and accept travel claims. The travel claims totaled $ 919.48. 11.c. Approve the changes on Assessor's tax roll due to correction in assessments and review of tax roll changes. The secured factual corrections totaled $3,710.63 and the unsecured factual corrections totaled $ 84.62.",
+    "fiscal_impact": "$3,710.63 and the unsecured factual corrections totaled $ 84",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Taxes",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-95-bf43c6ef2f",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-95-bf43c6ef2f",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: approve the august 20, 2026 minutes. financial department comments: approved as to legal form: county manager comments: recommendation: attachments -- 29 of...?",
+    "short_summary": "For Possible Action: Approve the August 20, 2026 Minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 29 of...",
+    "neutral_context": "For Possible Action: Approve the August 20, 2026 Minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 29 of 191 -- Lyon County Board of County Commissioners August 20, 2026 Page 1 of 10 Board of County Commissioners Lyon County, Nevada The Honorable Board of Lyon County Commissioners met this day, Thursday, August 20, 2026, at 9:00 A.M. in the LYON COUNTY ADMINISTRATIVE COMPLEX, 27 S. MAIN STREET, YERINGTON,",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Transportation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-6-dc9f0e5319",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-6-dc9f0e5319",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve presentation of awards and/or recognition of accomplishments 6.a for presentation only: present deputy benjamin beck from the lyon county sheriffs office and lt. kyle day with n...?",
+    "short_summary": "Presentation of awards and/or recognition of accomplishments 6.a For Presentation Only: Present Deputy Benjamin Beck from the Lyon County Sheriffs Office and Lt. Kyle Day with N...",
+    "neutral_context": "6. Presentation of awards and/or recognition of accomplishments 6.a For Presentation Only: Present Deputy Benjamin Beck from the Lyon County Sheriffs Office and Lt. Kyle Day with Nevada Department of Corrections with the Lyon County Sheriff's Office \"Life Saving Award\". (Sheriff, Brad Pope) -- 30 of 191 -- Lyon County Board of County Commissioners August 20, 2026 Page 2 of 10 Sheriff Pope read into record a description of the incident and reasons for receiving the Sheriff’s Office Life- Saving Award nominations for Deputy Benjamin Beck from the Lyon County Sheriff’s Office and Lt. Kyle Day with the Nevada Department of Corrections. Deputy Beck and Lt. Kyle Day demonstrated exceptional tea...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-100-a2e64b0a8d",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-100-a2e64b0a8d",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve the lyon county sheriff's office with the lyon county sheriff's office \"life saving award\". (sheriff, brad pope) -- 31 of 191 -- lyon county board of county commissioners august...?",
+    "short_summary": "the Lyon County Sheriff's Office with the Lyon County Sheriff's Office \"Life Saving Award\". (Sheriff, Brad Pope) -- 31 of 191 -- Lyon County Board of County Commissioners August...",
+    "neutral_context": "the Lyon County Sheriff's Office with the Lyon County Sheriff's Office \"Life Saving Award\". (Sheriff, Brad Pope) -- 31 of 191 -- Lyon County Board of County Commissioners August 20, 2026 Page 3 of 10 Sheriff Pope read into record a description of the incidents and reasons for the Sheriff’s Office Life-Saving Award nominations for Dispatcher Kyara Davis and Dispatcher Sarah Walker. Dispatcher Davis' command presence and ability to remain composed under intense pressure exemplify the high standards of the Lion County Sheriff's Office. In recognition of her outstanding performance, professionalism, and life-saving actions, dispatcher Kiara Davis is hereby awarded the Lion County Sheriff's Of...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11-3468c780b4",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11-3468c780b4",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve agenda comm. jacobson requested to pull item 11.d. for discussion. chair keller asked for public comment. robin biggs requested to pull item 11.d. and was advised that w...?",
+    "short_summary": "CONSENT AGENDA Comm. Jacobson requested to pull item 11.d. for discussion. Chair Keller asked for public comment. Robin Biggs requested to pull item 11.d. and was advised that w...",
+    "neutral_context": "11. CONSENT AGENDA Comm. Jacobson requested to pull item 11.d. for discussion. Chair Keller asked for public comment. Robin Biggs requested to pull item 11.d. and was advised that was already requested. She also expressed concern of Open Meeting Law violations regarding a monitor not being on, and lack of a stationary monitor by the men’s Comm. Cassinelli commended Health and Human Services for their work on obtaining grants. Comm. Jacobson moved to approve the consent agenda items 11.a. through 11.h, pulling item 11.d. for consideration; Comm. Cassinelli seconded, and the motion passed 5-0.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Healthcare",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.b-ca17101acd",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.b-ca17101acd",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: review and accept travel claims. the travel claims totaled $ 16,850.34.?",
+    "short_summary": "For Possible Action: Review and accept travel claims. The travel claims totaled $ 16,850.34.",
+    "neutral_context": "11.b. For Possible Action: Review and accept travel claims. The travel claims totaled $ 16,850.34.",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.d-c941dfb1d3",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.d-c941dfb1d3",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: approve the august 3, 2026 special meeting minutes. this item was pulled from the consent agenda for discussion. district attorney steve rye clarified nevad...?",
+    "short_summary": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes. This item was pulled from the Consent Agenda for discussion. District Attorney Steve Rye clarified Nevad...",
+    "neutral_context": "11.d. For Possible Action: Approve the August 3, 2026 Special Meeting minutes. This item was pulled from the Consent Agenda for discussion. District Attorney Steve Rye clarified Nevada Law requires that the minutes include the person making any public comments, and the general nature of those comments; if the person asks that the comment be included specifically in the minutes, it needs to reflect those comments in more detail. If somebody provides a written comment and ask that that be included in the minutes, it needs to be attached to the minutes. Those are the general requirements. Mr. Rye also confirmed for the Board that the minutes are not a transcript and there is no requirement t...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Other",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.h-8b8d248c38",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.h-8b8d248c38",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: approve a contract between lyon county and healthy communities coalition, not to exceed $18,350, for services funded through the fy27 family planning servic...?",
+    "short_summary": "For Possible Action: Approve a contract between Lyon County and Healthy Communities Coalition, not to exceed $18,350, for services funded through the FY27 Family Planning Servic...",
+    "neutral_context": "11.h. For Possible Action: Approve a contract between Lyon County and Healthy Communities Coalition, not to exceed $18,350, for services funded through the FY27 Family Planning Services grant from the Department of Human Services, Division of Public & Behavioral Health. **END OF CONSENT AGENDA** REGULAR AGENDA",
+    "fiscal_impact": "$18,350, for services funded through the FY27 Family Planning Services grant from the Department of Human Services, Division of Public & Behavioral Health",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-116-f8dfad9d0e",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-116-f8dfad9d0e",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve so that all county requirements can be met, and reported a full presentation was made in silver springs, but they were unable to make it in with dayton. charles hutchinson, with...?",
+    "short_summary": "so that all County requirements can be met, and reported a full presentation was made in Silver Springs, but they were unable to make it in with Dayton. Charles Hutchinson, with...",
+    "neutral_context": "so that all County requirements can be met, and reported a full presentation was made in Silver Springs, but they were unable to make it in with Dayton. Charles Hutchinson, with WSP, advised the presentation on Greenlink Nevada Transmission Project eould be largely the same as the presentation delivered to the Board on July 2nd and that the CUP was previously approved by the Board on July 2nd. He gave a presentation on Greenlink Nevada Transmission Project: Common Tie Facilities including Agenda, Greenlink Nevada Transmission Project, Greenlink Nevada Transmission Project Timeline, Greenlink West / Common Tie NEPA Process, Common Tie Facilities Overview, Common Tie Facilities Lyon County...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Business Regulation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-14.a-952e3184b6",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-14.a-952e3184b6",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve for possible action: review and approve a resolution requesting a bill draft for the 84th nevada legislature establishing a statutory funding formula for county assessments for...?",
+    "short_summary": "For Possible Action: Review and approve a resolution requesting a Bill Draft for the 84th Nevada Legislature establishing a statutory funding formula for county assessments for...",
+    "neutral_context": "14.a. For Possible Action: Review and approve a resolution requesting a Bill Draft for the 84th Nevada Legislature establishing a statutory funding formula for county assessments for child protective services that incorporates both county population and actual utilization of child welfare services, better aligns county financial responsibility with service demand, and provides incentives for counties to implement successful prevention programs that reduce utilization of child protective services. (Emergency Management and Government Affairs Director, Taylor Allison) Emergency Management and Government Affairs Director, Taylor Allison clarified that at the last meeting, the Board asked tha...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-21-997e26c55f",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-21-997e26c55f",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve adjourn meeting adjourned at 12:58 pm. lyon county board of commissioners _______________________________________________ scott keller, chairman ________________________________...?",
+    "short_summary": "Adjourn Meeting adjourned at 12:58 PM. LYON COUNTY BOARD OF COMMISSIONERS _______________________________________________ SCOTT KELLER, Chairman ________________________________...",
+    "neutral_context": "21. Adjourn Meeting adjourned at 12:58 PM. LYON COUNTY BOARD OF COMMISSIONERS _______________________________________________ SCOTT KELLER, Chairman ___________________________________________ STACI LINDBERG, Lyon County Clerk/Treasurer -- 39 of 191 -- • FY27 Emergency Services Grant Agreement Lyon County Board of County Commissioners Agenda Summary Meeting Date: September 3, 2026 Agenda Item Number:",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Public Safety",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-2-39e20c5f4f",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-2-39e20c5f4f",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve s o u t h m a i n s t r e e t , y e r i n g t o n , n v 8 9 4 4 7 phone: 775-463-6592 fax: 775-463-5305 website: www.lyon-couny.org page 1 of 9 plz-2026-061– winston solar ame...?",
+    "short_summary": "7 S O U T H M A I N S T R E E T , Y E R I N G T O N , N V 8 9 4 4 7 PHONE: 775-463-6592 FAX: 775-463-5305 WEBSITE: www.lyon-couny.org Page 1 of 9 PLZ-2026-061– Winston Solar Ame...",
+    "neutral_context": "2 7 S O U T H M A I N S T R E E T , Y E R I N G T O N , N V 8 9 4 4 7 PHONE: 775-463-6592 FAX: 775-463-5305 WEBSITE: www.lyon-couny.org Page 1 of 9 PLZ-2026-061– Winston Solar Amendment – BOCC-Sept. 3, 2026 Planning-LC BOARD OF COUNTY COMMISSIONERS PLZ-2026-061 Proposed Action Amendment to an Approved Planned Unit Development (Winston Energy) Meeting Date September 3, 2026 Property Owners Masini Investments LLC, L&M Family Limited Partnership Applicant Winston FC Solar, LLC Representative Energy Project Solutions Community Mason Valley Location East of US Highway 95A and south and north of Sierra Way Addresses Multiple Parcel Numbers 014-091-[13, 15, 16, 17, 22], 014-201-[14, 17, 18, 32,...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-133-7411cc6ec6",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-133-7411cc6ec6",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve june 24, 2026. • the final pud was recorded on july 10, 2026 as document #710455 with the county recorder. -- 76 of 191 -- page 2 of 9 plz-2026-061– winston solar amendment – bo...?",
+    "short_summary": "June 24, 2026. • The Final PUD was recorded on July 10, 2026 as document #710455 with the County Recorder. -- 76 of 191 -- Page 2 of 9 PLZ-2026-061– Winston Solar Amendment – BO...",
+    "neutral_context": "June 24, 2026. • The Final PUD was recorded on July 10, 2026 as document #710455 with the County Recorder. -- 76 of 191 -- Page 2 of 9 PLZ-2026-061– Winston Solar Amendment – BOCC-Sept. 3, 2026 Planning-LC MOTION FOR APPROVAL If the Board of County Commissioners determines that they will approve the request, then the Commission may want to consider a motion similar to the following. The Lyon County Board of County Commissioners finds that: A. In what respects the plan is or is not consistent with the statement of objectives of this chapter; B. The extent to which the plan departs from zoning and planned unit development regulations otherwise applicable to the property, including but not l...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Housing",
+    "status": "draft",
+    "review_status": "needs_vote_outcome",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-134-2b1a2792ff",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-134-2b1a2792ff",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve conditions intended to protect the interest of the public and the residents of the planned unit development in the integrity of the plan. based on the ability to make the aforem...?",
+    "short_summary": "conditions intended to protect the interest of the public and the residents of the planned unit development in the integrity of the plan. Based on the ability to make the aforem...",
+    "neutral_context": "conditions intended to protect the interest of the public and the residents of the planned unit development in the integrity of the plan. Based on the ability to make the aforementioned Findings, I move that the Board of County Commissioners approve the request from Winston FC Solar, LLC, to amend the approved western setback for the solar energy conversion system associated with the Winston Energy Project Planned Unit Development (PUD) in Mason Valley, reducing the setback along U.S. Highway 95A from 1,980 feet to 1,320 feet. The proposed amendment is requested to accommodate an easement along the eastern portion of the solar array and associated project area (APNs 014-091-[13, 15, 16, 1...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Business Regulation",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-135-6ae0d1a0d7",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-135-6ae0d1a0d7",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve appropriate findings and move to continue the public hearing with a specific time period for the applicant to provide additional specific information necessary for the analysis...?",
+    "short_summary": "appropriate findings and move to continue the Public Hearing with a specific time period for the applicant to provide additional specific information necessary for the analysis...",
+    "neutral_context": "appropriate findings and move to continue the Public Hearing with a specific time period for the applicant to provide additional specific information necessary for the analysis of the request. The Commission may wish to consider a motion similar to the following: The Board of County Commissioners finds that: A. Additional information, discussion and public review are necessary for a more thorough review of the proposed Planned Unit Development. Based on the aforementioned finding, and with the applicant’s concurrence, the Board of County Commissioners continues the request from Winston FC Solar, LLC, to amend the approved western setback for the solar energy conversion system associated w...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Zoning",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-137-f2ffebe667",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-137-f2ffebe667",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve winston fc solar, llc, to amend the approved western setback for the solar energy conversion system associated with the winston energy project planned unit development (pud) in...?",
+    "short_summary": "Winston FC Solar, LLC, to amend the approved western setback for the solar energy conversion system associated with the Winston Energy Project Planned Unit Development (PUD) in...",
+    "neutral_context": "Winston FC Solar, LLC, to amend the approved western setback for the solar energy conversion system associated with the Winston Energy Project Planned Unit Development (PUD) in Mason Valley, reducing the setback along U.S. Highway 95A from 1,980 feet to 1,320 feet. The proposed amendment is requested to accommodate an easement along the eastern portion of the solar array and associated project area (APNs 014- 091-[13, 15, 16, 17, 22], 014-201-[14, 17, 18, 32, 33, 35); PLZ-2025-084. -- 78 of 191 -- Page 4 of 9 PLZ-2026-061– Winston Solar Amendment – BOCC-Sept. 3, 2026 Planning-LC BACKGROUND INFORMATION The PUD is located in Mason Valley in Wabuska, east of US Highway 95A, west of the Walke...",
+    "fiscal_impact": null,
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Utilities",
+    "status": "draft",
+    "review_status": "needs_context",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
+    ],
+    "confidence_score": 0.66
+  },
+  {
+    "id": "question-item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-19-0e1f61fd17",
+    "meeting_item_id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-19-0e1f61fd17",
+    "jurisdiction": "Lyon County, NV",
+    "question_text": "Would you approve contracts -- 3 of 212 -- cost not to exceed $49,000. (county manager, andrew haskin) frey spray proposal for aerial black fly & mosquito control contract frey spray 2027?",
+    "short_summary": "Contracts -- 3 of 212 -- cost not to exceed $49,000. (County Manager, Andrew Haskin) Frey Spray Proposal for Aerial Black Fly & Mosquito Control Contract Frey Spray 2027",
+    "neutral_context": "19. Contracts -- 3 of 212 -- cost not to exceed $49,000. (County Manager, Andrew Haskin) Frey Spray Proposal for Aerial Black Fly & Mosquito Control Contract Frey Spray 2027",
+    "fiscal_impact": "$49,000",
+    "arguments_for": [],
+    "arguments_against": [],
+    "affected_groups": [],
+    "policy_area": "Budget",
+    "status": "draft",
+    "review_status": "needs_financial_review",
+    "source_urls": [
+      "https://www.lyon-county.org/AgendaCenter/ViewFile/Agenda/_09032026-2097"
     ],
     "confidence_score": 0.66
   }

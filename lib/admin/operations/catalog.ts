@@ -4,6 +4,7 @@ export type OperationStatus = "queued" | "starting" | "running" | "awaiting_admi
 export type OperationType =
   | "dataops_full"
   | "dataops_daily"
+  | "meetings_refresh"
   | "dataops_offline"
   | "source_discovery"
   | "source_monitor"
@@ -60,6 +61,21 @@ export type OperationDefinition = {
 };
 
 export const OPERATION_DEFINITIONS: OperationDefinition[] = [
+  {
+    id: "meetings_refresh",
+    label: "Refresh calendars and minutes",
+    description: "Refreshes meetings, follows up missing minutes, preserves the archive, and regenerates source-backed civic records independently of financial and case collection.",
+    backend: "local_process",
+    defaultTrigger: "admin_run_now",
+    command: ["npm", "run", "meetings:refresh", "--"],
+    allowedArgs: ["limit", "offline", "from", "to"],
+    permissions: ["dataops.run"],
+    safeConcurrent: false,
+    highImpact: false,
+    requiresNetwork: true,
+    requiresOcrTools: false,
+    productionAvailability: "development_only",
+  },
   {
     id: "dataops_full",
     label: "Full DataOps pipeline",

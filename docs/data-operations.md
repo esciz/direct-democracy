@@ -278,7 +278,7 @@ The advanced collector starts from official roots verified through the Nevada As
 
 ## Scheduled Automation
 
-The canonical source refresh runs once daily at 6:00 AM America/Los_Angeles through the active local Codex automation. Daily is recommended because public bodies can post, cancel, or revise meetings with only a few days of notice. Do not add another recurring trigger without first disabling the existing one.
+The existing local civic-source automation checks meetings every six hours in America/Los_Angeles and runs the broader civic refresh on the first run of each Pacific calendar day. `npm run meetings:refresh -- --limit=100` isolates calendar/minutes work from financial and case collection failures. See [meeting-operations.md](meeting-operations.md) for source discovery, archive retention, delayed-minutes follow-up, and production delivery requirements. Do not add another recurring trigger without first disabling the existing one.
 
 The daily process is:
 
@@ -292,12 +292,12 @@ The daily process is:
 
 The public site integrity artifact is `data/generated/public-site-integrity-audit.json`. It separates critical code-integrity regressions from high-severity collection barriers so a clean build cannot be mistaken for complete source coverage. In particular, a registered provider with zero parsed records is reported as a barrier even when no exception was thrown.
 
-Meeting calendars, OpenFEC totals, statewide financial source registration, derived aggregate shards, and source-health checks run daily. Full Nevada SOS filing acquisition should run weekly, or sooner during an active filing window, because it requires a usable browser challenge session. The daily pipeline regenerates the cached finance quality and operational-status reports without retrying blocked live URLs. When `data/generated/nv-sos-operational-status.json` reports `stale_blocked_session`, run `npm run nv-sos:bootstrap` interactively and then `npm run nv-sos:all`; do not schedule repeated blocked fetches.
+Meeting calendars and meeting source checks run each six-hour cycle; OpenFEC totals, statewide financial source registration, and broader aggregate shards run daily. Full Nevada SOS filing acquisition should run weekly, or sooner during an active filing window, because it requires a usable browser challenge session. The daily pipeline regenerates the cached finance quality and operational-status reports without retrying blocked live URLs. When `data/generated/nv-sos-operational-status.json` reports `stale_blocked_session`, run `npm run nv-sos:bootstrap` interactively and then `npm run nv-sos:all`; do not schedule repeated blocked fetches.
 8. Write `data/generated/dataops-pipeline-run.json`, including required and configured jurisdictions, sources checked, upcoming meetings, source-backed issues, public-record totals, separate Ninth Circuit and U.S. Supreme Court counts, and provider failures.
 
-Direct source checks and statewide coverage audits run once daily. Advanced rendered-browser collection is divided into seven stable shards, so every provider receives an advanced pass at least once every seven days without adding a second recurring job. `npm run meetings:bootstrap:nevada-sources` remains the explicit full-state recovery command.
+Direct meeting source checks and statewide coverage audits run on each meeting cycle; broader civic checks run once daily. Advanced rendered-browser collection is divided into seven stable shards, so every provider receives an advanced pass at least once every seven days without adding a second recurring job. `npm run meetings:bootstrap:nevada-sources` remains the explicit full-state recovery command.
 
-`.github/workflows/dataops-daily.yml` remains a manual recovery hook. It can execute the same pipeline, refresh official-directory sources, typecheck the repo, and upload generated artifacts, but it has no recurring schedule. It does not push generated files to the primary branch; promotion into the deployed public runtime still requires the existing reviewed deployment path until durable production source storage is configured.
+The updated `.github/workflows/dataops-daily.yml` is a manual recovery hook. Once this code reaches GitHub, it can execute the same pipeline, refresh official-directory sources, typecheck the repo, and upload generated artifacts without a second recurring schedule. It does not push generated files to the primary branch; promotion into the deployed public runtime still requires the reviewed deployment path until durable production source storage is configured.
 
 `.github/workflows/identity-worker.yml` provides the first durable trust-service worker path. It runs from a protected environment, diagnoses database reachability, claims bounded durable jobs, heartbeats through the existing identity queue, and uploads only non-sensitive worker/trust audit artifacts.
 

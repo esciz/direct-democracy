@@ -1,0 +1,501 @@
+{
+  "generatedAt": "2026-09-06T21:10:47.882Z",
+  "records": [
+    {
+      "sourceId": "nv-cannabis-public-meetings",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 74,
+      "error": null
+    },
+    {
+      "sourceId": "nv-taxation-public-meetings",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 59,
+      "error": null
+    },
+    {
+      "sourceId": "nv-state-board-of-education",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 42,
+      "error": null
+    },
+    {
+      "sourceId": "carson-city-school-participation",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 1,
+      "error": null
+    },
+    {
+      "sourceId": "carson-city-board-of-supervisors",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 521,
+      "error": null
+    },
+    {
+      "sourceId": "carson-city-school-district",
+      "lastAttemptAt": "2026-09-06T21:10:47.882Z",
+      "lastSuccessAt": "2026-09-06T21:10:47.882Z",
+      "failures": 0,
+      "meetingsDiscovered": 41,
+      "error": null
+    },
+    {
+      "sourceId": "nv-statewide-public-notices",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "nv-education-public-meetings-discovery",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "nv-school-participation-discovery",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "nv-legislature",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "nv-governor-executive-boards",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "nshe-board-of-regents",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "churchill-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "clark-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "douglas-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 4,
+      "error": null
+    },
+    {
+      "sourceId": "elko-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "esmeralda-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "eureka-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 4,
+      "error": null
+    },
+    {
+      "sourceId": "humboldt-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "lander-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "lincoln-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "lyon-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "mineral-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "nye-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 1,
+      "error": null
+    },
+    {
+      "sourceId": "pershing-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 8,
+      "error": null
+    },
+    {
+      "sourceId": "storey-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "washoe-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 17,
+      "error": null
+    },
+    {
+      "sourceId": "white-pine-county-commission",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "boulder-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "caliente-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 2,
+      "error": null
+    },
+    {
+      "sourceId": "carlin-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "elko-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "ely-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "fallon-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "fernley-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "henderson-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "las-vegas-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "lovelock-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "mesquite-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 2,
+      "error": null
+    },
+    {
+      "sourceId": "north-las-vegas-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "reno-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "sparks-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "wells-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "west-wendover-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "winnemucca-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "yerington-city-council",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "churchill-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "clark-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "douglas-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "elko-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "esmeralda-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "eureka-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "humboldt-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "lander-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "lincoln-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "lyon-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "mineral-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "nye-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "pershing-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "storey-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    },
+    {
+      "sourceId": "washoe-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": "2026-09-06T21:00:18.077Z",
+      "failures": 0,
+      "meetingsDiscovered": 59,
+      "error": null
+    },
+    {
+      "sourceId": "white-pine-county-school-district",
+      "lastAttemptAt": "2026-09-06T21:00:18.077Z",
+      "lastSuccessAt": null,
+      "failures": 0,
+      "meetingsDiscovered": 0,
+      "error": "No dated meetings extracted; adapter or source review required."
+    }
+  ]
+}

@@ -98,6 +98,9 @@ function platformFor(value: string) {
 }
 
 function documentTypeFor(value: string, field: string): SourceDocumentType {
+  if (field === "minutes_url") return "minutes";
+  if (field === "agenda_url") return "agenda";
+  if (field === "packet_url") return "packet";
   const lower = `${field} ${value}`.toLowerCase();
   if (lower.includes("agenda-packet") || lower.includes("packet")) return "packet";
   if (lower.includes("minutes") || lower.includes("journal")) return "minutes";
@@ -153,16 +156,25 @@ function addDocument(
   if (!sourceUrl && !sourcePath) return;
   if (isNonMeetingUtilitySource(sourceUrl, sourcePath)) return;
   const key = sourceUrl ? `url:${sourceUrl}` : `path:${sourcePath}`;
-  const sizeBytes = sourcePath ? fileSize(sourcePath) : null;
-  const contentHash = sourcePath ? hashFile(sourcePath) : sourceUrl ? hashText(sourceUrl) : null;
-  const cached = Boolean(sourcePath && sizeBytes !== null);
-  const valueForType = `${sourceUrl ?? ""} ${sourcePath ?? ""}`;
   const existing = map.get(key);
   if (existing) {
+    // Explicit minutes ownership wins over a generic link in a later agenda.
+    if (input.field === "minutes_url" && !existing.provenance.some((entry) => entry.field === "minutes_url")) {
+      existing.documentType = "minutes";
+      existing.meetingId = input.meeting.id;
+      existing.bodyId = input.meeting.public_body_id;
+      existing.organizationId = input.body?.seed_source_id ?? null;
+      existing.jurisdiction = input.body?.jurisdiction ?? null;
+    }
     if (input.meetingItemId && !existing.meetingItemIds.includes(input.meetingItemId)) existing.meetingItemIds.push(input.meetingItemId);
     existing.provenance.push({ meetingId: input.meeting.id, meetingItemId: input.meetingItemId, field: input.field });
     return;
   }
+  // Many agenda items point at the same large packet. Read/hash it only once.
+  const sizeBytes = sourcePath ? fileSize(sourcePath) : null;
+  const contentHash = sourcePath ? hashFile(sourcePath) : sourceUrl ? hashText(sourceUrl) : null;
+  const cached = Boolean(sourcePath && sizeBytes !== null);
+  const valueForType = `${sourceUrl ?? ""} ${sourcePath ?? ""}`;
   map.set(key, {
     id: `meeting-source-document-${slugify(contentHash ?? key).slice(0, 64)}`,
     meetingId: input.meeting.id,

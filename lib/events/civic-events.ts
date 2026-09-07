@@ -2,16 +2,20 @@ import "server-only";
 
 import { cache } from "react";
 
+import { civicEventDay, civicEventMatchesSearch, getEventLifecycleStatus, readableMeetingSummary } from "@/lib/events/lifecycle";
+import { officialBodyCalendarUrl, officialMeetingSourceUrl } from "@/lib/events/source-links";
+
 import { getAllEventAttendance } from "@/lib/community/event-participation";
 import { getAllCommunityEvents } from "@/lib/community/events";
 import { getCommunityById, getCommunityByJurisdictionName, getDefaultCommunityForJurisdiction, seededCommunities } from "@/lib/community/communities";
 import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { getPublicMeetingAdminDashboard } from "@/lib/public-meetings/public";
+import { getPublicMeetingItems } from "@/lib/public-meetings/public-record-eligibility";
 import type { PublicBodyLevel, PublicBodyRecord, PublicMeetingItemRecord, PublicMeetingRecord, PublicMeetingSourceSeed, VoteRecord } from "@/lib/public-meetings/types";
 import type { CivicEvent, CivicEventHostType, CivicEventKind, CivicEventStatus, CivicEventType } from "@/lib/events/types";
 import type { AuthUser, CommunityEventSummary, CommunitySummary, VoteQuestionScope } from "@/types/domain";
 
-export type CivicEventBrowseStatus = "upcoming" | "completed" | "all";
+export type CivicEventBrowseStatus = "upcoming" | "completed" | "changed" | "sources" | "all";
 export type CivicEventBrowseSource = "all" | "official" | "community";
 export type CivicEventBrowseType = "all" | CivicEventType;
 export type CivicEventBrowseSort = "recommended" | "soonest" | "recent" | "official-first";
@@ -308,17 +312,10 @@ function civicEventKindFromCommunityEvent(event: CommunityEventSummary): CivicEv
   return "community_event";
 }
 
-function statusFromDates(startsAt: string | null, endsAt: string | null): CivicEventStatus {
-  if (!startsAt) return "upcoming";
-  const now = Date.now();
-  const endTime = Date.parse(endsAt ?? startsAt);
-  return Number.isFinite(endTime) && endTime < now ? "completed" : "upcoming";
-}
-
 function seededEventToEvent(event: SeededCivicEventInput): CivicEvent {
   return {
     ...event,
-    status: statusFromDates(event.startsAt, event.endsAt),
+    status: getEventLifecycleStatus(event),
     communityId: getCommunityIdForJurisdiction(event.jurisdiction),
     attendanceCount: 0,
     confirmedCount: 0,
@@ -329,36 +326,37 @@ function seededEventToEvent(event: SeededCivicEventInput): CivicEvent {
   };
 }
 
-function sourceFromMeeting(meeting: PublicMeetingRecord) {
-  return meeting.source_urls[0] ?? meeting.agenda_url ?? meeting.minutes_url ?? meeting.packet_url ?? meeting.video_url ?? null;
-}
-
 function compactUnique(values: Array<string | null | undefined>) {
   return [...new Set(values.map((value) => String(value ?? "").trim()).filter(Boolean))];
 }
 
-function getMeetingLocation(meeting: PublicMeetingRecord, jurisdiction: string) {
+function getMeetingLocation(meeting: PublicMeetingRecord) {
+  if (meeting.location?.trim()) return meeting.location.trim();
   const location = meeting.meeting_summary?.match(/\bLocation:\s*(.+)$/i)?.[1]?.trim();
-  return location || jurisdiction || null;
+  return location || null;
 }
 
 function meetingToEvent({
   meeting,
   body,
+  seed,
   items,
   votes,
   lastFetchedAt,
 }: {
   meeting: PublicMeetingRecord;
   body: PublicBodyRecord | null;
+  seed: PublicMeetingSourceSeed | null;
   items: PublicMeetingItemRecord[];
   votes: VoteRecord[];
   lastFetchedAt: string | null;
 }): CivicEvent {
   const bodyName = body?.name ?? "Public body";
   const jurisdiction = body?.jurisdiction ?? "Nevada";
-  const sourceUrl = sourceFromMeeting(meeting);
-  const eventType = inferOfficialEventType(meeting, items, bodyName);
+  const sourceUrl = officialMeetingSourceUrl(meeting);
+  const parentOrganizationEvent = meeting.meeting_category === "parent_organization" || meeting.meeting_type === "Parent organization meeting";
+  const eventType = parentOrganizationEvent ? "community_event" : inferOfficialEventType(meeting, items, bodyName);
+  const startsAt = meeting.meeting_time_known === false && meeting.meeting_date ? meeting.meeting_date.slice(0, 10) : meeting.meeting_date;
   const issueLabels = compactUnique(items.map((item) => item.policy_area)).filter((label) => label !== "Other").slice(0, 5);
   const actionsTaken = votes.slice(0, 6).map((vote) => {
     const item = items.find((entry) => entry.id === vote.meeting_item_id);
@@ -372,20 +370,23 @@ function meetingToEvent({
 
   return {
     id: meeting.id,
+    aliasIds: meeting.meeting_alias_ids ?? [],
     title: meeting.title || `${bodyName} meeting`,
-    description: items.length
+    description: parentOrganizationEvent ? `${bodyName} gathering listed on the school calendar. Open the host's calendar for attendance and membership details.` : items.length
       ? `${bodyName} public meeting with ${items.length} parsed agenda item${items.length === 1 ? "" : "s"}.`
       : `${bodyName} public meeting record from official source materials.`,
+    searchText: items.map((item) => [item.title, item.one_sentence_summary, ...(item.related_official_names ?? []), ...(item.department_names ?? [])].join(" ")).join(" "),
     eventType,
-    civicEventKind: inferMeetingKind(bodyName, meeting.meeting_type),
-    status: statusFromDates(meeting.meeting_date, null),
-    startsAt: meeting.meeting_date,
+    civicEventKind: parentOrganizationEvent ? "community_event" : inferMeetingKind(bodyName, meeting.meeting_type),
+    status: getEventLifecycleStatus({ startsAt, title: meeting.title, sourceStatus: meeting.meeting_status }),
+    startsAt,
     endsAt: null,
-    locationName: getMeetingLocation(meeting, jurisdiction),
+    locationName: getMeetingLocation(meeting),
     address: null,
-    virtualUrl: meeting.video_url ?? null,
-    eventMode: meeting.video_url ? "hybrid" : "unknown",
+    virtualUrl: null,
+    eventMode: "unknown",
     sourceUrl,
+    hostCalendarUrl: officialBodyCalendarUrl(seed, body) ?? sourceUrl,
     agendaUrl: meeting.agenda_url,
     minutesUrl: meeting.minutes_url,
     videoUrl: meeting.video_url,
@@ -402,6 +403,7 @@ function meetingToEvent({
     relatedIssueLabels: issueLabels,
     relatedEntityLabels: compactUnique([bodyName, ...issueLabels]),
     isOfficialMeeting: true,
+    parentOrganizationEvent,
     createdFromMeetingRecord: true,
     sourceProvider: "public_meeting_import",
     sourceProviderLabel: meeting.source_method === "manual_cache" ? "Imported from saved official source" : "Official meeting import",
@@ -413,7 +415,7 @@ function meetingToEvent({
     distanceLabel: null,
     momentumLabel: null,
     viewerStatus: null,
-    meetingSummary: meeting.meeting_summary,
+    meetingSummary: readableMeetingSummary(meeting.meeting_summary),
     keyActions: meeting.key_actions ?? [],
     voteResults: (meeting.vote_results ?? []).map((vote) => ({
       motion: vote.motion,
@@ -422,13 +424,13 @@ function meetingToEvent({
       sourceUrl: vote.source_url,
     })),
     sourceDocumentCount: meeting.source_document_count ?? compactUnique([meeting.agenda_url, meeting.minutes_url, meeting.packet_url, meeting.video_url, meeting.transcript_url]).length,
-    summary: meeting.meeting_summary ?? items.at(0)?.description ?? null,
+    summary: readableMeetingSummary(meeting.meeting_summary) ?? readableMeetingSummary(items.at(0)?.description),
     actionsTaken,
   };
 }
 
 function sourceRegistryEventToEvent(body: PublicBodyRecord, seed: PublicMeetingSourceSeed | null, lastFetchedAt: string | null): CivicEvent {
-  const sourceUrl = body.meeting_index_url ?? body.source_url ?? seed?.meetingIndexUrl ?? seed?.sourceUrl ?? seed?.website ?? null;
+  const sourceUrl = officialBodyCalendarUrl(seed, body);
   const eventType = normalize(body.name).includes("hearing") ? "public_hearing" : "official_meeting";
 
   return {
@@ -436,16 +438,16 @@ function sourceRegistryEventToEvent(body: PublicBodyRecord, seed: PublicMeetingS
     title: `${body.name} meeting calendar and archive`,
     description:
       body.notes ??
-      `Official public meeting source for ${body.name}. Dated agenda, packet, minutes, and video records will appear as imports are connected.`,
+      `Official public meeting source for ${body.name}. Check the official calendar for dates and notices, including meetings not yet imported here.`,
     eventType,
     civicEventKind: inferMeetingKind(body.name),
-    status: "upcoming",
+    status: "undated",
     startsAt: null,
     endsAt: null,
     locationName: body.name,
     address: null,
-    virtualUrl: seed?.videoArchiveUrl ?? null,
-    eventMode: seed?.videoArchiveUrl ? "hybrid" : "unknown",
+    virtualUrl: null,
+    eventMode: "unknown",
     sourceUrl,
     agendaUrl: seed?.agendaArchiveUrl ?? sourceUrl,
     minutesUrl: seed?.minutesArchiveUrl ?? null,
@@ -478,7 +480,7 @@ function sourceRegistryEventToEvent(body: PublicBodyRecord, seed: PublicMeetingS
     distanceLabel: null,
     momentumLabel: null,
     viewerStatus: null,
-    summary: "Structured meeting-date imports are pending. This card links voters to the official schedule and archive source.",
+    summary: "Official calendar and archive for this public body. The source may list dates and documents not yet imported here.",
     actionsTaken: [],
   };
 }
@@ -502,7 +504,7 @@ function communityEventToEvent({
     description: event.description,
     eventType,
     civicEventKind: civicEventKindFromCommunityEvent(event),
-    status: statusFromDates(event.startsAt, event.endsAt ?? null),
+    status: getEventLifecycleStatus(event),
     startsAt: event.startsAt,
     endsAt: event.endsAt ?? null,
     locationName: event.locationLabel ?? null,
@@ -571,13 +573,15 @@ const getAllCivicEventsCached = cache(async (viewerUserId: string): Promise<Civi
   const bodyById = new Map(dashboard.publicBodies.map((body) => [body.id, body]));
   const seedById = new Map(dashboard.seedSources.map((seed) => [seed.id, seed]));
   const itemsByMeetingId = new Map<string, PublicMeetingItemRecord[]>();
+  const publicItems = getPublicMeetingItems(dashboard.meetingItems);
+  const itemById = new Map(publicItems.map((item) => [item.id, item]));
   const votesByMeetingId = new Map<string, VoteRecord[]>();
 
-  for (const item of dashboard.meetingItems) {
+  for (const item of publicItems) {
     itemsByMeetingId.set(item.meeting_id, [...(itemsByMeetingId.get(item.meeting_id) ?? []), item]);
   }
   for (const vote of dashboard.voteRecords) {
-    const item = dashboard.meetingItems.find((entry) => entry.id === vote.meeting_item_id);
+    const item = itemById.get(vote.meeting_item_id);
     if (item) votesByMeetingId.set(item.meeting_id, [...(votesByMeetingId.get(item.meeting_id) ?? []), vote]);
   }
 
@@ -585,16 +589,15 @@ const getAllCivicEventsCached = cache(async (viewerUserId: string): Promise<Civi
     meetingToEvent({
       meeting,
       body: bodyById.get(meeting.public_body_id) ?? null,
+      seed: seedById.get(bodyById.get(meeting.public_body_id)?.seed_source_id ?? "") ?? null,
       items: itemsByMeetingId.get(meeting.id) ?? [],
       votes: votesByMeetingId.get(meeting.id) ?? [],
-      lastFetchedAt: dashboard.ingestionReport?.generated_at ?? null,
+      lastFetchedAt: meeting.updated_at ?? null,
     }),
   );
-  const bodiesWithDatedMeetings = new Set(dashboard.meetings.map((meeting) => meeting.public_body_id));
   const sourceEvents = dashboard.publicBodies
     .filter((body) => body.active)
-    .filter((body) => !bodiesWithDatedMeetings.has(body.id))
-    .map((body) => sourceRegistryEventToEvent(body, seedById.get(body.seed_source_id) ?? null, dashboard.ingestionReport?.generated_at ?? body.updated_at));
+    .map((body) => sourceRegistryEventToEvent(body, seedById.get(body.seed_source_id) ?? null, body.updated_at));
   const attendanceByEvent = new Map<string, typeof attendance>();
   for (const entry of attendance) {
     attendanceByEvent.set(entry.eventId, [...(attendanceByEvent.get(entry.eventId) ?? []), entry]);
@@ -645,9 +648,9 @@ export async function getCivicEventsForBrowse(
   const type = options.type ?? "all";
   const scope = options.scope ?? "all";
   const mode = options.mode ?? "all";
-  const linkedTo = normalize(options.linkedTo);
-  const dateFrom = options.dateFrom ? Date.parse(`${options.dateFrom}T00:00:00`) : Number.NaN;
-  const dateTo = options.dateTo ? Date.parse(`${options.dateTo}T23:59:59`) : Number.NaN;
+  const linkedTo = options.linkedTo ?? "";
+  const dateFrom = options.dateFrom ? civicEventDay(options.dateFrom) : null;
+  const dateTo = options.dateTo ? civicEventDay(options.dateTo) : null;
   const sort = options.sort ?? "official-first";
   const filtered = (await getAllCivicEventsForUser(user))
     .filter((event) => eventMatchesCommunity(event, community))
@@ -655,36 +658,23 @@ export async function getCivicEventsForBrowse(
     .filter((event) => {
       if (status === "all") return true;
       if (status === "upcoming") return event.status === "upcoming" && Boolean(event.startsAt);
-      return event.status === status;
+      if (status === "sources") return event.sourceProvider === "public_meeting_source_registry";
+      if (status === "changed") return event.status === "cancelled" || event.status === "postponed";
+      if (status === "completed") return event.status === "completed" || ((event.status === "cancelled" || event.status === "postponed") && getEventLifecycleStatus({ startsAt: event.startsAt }) === "completed");
+      return false;
     })
     .filter((event) => (source === "official" ? event.isOfficialMeeting : source === "community" ? !event.isOfficialMeeting : true))
     .filter((event) => (type === "all" ? true : event.eventType === type))
     .filter((event) => (mode === "all" ? true : event.eventMode === mode))
     .filter((event) => {
-      if (!Number.isFinite(dateFrom) && !Number.isFinite(dateTo)) return true;
-      const startsAt = event.startsAt ? Date.parse(event.startsAt) : Number.NaN;
-      if (!Number.isFinite(startsAt)) return false;
-      if (Number.isFinite(dateFrom) && startsAt < dateFrom) return false;
-      if (Number.isFinite(dateTo) && startsAt > dateTo) return false;
+      if (!dateFrom && !dateTo) return true;
+      const day = event.startsAt ? civicEventDay(event.startsAt) : null;
+      if (!day) return false;
+      if (dateFrom && day < dateFrom) return false;
+      if (dateTo && day > dateTo) return false;
       return true;
     })
-    .filter((event) => {
-      if (!linkedTo) return true;
-      const haystack = normalize(
-        [
-          event.hostName,
-          event.hostType,
-          event.jurisdiction,
-          ...event.relatedEntityLabels,
-          ...event.relatedIssueLabels,
-          ...event.relatedOfficialIds,
-          ...event.relatedCandidateIds,
-          ...event.relatedOrganizationIds,
-          ...event.relatedIssueIds,
-        ].join(" "),
-      );
-      return haystack.includes(linkedTo);
-    });
+    .filter((event) => civicEventMatchesSearch(event, linkedTo));
 
   const sorted = filtered.sort((left, right) => {
     if (sort === "soonest") {
@@ -704,7 +694,7 @@ export async function getCivicEventsForBrowse(
 
 export async function getCivicEventById(user: AuthUser, eventId: string) {
   const events = await getAllCivicEventsForUser(user);
-  return events.find((event) => event.id === eventId || event.communityEventId === eventId || event.meetingRecordId === eventId) ?? null;
+  return events.find((event) => event.id === eventId || event.communityEventId === eventId || event.meetingRecordId === eventId || event.aliasIds?.includes(eventId)) ?? null;
 }
 
 export function getCivicEventTypeLabel(eventType: CivicEventType) {
@@ -727,5 +717,6 @@ export function getCivicEventTypeLabel(eventType: CivicEventType) {
 }
 
 export function getCivicEventStatusLabel(status: CivicEventStatus) {
-  return status === "upcoming" ? "Upcoming" : status === "completed" ? "Completed" : "Cancelled";
+  const labels: Record<CivicEventStatus, string> = { upcoming: "Upcoming / today", completed: "Past meeting / event", cancelled: "Cancelled", postponed: "Postponed", undated: "Date unconfirmed" };
+  return labels[status];
 }

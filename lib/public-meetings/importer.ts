@@ -1,8 +1,9 @@
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { copyFile, mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, readdir, rename, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import { mergeMeetingHistory } from "@/lib/public-meetings/lifecycle";
 import { writePublicCivicCaseArtifacts } from "@/lib/public-cases/public-civic-cases";
 import {
   PUBLIC_MEETING_OUTPUT_FILES,
@@ -22,6 +23,8 @@ import { importPublicMeetingOfficialRosters } from "@/lib/public-meetings/offici
 import { extractOfficialActionsForItem, extractTopicOutcome, itemHasUnnamedVoteOutcome } from "@/lib/public-meetings/official-actions";
 import { buildMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
 import { writePublicMeetingRuntimeArtifacts } from "@/lib/public-meetings/runtime-artifacts";
+import { discoverNevadaAgencyMeetings, isNevadaAgencySource } from "@/lib/public-meetings/nevada-agency-sources";
+import { reconcileCarsonGranicusIdentities } from "@/lib/public-meetings/carson-granicus-identity";
 import type {
   CitizenVoteQuestionRecord,
   MeetingIngestionStatus,
@@ -82,6 +85,12 @@ type ArchiveMeetingDraft = {
   sourceDocumentCount: number;
   meetingSummary: string | null;
   itemHints?: ParsedItemDraft[];
+  meetingStatus?: "scheduled" | "cancelled" | "rescheduled";
+  meetingCategory?: "government" | "parent_organization";
+  aliasMeetingIds?: string[];
+  sourceIdentityEvidence?: string[];
+  meetingTimeKnown?: boolean;
+  location?: string | null;
 };
 
 type ArchiveDiscoveryResult = {
@@ -113,7 +122,9 @@ async function readJsonFile<T>(relativePath: string, fallback: T): Promise<T> {
 async function writeJsonFile(relativePath: string, value: unknown) {
   const filePath = absolutePublicMeetingPath(relativePath);
   await mkdir(path.dirname(filePath), { recursive: true });
-  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  const temporaryPath = `${filePath}.${process.pid}.tmp`;
+  await writeFile(temporaryPath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  await rename(temporaryPath, filePath);
 }
 
 function decodeHtml(value: string | null | undefined) {
@@ -138,6 +149,7 @@ function absolutizeUrl(url: string | null | undefined, baseUrl: string) {
 
 async function fetchText(url: string) {
   const response = await fetch(url, {
+    signal: AbortSignal.timeout(20_000),
     headers: {
       "user-agent": "Direct Democracy civic meeting archive backfill; source-attribution research crawler",
       accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -151,6 +163,7 @@ async function fetchText(url: string) {
 
 async function fetchBuffer(url: string) {
   const response = await fetch(url, {
+    signal: AbortSignal.timeout(20_000),
     headers: {
       "user-agent": "Direct Democracy civic meeting document parser; source-attribution research crawler",
       accept: "application/pdf,text/html,application/xhtml+xml,*/*;q=0.8",
@@ -383,7 +396,10 @@ async function discoverCarsonGranicusArchive(seed: PublicMeetingSourceSeed): Pro
           : `${publicBodyName} meeting record discovered from the official Carson City Granicus calendar.`,
       } satisfies ArchiveMeetingDraft;
     });
-  return mapped.filter((draft): draft is ArchiveMeetingDraft => Boolean(draft));
+  const previous = await readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_PATHS.meetings, []);
+  return reconcileCarsonGranicusIdentities(mapped.filter((draft): draft is ArchiveMeetingDraft => Boolean(draft)), previous, {
+    onAmbiguity: (message) => console.warn(`Carson meeting identity review: ${message}`),
+  });
 }
 
 async function discoverGenericHtmlArchive(seed: PublicMeetingSourceSeed): Promise<ArchiveMeetingDraft[]> {
@@ -696,7 +712,14 @@ async function collectHistoricalArchiveMeetings(seeds: PublicMeetingSourceSeed[]
     try {
       let providerDrafts: ArchiveMeetingDraft[] = [];
       let notes: string | null = null;
-      if (seed.id === "carson-city-board-of-supervisors") {
+      if (seed.platformHints?.includes("discovery_only")) {
+        notes = "Discovery registry only. Linked bodies and school/PTA calendars require source review before event import.";
+      } else if (isNevadaAgencySource(seed)) {
+        const sourceWarnings: string[] = [];
+        providerDrafts = (await discoverNevadaAgencyMeetings(seed, fetchText, new Date(), (warning) => sourceWarnings.push(warning))).filter((draft) => isMeetingDateInDiscoveryWindow(draft.meetingDate));
+        if (seed.id === "carson-city-school-district") sourceWarnings.unshift("Dated board meetings come from the official district page; actual agendas/minutes come from its publicly linked Drive folders. Legacy BoardDocs remains unparsed and is not counted as document coverage.");
+        notes = sourceWarnings.length ? sourceWarnings.join(" ") : null;
+      } else if (seed.id === "carson-city-board-of-supervisors") {
         providerDrafts = await discoverCarsonGranicusArchive(seed);
       } else if (seed.scraperType === "legistar") {
         providerDrafts = await discoverLegistarArchive(seed);
@@ -725,6 +748,12 @@ function archiveDraftToMeeting(draft: ArchiveMeetingDraft): PublicMeetingRecord 
     id: draft.id,
     public_body_id: archiveBodyId(draft.sourceId, draft.publicBodyName),
     meeting_date: draft.meetingDate,
+    meeting_status: draft.meetingStatus,
+    meeting_category: draft.meetingCategory,
+    meeting_time_known: draft.meetingTimeKnown,
+    meeting_alias_ids: draft.aliasMeetingIds,
+    source_identity_evidence: draft.sourceIdentityEvidence,
+    location: draft.location,
     meeting_type: draft.meetingType,
     title: draft.title,
     agenda_url: draft.agendaUrl,
@@ -1109,6 +1138,30 @@ function buildItems(meeting: PublicMeetingRecord, extracted: ExtractedDocument):
   });
 }
 
+/** Parse evidence using its existing meeting identity; never manufacture an event from a document. */
+export function parseCachedPublicMeetingDocument(input: {
+  meeting: PublicMeetingRecord; body: PublicBodyRecord | null; documentId: string;
+  documentType: "agenda" | "minutes" | "board_packet"; text: string; sourceUrl: string | null;
+  sourceHash: string; textPath: string; sourcePath: string | null; ocr: boolean;
+}): PublicMeetingItemRecord[] {
+  const document: PublicMeetingImportDocument = {
+    id: input.documentId, source_id: input.body?.seed_source_id ?? null, public_body_id: input.meeting.public_body_id,
+    public_body_name: input.body?.name ?? null, meeting_date: input.meeting.meeting_date, meeting_type: input.meeting.meeting_type,
+    title: input.meeting.title, document_type: input.documentType, local_file_path: input.sourcePath, source_url: input.sourceUrl,
+    agenda_url: input.meeting.agenda_url, minutes_url: input.meeting.minutes_url, packet_url: input.meeting.packet_url,
+    video_url: input.meeting.video_url, transcript_url: input.meeting.transcript_url, notes: null,
+  };
+  return buildItems(input.meeting, { importDocument: document, body: input.body, text: input.text, hash: input.sourceHash,
+    cachedTextPath: input.textPath, rawPath: input.sourcePath, method: "plain_text", status: "needs_review", error: null })
+    .map((item) => ({ ...item, source_method: "automated_archive", source_local_path: input.sourcePath,
+      parser_status: "needs_review", roll_call_status: "needs_roll_call_review",
+      // Proposed agenda language, or a sentence mentioning an older approval, is not a new decision.
+      // The evidence review/result parser handles decisions separately; this step creates topics only.
+      vote_outcome: null, related_official_names: [],
+      confidence_score: Math.min(item.confidence_score, input.ocr ? 0.48 : 0.64),
+    }));
+}
+
 function buildArchiveItems(meeting: PublicMeetingRecord, draft: ArchiveMeetingDraft): PublicMeetingItemRecord[] {
   const hints = draft.itemHints ?? [];
   if (!hints.length) return [];
@@ -1252,11 +1305,37 @@ function dedupeById<T extends { id: string }>(records: T[]) {
   return [...new Map(records.map((record) => [record.id, record])).values()];
 }
 
-export async function runPublicMeetingImport(): Promise<PublicMeetingIngestionReport> {
+export async function runPublicMeetingImport(options: { sourceIds?: string[] } = {}): Promise<PublicMeetingIngestionReport> {
   await ensureOutputDirs();
-  await importPublicMeetingOfficialRosters();
   const seeds = await readJsonFile<PublicMeetingSourceSeed[]>(PUBLIC_MEETING_PATHS.seedSources, []);
-  const archiveDiscovery = await collectHistoricalArchiveMeetings(seeds);
+  const selectedSeeds = options.sourceIds?.length ? seeds.filter((seed) => options.sourceIds!.includes(seed.id)) : seeds;
+  if (options.sourceIds?.some((id) => !selectedSeeds.some((seed) => seed.id === id))) throw new Error("Unknown public meeting source ID");
+  if (!options.sourceIds?.length) await importPublicMeetingOfficialRosters();
+  const [previousBodies, previousMeetings, previousItems, previousVotes, previousActions, previousQuestions, previousProviders] = await Promise.all([
+    readJsonFile<PublicBodyRecord[]>(PUBLIC_MEETING_PATHS.bodies, []),
+    readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_PATHS.meetings, []),
+    readJsonFile<PublicMeetingItemRecord[]>(PUBLIC_MEETING_PATHS.meetingItems, []),
+    readJsonFile<VoteRecord[]>(PUBLIC_MEETING_PATHS.voteRecords, []),
+    readJsonFile<OfficialMeetingActionRecord[]>(PUBLIC_MEETING_PATHS.officialActions, []),
+    readJsonFile<CitizenVoteQuestionRecord[]>(PUBLIC_MEETING_PATHS.citizenQuestions, []),
+    readJsonFile<PublicMeetingProviderReport[]>(PUBLIC_MEETING_PATHS.providerReport, []),
+  ]);
+  const archiveDiscovery = await collectHistoricalArchiveMeetings(selectedSeeds);
+  const checkedAt = new Date().toISOString();
+  const discoveryStatePath = "data/generated/public-meeting-discovery-state.json";
+  type DiscoveryState = { sourceId: string; lastAttemptAt: string; lastSuccessAt: string | null; failures: number; meetingsDiscovered: number; error: string | null };
+  const priorState = await readJsonFile<{ records: DiscoveryState[] }>(discoveryStatePath, { records: [] });
+  const discoveryStates = new Map(priorState.records.map((state) => [state.sourceId, state]));
+  for (const provider of archiveDiscovery.providerReports) {
+    const previous = discoveryStates.get(provider.source_id);
+    discoveryStates.set(provider.source_id, {
+      sourceId: provider.source_id, lastAttemptAt: checkedAt,
+      lastSuccessAt: provider.failures === 0 && provider.historical_ingestion_supported ? checkedAt : previous?.lastSuccessAt ?? null,
+      failures: provider.failures, meetingsDiscovered: provider.meetings_discovered,
+      error: provider.failures ? provider.notes : !provider.historical_ingestion_supported ? "No dated meetings extracted; adapter or source review required." : null,
+    });
+  }
+  await writeJsonFile(discoveryStatePath, { generatedAt: checkedAt, records: [...discoveryStates.values()] });
   const archiveBodies = dedupeById(archiveDiscovery.drafts.map((draft) => buildArchiveBody({
     id: draft.sourceId,
     name: draft.publicBodyName,
@@ -1273,10 +1352,10 @@ export async function runPublicMeetingImport(): Promise<PublicMeetingIngestionRe
     active: true,
     notes: null,
   }, draft.publicBodyName, new Date().toISOString())));
-  const bodies = dedupeById([...buildBodies(seeds), ...archiveBodies]);
+  const bodies = dedupeById([...previousBodies, ...buildBodies(selectedSeeds), ...archiveBodies]);
   const bodiesById = new Map(bodies.map((body) => [body.id, body]));
   const bodiesBySeedId = new Map(bodies.map((body) => [body.seed_source_id, body]));
-  const manualDocuments = await collectManualDocuments();
+  const manualDocuments = options.sourceIds?.length ? [] : await collectManualDocuments();
   const extractedDocuments = await Promise.all(manualDocuments.map((document) => extractDocumentText(document, bodiesById, bodiesBySeedId)));
   const meetings: PublicMeetingRecord[] = [];
   const items: PublicMeetingItemRecord[] = [];
@@ -1331,11 +1410,14 @@ export async function runPublicMeetingImport(): Promise<PublicMeetingIngestionRe
     if (question) questions.push(question);
   }
 
-  const dedupedMeetings = dedupeById([...meetings, ...archiveMeetings]);
-  const dedupedItems = dedupeById(items);
-  const dedupedVotes = dedupeById(votes);
+  const dedupedMeetings = mergeMeetingHistory(previousMeetings, dedupeById([...meetings, ...archiveMeetings]));
+  const realMeetingIds = new Set(dedupedMeetings.map((meeting) => meeting.id));
+  const canonicalMeetingIds = new Map(dedupedMeetings.flatMap((meeting) => (meeting.meeting_alias_ids ?? []).map((id) => [id, meeting.id] as const)));
+  const dedupedItems = dedupeById([...previousItems, ...items].map((item) => ({ ...item, meeting_id: canonicalMeetingIds.get(item.meeting_id) ?? item.meeting_id }))).filter((item) => realMeetingIds.has(item.meeting_id) && item.source_method !== "manual_fixture");
+  const realItemIds = new Set(dedupedItems.map((item) => item.id));
+  const dedupedVotes = dedupeById([...previousVotes, ...votes]).filter((vote) => realItemIds.has(vote.meeting_item_id));
   const officialMatchCandidates = await loadOfficialActionMatchCandidates();
-  const dedupedOfficialActions = applyOfficialActionMatches(dedupeById(officialActions), {
+  const dedupedOfficialActions = applyOfficialActionMatches(dedupeById([...previousActions, ...officialActions].map((action) => ({ ...action, meeting_id: canonicalMeetingIds.get(action.meeting_id) ?? action.meeting_id }))).filter((action) => realItemIds.has(action.topic_item_id)), {
     meetings: dedupedMeetings,
     bodies,
     candidates: officialMatchCandidates,
@@ -1346,7 +1428,7 @@ export async function runPublicMeetingImport(): Promise<PublicMeetingIngestionRe
     items: dedupedItems,
     officialActions: dedupedOfficialActions,
   });
-  const dedupedQuestions = dedupeById(questions);
+  const dedupedQuestions = dedupeById([...previousQuestions, ...questions]).filter((question) => realItemIds.has(question.meeting_item_id));
 
   await Promise.all([
     writeJsonFile(PUBLIC_MEETING_PATHS.bodies, bodies),
@@ -1356,7 +1438,7 @@ export async function runPublicMeetingImport(): Promise<PublicMeetingIngestionRe
     writeJsonFile(PUBLIC_MEETING_PATHS.officialActions, dedupedOfficialActions),
     writeJsonFile(PUBLIC_MEETING_PATHS.meetingVotingCards, dedupedMeetingVotingCards),
     writeJsonFile(PUBLIC_MEETING_PATHS.citizenQuestions, dedupedQuestions),
-    writeJsonFile(PUBLIC_MEETING_PATHS.providerReport, archiveDiscovery.providerReports),
+    writeJsonFile(PUBLIC_MEETING_PATHS.providerReport, options.sourceIds?.length ? [...new Map([...previousProviders, ...archiveDiscovery.providerReports].map((provider) => [provider.source_id, provider])).values()] : archiveDiscovery.providerReports),
   ]);
   await writePublicMeetingRuntimeArtifacts({
     bodies,

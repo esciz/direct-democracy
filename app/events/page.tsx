@@ -22,6 +22,7 @@ import {
 } from "@/lib/events/civic-events";
 import { getCurrentUser } from "@/lib/server/auth-session";
 import type { CivicEvent } from "@/lib/events/types";
+import { formatCivicEventDate } from "@/lib/events/lifecycle";
 
 type EventsPageProps = {
   searchParams?: Promise<{
@@ -44,7 +45,7 @@ type EventsPageProps = {
 const EVENTS_PER_PAGE = 24;
 
 function normalizeStatus(value: string | undefined): CivicEventBrowseStatus {
-  if (value === "all" || value === "completed") return value;
+  if (value === "all" || value === "completed" || value === "changed" || value === "sources") return value;
   return "upcoming";
 }
 
@@ -96,20 +97,15 @@ function buildEventsHref({
   if (dateFrom?.trim()) params.set("dateFrom", dateFrom.trim());
   if (dateTo?.trim()) params.set("dateTo", dateTo.trim());
   if (linkedTo?.trim()) params.set("linkedTo", linkedTo.trim());
-  if (sort && sort !== "official-first") params.set("sort", sort);
+  if (sort && (sort !== "official-first" || status === "completed")) params.set("sort", sort);
   if (page && page > 1) params.set("page", String(page));
   const query = params.toString();
   return query ? `/events?${query}` : "/events";
 }
 
 function renderDayKey(event: CivicEvent) {
-  if (!event.startsAt) return event.status === "completed" ? "Completed records" : "Official meeting sources";
-  return new Date(event.startsAt).toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  if (!event.startsAt) return "Official calendars and undated records";
+  return formatCivicEventDate(event.startsAt, true);
 }
 
 function groupEvents(events: CivicEvent[]) {
@@ -121,7 +117,7 @@ function groupEvents(events: CivicEvent[]) {
 }
 
 function EventCountSummary({ events }: { events: CivicEvent[] }) {
-  const officialCount = events.filter((event) => event.isOfficialMeeting).length;
+  const missingMinutesCount = events.filter((event) => event.isOfficialMeeting && !event.parentOrganizationEvent && event.status === "completed" && !event.minutesUrl).length;
   const completedCount = events.filter((event) => event.status === "completed").length;
   const upcomingCount = events.filter((event) => event.status === "upcoming" && event.startsAt).length;
   const sourceRegistryCount = events.filter((event) => event.sourceProvider === "public_meeting_source_registry").length;
@@ -129,15 +125,15 @@ function EventCountSummary({ events }: { events: CivicEvent[] }) {
   return (
     <section className="grid gap-3 md:grid-cols-4">
       <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Official meetings</p>
-        <p className="mt-2 text-2xl font-semibold text-ink">{officialCount}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Past meetings without minutes linked</p>
+        <p className="mt-2 text-2xl font-semibold text-ink">{missingMinutesCount}</p>
       </div>
       <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Upcoming dates</p>
         <p className="mt-2 text-2xl font-semibold text-ink">{upcomingCount}</p>
       </div>
       <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Completed</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Past dates</p>
         <p className="mt-2 text-2xl font-semibold text-ink">{completedCount}</p>
       </div>
       <div className="rounded-[1.25rem] border border-white/70 bg-white/85 p-4 shadow-card backdrop-blur">
@@ -220,7 +216,7 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
   const selectedDateFrom = params?.dateFrom ?? "";
   const selectedDateTo = params?.dateTo ?? "";
   const selectedLinkedTo = params?.linkedTo ?? "";
-  const selectedSort = normalizeSort(params?.sort);
+  const selectedSort = params?.sort ? normalizeSort(params.sort) : selectedStatus === "completed" ? "recent" : "official-first";
   const requestedPage = Math.max(1, Number.parseInt(params?.page ?? "1", 10) || 1);
   const guestMode = isGuestUser(user);
   const canCreateEvents = await canUserCreateCommunityEvent(user);
@@ -244,11 +240,10 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
   const currentPage = Math.min(requestedPage, totalPages);
   const visibleEvents = events.slice((currentPage - 1) * EVENTS_PER_PAGE, currentPage * EVENTS_PER_PAGE);
   const groupedEvents = groupEvents(visibleEvents);
-  const lastSourceRefresh = allCommunityEvents
-    .map((event) => event.lastFetchedAt ? Date.parse(event.lastFetchedAt) : Number.NaN)
-    .filter(Number.isFinite)
-    .sort((left, right) => right - left)[0];
-  const sourceAgeDays = Number.isFinite(lastSourceRefresh) ? Math.max(0, Math.floor((Date.now() - lastSourceRefresh) / 86_400_000)) : null;
+  const upcomingBodies = new Set(allCommunityEvents.filter((event) => event.isOfficialMeeting && event.status === "upcoming").map((event) => event.hostName));
+  const calendarSources = allCommunityEvents.filter((event) => event.sourceProvider === "public_meeting_source_registry");
+  const bodiesWithoutUpcoming = new Set(calendarSources.filter((event) => !upcomingBodies.has(event.hostName)).map((event) => event.hostName));
+  const newestRecordUpdate = allCommunityEvents.reduce((latest, event) => Math.max(latest, Date.parse(event.lastFetchedAt ?? "") || 0), 0);
   const returnPath = buildEventsHref({
     communityId: selectedCommunityId,
     status: selectedStatus,
@@ -264,8 +259,12 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
   const statusTabs = [
     { label: "All", href: buildEventsHref({ communityId: selectedCommunityId, status: "all", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedStatus === "all" },
     { label: "Upcoming", href: buildEventsHref({ communityId: selectedCommunityId, status: "upcoming", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedStatus === "upcoming" },
-    { label: "Completed", href: buildEventsHref({ communityId: selectedCommunityId, status: "completed", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedStatus === "completed" },
+    { label: "Archive", href: buildEventsHref({ communityId: selectedCommunityId, status: "completed", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedStatus === "completed" ? selectedSort : "recent" }), active: selectedStatus === "completed" },
   ];
+  statusTabs.push(
+    { label: "Changed schedule", href: buildEventsHref({ communityId: selectedCommunityId, status: "changed", source: selectedSource, type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedStatus === "changed" },
+    { label: "Official calendars", href: buildEventsHref({ communityId: selectedCommunityId, status: "sources", source: "official", linkedTo: selectedLinkedTo }), active: selectedStatus === "sources" },
+  );
   const sourceTabs = [
     { label: "All sources", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: "all", type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedSource === "all" },
     { label: "Official / source-backed", href: buildEventsHref({ communityId: selectedCommunityId, status: selectedStatus, source: "official", type: selectedType, mode: selectedMode, dateFrom: selectedDateFrom, dateTo: selectedDateTo, linkedTo: selectedLinkedTo, sort: selectedSort }), active: selectedSource === "official" },
@@ -306,11 +305,6 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
           <>
             <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">{currentCommunity?.name ?? "All known events"}</span>
             <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">Official meetings included</span>
-            {sourceAgeDays !== null ? (
-              <span className={`rounded-full px-3 py-1 text-xs font-semibold ${sourceAgeDays > 7 ? "bg-amber-50 text-amber-700" : "bg-emerald-50 text-emerald-700"}`}>
-                Sources refreshed {sourceAgeDays === 0 ? "today" : `${sourceAgeDays}d ago`}
-              </span>
-            ) : null}
             {guestMode ? <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">Guest browse · Read only</span> : null}
           </>
         }
@@ -354,6 +348,22 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
       />
 
       <EventCountSummary events={allCommunityEvents} />
+
+      <section className="rounded-[1.5rem] border border-amber-300/20 bg-amber-500/10 p-5 text-sm leading-6 text-amber-100">
+        <h2 className="font-semibold">Know what is covered before you make plans</h2>
+        <p className="mt-2">
+          {bodiesWithoutUpcoming.size} public {bodiesWithoutUpcoming.size === 1 ? "body has" : "bodies have"} an official calendar linked but no upcoming dated meeting imported here.
+          That does not mean no meeting is scheduled. Confirm the date, location, access, and public comment instructions with the host.
+        </p>
+        <p className="mt-2">
+          Past meetings move into the archive automatically as their dates pass. Their agendas, minutes, and linked actions remain available as records are added.
+          {newestRecordUpdate ? ` The latest record update was ${formatCivicEventDate(new Date(newestRecordUpdate).toISOString(), true)}; this does not confirm every calendar was checked.` : " Source freshness is not confirmed here."}
+        </p>
+        <div className="mt-3 flex flex-wrap gap-4">
+          <Link href={buildEventsHref({ communityId: selectedCommunityId, status: "sources", source: "official" })} className="font-semibold underline underline-offset-4">Browse official calendars</Link>
+          <Link href={buildEventsHref({ communityId: selectedCommunityId, status: "completed", source: "official", sort: "recent" })} className="font-semibold underline underline-offset-4">Review past meetings and minutes</Link>
+        </div>
+      </section>
 
       {proposals.length ? (
         <section className="rounded-[1.75rem] border border-orange-200 bg-orange-50/80 p-6 shadow-card backdrop-blur">
@@ -437,7 +447,7 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
             {selectedSource !== "all" ? <input type="hidden" name="source" value={selectedSource} /> : null}
             {selectedType !== "all" ? <input type="hidden" name="type" value={selectedType} /> : null}
             {selectedMode !== "all" ? <input type="hidden" name="mode" value={selectedMode} /> : null}
-            {selectedSort !== "official-first" ? <input type="hidden" name="sort" value={selectedSort} /> : null}
+            {selectedSort !== "official-first" || selectedStatus === "completed" ? <input type="hidden" name="sort" value={selectedSort} /> : null}
             <label className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
               From
               <input type="date" name="dateFrom" defaultValue={selectedDateFrom} className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950 px-3 py-2 text-sm normal-case tracking-normal text-slate-100" />
@@ -447,8 +457,8 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
               <input type="date" name="dateTo" defaultValue={selectedDateTo} className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950 px-3 py-2 text-sm normal-case tracking-normal text-slate-100" />
             </label>
             <label className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-              Office, candidate, official, organization, issue
-              <input name="linkedTo" defaultValue={selectedLinkedTo} placeholder="Example: Reno City Council" className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950 px-3 py-2 text-sm normal-case tracking-normal text-slate-100 placeholder:text-slate-500" />
+              Meeting, committee, agency, official, or issue
+              <input name="linkedTo" defaultValue={selectedLinkedTo} placeholder="Example: cannabis, taxation, school board" className="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950 px-3 py-2 text-sm normal-case tracking-normal text-slate-100 placeholder:text-slate-500" />
             </label>
             <button className="self-end rounded-full bg-[linear-gradient(135deg,#34d399,#22d3ee)] px-5 py-2.5 text-sm font-semibold text-slate-950">
               Apply
@@ -470,7 +480,7 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
             <section key={dayLabel} className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{selectedStatus === "completed" ? "Completed" : "Events"}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">{selectedStatus === "completed" ? "Archive" : selectedStatus === "sources" ? "Official calendars" : "Events"}</p>
                   <h2 className="mt-2 text-xl font-semibold text-ink">{dayLabel}</h2>
                 </div>
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
@@ -486,9 +496,9 @@ export default async function EventsPage({ searchParams }: EventsPageProps) {
           ))
         ) : (
           <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 text-sm leading-6 text-slate-600 shadow-card backdrop-blur">
-            <h2 className="text-lg font-semibold text-ink">No events found yet.</h2>
+            <h2 className="text-lg font-semibold text-ink">{selectedStatus === "upcoming" ? "No upcoming dates match these filters." : "No records match these filters."}</h2>
             <p className="mt-2">
-              Events will appear here once imported from official calendars, agendas, public notices, or verified community sources.
+              A missing listing does not confirm that no meeting is scheduled. Check the official calendars or broaden your search; past meetings are in the archive.
             </p>
           </section>
         )}

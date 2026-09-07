@@ -21,7 +21,7 @@ export type CivicEventKind =
   | "election_deadline"
   | "community_event";
 
-export type CivicEventStatus = "upcoming" | "completed" | "cancelled";
+export type CivicEventStatus = "upcoming" | "completed" | "cancelled" | "postponed" | "undated";
 
 export type CivicEventHostType =
   | "city"
@@ -43,8 +43,10 @@ export type CivicEventSourceProvider =
 
 export type CivicEvent = {
   id: string;
+  aliasIds?: string[];
   title: string;
   description: string;
+  searchText?: string;
   eventType: CivicEventType;
   civicEventKind: CivicEventKind;
   status: CivicEventStatus;
@@ -55,6 +57,7 @@ export type CivicEvent = {
   virtualUrl: string | null;
   eventMode: "virtual" | "in_person" | "hybrid" | "unknown";
   sourceUrl: string | null;
+  hostCalendarUrl?: string | null;
   agendaUrl: string | null;
   minutesUrl: string | null;
   videoUrl: string | null;
@@ -71,6 +74,7 @@ export type CivicEvent = {
   relatedIssueLabels: string[];
   relatedEntityLabels: string[];
   isOfficialMeeting: boolean;
+  parentOrganizationEvent?: boolean;
   createdFromMeetingRecord: boolean;
   sourceProvider: CivicEventSourceProvider;
   sourceProviderLabel: string;

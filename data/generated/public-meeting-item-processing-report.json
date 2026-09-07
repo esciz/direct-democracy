@@ -1,0 +1,618 @@
+{
+  "generatedAt": "2026-09-06T21:46:48.282Z",
+  "dryRun": false,
+  "limit": 100,
+  "sources": [
+    "carson-city-school-district",
+    "carson-city-board-of-supervisors"
+  ],
+  "totals": {
+    "documentsProcessed": 100,
+    "itemRecords": 15295,
+    "reviewedItemChangesPending": 1,
+    "documentsBlocked": 0,
+    "documentsNeedingReview": 57
+  },
+  "records": [
+    {
+      "documentId": "meeting-source-document-ff88585de17050313e3a4d6b271e096dbe0d3e4b56b7d90923a1bae26cdad239",
+      "meetingId": "meeting-carson-city-board-of-supervisors-administrative-hearing-2024-11-04-04b71c26",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-6d7b3d98118e292efa331f94682b689e92583f15e2bbec248400da5c6ee54f53",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2024-05-29-87f1586e",
+      "status": "topics_extracted_for_review",
+      "itemCount": 25
+    },
+    {
+      "documentId": "meeting-source-document-348c45fe0184aa67385894e532b9724246aa392051fd98d6cd1689e417943bd1",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-05-22-9b758f55",
+      "status": "needs_document_review",
+      "itemCount": 7
+    },
+    {
+      "documentId": "meeting-source-document-236ae293ccd50884dd5c5fb0b586c0536bc1c4903186370ad9718f8ff2cd957a",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-05-06-40179a3c",
+      "status": "needs_document_review",
+      "itemCount": 7
+    },
+    {
+      "documentId": "meeting-source-document-343b2d9deb8d61963805a87cfb492c0bcf50f45ddfed1936eae9a8b143a44d5c",
+      "meetingId": "meeting-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway-2025-09-22-3e783ae8",
+      "status": "needs_document_review",
+      "itemCount": 20
+    },
+    {
+      "documentId": "meeting-source-document-c2f591b4bc23f0d491110ae212b7cc0af43b5a0d6f3300050bc15144930da654",
+      "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2024-07-16-461d30f1",
+      "status": "topics_extracted_for_review",
+      "itemCount": 8
+    },
+    {
+      "documentId": "meeting-source-document-26cfba2b8b9b05d425ddf2c207ac8d30236317f22406bf4f42257e9a3ecb61c4",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-equalization-2025-02-18-a44cb21b",
+      "status": "topics_extracted_for_review",
+      "itemCount": 5
+    },
+    {
+      "documentId": "meeting-source-document-1bb9c198af73adc44e690895c2ee901baad439db6de1ff05206c08354393a68c",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-12-08-911024ab",
+      "status": "needs_document_review",
+      "itemCount": 36
+    },
+    {
+      "documentId": "meeting-source-document-b26fb1ec10c6014c182eb5eedf690d3fa4ab9e9a67577adb53b2e2337c78aafc",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-11-10-d01382bb",
+      "status": "needs_document_review",
+      "itemCount": 27
+    },
+    {
+      "documentId": "meeting-source-document-e9881bed582b9595102f6c706609be101718be2e391ff605dea0c90fddc616c4",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-10-13-f57d55f9",
+      "status": "needs_document_review",
+      "itemCount": 28
+    },
+    {
+      "documentId": "meeting-source-document-38dcb0937fa05dfcdfa825a17ddb1dbc86c9016dd6e281b840e2bad611432688",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-09-08-1aec89f9",
+      "status": "needs_document_review",
+      "itemCount": 30
+    },
+    {
+      "documentId": "meeting-source-document-73d41c9e9355fabd605129c09418a7ba58d5813b8ae3e24155e12f28f846076b",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-08-11-37ab68de",
+      "status": "needs_document_review",
+      "itemCount": 25
+    },
+    {
+      "documentId": "meeting-source-document-cd460428a7c0d4a873fc8fe3f8bc86d4e9935852bb97f24bff55f64702b2362a",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-07-14-e12a3424",
+      "status": "needs_document_review",
+      "itemCount": 27
+    },
+    {
+      "documentId": "meeting-source-document-0ba15a8e792a3e31e39ab528ea9f07a70facfcd49c6692d6a3418f4bc14f9299",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-06-09-ed0b0e0e",
+      "status": "needs_document_review",
+      "itemCount": 17
+    },
+    {
+      "documentId": "meeting-source-document-235a97437284ee0a6beca91a09fc828624f6db3721b6b97e9f6a9bbb9af0df48",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-05-19-3c2afa18",
+      "status": "needs_document_review",
+      "itemCount": 27
+    },
+    {
+      "documentId": "meeting-source-document-d6c081e88576f15196ff11487678017f07fa8795c175220ea2be6fc30a2bee38",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-04-14-dda0a214",
+      "status": "needs_document_review",
+      "itemCount": 26
+    },
+    {
+      "documentId": "meeting-source-document-adb9ba5cf220291a7f68b4baf376dc8e1d0a6c3834c8e21134792b9262563c6e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-03-10-fe9620f8",
+      "status": "needs_document_review",
+      "itemCount": 24
+    },
+    {
+      "documentId": "meeting-source-document-d1814041dd4b7053c2d8ca2101edead2ca68c3dfdd1dfa2de03f5ee46d45aa29",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-02-10-c2c52692",
+      "status": "needs_document_review",
+      "itemCount": 23
+    },
+    {
+      "documentId": "meeting-source-document-3e7194f2f88bff6017be7a53332c537d7c779a2db320ee46c593c7cbfae7afc2",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-01-13-92262ca1",
+      "status": "needs_document_review",
+      "itemCount": 29
+    },
+    {
+      "documentId": "meeting-source-document-efd692a107a16d429488e7e4f7ff520279d6b207b6bda27578fce4be2775da1e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2025-07-28-8800c1fa",
+      "status": "topics_extracted_for_review",
+      "itemCount": 8
+    },
+    {
+      "documentId": "meeting-source-document-0d743bdd103c42182bfe8b13b31ae00519e5ca65096df84617e2b117a2725f75",
+      "meetingId": "meeting-carson-city-school-district-2026-07-28-02d04f9aa0ab",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-f8a2d162db42157146d3a43ec8912912fffe6f6131525048b93e00b46af651f2",
+      "meetingId": "meeting-carson-city-school-district-2026-06-23-bc2d608414fa",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-fa0cc267119073b619d8199705173a9027a452087e41a87dfb5b3c885027e51f",
+      "meetingId": "meeting-carson-city-school-district-2026-06-09-db9f63e62c06",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-b435830fbda21a167e7ac8043b30aa4f822dd570131a729cf4b1726a83879a46",
+      "meetingId": "meeting-carson-city-school-district-2026-05-26-7d6923fa7408",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-f35e3773e42bf6063d0718af2974a3ec9e795fe8a914604aa85b5f79c8578272",
+      "meetingId": "meeting-carson-city-school-district-2026-05-12-316452cfd8bf",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-68cac7b957d6186b02cb6f7fa20cc126a8ea6936e4d430e0ef69860a70cc1644",
+      "meetingId": "meeting-carson-city-school-district-2026-04-14-6a86cd8b4fef",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-e9add5003478aa6de4683e4c3966175da816a0e3080a378577e55698156ea079",
+      "meetingId": "meeting-carson-city-school-district-2026-03-24-1a0eb2bf9183",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-63d5eaced9c916a9013fd09d401eef37ed4f96c7e5839e299874b01f8b3c87d0",
+      "meetingId": "meeting-carson-city-school-district-2026-03-10-e10e414131bc",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-a40441f8a03d65eb12c55ec6ec1989567672b3da73134b09a910597f432703b0",
+      "meetingId": "meeting-carson-city-school-district-2026-02-24-84d4f26063b9",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-a0dcb56cc7efdde9e5894d5ab0bc1a94b7c6b9533cc5fcb058ad13e4f84bf8a2",
+      "meetingId": "meeting-carson-city-school-district-2026-01-13-ed4e9ed5be2d",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-e9a7cf59feaa005fbf1046b98b2b29a5735fdb528bef07616e0955c162388124",
+      "meetingId": "meeting-carson-city-school-district-2025-12-09-bd9cbc7fe375",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-fd1e08a9f891c7d517d7010b36fb5967578fccdb83f5941d09d3b8f09f9df99a",
+      "meetingId": "meeting-carson-city-school-district-2025-11-17-079c359824af",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-ceab167ee72a234122fa3b9fdd08c196f9db1398e14e03858f1e9e04e2b778da",
+      "meetingId": "meeting-carson-city-school-district-2025-10-28-cb95949c61c2",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-5061acc11da0c2b6a4b2eeed73dcbaacd002df20cb84ed4389a227a107c2ff0f",
+      "meetingId": "meeting-carson-city-school-district-2025-10-14-6d9f26e76516",
+      "status": "topics_extracted_for_review",
+      "itemCount": 2
+    },
+    {
+      "documentId": "meeting-source-document-ef8c1a73c544b79d7efb9a8eca4fd9919a65a840f047b25d30ed87ec088ca999",
+      "meetingId": "meeting-carson-city-school-district-2025-09-23-0fb9d2b2bad9",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-2593d7a12507ec0f2140745184097839140d6e6808e9a61ffb8a8a67a32d6664",
+      "meetingId": "meeting-carson-city-school-district-2025-09-09-4a3317c0b5db",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-b16802e19efec6a97fff2ffa9470ac12b300846e8cc232ff528aec76f528457e",
+      "meetingId": "meeting-carson-city-school-district-2025-08-26-4ac33c871041",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-375a50181c82d59b985a85677cc0d26a947e972cc7838e90de87b29b220f8628",
+      "meetingId": "meeting-carson-city-school-district-2025-08-12-2695ef7ffc5a",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-f6e40b028a3fafdf2eb194b4aae1115ec3b9a7e6ae7e9c435d17bcbdd4c97ee2",
+      "meetingId": "meeting-carson-city-school-district-2025-07-22-2d1e6bbeab2e",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-92d58e86a09f2f830a662cb5ba01dbe0f2e2f0873f87b971adb1d39375f9cfbc",
+      "meetingId": "meeting-carson-city-school-district-2025-06-24-a96098c89e07",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-c0aeb3e51d4cd8f86255c0615aa7652c3a1fec89008a23a977c1db5904b392cd",
+      "meetingId": "meeting-carson-city-school-district-2025-06-10-85832e2edb21",
+      "status": "needs_document_review",
+      "itemCount": 2
+    },
+    {
+      "documentId": "meeting-source-document-b8d75094fd8c80b3d879ff5698d92f38178e08fcfdd36ffbdd4e18c5f2e030bd",
+      "meetingId": "meeting-carson-city-school-district-2025-05-27-db25310bf967",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-f9f04af28b372c856bd3fb7a9fe4bff2082c1262bafa8efec198f8fa01154a93",
+      "meetingId": "meeting-carson-city-school-district-2025-04-08-172d45bae953",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-b2d15a54ecc4ce539c85a50c68bdffaa23bd1549af01ff7cddfe7503a746e2aa",
+      "meetingId": "meeting-carson-city-school-district-2025-03-25-9fe769fe8283",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-cb80684edd3e696778cdeec26fd4f7a704c7c3e689cf38c169934d613bc34951",
+      "meetingId": "meeting-carson-city-school-district-2025-03-11-41b544c9a1f9",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-4ad8ba4c5a077f91d8a71f13d5ec7805555f1bffa8495a5200ec8c657c4c87c2",
+      "meetingId": "meeting-carson-city-school-district-2025-02-25-09f5f6f8ab82",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-8b8db9b7d1313a5dde86cbafb93a79c98652ef97632268c42a52b7858a5161fd",
+      "meetingId": "meeting-carson-city-school-district-2025-02-11-5460d681004b",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-02528ce143dc89ee9f01a6188d52e19b2960fec9086723249b621521cbb6a905",
+      "meetingId": "meeting-carson-city-school-district-2025-01-28-8b6d1e5a1ceb",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-be492c261b0442b8bc27889ffeeca2f685ddbfa1d8be5c4cdc1fbbb53bb6ddf7",
+      "meetingId": "meeting-carson-city-school-district-2025-01-14-07675cfe1e31",
+      "status": "topics_extracted_for_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-da6c212a5b8b8e7df815154339997f1efbbf12f97a03cfc96f15b35d3af21365",
+      "meetingId": "meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-07-29-5d9a93de",
+      "status": "topics_extracted_for_review",
+      "itemCount": 5
+    },
+    {
+      "documentId": "meeting-source-document-53f6daba089b62a7f16da3cbcdf414175e68ff46dbeff3bc1476b523cba902f9",
+      "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2",
+      "status": "topics_extracted_for_review",
+      "itemCount": 2
+    },
+    {
+      "documentId": "meeting-source-document-3c7453433f7c6466f2ca533047fd5961a4186293f79570a80dc38247a0310548",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-adf8de80",
+      "status": "topics_extracted_for_review",
+      "itemCount": 12
+    },
+    {
+      "documentId": "meeting-source-document-162530aa15d5052470595e4f3ec27e0d3b109d3711fb063bf6cfbb81263b0ddb",
+      "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2026-08-20-816d0e05",
+      "status": "topics_extracted_for_review",
+      "itemCount": 24
+    },
+    {
+      "documentId": "meeting-source-document-0112b110bb1f4cfeec183e75d32de617daf3d2ad8a00e11924d9f521912db0ef",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-08-20-8c4cc5e3",
+      "status": "needs_document_review",
+      "itemCount": 15
+    },
+    {
+      "documentId": "meeting-source-document-983e1bb31fba924fed6b6affc03dbd238540c0f3331449bdd9bf670f3170e29e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-area-metropolitan-planning-organization-2026-08-12-277f8241",
+      "status": "topics_extracted_for_review",
+      "itemCount": 5
+    },
+    {
+      "documentId": "meeting-source-document-23ca39f424f178ef6aeaee5228f9a9e7c7d678ab6a8f1d9559c780bdbd544ab6",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2026-08-10-a771c97e",
+      "status": "needs_document_review",
+      "itemCount": 26
+    },
+    {
+      "documentId": "meeting-source-document-f8c9f3f7bfd7d45afd0279f8f7e5469b97aeb621b5fc1a83bd2e4d1f068c2ce9",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-08-12-5567dcdc",
+      "status": "topics_extracted_for_review",
+      "itemCount": 28
+    },
+    {
+      "documentId": "meeting-source-document-11f86d7f79287ce91192d06597a708e855f420fdcf9fd49fdce919163c79ed48",
+      "meetingId": "meeting-carson-city-board-of-supervisors-debt-management-commission-2026-08-18-affd3437",
+      "status": "topics_extracted_for_review",
+      "itemCount": 7
+    },
+    {
+      "documentId": "meeting-source-document-2d10531ea0c0551b91d76cf7e6d46d9fde368f3d7ab98234cb8a92cb9d12fcaf",
+      "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-08-14-a8d437fc",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-cb553b95362c642ba0018bae0a8d7be98d35fbbd9c08d4987f78ac8ac56ed8a2",
+      "meetingId": "meeting-carson-city-board-of-supervisors-open-space-advisory-committee-2026-08-18-984336ad",
+      "status": "topics_extracted_for_review",
+      "itemCount": 5
+    },
+    {
+      "documentId": "meeting-source-document-a2bf257a973b2d7d5982c791a855f41ac45b1ea26400c9b301b76f96f5a6d35c",
+      "meetingId": "meeting-carson-city-board-of-supervisors-parks-and-recreation-commission-2026-08-19-745a85d6",
+      "status": "topics_extracted_for_review",
+      "itemCount": 4
+    },
+    {
+      "documentId": "meeting-source-document-89da9d7826d7d501d6edef1a2c3b2101803348341e0f952cf2aa7ab2a7d38d21",
+      "meetingId": "meeting-carson-city-board-of-supervisors-regional-transportation-commission-2026-08-13-92552595",
+      "status": "topics_extracted_for_review",
+      "itemCount": 5
+    },
+    {
+      "documentId": "meeting-source-document-c578a90209bc07c7af4d6ff4ec4c216e66770b2658d9c68742484f0f34d76035",
+      "meetingId": "meeting-carson-city-board-of-supervisors-administrative-permit-review-2026-07-29-5d9a93de",
+      "status": "needs_document_review",
+      "itemCount": 6
+    },
+    {
+      "documentId": "meeting-source-document-e13342b21ec6a9de5b1b4d66d138c6133e36ad578fd64c766aead2c40cdd49b2",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-08-06-b4645b91",
+      "status": "needs_document_review",
+      "itemCount": 16
+    },
+    {
+      "documentId": "meeting-source-document-c4f7ddb3508bd8350f2e905254f49884ae7cad9d1e4ddc69fb44b10c5c01240b",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-07-29-23d37f93",
+      "status": "topics_extracted_for_review",
+      "itemCount": 22
+    },
+    {
+      "documentId": "meeting-source-document-6c04f902acace7ca647d1da3f37250ffa978e130545ca80f7c518a5dae961405",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-07-31-adf8de80",
+      "status": "needs_document_review",
+      "itemCount": 7
+    },
+    {
+      "documentId": "meeting-source-document-c749cf8e48d0063e06122e4444e9c4436e77de581d8242833255a887415fc873",
+      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-07-29-733aa119",
+      "status": "topics_extracted_for_review",
+      "itemCount": 8
+    },
+    {
+      "documentId": "meeting-source-document-d832ef7acae430e037562f8d2ffac511bce5a96a8df7eb22c3ba836d505150e4",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-2026-05-21-5cbb568f",
+      "status": "needs_document_review",
+      "itemCount": 32
+    },
+    {
+      "documentId": "meeting-source-document-72654e54bf5e02bc6067592f77291bf0ec70334d940928d4692dd8ad9fd8c60e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife-2026-06-23-ac1eefa5",
+      "status": "needs_document_review",
+      "itemCount": 120
+    },
+    {
+      "documentId": "meeting-source-document-6a400d0dac6139cf27f09d82bcf0ff29f318c82be2677abc61f5921675582dce",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-07-16-750cdc76",
+      "status": "needs_document_review",
+      "itemCount": 120
+    },
+    {
+      "documentId": "meeting-source-document-b1fa685e5e30a8cfa152c68b5fdfb9d265f65616219725b36a33e3f71263e3d4",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-06-18-448e7a9d",
+      "status": "needs_document_review",
+      "itemCount": 120
+    },
+    {
+      "documentId": "meeting-source-document-e1064d4533606a0c6ac41aaeb3b2d51e2ea31476a93ce9f2e1dd12d23829ec02",
+      "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2",
+      "status": "needs_document_review",
+      "itemCount": 36
+    },
+    {
+      "documentId": "meeting-source-document-30db1d38f98ca936df935625c62c77e37c3da2dc1c9f36c960feae25cd508c0b",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-and-board-of-health-2026-06-04-8c234c19",
+      "status": "needs_document_review",
+      "itemCount": 14
+    },
+    {
+      "documentId": "meeting-source-document-071c80172ed642db73e5372d1382de410a6a8198775ef234959c6ed699e00de4",
+      "meetingId": "meeting-carson-city-board-of-supervisors-historic-resources-commission-2026-05-06-120de94a",
+      "status": "topics_extracted_for_review",
+      "itemCount": 8
+    },
+    {
+      "documentId": "meeting-source-document-7fe0d5e3e71910f1a10217f9fe438f741d9f952a890ce6ce790bc71db8b640c9",
+      "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-06-12-f6310a2e",
+      "status": "topics_extracted_for_review",
+      "itemCount": 2
+    },
+    {
+      "documentId": "meeting-source-document-fb9147d5822432732d12f246fb622d220d35227ca35fb8a666fd0a95890aad49",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-06-23-fe005736",
+      "status": "topics_extracted_for_review",
+      "itemCount": 10
+    },
+    {
+      "documentId": "meeting-source-document-4e5513e31a798ea59be96a53ae614edbee85a0169832a3f1fe33e26a2ad10323",
+      "meetingId": "meeting-carson-city-board-of-supervisors-open-space-advisory-committee-2026-04-21-0f5d8f75",
+      "status": "topics_extracted_for_review",
+      "itemCount": 13
+    },
+    {
+      "documentId": "meeting-source-document-851f385f79154994e88ce669adc887e325d1c53c548c375e2ead0d276bd978d2",
+      "meetingId": "meeting-carson-city-board-of-supervisors-parks-and-recreation-commission-2026-04-08-359a3870",
+      "status": "topics_extracted_for_review",
+      "itemCount": 11
+    },
+    {
+      "documentId": "meeting-source-document-079b3492c1b7d770eae893bc54748e5835494051a937c54ed879267aeeb484d0",
+      "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-07-21-3ac29e72",
+      "status": "needs_document_review",
+      "itemCount": 21
+    },
+    {
+      "documentId": "meeting-source-document-b678cc90bfc457765e254c623129d304a809865fb2b6fa83e06082e114f80863",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-07-02-c29f20f2",
+      "status": "needs_document_review",
+      "itemCount": 120
+    },
+    {
+      "documentId": "meeting-source-document-fbb28c26abac6fcbb25d4553293ac812f6936c87a15d1397b3144fca36057ffd",
+      "meetingId": "meeting-carson-city-board-of-supervisors-historic-resources-commission-2026-07-01-c6adeb3c",
+      "status": "needs_document_review",
+      "itemCount": 31
+    },
+    {
+      "documentId": "meeting-source-document-e03ed032b1f0b8dae56d51cc475e9a4f4e528d0e51340d98d22d2153ca99ee0a",
+      "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-07-21-3ac29e72",
+      "status": "topics_extracted_for_review",
+      "itemCount": 5
+    },
+    {
+      "documentId": "meeting-source-document-834e36a68f3af16ea97a4fedf0d8e9ba54e34351db56737ce6eab6e53b21e842",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife-2026-06-23-ac1eefa5",
+      "status": "needs_document_review",
+      "itemCount": 3
+    },
+    {
+      "documentId": "meeting-source-document-abe5287b2409db4d0274bb0a61a1a25f7b762c7b4c9a06599d023f7030574bdd",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-07-16-750cdc76",
+      "status": "needs_document_review",
+      "itemCount": 20
+    },
+    {
+      "documentId": "meeting-source-document-2e382e67d3fa1c2d9e755081a79591aade8262ce45c4b03ba1496459781b8f08",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-07-02-c29f20f2",
+      "status": "needs_document_review",
+      "itemCount": 14
+    },
+    {
+      "documentId": "meeting-source-document-e8e0909c1bdd09dcd46c8fbba6ea76fd08758bda8b6a2ee42b1d7f54b11e43ac",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2026-07-13-18557e56",
+      "status": "needs_document_review",
+      "itemCount": 26
+    },
+    {
+      "documentId": "meeting-source-document-5ed4d87b3b2846f6bbf8e33e0750910194c94b2f13a1c5a324722b39a22e01a9",
+      "meetingId": "meeting-carson-city-board-of-supervisors-historic-resources-commission-2026-07-01-c6adeb3c",
+      "status": "topics_extracted_for_review",
+      "itemCount": 7
+    },
+    {
+      "documentId": "meeting-source-document-4a23e3a083cca5cbd71ebf0c2a707b0c04520e108215d8bf39f66e08d95d4b4d",
+      "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2",
+      "status": "needs_document_review",
+      "itemCount": 1
+    },
+    {
+      "documentId": "meeting-source-document-2a36cb444fe6b8945ed3e4f93345643b215cab99ccefb8fbfbe5790639c43b2b",
+      "meetingId": "meeting-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway-2026-07-23-c9f54359",
+      "status": "topics_extracted_for_review",
+      "itemCount": 19
+    },
+    {
+      "documentId": "meeting-source-document-375e04a3787f0f8ba7844455313450b2dec0e691ed83dc43c45f4846d61b1827",
+      "meetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-07-21-3ac29e72",
+      "status": "topics_extracted_for_review",
+      "itemCount": 9
+    },
+    {
+      "documentId": "meeting-source-document-e9146c9eda84ed9d0bb85fb3cb476ec35c7316baf8ec50f5da7a572dfa247653",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-advisory-board-to-manage-wildlife-2026-05-05-70d75230",
+      "status": "needs_document_review",
+      "itemCount": 14
+    },
+    {
+      "documentId": "meeting-source-document-d781a9398e4aaa8282884821aaa8ca50f3d3647bd68454d2358a923dcabeef0e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2026-06-18-bb02570a",
+      "status": "topics_extracted_for_review",
+      "itemCount": 23
+    },
+    {
+      "documentId": "meeting-source-document-abe81f451847f77c39bbb99bcb24164f6dce76fdfc0ca6bdbdb96deaddaf558f",
+      "meetingId": "meeting-carson-city-board-of-supervisors-board-of-supervisors-2026-06-18-448e7a9d",
+      "status": "needs_document_review",
+      "itemCount": 19
+    },
+    {
+      "documentId": "meeting-source-document-890f4abdfe1f97cc4383ba55b646e085b83e362a2c6a3d03b4b3b8d7bbaac909",
+      "meetingId": "meeting-carson-city-board-of-supervisors-carson-city-school-board-2026-06-24-b1c7f804",
+      "status": "topics_extracted_for_review",
+      "itemCount": 20
+    },
+    {
+      "documentId": "meeting-source-document-ac718af07aec40fb36fa24d75fd634df52294b751d40e29438af6cc781b335ab",
+      "meetingId": "meeting-carson-city-board-of-supervisors-liquor-hearings-officer-2026-06-23-fe005736",
+      "status": "needs_document_review",
+      "itemCount": 7
+    },
+    {
+      "documentId": "meeting-source-document-8de42cbe78c73e1f7b10cbbe336b29ef901e3fb67aea54d41dd058ad0381fdd3",
+      "meetingId": "meeting-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway-2026-06-24-68219d16",
+      "status": "topics_extracted_for_review",
+      "itemCount": 20
+    },
+    {
+      "documentId": "meeting-source-document-7be53a01eddb1cb2fffdcbf7d12f62d7f61e453f1beb151d211e1f107b4a47cb",
+      "meetingId": "meeting-carson-city-board-of-supervisors-nv-commission-for-reconstruction-of-v-and-t-railway-2026-05-27-5bf8d122",
+      "status": "topics_extracted_for_review",
+      "itemCount": 19
+    },
+    {
+      "documentId": "meeting-source-document-399a08b23ccd2a12da0f8f10cbae350df40ebfb8e1773553c75c4767d71630fa",
+      "meetingId": "meeting-carson-city-board-of-supervisors-planning-commission-2026-06-24-d83ef5c4",
+      "status": "topics_extracted_for_review",
+      "itemCount": 8
+    },
+    {
+      "documentId": "meeting-source-document-4f75ebd3259c4c711860fbf0cb64ce4ab7a5eb8c20c9286a8c67a011531a3fda",
+      "meetingId": "meeting-carson-city-board-of-supervisors-airport-authority-2026-05-21-5ec2ba36",
+      "status": "topics_extracted_for_review",
+      "itemCount": 23
+    },
+    {
+      "documentId": "meeting-source-document-c9adce5656886d1d133399a5765631a98d8aa9fc7c28681fd5892b39d651868e",
+      "meetingId": "meeting-carson-city-board-of-supervisors-growth-management-commission-and-planning-commission-2026-05-27-474ce556",
+      "status": "topics_extracted_for_review",
+      "itemCount": 8
+    }
+  ]
+}

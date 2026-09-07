@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import { mergeMeetingHistory } from "@/lib/public-meetings/lifecycle";
 import { writePublicCivicCaseArtifacts } from "@/lib/public-cases/public-civic-cases";
 import {
   PUBLIC_MEETING_PATHS,
@@ -1016,9 +1017,8 @@ export async function importManualPublicMeetingSources(options: { includeFixture
   let realMeetings = meetings.filter((meeting) => meeting.source_method !== "manual_fixture");
   let realItems = items.filter((item) => item.source_method !== "manual_fixture");
   const isProcessedManualMeeting = (meetingId: string) => processedProviderIds.some((providerId) => meetingId.startsWith(`meeting-manual-${providerId}-`));
-  const isProcessedManualItem = (itemId: string) => processedProviderIds.some((providerId) => itemId.startsWith(`item-meeting-manual-${providerId}-`));
-  const retainedMeetings = existingMeetings.filter((meeting) => meeting.source_method !== "manual_cache" || !isProcessedManualMeeting(meeting.id));
-  const retainedItems = existingItems.filter((item) => item.source_method !== "manual_cache" || !isProcessedManualItem(item.id));
+  const retainedMeetings = existingMeetings.filter((meeting) => meeting.source_method !== "manual_fixture");
+  const retainedItems = existingItems.filter((item) => item.source_method !== "manual_fixture");
   const retainedVotes = existingVotes.filter((vote) => retainedItems.some((item) => item.id === vote.meeting_item_id));
   const retainedOfficialActions = existingOfficialActions.filter((action) => retainedItems.some((item) => item.id === action.topic_item_id));
 
@@ -1053,7 +1053,9 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     if (meetingAliases.has(meeting.id)) return false;
     const existing = retainedMeetings.find((candidate) => meetingsRepresentSameEvent(candidate, meeting));
     if (!existing) return true;
-    meetingAliases.set(meeting.id, existing.id);
+    const merged = mergeMeetingHistory([existing], [{ ...meeting, id: existing.id, public_body_id: existing.public_body_id }])[0];
+    Object.assign(existing, merged);
+    if (meeting.id !== existing.id) meetingAliases.set(meeting.id, existing.id);
     return false;
   });
   realItems = realItems
@@ -1073,7 +1075,7 @@ export async function importManualPublicMeetingSources(options: { includeFixture
   const nextItems = dedupeById([...retainedItems, ...realItems]);
   const nextItemIds = new Set(nextItems.map((item) => item.id));
   const retainedQuestions = dedupeQuestions(existingQuestions.filter((question) => nextItemIds.has(question.meeting_item_id)));
-  const retainedBodies = existingBodies.filter((body) => !processedProviderIds.some((providerId) => body.id.startsWith(`body-manual-${providerId}-`)));
+  const retainedBodies = existingBodies;
   const realBodyIds = new Set(realMeetings.map((meeting) => meeting.public_body_id));
   const nextBodies = dedupeById([...retainedBodies, ...bodies.filter((body) => realBodyIds.has(body.id))]);
   const nextMeetings = dedupeById([...retainedMeetings, ...realMeetings]);

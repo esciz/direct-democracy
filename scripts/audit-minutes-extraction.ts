@@ -69,14 +69,22 @@ function qualityForText(text: string): ExtractionQuality {
 function sourceTextsForMeeting(meeting: PublicMeetingRecord, items: PublicMeetingItemRecord[], documentTexts: NonNullable<DocumentTextArtifact["records"]>) {
   const sources: Array<{ text: string; document: string | null; quality: ExtractionQuality; reason: string | null }> = [];
   const seen = new Set<string>();
-  if (meeting.meeting_summary) sources.push({ text: cleanSourceText(meeting.meeting_summary), document: meeting.minutes_url ?? meeting.agenda_url ?? null, quality: qualityForText(meeting.meeting_summary), reason: null });
+  // A calendar description or agenda is not evidence that the minutes were read.
+  // Keep only text traceable to the minutes themselves; snippets are metadata.
+  const isMinutesPath = (value: string | null | undefined) => Boolean(value && /(?:^|[\/_ .-])minutes?(?:[\/_ .-]|$)/i.test(value));
+  const minutesPaths = new Set(documentTexts.filter((document) => document.documentType === "minutes").map((document) => document.extractedTextPath).filter(Boolean));
   for (const localPath of meeting.source_local_paths ?? []) {
+    if (!isMinutesPath(localPath) && !minutesPaths.has(localPath)) continue;
     if (seen.has(localPath)) continue;
     seen.add(localPath);
     const read = readCachedText(localPath);
     if (read) sources.push({ text: read.text, document: localPath, quality: read.quality, reason: read.reason });
   }
   for (const item of items) {
+    const fromMinutes = Boolean(meeting.minutes_url && item.source_url === meeting.minutes_url)
+      || isMinutesPath(item.source_local_path) || minutesPaths.has(item.source_local_path ?? null)
+      || minutesPaths.has(item.cached_text_path);
+    if (!fromMinutes) continue;
     if (item.source_text) sources.push({ text: cleanSourceText(item.source_text), document: item.source_local_path ?? item.cached_text_path ?? item.source_url, quality: qualityForText(item.source_text), reason: null });
     for (const localPath of [item.source_local_path, item.cached_text_path].filter(Boolean) as string[]) {
       if (seen.has(localPath)) continue;
@@ -86,16 +94,22 @@ function sourceTextsForMeeting(meeting: PublicMeetingRecord, items: PublicMeetin
     }
   }
   for (const documentText of documentTexts) {
+    if (documentText.documentType !== "minutes") continue;
+    if (documentText.extractedTextPath && seen.has(documentText.extractedTextPath)) continue;
     let text = documentText.sourceSnippet ?? "";
+    let quality: ExtractionQuality = text ? "metadata_only" : "unreadable";
+    let reason = documentText.failureReason;
     if (documentText.extractedTextPath) {
       const read = readCachedText(documentText.extractedTextPath);
-      if (read?.text) text = read.text;
+      if (read?.text) { text = read.text; quality = read.quality; }
+      else { reason = read?.reason ?? reason; quality = read?.quality ?? quality; }
+      seen.add(documentText.extractedTextPath);
     }
     sources.push({
       text,
       document: documentText.documentId,
-      quality: documentText.extractionQuality === "high" || documentText.extractionQuality === "medium" ? "full_text" : documentText.extractionQuality === "low" ? "partial_text" : "metadata_only",
-      reason: documentText.failureReason,
+      quality,
+      reason,
     });
   }
   return sources;
@@ -129,12 +143,12 @@ function generateAudit() {
   for (const record of documentText.records ?? []) documentTextByMeeting.set(record.meetingId, [...(documentTextByMeeting.get(record.meetingId) ?? []), record]);
 
   const records = meetings
-    .filter((meeting) => Boolean(meeting.minutes_url) || (meeting.source_local_paths ?? []).some((sourcePath) => /minutes?|result|journal/i.test(sourcePath)))
+    .filter((meeting) => Boolean(meeting.minutes_url) || (meeting.source_local_paths ?? []).some((sourcePath) => /(?:^|[\/_ .-])minutes?(?:[\/_ .-]|$)/i.test(sourcePath)) || (documentTextByMeeting.get(meeting.id) ?? []).some((document) => document.documentType === "minutes"))
     .map((meeting) => {
       const body = bodyById.get(meeting.public_body_id);
       const sources = sourceTextsForMeeting(meeting, itemsByMeeting.get(meeting.id) ?? [], documentTextByMeeting.get(meeting.id) ?? []);
       const combinedText = sources.map((source) => source.text).join(" ");
-      const flags = flagsFor(combinedText);
+      const flags = flagsFor(sources.filter((source) => source.quality === "full_text" || source.quality === "partial_text").map((source) => source.text).join(" "));
       const bestQuality = sources.some((source) => source.quality === "full_text")
         ? "full_text"
         : sources.some((source) => source.quality === "partial_text")
@@ -157,7 +171,7 @@ function generateAudit() {
         sourceDocumentCount: sources.length,
         cachedTextLength: combinedText.length,
         ...flags,
-        minutesInNameOnly: bestQuality === "metadata_only" || bestQuality === "unreadable",
+        minutesInNameOnly: bestQuality === "metadata_only" || bestQuality === "unreadable" || bestQuality === "blocked",
         cachedSourceTooThin: combinedText.length < 500,
         sourceSnippet: summarizeText(combinedText, 520),
       };

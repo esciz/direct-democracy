@@ -1,741 +1,827 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="UTF-8" />
-<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-<meta http-equiv='X-UA-Compatible' content='IE=edge' />
-<script>
-var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function(){gform.scriptsLoaded=!0}),window.addEventListener("DOMContentLoaded",function(){gform.domLoaded=!0}),gform={domLoaded:!1,scriptsLoaded:!1,initializeOnLoaded:function(o){gform.domLoaded&&gform.scriptsLoaded?o():!gform.domLoaded&&gform.scriptsLoaded?window.addEventListener("DOMContentLoaded",o):document.addEventListener("gform_main_scripts_loaded",o)},hooks:{action:{},filter:{}},addAction:function(o,n,r,t){gform.addHook("action",o,n,r,t)},addFilter:function(o,n,r,t){gform.addHook("filter",o,n,r,t)},doAction:function(o){gform.doHook("action",o,arguments)},applyFilters:function(o){return gform.doHook("filter",o,arguments)},removeAction:function(o,n){gform.removeHook("action",o,n)},removeFilter:function(o,n,r){gform.removeHook("filter",o,n,r)},addHook:function(o,n,r,t,i){null==gform.hooks[o][n]&&(gform.hooks[o][n]=[]);var e=gform.hooks[o][n];null==i&&(i=n+"_"+e.length),gform.hooks[o][n].push({tag:i,callable:r,priority:t=null==t?10:t})},doHook:function(n,o,r){var t;if(r=Array.prototype.slice.call(r,1),null!=gform.hooks[n][o]&&((o=gform.hooks[n][o]).sort(function(o,n){return o.priority-n.priority}),o.forEach(function(o){"function"!=typeof(t=o.callable)&&(t=window[t]),"action"==n?t.apply(null,r):r[0]=t.apply(null,r)})),"filter"==n)return r[0]},removeHook:function(o,n,t,i){var r;null!=gform.hooks[o][n]&&(r=(r=gform.hooks[o][n]).filter(function(o,n,r){return!!(null!=i&&i!=o.tag||null!=t&&t!=o.priority)}),gform.hooks[o][n]=r)}});
-</script>
+<html lang="en">
 
-<link rel="profile" href="https://gmpg.org/xfn/11" />
-<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0">
+        <title>Lovelock, NV | Home</title>
+        <script type="text/javascript">const Ziggy={"url":"https:\/\/cityoflovelock.com","port":null,"defaults":{},"routes":{"public.form.submit":{"uri":"form\/{widgetId}\/submit","methods":["POST"],"parameters":["widgetId"]},"public.app.configjs":{"uri":"app-config.js","methods":["GET","HEAD"]},"public.aiToken.get":{"uri":"ai-token\/get\/{accountId}","methods":["GET","HEAD"],"parameters":["accountId"]},"public.pages.interaction":{"uri":"page-interaction","methods":["POST"]},"public.getTransitions":{"uri":"transitions\/{transition}","methods":["GET","HEAD"],"parameters":["transition"],"bindings":{"transition":"id"}},"public.root":{"uri":"\/","methods":["GET","HEAD"]},"public.site.sitemap":{"uri":"sitemap.xml","methods":["GET","HEAD"]},"public.sitePage.accessibility":{"uri":"accessibility","methods":["GET","HEAD"]},"public.":{"uri":"page\/privacy","methods":["GET","HEAD"]},"public.sitePage.privacy":{"uri":"privacy","methods":["GET","HEAD"]},"public.sitePage.events.show":{"uri":"event\/{eventSlug}","methods":["GET","HEAD"],"parameters":["eventSlug"]},"public.sitePage.events.search":{"uri":"search-events\/{categoryId?}","methods":["GET","HEAD"],"parameters":["categoryId"]},"public.sitePage.stories.show":{"uri":"story\/{story}","methods":["GET","HEAD"],"parameters":["story"],"bindings":{"story":"id"}},"public.sitePage.stories.search":{"uri":"search-news\/{categoryId?}","methods":["GET","HEAD"],"parameters":["categoryId"]},"public.sitePage.searchView":{"uri":"search","methods":["GET","HEAD"]},"public.sitePage.aiSearchView":{"uri":"ai-search","methods":["GET","HEAD"]},"public.sitePage.aiSearch":{"uri":"ai-search","methods":["POST"]},"public.sitePage.index":{"uri":"{slug}","methods":["GET","HEAD"],"parameters":["slug"]},"public.sitePage.indexPage":{"uri":"page\/{slug?}","methods":["GET","HEAD"],"parameters":["slug"]}}};!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):(t||self).route=e()}(this,function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,u(r.key),r)}}function e(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),Object.defineProperty(e,"prototype",{writable:!1}),e}function n(){return n=Object.assign?Object.assign.bind():function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)({}).hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t},n.apply(null,arguments)}function r(t){return r=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(t){return t.__proto__||Object.getPrototypeOf(t)},r(t)}function o(){try{var t=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],function(){}))}catch(t){}return(o=function(){return!!t})()}function i(t,e){return i=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(t,e){return t.__proto__=e,t},i(t,e)}function u(t){var e=function(t){if("object"!=typeof t||!t)return t;var e=t[Symbol.toPrimitive];if(void 0!==e){var n=e.call(t,"string");if("object"!=typeof n)return n;throw new TypeError("@@toPrimitive must return a primitive value.")}return String(t)}(t);return"symbol"==typeof e?e:e+""}function f(t){var e="function"==typeof Map?new Map:void 0;return f=function(t){if(null===t||!function(t){try{return-1!==Function.toString.call(t).indexOf("[native code]")}catch(e){return"function"==typeof t}}(t))return t;if("function"!=typeof t)throw new TypeError("Super expression must either be null or a function");if(void 0!==e){if(e.has(t))return e.get(t);e.set(t,n)}function n(){return function(t,e,n){if(o())return Reflect.construct.apply(null,arguments);var r=[null];r.push.apply(r,e);var u=new(t.bind.apply(t,r));return n&&i(u,n.prototype),u}(t,arguments,r(this).constructor)}return n.prototype=Object.create(t.prototype,{constructor:{value:n,enumerable:!1,writable:!0,configurable:!0}}),i(n,t)},f(t)}const c=String.prototype.replace,l=/%20/g,a={RFC1738:function(t){return c.call(t,l,"+")},RFC3986:function(t){return String(t)}};var s="RFC3986";const p=Object.prototype.hasOwnProperty,y=Array.isArray,d=new WeakMap;var b=function(t,e){return d.set(t,e),t};function v(t){return d.has(t)}var h=function(t){return d.get(t)},m=function(t,e){d.set(t,e)};const g=function(){const t=[];for(let e=0;e<256;++e)t.push("%"+((e<16?"0":"")+e.toString(16)).toUpperCase());return t}(),w=function(t,e){const n=e&&e.plainObjects?Object.create(null):{};for(let e=0;e<t.length;++e)void 0!==t[e]&&(n[e]=t[e]);return n},j=function t(e,n,r){if(!n)return e;if("object"!=typeof n){if(y(e))e.push(n);else{if(!e||"object"!=typeof e)return[e,n];if(v(e)){var o=h(e)+1;e[o]=n,m(e,o)}else(r&&(r.plainObjects||r.allowPrototypes)||!p.call(Object.prototype,n))&&(e[n]=!0)}return e}if(!e||"object"!=typeof e){if(v(n)){for(var i=Object.keys(n),u=r&&r.plainObjects?{__proto__:null,0:e}:{0:e},f=0;f<i.length;f++)u[parseInt(i[f],10)+1]=n[i[f]];return b(u,h(n)+1)}return[e].concat(n)}let c=e;return y(e)&&!y(n)&&(c=w(e,r)),y(e)&&y(n)?(n.forEach(function(n,o){if(p.call(e,o)){const i=e[o];i&&"object"==typeof i&&n&&"object"==typeof n?e[o]=t(i,n,r):e.push(n)}else e[o]=n}),e):Object.keys(n).reduce(function(e,o){const i=n[o];return e[o]=p.call(e,o)?t(e[o],i,r):i,e},c)},O=1024,E=function(t,e,n,r){if(v(t)){var o=h(t)+1;return t[o]=e,m(t,o),t}var i=[].concat(t,e);return i.length>n?b(w(i,{plainObjects:r}),i.length-1):i},T=function(t,e){if(y(t)){const n=[];for(let r=0;r<t.length;r+=1)n.push(e(t[r]));return n}return e(t)},R=Object.prototype.hasOwnProperty,k={brackets:function(t){return t+"[]"},comma:"comma",indices:function(t,e){return t+"["+e+"]"},repeat:function(t){return t}},S=Array.isArray,I=Array.prototype.push,A=function(t,e){I.apply(t,S(e)?e:[e])},D=Date.prototype.toISOString,$={addQueryPrefix:!1,allowDots:!1,allowEmptyArrays:!1,arrayFormat:"indices",charset:"utf-8",charsetSentinel:!1,delimiter:"&",encode:!0,encodeDotInKeys:!1,encoder:function(t,e,n,r,o){if(0===t.length)return t;let i=t;if("symbol"==typeof t?i=Symbol.prototype.toString.call(t):"string"!=typeof t&&(i=String(t)),"iso-8859-1"===n)return escape(i).replace(/%u[0-9a-f]{4}/gi,function(t){return"%26%23"+parseInt(t.slice(2),16)+"%3B"});let u="";for(let t=0;t<i.length;t+=O){const e=i.length>=O?i.slice(t,t+O):i,n=[];for(let t=0;t<e.length;++t){let r=e.charCodeAt(t);45===r||46===r||95===r||126===r||r>=48&&r<=57||r>=65&&r<=90||r>=97&&r<=122||"RFC1738"===o&&(40===r||41===r)?n[n.length]=e.charAt(t):r<128?n[n.length]=g[r]:r<2048?n[n.length]=g[192|r>>6]+g[128|63&r]:r<55296||r>=57344?n[n.length]=g[224|r>>12]+g[128|r>>6&63]+g[128|63&r]:(t+=1,r=65536+((1023&r)<<10|1023&e.charCodeAt(t)),n[n.length]=g[240|r>>18]+g[128|r>>12&63]+g[128|r>>6&63]+g[128|63&r])}u+=n.join("")}return u},encodeValuesOnly:!1,format:s,formatter:a[s],indices:!1,serializeDate:function(t){return D.call(t)},skipNulls:!1,strictNullHandling:!1},N={},_=function(t,e,n,r,o,i,u,f,c,l,a,s,p,y,d,b,v,h){let m=t,g=h,w=0,j=!1;for(;void 0!==(g=g.get(N))&&!j;){const e=g.get(t);if(w+=1,void 0!==e){if(e===w)throw new RangeError("Cyclic object value");j=!0}void 0===g.get(N)&&(w=0)}if("function"==typeof l?m=l(e,m):m instanceof Date?m=p(m):"comma"===n&&S(m)&&(m=T(m,function(t){return t instanceof Date?p(t):t})),null===m){if(i)return c&&!b?c(e,$.encoder,v,"key",y):e;m=""}if("string"==typeof(O=m)||"number"==typeof O||"boolean"==typeof O||"symbol"==typeof O||"bigint"==typeof O||function(t){return!(!t||"object"!=typeof t||!(t.constructor&&t.constructor.isBuffer&&t.constructor.isBuffer(t)))}(m))return c?[d(b?e:c(e,$.encoder,v,"key",y))+"="+d(c(m,$.encoder,v,"value",y))]:[d(e)+"="+d(String(m))];var O;const E=[];if(void 0===m)return E;let R;if("comma"===n&&S(m))b&&c&&(m=T(m,c)),R=[{value:m.length>0?m.join(",")||null:void 0}];else if(S(l))R=l;else{const t=Object.keys(m);R=a?t.sort(a):t}const k=f?e.replace(/\./g,"%2E"):e,I=r&&S(m)&&1===m.length?k+"[]":k;if(o&&S(m)&&0===m.length)return I+"[]";for(let e=0;e<R.length;++e){const g=R[e],j="object"==typeof g&&void 0!==g.value?g.value:m[g];if(u&&null===j)continue;const O=s&&f?g.replace(/\./g,"%2E"):g,T=S(m)?"function"==typeof n?n(I,O):I:I+(s?"."+O:"["+O+"]");h.set(t,w);const k=new WeakMap;k.set(N,h),A(E,_(j,T,n,r,o,i,u,f,"comma"===n&&b&&S(m)?null:c,l,a,s,p,y,d,b,v,k))}return E},x=Object.prototype.hasOwnProperty,C=Array.isArray,P={allowDots:!1,allowEmptyArrays:!1,allowPrototypes:!1,allowSparse:!1,arrayLimit:20,charset:"utf-8",charsetSentinel:!1,comma:!1,decodeDotInKeys:!1,decoder:function(t,e,n){const r=t.replace(/\+/g," ");if("iso-8859-1"===n)return r.replace(/%[0-9a-f]{2}/gi,unescape);try{return decodeURIComponent(r)}catch(t){return r}},delimiter:"&",depth:5,duplicates:"combine",ignoreQueryPrefix:!1,interpretNumericEntities:!1,parameterLimit:1e3,parseArrays:!0,plainObjects:!1,strictNullHandling:!1},F=function(t){return t.replace(/&#(\d+);/g,function(t,e){return String.fromCharCode(parseInt(e,10))})},U=function(t,e){return t&&"string"==typeof t&&e.comma&&t.indexOf(",")>-1?t.split(","):t},q=function(t,e,n,r){if(!t)return;const o=n.allowDots?t.replace(/\.([^.[]+)/g,"[$1]"):t,i=/(\[[^[\]]*])/g;let u=n.depth>0&&/(\[[^[\]]*])/.exec(o);const f=u?o.slice(0,u.index):o,c=[];if(f){if(!n.plainObjects&&x.call(Object.prototype,f)&&!n.allowPrototypes)return;c.push(f)}let l=0;for(;n.depth>0&&null!==(u=i.exec(o))&&l<n.depth;){if(l+=1,!n.plainObjects&&x.call(Object.prototype,u[1].slice(1,-1))&&!n.allowPrototypes)return;c.push(u[1])}return u&&c.push("["+o.slice(u.index)+"]"),function(t,e,n,r){let o=r?e:U(e,n);for(let e=t.length-1;e>=0;--e){let r;const i=t[e];if("[]"===i&&n.parseArrays)r=v(o)?o:n.allowEmptyArrays&&(""===o||n.strictNullHandling&&null===o)?[]:E([],o,n.arrayLimit,n.plainObjects);else{r=n.plainObjects?Object.create(null):{};const t="["===i.charAt(0)&&"]"===i.charAt(i.length-1)?i.slice(1,-1):i,e=n.decodeDotInKeys?t.replace(/%2E/g,"."):t,u=parseInt(e,10);n.parseArrays||""!==e?!isNaN(u)&&i!==e&&String(u)===e&&u>=0&&n.parseArrays&&u<=n.arrayLimit?(r=[],r[u]=o):"__proto__"!==e&&(r[e]=o):r={0:o}}o=r}return o}(c,e,n,r)};function K(t,e){const n=function(t){if(!t)return P;if(void 0!==t.allowEmptyArrays&&"boolean"!=typeof t.allowEmptyArrays)throw new TypeError("`allowEmptyArrays` option can only be `true` or `false`, when provided");if(void 0!==t.decodeDotInKeys&&"boolean"!=typeof t.decodeDotInKeys)throw new TypeError("`decodeDotInKeys` option can only be `true` or `false`, when provided");if(null!=t.decoder&&"function"!=typeof t.decoder)throw new TypeError("Decoder has to be a function.");if(void 0!==t.charset&&"utf-8"!==t.charset&&"iso-8859-1"!==t.charset)throw new TypeError("The charset option must be either utf-8, iso-8859-1, or undefined");const e=void 0===t.charset?P.charset:t.charset,n=void 0===t.duplicates?P.duplicates:t.duplicates;if("combine"!==n&&"first"!==n&&"last"!==n)throw new TypeError("The duplicates option must be either combine, first, or last");return{allowDots:void 0===t.allowDots?!0===t.decodeDotInKeys||P.allowDots:!!t.allowDots,allowEmptyArrays:"boolean"==typeof t.allowEmptyArrays?!!t.allowEmptyArrays:P.allowEmptyArrays,allowPrototypes:"boolean"==typeof t.allowPrototypes?t.allowPrototypes:P.allowPrototypes,allowSparse:"boolean"==typeof t.allowSparse?t.allowSparse:P.allowSparse,arrayLimit:"number"==typeof t.arrayLimit?t.arrayLimit:P.arrayLimit,charset:e,charsetSentinel:"boolean"==typeof t.charsetSentinel?t.charsetSentinel:P.charsetSentinel,comma:"boolean"==typeof t.comma?t.comma:P.comma,decodeDotInKeys:"boolean"==typeof t.decodeDotInKeys?t.decodeDotInKeys:P.decodeDotInKeys,decoder:"function"==typeof t.decoder?t.decoder:P.decoder,delimiter:"string"==typeof t.delimiter||(r=t.delimiter,"[object RegExp]"===Object.prototype.toString.call(r))?t.delimiter:P.delimiter,depth:"number"==typeof t.depth||!1===t.depth?+t.depth:P.depth,duplicates:n,ignoreQueryPrefix:!0===t.ignoreQueryPrefix,interpretNumericEntities:"boolean"==typeof t.interpretNumericEntities?t.interpretNumericEntities:P.interpretNumericEntities,parameterLimit:"number"==typeof t.parameterLimit?t.parameterLimit:P.parameterLimit,parseArrays:!1!==t.parseArrays,plainObjects:"boolean"==typeof t.plainObjects?t.plainObjects:P.plainObjects,strictNullHandling:"boolean"==typeof t.strictNullHandling?t.strictNullHandling:P.strictNullHandling};var r}(e);if(""===t||null==t)return n.plainObjects?Object.create(null):{};const r="string"==typeof t?function(t,e){const n={__proto__:null},r=(e.ignoreQueryPrefix?t.replace(/^\?/,""):t).split(e.delimiter,Infinity===e.parameterLimit?void 0:e.parameterLimit);let o,i=-1,u=e.charset;if(e.charsetSentinel)for(o=0;o<r.length;++o)0===r[o].indexOf("utf8=")&&("utf8=%E2%9C%93"===r[o]?u="utf-8":"utf8=%26%2310003%3B"===r[o]&&(u="iso-8859-1"),i=o,o=r.length);for(o=0;o<r.length;++o){if(o===i)continue;const t=r[o],f=t.indexOf("]="),c=-1===f?t.indexOf("="):f+1;let l,a;-1===c?(l=e.decoder(t,P.decoder,u,"key"),a=e.strictNullHandling?null:""):(l=e.decoder(t.slice(0,c),P.decoder,u,"key"),a=T(U(t.slice(c+1),e),function(t){return e.decoder(t,P.decoder,u,"value")})),a&&e.interpretNumericEntities&&"iso-8859-1"===u&&(a=F(a)),t.indexOf("[]=")>-1&&(a=C(a)?[a]:a);const s=x.call(n,l);s&&"combine"===e.duplicates?n[l]=E(n[l],a,e.arrayLimit,e.plainObjects):s&&"last"!==e.duplicates||(n[l]=a)}return n}(t,n):t;let o=n.plainObjects?Object.create(null):{};const i=Object.keys(r);for(let e=0;e<i.length;++e){const u=i[e],f=q(u,r[u],n,"string"==typeof t);o=j(o,f,n)}return!0===n.allowSparse?o:function(t){const e=[{obj:{o:t},prop:"o"}],n=[];for(let t=0;t<e.length;++t){const r=e[t],o=r.obj[r.prop],i=Object.keys(o);for(let t=0;t<i.length;++t){const r=i[t],u=o[r];"object"==typeof u&&null!==u&&-1===n.indexOf(u)&&(e.push({obj:o,prop:r}),n.push(u))}}return function(t){for(;t.length>1;){const e=t.pop(),n=e.obj[e.prop];if(y(n)){const t=[];for(let e=0;e<n.length;++e)void 0!==n[e]&&t.push(n[e]);e.obj[e.prop]=t}}}(e),t}(o)}var Z=/*#__PURE__*/function(){function t(t,e,n){var r,o;this.name=t,this.definition=e,this.bindings=null!=(r=e.bindings)?r:{},this.wheres=null!=(o=e.wheres)?o:{},this.config=n}var n=t.prototype;return n.matchesUrl=function(t){var e,n=this;if(!this.definition.methods.includes("GET"))return!1;var r=this.template.replace(/[.*+$()[\]]/g,"\\$&").replace(/(\/?){([^}?]*)(\??)}/g,function(t,e,r,o){var i,u="(?<"+r+">"+((null==(i=n.wheres[r])?void 0:i.replace(/(^\^)|(\$$)/g,""))||"[^/?]+")+")";return o?"("+e+u+")?":""+e+u}).replace(/^\w+:\/\//,""),o=t.replace(/^\w+:\/\//,"").split("?"),i=o[0],u=o[1],f=null!=(e=new RegExp("^"+r+"/?$").exec(i))?e:new RegExp("^"+r+"/?$").exec(decodeURI(i));if(f){for(var c in f.groups)f.groups[c]="string"==typeof f.groups[c]?decodeURIComponent(f.groups[c]):f.groups[c];return{params:f.groups,query:K(u)}}return!1},n.compile=function(t){var e=this;return this.parameterSegments.length?this.template.replace(/{([^}?]+)(\??)}/g,function(n,r,o){var i,u;if(!o&&[null,void 0].includes(t[r]))throw new Error("Ziggy error: '"+r+"' parameter is required for route '"+e.name+"'.");if(e.wheres[r]&&!new RegExp("^"+(o?"("+e.wheres[r]+")?":e.wheres[r])+"$").test(null!=(u=t[r])?u:""))throw new Error("Ziggy error: '"+r+"' parameter '"+t[r]+"' does not match required format '"+e.wheres[r]+"' for route '"+e.name+"'.");return encodeURI(null!=(i=t[r])?i:"").replace(/%7C/g,"|").replace(/%25/g,"%").replace(/\$/g,"%24")}).replace(this.config.absolute?/(\.[^/]+?)(\/\/)/:/(^)(\/\/)/,"$1/").replace(/\/+$/,""):this.template},e(t,[{key:"template",get:function(){var t=(this.origin+"/"+this.definition.uri).replace(/\/+$/,"");return""===t?"/":t}},{key:"origin",get:function(){return this.config.absolute?this.definition.domain?""+this.config.url.match(/^\w+:\/\//)[0]+this.definition.domain+(this.config.port?":"+this.config.port:""):this.config.url:""}},{key:"parameterSegments",get:function(){var t,e;return null!=(t=null==(e=this.template.match(/{[^}?]+\??}/g))?void 0:e.map(function(t){return{name:t.replace(/{|\??}/g,""),required:!/\?}$/.test(t)}}))?t:[]}}])}(),B=/*#__PURE__*/function(t){function r(e,r,o,i){var u;if(void 0===o&&(o=!0),(u=t.call(this)||this).t=null!=i?i:"undefined"!=typeof Ziggy?Ziggy:null==globalThis?void 0:globalThis.Ziggy,!u.t&&"undefined"!=typeof document&&document.getElementById("ziggy-routes-json")&&(globalThis.Ziggy=JSON.parse(document.getElementById("ziggy-routes-json").textContent),u.t=globalThis.Ziggy),u.t=n({},u.t,{absolute:o}),e){if(!u.t.routes[e])throw new Error("Ziggy error: route '"+e+"' is not in the route list.");u.i=new Z(e,u.t.routes[e],u.t),u.u=u.l(r)}return u}var o,u;u=t,(o=r).prototype=Object.create(u.prototype),o.prototype.constructor=o,i(o,u);var f=r.prototype;return f.toString=function(){var t=this,e=Object.keys(this.u).filter(function(e){return!t.i.parameterSegments.some(function(t){return t.name===e})}).filter(function(t){return"_query"!==t}).reduce(function(e,r){var o;return n({},e,((o={})[r]=t.u[r],o))},{});return this.i.compile(this.u)+function(t,e){let n=t;const r=function(t){if(!t)return $;if(void 0!==t.allowEmptyArrays&&"boolean"!=typeof t.allowEmptyArrays)throw new TypeError("`allowEmptyArrays` option can only be `true` or `false`, when provided");if(void 0!==t.encodeDotInKeys&&"boolean"!=typeof t.encodeDotInKeys)throw new TypeError("`encodeDotInKeys` option can only be `true` or `false`, when provided");if(null!=t.encoder&&"function"!=typeof t.encoder)throw new TypeError("Encoder has to be a function.");const e=t.charset||$.charset;if(void 0!==t.charset&&"utf-8"!==t.charset&&"iso-8859-1"!==t.charset)throw new TypeError("The charset option must be either utf-8, iso-8859-1, or undefined");let n=s;if(void 0!==t.format){if(!R.call(a,t.format))throw new TypeError("Unknown format option provided.");n=t.format}const r=a[n];let o,i=$.filter;if(("function"==typeof t.filter||S(t.filter))&&(i=t.filter),o=t.arrayFormat in k?t.arrayFormat:"indices"in t?t.indices?"indices":"repeat":$.arrayFormat,"commaRoundTrip"in t&&"boolean"!=typeof t.commaRoundTrip)throw new TypeError("`commaRoundTrip` must be a boolean, or absent");return{addQueryPrefix:"boolean"==typeof t.addQueryPrefix?t.addQueryPrefix:$.addQueryPrefix,allowDots:void 0===t.allowDots?!0===t.encodeDotInKeys||$.allowDots:!!t.allowDots,allowEmptyArrays:"boolean"==typeof t.allowEmptyArrays?!!t.allowEmptyArrays:$.allowEmptyArrays,arrayFormat:o,charset:e,charsetSentinel:"boolean"==typeof t.charsetSentinel?t.charsetSentinel:$.charsetSentinel,commaRoundTrip:t.commaRoundTrip,delimiter:void 0===t.delimiter?$.delimiter:t.delimiter,encode:"boolean"==typeof t.encode?t.encode:$.encode,encodeDotInKeys:"boolean"==typeof t.encodeDotInKeys?t.encodeDotInKeys:$.encodeDotInKeys,encoder:"function"==typeof t.encoder?t.encoder:$.encoder,encodeValuesOnly:"boolean"==typeof t.encodeValuesOnly?t.encodeValuesOnly:$.encodeValuesOnly,filter:i,format:n,formatter:r,serializeDate:"function"==typeof t.serializeDate?t.serializeDate:$.serializeDate,skipNulls:"boolean"==typeof t.skipNulls?t.skipNulls:$.skipNulls,sort:"function"==typeof t.sort?t.sort:null,strictNullHandling:"boolean"==typeof t.strictNullHandling?t.strictNullHandling:$.strictNullHandling}}(e);let o,i;"function"==typeof r.filter?(i=r.filter,n=i("",n)):S(r.filter)&&(i=r.filter,o=i);const u=[];if("object"!=typeof n||null===n)return"";const f=k[r.arrayFormat],c="comma"===f&&r.commaRoundTrip;o||(o=Object.keys(n)),r.sort&&o.sort(r.sort);const l=new WeakMap;for(let t=0;t<o.length;++t){const e=o[t];r.skipNulls&&null===n[e]||A(u,_(n[e],e,f,c,r.allowEmptyArrays,r.strictNullHandling,r.skipNulls,r.encodeDotInKeys,r.encode?r.encoder:null,r.filter,r.sort,r.allowDots,r.serializeDate,r.format,r.formatter,r.encodeValuesOnly,r.charset,l))}const p=u.join(r.delimiter);let y=!0===r.addQueryPrefix?"?":"";return r.charsetSentinel&&(y+="iso-8859-1"===r.charset?"utf8=%26%2310003%3B&":"utf8=%E2%9C%93&"),p.length>0?y+p:""}(n({},e,this.u._query),{addQueryPrefix:!0,arrayFormat:"indices",encodeValuesOnly:!0,skipNulls:!0,encoder:function(t,e){return"boolean"==typeof t?Number(t):e(t)}})},f.p=function(t){var e=this;t?this.t.absolute&&t.startsWith("/")&&(t=this.v().host+t):t=this.h();var r={},o=Object.entries(this.t.routes).find(function(n){return r=new Z(n[0],n[1],e.t).matchesUrl(t)})||[void 0,void 0];return n({name:o[0]},r,{route:o[1]})},f.h=function(){var t=this.v(),e=t.pathname,n=t.search;return(this.t.absolute?t.host+e:e.replace(this.t.url.replace(/^\w*:\/\/[^/]+/,""),"").replace(/^\/+/,"/"))+n},f.current=function(t,e){var r=this.p(),o=r.name,i=r.params,u=r.query,f=r.route;if(!t)return o;var c=new RegExp("^"+t.replace(/\./g,"\\.").replace(/\*/g,".*")+"$").test(o);if([null,void 0].includes(e)||!c)return c;var l=new Z(o,f,this.t);e=this.l(e,l);var a=n({},i,u);if(Object.values(e).every(function(t){return!t})&&!Object.values(a).some(function(t){return void 0!==t}))return!0;var s=function(t,e){return Object.entries(t).every(function(t){var n=t[0],r=t[1];return Array.isArray(r)&&Array.isArray(e[n])?r.every(function(t){return e[n].includes(t)||e[n].includes(decodeURIComponent(t))}):"object"==typeof r&&"object"==typeof e[n]&&null!==r&&null!==e[n]?s(r,e[n]):e[n]==r||e[n]==decodeURIComponent(r)})};return s(e,a)},f.v=function(){var t,e,n,r,o,i,u="undefined"!=typeof window?window.location:{},f=u.host,c=u.pathname,l=u.search;return{host:null!=(t=null==(e=this.t.location)?void 0:e.host)?t:void 0===f?"":f,pathname:null!=(n=null==(r=this.t.location)?void 0:r.pathname)?n:void 0===c?"":c,search:null!=(o=null==(i=this.t.location)?void 0:i.search)?o:void 0===l?"":l}},f.has=function(t){return this.t.routes.hasOwnProperty(t)},f.l=function(t,e){var r=this;void 0===t&&(t={}),void 0===e&&(e=this.i),null!=t||(t={}),t=["string","number"].includes(typeof t)?[t]:t;var o=e.parameterSegments.filter(function(t){return!r.t.defaults[t.name]});if(Array.isArray(t))t=t.reduce(function(t,e,r){var i,u;return n({},t,o[r]?((i={})[o[r].name]=e,i):"object"==typeof e?e:((u={})[e]="",u))},{});else if(1===o.length&&!t.hasOwnProperty(o[0].name)&&(t.hasOwnProperty(Object.values(e.bindings)[0])||t.hasOwnProperty("id"))){var i;(i={})[o[0].name]=t,t=i}return n({},this.m(e),this.j(t,e))},f.m=function(t){var e=this;return t.parameterSegments.filter(function(t){return e.t.defaults[t.name]}).reduce(function(t,r,o){var i,u=r.name;return n({},t,((i={})[u]=e.t.defaults[u],i))},{})},f.j=function(t,e){var r=e.bindings,o=e.parameterSegments;return Object.entries(t).reduce(function(t,e){var i,u,f=e[0],c=e[1];if(!c||"object"!=typeof c||Array.isArray(c)||!o.some(function(t){return t.name===f}))return n({},t,((u={})[f]=c,u));var l=c.hasOwnProperty(r[f])?r[f]:c.hasOwnProperty("id")?"id":void 0;if(void 0===l)throw new Error("Ziggy error: object passed as '"+f+"' parameter is missing route model binding key '"+r[f]+"'.");return n({},t,((i={})[f]=c[l],i))},{})},f.valueOf=function(){return this.toString()},e(r,[{key:"params",get:function(){var t=this.p();return n({},t.params,t.query)}},{key:"routeParams",get:function(){return this.p().params}},{key:"queryParams",get:function(){return this.p().query}}])}(/*#__PURE__*/f(String));return function(t,e,n,r){var o=new B(t,e,n,r);return t?o.toString():o}});
+</script>        <script src="https://cityoflovelock.com/app-config.js"></script>
+                                <link rel="icon"
+                type="image/png"
+                href="https://assets.smartxeo.com/40/68370-seal.png">
+                    <meta name="robots"
+        content="index, follow">
 
-	<!-- This site is optimized with the Yoast SEO plugin v28.3 - https://yoast.com/product/yoast-seo-wordpress/ -->
-	<title>Lovelock Utility Rate Notice | City of Lovelock</title>
-	<meta name="description" content="Learn about Lovelock Utility Rate Notice from City Of Lovelock with sewer and garbage fee increases effective 2026. See your February bill for details." />
-	<link rel="canonical" href="https://cityoflovelock.com/" />
-	<meta property="og:locale" content="en_US" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Lovelock Utility Rate Notice | City of Lovelock" />
-	<meta property="og:description" content="Learn about Lovelock Utility Rate Notice from City Of Lovelock with sewer and garbage fee increases effective 2026. See your February bill for details." />
-	<meta property="og:url" content="https://cityoflovelock.com/" />
-	<meta property="og:site_name" content="City Of Lovelock" />
-	<meta property="article:modified_time" content="2026-07-13T17:03:56+00:00" />
-	<meta property="og:image" content="https://cityoflovelock.com/wp-content/uploads/2025/07/Lovelock.jpg" />
-	<meta property="og:image:width" content="960" />
-	<meta property="og:image:height" content="640" />
-	<meta property="og:image:type" content="image/jpeg" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Lovelock Utility Rate Notice | City of Lovelock" />
-	<meta name="twitter:description" content="Learn about Lovelock Utility Rate Notice from City Of Lovelock with sewer and garbage fee increases effective 2026. See your February bill for details." />
-	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/cityoflovelock.com\/","url":"https:\/\/cityoflovelock.com\/","name":"Lovelock Utility Rate Notice | City of Lovelock","isPartOf":{"@id":"https:\/\/cityoflovelock.com\/#website"},"primaryImageOfPage":{"@id":"https:\/\/cityoflovelock.com\/#primaryimage"},"image":{"@id":"https:\/\/cityoflovelock.com\/#primaryimage"},"thumbnailUrl":"https:\/\/cityoflovelock.com\/wp-content\/uploads\/2025\/07\/Lovelock.jpg","datePublished":"2020-01-22T23:15:43+00:00","dateModified":"2026-07-13T17:03:56+00:00","description":"Learn about Lovelock Utility Rate Notice from City Of Lovelock with sewer and garbage fee increases effective 2026. See your February bill for details.","breadcrumb":{"@id":"https:\/\/cityoflovelock.com\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/cityoflovelock.com\/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/cityoflovelock.com\/#primaryimage","url":"https:\/\/cityoflovelock.com\/wp-content\/uploads\/2025\/07\/Lovelock.jpg","contentUrl":"https:\/\/cityoflovelock.com\/wp-content\/uploads\/2025\/07\/Lovelock.jpg","width":960,"height":640,"caption":"Heart sculpture with \"LONELOCH\" ground lettering"},{"@type":"BreadcrumbList","@id":"https:\/\/cityoflovelock.com\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https:\/\/cityoflovelock.com\/#website","url":"https:\/\/cityoflovelock.com\/","name":"City Of Lovelock","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/cityoflovelock.com\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"}]}</script>
-	<!-- / Yoast SEO plugin. -->
+<meta property="og:title"
+    content="Lovelock, NV">
 
 
-<link rel='dns-prefetch' href='//fonts.googleapis.com' />
-<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
-<link rel="alternate" type="application/rss+xml" title="City Of Lovelock &raquo; Feed" href="https://cityoflovelock.com/feed/" />
-<link rel="alternate" type="application/rss+xml" title="City Of Lovelock &raquo; Comments Feed" href="https://cityoflovelock.com/comments/feed/" />
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://cityoflovelock.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcityoflovelock.com%2F" />
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://cityoflovelock.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcityoflovelock.com%2F&#038;format=xml" />
-<link rel="preload" href="https://cityoflovelock.com/wp-content/plugins/bb-plugin/fonts/fontawesome/5.15.4/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-<link rel="preload" href="https://cityoflovelock.com/wp-content/plugins/bb-plugin/fonts/fontawesome/5.15.4/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-<style id="wp-img-auto-sizes-contain-inline-css">
-img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
-/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
-</style>
-<style id="wp-emoji-styles-inline-css">
+        <link rel="preload" as="style" href="https://cityoflovelock.com/build/assets/app-041d9288.css" /><link rel="preload" as="style" href="https://cityoflovelock.com/build/assets/imagePreview-08a64fbb.css" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/app-aff00d23.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/bootstrap.esm-447caa5e.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/jquery-7f72e7f7.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/index-572c9a6d.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/imagePreview-41811030.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/aiPopover-8f605908.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/sortableCategoryItems-22e3f705.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/toasts-f10e8b93.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/marked.esm-c540769f.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/aiApiClient-de337b22.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/aiUsageState-ebaba548.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/sortable.esm-616533ae.js" /><link rel="stylesheet" href="https://cityoflovelock.com/build/assets/app-041d9288.css" data-navigate-track="reload" /><link rel="stylesheet" href="https://cityoflovelock.com/build/assets/imagePreview-08a64fbb.css" data-navigate-track="reload" /><script type="module" src="https://cityoflovelock.com/build/assets/app-aff00d23.js" data-navigate-track="reload"></script>        <meta name="csrf-token"
+            content="3IfFl9jQ6ArGCDiqlUakSXePlpiSPUn45l05BEeL">
+                    <style>
+                :root {
+                    --site-font-family: Inter, sans-serif;
+                    --site-page-bg: #ffffff;
+                }
 
-	img.wp-smiley, img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-	}
-/*# sourceURL=wp-emoji-styles-inline-css */
-</style>
-<style id="wp-block-library-inline-css">
-:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+                a {
+                    color: #0049db;
+                }
+            </style>
+                            
+                    </head>
 
-/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
-</style>
-<style id="classic-theme-styles-inline-css">
-/*! This file is auto-generated */
-.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
-/*# sourceURL=/wp-includes/css/classic-themes.min.css */
-</style>
+    <body class="site-body">
+        <div class="toast-container position-fixed top-0 end-0 p-3 z-11000">
+            
+        
+                    
+        
+                    
+        
+                    
+        
+            
+    </div>
+        <div id="sitePageContainer">
+            <header>
+                        <nav
+    data-bs-theme="light"
+    class="navbar navbar-expand-lg sticky-top"
+    style="background:#fcf6ef; --link-text-color:#003366;"
+    id="site-navbar">
+    <div class="container-fluid site-header-container">
+                    <a href="https://cityoflovelock.com" class="px-4 my-1 site-logo-link">
+                <img src="https://assets.smartxeo.com/40/68370-seal.png"
+                    alt="Image of Agency Logo"
+                    title="Agency Logo"
+                    style="height:125px;
+                        max-width: 100%;
+                        object-fit: contain;">
+                </img>
+            </a>
+                <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarSupportedContent">
 
-<style id="site-designer-shared-pattern-classes-inline-css">
-/* Dark cover/section overlay + on-dark text. */
-body .wp-site-blocks .is-style-overlay-dark .wp-block-cover__background { background-color: var(--wp--preset--color--base-3); color: var(--wp--preset--color--contrast-3); }
-.wp-block-cover.is-style-overlay-dark .wp-block-cover__background.has-background-dim { opacity: 0.50 !important; }
-:is(.wp-block-designsetgo-section, .wp-block-designsetgo-scroll-slides).is-style-overlay-dark { --dsgo-overlay-color: var(--wp--preset--color--base-3); --dsgo-overlay-opacity: 0.50; color: var(--wp--preset--color--contrast-3); }
-.dsgo-image-accordion-item.is-style-overlay-dark { --dsgo-overlay-color: var(--wp--preset--color--base-3); }
-.wp-block-group.has-background.is-style-overlay-dark { box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--wp--preset--color--base-3) 50%, transparent); }
-body .wp-site-blocks .is-style-overlay-dark, body .wp-site-blocks .is-style-on-dark { --dsgo-text-color: var(--wp--preset--color--contrast-3); color: var(--wp--preset--color--contrast-3) !important; }
-body .wp-site-blocks .is-style-overlay-dark :is(h1,h2,h3,h4,h5,h6,p,li,blockquote,cite), body .wp-site-blocks .is-style-on-dark :is(h1,h2,h3,h4,h5,h6,p,li,blockquote,cite) { color: var(--wp--preset--color--contrast-3) !important; }
+            
+            <div class="nav-items-with-search">
 
-/* Solid dark section background + light text. */
-.is-style-bg-dark { background-color: var(--wp--preset--color--contrast); color: var(--wp--preset--color--base); }
-.is-style-bg-dark a { color: var(--wp--preset--color--base); }
-/*# sourceURL=site-designer-shared-pattern-classes-inline-css */
-</style>
-<style id="global-styles-inline-css">
-:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
-/*# sourceURL=global-styles-inline-css */
-</style>
+                                    <div class="w-100 d-flex justify-content-end pb-2">
+                        <div id="navSearchWrapper"
+                            style="background:#ffffff;
+                                --input-bg-color:#ffffff;
+                                --input-text-color:#003366;">
+                            <form id="navSearchForm"
+                                action="https://cityoflovelock.com/search"
+                                method="GET">
+                                                                <div class="input-group">
+                                    <input id="navSearch"
+                                        type="text"
+                                        name="searchText"
+                                        placeholder="Search..."
+                                        class="form-control autofill-styled ps-3"
+                                        style="color:#003366;
+                                            font-size: 14px;"
+                                        aria-label="Search Bar">
+                                    <button type="submit"
+                                        id="navSearchButton"
+                                        class="btn"
+                                        style="background:#fcf6ef;
+                                            color:#003366;
+                                            font-size: 14px;"
+                                                                                    aria-label="Search"
+                                                                                >
+                                                                                    <span class="fa-solid
+                                                fa-search
+                                                d-flex
+                                                align-items-center
+                                                justify-content-center">
+                                            </span>
+                                                                            </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                
+                <ul class="navbar-nav
+                    d-flex
+                    flex-wrap
+                    justify-content-end w-100">
+                                                                                                        <li class="nav-item"
+                                    style="border-color: #003366 !important">
+                                    <a class="nav-link weight-bold"
+                                        aria-current="page"
+                                        href="https://cityoflovelock.com"
+                                        style="color:#003366;
+                                            font-size: 18px;"
+                                        >
+                                        Home
+                                    </a>
+                                </li>
+                                                                                                                                                            <li class="nav-item"
+                                    style="border-color: #003366 !important">
+                                    <a class="nav-link weight-bold"
+                                        aria-current="page"
+                                        href="https://cityoflovelock.com/about-lovelock"
+                                        style="color:#003366;
+                                            font-size: 18px;"
+                                        >
+                                        About
+                                    </a>
+                                </li>
+                                                                                                                            <li class="nav-item dropdown"
+                                style="border-color: #003366 !important">
+                                <a class="nav-link dropdown-toggle weight-bold"
+                                    href="#"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style="color:#003366;
+                                        font-size: 18px;">
+                                    Departments
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end"
+                                    style="background-color: #fcf6ef;
+                                        filter: saturate(0.9) brightness(1.1);
+                                        border-color: #003366;">
+                                                                                                                        <li class="nav-item-dropdown"
+                                                style="border-color: #003366;">
+                                                <a class="dropdown-item weight-bold"
+                                                    style="color:#003366;
+                                                        font-size: 18px;"
+                                                    href="https://cityoflovelock.com/city-council"
+                                                    >
+                                                        City Council
+                                                                                                    </a>
+                                            </li>
+                                                                                                                                                                <li class="nav-item-dropdown"
+                                                style="border-color: #003366;">
+                                                <a class="dropdown-item weight-bold"
+                                                    style="color:#003366;
+                                                        font-size: 18px;"
+                                                    href="https://cityoflovelock.com/police-department"
+                                                    >
+                                                        Police Department
+                                                                                                    </a>
+                                            </li>
+                                                                                                                                                                <li class="nav-item-dropdown"
+                                                style="border-color: #003366;">
+                                                <a class="dropdown-item weight-bold"
+                                                    style="color:#003366;
+                                                        font-size: 18px;"
+                                                    href="https://cityoflovelock.com/public-works"
+                                                    >
+                                                        Public Works
+                                                                                                    </a>
+                                            </li>
+                                                                                                            </ul>
+                            </li>
+                                                                                                                                <li class="nav-item"
+                                    style="border-color: #003366 !important">
+                                    <a class="nav-link weight-bold"
+                                        aria-current="page"
+                                        href="https://cityoflovelock.com/forms"
+                                        style="color:#003366;
+                                            font-size: 18px;"
+                                        >
+                                        Forms
+                                    </a>
+                                </li>
+                                                                                                                                                            <li class="nav-item"
+                                    style="border-color: #003366 !important">
+                                    <a class="nav-link weight-bold"
+                                        aria-current="page"
+                                        href="https://cityoflovelock.com/links"
+                                        style="color:#003366;
+                                            font-size: 18px;"
+                                        >
+                                        Links
+                                    </a>
+                                </li>
+                                                                                                                                                            <li class="nav-item"
+                                    style="border-color: #003366 !important">
+                                    <a class="nav-link weight-bold"
+                                        aria-current="page"
+                                        href="https://cityoflovelock.com/employment"
+                                        style="color:#003366;
+                                            font-size: 18px;"
+                                        >
+                                        Employment
+                                    </a>
+                                </li>
+                                                                                                                                                            <li class="nav-item"
+                                    style="border-color: #003366 !important">
+                                    <a class="nav-link weight-bold"
+                                        aria-current="page"
+                                        href="https://cityoflovelock.com/contact-us"
+                                        style="color:#003366;
+                                            font-size: 18px;"
+                                        >
+                                        Contact Us
+                                    </a>
+                                </li>
+                                                                                        </ul>
 
-<link rel='stylesheet' id='font-awesome-5-css' href='https://cityoflovelock.com/wp-content/plugins/bb-plugin/fonts/fontawesome/5.15.4/css/all.min.css?ver=2.5.4.3' media='all' />
-<link rel='stylesheet' id='jquery-magnificpopup-css' href='https://cityoflovelock.com/wp-content/plugins/bb-plugin/css/jquery.magnificpopup.min.css?ver=2.5.4.3' media='all' />
-<link rel='stylesheet' id='yui3-css' href='https://cityoflovelock.com/wp-content/plugins/bb-plugin/css/yui3.css?ver=2.5.4.3' media='all' />
-<link rel='stylesheet' id='fl-slideshow-css' href='https://cityoflovelock.com/wp-content/plugins/bb-plugin/css/fl-slideshow.min.css?ver=2.5.4.3' media='all' />
-<link rel='stylesheet' id='fl-builder-layout-15-css' href='https://cityoflovelock.com/wp-content/uploads/bb-plugin/cache/15-layout.css?ver=f9be3c9ee5ceed42284739d782f8d991' media='all' />
-<link rel='stylesheet' id='wp-components-css' href='https://cityoflovelock.com/wp-includes/css/dist/components/style.min.css?ver=7.0.4' media='all' />
-<link rel='stylesheet' id='godaddy-styles-css' href='https://cityoflovelock.com/wp-content/mu-plugins/vendor/wpex/godaddy-launch/includes/Dependencies/GoDaddy/Styles/build/latest.css?ver=2.0.2' media='all' />
-<link rel='stylesheet' id='ultimate-icons-css' href='https://cityoflovelock.com/wp-content/uploads/bb-plugin/icons/ultimate-icons/style.css?ver=2.5.4.3' media='all' />
-<link rel='stylesheet' id='fl-builder-layout-bundle-e612f91990f9191f41c5fd5b4077c440-css' href='https://cityoflovelock.com/wp-content/uploads/bb-plugin/cache/e612f91990f9191f41c5fd5b4077c440-layout-bundle.css?ver=2.5.4.3-1.4.2' media='all' />
-<link rel='stylesheet' id='gd-core-css' href='https://cityoflovelock.com/wp-content/plugins/pws-core/public/css/GD-cORe-public.css?ver=4.0.0' media='all' />
-<link rel='stylesheet' id='base-css' href='https://cityoflovelock.com/wp-content/themes/bb-theme/css/base.min.css?ver=1.7.11' media='all' />
-<link rel='stylesheet' id='fl-automator-skin-css' href='https://cityoflovelock.com/wp-content/uploads/bb-theme/skin-629e4f6635223.css?ver=1.7.11' media='all' />
-<link rel='stylesheet' id='pp-animate-css' href='https://cityoflovelock.com/wp-content/plugins/bbpowerpack/assets/css/animate.min.css?ver=3.5.1' media='all' />
-<link rel='stylesheet' id='fl-builder-google-fonts-ad82d8ba2b158cd3e72c91a14b125ff4-css' href='//fonts.googleapis.com/css?family=Roboto:300,400,700,400|Roboto%20Slab:600&#038;ver=7.0.4' media='all' />
-<script id="jquery-core-js" src="https://cityoflovelock.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
-<script id="jquery-migrate-js" src="https://cityoflovelock.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
-<script id="imagesloaded-js" src="https://cityoflovelock.com/wp-includes/js/imagesloaded.min.js?ver=7.0.4"></script>
-<script id="gd-core-js" src="https://cityoflovelock.com/wp-content/plugins/pws-core/public/js/GD-cORe-public.js?ver=4.0.0"></script>
-<script id="smush-lazy-load-js" src="https://cityoflovelock.com/wp-content/plugins/wp-smush-pro/app/assets/js/smush-lazy-load.min.js?ver=3.9.11"></script>
-<link rel="https://api.w.org/" href="https://cityoflovelock.com/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://cityoflovelock.com/wp-json/wp/v2/pages/15" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://cityoflovelock.com/xmlrpc.php?rsd" />
-<link rel='shortlink' href='https://cityoflovelock.com/' />
-		<script>
-			var bb_powerpack = {
-				ajaxurl: 'https://cityoflovelock.com/wp-admin/admin-ajax.php'
-			};
-		</script>
-				<script>
-			document.documentElement.className = document.documentElement.className.replace( 'no-js', 'js' );
-		</script>
-		<style>.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><link rel="icon" href="https://cityoflovelock.com/wp-content/uploads/2020/01/cropped-original_city_seal-32x32.png" sizes="32x32" />
-<link rel="icon" href="https://cityoflovelock.com/wp-content/uploads/2020/01/cropped-original_city_seal-192x192.png" sizes="192x192" />
-<link rel="apple-touch-icon" href="https://cityoflovelock.com/wp-content/uploads/2020/01/cropped-original_city_seal-180x180.png" />
-<meta name="msapplication-TileImage" content="https://cityoflovelock.com/wp-content/uploads/2020/01/cropped-original_city_seal-270x270.png" />
-<style id="wp-site-designer-contrast-fallback"> .wp-block-group:not([data-dsgo-inline-bg]),.wp-block-column:not([data-dsgo-inline-bg]),.wp-block-columns:not([data-dsgo-inline-bg]){--dsgo-text-color:initial;} :is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover:not(.has-text-color){color:var(--wp--preset--color--contrast-3) !important;--dsgo-text-color:var(--wp--preset--color--contrast-3);} body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) h1:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) h2:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) h3:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) h4:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) h5:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) h6:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) p:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) a:where(:not(.wp-element-button):not(.wp-block-social-link-anchor)):not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(:is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column).has-background:not([class*="-background-color"]):not(.has-text-color):not(.is-style-footer-section):not(.is-style-header-section),.wp-block-cover) .wp-element-caption:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)){color:var(--dsgo-text-color,inherit) !important;} body .wp-site-blocks :is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column)[data-dsgo-inline-bg] .wp-block-button:is([class*="is-style-outline"],[class*="is-style-secondary"]) .wp-element-button{color:var(--dsgo-text-color,inherit) !important;border-color:currentColor !important;}body .wp-site-blocks :is(.wp-block-designsetgo-section,.wp-block-group,.wp-block-column)[data-dsgo-inline-bg] .wp-block-button:is([class*="is-style-outline"],[class*="is-style-secondary"]) .wp-element-button:hover{opacity:0.75;} body .wp-site-blocks [data-dsgo-inline-bg] h1:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks [data-dsgo-inline-bg] h2:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks [data-dsgo-inline-bg] h3:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks [data-dsgo-inline-bg] h4:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks [data-dsgo-inline-bg] h5:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks [data-dsgo-inline-bg] h6:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks [data-dsgo-inline-bg] p:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks [data-dsgo-inline-bg] a:where(:not(.wp-element-button):not(.wp-block-social-link-anchor)):not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks [data-dsgo-inline-bg] .wp-element-caption:not(.has-text-color):where(:not(.elementor *):not([data-elementor-type] *)){color:var(--dsgo-text-color,inherit) !important;} .wp-block-designsetgo-section.has-background:not([data-dsgo-inline-bg]):not(.has-text-color){color:var(--wp--preset--color--contrast);--dsgo-text-color:var(--wp--preset--color--contrast);} :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)),.has-background:is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)),.has-text-color:is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)){background-color:var(--wp--preset--color--accent-5);color:var(--wp--preset--color--contrast);} body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) h1:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) h2:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) h3:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) h4:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) h5:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) h6:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) p:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) a:where(:not(.wp-element-button):not(.wp-block-social-link-anchor)):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-1:not(:is(.has-white-background-color,.has-black-background-color)) .wp-element-caption:where(:not(.elementor *):not([data-elementor-type] *)){color:var(--wp--preset--color--contrast);} :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)),.has-background:is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)),.has-text-color:is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)){background-color:var(--wp--preset--color--accent-2);color:var(--wp--preset--color--contrast);} body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) h1:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) h2:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) h3:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) h4:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) h5:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) h6:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) p:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) a:where(:not(.wp-element-button):not(.wp-block-social-link-anchor)):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-2:not(:is(.has-white-background-color,.has-black-background-color)) .wp-element-caption:where(:not(.elementor *):not([data-elementor-type] *)){color:var(--wp--preset--color--contrast);} :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)),.has-background:is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)),.has-text-color:is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)){background-color:var(--wp--preset--color--accent-1);color:var(--wp--preset--color--contrast);} body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) h1:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) h2:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) h3:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) h4:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) h5:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) h6:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) p:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) a:where(:not(.wp-element-button):not(.wp-block-social-link-anchor)):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-3:not(:is(.has-white-background-color,.has-black-background-color)) .wp-element-caption:where(:not(.elementor *):not([data-elementor-type] *)){color:var(--wp--preset--color--contrast);} :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)),.has-background:is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)),.has-text-color:is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)){background-color:var(--wp--preset--color--accent-3);color:var(--wp--preset--color--accent-2);} body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) h1:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) h2:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) h3:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) h4:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) h5:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) h6:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) p:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) a:where(:not(.wp-element-button):not(.wp-block-social-link-anchor)):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-4:not(:is(.has-white-background-color,.has-black-background-color)) .wp-element-caption:where(:not(.elementor *):not([data-elementor-type] *)){color:var(--wp--preset--color--accent-2);} :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)),.has-background:is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)),.has-text-color:is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)){background-color:var(--wp--preset--color--contrast);color:var(--wp--preset--color--base);} body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) h1:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) h2:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) h3:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) h4:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) h5:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) h6:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) p:where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) a:where(:not(.wp-element-button):not(.wp-block-social-link-anchor)):where(:not(.elementor *):not([data-elementor-type] *)),body .wp-site-blocks :is(.wp-block-group,.wp-block-column).is-style-section-5:not(:is(.has-white-background-color,.has-black-background-color)) .wp-element-caption:where(:not(.elementor *):not([data-elementor-type] *)){color:var(--wp--preset--color--base);}   body .wp-site-blocks input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="image"]):not([type="hidden"]),body .wp-site-blocks textarea,body .wp-site-blocks select{background-color:var(--wp--preset--color--base);color:var(--wp--preset--color--contrast);border:1px solid color-mix(in srgb, var(--wp--preset--color--contrast) 30%, transparent);} .wp-site-blocks input[type="submit"]:not(.wp-element-button),.wp-site-blocks button[type="submit"]:not(.wp-element-button){background-color:var(--wp--preset--color--accent-2);color:var(--wp--preset--color--base);border-width:0;padding:12px 30px;font-family:inherit;font-size:var(--wp--preset--font-size--medium, 1rem);line-height:inherit;cursor:pointer;}</style>
-<style id="wp-custom-css">
-.fl-menu a::before {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 3px;
-    left: 0;
-    height: 1px;
-    width: 100%;
-    background-color: #d39a08;
-    transform: scale(0, 1);
-    transition: color 0.1s,transform 0.2s ease-out;
-}
+            </div>
 
-.fl-menu a:hover::before, a:focus::before {
-    transform: scale(.8, 1);
-}
+        </div>
+    </div>
+</nav>
 
-#header-row > .fl-row-content-wrap {
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
-}
+            </header>
+            <main>
+                    <div style="background:#ffffff;">
+        <div style="background-image:url(https://assets.smartxeo.com/40/70787-hero.jpg);
+            height: 700px !important;"
+            class="d-flex flex-column align-items-center justify-content-center hero-transition-wrap hero-image cover fixed"
+            id="heroImage"
+            data-transition-id="1">
+            
+            <div class="hero-transition d-flex flex-column align-items-center justify-content-center overflow-hidden"
+                style="opacity: 0;
+                    position: relative;
+                    top: 0px;
+                    bottom: 0px;
+                    left: 0px;
+                    right: 0px;
+                    transform: scale(1);">
+                <div class="h1 text-center" style="text-shadow:
+                        0px
+                        0px
+                        0px
+                        #000000;
+                    color:
+                        #000000;">
 
+                    
 
-@media only screen and (max-width: 768px){
-	
-.fl-builder-content[data-overlay="1"]:not(.fl-theme-builder-header-sticky) {
-    position: relative;
-    width: 100%;
-    z-index: 100;
-}	
-	
-}
+                </div>
+                <div class="h3 text-center"
+                    style="
+                    text-shadow:
+                        0px
+                        0px
+                        0px
+                        #000000;
+                    color:
+                        #000000;">
 
+                    
 
+                </div>
+            </div>
+        </div>
+    </div>
 
-@media only screen and (max-width: 480px){
-	
-	
-#pws-design {
-	text-align: center;
-}
-	
-	
-	
-}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-</style>
-		<style id="site-designer-logo-constraints">
-			.wp-block-site-logo.is-default-size img {
-				width: auto;
-				height: auto;
-				max-width: 180px;
-				max-height: 80px;
-			}
-			.wp-block-site-logo img {
-				height: auto;
-			}
-		</style>
-		</head>
-<body class="home wp-singular page-template-default page page-id-15 wp-theme-bb-theme fl-builder fl-theme-builder-header fl-theme-builder-header-header fl-theme-builder-footer fl-theme-builder-footer-footer fl-framework-base fl-preset-default fl-full-width fl-search-active" itemscope="itemscope" itemtype="https://schema.org/WebPage">
-<a aria-label="Skip to content" class="fl-screen-reader-text" href="#fl-main-content">Skip to content</a><div class="fl-page">
-	<header class="fl-builder-content fl-builder-content-8 fl-builder-global-templates-locked" data-post-id="8" data-type="header" data-sticky="0" data-sticky-on="" data-sticky-breakpoint="medium" data-shrink="0" data-overlay="1" data-overlay-bg="default" data-shrink-image-height="50px" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader"><div id="header-row" class="fl-row fl-row-full-width fl-row-bg-color fl-node-5e28d1dc0da8e" data-node="5e28d1dc0da8e">
-	<div class="fl-row-content-wrap">
-		<div class="uabb-row-separator uabb-top-row-separator" >
+    <div class="w-100 d-flex justify-content-center p-4"
+        id="quickNavWrapper"
+        style="background:#ffffff;">
+        <div class="d-flex w-75 justify-content-center link-container">
+                            <a href="https://nsb.rpropayments.com/Login/CheckOutFormLogin/2VrYMqDwYCglGkcMB-oTuDPv8v8-"
+                    title="Pay My City Utility Bill"
+                    class="
+                        d-flex
+                        flex-column
+                        justify-content-center
+                        align-items-center
+                        text-decoration-none
+                         navLink "
+                    style="
+                        background-color: #f5e3c7;
+                                                box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.5);
+                        border-radius:
+                             40px
+                            ;
+                        aspect-ratio: unset;"
+                         target="_blank" >
+                                            <span style="color: #000000;">
+                            <span class="fa-solid fa-money-bill fs-6" style="font-size: 33px !important;"></span>
+                        </span>
+                                        <span class="text-center"
+                        style="color:#000000; font-size: 18px">Pay My City Utility Bill</span>
+                </a>
+                            <a href="https://lmwdnv.ourcommunityconnect.com/"
+                    title="Pay My Lovelock Water Bill"
+                    class="
+                        d-flex
+                        flex-column
+                        justify-content-center
+                        align-items-center
+                        text-decoration-none
+                         navLink "
+                    style="
+                        background-color: #f5e3c7;
+                                                box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.5);
+                        border-radius:
+                             40px
+                            ;
+                        aspect-ratio: unset;"
+                         target="_blank" >
+                                            <span style="color: #000000;">
+                            <span class="fa-solid fa-droplet fs-6" style="font-size: 33px !important;"></span>
+                        </span>
+                                        <span class="text-center"
+                        style="color:#000000; font-size: 18px">Pay My Lovelock Water Bill</span>
+                </a>
+                            <a href="https://cityoflovelock.com/city-council"
+                    title="Agendas &amp; Minutes"
+                    class="
+                        d-flex
+                        flex-column
+                        justify-content-center
+                        align-items-center
+                        text-decoration-none
+                         navLink "
+                    style="
+                        background-color: #f5e3c7;
+                                                box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.5);
+                        border-radius:
+                             40px
+                            ;
+                        aspect-ratio: unset;"
+                        >
+                                            <span style="color: #000000;">
+                            <span class="fa-solid fa-clipboard-list fs-6" style="font-size: 33px !important;"></span>
+                        </span>
+                                        <span class="text-center"
+                        style="color:#000000; font-size: 18px">Agendas &amp; Minutes</span>
+                </a>
+                            <a href="https://cityoflovelock.com/about-lovelock"
+                    title="About Lovelock"
+                    class="
+                        d-flex
+                        flex-column
+                        justify-content-center
+                        align-items-center
+                        text-decoration-none
+                         navLink "
+                    style="
+                        background-color: #f5e3c7;
+                                                box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.5);
+                        border-radius:
+                             40px
+                            ;
+                        aspect-ratio: unset;"
+                        >
+                                            <span style="color: #000000;">
+                            <span class="fa-solid fa-person-hiking fs-6" style="font-size: 33px !important;"></span>
+                        </span>
+                                        <span class="text-center"
+                        style="color:#000000; font-size: 18px">About Lovelock</span>
+                </a>
+                    </div>
+    </div>
+    <div class="page-content"
+            style="
+                background-color: #003366;
+                margin-top: 35px;
+                padding-top: 20px;
+                margin-bottom: 0px;
+                padding-bottom: 20px;">
+            <div class="container">
+                                    <div class="d-flex flex-column w-100">
+                                                    <div class="site-content-item"
+        style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px;">
+        <div 
+            data-aid="40"
+        data-pid="301"
+        data-pciid="1240"
+        data-wt="widget_texts"
+    >
+    <div class="d-flex justify-content-center align-items-center"
+    style="background-color: #003366;
+        border-radius: 15px;">
+    <div class="text-widget">
+                            <div class="widget-text-body ql-editor ql-render"
+                style="color: #ffffff;
+                    --text-color: #ffffff;
+                    --mix-color: black;">
+                <h1 class="ql-align-center"><strong class="ql-size-huge">Quick Search</strong></h1>
+            </div>
+            </div>
 </div>
-						<div class="fl-row-content fl-row-fixed-width fl-node-content">
-		
-<div class="fl-col-group fl-node-5e28d1dc0da94 fl-col-group-equal-height fl-col-group-align-center fl-col-group-custom-width" data-node="5e28d1dc0da94">
-			<div class="fl-col fl-node-5e28d1dc0da97 fl-col-small" data-node="5e28d1dc0da97">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-photo fl-node-5e28d2e81247d" data-node="5e28d2e81247d">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-photo fl-photo-align-left" itemscope itemtype="https://schema.org/ImageObject">
-	<div class="fl-photo-content fl-photo-img-png">
-				<a href="https://cityoflovelock.com/" target="_self" itemprop="url">
-				<img decoding="async"   alt="original_city_seal" itemprop="image" height="486" width="480" title="original_city_seal"  data-no-lazy="1" data-srcset="https://cityoflovelock.com/wp-content/uploads/2020/01/original_city_seal.png 480w, https://cityoflovelock.com/wp-content/uploads/2020/01/original_city_seal-296x300.png 296w"  data-src="https://cityoflovelock.com/wp-content/uploads/2020/01/original_city_seal.png" data-sizes="(max-width: 480px) 100vw, 480px" class="fl-photo-img wp-image-9 size-full lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img decoding="async" class="fl-photo-img wp-image-9 size-full" src="https://cityoflovelock.com/wp-content/uploads/2020/01/original_city_seal.png" alt="original_city_seal" itemprop="image" height="486" width="480" title="original_city_seal"  data-no-lazy="1" srcset="https://cityoflovelock.com/wp-content/uploads/2020/01/original_city_seal.png 480w, https://cityoflovelock.com/wp-content/uploads/2020/01/original_city_seal-296x300.png 296w" sizes="(max-width: 480px) 100vw, 480px" /></noscript>
-				</a>
-					</div>
-	</div>
-	</div>
 </div>
-	</div>
+    </div>
+                                            </div>
+                
+            </div>
+        </div>
+                        <div class="page-content"
+            style="
+                background-color: #ffffff;
+                margin-top: 0px;
+                padding-top: 25px;
+                margin-bottom: 0px;
+                padding-bottom: 25px;">
+            <div class="container">
+                                    <div class="d-flex flex-column w-100">
+                                                    <div class="site-content-item"
+        style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px;">
+        <div 
+            data-aid="40"
+        data-pid="301"
+        data-pciid="1827"
+        data-wt="widget_searchbars"
+    >
+    <div class="searchbar-widget w-100
+    d-flex justify-content-center align-items-center"
+    style="background-color: #ffffff;
+        border-radius: 8px;">
+    <div
+        class="container py-4
+        d-flex justify-content-center align-items-center flex-column
+        searchbar-widget">
+        <div class="searchbar-title-container text-center">
+            <div class="h5 searchbar-title fw-bold"
+                style="color: #000000;">
+                What questions do you have about Lovelock, NV?
+            </div>
+        </div>
+        <div class="searchbar-wrapper position-relative"
+            style="min-width: 300px;
+                width: 40%;">
+            <form id="navSearchForm"
+                class="searchbar-form"
+                action="https://cityoflovelock.com/ai-search"
+                method="POST">
+                <input type="hidden" name="_token" value="3IfFl9jQ6ArGCDiqlUakSXePlpiSPUn45l05BEeL" autocomplete="off">                                <input type="hidden"
+                    name="chatId"
+                    value="" />
+                <label for="navSearch"
+                    class="visually-hidden">
+                    Nav Search Box
+                </label>
+                <input id="navSearch"
+                    type="text"
+                    name="searchText"
+                    placeholder="Search..."
+                    class="searchbar-input form-control autofill-styled"
+                    style="
+                        --input-bg-color: #ffffff;
+                        --input-text-color: #000000;
+                        background-color: var(--input-bg-color);
+                        color: var(--input-text-color);
+                        border-radius: 8px;
+                        padding-right: 50px;
+                        border: 1px solid #e0e0e0;
+                    ">
+                <button type=&quot;submit&quot;
+                    class="searchbar-btn position-absolute border-0 btn-search"
+                    id="navSearchButton"
+                    aria-label="Search"
+                    style="background-color: #003366;
+                        color: #ffffff;
+                        border-radius: 8px;">
+                    <span class="fa-solid fa-search"></span>
+                </button>
+            </form>
+        </div>
+                    <div class="d-flex flex-wrap justify-content-center
+                gap-2 text-center quicksearch mt-3">
+                                    <button type="button"
+                        class="page-interaction flex-fill p-2 rounded-5 clickable btn btn-quicksearch"
+                        style="color: #000000;
+                            background-color: #f4e3c9;"
+                        data-search-text="What is the garbage pickup schedule for 2026?"
+                         data-aid="40"
+                            data-pid="301"
+                            data-pciid="1827"
+                            data-ciid="214"
+                            data-wt="widget_searchbars" >
+                        Garbage Pickup
+                    </button>
+                                    <button type="button"
+                        class="page-interaction flex-fill p-2 rounded-5 clickable btn btn-quicksearch"
+                        style="color: #000000;
+                            background-color: #f4e3c9;"
+                        data-search-text="What building permits are required for construction projects in Lovelock?"
+                         data-aid="40"
+                            data-pid="301"
+                            data-pciid="1827"
+                            data-ciid="215"
+                            data-wt="widget_searchbars" >
+                        Building Permits
+                    </button>
+                                    <button type="button"
+                        class="page-interaction flex-fill p-2 rounded-5 clickable btn btn-quicksearch"
+                        style="color: #000000;
+                            background-color: #f4e3c9;"
+                        data-search-text="What recreational activities are available for families in Lovelock?"
+                         data-aid="40"
+                            data-pid="301"
+                            data-pciid="1827"
+                            data-ciid="216"
+                            data-wt="widget_searchbars" >
+                        Recreation
+                    </button>
+                                    <button type="button"
+                        class="page-interaction flex-fill p-2 rounded-5 clickable btn btn-quicksearch"
+                        style="color: #000000;
+                            background-color: #f4e3c9;"
+                        data-search-text="What schools and educational opportunities are available in Lovelock?"
+                         data-aid="40"
+                            data-pid="301"
+                            data-pciid="1827"
+                            data-ciid="217"
+                            data-wt="widget_searchbars" >
+                        Education
+                    </button>
+                                    <button type="button"
+                        class="page-interaction flex-fill p-2 rounded-5 clickable btn btn-quicksearch"
+                        style="color: #000000;
+                            background-color: #f4e3c9;"
+                        data-search-text="How can I contact the Lovelock Police Department?"
+                         data-aid="40"
+                            data-pid="301"
+                            data-pciid="1827"
+                            data-ciid="218"
+                            data-wt="widget_searchbars" >
+                        Public Safety
+                    </button>
+                                    <button type="button"
+                        class="page-interaction flex-fill p-2 rounded-5 clickable btn btn-quicksearch"
+                        style="color: #000000;
+                            background-color: #f4e3c9;"
+                        data-search-text="Where can I find city council meeting agendas and minutes?"
+                         data-aid="40"
+                            data-pid="301"
+                            data-pciid="1827"
+                            data-ciid="219"
+                            data-wt="widget_searchbars" >
+                        City Council
+                    </button>
+                            </div>
+            </div>
 </div>
-			<div class="fl-col fl-node-5e28d1dc0da9a" data-node="5e28d1dc0da9a">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-menu fl-node-5e28d1dc0da9f" data-node="5e28d1dc0da9f">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-menu fl-menu-responsive-toggle-mobile">
-	<button class="fl-menu-mobile-toggle hamburger" aria-label="Menu"><span class="fl-menu-icon svg-container"><svg version="1.1" class="hamburger-menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
-<rect class="fl-hamburger-menu-top" width="512" height="102"/>
-<rect class="fl-hamburger-menu-middle" y="205" width="512" height="102"/>
-<rect class="fl-hamburger-menu-bottom" y="410" width="512" height="102"/>
-</svg>
-</span></button>	<div class="fl-clear"></div>
-	<nav aria-label="Menu" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement"><ul id="menu-menu" class="menu fl-menu-horizontal fl-toggle-arrows"><li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-15 current_page_item"><a href="https://cityoflovelock.com/">Home</a></li><li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cityoflovelock.com/publications/">Publications</a></li><li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cityoflovelock.com/police-department/">Police Department</a></li><li id="menu-item-273" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cityoflovelock.com/links/">Links</a></li><li id="menu-item-517" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cityoflovelock.com/employment/">Employment</a></li><li id="menu-item-796" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cityoflovelock.com/police-department-copy/">Nevada Speed Test</a></li><li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://cityoflovelock.com/contact-us/">Contact Us</a></li></ul></nav></div>
-	</div>
 </div>
-	</div>
+    </div>
+                                            </div>
+                
+            </div>
+        </div>
+                        <div class="page-content"
+            style="
+                background-color: #003366;
+                margin-top: 35px;
+                padding-top: 0px;
+                margin-bottom: 0px;
+                padding-bottom: 0px;">
+            <div class="container">
+                                    <div class="d-flex flex-column w-100">
+                                                    <div class="site-content-item"
+        style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px;">
+        <div 
+            data-aid="40"
+        data-pid="301"
+        data-pciid="2169"
+        data-wt="widget_texts"
+    >
+    <div class="d-flex justify-content-center align-items-center"
+    style="background-color: #003366;
+        border-radius: 15px;">
+    <div class="text-widget">
+                            <div class="widget-text-body ql-editor ql-render"
+                style="color: #ffffff;
+                    --text-color: #ffffff;
+                    --mix-color: black;">
+                <p class="ql-align-center"><strong class="ql-size-huge">City &amp; Community Updates</strong></p>
+            </div>
+            </div>
 </div>
-			<div class="fl-col fl-node-5e7c9f0c28ec6 fl-col-small" data-node="5e7c9f0c28ec6">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-pp-infolist fl-node-5e7c9c66f2955" data-node="5e7c9c66f2955">
-	<div class="fl-module-content fl-node-content">
-		<div class="pp-infolist-wrap">
-	<div class="pp-infolist layout-1">
-		<ul class="pp-list-items">
-					<li class="pp-list-item pp-list-item-0">
-					<a class="pp-more-link" href="#" target="_self">
-<div class="pp-icon-wrapper animated none">
-	<div class="pp-infolist-icon">
-		<div class="pp-infolist-icon-inner">
-							<span class="pp-icon ua-icon ua-icon-icon-114-lock2"></span>
-					</div>
-	</div>
 </div>
-<div class="pp-heading-wrapper">
-	<div class="pp-infolist-title">
-				<h3 class="pp-infolist-title-text"></h3>
-			</div>
-	<div class="pp-infolist-description">
-		<p>Login</p>			</div>
-</div>
+    </div>
+                                            </div>
+                
+            </div>
+        </div>
+                        <div class="page-content"
+            style="
+                background-color: #ffffff;
+                margin-top: 0px;
+                padding-top: 20px;
+                margin-bottom: 0px;
+                padding-bottom: 25px;">
+            <div class="container">
+                                    <div class="row w-100 m-0">
+                                                    <div class="col-12 col-lg-6 d-flex px-0">
+                                <div class="w-100 d-flex flex-column flex-fill h-100">
+                                    <div class="site-content-item"
+        style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px;">
+        <div 
+            data-aid="40"
+        data-pid="301"
+        data-pciid="2167"
+        data-wt="widget_events"
+    >
+    <div class="d-flex justify-content-center align-items-center p-4 w-100"
+    style="background-color: #ffffff;
+        border-radius: 0px;">
+    <div class="w-100">
+        <div id="eventWidgetTitlePreview"
+            class="h3 text-center pt-3 fw-bolder"
+            style="color: #003366">
+            Check Out What&#039;s Happening
+        </div>
 
-<div class="pp-list-connector"></div>
-	</a>
-			</li>
-				</ul>
-	</div>
+        <div class="event-list mt-4 px-2">
+                                                                    <a class="text-decoration-none page-interaction"
+                                                    href="https://cityoflovelock.com/event/last-day-of-school-pershing-county-school-district2027"
+                            data-aid="40"
+                            data-pid="301"
+                            data-pciid="2167"
+                            data-ciid="249"
+                            data-wt="widget_events"
+                        >
+                        <div class="card event-preview-primary-row"
+                            style="background-color: #fcf6ef;
+                                border-radius: 15px;
+                                border: 1px solid #fcf6ef;">
+                            <div class="card-body d-flex w-100 align-items-center">
+                                <span class="fas fa-arrow-circle-right me-4"
+                                    style="color: #0049db;">
+                                </span>
+                                <div class="flex-grow-1 me-4">
+                                    <span class="mb-0 fw-semibold card-title d-block"
+                                        style="color: #000000">
+                                        Last Day of School - Pershing County School District
+                                    </span>
+                                    <span class="card-text d-block lm-sm"
+                                        style="color: #000000">
+                                        
+                                    </span>
+                                </div>
+                                <span class="card-text ms-auto text-nowrap"
+                                    style="color: #000000">
+                                    June 3, 2027
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                
+                
+                    </div>
+    </div>
 </div>
-	</div>
 </div>
-	</div>
+    </div>
+                                </div>
+                            </div>
+                                                    <div class="col-12 col-lg-6 d-flex px-0">
+                                <div class="w-100 d-flex flex-column flex-fill h-100">
+                                    <div class="site-content-item"
+        style="margin-top: 50px; margin-bottom: 0px; margin-left: 18px; margin-right: 0px;">
+        <div 
+            data-aid="40"
+        data-pid="301"
+        data-pciid="2168"
+        data-wt="widget_images"
+    >
+    <div class="w-100 d-flex justify-content-center align-items-center">
+            <div class="widget-image-container"
+            style="max-width: 80%; width: 80%;
+                position: relative;">
+            <img class="widget-image-preview d-block w-100"
+                style="border-radius: 8px;"
+                src="https://assets.smartxeo.com/40/33172-lovelock-graphic.png"
+                alt="image element">
+            <div class="d-none widget-image-overlay"
+                style="position: absolute;
+                    background: #3a3b3c;
+                    color: #ffffff;
+                    opacity: 0.7;
+                    padding: 10px 15px;
+                    border-radius: 8px;
+                    left: 50%; transform: translateX(-50%); top: 50%; transform: translateY(-50%) translateX(-50%);
+                ">
+                <span class="widget-image-overlay-text"
+                    style="font-weight: 600; font-size: 20px;">
+                    
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
-	</div>
-		</div>
-	</div>
-</div>
-<div class="fl-row fl-row-fixed-width fl-row-bg-none fl-node-5e7e8ed436ecf" data-node="5e7e8ed436ecf">
-	<div class="fl-row-content-wrap">
-		<div class="uabb-row-separator uabb-top-row-separator" >
-</div>
-						<div class="fl-row-content fl-row-fixed-width fl-node-content">
-		
-<div class="fl-col-group fl-node-5e7e8ed442e29" data-node="5e7e8ed442e29">
-			<div class="fl-col fl-node-5e7e8ed44322e" data-node="5e7e8ed44322e">
-	<div class="fl-col-content fl-node-content">
-		</div>
-</div>
-	</div>
-		</div>
-	</div>
-</div>
-</header><div class="uabb-js-breakpoint" style="display: none;"></div>	<div id="fl-main-content" class="fl-page-content" itemprop="mainContentOfPage" role="main">
+    </div>
+                                </div>
+                            </div>
+                                            </div>
+                
+            </div>
+        </div>
+                </main>
+        </div>
+            <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/siteHeader-fcde9217.js" /><script type="module" src="https://cityoflovelock.com/build/assets/siteHeader-fcde9217.js" data-navigate-track="reload"></script>    <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/disableInteraction-119e58ff.js" /><script type="module" src="https://cityoflovelock.com/build/assets/disableInteraction-119e58ff.js" data-navigate-track="reload"></script>    <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/hero-e988fea5.js" /><script type="module" src="https://cityoflovelock.com/build/assets/hero-e988fea5.js" data-navigate-track="reload"></script>    <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/siteResponseForm-d5c6dfcb.js" /><script type="module" src="https://cityoflovelock.com/build/assets/siteResponseForm-d5c6dfcb.js" data-navigate-track="reload"></script>    <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/page-interaction-bba3d7fe.js" /><script type="module" src="https://cityoflovelock.com/build/assets/page-interaction-bba3d7fe.js" data-navigate-track="reload"></script>    <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/disableInteraction-119e58ff.js" /><script type="module" src="https://cityoflovelock.com/build/assets/disableInteraction-119e58ff.js" data-navigate-track="reload"></script>    <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/widgetSearch-7c83ba0b.js" /><script type="module" src="https://cityoflovelock.com/build/assets/widgetSearch-7c83ba0b.js" data-navigate-track="reload"></script>    <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/different-content-2dec4620.js" /><script type="module" src="https://cityoflovelock.com/build/assets/different-content-2dec4620.js" data-navigate-track="reload"></script>        <link rel="modulepreload" href="https://cityoflovelock.com/build/assets/toasts-f10e8b93.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/jquery-7f72e7f7.js" /><link rel="modulepreload" href="https://cityoflovelock.com/build/assets/bootstrap.esm-447caa5e.js" /><script type="module" src="https://cityoflovelock.com/build/assets/toasts-f10e8b93.js" data-navigate-track="reload"></script>                                        <footer class="p-4 px-2"
+        id="siteFooter"
+        style="background:#003366; color:#ffffff;">
+        <div class="d-flex flex-wrap justify-content-center justify-content-md-evenly align-items-center gap-3 px-4">
+            
+                                                                                <div
+                                class="d-flex
+                                flex-column
+                                justify-content-center
+                                align-items-center
+                                my-3
+                                footer-section">
+                                                                    <div class="w-100 d-flex justify-content-center pb-2 weight-bold"
+                                        style="font-size: 16px;">
+                                        Contact Us
+                                    </div>
+                                                                                                    <div class="d-flex flex-wrap w-100 mb-2 mb-md-0 weight-bold"
+                                        style="font-size: 16px;">
+                                        <span
+                                            class="col-12
+                                            col-md-5
+                                            text-center
+                                            text-md-end
+                                            mb-1
+                                            mb-md-0">
+                                            Address:
+                                        </span>
+                                        <span
+                                            class="col-12
+                                            col-md-7
+                                            ps-md-2
+                                            text-center
+                                            text-md-start
+                                            d-flex
+                                            flex-column
+                                            align-items-center
+                                            align-items-md-start text-break">
+                                            <span>400 14th St.</span>
+                                                                                            <span></span>
+                                                                                        <span>Lovelock, NV, 89419</span>
+                                        </span>
+                                    </div>
+                                                                                                    <div class="d-flex flex-wrap w-100 mb-2 mb-md-0 weight-bold"
+                                        style="font-size: 16px;">
+                                        <span class="col-12 col-md-5 text-center text-md-end mb-1 mb-md-0">Phone:</span>
+                                        <span
+                                            class="col-12 col-md-7 ps-md-2 text-center text-md-start text-break">(775) 273-2356</span>
+                                    </div>
+                                                                                                    <div class="d-flex flex-wrap w-100 mb-2 mb-md-0 weight-bold"
+                                        style="font-size: 16px;">
+                                        <span class="col-12 col-md-5 text-center text-md-end mb-1 mb-md-0">Fax:</span>
+                                        <span
+                                            class="col-12 col-md-7 ps-md-2 text-center text-md-start text-break">(775) 273-7979</span>
+                                    </div>
+                                                                                                    <div class="d-flex flex-wrap w-100 mb-2 mb-md-0 weight-bold"
+                                        style="font-size: 16px;">
+                                        <span class="col-12 col-md-5 text-center text-md-end mb-1 mb-md-0">Email:</span>
+                                        <span
+                                            class="col-12 col-md-7 ps-md-2 text-center text-md-start text-break">clerk@cityoflovelock.com</span>
+                                    </div>
+                                                                                                    <div class="d-flex flex-wrap w-100 mb-2 mb-md-0 weight-bold"
+                                        style="font-size: 16px;">
+                                        <span class="col-12 col-md-5 text-center text-md-end mb-1 mb-md-0">Hours:</span>
+                                        <span
+                                            class="col-12 col-md-7 ps-md-2 text-center text-md-start text-break">Monday - Friday: 8:00 am - 5:00 pm</span>
+                                    </div>
+                                                            </div>
+                                                                                                                            <div class="d-flex flex-column justify-content-center align-items-center my-3 footer-section">
+                                                                <a href="https://cityoflovelock.com">
+                                    <img src="https://assets.smartxeo.com/40/68370-seal.png"
+                                        alt="Image of Agency Logo"
+                                        title="Agency Logo"
+                                        class="m-2"
+                                        style="height:100px;">
+                                </a>
+                            </div>
+                                                                                                                            <div class="d-flex justify-content-center m-3 footer-section">
+                                                                    <div>
+                                        <a href="https://www.facebook.com/groups/lovelocktheheartofnevada/"
+                                            class="h3 ps-2 pe-2 navLink"
+                                            aria-label="https://www.facebook.com/groups/lovelocktheheartofnevada/"
+                                            target="_blank">
+                                            <span class="fa-brands fa-facebook"></span>
+                                        </a>
+                                    </div>
+                                                            </div>
+                                                        
+        </div>
 
-		
-<div class="fl-content-full container">
-	<div class="row">
-		<div class="fl-content col-md-12">
-			<article class="fl-post post-15 page type-page status-publish has-post-thumbnail hentry" id="fl-post-15" itemscope="itemscope" itemtype="https://schema.org/CreativeWork">
+        <div class="d-flex justify-content-center pt-2 px-3">
+            <em>Smart XEO, Inc</em>
+            <a href="https://cityoflovelock.com/privacy"
+                class="ms-3"
+                style="color:#ffffff;">Privacy Notice</a>
+                        <a href="https://cityoflovelock.com/accessibility"
+                class="ms-3"
+                style="color:#ffffff;">Accessibility</a>
+        </div>
+    </footer>
 
-			<div class="fl-post-content clearfix" itemprop="text">
-		<div class="fl-builder-content fl-builder-content-15 fl-builder-content-primary fl-builder-global-templates-locked" data-post-id="15"><div class="fl-row fl-row-full-width fl-row-bg-photo fl-node-5e28dd9b17470 fl-row-bg-overlay fl-row-bg-fixed" data-node="5e28dd9b17470">
-	<div class="fl-row-content-wrap">
-		<div class="uabb-row-separator uabb-top-row-separator" >
-</div>
-						<div class="fl-row-content fl-row-full-width fl-node-content">
-		
-<div class="fl-col-group fl-node-5e28dd9b1a95b" data-node="5e28dd9b1a95b">
-			<div class="fl-col fl-node-dosat805jhlb fl-col-has-cols" data-node="dosat805jhlb">
-	<div class="fl-col-content fl-node-content">
-	
-<div class="fl-col-group fl-node-znfu5avekdml fl-col-group-nested fl-col-group-equal-height fl-col-group-align-center fl-col-group-responsive-reversed" data-node="znfu5avekdml">
-			<div class="fl-col fl-node-5e2b5eb00af02 fl-col-small" data-node="5e2b5eb00af02">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-heading fl-node-385jq2ovg9m6" data-node="385jq2ovg9m6">
-	<div class="fl-module-content fl-node-content">
-		<h2 class="fl-heading">
-		<span class="fl-heading-text"></span>
-	</h2>
-	</div>
-</div>
-<div class="fl-module fl-module-button fl-node-1jbdfgx7092h" data-node="1jbdfgx7092h">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-button-wrap fl-button-width-auto fl-button-left">
-			<a href="" target="_self" class="fl-button" role="button">
-								</a>
-</div>
-	</div>
-</div>
-<div class="fl-module fl-module-button-group fl-node-tepvwzqcnfb5" data-node="tepvwzqcnfb5">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-button-group fl-button-group-layout-horizontal fl-button-group-width-">
-	<div class="fl-button-group-buttons" role="group" aria-label="">
-		<div id="fl-button-group-button-tepvwzqcnfb5-0" class="fl-button-group-button fl-button-group-button-tepvwzqcnfb5-0"><div class="fl-button-wrap fl-button-width-full fl-button-left fl-button-has-icon">
-			<a href="https://nsb.rpropayments.com/Login/CheckOutFormLogin/2VrYMqDwYCglGkcMB-oTuDPv8v8-" target="_self" class="fl-button" role="button">
-					<i class="fl-button-icon fl-button-icon-before fas fa-dumpster" aria-hidden="true"></i>
-						<span class="fl-button-text">Sewer and Disposal Payment Link</span>
-					</a>
-</div>
-</div><div id="fl-button-group-button-tepvwzqcnfb5-1" class="fl-button-group-button fl-button-group-button-tepvwzqcnfb5-1"><div class="fl-button-wrap fl-button-width-full fl-button-left fl-button-has-icon">
-			<a href="https://lmwdnv.ourcommunityconnect.com/" target="_self" class="fl-button" role="button">
-					<i class="fl-button-icon fl-button-icon-before fas fa-faucet" aria-hidden="true"></i>
-						<span class="fl-button-text">LMWD Payment Link</span>
-					</a>
-</div>
-</div>	</div>
-</div>
-	</div>
-</div>
-<div class="fl-module fl-module-pp-heading fl-node-oj325vm0wcbs" data-node="oj325vm0wcbs">
-	<div class="fl-module-content fl-node-content">
-		<div class="pp-heading-content">
-		<div class="pp-heading  pp-left">
+                    </body>
 
-		<h1 class="heading-title">
-
-			
-			<span class="title-text pp-primary-title">Welcome to the City of Lovelock</span>
-											<span class="title-text pp-secondary-title">Community Updates</span>
-			
-			
-		</h1>
-
-	</div>
-			<div class="pp-heading-separator line_only pp-left">
-
-						
-							<span class="pp-separator-line"></span>
-			
-			
-		</div>
-				<div class="pp-sub-heading">
-			<div id="pp-tab-5e77c9c06034b-1-content" class="pp-tabs-panel-content pp-clearfix pp-tab-active" role="tabpanel" data-index="0" aria-labelledby="pp-tab-5e77c9c06034b-1"><div><h4><strong>Utility Rate Changes Effective January 1st, 2026</strong></h4><h4><strong>The City of Lovelock issues the following official bulletin to inform residents of approved changes to municipal utility rates.</strong></h4><h4><strong>The following rate adjustments have been authorized and will take effect as specified:</strong></h4><h4><strong>Sewer Rate Increase: $2.50</strong></h4><h4><strong>Garbage Rate Increase: $2.00</strong></h4><h4><strong>These rate adjustments will be reflected on your February utility bill.</strong></h4><h4><strong>Official Contact Information</strong></h4><h4><strong>For questions, clarification, or additional documentation related to this bulletin, please refer to the contact details below.</strong></h4><h4><strong>City of Lovelock — City Hall For additional information or clarification regarding this bulletin, please contact City Hall at 775-273-2356 during regular business hours.</strong></h4><h4><strong>Thank you for your understanding and continued support of our community.</strong></h4></div><h4> </h4><h4> </h4><h4><strong>La Ciudad de Lovelock quiere informar a la comunidad sobre cambios en las tarifas de los servicios públicos que comenzarán el 1 de enero de 2026.</strong></h4><h4><strong>¿Qué va a cambiar?</strong></h4><h4><strong>La tarifa de alcantarillado aumentará $2.50 al mes</strong></h4><h4><strong>La tarifa de basura aumentará $2.00 al mes</strong></h4><h4><strong>¿Cuándo se verá este cambio? </strong><strong>Estos aumentos se verán reflejados en su factura de enero, la cual llegará en febrero.</strong></h4><h4><strong>¿Tiene preguntas? </strong><strong>Si necesita más información o tiene dudas, puede comunicarse con el Ayuntamiento de Lovelock al 775-273-2356 durante el horario de oficina.</strong></h4><h4><strong>Horario del Ayuntamiento: </strong><strong>Lunes a viernes, de 8:00 a.m. a 5:00 p.m. </strong><strong>Gracias por su comprensión y por apoyar a nuestra comunidad.</strong></h4><h4><strong>Ciudad de Lovelock      </strong><a href="http://www.cityoflovelock.com"><strong>www.cityoflovelock.com</strong></a></h4></div>		</div>
-	
-	</div>
-	</div>
-</div>
-<div class="fl-module fl-module-pp-heading fl-node-1zqr2ivaj8hb" data-node="1zqr2ivaj8hb">
-	<div class="fl-module-content fl-node-content">
-		<div class="pp-heading-content">
-		<div class="pp-heading  pp-left">
-
-		<h2 class="heading-title">
-
-			
-			<span class="title-text pp-primary-title">City of Lovelock</span>
-			
-			
-		</h2>
-
-	</div>
-			<div class="pp-heading-separator line_only pp-left">
-
-						
-							<span class="pp-separator-line"></span>
-			
-			
-		</div>
-				<div class="pp-sub-heading">
-			<p>Lovelock, Nevada (ZIP Code 89419), is a small city in Pershing County, located approximately 90 miles east of Reno along Interstate 80. As the county seat and only incorporated city in the county, Lovelock has a rich history and serves as a hub for agriculture, mining, and tourism. </p><p>🏛️ History &amp; Culture</p><p>Lovelock was established in 1868 and incorporated on September 26, 1917. It originated as a stopover for settlers on their way to California and later became a train depot. The city's economy has traditionally been based on farming and mining, with tourism playing an increasingly significant role.  </p><p>🌄 Attractions &amp; Activities</p><p>Lover’s Lock Plaza: A romantic spot where couples can symbolize their love by attaching a padlock to an 'endless chain', a tradition that began on Valentine's Day in 2005.  </p><p>Lovelock Cave: An archaeological site significant for the discovery of ancient artifacts, including the world's oldest known duck decoys made by the Northern Paiute people.  </p><p>Marzen House Museum: A Victorian-era home showcasing local history, mining and agriculture equipment, and Native American artifacts.  </p><p>Rye Patch State Recreation Area: A 22-mile-long reservoir offering camping, fishing, swimming, and water-skiing opportunities.  </p><p>Pershing County Courthouse: A unique round courthouse built in 1919, designed by architect Frederic Joseph DeLongchamps.  </p><p>Lovelock Depot: A historic train station that played a crucial role in the development of Lovelock.  </p>		</div>
-	
-	</div>
-	</div>
-</div>
-	</div>
-</div>
-	</div>
-<div class="fl-module fl-module-photo fl-node-abzltoxyig58" data-node="abzltoxyig58">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-photo fl-photo-align-center" itemscope itemtype="https://schema.org/ImageObject">
-	<div class="fl-photo-content fl-photo-img-jpg">
-				<img fetchpriority="high" decoding="async"  src="https://cityoflovelock.com/wp-content/uploads/2025/07/Lovelock.jpg" alt="Heart sculpture with &quot;LONELOCH&quot; ground lettering" itemprop="image" height="640" width="960" title="Lovelock" srcset="https://cityoflovelock.com/wp-content/uploads/2025/07/Lovelock.jpg 960w, https://cityoflovelock.com/wp-content/uploads/2025/07/Lovelock-300x200.jpg 300w, https://cityoflovelock.com/wp-content/uploads/2025/07/Lovelock-768x512.jpg 768w" sizes="(max-width: 960px) 100vw, 960px" class="fl-photo-img wp-image-1623 size-full no-lazyload" />
-					</div>
-	</div>
-	</div>
-</div>
-	</div>
-</div>
-	</div>
-		</div>
-	</div>
-</div>
-<div class="fl-row fl-row-full-width fl-row-bg-none fl-node-5e28e0ba4752b" data-node="5e28e0ba4752b">
-	<div class="fl-row-content-wrap">
-		<div class="uabb-row-separator uabb-top-row-separator" >
-</div>
-						<div class="fl-row-content fl-row-full-width fl-node-content">
-		
-<div class="fl-col-group fl-node-5e28e0e002bf0 fl-col-group-equal-height fl-col-group-align-center fl-col-group-responsive-reversed" data-node="5e28e0e002bf0">
-			<div class="fl-col fl-node-l9amvbqcofw5 fl-col-small" data-node="l9amvbqcofw5">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-slideshow fl-node-032v45zdo1jk" data-node="032v45zdo1jk">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-slideshow-container"></div>
-	</div>
-</div>
-	</div>
-</div>
-			<div class="fl-col fl-node-5e2b5fab54182" data-node="5e2b5fab54182">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-pp-heading fl-node-5e2b608bb2cca" data-node="5e2b608bb2cca">
-	<div class="fl-module-content fl-node-content">
-		<div class="pp-heading-content">
-		<div class="pp-heading  pp-left">
-
-		<h2 class="heading-title">
-
-			
-			<span class="title-text pp-primary-title">About the City</span>
-			
-			
-		</h2>
-
-	</div>
-			<div class="pp-heading-separator line_only pp-left">
-
-						
-							<span class="pp-separator-line"></span>
-			
-			
-		</div>
-				<div class="pp-sub-heading">
-			<p>Lovelock may cover just over one square mile, but it’s packed with charm and community spirit. The city features three public parks, a skateboard park, and a refreshing community swimming pool. Residents and visitors alike benefit from essential services offering something for everyone in this close-knit Nevada town.</p><p>👥 Population &amp; Community</p><p>Population: Roughly 1,600–1,700 people live in Lovelock, making it a close-knit, small-town community.</p><p>Atmosphere: The city has a quiet, rural charm with strong local pride. It’s the kind of place where many people know each other, and community events bring residents together.</p><p>Diversity: A mix of long-time local families, ranchers, correctional employees, and some transient populations due to nearby institutions and industry.</p><p>🏛️ Economy &amp; Employment</p><p>Primary Sectors: Agriculture, mining, correctional facilities, and local government.</p><p>Key Employer: Mining and Lovelock Correctional Center (a medium-security state prison) provide a significant number of local jobs.</p><p>Other Industries: Farming and ranching (especially alfalfa and livestock), small businesses, and tourism (attractions like Lovelock Cave and the Rye Patch Reservoir).</p><p>🛣️ Transportation &amp; Access</p><p>Highway: Located along Interstate 80, making it easy to reach from Reno or Elko.</p><p>Rail: Historically, the city was a stop on the Central Pacific Railroad.</p><p>Local Travel: Most residents drive; public transit is limited due to the rural setting.</p><p>📚 Education &amp; Services</p><p>School District: Part of Pershing County School District with local elementary, middle, and high schools.</p><p>Library: Lovelock branch of the Pershing County Library system.</p><p>Healthcare: Basic medical services are available locally.</p><p>🌵 Climate</p><p>Type: High desert climate.</p><p>Summers: Hot and dry.</p><p>Winters: Cold with occasional snow.</p><p>Weather Overall: Sunny for most of the year, with big skies and dramatic desert sunsets.</p><p>💡 Fun Fact:</p><p>The city’s name came from George Lovelock, an early settler and landowner in the area. His land became a key stop on the Central Pacific Railroad, giving rise to the town.</p>		</div>
-	
-	</div>
-	</div>
-</div>
-	</div>
-</div>
-	</div>
-		</div>
-	</div>
-</div>
-</div><div class="uabb-js-breakpoint" style="display: none;"></div>	</div><!-- .fl-post-content -->
-	
-</article>
-
-<!-- .fl-post -->
-		</div>
-	</div>
-</div>
-
-
-	</div><!-- .fl-page-content -->
-	<footer class="fl-builder-content fl-builder-content-12 fl-builder-global-templates-locked" data-post-id="12" data-type="footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter"><div class="fl-row fl-row-full-width fl-row-bg-color fl-node-5e28d68d7cc75" data-node="5e28d68d7cc75">
-	<div class="fl-row-content-wrap">
-		<div class="uabb-row-separator uabb-top-row-separator" >
-</div>
-						<div class="fl-row-content fl-row-fixed-width fl-node-content">
-		
-<div class="fl-col-group fl-node-5e28d68d7cc76" data-node="5e28d68d7cc76">
-			<div class="fl-col fl-node-5e28db7d06f43 fl-col-small" data-node="5e28db7d06f43">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-heading fl-node-5e28d68d7cc80" data-node="5e28d68d7cc80">
-	<div class="fl-module-content fl-node-content">
-		<h3 class="fl-heading">
-		<span class="fl-heading-text">Pages</span>
-	</h3>
-	</div>
-</div>
-<div class="fl-module fl-module-uabb-advanced-menu fl-node-5e28db904d63c" data-node="5e28db904d63c">
-	<div class="fl-module-content fl-node-content">
-			<div class="uabb-creative-menu
-	 uabb-creative-menu-accordion-collapse	uabb-menu-default">
-					<div class="uabb-clear"></div>
-					<ul id="menu-menu-1" class="menu uabb-creative-menu-vertical uabb-toggle-none"><li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-15 current_page_item uabb-creative-menu uabb-cm-style"><a href="https://cityoflovelock.com/"><span class="menu-item-text">Home</span></a></li>
-<li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page uabb-creative-menu uabb-cm-style"><a href="https://cityoflovelock.com/publications/"><span class="menu-item-text">Publications</span></a></li>
-<li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page uabb-creative-menu uabb-cm-style"><a href="https://cityoflovelock.com/police-department/"><span class="menu-item-text">Police Department</span></a></li>
-<li id="menu-item-273" class="menu-item menu-item-type-post_type menu-item-object-page uabb-creative-menu uabb-cm-style"><a href="https://cityoflovelock.com/links/"><span class="menu-item-text">Links</span></a></li>
-<li id="menu-item-517" class="menu-item menu-item-type-post_type menu-item-object-page uabb-creative-menu uabb-cm-style"><a href="https://cityoflovelock.com/employment/"><span class="menu-item-text">Employment</span></a></li>
-<li id="menu-item-796" class="menu-item menu-item-type-post_type menu-item-object-page uabb-creative-menu uabb-cm-style"><a href="https://cityoflovelock.com/police-department-copy/"><span class="menu-item-text">Nevada Speed Test</span></a></li>
-<li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page uabb-creative-menu uabb-cm-style"><a href="https://cityoflovelock.com/contact-us/"><span class="menu-item-text">Contact Us</span></a></li>
-</ul>	</div>
-
-		</div>
-</div>
-	</div>
-</div>
-			<div class="fl-col fl-node-5e28d68d7cc79 fl-col-small" data-node="5e28d68d7cc79">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-heading fl-node-5e28d68d7cc85" data-node="5e28d68d7cc85">
-	<div class="fl-module-content fl-node-content">
-		<h3 class="fl-heading">
-		<span class="fl-heading-text">Get In Touch!</span>
-	</h3>
-	</div>
-</div>
-<div class="fl-module fl-module-icon fl-node-5e28d68d7cc7f" data-node="5e28d68d7cc7f">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-icon-wrap">
-	<span class="fl-icon">
-								<a href="tel:7752732356" target="_self" tabindex="-1" aria-hidden="true" aria-labelledby="fl-icon-text-5e28d68d7cc7f">
-							<i class="fas fa-phone" aria-hidden="true"></i>
-						</a>
-			</span>
-			<div id="fl-icon-text-5e28d68d7cc7f" class="fl-icon-text">
-						<a href="tel:7752732356" target="_self" class="fl-icon-text-link fl-icon-text-wrap">
-						<p>Clerks Office: (775) 273-2356</p>						</a>
-					</div>
-	</div>
-	</div>
-</div>
-<div class="fl-module fl-module-icon fl-node-5e28da31d1a9a" data-node="5e28da31d1a9a">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-icon-wrap">
-	<span class="fl-icon">
-				<i class="fas fa-fax" aria-hidden="true"></i>
-					</span>
-			<div id="fl-icon-text-5e28da31d1a9a" class="fl-icon-text fl-icon-text-wrap">
-						<p>Clerks Office Fax: (775) 273-7979</p>					</div>
-	</div>
-	</div>
-</div>
-<div class="fl-module fl-module-icon fl-node-5e79aa43116e7" data-node="5e79aa43116e7">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-icon-wrap">
-	<span class="fl-icon">
-								<a href="tel:7752732256" target="_self" tabindex="-1" aria-hidden="true" aria-labelledby="fl-icon-text-5e79aa43116e7">
-							<i class="fas fa-phone" aria-hidden="true"></i>
-						</a>
-			</span>
-			<div id="fl-icon-text-5e79aa43116e7" class="fl-icon-text">
-						<a href="tel:7752732256" target="_self" class="fl-icon-text-link fl-icon-text-wrap">
-						<p>Police Department: (775) 273-2256</p>						</a>
-					</div>
-	</div>
-	</div>
-</div>
-<div class="fl-module fl-module-icon fl-node-5e79aa847875a" data-node="5e79aa847875a">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-icon-wrap">
-	<span class="fl-icon">
-				<i class="fas fa-fax" aria-hidden="true"></i>
-					</span>
-			<div id="fl-icon-text-5e79aa847875a" class="fl-icon-text fl-icon-text-wrap">
-						<p>Police Department Fax: (775) 273-7626</p>					</div>
-	</div>
-	</div>
-</div>
-<div class="fl-module fl-module-icon fl-node-5e28d68d7cc7d" data-node="5e28d68d7cc7d">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-icon-wrap">
-	<span class="fl-icon">
-								<a href="#" target="_self" tabindex="-1" aria-hidden="true" aria-labelledby="fl-icon-text-5e28d68d7cc7d">
-							<i class="far fa-map" aria-hidden="true"></i>
-						</a>
-			</span>
-			<div id="fl-icon-text-5e28d68d7cc7d" class="fl-icon-text">
-						<a href="#" target="_self" class="fl-icon-text-link fl-icon-text-wrap">
-						<p>City of Lovelock<br> PO Box 238<br />
-400 14th St Lovelock, NV 89419</p>
-						</a>
-					</div>
-	</div>
-	</div>
-</div>
-	</div>
-</div>
-			<div class="fl-col fl-node-5e28d68d7cc77 fl-col-small" data-node="5e28d68d7cc77">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-heading fl-node-5e28d68d7cc84" data-node="5e28d68d7cc84">
-	<div class="fl-module-content fl-node-content">
-		<h3 class="fl-heading">
-		<span class="fl-heading-text">Business Hours</span>
-	</h3>
-	</div>
-</div>
-<div class="fl-module fl-module-rich-text fl-node-5e28d68d7cc7a" data-node="5e28d68d7cc7a">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-rich-text">
-	<p><strong>Monday - Friday:</strong> 8:00 am - 5:00 pm</p>
-</div>
-	</div>
-</div>
-<div class="fl-module fl-module-icon fl-node-5e28d68d7cc7e" data-node="5e28d68d7cc7e">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-icon-wrap">
-	<span class="fl-icon">
-								<a href="mailto:clerk@cityoflovelock.com" target="_self" tabindex="-1" aria-hidden="true" aria-labelledby="fl-icon-text-5e28d68d7cc7e">
-							<i class="far fa-envelope" aria-hidden="true"></i>
-						</a>
-			</span>
-			<div id="fl-icon-text-5e28d68d7cc7e" class="fl-icon-text">
-						<a href="mailto:clerk@cityoflovelock.com" target="_self" class="fl-icon-text-link fl-icon-text-wrap">
-						<p>clerk@cityoflovelock.com</p>						</a>
-					</div>
-	</div>
-	</div>
-</div>
-<div class="fl-module fl-module-icon fl-node-5e79a983eda20" data-node="5e79a983eda20">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-icon-wrap">
-	<span class="fl-icon">
-								<a href="mailto:police@cityoflovelock.com" target="_self" tabindex="-1" aria-hidden="true" aria-labelledby="fl-icon-text-5e79a983eda20">
-							<i class="far fa-envelope" aria-hidden="true"></i>
-						</a>
-			</span>
-			<div id="fl-icon-text-5e79a983eda20" class="fl-icon-text">
-						<a href="mailto:police@cityoflovelock.com" target="_self" class="fl-icon-text-link fl-icon-text-wrap">
-						<p>Police@cityoflovelock.com</p>						</a>
-					</div>
-	</div>
-	</div>
-</div>
-<div class="fl-module fl-module-pp-social-icons fl-node-5e28db14f0666" data-node="5e28db14f0666">
-	<div class="fl-module-content fl-node-content">
-		<div class="pp-social-icons pp-social-icons-left pp-social-icons-horizontal pp-responsive-center">
-	<span class="pp-social-icon" itemscope itemtype="http://schema.org/Organization">
-		<link itemprop="url" href="https://cityoflovelock.com">
-		<a itemprop="sameAs" href="https://www.facebook.com/City-of-Lovelock-110917742305542/" target="_blank" title="Facebook" aria-label="Facebook" role="button" rel="noopener" >
-							<i class="fab fa-facebook"></i>
-					</a>
-	</span>
-	</div>
-	</div>
-</div>
-	</div>
-</div>
-	</div>
-		</div>
-	</div>
-</div>
-<div class="fl-row fl-row-full-width fl-row-bg-color fl-node-5e28d68d7cc6b" data-node="5e28d68d7cc6b">
-	<div class="fl-row-content-wrap">
-		<div class="uabb-row-separator uabb-top-row-separator" >
-</div>
-						<div class="fl-row-content fl-row-fixed-width fl-node-content">
-		
-<div class="fl-col-group fl-node-5e28d68d7cc71" data-node="5e28d68d7cc71">
-			<div class="fl-col fl-node-5e28d68d7cc73" data-node="5e28d68d7cc73">
-	<div class="fl-col-content fl-node-content">
-	<div class="fl-module fl-module-rich-text fl-node-5e28d68d7cc74" data-node="5e28d68d7cc74">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-rich-text">
-	<p style="text-align: left;">© 2020 City Of Lovelock. All Rights Reserved.</p>
-</div>
-	</div>
-</div>
-	</div>
-</div>
-			<div class="fl-col fl-node-5e2b6b57b2d25 fl-col-small" data-node="5e2b6b57b2d25">
-	<div class="fl-col-content fl-node-content">
-	<div id="pws-design" class="fl-module fl-module-html fl-node-5e2b6b4964aa6" data-node="5e2b6b4964aa6">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-html">
-	
-<a rel="nofollow" href="https://www.godaddy.com/websites/web-design"
-target="_blank"><img alt="GoDaddy Web Design"
-src="//nebula.wsimg.com/aadc63d8e8dbd533470bdc4e350bc4af?AccessKeyId=B7351D786AE96FEF6EBB&disposition=0&alloworigin=1"></a></div>
-	</div>
-</div>
-	</div>
-</div>
-	</div>
-		</div>
-	</div>
-</div>
-</footer><div class="uabb-js-breakpoint" style="display: none;"></div>	</div><!-- .fl-page -->
-<script type="speculationrules">
-{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/bb-theme/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
-</script>
-<script id="jquery-magnificpopup-js" src="https://cityoflovelock.com/wp-content/plugins/bb-plugin/js/jquery.magnificpopup.min.js?ver=2.5.4.3"></script>
-<script id="yui3-js" src="https://cityoflovelock.com/wp-content/plugins/bb-plugin/js/yui3.min.js?ver=2.5.4.3"></script>
-<script id="fl-slideshow-js" src="https://cityoflovelock.com/wp-content/plugins/bb-plugin/js/fl-slideshow.min.js?ver=2.5.4.3"></script>
-<script id="fl-builder-layout-15-js" src="https://cityoflovelock.com/wp-content/uploads/bb-plugin/cache/15-layout.js?ver=7ee5fc2166de140651c4cd2aa688cffb"></script>
-<script id="jquery-throttle-js" src="https://cityoflovelock.com/wp-content/plugins/bb-plugin/js/jquery.ba-throttle-debounce.min.js?ver=2.5.4.3"></script>
-<script id="fl-builder-layout-bundle-3cef86b9c9fd252d2b7aa71c8f2c8c5c-js" src="https://cityoflovelock.com/wp-content/uploads/bb-plugin/cache/3cef86b9c9fd252d2b7aa71c8f2c8c5c-layout-bundle.js?ver=2.5.4.3-1.4.2"></script>
-<script id="fl-automator-js-extra">
-var themeopts = {"medium_breakpoint":"992","mobile_breakpoint":"768"};
-//# sourceURL=fl-automator-js-extra
-</script>
-<script id="fl-automator-js" src="https://cityoflovelock.com/wp-content/themes/bb-theme/js/theme.min.js?ver=1.7.11"></script>
-<script id="wp-emoji-settings" type="application/json">
-{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://cityoflovelock.com/wp-includes/js/wp-emoji-release.min.js?ver=7.0.4"}}
-</script>
-<script type="module">
-/*! This file is auto-generated */
-var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
-//# sourceURL=https://cityoflovelock.com/wp-includes/js/wp-emoji-loader.min.js
-</script>
-		<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),
-                _trfd.push({'tccl.baseHost':'secureserver.net'}),
-                _trfd.push({'ap':'wpaas_v2'},
-                    {'server':'9c61ce210a0d'},
-                    {'pod':'c34-prod-p3-us-west-2'},
-                                        {'xid':'43032153'},
-                    {'wp':'7.0.4'},
-                    {'php':'8.2.33'},
-                    {'loggedin':'0'},
-                    {'cdn':'1'},
-                    {'builder':'beaver-builder'},
-                    {'theme':'bb-theme'},
-                    {'wds':'1'},
-                    {'wp_alloptions_count':'265'},
-                    {'wp_alloptions_bytes':'101285'},
-                    {'gdl_coming_soon_page':'0'}
-                    , {'appid':'1034043'}                 );
-            var trafficScript = document.createElement('script'); trafficScript.src = 'https://img1.wsimg.com/signals/js/clients/scc-c2/scc-c2.min.js'; window.document.head.appendChild(trafficScript);</script>
-		<script>window.addEventListener('click', function (elem) { var _elem$target, _elem$target$dataset, _window, _window$_trfq; return (elem === null || elem === void 0 ? void 0 : (_elem$target = elem.target) === null || _elem$target === void 0 ? void 0 : (_elem$target$dataset = _elem$target.dataset) === null || _elem$target$dataset === void 0 ? void 0 : _elem$target$dataset.eid) && ((_window = window) === null || _window === void 0 ? void 0 : (_window$_trfq = _window._trfq) === null || _window$_trfq === void 0 ? void 0 : _window$_trfq.push(["cmdLogEvent", "click", elem.target.dataset.eid]));});</script>
-		<script src='https://img1.wsimg.com/traffic-assets/js/tccl-tti.min.js' onload="window.tti.calculateTTI()"></script>
-		</body>
 </html>

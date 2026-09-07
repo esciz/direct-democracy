@@ -1,6 +1,216 @@
 {
-  "generatedAt": "2026-08-25T13:12:41.651Z",
+  "generatedAt": "2026-09-06T21:48:03.370Z",
   "records": [
+    {
+      "sourceId": "meeting:nv-cannabis-public-meetings",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nevada Cannabis Compliance Board and Cannabis Advisory Commission",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "ccb.nv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 356,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 117,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:nv-taxation-public-meetings",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nevada Department of Taxation Boards and Committees",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "tax.nv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 286,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 85,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:nv-state-board-of-education",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nevada State Board of Education and Subcommittees",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "doe.nv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "stale",
+      "freshnessStatus": "stale",
+      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "documentCounts": {
+        "discovered": 105,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 12,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:nv-statewide-public-notices",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nevada Statewide Public Notice Discovery",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "notice.nv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:nv-education-public-meetings-discovery",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nevada Education Boards and Councils Discovery",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "doe.nv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:nv-school-participation-discovery",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nevada School and Parent Organization Discovery",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "doe.nv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:carson-city-school-participation",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Carson City School and Parent Participation",
+      "jurisdiction": "Carson City, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "www.carsoncityschools.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 1,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 1,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
     {
       "sourceId": "meeting:nv-legislature",
       "sourceType": "meeting_system",
@@ -9,26 +219,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.leg.state.nv.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 18,
+        "discovered": 42,
         "queued": 0,
-        "cached": 6,
-        "extracted": 12,
+        "cached": 0,
+        "extracted": 42,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -39,10 +249,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.gov.nv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -55,10 +265,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -69,10 +279,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "nshe.nevada.edu",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -85,10 +295,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -99,26 +309,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "granicus",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 1150,
-        "queued": 18,
+        "discovered": 1183,
+        "queued": 42,
         "cached": 0,
-        "extracted": 1131,
+        "extracted": 1140,
         "ocrRequired": 1,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -129,26 +339,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.churchillcountynv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 17,
+        "discovered": 19,
         "queued": 0,
         "cached": 0,
-        "extracted": 4,
-        "ocrRequired": 5,
+        "extracted": 7,
+        "ocrRequired": 7,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -159,26 +369,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "legistar",
       "sourceHost": "clark.legistar.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 8,
+        "discovered": 16,
         "queued": 0,
         "cached": 0,
-        "extracted": 8,
+        "extracted": 16,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -189,26 +399,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.douglascountynv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
       "documentCounts": {
         "discovered": 5,
         "queued": 0,
         "cached": 0,
-        "extracted": 0,
+        "extracted": 4,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -219,10 +429,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "granicus",
       "sourceHost": "www.elkocountynv.net",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -235,10 +445,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -249,10 +459,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.accessesmeralda.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -265,10 +475,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -279,26 +489,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "html",
       "sourceHost": "www.eurekacountynv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 43,
+        "discovered": 53,
         "queued": 0,
         "cached": 2,
-        "extracted": 29,
+        "extracted": 44,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -309,10 +519,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.humboldtcountynv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -325,10 +535,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -339,10 +549,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "www.landercountynv.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -355,10 +565,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -369,10 +579,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "lincolncountynv.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -385,10 +595,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -399,26 +609,26 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.lyon-county.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "degraded",
       "freshnessStatus": "limited",
       "failureReason": null,
       "documentCounts": {
-        "discovered": 20,
+        "discovered": 27,
         "queued": 0,
-        "cached": 1,
-        "extracted": 9,
+        "cached": 0,
+        "extracted": 18,
         "ocrRequired": 0,
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -429,10 +639,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "manual",
       "sourceHost": "mineralcountynv.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -445,10 +655,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -459,1240 +669,10 @@
       "sourceCategory": "meetings",
       "sourcePlatform": "civic_website",
       "sourceHost": "www.nyecountynv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 2,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 1,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:pershing-county-commission",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Pershing County Commission",
-      "jurisdiction": "Pershing County, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": "www.pershingcountynv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 32,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 13,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:storey-county-commission",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Storey County Commission",
-      "jurisdiction": "Storey County, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": "www.storeycounty.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 14,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 7,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:washoe-county-commission",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Washoe County Commission",
-      "jurisdiction": "Washoe County, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "legistar",
-      "sourceHost": "washoe-nv.legistar.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 89,
-        "queued": 2,
-        "cached": 0,
-        "extracted": 87,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:white-pine-county-commission",
-      "sourceType": "meeting_system",
-      "sourceOwner": "White Pine County Commission",
-      "jurisdiction": "White Pine County, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.whitepinecounty.net",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:boulder-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Boulder City Council",
-      "jurisdiction": "Boulder City, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "primegov",
-      "sourceHost": "www.bcnv.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 59,
-        "queued": 0,
-        "cached": 4,
-        "extracted": 52,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:caliente-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Caliente City Council",
-      "jurisdiction": "Caliente, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": "www.cityofcaliente.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 7,
-        "queued": 0,
-        "cached": 2,
-        "extracted": 2,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:carlin-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Carlin City Council",
-      "jurisdiction": "Carlin, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": "www.explorecarlinnv.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 2,
-        "queued": 0,
-        "cached": 1,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:elko-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Elko City Council",
-      "jurisdiction": "Elko, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "html",
-      "sourceHost": "ob.elkocitynv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 32,
-        "queued": 0,
-        "cached": 7,
-        "extracted": 11,
-        "ocrRequired": 2,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:ely-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Ely City Council",
-      "jurisdiction": "Ely, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.cityofelynv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:fallon-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Fallon City Council",
-      "jurisdiction": "Fallon, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.fallonnevada.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:fernley-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Fernley City Council",
-      "jurisdiction": "Fernley, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.cityoffernley.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:henderson-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Henderson City Council",
-      "jurisdiction": "Henderson, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "html",
-      "sourceHost": "www.cityofhenderson.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:las-vegas-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Las Vegas City Council",
-      "jurisdiction": "Las Vegas, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "granicus",
-      "sourceHost": "lasvegas.primegov.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "healthy",
-      "freshnessStatus": "current",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 108,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 108,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:lovelock-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Lovelock City Council",
-      "jurisdiction": "Lovelock, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "cityoflovelock.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:mesquite-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Mesquite City Council",
-      "jurisdiction": "Mesquite, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": "www.mesquitenv.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "stale",
-      "freshnessStatus": "stale",
-      "failureReason": "Most documents are discovered but not cached or extracted.",
-      "documentCounts": {
-        "discovered": 3,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:north-las-vegas-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "North Las Vegas City Council",
-      "jurisdiction": "North Las Vegas, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "granicus",
-      "sourceHost": "www.cityofnorthlasvegas.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "healthy",
-      "freshnessStatus": "current",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 52,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 52,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:reno-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Reno City Council",
-      "jurisdiction": "Reno, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "granicus",
-      "sourceHost": "reno.primegov.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 107,
-        "queued": 4,
-        "cached": 7,
-        "extracted": 96,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:sparks-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Sparks City Council",
-      "jurisdiction": "Sparks, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "html",
-      "sourceHost": "www.cityofsparks.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 18,
-        "queued": 5,
-        "cached": 13,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:wells-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Wells City Council",
-      "jurisdiction": "Wells, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.cityofwellsnv.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:west-wendover-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "West Wendover City Council",
-      "jurisdiction": "West Wendover, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.westwendovercity.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:winnemucca-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Winnemucca City Council",
-      "jurisdiction": "Winnemucca, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.winnemuccacity.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:yerington-city-council",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Yerington City Council",
-      "jurisdiction": "Yerington, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": "www.yerington.net",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "degraded",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 14,
-        "queued": 0,
-        "cached": 1,
-        "extracted": 6,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:carson-city-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Carson City School District Board of Trustees",
-      "jurisdiction": "Carson City School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "html",
-      "sourceHost": "www.carsoncityschools.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:churchill-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Churchill County School District Board of Trustees",
-      "jurisdiction": "Churchill County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.churchillcsd.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:clark-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Clark County School District Board of Trustees",
-      "jurisdiction": "Clark County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "html",
-      "sourceHost": "www.boarddocs.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:douglas-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Douglas County School District Board of Trustees",
-      "jurisdiction": "Douglas County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.dcsd.net",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:elko-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Elko County School District Board of Trustees",
-      "jurisdiction": "Elko County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.ecsdnv.net",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:esmeralda-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Esmeralda County School District Board of Trustees",
-      "jurisdiction": "Esmeralda County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.esmeralda.k12.nv.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:eureka-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Eureka County School District Board of Trustees",
-      "jurisdiction": "Eureka County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.eureka.k12.nv.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:humboldt-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Humboldt County School District Board of Trustees",
-      "jurisdiction": "Humboldt County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.hcsdnv.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:lander-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Lander County School District Board of Trustees",
-      "jurisdiction": "Lander County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.lander.k12.nv.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:lincoln-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Lincoln County School District Board of Trustees",
-      "jurisdiction": "Lincoln County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "lcsdnv.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:lyon-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Lyon County School District Board of Trustees",
-      "jurisdiction": "Lyon County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.lyoncsd.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:mineral-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Mineral County School District Board of Trustees",
-      "jurisdiction": "Mineral County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "nvmcsd.org",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:nye-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Nye County School District Board of Trustees",
-      "jurisdiction": "Nye County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.nye.k12.nv.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:pershing-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Pershing County School District Board of Trustees",
-      "jurisdiction": "Pershing County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.pcsdnv.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:storey-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Storey County School District Board of Trustees",
-      "jurisdiction": "Storey County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.storeynv.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:washoe-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "Washoe County School District Board of Trustees",
-      "jurisdiction": "Washoe County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "html",
-      "sourceHost": "www.washoeschools.net",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "healthy",
-      "freshnessStatus": "current",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 59,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 59,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:white-pine-county-school-district",
-      "sourceType": "meeting_system",
-      "sourceOwner": "White Pine County School District Board of Trustees",
-      "jurisdiction": "White Pine County School District, NV",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "manual",
-      "sourceHost": "www.whitepine.k12.nv.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": null,
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "unknown",
-      "freshnessStatus": "limited",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 0,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 0,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:nv-assembly",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-assembly",
-      "jurisdiction": "Nevada",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "nevada_legislature",
-      "sourceHost": "www.leg.state.nv.us",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
-      "healthStatus": "healthy",
-      "freshnessStatus": "current",
-      "failureReason": null,
-      "documentCounts": {
-        "discovered": 6,
-        "queued": 0,
-        "cached": 0,
-        "extracted": 6,
-        "ocrRequired": 0,
-        "failed": 0
-      },
-      "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
-        "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
-      }
-    },
-    {
-      "sourceId": "meeting:nv-senate",
-      "sourceType": "meeting_system",
-      "sourceOwner": "nv-senate",
-      "jurisdiction": "Nevada",
-      "sourceCategory": "meetings",
-      "sourcePlatform": "civic_website",
-      "sourceHost": null,
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
-      "lastSuccessAt": "2026-08-25T13:12:41.651Z",
-      "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "healthy",
       "freshnessStatus": "current",
       "failureReason": null,
@@ -1705,10 +685,1240 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:pershing-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Pershing County Commission",
+      "jurisdiction": "Pershing County, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "www.pershingcountynv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 32,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 17,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:storey-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Storey County Commission",
+      "jurisdiction": "Storey County, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "www.storeycounty.org",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 16,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 12,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:washoe-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Washoe County Commission",
+      "jurisdiction": "Washoe County, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "legistar",
+      "sourceHost": "washoe-nv.legistar.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 91,
+        "queued": 3,
+        "cached": 0,
+        "extracted": 88,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:white-pine-county-commission",
+      "sourceType": "meeting_system",
+      "sourceOwner": "White Pine County Commission",
+      "jurisdiction": "White Pine County, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.whitepinecounty.net",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:boulder-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Boulder City Council",
+      "jurisdiction": "Boulder City, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "primegov",
+      "sourceHost": "www.bcnv.org",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 64,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 64,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:caliente-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Caliente City Council",
+      "jurisdiction": "Caliente, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "www.cityofcaliente.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 16,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 16,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:carlin-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Carlin City Council",
+      "jurisdiction": "Carlin, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "www.explorecarlinnv.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 2,
+        "queued": 0,
+        "cached": 2,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:elko-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Elko City Council",
+      "jurisdiction": "Elko, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "ob.elkocitynv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 32,
+        "queued": 0,
+        "cached": 10,
+        "extracted": 11,
+        "ocrRequired": 3,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:ely-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Ely City Council",
+      "jurisdiction": "Ely, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.cityofelynv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:fallon-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Fallon City Council",
+      "jurisdiction": "Fallon, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.fallonnevada.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:fernley-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Fernley City Council",
+      "jurisdiction": "Fernley, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.cityoffernley.org",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:henderson-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Henderson City Council",
+      "jurisdiction": "Henderson, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "www.cityofhenderson.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:las-vegas-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Las Vegas City Council",
+      "jurisdiction": "Las Vegas, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "granicus",
+      "sourceHost": "lasvegas.primegov.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 123,
+        "queued": 2,
+        "cached": 0,
+        "extracted": 121,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:lovelock-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lovelock City Council",
+      "jurisdiction": "Lovelock, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "cityoflovelock.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:mesquite-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Mesquite City Council",
+      "jurisdiction": "Mesquite, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "www.mesquitenv.gov",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 4,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 4,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:north-las-vegas-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "North Las Vegas City Council",
+      "jurisdiction": "North Las Vegas, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "granicus",
+      "sourceHost": "www.cityofnorthlasvegas.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 64,
+        "queued": 2,
+        "cached": 0,
+        "extracted": 62,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:reno-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Reno City Council",
+      "jurisdiction": "Reno, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "granicus",
+      "sourceHost": "reno.primegov.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 124,
+        "queued": 4,
+        "cached": 0,
+        "extracted": 120,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:sparks-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Sparks City Council",
+      "jurisdiction": "Sparks, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "www.cityofsparks.us",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 22,
+        "queued": 7,
+        "cached": 15,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:wells-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Wells City Council",
+      "jurisdiction": "Wells, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.cityofwellsnv.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:west-wendover-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "West Wendover City Council",
+      "jurisdiction": "West Wendover, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.westwendovercity.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:winnemucca-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Winnemucca City Council",
+      "jurisdiction": "Winnemucca, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.winnemuccacity.org",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:yerington-city-council",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Yerington City Council",
+      "jurisdiction": "Yerington, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "civic_website",
+      "sourceHost": "www.yerington.net",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 22,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 19,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:carson-city-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Carson City School District Board of Trustees",
+      "jurisdiction": "Carson City School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "www.carsoncityschools.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "degraded",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 195,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 68,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:churchill-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Churchill County School District Board of Trustees",
+      "jurisdiction": "Churchill County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.churchillcsd.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:clark-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Clark County School District Board of Trustees",
+      "jurisdiction": "Clark County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "www.boarddocs.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:douglas-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Douglas County School District Board of Trustees",
+      "jurisdiction": "Douglas County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.dcsd.net",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:elko-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Elko County School District Board of Trustees",
+      "jurisdiction": "Elko County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.ecsdnv.net",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:esmeralda-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Esmeralda County School District Board of Trustees",
+      "jurisdiction": "Esmeralda County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.esmeralda.k12.nv.us",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:eureka-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Eureka County School District Board of Trustees",
+      "jurisdiction": "Eureka County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.eureka.k12.nv.us",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:humboldt-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Humboldt County School District Board of Trustees",
+      "jurisdiction": "Humboldt County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.hcsdnv.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:lander-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lander County School District Board of Trustees",
+      "jurisdiction": "Lander County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.lander.k12.nv.us",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:lincoln-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lincoln County School District Board of Trustees",
+      "jurisdiction": "Lincoln County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "lcsdnv.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:lyon-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Lyon County School District Board of Trustees",
+      "jurisdiction": "Lyon County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.lyoncsd.org",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:mineral-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Mineral County School District Board of Trustees",
+      "jurisdiction": "Mineral County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "nvmcsd.org",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:nye-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Nye County School District Board of Trustees",
+      "jurisdiction": "Nye County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.nye.k12.nv.us",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:pershing-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Pershing County School District Board of Trustees",
+      "jurisdiction": "Pershing County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.pcsdnv.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:storey-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Storey County School District Board of Trustees",
+      "jurisdiction": "Storey County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.storeynv.com",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:washoe-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "Washoe County School District Board of Trustees",
+      "jurisdiction": "Washoe County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "html",
+      "sourceHost": "www.washoeschools.net",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 69,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 69,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:white-pine-county-school-district",
+      "sourceType": "meeting_system",
+      "sourceOwner": "White Pine County School District Board of Trustees",
+      "jurisdiction": "White Pine County School District, NV",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "manual",
+      "sourceHost": "www.whitepine.k12.nv.us",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": null,
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "unknown",
+      "freshnessStatus": "limited",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 0,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 0,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:nv-senate",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-senate",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "nevada_legislature",
+      "sourceHost": "www.leg.state.nv.us",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 8,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 8,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
+      }
+    },
+    {
+      "sourceId": "meeting:nv-assembly",
+      "sourceType": "meeting_system",
+      "sourceOwner": "nv-assembly",
+      "jurisdiction": "Nevada",
+      "sourceCategory": "meetings",
+      "sourcePlatform": "nevada_legislature",
+      "sourceHost": "www.leg.state.nv.us",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
+      "lastSuccessAt": "2026-09-06T21:48:03.370Z",
+      "lastChangeDetectedAt": null,
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
+      "healthStatus": "healthy",
+      "freshnessStatus": "current",
+      "failureReason": null,
+      "documentCounts": {
+        "discovered": 6,
+        "queued": 0,
+        "cached": 0,
+        "extracted": 6,
+        "ocrRequired": 0,
+        "failed": 0
+      },
+      "accountabilityReadinessImpact": {
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
+        "meetingsBlockedByOcr": 7,
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -1719,10 +1929,10 @@
       "sourceCategory": "rss_or_public_notice",
       "sourcePlatform": "rss",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-25T14:12:41.651Z",
+      "nextCheckAt": "2026-09-06T22:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1735,10 +1945,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -1749,10 +1959,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1765,10 +1975,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -1779,10 +1989,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1795,10 +2005,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -1809,10 +2019,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.carsoncity.gov",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1825,10 +2035,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -1839,10 +2049,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.carsoncityschools.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1855,10 +2065,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -1869,10 +2079,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.elkocity.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1885,10 +2095,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -1899,10 +2109,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.elkocity.com",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1915,10 +2125,10 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     },
     {
@@ -1929,10 +2139,10 @@
       "sourceCategory": "officials",
       "sourcePlatform": "official_directory",
       "sourceHost": "www.elkocountynv.net",
-      "lastCheckedAt": "2026-08-25T13:12:41.651Z",
+      "lastCheckedAt": "2026-09-06T21:48:03.370Z",
       "lastSuccessAt": null,
       "lastChangeDetectedAt": null,
-      "nextCheckAt": "2026-08-26T13:12:41.651Z",
+      "nextCheckAt": "2026-09-07T21:48:03.370Z",
       "healthStatus": "unknown",
       "freshnessStatus": "limited",
       "failureReason": null,
@@ -1945,28 +2155,28 @@
         "failed": 0
       },
       "accountabilityReadinessImpact": {
-        "meetingsReadyForAccountability": 18,
-        "meetingsBlockedBySourceGaps": 81,
+        "meetingsReadyForAccountability": 102,
+        "meetingsBlockedBySourceGaps": 209,
         "meetingsBlockedByOcr": 7,
-        "meetingsBlockedByParserGaps": 23
+        "meetingsBlockedByParserGaps": 96
       }
     }
   ],
   "audit": {
-    "generatedAt": "2026-08-25T13:12:41.651Z",
+    "generatedAt": "2026-09-06T21:48:03.370Z",
     "totals": {
-      "sourcesMonitored": 65,
-      "healthy": 7,
-      "stale": 2,
-      "degraded": 15,
+      "sourcesMonitored": 72,
+      "healthy": 10,
+      "stale": 1,
+      "degraded": 17,
       "failing": 0,
       "blocked": 0,
-      "unknown": 41,
-      "documentsDiscovered": 1869,
-      "queuedRetrievals": 29,
-      "downloadedDocuments": 1741,
-      "extractedDocuments": 1697,
-      "ocrCandidates": 8
+      "unknown": 44,
+      "documentsDiscovered": 2987,
+      "queuedRetrievals": 60,
+      "downloadedDocuments": 2204,
+      "extractedDocuments": 2175,
+      "ocrCandidates": 11
     }
   }
 }

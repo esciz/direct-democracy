@@ -1,7 +1,8 @@
 import { runPublicMeetingImport } from "@/lib/public-meetings/importer";
 
 async function main() {
-  const report = await runPublicMeetingImport();
+  const sourceIds = process.argv.filter((arg) => arg.startsWith("--source=")).flatMap((arg) => arg.slice("--source=".length).split(",")).filter(Boolean);
+  const report = await runPublicMeetingImport({ sourceIds });
 
   console.log("Public meeting import complete");
   console.log(`Seed sources: ${report.seed_sources}`);

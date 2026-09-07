@@ -283,7 +283,15 @@ function matchesFilters(card: MeetingVotingCardRecord, filters: MeetingVotingCar
 }
 
 export async function getMeetingVotingCards(filters: MeetingVotingCardFilters = {}) {
-  const cards = await readJsonFile<MeetingVotingCardRecord[]>(PUBLIC_MEETING_PATHS.meetingVotingCards, []);
+  const fullDatasetAvailable = existsSync(absolutePublicMeetingPath(PUBLIC_MEETING_PATHS.meetingVotingCards));
+  const records = await readJsonFile<MeetingVotingCardRecord[]>(fullDatasetAvailable ? PUBLIC_MEETING_PATHS.meetingVotingCards : PUBLIC_MEETING_PATHS.meetingVotingCardsRuntime, []);
+  const cards = fullDatasetAvailable ? records : getPublicMeetingVotingCards(records).map((card) => ({
+    ...card,
+    source_snippets: card.source_snippets ?? [],
+    related_official_actions: (card.related_official_actions ?? []).filter((action) => action.review_status === "approved" && action.official_id),
+    affected_groups: card.affected_groups ?? [],
+    created_at: card.created_at ?? card.updated_at,
+  }));
   const filtered = cards.filter((card) => matchesFilters(card, filters));
   return {
     cards: filtered.sort((left, right) => (Date.parse(right.meeting_date ?? "") || 0) - (Date.parse(left.meeting_date ?? "") || 0)),

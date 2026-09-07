@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T19:07:55.589Z",
+  "generatedAt": "2026-09-06T21:48:01.137Z",
   "auditGoal": "Determine whether Nevada community coverage gaps are missing data or missing canonical community relationships.",
   "canonicalCommunityScope": {
     "coverageCommunities": 43,
@@ -83,21 +83,21 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 1035,
-        "recordsLinkedToCanonicalCommunities": 1035,
-        "recordsLinkedToCoverageCommunities": 1020,
-        "recordsNotLinkedToCoverageCommunities": 15,
-        "recordsCountedInCoverageReport": 1020,
-        "recordsNotCountedInCoverageReport": 15
+        "totalRecordsInDatabaseOrRuntime": 1310,
+        "recordsLinkedToCanonicalCommunities": 1310,
+        "recordsLinkedToCoverageCommunities": 1106,
+        "recordsNotLinkedToCoverageCommunities": 204,
+        "recordsCountedInCoverageReport": 1106,
+        "recordsNotCountedInCoverageReport": 204
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "no_direct_community_id_field",
-          "count": 15
+          "count": 204
         },
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 15
+          "count": 204
         }
       ],
       "sampleUncountedRecords": [
@@ -186,6 +186,48 @@
           "linkBasis": "meeting_body"
         },
         {
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-25-d9b373ee",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-26-f03b2db8",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-manual-nv-legislature-nevada-legislature-2026-08-26-8a2de256",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
           "id": "meeting-manual-nv-senate-nevada-senate-2026-07-31-68ea6621",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
@@ -229,6 +271,34 @@
         },
         {
           "id": "meeting-manual-nv-senate-nevada-senate-2026-08-13-27b01fad",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-manual-nv-senate-nevada-senate-2026-08-27-16b063be",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-manual-nv-senate-nevada-senate-2026-08-27-c9c51ed3",
           "sourcePath": "data/generated/public-meetings.json",
           "linkedLocalCommunityIds": [],
           "linkedCanonicalCommunityIds": [
@@ -310,12 +380,82 @@
             "no_direct_community_id_field"
           ],
           "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-manual-nv-assembly-nevada-assembly-2026-08-26-f96741a9",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-manual-nv-assembly-nevada-assembly-2026-08-26-67e1a312",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-nv-cannabis-public-meetings-2026-12-17-398470b242a2",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-nv-cannabis-public-meetings-2026-10-15-322f73c95e3b",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
+        },
+        {
+          "id": "meeting-nv-cannabis-public-meetings-2026-09-14-44364112e42a",
+          "sourcePath": "data/generated/public-meetings.json",
+          "linkedLocalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
+          "countedInCoverageReport": false,
+          "notCountedReasons": [
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
+          ],
+          "linkBasis": "meeting_body"
         }
       ],
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meetings.json",
-          "totalRecords": 1035
+          "totalRecords": 1310
         }
       ]
     },
@@ -424,29 +564,29 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 2107,
-        "recordsLinkedToCanonicalCommunities": 2107,
-        "recordsLinkedToCoverageCommunities": 2044,
-        "recordsNotLinkedToCoverageCommunities": 63,
-        "recordsCountedInCoverageReport": 2044,
-        "recordsNotCountedInCoverageReport": 63
+        "totalRecordsInDatabaseOrRuntime": 3106,
+        "recordsLinkedToCanonicalCommunities": 3106,
+        "recordsLinkedToCoverageCommunities": 2620,
+        "recordsNotLinkedToCoverageCommunities": 486,
+        "recordsCountedInCoverageReport": 2620,
+        "recordsNotCountedInCoverageReport": 486
       },
       "topReasonsRecordsAreNotCounted": [
         {
           "reason": "statewide_record_not_linked_to_local_community",
-          "count": 63
-        },
-        {
-          "reason": "low_confidence_parse_or_match",
-          "count": 36
+          "count": 486
         },
         {
           "reason": "no_direct_community_id_field",
-          "count": 36
+          "count": 459
         },
         {
           "reason": "record_needs_review",
-          "count": 36
+          "count": 459
+        },
+        {
+          "reason": "low_confidence_parse_or_match",
+          "count": 78
         }
       ],
       "sampleUncountedRecords": [
@@ -783,7 +923,7 @@
         },
         {
           "path": "data/generated/public-cases-runtime.json",
-          "totalRecords": 2080
+          "totalRecords": 3079
         }
       ]
     },
@@ -804,14 +944,22 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 1220,
-        "recordsLinkedToCanonicalCommunities": 1191,
-        "recordsLinkedToCoverageCommunities": 1191,
-        "recordsNotLinkedToCoverageCommunities": 29,
-        "recordsCountedInCoverageReport": 1191,
-        "recordsNotCountedInCoverageReport": 29
+        "totalRecordsInDatabaseOrRuntime": 1754,
+        "recordsLinkedToCanonicalCommunities": 1725,
+        "recordsLinkedToCoverageCommunities": 1667,
+        "recordsNotLinkedToCoverageCommunities": 87,
+        "recordsCountedInCoverageReport": 1667,
+        "recordsNotCountedInCoverageReport": 87
       },
       "topReasonsRecordsAreNotCounted": [
+        {
+          "reason": "no_direct_community_id_field",
+          "count": 87
+        },
+        {
+          "reason": "statewide_record_not_linked_to_local_community",
+          "count": 58
+        },
         {
           "reason": "finance_record_missing_candidate_or_jurisdiction",
           "count": 29
@@ -825,371 +973,368 @@
           "count": 29
         },
         {
-          "reason": "no_direct_community_id_field",
-          "count": 29
-        },
-        {
           "reason": "source_parser_marked_unmatched",
           "count": 5
         }
       ],
       "sampleUncountedRecords": [
         {
-          "id": "nvsos-expense-results-secretary-of-state",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-cannabis-public-meetings-2026-06-16-ee331bef15a3-2-1f3a9f0b96",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "source_parser_marked_unmatched",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ki30xx4zru7vtmnolz41za-55c7e47c",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-cannabis-public-meetings-2026-06-16-ee331bef15a3-2-bf219891c1",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-qgtobzyvo2-252bhdksj7r-bcfc13be",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-cannabis-public-meetings-2026-05-14-9fa3d8ea6eed-i-f43baa9716",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-jvvlq8rn5r6ucv0ty13doa-2e41e760",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-cannabis-public-meetings-2026-05-14-9fa3d8ea6eed-3-f321617071",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada",
+            "united-states"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-vklq3rllhqtlm-252banl9-996a3db0",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-cannabis-public-meetings-2025-12-02-bf321b62520a-6-8c5f8797cc",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-vghlk5fd7govzbigs2jb-2-b3dceb0f",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-cannabis-public-meetings-2025-10-16-606c22d0a8e0-C-74d51a4f08",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-znnqe5qyrpwcmphc7qihxa-b92ecac6",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-cannabis-public-meetings-2025-03-20-c41fc89ec742-A-ebd1096996",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-fzzzvdjo7t269k4lws2mfq-2b437e66",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-06-25-60d90b534837-B-c8318844ba",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ioida6z-252fca3-252fw3-af5634c6",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-06-25-60d90b534837-D-46690e82de",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-pmaurndkmz9ke4vxcrmugq-b2652a56",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-06-25-60d90b534837-A-7d48376e76",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-tt970ypxrychok9rkaspqa-e239c0a6",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-05-06-ddcf1ad0662c-B-c8318844ba",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-c2bnv5uhmvwf9olsqkequa-92131775",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-05-06-ddcf1ad0662c-D-46690e82de",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-wlooenuyf6fgc-252bcbor-e0358d7d",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-05-06-ddcf1ad0662c-1-e42a233dc4",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-hx4m-252bui-252fqz7vym-3d4ac755",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-03-10-7f3902dd56b6-C-9cdb336804",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-gm-252fm7-252baamzctyx-da35ac69",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-03-10-7f3902dd56b6-F-ed5b5e7abb",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-o81amrzerccu79d2j245tg-b60e9a5d",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-03-10-7f3902dd56b6-H-e39392a9b0",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-1dx4jhg4i-252fqgfv-252-4cb84e4c",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-03-10-7f3902dd56b6-2-d8ac21eb05",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-s3g-252bhty4o94yjslm4b-f3cd6b60",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2026-03-10-7f3902dd56b6-1-34de1ba022",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-p11r9czp7b5qxkl17d533a-caf5ce66",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2025-12-03-897d7f25aa24-C-9cdb336804",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-r-252f9msgsp5smypabe-2-ce2f86ab",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2025-12-03-897d7f25aa24-E-54f5c6d8e4",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-dw586vpknjp3l0lz-252fl-0ff5a9a2",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2025-10-06-465396aeac66-C-9cdb336804",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-ihlo7aaa-252bla0toyfvl-927f2e7c",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2025-10-06-465396aeac66-E-5154af25a2",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-l3otesxojnxgpn46aefllw-c9d8de60",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2025-10-06-465396aeac66-F-f1791e03e5",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-oxxhvlrgz73uhvpudpoeoa-5337a382",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2025-10-06-465396aeac66-3-dd283f6eb1",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada",
+            "united-states"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         },
         {
-          "id": "expanded-www-nvsos-gov-soscandidateservices-anonymousaccess-viewccereport-aspx-syn-c5i2blxlnzx4csfc-252fo-f7c5ebd4",
-          "sourcePath": "data/generated/nv-sos-campaign-finance-records.json",
+          "id": "item-meeting-nv-taxation-public-meetings-2025-10-06-465396aeac66-A-635f068473",
+          "sourcePath": "data/generated/public-meeting-items.json",
           "linkedLocalCommunityIds": [],
-          "linkedCanonicalCommunityIds": [],
+          "linkedCanonicalCommunityIds": [
+            "nevada"
+          ],
           "countedInCoverageReport": false,
           "notCountedReasons": [
-            "no_canonical_local_community_match",
-            "no_canonical_community_match",
-            "no_direct_community_id_field",
-            "finance_record_missing_candidate_or_jurisdiction"
+            "statewide_record_not_linked_to_local_community",
+            "no_direct_community_id_field"
           ],
-          "linkBasis": "none"
+          "linkBasis": "meeting_body"
         }
       ],
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-items.json",
-          "totalRecords": 1166
+          "totalRecords": 1700
         },
         {
           "path": "data/generated/nv-sos-campaign-finance-records.json",
@@ -1213,11 +1358,11 @@
         ]
       },
       "totals": {
-        "totalRecordsInDatabaseOrRuntime": 3104,
-        "recordsLinkedToCanonicalCommunities": 3104,
-        "recordsLinkedToCoverageCommunities": 3104,
-        "recordsNotLinkedToCoverageCommunities": 0,
-        "recordsCountedInCoverageReport": 3104,
+        "totalRecordsInDatabaseOrRuntime": 4714,
+        "recordsLinkedToCanonicalCommunities": 4714,
+        "recordsLinkedToCoverageCommunities": 4439,
+        "recordsNotLinkedToCoverageCommunities": 275,
+        "recordsCountedInCoverageReport": 4714,
         "recordsNotCountedInCoverageReport": 0
       },
       "topReasonsRecordsAreNotCounted": [],
@@ -1225,7 +1370,7 @@
       "sourceBreakdown": [
         {
           "path": "data/generated/public-meeting-voting-cards.json",
-          "totalRecords": 3104
+          "totalRecords": 4714
         }
       ]
     },

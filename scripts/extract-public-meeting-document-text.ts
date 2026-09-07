@@ -1,7 +1,10 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { closeSync, existsSync, mkdirSync, openSync, readFileSync, readSync, renameSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { normalizeWhitespace, summarizeText } from "@/lib/public-meetings/shared";
+import { extractPdfTextIsolated } from "@/lib/public-meetings/pdf-native-text";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const TEXT_DIR = path.join(GENERATED_DIR, "public-meeting-document-text-cache");
@@ -10,6 +13,9 @@ const CACHE_INDEX_PATH = path.join(GENERATED_DIR, "public-meeting-document-cache
 const OCR_RESULTS_PATH = path.join(GENERATED_DIR, "public-meeting-ocr-results.json");
 const OUTPUT_PATH = path.join(GENERATED_DIR, "public-meeting-document-text.json");
 const MAX_TEXT_CHARS = 450_000;
+const PDF_WORKER_PATH = fileURLToPath(new URL("./workers/public-meeting-pdf-text.mjs", import.meta.url));
+const PDF_TIMEOUT_MS = Number(process.argv.find((arg) => arg.startsWith("--pdf-timeout-ms="))?.split("=")[1] ?? process.env.PUBLIC_MEETING_PDF_TIMEOUT_MS ?? "15000");
+const PDF_MAX_BYTES = Number(process.argv.find((arg) => arg.startsWith("--max-pdf-bytes="))?.split("=")[1] ?? process.env.PUBLIC_MEETING_PDF_MAX_BYTES ?? String(50 * 1024 * 1024));
 
 type ExtractionMethod = "native_text" | "ocr_text" | "mixed" | "failed";
 
@@ -55,6 +61,10 @@ type DocumentTextRecord = {
   ocrAvailable: boolean;
   failureReason: string | null;
   extractedAt: string;
+  sourceContentHash?: string | null;
+  ocrTextHash?: string | null;
+  evaluatedOcrTextHash?: string | null;
+  nativeTextFailureReason?: string | null;
 };
 
 type OcrResultRecord = {
@@ -64,6 +74,8 @@ type OcrResultRecord = {
   ocrStatus: string;
   confidence: number | null;
   failureReason: string | null;
+  sourceContentHash?: string | null;
+  processedAt?: string;
 };
 
 function readJson<T>(filePath: string, fallback: T): T {
@@ -74,17 +86,20 @@ function readJson<T>(filePath: string, fallback: T): T {
   }
 }
 
+function writeAtomically(filePath: string, value: string) {
+  const temporaryPath = `${filePath}.${process.pid}.tmp`;
+  writeFileSync(temporaryPath, value);
+  renameSync(temporaryPath, filePath);
+}
+
 function cleanText(value: string) {
-  return normalizeWhitespace(
-    value
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style[\s\S]*?<\/style>/gi, " ")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/&nbsp;|&#160;/gi, " ")
-      .replace(/&amp;/gi, "&")
-      .replace(/\b(?:font-family|font-size|Times New Roman|Helvetica|Arial|serif|sans-serif)\b/gi, " ")
-      .replace(/\s+/g, " "),
-  ).slice(0, MAX_TEXT_CHARS);
+  // Preserve numbered headings and paragraph boundaries for the downstream topic parser.
+  return value.replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<\/?(?:p|div|li|tr|h[1-6])\b[^>]*>|<br\s*\/?>/gi, "\n")
+    .replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/gi, " ").replace(/&amp;/gi, "&")
+    .replace(/\r\n?/g, "\n").split("\n").map((line) => line.replace(/[\t ]+/g, " ").trim())
+    .filter(Boolean).join("\n").slice(0, MAX_TEXT_CHARS);
 }
 
 function qualityFor(text: string): DocumentTextRecord["extractionQuality"] {
@@ -104,9 +119,10 @@ function confidenceFor(text: string, method: ExtractionMethod) {
 
 function readOptionalText(relativePath: string | null | undefined) {
   if (!relativePath) return { text: "", missing: false };
-  const absolute = path.join(process.cwd(), relativePath);
+  const absolute = path.isAbsolute(relativePath) ? relativePath : path.join(process.cwd(), relativePath);
   if (!existsSync(absolute)) return { text: "", missing: true };
-  return { text: cleanText(readFileSync(absolute, "utf8")), missing: false };
+  try { return { text: cleanText(readFileSync(absolute, "utf8")), missing: false }; }
+  catch { return { text: "", missing: true }; }
 }
 
 const cacheByDocument = new Map(
@@ -118,33 +134,69 @@ const existingTextByDocument = new Map(
 const ocrByDocument = new Map(
   readJson<{ records?: OcrResultRecord[] }>(OCR_RESULTS_PATH, { records: [] }).records?.filter((record) => record.ocrStatus === "succeeded" && record.extractedTextPath).map((record) => [record.documentId, record]) ?? [],
 );
+const sourceHashes = new Map<string, string | null>();
+const eligibleOcrByDocument = new Map<string, { record: OcrResultRecord | undefined; text: string; missing: boolean; textHash: string | null }>();
+
+function sourceHashFor(document: SourceDocumentRecord) {
+  const cache = cacheByDocument.get(document.id);
+  const localPath = cache?.stableLocalPath ?? document.cachedPath ?? document.sourcePath;
+  if (!localPath) return null;
+  const absolute = path.isAbsolute(localPath) ? localPath : path.join(process.cwd(), localPath);
+  if (!sourceHashes.has(absolute)) {
+    // Compare OCR against actual current bytes, including manually replaced PDFs.
+    let descriptor: number | undefined;
+    try {
+      descriptor = openSync(absolute, "r");
+      const digest = createHash("sha256");
+      const chunk = Buffer.allocUnsafe(1024 * 1024);
+      let length: number;
+      while ((length = readSync(descriptor, chunk, 0, chunk.length, null)) > 0) digest.update(chunk.subarray(0, length));
+      sourceHashes.set(absolute, digest.digest("hex"));
+    }
+    catch { sourceHashes.set(absolute, null); }
+    finally { if (descriptor !== undefined) closeSync(descriptor); }
+  }
+  return sourceHashes.get(absolute) ?? null;
+}
+
+function eligibleOcrFor(document: SourceDocumentRecord) {
+  const cached = eligibleOcrByDocument.get(document.id);
+  if (cached) return cached;
+  const sourceHash = sourceHashFor(document);
+  const candidate = ocrByDocument.get(document.id);
+  // Legacy unversioned OCR has no proof that it belongs to this revision.
+  const record = sourceHash && candidate?.sourceContentHash === sourceHash ? candidate : undefined;
+  const sidecar = readOptionalText(record?.extractedTextPath);
+  const result = { record, ...sidecar, textHash: sidecar.text ? createHash("sha256").update(sidecar.text).digest("hex") : null };
+  eligibleOcrByDocument.set(document.id, result);
+  return result;
+}
 
 function hasUsableExistingText(record: DocumentTextRecord | undefined) {
   if (!record) return false;
   if (record.extractionMethod === "failed") return false;
   if (!record.extractedTextPath) return false;
-  return existsSync(path.join(process.cwd(), record.extractedTextPath));
+  try {
+    const absolute = path.isAbsolute(record.extractedTextPath) ? record.extractedTextPath : path.join(process.cwd(), record.extractedTextPath);
+    return readFileSync(absolute, "utf8").replace(/\n$/, "").length === record.textLength;
+  } catch { return false; }
 }
 
 function shouldReuseExisting(document: SourceDocumentRecord, forceAll: boolean) {
   if (forceAll) return false;
   const existing = existingTextByDocument.get(document.id);
-  const cacheRecord = cacheByDocument.get(document.id);
   if (!hasUsableExistingText(existing)) return false;
-  if (!cacheRecord) return true;
-  return cacheRecord.extractionStatus === "extracted";
-}
-
-async function extractPdfText(filePath: string) {
-  const { PDFParse } = await import("pdf-parse");
-  const parser = new PDFParse({ data: readFileSync(filePath) });
-  const result = await parser.getText();
-  return cleanText(result.text ?? "");
+  const sourceHash = sourceHashFor(document);
+  if (!sourceHash || existing?.sourceContentHash !== sourceHash) return false;
+  const ocr = eligibleOcrFor(document);
+  // Source equality alone cannot hide newly completed/improved OCR, even for high-quality caches.
+  if (ocr.textHash && ocr.textHash !== existing.ocrTextHash && ocr.textHash !== existing.evaluatedOcrTextHash) return false;
+  return true;
 }
 
 async function extractDocument(document: SourceDocumentRecord, extractedAt: string): Promise<DocumentTextRecord> {
   const cacheRecord = cacheByDocument.get(document.id);
-  const cachedPath = document.cachedPath ?? cacheRecord?.stableLocalPath ?? document.sourcePath;
+  const cachedPath = cacheRecord?.stableLocalPath ?? document.cachedPath ?? document.sourcePath;
   if (!cachedPath || (document.retrievalStatus !== "local_cached" && !cacheRecord)) {
     return {
       id: `document-text-${document.id}`,
@@ -171,22 +223,34 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
   let text = "";
   let failureReason: string | null = null;
   try {
-    text = /\.pdf$/i.test(cachedPath) ? await extractPdfText(absolutePath) : cleanText(readFileSync(absolutePath, "utf8"));
+    if (/\.pdf$/i.test(cachedPath)) {
+      const native = await extractPdfTextIsolated(absolutePath, { timeoutMs: PDF_TIMEOUT_MS, maxBytes: PDF_MAX_BYTES, maxTextChars: MAX_TEXT_CHARS, workerPath: PDF_WORKER_PATH });
+      text = cleanText(native.text);
+      failureReason = native.failureReason;
+    } else text = cleanText(readFileSync(absolutePath, "utf8"));
   } catch (error) {
     failureReason = error instanceof Error ? error.message : "native_text_extraction_failed";
   }
   const method: ExtractionMethod = text.length >= 120 ? "native_text" : "failed";
-  const ocr = ocrByDocument.get(document.id);
-  const ocrSidecar = readOptionalText(ocr?.extractedTextPath);
+  const ocrSidecar = eligibleOcrFor(document);
+  const ocr = ocrSidecar.record;
   const ocrText = ocrSidecar.text;
   const mergedText = text && ocrText ? `${text}\n\n${ocrText}` : text || ocrText;
   const mergedMethod: ExtractionMethod = text && ocrText ? "mixed" : ocrText ? "ocr_text" : method;
-  const textPath = text.length
-    ? path.join("data", "generated", "public-meeting-document-text-cache", `${document.id}.txt`)
-    : mergedText.length
-      ? path.join("data", "generated", "public-meeting-document-text-cache", `${document.id}.txt`)
-    : null;
-  if (textPath) writeFileSync(path.join(process.cwd(), textPath), `${mergedText}\n`);
+  const existing = existingTextByDocument.get(document.id);
+  const sourceHash = sourceHashFor(document);
+  const qualityRank = { insufficient: 0, low: 1, medium: 2, high: 3 };
+  // A failed/partial rerun must not overwrite good text from the same exact source version.
+  if (existing && sourceHash && existing.sourceContentHash === sourceHash && hasUsableExistingText(existing)
+    && (mergedMethod === "failed" || qualityRank[qualityFor(mergedText)] < qualityRank[existing.extractionQuality]
+      || (existing.ocrAvailable && mergedText.length < existing.textLength))) {
+    return { ...existing, meetingId: document.meetingId, meetingItemIds: document.meetingItemIds, documentType: document.documentType,
+      sourceUrl: document.sourceUrl, sourcePath: document.sourcePath, evaluatedOcrTextHash: ocrSidecar.textHash ?? existing.evaluatedOcrTextHash,
+      nativeTextFailureReason: failureReason };
+  }
+  // Immutable content paths keep an interrupted refresh from changing the text referenced by the old ledger.
+  const textPath = mergedText.length ? path.join("data", "generated", "public-meeting-document-text-cache", `${document.id}-${createHash("sha256").update(mergedText).digest("hex").slice(0, 24)}.txt`) : null;
+  if (textPath) writeAtomically(path.join(process.cwd(), textPath), `${mergedText}\n`);
   return {
     id: `document-text-${document.id}`,
     documentId: document.id,
@@ -205,22 +269,33 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
     ocrAvailable: Boolean(ocrText),
     failureReason: mergedMethod === "failed" ? failureReason ?? (ocrSidecar.missing ? "ocr_text_sidecar_missing" : "native_text_too_thin_ocr_unavailable") : null,
     extractedAt,
+    sourceContentHash: sourceHash,
+    ocrTextHash: ocrSidecar.textHash,
+    evaluatedOcrTextHash: ocrSidecar.textHash,
+    nativeTextFailureReason: failureReason,
   };
 }
 
 async function main() {
+  if (![PDF_TIMEOUT_MS, PDF_MAX_BYTES].every((limit) => Number.isFinite(limit) && limit > 0)) throw new Error("PDF timeout and byte limits must be finite positive numbers");
   mkdirSync(TEXT_DIR, { recursive: true });
   const extractedAt = new Date().toISOString();
   const forceAll = process.argv.includes("--all");
-  const documents = readJson<{ records?: SourceDocumentRecord[] }>(DOCUMENTS_PATH, { records: [] }).records ?? [];
-  const records: DocumentTextRecord[] = [];
+  const allDocuments = readJson<{ records?: SourceDocumentRecord[] }>(DOCUMENTS_PATH, { records: [] }).records ?? [];
+  const sourceIds = new Set(process.argv.filter((arg) => arg.startsWith("--source=")).flatMap((arg) => arg.slice("--source=".length).split(",")).filter(Boolean));
+  const documentIds = new Set(process.argv.filter((arg) => arg.startsWith("--document-id=")).flatMap((arg) => arg.slice("--document-id=".length).split(",")).filter(Boolean));
+  const scoped = sourceIds.size > 0 || documentIds.size > 0;
+  const documents = allDocuments.filter((document) => (!sourceIds.size || sourceIds.has(document.organizationId ?? "")) && (!documentIds.size || documentIds.has(document.id)));
+  if (scoped && !documents.length) throw new Error(`No source documents match the provided source/document filters`);
+  const selectedDocumentIds = new Set(documents.map((document) => document.id));
+  const records: DocumentTextRecord[] = scoped ? [...existingTextByDocument.values()].filter((record) => !selectedDocumentIds.has(record.documentId)) : [];
   let reused = 0;
   let extracted = 0;
   for (const [index, document] of documents.entries()) {
     if (shouldReuseExisting(document, forceAll)) {
       const existing = existingTextByDocument.get(document.id);
       if (existing) {
-        records.push(existing);
+        records.push({ ...existing, meetingId: document.meetingId, meetingItemIds: document.meetingItemIds, documentType: document.documentType, sourceUrl: document.sourceUrl, sourcePath: document.sourcePath });
         reused += 1;
         continue;
       }
@@ -231,8 +306,10 @@ async function main() {
   }
   const audit = {
     generatedAt: extractedAt,
+    scope: { sourceIds: [...sourceIds], documentIds: [...documentIds], documentsSelected: documents.length, pdfTimeoutMs: PDF_TIMEOUT_MS, pdfMaxBytes: PDF_MAX_BYTES },
     totals: {
-      documentsScanned: records.length,
+      documentsScanned: documents.length,
+      documentsInLedger: records.length,
       reusedExistingText: reused,
       documentsProcessed: extracted,
       textExtracted: records.filter((record) => record.extractionMethod !== "failed").length,
@@ -249,11 +326,16 @@ async function main() {
       if (record.failureReason) counts[record.failureReason] = (counts[record.failureReason] ?? 0) + 1;
       return counts;
     }, {}),
+    nativeTextFailureReasons: records.reduce<Record<string, number>>((counts, record) => {
+      if (record.nativeTextFailureReason) counts[record.nativeTextFailureReason] = (counts[record.nativeTextFailureReason] ?? 0) + 1;
+      return counts;
+    }, {}),
   };
   const cacheIndex = readJson<{ generatedAt?: string; cacheRoot?: string; records?: Array<CacheIndexRecord & { extractionStatus?: string; ocrStatus?: string }> }>(CACHE_INDEX_PATH, { records: [] });
   if (cacheIndex.records?.length) {
     const textByDocument = new Map(records.map((record) => [record.documentId, record]));
     const updatedCache = cacheIndex.records.map((record) => {
+      if (scoped && !selectedDocumentIds.has(record.documentId)) return record;
       const text = textByDocument.get(record.documentId);
       if (!text) return record;
       return {
@@ -262,10 +344,10 @@ async function main() {
         ocrStatus: text.ocrAttempted ? (text.ocrAvailable ? "required" : "engine_unavailable") : "not_required",
       };
     });
-    writeFileSync(CACHE_INDEX_PATH, `${JSON.stringify({ ...cacheIndex, generatedAt: cacheIndex.generatedAt ?? extractedAt, records: updatedCache }, null, 2)}\n`);
+    writeAtomically(CACHE_INDEX_PATH, `${JSON.stringify({ ...cacheIndex, generatedAt: cacheIndex.generatedAt ?? extractedAt, records: updatedCache }, null, 2)}\n`);
   }
-  writeFileSync(OUTPUT_PATH, `${JSON.stringify({ generatedAt: extractedAt, records, audit }, null, 2)}\n`);
-  console.log(`Extracted text for ${audit.totals.textExtracted}/${audit.totals.documentsScanned} public meeting documents at ${OUTPUT_PATH}`);
+  writeAtomically(OUTPUT_PATH, `${JSON.stringify({ generatedAt: extractedAt, records, audit }, null, 2)}\n`);
+  console.log(`Processed ${extracted}/${documents.length} selected documents, reused ${reused}; retained ${records.length} text ledger records at ${OUTPUT_PATH}`);
   console.log(JSON.stringify(audit.totals, null, 2));
 }
 

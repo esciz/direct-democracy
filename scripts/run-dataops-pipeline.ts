@@ -22,12 +22,13 @@ function argValue(name: string) {
 
 if (process.argv.includes("--help")) {
   console.log([
-    "Usage: node --import tsx scripts/run-dataops-pipeline.ts [--limit=N] [--from=stage] [--to=stage] [--offline] [--force]",
+    "Usage: node --import tsx scripts/run-dataops-pipeline.ts [--limit=N] [--from=stage] [--to=stage] [--offline] [--meetings-only] [--dry-run] [--force]",
     "",
     "Runs the DataOps refresh pipeline. Use --from/--to for targeted recovery runs.",
     "Known stages:",
     ...[
       "refresh-meeting-calendars",
+      "refresh-public-data",
       "public-records",
       "import-meetings",
       "register-sources",
@@ -37,7 +38,9 @@ if (process.argv.includes("--help")) {
       "verify-cache",
       "extract-native-text",
       "ocr",
+      "parse-meeting-items",
       "source-completeness",
+      "meeting-lifecycle",
       "attendance",
       "votes",
       "accountability",
@@ -48,8 +51,9 @@ if (process.argv.includes("--help")) {
   process.exit(0);
 }
 
+const meetingsOnly = process.argv.includes("--meetings-only");
 const isTargetedRun = Boolean(argValue("from") || argValue("to"));
-const OUTPUT_PATH = isTargetedRun ? TARGETED_OUTPUT_PATH : CANONICAL_OUTPUT_PATH;
+const OUTPUT_PATH = meetingsOnly ? path.join(GENERATED_DIR, isTargetedRun ? "meetings-pipeline-targeted-run.json" : "meetings-pipeline-run.json") : isTargetedRun ? TARGETED_OUTPUT_PATH : CANONICAL_OUTPUT_PATH;
 
 function readJson<T>(fileName: string, fallback: T): T {
   try {
@@ -64,13 +68,15 @@ function runNodeScript(script: string, args: string[] = []) {
 }
 
 function networkSmokeTest() {
-  try {
-    execFileSync("curl", ["-I", "--max-time", "8", "https://www.google.com"], { stdio: "ignore" });
-    return { available: true, reason: null };
-  } catch (error) {
-    const reason = error instanceof Error ? error.message : "network_smoke_test_failed";
-    return { available: false, reason };
+  // Probe official sources rather than treating an unrelated search site as the network authority.
+  // A reachable HTTP error still proves transport; each adapter records the actual source outcome.
+  for (const url of ["https://ccb.nv.gov/public-meetings/", "https://tax.nv.gov/", "https://notice.nv.gov/"]) {
+    try {
+      execFileSync("curl", ["-I", "--connect-timeout", "4", "--max-time", "8", url], { stdio: "ignore" });
+      return { available: true, reason: null };
+    } catch { /* Try another independent official host before skipping network stages. */ }
   }
+  return { available: false, reason: "official_source_connectivity_probes_failed" };
 }
 
 const retrieveArgs = [
@@ -85,11 +91,19 @@ const retrieveArgs = [
 const stages: Stage[] = [
   {
     id: "refresh-meeting-calendars",
-    description: "Refresh Nevada meetings, current-official directories, and statewide financial coverage.",
+    description: "Discover current Nevada calendars and refresh due official-source caches.",
     network: true,
     commands: [
       runNodeScript("scripts/generate-nevada-public-meeting-source-seeds.ts"),
-      runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--scheduled", "--force"]),
+      runNodeScript("scripts/discover-nevada-meeting-sources.ts"),
+      runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--scheduled"]),
+    ],
+  },
+  {
+    id: "refresh-public-data",
+    description: "Refresh officials and financial data independently of the meeting calendar.",
+    network: true,
+    commands: [
       runNodeScript("scripts/run-officials-refresh.ts"),
       runNodeScript("scripts/collect-nevada-financials.ts", ["--scheduled"]),
       runNodeScript("scripts/audit-nevada-financial-coverage.ts", ["--strict"]),
@@ -130,6 +144,7 @@ const stages: Stage[] = [
       runNodeScript("scripts/generate-dataops-source-registry.ts"),
       runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"),
       runNodeScript("scripts/monitor-civic-sources.ts"),
+      runNodeScript("scripts/generate-public-meeting-lifecycle.ts"),
       runNodeScript("scripts/audit-nevada-jurisdiction-meeting-coverage.ts", ["--strict"]),
       runNodeScript("scripts/audit-upcoming-meeting-coverage.ts", ["--strict"]),
     ],
@@ -138,10 +153,12 @@ const stages: Stage[] = [
   { id: "verify-cache", description: "Verify cached content and reconcile cache counts.", commands: [runNodeScript("scripts/verify-public-meeting-cache-content.ts"), runNodeScript("scripts/audit-public-meeting-document-cache.ts")] },
   { id: "extract-native-text", description: "Extract native text from cached documents.", commands: [runNodeScript("scripts/extract-public-meeting-document-text.ts")] },
   { id: "ocr", description: "Audit OCR capabilities and execute bounded OCR candidates.", commands: [runNodeScript("scripts/audit-ocr-capabilities.ts"), runNodeScript("scripts/run-public-meeting-ocr.ts"), runNodeScript("scripts/extract-public-meeting-document-text.ts"), runNodeScript("scripts/audit-public-meeting-ocr.ts")] },
+  { id: "parse-meeting-items", description: "Parse numbered topics from newly cached agenda/minutes text into evidence review, preserving reviewed records.", commands: [runNodeScript("scripts/reprocess-cached-meeting-items.ts")] },
   { id: "source-completeness", description: "Regenerate source completeness and accountability readiness.", commands: [runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"), runNodeScript("scripts/audit-minutes-extraction.ts"), runNodeScript("scripts/generate-public-meeting-action-results.ts"), runNodeScript("scripts/generate-public-meeting-source-completeness.ts"), runNodeScript("scripts/audit-public-meeting-documents.ts")] },
+  { id: "meeting-lifecycle", description: "Archive elapsed meetings and report delayed minutes, source freshness, and due follow-ups.", commands: [runNodeScript("scripts/generate-public-meeting-lifecycle.ts")] },
   { id: "attendance", description: "Regenerate rosters and attendance.", commands: [runNodeScript("scripts/generate-governing-body-rosters.ts"), runNodeScript("scripts/generate-public-meeting-attendance.ts"), runNodeScript("scripts/audit-public-meeting-attendance.ts")] },
   { id: "votes", description: "Regenerate votes and attribution readiness.", commands: [runNodeScript("scripts/generate-public-meeting-votes.ts"), runNodeScript("scripts/audit-public-meeting-votes.ts"), runNodeScript("scripts/generate-vote-attribution-readiness.ts")] },
-  { id: "accountability", description: "Regenerate voting cards, projects, and accountability graph.", commands: [runNodeScript("scripts/generate-voting-cards.ts"), runNodeScript("scripts/generate-projects.ts"), runNodeScript("scripts/generate-accountability-graph.ts")] },
+  { id: "accountability", description: "Regenerate voting cards, projects, and accountability graph.", commands: [runNodeScript("scripts/regenerate-public-meeting-voting-cards.ts"), runNodeScript("scripts/generate-voting-cards.ts"), runNodeScript("scripts/publish-public-meeting-runtime.ts"), runNodeScript("scripts/generate-projects.ts"), runNodeScript("scripts/generate-accountability-graph.ts")] },
   {
     id: "communities",
     description: "Publish source-backed issues, events, and community relationships, then audit the public views.",
@@ -177,7 +194,10 @@ function selectedStages() {
   const toIndex = to ? stages.findIndex((stage) => stage.id === to) : stages.length - 1;
   if (fromIndex === -1) throw new Error(`Unknown --from stage: ${from}`);
   if (toIndex === -1) throw new Error(`Unknown --to stage: ${to}`);
-  return stages.slice(fromIndex, toIndex + 1);
+  if (fromIndex > toIndex) throw new Error("--from must precede --to");
+  return stages.slice(fromIndex, toIndex + 1)
+    .filter((stage) => !meetingsOnly || !["refresh-public-data", "public-records"].includes(stage.id))
+    .map((stage) => meetingsOnly && stage.id === "freshness-audit" ? { ...stage, commands: stage.commands.filter((command) => !/nv-sos|audit-public-site-integrity/.test(command.join(" "))) } : stage);
 }
 
 function artifactMetrics() {
@@ -236,21 +256,28 @@ function artifactMetrics() {
   };
 }
 
-mkdirSync(GENERATED_DIR, { recursive: true });
-const runId = `dataops-${new Date().toISOString()}`;
-if (existsSync(LOCK_PATH) && !process.argv.includes("--force")) {
-  throw new Error(`DataOps pipeline lock exists at ${LOCK_PATH}. Use --force only after confirming no run is active.`);
+if (process.argv.includes("--dry-run")) {
+  console.log(JSON.stringify({ meetingsOnly, stages: selectedStages() }, null, 2));
+  process.exit(0);
 }
-writeFileSync(LOCK_PATH, `${runId}\n`);
+mkdirSync(GENERATED_DIR, { recursive: true });
+const runId = `dataops-${new Date().toISOString()}-${process.pid}`;
+if (process.argv.includes("--force")) rmSync(LOCK_PATH, { force: true });
+try {
+  writeFileSync(LOCK_PATH, `${runId}\n`, { flag: "wx" });
+} catch (error) {
+  if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new Error(`DataOps pipeline lock exists at ${LOCK_PATH}. Use --force only after confirming no run is active.`);
+  throw error;
+}
 
 const startedAt = new Date().toISOString();
 const offline = process.argv.includes("--offline") || process.env.DATAOPS_NETWORK_ENABLED === "false";
 const smoke = offline ? { available: false, reason: "offline_mode_requested" } : networkSmokeTest();
-const stageReports: Array<{ id: string; description: string; status: StageStatus; startedAt: string | null; completedAt: string | null; durationMs: number; error: string | null }> = [];
+const stageReports: Array<{ id: string; description: string; status: StageStatus; startedAt: string | null; completedAt: string | null; durationMs: number; error: string | null; commands: Array<{ command: string[]; status: "succeeded" | "failed"; error: string | null }> }> = [];
 
 try {
   for (const stage of selectedStages()) {
-    const report = { id: stage.id, description: stage.description, status: "pending" as StageStatus, startedAt: null as string | null, completedAt: null as string | null, durationMs: 0, error: null as string | null };
+    const report = { id: stage.id, description: stage.description, status: "pending" as StageStatus, startedAt: null as string | null, completedAt: null as string | null, durationMs: 0, error: null as string | null, commands: [] as Array<{ command: string[]; status: "succeeded" | "failed"; error: string | null }> };
     stageReports.push(report);
     if (stage.network && !smoke.available) {
       report.status = "skipped";
@@ -261,12 +288,20 @@ try {
     report.startedAt = new Date().toISOString();
     report.status = "running";
     try {
-      for (const command of stage.commands) execFileSync(command[0], command.slice(1), { stdio: "inherit", env: process.env });
-      report.status = "succeeded";
-    } catch (error) {
-      report.status = "failed";
-      report.error = error instanceof Error ? error.message : "stage_failed";
-      throw error;
+      for (const command of stage.commands) {
+        try {
+          execFileSync(command[0], command.slice(1), { stdio: "inherit", env: process.env,
+            timeout: Number(process.env.DATAOPS_COMMAND_TIMEOUT_MS ?? 1_200_000) });
+          report.commands.push({ command, status: "succeeded", error: null });
+        } catch (error) {
+          const message = error instanceof Error ? error.message : "command_failed";
+          report.commands.push({ command, status: "failed", error: message });
+          console.error(`DataOps command failed; continuing remaining recovery work: ${command.join(" ")}`);
+        }
+      }
+      const failures = report.commands.filter((command) => command.status === "failed");
+      report.status = failures.length ? "failed" : "succeeded";
+      report.error = failures.length ? failures.map((command) => command.error).join("\n") : null;
     } finally {
       report.completedAt = new Date().toISOString();
       report.durationMs = Date.now() - started;
@@ -274,7 +309,7 @@ try {
     }
   }
 } finally {
-  rmSync(LOCK_PATH, { force: true });
+  if (existsSync(LOCK_PATH) && readFileSync(LOCK_PATH, "utf8").trim() === runId) rmSync(LOCK_PATH, { force: true });
 }
 
 const completedAt = new Date().toISOString();
@@ -283,6 +318,7 @@ const artifact = {
   startedAt,
   completedAt,
   canonicalRun: !isTargetedRun,
+  meetingsOnly,
   environment: { offline, networkAvailable: smoke.available, networkReason: smoke.reason, cwd: process.cwd() },
   stagesAttempted: stageReports.filter((stage) => stage.status !== "skipped").length,
   stagesSucceeded: stageReports.filter((stage) => stage.status === "succeeded").length,
@@ -292,6 +328,7 @@ const artifact = {
   metrics: artifactMetrics(),
 };
 writeFileSync(OUTPUT_PATH, `${JSON.stringify(artifact, null, 2)}\n`);
-if (artifact.stagesFailed) process.exit(1);
-console.log(`DataOps pipeline completed: ${artifact.stagesSucceeded} succeeded, ${artifact.stagesSkipped} skipped.`);
+console.log(`DataOps pipeline completed: ${artifact.stagesSucceeded} succeeded, ${artifact.stagesFailed} failed, ${artifact.stagesSkipped} skipped.`);
 console.log(JSON.stringify(artifact.metrics, null, 2));
+
+if (artifact.stagesFailed || (!offline && !smoke.available)) process.exit(1);

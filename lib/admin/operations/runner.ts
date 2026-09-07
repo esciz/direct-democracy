@@ -57,8 +57,8 @@ function environmentSnapshot() {
 }
 
 function overlapBlocked(operationType: OperationType, currentOperationId: string) {
-  if (operationType !== "dataops_full" && operationType !== "dataops_daily" && operationType !== "dataops_offline") return false;
-  return listAdminOperations().some((operation) => operation.id !== currentOperationId && ["queued", "starting", "running"].includes(operation.status) && ["dataops_full", "dataops_daily", "dataops_offline"].includes(operation.operationType));
+  if (operationType !== "dataops_full" && operationType !== "dataops_daily" && operationType !== "dataops_offline" && operationType !== "meetings_refresh") return false;
+  return listAdminOperations().some((operation) => operation.id !== currentOperationId && ["queued", "starting", "running"].includes(operation.status) && ["dataops_full", "dataops_daily", "dataops_offline", "meetings_refresh"].includes(operation.operationType));
 }
 
 function isProductionEnvironment() {

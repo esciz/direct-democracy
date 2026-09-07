@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-09-06T21:46:48.282Z",
+  "records": [
+    {
+      "id": "meeting-source-document-e1064d4533606a0c6ac41aaeb3b2d51e2ea31476a93ce9f2e1dd12d23829ec02:item-meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2-V-24254e16f0:06888b9303b67704df482f86d37fa979eb94269192f5089364e80e6cd14d6db8",
+      "status": "needs_review",
+      "reason": "reviewed_item_has_new_source_evidence",
+      "documentId": "meeting-source-document-e1064d4533606a0c6ac41aaeb3b2d51e2ea31476a93ce9f2e1dd12d23829ec02",
+      "existingItemId": "item-meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2-V-24254e16f0",
+      "meetingId": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2",
+      "sourceHash": "06888b9303b67704df482f86d37fa979eb94269192f5089364e80e6cd14d6db8",
+      "detectedAt": "2026-09-06T21:46:48.282Z",
+      "proposedItem": {
+        "id": "item-meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2-V-24254e16f0",
+        "meeting_id": "meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2",
+        "item_number": "V",
+        "title": "V. FOR POSSIBLE ACTION: LIBRARY BOARD OF TRUSTEES BUSINESS",
+        "description": "V. FOR POSSIBLE ACTION: LIBRARY BOARD OF TRUSTEES BUSINESS V.A FOR POSSIBLE ACTION: DISCUSSION AND POSSIBLE ACTION REGARDING AN ANNUAL UNCLASSIFIED EMPLOYEE PERFORMANCE EVALUATION FOR THE LIBRARY DIRECTOR, JOY HOLT. 6 -- 6 of 31 -- CARSON CITY LIBRARY BOARD OF TRUSTEES (LBOT) Draft Minutes of the June 11, 2026 Regular Meeting Page 2 (5:31:32) – Chair Nichols introduced the item. Ms. Holt referenced the Staff Report and the Supporting Material, all of which are incorporated into the record. (5:33:21) – Trustee Le...",
+        "one_sentence_summary": "FOR POSSIBLE ACTION: LIBRARY BOARD OF TRUSTEES BUSINESS.",
+        "plain_english_explanation": "This agenda topic concerns fOR POSSIBLE ACTION: LIBRARY BOARD OF TRUSTEES BUSINESS It is classified under Schools.",
+        "why_it_matters": "It may affect residents, services, rules, or public resources connected to schools.",
+        "affected_groups": [
+          "Students and schools",
+          "Businesses and vendors"
+        ],
+        "financial_impact": null,
+        "vote_outcome": null,
+        "related_official_names": [],
+        "related_organization_names": [],
+        "agenda_section": null,
+        "item_type": "other",
+        "staff_recommendation": null,
+        "fiscal_impact_summary": null,
+        "policy_area": "Schools",
+        "source_page": null,
+        "source_text": "V. FOR POSSIBLE ACTION: LIBRARY BOARD OF TRUSTEES BUSINESS V.A FOR POSSIBLE ACTION: DISCUSSION AND POSSIBLE ACTION REGARDING AN ANNUAL UNCLASSIFIED EMPLOYEE PERFORMANCE EVALUATION FOR THE LIBRARY DIRECTOR, JOY HOLT. 6 -- 6 of 31 -- CARSON CITY LIBRARY BOARD OF TRUSTEES (LBOT) Draft Minutes of the June 11, 2026 Regular Meeting Page 2 (5:31:32) – Chair Nichols introduced the item. Ms. Holt referenced the Staff Report and the Supporting Material, all of which are incorporated into the record. (5:33:21) – Trustee Lenhares noted that Proposed Objective 1 was identified as a priority among all four Trustees. Discussion ensued regarding the most effective method for reviewing the policies, including whether to review them as full documents or in sections. The Board ultimately agreed that reviewing a minimum of one full policy per meeting would be the most appropriate approach. (5:33:52) – Trustee Spansail stated that all Trustees indicated that Director Holt made positive progress towards Proposed Objective 2 and expressed the expectation that this progress continue. She noted differences between the newly Proposed Objective 2 and the previous Objective 2 on Page 39, specifically pointing out that the earlier version included the phrase “focusing on administrative duties,” which is not included in the current language. Trustee Spansail asked Ms. Holt whether she anticipated an increased focus on delegating day-to-day operations to the Deputy Director to allow the Director more time for streamlining administrative work. Ms. Holt responded that continuing to hand off appropriate duties to the Deputy Director will allow her additional time for outreach, advocacy, and other administrative responsibilities. (5:37:30) – Ms. Holt asked for clarification regarding specific benchmar...",
+        "source_url": "https://d3n9y02raazwpg.cloudfront.net/carsoncity/a44801c7-e516-11f0-bb28-005056a89546-72832d98-d599-4654-a647-d1ce4f3832d7-1783037561.pdf",
+        "source_document_hash": "06888b9303b67704df482f86d37fa979eb94269192f5089364e80e6cd14d6db8",
+        "cached_text_path": "data/generated/public-meeting-document-text-cache/meeting-source-document-e1064d4533606a0c6ac41aaeb3b2d51e2ea31476a93ce9f2e1dd12d23829ec02.txt",
+        "confidence_score": 0.64,
+        "source_method": "automated_archive",
+        "source_local_path": "data/generated/public-meeting-document-cache/d3n9y02raazwpg-cloudfront-net-carsoncity-a44801c7-e516-11f0-bb28-005056a89546-72/06888b9303b67704df482f86d37fa979eb94269192f5089364e80e6cd14d6db8.pdf",
+        "parser_status": "needs_review",
+        "roll_call_status": "needs_roll_call_review"
+      }
+    }
+  ]
+}

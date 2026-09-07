@@ -66,7 +66,7 @@ export async function getPublicMeetingAdminDashboard(): Promise<PublicMeetingAdm
     readJsonFile<PublicBodyRecord[]>(PUBLIC_MEETING_PATHS.bodies, []),
     readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_PATHS.meetings, []),
     readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_PATHS.eventsRuntime, []),
-    readJsonFile<PublicMeetingItemRecord[]>(PUBLIC_MEETING_PATHS.meetingItems, []),
+    readJsonFile<PublicMeetingItemRecord[]>(existsSync(absolutePublicMeetingPath(PUBLIC_MEETING_PATHS.meetingItems)) ? PUBLIC_MEETING_PATHS.meetingItems : PUBLIC_MEETING_PATHS.meetingItemsRuntime, []),
     readJsonFile<VoteRecord[]>(PUBLIC_MEETING_PATHS.voteRecords, []),
     readJsonFile<OfficialMeetingActionRecord[]>(PUBLIC_MEETING_PATHS.officialActions, []),
     readJsonFile<CitizenVoteQuestionRecord[]>(PUBLIC_MEETING_PATHS.citizenQuestions, []),

@@ -1,11 +1,15 @@
 name: DataOps Daily
 
 on:
-  schedule:
-    # Refresh before the Nevada business day so newly posted agendas are in the demo before meetings start.
-    - cron: "15 11 * * *"
+  # The existing local civic-source automation owns the recurring schedule.
+  # Keep this as a recovery runner so two schedulers do not diverge silently.
   workflow_dispatch:
     inputs:
+      meetings_only:
+        description: Refresh meetings and minutes independently of finance and cases
+        required: false
+        default: true
+        type: boolean
       limit:
         description: Retrieval batch size
         required: false
@@ -28,7 +32,9 @@ on:
           - verify-cache
           - extract-native-text
           - ocr
+          - parse-meeting-items
           - source-completeness
+          - meeting-lifecycle
           - attendance
           - votes
           - accountability
@@ -51,7 +57,9 @@ on:
           - verify-cache
           - extract-native-text
           - ocr
+          - parse-meeting-items
           - source-completeness
+          - meeting-lifecycle
           - attendance
           - votes
           - accountability
@@ -143,11 +151,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Network smoke test
-        run: |
-          curl -I --max-time 15 https://www.google.com
-          curl -I --max-time 15 https://www.leg.state.nv.us || true
-
       - name: Optional OCR tools
         if: env.DATAOPS_INSTALL_OCR_TOOLS == 'true'
         run: |
@@ -158,13 +161,14 @@ jobs:
         shell: bash
         run: |
           args=(--limit="${DATAOPS_RETRIEVAL_LIMIT}")
+          if [[ "${{ github.event.inputs.meetings_only }}" == "true" ]]; then args+=(--meetings-only); fi
           if [[ -n "${{ github.event.inputs.from_stage }}" && "${{ github.event.inputs.from_stage }}" != "none" ]]; then args+=(--from="${{ github.event.inputs.from_stage }}"); fi
           if [[ -n "${{ github.event.inputs.to_stage }}" && "${{ github.event.inputs.to_stage }}" != "none" ]]; then args+=(--to="${{ github.event.inputs.to_stage }}"); fi
           if [[ "${{ github.event.inputs.offline }}" == "true" ]]; then args+=(--offline); fi
           npm run dataops:pipeline -- "${args[@]}"
 
       - name: Officials source refresh
-        if: github.event.inputs.offline != 'true' && env.OFFICIALS_MODE != 'promote_reviewed'
+        if: github.event.inputs.meetings_only != 'true' && github.event.inputs.offline != 'true' && env.OFFICIALS_MODE != 'promote_reviewed'
         shell: bash
         env:
           OFFICIALS_EXECUTION_ENVIRONMENT: github_actions
@@ -202,6 +206,21 @@ jobs:
             data/generated/public-meeting-*-verification.json
             data/generated/public-meeting-cache-*.json
             data/generated/upcoming-meeting-coverage-audit.json
+            data/generated/public-meeting-item-processing-report.json
+            data/generated/public-meeting-item-review-candidates.json
+            data/generated/public-meeting-lifecycle.json
+            data/generated/public-meeting-discovery-state.json
+            data/generated/public-meeting-document-refresh-state.json
+            data/generated/nevada-meeting-source-discovery.json
+            data/generated/meetings-pipeline-run.json
+            data/generated/meetings-pipeline-targeted-run.json
+            data/generated/events-runtime.json
+            data/generated/public-meetings.json
+            data/generated/public-meeting-bodies.json
+            data/generated/public-meeting-source-documents.json
+            data/generated/public-meeting-items.json
+            data/generated/public-meeting-items-runtime.json
+            data/generated/voting-cards-runtime.json
             data/generated/nevada-jurisdiction-meeting-coverage.json
             data/generated/rss-source-registry.json
             data/generated/officials-*.json

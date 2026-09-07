@@ -23,6 +23,7 @@ type CatalogProvider = {
   replaceSourceUrls?: boolean;
   platformHints?: string[];
   allowedHosts?: string[];
+  notes?: string;
 };
 
 type CatalogJurisdiction = {
@@ -101,6 +102,7 @@ const merged = catalog.providers.map((provider): ExtendedMeetingSourceSeed => {
     active: previous?.active ?? true,
     notes:
       previous?.notes ??
+      provider.notes ??
       "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
     providerGroup: provider.providerGroup,
     discoveryUrls,

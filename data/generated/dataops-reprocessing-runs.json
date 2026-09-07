@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-10T15:08:46.998Z",
+  "generatedAt": "2026-09-06T21:48:03.321Z",
   "runs": [
     {
-      "runId": "reprocess-2026-08-10T15:08:46.977Z",
-      "startedAt": "2026-08-10T15:08:46.977Z",
-      "completedAt": "2026-08-10T15:08:46.998Z",
+      "runId": "reprocess-2026-09-06T21:48:03.297Z",
+      "startedAt": "2026-09-06T21:48:03.297Z",
+      "completedAt": "2026-09-06T21:48:03.321Z",
       "scope": {
         "source": null,
         "jurisdiction": null,
@@ -14,9 +14,9 @@
         "accountabilityOutputs": false
       },
       "inputCounts": {
-        "cachedDocuments": 2413,
-        "selectedDocuments": 2413,
-        "existingTextRows": 1831
+        "cachedDocuments": 2938,
+        "selectedDocuments": 2938,
+        "existingTextRows": 2962
       },
       "changedOutputs": [],
       "failures": [],
@@ -33,10 +33,10 @@
     }
   ],
   "audit": {
-    "generatedAt": "2026-08-10T15:08:46.998Z",
+    "generatedAt": "2026-09-06T21:48:03.321Z",
     "totals": {
       "runs": 1,
-      "selectedDocuments": 2413,
+      "selectedDocuments": 2938,
       "failures": 0
     }
   }

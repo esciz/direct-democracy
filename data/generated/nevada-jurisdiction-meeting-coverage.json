@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T13:12:41.707Z",
+  "generatedAt": "2026-09-06T21:15:30.817Z",
   "catalogVersion": 1,
   "scope": {
     "description": "Statewide baseline for Nevada public-meeting acquisition. Covers every county or county-equivalent government, incorporated city, county school district, and the primary statewide meeting layers.",
@@ -31,12 +31,12 @@
   ],
   "totals": {
     "requiredJurisdictions": 56,
-    "requiredProviders": 55,
-    "configuredProviders": 55,
+    "requiredProviders": 62,
+    "configuredProviders": 62,
     "jurisdictionsWithConfiguredSource": 56,
     "sourceGaps": 0,
     "advancedCollectionActive": 55,
-    "pendingFirstAdvancedPass": 0,
+    "pendingFirstAdvancedPass": 7,
     "advancedCollectionBlocked": 0,
     "advancedCollectionCheckedNoRecords": 0,
     "inheritedCommunities": 7,
@@ -90,6 +90,287 @@
   ],
   "providerRows": [
     {
+      "providerId": "nv-cannabis-public-meetings",
+      "providerName": "Nevada Cannabis Compliance Board and Cannabis Advisory Commission",
+      "providerGroup": "state",
+      "jurisdiction": "Nevada",
+      "requirementIds": [],
+      "communityIds": [],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://ccb.nv.gov/public-meetings/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_cannabis_table",
+        "html",
+        "pdf"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": null,
+        "lastSucceededAt": null,
+        "pagesVisited": 0,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [],
+        "cachedEntries": 0,
+        "failures": 0
+      },
+      "status": "configured_pending_first_advanced_pass"
+    },
+    {
+      "providerId": "nv-taxation-public-meetings",
+      "providerName": "Nevada Department of Taxation Boards and Committees",
+      "providerGroup": "state",
+      "jurisdiction": "Nevada",
+      "requirementIds": [],
+      "communityIds": [],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://tax.nv.gov/boards-meetings/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_taxation_sections",
+        "html",
+        "pdf"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": null,
+        "lastSucceededAt": null,
+        "pagesVisited": 0,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [],
+        "cachedEntries": 0,
+        "failures": 0
+      },
+      "status": "configured_pending_first_advanced_pass"
+    },
+    {
+      "providerId": "nv-state-board-of-education",
+      "providerName": "Nevada State Board of Education and Subcommittees",
+      "providerGroup": "state",
+      "jurisdiction": "Nevada",
+      "requirementIds": [],
+      "communityIds": [],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://doe.nv.gov/boards-commissions-councils/state-board-of-education"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_education_headings",
+        "html",
+        "pdf"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": null,
+        "lastSucceededAt": null,
+        "pagesVisited": 0,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [],
+        "cachedEntries": 0,
+        "failures": 0
+      },
+      "status": "configured_pending_first_advanced_pass"
+    },
+    {
+      "providerId": "nv-statewide-public-notices",
+      "providerName": "Nevada Statewide Public Notice Discovery",
+      "providerGroup": "state",
+      "jurisdiction": "Nevada",
+      "requirementIds": [],
+      "communityIds": [],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://notice.nv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "official_notice"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": null,
+        "lastSucceededAt": null,
+        "pagesVisited": 0,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [],
+        "cachedEntries": 0,
+        "failures": 0
+      },
+      "status": "configured_pending_first_advanced_pass"
+    },
+    {
+      "providerId": "nv-education-public-meetings-discovery",
+      "providerName": "Nevada Education Boards and Councils Discovery",
+      "providerGroup": "state",
+      "jurisdiction": "Nevada",
+      "requirementIds": [],
+      "communityIds": [],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://doe.nv.gov/boards-commissions-councils/publicmeetings/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "education_calendar"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": null,
+        "lastSucceededAt": null,
+        "pagesVisited": 0,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [],
+        "cachedEntries": 0,
+        "failures": 0
+      },
+      "status": "configured_pending_first_advanced_pass"
+    },
+    {
+      "providerId": "nv-school-participation-discovery",
+      "providerName": "Nevada School and Parent Organization Discovery",
+      "providerGroup": "school",
+      "jurisdiction": "Nevada",
+      "requirementIds": [],
+      "communityIds": [],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://doe.nv.gov/school-and-district-information",
+        "https://www.nevadapta.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "school_directory",
+        "parent_organization"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": null,
+        "lastSucceededAt": null,
+        "pagesVisited": 0,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [],
+        "cachedEntries": 0,
+        "failures": 0
+      },
+      "status": "configured_pending_first_advanced_pass"
+    },
+    {
+      "providerId": "carson-city-school-participation",
+      "providerName": "Carson City School and Parent Participation",
+      "providerGroup": "school",
+      "jurisdiction": "Carson City, NV",
+      "requirementIds": [],
+      "communityIds": [],
+      "sourceConfigured": true,
+      "configuredUrls": [
+        "https://www.carsoncityschools.com/families-and-students/calendars",
+        "https://www.carsoncityschools.com/",
+        "https://www.carsoncityschools.com/families-and-students"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "finalsite_parent_meetings",
+        "school_calendar",
+        "parent_organization"
+      ],
+      "acquisitionMethods": [
+        "daily_direct_source_check",
+        "weekly_rendered_browser_discovery",
+        "official_link_following",
+        "public_json_capture",
+        "linked_document_retrieval",
+        "native_text_extraction",
+        "ocr_fallback",
+        "source_health_monitoring"
+      ],
+      "directCollectionCadenceDays": 1,
+      "advancedCollectionCadenceDays": 7,
+      "advancedCollection": {
+        "lastAttemptedAt": null,
+        "lastSucceededAt": null,
+        "pagesVisited": 0,
+        "pagesSucceeded": 0,
+        "discoveredKinds": [],
+        "cachedEntries": 0,
+        "failures": 0
+      },
+      "status": "configured_pending_first_advanced_pass"
+    },
+    {
       "providerId": "nv-legislature",
       "providerName": "Nevada Legislature",
       "providerGroup": "state",
@@ -122,15 +403,15 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:02:07.914Z",
-        "lastSucceededAt": "2026-08-25T13:02:07.914Z",
+        "lastAttemptedAt": "2026-09-01T13:05:22.096Z",
+        "lastSucceededAt": "2026-09-01T13:05:22.096Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
           "agenda",
           "bill"
         ],
-        "cachedEntries": 61,
+        "cachedEntries": 64,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -167,8 +448,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-13T13:08:06.760Z",
-        "lastSucceededAt": "2026-08-13T13:08:06.760Z",
+        "lastAttemptedAt": "2026-09-03T13:04:05.265Z",
+        "lastSucceededAt": "2026-09-03T13:04:05.265Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -213,8 +494,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-22T18:54:38.152Z",
-        "lastSucceededAt": "2026-08-22T18:54:38.152Z",
+        "lastAttemptedAt": "2026-09-05T13:06:36.112Z",
+        "lastSucceededAt": "2026-09-05T13:06:36.112Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -261,8 +542,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:06:58.754Z",
-        "lastSucceededAt": "2026-08-14T13:06:58.754Z",
+        "lastAttemptedAt": "2026-09-04T13:01:43.976Z",
+        "lastSucceededAt": "2026-09-04T13:01:43.976Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -307,8 +588,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-19T13:07:29.452Z",
-        "lastSucceededAt": "2026-08-19T13:07:29.452Z",
+        "lastAttemptedAt": "2026-09-02T13:01:57.458Z",
+        "lastSucceededAt": "2026-09-02T13:01:57.458Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -318,7 +599,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 59,
+        "cachedEntries": 69,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -357,8 +638,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-13T13:08:21.525Z",
-        "lastSucceededAt": "2026-08-13T13:08:21.525Z",
+        "lastAttemptedAt": "2026-09-03T13:04:23.034Z",
+        "lastSucceededAt": "2026-09-03T13:04:23.034Z",
         "pagesVisited": 5,
         "pagesSucceeded": 4,
         "discoveredKinds": [
@@ -366,7 +647,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 14,
+        "cachedEntries": 17,
         "failures": 3
       },
       "status": "advanced_collection_active"
@@ -404,8 +685,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:09:19.605Z",
-        "lastSucceededAt": "2026-08-24T13:09:19.605Z",
+        "lastAttemptedAt": "2026-08-31T13:05:08.683Z",
+        "lastSucceededAt": "2026-08-31T13:05:08.683Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -455,8 +736,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-23T13:00:43.531Z",
-        "lastSucceededAt": "2026-08-23T13:00:43.531Z",
+        "lastAttemptedAt": "2026-09-06T20:57:31.079Z",
+        "lastSucceededAt": "2026-09-06T20:57:31.079Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -501,8 +782,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-23T13:00:59.804Z",
-        "lastSucceededAt": "2026-08-23T13:00:59.804Z",
+        "lastAttemptedAt": "2026-09-06T20:57:39.580Z",
+        "lastSucceededAt": "2026-09-06T20:57:39.580Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -553,8 +834,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-23T13:01:59.063Z",
-        "lastSucceededAt": "2026-08-23T13:01:59.063Z",
+        "lastAttemptedAt": "2026-09-06T20:57:58.611Z",
+        "lastSucceededAt": "2026-09-06T20:57:58.611Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -600,8 +881,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:07:31.784Z",
-        "lastSucceededAt": "2026-08-14T13:07:31.784Z",
+        "lastAttemptedAt": "2026-09-04T13:02:07.709Z",
+        "lastSucceededAt": "2026-09-04T13:02:07.709Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -610,7 +891,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 14,
+        "cachedEntries": 18,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -647,8 +928,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-13T13:08:51.228Z",
-        "lastSucceededAt": "2026-08-13T13:08:51.228Z",
+        "lastAttemptedAt": "2026-09-03T13:04:55.501Z",
+        "lastSucceededAt": "2026-09-03T13:04:55.501Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -692,8 +973,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-19T13:07:38.738Z",
-        "lastSucceededAt": "2026-08-19T13:07:38.738Z",
+        "lastAttemptedAt": "2026-09-02T13:02:06.193Z",
+        "lastSucceededAt": "2026-09-02T13:02:06.193Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -737,8 +1018,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-23T13:02:20.922Z",
-        "lastSucceededAt": "2026-08-23T13:02:20.922Z",
+        "lastAttemptedAt": "2026-09-06T20:58:43.289Z",
+        "lastSucceededAt": "2026-09-06T20:58:43.289Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -747,7 +1028,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 44,
+        "cachedEntries": 48,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -782,8 +1063,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:07:57.227Z",
-        "lastSucceededAt": "2026-08-14T13:07:57.227Z",
+        "lastAttemptedAt": "2026-09-04T13:02:44.744Z",
+        "lastSucceededAt": "2026-09-04T13:02:44.744Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -832,8 +1113,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:09:34.599Z",
-        "lastSucceededAt": "2026-08-24T13:09:34.599Z",
+        "lastAttemptedAt": "2026-08-31T13:05:30.008Z",
+        "lastSucceededAt": "2026-08-31T13:05:30.008Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -842,7 +1123,7 @@
           "bill",
           "rawHtml"
         ],
-        "cachedEntries": 40,
+        "cachedEntries": 43,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -877,8 +1158,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-23T13:02:32.049Z",
-        "lastSucceededAt": "2026-08-23T13:02:32.049Z",
+        "lastAttemptedAt": "2026-09-06T20:58:55.268Z",
+        "lastSucceededAt": "2026-09-06T20:58:55.268Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -926,18 +1207,19 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:08:28.790Z",
-        "lastSucceededAt": "2026-08-14T13:08:28.790Z",
+        "lastAttemptedAt": "2026-09-04T13:03:00.345Z",
+        "lastSucceededAt": "2026-09-04T13:03:00.345Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
           "agenda",
           "apiJson",
           "bill",
+          "minutes",
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 29,
+        "cachedEntries": 33,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -975,8 +1257,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:08:59.873Z",
-        "lastSucceededAt": "2026-08-14T13:08:59.873Z",
+        "lastAttemptedAt": "2026-09-04T13:03:19.161Z",
+        "lastSucceededAt": "2026-09-04T13:03:19.161Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -987,7 +1269,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 18,
+        "cachedEntries": 21,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1024,8 +1306,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-19T13:07:55.941Z",
-        "lastSucceededAt": "2026-08-19T13:07:55.941Z",
+        "lastAttemptedAt": "2026-09-02T13:02:20.969Z",
+        "lastSucceededAt": "2026-09-02T13:02:20.969Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1034,7 +1316,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 35,
+        "cachedEntries": 36,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1075,8 +1357,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:02:31.010Z",
-        "lastSucceededAt": "2026-08-25T13:02:31.010Z",
+        "lastAttemptedAt": "2026-09-01T13:05:44.659Z",
+        "lastSucceededAt": "2026-09-01T13:05:44.659Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1085,7 +1367,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 110,
+        "cachedEntries": 111,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1120,8 +1402,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:09:48.724Z",
-        "lastSucceededAt": "2026-08-24T13:09:48.724Z",
+        "lastAttemptedAt": "2026-08-31T13:05:39.197Z",
+        "lastSucceededAt": "2026-08-31T13:05:39.197Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1129,7 +1411,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 11,
+        "cachedEntries": 12,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1164,8 +1446,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:02:42.289Z",
-        "lastSucceededAt": "2026-08-25T13:02:42.289Z",
+        "lastAttemptedAt": "2026-09-01T13:05:56.245Z",
+        "lastSucceededAt": "2026-09-01T13:05:56.245Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1216,8 +1498,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-23T13:02:43.042Z",
-        "lastSucceededAt": "2026-08-23T13:02:43.042Z",
+        "lastAttemptedAt": "2026-09-06T20:59:18.890Z",
+        "lastSucceededAt": "2026-09-06T20:59:18.890Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1263,8 +1545,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:10:09.476Z",
-        "lastSucceededAt": "2026-08-24T13:10:09.476Z",
+        "lastAttemptedAt": "2026-08-31T13:05:58.130Z",
+        "lastSucceededAt": "2026-08-31T13:05:58.130Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1307,17 +1589,17 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:02:51.358Z",
-        "lastSucceededAt": "2026-08-25T13:02:51.358Z",
-        "pagesVisited": 5,
-        "pagesSucceeded": 5,
+        "lastAttemptedAt": "2026-09-01T13:05:56.461Z",
+        "lastSucceededAt": null,
+        "pagesVisited": 1,
+        "pagesSucceeded": 0,
         "discoveredKinds": [
           "agenda",
           "bill",
           "rawHtml"
         ],
         "cachedEntries": 8,
-        "failures": 0
+        "failures": 1
       },
       "status": "advanced_collection_active"
     },
@@ -1355,8 +1637,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:03:14.662Z",
-        "lastSucceededAt": "2026-08-25T13:03:14.662Z",
+        "lastAttemptedAt": "2026-09-01T13:06:21.796Z",
+        "lastSucceededAt": "2026-09-01T13:06:21.796Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1367,7 +1649,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 56,
+        "cachedEntries": 61,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1402,8 +1684,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:10:10.179Z",
-        "lastSucceededAt": "2026-08-24T13:10:10.179Z",
+        "lastAttemptedAt": "2026-08-31T13:05:59.086Z",
+        "lastSucceededAt": "2026-08-31T13:05:59.086Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1453,8 +1735,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-22T18:54:58.913Z",
-        "lastSucceededAt": "2026-08-22T18:54:58.913Z",
+        "lastAttemptedAt": "2026-09-05T13:07:15.888Z",
+        "lastSucceededAt": "2026-09-05T13:07:15.888Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1464,7 +1746,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 142,
+        "cachedEntries": 143,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1499,8 +1781,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:03:30.000Z",
-        "lastSucceededAt": "2026-08-25T13:03:30.000Z",
+        "lastAttemptedAt": "2026-09-01T13:06:37.622Z",
+        "lastSucceededAt": "2026-09-01T13:06:37.622Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1543,8 +1825,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-19T13:08:21.211Z",
-        "lastSucceededAt": "2026-08-19T13:08:21.211Z",
+        "lastAttemptedAt": "2026-09-02T13:02:45.656Z",
+        "lastSucceededAt": "2026-09-02T13:02:45.656Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1593,8 +1875,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-22T18:55:19.112Z",
-        "lastSucceededAt": "2026-08-22T18:55:19.112Z",
+        "lastAttemptedAt": "2026-09-05T13:07:36.215Z",
+        "lastSucceededAt": "2026-09-05T13:07:36.215Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1603,7 +1885,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 92,
+        "cachedEntries": 96,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1643,8 +1925,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:04:03.680Z",
-        "lastSucceededAt": "2026-08-25T13:04:03.680Z",
+        "lastAttemptedAt": "2026-09-01T13:06:53.675Z",
+        "lastSucceededAt": "2026-09-01T13:06:53.675Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1653,7 +1935,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 152,
+        "cachedEntries": 153,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1676,10 +1958,8 @@
       ],
       "scraperType": "html",
       "platformHints": [
-        "legistar",
         "municode_meetings",
-        "onbase",
-        "primegov"
+        "onbase"
       ],
       "acquisitionMethods": [
         "daily_direct_source_check",
@@ -1694,8 +1974,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:10:18.617Z",
-        "lastSucceededAt": "2026-08-24T13:10:18.617Z",
+        "lastAttemptedAt": "2026-08-31T13:06:08.636Z",
+        "lastSucceededAt": "2026-08-31T13:06:08.636Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1703,7 +1983,7 @@
           "packet",
           "rawHtml"
         ],
-        "cachedEntries": 24,
+        "cachedEntries": 26,
         "failures": 0
       },
       "status": "advanced_collection_active"
@@ -1738,8 +2018,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:04:06.150Z",
-        "lastSucceededAt": "2026-08-25T13:04:06.150Z",
+        "lastAttemptedAt": "2026-09-01T13:06:56.401Z",
+        "lastSucceededAt": "2026-09-01T13:06:56.401Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1780,8 +2060,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:04:06.988Z",
-        "lastSucceededAt": "2026-08-25T13:04:06.988Z",
+        "lastAttemptedAt": "2026-09-01T13:06:57.539Z",
+        "lastSucceededAt": "2026-09-01T13:06:57.539Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1824,8 +2104,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:10:20.775Z",
-        "lastSucceededAt": "2026-08-24T13:10:20.775Z",
+        "lastAttemptedAt": "2026-08-31T13:06:11.108Z",
+        "lastSucceededAt": "2026-08-31T13:06:11.108Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1868,8 +2148,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:10:51.094Z",
-        "lastSucceededAt": "2026-08-24T13:10:51.094Z",
+        "lastAttemptedAt": "2026-08-31T13:06:54.474Z",
+        "lastSucceededAt": "2026-08-31T13:06:54.474Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -1898,10 +2178,14 @@
       "sourceConfigured": true,
       "configuredUrls": [
         "https://www.carsoncityschools.com/our-district/school-board",
-        "https://go.boarddocs.com/nv/carson/Board.nsf/Public"
+        "https://drive.google.com/drive/folders/198r2RNzw25hyXzfwEUWurPGMfv5eUdax?usp=sharing",
+        "https://drive.google.com/drive/folders/1WrwzbT0KmHhQq3ezNqBjBGZGUqyayGsZ?usp=sharing"
       ],
       "scraperType": "html",
       "platformHints": [
+        "finalsite",
+        "public_drive_folders",
+        "boarddocs_legacy",
         "boarddocs"
       ],
       "acquisitionMethods": [
@@ -1917,8 +2201,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:09:00.523Z",
-        "lastSucceededAt": "2026-08-14T13:09:00.523Z",
+        "lastAttemptedAt": "2026-09-04T13:03:19.823Z",
+        "lastSucceededAt": "2026-09-04T13:03:19.823Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -1960,8 +2244,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:04:18.641Z",
-        "lastSucceededAt": "2026-08-25T13:04:18.641Z",
+        "lastAttemptedAt": "2026-09-01T13:07:08.912Z",
+        "lastSucceededAt": "2026-09-01T13:07:08.912Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2006,8 +2290,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-22T18:55:19.765Z",
-        "lastSucceededAt": "2026-08-22T18:55:19.765Z",
+        "lastAttemptedAt": "2026-09-05T13:07:36.848Z",
+        "lastSucceededAt": "2026-09-05T13:07:36.848Z",
         "pagesVisited": 1,
         "pagesSucceeded": 1,
         "discoveredKinds": [
@@ -2049,8 +2333,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-19T13:08:54.804Z",
-        "lastSucceededAt": "2026-08-19T13:08:54.804Z",
+        "lastAttemptedAt": "2026-09-02T13:03:23.602Z",
+        "lastSucceededAt": "2026-09-02T13:03:23.602Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2091,8 +2375,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:24:52.722Z",
-        "lastSucceededAt": "2026-08-24T13:24:52.722Z",
+        "lastAttemptedAt": "2026-08-31T13:07:56.639Z",
+        "lastSucceededAt": "2026-08-31T13:07:56.639Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [
@@ -2133,8 +2417,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:24:56.182Z",
-        "lastSucceededAt": "2026-08-24T13:24:56.182Z",
+        "lastAttemptedAt": "2026-08-31T13:08:00.405Z",
+        "lastSucceededAt": "2026-08-31T13:08:00.405Z",
         "pagesVisited": 2,
         "pagesSucceeded": 2,
         "discoveredKinds": [
@@ -2175,8 +2459,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:09:21.893Z",
-        "lastSucceededAt": "2026-08-14T13:09:21.893Z",
+        "lastAttemptedAt": "2026-09-04T13:03:40.647Z",
+        "lastSucceededAt": "2026-09-04T13:03:40.647Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2221,8 +2505,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-13T13:12:51.658Z",
-        "lastSucceededAt": "2026-08-13T13:12:51.658Z",
+        "lastAttemptedAt": "2026-09-03T13:05:22.309Z",
+        "lastSucceededAt": "2026-09-03T13:05:22.309Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2230,7 +2514,7 @@
           "minutes",
           "rawHtml"
         ],
-        "cachedEntries": 8,
+        "cachedEntries": 9,
         "failures": 1
       },
       "status": "advanced_collection_active"
@@ -2267,8 +2551,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:10:14.185Z",
-        "lastSucceededAt": "2026-08-14T13:10:14.185Z",
+        "lastAttemptedAt": "2026-09-04T13:04:25.916Z",
+        "lastSucceededAt": "2026-09-04T13:04:25.916Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2309,8 +2593,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-13T13:13:03.866Z",
-        "lastSucceededAt": "2026-08-13T13:13:03.866Z",
+        "lastAttemptedAt": "2026-09-03T13:05:29.485Z",
+        "lastSucceededAt": "2026-09-03T13:05:29.485Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [
@@ -2352,8 +2636,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-13T13:13:13.914Z",
-        "lastSucceededAt": "2026-08-13T13:13:13.914Z",
+        "lastAttemptedAt": "2026-09-03T13:05:37.271Z",
+        "lastSucceededAt": "2026-09-03T13:05:37.271Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2395,8 +2679,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-25T13:04:31.848Z",
-        "lastSucceededAt": "2026-08-25T13:04:31.848Z",
+        "lastAttemptedAt": "2026-09-01T13:07:24.969Z",
+        "lastSucceededAt": "2026-09-01T13:07:24.969Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2439,8 +2723,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-24T13:25:42.716Z",
-        "lastSucceededAt": "2026-08-24T13:25:42.716Z",
+        "lastAttemptedAt": "2026-08-31T13:17:44.688Z",
+        "lastSucceededAt": "2026-08-31T13:17:44.688Z",
         "pagesVisited": 3,
         "pagesSucceeded": 3,
         "discoveredKinds": [
@@ -2481,8 +2765,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-19T13:14:22.160Z",
-        "lastSucceededAt": "2026-08-19T13:14:22.160Z",
+        "lastAttemptedAt": "2026-09-02T13:04:25.724Z",
+        "lastSucceededAt": "2026-09-02T13:04:25.724Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [
@@ -2523,8 +2807,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-14T13:10:29.184Z",
-        "lastSucceededAt": "2026-08-14T13:10:29.184Z",
+        "lastAttemptedAt": "2026-09-04T13:04:33.751Z",
+        "lastSucceededAt": "2026-09-04T13:04:33.751Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [
@@ -2566,8 +2850,8 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-13T13:13:27.035Z",
-        "lastSucceededAt": "2026-08-13T13:13:27.035Z",
+        "lastAttemptedAt": "2026-09-03T13:05:49.736Z",
+        "lastSucceededAt": "2026-09-03T13:05:49.736Z",
         "pagesVisited": 5,
         "pagesSucceeded": 5,
         "discoveredKinds": [
@@ -2611,15 +2895,15 @@
       "directCollectionCadenceDays": 1,
       "advancedCollectionCadenceDays": 7,
       "advancedCollection": {
-        "lastAttemptedAt": "2026-08-22T18:55:28.656Z",
-        "lastSucceededAt": "2026-08-22T18:55:28.656Z",
+        "lastAttemptedAt": "2026-09-05T13:07:45.539Z",
+        "lastSucceededAt": "2026-09-05T13:07:45.539Z",
         "pagesVisited": 4,
         "pagesSucceeded": 4,
         "discoveredKinds": [
           "apiJson",
           "rawHtml"
         ],
-        "cachedEntries": 11,
+        "cachedEntries": 12,
         "failures": 0
       },
       "status": "advanced_collection_active"

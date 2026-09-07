@@ -20,8 +20,10 @@ import {
 import { confirmEventAttendance, createEventPost, submitEventSentiment, updateEventRsvp } from "@/lib/community/event-participation-actions";
 import { getCivicEventById, getCivicEventStatusLabel, getCivicEventTypeLabel } from "@/lib/events/civic-events";
 import type { CivicEvent } from "@/lib/events/types";
+import { formatCivicEventDate, getEventMinutesStatus } from "@/lib/events/lifecycle";
 import { getPublicMeetingAdminDashboard } from "@/lib/public-meetings/public";
-import { getMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
+import { getPublicMeetingItems } from "@/lib/public-meetings/public-record-eligibility";
+import { getMeetingVotingCards, getPublicMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
 import type { PostSummary } from "@/types/domain";
 
 type EventDetailPageProps = {
@@ -52,30 +54,6 @@ function formatCompact(value: string) {
   });
 }
 
-function formatOfficialDate(value: string | null) {
-  if (!value) return "Schedule source";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "Date pending";
-  return date.toLocaleString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
-}
-
-function formatFetchedDate(value: string | null) {
-  if (!value) return "Source registry connected";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "Source registry connected";
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
 
 function InlineSourceLink({ href, label }: { href: string | null; label: string }) {
   if (!href) return null;
@@ -141,6 +119,21 @@ export default async function EventDetailPage({ params, searchParams }: EventDet
 
   if (!civicEvent) {
     notFound();
+  }
+
+  if (civicEvent.parentOrganizationEvent) {
+    return (
+      <div className="space-y-6 py-8">
+        <PageIntro eyebrow="Parent organization event" title={civicEvent.title} description={civicEvent.description} actions={<Link href="/events" className="dd-button-secondary rounded-full px-4 py-3 text-sm font-semibold">Back to Events</Link>} />
+        <CivicEventCard event={civicEvent} returnPath={`/events/${civicEvent.id}`} />
+        <section className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 text-sm leading-7 text-slate-400">
+          <h2 className="text-lg font-semibold text-slate-100">Take part in your school community</h2>
+          <p className="mt-2">Use the school calendar to confirm the location and contact the PTA or PTO about joining, attending, and volunteering. Ask the parent organization for its agenda and any meeting notes it shares.</p>
+          <p className="mt-2">{formatCivicEventDate(civicEvent.startsAt)} · {civicEvent.locationName ?? "Location needs confirmation with the host"}</p>
+          {civicEvent.hostCalendarUrl || civicEvent.sourceUrl ? <a href={civicEvent.hostCalendarUrl ?? civicEvent.sourceUrl ?? "#"} target="_blank" rel="noreferrer" className="mt-4 inline-flex font-semibold text-cyan-200 underline">Open school calendar</a> : null}
+        </section>
+      </div>
+    );
   }
 
   if (civicEvent.isOfficialMeeting) {
@@ -239,7 +232,8 @@ export default async function EventDetailPage({ params, searchParams }: EventDet
 
 async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
   const eventTypeLabel = getCivicEventTypeLabel(event.eventType);
-  const statusLabel = getCivicEventStatusLabel(event.status);
+  const statusLabel = event.sourceProvider === "public_meeting_source_registry" ? "Official calendar" : getCivicEventStatusLabel(event.status);
+  const minutesStatus = getEventMinutesStatus(event);
   const materialCount = event.sourceDocumentCount || [event.agendaUrl, event.packetUrl, event.minutesUrl, event.videoUrl, event.sourceUrl].filter(Boolean).length;
   const dashboard = event.meetingRecordId
     ? await withSectionTimeout(getPublicMeetingAdminDashboard(), "public meeting intelligence", 1800).catch((error) => {
@@ -247,21 +241,21 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
         return null;
       })
     : null;
-  const agendaItems = dashboard?.meetingItems
+  const agendaItems = getPublicMeetingItems(dashboard?.meetingItems ?? [])
     .filter((item) => item.meeting_id === event.meetingRecordId)
     .sort((left, right) => {
       const leftNumber = Number.parseFloat(left.item_number ?? "");
       const rightNumber = Number.parseFloat(right.item_number ?? "");
       if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) return leftNumber - rightNumber;
       return left.title.localeCompare(right.title);
-    }) ?? [];
+    });
   const meetingVotingCards = event.meetingRecordId
     ? await withSectionTimeout(getMeetingVotingCards(), "meeting voting cards", 1400).catch((error) => {
         console.error(`[event-detail] meeting voting cards fallback for ${event.id}`, error);
         return { cards: [], allCards: [], jurisdictions: [], bodies: [], policyAreas: [] };
       })
     : { cards: [], allCards: [], jurisdictions: [], bodies: [], policyAreas: [] };
-  const relatedVotingCards = meetingVotingCards.allCards.filter((card) => card.meeting_id === event.meetingRecordId).slice(0, 8);
+  const relatedVotingCards = getPublicMeetingVotingCards(meetingVotingCards.allCards).filter((card) => card.meeting_id === event.meetingRecordId).slice(0, 8);
   const votesByItemId = new Map<string, NonNullable<typeof dashboard>["voteRecords"]>();
   if (dashboard) {
     for (const vote of dashboard.voteRecords) {
@@ -277,13 +271,11 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
   const agendaTopicSummary = summarizeList(
     actionableAgendaItems.map((item) => item.one_sentence_summary || item.title),
     event.status === "upcoming"
-      ? "The agenda source is connected, but detailed agenda item summaries have not been extracted yet."
+      ? "The agenda is linked. Detailed item summaries will appear after extraction and review."
       : "No parsed agenda item summaries are available yet for this imported meeting record.",
     2,
   );
-  const minutesSummary = event.status === "upcoming"
-    ? "Minutes are expected after the meeting occurs and the host body posts an approved record."
-    : event.meetingSummary ?? event.summary ?? "Minutes extraction has not produced a plain-language summary yet.";
+  const minutesSummary = minutesStatus.description;
   const actionsSummary = event.keyActions.length
     ? summarizeList(event.keyActions, "No key actions have been extracted yet.", 3)
     : event.actionsTaken.length
@@ -291,7 +283,7 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
       : relatedVotingCards.length
         ? summarizeList(relatedVotingCards.map((card) => card.outcome_text ?? card.public_title ?? card.title), "No key actions have been extracted yet.", 3)
         : event.status === "upcoming"
-          ? "Actions will appear here after the meeting is completed or when the agenda parser identifies action items."
+          ? "Agenda actions and meeting decisions will appear once their source evidence is available and reviewed."
           : "No action summary has been extracted from minutes or agenda materials yet.";
   const parsedVoteItemCount = new Set(parsedVoteRecords.map((vote) => vote.meeting_item_id)).size;
   const voteSummary = parsedVoteRecords.length
@@ -299,7 +291,7 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
     : event.voteResults.length
       ? summarizeList(event.voteResults.map((vote) => [vote.motion, vote.result, vote.voteText].filter(Boolean).join(": ")), "Vote results are not summarized yet.", 2)
       : event.status === "upcoming"
-        ? "Vote outcomes are not available before the meeting. Any roll-call or aggregate result will appear after minutes or action records are parsed."
+        ? "Vote outcomes are not available before the meeting. Recorded results will appear after the supporting minutes or action records are reviewed."
         : "No named votes or aggregate vote results have been parsed for this meeting yet.";
   const packetSummary = event.packetUrl
     ? relatedVotingCards.length
@@ -307,6 +299,7 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
       : "Packet or supporting document material is linked for source review; item-level document summaries are still pending."
     : "No separate packet or supporting document source has been imported for this record.";
   const sourceLinks = [
+    { href: event.hostCalendarUrl ?? null, label: "Host calendar" },
     { href: event.agendaUrl, label: "Open agenda" },
     { href: event.packetUrl, label: "Open packet" },
     { href: event.minutesUrl, label: "Open minutes" },
@@ -361,6 +354,12 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
       <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-6">
           <CivicEventCard event={event} returnPath={`/events/${event.id}`} />
+          {event.status === "completed" ? (
+            <p className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 text-sm leading-6 text-slate-400">
+              This date has passed and the record is archived. Its documents and connected actions remain available; minutes and outcomes may be added later.
+              Passing the scheduled date alone does not confirm the meeting occurred or that an agenda item passed.
+            </p>
+          ) : null}
 
           <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">What voters can review</p>
@@ -377,7 +376,7 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Date</p>
-                <p className="mt-2 text-sm font-semibold text-ink">{formatOfficialDate(event.startsAt)}</p>
+                <p className="mt-2 text-sm font-semibold text-ink">{formatCivicEventDate(event.startsAt)}</p>
               </div>
               <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Materials</p>
@@ -475,7 +474,6 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
                     {card.outcome_text ? <p className="mt-2 text-sm text-slate-600"><span className="font-semibold text-slate-800">Outcome:</span> {card.outcome_text}</p> : null}
                     <div className="mt-3 flex flex-wrap gap-2">
                       <Link href="/voting" className="rounded-full bg-slate-950 px-3 py-2 text-xs font-semibold text-white">Voting queue</Link>
-                      <Link href="/admin/voting-cards" className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700">Review queue</Link>
                     </div>
                   </article>
                 ))}
@@ -488,7 +486,7 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Agenda intelligence</p>
               <h2 className="mt-2 text-2xl font-semibold text-ink">Topics citizens can review</h2>
               <p className="mt-3 text-sm leading-7 text-slate-600">
-                These child records turn the meeting into searchable topics, summaries, issue classifications, and vote hooks.
+                Review agenda topics, proposed actions, and available recorded outcomes. A proposed action is not a confirmed decision.
               </p>
               <div className="mt-5 space-y-4">
                 {agendaItems.slice(0, 30).map((item) => {
@@ -586,7 +584,7 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
               </article>
               <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                 <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-sm font-semibold text-ink">Minutes</h3>
+                  <h3 className="text-sm font-semibold text-ink">{minutesStatus.label}</h3>
                   <InlineSourceLink href={event.minutesUrl} label="Source" />
                 </div>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{minutesSummary}</p>
@@ -655,8 +653,9 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
                 <dd className="mt-1 text-slate-600">{event.sourceProviderLabel}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-slate-800">Last fetched</dt>
-                <dd className="mt-1 text-slate-600">{formatFetchedDate(event.lastFetchedAt)}</dd>
+                <dt className="font-semibold text-slate-800">Record updated</dt>
+                <dd className="mt-1 text-slate-600">{event.lastFetchedAt ? formatCivicEventDate(event.lastFetchedAt, true) : "Update time unavailable"}</dd>
+                <dd className="mt-1 text-xs leading-5 text-slate-500">This records an import or update. Confirm current access and schedule changes with the host.</dd>
               </div>
             </dl>
           </section>

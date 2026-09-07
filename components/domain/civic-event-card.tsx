@@ -9,6 +9,7 @@ import { highLevelSummary, plainLanguageTitle } from "@/lib/civic/plain-language
 import { getCivicEventStatusLabel, getCivicEventTypeLabel } from "@/lib/events/civic-events";
 import { updateEventRsvp } from "@/lib/community/event-participation-actions";
 import type { CivicEvent } from "@/lib/events/types";
+import { formatCivicEventDate, getEventMinutesStatus } from "@/lib/events/lifecycle";
 
 type CivicEventCardProps = {
   event: CivicEvent;
@@ -17,30 +18,20 @@ type CivicEventCardProps = {
   guestMode?: boolean;
 };
 
-function formatDateTime(value: string | null) {
-  if (!value) return "Schedule source";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "Date pending";
-  return date.toLocaleString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
-}
-
 function buildCalendarHref(event: CivicEvent) {
-  if (!event.startsAt) return null;
+  if (!event.startsAt || event.status !== "upcoming") return null;
   const start = new Date(event.startsAt);
-  const end = new Date(event.endsAt ?? start.getTime() + 90 * 60 * 1000);
+  const end = new Date(event.endsAt ?? event.startsAt);
   if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return null;
   const format = (date: Date) => date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+  const isDateOnly = /^\d{4}-\d{2}-\d{2}$/.test(event.startsAt);
+  const nextDay = new Date(start.getTime() + 86_400_000);
+  const dates = isDateOnly ? `${event.startsAt.replace(/-/g, "")}/${nextDay.toISOString().slice(0, 10).replace(/-/g, "")}` : `${format(start)}/${format(end)}`;
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: event.title,
-    dates: `${format(start)}/${format(end)}`,
-    details: [event.description, event.sourceUrl ? `Source: ${event.sourceUrl}` : null].filter(Boolean).join("\n\n"),
+    dates,
+    details: [event.description, !event.endsAt ? "End time has not been confirmed. Check the official source before attending." : null, event.sourceUrl ? `Source: ${event.sourceUrl}` : null].filter(Boolean).join("\n\n"),
     location: event.locationName ?? event.address ?? event.virtualUrl ?? "",
   });
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
@@ -49,7 +40,7 @@ function buildCalendarHref(event: CivicEvent) {
 function SourceLink({ href, label }: { href: string | null; label: string }) {
   if (!href) return null;
   return (
-    <Link href={href} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-civic-400 hover:text-civic-700">
+    <Link href={href} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-civic-400 hover:text-civic-700">
       {label}
     </Link>
   );
@@ -65,10 +56,12 @@ function formatMode(mode: CivicEvent["eventMode"]) {
 export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guestMode = false }: CivicEventCardProps) {
   const eventHref = `/events/${event.id}`;
   const resolvedReturnPath = returnPath ?? eventHref;
-  const typeLabel = getCivicEventTypeLabel(event.eventType);
-  const statusLabel = getCivicEventStatusLabel(event.status);
+  const typeLabel = event.parentOrganizationEvent ? "PTA / PTO meeting" : getCivicEventTypeLabel(event.eventType);
+  const isCalendarSource = event.sourceProvider === "public_meeting_source_registry";
+  const statusLabel = isCalendarSource ? "Official calendar" : getCivicEventStatusLabel(event.status);
+  const minutesStatus = getEventMinutesStatus(event);
   const calendarHref = buildCalendarHref(event);
-  const canRsvp = !event.isOfficialMeeting && Boolean(event.communityEventId);
+  const canRsvp = event.status === "upcoming" && !event.isOfficialMeeting && Boolean(event.communityEventId);
   const isAttending = event.viewerStatus === "attending" || event.viewerStatus === "confirmed";
   const displayTitle = event.isOfficialMeeting ? plainLanguageTitle(event.title) : event.title;
   const displaySummary = highLevelSummary(event.description, "Open the event for the latest public information.");
@@ -81,7 +74,7 @@ export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guest
             <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold text-white">
               {typeLabel}
             </span>
-            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${event.status === "completed" ? "bg-slate-200 text-slate-700" : "bg-civic-50 text-civic-700"}`}>
+            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${event.status === "cancelled" || event.status === "postponed" ? "bg-amber-100 text-amber-800" : event.status === "completed" || event.status === "undated" ? "bg-slate-200 text-slate-700" : "bg-civic-50 text-civic-700"}`}>
               {statusLabel}
             </span>
           </div>
@@ -98,7 +91,7 @@ export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guest
             </Link>
           </h3>
           <p className="mt-2 text-sm text-slate-500">
-            {formatDateTime(event.startsAt)}{event.distanceLabel ? ` · ${event.distanceLabel}` : ""}
+            {isCalendarSource ? "Open the host’s published schedule" : formatCivicEventDate(event.startsAt)}{event.distanceLabel ? ` · ${event.distanceLabel}` : ""}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -123,9 +116,22 @@ export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guest
 
       <div className="mt-4 flex flex-wrap gap-2">
         <Link href={eventHref} className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
-          View event
+          {isCalendarSource ? "View calendar source" : event.status === "completed" ? "Review meeting / event" : "View event"}
         </Link>
       </div>
+
+      {event.isOfficialMeeting ? (
+        <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-3 text-sm leading-6 text-slate-400">
+          <p className="font-semibold">{minutesStatus.label}</p>
+          <p className="mt-1">{minutesStatus.description}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <SourceLink href={event.hostCalendarUrl ?? event.sourceUrl} label={isCalendarSource ? "Official calendar / archive" : "Confirm with host"} />
+            {!isCalendarSource ? <SourceLink href={event.agendaUrl} label="Agenda" /> : null}
+            {!isCalendarSource ? <SourceLink href={event.minutesUrl} label="Minutes source" /> : null}
+            {calendarHref ? <Link href={calendarHref} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700">Add to calendar</Link> : null}
+          </div>
+        </div>
+      ) : null}
 
       {showQuickRsvp && canRsvp && !guestMode ? (
         <div className="mt-4 flex flex-wrap gap-3">
@@ -170,15 +176,17 @@ export function CivicEventCard({ event, returnPath, showQuickRsvp = false, guest
           {event.relatedEntityLabels.length ? <p className="sm:col-span-2"><span className="font-semibold text-slate-700">Linked:</span> {event.relatedEntityLabels.join(", ")}</p> : null}
           {event.relatedIssueLabels.length ? <p className="sm:col-span-2"><span className="font-semibold text-slate-700">Issues:</span> {event.relatedIssueLabels.join(", ")}</p> : null}
           {typeof event.attendanceCount === "number" && !event.isOfficialMeeting ? <p>{event.attendanceCount} attending · {event.confirmedCount} confirmed</p> : null}
+          {event.lastFetchedAt ? <p className="sm:col-span-2">Record updated: {formatCivicEventDate(event.lastFetchedAt, true)} · Confirm schedule changes with the host.</p> : null}
           <p className="sm:col-span-2">Source: {event.sourceProviderLabel}{event.momentumLabel ? ` · ${event.momentumLabel}` : ""}</p>
         </div>
         <div className="mt-3 flex flex-wrap gap-2">
           <SourceLink href={event.agendaUrl} label={event.status === "completed" ? "Agenda" : "Agenda / packet"} />
           <SourceLink href={event.packetUrl} label="Packet" />
           <SourceLink href={event.minutesUrl} label="Minutes" />
-          <SourceLink href={event.videoUrl ?? event.virtualUrl} label={event.status === "completed" ? "Recording" : "Join online"} />
+          <SourceLink href={event.virtualUrl} label="Online access" />
+          <SourceLink href={event.videoUrl} label="Video source" />
           <SourceLink href={event.sourceUrl} label="Official source" />
-          {calendarHref ? <Link href={calendarHref} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700">Add to calendar</Link> : null}
+          {!event.isOfficialMeeting && calendarHref ? <Link href={calendarHref} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700">Add to calendar</Link> : null}
         </div>
       </CivicDetails>
     </article>

@@ -68,9 +68,12 @@ export default async function AdminMeetingSourcesPage() {
       <PageIntro
         eyebrow="Admin"
         title="Public meeting source registry"
-        description="Seeded Nevada-first public bodies for agenda, minutes, packet, transcript, and vote-record ingestion. Automated scraper adapters come after manual and cache-first review are stable."
+        description="Nevada public bodies and discovery sources for agendas, minutes, packets, and meeting records. Track source coverage separately from extracted evidence."
         actions={
           <div className="flex flex-wrap gap-2">
+            <Link href="/admin/meeting-health" className="dd-button-secondary rounded-full px-4 py-2.5 text-sm font-semibold">
+              Calendar coverage and minutes follow-up
+            </Link>
             <Link href="/admin/meetings/upload" className="dd-button-primary rounded-full px-4 py-2.5 text-sm font-semibold">
               Upload meeting record
             </Link>
@@ -155,7 +158,7 @@ export default async function AdminMeetingSourcesPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">Scraper readiness</p>
             <h2 className="mt-2 text-xl font-semibold text-slate-50">Source types</h2>
           </div>
-          <p className="text-sm text-slate-400">Manual import works now. Platform-specific scrapers are queued for the next phase.</p>
+          <p className="text-sm text-slate-400">Direct adapters and reviewed imports feed the same archive. A registered source does not guarantee parsed meetings.</p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           {Object.entries(scraperCounts).map(([scraperType, count]) => (

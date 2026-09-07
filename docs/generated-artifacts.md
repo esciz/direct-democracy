@@ -36,6 +36,8 @@ Do not commit local/operator-only outputs:
 
 The meeting cache binary export remains local/private until Vercel Blob is provisioned and the Blob export is intentionally run.
 
+Git retention and web packaging are separate decisions. Meeting PDF, document-text, OCR, and adapter caches belong to the worker and are excluded by both deployment upload rules and Next.js file tracing. Public meeting details use compact runtime records with source URLs. After a build, `npm run meetings:bundle:audit` checks that the event function contains its required runtime files and no worker cache bytes. A local runtime rebuild does not publish a new version of the live site.
+
 ## Review Before Commit
 
 Before committing generated data:

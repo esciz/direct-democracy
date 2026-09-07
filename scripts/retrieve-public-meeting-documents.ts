@@ -2,6 +2,8 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import net from "node:net";
 import path from "node:path";
+import { readBoundedDocumentBody } from "@/lib/public-meetings/document-download";
+import { documentRefreshDue, recordDocumentAttempt, selectDocumentRefreshBatch, type DocumentRefreshState } from "@/lib/public-meetings/lifecycle";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const CACHE_DIR = path.join(GENERATED_DIR, "public-meeting-document-cache");
@@ -9,6 +11,7 @@ const INDEX_PATH = path.join(GENERATED_DIR, "public-meeting-document-cache-index
 const RUN_PATH = path.join(GENERATED_DIR, "dataops-retrieval-run.json");
 const CHANGE_LOG_PATH = path.join(GENERATED_DIR, "dataops-change-log.json");
 const DEFAULT_LIMIT = 25;
+const REFRESH_STATE_PATH = path.join(GENERATED_DIR, "public-meeting-document-refresh-state.json");
 
 type SourceDocument = {
   id: string;
@@ -194,7 +197,7 @@ function upsertCacheRecord(input: {
     lastSeenAt: input.now,
     lastChangedAt,
     retrievalAttemptCount: (previous?.retrievalAttemptCount ?? 0) + input.attemptIncrement,
-    lastSuccessfulRetrievalAt: input.now,
+    lastSuccessfulRetrievalAt: input.attemptIncrement > 0 ? input.now : previous?.lastSuccessfulRetrievalAt ?? input.now,
     retrievalStatus,
   };
   const versions = previous?.versions?.some((item) => item.contentHash === input.contentHash)
@@ -215,16 +218,16 @@ function upsertCacheRecord(input: {
     contentHash: input.contentHash,
     contentType: input.contentType,
     fileSize: input.fileSize,
-    retrievalTimestamp: input.now,
+    retrievalTimestamp: input.attemptIncrement > 0 ? input.now : previous?.retrievalTimestamp ?? input.now,
     firstSeenAt,
     lastSeenAt: input.now,
     lastChangedAt,
     sourceVersion,
     previousHash,
     retrievalAttemptCount: (previous?.retrievalAttemptCount ?? 0) + input.attemptIncrement,
-    lastSuccessfulRetrievalAt: input.now,
-    extractionStatus: previous?.extractionStatus ?? "pending",
-    ocrStatus: previous?.ocrStatus ?? "not_checked",
+    lastSuccessfulRetrievalAt: input.attemptIncrement > 0 ? input.now : previous?.lastSuccessfulRetrievalAt ?? input.now,
+    extractionStatus: changed ? "pending" : previous?.extractionStatus ?? "pending",
+    ocrStatus: changed ? "not_checked" : previous?.ocrStatus ?? "not_checked",
     versions,
   };
 }
@@ -258,32 +261,24 @@ function validatePublicHttpUrl(value: string) {
   return { ok: true as const, url: parsed };
 }
 
-async function fetchWithTimeout(url: string, timeoutMs: number, maxRedirects: number, userAgent: string) {
+async function fetchWithTimeout(url: string, maxRedirects: number, userAgent: string, signal: AbortSignal) {
   let currentUrl = url;
   for (let redirect = 0; redirect <= maxRedirects; redirect += 1) {
     const validation = validatePublicHttpUrl(currentUrl);
     if (!validation.ok) throw new Error(`security_rejected:${validation.reason}`);
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), timeoutMs);
-    try {
-      const response = await fetch(currentUrl, {
-        signal: controller.signal,
-        redirect: "manual",
-        headers: {
-          "User-Agent": userAgent,
-          Accept: "application/pdf,text/html,text/plain,application/json,*/*;q=0.8",
-        },
-      });
-      if ([301, 302, 303, 307, 308].includes(response.status)) {
-        const location = response.headers.get("location");
-        if (!location) return response;
-        currentUrl = new URL(location, currentUrl).toString();
-        continue;
-      }
-      return response;
-    } finally {
-      clearTimeout(timeout);
+    const response = await fetch(currentUrl, {
+      signal,
+      redirect: "manual",
+      headers: { "User-Agent": userAgent, Accept: "application/pdf,text/html,text/plain,application/json,*/*;q=0.8" },
+    });
+    if ([301, 302, 303, 307, 308].includes(response.status)) {
+      const location = response.headers.get("location");
+      if (!location) return response;
+      void response.body?.cancel().catch(() => undefined);
+      currentUrl = new URL(location, currentUrl).toString();
+      continue;
     }
+    return response;
   }
   throw new Error("redirect_loop_or_limit_exceeded");
 }
@@ -315,12 +310,16 @@ function matchesFilters(document: SourceDocument, filters: { jurisdiction: strin
 }
 
 async function fetchDocument(url: string, timeoutMs: number, maxRedirects: number, userAgent: string, maxBytes: number) {
-  const response = await fetchWithTimeout(url, timeoutMs, maxRedirects, userAgent);
-  const contentLength = Number(response.headers.get("content-length") ?? 0);
-  if (contentLength && contentLength > maxBytes) throw new Error("download_size_limit_exceeded");
-  const bytes = Buffer.from(await response.arrayBuffer());
-  if (bytes.length > maxBytes) throw new Error("download_size_limit_exceeded");
-  return { response, bytes };
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetchWithTimeout(url, maxRedirects, userAgent, controller.signal);
+    const bytes = await readBoundedDocumentBody(response, maxBytes, controller.signal);
+    return { response, bytes };
+  } finally {
+    clearTimeout(timeout);
+    controller.abort();
+  }
 }
 
 async function main() {
@@ -347,11 +346,16 @@ async function main() {
   const previousByDocument = new Map(previousIndex.map((record) => [record.documentId, record]));
   const recordsByDocument = new Map(previousByDocument);
   const attempts: RetrievalAttempt[] = [];
+  const refreshRecords = readJson<{ records: DocumentRefreshState[] }>(REFRESH_STATE_PATH, { records: [] }).records;
+  const refreshState = new Map(refreshRecords.map((row) => [row.documentId, row]));
+  const meetingDates = new Map(readJson<Array<{ id: string; meeting_date: string | null }>>("public-meetings.json", []).map((meeting) => [meeting.id, meeting.meeting_date]));
 
   for (const document of documents) {
     const localPayload = existingLocalPayload(document);
     if (!localPayload) continue;
     const previous = recordsByDocument.get(document.id);
+    // A manually saved original must not roll back a newer network-fetched cache version.
+    if (previous && existsSync(absoluteLocalPath(previous.stableLocalPath)) && (previous.contentHash === localPayload.contentHash || (previous.stableLocalPath !== localPayload.localPath && previous.retrievalAttemptCount > 0))) continue;
     const record = upsertCacheRecord({
       previous,
       document,
@@ -385,14 +389,20 @@ async function main() {
     }
   }
 
-  const candidates = documents
-    .filter((document) => {
-      if (!document.sourceUrl || existingLocalPayload(document)) return false;
-      if (!forceRefresh && previousByDocument.has(document.id)) return false;
-      return matchesFilters(document, filters, previousByDocument.get(document.id), sourceWait);
-    })
-    .sort((left, right) => Number(right.priorityBody) - Number(left.priorityBody) || left.documentType.localeCompare(right.documentType))
-    .slice(0, Number.isFinite(limit) && limit > 0 ? limit : DEFAULT_LIMIT);
+  const dueDocuments = documents.filter((document) => {
+    if (!document.sourceUrl) return false;
+    const previous = previousByDocument.get(document.id);
+    const localPaths = [previous?.stableLocalPath, document.cachedPath, document.sourcePath].filter(Boolean) as string[];
+    const hasUsableCache = localPaths.some((localPath) => existsSync(absoluteLocalPath(localPath)));
+    if (!matchesFilters(document, filters, hasUsableCache ? previous : undefined, sourceWait)) return false;
+    const state = refreshState.get(document.id);
+    // Cache metadata is not evidence when its file is gone. Recover it immediately,
+    // including --retry-only, while still honoring backoff after an actual failed retry.
+    if (previous && !hasUsableCache && (!state || state.consecutiveFailures === 0)) return true;
+    return documentRefreshDue({ state, lastSuccessfulRetrievalAt: hasUsableCache ? previous?.lastSuccessfulRetrievalAt : undefined,
+      documentType: document.documentType, meetingDate: meetingDates.get(document.meetingId) ?? null, now: new Date(now), force: forceRefresh });
+  });
+  const candidates = selectDocumentRefreshBatch(dueDocuments, refreshState, meetingDates, Number.isFinite(limit) && limit > 0 ? limit : DEFAULT_LIMIT);
 
   for (const document of candidates) {
     const previous = recordsByDocument.get(document.id);
@@ -420,7 +430,11 @@ async function main() {
         attempts.push({ ...attemptBase, currentHash: null, status: "failed", localPath: null, contentType: response.headers.get("content-type"), fileSize: 0, failureReason: "empty_response_body" });
         continue;
       }
-      const contentType = response.headers.get("content-type");
+      const pdfSignature = bytes.subarray(0, 1024).toString("latin1").includes("%PDF-");
+      const contentType = pdfSignature ? "application/pdf" : response.headers.get("content-type");
+      const expectsPdf = /\.pdf(?:$|[?#])/i.test(document.sourceUrl ?? "") || /application\/pdf/i.test(contentType ?? "");
+      if (expectsPdf && !pdfSignature) throw new Error("invalid_document_content:expected_pdf");
+      if (/text\/html/i.test(contentType ?? "") && /<title[^>]*>\s*(?:just a moment|access denied|attention required|captcha|sign in)|verify (?:that )?you are human/i.test(bytes.subarray(0, 12_000).toString("utf8"))) throw new Error("invalid_document_content:challenge_or_login_page");
       const currentHash = hashBuffer(bytes);
       const ext = extensionFor(document, contentType);
       const sourceSlug = slugify(document.sourceUrl! || document.id) || document.id;
@@ -454,6 +468,14 @@ async function main() {
     }
   }
 
+  for (const attempt of attempts) {
+    const document = candidates.find((candidate) => candidate.id === attempt.documentId)!;
+    refreshState.set(attempt.documentId, recordDocumentAttempt({ documentId: attempt.documentId, sourceId: document.organizationId ?? document.sourceHost ?? document.id, status: attempt.status,
+      documentType: document.documentType, meetingDate: meetingDates.get(document.meetingId) ?? null,
+      previous: refreshState.get(attempt.documentId), now: new Date(now) }));
+  }
+  writeFileSync(REFRESH_STATE_PATH, `${JSON.stringify({ generatedAt: now, records: [...refreshState.values()] }, null, 2)}\n`);
+
   const records = [...recordsByDocument.values()].sort((left, right) => left.documentId.localeCompare(right.documentId));
   const changedRecords = records.filter((record) => {
     const previous = previousByDocument.get(record.documentId);
@@ -465,6 +487,9 @@ async function main() {
       documentsKnown: documents.length,
       cacheRecords: records.length,
       retrievalCandidates: candidates.length,
+      dueDocuments: dueDocuments.length,
+      deferredByBudget: Math.max(0, dueDocuments.length - candidates.length),
+      refreshSources: new Set(candidates.map((document) => document.organizationId ?? document.sourceHost)).size,
       attempts: attempts.length,
       downloaded: attempts.filter((attempt) => attempt.status === "downloaded" || attempt.status === "newly_cached").length,
       newlyCached: attempts.filter((attempt) => attempt.status === "newly_cached").length,

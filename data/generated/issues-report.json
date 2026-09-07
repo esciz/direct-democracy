@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T19:07:52.662Z",
+  "generatedAt": "2026-09-06T21:47:44.480Z",
   "runtimePath": "data/generated/issues-runtime.json",
   "auditPath": "data/generated/issues-audit-report.json",
   "counts": {
@@ -8,35 +8,35 @@
     "demoFallbackCount": 39,
     "hiddenDemoCount": 39,
     "productionVisibleIssueCount": 19,
-    "issuesWithMeetings": 16,
-    "issuesWithVotes": 14,
+    "issuesWithMeetings": 17,
+    "issuesWithVotes": 15,
     "issuesWithCourtRecords": 3,
     "issuesNeedingReview": 17,
     "issuesMissingPlainEnglishTitle": 0,
     "issuesMissingSourceLinks": 0
   },
   "issuesByJurisdiction": {
-    "Across the platform": 14,
+    "Across the platform": 15,
     "Nevada": 2,
-    "Storey County, NV": 2,
+    "Storey County, NV": 1,
     "Lyon County, NV": 1
   },
   "issuesByCategory": {
     "Budget": 1,
     "Taxes": 1,
     "Other": 14,
-    "Public Safety": 1,
     "Transportation": 1,
     "Business Regulation": 1,
+    "Public Safety": 1,
+    "Schools": 1,
     "Housing": 1,
     "Zoning": 1,
     "Utilities": 1,
     "Labor": 1,
-    "Schools": 1,
     "Healthcare": 1,
     "Environment": 1,
-    "Courts and Legal Rights": 3,
-    "Elections": 1
+    "Elections": 1,
+    "Courts and Legal Rights": 3
   },
   "relationshipCoverage": [
     {
@@ -52,44 +52,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 1004,
-        "agendaItems": 2360,
-        "votingCards": 1004,
+        "meetings": 1450,
+        "agendaItems": 3619,
+        "votingCards": 1450,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 401,
+        "votes": 659,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 864,
+        "spendingRecords": 1198,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 2360
-      }
-    },
-    {
-      "id": "issue_real_public-safety",
-      "issueText": "Public Safety",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Public Safety",
-        "Other"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 356,
-        "agendaItems": 1167,
-        "votingCards": 356,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 173,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 296,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 1167
+        "sourceDocuments": 4065
       }
     },
     {
@@ -105,18 +79,69 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 222,
-        "agendaItems": 922,
-        "votingCards": 222,
+        "meetings": 355,
+        "agendaItems": 1534,
+        "votingCards": 355,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 99,
+        "votes": 185,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 159,
+        "spendingRecords": 242,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 922
+        "sourceDocuments": 1651
+      }
+    },
+    {
+      "id": "issue_real_public-safety",
+      "issueText": "Public Safety",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Public Safety",
+        "Other"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 430,
+        "agendaItems": 1438,
+        "votingCards": 430,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 228,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 350,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 1581
+      }
+    },
+    {
+      "id": "issue_real_school-safety",
+      "issueText": "School Safety",
+      "jurisdictionName": "Across the platform",
+      "categories": [
+        "Schools"
+      ],
+      "reviewStatus": "needs_review",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 298,
+        "agendaItems": 1520,
+        "votingCards": 298,
+        "courtCases": 0,
+        "communitySubmissions": 0,
+        "votes": 155,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 105,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 1662
       }
     },
     {
@@ -130,18 +155,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 279,
-        "agendaItems": 666,
-        "votingCards": 279,
+        "meetings": 374,
+        "agendaItems": 906,
+        "votingCards": 374,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 118,
+        "votes": 171,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 149,
+        "spendingRecords": 213,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 666
+        "sourceDocuments": 1039
       }
     },
     {
@@ -156,18 +181,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 215,
-        "agendaItems": 609,
-        "votingCards": 215,
+        "meetings": 322,
+        "agendaItems": 889,
+        "votingCards": 322,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 106,
+        "votes": 186,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 52,
+        "spendingRecords": 93,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 609
+        "sourceDocuments": 1037
       }
     },
     {
@@ -181,18 +206,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 168,
-        "agendaItems": 605,
-        "votingCards": 168,
+        "meetings": 214,
+        "agendaItems": 797,
+        "votingCards": 214,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 74,
+        "votes": 102,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 105,
+        "spendingRecords": 144,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 605
+        "sourceDocuments": 870
       }
     },
     {
@@ -206,43 +231,43 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 60,
-        "agendaItems": 195,
-        "votingCards": 60,
+        "meetings": 93,
+        "agendaItems": 353,
+        "votingCards": 93,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 30,
+        "votes": 52,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 23,
+        "spendingRecords": 43,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 195
+        "sourceDocuments": 393
       }
     },
     {
-      "id": "issue_real_school-safety",
-      "issueText": "School Safety",
+      "id": "issue_real_education",
+      "issueText": "Education",
       "jurisdictionName": "Across the platform",
       "categories": [
-        "Schools"
+        "Other"
       ],
       "reviewStatus": "needs_review",
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 46,
-        "agendaItems": 140,
-        "votingCards": 46,
+        "meetings": 145,
+        "agendaItems": 223,
+        "votingCards": 145,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 16,
+        "votes": 54,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 50,
+        "spendingRecords": 2,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 140
+        "sourceDocuments": 274
       }
     },
     {
@@ -257,18 +282,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 25,
-        "agendaItems": 136,
-        "votingCards": 25,
+        "meetings": 37,
+        "agendaItems": 214,
+        "votingCards": 37,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 6,
+        "votes": 16,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 17,
+        "spendingRecords": 16,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 136
+        "sourceDocuments": 227
       }
     },
     {
@@ -283,44 +308,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 24,
-        "agendaItems": 93,
-        "votingCards": 24,
+        "meetings": 33,
+        "agendaItems": 138,
+        "votingCards": 33,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 10,
+        "votes": 17,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 20,
+        "spendingRecords": 24,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 93
-      }
-    },
-    {
-      "id": "issue_real_courts-and-legal-rights",
-      "issueText": "Courts and Legal Rights",
-      "jurisdictionName": "Nevada",
-      "categories": [
-        "Other",
-        "Courts and Legal Rights"
-      ],
-      "reviewStatus": "generated",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 0,
-        "agendaItems": 1,
-        "votingCards": 0,
-        "courtCases": 25,
-        "communitySubmissions": 0,
-        "votes": 0,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 0,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 26
+        "sourceDocuments": 152
       }
     },
     {
@@ -335,18 +334,44 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 9,
-        "agendaItems": 54,
-        "votingCards": 9,
+        "meetings": 17,
+        "agendaItems": 86,
+        "votingCards": 17,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 6,
+        "votes": 13,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 10,
+        "spendingRecords": 13,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 54
+        "sourceDocuments": 94
+      }
+    },
+    {
+      "id": "issue_real_courts-and-legal-rights",
+      "issueText": "Courts and Legal Rights",
+      "jurisdictionName": "Nevada",
+      "categories": [
+        "Other",
+        "Courts and Legal Rights"
+      ],
+      "reviewStatus": "generated",
+      "sourceBacked": true,
+      "hasSourceLinks": true,
+      "relationshipCounts": {
+        "meetings": 1,
+        "agendaItems": 5,
+        "votingCards": 1,
+        "courtCases": 25,
+        "communitySubmissions": 0,
+        "votes": 1,
+        "officials": 0,
+        "newsStories": 0,
+        "spendingRecords": 0,
+        "projects": 0,
+        "ballotQuestions": 0,
+        "sourceDocuments": 31
       }
     },
     {
@@ -361,7 +386,7 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 1,
-        "agendaItems": 55,
+        "agendaItems": 65,
         "votingCards": 1,
         "courtCases": 0,
         "communitySubmissions": 0,
@@ -371,13 +396,13 @@
         "spendingRecords": 0,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 55
+        "sourceDocuments": 65
       }
     },
     {
       "id": "issue_real_growth-and-infrastructure",
       "issueText": "Growth and Infrastructure",
-      "jurisdictionName": "Storey County, NV",
+      "jurisdictionName": "Across the platform",
       "categories": [
         "Other"
       ],
@@ -385,18 +410,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 3,
-        "agendaItems": 39,
-        "votingCards": 3,
+        "meetings": 8,
+        "agendaItems": 57,
+        "votingCards": 8,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 3,
+        "votes": 4,
         "officials": 0,
         "newsStories": 0,
         "spendingRecords": 6,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 39
+        "sourceDocuments": 57
       }
     },
     {
@@ -412,17 +437,17 @@
       "hasSourceLinks": true,
       "relationshipCounts": {
         "meetings": 2,
-        "agendaItems": 22,
+        "agendaItems": 34,
         "votingCards": 2,
         "courtCases": 1,
         "communitySubmissions": 0,
         "votes": 0,
         "officials": 0,
         "newsStories": 0,
-        "spendingRecords": 1,
+        "spendingRecords": 2,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 24
+        "sourceDocuments": 36
       }
     },
     {
@@ -436,43 +461,18 @@
       "sourceBacked": true,
       "hasSourceLinks": true,
       "relationshipCounts": {
-        "meetings": 2,
-        "agendaItems": 18,
-        "votingCards": 2,
+        "meetings": 4,
+        "agendaItems": 22,
+        "votingCards": 4,
         "courtCases": 0,
         "communitySubmissions": 0,
-        "votes": 2,
+        "votes": 4,
         "officials": 0,
         "newsStories": 0,
         "spendingRecords": 1,
         "projects": 0,
         "ballotQuestions": 0,
-        "sourceDocuments": 18
-      }
-    },
-    {
-      "id": "issue_real_education",
-      "issueText": "Education",
-      "jurisdictionName": "Across the platform",
-      "categories": [
-        "Other"
-      ],
-      "reviewStatus": "needs_review",
-      "sourceBacked": true,
-      "hasSourceLinks": true,
-      "relationshipCounts": {
-        "meetings": 4,
-        "agendaItems": 11,
-        "votingCards": 4,
-        "courtCases": 0,
-        "communitySubmissions": 0,
-        "votes": 3,
-        "officials": 0,
-        "newsStories": 0,
-        "spendingRecords": 2,
-        "projects": 0,
-        "ballotQuestions": 0,
-        "sourceDocuments": 11
+        "sourceDocuments": 22
       }
     },
     {

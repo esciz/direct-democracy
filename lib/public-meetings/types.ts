@@ -142,6 +142,12 @@ export type PublicBodyRecord = {
 
 export type PublicMeetingRecord = {
   id: string;
+  meeting_alias_ids?: string[];
+  source_identity_evidence?: string[];
+  meeting_category?: "government" | "parent_organization";
+  meeting_status?: "scheduled" | "cancelled" | "rescheduled";
+  meeting_time_known?: boolean;
+  location?: string | null;
   public_body_id: string;
   meeting_date: string | null;
   meeting_type: string | null;
