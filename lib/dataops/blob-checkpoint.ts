@@ -5,7 +5,7 @@ import path from "node:path";
 import { Readable, Transform } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { get, head, list, put } from "@vercel/blob";
-import { releaseArtifactAllowed, validateManifest, workerArtifactAllowed, type ArtifactEntry, type CivicManifest } from "./artifact-policy";
+import { releaseArtifactAllowed, safeArtifactPath, validateManifest, workerArtifactAllowed, type ArtifactEntry, type CivicManifest } from "./artifact-policy";
 
 export async function fileHash(file: string) {
   const hash = createHash("sha256");
@@ -37,7 +37,7 @@ async function collectFiles(root: string, directory: string): Promise<string[]> 
   const files: string[] = [];
   for (const item of items) {
     const relative = path.posix.join(directory, item.name);
-    if (item.isSymbolicLink() || item.name.startsWith(".") || /(?:private|session|cookie|blocked|quarantine)/i.test(item.name)) continue;
+    if (item.isSymbolicLink() || !safeArtifactPath(relative) || /(?:blocked|quarantine)/i.test(item.name)) continue;
     if (item.isDirectory()) files.push(...await collectFiles(root, relative));
     else if (workerArtifactAllowed(relative)) files.push(relative);
   }

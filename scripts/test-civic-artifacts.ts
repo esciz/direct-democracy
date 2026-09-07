@@ -67,6 +67,70 @@ async function main() {
     assert.equal(workerArtifactAllowed("data/generated/public-meeting-document-cache/source/one.pdf"), true);
     assert.equal(releaseArtifactAllowed("data/generated/public-meeting-document-cache/source/one.pdf"), false);
     assert.equal(releaseArtifactAllowed("data/imports/political-ads/fec-collection-state.json"), false);
+    const publicDocuments = [
+      "data/generated/public-meeting-document-cache/ccsd-community-diligentoneplatform-com-document-66679-board-20work-20session-20-/minutes.pdf",
+      "data/generated/public-meeting-document-cache/source/Board Work Session.PDF",
+      "data/generated/public-meeting-document-cache/source/board%20work%20session.pdf",
+      "data/generated/public-meeting-document-text-cache/board-work-session/minutes.txt",
+      "data/generated/public-meeting-document-cache/elkocounty-granicus-com-viewpublisherrss-php-view-id-5-mode-minutes/feed.xml",
+      "data/generated/public-meeting-document-cache/special-session/feed.xml",
+      "data/raw/public-meetings/board-study-session/agenda.xml",
+      "data/manual-sources/public-meetings/sparks-city-council/agendas/cancelled-planning-commission-study-session-agenda.pdf",
+      "data/manual-sources/public-meetings/nv-legislature/bills/36th-2025-special-session.html",
+    ];
+    const privateDocuments = [
+      "data/generated/public-meeting-document-cache/session/minutes.pdf",
+      "data/generated/public-meeting-document-cache/auth-session/board-work-session.pdf",
+      "data/generated/public-meeting-document-cache/browser-session.json",
+      "data/generated/public-meeting-document-cache/source/board-work-session-token.json",
+      "data/generated/public-meeting-document-cache/source/board-work-session-cookie.json",
+      "data/generated/public-meeting-document-cache/source/board-work-session-credentials.json",
+      "data/generated/public-meeting-document-cache/source/board-work-session-password.json",
+      "data/generated/public-meeting-document-cache/source/board-work-session-secret.json",
+      "data/generated/public-meeting-document-cache/source/board-work-session-identity.json",
+      "data/generated/public-meeting-document-cache/private/board-work-session.pdf",
+      "data/generated/public-meeting-document-cache/source/work-session-session-state.json",
+      "data/generated/public-meeting-document-cache/source/special-sessionStorage.json",
+      "data/generated/public-meetings-special-session.json",
+      "data/generated/nv-sos-text/special-session.txt",
+      "data/raw/nv-sos/work-session.json",
+      "data/manual-sources/public-meetings/private/board-study-session.pdf",
+      "data/manual-sources/public-meetings/henderson-city-council/metadata/undated-api-json-1-shared-getfontsizecookie.json",
+    ];
+    for (const name of publicDocuments) {
+      assert.equal(workerArtifactAllowed(name), true, name);
+      assert.equal(releaseArtifactAllowed(name), false, "Public source bytes belong only in worker checkpoints");
+    }
+    for (const name of privateDocuments) assert.equal(workerArtifactAllowed(name), false, name);
+    for (const name of [
+      "data/generated/public-meeting-document-cache/../private/board-work-session.pdf",
+      "data/generated/public-meeting-document-cache/.session/board-work-session.pdf",
+      "data/generated/public-meeting-document-cache/source/board-work-session.pdf\0",
+      "data/generated/public-meeting-document-cache\\source\\board-work-session.pdf",
+      "/data/generated/public-meeting-document-cache/source/board-work-session.pdf",
+    ]) assert.equal(workerArtifactAllowed(name), false, name);
+
+    // Exercise directory traversal and the manual-source ledger gate, not only
+    // the path helper: both previously dropped legitimate meeting sessions.
+    const sourceRoot = path.join(root, "source-selection");
+    const unreferenced = "data/manual-sources/public-meetings/school/board-work-session.pdf";
+    const blocked = "data/generated/public-meeting-document-cache/blocked/board-work-session.pdf";
+    const quarantined = "data/generated/public-meeting-document-cache/quarantine/board-work-session.pdf";
+    for (const name of [...publicDocuments, ...privateDocuments, unreferenced, blocked, quarantined]) {
+      await mkdir(path.dirname(path.join(sourceRoot, name)), { recursive: true });
+      await writeFile(path.join(sourceRoot, name), "public-document-fixture");
+    }
+    await writeJson(sourceRoot, "public-meeting-document-cache-index.json", { records: [...publicDocuments, ...privateDocuments].map(stableLocalPath => ({ stableLocalPath })) });
+    const sourcePaths = await selectArtifactPaths(sourceRoot, "worker");
+    for (const name of publicDocuments) assert(sourcePaths.includes(name), `Public source must survive checkpoint selection: ${name}`);
+    for (const name of [...privateDocuments, unreferenced, blocked, quarantined]) assert(!sourcePaths.includes(name), `Private/unreferenced source must remain excluded: ${name}`);
+    const sourceEntries = await describeArtifacts(sourceRoot, sourcePaths);
+    const restoredSources = path.join(root, "restored-public-sources");
+    await restoreManifest(restoredSources, manifest(sourceEntries), (async (key: string) => {
+      const source = sourceEntries.find(candidate => candidate.objectKey === key)!;
+      return response(await readFile(path.join(sourceRoot, source.path), "utf8"));
+    }) as unknown as typeof get);
+    for (const name of publicDocuments) assert.equal(await readFile(path.join(restoredSources, name), "utf8"), "public-document-fixture", `Public source must survive validated restore: ${name}`);
     const valid = entry("events-runtime.json", "[]");
     const original = manifest([valid]);
     validateManifest(original, "worker");

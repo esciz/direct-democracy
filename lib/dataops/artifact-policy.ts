@@ -9,10 +9,20 @@ const RAW_DIRS = new Set(["nevada-financials", "nevada-organizations", "official
 const RELEASE_EXCLUDES = /(?:document-cache|document-text|ocr-results|ocr-text|cache-|source-documents|processing-state|refresh-state|review-candidates|review-queue|fetch-log|expanded-fetch-log|extracted-documents|structured-documents|source-evidence|source-manifest|source-reconciliation)/;
 const OFFICIAL_AD_IMPORTS = new Set(["data/imports/political-ads/fec-collection-state.json", "data/imports/political-ads/fec-nevada-independent-expenditures.json"]);
 const RELEASE_EXACT_EXCLUDES = new Set(["accountability-graph.json", "public-meetings.json", "public-meeting-items.json", "public-meeting-voting-cards.json", "public-meeting-official-actions.json", "public-civic-cases.json"]);
+const PUBLIC_MEETING_SOURCE_ROOT = /^data\/(?:generated\/public-meeting-(?:document-cache|document-text-cache|ocr-text-cache|adapter-text-cache)|raw\/public-meetings|manual-sources\/public-meetings)\//;
 
 export function safeArtifactPath(value: string) {
   if (!value || value.includes("\\") || value.includes("\0") || path.posix.isAbsolute(value) || path.posix.normalize(value) !== value || value.split("/").some((part) => part === ".." || part.startsWith("."))) return false;
-  return !/(?:session|cookie|credential|password|token|secret|identity|voter-file| 2\.|\.codex-sandbox\.|\.unknown\.|\.local-network-enabled\.)/i.test(value);
+  if (/(?:private|cookie|credential|password|token|secret|identity|voter-file| 2\.|\.codex-sandbox\.|\.unknown\.|\.local-network-enabled\.)/i.test(value)) return false;
+  // Public work/study/special sessions are meetings, not authentication state.
+  // Permit only those phrases in dedicated public-document namespaces. Check
+  // each path component independently; another "session" still rejects it.
+  // Source URL slugs retain encoded spaces as "-20work-20session".
+  const sessionPath = PUBLIC_MEETING_SOURCE_ROOT.test(value) ? value.split("/").map(part => part
+    .replace(/%20/gi, " ")
+    .replace(/(^|[-_ ])20(?=[a-z])/gi, "$1")
+    .replace(/(^|[-_ ])(?:work|study|special)[-_ ]+session(?=$|[-_. ])/gi, "$1meeting")).join("/") : value;
+  return !/session/i.test(sessionPath);
 }
 
 export function workerArtifactAllowed(value: string) {
@@ -22,7 +32,7 @@ export function workerArtifactAllowed(value: string) {
   if (OFFICIAL_AD_IMPORTS.has(value)) return true;
   if (parts[1] === "generated") {
     if (parts.length === 3) return value.endsWith(".json") && CIVIC_NAMES.test(parts[2]);
-    return CACHE_DIRS.has(parts[2]) && /\.(?:txt|pdf|html?|json|bin|docx?)$/i.test(value);
+    return CACHE_DIRS.has(parts[2]) && (/\.(?:txt|pdf|html?|json|bin|docx?)$/i.test(value) || parts[2] === "public-meeting-document-cache" && /\.xml$/i.test(value));
   }
   if (parts[1] === "raw" && RAW_DIRS.has(parts[2])) return /\.(?:json|html?|pdf|txt|csv|zip|xml)$/i.test(value) && !parts.includes("blocked");
   // Only public records already referenced by the document index are selected
