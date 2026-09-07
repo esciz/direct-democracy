@@ -44,6 +44,9 @@ export async function confirmMfaChallengeAction(_previous: MfaActionState, formD
   if (!user) return { status: "error", message: "Please sign in again." };
   const result = await verifyDurableMfaChallenge(user.id, getCode(formData));
   if (!result.ok) {
+    if (result.reason === "mfa_setup_unavailable") {
+      return { status: "error", message: "Your authenticator setup is unavailable. Enter one unused recovery code to sign in, or contact an operator for MFA recovery." };
+    }
     return { status: "error", message: "That code could not be confirmed. Try again or use a recovery code." };
   }
   const cookieStore = await cookies();

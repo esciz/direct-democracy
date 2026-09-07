@@ -47,10 +47,22 @@ export async function confirmDurableMfaEnrollment(accountId: string, code: strin
 export async function verifyDurableMfaChallenge(accountId: string, code: string) {
   return prisma.$transaction(async (tx) => {
     const account = await tx.identityAccount.findUnique({ where: { id: accountId }, include: { mfaRecoveryCodes: { where: { usedAt: null } } } });
-    if (!account || account.status !== "active" || account.disabledAt || !account.mfaEnabled || !account.mfaEncryptedSecret) return { ok: false as const, reason: "mfa_not_enabled" };
+    if (!account || account.status !== "active" || account.disabledAt || !account.mfaEnabled) return { ok: false as const, reason: "mfa_not_enabled" };
     if (account.mfaFailedAttempts >= 8) return { ok: false as const, reason: "rate_limited" };
-    const verification = verifyTotpCode({ secret: decryptMfaSecret(account.mfaEncryptedSecret), code, lastAcceptedCounterHash: account.mfaLastAcceptedCounterHash });
-    const recovery = !verification.ok ? account.mfaRecoveryCodes.find((row) => verifyRecoveryCode(code, row.codeHash)) : null;
+    // Recovery codes are independently hashed and must remain usable when the
+    // encrypted authenticator secret is unavailable (for example after key loss).
+    const recovery = account.mfaRecoveryCodes.find((row) => verifyRecoveryCode(code, row.codeHash));
+    let verification: ReturnType<typeof verifyTotpCode> = { ok: false, reason: "invalid_format" };
+    if (!recovery && /^\d{6}$/.test(code.trim().replace(/[\s-]+/g, ""))) {
+      if (!account.mfaEncryptedSecret) return { ok: false as const, reason: "mfa_setup_unavailable" };
+      let secret: string;
+      try {
+        secret = decryptMfaSecret(account.mfaEncryptedSecret);
+      } catch {
+        return { ok: false as const, reason: "mfa_setup_unavailable" };
+      }
+      verification = verifyTotpCode({ secret, code, lastAcceptedCounterHash: account.mfaLastAcceptedCounterHash });
+    }
     if (!verification.ok && !recovery) {
       await tx.identityAccount.update({ where: { id: accountId }, data: { mfaFailedAttempts: { increment: 1 } } });
       return { ok: false as const, reason: verification.reason };
