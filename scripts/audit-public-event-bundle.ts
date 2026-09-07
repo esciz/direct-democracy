@@ -25,8 +25,6 @@ const runtimeFiles = [
 const metadataFiles = [
   "data/generated/public-meeting-lifecycle.json", "data/generated/public-meeting-content-verification.json",
   "data/generated/public-meeting-cache-manifest.json", "data/generated/public-meeting-document-cache-audit.json",
-  // This decision artifact is a different schema from the meeting-question runtime.
-  "data/generated/voting-cards.json",
 ];
 const exclusions = nextConfig.outputFileTracingExcludes!["/*"].map((pattern) => pattern.replace(/^\.\//, ""));
 const excluded = (file: string) => exclusions.some((pattern) => path.matchesGlob(file, pattern));
@@ -34,6 +32,14 @@ for (const directory of workerDirectories) assert.equal(excluded(`${directory}fi
 for (const file of workerManifests) assert.equal(excluded(file), true, `${file} must remain worker-only`);
 assert.equal(excluded("data/generated/loose-evidence.pdf"), true);
 for (const file of [...runtimeFiles, ...metadataFiles]) assert.equal(excluded(file), false, `${file} must remain available to web readers`);
+const includes = nextConfig.outputFileTracingIncludes!["/*"].map(pattern => pattern.replace(/^\.\//, ""));
+for (const name of PACKED_CIVIC_FILES) {
+  const original = `data/generated/${name}`;
+  const packed = packedCivicPath(original);
+  assert.equal(excluded(original), true, `${original} must use its lossless build copy`);
+  assert.equal(excluded(packed), false, `${packed} must remain available to web readers`);
+  assert.ok(includes.includes(packed), `${packed} must be explicitly traced`);
+}
 
 if (process.argv.includes("--config-only")) {
   console.log("Event bundle configuration preserves runtime, decisions, and audit reports while excluding worker evidence, extraction manifests, text caches, and local logs.");

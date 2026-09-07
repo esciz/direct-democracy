@@ -1,7 +1,6 @@
 import "server-only";
 
-import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { civicJsonPath, readCivicJson } from "@/lib/dataops/packed-runtime";
 import path from "node:path";
 
 import type { AccountabilityGraph } from "@/lib/community/accountability-graph";
@@ -235,9 +234,9 @@ type VoteAttributionReadiness = {
 };
 
 async function readJson<T>(fileName: string, fallback: T): Promise<T> {
-  const filePath = path.join(GENERATED_DIR, fileName);
-  if (!existsSync(filePath)) return fallback;
-  return JSON.parse(await readFile(filePath, "utf8")) as T;
+  const filePath = civicJsonPath(path.join(GENERATED_DIR, fileName));
+  if (!filePath) return fallback;
+  return readCivicJson<T>(filePath);
 }
 
 function normalize(value: string) {

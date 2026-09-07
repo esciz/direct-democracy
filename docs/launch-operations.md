@@ -22,7 +22,7 @@ Vercel's build command restores the selected validated runtime release before `n
 
 The deploy hook rebuilds `main` after publication. The workflow verifies that the public `/api/data-release` returns the expected hash, with up to 45 minutes for packaging/deployment. It fails if publication never reaches the public site. A Vercel deployment can be healthy while serving an older release; compare identities, not just HTTP 200.
 
-`npm run build` losslessly compresses the full vote and community relationship JSON into derived gzip copies before Next tracing. Production readers use those copies when the originals are excluded from the function bundle; workers and local collectors still prefer the original JSON. Every record and evidence field survives a verified byte-for-byte round trip. Releases retain the original JSON, so older immutable releases remain restorable and the build can regenerate its compressed copies. The bundle audit verifies both their presence and the package size.
+`npm run build` losslessly compresses the full vote, decision-card and community relationship JSON into derived gzip copies before Next tracing. Production readers use those copies when the originals are excluded from the function bundle; workers and local collectors still prefer the original JSON. Decision-card objects remain distinct from the meeting-question runtime array. Every record and evidence field survives a verified byte-for-byte round trip. Releases retain the original JSON, so older immutable releases remain restorable and the build can regenerate its compressed copies. The bundle audit verifies both their presence and the package size.
 
 ## Configuration
 

@@ -5,7 +5,7 @@ import { gunzipSync } from "node:zlib";
 
 // These large, repetitive public datasets are packed losslessly at build time.
 // Workers keep the original JSON; local readers prefer it to any older build.
-export const PACKED_CIVIC_FILES = ["public-meeting-votes.json", "nevada-community-relationships.json"] as const;
+export const PACKED_CIVIC_FILES = ["public-meeting-votes.json", "nevada-community-relationships.json", "voting-cards.json"] as const;
 export const packedCivicPath = (file: string) => file.replace(/\.json$/, "-runtime.json.gz");
 
 export function civicJsonPath(file: string): string | null {
