@@ -5,6 +5,7 @@ import path from "node:path";
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath, summarizeText } from "@/lib/public-meetings/shared";
 import { getPublicMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
 import { getPublicMeetingItems } from "@/lib/public-meetings/public-record-eligibility";
+import { reportingEvidencePolicy } from "@/lib/public-meetings/reporting-policy";
 import type {
   MeetingVotingCardRecord,
   OfficialMeetingActionRecord,
@@ -42,6 +43,7 @@ export async function writePublicMeetingRuntimeArtifacts(input?: {
   const bodyById = new Map(bodies.map((body) => [body.id, body]));
 
   const runtimeVotingCards = getPublicMeetingVotingCards(votingCards).map((card) => ({
+    reporting_policy: card.reporting_policy,
     id: card.id,
     generation_key: card.generation_key,
     meeting_id: card.meeting_id,
@@ -101,6 +103,7 @@ export async function writePublicMeetingRuntimeArtifacts(input?: {
   const runtimeItems: PublicMeetingItemRecord[] = getPublicMeetingItems(items)
     .filter((item) => meetingIds.has(item.meeting_id))
     .map((item) => ({
+      reporting_policy: reportingEvidencePolicy(item),
       id: item.id, meeting_id: item.meeting_id, item_number: item.item_number,
       title: summarizeText(item.title, 280), description: item.description ? summarizeText(item.description, 600) : null,
       one_sentence_summary: summarizeText(item.one_sentence_summary, 500),

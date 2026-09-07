@@ -21,7 +21,7 @@ The report at `.local/civic-first-pass-review.json` contains every decision and 
 
 ## Standing reporting policy
 
-`lib/public-meetings/reporting-policy.ts` excludes routine minutes/agenda approvals and standalone adjournment. It conservatively retains mixed items mentioning contracts, budgets, land use, taxes, fees, appointments or other substantive business. Consent agendas are not automatically excluded.
+`lib/public-meetings/reporting-policy.ts` excludes routine minutes/agenda approvals and standalone adjournment. It conservatively retains mixed items mentioning contracts, budgets, land use, taxes, fees, appointments or other substantive business. Consent agendas are not automatically excluded. The worker carries a full-source retention finding into compact topics and cards before shortening their excerpts, so future mixed items receive the same protection.
 
 The rule is applied during vote/card/action generation and again during `prebuild`, after any restored civic release and before lossless runtime packing. The build overlay filters derived vote/card/action/question artifacts, updates review counts and rebuilds accountability summaries. It never modifies source meeting items or source documents. A substantive correction to a known source item is re-evaluated and can supersede an earlier exclusion. `public-meeting-reporting-policy-audit.json` records the active exclusions.
 

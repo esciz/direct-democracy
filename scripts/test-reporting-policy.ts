@@ -2,13 +2,17 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { routineReportingExclusion, nonPersonExtractionReason } from "@/lib/public-meetings/reporting-policy";
+import { routineReportingExclusion, nonPersonExtractionReason, reportingEvidencePolicy } from "@/lib/public-meetings/reporting-policy";
 import { firstPassVote, firstPassIdentity, identityReviewBuckets } from "@/lib/admin/operations/first-pass";
 import { applyReportingPolicy } from "./apply-reporting-policy";
 
 for (const title of ["Approval of minutes from May 19, 2026", "Consideration and possible approval of the agenda for June 16, 2026", "Adjournment"]) assert.ok(routineReportingExclusion({ title }), title);
 for (const title of ["Approve the consent agenda", "Approve minutes and a $25,000 contract", "Approve the budget described in the minutes", "Adopt an ordinance", "Appointment of a board chair", "Consider the zoning application", "Should the city approve. COLLEGE AVENUE. Planning Commission Minutes", "Approve pursuant to NRS 252.050 entering office hours into the minutes", "Review and accept travel claims. Public comment limited to 3 minutes."]) assert.equal(routineReportingExclusion({ title }), null, title);
 assert.equal(routineReportingExclusion({ title: "Approval of minutes", source_text: "Approve the minutes and authorize a new lease." }), null);
+const mixed = { title: "Approval of minutes", source_text: `${"Meeting discussion. ".repeat(100)} Approve the lease.` };
+const compact = { ...mixed, source_text: mixed.source_text.slice(0, 1200), reporting_policy: reportingEvidencePolicy(mixed) };
+assert.equal(compact.reporting_policy, "retain_for_source_review");
+assert.equal(routineReportingExclusion(compact), null, "new mixed source items survive future excerpt shortening");
 assert.equal(nonPersonExtractionReason("Donald Sylvantee McMichael Sr."), null);
 assert.equal(nonPersonExtractionReason("For-Hope Hesch"), null);
 assert.equal(nonPersonExtractionReason("Jennifer Schuler A"), null); // Uncertain spelling remains open.

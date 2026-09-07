@@ -24,6 +24,12 @@ export function routineReportingExclusion(item: ReportingSubject): string | null
   return null;
 }
 
+/** Carry the full-source decision through later excerpt shortening. */
+export function reportingEvidencePolicy(item: ReportingSubject): ReportingSubject["reporting_policy"] {
+  return item.reporting_policy ?? (routineReportingExclusion({ title: item.source_title || item.title })
+    && !routineReportingExclusion(item) ? "retain_for_source_review" : undefined);
+}
+
 /** Reject only clear parser fragments; unfamiliar names still require a roster. */
 export function nonPersonExtractionReason(name: string): string | null {
   const normalized = name.replace(/\s+/g, " ").trim();

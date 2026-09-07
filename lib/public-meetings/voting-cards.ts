@@ -1,4 +1,4 @@
-import { routineReportingExclusion } from "@/lib/public-meetings/reporting-policy";
+import { routineReportingExclusion, reportingEvidencePolicy } from "@/lib/public-meetings/reporting-policy";
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -225,6 +225,7 @@ export function buildMeetingVotingCards(context: BuildContext): MeetingVotingCar
         review_status: action.review_status,
       }));
     const card: MeetingVotingCardRecord = {
+      reporting_policy: reportingEvidencePolicy(item),
       id: stableId("meeting-voting-card", item.id),
       generation_key: `meeting-voting-card:${item.id}`,
       meeting_id: meeting.id,

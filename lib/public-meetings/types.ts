@@ -179,6 +179,7 @@ export type PublicMeetingRecord = {
 };
 
 export type PublicMeetingItemRecord = {
+  reporting_policy?: "retain_for_source_review";
   id: string;
   meeting_id: string;
   item_number: string | null;
@@ -341,6 +342,7 @@ export type MeetingVotingCardFinancialImpactContext = {
 };
 
 export type MeetingVotingCardRecord = {
+  reporting_policy?: "retain_for_source_review";
   id: string;
   generation_key: string;
   meeting_id: string;

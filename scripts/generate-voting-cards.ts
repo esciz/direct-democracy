@@ -1,4 +1,4 @@
-import { routineReportingExclusion } from "@/lib/public-meetings/reporting-policy";
+import { routineReportingExclusion, reportingEvidencePolicy } from "@/lib/public-meetings/reporting-policy";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
@@ -22,6 +22,7 @@ type SourceReference = {
 };
 
 export type GeneratedVotingCard = {
+  reporting_policy?: "retain_for_source_review";
   id: string;
   sourceVotingCardId: string;
   agendaItemId: string;
@@ -169,6 +170,7 @@ function buildCards() {
       {
         id: card.id.replace(/^meeting-voting-card-/, "voting-card-"),
         sourceVotingCardId: card.id,
+        reporting_policy: reportingEvidencePolicy(item ?? card),
         agendaItemId: card.topic_item_id,
         meetingId: card.meeting_id,
         title: intelligence.citizenTitle,
