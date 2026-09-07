@@ -105,8 +105,10 @@ async function main() {
     const readBad = (async () => response("wrong hash")) as unknown as typeof get;
     await assert.rejects(restoreManifest(root, original, readBad));
     assert.equal(await readFile(path.join(root, valid.path), "utf8"), '["last-good"]');
-    const readGood = (async () => response("[]")) as unknown as typeof get;
+    let readAttempts = 0;
+    const readGood = (async () => response(++readAttempts === 1 ? "[" : "[]")) as unknown as typeof get;
     assert.equal((await restoreManifest(root, original, readGood)).restored, 1);
+    assert.equal(readAttempts, 2, "A truncated successful HTTP response is retried and reverified before installation");
     const noRead = (async () => { throw new Error("unchanged files must not download"); }) as unknown as typeof get;
     assert.equal((await restoreManifest(root, original, noRead)).restored, 0);
     assert.deepEqual(await readdir(path.join(root, ".local/civic-restore")), []);

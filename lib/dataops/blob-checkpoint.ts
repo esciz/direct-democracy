@@ -192,20 +192,33 @@ export async function restoreManifest(root: string, manifest: CivicManifest, rea
     const required = changed.reduce((sum, entry) => sum + entry.bytes, 0);
     if (required > available - 256 * 1024 * 1024) throw new Error("insufficient_disk_space_for_atomic_civic_restore");
     await mapBounded(changed, 4, async (entry) => {
-      const response = await readObject(entry.objectKey, { access: "private", useCache: false, abortSignal: AbortSignal.timeout(300_000) });
-      if (!response || response.statusCode !== 200 || !response.stream) throw new Error(`missing_artifact:${entry.path}`);
       const staging = path.join(stage, "next", entry.path);
       await mkdir(path.dirname(staging), { recursive: true });
-      let bytes = 0;
-      const hash = createHash("sha256");
-      const verify = new Transform({ transform(chunk: Buffer, _encoding, callback) {
-        bytes += chunk.length;
-        if (bytes > entry.bytes) { callback(new Error("artifact_download_exceeds_manifest_size")); return; }
-        hash.update(chunk); callback(null, chunk);
-      }});
-      await pipeline(Readable.fromWeb(response.stream as import("node:stream/web").ReadableStream), verify, createWriteStream(staging, { flags: "wx" }));
-      if (bytes !== entry.bytes || hash.digest("hex") !== entry.sha256) throw new Error(`artifact_integrity_failed:${entry.path}`);
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          const response = await readObject(entry.objectKey, { access: "private", useCache: false, abortSignal: AbortSignal.timeout(300_000) });
+          if (!response || response.statusCode !== 200 || !response.stream) throw new Error(`missing_artifact:${entry.path}`);
+          let bytes = 0;
+          const hash = createHash("sha256");
+          const verify = new Transform({ transform(chunk: Buffer, _encoding, callback) {
+            bytes += chunk.length;
+            if (bytes > entry.bytes) { callback(new Error("artifact_download_exceeds_manifest_size")); return; }
+            hash.update(chunk); callback(null, chunk);
+          }});
+          await pipeline(Readable.fromWeb(response.stream as import("node:stream/web").ReadableStream), verify, createWriteStream(staging, { flags: "wx" }));
+          if (bytes !== entry.bytes || hash.digest("hex") !== entry.sha256) throw new Error(`artifact_integrity_failed:${entry.path}:expected=${entry.bytes}:received=${bytes}`);
+          break;
+        } catch (error) {
+          await rm(staging, { force: true });
+          if (attempt === 3) throw error;
+          // A short HTTP 200 or interrupted large-object stream must never be
+          // installed. Retry from byte zero and verify the complete object again.
+          console.log(`Retrying civic artifact download after integrity/transport failure (${attempt}/3).`);
+          await new Promise(resolve => setTimeout(resolve, attempt * 1000));
+        }
+      }
       restored++;
+      if (restored % 500 === 0) console.log(`Restored and verified ${restored}/${changed.length} civic artifacts.`);
     });
     // Preflight directories before changing a live file. Retain originals in the
     // same filesystem so a commit failure can roll back every already moved file.
