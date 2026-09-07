@@ -1,6 +1,7 @@
 /** Source records are retained. This policy controls voter-facing reporting only. */
-export const REPORTING_POLICY_VERSION = "2026-09-07.1";
+export const REPORTING_POLICY_VERSION = "2026-09-07.2";
 export type ReportingSubject = {
+  reporting_policy?: "retain_for_source_review";
   title?: string | null; source_title?: string | null; source_text?: string | null;
   sourceSnippet?: string | null; source_snippet?: string | null;
   source_snippets?: string[]; description?: string | null;
@@ -8,6 +9,7 @@ export type ReportingSubject = {
 };
 
 export function routineReportingExclusion(item: ReportingSubject): string | null {
+  if (item.reporting_policy === "retain_for_source_review") return null;
   const title = (item.source_title || item.title || "").replace(/\s+/g, " ").trim();
   const evidence = [title, item.source_text, item.sourceSnippet, item.source_snippet,
     item.description, ...(item.source_snippets ?? []), ...(item.sourceReferences ?? []).map(ref => ref.snippet)].filter(Boolean).join(" ");
@@ -15,9 +17,9 @@ export function routineReportingExclusion(item: ReportingSubject): string | null
   // minutes in a policy decision is not itself a reason to exclude that decision.
   if (/\$\s*\d|\b(?:budget|contracts?|agreements?|ordinances?|zoning|rezone|permits?|tax(?:es)?|fees?|appropriat\w*|purchase|grant|lease|litigation|settlement|land\s+use|appointments?|election|public\s+hearing|consent\s+(?:agenda|calendar)|resolutions?|procurement|salary|benefits|policy\s+(?:change|amendment))\b/i.test(evidence)) return null;
   const heading = title.slice(0, 260);
-  if (/\b(?:approv(?:al|e|ing|ed)|adopt(?:ion|ed)?|accept(?:ance|ed)?)\b.{0,100}\bminutes\b/i.test(heading)
+  if (/\b(?:approv(?:al|e|ing|ed)|adopt(?:ion|ed)?|accept(?:ance|ed)?)\b[^.!?;]{0,100}\bminutes\b/i.test(heading)
     || /^(?:\d+[.)]\s*)?(?:approval\s+of\s+)?(?:regular\s+|special\s+|meeting\s+)?minutes\b/i.test(heading)) return "routine_minutes_approval";
-  if (/\b(?:approv(?:al|e|ing|ed)|adopt(?:ion|ed)?)\b.{0,65}\bagenda\b/i.test(heading)) return "routine_agenda_approval";
+  if (/\b(?:approv(?:al|e|ing|ed)|adopt(?:ion|ed)?)\b[^.!?;]{0,65}\bagenda\b/i.test(heading)) return "routine_agenda_approval";
   if (/^(?:(?:needs review:|\d+[.)])\s*)*(?:adjournment|adjourn(?:\s+the)?\s+meeting)[\s.:;-]*$/i.test(title)) return "routine_adjournment";
   return null;
 }

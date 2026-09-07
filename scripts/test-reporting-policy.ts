@@ -7,7 +7,7 @@ import { firstPassVote, firstPassIdentity, identityReviewBuckets } from "@/lib/a
 import { applyReportingPolicy } from "./apply-reporting-policy";
 
 for (const title of ["Approval of minutes from May 19, 2026", "Consideration and possible approval of the agenda for June 16, 2026", "Adjournment"]) assert.ok(routineReportingExclusion({ title }), title);
-for (const title of ["Approve the consent agenda", "Approve minutes and a $25,000 contract", "Approve the budget described in the minutes", "Adopt an ordinance", "Appointment of a board chair", "Consider the zoning application"]) assert.equal(routineReportingExclusion({ title }), null, title);
+for (const title of ["Approve the consent agenda", "Approve minutes and a $25,000 contract", "Approve the budget described in the minutes", "Adopt an ordinance", "Appointment of a board chair", "Consider the zoning application", "Should the city approve. COLLEGE AVENUE. Planning Commission Minutes", "Approve pursuant to NRS 252.050 entering office hours into the minutes", "Review and accept travel claims. Public comment limited to 3 minutes."]) assert.equal(routineReportingExclusion({ title }), null, title);
 assert.equal(routineReportingExclusion({ title: "Approval of minutes", source_text: "Approve the minutes and authorize a new lease." }), null);
 assert.equal(nonPersonExtractionReason("Donald Sylvantee McMichael Sr."), null);
 assert.equal(nonPersonExtractionReason("For-Hope Hesch"), null);
@@ -44,5 +44,14 @@ try {
   // A corrected mixed substantive item is not permanently blacklisted by ID.
   write("public-meeting-items-runtime.json", [{ id: "minutes", title: "Approval of minutes and a contract" }]);
   assert.equal(applyReportingPolicy(root).excludedItems, 0);
+  // Compact excerpts must not erase a full-source finding of mixed business.
+  mkdirSync(path.join(root, "data/seed"), { recursive: true });
+  writeFileSync(path.join(root, "data/seed/civic-reporting-exclusions.json"), JSON.stringify({ records: [], retainedItems: [{ id: "mixed" }] }));
+  write("public-meeting-items-runtime.json", [{ id: "mixed", title: "Approval of minutes" }]);
+  write("voting-cards-runtime.json", [{ id: "card-mixed", topic_item_id: "mixed", title: "Approval of minutes" }]);
+  applyReportingPolicy(root);
+  assert.equal(read("voting-cards-runtime.json").length, 1);
+  assert.equal(routineReportingExclusion(read("voting-cards-runtime.json")[0]), null);
+  assert.equal(routineReportingExclusion(read("public-meeting-items-runtime.json")[0]), null);
 } finally { rmSync(root, { recursive: true }); }
 console.log("Reporting policy: procedural exclusion, substantive protection, evidence preservation, repeat refresh and triage checks passed.");

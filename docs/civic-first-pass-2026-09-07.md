@@ -15,9 +15,9 @@ The pass examined all 4,311 queue entries (903 vote flags and 3,408 identity gro
 | Identities requiring historical membership verification | 3,216 |
 | Conflicting normalized identity groups requiring review | 3 |
 
-Across the 34,418 source items, 1,306 routine items qualify for reporting exclusion. Applying the policy to this dataset removes 316 vote/motion rows, 57 decision cards (34 already-public question cards), 29 extracted official actions, 40 citizen questions, and 66 aggregate-only outcomes from derived reporting inputs. Source meeting items, original documents and action-result evidence remain available. The remaining substantive vote queue contains 844 flags.
+Across the 34,418 source items, 1,300 routine items qualify for reporting exclusion. Applying the policy to this dataset removes 316 vote/motion rows, 56 decision cards (34 already-public question cards), 29 extracted official actions, 38 citizen questions, and 65 aggregate-only outcomes from derived reporting inputs. The initial 1,306 candidates were narrowed by retaining six substantive/uncertain items whose titles only mentioned minutes or an agenda. Source meeting items, original documents and action-result evidence remain available. The remaining substantive vote queue contains 844 flags.
 
-The report at `.local/civic-first-pass-review.json` contains every decision and reason. `data/seed/civic-reporting-exclusions.json` retains the reviewed routine item IDs. No real person's identity or vote was guessed or newly approved by this pass.
+The report at `.local/civic-first-pass-review.json` contains every decision and reason. `data/seed/civic-reporting-exclusions.json` retains the reviewed routine item IDs and 109 substantive or mixed-source items whose shortened excerpts must not override the fuller evidence. No real person's identity or vote was guessed or newly approved by this pass.
 
 ## Standing reporting policy
 

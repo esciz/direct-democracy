@@ -1,5 +1,5 @@
 {
-  "policyVersion": "2026-09-07.1",
+  "policyVersion": "2026-09-07.2",
   "reviewedAt": "2026-09-07",
   "reason": "User-requested permanent exclusion of routine meeting business from voter reporting. Source documents retained; substantive source corrections are re-evaluated.",
   "records": [
@@ -54,6 +54,26 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-nv-legislature-nevada-legislature-2026-08-26-8a2de256-1-3ff998983b",
+      "title": "Agenda Item III—Approval of the Minutes for the Meeting on April 23, 2026",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-nv-assembly-nevada-assembly-2026-08-26-67e1a312-1-3ff998983b",
+      "title": "Agenda Item III—Approval of the Minutes for the Meeting on April 23, 2026",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-14-41e873b1-4-c498bfcccd",
+      "title": "Needs review: Consideration and possible action re: Approval of Agenda as submitted or revised.",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-14-41e873b1-5-1923f7214e",
+      "title": "Needs review: Consideration and possible action re: Approval of Minutes of the meeting held on: A. June 9, 2026",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-14-41e873b1-4-f8aadbe73f",
       "title": "Consideration and possible action re: Approval of Agenda as submitted or revised: Paul Harmon moved to approve the agenda as submitted. Destry Johnson seconded the motion which...",
       "reason": "routine_agenda_approval"
@@ -74,6 +94,21 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-5-19e8b6b1b6",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the July 21, 2026,",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-6-9e814adb2e",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the May 19th, 2023, meeting. Commissioner Carmona requested that this item be continued u...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-7-ebfb4b48e0",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the June 16, 2026,",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-4-0793f03e44",
       "title": "DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the May 19, 2026, meeting. Assistant District Attorney Brian Brown noted that the Call to O...",
       "reason": "routine_agenda_approval"
@@ -89,9 +124,39 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a-7-37cb1607b0",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the July 7, 2026, meeting.",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-5-32b2785661",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the August 4, 2026,",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-6-699e2c5aa4",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the July 7, 2026,",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-7-e310926014",
       "title": "DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the July 7, 2026, meeting. County Manager Austin Osborne requested to continue Item #17 to...",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-4-f13a824941",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the June 16, 2026,",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-5-2a62bbe96a",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the May 5th, 2026,",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-6-8392208ede",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the May 19th, 2023,",
+      "reason": "routine_minutes_approval"
     },
     {
       "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-5-1f6098036c",
@@ -109,6 +174,16 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-5-8979d02b82",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the May 19, 2026,",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-6-3eee78140c",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the April 21, 2026,",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-5-a4149e5793",
       "title": "DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the April 21, 2026, meeting. Commissioner Gilman recused himself from Items 12 and 13. No p...",
       "reason": "routine_agenda_approval"
@@ -119,6 +194,16 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-5-e58986f3ba",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the May 05, 2026,",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-6-f3f86605fb",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the April 7, 2026,",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-5-b028c95dc6",
       "title": "DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the April 7, 2026, meeting. County Manager Austin Osborne suggested removing Item #41 and c...",
       "reason": "routine_agenda_approval"
@@ -126,6 +211,21 @@
     {
       "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-7-ccc3f2f223",
       "title": "DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the March 17th, 2026, meeting. No public comment Motion Made to Approve the minutes from...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-5-f1cda4f3be",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the August 18, 2026,",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-5-5c05867c33",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the September 1, 2026,",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-6-70696c57ba",
+      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the July 21, 2026,",
       "reason": "routine_minutes_approval"
     },
     {
@@ -154,13 +254,33 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-5-d584c9f294",
+      "title": "Needs review: September 1,2015 - Regular meeting FOR POSSIBLE ACTION APPROVAL OF MINUTES There were no public comments made at this time. INITIAL PUBLIC COMMENT PERIOD PLEDGE OF ALLEGIANCE Sc...",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-9ae9d1f3-I-5c95007b7b",
       "title": "NEW BUSINESS ***Motion: Accept the meeting minutes from November 3,2015 as presented. Moved by Jose Negrete, Seconded by Joe Becker. The motion passed unanimously.",
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-9ae9d1f3-6-bbf9e00ef9",
+      "title": "Needs review: November 3, 2015 - Regular meeting FOR POSSIBLE ACTION APPROVAL OF MINUTES There were no public comments made at this time. INITIAL PUBLIC COMMENT PERIOD PLEDGE OF ALLEGIANCE Ci...",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae-I-1ba698b3e3",
       "title": "NEW BUSINESS ***Motion: Approve the minutes of the December 1, 2015 meeting as presented. Moved by Jose Negrete, Seconded by David Freistroffer. The motion passed unanimously.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae-4-d89ab3e728",
+      "title": "Needs review: December 1,2015 - Regular meeting FOR POSSIBLE ACTION APPROVAL OF MINUTES There were no public comments made at this time. COMMENTS BY THE GENERAL PUBLIC PLEDGE OF ALLEGIANCE Ci...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae-2-39cbae685d",
+      "title": "Needs review: Approval of Variance 1-16 -- 7 of 14 -- Page 8 of14 Elko City Planning Commission Minutes March 1,2016 Mr. Draper said the developer has been working at this for a couple years....",
       "reason": "routine_minutes_approval"
     },
     {
@@ -179,1054 +299,14 @@
       "reason": "routine_minutes_approval"
     },
     {
-      "id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78-4-6b2eefff9d",
-      "title": "For Possible Action: Discussion and Possible Action to approve the minutes from the April 20,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-3-5d3bb391b2",
-      "title": "Agenda Approval Mayor Pro Tem Martin stated the agenda would be approved as presented unless there were any objections or corrections. Interim City Manager Bryant asked that ite...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-73-928e95e587",
-      "title": "County. (For Possible Action) Commissioner Plaskett motioned to approve a future agenda item to implement a hiring freeze waiver justification for all positions in Eureka County...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-1-7ac1449c68",
-      "title": "Approval of agenda notice. (For Possible Action) Vice Chair McKay motioned to approve the agenda, Chairman Plaskett seconded the motion, all in favor, motion carried 3-0. PUBLIC...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-1-273437a3eb",
-      "title": "Approval of Devil’s Gate GID meeting minutes for May 20, 2025. (For Possible Action) Commissioner McKay motioned to approve the meeting minutes from May 20, 2025. Commissioner S...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-2-efb4efd82d",
-      "title": "Discuss, approve or deny the 2026 Board of County Commissioners agenda items and posting",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-110-578b48d8f5",
-      "title": "calendar. (For Possible Action) Commissioner Plaskett motioned to approve the 2026 Board of County Commissioners agenda items and posting calendar. Commissioner Schoenwald secon...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-2-a07367ec7d",
-      "title": "Discuss, approve or deny, pursuant to NRS 252.050, the Board entering into its minutes an order that the District Attorney Office hours will be Monday-Thursday, 7:00 a.m.-5:30p....",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-154-dc5c42ba86",
-      "title": "(For Possible Action) Commissioner Plaskett motioned to approve the Commission meeting minutes from November 4,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c-1-9bbf2c7546",
-      "title": "Approval of the minutes from the January 6, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the January 6, 2026 Commission meeting minut...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209-1-eaa1eb281d",
-      "title": "Approval of the minutes from the January 20, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the commission meeting minutes from January...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3-1-86fe12926d",
-      "title": "Approval of agenda notice. (For Possible Action) Commissioner McKay motioned to approve the agenda, Commissioner Schoenwald seconded the motion. The motion carried 5-0. PUBLIC C...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3-75-6686e52799",
-      "title": "(For Possible Action) -- 8 of 293 -- Page 2 of 10 – March 3, 2026 Commissioner Plaskett motioned to approve the February 3, 2026 and February 17, 2026 Commission meeting minutes...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7-1-8837d618c5",
-      "title": "Approval of the minutes from the April 7, 2026 Commission meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the April 7, 2026 Commission meeting minutes...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-1-c410c8b272",
-      "title": "Approval of the minutes from the May 5, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the May 5, 2026 commission meeting minutes, Comm...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7-73-928e95e587",
-      "title": "County. (For Possible Action) Commissioner Plaskett motioned to approve a future agenda item to implement a hiring freeze waiver justification for all positions in Eureka County...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-1-7ac1449c68",
-      "title": "Approval of agenda notice. (For Possible Action) Vice Chair McKay motioned to approve the agenda, Chairman Plaskett seconded the motion, all in favor, motion carried 3-0. PUBLIC...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-1-273437a3eb",
-      "title": "Approval of Devil’s Gate GID meeting minutes for May 20, 2025. (For Possible Action) Commissioner McKay motioned to approve the meeting minutes from May 20, 2025. Commissioner S...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-2-efb4efd82d",
-      "title": "Discuss, approve or deny the 2026 Board of County Commissioners agenda items and posting",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-110-578b48d8f5",
-      "title": "calendar. (For Possible Action) Commissioner Plaskett motioned to approve the 2026 Board of County Commissioners agenda items and posting calendar. Commissioner Schoenwald secon...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-2-a07367ec7d",
-      "title": "Discuss, approve or deny, pursuant to NRS 252.050, the Board entering into its minutes an order that the District Attorney Office hours will be Monday-Thursday, 7:00 a.m.-5:30p....",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-154-dc5c42ba86",
-      "title": "(For Possible Action) Commissioner Plaskett motioned to approve the Commission meeting minutes from November 4,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66-1-9bbf2c7546",
-      "title": "Approval of the minutes from the January 6, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the January 6, 2026 Commission meeting minut...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-ce5763d5-1-eaa1eb281d",
-      "title": "Approval of the minutes from the January 20, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the commission meeting minutes from January...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-1-86fe12926d",
-      "title": "Approval of agenda notice. (For Possible Action) Commissioner McKay motioned to approve the agenda, Commissioner Schoenwald seconded the motion. The motion carried 5-0. PUBLIC C...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-75-6686e52799",
-      "title": "(For Possible Action) -- 8 of 293 -- Page 2 of 10 – March 3, 2026 Commissioner Plaskett motioned to approve the February 3, 2026 and February 17, 2026 Commission meeting minutes...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126-1-7c8f0f544e",
-      "title": "Approval of the minutes from the March 3, 2026 Commission meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the March 3, 2026 Commission meeting minutes...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-06eb3f24-1-8837d618c5",
-      "title": "Approval of the minutes from the April 7, 2026 Commission meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the April 7, 2026 Commission meeting minutes...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-1-0a0e5cdeac",
-      "title": "Approval of the minutes from the April 21, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the April 21, 2026 Commission meeting minutes...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-1-c410c8b272",
-      "title": "Approval of the minutes from the May 5, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the May 5, 2026 commission meeting minutes, Comm...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-3994a6ead7",
-      "title": "Approval of agenda notice. (For Possible Action) Commissioner Schoenwald motioned to approve the agenda, Sheriff Umina seconded the motion. The motion carried 4-0. PUBLIC COMMEN...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-3b821cfaf8",
-      "title": "Approval of minutes for the January 6, 2026, Liquor Board meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the January 6, 2026 Liquor Board meeting min...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-2940a82cfb",
-      "title": "Approval of the minutes from the May 19, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the May 19, 2026 commissioner meeting minutes....",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-11.c-4df80f6546",
-      "title": "For Possible Action: Approve the July 2, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-47-38efb3c056",
-      "title": "For Possible Action: Approve the July 2, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: -- 14 of 233 -- Lyon Co...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-5-df620a294a",
-      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-11.d-b89c087e1a",
-      "title": "For Possible Action: Approve the June 18, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c-11.d-f261e3131f",
-      "title": "For Possible Action: Approve the June 18, 2026 minutes. limited to 3 minutes. The Board will conduct public comment after discussion of each agenda action item, but before the B...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-18-ee3c5f7a-11.d-15a6f9867c",
-      "title": "For Possible Action: Approve the June 4, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-11.d-4ee5000ae7",
-      "title": "For Possible Action: Approve the May 13, 2026 Special Meeting minutes. limited to 3 minutes. The Board will conduct public comment after discussion of each agenda action item, b...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-11.e-2cfe519c64",
-      "title": "For Possible Action: Approve the May 21, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-158-523069e292",
-      "title": "For Possible Action: Approve the May 13, 2026 Special Meeting minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHM...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-11.c-b99a1ed1b6",
-      "title": "For Possible Action: Approve the May 7, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-154-ac14d46a4a",
-      "title": "For Possible Action: Approve the May 7, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 135 of 35...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-5-0ce3b4b068",
-      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Cassinelli moved to approve the agenda as presen...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5-11.b-b2db44b2f9",
-      "title": "For Possible Action: Review and accept travel claims. limited to 3 minutes. The Board will conduct public comment after discussion of each agenda action item, but before the Boa...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5-11.d-255e9cff3e",
-      "title": "For Possible Action: Approve the July 16, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b-11.b-b2db44b2f9",
-      "title": "For Possible Action: Review and accept travel claims. limited to 3 minutes. The Board will conduct public comment after discussion of each agenda action item, but before the Boa...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b-11.d-255e9cff3e",
-      "title": "For Possible Action: Approve the July 16, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-11.d-45697c0b3a",
-      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-53-9bcc419bf0",
-      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTAC...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-4-8fb19034b0",
-      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-c2a7b9d3-11.d-45697c0b3a",
-      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-c2a7b9d3-53-de9bc6da3f",
-      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTAC...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-c2a7b9d3-4-8fb19034b0",
-      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-09-08-4e5bfa98-4-211da59f8e",
-      "title": "Consideration and possible action re: Approval of Agenda as submitted or revised: Paul Harmon moved to approve the agenda as submitted. Eric Blakey seconded the motion which car...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-09-08-4e5bfa98-5-c8fbcd4891",
-      "title": "Consideration and possible action re: Approval of Minutes of the meeting held on: A. June 9, 2026 Regular Meeting Eric Blakey moved to approve the June 9, 2026 minutes of the re...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-10.d-45d92ba58e",
-      "title": "For Possible Action: Approve the August 6, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-10.e-cf167c1da4",
-      "title": "For Possible Action: Approve the August 20, 2026 Minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-45-77147e142b",
-      "title": "For Possible Action: Approve the August 6, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 15 of...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-5-df620a294a",
-      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.d-772c061750",
-      "title": "For Possible Action: Approve the July 16, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-95-bf43c6ef2f",
-      "title": "For Possible Action: Approve the August 20, 2026 Minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 29 of...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-10.d-45d92ba58e",
-      "title": "For Possible Action: Approve the August 6, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-10.e-cf167c1da4",
-      "title": "For Possible Action: Approve the August 20, 2026 Minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-45-8d320ae700",
-      "title": "For Possible Action: Approve the August 6, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 16 of...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-5-df620a294a",
-      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-11.d-772c061750",
-      "title": "For Possible Action: Approve the July 16, 2026 minutes.",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-95-aac349ff0b",
-      "title": "For Possible Action: Approve the August 20, 2026 Minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 30 of...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-11-12-e4a13eccb2df-21-1fd2857820",
-      "title": "21. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-10-14-6d57474d414d-6-7c8b7fe665",
-      "title": "6. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-10-08-d545ec59171e-12-c44ce649ef",
-      "title": "12. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2026-09-09-b5f95d26b1b2-3-0607ebbf9f",
-      "title": "3. Approval of Flexible Agenda (For Possible Action)",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2026-09-09-b5f95d26b1b2-15-89178e0424",
-      "title": "15. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nshe-board-of-regents-2024-09-26-5f5f58d83199-2-ed6e18c367",
-      "title": "2. Approve-Minutes – The Committee recommended approval of the minutes from the May",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-3049-D-047ed7eb08",
-      "title": "D. APPROVAL OF MINUTES:",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2776-2-933b99c346",
-      "title": "2. APPROVAL OF AGENDA",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2776-5-103ff0ff96",
-      "title": "5. APPROVAL OF MINUTES",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2776-15-039e6d84c4",
-      "title": "15. ADJOURNMENT",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2747-2-df45cf5b10",
-      "title": "2. APPROVAL OF AGENDA",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2747-5-67671d829a",
-      "title": "5. APPROVAL OF MINUTES",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2747-17-ffc799646f",
-      "title": "17. ADJOURNMENT",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2712-2-df45cf5b10",
-      "title": "2. APPROVAL OF AGENDA",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2712-5-67671d829a",
-      "title": "5. APPROVAL OF MINUTES",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2712-17-ffc799646f",
-      "title": "17. ADJOURNMENT",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2673-2-aaca763c09",
-      "title": "2. APPROVAL OF AGENDA",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2673-5-6daeb800f2",
-      "title": "5. APPROVAL OF MINUTES",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2673-14-1a74fd107c",
-      "title": "14. ADJOURNMENT",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2624-2-3bcfa3be6c",
-      "title": "2. APPROVAL OF AGENDA",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2624-5-b85298ff2f",
-      "title": "5. APPROVAL OF MINUTES",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2624-14-df51854de0",
-      "title": "14. ADJOURNMENT",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2591-3-5e3ce3e66d",
-      "title": "3. APPROVAL OF AGENDA",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2591-6-31eb35e654",
-      "title": "6. APPROVAL OF MINUTES",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-2591-15-5750c00172",
-      "title": "15. ADJOURNMENT",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-06-25-fb22fb90f397-15-ba2cb381bc",
-      "title": "15. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-03-12-bccc5481a877-3-217aa9ef7d",
-      "title": "3. Approval of Flexible Agenda",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-03-12-bccc5481a877-17-d41ae5ea1e",
-      "title": "17. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-01-08-bcfaf61cb6d5-18-3dc9959974",
-      "title": "18. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1255-13-ea9a0911bc",
-      "title": "13. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-08-29-932c96fe0652-6-4d1aee1110",
-      "title": "6. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-08-12-9fee26cbc9ac-3-92e09ce24c",
-      "title": "3. Approval of Flexible Agenda",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-08-12-9fee26cbc9ac-7-08519045d2",
-      "title": "7. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-07-30-c65fcb03cb73-19-00e05e06d3",
-      "title": "19. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-07-17-eac089910861-8-0580a2cf33",
-      "title": "8. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-07-09-d0e63dc13570-3-59a57ffbbf",
-      "title": "3. Approval of Flexible Agenda",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-07-09-d0e63dc13570-9-6a95cb3baf",
-      "title": "9. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-06-30-85f39da73a84-3-9c2b1937c2",
-      "title": "3. Approval of Flexible Agenda",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2025-06-30-85f39da73a84-9-1a601ac01e",
-      "title": "9. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-07-23-82eae8870dba-II-9a5abfc33e",
-      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation June 16th, 2026, Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-06-16-ee331bef15a3-II-7d82eda706",
-      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation May 14th, 2026, Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-08-12-1f07754daf67-II-0b8f38c22b",
-      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation July 31st, 2026, Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-07-31-e6ed60dcb878-II-9bff10c3cd",
-      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation July 23rd, 2026, Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-05-14-9fa3d8ea6eed-II-b714d5c065",
-      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation April 14th, 2026, Meeting Minutes (for possible action",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-09-14-44364112e42a-II-a78465447f",
-      "title": "II. Consideration for the Approval of the February 3, 2026, Cannabis Advisory Commission Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-08-28-30272f0e183e-II-2c8b32f030",
-      "title": "II. Consideration of Approval of the CAC Subcommittee on Scheduling Hemp June 18th, 2026, Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-08-12-1f07754daf67-II-b33b91506f",
-      "title": "II. Consideration for Approval of Friday, July 31, 2026, Taxation of Cannabis Subcommittee Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-06-18-c79d30e09992-II-032cd8a176",
-      "title": "II. Consideration of Approval of the CAC Subcommittee on Scheduling Hemp April 17th, 2026, Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-04-17-daa72c5df74f-II-ac994a4aca",
-      "title": "II. Consideration of Approval of the CAC Subcommittee on Scheduling Hemp March 24th , 2026, Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-04-14-ff44a1e513e8-III-acca9fbc8c",
-      "title": "III. Consideration of Approval of the CAC Subcommittee on Taxation March 24th , 2026, Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2026-02-03-aa1b2d0e9e63-II-ac4306b6ae",
-      "title": "II. Consideration for the Approval of the February 23, 2024, Cannabis Advisory Commission Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2024-11-04-1dee166312be-II-70a2bee4c6",
-      "title": "II. Consideration for Approval of April 12, 2024, Market Participation Subcommittee Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2024-04-12-f2c4b23c641e-III-7bc0c100f5",
-      "title": "III. Consideration for Approval of the January 12, 2024, Market Participation Subcommittee Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-cannabis-public-meetings-2024-02-23-8f4db42abe8a-III-093e5a6d09",
-      "title": "III. Consideration for Approval of the August 15, 2023, Cannabis Advisory Commission Meeting Minutes (for possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2026-08-27-b61e6f9b87df-7-f30a30e1b9",
-      "title": "7. ADJOURNMENT",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2026-07-29-96fac47104dd-3-0607ebbf9f",
-      "title": "3. Approval of Flexible Agenda (For Possible Action)",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2026-07-29-96fac47104dd-17-1203bfcf9c",
-      "title": "17. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2026-06-26-db8be6ed6c2e-3-e9dc509b5c",
-      "title": "3. Approval of Flexible Agenda (For Possible Action)",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-nv-state-board-of-education-2026-06-26-db8be6ed6c2e-12-9861b47875",
-      "title": "12. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-3488-D-0601b38d0d",
-      "title": "D. APPROVAL OF MINUTES:",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-3476-2-4645a35f45",
-      "title": "2. APPROVAL OF AGENDA",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-3476-5-ad31772693",
-      "title": "5. APPROVAL OF MINUTES",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-3476-14-9065146868",
-      "title": "14. ADJOURNMENT",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-elko-county-commission-granicus-clip-3487-2-3c5a0c1778",
-      "title": "2. APPROVE THE MINUTES – JULY 9TH, 2026 MEETING - Action Item",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4450-11-242e739976",
-      "title": "11. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4504-6-2c22f34b51",
-      "title": "6. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4580-11-02a7c6758f",
-      "title": "11. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4573-10-f4b82e6234",
-      "title": "10. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4473-11-2cfd1b63cb",
-      "title": "11. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4471-13-efdcc24c5b",
-      "title": "13. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4528-15-8f72acfbfa",
-      "title": "15. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4593-10-4541e7c6ae",
-      "title": "10. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4452-13-be4c78c1d8",
-      "title": "13. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4578-10-d02a5d75b9",
-      "title": "10. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4484-12-8b2ec2b5a8",
-      "title": "12. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4560-14-26ca08c148",
-      "title": "14. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4518-12-831910d5de",
-      "title": "12. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4577-15-7f9d93172b",
-      "title": "15. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4546-13-9e483aba08",
-      "title": "13. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4514-8-83c6ce9d33",
-      "title": "8. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4447-13-793ed222b9",
-      "title": "13. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4456-7-82424b3733",
-      "title": "7. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4592-12-831910d5de",
-      "title": "12. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4459-10-b4614611d6",
-      "title": "10. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4457-7-82424b3733",
-      "title": "7. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4589-13-7ea5129c71",
-      "title": "13. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4575-15-1b43c11a99",
-      "title": "15. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4468-7-82424b3733",
-      "title": "7. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4587-8-19948ab78c",
-      "title": "8. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4585-9-ce149323aa",
-      "title": "9. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4522-11-8faef84e5e",
-      "title": "11. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4512-11-2cbbce505d",
-      "title": "11. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4542-10-b4614611d6",
-      "title": "10. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4538-11-8af31a1601",
-      "title": "11. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4563-13-ccf8498469",
-      "title": "13. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4478-8-abd59fb0a9",
-      "title": "8. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4588-14-26ca08c148",
-      "title": "14. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4584-9-324c980823",
-      "title": "9. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4470-7-82424b3733",
-      "title": "7. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4590-7-3ac3250b11",
-      "title": "7. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4505-9-ff3c25a7eb",
-      "title": "9. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-las-vegas-city-council-primegov-4559-7-10799800e4",
-      "title": "7. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-clark-county-commission-legistar-1431759-4-188e6652bd",
-      "title": "4. Approval of Minutes of the Regular Meeting on August 4, 2026. (For possible action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1271-4-719bf0823e",
-      "title": "4. Approval of the Agenda (For Possible Action)",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1271-8-cfed4be6b8",
-      "title": "8. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1275-5-ad679e6415",
-      "title": "5. Approval of the Agenda (For Possible Action)",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1275-6-802ba67390",
-      "title": "6. Approval of the Minutes (For Possible Action)",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1275-11-0b97abbca5",
-      "title": "11. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1256-13-1b43884ae1",
-      "title": "13. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1257-9-807f6fcb58",
-      "title": "9. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1272-4-0a4b5b47fe",
-      "title": "4. Approval of the Agenda (For Possible Action)",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1272-8-cfed4be6b8",
-      "title": "8. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1276-4-0a4b5b47fe",
-      "title": "4. Approval of the Agenda (For Possible Action)",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1276-5-d5e133eda6",
-      "title": "5. Approval of the Minutes",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-sparks-city-council-onbase-1276-10-ac1b3ed3a7",
-      "title": "10. Adjournment",
-      "reason": "routine_adjournment"
-    },
-    {
-      "id": "item-meeting-manual-nv-legislature-nevada-legislature-2026-08-26-8a2de256-1-3ff998983b",
-      "title": "Agenda Item III—Approval of the Minutes for the Meeting on April 23, 2026",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-nv-assembly-nevada-assembly-2026-08-26-67e1a312-1-3ff998983b",
-      "title": "Agenda Item III—Approval of the Minutes for the Meeting on April 23, 2026",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-14-41e873b1-4-c498bfcccd",
-      "title": "Needs review: Consideration and possible action re: Approval of Agenda as submitted or revised.",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-07-14-41e873b1-5-1923f7214e",
-      "title": "Needs review: Consideration and possible action re: Approval of Minutes of the meeting held on: A. June 9, 2026",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-5-19e8b6b1b6",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the July 21, 2026,",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-6-9e814adb2e",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the May 19th, 2023, meeting. Commissioner Carmona requested that this item be continued u...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-21-b39a1cb5-7-ebfb4b48e0",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the June 16, 2026,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-07-07-4185e33a-7-37cb1607b0",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the July 7, 2026, meeting.",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-5-32b2785661",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the August 4, 2026,",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-04-e4d38063-6-699e2c5aa4",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the July 7, 2026,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-4-f13a824941",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the June 16, 2026,",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-5-2a62bbe96a",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the May 5th, 2026,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-06-16-acde4f58-6-8392208ede",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the May 19th, 2023,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-5-8979d02b82",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the May 19, 2026,",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-19-87951d66-6-3eee78140c",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the April 21, 2026,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-5-e58986f3ba",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the May 05, 2026,",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-6-f3f86605fb",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the April 7, 2026,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-9-2e10433b9e",
-      "title": "Needs review: Board action: a. [ ] Approved [ ] Approved with Modifications b. [ ] Denied [ ] Continued Agenda Item No. _____ -- 121 of 321 -- \u0001\u0002\u0003\u0004\u0005\u0002\u0006\u0007\b \u0003 \u000e\u0005\u0007\u000f\u0010\u000f\u0011\u0012\u000f\u0010\u0013\u0014 \u0001\u0002\u0002\u0003\u0004\u0003\u0005\u0006\u0007\b \b \u0003 \b\u000e\u000f\u0006\u0010\u0002\u0011...",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-08-18-b339999f-5-f1cda4f3be",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the August 18, 2026,",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-5-5c05867c33",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the agenda for the September 1, 2026,",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-09-01-369027a2-6-70696c57ba",
-      "title": "Needs review: DISCUSSION/FOR POSSIBLE ACTION: Consideration and possible approval of the minutes from the July 21, 2026,",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-01-05-5ab99b4d-5-d584c9f294",
-      "title": "Needs review: September 1,2015 - Regular meeting FOR POSSIBLE ACTION APPROVAL OF MINUTES There were no public comments made at this time. INITIAL PUBLIC COMMENT PERIOD PLEDGE OF ALLEGIANCE Sc...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-02-02-9ae9d1f3-6-bbf9e00ef9",
-      "title": "Needs review: November 3, 2015 - Regular meeting FOR POSSIBLE ACTION APPROVAL OF MINUTES There were no public comments made at this time. INITIAL PUBLIC COMMENT PERIOD PLEDGE OF ALLEGIANCE Ci...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae-4-d89ab3e728",
-      "title": "Needs review: December 1,2015 - Regular meeting FOR POSSIBLE ACTION APPROVAL OF MINUTES There were no public comments made at this time. COMMENTS BY THE GENERAL PUBLIC PLEDGE OF ALLEGIANCE Ci...",
-      "reason": "routine_minutes_approval"
-    },
-    {
-      "id": "item-meeting-manual-elko-city-council-elko-city-council-2016-03-01-73c7f2ae-2-39cbae685d",
-      "title": "Needs review: Approval of Variance 1-16 -- 7 of 14 -- Page 8 of14 Elko City Planning Commission Minutes March 1,2016 Mr. Draper said the developer has been working at this for a couple years....",
-      "reason": "routine_minutes_approval"
-    },
-    {
       "id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78-3-f810b4e012",
       "title": "Needs review: For Possible Action: Review and approval of the agenda. a. NOTICE RE: NRS 237: When the City Council approves this agenda, it also approves a motion ratifying staff action taken...",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-05-04-bc9d2f78-4-6b2eefff9d",
+      "title": "For Possible Action: Discussion and Possible Action to approve the minutes from the April 20,",
+      "reason": "routine_minutes_approval"
     },
     {
       "id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2-3-a64fd85528",
@@ -1324,6 +404,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-3-5d3bb391b2",
+      "title": "Agenda Approval Mayor Pro Tem Martin stated the agenda would be approved as presented unless there were any objections or corrections. Interim City Manager Bryant asked that ite...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-08-24-b5f2ac6c-4.b-61e85180c3",
       "title": "Needs review: For Possible Action: Discussion and Possible Approval of minutes from the , 2026 regular meeting.",
       "reason": "routine_minutes_approval"
@@ -1344,6 +429,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-73-928e95e587",
+      "title": "County. (For Possible Action) Commissioner Plaskett motioned to approve a future agenda item to implement a hiring freeze waiver justification for all positions in Eureka County...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-1-0640ba46d1",
       "title": "Needs review: Approval of the agenda notice with addition of any emergency item and/or deletion of any item. Unless otherwise stated, items may be taken out of the order presented on the agen...",
       "reason": "routine_agenda_approval"
@@ -1359,13 +449,38 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-1-7ac1449c68",
+      "title": "Approval of agenda notice. (For Possible Action) Vice Chair McKay motioned to approve the agenda, Chairman Plaskett seconded the motion, all in favor, motion carried 3-0. PUBLIC...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-1-16fb14fd0e",
       "title": "Needs review: Call to order and approval of the agenda notice with addition of any emergency item",
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-1-273437a3eb",
+      "title": "Approval of Devil’s Gate GID meeting minutes for May 20, 2025. (For Possible Action) Commissioner McKay motioned to approve the meeting minutes from May 20, 2025. Commissioner S...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-2-efb4efd82d",
+      "title": "Discuss, approve or deny the 2026 Board of County Commissioners agenda items and posting",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-110-578b48d8f5",
+      "title": "calendar. (For Possible Action) Commissioner Plaskett motioned to approve the 2026 Board of County Commissioners agenda items and posting calendar. Commissioner Schoenwald secon...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-1-bb507caa2c",
       "title": "Needs review: Approval of the minutes of November 4, 2025 and November 18, 2025 Commission meetings.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-154-dc5c42ba86",
+      "title": "(For Possible Action) Commissioner Plaskett motioned to approve the Commission meeting minutes from November 4,",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1384,6 +499,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-3c15795c-1-9bbf2c7546",
+      "title": "Approval of the minutes from the January 6, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the January 6, 2026 Commission meeting minut...",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209-1-0640ba46d1",
       "title": "Needs review: Approval of the agenda notice with addition of any emergency item and/or deletion of any item. Unless otherwise stated, items may be taken out of the order presented on the agen...",
       "reason": "routine_agenda_approval"
@@ -1391,6 +511,11 @@
     {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209-1-d114ad1049",
       "title": "Needs review: Approval of the minutes from the February 3, 2026 and February 17, 2026 Commission meetings. (For Possible Action) 9:45- COUNTY COMPTROLLER – Kim Todd, Comptroller",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-9fe88209-1-eaa1eb281d",
+      "title": "Approval of the minutes from the January 20, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the commission meeting minutes from January...",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1414,8 +539,18 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3-1-86fe12926d",
+      "title": "Approval of agenda notice. (For Possible Action) Commissioner McKay motioned to approve the agenda, Commissioner Schoenwald seconded the motion. The motion carried 5-0. PUBLIC C...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3-1-bede035fd8",
       "title": "Needs review: Approval of the minutes from the February 3, 2026 and February 17, 2026 Commission meetings.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3-75-6686e52799",
+      "title": "(For Possible Action) -- 8 of 293 -- Page 2 of 10 – March 3, 2026 Commissioner Plaskett motioned to approve the February 3, 2026 and February 17, 2026 Commission meeting minutes...",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1429,6 +564,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-a6b587c7-1-8837d618c5",
+      "title": "Approval of the minutes from the April 7, 2026 Commission meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the April 7, 2026 Commission meeting minutes...",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-1-0640ba46d1",
       "title": "Needs review: Approval of the agenda notice with addition of any emergency item and/or deletion of any item. Unless otherwise stated, items may be taken out of the order presented on the agen...",
       "reason": "routine_agenda_approval"
@@ -1436,6 +576,11 @@
     {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-1-4a78056208",
       "title": "Needs review: Approval of the minutes from the May 19, 2026 Commission meeting. (For Possible Action) 9:45- COUNTY COMPTROLLER – Kim Todd, Comptroller",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-95d44c04-1-c410c8b272",
+      "title": "Approval of the minutes from the May 5, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the May 5, 2026 commission meeting minutes, Comm...",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1447,6 +592,11 @@
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7-1-b65518c66b",
       "title": "Needs review: Approval of the minutes from the January 6, 2026 Commission meeting. (For Possible Action) 9:45 - COUNTY COMPTROLLER – Kim Todd, Comptroller",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7-73-928e95e587",
+      "title": "County. (For Possible Action) Commissioner Plaskett motioned to approve a future agenda item to implement a hiring freeze waiver justification for all positions in Eureka County...",
+      "reason": "routine_agenda_approval"
     },
     {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-1-0640ba46d1",
@@ -1464,13 +614,38 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-1-7ac1449c68",
+      "title": "Approval of agenda notice. (For Possible Action) Vice Chair McKay motioned to approve the agenda, Chairman Plaskett seconded the motion, all in favor, motion carried 3-0. PUBLIC...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-1-16fb14fd0e",
       "title": "Needs review: Call to order and approval of the agenda notice with addition of any emergency item",
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-1-273437a3eb",
+      "title": "Approval of Devil’s Gate GID meeting minutes for May 20, 2025. (For Possible Action) Commissioner McKay motioned to approve the meeting minutes from May 20, 2025. Commissioner S...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-2-efb4efd82d",
+      "title": "Discuss, approve or deny the 2026 Board of County Commissioners agenda items and posting",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-110-578b48d8f5",
+      "title": "calendar. (For Possible Action) Commissioner Plaskett motioned to approve the 2026 Board of County Commissioners agenda items and posting calendar. Commissioner Schoenwald secon...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-1-bb507caa2c",
       "title": "Needs review: Approval of the minutes of November 4, 2025 and November 18, 2025 Commission meetings.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-154-dc5c42ba86",
+      "title": "(For Possible Action) Commissioner Plaskett motioned to approve the Commission meeting minutes from November 4,",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1489,6 +664,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-02-17-8a7e0c66-1-9bbf2c7546",
+      "title": "Approval of the minutes from the January 6, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the January 6, 2026 Commission meeting minut...",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-ce5763d5-1-0640ba46d1",
       "title": "Needs review: Approval of the agenda notice with addition of any emergency item and/or deletion of any item. Unless otherwise stated, items may be taken out of the order presented on the agen...",
       "reason": "routine_agenda_approval"
@@ -1496,6 +676,11 @@
     {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-ce5763d5-1-d114ad1049",
       "title": "Needs review: Approval of the minutes from the February 3, 2026 and February 17, 2026 Commission meetings. (For Possible Action) 9:45- COUNTY COMPTROLLER – Kim Todd, Comptroller",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-03-ce5763d5-1-eaa1eb281d",
+      "title": "Approval of the minutes from the January 20, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the commission meeting minutes from January...",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1519,8 +704,18 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-1-86fe12926d",
+      "title": "Approval of agenda notice. (For Possible Action) Commissioner McKay motioned to approve the agenda, Commissioner Schoenwald seconded the motion. The motion carried 5-0. PUBLIC C...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-1-bede035fd8",
       "title": "Needs review: Approval of the minutes from the February 3, 2026 and February 17, 2026 Commission meetings.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-75-6686e52799",
+      "title": "(For Possible Action) -- 8 of 293 -- Page 2 of 10 – March 3, 2026 Commissioner Plaskett motioned to approve the February 3, 2026 and February 17, 2026 Commission meeting minutes...",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1534,6 +729,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-04-07-9fa24126-1-7c8f0f544e",
+      "title": "Approval of the minutes from the March 3, 2026 Commission meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the March 3, 2026 Commission meeting minutes...",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-06eb3f24-1-0640ba46d1",
       "title": "Needs review: Approval of the agenda notice with addition of any emergency item and/or deletion of any item. Unless otherwise stated, items may be taken out of the order presented on the agen...",
       "reason": "routine_agenda_approval"
@@ -1541,6 +741,11 @@
     {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-06eb3f24-1-91a8fb3a4a",
       "title": "Needs review: Approval of the minutes from the April 21, 2026 Commission meeting. (For Possible Action) 9:45- COUNTY COMPTROLLER – Kim Todd, Comptroller",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-05-06eb3f24-1-8837d618c5",
+      "title": "Approval of the minutes from the April 7, 2026 Commission meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the April 7, 2026 Commission meeting minutes...",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1554,6 +759,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-05-19-82b6ce47-1-0a0e5cdeac",
+      "title": "Approval of the minutes from the April 21, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the April 21, 2026 Commission meeting minutes...",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-1-0640ba46d1",
       "title": "Needs review: Approval of the agenda notice with addition of any emergency item and/or deletion of any item. Unless otherwise stated, items may be taken out of the order presented on the agen...",
       "reason": "routine_agenda_approval"
@@ -1561,6 +771,11 @@
     {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-1-4a78056208",
       "title": "Needs review: Approval of the minutes from the May 19, 2026 Commission meeting. (For Possible Action) 9:45- COUNTY COMPTROLLER – Kim Todd, Comptroller",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-02-8368bdf4-1-c410c8b272",
+      "title": "Approval of the minutes from the May 5, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the May 5, 2026 commission meeting minutes, Comm...",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1581,6 +796,21 @@
     {
       "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-23e5520672",
       "title": "Needs review: Approval of minutes for the March 17, 2026, Liquor Board meeting. (For Possible Action) LIQUOR LICENSE APPLICATIONS / QUARTERLY RENEWALS",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-3994a6ead7",
+      "title": "Approval of agenda notice. (For Possible Action) Commissioner Schoenwald motioned to approve the agenda, Sheriff Umina seconded the motion. The motion carried 4-0. PUBLIC COMMEN...",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-3b821cfaf8",
+      "title": "Approval of minutes for the January 6, 2026, Liquor Board meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the January 6, 2026 Liquor Board meeting min...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-06-18-791335dc-1-2940a82cfb",
+      "title": "Approval of the minutes from the May 19, 2026 Commission meeting. (For Possible Action) Commissioner Plaskett motioned to approve the May 19, 2026 commissioner meeting minutes....",
       "reason": "routine_minutes_approval"
     },
     {
@@ -1614,9 +844,34 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-11.c-4df80f6546",
+      "title": "For Possible Action: Approve the July 2, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-5-15410df680",
       "title": "Needs review: For Possible Action: Review and adoption of agenda",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-47-38efb3c056",
+      "title": "For Possible Action: Approve the July 2, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: -- 14 of 233 -- Lyon Co...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-5-df620a294a",
+      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-16-4e18964d-11.d-b89c087e1a",
+      "title": "For Possible Action: Approve the June 18, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c-11.d-f261e3131f",
+      "title": "For Possible Action: Approve the June 18, 2026 minutes. limited to 3 minutes. The Board will conduct public comment after discussion of each agenda action item, but before the B...",
+      "reason": "routine_minutes_approval"
     },
     {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-07-02-2a8b764c-5-15410df680",
@@ -1629,9 +884,34 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-18-ee3c5f7a-11.d-15a6f9867c",
+      "title": "For Possible Action: Approve the June 4, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-11.d-4ee5000ae7",
+      "title": "For Possible Action: Approve the May 13, 2026 Special Meeting minutes. limited to 3 minutes. The Board will conduct public comment after discussion of each agenda action item, b...",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-5-15410df680",
       "title": "Needs review: For Possible Action: Review and adoption of agenda",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-11.e-2cfe519c64",
+      "title": "For Possible Action: Approve the May 21, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-06-04-95e4493d-158-523069e292",
+      "title": "For Possible Action: Approve the May 13, 2026 Special Meeting minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHM...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-11.c-b99a1ed1b6",
+      "title": "For Possible Action: Approve the May 7, 2026 minutes.",
+      "reason": "routine_minutes_approval"
     },
     {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-5-15410df680",
@@ -1639,9 +919,24 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-154-ac14d46a4a",
+      "title": "For Possible Action: Approve the May 7, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 135 of 35...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-05-21-508b10c4-5-0ce3b4b068",
+      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Cassinelli moved to approve the agenda as presen...",
+      "reason": "routine_agenda_approval"
+    },
+    {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5-5-15410df680",
       "title": "5. For Possible Action: Review and adoption of agenda",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5-11.d-255e9cff3e",
+      "title": "For Possible Action: Approve the July 16, 2026 minutes.",
+      "reason": "routine_minutes_approval"
     },
     {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-03-8d843e76-4-5d0502ff9e",
@@ -1654,13 +949,48 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b-11.d-255e9cff3e",
+      "title": "For Possible Action: Approve the July 16, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-11.d-45697c0b3a",
+      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-5-15410df680",
       "title": "Needs review: For Possible Action: Review and adoption of agenda",
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-53-9bcc419bf0",
+      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTAC...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-17d6b0e8-4-8fb19034b0",
+      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-c2a7b9d3-11.d-45697c0b3a",
+      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-c2a7b9d3-5-15410df680",
       "title": "Needs review: For Possible Action: Review and adoption of agenda",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-c2a7b9d3-53-de9bc6da3f",
+      "title": "For Possible Action: Approve the August 3, 2026 Special Meeting minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTAC...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-20-c2a7b9d3-4-8fb19034b0",
+      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
       "reason": "routine_agenda_approval"
     },
     {
@@ -1709,14 +1039,84 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-09-08-4e5bfa98-4-211da59f8e",
+      "title": "Consideration and possible action re: Approval of Agenda as submitted or revised: Paul Harmon moved to approve the agenda as submitted. Eric Blakey seconded the motion which car...",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-churchill-county-commission-churchill-county-commission-2026-09-08-4e5bfa98-5-c8fbcd4891",
+      "title": "Consideration and possible action re: Approval of Minutes of the meeting held on: A. June 9, 2026 Regular Meeting Eric Blakey moved to approve the June 9, 2026 minutes of the re...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-10.d-45d92ba58e",
+      "title": "For Possible Action: Approve the August 6, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-10.e-cf167c1da4",
+      "title": "For Possible Action: Approve the August 20, 2026 Minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-5-15410df680",
       "title": "Needs review: For Possible Action: Review and adoption of agenda",
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-45-77147e142b",
+      "title": "For Possible Action: Approve the August 6, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 15 of...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-5-df620a294a",
+      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-11.d-772c061750",
+      "title": "For Possible Action: Approve the July 16, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-ea4245ec-95-bf43c6ef2f",
+      "title": "For Possible Action: Approve the August 20, 2026 Minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 29 of...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-10.d-45d92ba58e",
+      "title": "For Possible Action: Approve the August 6, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-10.e-cf167c1da4",
+      "title": "For Possible Action: Approve the August 20, 2026 Minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-5-15410df680",
       "title": "5. For Possible Action: Review and Adoption of Agenda",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-45-8d320ae700",
+      "title": "For Possible Action: Approve the August 6, 2026 minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 16 of...",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-5-df620a294a",
+      "title": "For Possible Action: Review and Adoption of Agenda Chair Keller asked for public comment, and there was none at this time. Comm. Hendrix moved to approve the agenda as presented...",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-11.d-772c061750",
+      "title": "For Possible Action: Approve the July 16, 2026 minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-09-03-f65b550d-95-aac349ff0b",
+      "title": "For Possible Action: Approve the August 20, 2026 Minutes. Financial Department Comments: Approved As To Legal Form: County Manager Comments: Recommendation: ATTACHMENTS -- 30 of...",
+      "reason": "routine_minutes_approval"
     },
     {
       "id": "item-meeting-manual-clark-county-commission-clark-county-commission-2026-08-04-aba76017-4-45b00a8c27",
@@ -1794,7 +1194,17 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-nv-state-board-of-education-2025-11-12-e4a13eccb2df-21-1fd2857820",
+      "title": "21. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-nv-state-board-of-education-2025-10-15-a895e4a45db4-6-9dc85529da",
+      "title": "6. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-10-14-6d57474d414d-6-7c8b7fe665",
       "title": "6. Adjournment",
       "reason": "routine_adjournment"
     },
@@ -1802,6 +1212,11 @@
       "id": "item-meeting-nv-state-board-of-education-2025-10-08-d545ec59171e-3-9610545aca",
       "title": "3. Approval of Flexible Agenda",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-10-08-d545ec59171e-12-c44ce649ef",
+      "title": "12. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-carson-city-school-district-2026-09-08-9883a0366aff-1-d9c47ae299",
@@ -4244,6 +3659,16 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-nv-state-board-of-education-2026-09-09-b5f95d26b1b2-3-0607ebbf9f",
+      "title": "3. Approval of Flexible Agenda (For Possible Action)",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2026-09-09-b5f95d26b1b2-15-89178e0424",
+      "title": "15. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-elko-city-council-onbase-832-V-53ee78b001",
       "title": "V. APPROVAL OF MINUTES",
       "reason": "routine_minutes_approval"
@@ -4509,6 +3934,11 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-nshe-board-of-regents-2024-09-26-5f5f58d83199-2-ed6e18c367",
+      "title": "2. Approve-Minutes – The Committee recommended approval of the minutes from the May",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-nshe-board-of-regents-2024-10-11-65d1529d690b-2-af82987510",
       "title": "2. Approved – Minutes – The Committee recommended approval of the July 26, 2024,",
       "reason": "routine_minutes_approval"
@@ -4581,11 +4011,6 @@
     {
       "id": "item-meeting-nshe-board-of-regents-2024-12-04-a10776867a4a-33-92ee68a1d9",
       "title": "33. Approved – Business, Finance and Facilities Committee Report (Agenda Item 37) –",
-      "reason": "routine_agenda_approval"
-    },
-    {
-      "id": "item-meeting-nshe-board-of-regents-2024-12-04-a10776867a4a-37-f5039771ed",
-      "title": "37. Approved – Annual Evaluation Summary, President J. Kyle Dalpe, WNC (Agenda Item",
       "reason": "routine_agenda_approval"
     },
     {
@@ -4694,6 +4119,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3049-D-047ed7eb08",
+      "title": "D. APPROVAL OF MINUTES:",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-elko-county-commission-granicus-clip-2880-F-02bd1568e1",
       "title": "F. APPROVAL OF MINUTES:",
       "reason": "routine_minutes_approval"
@@ -4707,6 +4137,96 @@
       "id": "item-meeting-elko-county-commission-granicus-clip-2613-E-eddbf0d1dd",
       "title": "E. APPROVAL OF MINUTES",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2776-2-933b99c346",
+      "title": "2. APPROVAL OF AGENDA",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2776-5-103ff0ff96",
+      "title": "5. APPROVAL OF MINUTES",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2776-15-039e6d84c4",
+      "title": "15. ADJOURNMENT",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2747-2-df45cf5b10",
+      "title": "2. APPROVAL OF AGENDA",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2747-5-67671d829a",
+      "title": "5. APPROVAL OF MINUTES",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2747-17-ffc799646f",
+      "title": "17. ADJOURNMENT",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2712-2-df45cf5b10",
+      "title": "2. APPROVAL OF AGENDA",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2712-5-67671d829a",
+      "title": "5. APPROVAL OF MINUTES",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2712-17-ffc799646f",
+      "title": "17. ADJOURNMENT",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2673-2-aaca763c09",
+      "title": "2. APPROVAL OF AGENDA",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2673-5-6daeb800f2",
+      "title": "5. APPROVAL OF MINUTES",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2673-14-1a74fd107c",
+      "title": "14. ADJOURNMENT",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2624-2-3bcfa3be6c",
+      "title": "2. APPROVAL OF AGENDA",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2624-5-b85298ff2f",
+      "title": "5. APPROVAL OF MINUTES",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2624-14-df51854de0",
+      "title": "14. ADJOURNMENT",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2591-3-5e3ce3e66d",
+      "title": "3. APPROVAL OF AGENDA",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2591-6-31eb35e654",
+      "title": "6. APPROVAL OF MINUTES",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2591-15-5750c00172",
+      "title": "15. ADJOURNMENT",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-eureka-county-commission-2025-01-06-8dcac969097e-1-2a846490c2",
@@ -4854,6 +4374,11 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-nv-state-board-of-education-2025-06-25-fb22fb90f397-15-ba2cb381bc",
+      "title": "15. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-nv-state-board-of-education-2025-04-03-fffc0df14f95-3-38122e6784",
       "title": "3. Approval of Flexible Agenda",
       "reason": "routine_agenda_approval"
@@ -4864,9 +4389,24 @@
       "reason": "routine_adjournment"
     },
     {
+      "id": "item-meeting-nv-state-board-of-education-2025-03-12-bccc5481a877-3-217aa9ef7d",
+      "title": "3. Approval of Flexible Agenda",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-03-12-bccc5481a877-17-d41ae5ea1e",
+      "title": "17. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-nv-state-board-of-education-2025-01-08-bcfaf61cb6d5-3-5188fc4b90",
       "title": "3. Approval of Flexible Agenda",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-01-08-bcfaf61cb6d5-18-3dc9959974",
+      "title": "18. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-eureka-county-commission-2025-08-05-8dcac969097e-1-ce9f440c82",
@@ -4887,6 +4427,11 @@
       "id": "item-meeting-sparks-city-council-onbase-1255-6-298df0331d",
       "title": "6. Minutes",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1255-13-ea9a0911bc",
+      "title": "13. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2-4-57044e5356",
@@ -5844,8 +5389,23 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-nv-state-board-of-education-2025-08-29-932c96fe0652-6-4d1aee1110",
+      "title": "6. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-nv-state-board-of-education-2025-08-28-56c1411960cd-5-b93006df74",
       "title": "5. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-08-12-9fee26cbc9ac-3-92e09ce24c",
+      "title": "3. Approval of Flexible Agenda",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-08-12-9fee26cbc9ac-7-08519045d2",
+      "title": "7. Adjournment",
       "reason": "routine_adjournment"
     },
     {
@@ -5854,9 +5414,39 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-nv-state-board-of-education-2025-07-30-c65fcb03cb73-19-00e05e06d3",
+      "title": "19. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-nv-state-board-of-education-2025-07-17-eac089910861-3-54811e8ce4",
       "title": "3. Approval of Flexible Agenda",
       "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-07-17-eac089910861-8-0580a2cf33",
+      "title": "8. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-07-09-d0e63dc13570-3-59a57ffbbf",
+      "title": "3. Approval of Flexible Agenda",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-07-09-d0e63dc13570-9-6a95cb3baf",
+      "title": "9. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-06-30-85f39da73a84-3-9c2b1937c2",
+      "title": "3. Approval of Flexible Agenda",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2025-06-30-85f39da73a84-9-1a601ac01e",
+      "title": "9. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-carson-city-board-of-supervisors-library-board-of-trustees-2026-07-10-2801e3b2-IV-811aab73b8",
@@ -5869,6 +5459,16 @@
       "reason": "routine_agenda_approval"
     },
     {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-07-23-82eae8870dba-II-9a5abfc33e",
+      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation June 16th, 2026, Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-06-16-ee331bef15a3-II-7d82eda706",
+      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation May 14th, 2026, Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-nv-taxation-public-meetings-2026-07-29-95b24c283cc0-VII-3ecf470e92",
       "title": "VII. For Possible Action: Review and Approval of June 4, 2026, State Board Meeting Minutes.",
       "reason": "routine_minutes_approval"
@@ -5876,6 +5476,71 @@
     {
       "id": "item-meeting-nv-taxation-public-meetings-2026-06-04-a57676af62b2-VII-1bf155c9e2",
       "title": "VII. For Possible Action: Review and Approval of March 23, 2026, State Board Meeting Minutes.",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-08-12-1f07754daf67-II-0b8f38c22b",
+      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation July 31st, 2026, Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-07-31-e6ed60dcb878-II-9bff10c3cd",
+      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation July 23rd, 2026, Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-05-14-9fa3d8ea6eed-II-b714d5c065",
+      "title": "II. Consideration of Approval of the CAC Subcommittee on Taxation April 14th, 2026, Meeting Minutes (for possible action",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-09-14-44364112e42a-II-a78465447f",
+      "title": "II. Consideration for the Approval of the February 3, 2026, Cannabis Advisory Commission Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-08-28-30272f0e183e-II-2c8b32f030",
+      "title": "II. Consideration of Approval of the CAC Subcommittee on Scheduling Hemp June 18th, 2026, Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-08-12-1f07754daf67-II-b33b91506f",
+      "title": "II. Consideration for Approval of Friday, July 31, 2026, Taxation of Cannabis Subcommittee Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-06-18-c79d30e09992-II-032cd8a176",
+      "title": "II. Consideration of Approval of the CAC Subcommittee on Scheduling Hemp April 17th, 2026, Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-04-17-daa72c5df74f-II-ac994a4aca",
+      "title": "II. Consideration of Approval of the CAC Subcommittee on Scheduling Hemp March 24th , 2026, Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-04-14-ff44a1e513e8-III-acca9fbc8c",
+      "title": "III. Consideration of Approval of the CAC Subcommittee on Taxation March 24th , 2026, Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2026-02-03-aa1b2d0e9e63-II-ac4306b6ae",
+      "title": "II. Consideration for the Approval of the February 23, 2024, Cannabis Advisory Commission Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2024-11-04-1dee166312be-II-70a2bee4c6",
+      "title": "II. Consideration for Approval of April 12, 2024, Market Participation Subcommittee Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2024-04-12-f2c4b23c641e-III-7bc0c100f5",
+      "title": "III. Consideration for Approval of the January 12, 2024, Market Participation Subcommittee Meeting Minutes (for possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-nv-cannabis-public-meetings-2024-02-23-8f4db42abe8a-III-093e5a6d09",
+      "title": "III. Consideration for Approval of the August 15, 2023, Cannabis Advisory Commission Meeting Minutes (for possible action)",
       "reason": "routine_minutes_approval"
     },
     {
@@ -6054,6 +5719,56 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-nv-state-board-of-education-2026-08-27-b61e6f9b87df-7-f30a30e1b9",
+      "title": "7. ADJOURNMENT",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2026-07-29-96fac47104dd-3-0607ebbf9f",
+      "title": "3. Approval of Flexible Agenda (For Possible Action)",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2026-07-29-96fac47104dd-17-1203bfcf9c",
+      "title": "17. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2026-06-26-db8be6ed6c2e-3-e9dc509b5c",
+      "title": "3. Approval of Flexible Agenda (For Possible Action)",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-nv-state-board-of-education-2026-06-26-db8be6ed6c2e-12-9861b47875",
+      "title": "12. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3488-D-0601b38d0d",
+      "title": "D. APPROVAL OF MINUTES:",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3476-2-4645a35f45",
+      "title": "2. APPROVAL OF AGENDA",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3476-5-ad31772693",
+      "title": "5. APPROVAL OF MINUTES",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3476-14-9065146868",
+      "title": "14. ADJOURNMENT",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3487-2-3c5a0c1778",
+      "title": "2. APPROVE THE MINUTES – JULY 9TH, 2026 MEETING - Action Item",
+      "reason": "routine_minutes_approval"
+    },
+    {
       "id": "item-meeting-elko-city-council-onbase-901-IV-891ae54a83",
       "title": "IV. APPROVAL OF MINUTES",
       "reason": "routine_minutes_approval"
@@ -6072,6 +5787,11 @@
       "id": "item-meeting-boulder-city-council-primegov-689-1-d2e21ebc5e",
       "title": "1. For possible action: Approval of minutes for the January 26, 2026 regular",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4450-11-242e739976",
+      "title": "11. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-las-vegas-city-council-primegov-4480-13-a6a5ba4318",
@@ -6119,6 +5839,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4504-6-2c22f34b51",
+      "title": "6. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-boulder-city-council-primegov-725-1-0d942eaae5",
       "title": "1. For possible action: Approval of minutes of the April 22, 2026 Business",
       "reason": "routine_minutes_approval"
@@ -6129,6 +5854,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4580-11-02a7c6758f",
+      "title": "11. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-boulder-city-council-primegov-712-2-87e1d406aa",
       "title": "2. For possible action: Approval of minutes for the June 17, 2026 regular meeting",
       "reason": "routine_minutes_approval"
@@ -6137,6 +5867,11 @@
       "id": "item-meeting-las-vegas-city-council-primegov-4573-4-0c85bec021",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Meeting of April 20, 2026",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4573-10-f4b82e6234",
+      "title": "10. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-las-vegas-city-council-primegov-4531-10-598fd8e344",
@@ -6154,9 +5889,19 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4473-11-2cfd1b63cb",
+      "title": "11. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4491-9-35e5861ed3",
       "title": "9. For possible action to approve the Final Minutes by reference of the July 1, 2026 Regular City Council Meeting",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4471-13-efdcc24c5b",
+      "title": "13. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-boulder-city-council-primegov-704-1-92571dfd6a",
@@ -6174,14 +5919,34 @@
       "reason": "routine_adjournment"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4528-15-8f72acfbfa",
+      "title": "15. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4593-4-b75ac5f7d5",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Meeting of August 6, 2026",
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4593-10-4541e7c6ae",
+      "title": "10. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4452-13-be4c78c1d8",
+      "title": "13. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4578-4-c51d00baf5",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Meeting of April 28, 2026",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4578-10-d02a5d75b9",
+      "title": "10. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-las-vegas-city-council-primegov-4472-10-49473659d2",
@@ -6214,6 +5979,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4484-12-8b2ec2b5a8",
+      "title": "12. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-boulder-city-council-primegov-700-1-2fcb159a89",
       "title": "1. For possible action: Approval of the following minutes:",
       "reason": "routine_minutes_approval"
@@ -6227,6 +5997,11 @@
       "id": "item-meeting-las-vegas-city-council-primegov-4560-4-85dde49142",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Meeting of May 21, 2026",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4560-14-26ca08c148",
+      "title": "14. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-boulder-city-council-primegov-701-1-2f1407dac2",
@@ -6264,9 +6039,19 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4518-12-831910d5de",
+      "title": "12. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4577-4-4f1fbf1ca0",
       "title": "4. For possible action to approve the Final Minutes by reference of the Special Meeting of May 11, 2026",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4577-15-7f9d93172b",
+      "title": "15. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-boulder-city-council-primegov-710-1-1181b3fc56",
@@ -6284,6 +6069,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4546-13-9e483aba08",
+      "title": "13. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4565-4-b90e086e3d",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Redevelopment Agency Meeting of June 17, 2026",
       "reason": "routine_minutes_approval"
@@ -6299,8 +6089,18 @@
       "reason": "routine_adjournment"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4514-8-83c6ce9d33",
+      "title": "8. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4572-10-b14775bc8d",
       "title": "10. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4447-13-793ed222b9",
+      "title": "13. Adjournment",
       "reason": "routine_adjournment"
     },
     {
@@ -6319,6 +6119,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4456-7-82424b3733",
+      "title": "7. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4548-10-0c71f77288",
       "title": "10. Adjournment",
       "reason": "routine_adjournment"
@@ -6329,9 +6134,19 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4592-12-831910d5de",
+      "title": "12. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4459-4-5bd31bfda8",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Meeting of March 11, 2025",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4459-10-b4614611d6",
+      "title": "10. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-las-vegas-city-council-primegov-4526-10-8a967c844e",
@@ -6359,6 +6174,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4457-7-82424b3733",
+      "title": "7. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4527-10-5e20d87d76",
       "title": "10. Adjournment",
       "reason": "routine_adjournment"
@@ -6374,6 +6194,21 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4589-13-7ea5129c71",
+      "title": "13. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4575-15-1b43c11a99",
+      "title": "15. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4468-7-82424b3733",
+      "title": "7. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-boulder-city-council-primegov-669-1-9920e6c841",
       "title": "1. For possible action: Approval of the February 10, 2026 City Council meeting minutes",
       "reason": "routine_minutes_approval"
@@ -6384,14 +6219,34 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4587-8-19948ab78c",
+      "title": "8. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4585-4-dc73a9df46",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Meeting of May 26, 2026",
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4585-9-ce149323aa",
+      "title": "9. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4522-11-8faef84e5e",
+      "title": "11. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4512-4-d08059d886",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Meeting of October 9, 2025",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4512-11-2cbbce505d",
+      "title": "11. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-las-vegas-city-council-primegov-4469-10-ba31bb214c",
@@ -6404,9 +6259,24 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4542-10-b4614611d6",
+      "title": "10. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4538-11-8af31a1601",
+      "title": "11. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-boulder-city-council-primegov-702-1-5918c90945",
       "title": "1. For possible action: Approval of the minutes of the May 26, 2026, City Council",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4563-13-ccf8498469",
+      "title": "13. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-las-vegas-city-council-primegov-4540-5-099a255535",
@@ -6424,6 +6294,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4478-8-abd59fb0a9",
+      "title": "8. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-boulder-city-council-primegov-690-1-c53de19b84",
       "title": "1. For possible action: Approval of minutes for the March 23, 2026 regular",
       "reason": "routine_minutes_approval"
@@ -6434,14 +6309,34 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4588-14-26ca08c148",
+      "title": "14. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4584-4-7fdec34198",
       "title": "4. For possible action to approve the Final Minutes by reference of the Regular Meeting of June 1, 2026",
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4584-9-324c980823",
+      "title": "9. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4470-7-82424b3733",
+      "title": "7. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4590-4-d7d4bd70a7",
       "title": "4. For possible action to approve the Final Minutes by reference of the August 17, 2026 Recommending",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4590-7-3ac3250b11",
+      "title": "7. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-las-vegas-city-council-primegov-4464-5-2f376a32df",
@@ -6484,6 +6379,11 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4505-9-ff3c25a7eb",
+      "title": "9. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-las-vegas-city-council-primegov-4443-10-b310df9706",
       "title": "10. Adjournment",
       "reason": "routine_adjournment"
@@ -6519,9 +6419,44 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-las-vegas-city-council-primegov-4559-7-10799800e4",
+      "title": "7. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-boulder-city-council-primegov-674-5-34985ffb64",
       "title": "5. Minutes",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-clark-county-commission-legistar-1431759-4-188e6652bd",
+      "title": "4. Approval of Minutes of the Regular Meeting on August 4, 2026. (For possible action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1271-4-719bf0823e",
+      "title": "4. Approval of the Agenda (For Possible Action)",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1271-8-cfed4be6b8",
+      "title": "8. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1275-5-ad679e6415",
+      "title": "5. Approval of the Agenda (For Possible Action)",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1275-6-802ba67390",
+      "title": "6. Approval of the Minutes (For Possible Action)",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1275-11-0b97abbca5",
+      "title": "11. Adjournment",
+      "reason": "routine_adjournment"
     },
     {
       "id": "item-meeting-sparks-city-council-onbase-1256-6-7ca0ab2ff6",
@@ -6529,9 +6464,591 @@
       "reason": "routine_minutes_approval"
     },
     {
+      "id": "item-meeting-sparks-city-council-onbase-1256-13-1b43884ae1",
+      "title": "13. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
       "id": "item-meeting-sparks-city-council-onbase-1257-5-e3e63b9f3f",
       "title": "5. Minutes",
       "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1257-9-807f6fcb58",
+      "title": "9. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1272-4-0a4b5b47fe",
+      "title": "4. Approval of the Agenda (For Possible Action)",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1272-8-cfed4be6b8",
+      "title": "8. Adjournment",
+      "reason": "routine_adjournment"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1276-4-0a4b5b47fe",
+      "title": "4. Approval of the Agenda (For Possible Action)",
+      "reason": "routine_agenda_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1276-5-d5e133eda6",
+      "title": "5. Approval of the Minutes",
+      "reason": "routine_minutes_approval"
+    },
+    {
+      "id": "item-meeting-sparks-city-council-onbase-1276-10-ac1b3ed3a7",
+      "title": "10. Adjournment",
+      "reason": "routine_adjournment"
+    }
+  ],
+  "retainedItems": [
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-c439d5e5-1-f8fa503691",
+      "title": "Approval of the minutes of December 2, 2025 and December 16, 2025 Commission meetings. (For Possible Action) Commissioner Schoenwald motioned to approve the December 2, 2025 and...",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-1-b4fd81143b",
+      "title": "Approval of minutes of the January 2, 2024 meeting. (For Possible Action) Vice Chair McKay motioned to approve the January 2, 2024 meeting minutes, Chairman Plaskett seconded th...",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e4793cf3-1-07d95c4dd3",
+      "title": "Approval of minutes for the December 16, 2025 Liquor Board meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the December 16, 2025 Liquor Board meeting...",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-20-cff3ddf7-1-f8fa503691",
+      "title": "Approval of the minutes of December 2, 2025 and December 16, 2025 Commission meetings. (For Possible Action) Commissioner Schoenwald motioned to approve the December 2, 2025 and...",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-1-b4fd81143b",
+      "title": "Approval of minutes of the January 2, 2024 meeting. (For Possible Action) Vice Chair McKay motioned to approve the January 2, 2024 meeting minutes, Chairman Plaskett seconded th...",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-03-17-e9056844-1-07d95c4dd3",
+      "title": "Approval of minutes for the December 16, 2025 Liquor Board meeting. (For Possible Action) Commissioner Schoenwald motioned to approve the December 16, 2025 Liquor Board meeting...",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-clark-county-commission-clark-county-commission-2026-08-04-aba76017-5-537e005bbc",
+      "title": "5. Approval of Agenda with the Inclusion of Any Emergency Items and Deletion of Any Items. (For possible action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-yerington-city-council-yerington-city-council-2026-07-27-91e8f4f2-6-7aea7acb7b",
+      "title": "6. Adjournment.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-10-13-f57d55f9-5-2cd9ae8538",
+      "title": "5. For Possible Action: Approval of Minutes — September 8, 2025, CTA Board Meeting.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-09-08-1aec89f9-5-6d610cb293",
+      "title": "5. For Possible Action: Approval of Minutes — August 11, 2025 CTA Board Meeting.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-08-11-37ab68de-5-03bd9ac139",
+      "title": "5. For Possible Action: Approval of Minutes — July 14, 2025, CTA Board Meeting.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-07-14-e12a3424-5-df9ae20e78",
+      "title": "5. For Possible Action: Approval of Minutes — June 9, 2025, CTA Board Meeting.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-carson-city-culture-and-tourism-authority-2025-03-10-fe9620f8-5-9f69c03380",
+      "title": "5. For Possible Action: Approval of Minutes — February 10, 2025 CTA Board Meeting.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-parks-and-recreation-commission-2026-08-19-745a85d6-4-fc9319bad8",
+      "title": "4. For Possible Action: Approval of Minutes -",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-2025-10-02-3b408665-6-4c692725a6",
+      "title": "6. FOR POSSIBLE ACTION: APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-2025-08-07-a17e71a6-6-cf40319227",
+      "title": "6. FOR POSSIBLE ACTION: APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2026-03-05-ada4559e218e-10-835497097e",
+      "title": "10. Approved-Eastside Education & Training Center, CSN (Agenda Item 12) – The Board",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2026-03-05-ada4559e218e-17-d7b775c95c",
+      "title": "17. Approved-Distinguished Nevadan Awards (Agenda Item 11) – (Continued)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2026-03-05-ada4559e218e-19-d46d6dc0fd",
+      "title": "19. Approved-Land Easement to the Boring Company, UNLV (Agenda Item 29) – The Board",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2026-03-05-ada4559e218e-19-e448caa08e",
+      "title": "19. Approved-Land Easement to the Boring Company, UNLV (Agenda Item 29) – (Continued)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2026-03-05-ada4559e218e-21-ced147f50c",
+      "title": "21. Approved-Life Sciences Building Naming Rights, UNR (Agenda Item 27) – The Board",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2026-03-05-ada4559e218e-21-425b7f78c9",
+      "title": "21. Approved-Life Sciences Building Naming Rights, UNR (Agenda Item 27) – (Continued)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3406-E-efd447f7a1",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2026-04-07-8dcac969097e-1-9cbe0b66b5",
+      "title": "1. Approval of the minutes from the March 17, 2026 Commission meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2026-06-02-8dcac969097e-1-ec90002529",
+      "title": "1. Approval of the minutes from the May 19,2026 Commission meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2025-12-02-8dcac969097e-2-ad0a5e022f",
+      "title": "2. Discuss, approve or deny, pursuant to NRS 252.050, the Board entering into its minutes an order",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-clark-county-commission-clark-county-commission-2026-07-07-5c5e35b8-4-26b1bcd7bd",
+      "title": "4. Approval of Agenda with the Inclusion of Any Emergency Items and Deletion of Any Items. (For possible action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-clark-county-commission-clark-county-commission-2026-08-31-ea2c106e-6-1fffb8e977",
+      "title": "6. Approval of Agenda with the Inclusion of Any Emergency Items and Deletion of Any Items. (For possible action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-2025-02-20-8a665461-6-22ccc6ff47",
+      "title": "6. FOR POSSIBLE ACTION: APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-and-board-of-health-2024-12-05-18d38222-6-1336cb8adf",
+      "title": "6. FOR POSSIBLE ACTION: APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-2024-08-01-3264c0f4-6-4a04e17cdf",
+      "title": "6. For Possible Action: Approval of Minutes",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-2024-06-20-74dbd204-6-234a051118",
+      "title": "6. For Possible Action: Approval of Minutes",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-and-board-of-health-2024-06-06-d6c3f869-32-207fdf7477",
+      "title": "32. For Possible Action: Approval of Minutes",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-2024-02-01-67c188b8-6-de59853812",
+      "title": "6. For Possible Action: Approval of Minutes",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees-2024-11-20-56fd57af-4-2bc06eb868",
+      "title": "4. For Possible Action: Approval of Minutes -",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-other-post-employment-benefits-trust-fund-board-of-trustees-2024-05-15-57627e18-4-6996ab4e8d",
+      "title": "4. For Possible Action: Approval of Minutes -",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2025-09-11-36ec2bbcebcc-28-ce0d15817a",
+      "title": "28. Approved-Audit, Compliance and Title IX Committee Report (Agenda Item 32) –",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2025-09-11-36ec2bbcebcc-31-21521e4274",
+      "title": "31. Approved-Business, Finance and Facilities Committee Report (Agenda Item 36) –",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2025-05-20-8dcac969097e-1-51d7c3ed04",
+      "title": "1. Approval of the minutes ofApril lstandApril 15th,2025, Commission meetings. (For Possible",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2025-06-17-8dcac969097e-1-992683e8ab",
+      "title": "1. Approval of the minutes of the May 20,2025, Commission meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2025-07-01-8dcac969097e-1-5f2fd54647",
+      "title": "1. Approval of the minutes from July lst,2025, Commission meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2025-01-06-cbc0a39db977-1-7dce6e2877",
+      "title": "1. Approval of minutes for the December 17,2024 Liquor Board meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2025-03-06-f269773b13ee-28-27e54db32a",
+      "title": "28. Approved – Athletics Reports, UNR, CSN, and TMCC (Agenda Item 30) – The Board",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-06-06-b55041aa93c5-21-181fb2e103",
+      "title": "21. Approved – Audit, Compliance and Title IX Committee Report (Agenda Item 42) –",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-06-06-b55041aa93c5-30-6b63c7a620",
+      "title": "30. Approved – Handbook Revision, Anti-Discrimination (Agenda Item 26) – The Board",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-06-06-b55041aa93c5-30-c209594398",
+      "title": "30. Approved – Handbook Revision, Anti-Discrimination (Agenda Item 26) – (Continued)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-06-06-b55041aa93c5-42-30d6ac358c",
+      "title": "42. Approved – Investment Committee Report (Agenda Item 41) – (Continued)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-12-04-a10776867a4a-27-c4f4252ca2",
+      "title": "27. Approved – Investment Committee Report (Agenda Item 33) – The Board accepted the Investment Committee report and approved the Committee recommendations. (Committee",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-12-04-a10776867a4a-27-146d958b02",
+      "title": "27. Approved – Investment Committee Report (Agenda Item 33) – (Continued)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-12-04-a10776867a4a-30-2d4fc0ac5c",
+      "title": "30. Approved – Inclusion, Diversity, Equity and Access Committee Report (Agenda Item 38)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-12-04-a10776867a4a-31-fe9f024ceb",
+      "title": "31. Approved – Workforce Committee Report (Agenda Item 39) – (Continued)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-12-04-a10776867a4a-33-32fbc53013",
+      "title": "33. Approved – Business, Finance and Facilities Committee Report (Agenda Item 37) – The Board accepted the Business, Finance and Facilities Committee report and approved the Committee recommendations. (Committee report on file in the Board Office.)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3122-E-f9a55cd381",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3038-E-3b4ccb41ea",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2947-E-68e6772806",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2878-E-05c5fb4183",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2800-E-7f4c9dd7b8",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2745-E-4b3367e8d8",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2682-F-52971ae420",
+      "title": "F. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2604-E-93582fda9f",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2896-J-62ade50bc0",
+      "title": "J. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-2731-E-f56bfa833a",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2025-01-06-8dcac969097e-1-20a4f96946",
+      "title": "1. Approval of minutes December 17 ,2024 Commission meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2024-04-16-8dcac969097e-1-1aa36ad86c",
+      "title": "1. Approval of minutes for the November 7, 2023, November 21,2023 and December 5, 2023",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2024-05-07-8dcac969097e-1-94a1e88b9b",
+      "title": "1. Approval of minutes for the October 17, 2024, Febtgy 16,2024, and February 20,2024,",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2024-09-17-8dcac969097e-1-080f1e25dc",
+      "title": "1. Approval of the minutes of the September 3,2024 Commission meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2024-10-15-8dcac969097e-1-fd05187591",
+      "title": "1. Approval of amended minutes of September 17, 2024, Commission meeting, and the minutes of October 1,2024, Commission meeting. Nole: The minutes for the September 17, 2024,",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2024-12-17-8dcac969097e-1-d696bf8246",
+      "title": "1. Approval of minutes for November 15,2024 and December 3, 2024 Commission meetings. (Por Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2024-09-17-cbc0a39db977-2-f952a94b94",
+      "title": "2. Approval oi agenda notice with addition ofany emergency items and/or deletion of any items.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3288-E-ce2154feee",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2025-08-19-8dcac969097e-1-2eb391b8c2",
+      "title": "1. Approval of the minutes of the August 5,2025 Commission meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2025-12-16-8dcac969097e-1-f0c703b303",
+      "title": "1. Approval ofthe minutes ofNovember 4,2025 and November 18,2025 Commission meetings. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-and-board-of-health-2024-12-05-18d38222-21-a668fb8d25",
+      "title": "21. FOR POSSIBLE ACTION: APPROVAL OF MINUTES – SEPTEMBER 5, 2024",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-2024-08-01-3264c0f4-6-bc4e1af5fc",
+      "title": "6. FOR POSSIBLE ACTION: APPROVAL OF MINUTES – JULY 3, 2024",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-and-board-of-health-2024-03-07-c896eec9-6-6165ad6098",
+      "title": "6. FOR POSSIBLE ACTION: APPROVAL OF MINUTES – JANUARY 31, 2024 JOINT MEETING OF THE BOARD OF SUPERVISORS AND THE PLANNING COMMISSION MEETING AND FEBRUARY 1, 2024",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-and-redevelopment-authority-2024-02-01-67c188b8-6-56b7a35e28",
+      "title": "6. FOR POSSIBLE ACTION: APPROVAL OF MINUTES – JANUARY 4, 2024",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-planning-commission-2025-02-26-ff70829d-5-84fea04efa",
+      "title": "5. FOR POSSIBLE ACTION: APPROVAL OF THE MINUTES – DECEMBER 17, 2024 PC",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-eureka-county-commission-2024-03-05-164b8873-1-c60a3612c8",
+      "title": "1. Approval of minutes for (a) Decemb er 20, 2023 meeting; and (b) January 2, 2024 meeting. (For Possible Action)",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-board-of-supervisors-and-liquor-and-entertainment-board-2024-04-04-35e23ce2-6-6165ad6098",
+      "title": "6. FOR POSSIBLE ACTION: APPROVAL OF MINUTES – JANUARY 31, 2024 JOINT MEETING OF THE BOARD OF SUPERVISORS AND THE PLANNING COMMISSION MEETING AND FEBRUARY 1, 2024",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-carson-city-board-of-supervisors-planning-commission-2025-03-26-a0e53fba-5-84fea04efa",
+      "title": "5. FOR POSSIBLE ACTION: APPROVAL OF THE MINUTES – DECEMBER 17, 2024 PC",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-elko-county-commission-granicus-clip-3481-E-a5dff6b752",
+      "title": "E. APPROVAL OF MINUTES",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-boulder-city-council-primegov-684-1-0e34f558f6",
+      "title": "1. For possible action: Approval of the minutes of the January 28, 2026 regular",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4549-9-d36c26efc9",
+      "title": "9. For possible action to approve the Final Minutes by reference of the August 5, 2026 Regular City Council",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4436-8-9f3e9416d7",
+      "title": "8. For possible action to approve the Final Minutes by reference of the April 1, 2026 Regular City Council Meeting",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4539-5-a39d3b17d3",
+      "title": "5. For Possible Action to Approve the Final Minutes for the Planning Commission Meeting of June 16, 2026.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4432-4-388eec7ad9",
+      "title": "4. For possible action to approve the Final Minutes by reference of the Regular Redevelopment Agency Meeting of February 18, 2026",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4424-9-a65f258966",
+      "title": "9. For possible acUon to approve the Final Minutes by reference of the December 17, 2025 Regular City Counci",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4438-4-c6ecd91b19",
+      "title": "4. For possible action to approve the Final Minutes by reference of the Regular Redevelopment Agency Meeting of April 15, 2026",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4483-5-605c9370cc",
+      "title": "5. For Possible Action to Approve the Final Minutes for the Planning Commission Meeting of March 10, 2026.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4431-9-b4d0fcec09",
+      "title": "9. For possible action to approve the Final Minutes by reference of the February '18, 2026 Regular City Counci",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4427-9-d9be018b0b",
+      "title": "9. For possible action to approve the Final Minutes by reference of the January 7, 2026 Regular City Council",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4437-9-3c8ae2554e",
+      "title": "9. For possible action to approve the Final Minutes by reference of the April 15, 2026 Regular City Council Meeting",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4490-9-2d5986e64b",
+      "title": "9. For possible action to approve the Final Minutes by reference of the June 47, 2026 Regular City Council",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4489-10-cc23fca8f7",
+      "title": "10. For possible action to approve the Final Minutes by reference of the June 3, 2026 Regular City Council Meeting",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4520-5-9f15d5e3d0",
+      "title": "5. For Possible Action to Approve the Final Minutes for the Planning Commission Meeting of May 12, 2026.",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4439-9-c2383018da",
+      "title": "9. For possible action to approve the Final Minutes by reference of the May 6, 2026 Regular City Council Meeting",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4492-9-884a205b98",
+      "title": "9. For possible action to approve the Final Minutes by reference of the July 15, 2026 Regular City Council Meeting",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4441-4-64f61d32ff",
+      "title": "4. For possible action to approve the Final Minutes by reference of the Regular Redevelopment Agency Meetings",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4428-9-5ffe6629ca",
+      "title": "9. For possible action to approve the Final Minutes by reTerence of the January 21, 2026 Regular City Council",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4429-4-8f36771a6d",
+      "title": "4. For possible action to approve the Final Minutes by reference of the Regular Redevelopment Agency Meeting of January 21, 2026",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4430-9-9a6ee10ae9",
+      "title": "9. For possible action to approve the Final Minutes by reference of the February 4, 2026 Regular City Counci",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-las-vegas-city-council-primegov-4426-4-f456abdafe",
+      "title": "4. For possible action to approve the Final Minutes by reference of the Regular Redevelopment Agency Meeting of December 17 2025",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-boulder-city-council-primegov-666-3-93150f5664",
+      "title": "3. Minutes",
+      "reason": "Full source contains substantive or mixed business; a shortened excerpt cannot establish a routine-only item."
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-d9f2db41-2-a07367ec7d",
+      "title": "Discuss, approve or deny, pursuant to NRS 252.050, the Board entering into its minutes an order that the District Attorney Office hours will be Monday-Thursday, 7:00 a.m.-5:30p....",
+      "reason": "Full-source review retained this substantive or uncertain item; mentioning minutes or an agenda does not make an action routine."
+    },
+    {
+      "id": "item-meeting-manual-eureka-county-commission-eureka-county-commission-2026-01-06-bedb9ae1-2-a07367ec7d",
+      "title": "Discuss, approve or deny, pursuant to NRS 252.050, the Board entering into its minutes an order that the District Attorney Office hours will be Monday-Thursday, 7:00 a.m.-5:30p....",
+      "reason": "Full-source review retained this substantive or uncertain item; mentioning minutes or an agenda does not make an action routine."
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-b77c68b5-11.b-b2db44b2f9",
+      "title": "For Possible Action: Review and accept travel claims. limited to 3 minutes. The Board will conduct public comment after discussion of each agenda action item, but before the Boa...",
+      "reason": "Full-source review retained this substantive or uncertain item; mentioning minutes or an agenda does not make an action routine."
+    },
+    {
+      "id": "item-meeting-manual-lyon-county-commission-lyon-county-commission-2026-08-06-05b7f61b-11.b-b2db44b2f9",
+      "title": "For Possible Action: Review and accept travel claims. limited to 3 minutes. The Board will conduct public comment after discussion of each agenda action item, but before the Boa...",
+      "reason": "Full-source review retained this substantive or uncertain item; mentioning minutes or an agenda does not make an action routine."
+    },
+    {
+      "id": "item-meeting-manual-storey-county-commission-storey-county-commission-2026-05-05-34a05ad0-9-2e10433b9e",
+      "title": "Needs review: Board action: a. [ ] Approved [ ] Approved with Modifications b. [ ] Denied [ ] Continued Agenda Item No. _____ -- 121 of 321 -- \u0001\u0002\u0003\u0004\u0005\u0002\u0006\u0007\b \u0003 \u000e\u0005\u0007\u000f\u0010\u000f\u0011\u0012\u000f\u0010\u0013\u0014 \u0001\u0002\u0002\u0003\u0004\u0003\u0005\u0006\u0007\b \b \u0003 \b\u000e\u000f\u0006\u0010\u0002\u0011...",
+      "reason": "Full-source review retained this substantive or uncertain item; mentioning minutes or an agenda does not make an action routine."
+    },
+    {
+      "id": "item-meeting-nshe-board-of-regents-2024-12-04-a10776867a4a-37-f5039771ed",
+      "title": "37. Approved – Annual Evaluation Summary, President J. Kyle Dalpe, WNC (Agenda Item",
+      "reason": "Full-source review retained this substantive or uncertain item; mentioning minutes or an agenda does not make an action routine."
     }
   ]
 }

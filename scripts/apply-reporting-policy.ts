@@ -14,10 +14,15 @@ export function applyReportingPolicy(root = process.cwd()) {
   const prior = read("public-meeting-reporting-policy-audit.json", { excludedItems: [] });
   const excluded = new Map<string, { id: string; title: string; reason: string }>();
   const reviewedPath = path.join(root, "data/seed/civic-reporting-exclusions.json");
-  if (existsSync(reviewedPath)) for (const item of JSON.parse(readFileSync(reviewedPath, "utf8")).records) excluded.set(item.id, item);
+  const reviewed = existsSync(reviewedPath) ? JSON.parse(readFileSync(reviewedPath, "utf8")) : { records: [], retainedItems: [] };
+  for (const item of reviewed.records) excluded.set(item.id, item);
+  const retained = new Set<string>((reviewed.retainedItems ?? []).map((item: { id: string }) => item.id));
   // Preserve previous exclusions when a compact release omits original items.
   for (const item of prior.excludedItems ?? []) excluded.set(item.id, item);
-  const items = [...read("public-meeting-items-runtime.json"), ...(hasInstalledCivicRelease(root) ? [] : read("public-meeting-items.json"))];
+  const runtimeItems = read("public-meeting-items-runtime.json");
+  for (const item of runtimeItems) if (retained.has(item.id)) item.reporting_policy = "retain_for_source_review";
+  if (runtimeItems.some((item: any) => item.reporting_policy)) write("public-meeting-items-runtime.json", runtimeItems);
+  const items = [...runtimeItems, ...(hasInstalledCivicRelease(root) ? [] : read("public-meeting-items.json"))];
   for (const item of items) {
     const reason = routineReportingExclusion(item);
     if (reason) excluded.set(item.id, { id: item.id, title: item.title, reason });
@@ -28,6 +33,7 @@ export function applyReportingPolicy(root = process.cwd()) {
     const reason = routineReportingExclusion({ ...item, sourceSnippet: item.sourceSnippet ?? item.outcome?.sourceSnippet });
     if (!known.has(item.meeting_item_id) && reason) excluded.set(item.meeting_item_id, { id: item.meeting_item_id, title: item.title, reason });
   }
+  for (const id of retained) excluded.delete(id);
   const removed: Record<string, number> = {};
   const datasets = [
     ["public-meeting-votes.json", "meeting_item_id"], ["public-meeting-voting-cards.json", "topic_item_id"],
@@ -38,9 +44,11 @@ export function applyReportingPolicy(root = process.cwd()) {
   for (const [name, key] of datasets) {
     if (!existsSync(path.join(dir, name))) continue;
     const data = read(name); const rows = Array.isArray(data) ? data : data.records ?? [];
+    let annotated = false;
+    for (const row of rows) if (retained.has(row[key])) { row.reporting_policy = "retain_for_source_review"; annotated = true; }
     const filtered = rows.filter((row: any) => !excluded.has(row[key]) && !(known.has(row[key]) ? false : routineReportingExclusion(row)));
     removed[name] = rows.length - filtered.length;
-    if (removed[name]) {
+    if (removed[name] || annotated) {
       if (Array.isArray(data)) write(name, filtered);
       else {
         data.records = filtered;
