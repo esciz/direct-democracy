@@ -1,6 +1,24 @@
 {
-  "generatedAt": "2026-08-29T13:05:14.263Z",
+  "generatedAt": "2026-09-07T01:33:26.230Z",
   "records": [
+    {
+      "id": "nv-ad-finance-lead-joe-lombardo-insignia-signs-refund-7310-smoke-rnch-rd-ste-t-las-vegas-nv-89128-b05dd10a8a0f",
+      "title": "Joe Lombardo advertising expenditure",
+      "sponsorName": "Joe Lombardo",
+      "reason": "Nevada SOS campaign-finance expenditure appears related to advertising/media, but no ad creative has been attached or reviewed yet.",
+      "sourceUrl": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/ViewCCEReport.aspx?syn=C2bnV5uhmvwF9OlsqKEQuA%253d%253d",
+      "raw": {
+        "candidateName": "Joe Lombardo",
+        "office": "Governor",
+        "reportName": "Annual CE Filing",
+        "reportYear": 2024,
+        "expense": {
+          "name": "Insignia Signs REFUND 7310 Smoke Rnch Rd Ste T Las Vegas, NV 89128",
+          "amount": 340,
+          "date": "03/06/2023"
+        }
+      }
+    },
     {
       "id": "nv-ad-finance-lead-joe-lombardo-design-print-banner-refund-1625-lakes-pkwy-ste-d-lawrenceville-ga-30043-b7860e24159a",
       "title": "Joe Lombardo advertising expenditure",
@@ -21,6 +39,6 @@
     }
   ],
   "totals": {
-    "reviewQueueRecords": 1
+    "reviewQueueRecords": 2
   }
 }

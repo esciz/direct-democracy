@@ -1,15 +1,1 @@
-{
-  "generatedAt": "2026-06-28T22:39:28.325Z",
-  "totals": {
-    "decisions": 756,
-    "titleFailures": 0,
-    "readyTitleFailures": 0,
-    "sourceReviewNeededTitles": 0,
-    "sourceBackedDecisions": 756
-  },
-  "reasonCounts": {},
-  "samples": {
-    "failures": [],
-    "sourceReviewNeeded": []
-  }
-}
+{"generatedAt":"2026-06-28T22:39:28.325Z","totals":{"decisions":756,"titleFailures":0,"readyTitleFailures":0,"sourceReviewNeededTitles":0,"sourceBackedDecisions":756},"reasonCounts":{},"samples":{"failures":[],"sourceReviewNeeded":[]}}

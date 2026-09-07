@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T21:12:57.891Z",
+  "generatedAt": "2026-09-07T01:53:06.530Z",
   "records": [
     {
       "documentId": "meeting-source-document-062a892f5667755d010336415ca985a89be7b0421d2cc86899da1cf602fe510f",
@@ -2052,6 +2052,3615 @@
       "lastSuccessAt": "2026-09-06T21:12:57.891Z",
       "consecutiveFailures": 0,
       "nextAttemptAt": "2026-10-06T21:12:57.891Z"
+    },
+    {
+      "documentId": "meeting-source-document-b585117dc844655dd382c7510971d8f6090691d4dd93e7caf3df6673bb01f741",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-dbb9ec74e7d8db82d10bd831d4880be0686ab792acc5a90ac3e923d3dc498f48",
+      "sourceId": "washoe-county-school-district",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-4f45f45e06bdfffae08dd8e0c8f68224b9248d275511ca2e868fc96b07334340",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-72ad040fa02362c1a5ba7d85fe6e5c65b4214612046e73c2c0a3e3881388116d",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-9230a22f9c389a3ef0f7df14a339a47cc4a3027a759953807a231d512c1fc92c",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-01ba95962361b09333580dccc1ccf221968b9453fd7f91b2cea2b121b9b13c7a",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-06c5c891fbd480ddda30794cbd50515d316b63614ea3c7ff281606edd9e1047b",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-5fe841d41a7379ec024cd309971bb9a0521575eb7e23ac3156b053661c20dd18",
+      "sourceId": "north-las-vegas-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-98b7ef837fc6ee5299d42ec0ab808fad3025ed9f5b777ce67d5dcffb06ac9ee7",
+      "sourceId": "nv-legislature",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-120abd12423989f8dc7730f0dd7150114b067b2371e7365181ac45c63321d154",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-fc8e8717058f1cc0884915d574bdfd5d147aefd8f4907f0b899b5d8ae46776c4",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-2ffbfddf260d5c33c387aed9b757ae8d803fd801e1505f3cc681f66be86a05a4",
+      "sourceId": "lyon-county-commission",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-a8c0c9c8ae7ea354f147f68e21cbc862aff105ff6e769c0335a6d4831208ea22",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-a139695c6e9eb231ea679ff26974a11cdd6e2987c697c479f54c402582a30806",
+      "sourceId": "caliente-city-council",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-2516611513728ddb6e8ecdbcecd211330da2d072c86f9259f5b8c19bb10daab0",
+      "sourceId": "churchill-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-fa7339a335e88b7702177c613768930c3f6488c8b5b342bd276780bba4cbde0e",
+      "sourceId": "storey-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-bb24d5be05abff4e97c13101daff4c3f2b8776086c8e22bf321194261727fe02",
+      "sourceId": "yerington-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-21a6d057009ad6659bb1245effe142d862b3ab2254a2a4de0f57ee2e89762bf4",
+      "sourceId": "las-vegas-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-2ea069d9368418c94f715b2d60ee8cb418d2037ceb1d15a78d48b58631dd6f1e",
+      "sourceId": "pershing-county-commission",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-36e885273312449d73b00dc1094e5db95037d3a6168e2d118e88702e1576ca1d",
+      "sourceId": "douglas-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-751d08995fb5ebd1c54f1e04824e391dd7111658a3b35667a0fed42c648f6229",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-eadedfa374e039cc84bf9746c20b29c57ea8d1a278e835984a171f4159f3cb98",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-17ae3dda8adae48d1cf3a1aa313d216f77936466d9e11ba3c9e343f6f62dbbad",
+      "sourceId": "washoe-county-school-district",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-9c4fd5bdf5f9c8e7cfb83be98a5c80ad9f51765c778408a9fe9ba79b68450143",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-a627aeb3d84b5b2003ce813968a1a7be51a7614506eef0ddd3aef18f39907573",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-c9722537123e08ac126d1de09845daca62af4c92d0fb5da3cbae961d0eee6e6a",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-36122f7391bf070c64ee5941f62524f558301854b5b38d969aa3fdc97c60d46b",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-4ca032ce54d3c960b2ccfa72a0d783310c209f352873c106ead14b2c5d94da2f",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-bf3b5b2e87fed6f3859fa148cc641afb462015962b4864ef833f830d085be0c3",
+      "sourceId": "north-las-vegas-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-888f1f718d1a99a5c8cdc740add4dd2adbe57654537e600970d8f2588295797f",
+      "sourceId": "nv-legislature",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-c8f796d956418841f74babdcf884f4d83f216476f87819b439f114a5ad6b314c",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-46110448047f861afb814268fd6d0d9a860494f82fc63d4362a4aa28bb2d7a7d",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-843f0e8fc5740c9c4c29cad556b7e138cd13b4248c3693e212551759825562d9",
+      "sourceId": "lyon-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-3afdc0b53e97b034014f4e03dde79591afdf4ff6c3eb9815e167ba6c7ecb44f0",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-c134a42e30ae9890c36f8ccb8ab2a8dc9b60b141b107c733ba898e40458bb794",
+      "sourceId": "churchill-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-fb06d4d397a920527696ce593ffd6674824a56e557652cd31ffa1d084b169bf3",
+      "sourceId": "storey-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-593f0ce30007fe9cacef2a89360b9fb70df8fd7a796c74a164705652d964c16a",
+      "sourceId": "yerington-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-69c1540ce20ea2acb8df3d2432ca9c7176ccce056bf04d8444f243ff409edc13",
+      "sourceId": "las-vegas-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-abe6da6f75e63c14bb814d8f97a00d387594d77a5d9eeea3c0ae4aff72931afd",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-6286c512bf5e8a75be161abe81d1df0eec6043d45ac76eff96b09f0b2fb52ebe",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-fb9147d5822432732d12f246fb622d220d35227ca35fb8a666fd0a95890aad49",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-18a5200852b828d08ac37837320d1b84e07b93dec8f8ad284ec296dfe5239856",
+      "sourceId": "washoe-county-school-district",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-de9209d060c7f5e154358e4d2ba65e78e94f54162b652b059189448ff7a5394f",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-493bfe960ed88a28b1a71e9c3b07ec002a70df642c2834bbef1a576b6a0c84d7",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-1fe2a81173030933446349872b3622029f55e2e06bbd12badd2982ca1a748313",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-bfccc3001f203411162b3d848c1bf46bd7f5a3e44d5fe1959cc6299ec3f1b304",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-6970d89c50b89a93b2246c043b5de231e0f621efa532649247e421f2c483b810",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-83e4440f79bf37d874421f5376009fe5ef631aa032213da8b060eee56e28a440",
+      "sourceId": "nv-legislature",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-0f64ea4275ddf0af23318ec8c5e32a71d28f7c8a1982e4691bcab42ede8f5325",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-4fce307629a42222e863bb891ecba56cc06b12fb9dc8956f9c04beec298df969",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-728b8cbc8dca07abbe48a8747aea05bec908ba1a5ba3eac3c231dba768050548",
+      "sourceId": "lyon-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-e2bde29a2ffb269d16fded440b33727a38ab30752aaab2fa6a9149e800a03600",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-437f3c66588287c1f85f07a42d0ddce41f1e26375ba5406d2a2b925a48d415c0",
+      "sourceId": "churchill-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-92cb5e470482e662fbbd328e69c45836193b16114dec0004688a4600c243ef19",
+      "sourceId": "storey-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-7d0193917a81974156ee516842a55a71a3b18857d25b44162c0c1d3e3ea8fded",
+      "sourceId": "yerington-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-453c10573403a4c34f6c55d3c48e44d4d458c148f1f87c4552093a9cb08881e5",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-aedf26fc4fb5de2806b8a9cd60cb2d17d9d09d10f3c491940faca7696335395e",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-e4f602dcbd96832e025ce41826b5bae1473f6a17b27a2c2e9a1870cad47bb02b",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-f0d68c0c0c296a56d42540d7c1f7dc2bccf0b98a92a885af950e0c7f4ac9863e",
+      "sourceId": "washoe-county-school-district",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-98ef33a2b2d82e131f91bb2cbdd5798a24521d26e217749ef6a915f13790f1ce",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-8f80f88b1498e9a5370f309d622dfb463c2b097a8d5134829e7a92c80e487f86",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-98bb18bcb78cdebd8b30e15f09e1f4113c8f27a432ac2958dea27f7b6d6ef1c0",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-ae5da6b3d123484ee82c9297d7f78595ccb98922a7dc3a71fffd4e59807dae60",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-72b4106e256c3fbdf53154ea1df103722d2bd50b026970d530628e83b02e2177",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-ae6019bc5ed012f4d814dfdb4bacb1af275fd2ac1986ff48073e57b99da034eb",
+      "sourceId": "nv-legislature",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-5c35e8b2945fdedffda46d4000af0a0ae29d19b65a29eddc9370b4b3c0c64b9b",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-2d873e88366e33b0ba4dfaa4aa7beb6cf968bb3d19b18c9704f74aa8581ec76a",
+      "sourceId": "lyon-county-commission",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-36e9890a1318da0496dd9dd24e0c22a6cb936d0188b27e517719fdeec1320feb",
+      "sourceId": "eureka-county-commission",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-800fbc2e98158c87020c26484bc02edc5148f8edb04cd71d2e09ed9aed515e67",
+      "sourceId": "churchill-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-51fd5ba3c8a2c713b980a0058f7741d8a73f7e28cce73f0b6a24af8e541d3332",
+      "sourceId": "storey-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-a5b08d21a78c33d543910108530e3701e2c4052cc521019305a7ea9614380971",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-0d78c75cd9e068417ca7892aba8e4a4372a927be2364376d3b1c986aef5e93ad",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-5d351e691ec2dd9e40de8a97c8337159e2974cea6a377e82d5f7dce50f1e126f",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-f992056bc873f10bd42fee942876d950f022c91e9fe47ac2beb4b5ac7c0b5241",
+      "sourceId": "washoe-county-school-district",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-d072a9d5c9196864732f8ee2d87a9a3db6f2ddb88dcca8033214c49f5eed7151",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-7bf3fca5c2d82ecb2a8b1f54864a4fde15999c6b064aabd2cc1263dc2895e91c",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-fabb7f8ba2756a60f50ff8b9b91311d50d3fa8e23371546be27ee0f1a3384d5a",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-76188efc2fd7262b16d311ff73e5f8e33a00a31e2f92f8b160c587b1dd487504",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-a78548073e3bc21fb827b975c18160c3b8e07592426d54e7cb9de007fdf64e9b",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-875b35fbf7cb1291ed883e67e34307aafc9744315d497ed1238756278bc4d195",
+      "sourceId": "nv-legislature",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-3b549d86a8a3af701ade24d5240fe09fa22d65db7b82903f679ca1b9c77e4a90",
+      "sourceId": "lyon-county-commission",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-e434b975572ce5143cee674658522f76c53042f68f5faf476292e835179718d4",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-8303cfefdfe7aa5b1c623759a8c328e724bec55f32e44150e4ab73ec222fec88",
+      "sourceId": "churchill-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-64e41a33c3eab813ec872fc97a4c2a84b4d4d0f60513a1c64929659518d30b98",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-6403abca8bba610513ec5e5cd58d8de8dee38658ec3a7fcabf9a970f8e2458a5",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-19b9cd51879dbc31a6baa3570c00ba68556fbadf30d532cd1126240b61b506ea",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-575a91299f48557aae8c5c5f65514c1c471924af204ccd2029b1efe6408da26a",
+      "sourceId": "washoe-county-school-district",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-b9c48b8ba4c54562970dca0e0bb1062abd7d6e97fb8f0133333946196c947439",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-5160b111c467702670a6ce24651b1da02a416890780e61ec1ac1ccb744971217",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-783f753ec76ea4c17b46461c39a009a5703e07ea3b5fcfe4682f3581b71ad70e",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-9720eccd030dd911f5683ab4b901df0d288938b1f22dc0ffc19f372c8a4ded3f",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-adfebce33e4e762ddef37b9d2fc23613745cc8f98c8f7b7860c791ff81c1ee33",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "blocked_by_network",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-e8f8bebec415cd146db63cede3373fb1daf2352edbd0815383a278cc46d4e88c",
+      "sourceId": "nv-legislature",
+      "status": "blocked_by_network",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-02fdd299af348161756ae84d85b48aeee5978df6bae2971606081d306e92b634",
+      "sourceId": "lyon-county-commission",
+      "status": "blocked_by_network",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-8d036374ddeadd278fc51cb7d0d100b0983508804e02400cd0faeccc2a5c29e1",
+      "sourceId": "eureka-county-commission",
+      "status": "blocked_by_network",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-2826655cc828c8c669c3ecdacb1f3e98cdeaf267dc5178c078c968ebbbe2d172",
+      "sourceId": "pershing-county-commission",
+      "status": "blocked_by_network",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-850f59125ea023e081b5d4d48c73f441a7d4489ef762a6f4850e0274ace889c3",
+      "sourceId": "carson-city-school-district",
+      "status": "blocked_by_network",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-ac2c90df43d6b2309dba78675a04f484abd763240f9e1cfb31ad53aeaf2de222",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "blocked_by_network",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-dd40c53a42bb0604231ede28589fc79aab3b51b9a6a6e8b3cf1f773e0c8613ed",
+      "sourceId": "washoe-county-school-district",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-389092c6b5ecf3e973611d2c0d89b9dece8c96e13a238b86b47392f958af0e81",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastSuccessAt": "2026-09-07T01:18:28.037Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:18:28.037Z"
+    },
+    {
+      "documentId": "meeting-source-document-a35a6833a1b578fa95576ffe0ae15aafe7c76a375eddedd1997f5ac52dce7e0c",
+      "sourceId": "henderson-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-6952d9b7973196905f0a6f10212c30aea104e2a2bb841ee1e3c9bf6d3a3ce0d1",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-8dde7c4b54242311825ddaf78dd4dd64b479cfcf4dc2b408d199657f6f8a859c",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c34735954ba3e44e97e5f4a7b7c6d2fce3311f7bb55e6d89abc47fe05fe1fff3",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-d61de9225417b8b3426e5ddb0e76bd2934c4e2a24cce92e648dc06b3e2d2e363",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-93167ed2113ef2c7af688e9e78fde3a611a69781f17887ac5e19a9fe063991f8",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-946fc6bcb495ec85c285b64ad894be0e544688d6b0b38a789f107af79671f88b",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0d7cc8191cbc12ddd8b62ba95735164ce7118be64f81c6fd150961a129614710",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-b54ba27502d99abd849fbdb071271bdf077a556210e201a5038905e35e0d2375",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c3b3f0190dc65c41f7969fc77f56aeb23db16a81ac32f40fbafda56e06cd1d45",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-d7d6748654ef36e8981b3c371d1e60f0d31ebc43b43bd3aa7e8d82a54a61c259",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-3778f11f0832b0b988c2fe6395e049fd7d2d8781b9826555fc57cc06894ecc0f",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-419d7ab65c00d1d8dae4f9d158b9c3b761cafc6cf705a68a3e60cf924346821a",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-bd8e50165a5d048cee3d75014f21f025c426277beae5f7cc7c34dbb199185e88",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-96e8c36a269edb2f9ed8ef008d0d0f3909ad10f518489e5c97f789f7e96d72d4",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-4267004a12dfd565064938257394c9c0487feb3c55a5b56e618d66b0b80a85d8",
+      "sourceId": "elko-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-70046e726dc5acb186fc00291297105df1e4d92e383d55771d704cae2981cc54",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-ac337aa17fc9a6e1c1369cdcaa55614e591800eae08b572db7a7c77d22d8e1cb",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c26415945f53f3ffb60cdd7bfbcbdc14ed418da668a1ea3411fe3847409fe3e3",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0990cabe21414380c8c93be420cdec7e93be32f738075c6495f174438898e74a",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-950a5f8c994f91f580c9537edd76538157ef40dff26ccfd922ec2b0bd76c3cb5",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-d4c4cd426215dc8508415f7ff75036aef6bc3560c6b30be5e250266921b1efcb",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-ff899d1681306d59c64967e586d41e40d4c727d7931fbeebc9607e5c7db1f8d5",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-46d5c6631df0dbb2298e52a00d3fde1fe25d3ecfd2c49978fe0a6acde579585b",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-f970cb78cbb6d2b93b7a131821553dff236d43bd47e4a90112317b0414e85df3",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-57637c6db35d01387cc281a76b2f10241943f27575f5e9ccd24458ca7b5b808c",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-16c728843cda46391e919fa82192f0ad5ed3b3c94112d930996c24003c080d99",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-ecdefff190c05c064eef2c54ac5d55c1dcf886305d70db8fb60f1288323ab2ee",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-6f81b3d03df6f46dcb58666c4b8ec4689f97caf59fa02a02257da0ccfe331a7d",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-45d02544aea648c31a42ee65fab420d0461bfbb3f16c6036720ab90739e564c3",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-11bdea3d6c322c45fb055c701c245ead6633f9ba9caa88ab4f2868ed3ea04792",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-76e79b5688b217089c2e96c4d0d63c321291eb23ec8065f34ec8280fa028ac3a",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-cd32e332af2756c82ac3f1ec19b046cd410424b2e8c5fed47c49acb70727917a",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-b5dbf0a64b08482279c8245cd492282e65ee1c2c759fb790829728c4b5fee6d8",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-73bee1a00f62c647684e476b73e096525534f8b6ad42f3747580d4074432757a",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-e0ccbec2aa88269e703a0571a9d4a0b71c47b5f509fe2f5640bee7abd99e126e",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-ff6b9fec9182f39978beebf13bc04f4161a2816ed928671537f3793de5939711",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-3eee40f5f66d8495ef2205f82af63b34a660bd24ddbf9ecfd080ebe13d0fdb0b",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-513781e09b161f12778c0fa5066fb527b75584463ef46700e9b37a6e857c91e7",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-8fb794bf125c719b843e85073b4cf7622532472cc6b026d1bba9ee3859856f87",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-e4300324b7817d6d9df6abac3a031ba37c2b314bd3986548b18dfba007ad0a0b",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-537b80148cb69e3ee5b64cbb9b441e6c1cda964a0a117927350dc1f075874784",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-b30144a4478d8c14b9c7dd4f0ddf690d5576fac67ce21c605acd0ff5ef7c4c46",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-19d63ac97923fcc919d3a13b012fb5042c0f22a624181c012255ec644ae4c976",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0e86e4e57923c9dcd379b7ba6dd7c9b54908a2543781d5a5da854ae231b29b56",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-de5b946b98a65cc5af517c544048b5cbf37ef358f314a9f630e54dcfb6e36f66",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0c9aca510337426b751a5392e089abb7353cef1afd69bb079b4d222e936bd012",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-4264a0df8942dc17d5673ba42e21bb1c179c478bdde5b9ccea20132c6001c870",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-7a1da450d09182ee6ab43219ee497ab1d8ad5f338211c8884fecd47705c63b94",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-aecec4f2ba9f51b0de51ceb6aaeabe15d794fd46e147eb01d0878eacc4f3fcdf",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c65bfc2b20da28814b0db4fb2d15665728a945299786a3f644a0c757adc03a50",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-80ea2c2ae06539ce618d54a4925187e81cc0faafdb6d572e8ad9af2e3985ba93",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-26d56be3b429d89130db3c14976501251c4621b4d442dc7f265dbb1d0e474488",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-7e5aee818146e3626cebaa314e9568d338e310ee2f642a2d432efef55c77500a",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-3b73ccd79ac14cc98083fd0c64a422db80f77bf447b48016507d9c2fed555aeb",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-05dc930bf05925c3eb54dec8ef9777defaac92439d9ff4f516d346c56bf1798f",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-63d7c5454f43841a4c76d4e8182ebdb0b08852b258b6f8570031e667456b6fa5",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0013cbff8800cd383a5b0c816a321637f522c86a7e916c631704a6930da979fd",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-6a0c0cce8063e7a8e2f15cb426593657c1399721a156aca6b03aa46249356713",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-36db8e51cda486d53759bbf4f6135df924c231ec962c7219f7794d3686be06b8",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-48be7ef5ae45abf104d4267e92c7d4a0e026d79e54b46a0d811ea7f7ed39713f",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0f405f6baf7af9f70c96f332c1752bf33473ae2c1a0b542e7b77335c98cc1cef",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-113163618b3e9e921d00b3aab1b7d86255aeea93876c3e8884e3f535cdf54f3c",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0417edd3501ff89e19e3b3a0151a487ae5fa4d72b58e863037f53175c5c41ceb",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-6cf9f8d9b6abe0153e10de7b64f6592c1d964a49bb43464c25aa2ce06d8dd0dd",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-6431626c461b3812a7b0ac770186315a0fd31fe03e434b066acba9599e9ea62f",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-a6c677fc08778cc268b82a2f13a09986cb962d28072eb45ebc5dbc94b479c7d0",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-f774d67eb0f09c36e365a23566229ecd4fd867f6ca1b50c3cfc8b7c1942afadc",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c26379767c54248efc064accf11171f3442d8aeadf372b8eb2a6337d49f52ef9",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-a85c4499eec659b32405b48bacad1e12436b2b14d56336ddc83a20e4b3dd8144",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c3214643e3a1855faacce35745630f8ab224550fa71cd4c3ce6e5480a2e61ff1",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-167737d54cbaea80a79b3fb565659ef48a7f70391b03b19837e525459545f12f",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-a28a727985848aa051d5285e2d96573e130e49f4bbb1957e3279818e3c9825b4",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-3b50235aa4bed7d2f519d2950fe4aaf85a0db7cdd8045ba52846f21e8cb34256",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-49be1a3e2b4f5dd7f227e1e439f6d84a8909fa5b895dedb8bb706fb8e0875d8c",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-a09d479931afca3bcfdd83cd3dcc9035aef5aaa5d050523d3207565e85faff3c",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-589dc0af622d19c80e65f6b995f4cac8176ce0e10d02b42aebebc2cc75d70e5c",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-bbf97058687916e0b041f46ddec0c891ddf5ce4af8b91b0bb9b1beb78a7f9e52",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-cc30b70777f2d87387ef00e12c73cc72e850574b01225e3b0bf023b68251d042",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-44f613a0a0fa17637fcd90176cab99bedd5d8aae22a607e7d9ea9de426c0aa7f",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-1a0adf3506852a503695b0ef731770e33b28483aedcc9053d921dec260978230",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-f0732c17fcb1a5d56142c984e964bd31102fb2fa01a335fb238d1013085b5c6a",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-02a87e5cc0a98b9cf9655d5dc98f7be16a58a689253c6a0b8e9a4280ab61b9b6",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-cd5ae4c9e44f6fa6df0466c224452efcfa4f8da101b993bd623c49bc450da203",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0677801eba3c92d04fa7d56446a16f33b82023bab37295699125e3665e8ff062",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-72ebf2455f8ec9f0b823e8a6b888531924d2c3c5e9cf076f0bac8930f5b8293b",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-841fee06ba1c1d6098aa7e45b2275f6632eabcc8796953022ae8b8919d9eda33",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-46474638e6d275ae86a0aaefa850466cb07c9c96d5ef63086507474b4ef8b3ee",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-22fd0df41508067b640b6c7e39fcb29a897b328174ca1f229fbdc918a0bd6cd9",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-03adc149ea0ab6e35c5876605a2242999a22df8da6473ddd15dd05eaba84c873",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-09efc795e91f2480fc4da80cc600ad4eec65b85d1bafc1d9acf622f5448fc33b",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-8390d222e1d03e5ab355a4c7fc988dd181aa5f0f944c2a29b23f300de3b16f54",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-76824614d3f777696899fa04c1adc39d108248b291f79ecc4bf009fdc50d0f9a",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-cc9c3439c700234090fae361a6ad9c214b8544ebef54c05eeed1155ef5f57ceb",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-405585c54d865270f0e8353893d52dbbab0c54ddeced39075b36fbd15f726e42",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-80aeb532fdadd162a835bff0c1076fee2506602f3d796c4a02a7ce6aaeb2775c",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-d6f702cf91018ca0a6c5923f23d6e39f7c450b6c5f0c24adfd4c08986dbf5d86",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-43414b20ff8697611882f7342eae4df7bcfdd7970786f83ba38ea9f86903f302",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-84f5b5b8f4a5b604ea5dfb3f903e93f122626d3927dc13a75e79f404d41e809d",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-3b181ea65a4eedcb5c98581622c2fd7ef59100b2893eeba08a8aab21c597b7d0",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-5fe18abdda9a33d95659591a0e0d4ef50230f033434d4665aa047c1bc95986ec",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-400bcfafc21aa30ca146769be079d8303939f12beed412a292edc0787f48c4cf",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-84e4f1216db4b7b13a8330abb5e4acf0c5f461f0b5e3ce1bd9b1100c252a336c",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0476c6023b5a6ae486199374d2900a82669da69008217e713a95336fac63b38b",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c6df8e4e912b292051c85f22b3dca0ef21a581c4da493b125ba3f8a6fa18c6d2",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-7dab5dbc8fcded9b1d7bd6bdc37730479861221f9dfdca4d826f495348f3de65",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-be3f5d07f71514d1b5f7468b0a9bb0ed414c023d4f9eab5ce1f17034d8692645",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-aa0129f5bb12e9c27e949cd355674aa955f4f9f57ad85059419bf21cc69fb7b5",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-cdedfcec197464987ab8929706d6ba27d39b72bc1d7755120ac9bdc7f759855a",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-22f8d31409071a483eb1c24ec63940330c26ad1e22ed2c0c4e66539a5582b8c7",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-842a00e733abd45067ee006eb1fe32e4b11b8863f17040d79fe981f593370f2d",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c1d97fc7b169b965dcc0678e0ba233dec32e4d1880596aa4155834c0858edbb8",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-e2e21677e5b865405417078b8b21c34388c06b41138c25f55229b8dc6248c73b",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-ad26c775cfbc27811c0bd4251d295a8b593fb29550cfbe44bdaab3cba9212fb1",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-19105498848324d62cae5ea714a7c577f65a14079f7d28a19c8924792b542d98",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-dbe465c0edef748304a54168df82110960945feb1763a8e242baea0029a520da",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c3d94dbbf6d9670b76bdbf8dcbc23281cb796c2f0cbc1c8ebd2f730b2292eecf",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-cacb5dd45c590636acb674af8b69835574f348a24cfa6228f9cfde094c19c4ec",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-522f8f4955d943862ea53a0543facd483b0106362e0ba6f788f9dacdce340984",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-77af6b524d03043e0cc7cd880f5533c296aedc151e1982fd0735516fe22bc4de",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-dffaa9769cc00e38e517d506beb96027ead7a50683394c03fe8181daca4e2615",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-e35470e772caaf65bcc30aa629037f91182276e6b8e8afc639658eae08fa4cc0",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-ede5e1d7301dc6187df0107fba50a3d6a5c2cb077a3c0251a7b451b97ade1973",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-d3f4ba42a45f05ebf90ac20d22298f0959aa4a573d071a56bcac2d3f082db235",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-56e3e00118fb99a9b07dd79a16f8c3c5ad4fcbfc989db6c56de649d7b7ba73fa",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-1f7e071767f7a5d4272cb02a8273126edc1ff5c4257c3ce4c87ef06b20fabe7e",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-e6868801a45794b9dea6c193a57c25f01be059dd5659801da56539004e542459",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-76a66468e2d9f46dcc09000c9966dc9fea7a29aadcc67b98a549241776d8d0d0",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-3d3cfb4291d73f120ba0beee42e8ec601a28b22d63cb67d13ada54cd2c0a53ff",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0429482d14e08efab5e897fb5e31d66f4c6d7e92af2f4e9c378a446e96a62c3f",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-87f6278845ac975e901bea13648285cc6344c926a7d16da239beabd899afc5e9",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-fd3ba94336ef362c5c3e07df1928481b6980cbd0df300dbcedea7f48585e707b",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-af61a83983f47ee0d1f3a686bdf05ed0d85c9a33d189c684eb5d2dd8eef1d8a7",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-1b450246228ab3b5490d2b2960007ef3a2f9980aca5c99a97741d4e7443a606a",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-a1cb97265eddbdccd5832df5b8f60d45ebd47160bfc4d4375dfdcca96ae66ab8",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-d77b56a642bbe753529b5b3e02ca4862da9e708bdc344571b3cf038054ffdf5d",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-0cbb92549b559c34c323570ee852f0d4ac83e4d731b6566ae729cf6bc20c4707",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-8714eb332cd0a139a253eaf241bb6c55f5919d8bf6d427271d174f2dfea4ccb3",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-61b3864d09b746e79e9407ebfd0e21a3e88ca6ee04ace6f19c8f1ea7c832ba4e",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-8cf3947976aa567ac4a9fad43698750892032ec1a1c67b6bbcece05bcadd70fc",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-af97cbebb4d86c442007e1b161f4e92a7f36ddf51436344b2c7cbd1335f80974",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-923b33eb4a850e3de1510fd008c214fdbb0e578db68e1dff95443c7ecb4c9cd5",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-d9294b80d6933b8dad04c46e94a0dcf3837f80dff29bfd8d686ecc0cabb40af3",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-b786ddaf8f19dcd373da4625b4debea03f0330ee8a4303883fdf6b2bf67fd5f1",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-5447f51670f7254c5052ea0a54b1a285933df2cb33ae4478ac83fe0767f8677a",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-5f5acebe84e6484f7eecc4c4f4c0cd10f81b951beb4ef795e885b8def0c4d2be",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-c2459ee64c3e8e7f9331a5c84ddbd156e0ea8193350e1aebe2a1c8980c99b9f7",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-3d33c2156bf1866e65562243059924d04816a27648544e73a538ae28a7d254b5",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-21557f06fd3c3d44b6c30311e0925341d6e103c63b49c1c8cf14501ba2e86fa2",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-82816d98f53a2101fc592e5c0ff25e687666aece71edb6473ce9a097457b6eb0",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:40:01.228Z",
+      "lastSuccessAt": "2026-09-07T01:40:01.228Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:40:01.228Z"
+    },
+    {
+      "documentId": "meeting-source-document-86f6b16f5330c8ce69c6ea588f9f86fdbea2e258ba656f5b91d24f8ea5a308f9",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-d9954636a94e3cf82a948ec94ab7c74ca6f254798d8077bef5a5e9c932f6f2ad",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-051c5d0f1c35aa9ed768a39b2f9b8e06060b66613e6189ab3249c5956fe165d2",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-bbb69b006ef02c5754e0563ea4608835b49ed42f781a7ee5bb03f91134512ee5",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-d570ee52794042819ca4d71ac2e4d17a36980cbf88eb70bce1cf00a28d3f35be",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-8257a9602c74a8ef99d9274a7c03dc2663794e4be769ba47a744d5eda9843b7b",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-21568d61142f57eae2623607c944dad951ecf623eebe7f62dd3fbbfd70268166",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-6e8a1ecbb1bbf36610191a8533fb832870e2ce0791e84a9abb0206909401e449",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-09725365dad507a6ecd2096583e6583c32129d9c23063301c000e4cf3c36ed90",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-18199bcb65408d5106105f0ced0bc0694c48e4dfe16219040e16424e213b5999",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-12567957d65a3337db8cf8d9c23cf7b774876442407b10b18006e99f100c7648",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-816152c5e61e30ff3de09aff2f90c60de488baaf95be774fe10ebf9e5266de79",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-6c289b95cf6b71ee9e8151b7342db1a3eff29b0470a04e1c1724375987e8c0fd",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-41559d362a1dc75924082dfb7bcb0649674d427805ae1f78d8c5cd2da656b07e",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-0fcbe32c26daaffb05658cb0e4908bc527a52e4af2e6da013aaa0b27c9f394b1",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-71c044e674db7a0cde3773b1db65d7388d55c1cdeedf258a7cca59ac229651fe",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-5233573dcdba77bf0c399c6de0f54f8c4b187ebe605c5fff87c04993acb43ce9",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-b5322f0e66b3c06478444064d888feaeb73d655072f2b80abf09cd16b96eaf1c",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-5512ca5a8fd850229355ea2a2ab9f8a86055d560fa7b7fe6eefc8aa98d35b491",
+      "sourceId": "clark-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-20271968df490199d01dabe0419194aa05b96a0a6bb138177500b144c90eeba2",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-4bc263a284be83c49942cb015d05f5fd3f488eb62481997aeaef93ac6de61c81",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-2548f8edc8fb658bbfc075758ae8f38820e5c57c385cf7ba0ae21050a82c3bbb",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-27c970b3513dd2f3cb86fa31be56c099fd96e5ef94d9437d9b839d0d1e47fd2d",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-bc096e9e4d6b6a4a4c7b841bde751070326868ee3b9d50dedd5c5e1861b281d9",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-62b002afe2ed2c09c5e44e6ea365aa91eda0f9141b6bdb77d391277c075deb68",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-15dabc39849a75afdc174342391a5d9c7316d529e23f0cf1ef641b91175c0f9f",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-4454c22db16f548be4d00c0565c732e3e416e91ca3c3637540a09cf71bbb1b5c",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-8d2a6c7b75274cc648566eb868ae4226286531e96aebe8f092cf4145b4790289",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-445d1c506306d1e5a2d7386b202d017b5d29515204cfca71e93382e967475356",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-306d92e5de8121b5ab16e718006556291efcd4616f5ad73ad35545a2f22f6839",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-175468f80facca13370955f504c974218b4c3e5dcb21c77cb3bfcac92cc291b0",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-a0610fcc42092034cefb95d0082ed2bb2f9b1468001e2e8c0579000e785746a5",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-592c27c71de60c19b469b0d1c037e1096a203b9882f3d30c54bedc367c855ea5",
+      "sourceId": "eureka-county-commission",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-dc0e05c404878bb60ae590421a2f1fbc18ef1a5045f818ca6d19fbed653260c0",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-2d46840277bd9b6d9bfafc3d96926013180231e8c44b049a132f394fc757bca2",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-854caa274e8413aec9005a2d93110b92b4620d9b9e9cf4f46d055b3b13bfe7a7",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-8e5527e50907167d7ca461b43ad9ac38a04196e08c06779711f919ebdcd8dee1",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-02f971fbdaeae1c7d86b2c058f802a93b7e3c6fd6ffd2759dbfe9446a017755b",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-1d1b01f48d30a8b15cc2e5d77b26ae02767e6780e4a5ab814b130a8339b8cced",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-dd7b67c23654ab4c39a0b2bbd499ab676a5b3d38968ad1a6ed92e6d445d8f483",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-b8a927409017c2fc6001fadc83fd58fed180f5a3b56aaba0c4e0078859e33dd5",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-532b10bca3af1dbe572c45ff894210f6144422b1e4619128536327881b727ea3",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-5d91874323b52e89299ba8d3d352fa675ec2c6832aaafcc5695b4e585d0af214",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-28fc03057d50b332a8ca4da535f33e925019d0c6bff576e6d4356559931ef6a8",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-9a94abcad8346a10153fee0b5b5156ceb24c8eaddc534f2814d2e771adf611ee",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-12d887a3c6723c962c7c8c9a476923d2b3e41e2ec94f2627ea48b83411d02682",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-976efbbd1ef248d7017cc5f1327c04a6f47396d8de3e34b533b9310d93ff1846",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-b3cb5d227e8f36dfc5df3859740ff9e2483285ab76732e9862df3fcb2b2c7fcb",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-1e7b1abbc4f0796454603a49db8e04323a22bcccd9bac27a7d022592a534fb46",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": "2026-09-07T01:43:04.640Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-dc2b540d8ee02b90c059d8b63869518726941fc49d318c758583696e15e6e3bd",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:43:04.640Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:43:04.640Z"
+    },
+    {
+      "documentId": "meeting-source-document-4f0ced54b59f1664ebf72e0393e0ef6b78811cfce721fd82998707dbcdab2d0c",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:45:38.803Z",
+      "lastSuccessAt": "2026-09-07T01:45:38.803Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:45:38.803Z"
+    },
+    {
+      "documentId": "meeting-source-document-9c23ed66f401dc1624498bcd687831326656d7818f77e9c2af9583299c6f81c6",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:45:38.803Z",
+      "lastSuccessAt": "2026-09-07T01:45:38.803Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:45:38.803Z"
+    },
+    {
+      "documentId": "meeting-source-document-b6d764b1da9fd6c1744c3937d1e0395688319ec411bb349abba602c0899ab55b",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:45:38.803Z",
+      "lastSuccessAt": "2026-09-07T01:45:38.803Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:45:38.803Z"
+    },
+    {
+      "documentId": "meeting-source-document-16549ebd38f905541a75a110d8b3b3e2eb42cabd5f338ef80bcda2dc6a0c3c91",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": "2026-09-07T01:46:41.293Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-6ad8588102970c63adcf488a2816bb7002fdeea3fb65e3c909203e054d3d6923",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": "2026-09-07T01:46:41.293Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-ccc15863a8e134b24d6040002d2d4c685637d6a8a0d626306bc69a132bf925fc",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": "2026-09-07T01:46:41.293Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-08fd0b6510c279f51fa7fefe21b095066332ea2718e21620aad7241ad85c0250",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": "2026-09-07T01:46:41.293Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-7783534b3606876d0e5b618012709e8003368021b41e72c80b38b323b926518e",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-e0a2d4e77144284a1c9080807371b05c182d8c46ad3cc1fa9f870ef9bf0ebf03",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": "2026-09-07T01:46:41.293Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-39c148fb62d2641cb7831dbda550baab13f73785983f54b6c8ae75743619fef4",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": "2026-09-07T01:46:41.293Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-5551f6707cfaf17e4caeba90bc38325c161180081d744d799e81483ccb22fd2a",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-b9ca4543a514e510dfff88132f11579caea74b1cfcc21c29f996b3aa1aec4fa2",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": "2026-09-07T01:46:41.293Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-1d3299941b5b4b5d661edc754e1c687e4b4e479fc2cd3f2869ee58531b4ee166",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:46:41.293Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:46:41.293Z"
+    },
+    {
+      "documentId": "meeting-source-document-0b7e228ab0c15d499532a0d1c4242c372c542ced1410603aa9237f964fbb90c1",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-f4dbf34b4b4b42634f6a9cc985c149d19402386864c157a13a5a08bb2859b001",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-b797f2cc47943ae2018ea34c8b23b02f51f3e08dda4be1c1a3b13878b6d2b244",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-f10cf83a1e2873b90d30898be1bce8932ab1197b3038c50bf6e7352e350beebc",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-448ab77e089e8ada19c82d9e6d5b06335f2bee5ba3d74643fa8a877cf15656c0",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-19ecdfa305aecc84ad3627f705c2e7799b175a1585958f90816d33000e8b168d",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-42712a4d7a9fcf17488748ad9f0c54b2f2ce271ca9ec0fab60d2210be6c8493a",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-f7269f373a0a710c24f0de3da467afc0daf06df26e47364ba4eebeab63bb97d5",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-279d931a147c7da73ecb2516c0c98e37759e275a1d5c35d1be5b28cdc50e8f29",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-3c954361568755124cd2032e77d784cefe14cc17a1186d2a72f5abdb4a35f302",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-a0a5e134c94bccdd4dc96bc0381555534b301b5e7c393dcea293281f7f77c1e8",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-7ea43fd1d096612fcae7e326b83b9ca59f3d67496406fdace627f6a02900e6bb",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-c9e0198a4c5f41c8e26b03059d09aa6a1c433b1ff180ec8b587f569de7cb3b31",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:52:15.405Z",
+      "lastSuccessAt": "2026-09-07T01:52:15.405Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:52:15.405Z"
+    },
+    {
+      "documentId": "meeting-source-document-3d5bb973a0df8eab561d6bef75d0ab8a7f603189291e719e33a26ca020417723",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-321c3f587d2bc0324646dba53a9eabc5ce6607f58c8ee6b5dbe67533915cd485",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-26bd7f179397ff67b91a56acd51032aa7ec0948793f840ac3b195ae43c6d08f3",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-c41a253312a5a655e7988cd1853f781920be35eb2671c402ef2b9d0514a12bed",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-4ca42f19415f5a52ade088773788ed36388b2a5d7157aae9a2abd679a1ac1418",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-9d8f08501014dfac5e8578edff878fa8dd66ce57aac75c3a46f26782d1750274",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-e45e5b0af932231213ca3cd6bf88c8152cda03474be47e4ec209c19af49f410e",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-312a1ed71bde7108cda68ca777b933bfe05df4b07775ea1c8cf8d434250a0cc3",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-0ca281e9ec6d631440807ac2d647010b3f7bb80bf6418297504d6b66082aa922",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-ef6e8c2d1c4c26f76d18c5682dcdb8a75cb706aa2bfce2f0a0f8ccf501c9cc60",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-847213fc19768ca57b029c398c287e4b70b3ede5cab21b8bfbba78e3ed383fef",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-32e84f46fd12305aa9e3a059f0d2e2a0912324fc54a922a9db31c3a376c8eb3b",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-f7567d72dca932a0b15996638675a52a2e9f80a18531ec4160adb154b4364c2c",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-2f4265fe6a8021c52fbbfbe16b048fb87d14d8af6c53733e37d6675aa80095ea",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-3d8f24b43df59612363e7a9a5baecc023c9114fef14df0c18bf36ac5707fb2db",
+      "sourceId": "clark-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-85093471e02ba75592aca200df75e975be1d9040291f4c83240708690ba8eb69",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-51222a3804869c83bb7ca33c517acdcac47551a1c45e78bfa9c0b2c33266b5b1",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-75cc98c095c0dfda0aca9e523e552deca76aec2ba0d9a05adde6f757716868d5",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-8d446751fa1bf695732995c0f69eccccbccfa3ecc91640db8b8d5671118f4cf4",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-eb34ea0e0035e910863320eb89b3da7595a0a479db1f55a4c9a01d6bc9b3e64c",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-bafd0936fe18cc0c21885ea1c8273bfa37ea7789d94f66c26cca853404541498",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-1bc5fa5abd65fd159faed3cb37831192fd0044218273a4b8568b10ccc509b9ef",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-463f92ff435e056d0b8321911830379f3c09fd465927929bf0d6f193a193882d",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-eeb89ceab8f031bf8da5695895bc70699b3e9af58cbf77fcf800951b3d769b89",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-89b804813c4a357a09f909e12b3601e914c0d22aec2a50e0b8c83e823877c8d0",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-ebb2f20e580e57d01cd41cc8855e1509428a765c298c61101cb1f44d54c7eddf",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-34fcb775a8d1adbaf1cdaca1d0b6ebcafc238dda268f3391edc29dad4ff5941c",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-0b93dffa06b79b432c8566310fda07f584fb544d6498afa547af699d4d8ba9db",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-a665749ca95146012d83e86be4ae1f6d8717f481e7de96f64a9e822453e2ce71",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-afc17ddfed2d8cad9acb1eb9ade11ab46ae0d103ee4d2930b673a4c6bc3a5d87",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-2f0d61f31c362eb9799388a640ef7162f072cd64be86fadb38a7830f1e6ce7d6",
+      "sourceId": "sparks-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-e0bbdccb194dd016bb7e39282fe3aa430535926e36e4b8d68d223987ee4296ad",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-0e46a274d9690deb76113513d5e6862ea5125e08c630535f58f88a0cf0585142",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-47fe2a9d2909db5e5bbca476f50916c79d69a271f3e630185880c2395848bd93",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-11866213f577800ae228b8789fe2d8bad5babd515fae2462e292dd38688021c2",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-bf9d4d8d30540df2c2caabb3571f1d50e773601a0d5ef191aedd757b37decdb2",
+      "sourceId": "clark-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-679fa2fb67520b4dc8eec65eab4bd5a4455685a132aec458ea9ef549013a04af",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-017df6524820c589562e2e5e69f62b00ddaa32938622333d861773745c0383af",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-6e0d49ca99cc438061de3db3c4ee50e1e8a8ad271eaf6cb72c1244a4de90da3f",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-43567781ed1305dc117bb03dabbe420feb1cce7b5417339771dcd7ae60d78d60",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-920692116a22ef9fb7d1e2470c2a8d54d3b8a0186d0168714e5922243944bef6",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-3f617daa72bb606f5d46e28f4cf2b80ea2ba9b2e350ed1b9aaf783c31d43a95a",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-3a173817bdf1cdc4d7731c7584c5c5475e73c387ac52f327d6f0e3690eca7139",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-6c31700d83fe1a99cb785725f185979019adba059a6f442534bd4bf69bea2deb",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-e82b4b8988853328b5b095ca56a95f884e1b4e4c83bca737fc08e581c38903ee",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-71e234474034ff28b75cb07554bef1ac9679500186bba74e3bc09f633da7e625",
+      "sourceId": "clark-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-26626513775dfab06660b76eebf77dafdb5b0aa174d1753f198e3d06d120d26f",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-c76c8659ebbc63769a5af4414d5db2cdaeae87d96b11d619041e4242c5f65bec",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-f633b0282d135a1644d00b62992e6605c69b8406842d93c24e3625912c646fc3",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-4ca36e0d00655881a9f9c4335d31f78579b435043adc4b40b99548360dbac1f0",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-01df6f335297a6916310ccbdafc52b7b868f883e6a36ab8f18d0e1e1b27ba604",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-de24820ee4d74086986ffa0bd3d72d1a5a3504bf25194a9c50beedb258d5f28c",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-1aba0087cc463bf9debdbaff072db0da01da14567d908f88ff06ed5008bcc0c0",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-cba843a793948f297b0ccded66d5848df37664dcd89107d62103c3af8aab087f",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-a3e8b72c64c0764dffb273a5874de9ab0906be944a7d3bb4542d65fdfb799120",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-edc6c5aaefa565151c5f39de8109f761232d0408f2ac05c8b097f280fc746c91",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-e8a61ff3beb8d7056590f6c90a582f820e160779daa68a6395d17ea731b970cd",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-68ae5be6c9a2024b2f38e83869fa91549953f2855dab70bf6d6a85e240cb712c",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-1b68fa3b5ec9d25fa844c7a028c3319140897f752d6c856cb1f6a1c564ceb62a",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-88d6b6ef7b73a23df09a73a1c0c3adac75f1a3cdae70341808e6b091530ad929",
+      "sourceId": "clark-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-86ae7147d73590ca938b502bf9a3c1728b39752ac68196ee80e670d6a6bc435d",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-57f7e26825cedc5b3b3c679aea5492a9ce0e4ea03823fa16633bf0e6d44a2b4d",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-1c3bdeb2a8e529ad44d50b8694bcff13e68b4244a3e06c8b3f7762135dec1c84",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-8b512741c1937899bc90b4a789f50e777087fbef930fb0b647c7c120424d5fa4",
+      "sourceId": "clark-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-3942470ef40483e883b4f4a9e2a6091e52ada80253ced7f03b48fa37152f1076",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-9b19dadb7c9e573a8c237c7d162387984b79edd1d9c8f5d58a52d7df6c23700e",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-7c6b7eea75a238d63c63b419abc250c303d78a80c9f0fb605af780ff793cbb89",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-fc465154749acb5d5a93cfb44e66ace50c0a9fabcb51bf4e90121b43ee4ee220",
+      "sourceId": "clark-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-7fe06e30225f3eb49a853dcde0721384d4e468ccf0080b7c4fb0abccd6b6a8ae",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-0a771a8eb21b0d603bddb78e5ee7ec6013c45145891f1a8dced6975bfcc57dc7",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-4350bcb02e7e301004dd1668d8d12122ff21312c194a8f916f81889cdb6cdd16",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-cd42a65263010c16a5bd793ca266e1d6013509dbebddb8647993e434da30d744",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-5a7005821bce1edf79261174319f307a07ef48886a027c614645e860cb2aad64",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-60284e10fafd94f1481d941bda320aedbdc0eed356215fd68cf4d5629f10ac1a",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": "2026-09-07T01:53:06.530Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T01:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-b7ed39c8191b121b4cd372a6146226f2b111fbfe30ed0c8b66da4a7e13eccc85",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T01:53:06.530Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T07:53:06.530Z"
     }
   ]
 }

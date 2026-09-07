@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-03T18:08:06.271Z",
+  "generatedAt": "2026-09-07T01:48:23.781Z",
   "provenance": {
-    "runId": "20260703180806-local-network-enabled-oykzhu",
-    "generatedAt": "2026-07-03T18:08:06.236Z",
+    "runId": "20260907014823-local-network-enabled-l34zm8",
+    "generatedAt": "2026-09-07T01:48:23.763Z",
     "executionEnvironment": "local_network_enabled",
     "networkCapability": "available",
     "databaseReachability": "database_reachable",
     "storageBackend": "schema_ready",
     "workerBackend": "configured_runtime",
-    "gitCommit": "46a6e1e1ff94",
+    "gitCommit": "6a340224a506",
     "canonicalStatus": "not_canonical",
     "artifactName": "worker-queue-audit"
   },
@@ -30,6 +30,12 @@
   },
   "jobTypesSupported": [
     "email_delivery",
+    "scheduled_health_check"
+  ],
+  "conditionalJobTypes": [
+    "dataops_operation"
+  ],
+  "unimplementedJobTypes": [
     "residency_provider_check",
     "address_normalization",
     "district_mapping",
@@ -37,9 +43,7 @@
     "verification_evidence_purge",
     "privacy_export",
     "account_deletion_anonymization",
-    "dataops_operation",
-    "ocr_processing",
-    "scheduled_health_check"
+    "ocr_processing"
   ],
   "queueByJobType": [
     {

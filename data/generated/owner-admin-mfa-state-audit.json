@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-22T04:17:59.138Z",
+  "generatedAt": "2026-09-07T01:30:37.226Z",
   "mfaConfigurationStatus": "configured",
   "owner": {
     "ownerExists": true,
-    "ownerEmailMatchesDefault": true,
+    "ownerEmailMatchesDefault": false,
     "role": "admin",
     "status": "active",
     "emailVerificationStatus": "verified",
@@ -15,7 +15,7 @@
     "encryptedSecretStored": true,
     "recoveryCodeHashesStored": 10,
     "recoveryCodesUsed": 0,
-    "activeSessions": 2,
+    "activeSessions": 0,
     "plaintextSecretsInStore": false
   },
   "validations": {
@@ -40,6 +40,7 @@
   "failures": [],
   "notes": [
     "No encryption keys, TOTP secrets, recovery codes, or password material are included in this audit.",
-    "Owner admin uses the normal MFA challenge path after password sign-in; no bypass is recorded."
+    "Owner state is read from durable IdentityAccount. Only hashed opaque sessions with an unexpired database record count as active.",
+    "MFA verification is bound to the durable session and rotated after challenge; a separate signed user-ID cookie cannot grant MFA."
   ]
 }
