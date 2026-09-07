@@ -1,6 +1,7 @@
 import "server-only";
 
 import { cookies } from "next/headers";
+import { DEV_ONLY_AUTH_ENABLED } from "@/lib/auth/constants";
 
 import type { UserSummary } from "@/types/domain";
 import { isVerificationOverrideMap, type VerificationOverrideMap } from "@/lib/auth/verification";
@@ -33,6 +34,9 @@ export async function setVerificationOverrides(overrides: VerificationOverrideMa
 }
 
 export async function resolveUserVerification<T extends UserSummary>(user: T): Promise<T> {
+  // Real accounts carry durable verification state; unsigned demo cookies may
+  // only customize the explicitly enabled local demo experience.
+  if (!DEV_ONLY_AUTH_ENABLED) return user;
   const overrides = await getVerificationOverrides();
   const baseState = overrides[user.id] ?? user.verificationState;
   const nextState = baseState === "voterVerified" ? "voterVerified" : "unverified";

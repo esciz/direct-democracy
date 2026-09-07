@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { hasInstalledCivicRelease } from "@/lib/dataops/installed-release";
+import { cachedTopicNeedsEvidenceReview } from "@/lib/public-meetings/evidence-review";
 
 import { parseMeetingVotingCardFinancialImpact } from "@/lib/public-meetings/financial-impact";
 import { buildPlainLanguageMeetingVotingCardFields } from "@/lib/public-meetings/plain-language";
@@ -151,6 +152,7 @@ function confidenceFor(item: PublicMeetingItemRecord) {
 }
 
 function reviewStatusFor(item: PublicMeetingItemRecord, confidence: number, effectiveOutcome: string | null, actionResult: PublicMeetingActionResultRecord | undefined): MeetingVotingCardRecord["review_status"] {
+  if (cachedTopicNeedsEvidenceReview(item)) return "needs_review";
   const sourceBacked = Boolean(item.source_snippet || item.source_url || item.source_local_path);
   const actionText = normalizeWhitespace(`${item.title} ${item.source_text}`);
   const sourceBackedCompletedAction =
@@ -255,7 +257,7 @@ export function buildMeetingVotingCards(context: BuildContext): MeetingVotingCar
       affected_groups: item.affected_groups,
       outcome_status: effectiveOutcome ? outcomeStatusFromText(effectiveOutcome, meeting) : outcomeStatus(item, meeting),
       outcome_text: effectiveOutcome,
-      review_status: reviewStatusFor(item, confidence, effectiveOutcome, actionResult),
+      review_status: hasSpecificMeetingQuestion(plainFields.public_question || questionFor(item, meeting, body)) ? reviewStatusFor(item, confidence, effectiveOutcome, actionResult) : "needs_review",
       confidence_score: confidence,
       related_official_actions: approvedActions,
       needs_roll_call_review: item.roll_call_status === "needs_roll_call_review",
@@ -303,6 +305,11 @@ export async function getMeetingVotingCards(filters: MeetingVotingCardFilters = 
   };
 }
 
+export function hasSpecificMeetingQuestion(question: string) {
+  // A recorded outcome alone does not tell a voter what proposal is at issue.
+  return !/\b(?:approve\s+motion\s+carried|continue\s+continued\s+work\s+on\s+this\s+matter)\b/i.test(question);
+}
+
 export function getPublicMeetingVotingCards(cards: MeetingVotingCardRecord[]) {
-  return cards.filter((card) => card.review_status === "approved" && card.confidence_score >= 0.8);
+  return cards.filter((card) => card.review_status === "approved" && card.confidence_score >= 0.8 && hasSpecificMeetingQuestion(card.public_question || card.question_text));
 }

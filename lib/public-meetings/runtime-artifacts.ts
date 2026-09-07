@@ -115,6 +115,7 @@ export async function writePublicMeetingRuntimeArtifacts(input?: {
       policy_area: item.policy_area, source_page: item.source_page,
       source_text: summarizeText(item.source_text, 1200), source_url: item.source_url,
       source_method: item.source_method, parser_status: item.parser_status,
+      source_document_type: item.source_document_type,
       roll_call_status: item.roll_call_status, source_document_hash: item.source_document_hash,
       cached_text_path: null, confidence_score: item.confidence_score,
     }));

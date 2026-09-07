@@ -91,11 +91,19 @@ jobs:
       - name: Validate application and source regressions
         run: |
           npm run dataops:release:test
+          node --import tsx scripts/test-packed-civic-runtime.ts
+          node --import tsx scripts/test-retrieval-history.ts
+          node --import tsx scripts/test-public-session-boundary.cjs
+          node --import tsx scripts/test-durable-profile-content.ts
+          node --import tsx scripts/test-profile-mutation-session.ts
+          npm run minutes:evidence:test
+          npm run meetings:items:test
           npm run financials:nevada:test
           npm run ads:nevada:test
           npm run meetings:adapters:nevada:test
           npm run meetings:priority-sources:test
           npm run meetings:identity:test
+          npm run meetings:lifecycle:test
           npm run meetings:runtime:test
           npm run auth:sessions:test
           npm run auth:recovery:test

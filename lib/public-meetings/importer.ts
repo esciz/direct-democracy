@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import { copyFile, mkdir, readFile, readdir, rename, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import { mergeMeetingHistory } from "@/lib/public-meetings/lifecycle";
+import { reconcileNevadaAgencyMeetingHistory } from "@/lib/public-meetings/nevada-agency-identity";
 import { reconcileCrossProviderMeetingIdentities } from "@/lib/public-meetings/cross-provider-identity";
 import { writePublicCivicCaseArtifacts } from "@/lib/public-cases/public-civic-cases";
 import {
@@ -62,6 +62,7 @@ type ParsedItemDraft = {
   title: string;
   sourceText: string;
   confidence: number;
+  validatedHeading?: boolean;
 };
 
 const SUPPORTED_EXTENSIONS = new Set([".pdf", ".txt", ".text", ".html", ".htm"]);
@@ -723,7 +724,11 @@ async function collectHistoricalArchiveMeetings(seeds: PublicMeetingSourceSeed[]
         notes = sourceWarnings.length ? sourceWarnings.join(" ") : null;
       } else if (isNevadaAgencySource(seed)) {
         const sourceWarnings: string[] = [];
-        providerDrafts = (await discoverNevadaAgencyMeetings(seed, fetchText, new Date(), (warning) => sourceWarnings.push(warning))).filter((draft) => isMeetingDateInDiscoveryWindow(draft.meetingDate));
+        const previous = await readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_OUTPUT_FILES.meetings, []);
+        const retainedMinutes = new Set(previous.filter((meeting) => meeting.public_body_id.startsWith(`body-${seed.id}-`)).flatMap((meeting) => meeting.source_urls.filter((url) => /minutes/i.test(url))));
+        providerDrafts = (await discoverNevadaAgencyMeetings(seed, fetchText, new Date(), (warning) => sourceWarnings.push(warning))).filter((draft) => isMeetingDateInDiscoveryWindow(draft.meetingDate)
+          // Repair an already retained document's true historical date without expanding the general backfill window.
+          || !!draft.minutesUrl && retainedMinutes.has(draft.minutesUrl));
         if (seed.id === "carson-city-school-district") sourceWarnings.unshift("Dated board meetings come from the official district page; actual agendas/minutes come from its publicly linked Drive folders. Legacy BoardDocs remains unparsed and is not counted as document coverage.");
         notes = sourceWarnings.length ? sourceWarnings.join(" ") : null;
       } else if (seed.id === "carson-city-board-of-supervisors") {
@@ -1030,55 +1035,66 @@ function buildMeeting(extracted: ExtractedDocument): PublicMeetingRecord {
   };
 }
 
-function looksLikeItemHeading(line: string) {
-  const value = normalizeWhitespace(line);
-  if (value.length < 8 || value.length > 260) return false;
-  return (
-    /^(?:item\s+)?(?:\d{1,3}[a-z]?|[A-Z])[\.)]\s+.{6,}/i.test(value) ||
-    /^(?:agenda\s+item|public\s+hearing|ordinance|resolution|consent\s+agenda|new\s+business|old\s+business|action\s+item)\b/i.test(value)
-  );
-}
-
-function parseItemNumber(title: string) {
-  const match = title.match(/^(?:item\s+)?((?:\d{1,3}[a-z]?)|[A-Z])[\.)]\s+/i);
-  return match?.[1] ?? null;
-}
-
 function splitMeetingItems(text: string, method: PublicMeetingExtractionMethod): ParsedItemDraft[] {
-  const lines = normalizeTextLines(text).split("\n").filter(Boolean);
-  const drafts: ParsedItemDraft[] = [];
-  let current: { title: string; lines: string[] } | null = null;
-
-  for (const line of lines) {
-    if (looksLikeItemHeading(line)) {
-      if (current) {
-        drafts.push({
-          itemNumber: parseItemNumber(current.title),
-          title: summarizeText(current.title, 180),
-          sourceText: summarizeText([current.title, ...current.lines].join("\n"), 1800),
-          confidence: method === "ocr_needed" ? 0.25 : 0.64,
-        });
-      }
-      current = { title: normalizeWhitespace(line), lines: [] };
-    } else if (current) {
-      current.lines.push(line);
+  const lines = normalizeTextLines(text).split("\n");
+  const civicHeading = /^(?:public comment|call (?:the meeting )?to order|roll call|adjournment|consideration|consider|discussion|review|approval|adoption|presentation|research|questions for|future meetings|member introduction|transfers of interest|hearing on (?:the )?summary suspension|status check|(?:three|3)[\s\-\u2010-\u2015]month status update|license agreement|consent (?:agenda|calendar)|action items?|staff reports?|board reports?|committee reports?|financial reports?|budget|new business|old business|public hearing|ordinance|resolution|approve|adopt|authorize|appoint|amend|accept|award|receive|recess)\b/i;
+  type Heading = { index: number; number: string | null; family: "roman" | "numeric" | "alpha" | "named"; ordinal: number; title: string; meaningful: boolean };
+  const romanValue = (value: string) => [...value].reduce((sum, letter, index, all) => {
+    const values: Record<string, number> = { I: 1, V: 5, X: 10 };
+    return sum + (values[letter] < (values[all[index + 1]] ?? 0) ? -values[letter] : values[letter]);
+  }, 0);
+  const headings: Heading[] = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const numbered = line.match(/^(?:[Ii]tem\s+)?(\d{1,3}[a-z]?|[IVX]{1,6}|[A-Z])[.)](?:\s+(.+))?$/);
+    let family: Heading["family"] = "named";
+    let number: string | null = null;
+    let ordinal = 0;
+    let content = line;
+    if (numbered) {
+      number = numbered[1]; content = numbered[2] ?? "";
+      family = /^\d/.test(number) ? "numeric" : /^(?:X{0,3})(?:IX|IV|V?I{0,3})$/.test(number) ? "roman" : "alpha";
+      ordinal = family === "numeric" ? parseInt(number, 10) : family === "roman" ? romanValue(number) : number.charCodeAt(0) - 64;
+    } else if (!/^(?:agenda item|public hearing|ordinance|resolution|consent agenda|new business|old business|action item)\b/i.test(line)) continue;
+    let next = index + 1;
+    while (!content && next < lines.length && !lines[next]) next += 1;
+    if (!content && next < lines.length && !/^(?:\d{1,3}|[A-Za-z]+)[.)](?:\s|$)/.test(lines[next])) content = lines[next++];
+    // Join wrapped headings, preserving the original lines separately in sourceText.
+    for (let count = 0; count < 4 && next < lines.length; next += 1) {
+      const following = lines[next];
+      if (!following) continue;
+      if (/^(?:\d{1,3}|[A-Za-z]+)[.)](?:\s|$)/.test(following) || /^(?:Chair|Commissioner|Member|There|The board|The committee|Motion|Moved|Seconded)\b/i.test(following)) break;
+      const unfinished = /\b(?:of|the|and|on|for|to|from|by|with|Meeting)\s*$/i.test(content) || (content.includes("(") && !content.includes(")"));
+      if (!unfinished && !/^\(for (?:possible action|discussion only)\)/i.test(following)) break;
+      if (content.length + following.length > 360) break;
+      content += ` ${following}`; count += 1;
     }
+    if (content.length < 6 || content.length > 420) continue;
+    const meaningful = civicHeading.test(content);
+    // A person's initial (for example L. Kristopher Rath) is never an agenda heading.
+    if (family === "alpha" && !meaningful) continue;
+    headings.push({ index, number, family, ordinal, title: number ? `${number}. ${content}` : content, meaningful });
   }
-
-  if (current) {
-    drafts.push({
-      itemNumber: parseItemNumber(current.title),
-      title: summarizeText(current.title, 180),
-      sourceText: summarizeText([current.title, ...current.lines].join("\n"), 1800),
-      confidence: method === "ocr_needed" ? 0.25 : 0.64,
-    });
-  }
-
+  const ordered = (family: Heading["family"]) => {
+    const rows = headings.filter((heading) => heading.family === family);
+    return rows.length >= 2 && rows.some((heading, index) => index > 0 && heading.ordinal === rows[index - 1].ordinal + 1);
+  };
+  // Top-level Roman sections own their alphabetic/numeric discussion bullets.
+  const family = (["roman", "numeric", "alpha"] as const).find(ordered);
+  const selected = headings.filter((heading) => family ? heading.family === family : heading.family === "named" || heading.meaningful);
+  const duplicateNumbers = new Set(selected.filter((heading, index) => heading.number && selected.some((other, otherIndex) => otherIndex !== index && other.number === heading.number)).map((heading) => heading.number));
+  const drafts: ParsedItemDraft[] = selected.slice(0, 120).map((heading, index) => ({
+    itemNumber: heading.number,
+    title: summarizeText(heading.title, 360),
+    sourceText: lines.slice(heading.index, selected[index + 1]?.index ?? lines.length).join("\n").trim(),
+    confidence: method === "ocr_needed" ? 0.25 : 0.64,
+    validatedHeading: Boolean(family && heading.meaningful && heading.number && !duplicateNumbers.has(heading.number)),
+  }));
   if (!drafts.length && normalizeWhitespace(text).length > 120) {
     drafts.push({
       itemNumber: null,
       title: "Document review needed",
-      sourceText: summarizeText(text, 1800),
+      sourceText: normalizeTextLines(text),
       confidence: method === "ocr_needed" ? 0.2 : 0.34,
     });
   }
@@ -1111,8 +1127,8 @@ function extractFiscalImpact(text: string) {
   return dollars ? summarizeText(`${dollars[1]}${dollars[2] ?? ""}`, 360) : null;
 }
 
-function buildItems(meeting: PublicMeetingRecord, extracted: ExtractedDocument): PublicMeetingItemRecord[] {
-  return splitMeetingItems(extracted.text, extracted.method).map((draft, index) => {
+function buildItems(meeting: PublicMeetingRecord, extracted: ExtractedDocument, drafts = splitMeetingItems(extracted.text, extracted.method)): PublicMeetingItemRecord[] {
+  return drafts.map((draft, index) => {
     const itemType = inferItemType(draft.sourceText);
     const id = `item-${meeting.id}-${draft.itemNumber ?? index + 1}-${hashText(draft.sourceText).slice(0, 10)}`;
     const translation = extractPlainLanguage(draft.title, draft.sourceText);
@@ -1146,6 +1162,47 @@ function buildItems(meeting: PublicMeetingRecord, extracted: ExtractedDocument):
 }
 
 /** Parse evidence using its existing meeting identity; never manufacture an event from a document. */
+export const CACHED_MEETING_TOPIC_PARSER_VERSION = 3;
+
+export function isSpecificMeetingDocumentUrl(value: string | null): boolean {
+  try {
+    const url = new URL(value ?? "");
+    if (!["https:", "http:"].includes(url.protocol) || url.username || url.password) return false;
+    if (/\.(?:pdf|docx?|txt)$/i.test(url.pathname)) return true;
+    if (/\/document\/\d+(?:\/|$)/i.test(url.pathname)) return true;
+    if (/\/Public\/CompiledDocument$/i.test(url.pathname)) return ["meetingTemplateId", "compiledMeetingDocumentFileId"].some((key) => /^\d+$/.test(url.searchParams.get(key) ?? ""));
+    if (/\/Documents\/ViewAgenda$/i.test(url.pathname)) return /^\d+$/.test(url.searchParams.get("meetingId") ?? "") && /^[12]$/.test(url.searchParams.get("doctype") ?? "");
+    if (/\/AgendaViewer\.php$/i.test(url.pathname)) return ["event_id", "clip_id"].some((key) => /^\d+$/.test(url.searchParams.get(key) ?? ""));
+    if (/\/MinutesViewer\.php$/i.test(url.pathname)) return /^\d+$/.test(url.searchParams.get("clip_id") ?? "") && /^[a-f\d]{8}(?:-[a-f\d]{4}){3}-[a-f\d]{12}$/i.test(url.searchParams.get("doc_id") ?? "");
+    if (/\/View\.ashx$/i.test(url.pathname)) return /^[AMF]$/i.test(url.searchParams.get("M") ?? "") && /^\d+$/.test(url.searchParams.get("ID") ?? "");
+    if (url.hostname === "drive.google.com") return /^\/file\/d\/[\w-]+\//.test(url.pathname) || url.pathname === "/uc" && /^[\w-]+$/.test(url.searchParams.get("id") ?? "");
+    return false;
+  } catch { return false; }
+}
+
+/** Restore a citation only when the downloaded bytes and meeting/document provenance agree. */
+export function resolveCachedMeetingDocumentUrl(input: {
+  meeting: Pick<PublicMeetingRecord, "id" | "meeting_alias_ids" | "agenda_url" | "minutes_url" | "packet_url">;
+  documentId: string; documentType: string; sourceHash: string; sourceUrl: string | null;
+  documents: ReadonlyArray<{ id: string; meetingId: string; documentType: string; sourceUrl: string | null; provenance?: Array<{ meetingId: string }> }>;
+  cache: ReadonlyArray<{ documentId: string; contentHash: string }>;
+}): string | null {
+  if (!/^[a-f\d]{64}$/i.test(input.sourceHash)) return null;
+  const meetingIds = new Set([input.meeting.id, ...(input.meeting.meeting_alias_ids ?? [])]);
+  const hashes = new Map(input.cache.map((record) => [record.documentId, record.contentHash]));
+  const kind = (value: string) => value === "board_packet" ? "packet" : value;
+  const candidates = input.documents.filter((record) =>
+    (meetingIds.has(record.meetingId) || record.provenance?.some((entry) => meetingIds.has(entry.meetingId)))
+    && kind(record.documentType) === kind(input.documentType) && hashes.get(record.id) === input.sourceHash
+    && isSpecificMeetingDocumentUrl(record.sourceUrl));
+  const urls = [...new Set(candidates.map((record) => record.sourceUrl!))];
+  const primary = input.documentType === "minutes" ? input.meeting.minutes_url : kind(input.documentType) === "packet" ? input.meeting.packet_url : input.meeting.agenda_url;
+  if (primary && urls.includes(primary)) return primary;
+  if (input.sourceUrl && urls.includes(input.sourceUrl)) return input.sourceUrl;
+  const ownDocument = candidates.find((record) => record.id === input.documentId);
+  return ownDocument?.sourceUrl ?? (urls.length === 1 ? urls[0] : null);
+}
+
 export function parseCachedPublicMeetingDocument(input: {
   meeting: PublicMeetingRecord; body: PublicBodyRecord | null; documentId: string;
   documentType: "agenda" | "minutes" | "board_packet"; text: string; sourceUrl: string | null;
@@ -1158,14 +1215,20 @@ export function parseCachedPublicMeetingDocument(input: {
     agenda_url: input.meeting.agenda_url, minutes_url: input.meeting.minutes_url, packet_url: input.meeting.packet_url,
     video_url: input.meeting.video_url, transcript_url: input.meeting.transcript_url, notes: null,
   };
+  const drafts = splitMeetingItems(input.text, input.ocr ? "ocr_needed" : "plain_text");
+  const nativeEvidence = !input.ocr && isSpecificMeetingDocumentUrl(input.sourceUrl) && /^[a-f\d]{64}$/i.test(input.sourceHash) && Boolean(input.textPath.trim());
   return buildItems(input.meeting, { importDocument: document, body: input.body, text: input.text, hash: input.sourceHash,
-    cachedTextPath: input.textPath, rawPath: input.sourcePath, method: "plain_text", status: "needs_review", error: null })
-    .map((item) => ({ ...item, source_method: "automated_archive", source_local_path: input.sourcePath,
-      parser_status: "needs_review", roll_call_status: "needs_roll_call_review",
+    cachedTextPath: input.textPath, rawPath: input.sourcePath, method: "plain_text", status: "needs_review", error: null }, drafts)
+    .map((item, index) => ({ ...item, source_method: "automated_archive", source_local_path: input.sourcePath,
+      source_url: input.sourceUrl, source_document_type: input.documentType,
+      parser_status: nativeEvidence && drafts[index].validatedHeading ? "source_excerpt" : "needs_review", roll_call_status: "needs_roll_call_review",
       // Proposed agenda language, or a sentence mentioning an older approval, is not a new decision.
       // The evidence review/result parser handles decisions separately; this step creates topics only.
-      vote_outcome: null, related_official_names: [],
-      confidence_score: Math.min(item.confidence_score, input.ocr ? 0.48 : 0.64),
+      vote_outcome: null, related_official_names: [], related_organization_names: [],
+      one_sentence_summary: item.title, plain_english_explanation: item.source_text,
+      why_it_matters: "Source excerpt; any action or outcome requires separate review.", affected_groups: [],
+      financial_impact: null, fiscal_impact_summary: null, staff_recommendation: null,
+      confidence_score: nativeEvidence && drafts[index].validatedHeading ? 0.72 : Math.min(item.confidence_score, input.ocr ? 0.48 : 0.64),
     }));
 }
 
@@ -1417,14 +1480,20 @@ export async function runPublicMeetingImport(options: { sourceIds?: string[] } =
     if (question) questions.push(question);
   }
 
-  const dedupedMeetings = reconcileCrossProviderMeetingIdentities(mergeMeetingHistory(previousMeetings.map(removeMisclassifiedSchoolPortalDocuments), dedupeById([...meetings, ...archiveMeetings])));
+  const agencyHistory = reconcileNevadaAgencyMeetingHistory(previousMeetings.map(removeMisclassifiedSchoolPortalDocuments), dedupeById([...meetings, ...archiveMeetings]));
+  const dedupedMeetings = reconcileCrossProviderMeetingIdentities(agencyHistory.meetings);
   const realMeetingIds = new Set(dedupedMeetings.map((meeting) => meeting.id));
   const canonicalMeetingIds = new Map(dedupedMeetings.flatMap((meeting) => (meeting.meeting_alias_ids ?? []).map((id) => [id, meeting.id] as const)));
-  const dedupedItems = dedupeById([...previousItems, ...items].map((item) => ({ ...item, meeting_id: canonicalMeetingIds.get(item.meeting_id) ?? item.meeting_id }))).filter((item) => realMeetingIds.has(item.meeting_id) && item.source_method !== "manual_fixture");
+  const dedupedItems = dedupeById([...previousItems, ...items].map((item) => {
+    const documentOwner = /^meeting-nv-(?:cannabis|taxation)-public-meetings-/.test(item.meeting_id) && item.source_url ? agencyHistory.documentMeetingIds.get(item.source_url) : null;
+    const meetingId = documentOwner ?? item.meeting_id;
+    return { ...item, meeting_id: canonicalMeetingIds.get(meetingId) ?? meetingId };
+  })).filter((item) => realMeetingIds.has(item.meeting_id) && item.source_method !== "manual_fixture");
   const realItemIds = new Set(dedupedItems.map((item) => item.id));
+  const meetingIdByItem = new Map(dedupedItems.map((item) => [item.id, item.meeting_id]));
   const dedupedVotes = dedupeById([...previousVotes, ...votes]).filter((vote) => realItemIds.has(vote.meeting_item_id));
   const officialMatchCandidates = await loadOfficialActionMatchCandidates();
-  const dedupedOfficialActions = applyOfficialActionMatches(dedupeById([...previousActions, ...officialActions].map((action) => ({ ...action, meeting_id: canonicalMeetingIds.get(action.meeting_id) ?? action.meeting_id }))).filter((action) => realItemIds.has(action.topic_item_id)), {
+  const dedupedOfficialActions = applyOfficialActionMatches(dedupeById([...previousActions, ...officialActions].map((action) => ({ ...action, meeting_id: meetingIdByItem.get(action.topic_item_id) ?? canonicalMeetingIds.get(action.meeting_id) ?? action.meeting_id }))).filter((action) => realItemIds.has(action.topic_item_id)), {
     meetings: dedupedMeetings,
     bodies,
     candidates: officialMatchCandidates,

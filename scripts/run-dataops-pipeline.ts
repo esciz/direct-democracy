@@ -34,6 +34,7 @@ if (process.argv.includes("--help")) {
       "register-sources",
       "discover-documents",
       "monitor-sources",
+      "retrieve-minutes",
       "retrieve-documents",
       "verify-cache",
       "extract-native-text",
@@ -87,6 +88,9 @@ const retrieveArgs = [
   process.argv.includes("--priority-only") ? "--priority-only" : null,
   process.argv.includes("--retry-only") ? "--retry-only" : null,
 ].filter(Boolean) as string[];
+// Match the minutes retrieval ceiling so large board minutes can be read after
+// download. Each PDF still runs in an isolated worker with a bounded timeout.
+const nativeExtractArgs = ["--max-pdf-bytes=250000000", "--pdf-timeout-ms=60000"];
 
 const stages: Stage[] = [
   {
@@ -149,11 +153,15 @@ const stages: Stage[] = [
       runNodeScript("scripts/audit-upcoming-meeting-coverage.ts", ["--strict"]),
     ],
   },
+  { id: "retrieve-minutes", description: "Reserve a retrieval batch for published minutes, including archived meetings.", network: true, commands: [runNodeScript("scripts/retrieve-public-meeting-documents.ts", [
+    ...retrieveArgs.filter(arg => !arg.startsWith("--limit=") && !arg.startsWith("--document-type=")),
+    "--document-type=minutes", `--limit=${argValue("minutes-limit") ?? "60"}`, "--max-bytes=250000000",
+  ])] },
   { id: "retrieve-documents", description: "Retrieve/cache queued remote documents.", network: true, commands: [runNodeScript("scripts/retrieve-public-meeting-documents.ts", retrieveArgs)] },
   { id: "verify-cache", description: "Verify cached content and reconcile cache counts.", commands: [runNodeScript("scripts/verify-public-meeting-cache-content.ts"), runNodeScript("scripts/audit-public-meeting-document-cache.ts")] },
-  { id: "extract-native-text", description: "Extract native text from cached documents.", commands: [runNodeScript("scripts/extract-public-meeting-document-text.ts")] },
-  { id: "ocr", description: "Audit OCR capabilities and execute bounded OCR candidates.", commands: [runNodeScript("scripts/audit-ocr-capabilities.ts"), runNodeScript("scripts/run-public-meeting-ocr.ts"), runNodeScript("scripts/extract-public-meeting-document-text.ts"), runNodeScript("scripts/audit-public-meeting-ocr.ts")] },
-  { id: "parse-meeting-items", description: "Parse numbered topics from newly cached agenda/minutes text into evidence review, preserving reviewed records.", commands: [runNodeScript("scripts/reprocess-cached-meeting-items.ts")] },
+  { id: "extract-native-text", description: "Extract native text from cached documents.", commands: [runNodeScript("scripts/extract-public-meeting-document-text.ts", nativeExtractArgs)] },
+  { id: "ocr", description: "Audit OCR capabilities and execute bounded OCR candidates.", commands: [runNodeScript("scripts/audit-ocr-capabilities.ts"), runNodeScript("scripts/run-public-meeting-ocr.ts"), runNodeScript("scripts/extract-public-meeting-document-text.ts", nativeExtractArgs), runNodeScript("scripts/audit-public-meeting-ocr.ts")] },
+  { id: "parse-meeting-items", description: "Parse minutes first, then other cached topics, preserving reviewed records and separating excerpts from outcomes.", commands: [runNodeScript("scripts/reprocess-cached-meeting-items.ts", ["--document-type=minutes", "--limit=400"]), runNodeScript("scripts/reprocess-cached-meeting-items.ts")] },
   { id: "source-completeness", description: "Regenerate source completeness and accountability readiness.", commands: [runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"), runNodeScript("scripts/audit-minutes-extraction.ts"), runNodeScript("scripts/generate-public-meeting-action-results.ts"), runNodeScript("scripts/generate-public-meeting-source-completeness.ts"), runNodeScript("scripts/audit-public-meeting-documents.ts")] },
   { id: "meeting-lifecycle", description: "Archive elapsed meetings and report delayed minutes, source freshness, and due follow-ups.", commands: [runNodeScript("scripts/generate-public-meeting-lifecycle.ts")] },
   { id: "attendance", description: "Regenerate rosters and attendance.", commands: [runNodeScript("scripts/generate-governing-body-rosters.ts"), runNodeScript("scripts/generate-public-meeting-attendance.ts"), runNodeScript("scripts/audit-public-meeting-attendance.ts")] },

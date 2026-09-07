@@ -2,27 +2,60 @@ import type { PublicMeetingRecord } from "@/lib/public-meetings/types";
 
 const DAY = 86_400_000;
 
+function collapseDeclaredMeetingAliases(meetings: PublicMeetingRecord[]) {
+  const byId = new Map(meetings.map((meeting) => [meeting.id, meeting]));
+  const claims = new Map<string, Set<string>>();
+  for (const meeting of meetings) for (const alias of meeting.meeting_alias_ids ?? []) {
+    if (alias === meeting.id) continue;
+    const owners = claims.get(alias) ?? new Set<string>();
+    owners.add(meeting.id); claims.set(alias, owners);
+  }
+  const canonicalId = (id: string) => {
+    const seen = new Set<string>();
+    let current = id;
+    while (claims.has(current)) {
+      const owners = claims.get(current)!;
+      // Conflicting or cyclic assertions require review, never an arbitrary winner.
+      if (owners.size !== 1 || seen.has(current)) return id;
+      seen.add(current);
+      current = [...owners][0];
+    }
+    return current;
+  };
+  const groups = new Map<string, PublicMeetingRecord[]>();
+  for (const meeting of meetings) {
+    const id = canonicalId(meeting.id);
+    groups.set(id, [...(groups.get(id) ?? []), meeting]);
+  }
+  return [...groups].map(([id, group]) => {
+    const canonical = byId.get(id)!;
+    if (group.length === 1) return canonical;
+    const merged = { ...canonical };
+    for (const field of ["agenda_url", "minutes_url", "packet_url", "video_url", "transcript_url"] as const) {
+      merged[field] = canonical[field] ?? group.find((meeting) => meeting[field])?.[field] ?? null;
+    }
+    // An alias contributes evidence, never its stale date, title, or governing body.
+    merged.meeting_alias_ids = [...new Set(group.flatMap((meeting) => [meeting.id, ...(meeting.meeting_alias_ids ?? [])]))].filter((alias) => alias !== id);
+    merged.source_identity_evidence = [...new Set(group.flatMap((meeting) => meeting.source_identity_evidence ?? []))];
+    merged.source_urls = [...new Set(group.flatMap((meeting) => [...meeting.source_urls, meeting.agenda_url, meeting.minutes_url, meeting.packet_url, meeting.video_url, meeting.transcript_url].filter((url): url is string => Boolean(url))))];
+    merged.source_local_paths = [...new Set(group.flatMap((meeting) => meeting.source_local_paths ?? []))];
+    merged.document_hashes = [...new Set(group.flatMap((meeting) => meeting.document_hashes))];
+    merged.key_actions = [...new Set(group.flatMap((meeting) => meeting.key_actions))];
+    merged.vote_results = [...new Map(group.flatMap((meeting) => meeting.vote_results).map((vote) => [JSON.stringify(vote), vote])).values()];
+    merged.source_document_count = Math.max(...group.map((meeting) => meeting.source_document_count), merged.source_urls.length);
+    merged.created_at = group.map((meeting) => meeting.created_at).sort()[0];
+    merged.updated_at = group.map((meeting) => meeting.updated_at).sort().at(-1)!;
+    return merged;
+  });
+}
+
 /** Refreshes are observations, never deletion instructions. Missing rows retain their evidence. */
 export function mergeMeetingHistory(previous: PublicMeetingRecord[], incoming: PublicMeetingRecord[]) {
   const records = new Map(previous.filter((meeting) => meeting.source_method !== "manual_fixture").map((meeting) => [meeting.id, meeting]));
   for (const meeting of incoming.filter((row) => row.source_method !== "manual_fixture")) {
-    let old = records.get(meeting.id);
-    // Alias IDs are supplied only by adapters with direct source-identity evidence.
-    for (const aliasId of meeting.meeting_alias_ids ?? []) {
-      if (aliasId === meeting.id) continue;
-      const alias = records.get(aliasId);
-      if (!alias) continue;
-      old = old ? { ...alias, ...old,
-        agenda_url: old.agenda_url ?? alias.agenda_url, minutes_url: old.minutes_url ?? alias.minutes_url,
-        packet_url: old.packet_url ?? alias.packet_url, video_url: old.video_url ?? alias.video_url,
-        source_urls: [...new Set([...alias.source_urls, ...old.source_urls])],
-        source_local_paths: [...new Set([...(alias.source_local_paths ?? []), ...(old.source_local_paths ?? [])])],
-        document_hashes: [...new Set([...alias.document_hashes, ...old.document_hashes])],
-        source_document_count: Math.max(alias.source_document_count, old.source_document_count),
-        meeting_alias_ids: [...new Set([...(alias.meeting_alias_ids ?? []), ...(old.meeting_alias_ids ?? [])])],
-      } : { ...alias, id: meeting.id };
-      records.delete(aliasId);
-    }
+    // Cross-ID merges run after every observation so all retained and incoming
+    // ownership claims are available to the conflict/cycle check together.
+    const old = records.get(meeting.id);
     if (!old) { records.set(meeting.id, meeting); continue; }
     const merged = { ...old, ...meeting, created_at: old.created_at };
     for (const field of ["agenda_url", "minutes_url", "packet_url", "video_url", "transcript_url", "meeting_summary", "meeting_date", "meeting_type"] as const) {
@@ -45,7 +78,9 @@ export function mergeMeetingHistory(previous: PublicMeetingRecord[], incoming: P
     if (comparable(merged) === comparable(old)) merged.updated_at = old.updated_at;
     records.set(meeting.id, merged);
   }
-  return [...records.values()];
+  // Scoped refreshes may observe an old alias while its canonical source is not
+  // selected. Reapply retained identity evidence so those rows cannot reappear.
+  return collapseDeclaredMeetingAliases([...records.values()]);
 }
 
 export function meetingLifecycle(meeting: Pick<PublicMeetingRecord, "meeting_date" | "title" | "minutes_url"> & { meeting_status?: string; meeting_category?: string }, now = new Date(), minutesExtracted = false) {
@@ -74,6 +109,7 @@ export type DocumentRefreshState = {
   nextAttemptAt: string;
   consecutiveFailures: number;
   status: string;
+  failureReason?: string | null;
 };
 
 export function documentRefreshIntervalMs(documentType: string, meetingDate: string | null, now: Date) {
@@ -84,14 +120,14 @@ export function documentRefreshIntervalMs(documentType: string, meetingDate: str
   return 30 * DAY;
 }
 
-export function recordDocumentAttempt(input: { documentId: string; sourceId?: string; status: string; documentType: string; meetingDate: string | null; previous?: DocumentRefreshState; now: Date }): DocumentRefreshState {
+export function recordDocumentAttempt(input: { documentId: string; sourceId?: string; status: string; failureReason?: string | null; documentType: string; meetingDate: string | null; previous?: DocumentRefreshState; now: Date }): DocumentRefreshState {
   const succeeded = ["downloaded", "newly_cached", "cached", "unchanged", "updated_content"].includes(input.status);
   const failures = succeeded ? 0 : (input.previous?.consecutiveFailures ?? 0) + 1;
   const delay = succeeded ? documentRefreshIntervalMs(input.documentType, input.meetingDate, input.now)
     : input.status === "security_rejected" ? 30 * DAY
     : input.status === "unavailable" ? 7 * DAY
     : Math.min(7 * DAY, 6 * 3_600_000 * 2 ** Math.min(failures - 1, 6));
-  return { documentId: input.documentId, sourceId: input.sourceId ?? input.previous?.sourceId, status: input.status, lastAttemptAt: input.now.toISOString(), lastSuccessAt: succeeded ? input.now.toISOString() : input.previous?.lastSuccessAt ?? null, consecutiveFailures: failures, nextAttemptAt: new Date(input.now.getTime() + delay).toISOString() };
+  return { documentId: input.documentId, sourceId: input.sourceId ?? input.previous?.sourceId, status: input.status, failureReason: succeeded ? null : input.failureReason ?? null, lastAttemptAt: input.now.toISOString(), lastSuccessAt: succeeded ? input.now.toISOString() : input.previous?.lastSuccessAt ?? null, consecutiveFailures: failures, nextAttemptAt: new Date(input.now.getTime() + delay).toISOString() };
 }
 
 export function documentRefreshDue(input: { state?: DocumentRefreshState; lastSuccessfulRetrievalAt?: string | null; documentType: string; meetingDate: string | null; now: Date; force?: boolean }) {

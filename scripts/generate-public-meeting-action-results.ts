@@ -2,6 +2,8 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 import { normalizeWhitespace, slugify, summarizeText } from "@/lib/public-meetings/shared";
+import { cachedTopicNeedsEvidenceReview } from "@/lib/public-meetings/evidence-review";
+import { resolveCachedMeetingDocumentUrl } from "@/lib/public-meetings/importer";
 import type { PublicBodyRecord, PublicMeetingItemRecord, PublicMeetingRecord } from "@/lib/public-meetings/types";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
@@ -33,13 +35,18 @@ type ActionResultRecord = {
 };
 
 type DocumentTextRecord = {
+  documentId: string;
   meetingId: string;
   documentType: string;
   extractedTextPath: string | null;
   extractionMethod: "native_text" | "ocr_text" | "mixed" | "failed";
   extractionQuality: "high" | "medium" | "low" | "insufficient";
   textLength: number;
+  sourceUrl?: string | null;
+  sourceContentHash?: string | null;
 };
+
+type MeetingContext = { text: string; sourceUrl: string; sourcePath: string };
 
 function readJson<T>(fileName: string, fallback: T): T {
   try {
@@ -168,23 +175,39 @@ function isAdministrativeAvailabilityNotice(text: string) {
   );
 }
 
-function meetingContextByMeetingId() {
+function meetingContextByMeetingId(meetings: PublicMeetingRecord[]) {
   const records = readJson<{ records?: DocumentTextRecord[] }>("public-meeting-document-text.json", { records: [] }).records ?? [];
-  const byMeeting = new Map<string, string[]>();
+  const documents = readJson<{ records: Array<{ id: string; meetingId: string; documentType: string; sourceUrl: string | null; provenance?: Array<{ meetingId: string }> }> }>("public-meeting-source-documents.json", { records: [] }).records;
+  const cache = readJson<{ records: Array<{ documentId: string; contentHash: string; stableLocalPath: string }> }>("public-meeting-document-cache-index.json", { records: [] }).records;
+  const cacheById = new Map(cache.map(record => [record.documentId, record]));
+  const meetingById = new Map(meetings.flatMap(meeting => [meeting.id, ...(meeting.meeting_alias_ids ?? [])].map(id => [id, meeting] as const)));
+  const byMeeting = new Map<string, MeetingContext[]>();
   for (const record of records) {
-    if (!record.extractedTextPath || record.extractionMethod === "failed") continue;
-    if (record.documentType !== "minutes" && record.documentType !== "unknown") continue;
+    // Shared context can upgrade a neighboring legacy item. Require native,
+    // substantial minutes with an exact hash-backed citation before sharing it.
+    // OCR and held text remain in the extraction ledger for explicit review.
+    if (!record.extractedTextPath || record.extractionMethod !== "native_text" || !["high", "medium"].includes(record.extractionQuality)) continue;
+    if (record.documentType !== "minutes" || !record.sourceContentHash) continue;
+    const meeting = meetingById.get(record.meetingId);
+    const cached = cacheById.get(record.documentId);
+    if (!meeting || cached && cached.contentHash !== record.sourceContentHash) continue;
+    const sourceUrl = resolveCachedMeetingDocumentUrl({ meeting, documentId: record.documentId, documentType: record.documentType,
+      sourceHash: record.sourceContentHash, sourceUrl: record.sourceUrl ?? null, documents, cache });
+    if (!sourceUrl) continue;
     let text = "";
     try {
       text = readFileSync(path.join(process.cwd(), record.extractedTextPath), "utf8");
     } catch {
       continue;
     }
-    const current = byMeeting.get(record.meetingId) ?? [];
-    current.push(cleanTextForContext(text));
-    byMeeting.set(record.meetingId, current);
+    if (text.replace(/\n$/, "").length !== record.textLength || /%PDF-\d\.\d|\u0000/.test(text)) continue;
+    text = cleanTextForContext(text);
+    if (text.length < 1200) continue;
+    const current = byMeeting.get(meeting.id) ?? [];
+    current.push({ text, sourceUrl, sourcePath: cached?.stableLocalPath ?? record.extractedTextPath });
+    byMeeting.set(meeting.id, current);
   }
-  return new Map(Array.from(byMeeting.entries()).map(([meetingId, parts]) => [meetingId, normalizeWhitespace(parts.join(" ")).slice(0, MAX_MEETING_CONTEXT_CHARS)]));
+  return byMeeting;
 }
 
 function cleanTextForContext(value: string) {
@@ -225,17 +248,20 @@ function generateActionResults() {
   const items = readJson<PublicMeetingItemRecord[]>("public-meeting-items.json", []);
   const meetings = readJson<PublicMeetingRecord[]>("public-meetings.json", []);
   const bodies = readJson<PublicBodyRecord[]>("public-meeting-bodies.json", []);
-  const meetingContext = meetingContextByMeetingId();
+  const meetingContext = meetingContextByMeetingId(meetings);
   const meetingById = new Map(meetings.map((meeting) => [meeting.id, meeting]));
   const bodyById = new Map(bodies.map((body) => [body.id, body]));
   const records: ActionResultRecord[] = [];
 
   for (const item of items) {
+    if (cachedTopicNeedsEvidenceReview(item)) continue;
     const meeting = meetingById.get(item.meeting_id);
     const body = meeting ? bodyById.get(meeting.public_body_id) ?? null : null;
     const baseText = normalizeWhitespace(`${item.vote_outcome ?? ""}. ${item.source_text ?? ""}`);
-    const meetingText = meetingContext.get(item.meeting_id) ?? "";
-    const contextText = itemContextWindow(item, meetingText) || (shouldUseMeetingContext(item, baseText) ? meetingText : "");
+    const context = (meetingContext.get(item.meeting_id) ?? []).map(source => ({ ...source,
+      text: itemContextWindow(item, source.text) || (shouldUseMeetingContext(item, baseText) ? source.text : ""),
+    })).find(source => source.text);
+    const contextText = context?.text ?? "";
     const text = normalizeWhitespace(`${baseText}. ${contextText}`);
     if (!isActionable(text, item)) continue;
     const voteCount = parseVoteCount(text);
@@ -275,8 +301,8 @@ function generateActionResults() {
       namedVotes: parsedNamedVotes,
       unanimous,
       sourceSnippet: summarizeText(text, 700),
-      sourceUrl: item.source_url ?? meeting?.minutes_url ?? meeting?.agenda_url ?? null,
-      sourcePath: item.source_local_path ?? item.cached_text_path ?? null,
+      sourceUrl: context?.sourceUrl ?? item.source_url ?? meeting?.minutes_url ?? meeting?.agenda_url ?? null,
+      sourcePath: context?.sourcePath ?? item.source_local_path ?? item.cached_text_path ?? null,
       confidence,
       needsReview,
       reviewReason: needsReview ? "action_result_requires_review_or_more_source_detail" : null,

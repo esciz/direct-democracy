@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import { getCurrentUser } from "@/lib/server/auth-session";
+import { getCurrentSessionUser } from "@/lib/server/auth-session";
 import { getGeographicCommunities, getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
 import { prisma } from "@/lib/prisma";
 import { getCanonicalIssueTextOrNull } from "@/lib/issues/utils";
@@ -131,7 +131,8 @@ function isAppOwnedProfileMediaUrl(value: unknown) {
 }
 
 export async function togglePublicCitizenVisibility(formData: FormData) {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentSessionUser();
+  if (!currentUser) redirect("/auth");
   const nextVisible = formData.get("nextVisible");
 
   if (typeof nextVisible !== "string") {
@@ -156,7 +157,8 @@ export async function togglePublicCitizenVisibility(formData: FormData) {
 }
 
 export async function updateProfileDetails(formData: FormData) {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentSessionUser();
+  if (!currentUser) redirect("/auth");
   const localIssues = formData.get("localIssues");
   const stateIssues = formData.get("stateIssues");
   const nationalIssues = formData.get("nationalIssues");
@@ -271,7 +273,8 @@ export async function updateProfileDetails(formData: FormData) {
 }
 
 export async function toggleBookmarkedScope(formData: FormData) {
-  const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentSessionUser();
+  if (!currentUser) redirect("/auth");
   const scope = formData.get("scope");
   const returnPath = formData.get("returnPath");
 

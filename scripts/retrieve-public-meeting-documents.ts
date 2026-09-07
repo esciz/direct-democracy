@@ -474,7 +474,7 @@ async function main() {
     const document = candidates.find((candidate) => candidate.id === attempt.documentId)!;
     refreshState.set(attempt.documentId, recordDocumentAttempt({ documentId: attempt.documentId, sourceId: document.organizationId ?? document.sourceHost ?? document.id, status: attempt.status,
       documentType: document.documentType, meetingDate: meetingDates.get(document.meetingId) ?? null,
-      previous: refreshState.get(attempt.documentId), now: new Date(now) }));
+      failureReason: attempt.failureReason, previous: refreshState.get(attempt.documentId), now: new Date(now) }));
   }
   writeFileSync(REFRESH_STATE_PATH, `${JSON.stringify({ generatedAt: now, records: [...refreshState.values()] }, null, 2)}\n`);
 

@@ -37,7 +37,13 @@ function readCachedText(localPath: string | null | undefined) {
     const absolutePath = path.isAbsolute(localPath) ? localPath : path.join(process.cwd(), localPath);
     const stats = statSync(absolutePath);
     if (stats.size > MAX_SOURCE_BYTES) return { text: "", quality: "blocked" as ExtractionQuality, reason: "source_file_too_large" };
-    const raw = readFileSync(absolutePath, "utf8").slice(0, MAX_SOURCE_CHARS);
+    const bytes = readFileSync(absolutePath);
+    // Downloaded files are evidence containers, not extracted prose. A PDF can
+    // contain readable metadata and keywords while its page text is compressed.
+    // Only the native/OCR text ledger may establish that those pages were read.
+    if (/^\s*%PDF-/.test(bytes.subarray(0, 1024).toString("latin1")) || /\.(?:pdf|docx?|png|jpe?g|gif|webp|zip)$/i.test(absolutePath)) return { text: "", quality: "blocked" as ExtractionQuality, reason: "binary_document_requires_text_extraction" };
+    const raw = new TextDecoder("utf-8", { fatal: true }).decode(bytes).slice(0, MAX_SOURCE_CHARS);
+    if (sourceLooksBinary(raw)) return { text: "", quality: "blocked" as ExtractionQuality, reason: "binary_document_requires_text_extraction" };
     const text = cleanSourceText(raw);
     return { text, quality: qualityForText(text), reason: null };
   } catch {
@@ -45,7 +51,12 @@ function readCachedText(localPath: string | null | undefined) {
   }
 }
 
+function sourceLooksBinary(value: string) {
+  return /%PDF-\d\.\d|\u0000|PK\u0003\u0004/.test(value) || (value.match(/\uFFFD/g)?.length ?? 0) > Math.max(3, value.length * 0.01);
+}
+
 function cleanSourceText(value: string) {
+  if (sourceLooksBinary(value)) return "";
   return normalizeWhitespace(
     value
       .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -59,7 +70,7 @@ function cleanSourceText(value: string) {
 }
 
 function qualityForText(text: string): ExtractionQuality {
-  if (!text) return "unreadable";
+  if (!text || sourceLooksBinary(text)) return "unreadable";
   if (text.length < 300) return "metadata_only";
   if (text.length < 1200) return "partial_text";
   if (/\b(?:motion|second|approved|adopted|vote|roll call|present|absent|minutes)\b/i.test(text)) return "full_text";
@@ -85,7 +96,10 @@ function sourceTextsForMeeting(meeting: PublicMeetingRecord, items: PublicMeetin
       || isMinutesPath(item.source_local_path) || minutesPaths.has(item.source_local_path ?? null)
       || minutesPaths.has(item.cached_text_path);
     if (!fromMinutes) continue;
-    if (item.source_text) sources.push({ text: cleanSourceText(item.source_text), document: item.source_local_path ?? item.cached_text_path ?? item.source_url, quality: qualityForText(item.source_text), reason: null });
+    if (item.source_text) {
+      const text = cleanSourceText(item.source_text);
+      sources.push({ text, document: item.source_local_path ?? item.cached_text_path ?? item.source_url, quality: qualityForText(text), reason: text ? null : "source_text_unusable" });
+    }
     for (const localPath of [item.source_local_path, item.cached_text_path].filter(Boolean) as string[]) {
       if (seen.has(localPath)) continue;
       seen.add(localPath);
@@ -96,7 +110,7 @@ function sourceTextsForMeeting(meeting: PublicMeetingRecord, items: PublicMeetin
   for (const documentText of documentTexts) {
     if (documentText.documentType !== "minutes") continue;
     if (documentText.extractedTextPath && seen.has(documentText.extractedTextPath)) continue;
-    let text = documentText.sourceSnippet ?? "";
+    let text = cleanSourceText(documentText.sourceSnippet ?? "");
     let quality: ExtractionQuality = text ? "metadata_only" : "unreadable";
     let reason = documentText.failureReason;
     if (documentText.extractedTextPath) {
@@ -147,7 +161,8 @@ function generateAudit() {
     .map((meeting) => {
       const body = bodyById.get(meeting.public_body_id);
       const sources = sourceTextsForMeeting(meeting, itemsByMeeting.get(meeting.id) ?? [], documentTextByMeeting.get(meeting.id) ?? []);
-      const combinedText = sources.map((source) => source.text).join(" ");
+      const combinedText = [...new Set(sources.map((source) => source.text).filter(Boolean))].join(" ");
+      const sourceDocuments = [...new Set(sources.map((source) => source.document).filter(Boolean))];
       const flags = flagsFor(sources.filter((source) => source.quality === "full_text" || source.quality === "partial_text").map((source) => source.text).join(" "));
       const bestQuality = sources.some((source) => source.quality === "full_text")
         ? "full_text"
@@ -167,8 +182,8 @@ function generateAudit() {
         meetingDate: meeting.meeting_date,
         minutesUrl: meeting.minutes_url,
         extractionQuality: bestQuality as ExtractionQuality,
-        sourceDocuments: sources.map((source) => source.document).filter(Boolean),
-        sourceDocumentCount: sources.length,
+        sourceDocuments,
+        sourceDocumentCount: sourceDocuments.length,
         cachedTextLength: combinedText.length,
         ...flags,
         minutesInNameOnly: bestQuality === "metadata_only" || bestQuality === "unreadable" || bestQuality === "blocked",

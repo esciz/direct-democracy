@@ -213,6 +213,24 @@ async function main() {
     await writeJson(root, "meetings-pipeline-targeted-run.json", generationReport("failed", at - 30_000));
     assert.throws(() => releaseGateAt(root, { at }), /core_generation_not_verified/);
     await rm(path.join(root, "data/generated/meetings-pipeline-targeted-run.json"));
+    const minutesCommand = ["scripts/reprocess-cached-meeting-items.ts", "--document-type=minutes", "--limit=400"];
+    const mixedPass = generationReport();
+    mixedPass.stages[0].commands.push(
+      { command: ["node", "--import", "tsx", ...minutesCommand], status: "failed" },
+      { command: ["node", "--import", "tsx", "scripts/reprocess-cached-meeting-items.ts"], status: "succeeded" },
+    );
+    await writeJson(root, "meetings-pipeline-run.json", mixedPass);
+    assert.throws(() => releaseGateAt(root, { at }), /core_generation_failed:reprocess-cached-meeting-items/, "Default success must not hide failure of the reserved minutes pass");
+    const recovered = { startedAt: new Date(at - 30_000).toISOString(), completedAt: new Date(at - 1000).toISOString(), stages: [{ commands: [{ command: ["tsx", ...minutesCommand.slice(0, -1), "--limit=2000"], status: "succeeded" }] }] };
+    await writeJson(root, "meetings-pipeline-targeted-run.json", recovered);
+    assert.throws(() => releaseGateAt(root, { at }), /core_generation_failed:reprocess-cached-meeting-items/, "Different arguments do not prove the failed invocation completed");
+    recovered.stages[0].commands[0].command = ["tsx", ...minutesCommand];
+    await writeJson(root, "meetings-pipeline-targeted-run.json", recovered);
+    assert.equal(releaseGateAt(root, { at }).metrics.meetings, 2, "A later completed identical invocation recovers the failure, regardless of TS launcher");
+    await writeJson(root, "meetings-pipeline-targeted-run.json", { ...recovered, completedAt: null });
+    assert.throws(() => releaseGateAt(root, { at }), /collection_run_incomplete/, "An unfinished matching retry cannot clear the gate");
+    await writeJson(root, "meetings-pipeline-run.json", fixtures["meetings-pipeline-run.json"]);
+    await rm(path.join(root, "data/generated/meetings-pipeline-targeted-run.json"));
     await writeFile(path.join(root, "data/generated/.dataops-pipeline.lock"), "{}");
     assert.throws(() => releaseGateAt(root, { at }), /collector_is_active/);
     assert.equal(releaseGateAt(root, { at, historical: true }).coverageComplete, false);

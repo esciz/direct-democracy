@@ -1,7 +1,7 @@
 import "server-only";
 
 import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { civicJsonPath, readCivicJson } from "@/lib/dataops/packed-runtime";
 import { installedPublicArtifactPath } from "@/lib/dataops/installed-release";
 
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath, namesMatch, normalizeName } from "@/lib/public-meetings/shared";
@@ -47,9 +47,9 @@ export type PublicMeetingAdminDashboard = {
 async function readJsonFile<T>(relativePath: string, fallback: T): Promise<T> {
   const selected = installedPublicArtifactPath(relativePath);
   if (!selected) return fallback;
-  const filePath = absolutePublicMeetingPath(selected);
-  if (!existsSync(filePath)) return fallback;
-  return JSON.parse(await readFile(filePath, "utf8")) as T;
+  const filePath = civicJsonPath(absolutePublicMeetingPath(selected));
+  if (!filePath) return fallback;
+  return readCivicJson<T>(filePath);
 }
 
 export async function getPublicMeetingAdminDashboard(): Promise<PublicMeetingAdminDashboard> {

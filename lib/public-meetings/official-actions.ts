@@ -1,3 +1,4 @@
+import { cachedTopicNeedsEvidenceReview } from "@/lib/public-meetings/evidence-review";
 import {
   namesMatch,
   normalizeWhitespace,
@@ -122,6 +123,7 @@ export function itemHasUnnamedVoteOutcome(item: PublicMeetingItemRecord) {
 }
 
 export function extractOfficialActionsForItem(item: PublicMeetingItemRecord, context: ExtractContext): OfficialMeetingActionRecord[] {
+  if (cachedTopicNeedsEvidenceReview(item)) return [];
   const text = normalizeWhitespace(item.source_text);
   if (!text) return [];
   const actions: OfficialMeetingActionRecord[] = [];

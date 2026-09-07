@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 
 import { seedUsers } from "@/lib/auth/mock-users";
+import { DEV_ONLY_AUTH_ENABLED } from "@/lib/auth/constants";
 import { getPublicEndorsementsForUser } from "@/lib/candidates/endorsements";
 import { getCommunityById, getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
 import { userContentMatchesCommunity } from "@/lib/community/membership";
@@ -13,7 +14,7 @@ import { isExternalLinkSummary, normalizeExternalLinks } from "@/lib/profile/ext
 import { getUserReputationSignals } from "@/lib/profile/reputation";
 import { getVisibilityOverrides } from "@/lib/profile/visibility";
 import { FAVORITE_SPOT_CATEGORY_OPTIONS } from "@/lib/profile/options";
-import { prisma } from "@/lib/prisma";
+import { durableProfileContent } from "@/lib/profile/durable-content";
 import { getFollowState } from "@/lib/social/follows";
 import { getAllCreditBoosts, getCreditBalance } from "@/lib/engagement/credits";
 import type {
@@ -559,42 +560,14 @@ export async function setStoredUserProfileContent(content: UserProfileContentSum
   });
 }
 
-async function resolveDurableUserId(profileUserId: string) {
-  if (profileUserId.startsWith("identity_")) {
-    const account = await prisma.identityAccount.findUnique({
-      where: { id: profileUserId },
-      select: { userId: true },
-    });
-
-    return account?.userId ?? null;
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { id: profileUserId },
-    select: { id: true },
-  });
-  return user?.id ?? null;
+function isBrowserOnlyDemoProfile(userId: string) {
+  return DEV_ONLY_AUTH_ENABLED && seedUsers.some((user) => user.id === userId);
 }
 
-async function getDurableProfileMedia(profileUserId: string) {
+async function getDurableProfileContent(profileUserId: string) {
+  if (isBrowserOnlyDemoProfile(profileUserId)) return null;
   try {
-    const durableUserId = await resolveDurableUserId(profileUserId);
-    if (!durableUserId) return null;
-
-    const user = await prisma.user.findUnique({
-      where: { id: durableUserId },
-      select: {
-        avatarUrl: true,
-        profileContent: {
-          select: {
-            profileImageUrl: true,
-            bannerImageUrl: true,
-            profileTheme: true,
-          },
-        },
-      },
-    });
-
+    const user = await durableProfileContent.read(profileUserId);
     if (!user) return null;
 
     return {
@@ -602,60 +575,22 @@ async function getDurableProfileMedia(profileUserId: string) {
       profileImageUrl: user.profileContent?.profileImageUrl ?? user.avatarUrl ?? "",
       bannerImageUrl: user.profileContent?.bannerImageUrl ?? "",
       profileTheme: user.profileContent?.profileTheme ?? "classic",
+      primaryCommunityId: user.profileContent?.primaryCommunityId ?? null,
+      localIssues: user.profileContent?.localIssues ?? [],
+      stateIssues: user.profileContent?.stateIssues ?? [],
+      nationalIssues: user.profileContent?.nationalIssues ?? [],
     };
   } catch (error) {
-    console.error("[profile-details] durable media read fallback", error);
+    if (profileUserId.startsWith("identity_")) throw error;
+    console.error("[profile-details] public profile read fallback", error);
     return null;
   }
 }
 
-async function setDurableProfileMedia(
-  profileUserId: string,
-  content: Omit<UserProfileContentSummary, "userId">,
-) {
-  try {
-    const durableUserId = await resolveDurableUserId(profileUserId);
-    if (!durableUserId) return;
-
-    await prisma.$transaction([
-      prisma.user.update({
-        where: { id: durableUserId },
-        data: { avatarUrl: content.profileImageUrl || null },
-      }),
-      prisma.userProfileContent.upsert({
-        where: { userId: durableUserId },
-        create: {
-          userId: durableUserId,
-          profileImageUrl: content.profileImageUrl || null,
-          bannerImageUrl: content.bannerImageUrl || null,
-          profileTheme: content.profileTheme ?? "classic",
-          localIssues: content.localIssues.map((entry) => entry.value),
-          stateIssues: content.stateIssues.map((entry) => entry.value),
-          nationalIssues: content.nationalIssues.map((entry) => entry.value),
-          groupTags: content.groupTags.map((entry) => entry.value),
-          profession: content.background.profession || null,
-          experience: content.background.experience || null,
-          professionPublic: content.background.professionPublic,
-          experiencePublic: content.background.experiencePublic,
-          recentVotesPublic: content.recentVotesPublic,
-          bookmarkedScopes: content.bookmarkedScopes,
-        },
-        update: {
-          profileImageUrl: content.profileImageUrl || null,
-          bannerImageUrl: content.bannerImageUrl || null,
-          profileTheme: content.profileTheme ?? "classic",
-        },
-      }),
-    ]);
-  } catch (error) {
-    console.error("[profile-details] durable media write fallback", error);
-  }
-}
-
 export async function getUserProfileContent(userId: string): Promise<UserProfileContentSummary> {
-  const [stored, durableMedia] = await Promise.all([
+  const [stored, durableContent] = await Promise.all([
     getStoredUserProfileContent(),
-    getDurableProfileMedia(userId),
+    getDurableProfileContent(userId),
   ]);
   const merged = new Map<string, UserProfileContentSummary>();
 
@@ -672,7 +607,7 @@ export async function getUserProfileContent(userId: string): Promise<UserProfile
     profileImageUrl: defaultProfileImageUrl(userId),
     bannerImageUrl: defaultBannerImageUrl(userId),
     profileTheme: "classic",
-    primaryCommunityId: getDefaultCommunityForJurisdiction(seedUsers.find((entry) => entry.id === userId)?.jurisdictionName ?? "Carson City, Nevada").id,
+    primaryCommunityId: getDefaultCommunityForJurisdiction(seedUsers.find((entry) => entry.id === userId)?.jurisdictionName ?? "Nevada").id,
     localIssues: [],
     stateIssues: [],
     nationalIssues: [],
@@ -686,15 +621,21 @@ export async function getUserProfileContent(userId: string): Promise<UserProfile
   };
 
   return canonicalizeProfileContent(
-    durableMedia?.hasProfileContent || durableMedia?.profileImageUrl
+    durableContent?.hasProfileContent || durableContent?.profileImageUrl
       ? {
           ...content,
-          profileImageUrl: durableMedia.profileImageUrl,
-          bannerImageUrl: durableMedia.bannerImageUrl,
+          profileImageUrl: durableContent.profileImageUrl,
+          bannerImageUrl: durableContent.bannerImageUrl,
           profileTheme:
-            durableMedia.profileTheme === "bright" || durableMedia.profileTheme === "daylight"
-              ? durableMedia.profileTheme
+            durableContent.profileTheme === "bright" || durableContent.profileTheme === "daylight"
+              ? durableContent.profileTheme
               : "classic",
+          ...(durableContent.hasProfileContent ? {
+            primaryCommunityId: durableContent.primaryCommunityId ?? content.primaryCommunityId,
+            localIssues: durableContent.localIssues.map((value) => entry(value)),
+            stateIssues: durableContent.stateIssues.map((value) => entry(value)),
+            nationalIssues: durableContent.nationalIssues.map((value) => entry(value)),
+          } : {}),
         }
       : content,
   );
@@ -713,10 +654,12 @@ export async function updateUserProfileContent(
     ...stored.filter((entry) => entry.userId !== userId),
   ];
 
-  await Promise.all([
-    setStoredUserProfileContent(merged),
-    setDurableProfileMedia(userId, nextContent),
-  ]);
+  // A real account must persist before the browser can report a successful save.
+  if (!isBrowserOnlyDemoProfile(userId)) {
+    const saved = await durableProfileContent.write(userId, merged[0]);
+    if (!saved) throw new Error("profile_account_not_found");
+  }
+  await setStoredUserProfileContent(merged);
 }
 
 function scopeMatches(scope: VoteQuestionScope, selectedScope: VoteQuestionScope) {

@@ -241,11 +241,24 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
         return null;
       })
     : null;
-  const agendaItems = getPublicMeetingItems(dashboard?.meetingItems ?? [])
-    .filter((item) => item.meeting_id === event.meetingRecordId)
+  const publicTopics = getPublicMeetingItems(dashboard?.meetingItems ?? [])
+    .filter((item) => item.meeting_id === event.meetingRecordId);
+  const excerptDocuments = new Set(publicTopics.filter(item => item.parser_status === "source_excerpt").map(item => item.source_url));
+  const agendaItems = publicTopics
+    // Prefer exact segmented excerpts over older partial parses of the same
+    // document. Stored IDs and separately reviewed actions remain intact.
+    .filter(item => item.parser_status !== "partially_parsed" || !excerptDocuments.has(item.source_url))
     .sort((left, right) => {
-      const leftNumber = Number.parseFloat(left.item_number ?? "");
-      const rightNumber = Number.parseFloat(right.item_number ?? "");
+      const documentOrder = (item: typeof left) => item.source_document_type === "minutes" || item.source_url === event.minutesUrl ? 0 : item.source_document_type === "agenda" || item.source_url === event.agendaUrl ? 1 : 2;
+      const documentDifference = documentOrder(left) - documentOrder(right);
+      if (documentDifference) return documentDifference;
+      const ordinal = (value: string) => {
+        if (!/^[IVXLCDM]+$/i.test(value)) return Number.parseFloat(value);
+        const values: Record<string, number> = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+        return [...value.toUpperCase()].reduce((sum, digit, index, digits) => sum + (values[digit] < (values[digits[index + 1]] ?? 0) ? -values[digit] : values[digit]), 0);
+      };
+      const leftNumber = ordinal(left.item_number ?? "");
+      const rightNumber = ordinal(right.item_number ?? "");
       if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) return leftNumber - rightNumber;
       return left.title.localeCompare(right.title);
     });
@@ -264,6 +277,7 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
   }
   const parsedVoteRecords = agendaItems.flatMap((item) => votesByItemId.get(item.id) ?? []);
   const actionableAgendaItems = agendaItems.filter((item) =>
+    (item.source_document_type === "agenda" || item.source_url === event.agendaUrl) &&
     item.item_type !== "public_comment" &&
     item.item_type !== "closed_session" &&
     !/^(?:roll call|pledge|adjourn|approval of agenda|public comment)$/i.test(item.title.trim()),
@@ -275,7 +289,10 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
       : "No parsed agenda item summaries are available yet for this imported meeting record.",
     2,
   );
-  const minutesSummary = minutesStatus.description;
+  const minutesTopics = agendaItems.filter(item => item.source_document_type === "minutes" || Boolean(event.minutesUrl && item.source_url === event.minutesUrl));
+  const minutesSummary = minutesTopics.length
+    ? `${minutesTopics.length} topics have been extracted from the linked minutes. Read the source excerpts below; individual decisions and votes may still need review.`
+    : minutesStatus.description;
   const actionsSummary = event.keyActions.length
     ? summarizeList(event.keyActions, "No key actions have been extracted yet.", 3)
     : event.actionsTaken.length
@@ -482,15 +499,16 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
           ) : null}
 
           {agendaItems.length ? (
-            <section className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Agenda intelligence</p>
+            <section id="meeting-topics" className="rounded-[1.75rem] border border-white/70 bg-white/85 p-6 shadow-card backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-civic-700">Meeting topics</p>
               <h2 className="mt-2 text-2xl font-semibold text-ink">Topics citizens can review</h2>
               <p className="mt-3 text-sm leading-7 text-slate-600">
                 Review agenda topics, proposed actions, and available recorded outcomes. A proposed action is not a confirmed decision.
               </p>
               <div className="mt-5 space-y-4">
                 {agendaItems.slice(0, 30).map((item) => {
-                  const itemVotes = votesByItemId.get(item.id) ?? [];
+                  const sourceExcerpt = item.parser_status === "source_excerpt";
+                  const itemVotes = sourceExcerpt ? [] : votesByItemId.get(item.id) ?? [];
                   return (
                     <article key={item.id} className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                       <div className="flex flex-wrap items-center gap-2">
@@ -500,19 +518,27 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
                         {item.source_method === "manual_cache" ? (
                           <IntelligenceBadge tone="blue">Source-backed</IntelligenceBadge>
                         ) : null}
+                        {sourceExcerpt ? <IntelligenceBadge tone="blue">{item.source_document_type === "minutes" ? "Minutes excerpt" : item.source_document_type === "agenda" ? "Agenda excerpt" : "Source excerpt"}</IntelligenceBadge> : null}
                         <IntelligenceBadge tone="green">{item.policy_area}</IntelligenceBadge>
                         <IntelligenceBadge>{item.item_type.replace(/_/g, " ")}</IntelligenceBadge>
                         {item.parser_status === "needs_review" ? <IntelligenceBadge tone="amber">Needs review</IntelligenceBadge> : null}
                         {item.vote_outcome || itemVotes.length ? <IntelligenceBadge tone="green">Vote parsed</IntelligenceBadge> : null}
-                        {item.roll_call_status === "needs_roll_call_review" || item.roll_call_status === "needs parser" ? <IntelligenceBadge tone="amber">Roll call pending</IntelligenceBadge> : null}
+                        {!sourceExcerpt && (item.roll_call_status === "needs_roll_call_review" || item.roll_call_status === "needs parser") ? <IntelligenceBadge tone="amber">Roll call pending</IntelligenceBadge> : null}
                         {item.roll_call_status === "parsed" ? <IntelligenceBadge tone="green">Roll call parsed</IntelligenceBadge> : null}
                       </div>
                       <h3 className="mt-3 text-base font-semibold text-ink">{item.title}</h3>
+                      {sourceExcerpt ? (
+                        <>
+                          <blockquote className="mt-3 border-l-2 border-civic-300 pl-3 text-sm leading-7 text-slate-700">{item.source_snippet ?? item.source_text}</blockquote>
+                          <p className="mt-2 text-xs leading-5 text-slate-500">Extracted from the official document. Outcome and individual vote review remain separate.</p>
+                        </>
+                      ) : <>
                       <p className="mt-2 text-sm leading-6 text-slate-700">{item.one_sentence_summary}</p>
                       <p className="mt-2 text-sm leading-6 text-slate-600">{item.plain_english_explanation}</p>
                       <p className="mt-2 text-sm leading-6 text-slate-600">
                         <span className="font-semibold text-slate-800">Why it matters:</span> {item.why_it_matters}
                       </p>
+                      </>}
                       {item.financial_impact || item.vote_outcome || item.affected_groups.length ? (
                         <div className="mt-3 grid gap-2 text-sm text-slate-600 md:grid-cols-3">
                           {item.financial_impact ? <p><span className="font-semibold text-slate-800">Financial:</span> {item.financial_impact}</p> : null}
@@ -549,14 +575,11 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
                           View item source
                         </Link>
                       ) : null}
-                      {item.source_snippet || item.source_text ? (
+                      {!sourceExcerpt && (item.source_snippet || item.source_text) ? (
                         <details className="mt-3 rounded-[1rem] border border-slate-200 bg-white p-3 text-sm text-slate-600">
                           <summary className="cursor-pointer font-semibold text-slate-800">Source snippet</summary>
                           <p className="mt-2 leading-6">{item.source_snippet ?? item.source_text.slice(0, 900)}</p>
                         </details>
-                      ) : null}
-                      {item.source_local_path ? (
-                        <p className="mt-2 text-xs leading-5 text-slate-500">Saved source: {item.source_local_path}</p>
                       ) : null}
                     </article>
                   );
@@ -584,10 +607,11 @@ async function OfficialMeetingEventDetail({ event }: { event: CivicEvent }) {
               </article>
               <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                 <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-sm font-semibold text-ink">{minutesStatus.label}</h3>
+                  <h3 className="text-sm font-semibold text-ink">{minutesTopics.length ? "Minutes text available" : minutesStatus.label}</h3>
                   <InlineSourceLink href={event.minutesUrl} label="Source" />
                 </div>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{minutesSummary}</p>
+                {minutesTopics.length ? <Link href="#meeting-topics" className="mt-2 inline-flex text-sm font-semibold text-civic-700">Read extracted topics</Link> : null}
               </article>
               <article className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
                 <div className="flex items-center justify-between gap-3">

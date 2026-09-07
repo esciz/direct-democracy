@@ -36,20 +36,28 @@ function generationEvidence(directory: string, now: number) {
     return Number.isFinite(started) && now - started <= 24 * 60 * 60_000 && started <= now + 5 * 60_000 ? [{ ...value, started, complete }] : [];
   }).sort((a, b) => a.started - b.started);
   const commands = new Map<string, string>();
+  const invocations = new Map<string, { script: string; status: string }>();
   let latestCompleted = -Infinity;
   for (const report of reports) {
     if (!report.complete) continue;
     latestCompleted = Math.max(latestCompleted, report.started);
     for (const stage of report.stages ?? []) for (const command of stage.commands ?? []) {
-      const script = command.command?.find(part => /^scripts\/.*\.(?:ts|mjs)$/.test(part));
-      if (script) commands.set(script, command.status ?? "unknown");
+      const scriptIndex = command.command?.findIndex(part => /^scripts\/.*\.(?:ts|mjs)$/.test(part)) ?? -1;
+      if (scriptIndex < 0 || !command.command) continue;
+      const script = command.command[scriptIndex];
+      const status = command.status ?? "unknown";
+      commands.set(script, status);
+      // A successful default pass cannot erase a failed minutes-only pass.
+      // Ignore the TS launcher, but require the same script and arguments for
+      // a later completed retry to recover an earlier failed invocation.
+      invocations.set(JSON.stringify(command.command.slice(scriptIndex)), { script, status });
     }
   }
   if (reports.some(report => report.started > latestCompleted && !report.complete)) throw new Error("release_collection_run_incomplete");
   for (const script of ["scripts/publish-public-meeting-runtime.ts", "scripts/generate-voting-cards.ts", "scripts/generate-issue-hubs.ts"]) {
     if (commands.get(script) !== "succeeded") throw new Error(`release_core_generation_not_verified:${path.basename(script)}`);
   }
-  for (const [script, status] of commands) {
+  for (const { script, status } of invocations.values()) {
     const core = /^scripts\/(?:generate-|regenerate-|publish-|reprocess-|import-|public-meetings-import)/.test(script);
     const integrity = /scripts\/audit-nevada-(?:financial-coverage|political-ads)\.ts$/.test(script);
     if ((core || integrity) && status !== "succeeded") throw new Error(`release_core_generation_failed:${path.basename(script)}`);

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import nextConfig from "../next.config";
+import { PACKED_CIVIC_FILES, packedCivicPath } from "@/lib/dataops/packed-runtime";
 
 const workerDirectories = [
   "public-meeting-document-cache", "public-meeting-document-text-cache",
@@ -48,7 +49,13 @@ if (process.argv.includes("--config-only")) {
   for (const file of runtimeFiles) {
     if (existsSync(file)) assert.ok(rows.some((row) => row.path === file), `${file} is missing from the built event function`);
   }
-  assert.ok(rows.reduce((sum, row) => sum + row.bytes, 0) < 250 * 1024 * 1024, "Event function exceeds the 250 MiB deployment budget; compact runtime data before publishing.");
+  for (const name of PACKED_CIVIC_FILES) {
+    const original = `data/generated/${name}`;
+    if (existsSync(original)) assert.ok(rows.some(row => row.path === packedCivicPath(original)), `${original} needs its lossless build copy`);
+    assert.ok(!rows.some(row => row.path === original), `${original} should use its compressed build copy`);
+  }
+  const bytes = rows.reduce((sum, row) => sum + row.bytes, 0);
+  assert.ok(bytes < 250 * 1024 * 1024, `Event function is ${bytes} bytes and exceeds the 250 MiB deployment budget; compact runtime data before publishing.`);
   console.log(JSON.stringify({
     files: rows.length, bytes: rows.reduce((sum, row) => sum + row.bytes, 0),
     workerCacheFiles: leaked.length,

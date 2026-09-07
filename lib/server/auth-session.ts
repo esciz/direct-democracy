@@ -58,18 +58,17 @@ export async function getRawCurrentSessionUser(): Promise<AuthUser | null> {
 }
 
 export async function getCurrentUser(): Promise<AuthUser> {
-  const previewContext = await getActivePreviewContext();
   const currentSessionUser = await getCurrentSessionUser();
 
   if (currentSessionUser) {
     return currentSessionUser;
   }
 
-  if (previewContext?.role === "public") {
-    return hydrateSeedUser(getSeedUserById("user_guest_browse") ?? getDefaultSeedUser());
-  }
-
-  return hydrateSeedUser(getDefaultSeedUser());
+  // Anonymous browsing must never inherit a verified demo citizen's identity.
+  // Demo switching still resolves its explicit cookie in getCurrentSessionUser.
+  const guest = getSeedUserById("user_guest_browse");
+  if (!guest) throw new Error("public_guest_profile_missing");
+  return { ...guest, verificationState: "unverified", isVerifiedVoter: false };
 }
 
 export async function getCurrentSessionUser(): Promise<AuthUser | null> {

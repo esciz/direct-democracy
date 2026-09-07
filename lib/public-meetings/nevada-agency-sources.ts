@@ -29,7 +29,7 @@ export type NevadaAgencyMeeting = {
 type SourceLink = { label: string; href: string };
 type FetchHtml = (url: string) => Promise<string>;
 const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-const MONTH_DATE = /\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?[\s_-]+(\d{1,2})(?:\s*[-–]\s*\d{1,2})?,?[\s_-]+(20\d{2})\b/i;
+const MONTH_DATE = /\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?[\s_-]+(\d{1,2})(?:\s*[-–]\s*\d{1,2})?(?:,[\s_-]*|[\s_-]+)(20\d{2})\b/i;
 
 function text(html: string) {
   return normalizeWhitespace(stripHtml(html).replace(/&#(\d+);/g, (_, code: string) => String.fromCodePoint(Number(code))).replace(/&#x([a-f\d]+);/gi, (_, code: string) => String.fromCodePoint(parseInt(code, 16))));
@@ -74,11 +74,11 @@ export function nevadaMeetingDate(value: string): string | null {
 }
 
 function meetingTime(date: string, sourceText: string) {
-  const match = text(sourceText).match(/\b(\d{1,2}):(\d{2})\s*([ap])\.?m\.?\b/i);
+  const match = text(sourceText).match(/\b(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?\b/i);
   if (!match) return { meetingDate: date, meetingTimeKnown: false };
-  const hour = Number(match[1]); const minute = Number(match[2]);
+  const hour = Number(match[1]); const minute = Number(match[2] ?? "00");
   if (hour < 1 || hour > 12 || minute > 59) return { meetingDate: date, meetingTimeKnown: false };
-  const wallTime = `${date}T${String(hour % 12 + (match[3].toLowerCase() === "p" ? 12 : 0)).padStart(2, "0")}:${match[2]}:00`;
+  const wallTime = `${date}T${String(hour % 12 + (match[3].toLowerCase() === "p" ? 12 : 0)).padStart(2, "0")}:${String(minute).padStart(2, "0")}:00`;
   // Nevada source calendars use Pacific time; resolve daylight saving with Intl.
   const noon = new Date(`${date}T20:00:00Z`);
   const zone = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "shortOffset" }).formatToParts(noon).find((part) => part.type === "timeZoneName")?.value;
@@ -115,14 +115,24 @@ function getMeeting(map: Map<string, NevadaAgencyMeeting>, seed: PublicMeetingSo
   return result;
 }
 
+function minutesDate(link: SourceLink) {
+  const filename = decodeURIComponent(new URL(link.href).pathname.split("/").at(-1) ?? "");
+  // Only a standalone suffix in a minutes filename is a compact date, never an upload path or document ID.
+  const compact = /minutes/i.test(filename) ? filename.match(/(?:^|[-_])(\d{2})(\d{2})(20\d{2}|\d{2})(?=[-_\.]|$)/i) : null;
+  return nevadaMeetingDate(link.label) ?? nevadaMeetingDate(filename)
+    ?? (compact ? nevadaMeetingDate(`${compact[1]}.${compact[2]}.${compact[3]}`) : null);
+}
+
 function addLinks(map: Map<string, NevadaAgencyMeeting>, record: NevadaAgencyMeeting, links: SourceLink[], seed: PublicMeetingSourceSeed, indexUrl: string) {
   for (const link of links) {
     const kind = documentKind(link);
     let target = record;
     if (kind === "minutesUrl") {
       // Meeting packets routinely include approval of the PREVIOUS meeting's minutes.
-      const ownDate = nevadaMeetingDate(link.label) ?? nevadaMeetingDate(decodeURIComponent(link.href.split("/").at(-1) ?? ""));
-      if (ownDate && ownDate !== record.meetingDate.slice(0, 10)) target = getMeeting(map, seed, record.publicBodyName, ownDate, indexUrl);
+      const ownDate = minutesDate(link);
+      const ownBody = seed.id === "nv-cannabis-public-meetings" && /\bworkshop\b/i.test(`${link.label} ${link.href.split("/").at(-1)}`)
+        ? "Nevada Cannabis Compliance Board — Regulation Workshops" : record.publicBodyName;
+      if (ownDate && (ownDate !== record.meetingDate.slice(0, 10) || ownBody !== record.publicBodyName)) target = getMeeting(map, seed, ownBody, ownDate, indexUrl);
     }
     if (kind && (!target[kind] || /amended|revised|approved/i.test(link.label + link.href))) target[kind] = link.href;
     if (!target.sourceUrls.includes(link.href)) target.sourceUrls.push(link.href);
@@ -156,7 +166,7 @@ export function parseCannabisMeetings(html: string, seed: PublicMeetingSourceSee
     if (cells.length < 4) continue;
     const date = nevadaMeetingDate(cells[0]);
     const kind = text(cells[1]);
-    if (!date || !/meeting|commission|subcommittee|workshop/i.test(kind)) continue;
+    if (!date || !/meeting|commission|subcommittee|workshop|solicitation of input/i.test(kind)) continue;
     const bodyName = /subcommittee/i.test(kind) ? `Nevada Cannabis Advisory Commission — ${kind}`
       : /commission/i.test(kind) ? "Nevada Cannabis Advisory Commission"
         : /workshop/i.test(kind) ? "Nevada Cannabis Compliance Board — Regulation Workshops" : "Nevada Cannabis Compliance Board";
@@ -186,8 +196,25 @@ export function parseTaxationMeetings(html: string, seed: PublicMeetingSourceSee
       const links = sourceLinks(firstList(content), indexUrl);
       // Avoid considering undated lists of member bios or appeals guidance meetings.
       if (!links.some((link) => /agenda|minutes|packet/i.test(link.label))) continue;
-      const record = getMeeting(map, seed, `Nevada ${bodyName.replace(/^Nevada /, "")}`, date, indexUrl);
-      record.meetingType = links.some((link) => /workshop/i.test(link.label)) ? "Regulation workshop" : "Public meeting";
+      const agenda = links.find((link) => documentKind(link) === "agendaUrl");
+      const identityText = `${groups[j][1]} ${agenda?.label ?? ""} ${agenda?.href.split("/").at(-1) ?? ""}`;
+      const subcommittee = bodyName === "Committee on Local Government Finance" && /subcommittee/i.test(identityText);
+      // These two notices name the jurisdiction inside the PDF, rather than in the archive label.
+      // Exact official agenda URLs prevent extending that attribution to unrelated future sessions.
+      const publishedAgendaBodies: Record<string, { name: string; time: string; location: string }> = {
+        "https://tax.nv.gov/wp-content/uploads/2026/03/CLGF-SUBCOMMITTEE-Agenda-March-27-2026-1.pdf": { name: "Douglas County School District", time: "9:00 a.m.", location: "Nevada Department of Taxation, 9850 Double R Blvd., Suite 101, Reno, Nevada 89521" },
+        "https://tax.nv.gov/wp-content/uploads/2025/03/20250404-CLGF-SUBCOMMITTEE-Agenda.pdf": { name: "Incline Village Improvement District", time: "9:30 a.m.", location: "Nevada Division of Public and Behavioral Health, 4150 Technology Way, Suite 303, Carson City, Nevada 89706" },
+      };
+      const publishedAgenda = publishedAgendaBodies[agenda?.href ?? ""];
+      const subcommitteeName = subcommittee ? publishedAgenda?.name
+        ?? (/\b(?:CCSD|Clark County School District)\b/i.test(identityText) ? "Clark County School District"
+          : /\b(?:IVGID|Incline Village (?:General )?Improvement District)\b/i.test(identityText) ? "Incline Village Improvement District"
+            : /\b(?:DCSD|Douglas County School District)\b/i.test(identityText) ? "Douglas County School District" : null) : null;
+      const name = `Nevada ${bodyName.replace(/^Nevada /, "")}${subcommittee ? ` — ${subcommitteeName ? `${subcommitteeName} ` : ""}Subcommittee` : ""}`;
+      const record = getMeeting(map, seed, name, date, indexUrl, subcommittee && !subcommitteeName ? agenda?.href : undefined);
+      Object.assign(record, meetingTime(date, publishedAgenda?.time ?? groups[j][1]));
+      if (publishedAgenda) record.location = publishedAgenda.location;
+      record.meetingType = subcommittee ? "Subcommittee meeting" : links.some((link) => /workshop/i.test(link.label)) ? "Regulation workshop" : "Public meeting";
       addLinks(map, record, links, seed, indexUrl);
     }
   }

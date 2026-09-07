@@ -26,6 +26,7 @@ data/generated/public-civic-cases.json
 
 # Provider-managed environment only; never upload local secrets or editor backups.
 .env*
+data/generated/*.json.gz
 data/generated/* 2.json
 data/generated/*.codex-sandbox.json
 data/generated/*.local-network-enabled.json

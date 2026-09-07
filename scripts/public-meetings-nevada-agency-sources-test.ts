@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 
 import { discoverNevadaAgencyMeetings, nevadaMeetingDate, parseCannabisMeetings, parseCarsonSchoolBoardCalendar, parseEducationMeetings, parseNevadaPublicNoticeLeads, parsePublicDriveFolder, parseSchoolParentMeetings, parseTaxationMeetings } from "@/lib/public-meetings/nevada-agency-sources";
 import { reconcileCarsonGranicusIdentities } from "@/lib/public-meetings/carson-granicus-identity";
+import { reconcileNevadaAgencyMeetingHistory } from "@/lib/public-meetings/nevada-agency-identity";
+import { slugify } from "@/lib/public-meetings/shared";
 import type { PublicMeetingRecord, PublicMeetingSourceSeed } from "@/lib/public-meetings/types";
 
 function seed(id: string, url: string): PublicMeetingSourceSeed {
@@ -39,6 +41,20 @@ async function main() {
   assert.equal(nevadaMeetingDate("February 30, 2026"), null);
   assert.equal(nevadaMeetingDate("03.24.26"), "2026-03-24");
   assert.equal(nevadaMeetingDate("July 29-30, 2026"), "2026-07-29");
+  assert.equal(nevadaMeetingDate("December 1,2023"), "2023-12-01", "Published missing whitespace after comma must not hide an archive row");
+  const olderCannabis = parseCannabisMeetings(`<table>
+    <tr><td>January 25, 2022</td><td>Board Meeting</td><td></td><td></td><td><a href="/Workshop-Meeting-Minutes-12.14.2021.pdf">Workshop Meeting Minutes 12.14.21</a><a href="/CCB-Meeting-Minutes-12.14.2021.pdf">CCB Meeting Minutes 12.14.21</a></td></tr>
+    <tr><td>December 14, 2021</td><td>Workshop</td><td><a href="/workshop-agenda.pdf">Agenda</a></td><td></td><td></td></tr>
+    <tr><td>January 19, 2024</td><td>Subcommittee on Rescheduling/Descheduling</td><td><a href="/january-agenda.pdf">Agenda</a></td><td></td><td><a href="/2024/01/CAC-ReDeSched-Subcommittee-Minutes-120123.pdf">Meeting Minutes</a><a href="/2024/02/CAC-ReDeSched-Meeting-Minutes-011924.pdf">Meeting Minutes</a></td></tr>
+    <tr><td>December 1,2023</td><td>Subcommittee on Rescheduling/Descheduling</td><td><a href="/december-agenda.pdf">Agenda</a></td><td></td><td></td></tr>
+    <tr><td>January 31, 2024<br>1:00 p.m.</td><td>Solicitation of Input on Regulations</td><td><a href="/input-agenda.pdf">Meeting Notice and Agenda</a></td><td>Las Vegas</td><td></td></tr>
+  </table>`, ccb, ccb.meetingIndexUrl!);
+  assert.equal(olderCannabis.filter((m) => m.meetingDate === "2021-12-14").length, 2, "Same-day board and workshop minutes belong to distinct sessions");
+  assert.ok(olderCannabis.find((m) => m.publicBodyName.endsWith("Workshops"))?.minutesUrl?.includes("Workshop-Meeting-Minutes"));
+  assert.ok(olderCannabis.find((m) => m.publicBodyName === "Nevada Cannabis Compliance Board" && m.meetingDate === "2021-12-14")?.minutesUrl?.includes("CCB-Meeting-Minutes"));
+  assert.ok(olderCannabis.find((m) => m.meetingDate === "2023-12-01")?.minutesUrl?.endsWith("120123.pdf"), "A compact document date, not its upload month or host row, owns minutes");
+  assert.ok(olderCannabis.find((m) => m.meetingDate === "2024-01-19")?.minutesUrl?.endsWith("011924.pdf"));
+  assert.equal(olderCannabis.find((m) => m.meetingDate.startsWith("2024-01-31"))?.meetingDate, "2024-01-31T21:00:00.000Z");
   await assert.rejects(() => discoverNevadaAgencyMeetings(ccb, async () => "<h1>Website unavailable</h1>"), /source layout needs review/, "Changed source layout must become a provider failure, not an empty success");
 
   const tax = seed("nv-taxation-public-meetings", "https://tax.nv.gov/boards-meetings/");
@@ -49,6 +65,53 @@ async function main() {
   assert.equal(taxMeetings.filter((m) => m.meetingDate === "2026-05-06").length, 2);
   assert.equal(taxMeetings.find((m) => m.meetingDate === "2026-03-23")?.publicBodyName, "Nevada State Board of Equalization");
   assert.ok(taxMeetings.every((m) => !m.sourceUrls.some((url) => url.endsWith("unrelated.pdf"))), "Footer forms are not meeting documents");
+  const taxSubcommittees = parseTaxationMeetings(`<h2>Committee on Local Government Finance (CLGF)</h2>
+    <p><strong>January 9, 2025 - IVGID Subcommittee 1pm</strong></p><ul><li><a href="/20250109-AMENDED-CLGF-IVGID-Subcommittee-Agenda.pdf">CLGF Subcommittee IVGID Agenda 1-9-2025</a></li><li><a href="/ivgid-packet.pdf">CLGF Subcommittee IVGID PACKET</a></li></ul>
+    <p><strong>January 9, 2025 - CCSD Subcommittee 9am</strong></p><ul><li><a href="/20250109-AMENDED-CLGF-CCSD-Subcommittee-Agenda.pdf">CLGF Subcommittee CCSD Agenda 1-9-2025</a></li><li><a href="/ccsd-packet.pdf">CLGF Subcommittee CCSD Packet</a></li></ul>
+    <p><strong>March 27, 2026 - Subcommittee of the Committee on Local Government Finance</strong></p><ul><li><a href="https://tax.nv.gov/wp-content/uploads/2026/03/CLGF-SUBCOMMITTEE-Agenda-March-27-2026-1.pdf">CLGF SUBCOMMITTEE Agenda March 27 2026</a></li></ul>
+    <p><strong>April 29, 2025 - Committee on Local Government Finance</strong></p><ul><li><a href="/full-agenda.pdf">CLGF Agenda</a></li><li><a href="/ivgid-comments.pdf">IVGID subcommittee public comments</a></li></ul>`, tax, tax.meetingIndexUrl!);
+  assert.equal(taxSubcommittees.filter((m) => m.meetingDate.startsWith("2025-01-09")).length, 2);
+  assert.equal(taxSubcommittees.find((m) => m.publicBodyName.includes("Clark County"))?.meetingDate, "2025-01-09T17:00:00.000Z");
+  assert.equal(taxSubcommittees.find((m) => m.publicBodyName.includes("Incline Village"))?.meetingDate, "2025-01-09T21:00:00.000Z");
+  assert.ok(taxSubcommittees.find((m) => m.meetingDate.startsWith("2026-03-27"))?.publicBodyName.includes("Douglas County School District"));
+  assert.equal(taxSubcommittees.find((m) => m.meetingDate.startsWith("2026-03-27"))?.meetingDate, "2026-03-27T16:00:00.000Z");
+  assert.equal(taxSubcommittees.find((m) => m.meetingDate === "2025-04-29")?.publicBodyName, "Nevada Committee on Local Government Finance", "Public comment about a subcommittee does not rename the full board");
+
+  const stored = (m: typeof olderCannabis[number]): PublicMeetingRecord => ({
+    id: m.id, public_body_id: `body-${m.sourceId}-${slugify(m.publicBodyName)}`, meeting_date: m.meetingDate, title: m.title, meeting_type: m.meetingType,
+    agenda_url: m.agendaUrl, minutes_url: m.minutesUrl, packet_url: m.packetUrl, video_url: m.videoUrl, transcript_url: null,
+    meeting_summary: null, key_actions: [], vote_results: [], source_urls: m.sourceUrls, source_document_count: m.sourceDocumentCount,
+    ingestion_status: "needs_review", document_hashes: [], created_at: "2026-09-06T12:00:00Z", updated_at: "2026-09-06T12:00:00Z",
+  });
+  const workshop = stored(olderCannabis.find((m) => m.publicBodyName.endsWith("Workshops"))!);
+  const phantom = { ...workshop, id: "legacy-workshop-minutes", agenda_url: null, public_body_id: "body-nv-cannabis-public-meetings-nevada-cannabis-compliance-board", source_urls: [workshop.minutes_url!] };
+  const cc = stored(taxSubcommittees.find((m) => m.publicBodyName.includes("Clark County"))!);
+  const iv = stored(taxSubcommittees.find((m) => m.publicBodyName.includes("Incline Village"))!);
+  const parent = { ...cc, id: "legacy-clgf-combined", public_body_id: "body-nv-taxation-public-meetings-nevada-committee-on-local-government-finance", packet_url: iv.packet_url, source_urls: [...cc.source_urls, ...iv.source_urls] };
+  const jan = stored(olderCannabis.find((m) => m.meetingDate === "2024-01-19")!);
+  const dec = stored(olderCannabis.find((m) => m.meetingDate === "2023-12-01")!);
+  const staleJan = { ...jan, source_urls: [...jan.source_urls, dec.minutes_url!, "https://ccb.nv.gov/older-retained-minutes.pdf"] };
+  const fixed = reconcileNevadaAgencyMeetingHistory([phantom, workshop, parent, staleJan], [workshop, cc, iv, jan, dec]);
+  assert.equal(fixed.meetings.length, 5);
+  assert.ok(fixed.meetings.find((m) => m.id === workshop.id)?.meeting_alias_ids?.includes(phantom.id));
+  assert.equal(fixed.meetings.find((m) => m.id === parent.id)?.public_body_id, cc.public_body_id, "The exact primary agenda preserves the original route when a combined row is split");
+  assert.ok(fixed.meetings.find((m) => m.id === parent.id)?.meeting_alias_ids?.includes(cc.id));
+  assert.equal(fixed.meetings.find((m) => m.id === parent.id)?.packet_url, cc.packet_url);
+  assert.ok(!fixed.meetings.find((m) => m.id === parent.id)?.source_urls.includes(iv.agenda_url!));
+  assert.ok(!fixed.meetings.find((m) => m.id === jan.id)?.source_urls.includes(dec.minutes_url!));
+  assert.ok(fixed.meetings.find((m) => m.id === jan.id)?.source_urls.includes("https://ccb.nv.gov/older-retained-minutes.pdf"), "Disappearing links are retained unless current exact evidence establishes another owner");
+  assert.equal(fixed.documentMeetingIds.get(dec.minutes_url!), dec.id, "Existing topic references can move by exact document URL without changing item IDs");
+  const repeatedAgency = reconcileNevadaAgencyMeetingHistory(fixed.meetings, [workshop, cc, iv, jan, dec]);
+  assert.deepEqual(new Set(repeatedAgency.meetings.map((m) => m.id)), new Set(fixed.meetings.map((m) => m.id)), "A refresh must not resurrect the discarded combined identity");
+  const manualPriorMinutes: PublicMeetingRecord = { ...dec, id: "meeting-manual-nv-cannabis-public-meetings-wrong-date", public_body_id: "body-manual-nv-cannabis-public-meetings-combined-board", agenda_url: null,
+    meeting_date: jan.meeting_date, source_method: "manual_cache", source_urls: [dec.minutes_url!], source_local_paths: ["data/manual-sources/retained-minutes.pdf"] };
+  const manualCorrected = reconcileNevadaAgencyMeetingHistory([dec, manualPriorMinutes], []).meetings;
+  assert.equal(manualCorrected.length, 1, "A single-document manual observation joins its unique official minutes owner even when its manifest date is wrong");
+  assert.equal(manualCorrected[0].meeting_date, dec.meeting_date);
+  assert.ok(manualCorrected[0].meeting_alias_ids?.includes(manualPriorMinutes.id));
+  assert.ok(manualCorrected[0].source_local_paths?.includes("data/manual-sources/retained-minutes.pdf"), "Retain cached files and old route aliases after correction");
+  const conflictingOwner = { ...dec, id: "ambiguous-second-owner" };
+  assert.equal(reconcileNevadaAgencyMeetingHistory([dec, conflictingOwner, manualPriorMinutes], []).meetings.length, 3, "A shared minutes URL with two asserted official owners is left for review");
 
   const education = seed("nv-state-board-of-education", "https://doe.nv.gov/boards-commissions-councils/state-board-of-education");
   const educationHtml = `<h2>Wednesday, January 14, 2026</h2><ul><li>Time: 9:00 AM</li><li><a href="/agenda.pdf">Agenda</a></li><li>Meeting Minutes</li></ul>

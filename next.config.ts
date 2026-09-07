@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingRoot: process.cwd(),
   outputFileTracingIncludes: {
-    "/*": ["./data/seed/public-meeting-sources.json", "./data/generated/civic-data-release.json"],
+    "/*": ["./data/seed/public-meeting-sources.json", "./data/generated/civic-data-release.json", "./data/generated/public-meeting-votes-runtime.json.gz", "./data/generated/nevada-community-relationships-runtime.json.gz"],
   },
   outputFileTracingExcludes: {
     "/*": [
@@ -42,6 +42,9 @@ const nextConfig: NextConfig = {
       "./data/generated/**/*.pdf",
       "./data/generated/nv-sos-text/**/*",
       "./data/generated/accountability-graph.json",
+      // Lossless build copies retain all votes, evidence and community links.
+      "./data/generated/public-meeting-votes.json",
+      "./data/generated/nevada-community-relationships.json",
       "./data/generated/public-meeting-items.json",
       "./data/generated/public-meeting-voting-cards.json",
       "./data/generated/public-meetings.json",

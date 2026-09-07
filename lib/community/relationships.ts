@@ -1,8 +1,7 @@
 import "server-only";
 
-import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { civicJsonPath, readCivicJson } from "@/lib/dataops/packed-runtime";
 
 export type CommunityRelationshipDomain =
   | "meetings"
@@ -150,12 +149,13 @@ export function emptyCommunityRelationshipBucket(communityId: string, name = com
 }
 
 export async function getNevadaCommunityRelationshipMap(): Promise<NevadaCommunityRelationshipMap | null> {
-  if (!existsSync(RELATIONSHIPS_PATH)) {
+  const file = civicJsonPath(RELATIONSHIPS_PATH);
+  if (!file) {
     return null;
   }
 
   try {
-    return JSON.parse(await readFile(RELATIONSHIPS_PATH, "utf8")) as NevadaCommunityRelationshipMap;
+    return await readCivicJson<NevadaCommunityRelationshipMap>(file);
   } catch (error) {
     console.error("[community-relationships] Failed to read relationship map", error);
     return null;

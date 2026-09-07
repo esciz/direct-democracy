@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { parseCachedPublicMeetingDocument } from "@/lib/public-meetings/importer";
+import { CACHED_MEETING_TOPIC_PARSER_VERSION, parseCachedPublicMeetingDocument, resolveCachedMeetingDocumentUrl } from "@/lib/public-meetings/importer";
 import type { PublicBodyRecord, PublicMeetingItemRecord, PublicMeetingRecord } from "@/lib/public-meetings/types";
 
 const root = path.join(process.cwd(), "data/generated");
@@ -17,6 +17,8 @@ function write(file: string, value: unknown) {
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
 const now = new Date().toISOString();
 const selectedSources = process.argv.filter((arg) => arg.startsWith("--source=")).flatMap((arg) => arg.slice(9).split(","));
+const selectedDocumentType = process.argv.find((arg) => arg.startsWith("--document-type="))?.slice("--document-type=".length) ?? null;
+if (selectedDocumentType && !["agenda", "minutes", "packet"].includes(selectedDocumentType)) throw new Error("--document-type must be agenda, minutes, or packet");
 const limit = Number(process.argv.find((arg) => arg.startsWith("--limit="))?.slice(8) ?? "100");
 if (!Number.isInteger(limit) || limit < 1) throw new Error("--limit must be a positive integer");
 const dryRun = process.argv.includes("--dry-run");
@@ -33,6 +35,7 @@ type TextRecord = { documentId: string; meetingId: string; documentType: string;
 type ParseState = { documentId: string; meetingId: string; sourceHash: string; textHash: string; parserVersion: number; itemIds: string[]; parsedAt: string };
 const cache = new Map(read<{ records: Array<{ documentId: string; contentHash: string; stableLocalPath: string }> }>("public-meeting-document-cache-index.json", { records: [] }).records.map((row) => [row.documentId, row]));
 const state = new Map(read<{ records: ParseState[] }>("public-meeting-item-processing-state.json", { records: [] }).records.map((row) => [row.documentId, row]));
+const sourceDocuments = read<{ records: Array<{ id: string; meetingId: string; documentType: string; sourceUrl: string | null; provenance?: Array<{ meetingId: string }> }> }>("public-meeting-source-documents.json", { records: [] }).records;
 const documents = read<{ records: TextRecord[] }>("public-meeting-document-text.json", { records: [] }).records;
 const minutesUrls = new Set(documents.filter((row) => row.documentType === "minutes").map((row) => row.sourceUrl).filter(Boolean));
 const key = (item: PublicMeetingItemRecord) => item.item_number ? `${item.meeting_id}:${item.item_number.toLowerCase()}:${item.title.toLowerCase().replace(/^(?:item\s+)?[\da-z]+[.)]\s*/i, "").replace(/[^a-z0-9]+/g, " ").trim()}` : item.id;
@@ -43,6 +46,7 @@ for (const document of [...documents].sort((left, right) => right.extractedAt.lo
   const meeting = meetings.get(document.meetingId);
   const body = meeting ? bodies.get(meeting.public_body_id) : undefined;
   if (!meeting || meeting.source_method === "manual_fixture" || !["agenda", "minutes", "packet"].includes(document.documentType) || !document.extractedTextPath) continue;
+  if (selectedDocumentType && document.documentType !== selectedDocumentType) continue;
   if (selectedSources.length && (!body || !selectedSources.includes(body.seed_source_id))) continue;
   if (!["high", "medium"].includes(document.extractionQuality)) continue;
   let text: string;
@@ -55,12 +59,12 @@ for (const document of [...documents].sort((left, right) => right.extractedAt.lo
   const textHash = hash(text);
   const sourceHash = document.sourceContentHash ?? cached?.contentHash ?? textHash;
   const previous = state.get(document.documentId);
-  if (!force && previous?.textHash === textHash && previous.sourceHash === sourceHash && previous.parserVersion === 1 && previous.itemIds.every((id) => items.has(id))) continue;
+  if (!force && previous?.textHash === textHash && previous.sourceHash === sourceHash && previous.parserVersion === CACHED_MEETING_TOPIC_PARSER_VERSION && previous.itemIds.every((id) => items.has(id))) continue;
   if (processed >= limit) continue;
   processed += 1;
   const drafts = parseCachedPublicMeetingDocument({ meeting, body: body ?? null, documentId: document.documentId,
     documentType: document.documentType === "packet" ? "board_packet" : document.documentType as "agenda" | "minutes",
-    text, sourceUrl: document.sourceUrl, sourceHash, textPath: document.extractedTextPath,
+    text, sourceUrl: resolveCachedMeetingDocumentUrl({ meeting, documentId: document.documentId, documentType: document.documentType, sourceHash, sourceUrl: document.sourceUrl, documents: sourceDocuments, cache: [...cache.values()] }), sourceHash, textPath: document.extractedTextPath,
     sourcePath: cached?.stableLocalPath ?? document.sourcePath, ocr: document.extractionMethod !== "native_text" });
   const newIds: string[] = [];
   for (const draft of drafts) {
@@ -80,10 +84,10 @@ for (const document of [...documents].sort((left, right) => right.extractedAt.lo
   for (const oldId of previous?.itemIds ?? []) {
     if (!newIds.includes(oldId) && !approved.has(oldId) && ![...state.values()].some((row) => row.documentId !== document.documentId && row.itemIds.includes(oldId))) items.delete(oldId);
   }
-  state.set(document.documentId, { documentId: document.documentId, meetingId: meeting.id, sourceHash, textHash, parserVersion: 1, itemIds: newIds, parsedAt: now });
+  state.set(document.documentId, { documentId: document.documentId, meetingId: meeting.id, sourceHash, textHash, parserVersion: CACHED_MEETING_TOPIC_PARSER_VERSION, itemIds: newIds, parsedAt: now });
   report.push({ documentId: document.documentId, meetingId: meeting.id, status: drafts.some((draft) => !draft.item_number) ? "needs_document_review" : "topics_extracted_for_review", itemCount: newIds.length });
 }
-const artifact = { generatedAt: now, dryRun, limit, sources: selectedSources, totals: { documentsProcessed: processed, itemRecords: items.size, reviewedItemChangesPending: reviewCandidates.size, documentsBlocked: report.filter((row) => row.status === "blocked").length, documentsNeedingReview: report.filter((row) => row.status === "needs_document_review").length }, records: report };
+const artifact = { generatedAt: now, dryRun, limit, sources: selectedSources, documentType: selectedDocumentType, totals: { documentsProcessed: processed, itemRecords: items.size, reviewedItemChangesPending: reviewCandidates.size, documentsBlocked: report.filter((row) => row.status === "blocked").length, documentsNeedingReview: report.filter((row) => row.status === "needs_document_review").length }, records: report };
 if (!dryRun) {
   mkdirSync(root, { recursive: true });
   write("public-meeting-items.json", [...items.values()]);

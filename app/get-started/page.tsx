@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { beginGuidedOnboarding, finishGuidedOnboarding, startDemoOnboarding, submitCommunityAndIssuesSetup, submitVoterVerification, switchDevUser } from "@/lib/auth/actions";
 import { DEV_ONLY_AUTH_ENABLED, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
+import { guidedOnboardingStep } from "@/lib/onboarding/steps";
+import { getUserProfileContent } from "@/lib/profile/details";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 import { buildOnboardingTrustSummary, getOnboardingCommunities, getOnboardingDraft, getCanonicalOnboardingIssues, buildRoleMatchSummary, getMatchedPublicProfileForIdentity } from "@/lib/server/onboarding";
 
@@ -70,6 +73,7 @@ type GetStartedPageProps = {
     internal?: string;
     step?: string;
     claimProfile?: string;
+    error?: string;
   }>;
 };
 
@@ -77,15 +81,19 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
   const params = searchParams ? await searchParams : undefined;
   const showInternalTesting = DEV_ONLY_AUTH_ENABLED && params?.internal === "1";
   const currentUser = await getCurrentSessionUser();
+  if (!currentUser && !DEV_ONLY_AUTH_ENABLED) redirect("/auth");
+  const profileContent = currentUser ? await getUserProfileContent(currentUser.id) : null;
   const draft = await getOnboardingDraft();
   const matchedProfile = await getMatchedPublicProfileForIdentity(draft);
   const roleMatch = buildRoleMatchSummary(matchedProfile);
   const trustSummary = buildOnboardingTrustSummary(draft);
-  const step = params?.step ?? "account";
+  const step = guidedOnboardingStep(params?.step, Boolean(currentUser), DEV_ONLY_AUTH_ENABLED);
   const claimProfileId = params?.claimProfile ?? draft?.claimTargetProfileId ?? "";
   const communities = getOnboardingCommunities();
   const issueOptions = getCanonicalOnboardingIssues();
   const needsGuidedVoterReview = Boolean(draft?.verificationStatus && draft.verificationStatus !== "strongMatch");
+  const setupCommunityId = !DEV_ONLY_AUTH_ENABLED ? profileContent?.primaryCommunityId ?? "" : draft?.selectedCommunityId ?? profileContent?.primaryCommunityId ?? "";
+  const setupIssues = !DEV_ONLY_AUTH_ENABLED ? profileContent?.localIssues.map((entry) => entry.value) ?? [] : draft?.topIssueTitles ?? profileContent?.localIssues.map((entry) => entry.value) ?? [];
 
   return (
     <div className="space-y-8 py-8">
@@ -380,10 +388,15 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
             <p className="mt-2 text-sm leading-7 text-slate-600">
               These choices shape your dashboard first. You can change them later from your profile.
             </p>
+            {params?.error ? (
+              <p role="alert" className="mt-4 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950">
+                {params.error === "preferences" ? "Choose a listed community and issues before continuing." : "Your preferences could not be saved. Please try again."}
+              </p>
+            ) : null}
             <div className="mt-5 grid gap-4">
               <label className="block text-sm font-semibold text-slate-800">
                 Primary Nevada community
-                <select name="selectedCommunityId" defaultValue={draft?.selectedCommunityId ?? ""} className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500">
+                <select name="selectedCommunityId" defaultValue={setupCommunityId} required className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500">
                   <option value="">Select a default community</option>
                   {communities.map((community) => (
                     <option key={community.id} value={community.id}>
@@ -397,7 +410,7 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
                   Priority issue {index + 1}
                   <select
                     name={`issue${index + 1}`}
-                    defaultValue={draft?.topIssueTitles?.[index] ?? ""}
+                    defaultValue={setupIssues[index] ?? ""}
                     className="mt-2 min-h-12 w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-civic-500"
                   >
                     <option value="">Select an issue</option>
@@ -411,7 +424,7 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
               ))}
             </div>
             <button type="submit" className="mt-5 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
-              Continue to Role Matching
+              {DEV_ONLY_AUTH_ENABLED || claimProfileId ? "Continue to Role Matching" : "Save and continue"}
             </button>
           </form>
         ) : null}
@@ -447,6 +460,7 @@ export default async function GetStartedPage({ searchParams }: GetStartedPagePro
             ) : (
               <div className="mt-5 rounded-3xl bg-white p-5 text-sm leading-7 text-slate-600">
                 No candidate or official profile match was found from the verified identity data. You will continue as a citizen account unless a reviewed claim later becomes available.
+                <Link href="/get-started?step=finish" className="mt-4 block font-semibold text-civic-800">Continue to finish setup</Link>
               </div>
             )}
           </div>

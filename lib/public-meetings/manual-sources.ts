@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { mergeMeetingHistory } from "@/lib/public-meetings/lifecycle";
+import { isNevadaAgencyMinutesObservation, reconcileNevadaAgencyMeetingHistory } from "@/lib/public-meetings/nevada-agency-identity";
 import { reconcileCrossProviderMeetingIdentities, remapMeetingReferences } from "@/lib/public-meetings/cross-provider-identity";
 import { writePublicCivicCaseArtifacts } from "@/lib/public-cases/public-civic-cases";
 import {
@@ -1059,7 +1060,11 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     if (meetingAliases.has(meeting.id)) return false;
     const existing = retainedMeetings.find((candidate) => meetingsRepresentSameEvent(candidate, meeting));
     if (!existing) return true;
+    const officialMinutesOwner = isNevadaAgencyMinutesObservation(meeting)
+      && /^body-nv-(?:cannabis|taxation)-public-meetings-/.test(existing.public_body_id) && existing.minutes_url === meeting.minutes_url;
     const merged = mergeMeetingHistory([existing], [{ ...meeting, id: existing.id, public_body_id: existing.public_body_id,
+      ...(officialMinutesOwner ? { meeting_date: existing.meeting_date, title: existing.title, meeting_type: existing.meeting_type,
+        meeting_time_known: existing.meeting_time_known, meeting_status: existing.meeting_status, location: existing.location } : {}),
       meeting_alias_ids: [...new Set([...(meeting.meeting_alias_ids ?? []), ...(meeting.id !== existing.id ? [meeting.id] : [])])],
     }])[0];
     Object.assign(existing, merged);
@@ -1080,7 +1085,7 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     }));
   const realQuestions = dedupeQuestions(questions.filter((question) => realItemIds.has(question.meeting_item_id)));
 
-  const nextMeetings = reconcileCrossProviderMeetingIdentities(dedupeById([...retainedMeetings, ...realMeetings]));
+  const nextMeetings = reconcileCrossProviderMeetingIdentities(reconcileNevadaAgencyMeetingHistory(dedupeById([...retainedMeetings, ...realMeetings]), []).meetings);
   const nextItems = remapMeetingReferences(dedupeById([...retainedItems, ...realItems]), nextMeetings);
   const nextItemIds = new Set(nextItems.map((item) => item.id));
   const retainedQuestions = dedupeQuestions(existingQuestions.filter((question) => nextItemIds.has(question.meeting_item_id)));

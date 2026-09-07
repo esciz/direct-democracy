@@ -47,3 +47,5 @@ data/generated/*.codex-sandbox.json
 data/generated/*.local-network-enabled.json
 data/generated/*.unknown.json
 data/generated/* 2.json
+data/generated/.*.lock
+data/generated/*.json.gz

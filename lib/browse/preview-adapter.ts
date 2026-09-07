@@ -1,4 +1,5 @@
-import { existsSync, readFileSync, statSync } from "fs";
+import { statSync } from "fs";
+import { civicJsonPath, readCivicJsonSync } from "@/lib/dataops/packed-runtime";
 import path from "path";
 
 import { getCommunityById, getCommunityPageHref, getLocalCommunityBundle, seededCommunities } from "@/lib/community/communities";
@@ -106,14 +107,14 @@ const CATEGORY_HREFS: Record<BrowsePreviewCategory, string | null> = {
 };
 
 function readJsonFile<T>(fileName: string, fallback: T): { data: T; lastGeneratedAt: string | null; exists: boolean } {
-  const filePath = path.join(DATA_ROOT, fileName);
+  const filePath = civicJsonPath(path.join(DATA_ROOT, fileName));
 
-  if (!existsSync(filePath)) {
+  if (!filePath) {
     return { data: fallback, lastGeneratedAt: null, exists: false };
   }
 
   try {
-    const data = JSON.parse(readFileSync(filePath, "utf8")) as T;
+    const data = readCivicJsonSync<T>(filePath);
     const lastGeneratedAt =
       typeof data === "object" && data && "generatedAt" in data && typeof (data as { generatedAt?: unknown }).generatedAt === "string"
         ? (data as { generatedAt: string }).generatedAt

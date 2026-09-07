@@ -87,6 +87,7 @@ export type ManualParserStatus =
   | "cached"
   | "parsed"
   | "partially_parsed"
+  | "source_excerpt"
   | "needs_review"
   | "needs_parser"
   | "source_missing"
@@ -200,6 +201,7 @@ export type PublicMeetingItemRecord = {
   policy_area: MeetingPolicyArea;
   source_page: number | null;
   source_text: string;
+  source_document_type?: "agenda" | "minutes" | "board_packet";
   source_url: string | null;
   source_method?: PublicMeetingSourceMethod;
   source_local_path?: string | null;

@@ -22,7 +22,9 @@ import {
   buildRoleMatchSummary,
   clearOnboardingDraft,
   getClaimMatchForProfile,
+  getCanonicalOnboardingIssues,
   getMatchedPublicProfileForIdentity,
+  getOnboardingCommunities,
   getOnboardingJurisdictionFromCommunity,
   getOnboardingDraft,
   resolveOnboardingSeedUserId,
@@ -152,7 +154,7 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
   await revokeDurableSession(cookieStore.get(MOCK_AUTH_COOKIE)?.value, "account_registered");
   cookieStore.set(MOCK_AUTH_COOKIE, await createDurableSession(registeredAccountId), getAuthCookieOptions());
 
-  redirect("/get-started?step=verify");
+  redirect("/get-started?step=setup");
 }
 
 export async function signOutCurrentUser() {
@@ -368,13 +370,28 @@ export async function submitVoterVerification(formData: FormData) {
 }
 
 export async function submitCommunityAndIssuesSetup(formData: FormData) {
+  const currentUser = await getCurrentSessionUser();
+  if (!currentUser) redirect("/auth");
   const selectedCommunityId = getFormString(formData, "selectedCommunityId");
-  const topIssueTitles = ["issue1", "issue2", "issue3"]
+  const topIssueTitles = [...new Set(["issue1", "issue2", "issue3"]
     .map((key) => getFormString(formData, key))
-    .filter(Boolean);
+    .filter(Boolean))];
   const claimProfileId = getFormString(formData, "claimProfileId");
+  const setupUrl = `/get-started?step=setup${claimProfileId ? `&claimProfile=${encodeURIComponent(claimProfileId)}` : ""}`;
+  if (!getOnboardingCommunities().some((community) => community.id === selectedCommunityId)
+    || topIssueTitles.some((title) => !getCanonicalOnboardingIssues().includes(title))) redirect(`${setupUrl}&error=preferences`);
   const previous = (await getOnboardingDraft()) ?? {};
-
+  try {
+    const currentContent = await getUserProfileContent(currentUser.id);
+    await updateUserProfileContent(currentUser.id, {
+      ...currentContent,
+      primaryCommunityId: selectedCommunityId,
+      localIssues: topIssueTitles.map((value) => ({ value, isCustom: false })),
+    });
+  } catch {
+    console.error("[onboarding] Account preferences could not be saved.");
+    redirect(`${setupUrl}&error=save`);
+  }
   await setOnboardingDraft({
     ...previous,
     selectedCommunityId,
@@ -382,24 +399,12 @@ export async function submitCommunityAndIssuesSetup(formData: FormData) {
     topIssueTitles,
     claimTargetProfileId: claimProfileId || previous.claimTargetProfileId || null,
   });
-
-  const currentUser = await getCurrentSessionUser();
-
-  if (currentUser) {
-    const currentContent = await getUserProfileContent(currentUser.id);
-    await updateUserProfileContent(currentUser.id, {
-      ...currentContent,
-      primaryCommunityId: selectedCommunityId || currentContent.primaryCommunityId,
-      localIssues: topIssueTitles.map((value) => ({ value, isCustom: false })),
-      stateIssues: [],
-      nationalIssues: [],
-    });
-  }
-
-  redirect(`/get-started?step=role-match${claimProfileId ? `&claimProfile=${encodeURIComponent(claimProfileId)}` : ""}`);
+  const nextStep = DEV_ONLY_AUTH_ENABLED || claimProfileId ? "role-match" : "finish";
+  redirect(`/get-started?step=${nextStep}${claimProfileId ? `&claimProfile=${encodeURIComponent(claimProfileId)}` : ""}`);
 }
 
 export async function finishGuidedOnboarding(formData: FormData) {
+  if (!await getCurrentSessionUser()) redirect("/auth");
   const claimProfileId = getFormString(formData, "claimProfileId");
 
   if (claimProfileId) {

@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 import { normalizeWhitespace, slugify, summarizeText } from "@/lib/public-meetings/shared";
+import { cachedTopicNeedsEvidenceReview } from "@/lib/public-meetings/evidence-review";
 import type { PublicBodyRecord, PublicMeetingItemRecord, PublicMeetingRecord, VoteChoice, VoteRecord } from "@/lib/public-meetings/types";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
@@ -653,6 +654,7 @@ function generateVotes() {
   let skippedDueToInsufficientEvidence = 0;
 
   for (const item of items) {
+    if (cachedTopicNeedsEvidenceReview(item)) { skippedDueToInsufficientEvidence += 1; continue; }
     const meeting = meetingById.get(item.meeting_id);
     const body = meeting ? bodyById.get(meeting.public_body_id) ?? null : null;
     const roster = body ? rosterByBodyId.get(body.id) : undefined;

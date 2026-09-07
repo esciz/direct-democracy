@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import type { DocumentRefreshState } from "@/lib/public-meetings/lifecycle";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const QUEUE_PATH = path.join(GENERATED_DIR, "public-meeting-retrieval-queue.json");
@@ -50,6 +51,7 @@ type CacheIndexRecord = {
 };
 
 type RetrievalRun = {
+  generatedAt?: string;
   attempts?: RetrievalAttempt[];
 };
 
@@ -109,13 +111,19 @@ function generateQueue() {
   const textRows = readJson<{ records?: DocumentText[] }>("public-meeting-document-text.json", { records: [] }).records ?? [];
   const cacheRows = readJson<{ records?: CacheIndexRecord[] }>("public-meeting-document-cache-index.json", { records: [] }).records ?? [];
   const retrievalRun = readJson<RetrievalRun>("dataops-retrieval-run.json", { attempts: [] });
+  const refreshState = new Map(readJson<{ records: DocumentRefreshState[] }>("public-meeting-document-refresh-state.json", { records: [] }).records.map(row => [row.documentId, row]));
   const textByDocument = new Map(textRows.map((row) => [row.documentId, row]));
   const cacheByDocument = new Map(cacheRows.map((row) => [row.documentId, row]));
   const attemptByDocument = new Map((retrievalRun.attempts ?? []).map((row) => [row.documentId, row]));
   const records = documents.map((document) => {
     const text = textByDocument.get(document.id);
     const cache = cacheByDocument.get(document.id);
-    const latestAttempt = attemptByDocument.get(document.id);
+    const saved = refreshState.get(document.id);
+    const recent = attemptByDocument.get(document.id);
+    // A one-document retry must not erase failures and backoff for other sources.
+    const latestAttempt = saved && (!recent || Date.parse(saved.lastAttemptAt) >= Date.parse(retrievalRun.generatedAt ?? ""))
+      ? { documentId: saved.documentId, status: saved.status, failureReason: saved.failureReason ?? (saved.consecutiveFailures ? `last_retrieval_${saved.status}` : null) }
+      : recent;
     const state = documentState(document, text, cache, latestAttempt);
     return {
       id: `retrieval-${document.id}`,
@@ -139,7 +147,9 @@ function generateQueue() {
       queuedAt: state === "queued" ? generatedAt : null,
       lastRetrievedAt: cache?.lastSuccessfulRetrievalAt ?? (document.retrievalStatus === "local_cached" ? document.discoveredAt : null),
       nextRetryAfter: retryAfterFor(state, document.priorityBody),
-      retryCount: cache?.retrievalAttemptCount ?? (latestAttempt ? 1 : 0),
+      retryCount: Math.max(cache?.retrievalAttemptCount ?? 0, saved?.consecutiveFailures ?? 0, latestAttempt ? 1 : 0),
+      lastAttemptAt: saved?.lastAttemptAt ?? retrievalRun.generatedAt ?? null,
+      nextAttemptAt: saved?.nextAttemptAt ?? null,
       cacheRefreshAfter: cache || document.retrievalStatus === "local_cached" ? "P30D" : null,
       extractionMethod: text?.extractionMethod ?? "failed",
       extractionQuality: text?.extractionQuality ?? "insufficient",
