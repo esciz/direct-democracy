@@ -8,8 +8,9 @@ export function createDurableProfileContentService(database: ProfileDatabase = p
   async function resolveUserId(profileUserId: string) {
     if (profileUserId.startsWith("identity_")) {
       const account = await database.identityAccount.findUnique({ where: { id: profileUserId }, select: { userId: true } });
-      if (!account?.userId) throw new Error("profile_account_not_found");
-      return account.userId;
+      // Migrated identity accounts can authenticate without a public User record.
+      // Missing optional profile content must not prevent login or MFA rendering.
+      return account?.userId ?? null;
     }
     return (await database.user.findUnique({ where: { id: profileUserId }, select: { id: true } }))?.id ?? null;
   }
@@ -28,6 +29,7 @@ export function createDurableProfileContentService(database: ProfileDatabase = p
 
   async function write(profileUserId: string, content: Omit<UserProfileContentSummary, "userId">) {
     const userId = await resolveUserId(profileUserId);
+    if (!userId && profileUserId.startsWith("identity_")) throw new Error("profile_account_not_found");
     // Demo seed profiles can continue to use their isolated browser state.
     if (!userId) return false;
     const preferences = {

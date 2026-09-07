@@ -148,10 +148,12 @@ async function main() {
     assert.deepEqual(cleared?.profileContent?.nationalIssues, [], "Cleared interests must not revive stale values");
 
     const transactionsBeforeMissingUsers = fixture.transactionCount();
+    const usersBeforeMissingReads = fixture.snapshot();
     for (const accountId of ["identity_missing", "identity_unlinked"]) {
-      await assert.rejects(freshSession.read(accountId), /profile_account_not_found/);
+      assert.equal(await freshSession.read(accountId), null, "An absent optional public profile must not crash session hydration or MFA pages");
       await assert.rejects(freshSession.write(accountId, content()), /profile_account_not_found/);
     }
+    assert.deepEqual(fixture.snapshot(), usersBeforeMissingReads, "Reading missing profiles must not provision users or alter another account");
     assert.equal(await freshSession.read("user_demo_fixture"), null);
     assert.equal(await freshSession.write("user_demo_fixture", content()), false, "Missing demo seeds can retain their isolated browser preferences");
     assert.equal(fixture.transactionCount(), transactionsBeforeMissingUsers);
