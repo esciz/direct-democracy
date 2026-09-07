@@ -1080,6 +1080,7 @@ model User {
 
 model UserProfileContent {
   userId             String   @id
+  primaryCommunityId String?
   profileImageUrl    String?
   bannerImageUrl     String?
   profileTheme       String   @default("classic")
