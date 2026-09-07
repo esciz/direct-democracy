@@ -44,6 +44,7 @@ data/raw/nevada-organizations/
 data/generated/audits/
 data/generated/admin-operations/
 data/generated/*.codex-sandbox.json
+data/generated/*.github-actions.json
 data/generated/*.local-network-enabled.json
 data/generated/*.unknown.json
 data/generated/* 2.json

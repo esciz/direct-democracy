@@ -29,6 +29,7 @@ Do not commit local/operator-only outputs:
 - `data/generated/audits/**`
 - `data/generated/admin-operations/**`
 - `data/generated/*.codex-sandbox.json`
+- `data/generated/*.github-actions.json`
 - `data/generated/*.local-network-enabled.json`
 - `data/generated/*.unknown.json`
 - duplicate Finder/browser downloads such as `data/generated/* 2.json`
@@ -39,6 +40,24 @@ Worker evidence and collection state are persisted through the private Vercel Bl
 Git retention and web packaging are separate decisions. Meeting PDF, document-text, OCR, and adapter caches belong to the worker and are excluded by both deployment upload rules and Next.js file tracing. Public meeting details use compact runtime records with source URLs. After a build, `npm run meetings:bundle:audit` checks that the event function contains its required runtime files and no worker cache bytes. A local runtime rebuild does not publish a new version of the live site.
 
 ## Review Before Commit
+
+### Large canonical JSON files
+
+`data/generated/accountability-graph.json` and `data/generated/public-meeting-items.json` are stored in Git LFS. The working files remain full JSON; Git commits contain small pointers and a normal push uploads their contents through the LFS pre-push hook. Existing Git history is preserved.
+
+Install [Git LFS](https://git-lfs.com/) on each development machine, then run `git lfs install` and `git lfs pull` inside the repository before running imports or builds. The civic production and DataOps recovery workflows use `actions/checkout` with `lfs: true`. Vercel Git deployments also require the project's Git LFS setting to be enabled.
+
+For another canonical artifact approaching GitHub's 100 MiB regular-file limit, track the specific file and re-stage it before committing:
+
+```bash
+git lfs track data/generated/example.json
+git add .gitattributes data/generated/example.json
+git lfs status
+```
+
+Keep small JSON, source code, and runtime files in normal Git unless they need LFS. LFS does not change the private-cache exclusions above. Do not force-add ignored evidence binaries or rewrite shared history to convert a new update.
+
+### Artifact review
 
 Before committing generated data:
 

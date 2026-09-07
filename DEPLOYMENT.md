@@ -32,6 +32,8 @@ On iPhone Safari:
 
 ## Meeting data delivery
 
+Git deployments require **Settings → Git → Git Large File Storage (LFS)** enabled in the Vercel project. This downloads the full large civic JSON files instead of pointer text. After enabling it, use a new deployment; see [Vercel's Git LFS documentation](https://vercel.com/docs/project-configuration/git-settings#git-large-file-storage-lfs). Local/CLI deployments require `git lfs pull` before building or uploading.
+
 See [meeting operations](docs/meeting-operations.md) for acquisition and [launch operations](docs/launch-operations.md) for the cloud worker, durable checkpoints, validated release publication, environment settings and recovery. `vercel.json` restores the selected civic runtime release before building when `CIVIC_DATA_RELEASE_ENABLED=true`. Verify the resulting hash through `/api/data-release`; a local collection or successful build alone does not establish public freshness.
 
 Use Node 24 for the application and DataOps CLI. Run `npm run dataops:runtime:compact` after civic generation and before building. After `npm run build`, run `npm run meetings:bundle:audit` to verify compact meeting evidence is packaged and worker PDF/text caches are excluded. Keep this check when adding new generated-data readers.

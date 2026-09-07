@@ -142,6 +142,8 @@ jobs:
       OFFICIALS_FORCE_REFRESH: ${{ github.event.inputs.officials_force_refresh || 'false' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - uses: actions/setup-node@v4
         with:
@@ -271,6 +273,8 @@ jobs:
       OFFICIALS_WORKER_BACKEND: github_actions_protected_promotion
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - uses: actions/setup-node@v4
         with:

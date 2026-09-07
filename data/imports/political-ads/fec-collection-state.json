@@ -2,24 +2,23 @@
   "cycles": {
     "2016": {
       "nextCursor": {
-        "last_expenditure_date": "2016-11-08",
-        "last_index": "4020820171369949827"
+        "last_expenditure_date": "2016-11-03",
+        "last_index": "4082120171447697576"
       },
-      "lastAttemptAt": "2026-09-07T07:25:28.987Z",
-      "lastSuccessAt": "2026-09-07T07:25:28.987Z",
+      "lastAttemptAt": "2026-09-07T15:56:43.258Z",
+      "lastSuccessAt": "2026-09-07T15:56:43.258Z",
       "status": "notices_only",
-      "pages": 0,
+      "pages": 3,
       "reportedCount": 4901,
       "error": "HTTP 429 Too Many Requests"
     },
     "2026": {
       "nextCursor": null,
-      "lastAttemptAt": "2026-09-07T07:25:28.987Z",
-      "lastSuccessAt": "2026-09-07T07:25:28.987Z",
-      "status": "notices_only",
-      "pages": 0,
-      "reportedCount": 172,
-      "error": "HTTP 429 Too Many Requests"
+      "lastAttemptAt": "2026-09-07T15:56:43.258Z",
+      "lastSuccessAt": "2026-09-07T15:56:43.258Z",
+      "status": "complete_window",
+      "pages": 2,
+      "reportedCount": 172
     }
   }
 }

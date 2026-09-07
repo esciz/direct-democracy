@@ -34,12 +34,17 @@ The moderated Challenge My View contribution workflow is documented in [docs/per
 
 - Node 24 recommended, matching the configured deployment and DataOps worker
 - npm
+- [Git LFS](https://git-lfs.com/) for the large civic source JSON files
 
 ## Install
 
 ```bash
+git lfs install
+git lfs pull
 npm install
 ```
+
+On macOS, install Git LFS with `brew install git-lfs` if `git lfs version` is unavailable. Run the commands above inside the cloned repository. GitHub Desktop uses the repository's LFS tracking automatically; commit and push normally after setup. See [generated artifact policy](docs/generated-artifacts.md) for adding future large files.
 
 ## Run locally
 
@@ -166,6 +171,7 @@ Notes:
 1. Push this repo to GitHub.
 2. Import the repo into Vercel.
 3. Keep the default Next.js framework preset.
+   Enable **Settings → Git → Git Large File Storage (LFS)** so Git deployments download the full civic source files.
 4. Use:
    - Build command: `npm run build`
    - Install command: `npm install`
