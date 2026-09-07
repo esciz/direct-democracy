@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T01:53:06.530Z",
+  "generatedAt": "2026-09-07T14:10:06.609Z",
   "records": [
     {
       "documentId": "meeting-source-document-062a892f5667755d010336415ca985a89be7b0421d2cc86899da1cf602fe510f",
@@ -662,10 +662,10 @@
       "documentId": "meeting-source-document-3dfdbadb501a0c3edf232d2b2542487b2ba76cb724a3739cda1e3fde5c547b61",
       "sourceId": "sparks-city-council",
       "status": "failed",
-      "lastAttemptAt": "2026-09-06T21:01:25.338Z",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
       "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T03:01:25.338Z"
+      "consecutiveFailures": 2,
+      "nextAttemptAt": "2026-09-08T02:10:06.609Z"
     },
     {
       "documentId": "meeting-source-document-d470b2ef14c1d29172030a660bff3840c8aab22d2ae234a1fd923127c353ecd6",
@@ -896,19 +896,19 @@
       "documentId": "meeting-source-document-5ecaeffb64e09a585c786d9e445b4575bad2601e0af0b66e061566038df6180b",
       "sourceId": "sparks-city-council",
       "status": "failed",
-      "lastAttemptAt": "2026-09-06T21:01:25.338Z",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
       "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T03:01:25.338Z"
+      "consecutiveFailures": 2,
+      "nextAttemptAt": "2026-09-08T02:10:06.609Z"
     },
     {
       "documentId": "meeting-source-document-8b4675a8b6561547756762e218644a5944766cbfcf7686f3591752f7d089e9e9",
       "sourceId": "lyon-county-commission",
       "status": "failed",
-      "lastAttemptAt": "2026-09-06T21:01:25.338Z",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
       "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T03:01:25.338Z"
+      "consecutiveFailures": 2,
+      "nextAttemptAt": "2026-09-07T19:11:16.035Z"
     },
     {
       "documentId": "meeting-source-document-b6e33ef37b6101dd4dd02c6eb518972cb9f64f9015593111d69c5bf7fc602131",
@@ -2156,10 +2156,10 @@
       "documentId": "meeting-source-document-2ffbfddf260d5c33c387aed9b757ae8d803fd801e1505f3cc681f66be86a05a4",
       "sourceId": "lyon-county-commission",
       "status": "failed",
-      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
       "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+      "consecutiveFailures": 2,
+      "nextAttemptAt": "2026-09-07T19:27:55.142Z"
     },
     {
       "documentId": "meeting-source-document-a8c0c9c8ae7ea354f147f68e21cbc862aff105ff6e769c0335a6d4831208ea22",
@@ -2651,10 +2651,10 @@
       "documentId": "meeting-source-document-2d873e88366e33b0ba4dfaa4aa7beb6cf968bb3d19b18c9704f74aa8581ec76a",
       "sourceId": "lyon-county-commission",
       "status": "failed",
-      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
       "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+      "consecutiveFailures": 2,
+      "nextAttemptAt": "2026-09-08T02:10:06.609Z"
     },
     {
       "documentId": "meeting-source-document-36e9890a1318da0496dd9dd24e0c22a6cb936d0188b27e517719fdeec1320feb",
@@ -2777,10 +2777,10 @@
       "documentId": "meeting-source-document-3b549d86a8a3af701ade24d5240fe09fa22d65db7b82903f679ca1b9c77e4a90",
       "sourceId": "lyon-county-commission",
       "status": "failed",
-      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
       "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+      "consecutiveFailures": 2,
+      "nextAttemptAt": "2026-09-08T02:10:06.609Z"
     },
     {
       "documentId": "meeting-source-document-e434b975572ce5143cee674658522f76c53042f68f5faf476292e835179718d4",
@@ -2884,20 +2884,20 @@
     {
       "documentId": "meeting-source-document-e8f8bebec415cd146db63cede3373fb1daf2352edbd0815383a278cc46d4e88c",
       "sourceId": "nv-legislature",
-      "status": "blocked_by_network",
-      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
-      "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
     },
     {
       "documentId": "meeting-source-document-02fdd299af348161756ae84d85b48aeee5978df6bae2971606081d306e92b634",
       "sourceId": "lyon-county-commission",
-      "status": "blocked_by_network",
-      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
       "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+      "consecutiveFailures": 2,
+      "nextAttemptAt": "2026-09-08T02:10:06.609Z"
     },
     {
       "documentId": "meeting-source-document-8d036374ddeadd278fc51cb7d0d100b0983508804e02400cd0faeccc2a5c29e1",
@@ -2911,11 +2911,11 @@
     {
       "documentId": "meeting-source-document-2826655cc828c8c669c3ecdacb1f3e98cdeaf267dc5178c078c968ebbbe2d172",
       "sourceId": "pershing-county-commission",
-      "status": "blocked_by_network",
-      "lastAttemptAt": "2026-09-07T01:18:28.037Z",
-      "lastSuccessAt": null,
-      "consecutiveFailures": 1,
-      "nextAttemptAt": "2026-09-07T07:18:28.037Z"
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
     },
     {
       "documentId": "meeting-source-document-850f59125ea023e081b5d4d48c73f441a7d4489ef762a6f4850e0274ace889c3",
@@ -5661,6 +5661,1950 @@
       "lastSuccessAt": null,
       "consecutiveFailures": 1,
       "nextAttemptAt": "2026-09-07T07:53:06.530Z"
+    },
+    {
+      "documentId": "meeting-source-document-7fe0d5e3e71910f1a10217f9fe438f741d9f952a890ce6ce790bc71db8b640c9",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-8ed1bb814f53d39f6d27c58d1f576b787270c2e5387810801bb23000fa9e7b68",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-509c3fa35d4614c93e8ba936e2ff674856c3f4f0a43c9075e1961ec08ecbf96f",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-cc01ea23f69e4e938fee2f9d73579bb221b31798d7cbb9bdbca1d80b956550b1",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-f4b0a9895f9a8a0cc15ce2f453bacc4642d88ed268a3cb66627406949635a6e1",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-9180910513c01c8f3afd210c4885ffc7c604aa1c7f904369eafba4341dc8a713",
+      "sourceId": "nv-legislature",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-4c02e705a420fbe23899438d54b1132853a0ed76dd02561929dd1bcc6da4f8ba",
+      "sourceId": "lyon-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-8a829817903ecfeaaf4b31fa62140e9fd1b76eb9573d7d63f2978239d3ebf9d6",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-feb9ed677cdb870d7ecc23702f7ade7106cf4bcb35f1575ff6e29c09362c95c9",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-76d298c18737963f1acf681799134a26ffb3e50e9e207a356558ca6994d884a0",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-a367b4b6f0947c5a7eb2e9efdd8bacc16078ca67ccb828688d10e119831a54d3",
+      "sourceId": "nshe-board-of-regents",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-d2621b0ece1a969895af6cefdfdbd037237b60cf1aa9d55244b66ba2a02408bf",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-8dcd563edb4af91ed460f47432a69d7415d5b84c47425c5e03855b27a7eb363a",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-95cf7ff969f8daaa1bb7188038f4b218db7d7d170645ad5a1bd68c3b62dbe89b",
+      "sourceId": "henderson-city-council",
+      "status": "blocked_by_network",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-d204414e634f3ca414c365b57b47d011415c150f4586560622695873b5ae6f06",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-fa9404edf14868a2b3e51a3bf442bb52d059e2808cc1d1d6f7e7677ddaa203e6",
+      "sourceId": "elko-city-council",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-5ef8f276289191748fb8f1cf060fcec20dbbb29e69fac7038f585227b46b611a",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-85a320c0391d1adc6327ec73c5e4cd4a158d8b059368c21a6a1c59c2f9f781ee",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-1b9c51280d78267a2fb901c662f720314c3edd1418560bcd62ba14a2542a78e6",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-77d242f8dd74cb2210b04e06379a2107be9b8281c52a074bb59b6d5392c375ad",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-088fb1d4fdabe8756205dd6686c12e9ce9a372582e4027d149d78e6ab53254ab",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-9ee0e5da70adbee10ba795a5b6a6f205bb0c0b00dd00e7b25c1c25b7143367bc",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-3babfdf9670626281907b0cf9de4c2478bbed00dec16db0c7c46911733c70259",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-5e113cf8deb4ada02ee9832c90c26c4c28a2e84d7bfcdbc698a25d4f0ca6a047",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-24e6f307eb998ac431ad33748845f47a0b41849cc8bade89ef609c910c2c28a7",
+      "sourceId": "nv-legislature",
+      "status": "updated_content",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-19d6654e5239379aa0ef48094b67cdf2ef860e479420a24bbbdfc4043edd670e",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-a0fb7e55af70f2ca03df676e04b4d4ffe0c8a7cf5d59e8934675015dd1c63f65",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-0e97051282ca2696d0381ab63f3ca36d8c584de5fcfadeb964e3e02bc841b706",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-be2bb34ee3e801e11847406c2cd21e019d0475518796223a77175b8082acf597",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-6c9b6a3d6f159bd49a9895da5ec05d123eb5914d6ce73898547874a3cd6d03f0",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-7bd81bd2418febab100e4729ec63e837802f0e0479477ee05cd49675bd4e12a6",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-b65dc8f403d3500890d66ad5d9dae9b07493f3098de41882eb0da9b32ff805be",
+      "sourceId": "henderson-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-f4bac4b1b24b76250295be0577e4b8a3fa90cff15775cfed6e9bb8d4e0db1317",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-4a66b40aaaf3ca71473627886ba4d04f0063481b8404112e5073728fee819401",
+      "sourceId": "elko-city-council",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-bc42d1ffa3f91f08350f6f915925851b8da1cf1cfe05c55791556d83062df98e",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-f170f4619473ae134c7e3bfc7cfde462d5e4453563ce820708edb00f3e45e42a",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-29fb47e0f1daf73b53b3fb1b53c110756789ba10d9b14a464a18dd92863c0b68",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-30db1d38f98ca936df935625c62c77e37c3da2dc1c9f36c960feae25cd508c0b",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-795a3ecc58c68731ecd2302707dc481bae1a9fc1923b9c355c7fc83a1511c763",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-c3198961f9bde5e4a111cb50d2d8794e30fed3a494b0f1242814d39b1b015587",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-6038d79f1a2d3d25c111ecdcab009300f87fadfaa5f40ffd62dcdf1e26ae82a0",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-6b20483147a88803c82253bbbff8b170449f84c2bd7fc907c70c230f96e5d1b1",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-223c9ae22420fd51f017434f9f7615e2944bf5bac9f02ea35b9c9c877c36cc16",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-64d763924ac440c7dd63035ff4420bf57b4cf3f64f28db007637193808825707",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-598c603588827e16f35cafd6808a9bd67a4736b15a61d8c18a19e7837f2c40e1",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-c7978187c6da079630ee73b949eaf1c731a3c762b604dc1ecfdd061eb6c17918",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-4a81fc679c8208aba414411f71f05e571e70215a1804dbc460ee9646e4d9865d",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-d3c2e8ab5fe6fdc07c29ad735002eb423fb58d9a1924f39e3540cf5f7d690db2",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-b817f1cd1b37c9c820810403ae673a4a8fb53db4a7600ba33511be632a953da9",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-317c61d9f8916a89edb960ae2c6c4b0e523d0d7b9296bf97fcecf8e136100e66",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-6be07ee1552148ea8460e6d05495f0206f0070ae542a4540378fe388d3cc7cf1",
+      "sourceId": "elko-city-council",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-2e9b2575e12e7cdd7abf3b65bf3cff7c5f623d49b92638997ae8226a557593b5",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-15ff82739b6df2fd8ff1163ce6534e50d83f5e10387a15b7e82acb7849c07477",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-61f18df75c359d6f37998381c44e336c5e2ff047cd51a3ca32b2258360549332",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-744182ff7a6310a323729806ae8d7616234235569fd14ad3d0a6a11652935dab",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-a418c13a7989923e514a87371682e57f9b7a69d0f79e9ecfefc8ba21c130a0e8",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-d7184f65c665a9648dfd7fd11a63258c9b3cd8e50b2c7d17e7d384aa5fd8534c",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-729e768c926ea5a3d8af95048859f7963c7cff3cd7bb26ceedc243eddd6a574b",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-0a6cb4763117f89dc6111bcd8e5693e0f63a1d081d84e41c30d237799d9d6cf9",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-28af427815cbbac207cf00239febdf69c599c71b5bd4b8dd2168e303b42f58f9",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-d72eef7858e3b699ede329374e0332c79a62a62f2d6a604eda1b9c18bd1e38c2",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-105509bfe2253f1cbc6bae5d8fcb252b77156337f4908bd93fd10511f28dde9f",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-00771e7bf6482e4a5030b882f33ac4747cbad9bab1cefb57567caf09863f1e70",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-208aad888d21152c11e455f802b88fc8bfd395ebc3abc34444623f519044d526",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-97b088546d52db2ea04a53f6a4f44f4c08afd607cef2331812c38dafbb1ebddd",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-39912e23a402b346d838c072e0f506f83cabeaa1e5bd9c0a3591475e16ccb18d",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-e6eef23ab0f1ec1ee47340f800a3f8d773ff16b2918d1af70e08114db64e02dc",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-c3ab0c85c1387a7c3af0a0f4761e5becf84a8d1d2e279d1bfff3aca211413009",
+      "sourceId": "elko-city-council",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-b5fbedb27a2439d331490dc06d89e71aa16c77c7b9e7dedcd66d2c6b27fc9059",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-deea6f76b9d29b6fe5acb83e17af41b13ae372662b07784b1041cfe16ef77b7c",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-6691d7238e981c0deec5cd822f636bd97edd8191a361b3d760caafcdb73e1421",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-c9adce5656886d1d133399a5765631a98d8aa9fc7c28681fd5892b39d651868e",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-b6801d01082c880fdabac0b7acf4632409ff0b2365654187ac395f1cfc518df9",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-29a3156fd472b234b9d55d8ec97b186c9db68b3d6a0a81ba337755e36ad719fd",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-1f1601a9df7ae32324cbb7b81db00c6a1595b7486b553ab1782133fb736d451d",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-3c56ee0de8e77f1b0341c25438eaf0a63a5ac63b786e03c1587d7b82211b9364",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-29d10b9528b8256aa52e97476826f8cf7d81eee2e5c0dce15085dd82677cf2a0",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-92d5cbaf4a60c7a8c6a49594c5616dde51ba56ca7309fcf803cb958ba448dddb",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-4320b3acf2ab3208ca22a16b2ed663285c199c89ee1546f5f808cdb53d7835c4",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-4f9e00200913ebf2f1e4a5410914474365faf86a83b743e54cd006e950390454",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-4902578f9582b80d672d09483148b92577b442204e3dde479fb9838df2bea574",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-38f2daf2d45e52b84f30cae7cb3eed8de7a8062037dbe1f8cc82ebb522993612",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-ab62e46cc98eff41b1b260c9feceebb75a9244f0c5ebededc6d577c5ceb547bf",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-1620146e0965c96281daece29188b7f03f0efa27c710af03c46a0b9dca1afe23",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-68649a5bbaf0deccabafae64494976f71d80203eb0b13a99eb4dfd30cd78f4ad",
+      "sourceId": "elko-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-262211a4e5033d8123f73597c39a60c5a804dfd3cba933639279e8d3cabecbf8",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-739e99ce0d436395505f3c727d279078f7786ee3629537c0efa403391238008f",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-56800ecfd13824ea6c54bab1f755a77b2ddc0d263efd41780ad259b5309f6f30",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-803e75444250767d09d5029446b3f7347f9d24243f053c3d3ac1913c17612981",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-e5625fa9b3f90a07482be04e49beba0eb1edbf05f1b579c453b1238cd73261d9",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-c8eef4fd7d78c97b9aa1b06c0c6ad17a9f45e7d57e3a5987f486c0e635c7cebf",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-4dd4b6563c0f913a9da322180edfc2c4060050f59a460efcb721c7aa4b434ec8",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-3f718186f720b47f0e96c84533b8a79a9987a505583e62666f03ac72a658f133",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-d3878c8f774e44359291d044c66fc023b81a67a9c1e9b848c51216119f97186c",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-fb78fcf0151e20e844355bfcc44f637b36531d23af7c7d47e775940ed161628d",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-9089a71e471107f2508753b9fcbf25abcde5b2b336ecdc948c5676021da557b4",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-990f56fab1db3776228b729a079489ec200255fc49df2f9084d962afdc9c1463",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-6c4a9d0628086e2cd44976a03068a03b3a9814ff3311a6dfec515ddb773caf7b",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-8c5d95c7e12451169a5d411f702255425d429e76a99f3bd0ca7e9f4f5673801c",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:11:16.035Z",
+      "lastSuccessAt": "2026-09-07T07:11:16.035Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:11:16.035Z"
+    },
+    {
+      "documentId": "meeting-source-document-fc504ef4bba7c7062166a029bc0fc044cfb636def5e03537437ffaf5d11d34f7",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-14T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-2f2a3f286b0d557da548ec3db1891553925f3c69f5cf42e892f3e2067ebb8da2",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-597a45819d855c149bf0efe5c0b949e68505e6465e9a711269cc323049230841",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-142a6e3d988caf6c274658853a6af689fc744010f7abfb1d82db5423494dfe22",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-5628c25103529b504e3e8c91276318b394c7c6d2d22914f9bc43e9a3f0565672",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-cd4a15b2e56c3e2982b07b9fd36810b2f81efe2a9b577e02bdb18e9b6a3fda0a",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-41b69812545cc3f4b35e388255bf1c5360dd4615eee31787cb07c005de89abec",
+      "sourceId": "washoe-county-commission",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-fd899731e3ea6bafda3df6554e9ddb0ea0d5c7aa21701d55aa7ef2d67cfc0bb5",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-f2a9dbdd15ce041b154ec31e319f5dc070f48b7986a03a4cb4efeba3e7ca522a",
+      "sourceId": "henderson-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-b43e6e3924b92ab703872a254f84648f0f371bc92c7efda8172d50b5c314001d",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-ee1d17d92f49aa7314c08f5065a73baaccaf247010515836815eb520b13d5209",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-664da87bd81a764d954a83088becc47f9e85c7c907a8018a67ccb0ba528ebd0b",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-4bfde62019be3d5a2b56f4aa5b011249ef086d2b6307e2771dab55726b6af7d7",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-95158f840bcbe141ade55aad45cd9891289eea00cbfeeb160aaa76299562a8b2",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-92a4156c374fd62e9a8be62d559238a59f757aa9658962d574863d452c26685d",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-581d354853f254601a647ffa9837a3929d1171d132e1621f576fc9d5663e3727",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-8f47236a76792f5a18a677f50e16e9b7fdd9a22e34a19cd36528b96b004c6690",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-91dbc58153e26c7006a5b36f5730338920156512be63dd0a9135f9a049a04e28",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-d832ef7acae430e037562f8d2ffac511bce5a96a8df7eb22c3ba836d505150e4",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T13:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-faa7d03dd4afeeec767dfc71eabb006c82d27995dccd4b90b1683bc4bfd119ca",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-c6ed98ff47aef066231087fc0b5b855416ac6cdf6732c513bf53e978801987d3",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-51f3468e9625b929623983accdff83d86fc58a74d364b363b26f056c828c9b38",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-cb2586306cb2d6865da611c4fe3eab01d8decf1c4e67ac01e845efd678f409aa",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T07:27:55.142Z",
+      "lastSuccessAt": "2026-09-07T07:27:55.142Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T07:27:55.142Z"
+    },
+    {
+      "documentId": "meeting-source-document-466909201997e23d2665604868a4432279dfb31a0031e4c0beadd06d6476838a",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-4f75ebd3259c4c711860fbf0cb64ce4ab7a5eb8c20c9286a8c67a011531a3fda",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-88aef88460301f3746f832bb12e7690043cf46987bb778cb8dd2a947407864f0",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-e1e615faaa34fcac32ac1b3901cc0cd2f6d7aed50b362b8f887cf5960a871ad2",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-b5f19113e23bfdf9c1fcf6702cc5dc5a2d30d3caa36288aa012e1b809e8a8a91",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-26486bbabac5c327858daf35a0241e200f149399c9dc0f23c901a329f27a3121",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-bf261609836bcb0d93ae5bfd477dbb0d84cac7e9156488a99f78a4d0f365d3ed",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-828d155ceba4b188e724b9671e87af6619492c7bea691117003a5f83e7f0bb17",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-4638d356d1ecf43ea8d9d6cda9bef94af3c86d62771553d0c7b16dbea42d8c50",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-402e23acf44eb0209db82f4e98d1d727bf54f6315a52176054ed28abaf9b6151",
+      "sourceId": "henderson-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-7267760285027a62b623a5faff7968afaad057b096a982df863b14343410bfff",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-5dbd4b3e0250bbaa4d337421dce95753f30590827019f71d733a4f5360786a68",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-3ded15f434562af0cda539edc4f4ed6095076379c636b2acf29bdc850bd716e2",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-c6234688a79d077ef042649395c7e2b1a0c1afe6a76ac3c5424b5da21a7e15dd",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-bb6e1a7d27aaeb1f397088ca53f25f732a3463b00f245fdf2cdad4f3d38d1721",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-063059f6cc7a216563c716e1a68d3b68dd91a427d46b4d7c7603f63950899345",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-e0efc82515ded856c686b195be366e1bf89367b41c9b24d57fb7a3652b4247be",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-106b8a3f08a64dcb14d8688bf864d0fdd8fcaa224799d729fb4588622c3bd840",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-76e2791613f7c1dc49fb03b888bace4fe88957034247a0a9a8b57f3931e60241",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-195c88d041e029c1487f9936bb9b251009e2be68b767ec94d6f9930e713999cc",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-1bb255ac60353e9056cafc19c50155029f7fdc21b969c45ad16c5af384c19612",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-bd3265c686b5811c0c397710d69d8ed4b909f61c4bcd412333bf4e298f90a70e",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-fa36b9c26d1beb4853d060c1e91042fec1d23430ef8f756203fc73029e84a8a3",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-5f2f601f9db3dfa289fb0f5de1cb15fba5303277e798a4314089c6317b6958d4",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-cd50b0e6dd665a57fc3c4ae4108ba024e846962c2c4b4dc52a191ea250d8f81e",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-dd53f658ad68ba00cd48a6f5da3f81970360ffa63ec84404ea99fa12ce9f3d12",
+      "sourceId": "elko-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-7b1d4188d8f6a4b16934145e49de5563c001c3b9951d8562b722c65778c8cb68",
+      "sourceId": "henderson-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-c3bcec2b9fd464180fa1878914692fb74e52578e5073646b7a0715b228074358",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-6d1308467a4abc352a6a445a698d6495cbf15757fec5a6937336627e68cb2dd9",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-5a30a3cb3ab3fdb5d110970821b512a1fd661c3437a6d4917ef3279c4fc5a4fe",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-d52dbc48cd1a96b915bcc0ac28a587a4059323196544b63615ee08e7ade6ca63",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-cd4918aca8a8f454239d6218eb32b2e6a67dc632cc1c030e1edfefae06e72cea",
+      "sourceId": "clark-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-1edb65aab54c2360c6e3dca6b9bb2bb1fb409978feb2fc31cdcc121509fd4a31",
+      "sourceId": "washoe-county-school-district",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-87d42f5d37d1810070cb2e884dc1efae01d6ee087e302f5ab325c5a034658710",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-24c48e00d414db76af869e39b874b44fcaeb782abfcfd49f84fdd1bf1012d61f",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-58350b1f82a1991caf9d5ce301d6c353cf94d6f981b550065ad3553c5574ff70",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-651aa10d61d0a9997a33e2d09b79d3a8b1bbd837d13df171658c94f87cdf4628",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-2f149e13dac8ca0e23498afdad074a4642105eab7d166f08d2228e9a1963942f",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-c696d69da08c1a5422c7c296143f4a86db1f1dbcd6acd62ebe3174ac9b475fda",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-c07f015544916ae5baaff16231585cda29ed428f4fa57e06a638438997ce6bb2",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-8d21ba057b7eca601007ea60f1ca06bfd6f515b43e179989f767f427e4799749",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-8a99f721824b4392fd7058d48855f0842475a976dec93ec4e0582a160a68cd37",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-07d2333891c1af2542c96467d7194f87378a8c38611326706df6e47d26ad66bc",
+      "sourceId": "elko-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-de5fbf33c06eda3919cfbb4b3b6ee089b812c48bbd78b48e4446ea7c58d44af1",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-3a62399b4d806bdb64d8589c4b67b0417b9da2b8a0b8190f4fe61cf1d98b3b73",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-b0293937ca95d7f9b638b1d6212ff43aa70f9d8e2b6c0a2b5d91657d1ceb6d09",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-cbb8b7da5a963db621646c09bd0e0745b476841cc5b233eec03b0497702a0eae",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-02fc622211f2ca15b7200ecb39d444af352403d8ef38a5b5cd5bcb89d6bd5dd7",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-6114f7de9216455aa94b152ab9c93ff3f8d5ee3163e850a1b9ed653fbd67c50d",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-6c31187b5d9ffa0b23a03bc763e385fed54e9e8bf60285cb5225300c656d9fc1",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-b3a2cad9e9ca6a93e4e16fe93709526cdb0f14940b55dfb5425d76752e8ebd75",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-91e1d59929dd995b5b687682fedb929e8718f245375f07e17912bd1d248c75d7",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-fad0ef63fe185cfab5379cd5b61d0578b79ae3e64b3f3ff2a85d0ac760dca29b",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-b9ed4985df463ed0e2606ba83fed7fa2f02e60760e704397ea2288844d5a0239",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-abdfa04f50bbfe815657a1fc8640423605c292c8290763a591e1b1cc58d3cb2f",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-448491205140f8ea0f1247b14cd7abf24e4a89395a9e4be9a66c1fa107009e7c",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-c62d3ed1c1d15b20e69e950dab0693b01163caf371443be036a6eb31f108b21e",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-a0bef72ebfc9588c35817278040758a41baec09869078a71abe0bd401e48341d",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-decace4428a4310fa7dae1c8d477c0875d8a239004747c9b008193e56cf02d80",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-307f04e9fec9cc81201a8db6dde0ed1371626f1386ba03fa801c61d91af75f8f",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-b9ae3ce7615398a13953e283d7f5204a6d726aa613cb0944831cb31127e611be",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-8c70b3383cbcc3cf75f85fff7322d5ce516de3dd1b1085102baeb20921298c55",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-c40b2473b979783eac3cd1ac8a93402e27d5dbe8b70806263ad5720193df156e",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-cec599d5f7a01e3e0cf58e23f80d65f49421416f198b7af55392db3e1e1436d6",
+      "sourceId": "sparks-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-168bae931a2e6d29f7a257174da2e3d0b837c2d882849b9cc9e153ea08d82640",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-e5f56598ffeefdd477282281a4a5b9eba78a65aec56c60871df9729576cc508d",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-797eeffaaf61dc4a656677097745f1e47d4071c984710c23134f01ad96963591",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-86c447969a7131d13db7bc6acf9222c0542af98781798cfacaf819979f3f0507",
+      "sourceId": "pershing-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-c647831269f54a558c98b9705678f818efda7007669646972afda7cfb028c418",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-1e962eaa7d75f0435009232af3b3703f79d1854a2c389597cd1eb9619845f4b9",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-de90c923e60a1574b9e4f390570972dd807a5ef6a7afa7e7c17bdb235d31b30a",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-e43981d2b9d77e504541ec54044026dc374fb56575c827014d1e4cd66a526740",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-e40fac2643d860c3aa958065390b797f9d29ab55c9ddfeedbdf434080eff5b65",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-71c3473a6720e98c2a3fdced189a3cfaf580fb467825f57d53a1d4235d1c1c06",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-beb6f6bdb118831291a4e73f361c1f550a632168c05bc2cc9ace4450fbaf5acd",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-f6ac21f2efacdcfb27e58d5ed7d796f8a3d671e90112299e793dd5ecda882e7d",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-e081c2b0474b5bbad8dd26845df73bf82636c8aa61b58fc48ffe8e8ee43b2906",
+      "sourceId": "elko-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-baed3621fe2e10fec1a5e07f9c4f785d6665084d2dbdfe28d80a0d9b22973e85",
+      "sourceId": "henderson-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-66f1395b6782bbf24b10a0a92a1e116600d1a3ca9533a7beda562b65adc0a82e",
+      "sourceId": "clark-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-d44ce1f9a1aa0ef88be7a6a50343e4579fffbca88c03cb5f217ee1cad114aa8a",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-8cf74b57f3e2c1fe124a0b290cb10aa6807b9139b0b75d7788802ccdf304d9b0",
+      "sourceId": "carson-city-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-ba85d3d81e1b590f79697e1c6c7974c1925b449c7df536073695292336cb01d3",
+      "sourceId": "clark-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-3f3b6608c2fcf40eb0a88dbd65972aa60b851ee82e779d7f88b8f7f3463f590b",
+      "sourceId": "washoe-county-school-district",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-d8ada91834037549a9fde30f1a4f2b5d27438f38b13d8910457ff67a5df2d31b",
+      "sourceId": "reno-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-efb4b0113dd93ac63bb9591f2916393f2c0e5b5e486007e2a4e3b8f75191c424",
+      "sourceId": "carson-city-board-of-supervisors",
+      "status": "unchanged",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-64db8d17c82ae49304e7e903608b341242bc9bac2556733ba6c879e0a61b1890",
+      "sourceId": "elko-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-69d0f8b93d48fac3adad568a955a105b548fca289d2b96ab1f40e270857ea416",
+      "sourceId": "eureka-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-94deb5c0bd60e61a82ff150421ece1ade5767232710b00588229e5c2c39a32f1",
+      "sourceId": "nshe-board-of-regents",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-3cbb0f2c675868ad5298fa1acd2841ca8d13ca82629958b0bd81daff0f4efadb",
+      "sourceId": "nv-cannabis-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-c0585af9ca0b5a2953658e87d42630d1afac0a1d8470b47985fcde05011bf921",
+      "sourceId": "nv-state-board-of-education",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-fad2c74cb3bf0f01f711a8fe7e925c7f5194b747a753115e3a48640f258ec4bf",
+      "sourceId": "washoe-county-commission",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-09-08T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-65d0cf97aa38af231dac823c15aa2db2d2bb578e648a64f4bbeb372bc5c796d7",
+      "sourceId": "elko-city-council",
+      "status": "failed",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": null,
+      "consecutiveFailures": 1,
+      "nextAttemptAt": "2026-09-07T20:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-f56427d324a8f6794c6e14172f891f82221bc81399c6a9db935203b103ffbec5",
+      "sourceId": "henderson-city-council",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
+    },
+    {
+      "documentId": "meeting-source-document-e7c012536382e6e91e6367311bfd1c89d7c3abaa4e55a905d30139008211e66e",
+      "sourceId": "nv-taxation-public-meetings",
+      "status": "newly_cached",
+      "lastAttemptAt": "2026-09-07T14:10:06.609Z",
+      "lastSuccessAt": "2026-09-07T14:10:06.609Z",
+      "consecutiveFailures": 0,
+      "nextAttemptAt": "2026-10-07T14:10:06.609Z"
     }
   ]
 }

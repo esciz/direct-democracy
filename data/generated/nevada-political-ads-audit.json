@@ -1,1 +1,37 @@
-{"generatedAt":"2026-09-07T01:33:26.375Z","status":"ready","totals":{"generatedAds":3011,"publishedAds":3011,"pendingAds":0,"reviewQueueRecords":2,"recordsMissingSource":0,"recordsWithExampleSources":0},"sourceTypes":["broadcastTvAd","internetAd","mailer","otherUnknown","print","radioAd","textSmsAd"],"sponsorTypes":["candidateCampaign","independentExpenditureGroup","pac","politicalParty","superPac","unknownUndisclosed"],"geographyCounts":{"Nevada":3011},"failures":[],"nextSteps":["Review claim ratings and relation links for each imported ad.","Attach screenshots, transcripts, or archive URLs when available."]}
+{
+  "generatedAt": "2026-09-07T07:25:30.947Z",
+  "status": "ready",
+  "totals": {
+    "generatedAds": 3077,
+    "publishedAds": 3077,
+    "pendingAds": 0,
+    "reviewQueueRecords": 2,
+    "recordsMissingSource": 0,
+    "recordsWithExampleSources": 0
+  },
+  "sourceTypes": [
+    "broadcastTvAd",
+    "internetAd",
+    "mailer",
+    "otherUnknown",
+    "print",
+    "radioAd",
+    "textSmsAd"
+  ],
+  "sponsorTypes": [
+    "candidateCampaign",
+    "independentExpenditureGroup",
+    "pac",
+    "politicalParty",
+    "superPac",
+    "unknownUndisclosed"
+  ],
+  "geographyCounts": {
+    "Nevada": 3077
+  },
+  "failures": [],
+  "nextSteps": [
+    "Review claim ratings and relation links for each imported ad.",
+    "Attach screenshots, transcripts, or archive URLs when available."
+  ]
+}

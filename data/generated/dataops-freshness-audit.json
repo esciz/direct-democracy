@@ -1,1 +1,24 @@
-{"generatedAt":"2026-09-07T01:29:54.246Z","environment":{"githubActions":false,"allowExternalCache":false},"totals":{"queueRecords":3269,"downloadedOrCached":2561,"blockedByNetwork":7,"cacheRecords":3279,"missingLocalCacheFiles":0,"externalCacheMissingFilesSuppressed":0,"cacheRecordsWithHashes":3279,"changedDocumentsTracked":25,"sourcesMonitored":74,"staleSources":1,"failingSources":3,"rssSources":3,"reprocessingRuns":1,"failures":0},"failures":[]}
+{
+  "generatedAt": "2026-09-07T14:14:19.440Z",
+  "environment": {
+    "githubActions": false,
+    "allowExternalCache": false
+  },
+  "totals": {
+    "queueRecords": 6316,
+    "downloadedOrCached": 4101,
+    "blockedByNetwork": 0,
+    "cacheRecords": 4842,
+    "missingLocalCacheFiles": 0,
+    "externalCacheMissingFilesSuppressed": 0,
+    "cacheRecordsWithHashes": 4842,
+    "changedDocumentsTracked": 28,
+    "sourcesMonitored": 74,
+    "staleSources": 1,
+    "failingSources": 6,
+    "rssSources": 3,
+    "reprocessingRuns": 1,
+    "failures": 0
+  },
+  "failures": []
+}

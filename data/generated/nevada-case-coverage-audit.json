@@ -1,1 +1,41 @@
-{"generatedAt":"2026-09-07T01:38:31.899Z","coverageGeneratedAt":"2026-09-07T01:38:31.728Z","strictPassed":true,"coverageComplete":false,"auditScope":"Reviewed record integrity and source-route registration. Passing does not establish current or comprehensive case collection.","totals":{"sourceRoutes":11,"reachableSourceRoutes":6,"inaccessibleSourceRoutes":5,"sourcesWithAutomatedRecordCollection":0,"requiredCounties":17,"countiesWithSourceRoutes":17,"publishedPublicCases":27,"appellateCases":25,"stateAppellateCases":25,"localTrialCases":0,"federalCases":2,"federalDistrictCases":0,"federalCircuitCases":1,"supremeCourtCases":1,"administrativeCases":0,"missingCountyRoutes":0,"invalidPublishedRecords":0,"demoRecords":0,"duplicateRecordIds":0,"duplicateCourtCaseKeys":0,"missingFederalSourceRoutes":0,"missingFederalRecordLayers":0},"gaps":{"missingCountyRoutes":[],"invalidPublishedRecords":[],"demoRecordIds":[],"duplicateRecordIds":[],"duplicateCourtCaseKeys":[],"missingFederalSourceRoutes":[],"missingFederalRecordLayers":[]},"failures":[]}
+{
+  "generatedAt": "2026-09-07T07:25:28.878Z",
+  "coverageGeneratedAt": "2026-09-07T07:25:28.823Z",
+  "strictPassed": true,
+  "coverageComplete": false,
+  "auditScope": "Reviewed record integrity and source-route registration. Passing does not establish current or comprehensive case collection.",
+  "totals": {
+    "sourceRoutes": 11,
+    "reachableSourceRoutes": 6,
+    "inaccessibleSourceRoutes": 5,
+    "sourcesWithAutomatedRecordCollection": 0,
+    "requiredCounties": 17,
+    "countiesWithSourceRoutes": 17,
+    "publishedPublicCases": 27,
+    "appellateCases": 25,
+    "stateAppellateCases": 25,
+    "localTrialCases": 0,
+    "federalCases": 2,
+    "federalDistrictCases": 0,
+    "federalCircuitCases": 1,
+    "supremeCourtCases": 1,
+    "administrativeCases": 0,
+    "missingCountyRoutes": 0,
+    "invalidPublishedRecords": 0,
+    "demoRecords": 0,
+    "duplicateRecordIds": 0,
+    "duplicateCourtCaseKeys": 0,
+    "missingFederalSourceRoutes": 0,
+    "missingFederalRecordLayers": 0
+  },
+  "gaps": {
+    "missingCountyRoutes": [],
+    "invalidPublishedRecords": [],
+    "demoRecordIds": [],
+    "duplicateRecordIds": [],
+    "duplicateCourtCaseKeys": [],
+    "missingFederalSourceRoutes": [],
+    "missingFederalRecordLayers": []
+  },
+  "failures": []
+}

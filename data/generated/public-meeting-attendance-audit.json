@@ -1,1 +1,35 @@
-{"generatedAt":"2026-09-07T02:05:16.548Z","sourceArtifacts":["data/generated/public-meetings.json","data/generated/public-meeting-items.json","data/generated/public-meeting-bodies.json","data/seed/public-meeting-official-rosters.json"],"totals":{"meetingsScanned":2401,"meetingsWithAttendanceParsed":554,"attendanceRecords":5357,"votingMemberAttendanceRecords":4166,"nonVotingAttendanceRecords":1191,"unmatchedNames":4395,"meetingsNeedingAttendanceReview":0,"meetingsWithVerifiedVotingAttendance":536,"meetingsEligibleForUnanimousOrAggregateVoteAttribution":226,"voteActionsUnlockedByAttendance":326},"statusCounts":{"present":2876,"non_voting_present":1191,"absent":1100,"excused":139,"recused":37,"remote_present":14},"matchConfidenceCounts":{"unmatched_name":4395,"title_plus_name_match":113,"exact_name_match":826,"normalized_name_match":23}}
+{
+  "generatedAt": "2026-09-07T14:12:54.800Z",
+  "sourceArtifacts": [
+    "data/generated/public-meetings.json",
+    "data/generated/public-meeting-items.json",
+    "data/generated/public-meeting-bodies.json",
+    "data/seed/public-meeting-official-rosters.json"
+  ],
+  "totals": {
+    "meetingsScanned": 2405,
+    "meetingsWithAttendanceParsed": 629,
+    "attendanceRecords": 6677,
+    "votingMemberAttendanceRecords": 5242,
+    "nonVotingAttendanceRecords": 1435,
+    "unmatchedNames": 4493,
+    "meetingsNeedingAttendanceReview": 0,
+    "meetingsWithVerifiedVotingAttendance": 612,
+    "meetingsEligibleForUnanimousOrAggregateVoteAttribution": 260,
+    "voteActionsUnlockedByAttendance": 448
+  },
+  "statusCounts": {
+    "present": 3749,
+    "non_voting_present": 1435,
+    "absent": 1262,
+    "excused": 173,
+    "recused": 42,
+    "remote_present": 16
+  },
+  "matchConfidenceCounts": {
+    "unmatched_name": 4493,
+    "title_plus_name_match": 841,
+    "exact_name_match": 1245,
+    "normalized_name_match": 98
+  }
+}

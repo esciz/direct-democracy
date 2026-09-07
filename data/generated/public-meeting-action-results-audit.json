@@ -1,1 +1,198 @@
-{"generatedAt":"2026-09-07T02:05:09.973Z","totals":{"meetingItemsScanned":23550,"actionResultsExtracted":5560,"withMotion":1462,"withMover":814,"withSeconder":2429,"withOutcome":4997,"withVoteCount":2171,"withNamedVotes":727,"unanimousActions":725,"needsReview":1745,"unlinkedToAgendaItem":790},"organizationReports":[{"organizationId":"eureka-county-commission","actionResults":1049,"withOutcome":1048,"withVoteCount":916,"withNamedVotes":7,"needsReview":15,"unlinkedToAgendaItem":259},{"organizationId":"carson-city-board-of-supervisors","actionResults":818,"withOutcome":429,"withVoteCount":730,"withNamedVotes":464,"needsReview":411,"unlinkedToAgendaItem":26},{"organizationId":"nv-taxation-public-meetings","actionResults":761,"withOutcome":718,"withVoteCount":5,"withNamedVotes":56,"needsReview":93,"unlinkedToAgendaItem":1},{"organizationId":"carson-city-school-district","actionResults":525,"withOutcome":516,"withVoteCount":288,"withNamedVotes":5,"needsReview":234,"unlinkedToAgendaItem":4},{"organizationId":"nv-cannabis-public-meetings","actionResults":463,"withOutcome":461,"withVoteCount":0,"withNamedVotes":0,"needsReview":353,"unlinkedToAgendaItem":31},{"organizationId":"nshe-board-of-regents","actionResults":359,"withOutcome":357,"withVoteCount":15,"withNamedVotes":1,"needsReview":339,"unlinkedToAgendaItem":10},{"organizationId":"elko-city-council","actionResults":307,"withOutcome":301,"withVoteCount":26,"withNamedVotes":46,"needsReview":22,"unlinkedToAgendaItem":97},{"organizationId":"elko-county-commission","actionResults":267,"withOutcome":265,"withVoteCount":0,"withNamedVotes":23,"needsReview":35,"unlinkedToAgendaItem":13},{"organizationId":"lyon-county-commission","actionResults":249,"withOutcome":249,"withVoteCount":10,"withNamedVotes":3,"needsReview":45,"unlinkedToAgendaItem":134},{"organizationId":"clark-county-school-district","actionResults":227,"withOutcome":222,"withVoteCount":139,"withNamedVotes":14,"needsReview":55,"unlinkedToAgendaItem":34},{"organizationId":"storey-county-commission","actionResults":143,"withOutcome":142,"withVoteCount":0,"withNamedVotes":5,"needsReview":16,"unlinkedToAgendaItem":81},{"organizationId":"reno-city-council","actionResults":95,"withOutcome":73,"withVoteCount":0,"withNamedVotes":29,"needsReview":21,"unlinkedToAgendaItem":23},{"organizationId":"yerington-city-council","actionResults":91,"withOutcome":83,"withVoteCount":0,"withNamedVotes":12,"needsReview":22,"unlinkedToAgendaItem":37},{"organizationId":"washoe-county-school-district","actionResults":85,"withOutcome":36,"withVoteCount":17,"withNamedVotes":49,"needsReview":30,"unlinkedToAgendaItem":16},{"organizationId":"washoe-county-commission","actionResults":56,"withOutcome":32,"withVoteCount":23,"withNamedVotes":0,"needsReview":45,"unlinkedToAgendaItem":13},{"organizationId":"nv-state-board-of-education","actionResults":48,"withOutcome":48,"withVoteCount":0,"withNamedVotes":11,"needsReview":8,"unlinkedToAgendaItem":8},{"organizationId":"churchill-county-commission","actionResults":14,"withOutcome":14,"withVoteCount":0,"withNamedVotes":0,"needsReview":0,"unlinkedToAgendaItem":0},{"organizationId":"sparks-city-council","actionResults":2,"withOutcome":2,"withVoteCount":2,"withNamedVotes":2,"needsReview":0,"unlinkedToAgendaItem":2},{"organizationId":"clark-county-commission","actionResults":1,"withOutcome":1,"withVoteCount":0,"withNamedVotes":0,"needsReview":1,"unlinkedToAgendaItem":1}]}
+{
+  "generatedAt": "2026-09-07T14:12:46.011Z",
+  "totals": {
+    "meetingItemsScanned": 24939,
+    "actionResultsExtracted": 6118,
+    "withMotion": 1521,
+    "withMover": 849,
+    "withSeconder": 2700,
+    "withOutcome": 5522,
+    "withVoteCount": 2434,
+    "withNamedVotes": 763,
+    "unanimousActions": 848,
+    "needsReview": 1890,
+    "unlinkedToAgendaItem": 828
+  },
+  "organizationReports": [
+    {
+      "organizationId": "eureka-county-commission",
+      "actionResults": 1202,
+      "withOutcome": 1201,
+      "withVoteCount": 1066,
+      "withNamedVotes": 7,
+      "needsReview": 17,
+      "unlinkedToAgendaItem": 263
+    },
+    {
+      "organizationId": "carson-city-board-of-supervisors",
+      "actionResults": 840,
+      "withOutcome": 441,
+      "withVoteCount": 740,
+      "withNamedVotes": 464,
+      "needsReview": 421,
+      "unlinkedToAgendaItem": 26
+    },
+    {
+      "organizationId": "nv-taxation-public-meetings",
+      "actionResults": 761,
+      "withOutcome": 718,
+      "withVoteCount": 5,
+      "withNamedVotes": 56,
+      "needsReview": 93,
+      "unlinkedToAgendaItem": 1
+    },
+    {
+      "organizationId": "nv-cannabis-public-meetings",
+      "actionResults": 544,
+      "withOutcome": 542,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 419,
+      "unlinkedToAgendaItem": 41
+    },
+    {
+      "organizationId": "carson-city-school-district",
+      "actionResults": 525,
+      "withOutcome": 516,
+      "withVoteCount": 288,
+      "withNamedVotes": 5,
+      "needsReview": 234,
+      "unlinkedToAgendaItem": 4
+    },
+    {
+      "organizationId": "nshe-board-of-regents",
+      "actionResults": 494,
+      "withOutcome": 490,
+      "withVoteCount": 115,
+      "withNamedVotes": 5,
+      "needsReview": 371,
+      "unlinkedToAgendaItem": 15
+    },
+    {
+      "organizationId": "elko-county-commission",
+      "actionResults": 343,
+      "withOutcome": 341,
+      "withVoteCount": 0,
+      "withNamedVotes": 30,
+      "needsReview": 38,
+      "unlinkedToAgendaItem": 13
+    },
+    {
+      "organizationId": "elko-city-council",
+      "actionResults": 315,
+      "withOutcome": 309,
+      "withVoteCount": 26,
+      "withNamedVotes": 46,
+      "needsReview": 25,
+      "unlinkedToAgendaItem": 98
+    },
+    {
+      "organizationId": "clark-county-school-district",
+      "actionResults": 275,
+      "withOutcome": 270,
+      "withVoteCount": 139,
+      "withNamedVotes": 16,
+      "needsReview": 80,
+      "unlinkedToAgendaItem": 37
+    },
+    {
+      "organizationId": "lyon-county-commission",
+      "actionResults": 249,
+      "withOutcome": 249,
+      "withVoteCount": 10,
+      "withNamedVotes": 3,
+      "needsReview": 45,
+      "unlinkedToAgendaItem": 134
+    },
+    {
+      "organizationId": "storey-county-commission",
+      "actionResults": 143,
+      "withOutcome": 142,
+      "withVoteCount": 0,
+      "withNamedVotes": 5,
+      "needsReview": 16,
+      "unlinkedToAgendaItem": 81
+    },
+    {
+      "organizationId": "reno-city-council",
+      "actionResults": 119,
+      "withOutcome": 80,
+      "withVoteCount": 0,
+      "withNamedVotes": 44,
+      "needsReview": 23,
+      "unlinkedToAgendaItem": 38
+    },
+    {
+      "organizationId": "washoe-county-school-district",
+      "actionResults": 93,
+      "withOutcome": 40,
+      "withVoteCount": 20,
+      "withNamedVotes": 57,
+      "needsReview": 30,
+      "unlinkedToAgendaItem": 16
+    },
+    {
+      "organizationId": "yerington-city-council",
+      "actionResults": 91,
+      "withOutcome": 83,
+      "withVoteCount": 0,
+      "withNamedVotes": 12,
+      "needsReview": 22,
+      "unlinkedToAgendaItem": 37
+    },
+    {
+      "organizationId": "washoe-county-commission",
+      "actionResults": 56,
+      "withOutcome": 32,
+      "withVoteCount": 23,
+      "withNamedVotes": 0,
+      "needsReview": 45,
+      "unlinkedToAgendaItem": 13
+    },
+    {
+      "organizationId": "nv-state-board-of-education",
+      "actionResults": 48,
+      "withOutcome": 48,
+      "withVoteCount": 0,
+      "withNamedVotes": 11,
+      "needsReview": 8,
+      "unlinkedToAgendaItem": 8
+    },
+    {
+      "organizationId": "churchill-county-commission",
+      "actionResults": 14,
+      "withOutcome": 14,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "henderson-city-council",
+      "actionResults": 3,
+      "withOutcome": 3,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 2,
+      "unlinkedToAgendaItem": 0
+    },
+    {
+      "organizationId": "sparks-city-council",
+      "actionResults": 2,
+      "withOutcome": 2,
+      "withVoteCount": 2,
+      "withNamedVotes": 2,
+      "needsReview": 0,
+      "unlinkedToAgendaItem": 2
+    },
+    {
+      "organizationId": "clark-county-commission",
+      "actionResults": 1,
+      "withOutcome": 1,
+      "withVoteCount": 0,
+      "withNamedVotes": 0,
+      "needsReview": 1,
+      "unlinkedToAgendaItem": 1
+    }
+  ]
+}

@@ -1,1 +1,228 @@
-{"generatedAt":"2026-09-07T02:06:16.462Z","launchReady":false,"totals":{"critical":0,"high":8,"medium":4,"publicAggregationFilesChecked":16,"meetingProvidersChecked":64},"findings":[{"id":"meeting-provider-zero-yield","severity":"high","area":"meeting collection","summary":"31 registered meeting providers returned zero parsed meetings; zero yield is a collection barrier even when the importer reports no exception.","evidence":["Nevada Statewide Public Notice Discovery (nv-statewide-public-notices): ","Nevada Education Boards and Councils Discovery (nv-education-public-meetings-discovery): ","Nevada School and Parent Organization Discovery (nv-school-participation-discovery): ","Governor / Executive Boards (nv-governor-executive-boards): ","Esmeralda County Commission (esmeralda-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.","Humboldt County Commission (humboldt-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.","Lander County Commission (lander-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.","Lincoln County Commission (lincoln-county-commission): ","Mineral County Commission (mineral-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.","White Pine County Commission (white-pine-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.","Ely City Council (ely-city-council): PDF text extraction or packet chunking needs review. Some saved source records need manual review.","Fallon City Council (fallon-city-council): Some public linked downloads failed and need review.","Fernley City Council (fernley-city-council): PDF text extraction or packet chunking needs review. Some saved source records need manual review.","Lovelock City Council (lovelock-city-council): ","Wells City Council (wells-city-council): ","West Wendover City Council (west-wendover-city-council): ","Winnemucca City Council (winnemucca-city-council): ","Churchill County School District Board of Trustees (churchill-county-school-district): ","Douglas County School District Board of Trustees (douglas-county-school-district): ","Elko County School District Board of Trustees (elko-county-school-district): ","Esmeralda County School District Board of Trustees (esmeralda-county-school-district): ","Eureka County School District Board of Trustees (eureka-county-school-district): ","Humboldt County School District Board of Trustees (humboldt-county-school-district): Some public linked downloads failed and need review. Some saved source records need manual review.","Lander County School District Board of Trustees (lander-county-school-district): Some public linked downloads failed and need review.","Lincoln County School District Board of Trustees (lincoln-county-school-district): ","Lyon County School District Board of Trustees (lyon-county-school-district): ","Mineral County School District Board of Trustees (mineral-county-school-district): ","Nye County School District Board of Trustees (nye-county-school-district): ","Pershing County School District Board of Trustees (pershing-county-school-district): ","Storey County School District Board of Trustees (storey-county-school-district): ","White Pine County School District Board of Trustees (white-pine-county-school-district): "]},{"id":"official-roster-source-gaps","severity":"high","area":"official collection","summary":"12 priority jurisdictions do not have complete source-verified official rosters.","evidence":["Reno: unverified_roster (configured_seed_only)","Sparks: unverified_roster (missing)","Washoe County: unverified_roster (missing)","Elko: unverified_roster (missing)","Elko County: unverified_roster (missing)","Clark County: unverified_roster (missing)","Las Vegas: unverified_roster (missing)","Henderson: unverified_roster (missing)","North Las Vegas: unverified_roster (missing)","CCSD: unverified_roster (configured_seed_only)","NSHE: unverified_roster (missing)","Nevada Legislature: unverified_roster (missing)"]},{"id":"campaign-finance-reconciliation","severity":"high","area":"campaign finance collection","summary":"Nevada SOS finance records still have unresolved parsing and candidate-reconciliation gaps.","evidence":["15 unmatched of 117 records","15 missing candidate names","5 missing offices","40 missing totals","11 duplicate report groups","63 live URLs blocked by the current Nevada SOS session","last successful live fetch 2026-06-14T18:31:17.117Z","117 cached records remain usable","Cached Nevada SoS records remain usable. Refresh the live session with npm run nv-sos:bootstrap before the next live acquisition window."]},{"id":"statewide-financial-extraction-backlog","severity":"medium","area":"financial transparency","summary":"Statewide financial source coverage is complete, but some campaign totals and personal-disclosure filings still require matched extraction.","evidence":["302 of 366 profiles have matched campaign totals","162 candidate profiles have totals","140 official profiles have totals","64 profiles remain source-route only","4 of 366 profiles have matched personal-disclosure filings","135 profiles have published contributor samples"]},{"id":"statewide-case-extraction-backlog","severity":"medium","area":"case collection","summary":"Case source routes are registered statewide, but reviewed publication is still limited to appellate records.","evidence":["25 appellate cases published","0 local trial cases published","2 federal cases published","0 administrative cases published"]},{"id":"political-ad-creative-backlog","severity":"medium","area":"political ad collection","summary":"Most matched political-ad records establish reported spend or dissemination but do not include reviewed creative.","evidence":["7 reviewed creative records","3004 filing-only records","20 entities with matched records","4 entities with reviewed creative"]},{"id":"statewide-public-organization-contract","severity":"high","area":"organization collection","summary":"The source-backed public-organization directory is missing, contains integrity failures, or has unreachable reviewed websites.","evidence":["127 organizations","19 affiliation categories","125 of 127 checked websites reachable","0 missing source routes","0 example URLs"]},{"id":"partial-dataops-run","severity":"high","area":"data operations","summary":"The latest recorded DataOps run was not a complete successful daily pipeline execution.","evidence":["1 of 16 stages attempted","1 stages failed","completed 2026-09-06T13:26:04.861Z"]},{"id":"meeting-document-readiness","severity":"high","area":"meeting accountability","summary":"Some meeting records cannot yet support agenda, vote, and accountability detail because source documents or parsers are missing.","evidence":["81 meetings blocked by source gaps","23 meetings blocked by parser gaps","1 upcoming meetings currently published"]},{"id":"upcoming-meeting-source-failures","severity":"high","area":"meeting calendar coverage","summary":"One or more configured meeting providers cannot currently establish whether upcoming meetings exist.","evidence":["Churchill County School District Board of Trustees (Churchill County School District, NV): adapter_gap","Douglas County School District Board of Trustees (Douglas County School District, NV): adapter_gap","Elko County School District Board of Trustees (Elko County School District, NV): adapter_gap","Ely City Council (Ely, NV): adapter_gap","Esmeralda County School District Board of Trustees (Esmeralda County School District, NV): adapter_gap","Esmeralda County Commission (Esmeralda County, NV): adapter_gap","Eureka County School District Board of Trustees (Eureka County School District, NV): adapter_gap","Fallon City Council (Fallon, NV): adapter_gap","Fernley City Council (Fernley, NV): adapter_gap","Humboldt County School District Board of Trustees (Humboldt County School District, NV): adapter_gap","Humboldt County Commission (Humboldt County, NV): adapter_gap","Lander County School District Board of Trustees (Lander County School District, NV): adapter_gap","Lander County Commission (Lander County, NV): adapter_gap","Lincoln County School District Board of Trustees (Lincoln County School District, NV): adapter_gap","Lincoln County Commission (Lincoln County, NV): adapter_gap","Lovelock City Council (Lovelock, NV): adapter_gap","Lyon County School District Board of Trustees (Lyon County School District, NV): adapter_gap","Mineral County School District Board of Trustees (Mineral County School District, NV): adapter_gap","Mineral County Commission (Mineral County, NV): adapter_gap","Governor / Executive Boards (Nevada): adapter_gap","Nevada Education Boards and Councils Discovery (Nevada): adapter_gap","Nevada School and Parent Organization Discovery (Nevada): adapter_gap","Nevada Statewide Public Notice Discovery (Nevada): adapter_gap","Nye County School District Board of Trustees (Nye County School District, NV): adapter_gap","Pershing County School District Board of Trustees (Pershing County School District, NV): adapter_gap","Storey County School District Board of Trustees (Storey County School District, NV): adapter_gap","Wells City Council (Wells, NV): adapter_gap","West Wendover City Council (West Wendover, NV): adapter_gap","White Pine County School District Board of Trustees (White Pine County School District, NV): adapter_gap","White Pine County Commission (White Pine County, NV): adapter_gap","Winnemucca City Council (Winnemucca, NV): adapter_gap"]},{"id":"strict-upcoming-meeting-freshness-blocks","severity":"high","area":"meeting calendar coverage","summary":"Direct meeting-calendar providers are stale or cannot prove current upcoming coverage.","evidence":["Clark County Commission (Clark County, NV): zero_upcoming_review/stale_latest_meeting; newest 2026-09-03T21:00:00.000Z","Eureka County Commission (Eureka County, NV): zero_upcoming_review/stale_latest_meeting; newest 2026-09-01"]},{"id":"zero-upcoming-meeting-review","severity":"medium","area":"meeting calendar coverage","summary":"Configured providers with no future-dated meetings require an official-calendar check before the public site treats the calendar as empty.","evidence":["Boulder City Council (Boulder City, NV): newest 2026-08-27T00:00:00.000Z","Caliente City Council (Caliente, NV): newest 2026-09-03T15:30:00.000Z","Carlin City Council (Carlin, NV): newest 2026-03-25T16:00:00.000Z","Clark County Commission (Clark County, NV): newest 2026-09-03T21:00:00.000Z","Douglas County Commission (Douglas County, NV): newest 2026-05-28T15:30:00.000Z","Eureka County Commission (Eureka County, NV): newest 2026-09-01","Lyon County Commission (Lyon County, NV): newest 2026-09-03T16:00:00.000Z","Nye County Commission (Nye County, NV): newest 2026-09-01T15:30:00.000Z","Pershing County Commission (Pershing County, NV): newest 2026-05-12T15:30:00.000Z","Storey County Commission (Storey County, NV): newest 2026-09-01T16:00:00.000Z","Yerington City Council (Yerington, NV): newest 2026-08-24T16:00:00.000Z"]}]}
+{
+  "generatedAt": "2026-09-07T07:48:22.437Z",
+  "launchReady": false,
+  "totals": {
+    "critical": 0,
+    "high": 8,
+    "medium": 4,
+    "publicAggregationFilesChecked": 16,
+    "meetingProvidersChecked": 64
+  },
+  "findings": [
+    {
+      "id": "meeting-provider-zero-yield",
+      "severity": "high",
+      "area": "meeting collection",
+      "summary": "31 registered meeting providers returned zero parsed meetings; zero yield is a collection barrier even when the importer reports no exception.",
+      "evidence": [
+        "Nevada Statewide Public Notice Discovery (nv-statewide-public-notices): ",
+        "Nevada Education Boards and Councils Discovery (nv-education-public-meetings-discovery): ",
+        "Nevada School and Parent Organization Discovery (nv-school-participation-discovery): ",
+        "Governor / Executive Boards (nv-governor-executive-boards): ",
+        "Esmeralda County Commission (esmeralda-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
+        "Humboldt County Commission (humboldt-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
+        "Lander County Commission (lander-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
+        "Lincoln County Commission (lincoln-county-commission): ",
+        "Mineral County Commission (mineral-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
+        "White Pine County Commission (white-pine-county-commission): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
+        "Ely City Council (ely-city-council): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
+        "Fallon City Council (fallon-city-council): Some public linked downloads failed and need review.",
+        "Fernley City Council (fernley-city-council): PDF text extraction or packet chunking needs review. Some saved source records need manual review.",
+        "Lovelock City Council (lovelock-city-council): ",
+        "Wells City Council (wells-city-council): ",
+        "West Wendover City Council (west-wendover-city-council): ",
+        "Winnemucca City Council (winnemucca-city-council): ",
+        "Churchill County School District Board of Trustees (churchill-county-school-district): ",
+        "Douglas County School District Board of Trustees (douglas-county-school-district): ",
+        "Elko County School District Board of Trustees (elko-county-school-district): ",
+        "Esmeralda County School District Board of Trustees (esmeralda-county-school-district): ",
+        "Eureka County School District Board of Trustees (eureka-county-school-district): ",
+        "Humboldt County School District Board of Trustees (humboldt-county-school-district): Some public linked downloads failed and need review. Some saved source records need manual review.",
+        "Lander County School District Board of Trustees (lander-county-school-district): Some public linked downloads failed and need review.",
+        "Lincoln County School District Board of Trustees (lincoln-county-school-district): ",
+        "Lyon County School District Board of Trustees (lyon-county-school-district): ",
+        "Mineral County School District Board of Trustees (mineral-county-school-district): ",
+        "Nye County School District Board of Trustees (nye-county-school-district): ",
+        "Pershing County School District Board of Trustees (pershing-county-school-district): ",
+        "Storey County School District Board of Trustees (storey-county-school-district): ",
+        "White Pine County School District Board of Trustees (white-pine-county-school-district): "
+      ]
+    },
+    {
+      "id": "official-roster-source-gaps",
+      "severity": "high",
+      "area": "official collection",
+      "summary": "10 priority jurisdictions do not have complete source-verified official rosters.",
+      "evidence": [
+        "Reno: unverified_roster (configured_seed_only)",
+        "Sparks: unverified_roster (missing)",
+        "Washoe County: unverified_roster (missing)",
+        "Clark County: unverified_roster (missing)",
+        "Las Vegas: unverified_roster (missing)",
+        "Henderson: unverified_roster (missing)",
+        "North Las Vegas: unverified_roster (missing)",
+        "CCSD: unverified_roster (configured_seed_only)",
+        "NSHE: unverified_roster (missing)",
+        "Nevada Legislature: unverified_roster (missing)"
+      ]
+    },
+    {
+      "id": "campaign-finance-reconciliation",
+      "severity": "high",
+      "area": "campaign finance collection",
+      "summary": "Nevada SOS finance records still have unresolved parsing and candidate-reconciliation gaps.",
+      "evidence": [
+        "15 unmatched of 117 records",
+        "15 missing candidate names",
+        "5 missing offices",
+        "40 missing totals",
+        "11 duplicate report groups",
+        "63 live URLs blocked by the current Nevada SOS session",
+        "last successful live fetch 2026-06-14T18:31:17.117Z",
+        "117 cached records remain usable",
+        "Cached Nevada SoS records remain usable. Refresh the live session with npm run nv-sos:bootstrap before the next live acquisition window."
+      ]
+    },
+    {
+      "id": "statewide-financial-extraction-backlog",
+      "severity": "medium",
+      "area": "financial transparency",
+      "summary": "Statewide financial source coverage is complete, but some campaign totals and personal-disclosure filings still require matched extraction.",
+      "evidence": [
+        "302 of 366 profiles have matched campaign totals",
+        "162 candidate profiles have totals",
+        "140 official profiles have totals",
+        "64 profiles remain source-route only",
+        "4 of 366 profiles have matched personal-disclosure filings",
+        "109 profiles have published contributor samples"
+      ]
+    },
+    {
+      "id": "statewide-case-extraction-backlog",
+      "severity": "medium",
+      "area": "case collection",
+      "summary": "Case source routes are registered statewide, but reviewed publication is still limited to appellate records.",
+      "evidence": [
+        "25 appellate cases published",
+        "0 local trial cases published",
+        "2 federal cases published",
+        "0 administrative cases published"
+      ]
+    },
+    {
+      "id": "political-ad-creative-backlog",
+      "severity": "medium",
+      "area": "political ad collection",
+      "summary": "Most matched political-ad records establish reported spend or dissemination but do not include reviewed creative.",
+      "evidence": [
+        "7 reviewed creative records",
+        "3070 filing-only records",
+        "20 entities with matched records",
+        "4 entities with reviewed creative"
+      ]
+    },
+    {
+      "id": "statewide-public-organization-contract",
+      "severity": "high",
+      "area": "organization collection",
+      "summary": "The source-backed public-organization directory is missing, contains integrity failures, or has unreachable reviewed websites.",
+      "evidence": [
+        "127 organizations",
+        "19 affiliation categories",
+        "125 of 127 checked websites reachable",
+        "0 missing source routes",
+        "0 example URLs"
+      ]
+    },
+    {
+      "id": "partial-dataops-run",
+      "severity": "high",
+      "area": "data operations",
+      "summary": "The latest recorded DataOps run was not a complete successful daily pipeline execution.",
+      "evidence": [
+        "18 of 16 stages attempted",
+        "1 stages failed",
+        "completed 2026-09-07T07:48:21.858Z"
+      ]
+    },
+    {
+      "id": "meeting-document-readiness",
+      "severity": "high",
+      "area": "meeting accountability",
+      "summary": "Some meeting records cannot yet support agenda, vote, and accountability detail because source documents or parsers are missing.",
+      "evidence": [
+        "1093 meetings blocked by source gaps",
+        "231 meetings blocked by parser gaps",
+        "124 upcoming meetings currently published"
+      ]
+    },
+    {
+      "id": "upcoming-meeting-source-failures",
+      "severity": "high",
+      "area": "meeting calendar coverage",
+      "summary": "One or more configured meeting providers cannot currently establish whether upcoming meetings exist.",
+      "evidence": [
+        "Churchill County School District Board of Trustees (Churchill County School District, NV): adapter_gap",
+        "Douglas County School District Board of Trustees (Douglas County School District, NV): adapter_gap",
+        "Elko County School District Board of Trustees (Elko County School District, NV): adapter_gap",
+        "Ely City Council (Ely, NV): adapter_gap",
+        "Esmeralda County School District Board of Trustees (Esmeralda County School District, NV): adapter_gap",
+        "Esmeralda County Commission (Esmeralda County, NV): adapter_gap",
+        "Eureka County School District Board of Trustees (Eureka County School District, NV): adapter_gap",
+        "Fallon City Council (Fallon, NV): adapter_gap",
+        "Fernley City Council (Fernley, NV): adapter_gap",
+        "Humboldt County School District Board of Trustees (Humboldt County School District, NV): adapter_gap",
+        "Humboldt County Commission (Humboldt County, NV): adapter_gap",
+        "Lander County School District Board of Trustees (Lander County School District, NV): adapter_gap",
+        "Lander County Commission (Lander County, NV): adapter_gap",
+        "Lincoln County School District Board of Trustees (Lincoln County School District, NV): adapter_gap",
+        "Lincoln County Commission (Lincoln County, NV): adapter_gap",
+        "Lovelock City Council (Lovelock, NV): adapter_gap",
+        "Lyon County School District Board of Trustees (Lyon County School District, NV): adapter_gap",
+        "Mineral County School District Board of Trustees (Mineral County School District, NV): adapter_gap",
+        "Mineral County Commission (Mineral County, NV): adapter_gap",
+        "Governor / Executive Boards (Nevada): adapter_gap",
+        "Nevada Education Boards and Councils Discovery (Nevada): adapter_gap",
+        "Nevada School and Parent Organization Discovery (Nevada): adapter_gap",
+        "Nevada Statewide Public Notice Discovery (Nevada): adapter_gap",
+        "Nye County School District Board of Trustees (Nye County School District, NV): adapter_gap",
+        "Pershing County School District Board of Trustees (Pershing County School District, NV): adapter_gap",
+        "Storey County School District Board of Trustees (Storey County School District, NV): adapter_gap",
+        "Wells City Council (Wells, NV): adapter_gap",
+        "West Wendover City Council (West Wendover, NV): adapter_gap",
+        "White Pine County School District Board of Trustees (White Pine County School District, NV): adapter_gap",
+        "White Pine County Commission (White Pine County, NV): adapter_gap",
+        "Winnemucca City Council (Winnemucca, NV): adapter_gap"
+      ]
+    },
+    {
+      "id": "strict-upcoming-meeting-freshness-blocks",
+      "severity": "high",
+      "area": "meeting calendar coverage",
+      "summary": "Direct meeting-calendar providers are stale or cannot prove current upcoming coverage.",
+      "evidence": [
+        "Clark County Commission (Clark County, NV): zero_upcoming_review/stale_latest_meeting; newest 2026-09-03T21:00:00.000Z",
+        "Eureka County Commission (Eureka County, NV): zero_upcoming_review/stale_latest_meeting; newest 2026-09-01"
+      ]
+    },
+    {
+      "id": "zero-upcoming-meeting-review",
+      "severity": "medium",
+      "area": "meeting calendar coverage",
+      "summary": "Configured providers with no future-dated meetings require an official-calendar check before the public site treats the calendar as empty.",
+      "evidence": [
+        "Boulder City Council (Boulder City, NV): newest 2026-08-27T00:00:00.000Z",
+        "Caliente City Council (Caliente, NV): newest 2026-09-03T15:30:00.000Z",
+        "Carlin City Council (Carlin, NV): newest 2026-03-25T16:00:00.000Z",
+        "Clark County Commission (Clark County, NV): newest 2026-09-03T21:00:00.000Z",
+        "Douglas County Commission (Douglas County, NV): newest 2026-05-28T15:30:00.000Z",
+        "Eureka County Commission (Eureka County, NV): newest 2026-09-01",
+        "Lyon County Commission (Lyon County, NV): newest 2026-09-03T16:00:00.000Z",
+        "Nye County Commission (Nye County, NV): newest 2026-09-01T15:30:00.000Z",
+        "Pershing County Commission (Pershing County, NV): newest 2026-05-12T15:30:00.000Z",
+        "Storey County Commission (Storey County, NV): newest 2026-09-01T16:00:00.000Z",
+        "Yerington City Council (Yerington, NV): newest 2026-08-24T16:00:00.000Z"
+      ]
+    }
+  ]
+}

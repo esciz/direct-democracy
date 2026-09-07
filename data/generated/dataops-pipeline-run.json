@@ -1,1 +1,937 @@
-{"runId":"dataops-2026-09-06T13:14:00.840Z","startedAt":"2026-09-06T13:14:00.841Z","updatedAt":"2026-09-06T13:26:04.861Z","environment":{"offline":false,"networkAvailable":true,"networkReason":null,"cwd":"/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex"},"stages":[{"id":"refresh-meeting-calendars","description":"Refresh Nevada meetings, current-official directories, and statewide financial coverage.","status":"failed","startedAt":"2026-09-06T13:14:00.969Z","completedAt":"2026-09-06T13:26:04.861Z","durationMs":723892,"error":"Command failed: node --import tsx scripts/collect-nevada-financials.ts --scheduled"}],"metrics":{"registeredSourcesChecked":65,"upcomingMeetings":1,"meetingProvidersWithUpcoming":8,"requiredNevadaJurisdictions":56,"configuredNevadaJurisdictions":56,"nevadaProvidersPendingAdvancedPass":0,"meetingProvidersZeroUpcoming":16,"meetingProviderAdapterGaps":33,"meetingProviderSourceFailures":0,"sourceBackedIssues":19,"meetingProviderFailures":0,"documentsDownloaded":25,"documentsChanged":0,"documentsExtracted":1721,"pagesOcrd":0,"ocrSucceeded":0,"meetingsReadyForAccountability":18,"sourceGapMeetings":81,"parserGapMeetings":23,"parsedNamedVotes":256,"publishedNevadaCases":27,"nevadaCaseSourceRoutes":11,"nevadaNinthCircuitCases":1,"nevadaSupremeCourtCases":1,"nevadaPoliticalAdRecords":1228,"nevadaEntitiesWithMatchedAds":20,"nevadaPublicOrganizations":127,"nevadaOrganizationCategories":19,"nevadaPoliticalPartyOrganizations":81,"nevadaDemocraticPartyNetwork":32,"nevadaRepublicanPartyNetwork":49,"nevadaCountyPartyOrganizations":34,"nevadaPartyCaucusesAndClubs":45}}
+{
+  "runId": "dataops-2026-09-07T07:16:57.852Z-28332",
+  "startedAt": "2026-09-07T07:16:57.853Z",
+  "completedAt": "2026-09-07T07:48:22.516Z",
+  "canonicalRun": true,
+  "meetingsOnly": false,
+  "environment": {
+    "offline": false,
+    "networkAvailable": true,
+    "networkReason": null,
+    "cwd": "/Users/eliscislowicz/Desktop/Personal/Direct Democracy Codex"
+  },
+  "stagesAttempted": 19,
+  "stagesSucceeded": 18,
+  "stagesFailed": 1,
+  "stagesSkipped": 0,
+  "stages": [
+    {
+      "id": "refresh-meeting-calendars",
+      "description": "Discover current Nevada calendars and refresh due official-source caches.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:16:58.058Z",
+      "completedAt": "2026-09-07T07:23:08.112Z",
+      "durationMs": 370054,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-nevada-public-meeting-source-seeds.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/discover-nevada-meeting-sources.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/bootstrap-public-meeting-sources.ts",
+            "--blocked-retry",
+            "--all-nevada",
+            "--scheduled"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "refresh-public-data",
+      "description": "Refresh officials and financial data independently of the meeting calendar.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:23:08.204Z",
+      "completedAt": "2026-09-07T07:25:26.711Z",
+      "durationMs": 138507,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/run-officials-refresh.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/collect-nevada-financials.ts",
+            "--scheduled"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-nevada-financial-coverage.ts",
+            "--strict"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "public-records",
+      "description": "Refresh and reconcile statewide case, political-ad, and public-organization records.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:25:26.802Z",
+      "completedAt": "2026-09-07T07:25:36.604Z",
+      "durationMs": 9802,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/collect-nevada-case-coverage.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-nevada-case-coverage.ts",
+            "--strict"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-nevada-political-ad-sources.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/download-nevada-fec-political-ads.ts",
+            "--scheduled",
+            "--limit=1600"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/import-nevada-political-ads.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-nevada-political-ads.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-nevada-political-ad-coverage.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-nevada-political-ad-coverage.ts",
+            "--strict"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/collect-nevada-organizations.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-nevada-organizations.ts",
+            "--strict"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "import-meetings",
+      "description": "Import current calendars and merge reviewed official-source caches.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:25:36.683Z",
+      "completedAt": "2026-09-07T07:27:51.653Z",
+      "durationMs": 134970,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/public-meetings-import.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/public-meetings-import-manual.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "register-sources",
+      "description": "Register RSS/feed sources.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:27:51.729Z",
+      "completedAt": "2026-09-07T07:27:51.784Z",
+      "durationMs": 55,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-rss-source-registry.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "discover-documents",
+      "description": "Discover public meeting source documents.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:27:51.854Z",
+      "completedAt": "2026-09-07T07:27:54.170Z",
+      "durationMs": 2316,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/discover-public-meeting-source-documents.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "monitor-sources",
+      "description": "Monitor source health and upcoming-meeting coverage by configured provider.",
+      "status": "failed",
+      "startedAt": "2026-09-07T07:27:54.239Z",
+      "completedAt": "2026-09-07T07:27:55.021Z",
+      "durationMs": 782,
+      "error": "Command failed: node --import tsx scripts/audit-upcoming-meeting-coverage.ts --strict",
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-dataops-source-registry.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-public-meeting-retrieval-queue.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/monitor-civic-sources.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-public-meeting-lifecycle.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-nevada-jurisdiction-meeting-coverage.ts",
+            "--strict"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-upcoming-meeting-coverage.ts",
+            "--strict"
+          ],
+          "status": "failed",
+          "error": "Command failed: node --import tsx scripts/audit-upcoming-meeting-coverage.ts --strict"
+        }
+      ]
+    },
+    {
+      "id": "retrieve-documents",
+      "description": "Retrieve/cache queued remote documents.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:27:55.096Z",
+      "completedAt": "2026-09-07T07:28:15.683Z",
+      "durationMs": 20587,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/retrieve-public-meeting-documents.ts",
+            "--limit=25"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "verify-cache",
+      "description": "Verify cached content and reconcile cache counts.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:28:15.754Z",
+      "completedAt": "2026-09-07T07:28:25.282Z",
+      "durationMs": 9528,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/verify-public-meeting-cache-content.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-public-meeting-document-cache.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "extract-native-text",
+      "description": "Extract native text from cached documents.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:28:25.361Z",
+      "completedAt": "2026-09-07T07:29:04.187Z",
+      "durationMs": 38826,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/extract-public-meeting-document-text.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "ocr",
+      "description": "Audit OCR capabilities and execute bounded OCR candidates.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:29:04.263Z",
+      "completedAt": "2026-09-07T07:33:59.449Z",
+      "durationMs": 295186,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-ocr-capabilities.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/run-public-meeting-ocr.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/extract-public-meeting-document-text.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-public-meeting-ocr.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "parse-meeting-items",
+      "description": "Parse numbered topics from newly cached agenda/minutes text into evidence review, preserving reviewed records.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:33:59.528Z",
+      "completedAt": "2026-09-07T07:34:00.792Z",
+      "durationMs": 1264,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/reprocess-cached-meeting-items.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "source-completeness",
+      "description": "Regenerate source completeness and accountability readiness.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:34:00.869Z",
+      "completedAt": "2026-09-07T07:34:11.924Z",
+      "durationMs": 11055,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-public-meeting-retrieval-queue.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-minutes-extraction.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-public-meeting-action-results.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-public-meeting-source-completeness.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-public-meeting-documents.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "meeting-lifecycle",
+      "description": "Archive elapsed meetings and report delayed minutes, source freshness, and due follow-ups.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:34:11.996Z",
+      "completedAt": "2026-09-07T07:34:12.243Z",
+      "durationMs": 247,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-public-meeting-lifecycle.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "attendance",
+      "description": "Regenerate rosters and attendance.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:34:12.314Z",
+      "completedAt": "2026-09-07T07:34:25.493Z",
+      "durationMs": 13179,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-governing-body-rosters.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-public-meeting-attendance.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-public-meeting-attendance.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "votes",
+      "description": "Regenerate votes and attribution readiness.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:34:25.563Z",
+      "completedAt": "2026-09-07T07:34:30.018Z",
+      "durationMs": 4455,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-public-meeting-votes.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-public-meeting-votes.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-vote-attribution-readiness.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "accountability",
+      "description": "Regenerate voting cards, projects, and accountability graph.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:34:30.088Z",
+      "completedAt": "2026-09-07T07:34:39.451Z",
+      "durationMs": 9363,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/regenerate-public-meeting-voting-cards.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-voting-cards.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/publish-public-meeting-runtime.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-projects.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-accountability-graph.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "communities",
+      "description": "Publish source-backed issues, events, and community relationships, then audit the public views.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:34:39.520Z",
+      "completedAt": "2026-09-07T07:48:21.858Z",
+      "durationMs": 822338,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-issue-hubs.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-issues.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/report-issues.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/generate-nevada-community-relationships.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/report-nevada-community-coverage.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-nevada-community-linkage.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-event-freshness.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-browse-previews.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "freshness-audit",
+      "description": "Record reprocessing and final DataOps and public-site integrity audits.",
+      "status": "succeeded",
+      "startedAt": "2026-09-07T07:48:21.931Z",
+      "completedAt": "2026-09-07T07:48:22.442Z",
+      "durationMs": 511,
+      "error": null,
+      "commands": [
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/reprocess-civic-data.ts",
+            "--all-cached"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/monitor-civic-sources.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-dataops-freshness.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/nv-sos-data-quality-report.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/nv-sos-operational-status.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        },
+        {
+          "command": [
+            "node",
+            "--import",
+            "tsx",
+            "scripts/audit-public-site-integrity.ts"
+          ],
+          "status": "succeeded",
+          "error": null
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "registeredSourcesChecked": 74,
+    "upcomingMeetings": 124,
+    "meetingProvidersWithUpcoming": 22,
+    "requiredNevadaJurisdictions": 56,
+    "configuredNevadaJurisdictions": 56,
+    "nevadaProvidersPendingAdvancedPass": 5,
+    "meetingProvidersZeroUpcoming": 11,
+    "meetingProviderAdapterGaps": 31,
+    "meetingProviderSourceFailures": 0,
+    "sourceBackedIssues": 20,
+    "meetingProviderFailures": 0,
+    "documentsDownloaded": 18,
+    "documentsChanged": 1,
+    "documentsExtracted": 3836,
+    "pagesOcrd": 27,
+    "ocrSucceeded": 5,
+    "meetingsReadyForAccountability": 244,
+    "sourceGapMeetings": 1093,
+    "parserGapMeetings": 231,
+    "parsedNamedVotes": 10035,
+    "publishedNevadaCases": 27,
+    "nevadaCaseSourceRoutes": 11,
+    "nevadaNinthCircuitCases": 1,
+    "nevadaSupremeCourtCases": 1,
+    "nevadaPoliticalAdRecords": 3077,
+    "nevadaEntitiesWithMatchedAds": 20,
+    "nevadaPublicOrganizations": 127,
+    "nevadaOrganizationCategories": 19,
+    "nevadaPoliticalPartyOrganizations": 81,
+    "nevadaDemocraticPartyNetwork": 32,
+    "nevadaRepublicanPartyNetwork": 49,
+    "nevadaCountyPartyOrganizations": 34,
+    "nevadaPartyCaucusesAndClubs": 45
+  }
+}
