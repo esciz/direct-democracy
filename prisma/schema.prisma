@@ -3771,6 +3771,20 @@ model IdentityTrustedCitizenGrant {
   @@index([expiresAt])
 }
 
+model HumanReviewDecision {
+  reviewType     String
+  itemId         String
+  status         String
+  notes          String   @default("")
+  reviewerUserId String
+  reviewerName   String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@id([reviewType, itemId])
+  @@index([status])
+}
+
 model IdentitySecurityEvent {
   id             String   @id
   eventType      String

@@ -1,8 +1,5 @@
 "use server";
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import path from "node:path";
-
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -10,10 +7,7 @@ import { requireAdminSession } from "@/lib/admin/permissions";
 import { getOperationDefinition, type OperationType } from "@/lib/admin/operations/catalog";
 import { createOperationRequest, dispatchAdminOperation, retryAdminOperation } from "@/lib/admin/operations/runner";
 
-const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
-const HUMAN_REVIEW_STATE_PATH = path.join(GENERATED_DIR, "human-review-workflow-state.json");
-const REVIEW_STATUSES = new Set(["pending", "needs_source", "needs_roster", "reviewed_no_change", "resolved", "deferred"]);
-const REVIEW_TYPES = new Set(["ambiguous_vote", "attendance_review", "distribution_review", "identity_quality"]);
+import { humanReviewService, REVIEW_STATUSES, REVIEW_TYPES } from "@/lib/admin/operations/human-review";
 
 function formArgs(formData: FormData) {
   const args: Record<string, unknown> = {};
@@ -57,15 +51,6 @@ export async function retryOperationAction(formData: FormData) {
   redirect(`/admin/operations?operation=${operation.id}`);
 }
 
-function readReviewState() {
-  if (!existsSync(HUMAN_REVIEW_STATE_PATH)) return { generatedAt: new Date().toISOString(), records: {} as Record<string, unknown> };
-  try {
-    return JSON.parse(readFileSync(HUMAN_REVIEW_STATE_PATH, "utf8")) as { records?: Record<string, unknown> };
-  } catch {
-    return { records: {} as Record<string, unknown> };
-  }
-}
-
 export async function updateHumanReviewWorkflowAction(formData: FormData) {
   const user = await requireAdminSession("review.approve");
   const itemId = formData.get("itemId");
@@ -77,22 +62,17 @@ export async function updateHumanReviewWorkflowAction(formData: FormData) {
   if (typeof reviewType !== "string" || !REVIEW_TYPES.has(reviewType)) redirect("/admin/operations?error=invalid-review-type");
   if (typeof status !== "string" || !REVIEW_STATUSES.has(status)) redirect("/admin/operations?error=invalid-review-status");
 
-  mkdirSync(GENERATED_DIR, { recursive: true });
-  const current = readReviewState();
-  const now = new Date().toISOString();
-  const records = {
-    ...(current.records ?? {}),
-    [itemId]: {
-      itemId,
-      reviewType,
-      status,
-      notes: typeof notes === "string" ? notes.trim().slice(0, 2000) : "",
-      reviewerUserId: user.id,
-      reviewerName: user.name,
-      updatedAt: now,
-    },
-  };
-  writeFileSync(HUMAN_REVIEW_STATE_PATH, `${JSON.stringify({ generatedAt: now, records }, null, 2)}\n`);
+  let failed = false;
+  try {
+    await humanReviewService.save({ itemId, reviewType, status,
+      notes: typeof notes === "string" ? notes : "",
+      reviewerUserId: user.id, reviewerName: user.name,
+    });
+  } catch {
+    console.error("[human-review] Durable review save failed.");
+    failed = true;
+  }
+  if (failed) redirect("/admin/operations?error=review-save-failed#human-review");
   revalidatePath("/admin/operations");
-  redirect("/admin/operations#human-review");
+  redirect("/admin/operations?reviewSaved=1#human-review");
 }

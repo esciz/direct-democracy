@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { OPERATION_DEFINITIONS } from "@/lib/admin/operations/catalog";
 import { listAdminOperations, readOperationLog } from "@/lib/admin/operations/store";
 import { requireAdminPage } from "@/lib/admin/permissions";
+import { humanReviewService, reviewKey, reviewIsComplete, type ReviewDecision } from "@/lib/admin/operations/human-review";
 import { readIdentityStore } from "@/lib/identity/storage";
 import { startAdminOperation, retryOperationAction, updateHumanReviewWorkflowAction } from "@/app/admin/operations/actions";
 
@@ -107,7 +108,7 @@ function workflowTone(status: string | undefined): "slate" | "green" | "amber" |
   return "slate";
 }
 
-function ReviewWorkflowForm({ itemId, reviewType, currentStatus, currentNotes }: { itemId: string; reviewType: string; currentStatus?: string; currentNotes?: string }) {
+function ReviewWorkflowForm({ itemId, reviewType, currentStatus, currentNotes, disabled }: { itemId: string; reviewType: string; currentStatus?: string; currentNotes?: string; disabled?: boolean }) {
   return (
     <form action={updateHumanReviewWorkflowAction} className="mt-3 grid gap-2 sm:grid-cols-[180px_1fr_auto]">
       <input type="hidden" name="itemId" value={itemId} />
@@ -121,12 +122,12 @@ function ReviewWorkflowForm({ itemId, reviewType, currentStatus, currentNotes }:
         <option value="deferred">Deferred</option>
       </select>
       <input name="notes" defaultValue={currentNotes ?? ""} placeholder="Reviewer note" className="rounded-lg border border-white/10 bg-slate-950 px-3 py-2 text-xs text-slate-100" />
-      <button className="rounded-lg bg-cyan-300 px-3 py-2 text-xs font-semibold text-slate-950">Save</button>
+      <button disabled={disabled} className="rounded-lg bg-cyan-300 px-3 py-2 text-xs font-semibold text-slate-950 disabled:opacity-50">Save</button>
     </form>
   );
 }
 
-export default async function AdminOperationsPage({ searchParams }: { searchParams?: Promise<{ operation?: string; error?: string }> }) {
+export default async function AdminOperationsPage({ searchParams }: { searchParams?: Promise<{ operation?: string; error?: string; review?: string; reviewPage?: string; reviewSaved?: string }> }) {
   const admin = await requireAdminPage("dataops.view");
   const query = await searchParams;
   const operations = listAdminOperations();
@@ -171,7 +172,14 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
   const officialsPromotionStatus = officialsPromotion.status ?? (officialsHealth.canonicalPromotion?.promotedAt ? "promoted" : "not_promoted");
   const stdoutPreview = selectedOperation?.stdoutPath ? readOperationLog(selectedOperation.stdoutPath).slice(-2000) : "";
   const stderrPreview = selectedOperation?.stderrPath ? readOperationLog(selectedOperation.stderrPath).slice(-2000) : "";
-  const reviewState = reviewWorkflowState.records ?? {};
+  const reviewState: Record<string, ReviewDecision> = Object.fromEntries(Object.values(reviewWorkflowState.records ?? {}).map(record => [reviewKey(record.reviewType, record.itemId), record]));
+  let reviewStorageAvailable = true;
+  try {
+    Object.assign(reviewState, await humanReviewService.read());
+  } catch {
+    reviewStorageAvailable = false;
+    console.error("[human-review] Durable review storage unavailable.");
+  }
   const voteReviewItems = [
     ...(voteReviewAudit.ambiguousVoteActions ?? []).map((item) => ({ ...item, reviewType: "ambiguous_vote", bucket: "Ambiguous vote" })),
     ...(voteReviewAudit.attendanceReviewActions ?? []).map((item) => ({ ...item, reviewType: "attendance_review", bucket: "Attendance review" })),
@@ -190,6 +198,19 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
       .values(),
   ).sort((left, right) => right.count - left.count || left.personName.localeCompare(right.personName));
   const reviewedWorkflowCount = Object.values(reviewState).filter((record) => record.status && record.status !== "pending").length;
+  const reviewView = query?.review === "completed" || query?.review === "all" ? query.review : "open";
+  const matchesReviewView = (type: string, id: string) => {
+    const complete = reviewIsComplete(reviewState[reviewKey(type, id)]?.status);
+    return reviewView === "all" || (reviewView === "completed" ? complete : !complete);
+  };
+  const openVoteItems = voteReviewItems.filter(item => !reviewIsComplete(reviewState[reviewKey(item.reviewType, item.meeting_item_id)]?.status));
+  const visibleVoteItems = voteReviewItems.filter(item => matchesReviewView(item.reviewType, item.meeting_item_id));
+  const visibleIdentityItems = identityBuckets.filter(item => matchesReviewView("identity_quality", item.itemId));
+  const reviewPageCount = Math.max(1, Math.ceil(Math.max(visibleVoteItems.length, visibleIdentityItems.length) / 12));
+  const parsedReviewPage = Number(query?.reviewPage ?? 1);
+  const reviewPage = Number.isSafeInteger(parsedReviewPage) ? Math.max(1, Math.min(parsedReviewPage, reviewPageCount)) : 1;
+  const reviewOffset = (reviewPage - 1) * 12;
+  const reviewHref = (view: string, page = 1) => `/admin/operations?review=${view}&reviewPage=${page}#human-review`;
 
   return (
     <main className="min-h-screen bg-slate-950 px-5 py-8 text-slate-100 sm:px-8">
@@ -348,11 +369,13 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
         </section>
 
         <section id="human-review" className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+          {query?.error === "review-save-failed" ? <p role="alert" className="mb-4 rounded-xl border border-rose-300/20 bg-rose-500/10 p-3 text-sm text-rose-100">Your review was not saved. Please try again when review storage is available.</p> : null}
+          {!reviewStorageAvailable ? <p role="alert" className="mb-4 rounded-xl border border-amber-300/20 bg-amber-500/10 p-3 text-sm text-amber-100">Saved reviews are temporarily unavailable. Saving is paused so reviews cannot be lost. Refresh to retry.</p> : query?.reviewSaved === "1" ? <p role="status" className="mb-4 rounded-xl border border-emerald-300/20 bg-emerald-500/10 p-3 text-sm text-emerald-100">Review saved.</p> : null}
           <div className="flex flex-wrap items-start justify-between gap-4">
             <SectionHeading
               eyebrow="Human review"
               title="Vote attribution and identity quality"
-              description="Triage the remaining human-review queue without mutating generated source evidence. Saved decisions are stored as an admin workflow overlay."
+              description="Save review decisions and notes here. Resolved and reviewed-no-change items move to Completed. These decisions track review progress; they do not publish changes to source records."
             />
             <div className="flex flex-wrap gap-2">
               <Pill tone={sprint2Readiness.status === "green" ? "green" : sprint2Readiness.status === "yellow" ? "amber" : "red"}>{sprint2Readiness.status ?? "not run"}</Pill>
@@ -362,10 +385,10 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
 
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              ["Remaining review", voteReviewAudit.totals?.remainingUnresolvedVoteActions ?? 0],
-              ["Ambiguous", voteReviewAudit.ambiguousVoteActions?.length ?? 0],
-              ["Attendance", voteReviewAudit.attendanceReviewActions?.length ?? 0],
-              ["Distribution", voteReviewAudit.distributionReviewActions?.length ?? 0],
+              ["Remaining review", openVoteItems.length],
+              ["Ambiguous", openVoteItems.filter(item => item.reviewType === "ambiguous_vote").length],
+              ["Attendance", openVoteItems.filter(item => item.reviewType === "attendance_review").length],
+              ["Distribution", openVoteItems.filter(item => item.reviewType === "distribution_review").length],
               ["Unmatched voting names", sprint2Readiness.gates?.attendanceIdentity?.unmatchedVotingMemberNames ?? identityBuckets.reduce((sum, row) => sum + row.count, 0)],
             ].map(([label, value]) => (
               <div key={label} className="rounded-xl border border-white/10 bg-slate-950/35 p-4">
@@ -377,14 +400,21 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
 
           {sprint2Readiness.recommendation ? <p className="mt-4 rounded-xl border border-emerald-300/15 bg-emerald-500/10 p-3 text-sm leading-6 text-emerald-100">{sprint2Readiness.recommendation}</p> : null}
 
+          <nav aria-label="Review queue" className="mt-4 flex flex-wrap items-center gap-3 text-sm">
+            {[["open", "Open"], ["completed", "Completed"], ["all", "All"]].map(([view, label]) => <Link key={view} href={reviewHref(view)} aria-current={reviewView === view ? "page" : undefined} className={`rounded-full border px-4 py-2 ${reviewView === view ? "border-cyan-300/40 bg-cyan-300/10 text-cyan-100" : "border-white/10 text-slate-300"}`}>{label}</Link>)}
+            <span className="text-slate-400">Page {reviewPage} of {reviewPageCount}</span>
+            {reviewPage > 1 ? <Link href={reviewHref(reviewView, reviewPage - 1)} className="text-cyan-200">Previous</Link> : null}
+            {reviewPage < reviewPageCount ? <Link href={reviewHref(reviewView, reviewPage + 1)} className="text-cyan-200">Next</Link> : null}
+          </nav>
+
           <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(360px,0.85fr)]">
             <div className="space-y-3">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold text-slate-50">Vote review queue</h2>
-                <p className="text-xs text-slate-500">{voteReviewItems.length} item{voteReviewItems.length === 1 ? "" : "s"}</p>
+                <p className="text-xs text-slate-500">{visibleVoteItems.length} item{visibleVoteItems.length === 1 ? "" : "s"} in this view</p>
               </div>
-              {voteReviewItems.length ? voteReviewItems.slice(0, 12).map((item) => {
-                const state = reviewState[item.meeting_item_id];
+              {visibleVoteItems.slice(reviewOffset, reviewOffset + 12).length ? visibleVoteItems.slice(reviewOffset, reviewOffset + 12).map((item) => {
+                const state = reviewState[reviewKey(item.reviewType, item.meeting_item_id)];
                 const snippet = item.outcome?.sourceSnippet ?? item.sourceSnippet ?? item.outcome?.raw ?? "";
                 return (
                   <article key={`${item.reviewType}-${item.meeting_item_id}`} className="rounded-xl border border-white/10 bg-slate-950/35 p-4">
@@ -401,10 +431,10 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
                     <p className="mt-3 text-xs leading-5 text-slate-400">{summarize(snippet, 360)}</p>
                     <p className="mt-2 text-xs text-amber-100">Reason: {item.reason}</p>
                     {state?.updatedAt ? <p className="mt-2 text-xs text-slate-500">Last triaged by {state.reviewerName ?? "admin"} · {formatDate(state.updatedAt)}</p> : null}
-                    <ReviewWorkflowForm itemId={item.meeting_item_id} reviewType={item.reviewType} currentStatus={state?.status} currentNotes={state?.notes} />
+                    <ReviewWorkflowForm itemId={item.meeting_item_id} reviewType={item.reviewType} currentStatus={state?.status} currentNotes={state?.notes} disabled={!reviewStorageAvailable} />
                   </article>
                 );
-              }) : <p className="rounded-xl border border-white/10 bg-slate-950/35 p-4 text-sm text-slate-400">No vote attribution review items remain.</p>}
+              }) : <p className="rounded-xl border border-white/10 bg-slate-950/35 p-4 text-sm text-slate-400">No vote review items on this page.</p>}
             </div>
 
             <div className="space-y-3">
@@ -412,8 +442,8 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
                 <h2 className="text-lg font-semibold text-slate-50">Identity quality</h2>
                 <p className="text-xs text-slate-500">Top unmatched voting-member names</p>
               </div>
-              {identityBuckets.length ? identityBuckets.slice(0, 12).map((item) => {
-                const state = reviewState[item.itemId];
+              {visibleIdentityItems.slice(reviewOffset, reviewOffset + 12).length ? visibleIdentityItems.slice(reviewOffset, reviewOffset + 12).map((item) => {
+                const state = reviewState[reviewKey("identity_quality", item.itemId)];
                 return (
                   <article key={item.itemId} className="rounded-xl border border-white/10 bg-slate-950/35 p-4">
                     <div className="flex flex-wrap items-start justify-between gap-3">
@@ -424,10 +454,10 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
                       <Pill tone={workflowTone(state?.status)}>{state?.status?.replaceAll("_", " ") ?? "pending"}</Pill>
                     </div>
                     <p className="mt-3 text-xs leading-5 text-slate-400">{summarize(item.sample, 260)}</p>
-                    <ReviewWorkflowForm itemId={item.itemId} reviewType="identity_quality" currentStatus={state?.status} currentNotes={state?.notes} />
+                    <ReviewWorkflowForm itemId={item.itemId} reviewType="identity_quality" currentStatus={state?.status} currentNotes={state?.notes} disabled={!reviewStorageAvailable} />
                   </article>
                 );
-              }) : <p className="rounded-xl border border-white/10 bg-slate-950/35 p-4 text-sm text-slate-400">No unmatched eligible voting-member names remain.</p>}
+              }) : <p className="rounded-xl border border-white/10 bg-slate-950/35 p-4 text-sm text-slate-400">No identity review items on this page.</p>}
             </div>
           </div>
         </section>
