@@ -3,14 +3,10 @@ import { NextResponse } from "next/server";
 
 import { DEV_ONLY_AUTH_ENABLED, MOCK_AUTH_COOKIE, PUBLIC_POST_CREATOR_ROLES } from "@/lib/auth/constants";
 import { getAuthCookieDeleteOptions } from "@/lib/auth/cookies";
-import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
-import { OWNER_ADMIN_USER_ID } from "@/lib/identity/constants";
-
-const ADMIN_SESSION_IDS = new Set(["user_admin_riley_morgan", OWNER_ADMIN_USER_ID]);
-
-function isSeededDemoSessionId(value: string | null | undefined) {
-  return Boolean(value?.startsWith("user_"));
-}
+import { getSeedUserById } from "@/lib/auth/mock-users";
+import { resolveDurableSession } from "@/lib/identity/durable-sessions";
+import { isIdentitySessionToken } from "@/lib/identity/session-tokens";
+import type { UserRole } from "@/types/domain";
 
 function isPubliclyReachablePath(pathname: string) {
   return (
@@ -26,6 +22,10 @@ function isPubliclyReachablePath(pathname: string) {
   );
 }
 
+function isPrivateAccountPath(pathname: string) {
+  return pathname === "/profile" || pathname.startsWith("/profile/") || pathname === "/messages" || pathname.startsWith("/messages/") || pathname === "/notifications" || pathname === "/get-started" || (pathname.startsWith("/account/") && pathname !== "/account/verify-email" && pathname !== "/account/reset-password");
+}
+
 function expireSessionCookie(response: NextResponse) {
   response.cookies.delete(MOCK_AUTH_COOKIE);
   const deleteOptions = getAuthCookieDeleteOptions();
@@ -37,16 +37,24 @@ function expireSessionCookie(response: NextResponse) {
   });
 }
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  const sessionUserId = request.cookies.get(MOCK_AUTH_COOKIE)?.value ?? null;
+  const sessionValue = request.cookies.get(MOCK_AUTH_COOKIE)?.value ?? null;
+  const demoUser = DEV_ONLY_AUTH_ENABLED && !isIdentitySessionToken(sessionValue) ? getSeedUserById(sessionValue ?? undefined) : null;
+  const needsSession = isPrivateAccountPath(pathname) || pathname === "/admin" || pathname.startsWith("/admin/") || pathname.startsWith("/api/admin/") || pathname.startsWith("/feed/create") || pathname.startsWith("/posts/create");
+  let durableSession: Awaited<ReturnType<typeof resolveDurableSession>> = null;
+  if (needsSession && isIdentitySessionToken(sessionValue)) {
+    try { durableSession = await resolveDurableSession(sessionValue); }
+    catch { return NextResponse.json({ ok: false, error: "authentication_unavailable" }, { status: 503 }); }
+  }
+  const authenticated = Boolean(durableSession || demoUser);
 
-  if (!DEV_ONLY_AUTH_ENABLED && request.method === "GET" && !isPubliclyReachablePath(pathname)) {
-    if (!sessionUserId || isSeededDemoSessionId(sessionUserId)) {
+  if (!DEV_ONLY_AUTH_ENABLED && request.method === "GET" && isPrivateAccountPath(pathname) && !isPubliclyReachablePath(pathname)) {
+    if (!authenticated) {
       const authUrl = new URL("/auth", request.url);
       authUrl.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
       const response = NextResponse.redirect(authUrl);
-      if (sessionUserId && isSeededDemoSessionId(sessionUserId)) {
+      if (sessionValue) {
         expireSessionCookie(response);
       }
       return response;
@@ -57,15 +65,16 @@ export function proxy(request: NextRequest) {
   const isAdminApi = pathname.startsWith("/api/admin/");
 
   if (isAdminPage || isAdminApi) {
-    const isAdmin = sessionUserId ? ADMIN_SESSION_IDS.has(sessionUserId) : false;
+    const role = durableSession?.account.role ?? demoUser?.role;
+    const isAdmin = role === "admin" || role === "platform_admin" || role === "moderator" || Boolean(durableSession?.account.permissionGrants.some((grant) => grant.permission.startsWith("dataops.") || grant.permission.startsWith("identity.")));
 
     if (isAdmin) return NextResponse.next();
 
     if (isAdminApi) {
-      return NextResponse.json({ ok: false, error: sessionUserId ? "forbidden" : "unauthorized" }, { status: sessionUserId ? 403 : 401 });
+      return NextResponse.json({ ok: false, error: authenticated ? "forbidden" : "unauthorized" }, { status: authenticated ? 403 : 401 });
     }
 
-    if (!sessionUserId) {
+    if (!authenticated) {
       const authUrl = new URL("/auth", request.url);
       authUrl.searchParams.set("next", `${pathname}${request.nextUrl.search}`);
       return NextResponse.redirect(authUrl);
@@ -80,10 +89,8 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const userId = request.cookies.get(MOCK_AUTH_COOKIE)?.value;
-  const user = getSeedUserById(userId) ?? getDefaultSeedUser();
-
-  if (PUBLIC_POST_CREATOR_ROLES.includes(user.role)) {
+  const role = durableSession?.account.role ?? demoUser?.role;
+  if (role && PUBLIC_POST_CREATOR_ROLES.includes(role as UserRole)) {
     return NextResponse.next();
   }
 

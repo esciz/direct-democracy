@@ -115,7 +115,7 @@ async function candidate(kind: CivicManifest["kind"]): Promise<CivicManifest> {
   if (existsSync(path.join(root, "data/generated/.dataops-pipeline.lock"))) throw new Error("wait_for_active_collector_before_snapshot");
   const files = await describeArtifacts(root, await selectArtifactPaths(root, kind));
   const sourceCommit = process.env.GITHUB_SHA ?? execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-  const sourceDirty = execFileSync("git", ["status", "--porcelain", "--untracked-files=normal", "--", "lib", "scripts", "app", "components", ".github", "package.json", "package-lock.json", "next.config.ts", "vercel.json"], { encoding: "utf8" }).trim().length > 0;
+  const sourceDirty = execFileSync("git", ["status", "--porcelain", "--untracked-files=normal", "--", "lib", "scripts", "app", "components", "types", "data/seed", ".github", "proxy.ts", "middleware.ts", ".vercelignore", "package.json", "package-lock.json", "next.config.ts", "vercel.json"], { encoding: "utf8" }).trim().length > 0;
   const state = kind === "release" ? releaseGateAt() : { metrics: metrics(), coverageComplete: false };
   const value = { schemaVersion: 1 as const, kind, createdAt: new Date().toISOString(), sourceCommit, sourceDirty, files, ...state };
   return validateManifest({ ...value, id: civicManifestId(value) }, kind);
