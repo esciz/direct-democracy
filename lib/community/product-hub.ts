@@ -321,7 +321,7 @@ export async function getCommunityHubData(communitySlug: string) {
     readJson<CoverageReport | null>("nevada-community-coverage-report.json", null),
     readJson<RssCapabilities | null>("nevada-rss-source-capabilities.json", null),
     readJson<Artifact<CommunityHubDecision>>("voting-cards.json", { records: [] }),
-    readJson<AccountabilityGraph | null>("accountability-graph.json", null),
+    readJson<Pick<AccountabilityGraph, "communitySummaries"> | null>("accountability-graph-runtime.json", null),
     readJson<VoteExtractionAudit | null>("public-meeting-vote-extraction-audit.json", null),
     readJson<ProjectStatusAudit | null>("project-status-audit.json", null),
     readJson<ResidentIntakeRuntime | null>("resident-civic-intake-runtime.json", null),

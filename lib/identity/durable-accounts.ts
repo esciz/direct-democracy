@@ -1,14 +1,15 @@
 import { Prisma } from "@prisma/client";
+import { randomUUID } from "node:crypto";
 
 import { prisma } from "@/lib/prisma";
 import { getActiveVerificationScope } from "@/lib/identity/claim-jurisdiction";
 import { hashPassword, verifyPassword } from "@/lib/identity/passwords";
 import type { PasswordHash } from "@/lib/identity/types";
 import type { AuthUser, UserRole } from "@/types/domain";
+import { createIdentitySessionToken, hashIdentitySessionToken, IDENTITY_SESSION_TTL_MS } from "@/lib/identity/session-tokens";
 
 const LOCKOUT_THRESHOLD = 5;
 const LOCKOUT_MS = 15 * 60 * 1000;
-const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 type DurableAccount = NonNullable<Awaited<ReturnType<typeof getDurableIdentityAccountById>>>;
 type DurableUserRecord = {
@@ -187,7 +188,7 @@ export async function authenticateDurableLocalAccount(emailInput: string, passwo
   const genericFailure = { ok: false as const, reason: "invalid_credentials" as const, account: null };
 
   if (!account) return genericFailure;
-  if (account.status !== "active" || account.disabledAt) return { ok: false as const, reason: "disabled" as const, account };
+  if ((account.status !== "active" && account.status !== "locked") || account.disabledAt) return { ok: false as const, reason: "disabled" as const, account };
   if (account.lockedUntil && account.lockedUntil.getTime() > Date.now()) return { ok: false as const, reason: "locked" as const, account };
 
   const credential = account.credentials[0];
@@ -214,6 +215,7 @@ export async function authenticateDurableLocalAccount(emailInput: string, passwo
   }
 
   const now = new Date();
+  const sessionToken = createIdentitySessionToken();
   await prisma.$transaction([
     prisma.identityAccount.update({
       where: { id: account.id },
@@ -226,11 +228,11 @@ export async function authenticateDurableLocalAccount(emailInput: string, passwo
     }),
     prisma.identitySession.create({
       data: {
-        id: `session_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        id: `session_${randomUUID()}`,
         accountId: account.id,
-        sessionHash: `legacy_cookie_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        sessionHash: hashIdentitySessionToken(sessionToken),
         createdAt: now,
-        expiresAt: new Date(now.getTime() + SESSION_TTL_MS),
+        expiresAt: new Date(now.getTime() + IDENTITY_SESSION_TTL_MS),
       },
     }),
     prisma.identitySecurityEvent.create({
@@ -244,7 +246,7 @@ export async function authenticateDurableLocalAccount(emailInput: string, passwo
     }),
   ]);
 
-  return { ok: true as const, account };
+  return { ok: true as const, account, sessionToken };
 }
 
 export async function getDurableIdentityAccountByEmail(emailInput: string) {

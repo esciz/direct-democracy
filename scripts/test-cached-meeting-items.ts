@@ -55,5 +55,17 @@ try {
   assert.equal(runtime.meeting_time_known, false);
   assert.equal(runtime.location, "School library");
   assert.equal(runtime.meeting_date, "2026-09-09");
+  const htmlAgenda = "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Documents/ViewAgenda?meetingId=12&type=HTML&doctype=1";
+  save("public-meetings.json", [{ ...meeting, agenda_url: htmlAgenda, source_urls: [htmlAgenda,
+    "https://agendas.cityofsparks.us/OnBaseAgendaOnline/#meeting-12-row",
+    "https://agendas.cityofsparks.us/OnBaseAgendaOnline/Meetings/ViewMeeting?id=12&doctype=1",
+    "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Id=1493",
+  ] }]);
+  save("public-meeting-items.json", []);
+  run("discover-public-meeting-source-documents.ts");
+  const discovered = load("public-meeting-source-documents.json").records;
+  assert.equal(discovered.length, 1, "Calendar and portal navigation must not become agenda/minutes documents");
+  assert.equal(discovered[0].sourceUrl, htmlAgenda);
+  assert.equal(discovered[0].documentType, "agenda");
 } finally { rmSync(scratch, { recursive: true, force: true }); }
 console.log("Cached meeting topic extraction, identity, provenance, idempotency, review preservation, and runtime metadata checks passed.");

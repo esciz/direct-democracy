@@ -4,6 +4,7 @@ import { copyFile, mkdir, readFile, readdir, rename, stat, writeFile } from "nod
 import path from "node:path";
 
 import { mergeMeetingHistory } from "@/lib/public-meetings/lifecycle";
+import { reconcileCrossProviderMeetingIdentities } from "@/lib/public-meetings/cross-provider-identity";
 import { writePublicCivicCaseArtifacts } from "@/lib/public-cases/public-civic-cases";
 import {
   PUBLIC_MEETING_OUTPUT_FILES,
@@ -24,6 +25,7 @@ import { extractOfficialActionsForItem, extractTopicOutcome, itemHasUnnamedVoteO
 import { buildMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
 import { writePublicMeetingRuntimeArtifacts } from "@/lib/public-meetings/runtime-artifacts";
 import { discoverNevadaAgencyMeetings, isNevadaAgencySource } from "@/lib/public-meetings/nevada-agency-sources";
+import { discoverNevadaPriorityMeetings, isNevadaPrioritySource, reconcilePriorityMeetingIdentities, removeMisclassifiedSchoolPortalDocuments } from "@/lib/public-meetings/nevada-priority-sources";
 import { reconcileCarsonGranicusIdentities } from "@/lib/public-meetings/carson-granicus-identity";
 import type {
   CitizenVoteQuestionRecord,
@@ -714,6 +716,11 @@ async function collectHistoricalArchiveMeetings(seeds: PublicMeetingSourceSeed[]
       let notes: string | null = null;
       if (seed.platformHints?.includes("discovery_only")) {
         notes = "Discovery registry only. Linked bodies and school/PTA calendars require source review before event import.";
+      } else if (isNevadaPrioritySource(seed)) {
+        const sourceWarnings: string[] = [];
+        const previous = await readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_OUTPUT_FILES.meetings, []);
+        providerDrafts = reconcilePriorityMeetingIdentities(await discoverNevadaPriorityMeetings(seed, fetchText, new Date(), (warning) => sourceWarnings.push(warning)), previous).filter((draft) => isMeetingDateInDiscoveryWindow(draft.meetingDate));
+        notes = sourceWarnings.length ? sourceWarnings.join(" ") : null;
       } else if (isNevadaAgencySource(seed)) {
         const sourceWarnings: string[] = [];
         providerDrafts = (await discoverNevadaAgencyMeetings(seed, fetchText, new Date(), (warning) => sourceWarnings.push(warning))).filter((draft) => isMeetingDateInDiscoveryWindow(draft.meetingDate));
@@ -1410,7 +1417,7 @@ export async function runPublicMeetingImport(options: { sourceIds?: string[] } =
     if (question) questions.push(question);
   }
 
-  const dedupedMeetings = mergeMeetingHistory(previousMeetings, dedupeById([...meetings, ...archiveMeetings]));
+  const dedupedMeetings = reconcileCrossProviderMeetingIdentities(mergeMeetingHistory(previousMeetings.map(removeMisclassifiedSchoolPortalDocuments), dedupeById([...meetings, ...archiveMeetings])));
   const realMeetingIds = new Set(dedupedMeetings.map((meeting) => meeting.id));
   const canonicalMeetingIds = new Map(dedupedMeetings.flatMap((meeting) => (meeting.meeting_alias_ids ?? []).map((id) => [id, meeting.id] as const)));
   const dedupedItems = dedupeById([...previousItems, ...items].map((item) => ({ ...item, meeting_id: canonicalMeetingIds.get(item.meeting_id) ?? item.meeting_id }))).filter((item) => realMeetingIds.has(item.meeting_id) && item.source_method !== "manual_fixture");

@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { hasInstalledCivicRelease } from "@/lib/dataops/installed-release";
 
 import { parseMeetingVotingCardFinancialImpact } from "@/lib/public-meetings/financial-impact";
 import { buildPlainLanguageMeetingVotingCardFields } from "@/lib/public-meetings/plain-language";
@@ -283,7 +284,7 @@ function matchesFilters(card: MeetingVotingCardRecord, filters: MeetingVotingCar
 }
 
 export async function getMeetingVotingCards(filters: MeetingVotingCardFilters = {}) {
-  const fullDatasetAvailable = existsSync(absolutePublicMeetingPath(PUBLIC_MEETING_PATHS.meetingVotingCards));
+  const fullDatasetAvailable = !hasInstalledCivicRelease() && existsSync(absolutePublicMeetingPath(PUBLIC_MEETING_PATHS.meetingVotingCards));
   const records = await readJsonFile<MeetingVotingCardRecord[]>(fullDatasetAvailable ? PUBLIC_MEETING_PATHS.meetingVotingCards : PUBLIC_MEETING_PATHS.meetingVotingCardsRuntime, []);
   const cards = fullDatasetAvailable ? records : getPublicMeetingVotingCards(records).map((card) => ({
     ...card,

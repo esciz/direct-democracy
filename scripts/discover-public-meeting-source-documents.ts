@@ -115,6 +115,14 @@ function documentTypeFor(value: string, field: string): SourceDocumentType {
 
 function isNonMeetingUtilitySource(sourceUrl: string | null, sourcePath: string | null) {
   const value = `${sourceUrl ?? ""} ${sourcePath ?? ""}`.toLowerCase();
+  // Provider calendar/detail navigation is evidence for a meeting's existence,
+  // not its agenda text. In particular, the hostname "agendas" is not a label.
+  if (sourceUrl) {
+    try {
+      const url = new URL(sourceUrl);
+      if (/\/onbaseagendaonline\/?$/i.test(url.pathname) || /\/\d+agendaonline\/?$/i.test(url.pathname) || /\/MeetingInformation\.aspx$/i.test(url.pathname) || /\/Meetings\/ViewMeeting$/i.test(url.pathname)) return true;
+    } catch { /* Local source paths are handled by the existing checks below. */ }
+  }
   return (
     value.includes("/api/opendata/getmatomoconfig") ||
     value.includes("/api/v2/publicportal/getarchivedmeetingyears") ||

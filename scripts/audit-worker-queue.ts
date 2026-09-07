@@ -47,22 +47,12 @@ async function main() {
     networkEnabledWorkerPath: {
       githubActionsWorkflowPresent: githubWorkerWorkflow,
       workflowPath: githubWorkerWorkflow ? ".github/workflows/identity-worker.yml" : null,
-      configuredWorkerFlag: Boolean(process.env.DIRECT_DEMOCRACY_WORKER_ENABLED),
+      configuredWorkerFlag: process.env.DIRECT_DEMOCRACY_WORKER_ENABLED === "true",
       status: worker.configured ? "worker_configured" : githubWorkerWorkflow ? "github_actions_worker_available_pending_run" : "worker_unconfigured",
     },
-    jobTypesSupported: [
-      "email_delivery",
-      "residency_provider_check",
-      "address_normalization",
-      "district_mapping",
-      "voter_provider_check",
-      "verification_evidence_purge",
-      "privacy_export",
-      "account_deletion_anonymization",
-      "dataops_operation",
-      "ocr_processing",
-      "scheduled_health_check",
-    ],
+    jobTypesSupported: ["email_delivery", "scheduled_health_check"],
+    conditionalJobTypes: ["dataops_operation"],
+    unimplementedJobTypes: ["residency_provider_check", "address_normalization", "district_mapping", "voter_provider_check", "verification_evidence_purge", "privacy_export", "account_deletion_anonymization", "ocr_processing"],
     queueByJobType: await countByJobType(),
     latestSmokeTest: latestSmokeTest ? {
       status: latestSmokeTest.status,
@@ -86,6 +76,7 @@ async function main() {
   mkdirSync(GENERATED_DIR, { recursive: true });
   writeFileSync(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`);
   writeProvenancedAudit("worker-queue-audit", report);
+  if (!worker.configured || (worker.staleRunningJobs ?? 0) > 0 || (worker.deadLetters ?? 0) > 0) process.exitCode = 1;
   console.log("Worker queue audit complete.");
   console.log(JSON.stringify({
     status: worker.status,

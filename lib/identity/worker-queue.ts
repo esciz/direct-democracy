@@ -107,16 +107,17 @@ export async function getWorkerQueueStatus() {
 
   const rows = await prisma.$queryRawUnsafe<Array<{ status: string; count: bigint }>>(
     `select "status", count(*)::bigint as count from "IdentityJob" group by "status"`,
-  ).catch(() => []);
-  const byStatus = new Map(rows.map((row) => [row.status, Number(row.count)]));
+  ).catch(() => null);
   const stale = await prisma.$queryRawUnsafe<Array<{ count: bigint }>>(
     `select count(*)::bigint as count from "IdentityJob"
      where "status"='running' and coalesce("heartbeatAt","lockedAt","startedAt") < now() - interval '10 minutes'`,
-  ).catch(() => [{ count: BigInt(0) }]);
+  ).catch(() => null);
+  if (!rows || !stale) return { configured: false, status: "worker_queue_unavailable" as const, storageStatus: storage.status, queueDepth: null, runningJobs: null, deadLetters: null, cancelledJobs: null, staleRunningJobs: null };
+  const byStatus = new Map(rows.map((row) => [row.status, Number(row.count)]));
 
   return {
-    configured: Boolean(process.env.DIRECT_DEMOCRACY_WORKER_ENABLED),
-    status: process.env.DIRECT_DEMOCRACY_WORKER_ENABLED ? "worker_configured" as const : "worker_unconfigured" as const,
+    configured: process.env.DIRECT_DEMOCRACY_WORKER_ENABLED === "true",
+    status: process.env.DIRECT_DEMOCRACY_WORKER_ENABLED === "true" ? "worker_configured" as const : "worker_unconfigured" as const,
     storageStatus: storage.status,
     queueDepth: byStatus.get("queued") ?? 0,
     runningJobs: byStatus.get("running") ?? 0,
@@ -159,13 +160,14 @@ export async function createDurableJob(input: {
   return { ok: true as const, status: "queued", jobId: job?.id ?? id, existing: Boolean(job && job.id !== id), job };
 }
 
-export async function claimNextJob(workerId: string) {
+export async function claimNextJob(workerId: string, onlyJobId: string | null = null) {
   const storage = await getDurableIdentityStorageStatus();
   if (!storage.ready) return { ok: false as const, status: storage.status, job: null };
   const rows = await prisma.$queryRawUnsafe<Array<Record<string, unknown>>>(
     `with next_job as (
        select "id" from "IdentityJob"
        where "status"='queued'
+         and ($2::text is null or "id"=$2)
          and "cancelledAt" is null
          and ("nextRunAt" is null or "nextRunAt" <= now())
        order by coalesce("nextRunAt","queuedAt") asc, "queuedAt" asc
@@ -183,6 +185,7 @@ export async function claimNextJob(workerId: string) {
      where j."id"=next_job."id"
      returning j.*`,
     workerId,
+    onlyJobId,
   );
   const job = rows[0] ? toJobRecord(rows[0]) : null;
   if (job) await addJobEvent(job.id, "claimed", `Claimed by worker ${workerId}.`);
@@ -237,7 +240,7 @@ export async function failJob(jobId: string, workerId: string, reason: string) {
              "deadLetteredAt"=now(),
              "heartbeatAt"=now(),
              "failureReason"=$3
-         where "id"=$1 and "workerId"=$2
+         where "id"=$1 and "workerId"=$2 and "status"='running'
          returning *`,
       jobId,
       workerId,
@@ -252,7 +255,7 @@ export async function failJob(jobId: string, workerId: string, reason: string) {
              "workerId"=null,
              "lockedAt"=null,
              "failureReason"=$3
-         where "id"=$1 and "workerId"=$2
+         where "id"=$1 and "workerId"=$2 and "status"='running'
          returning *`,
       jobId,
       workerId,

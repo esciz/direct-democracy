@@ -32,6 +32,6 @@ On iPhone Safari:
 
 ## Meeting data delivery
 
-See [docs/meeting-operations.md](docs/meeting-operations.md) for the acquisition loop and launch gate. The existing local automation maintains meeting artifacts; it does not update a deployed Vercel filesystem. Deploy reviewed runtime data and verify a newly collected meeting on the public `/events` page. The manual GitHub DataOps recovery workflow uploads meeting runtime/coverage artifacts without publishing them. Unattended public freshness requires a persistent worker, source state/document storage, and an atomic reviewed runtime publication path. A successful build or calendar scrape does not establish that this delivery path is configured.
+See [meeting operations](docs/meeting-operations.md) for acquisition and [launch operations](docs/launch-operations.md) for the cloud worker, durable checkpoints, validated release publication, environment settings and recovery. `vercel.json` restores the selected civic runtime release before building when `CIVIC_DATA_RELEASE_ENABLED=true`. Verify the resulting hash through `/api/data-release`; a local collection or successful build alone does not establish public freshness.
 
-Use Node 24 for the application and DataOps CLI. After `npm run build`, run `npm run meetings:bundle:audit` to verify compact meeting evidence is packaged and worker PDF/text caches are excluded. Keep this check when adding new generated-data readers.
+Use Node 24 for the application and DataOps CLI. Run `npm run dataops:runtime:compact` after civic generation and before building. After `npm run build`, run `npm run meetings:bundle:audit` to verify compact meeting evidence is packaged and worker PDF/text caches are excluded. Keep this check when adding new generated-data readers.

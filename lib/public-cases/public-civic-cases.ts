@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { installedPublicArtifactPath } from "@/lib/dataops/installed-release";
 
 import { getCivicJurisdictionContext } from "@/lib/civic/jurisdiction-context";
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath, normalizeWhitespace, slugify, summarizeText } from "@/lib/public-meetings/shared";
@@ -14,7 +15,9 @@ import type {
 import type { CommunitySummary } from "@/types/domain";
 
 async function readJsonFile<T>(relativePath: string, fallback: T): Promise<T> {
-  const filePath = absolutePublicMeetingPath(relativePath);
+  const selected = installedPublicArtifactPath(relativePath);
+  if (!selected) return fallback;
+  const filePath = absolutePublicMeetingPath(selected);
   if (!existsSync(filePath)) return fallback;
   return JSON.parse(await readFile(filePath, "utf8")) as T;
 }

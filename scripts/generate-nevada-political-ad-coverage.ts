@@ -109,6 +109,7 @@ function recordMatchesEntity(ad: PoliticalAd, entity: Entity) {
     if (relation.entityType !== "candidate" && relation.entityType !== "official") return false;
     if (relation.entityId === entity.entityId) return true;
     if (entity.fecCandidateId && relation.entityId === entity.fecCandidateId) return true;
+    if (entity.fecCandidateId && /^[HSP]\d[A-Z0-9]{7}$/.test(relation.entityId)) return false;
     return nameMatches(relation.entityLabel, entity.name);
   });
 }
@@ -177,7 +178,6 @@ async function main() {
     const creative = matches.filter(isCreativeRecord);
     const filingOnly = matches.filter((ad) => !isCreativeRecord(ad));
     const cycles = [...new Set(matches.map((ad) => Number(ad.electionCycle)).filter(Number.isFinite))].sort((a, b) => b - a);
-    const reportedSpend = matches.reduce((sum, ad) => sum + (ad.totalSpend ?? 0), 0);
     return {
       ...entity,
       status: matches.length ? "records_matched" : "sources_registered_no_match",
@@ -187,7 +187,9 @@ async function main() {
         creativeRecords: creative.length,
         filingOnlyRecords: filingOnly.length,
         recordsWithClaims: matches.filter((ad) => ad.claims.length > 0).length,
-        reportedSpend: matches.some((ad) => ad.totalSpend !== null) ? reportedSpend : null,
+        // Notice filings, later periodic reports and amendments can describe the same spend.
+        // Individual amounts remain visible; this repository is not a reconciled expenditure ledger.
+        reportedSpend: null,
         cyclesCovered: cycles,
       },
       sourceRoutes: sourceCatalog.sources.map((source) => ({
@@ -198,7 +200,7 @@ async function main() {
         creativeCoverage: source.creativeCoverage,
       })),
       coverageNote: matches.length
-        ? `${creative.length} creative record(s) and ${filingOnly.length} spend/dissemination filing(s) are matched by source identity.`
+        ? `${creative.length} creative record(s) and ${filingOnly.length} spend/dissemination filing(s) are matched by candidate identifiers or normalized names where no conflicting identifier is known. Individual filing amounts may overlap through notices or amendments; an aggregate spending total is not available.`
         : "No reviewed ad record currently matches this person. Source routes are registered; this is not a claim that no ads exist.",
     };
   });

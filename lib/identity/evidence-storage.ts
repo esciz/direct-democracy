@@ -13,10 +13,9 @@ const ALLOWED_MAGIC = [
 ];
 
 export function getEvidenceStorageStatus(): EvidenceStorageStatus {
-  if (process.env.IDENTITY_EVIDENCE_STORAGE_BUCKET && process.env.IDENTITY_EVIDENCE_ENCRYPTION_KEY) {
-    return "production_storage_configured";
-  }
-  if (process.env.NODE_ENV !== "production" && process.env.IDENTITY_EVIDENCE_ENCRYPTION_KEY) {
+  // No remote object-storage implementation exists in this adapter yet. Environment names
+  // alone cannot make local writes durable or private in a production deployment.
+  if (process.env.NODE_ENV !== "production" && process.env.VERCEL_ENV !== "production" && process.env.GITHUB_ACTIONS !== "true" && process.env.IDENTITY_EVIDENCE_ENCRYPTION_KEY) {
     return "local_encrypted_development";
   }
   return "verification_evidence_storage_unconfigured";

@@ -299,7 +299,8 @@ function matchesSourceWait(document: SourceDocument, sourceWait: ReturnType<type
   return (document.meetingItemIds ?? []).some((itemId) => sourceWait.agendaItemIds.has(itemId));
 }
 
-function matchesFilters(document: SourceDocument, filters: { jurisdiction: string | null; host: string | null; documentType: string | null; priorityOnly: boolean; retryOnly: boolean }, previous: CacheRecord | undefined, sourceWait: ReturnType<typeof sourceWaitFilters>) {
+function matchesFilters(document: SourceDocument, filters: { sources: string[]; jurisdiction: string | null; host: string | null; documentType: string | null; priorityOnly: boolean; retryOnly: boolean }, previous: CacheRecord | undefined, sourceWait: ReturnType<typeof sourceWaitFilters>) {
+  if (filters.sources.length && (!document.organizationId || !filters.sources.includes(document.organizationId))) return false;
   if (filters.jurisdiction && document.jurisdiction !== filters.jurisdiction) return false;
   if (filters.host && document.sourceHost !== filters.host) return false;
   if (filters.documentType && document.documentType !== filters.documentType) return false;
@@ -331,6 +332,7 @@ async function main() {
   const maxRedirects = Number(argValue("max-redirects") ?? process.env.DATAOPS_MAX_REDIRECTS ?? 5);
   const userAgent = argValue("user-agent") ?? process.env.DATAOPS_USER_AGENT ?? "DirectDemocracyDataOps/0.1 (+https://directdemocracy.local)";
   const filters = {
+    sources: process.argv.filter((arg) => arg.startsWith("--source=")).flatMap((arg) => arg.slice(9).split(",")).filter(Boolean),
     jurisdiction: argValue("jurisdiction") ?? null,
     host: argValue("host") ?? null,
     documentType: argValue("document-type") ?? null,

@@ -1,11 +1,10 @@
 import { spawnSync } from "node:child_process";
 
 import { getOperationDefinition, type OperationType } from "@/lib/admin/operations/catalog";
-import { runAdminOperation } from "@/lib/admin/operations/runner";
+import { runAdminOperation, validateOperationArgs } from "@/lib/admin/operations/runner";
 import { getAdminOperation } from "@/lib/admin/operations/store";
 import { completeJob, failJob, heartbeatJob, type DurableJobRecord } from "@/lib/identity/worker-queue";
 import { sendIdentityEmail, type EmailPurpose } from "@/lib/identity/email";
-import { purgeExpiredVerificationEvidence } from "@/lib/identity/evidence";
 
 function stringPayload(job: DurableJobRecord, key: string) {
   const value = job.payload[key];
@@ -22,8 +21,18 @@ function runAllowlistedDataOpsPayload(job: DurableJobRecord) {
   if (!operationType) return { ok: false, summary: "DataOps job missing operation type." };
   const definition = getOperationDefinition(operationType);
   if (!definition) return { ok: false, summary: `Unknown operation type: ${operationType}` };
+  if ((process.env.NODE_ENV === "production" || process.env.GITHUB_ACTIONS === "true") && definition.productionAvailability !== "available") return { ok: false, summary: `Operation ${operationType} is ${definition.productionAvailability}; use the configured civic refresh worker instead.` };
   if (!definition.command.length) return { ok: false, summary: `Operation ${operationType} has no allowlisted command.` };
   const validatedArguments = stringArrayPayload(job, "validatedArguments");
+  try {
+    const raw: Record<string, string | boolean> = {};
+    for (const argument of validatedArguments) {
+      const match = argument.match(/^--([a-z0-9-]+)(?:=(.*))?$/i);
+      if (!match || Object.hasOwn(raw, match[1])) throw new Error("invalid_argument");
+      raw[match[1]] = match[2] ?? true;
+    }
+    validateOperationArgs(operationType, raw);
+  } catch { return { ok: false, summary: "DataOps worker payload contains arguments outside the operation allowlist." }; }
   const command = definition.command[0];
   const args = [...definition.command.slice(1), ...validatedArguments];
   const result = spawnSync(command, args, { cwd: process.cwd(), encoding: "utf8", timeout: 20 * 60 * 1000, env: process.env });
@@ -33,7 +42,8 @@ function runAllowlistedDataOpsPayload(job: DurableJobRecord) {
 }
 
 export async function processClaimedIdentityJob(job: DurableJobRecord, workerId: string) {
-  await heartbeatJob(job.id, workerId);
+  const heartbeat = await heartbeatJob(job.id, workerId);
+  if (!heartbeat.ok) return { ok: false, job: null };
 
   if (job.jobType === "scheduled_health_check") {
     return completeJob(job.id, workerId, "Worker completed scheduled health check.");
@@ -54,8 +64,7 @@ export async function processClaimedIdentityJob(job: DurableJobRecord, workerId:
   }
 
   if (job.jobType === "verification_evidence_purge") {
-    const result = purgeExpiredVerificationEvidence();
-    return completeJob(job.id, workerId, `Evidence purge completed; records purged: ${result.purged}.`);
+    return failJob(job.id, workerId, "Durable evidence-object purge is not implemented. Updating local metadata would not verify deletion from private storage.");
   }
 
   if (job.jobType === "dataops_operation") {

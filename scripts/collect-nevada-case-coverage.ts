@@ -3,6 +3,8 @@ import "dotenv/config";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { checkPublicSource, mapConcurrent, type PublicSourceHealth } from "../lib/civic-sources/source-health";
+import { federalCourtLayer, isStateAppellateCase } from "../lib/civic-sources/court-records";
 
 import { CivicRecordReviewStatus, CourtCasePublicVisibilityStatus, PrismaClient } from "@prisma/client";
 
@@ -52,13 +54,7 @@ type RuntimeFile = {
   records?: RuntimeCase[];
 };
 
-type SourceHealth = {
-  checkedAt: string;
-  ok: boolean;
-  status: number | null;
-  finalUrl: string;
-  error: string | null;
-};
+type SourceHealth = PublicSourceHealth;
 
 function hasFlag(name: string) {
   return process.argv.includes(name);
@@ -68,67 +64,12 @@ function normalize(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
-function federalCourtLayer(record: RuntimeCase) {
-  const explicitLayer = normalize(record.metadata?.federalCourtLayer ?? "");
-  const courtName = normalize(record.courtName ?? "");
-  const sourceUrl = normalize(record.sourceUrl ?? "");
-  if (
-    explicitLayer === "us supreme" ||
-    courtName.includes("supreme court of the united states") ||
-    sourceUrl.includes("supremecourt gov")
-  ) {
-    return "us_supreme";
-  }
-  if (
-    explicitLayer === "circuit appellate" ||
-    courtName.includes("court of appeals") ||
-    courtName.includes("ninth circuit") ||
-    sourceUrl.includes("ca9 uscourts gov")
-  ) {
-    return "circuit_appellate";
-  }
-  return record.courtLevel === "federal" ? "district" : null;
-}
 
 async function readJson<T>(filePath: string, fallback: T): Promise<T> {
   if (!existsSync(filePath)) return fallback;
   return JSON.parse(await readFile(filePath, "utf8")) as T;
 }
 
-async function checkSource(source: CatalogSource): Promise<SourceHealth> {
-  const checkedAt = new Date().toISOString();
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15_000);
-  try {
-    const response = await fetch(source.sourceUrl, {
-      method: "GET",
-      headers: {
-        accept: "text/html,application/json;q=0.9,*/*;q=0.5",
-        "user-agent": "Direct Democracy Nevada public-case source monitor (admin@directyourdemocracy.com)",
-      },
-      redirect: "follow",
-      signal: controller.signal,
-    });
-    await response.body?.cancel();
-    return {
-      checkedAt,
-      ok: response.ok || response.status === 403,
-      status: response.status,
-      finalUrl: response.url || source.sourceUrl,
-      error: response.ok || response.status === 403 ? null : `${response.status} ${response.statusText}`,
-    };
-  } catch (error) {
-    return {
-      checkedAt,
-      ok: false,
-      status: null,
-      finalUrl: source.sourceUrl,
-      error: error instanceof Error ? error.message : String(error),
-    };
-  } finally {
-    clearTimeout(timeout);
-  }
-}
 
 async function main() {
   const catalog = await readJson<Catalog>(CATALOG_PATH, {
@@ -176,7 +117,7 @@ async function main() {
   for (const row of runtime.records ?? []) {
     if (
       row.isRealCourtRecord &&
-      row.reviewStatus === "approved" &&
+      (row.reviewStatus === "approved" || row.reviewStatus === "verified") &&
       row.publicVisibilityStatus === "public"
     ) {
       const key = row.caseNumber ? `${normalize(row.courtName ?? "")}:${row.caseNumber}` : row.id;
@@ -184,14 +125,13 @@ async function main() {
     }
   }
 
-  const sourceRecords = [];
-  for (const source of catalog.sources) {
-    const health = allowNetwork ? await checkSource(source) : previousHealth.get(source.id) ?? null;
+  const sourceRecords = await mapConcurrent(catalog.sources, 4, async (source) => {
+    const health = allowNetwork ? await checkPublicSource(source.sourceUrl, previousHealth.get(source.id)) : previousHealth.get(source.id) ?? null;
     const sourceNeedle = normalize(source.sourceUrl);
     const relatedCases = [...published.values()].filter((record) => {
       const url = normalize(record.sourceUrl ?? "");
       if (source.id === "nevada-appellate-advance-opinions") {
-        return record.courtLevel === "state" || record.courtLevel === "appellate" || url.includes("nvcourts");
+        return isStateAppellateCase(record);
       }
       if (source.id === "ninth-circuit-nevada-opinions") {
         return federalCourtLayer(record) === "circuit_appellate";
@@ -201,13 +141,17 @@ async function main() {
       }
       return Boolean(url && sourceNeedle && (url.includes(sourceNeedle) || sourceNeedle.includes(url)));
     });
-    sourceRecords.push({
+    return {
       ...source,
+      configuredCollectionStatus: source.collectionStatus,
+      collectionStatus: source.collectionStatus === "automated_reviewed" ? "reviewed_records_monitor_only" : source.collectionStatus,
       health,
       publishedCaseCount: relatedCases.length,
       coverageLayer: relatedCases.length ? "published_records" : "source_route",
-    });
-  }
+      automatedRecordCollection: false,
+      collectionNote: "This pass monitors the public source route and reconciles reviewed records. It does not retrieve new court cases or grant publication review.",
+    };
+  });
 
   const counties = catalog.requiredCounties.map((county) => {
     const sources = catalog.sources.filter((source) =>
@@ -226,14 +170,14 @@ async function main() {
   });
 
   const records = [...published.values()];
-  const stateAppellateCases = records.filter(
-    (record) => record.courtLevel === "state" || record.courtLevel === "appellate",
-  ).length;
+  const stateAppellateCases = records.filter(isStateAppellateCase).length;
   const federalDistrictCases = records.filter((record) => federalCourtLayer(record) === "district").length;
   const federalCircuitCases = records.filter((record) => federalCourtLayer(record) === "circuit_appellate").length;
   const supremeCourtCases = records.filter((record) => federalCourtLayer(record) === "us_supreme").length;
   const output = {
     generatedAt: new Date().toISOString(),
+    collectionReady: false,
+    collectionStatus: "reviewed_records_with_source_monitoring",
     catalogVersion: catalog.version,
     sourceCatalogUpdatedAt: catalog.updatedAt,
     collectionPolicy: {
@@ -246,12 +190,14 @@ async function main() {
     totals: {
       sourceRoutes: sourceRecords.length,
       reachableSourceRoutes: sourceRecords.filter((source) => source.health?.ok).length,
+      inaccessibleSourceRoutes: sourceRecords.filter((source) => source.health && !source.health.ok).length,
+      sourcesWithAutomatedRecordCollection: 0,
       requiredCounties: counties.length,
       countiesWithSourceRoutes: counties.filter((county) => county.sourceRouteCount > 0).length,
       publishedPublicCases: records.length,
       appellateCases: stateAppellateCases,
       stateAppellateCases,
-      localTrialCases: records.filter((record) => record.courtLevel === "local" || record.courtLevel === "district").length,
+      localTrialCases: records.filter((record) => !isStateAppellateCase(record) && !federalCourtLayer(record) && ["local", "district", "state"].includes(record.courtLevel ?? "")).length,
       federalCases: federalDistrictCases + federalCircuitCases + supremeCourtCases,
       federalDistrictCases,
       federalCircuitCases,

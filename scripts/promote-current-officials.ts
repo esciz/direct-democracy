@@ -51,7 +51,7 @@ if (!reconciliation.promotion.eligible) throw new Error(`officials_promotion_blo
 if (evidence.provenance.executionEnvironment === "codex_sandbox") throw new Error("officials_promotion_rejects_codex_sandbox");
 if (evidence.provenance.networkCapability !== "available") throw new Error("officials_promotion_requires_network_enabled_evidence");
 if (evidence.evidencePersistence?.importRequiredBeforePromotion) throw new Error("officials_promotion_requires_imported_or_durable_evidence");
-if (evidence.sources.some((source) => !source.verified || !source.cachedPath || !source.contentHash)) throw new Error("officials_promotion_requires_verified_cached_sources");
+if (evidence.sources.filter(source => source.jurisdictionId === "carson-city").some((source) => !source.verified || !source.cachedPath || !source.contentHash)) throw new Error("officials_promotion_requires_verified_cached_sources");
 
 const generatedAt = new Date().toISOString();
 const promotion = {

@@ -26,6 +26,7 @@ type Meeting = {
   meeting_date: string | null;
   title: string;
   source_urls: string[];
+  meeting_status?: string | null;
 };
 
 type DirectProvider = {
@@ -125,7 +126,7 @@ const rows = [...providerIds].map((providerId) => {
     .filter((meeting) => bodyById.get(meeting.public_body_id)?.seed_source_id === providerId)
     .filter((meeting) => parseTime(meeting.meeting_date) !== null)
     .sort((left, right) => (parseTime(left.meeting_date) ?? 0) - (parseTime(right.meeting_date) ?? 0));
-  const upcomingMeetings = providerMeetings.filter((meeting) => (parseTime(meeting.meeting_date) ?? 0) >= now);
+  const upcomingMeetings = providerMeetings.filter((meeting) => meeting.meeting_status !== "cancelled" && (parseTime(meeting.meeting_date) ?? 0) >= now);
   const newestKnownMeeting = providerMeetings.at(-1) ?? null;
   const hasParsedProvider = Boolean(
     (direct?.meetings_parsed ?? 0) > 0 ||

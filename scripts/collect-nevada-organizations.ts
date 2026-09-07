@@ -2,8 +2,10 @@ import "dotenv/config";
 
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, stat, writeFile, rename } from "node:fs/promises";
 import path from "node:path";
+import { checkPublicSource, mapConcurrent, type PublicSourceHealth } from "../lib/civic-sources/source-health";
+import { readBoundedResponse } from "../lib/political-ads/fec-collection";
 
 const ROOT = process.cwd();
 const CATALOG_PATH = path.join(ROOT, "data", "seed", "nevada-public-organization-catalog.json");
@@ -116,13 +118,7 @@ type PartyProfile = {
   materialDisclosure: string;
 };
 
-type WebsiteHealth = {
-  checkedAt: string;
-  ok: boolean;
-  status: number | null;
-  finalUrl: string;
-  error: string | null;
-};
+type WebsiteHealth = PublicSourceHealth;
 
 type PreviousOutput = {
   records?: Array<{ id: string; websiteHealth?: WebsiteHealth | null }>;
@@ -335,51 +331,24 @@ async function refreshIrsCache(source: CatalogSource, allowNetwork: boolean) {
   }
   if (allowNetwork && shouldFetch) {
     const response = await fetch(source.sourceUrl, {
+      signal: AbortSignal.timeout(30_000),
       headers: {
         accept: "text/csv,*/*;q=0.5",
         "user-agent": "Direct Democracy Nevada organization registry collector (admin@directyourdemocracy.com)",
       },
     });
     if (!response.ok) throw new Error(`IRS Nevada EO BMF download failed: ${response.status} ${response.statusText}`);
+    let text = "";
+    await readBoundedResponse(response, (chunk) => { text += chunk; }, 16 * 1024 * 1024);
+    const parsed = parseIrsRecords(text);
+    if (!parsed.length || !parsed.every((record) => /^\d{9}$/.test(record.EIN) && record.NAME && record.STATE === "NV")) throw new Error("IRS response did not contain a valid Nevada organization CSV; last good cache retained.");
     await mkdir(path.dirname(IRS_CACHE_PATH), { recursive: true });
-    await writeFile(IRS_CACHE_PATH, Buffer.from(await response.arrayBuffer()));
+    const temporary = `${IRS_CACHE_PATH}.${process.pid}.tmp`;
+    await writeFile(temporary, text); await rename(temporary, IRS_CACHE_PATH);
   }
   return existsSync(IRS_CACHE_PATH) ? readFile(IRS_CACHE_PATH, "utf8") : "";
 }
 
-async function checkWebsite(url: string): Promise<WebsiteHealth> {
-  const checkedAt = new Date().toISOString();
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15_000);
-  try {
-    const response = await fetch(url, {
-      headers: {
-        accept: "text/html,*/*;q=0.5",
-        "user-agent": "Direct Democracy Nevada public organization directory (admin@directyourdemocracy.com)",
-      },
-      redirect: "follow",
-      signal: controller.signal,
-    });
-    await response.body?.cancel();
-    return {
-      checkedAt,
-      ok: response.ok || response.status === 403,
-      status: response.status,
-      finalUrl: response.url || url,
-      error: response.ok || response.status === 403 ? null : `${response.status} ${response.statusText}`,
-    };
-  } catch (error) {
-    return {
-      checkedAt,
-      ok: false,
-      status: null,
-      finalUrl: url,
-      error: error instanceof Error ? error.message : String(error),
-    };
-  } finally {
-    clearTimeout(timeout);
-  }
-}
 
 async function main() {
   const catalog = await readJson<Catalog>(CATALOG_PATH, {
@@ -399,7 +368,11 @@ async function main() {
   const previousHealth = new Map((previous.records ?? []).map((record) => [record.id, record.websiteHealth ?? null]));
   const allowNetwork = !hasFlag("--no-network") && process.env.DATAOPS_NETWORK_ENABLED !== "false";
   const irsSource = catalog.sources.find((source) => source.id === "irs-eo-bmf-nevada");
-  const irsText = irsSource ? await refreshIrsCache(irsSource, allowNetwork) : "";
+  let irsRefreshError: string | null = null;
+  const irsText = irsSource ? await refreshIrsCache(irsSource, allowNetwork).catch(async (error) => {
+    irsRefreshError = error instanceof Error ? error.message : String(error);
+    return existsSync(IRS_CACHE_PATH) ? readFile(IRS_CACHE_PATH, "utf8") : "";
+  }) : "";
   const irsRecords = irsText ? parseIrsRecords(irsText) : [];
   const irsByName = new Map<string, IrsRecord[]>();
   for (const record of irsRecords) {
@@ -411,18 +384,16 @@ async function main() {
 
   const fullPass = hasFlag("--first-pass");
   const shard = currentShard();
+  const dueOrganizations = organizations.filter((organization) => allowNetwork && (fullPass || !previousHealth.get(organization.id) || stableShard(organization.id) === shard));
+  const dueUrls = [...new Set(dueOrganizations.map((organization) => organization.websiteUrl))];
+  const checked = await mapConcurrent(dueUrls, 4, async (url) => {
+    const old = organizations.find((organization) => organization.websiteUrl === url && previousHealth.get(organization.id));
+    return [url, await checkPublicSource(url, old ? previousHealth.get(old.id) : null)] as const;
+  });
+  const websiteChecks = new Map(checked);
   const records = [];
-  const websiteChecks = new Map<string, Promise<WebsiteHealth>>();
   for (const organization of organizations) {
-    const shouldCheck = allowNetwork && (fullPass || stableShard(organization.id) === shard);
-    const websiteHealth = shouldCheck
-      ? await (websiteChecks.get(organization.websiteUrl) ??
-        (() => {
-          const pending = checkWebsite(organization.websiteUrl);
-          websiteChecks.set(organization.websiteUrl, pending);
-          return pending;
-        })())
-      : previousHealth.get(organization.id) ?? null;
+    const websiteHealth = websiteChecks.get(organization.websiteUrl) ?? previousHealth.get(organization.id) ?? null;
     const matchedIrsRecords = organization.irsNames
       .flatMap((name) => irsByName.get(normalize(name)) ?? [])
       .filter((record, index, matches) => matches.findIndex((candidate) => candidate.EIN === record.EIN) === index);
@@ -464,6 +435,7 @@ async function main() {
     catalogVersion: Math.max(catalog.version, partyCatalog.version),
     catalogUpdatedAt: [catalog.updatedAt, partyCatalog.updatedAt].sort().at(-1) ?? "",
     scheduledShard: shard,
+    irsSourceHealth: { status: irsRefreshError ? (irsText ? "cached_after_failure" : "unavailable") : irsText ? "cache_available" : "unavailable", error: irsRefreshError, cacheUpdatedAt: existsSync(IRS_CACHE_PATH) ? (await stat(IRS_CACHE_PATH)).mtime.toISOString() : null, records: irsRecords.length },
     schedule:
       "Official websites and party directories are checked in daily shards; the IRS Nevada exempt-organization file refreshes weekly.",
     sourceBoundary:
@@ -475,6 +447,8 @@ async function main() {
       localOrRegional: records.filter((record) => record.scope === "local" || record.scope === "regional").length,
       websitesChecked: records.filter((record) => record.websiteHealth).length,
       websitesReachable: records.filter((record) => record.websiteHealth?.ok).length,
+      websiteChecksThisRun: checked.length,
+      websitesInaccessible: records.filter((record) => record.websiteHealth && !record.websiteHealth.ok).length,
       irsRegistryMatches: records.filter((record) => record.registry.irsMatched).length,
       politicalPartyOrganizations: records.filter((record) => record.category === "political_party").length,
       democraticPartyNetwork: records.filter((record) => record.partyProfile?.party === "Democratic").length,
@@ -491,7 +465,8 @@ async function main() {
   };
   await mkdir(path.dirname(OUTPUT_PATH), { recursive: true });
   await writeFile(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`);
-  console.log(JSON.stringify(output.totals, null, 2));
+  console.log(JSON.stringify({ ...output.totals, irsSourceHealth: output.irsSourceHealth }, null, 2));
+  if (irsRefreshError) process.exitCode = 1;
 }
 
 main().catch((error) => {

@@ -1,15 +1,17 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { DEV_ONLY_AUTH_ENABLED, GUEST_BROWSE_USER_ID, MOCK_AUTH_COOKIE, NEW_USER_DEMO_ID, PUBLIC_SESSION_VALUE } from "@/lib/auth/constants";
 import { clearAuthSessionCookies, getAuthCookieOptions } from "@/lib/auth/cookies";
 import { getSeedUserById, seedUsers } from "@/lib/auth/mock-users";
-import { changeLocalPassword, createEmailVerificationRequest, updateEmailVerificationDeliveryStatus } from "@/lib/identity/accounts";
+import { createEmailVerificationRequest, updateEmailVerificationDeliveryStatus } from "@/lib/identity/accounts";
 import { authenticateDurableLocalAccount, createDurableLocalAccount } from "@/lib/identity/durable-accounts";
-import { sendIdentityEmail } from "@/lib/identity/email";
+import { createDurableSession, revokeDurableSession } from "@/lib/identity/durable-sessions";
+import { changeDurablePassword } from "@/lib/identity/durable-security";
+import { getEmailProviderStatus } from "@/lib/identity/email";
+import { accountRecovery, identityEmailOrigin } from "@/lib/identity/account-recovery";
 import { MFA_SESSION_COOKIE } from "@/lib/identity/mfa-session";
 import { evaluateVoterVerification } from "@/lib/onboarding/voter-provider";
 import { getUserProfileContent, updateUserProfileContent } from "@/lib/profile/details";
@@ -32,12 +34,11 @@ function getFormString(formData: FormData, key: string) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-async function getRequestOrigin() {
-  const headerStore = await headers();
-  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host") ?? "localhost:3000";
-  const protocol = headerStore.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  return `${protocol}://${host}`;
+function getFormPassword(formData: FormData, key: string) {
+  const value = formData.get(key);
+  return typeof value === "string" ? value : "";
 }
+
 
 export type AuthFormState = {
   status: "idle" | "error" | "success";
@@ -61,8 +62,8 @@ function validateEmailPassword(email: string, password: string) {
     fieldErrors.email = "Please enter a valid email.";
   }
 
-  if (password.length < 8) {
-    fieldErrors.password = "Password must be at least 8 characters.";
+  if (password.length < 8 || password.length > 256) {
+    fieldErrors.password = "Password must be between 8 and 256 characters.";
   }
 
   return fieldErrors;
@@ -70,7 +71,7 @@ function validateEmailPassword(email: string, password: string) {
 
 export async function signInWithDemoCredentials(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
   const email = getFormString(formData, "email").toLowerCase();
-  const password = getFormString(formData, "password");
+  const password = getFormPassword(formData, "password");
   const fieldErrors = validateEmailPassword(email, password);
 
   if (Object.keys(fieldErrors).length) {
@@ -80,7 +81,8 @@ export async function signInWithDemoCredentials(_previousState: AuthFormState, f
   const localResult = await authenticateDurableLocalAccount(email, password);
   if (localResult.ok) {
     const cookieStore = await cookies();
-    cookieStore.set(MOCK_AUTH_COOKIE, localResult.account.id, getAuthCookieOptions());
+    await revokeDurableSession(cookieStore.get(MOCK_AUTH_COOKIE)?.value, "signed_in_again");
+    cookieStore.set(MOCK_AUTH_COOKIE, localResult.sessionToken, getAuthCookieOptions());
     cookieStore.delete(MFA_SESSION_COOKIE);
     if (localResult.account.mustChangePassword) redirect("/account/security/change-password");
     if (localResult.account.mfaEnrollmentRequired && !localResult.account.mfaEnrolledAt) redirect("/account/security/mfa/enroll");
@@ -106,8 +108,8 @@ export async function signInWithDemoCredentials(_previousState: AuthFormState, f
 export async function registerDemoAccount(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
   const fullName = getFormString(formData, "fullName");
   const email = getFormString(formData, "email").toLowerCase();
-  const password = getFormString(formData, "password");
-  const confirmPassword = getFormString(formData, "confirmPassword");
+  const password = getFormPassword(formData, "password");
+  const confirmPassword = getFormPassword(formData, "confirmPassword");
   const fieldErrors = validateEmailPassword(email, password);
 
   if (!fullName) {
@@ -147,29 +149,31 @@ export async function registerDemoAccount(_previousState: AuthFormState, formDat
   });
 
   const cookieStore = await cookies();
-  cookieStore.set(MOCK_AUTH_COOKIE, registeredAccountId, getAuthCookieOptions());
+  await revokeDurableSession(cookieStore.get(MOCK_AUTH_COOKIE)?.value, "account_registered");
+  cookieStore.set(MOCK_AUTH_COOKIE, await createDurableSession(registeredAccountId), getAuthCookieOptions());
 
   redirect("/get-started?step=verify");
 }
 
 export async function signOutCurrentUser() {
   const cookieStore = await cookies();
+  await revokeDurableSession(cookieStore.get(MOCK_AUTH_COOKIE)?.value);
   clearAuthSessionCookies(cookieStore);
   redirect("/auth");
 }
 
 export async function changeCurrentPassword(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
   const currentUser = await getCurrentSessionUser();
-  const currentPassword = getFormString(formData, "currentPassword");
-  const nextPassword = getFormString(formData, "nextPassword");
-  const confirmPassword = getFormString(formData, "confirmPassword");
+  const currentPassword = getFormPassword(formData, "currentPassword");
+  const nextPassword = getFormPassword(formData, "nextPassword");
+  const confirmPassword = getFormPassword(formData, "confirmPassword");
   const fieldErrors: Record<string, string> = {};
 
   if (!currentUser) {
     return { status: "error", message: "Please sign in again." };
   }
-  if (nextPassword.length < 12) {
-    fieldErrors.nextPassword = "Use at least 12 characters.";
+  if (nextPassword.length < 12 || nextPassword.length > 256) {
+    fieldErrors.nextPassword = "Use between 12 and 256 characters.";
   }
   if (nextPassword !== confirmPassword) {
     fieldErrors.confirmPassword = "Passwords do not match.";
@@ -178,11 +182,13 @@ export async function changeCurrentPassword(_previousState: AuthFormState, formD
     return { ...AUTH_ERROR_STATE, fieldErrors };
   }
 
-  const result = changeLocalPassword(currentUser.id, currentPassword, nextPassword);
+  const result = await changeDurablePassword(currentUser.id, currentPassword, nextPassword);
   if (!result.ok) {
     return { status: "error", message: "The password could not be changed. Check your current password." };
   }
-
+  const cookieStore = await cookies();
+  cookieStore.set(MOCK_AUTH_COOKIE, await createDurableSession(currentUser.id), getAuthCookieOptions());
+  cookieStore.delete(MFA_SESSION_COOKIE);
   return { status: "success", message: "Password changed. Continue to the admin console or civic dashboard." };
 }
 
@@ -195,44 +201,38 @@ export async function changeCurrentPasswordFromForm(formData: FormData) {
 export async function requestCurrentEmailVerificationAction() {
   const currentUser = await getCurrentSessionUser();
   if (!currentUser) redirect("/auth");
-
-  const request = createEmailVerificationRequest(currentUser.id);
-  if (!request.ok) redirect("/account/verification?status=email-error#email-verification");
-  if (request.alreadyVerified) redirect("/account/verification?status=email-already-verified#email-verification");
-
-  const origin = await getRequestOrigin();
-  const verificationUrl = `${origin}/account/verify-email?token=${encodeURIComponent(request.token)}`;
-  const delivery = await sendIdentityEmail({
-    to: request.account.email,
-    purpose: "account_email_verification",
-    subject: "Verify your Direct Democracy email",
-    text: [
-      "Verify your Direct Democracy email address using this secure one-time link:",
-      verificationUrl,
-      `This link expires at ${new Date(request.expiresAt).toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} Pacific time.`,
-      "If you did not request this, you can ignore this email.",
-    ].join("\n\n"),
-  });
-  updateEmailVerificationDeliveryStatus(currentUser.id, delivery.status);
-  redirect(`/account/verification?status=${delivery.ok ? "email-sent" : "email-send-failed"}#email-verification`);
+  let status = "email-send-failed";
+  try {
+    const result = await accountRecovery.request({ accountId: currentUser.id, purpose: "account_email_verification", origin: identityEmailOrigin() });
+    status = result.status === "sent" ? "email-sent" : result.status === "already_verified" ? "email-already-verified" : result.status === "rate_limited" ? "email-rate-limited" : "email-send-failed";
+  } catch { /* A storage or delivery outage cannot verify the address. */ }
+  redirect(`/account/verification?status=${status}#email-verification`);
 }
 
 export async function requestDemoPasswordReset(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
   const email = getFormString(formData, "email").toLowerCase();
+  if (!isValidEmail(email)) return { ...AUTH_ERROR_STATE, fieldErrors: { email: "Please enter a valid email." } };
+  if (getEmailProviderStatus() !== "production_provider_configured") return { status: "error", message: "Password recovery email is temporarily unavailable. Please try again later." };
+  try {
+    await accountRecovery.request({ email, purpose: "password_reset", origin: identityEmailOrigin() });
+  } catch { /* Do not expose whether an email address exists during an outage. */ }
+  return { status: "success", message: "If this email belongs to an eligible account, we’ll attempt to send a reset link. Check your inbox and spam folder; you can try again later if it does not arrive." };
+}
 
-  if (!isValidEmail(email)) {
-    return {
-      ...AUTH_ERROR_STATE,
-      fieldErrors: {
-        email: "Please enter a valid email.",
-      },
-    };
+export async function resetAccountPassword(_previousState: AuthFormState, formData: FormData): Promise<AuthFormState> {
+  const token = getFormString(formData, "token");
+  const password = typeof formData.get("password") === "string" ? String(formData.get("password")) : "";
+  const confirmPassword = typeof formData.get("confirmPassword") === "string" ? String(formData.get("confirmPassword")) : "";
+  if (password.length < 8 || password.length > 256) return { ...AUTH_ERROR_STATE, fieldErrors: { password: "Use between 8 and 256 characters." } };
+  if (password !== confirmPassword) return { ...AUTH_ERROR_STATE, fieldErrors: { confirmPassword: "Passwords do not match." } };
+  try {
+    const result = await accountRecovery.consume({ token, purpose: "password_reset", password });
+    if (!result.ok) return { status: "error", message: "This reset link is invalid or expired. Request a new link from the sign-in page." };
+    clearAuthSessionCookies(await cookies());
+    return { status: "success", message: "Your password has been reset and existing sessions have been signed out. Sign in with your new password." };
+  } catch {
+    return { status: "error", message: "Your password could not be reset right now. Please try again." };
   }
-
-  return {
-    status: "success",
-    message: "If an account exists for that email, a reset link has been sent.",
-  };
 }
 
 export async function switchDevUser(formData: FormData) {

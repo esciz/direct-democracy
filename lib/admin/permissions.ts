@@ -110,30 +110,29 @@ export async function requireAdminSession(permission: AdminPermission = "dataops
     throw new AdminAuthError("Authentication required.", 401);
   }
 
-  const { getIdentityAccountById } = await import("@/lib/identity/accounts");
-  const identityAccount = getIdentityAccountById(user.id);
-  if (identityAccount) {
-    if (identityAccount.status !== "active" || identityAccount.emailVerificationStatus !== "verified") {
+  const { cookies } = await import("next/headers");
+  const { MOCK_AUTH_COOKIE, DEV_ONLY_AUTH_ENABLED } = await import("@/lib/auth/constants");
+  const { resolveDurableSession } = await import("@/lib/identity/durable-sessions");
+  const { durableAdminSecurityGate } = await import("@/lib/identity/session-tokens");
+  const cookieStore = await cookies();
+  const session = await resolveDurableSession(cookieStore.get(MOCK_AUTH_COOKIE)?.value);
+  if (session) {
+    const account = session.account;
+    if (session.accountId !== user.id || account.emailVerificationStatus !== "verified") {
       throw new AdminAuthError("Active verified admin account required.", 403);
     }
-    const { getAccountSecurityGate } = await import("@/lib/identity/accounts");
-    const gate = getAccountSecurityGate(identityAccount);
-    if (!gate.fullAccess) {
-      throw new AdminAuthError(gate.reason, 403);
+    const permitted = hasAdminPermission({ role: account.role as AuthUser["role"] }, permission)
+      || account.permissionGrants.some((grant) => grant.permission === permission);
+    if (!permitted) throw new AdminAuthError("Admin permission required.", 403);
+    const gate = durableAdminSecurityGate(session);
+    if (gate !== "ok") throw new AdminAuthError(gate, 403);
+  } else {
+    // Explicit demo profiles remain isolated from durable accounts and permission grants.
+    const { getSeedUserById } = await import("@/lib/auth/mock-users");
+    const demoUser = DEV_ONLY_AUTH_ENABLED ? getSeedUserById(cookieStore.get(MOCK_AUTH_COOKIE)?.value) : null;
+    if (!demoUser || demoUser.id !== user.id || !hasAdminPermission(demoUser, permission)) {
+      throw new AdminAuthError("Admin permission required.", 403);
     }
-    if (identityAccount.mfaEnabled) {
-      const { cookies } = await import("next/headers");
-      const { MFA_SESSION_COOKIE, verifyMfaSessionCookieValue } = await import("@/lib/identity/mfa-session");
-      const cookieStore = await cookies();
-      const mfaSession = verifyMfaSessionCookieValue(cookieStore.get(MFA_SESSION_COOKIE)?.value, identityAccount.id);
-      if (!mfaSession.ok) {
-        throw new AdminAuthError("mfa_challenge_required", 403);
-      }
-    }
-  }
-
-  if (!hasAdminDashboardPermission(user, permission)) {
-    throw new AdminAuthError("Admin permission required.", 403);
   }
 
   return user;

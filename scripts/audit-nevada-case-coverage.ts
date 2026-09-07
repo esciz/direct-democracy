@@ -34,7 +34,7 @@ async function main() {
       (record) =>
         !record.caseNumber ||
         !record.sourceUrl ||
-        record.reviewStatus !== "approved" ||
+        !["approved", "verified"].includes(record.reviewStatus ?? "") ||
         record.publicVisibilityStatus !== "public",
     )
     .map((record) => record.id);
@@ -68,6 +68,8 @@ async function main() {
     generatedAt: new Date().toISOString(),
     coverageGeneratedAt: coverage.generatedAt,
     strictPassed: failures.length === 0,
+    coverageComplete: false,
+    auditScope: "Reviewed record integrity and source-route registration. Passing does not establish current or comprehensive case collection.",
     totals: {
       ...coverage.totals,
       missingCountyRoutes: missingCountyRoutes.length,

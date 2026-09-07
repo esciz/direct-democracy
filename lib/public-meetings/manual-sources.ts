@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { mergeMeetingHistory } from "@/lib/public-meetings/lifecycle";
+import { reconcileCrossProviderMeetingIdentities, remapMeetingReferences } from "@/lib/public-meetings/cross-provider-identity";
 import { writePublicCivicCaseArtifacts } from "@/lib/public-cases/public-civic-cases";
 import {
   PUBLIC_MEETING_PATHS,
@@ -760,7 +761,11 @@ function meetingSourceUrls(meeting: PublicMeetingRecord) {
   );
 }
 
-function meetingsRepresentSameEvent(left: PublicMeetingRecord, right: PublicMeetingRecord) {
+export function meetingsRepresentSameEvent(left: PublicMeetingRecord, right: PublicMeetingRecord) {
+  if (left.id === right.id || left.meeting_alias_ids?.includes(right.id)) return true;
+  // Cross-provider aliases are established below after all observations are assembled.
+  // Shared calendar URLs or similar titles cannot collapse separate governing bodies.
+  if (left.public_body_id !== right.public_body_id) return false;
   if (!left.meeting_date || !right.meeting_date || left.meeting_date !== right.meeting_date) return false;
   const leftUrls = meetingSourceUrls(left);
   const rightUrls = meetingSourceUrls(right);
@@ -1046,6 +1051,7 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     canonical.video_url = canonical.video_url ?? meeting.video_url;
     canonical.source_urls = [...new Set([...canonical.source_urls, ...meeting.source_urls])];
     canonical.source_document_count = Math.max(canonical.source_document_count, canonical.source_urls.length);
+    canonical.meeting_alias_ids = [...new Set([...(canonical.meeting_alias_ids ?? []), ...(meeting.meeting_alias_ids ?? []), meeting.id])].filter((id) => id !== canonical.id);
     meetingAliases.set(meeting.id, canonical.id);
   }
   realMeetings = realMeetings.filter((meeting) => {
@@ -1053,7 +1059,9 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     if (meetingAliases.has(meeting.id)) return false;
     const existing = retainedMeetings.find((candidate) => meetingsRepresentSameEvent(candidate, meeting));
     if (!existing) return true;
-    const merged = mergeMeetingHistory([existing], [{ ...meeting, id: existing.id, public_body_id: existing.public_body_id }])[0];
+    const merged = mergeMeetingHistory([existing], [{ ...meeting, id: existing.id, public_body_id: existing.public_body_id,
+      meeting_alias_ids: [...new Set([...(meeting.meeting_alias_ids ?? []), ...(meeting.id !== existing.id ? [meeting.id] : [])])],
+    }])[0];
     Object.assign(existing, merged);
     if (meeting.id !== existing.id) meetingAliases.set(meeting.id, existing.id);
     return false;
@@ -1072,15 +1080,15 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     }));
   const realQuestions = dedupeQuestions(questions.filter((question) => realItemIds.has(question.meeting_item_id)));
 
-  const nextItems = dedupeById([...retainedItems, ...realItems]);
+  const nextMeetings = reconcileCrossProviderMeetingIdentities(dedupeById([...retainedMeetings, ...realMeetings]));
+  const nextItems = remapMeetingReferences(dedupeById([...retainedItems, ...realItems]), nextMeetings);
   const nextItemIds = new Set(nextItems.map((item) => item.id));
   const retainedQuestions = dedupeQuestions(existingQuestions.filter((question) => nextItemIds.has(question.meeting_item_id)));
   const retainedBodies = existingBodies;
   const realBodyIds = new Set(realMeetings.map((meeting) => meeting.public_body_id));
   const nextBodies = dedupeById([...retainedBodies, ...bodies.filter((body) => realBodyIds.has(body.id))]);
-  const nextMeetings = dedupeById([...retainedMeetings, ...realMeetings]);
   const officialMatchCandidates = await loadOfficialActionMatchCandidates();
-  const nextOfficialActions = applyOfficialActionMatches(dedupeById([...retainedOfficialActions, ...realOfficialActions]), {
+  const nextOfficialActions = applyOfficialActionMatches(remapMeetingReferences(dedupeById([...retainedOfficialActions, ...realOfficialActions]), nextMeetings), {
     meetings: nextMeetings,
     bodies: nextBodies,
     candidates: officialMatchCandidates,
@@ -1092,7 +1100,7 @@ export async function importManualPublicMeetingSources(options: { includeFixture
     officialActions: nextOfficialActions,
   });
   const retainedVotingCards = existingMeetingVotingCards.filter((card) => nextItemIds.has(card.topic_item_id) && !isProcessedManualMeeting(card.meeting_id));
-  const nextVotingCards = dedupeById([...retainedVotingCards, ...rebuiltVotingCards]);
+  const nextVotingCards = remapMeetingReferences(dedupeById([...retainedVotingCards, ...rebuiltVotingCards]), nextMeetings);
   await Promise.all([
     writeJsonFile(PUBLIC_MEETING_PATHS.bodies, nextBodies),
     writeJsonFile(PUBLIC_MEETING_PATHS.meetings, nextMeetings),

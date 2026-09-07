@@ -2,6 +2,7 @@ import "server-only";
 
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
+import { installedPublicArtifactPath } from "@/lib/dataops/installed-release";
 
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath, namesMatch, normalizeName } from "@/lib/public-meetings/shared";
 import { getPublicCivicCasesForCommunity } from "@/lib/public-cases/public-civic-cases";
@@ -44,7 +45,9 @@ export type PublicMeetingAdminDashboard = {
 };
 
 async function readJsonFile<T>(relativePath: string, fallback: T): Promise<T> {
-  const filePath = absolutePublicMeetingPath(relativePath);
+  const selected = installedPublicArtifactPath(relativePath);
+  if (!selected) return fallback;
+  const filePath = absolutePublicMeetingPath(selected);
   if (!existsSync(filePath)) return fallback;
   return JSON.parse(await readFile(filePath, "utf8")) as T;
 }

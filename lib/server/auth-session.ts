@@ -7,8 +7,8 @@ import { DEV_ONLY_AUTH_ENABLED, MOCK_AUTH_COOKIE, PUBLIC_SESSION_VALUE } from "@
 import { getDefaultSeedUser, getSeedUserById } from "@/lib/auth/mock-users";
 import type { FeedViewerContext } from "@/lib/auth/session";
 import { getDefaultCommunityForJurisdiction } from "@/lib/community/communities";
-import { accountToAuthUser, getIdentityAccountById } from "@/lib/identity/accounts";
 import { getDurableAuthUserById } from "@/lib/identity/durable-accounts";
+import { resolveDurableSession } from "@/lib/identity/durable-sessions";
 import { getUserProfileContent } from "@/lib/profile/details";
 import { resolveUserVisibility } from "@/lib/profile/visibility";
 import { resolveUserVerification } from "@/lib/server/auth-verification";
@@ -41,16 +41,11 @@ export async function getRawCurrentSessionUser(): Promise<AuthUser | null> {
     return null;
   }
 
-  const durableUser = await getDurableAuthUserById(userId);
+  const session = await resolveDurableSession(userId);
+  const durableUser = session ? await getDurableAuthUserById(session.accountId) : null;
 
   if (durableUser) {
     return hydrateSeedUser(durableUser);
-  }
-
-  const identityAccount = getIdentityAccountById(userId);
-
-  if (identityAccount && identityAccount.status === "active") {
-    return hydrateSeedUser(accountToAuthUser(identityAccount));
   }
 
   const seededUser = DEV_ONLY_AUTH_ENABLED ? getSeedUserById(userId) : null;
@@ -88,11 +83,7 @@ export async function getCurrentSessionUser(): Promise<AuthUser | null> {
 }
 
 export async function getCurrentFeedViewer(): Promise<FeedViewerContext> {
-  const cookieStore = await cookies();
-  const previewContext = await getActivePreviewContext();
-  const userId = cookieStore.get(MOCK_AUTH_COOKIE)?.value;
-  const seededUser = userId && userId !== PUBLIC_SESSION_VALUE ? getSeedUserById(userId) ?? getDefaultSeedUser() : getDefaultSeedUser();
-  const previewUser = applyPreviewContextToUser(seededUser, previewContext) ?? getSeedUserById("user_guest_browse") ?? seededUser;
+  const previewUser = await getCurrentSessionUser() ?? getSeedUserById("user_guest_browse") ?? getDefaultSeedUser();
 
   return {
     id: previewUser.id,

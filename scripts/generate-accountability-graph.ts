@@ -33,4 +33,5 @@ const graph = buildAccountabilityGraph({
 
 mkdirSync(GENERATED_DIR, { recursive: true });
 writeFileSync(OUTPUT_PATH, `${JSON.stringify(graph, null, 2)}\n`);
+writeFileSync(path.join(GENERATED_DIR, "accountability-graph-runtime.json"), `${JSON.stringify({ generatedAt: graph.generatedAt, sourceArtifacts: graph.sourceArtifacts, totals: graph.totals, communitySummaries: graph.communitySummaries })}\n`);
 console.log(`Generated accountability graph with ${graph.totals.nodes} nodes and ${graph.totals.edges} edges at ${OUTPUT_PATH}`);

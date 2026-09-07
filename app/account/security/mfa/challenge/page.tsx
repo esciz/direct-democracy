@@ -2,13 +2,13 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { MfaChallengeForm } from "@/components/domain/mfa-challenge-form";
-import { getIdentityAccountById } from "@/lib/identity/accounts";
+import { getDurableIdentityAccountById } from "@/lib/identity/durable-accounts";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 
 export default async function MfaChallengePage() {
   const user = await getCurrentSessionUser();
   if (!user) redirect("/auth");
-  const account = getIdentityAccountById(user.id);
+  const account = await getDurableIdentityAccountById(user.id);
   if (!account) redirect("/auth");
   if (account.mfaEnrollmentRequired || !account.mfaEnabled) redirect("/account/security/mfa/enroll");
 

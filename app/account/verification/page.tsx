@@ -7,7 +7,8 @@ import { requestGuidedVoterPortalVerificationAction, requestResidencyVerificatio
 import { AccountParticipationStatusCard } from "@/components/domain/account-participation-status-card";
 import { requestCurrentEmailVerificationAction } from "@/lib/auth/actions";
 import { getAccountParticipationStatus } from "@/lib/civic-signals/account-participation-status";
-import { getIdentityAccountById } from "@/lib/identity/accounts";
+import { getDurableIdentityAccountById } from "@/lib/identity/durable-accounts";
+import { prisma } from "@/lib/prisma";
 import { listDurableVerificationClaimsForAccount } from "@/lib/identity/durable-verification";
 import { readIdentityStore } from "@/lib/identity/storage";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
@@ -94,9 +95,11 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
   const hasVerifiedVoter = voterClaims.some((claim) => claim.status === "matched" && (!claim.expiresAt || new Date(claim.expiresAt).getTime() > Date.now()));
   const participationStatus = await getAccountParticipationStatus(user, { signedIn: true });
   const voterFileProvider = readVoterFileProviderAudit();
-  const identityAccount = getIdentityAccountById(user.id);
+  const identityAccount = await getDurableIdentityAccountById(user.id).catch(() => null);
   const emailVerified = identityAccount?.emailVerificationStatus === "verified";
-  const emailRequest = identityAccount?.emailVerificationRequest ?? null;
+  const lastEmailToken = identityAccount ? await prisma.identityToken.findFirst({ where: { accountId: identityAccount.id, purpose: "account_email_verification" }, orderBy: { createdAt: "desc" }, select: { metadata: true } }).catch(() => null) : null;
+  const emailMetadata = lastEmailToken?.metadata;
+  const emailRequest = emailMetadata && typeof emailMetadata === "object" && !Array.isArray(emailMetadata) && typeof emailMetadata.deliveryStatus === "string" ? { deliveryStatus: emailMetadata.deliveryStatus } : null;
   const activeStep = hasVerifiedVoter || hasPendingVoter ? "residency" : "voter";
 
   return (
@@ -144,9 +147,10 @@ export default async function AccountVerificationPage({ searchParams }: AccountV
           Your email address is verified.
         </section>
       ) : null}
+      {params?.status === "email-rate-limited" ? <p role="status" className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">A verification link was requested recently. Wait a minute before requesting another; up to three requests are allowed per half hour.</p> : null}
       {params?.status === "email-send-failed" || params?.status === "email-error" ? (
         <section className="rounded-[1.75rem] border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900 shadow-card">
-          We could not send the email verification link. Check email provider configuration or try again.
+          We could not send the email verification link. Please try again later.
         </section>
       ) : null}
       {params?.status === "email-invalid" || params?.status === "email-expired" ? (

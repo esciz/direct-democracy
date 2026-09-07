@@ -92,7 +92,7 @@ async function getReviewedPublicCourtCaseRuntimeRecords() {
   try {
     const parsed = JSON.parse(await fs.readFile(PUBLIC_COURT_CASES_RUNTIME_PATH, "utf8")) as PublicCourtCaseRuntime;
     return Array.isArray(parsed.records)
-      ? parsed.records.filter((record) => record.isRealCourtRecord && record.publicVisibilityStatus === "public" && record.reviewStatus === "approved")
+      ? parsed.records.filter((record) => record.isRealCourtRecord && record.publicVisibilityStatus === "public" && ["approved", "verified"].includes(record.reviewStatus ?? ""))
       : [];
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "ENOENT") {

@@ -31,7 +31,7 @@ export function getSessionCookieDomain() {
     getHostnameFromUrl(process.env.NEXT_PUBLIC_APP_URL) ||
     getHostnameFromUrl(process.env.DIRECT_DEMOCRACY_PUBLIC_URL);
 
-  if (!configuredDomain || process.env.NODE_ENV !== "production") return undefined;
+  if (!configuredDomain || process.env.NODE_ENV !== "production" || process.env.VERCEL_ENV === "preview") return undefined;
 
   const domain = configuredDomain.toLowerCase().replace(/^www\./, "");
   const isLocal = domain === "localhost" || domain.endsWith(".localhost") || /^[\d.]+$/.test(domain);
@@ -50,6 +50,7 @@ export function getAuthCookieOptions(): AuthCookieOptions {
     sameSite: "lax",
     path: "/",
     secure: process.env.NODE_ENV === "production",
+    maxAge: 30 * 24 * 60 * 60,
     ...(domain ? { domain } : {}),
   };
 }

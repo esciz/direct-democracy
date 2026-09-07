@@ -25,14 +25,14 @@ async function main() {
       data: {
         sourceId: source.id,
         completedAt: new Date(),
-        status: SourceSyncStatus.SUCCESS,
+        status: SourceSyncStatus.PAUSED,
         recordsSeen: 0,
         recordsFound: 0,
         recordsCreated: 0,
         recordsUpdated: 0,
         recordsUnchanged: 0,
         recordsFlaggedForReview: 0,
-        errorLog: null,
+        errorLog: "No live appellate adapter is configured. Source monitoring is not record collection; reviewed public import is required.",
       },
     });
     runsCreated += 1;
@@ -54,8 +54,10 @@ async function main() {
     recordsCreated: 0,
     recordsUpdated: 0,
     pendingManualRows,
+    status: "adapter_unconfigured",
     note: "No live appellate scraping was performed. Add reviewed public appellate rows via data/imports/appellate-cases/manifest.csv or an approved API/export adapter.",
   }, null, 2));
+  process.exitCode = 1;
 }
 
 main()

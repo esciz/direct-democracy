@@ -1,0 +1,59 @@
+# Civic data delivery and launch operations
+
+The public application, collection worker and identity services have separate readiness checks. A successful scrape or build does not establish that new records reached the public site. Use `/admin/launch-health` for the packaged release and source findings, `/admin/meeting-health` for calendars/minutes, and `/api/data-release` for a minimal public release identity. Account and email checks remain separate.
+
+## Production collection and publication
+
+`.github/workflows/civic-data-production.yml` is the single cloud publication writer. It runs every six hours at 00:17, 06:17, 12:17 and 18:17 UTC. Meetings run every time; the broader finance, ads, officials, cases and organization collection runs once per UTC day, or through the manual `full_refresh` input. GitHub concurrency prevents overlapping collection and publication. The pipeline's filesystem lock also prevents overlapping local commands.
+
+Each run restores the previous private worker checkpoint before collecting. It preserves historical meetings, provider discovery and retry state, official public source files, text/OCR evidence, and FEC filing history. After collection it saves a checkpoint even when a provider failed. A missing checkpoint or credentials fails the run rather than silently starting without history. Worker files are allowlisted; identity records, private voter evidence, sessions, environment files and logs do not belong in civic storage.
+
+The worker then regenerates integrity findings, validates references and release completeness, runs regressions and the production build, and publishes a versioned release. Content-addressed objects are verified before the latest manifest changes. Runtime publication rejects malformed or missing required datasets, critical integrity problems and material unexplained record loss. Incomplete source coverage stays visible in the manifest and audits; publication does not certify statewide completeness. A failed collection retains its failure status even when a usable release is published.
+
+Vercel's build command restores the selected validated runtime release before `npm run build`. Set `CIVIC_DATA_RELEASE_ENABLED=true` for this path; ordinary local builds remain independent of cloud storage. The cloud collection job explicitly disables restore during its candidate build so an older live release cannot overwrite the newly collected candidate. Large PDF/text/OCR caches and the full accountability graph remain on the worker and outside web functions. `npm run dataops:runtime:compact` writes the exact community accountability summaries consumed by the UI and removes JSON whitespace before snapshotting; it preserves every public record and keeps the full graph intact. The event bundle audit also enforces a 250 MiB packaging budget.
+
+The deploy hook rebuilds `main` after publication. The workflow verifies that the public `/api/data-release` returns the expected hash, with up to 45 minutes for packaging/deployment. It fails if publication never reaches the public site. A Vercel deployment can be healthy while serving an older release; compare identities, not just HTTP 200.
+
+## Configuration
+
+GitHub Actions requires `BLOB_READ_WRITE_TOKEN`, `DATABASE_URL` and `CIVIC_DATA_DEPLOY_HOOK`. `CIVIC_WORKER_ENV` can hold the existing allowlisted project settings as a private JSON repository secret; `scripts/configure-civic-worker-env.mjs` validates names and masks individual values before passing them to later steps. `FEC_API_KEY` is optional; public API throttling and bulk fallback remain observable. Never commit this bundle or a deploy hook URL.
+
+Vercel requires its existing database, email and MFA settings plus `BLOB_READ_WRITE_TOKEN` and `CIVIC_DATA_RELEASE_ENABLED`. The deploy hook targets the same repository's `main` branch. Use Node 24 in both environments. PDF/OCR collection additionally requires Poppler and Tesseract, installed by the cloud workflow. The current evidence archive exceeds the spare capacity of a minimal runner: the pinned Ubuntu 24.04 job removes its unused preinstalled Android SDK from the disposable VM and checks actual free space before atomic restore. GitHub documents the runner’s [standard storage allocation](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) and [installed SDK path](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md). Insufficient space fails safely; it never truncates the checkpoint.
+
+Keep any desktop follow-up read-only once the cloud writer is verified. It should monitor failed runs, stale releases and new actionable gaps; it must not create a second independent collection/publication writer. Desktop monitoring is supplementary and does not keep the cloud job alive.
+
+## Operator commands
+
+```bash
+# Validate and compact local runtime data without external writes.
+npm run site:launch-audit
+npm run dataops:runtime:compact
+npm run dataops:release:prepare
+npm run dataops:release:test
+
+# Persist collection state; inspect the dry run before the initial checkpoint.
+npm run dataops:checkpoint -- --dry-run
+npm run dataops:checkpoint
+npm run dataops:checkpoint:restore
+
+# Publish the validated local runtime after tests and build pass.
+npm run dataops:release:publish -- --approve --trigger-deploy
+npm run dataops:release:verify
+
+# Restore a specific release into a disposable checkout for review.
+npm run dataops:release:restore -- --required --id=<release-hash>
+```
+
+The restore command writes generated civic files. Use a disposable checkout when comparing releases. `.local/civic-release-candidate.json` is a local preparation record; it is not proof of external publication. A deployment's `data/generated/civic-data-release.json` is produced by verified restore and served through the release endpoint.
+
+For recovery, stop the cloud publishing workflow temporarily, select an existing immutable release with `node --import tsx scripts/civic-artifacts.ts rollback --id=<release-hash> --approve --trigger-deploy`, and pin `CIVIC_DATA_RELEASE_ID` in Vercel while investigating. Rollback verifies stored objects and the historical release gate before moving the pointer. Application rollback through Vercel is separate from moving the civic data pointer. Do not delete source history or mutate an old immutable manifest to simulate a rollback. Unpin and resume only after verifying the repaired release.
+
+## Source and account boundaries
+
+Finance collectors now retain previous results during outages, paginate current FEC results and expose unavailable values as unknown. Nevada totals derived from retrieved reports are labeled as derived; they are not comprehensive official aggregate totals. Ads retain original filings and amendment provenance. Notice-only rows and overlapping amended filings do not establish a trustworthy summed advertising spend or audience impression count. Major commercial creative libraries still need their own supported access.
+
+Organizations preserve their latest good IRS evidence if a download fails. Case records remain reviewed records; an accessible court search landing page does not establish an automatic case parser. Restricted sources stay restricted rather than being bypassed.
+
+Account sessions are opaque tokens backed by hashed database records. Password recovery and verification links are hashed, purpose-bound, expiring and single-use; password reset revokes sessions. MFA state and password changes use durable storage. Automated regression tests use isolated fixtures and do not send messages or change live credentials.
+
+A queue round trip proves queue processing only. Email delivery must be verified through the configured provider with an authorized real message. Private verification-evidence storage/purge currently lacks a production remote implementation and must remain explicitly unconfigured. Setting a bucket name does not implement that service. Do not label a public beta a fully verified-voter release on the strength of account signup or civic data checks.

@@ -350,6 +350,8 @@ function sourceSpecificPositiveSignals(source: OfficialDirectorySource | undefin
   const haystack = normalizedSearchText(`${title ?? ""} ${text}`);
   const sourceType = source?.sourceType;
 
+  addSignal(signals, "jurisdiction_source_identity", Boolean(source?.jurisdictionName && haystack.includes(normalizedSearchText(source.jurisdictionName))));
+  addSignal(signals, "governing_body_identity", sourceType === "governing_body_page" && /city council|board of trustees|board of regents|county commissioners/.test(haystack));
   addSignal(signals, "carson_city_source_identity", haystack.includes("carson city"));
   addSignal(signals, "department_directory_identity", sourceType === "department_directory" && haystack.includes("department directory"));
   addSignal(signals, "department_directory_department_markers", sourceType === "department_directory" && ["assessor", "city manager", "district attorney", "sheriff", "treasurer", "public works"].filter((needle) => haystack.includes(needle)).length >= 3);
@@ -382,7 +384,7 @@ function classifyErrorSignals(text: string, httpStatus: number | null) {
   addSignal(negativeSignals, "access_denied", /access denied|forbidden|not authorized/.test(lowered));
   addSignal(negativeSignals, "login_required", /login required|sign in required|please sign in/.test(lowered));
   addSignal(negativeSignals, "not_found", /page not found|404 not found|not found/.test(lowered));
-  addSignal(negativeSignals, "maintenance_or_unavailable", /service unavailable|temporarily unavailable|maintenance/.test(lowered));
+  addSignal(negativeSignals, "maintenance_or_unavailable", /service unavailable|temporarily unavailable|under maintenance|maintenance mode|(?:site|website|system) (?:is )?(?:down for|undergoing) maintenance/.test(lowered));
 
   for (const signal of ["captcha_or_bot_challenge", "cloudflare_challenge", "access_denied", "login_required", "not_found", "maintenance_or_unavailable"]) {
     if (negativeSignals.includes(signal)) fatalSignals.push(signal);
@@ -893,7 +895,7 @@ function evidenceTextFor(record: OfficialsSourceEvidenceRecord) {
 }
 
 export function parseCarsonCityOfficialsFromEvidence(evidence: OfficialsEvidenceArtifact, generatedAt = new Date().toISOString()) {
-  const baseline = getSeededCurrentOfficeholders(generatedAt);
+  const baseline = getSeededCurrentOfficeholders(generatedAt).filter(record => record.jurisdictionId === "carson-city");
   const sourceConfigById = new Map(getOfficialDirectorySources(generatedAt).map((source) => [source.id, source]));
   const sourceText = new Map<string, { record: OfficialsSourceEvidenceRecord; text: string; normalized: string }>();
   for (const source of evidence.sources.filter((record) => record.verified && record.cachedPath && record.contentHash)) {
@@ -918,7 +920,8 @@ export function parseCarsonCityOfficialsFromEvidence(evidence: OfficialsEvidence
       const matchedName = names.find((name) => source.normalized.includes(name));
       if (!matchedName) continue;
       const window = nearbyWindow(source.text, record.publicDisplayName) ?? record.aliases.map((alias) => nearbyWindow(source.text, alias)).find(Boolean) ?? source.text;
-      const snippetSupported = source.normalized.includes(normalizedSearchText(record.sourceSnippet ?? ""));
+      const expectedSnippet = normalizedSearchText(record.sourceSnippet ?? "");
+      const snippetSupported = Boolean(expectedSnippet) && source.normalized.includes(expectedSnippet);
       const titleNearby = titleSupported(record, window);
       if (snippetSupported || titleNearby) return { source, matchedName, window, snippetSupported, titleNearby };
       nameOnlyMatch ??= { source, matchedName, window };
@@ -980,7 +983,7 @@ export function parseCarsonCityOfficialsFromEvidence(evidence: OfficialsEvidence
       sourceType: sourceConfig?.sourceType ?? record.sourceType,
       sourceId: source.record.sourceId,
       sourceHash: source.record.contentHash,
-      sourceSnippet: normalizeWhitespace(window).slice(0, 500),
+      sourceSnippet: normalizeWhitespace(nearbyWindow(window, record.publicDisplayName, 190) ?? record.aliases.map(alias => nearbyWindow(window, alias, 190)).find(Boolean) ?? window).slice(0, 500),
       firstSeenAt: source.record.firstSeenAt ?? generatedAt,
       lastSeenAt: source.record.lastSeenAt ?? generatedAt,
       lastVerifiedAt: source.record.lastSeenAt ?? generatedAt,
@@ -1047,7 +1050,8 @@ export function reconcileCarsonCityOfficials(input: {
   const blockers: string[] = [];
   if (input.evidence.provenance.executionEnvironment === "codex_sandbox") blockers.push("Codex sandbox evidence cannot be promoted as canonical network evidence.");
   if (input.evidence.provenance.networkCapability !== "available") blockers.push("Promotion requires network-enabled evidence provenance.");
-  if (input.evidence.sources.length < 3 || input.evidence.sources.some((source) => !source.verified || !source.cachedPath || !source.contentHash)) {
+  const carsonSources = input.evidence.sources.filter(source => source.jurisdictionId === "carson-city");
+  if (carsonSources.length < 3 || carsonSources.some((source) => !source.verified || !source.cachedPath || !source.contentHash)) {
     blockers.push("All configured Carson City official sources must be verified and cached before promotion.");
   }
   if (mayors.length !== 1) blockers.push(`Expected exactly one Carson City mayor; parsed ${mayors.length}.`);

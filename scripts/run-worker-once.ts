@@ -1,5 +1,6 @@
+import "@/lib/env/load-local-env";
 import { processClaimedIdentityJob } from "@/lib/identity/worker-handlers";
-import { claimNextJob } from "@/lib/identity/worker-queue";
+import { claimNextJob, getWorkerQueueStatus } from "@/lib/identity/worker-queue";
 
 function workerId() {
   const flag = process.argv.find((arg) => arg.startsWith("--worker-id="));
@@ -7,19 +8,23 @@ function workerId() {
 }
 
 async function main() {
+  const health = await getWorkerQueueStatus();
+  if (!health.configured) { console.log(JSON.stringify(health)); process.exitCode = 1; return; }
   const id = workerId();
   const claimed = await claimNextJob(id);
   if (!claimed.ok || !claimed.job) {
     console.log(JSON.stringify({ status: claimed.status, claimed: false }, null, 2));
+    if (!claimed.ok) process.exitCode = 1;
     return;
   }
 
   const result = await processClaimedIdentityJob(claimed.job, id);
+  if (result.job?.status !== "succeeded") process.exitCode = 1;
   console.log(JSON.stringify({
     status: result.job?.status ?? (result.ok ? "processed" : "failed"),
     jobId: result.job?.id ?? claimed.job.id,
     jobType: claimed.job.jobType,
-    handled: result.ok,
+    handled: result.job?.status === "succeeded",
   }, null, 2));
 }
 

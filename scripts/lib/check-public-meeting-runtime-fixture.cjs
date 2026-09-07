@@ -7,6 +7,7 @@ const { writePublicMeetingRuntimeArtifacts } = require(path.join(process.cwd(), 
 const { getPublicMeetingAdminDashboard } = require(path.join(process.cwd(), 'lib/public-meetings/public.ts'));
 const { getMeetingVotingCards } = require(path.join(process.cwd(), 'lib/public-meetings/voting-cards.ts'));
 const { getPublicMeetingItems } = require(path.join(process.cwd(), 'lib/public-meetings/public-record-eligibility.ts'));
+const { getPublicCivicCaseAdminQueue } = require(path.join(process.cwd(), 'lib/public-cases/public-civic-cases.ts'));
 process.chdir(process.argv[2]);
 (async () => {
   const input = JSON.parse(fs.readFileSync('inputs.json', 'utf8'));
@@ -58,5 +59,26 @@ process.chdir(process.argv[2]);
   fs.writeFileSync(base + 'public-meeting-voting-cards.json', '[]');
   assert.equal((await getPublicMeetingAdminDashboard()).meetingItems.length, 0);
   assert.equal((await getMeetingVotingCards()).cards.length, 0);
+  // A verified installed release wins even when older full Git datasets still
+  // exist during Next prerendering. Worker files remain available on disk.
+  fs.writeFileSync(base + 'public-meetings.json', JSON.stringify([{ ...input.meetings[0], id: 'old-meeting' }]));
+  fs.writeFileSync(base + 'public-meeting-items.json', JSON.stringify(input.items));
+  fs.writeFileSync(base + 'public-meeting-voting-cards.json', JSON.stringify(input.votingCards));
+  fs.writeFileSync(base + 'public-meeting-official-actions.json', JSON.stringify([{ id: 'old-action' }]));
+  fs.writeFileSync(base + 'public-civic-cases.json', JSON.stringify([{ id: 'old-case', priority: 'low', confidence_score: 1 }]));
+  fs.writeFileSync(base + 'public-cases-runtime.json', JSON.stringify([{ id: 'released-case', priority: 'low', confidence_score: 1 }]));
+  fs.writeFileSync(base + 'civic-data-release.json', JSON.stringify({ id: 'a'.repeat(64), createdAt: input.votingCards[0].created_at, sourceCommit: 'b'.repeat(40) }));
+  dashboard = await getPublicMeetingAdminDashboard();
+  cards = await getMeetingVotingCards();
+  assert.deepEqual(dashboard.meetings.map(x => x.id), ['meeting-public']);
+  assert.deepEqual(dashboard.meetingItems.map(x => x.id), ['item-public']);
+  assert.deepEqual(dashboard.officialActions, []);
+  assert.deepEqual(cards.allCards.map(x => x.id), ['card-public']);
+  assert.deepEqual((await getPublicCivicCaseAdminQueue()).map(x => x.id), ['released-case']);
+  assert.equal(JSON.parse(fs.readFileSync(base + 'public-meeting-items.json', 'utf8')).length, 3);
+  fs.writeFileSync(base + 'civic-data-release.json', '{}');
+  await assert.rejects(getPublicMeetingAdminDashboard(), /invalid_installed_civic_release_marker/);
+  fs.unlinkSync(base + 'civic-data-release.json');
+  assert.equal((await getPublicMeetingAdminDashboard()).meetingItems.length, 3);
   console.log('runtime parity passed');
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => boundary.deregister());

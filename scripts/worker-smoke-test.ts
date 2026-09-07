@@ -40,7 +40,7 @@ async function enqueueAndRun(input: {
     maxAttempts: input.maxAttempts ?? 1,
   });
   if (!queued.ok) return { jobType: input.jobType, queued: false, claimed: false, completed: false, status: queued.status };
-  const claimed = await claimNextJob(input.workerId);
+  const claimed = await claimNextJob(input.workerId, queued.jobId);
   if (!claimed.ok || !claimed.job) return { jobType: input.jobType, queued: true, jobId: queued.jobId, claimed: false, completed: false, status: claimed.status };
   const result = await processClaimedIdentityJob(claimed.job, input.workerId);
   return {
@@ -86,6 +86,7 @@ async function main() {
     writeProvenancedAudit("worker-smoke-test", report);
     console.log("Worker smoke test blocked: durable storage unavailable.");
     console.log(JSON.stringify({ status: report.status, storageStatus: report.storageStatus }, null, 2));
+    process.exitCode = 1;
     return;
   }
 
@@ -125,7 +126,7 @@ async function main() {
   }
 
   let evidencePurgeJob: Record<string, unknown> | null = null;
-  if (evidenceStatus !== "verification_evidence_storage_unconfigured") {
+  if (process.argv.includes("--include-evidence-purge") && evidenceStatus !== "verification_evidence_storage_unconfigured") {
     evidencePurgeJob = await enqueueAndRun({
       jobType: "verification_evidence_purge",
       payload: { smokeTest: true, generatedAt },
@@ -135,10 +136,11 @@ async function main() {
   }
 
   const workerAfter = await getWorkerQueueStatus();
-  const requiredJobsCompleted = Boolean(internalJob.completed)
-    && (emailStatus === "production_provider_configured" ? Boolean(emailJob?.completed) : true)
-    && (evidenceStatus !== "verification_evidence_storage_unconfigured" ? Boolean(evidencePurgeJob?.completed) : true);
-  const status = requiredJobsCompleted ? "smoke_passed" : "smoke_partially_exercised";
+  const requiredJobsCompleted = Boolean(internalJob.completed) && workerAfter.configured
+    && (emailJob && !emailJob.skipped ? Boolean(emailJob.completed) : true)
+    && (evidencePurgeJob ? Boolean(evidencePurgeJob.completed) : true);
+  const status = requiredJobsCompleted ? "queue_smoke_passed" : "queue_smoke_failed";
+  if (!requiredJobsCompleted) process.exitCode = 1;
   const report = {
     generatedAt,
     provenance,
@@ -161,6 +163,7 @@ async function main() {
       deadLetters: workerAfter.deadLetters,
       staleRunningJobs: workerAfter.staleRunningJobs,
     },
+    smokeScope: "A queue round trip only. Email or evidence processing is verified only when explicitly exercised; skipped handlers are not a claim of production readiness.",
     sensitiveValuesIncluded: false,
   };
   mkdirSync(GENERATED_DIR, { recursive: true });

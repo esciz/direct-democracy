@@ -46,8 +46,8 @@ const records = getOfficialDirectorySources(generatedAt).map((source) => {
       lastCheckedAt: checkedAt,
       lastSuccessfulRetrievalAt: verifiedAt,
       lastChangedAt: retrieval.lastChangedAt ?? verifiedAt,
-      lastParsedAt: generatedAt,
-      lastVerifiedAt: generatedAt,
+      lastParsedAt: null,
+      lastVerifiedAt: verifiedAt,
       sourceHealth: "healthy" as const,
     };
   }

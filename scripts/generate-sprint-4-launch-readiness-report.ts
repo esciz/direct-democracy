@@ -168,7 +168,8 @@ async function main() {
   const emailReady = email.status === "production_configured" || (email.providerConfigured === true && email.latestEmailTest?.status === "sent");
   const evidenceReady = evidence.status === "production_storage_configured" && evidence.storageConfigured === true;
   const browserReady = browser.status === "production_storage_configured";
-  const workerReady = worker.worker?.configured === true && worker.latestSmokeTest?.status === "smoke_passed";
+  const workerQueueReady = worker.worker?.configured === true && worker.latestSmokeTest?.status === "queue_smoke_passed";
+  const workerReady = workerQueueReady && trustReadiness.worker === "ready";
   const backupReady = backup.backup === "backup_configured";
   const restoreReady = restore.restore === "restore_tested" && restore.restoreTestDatabaseSeparateFromPrimary === true;
   const secretsReady = Array.isArray(secrets.missingRequiredDomains) && secrets.missingRequiredDomains.length === 0 && productionEnvMissing.length === 0;
@@ -234,6 +235,8 @@ async function main() {
       evidence: evidence.status ?? "missing",
       browserSessions: browser.status ?? "missing",
       workerConfigured: worker.worker?.configured ?? false,
+      workerQueueReady,
+      workerHandlersReady: trustReadiness.worker === "ready",
       latestWorkerSmoke: worker.latestSmokeTest?.status ?? "missing",
     },
     backupAndRestore: {

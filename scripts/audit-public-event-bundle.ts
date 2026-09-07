@@ -9,11 +9,13 @@ const workerDirectories = [
   "nv-sos-text", "audits", "admin-operations",
 ].map((directory) => `data/generated/${directory}/`);
 const workerManifests = [
+  "data/generated/accountability-graph.json",
   "data/generated/public-meeting-source-documents.json",
   "data/generated/public-meeting-document-cache-index.json",
   "data/generated/public-meeting-document-text.json",
 ];
 const runtimeFiles = [
+  "data/generated/accountability-graph-runtime.json",
   "data/generated/events-runtime.json", "data/generated/public-meeting-items-runtime.json",
   "data/generated/voting-cards-runtime.json", "data/generated/public-meeting-bodies.json",
   "data/seed/public-meeting-sources.json",
@@ -46,6 +48,7 @@ if (process.argv.includes("--config-only")) {
   for (const file of runtimeFiles) {
     if (existsSync(file)) assert.ok(rows.some((row) => row.path === file), `${file} is missing from the built event function`);
   }
+  assert.ok(rows.reduce((sum, row) => sum + row.bytes, 0) < 250 * 1024 * 1024, "Event function exceeds the 250 MiB deployment budget; compact runtime data before publishing.");
   console.log(JSON.stringify({
     files: rows.length, bytes: rows.reduce((sum, row) => sum + row.bytes, 0),
     workerCacheFiles: leaked.length,

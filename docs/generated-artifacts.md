@@ -34,7 +34,7 @@ Do not commit local/operator-only outputs:
 - duplicate Finder/browser downloads such as `data/generated/* 2.json`
 - raw downloaded PDFs, large binary source caches, and provider session artifacts
 
-The meeting cache binary export remains local/private until Vercel Blob is provisioned and the Blob export is intentionally run.
+Worker evidence and collection state are persisted through the private Vercel Blob civic checkpoint. Content-addressed public source objects are reused by hash; raw identity evidence and session data are explicitly excluded. Public runtime publication is a separate validated manifest. See [launch operations](launch-operations.md).
 
 Git retention and web packaging are separate decisions. Meeting PDF, document-text, OCR, and adapter caches belong to the worker and are excluded by both deployment upload rules and Next.js file tracing. Public meeting details use compact runtime records with source URLs. After a build, `npm run meetings:bundle:audit` checks that the event function contains its required runtime files and no worker cache bytes. A local runtime rebuild does not publish a new version of the live site.
 

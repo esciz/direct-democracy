@@ -273,7 +273,16 @@ try {
     })),
   });
   assert.equal(reconciliation.promotion.eligible, true);
+  const unrelatedFailure = { ...evidence.sources[0], sourceId: "unrelated-elko-source", jurisdictionId: "elko", jurisdictionName: "Elko", verified: false, cachedPath: null, contentHash: null };
+  assert.equal(reconcileCarsonCityOfficials({ evidence: { ...evidence, sources: [...evidence.sources, unrelatedFailure] }, existingRuntime: [] }).promotion.eligible, true, "Unrelated jurisdiction failures cannot block a complete Carson roster");
+  const elkoCouncil = officialSource("elko-city-council");
+  assert.equal(verifyOfficialHtml(htmlDocument("Elko City Council", "<h1>City Council</h1><p>Elko Mayor and council</p>"), "text/html", 200, { source: elkoCouncil, finalUrl: elkoCouncil.sourceUrl }).verified, true);
+  const elkoStaff = officialSource("elko-city-staff-directory");
+  assert.equal(verifyOfficialHtml(htmlDocument("Elko Staff Directory", "<h1>Staff Directory</h1><p>Department Name First Name Last Name Parks Maintenance Manager</p>"), "text/html", 200, { source: elkoStaff, finalUrl: elkoStaff.sourceUrl }).verified, true, "A maintenance job title is not a site outage");
+  assert.equal(verifyOfficialHtml(htmlDocument("Elko Staff Directory", "<h1>Staff Directory</h1><p>Website is under maintenance</p>"), "text/html", 200, { source: elkoStaff, finalUrl: elkoStaff.sourceUrl }).verified, false);
+
   assert.equal(reconciliation.promotedRecords.filter((record) => record.sourceTitle === "Mayor").length, 1);
+  assert.ok(reconciliation.promotedRecords.every(record => [record.publicDisplayName, ...record.aliases].some(name => (record.sourceSnippet ?? "").toLowerCase().includes(name.toLowerCase()))), "Public evidence snippets retain the matched official name");
   assert.equal(reconciliation.promotedRecords.filter((record) => /^Supervisor, Ward [1-4]$/.test(record.sourceTitle)).length, 4);
   assert.equal(reconciliation.promotedRecords.filter((record) => /maurice/i.test(record.publicDisplayName) || record.aliases.some((alias) => /maurice/i.test(alias))).length, 1);
   assert.ok(reconciliation.promotedRecords.some((record) => record.sourceTitle === "Acting Fire Chief" && record.actingOrInterim));

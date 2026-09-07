@@ -45,11 +45,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: "24"
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Load private project worker configuration
+        env:
+          CIVIC_WORKER_ENV: ${{ secrets.CIVIC_WORKER_ENV }}
+        run: node scripts/configure-civic-worker-env.mjs
+
+      - name: Require database configuration
+        run: node -e 'if (!process.env.DATABASE_URL) throw Error("Identity worker database is unconfigured")'
 
       - name: Database diagnostic
         run: npm run database:diagnose

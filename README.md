@@ -104,7 +104,7 @@ npm run trust:foundation-audit
 
 Generated artifacts include `data/generated/public-meeting-source-documents.json`, `data/generated/public-meeting-document-cache-index.json`, `data/generated/public-meeting-document-text.json`, `data/generated/public-meeting-retrieval-queue.json`, `data/generated/public-meeting-source-health.json`, `data/generated/dataops-source-registry.json`, `data/generated/dataops-monitoring-status.json`, `data/generated/dataops-retrieval-run.json`, `data/generated/dataops-change-log.json`, `data/generated/dataops-reprocessing-runs.json`, `data/generated/rss-source-registry.json`, `data/generated/public-meeting-source-completeness.json`, `data/generated/public-meeting-accountability-readiness.json`, and `data/generated/public-meeting-document-audit.json`.
 
-`sources:refresh:daily` is the broader once-daily civic refresh. The existing local automation runs the isolated meeting workflow every six hours and the broader workflow on the first run of each Pacific calendar day. The updated `.github/workflows/dataops-daily.yml` is a manual recovery runner; its schedule change takes effect when this code reaches GitHub. Local collection and uploaded workflow artifacts do not publish data to the deployed site.
+`sources:refresh:daily` is the broader civic refresh. `.github/workflows/civic-data-production.yml` provides six-hour meeting collection, a daily broader refresh, persistent private checkpoints, validated runtime publication and live release verification. The older DataOps workflow remains a manual recovery runner. See [launch operations](docs/launch-operations.md) for configuration, rollout and recovery; local collection alone does not publish the site.
 
 The meeting workflow checks official calendars, retains historical records, retrieves late or revised minutes, and rebuilds local issue/event data. Its monitor stage runs `npm run meetings:upcoming-audit:strict`; unresolved coverage remains a failed audit while later document-recovery stages continue. If a public calendar looks wrong, run:
 
@@ -156,6 +156,10 @@ Notes:
 - `GOV_CRM_ENABLED="false"` keeps the government workflow scaffold hidden and gated unless explicitly enabled.
 - `ADMIN_PREVIEW_ENABLED="false"` keeps private preview tools disabled in production by default.
 - Without Prisma-backed or generated source data, civic surfaces show explicit empty states. User-created prototype actions remain cookie-backed.
+
+## Civic data delivery
+
+[Launch operations](docs/launch-operations.md) describes the persistent cloud worker, release checks, source limitations, account recovery and service verification. `/admin/launch-health` displays the deployment’s data release and outstanding source findings.
 
 ## Deploy to Vercel
 

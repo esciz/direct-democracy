@@ -32,9 +32,7 @@ npm run meetings:items:reprocess -- --source=carson-city-school-district
 
 The meeting workflow refreshes calendars, imports discovered dates, merges historical records and reviewed manual caches, discovers source documents, retrieves a bounded batch, verifies files, extracts text, attempts OCR, parses numbered agenda/minutes topics, and regenerates civic tracking and audits. OCR keeps a persistent ledger and compares document hashes; source/type filters allow a priority backfill without the statewide queue consuming its batch. Check attempted versus detected pages before treating capped OCR as a complete document. New topics keep document hashes, text paths and source URLs; changes to reviewed items enter `public-meeting-item-review-candidates.json`. Failed commands remain failed in the final report and produce a nonzero exit; remaining recovery work continues. `--meetings-only` excludes independent finance, officials-directory, case, ad, and organization collection.
 
-One existing local automation owns the schedule. Meeting checks run every six hours; the broader civic source workflow runs once daily. The updated GitHub DataOps workflow is a manual recovery runner, with a `meetings_only` input, and retains the meeting runtime and reports as downloadable artifacts. This workflow change takes effect when the code reaches GitHub; the local automation has already been updated. Do not add another independent recurring trigger to the same working directory.
-
-This schedule is a local operating arrangement. It requires the configured host to be available. It is not proof of production publication. The pipeline lock prevents overlapping processes on that filesystem; separate machines need shared locking and durable state before both can operate as production workers.
+The cloud workflow in `.github/workflows/civic-data-production.yml` owns scheduled production collection and publication. It checks meetings every six hours and broader civic sources daily, restoring persistent source state and verifying the exact runtime release on the public site. See [launch operations](launch-operations.md) for configuration and recovery. Local commands remain useful for repair, but a desktop collector must not operate as a second independent production writer.
 
 ## Source coverage
 
@@ -102,7 +100,9 @@ npm run build
 npm run meetings:bundle:audit
 ```
 
-## Verified local results · September 6, 2026
+## Initial repair baseline · September 6, 2026
+
+These historical counts describe the first repair, before the subsequent priority-provider launch pass. Current results are in the generated coverage audits and deployment release record.
 
 The refreshed dataset contains 1,310 meetings: 36 upcoming and 1,274 archived. Every one of the original 1,056 meeting IDs remains accessible directly or through an explicit alias. Minutes links increased from 449 to 586; 528 meeting records have usable minutes text. These are local artifact counts, not a claim about the deployed site.
 
@@ -112,13 +112,13 @@ The source-discovery crawl checked 36 pages without transport errors and produce
 
 All ten focused regression suites, TypeScript checking, and the production build passed. The final event-bundle audit found 385 traced files totaling 255,836,225 bytes, including the source registry and no worker-cache files. Browser checks verified meeting dates, Pacific times, official source links, archive behavior, and the existing core routes. These checks validate the local application and build, not a cloud deployment. The recovery workflow from source-completeness through community/freshness generation also passed every stage. The strict upcoming-coverage audit still reports 35 adapter gaps and 11 priority providers requiring attention; its failed status must not be suppressed to claim launch readiness.
 
-The next source work is specific:
+## Priority launch pass · September 7, 2026 UTC
 
-| Priority | Source family | Required work |
-| --- | --- | --- |
-| 1 | Clark and Washoe school boards, then school/PTA calendars | Implement and verify their current official calendar/archive routes; distinguish private parent-group sources from publicly published dates. |
-| 2 | Reno, Sparks, Clark/Washoe commissions, Henderson; Elko and Eureka | Repair current portal/API and dated-document adapters. Resolve each empty horizon against the actual official calendar, keeping separate committee identities. |
-| 3 | NSHE and additional state boards/committees | Review the statewide public-notice and education leads, then register tested collectors with agenda/minutes ownership and yearly rollover checks. |
+The subsequent local pass repaired all eleven priority collectors: Clark/Washoe schools and commissions, Reno, Sparks, Henderson, Elko city/county, Eureka and NSHE. The resulting archive contains 2,401 meetings: 118 upcoming and 2,283 archived. All 1,319 records present before this pass remain accessible directly or through aliases, with zero ambiguous aliases and zero orphan topic references. Cross-provider school/legislative duplicates and an amended Clark school work session now reconcile to one event while retaining original links and evidence.
+
+There are 691 meetings with usable primary minutes, 23,550 topic records and 16 changed reviewed items held for review. The bounded evidence recovery produced 250 usable newly cached documents, including 159 minutes; another 208 existing cached documents received missing native-text records. Uncached documents remain pending. These different counts describe meetings, topics and documents; they are not interchangeable or automatic approvals of named actions.
+
+The strict upcoming audit still flags two priority providers with no future dates on their current official indexes: Clark Commission and Eureka. Thirty-one broader adapter gaps remain in the statewide report. Never invent recurring dates to clear this audit. Expand tested adapters and review the discovery queue systematically, including school/PTA sources where their organizers publish dates. Exact provider counts and checks are recorded in `public-meeting-priority-recovery.json`; deployed counts must be verified through the release endpoint described in [launch operations](launch-operations.md).
 
 ## Public launch gate
 

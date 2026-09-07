@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { CivicEntityType } from "@prisma/client";
 
 import { getCandidateFundingBreakdown, type CandidateFundingBreakdown } from "@/lib/campaign-finance/breakdown";
@@ -29,6 +31,7 @@ export type CampaignFinanceAllReportedTotals = {
 };
 
 export type CampaignFinancialSnapshot = {
+  sourceCheckedAt?: string | null;
   sourceKind: "fec" | "transparency_usa";
   sourceName: string;
   sourceUrl: string;
@@ -149,7 +152,7 @@ function dedupeFilings<T extends { name: string; filedAt: string | null; url: st
 }
 
 function asFiniteNumber(value: unknown) {
-  if (value == null) return null;
+  if (value == null || typeof value === "boolean" || (typeof value === "string" && !value.trim()) || (typeof value !== "number" && typeof value !== "string")) return null;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
 }
@@ -175,6 +178,7 @@ function asFinancialSnapshot(value: unknown): CampaignFinancialSnapshot | null {
     return null;
   }
   return {
+    sourceCheckedAt: typeof snapshot.sourceCheckedAt === "string" ? snapshot.sourceCheckedAt : null,
     sourceKind: snapshot.sourceKind,
     sourceName: snapshot.sourceName,
     sourceUrl: snapshot.sourceUrl,
@@ -295,7 +299,7 @@ async function getLinkedFinanceCandidateId(entityType: "candidate" | "official",
     .at(0)?.id ?? null;
 }
 
-export async function getCampaignFinanceSourceCard(entityType: "candidate" | "official", entityId: string): Promise<CampaignFinanceSourceCardData> {
+async function getDatabaseCampaignFinanceSourceCard(entityType: "candidate" | "official", entityId: string): Promise<CampaignFinanceSourceCardData> {
   const civicEntityType = entityType === "candidate" ? CivicEntityType.CANDIDATE : CivicEntityType.OFFICIAL;
   const financeCandidateId = await getLinkedFinanceCandidateId(entityType, entityId);
   const [attributions, disclosureAttributions, filingCount, latestFiling, filings, documents, fundingBreakdown] = await Promise.all([
@@ -540,7 +544,7 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
           ? "Source link stored; filing extraction pending"
           : null),
     reviewStatus: attribution?.reviewStatus ?? null,
-    lastCheckedAt: attribution?.lastImportedAt?.toISOString() ?? latestFiling?.source?.lastCheckedAt?.toISOString() ?? null,
+    lastCheckedAt: financialSnapshot?.sourceCheckedAt ?? latestFiling?.source?.lastCheckedAt?.toISOString() ?? null,
     filingCount: dedupeFilings(parsedFilings).length,
     filingSummaries: metadataFilings.length ? dedupeFilings(metadataFilings) : parsedFilings.length ? dedupeFilings(parsedFilings) : dedupeFilings(documentFilings),
     sourceLinks: dedupedLinks,
@@ -570,4 +574,53 @@ export async function getCampaignFinanceSourceCard(entityType: "candidate" | "of
       ? publishedContributorBreakdown.sourceCoverageNote
       : metadata.donorExtractionStatus ?? allMetadata.find((entry) => entry.donorExtractionStatus)?.donorExtractionStatus ?? publishedContributorBreakdown?.sourceCoverageNote ?? "Classification incomplete; source-backed filing summaries remain available.",
   };
+}
+
+
+export function campaignFinanceCardFromCoverage(value: unknown, entityType: "candidate" | "official", entityId: string): CampaignFinanceSourceCardData | null {
+  const file = asFinanceRawData(value);
+  if (!Array.isArray(file?.records)) return null;
+  const record = file.records.find((item: unknown) => {
+    const row = asFinanceRawData(item);
+    return row?.entityType === entityType && row?.entityId === entityId;
+  });
+  const row = asFinanceRawData(record);
+  const campaign = asFinanceRawData(row?.campaignFinance);
+  const disclosure = asFinanceRawData(row?.personalFinancialDisclosure);
+  if (!campaign || typeof campaign.primarySourceUrl !== "string") return null;
+  const snapshot = asFinancialSnapshot(campaign.snapshot);
+  const sourceName = typeof campaign.primarySourceName === "string" ? campaign.primarySourceName : "Campaign finance source";
+  const reviewStatus = snapshot?.sourceKind === "fec" && campaign.status === "verified_totals" ? "verified" : snapshot ? "imported" : "pending_review";
+  const cycleHistory = Array.isArray(campaign.cycleHistory) ? campaign.cycleHistory.map(asCycleRecord).filter((cycle): cycle is CampaignFinanceCycleRecord => cycle !== null) : [];
+  const sourceLinks = [{ label: sourceName, url: campaign.primarySourceUrl, note: "Official campaign-finance source" }];
+  if (typeof campaign.aggregateSourceUrl === "string") sourceLinks.push({ label: "Transparency USA Nevada aggregate", url: campaign.aggregateSourceUrl, note: "Derived aggregate; official filings remain linked separately" });
+  const filingSummaries = Array.isArray(disclosure?.filings) ? disclosure.filings.flatMap((value: unknown) => {
+    const filing = asFinanceRawData(value);
+    return typeof filing?.name === "string" && typeof filing.url === "string" ? [{ name: filing.name, url: filing.url, filedAt: typeof filing.filedAt === "string" ? filing.filedAt : null }] : [];
+  }) : [];
+  return {
+    sourceName, sourceUrl: campaign.primarySourceUrl, filingStatus: snapshot ? snapshot.reportingPeriod : "Source registered; totals not yet available", reviewStatus,
+    lastCheckedAt: snapshot?.sourceCheckedAt ?? null,
+    // Aggregate snapshots are not individual filing documents or approved contributor records.
+    filingCount: 0, filingSummaries: [], sourceLinks, financeSourceCount: sourceLinks.length, financeFilingCount: 0, financeDocumentCount: 0,
+    pendingCount: snapshot ? 0 : 1, approvedCount: reviewStatus === "verified" ? 1 : 0,
+    fundingBreakdown: null, financialSnapshot: snapshot, allReportedFundingBreakdown: null, contributorAttributions: [], cycleHistory,
+    allReportedTotals: asAllReportedTotals(campaign.allReportedTotals),
+    personalFinancialDisclosure: { sourceName: typeof disclosure?.sourceName === "string" ? disclosure.sourceName : null, sourceUrl: typeof disclosure?.sourceUrl === "string" ? disclosure.sourceUrl : null, status: typeof disclosure?.status === "string" ? disclosure.status : null, applicability: typeof disclosure?.applicability === "string" ? disclosure.applicability : null, reviewStatus: "pending_review", lastCheckedAt: null, filingSummaries, note: typeof disclosure?.note === "string" ? disclosure.note : null },
+    campaignReportedSummary: snapshot ? `Cached source-backed campaign totals for ${snapshot.reportingPeriod}.` : "No monetary total is inferred from a registered source or an empty search result.",
+    donorExtractionStatus: snapshot ? "Aggregate totals are available from the last published collection. Reviewed contributor details require the finance database." : "Source registration does not establish campaign totals or contributor details.",
+  };
+}
+
+export async function getCampaignFinanceSourceCard(entityType: "candidate" | "official", entityId: string): Promise<CampaignFinanceSourceCardData> {
+  try { return await getDatabaseCampaignFinanceSourceCard(entityType, entityId); }
+  catch (error) {
+    let fallback: CampaignFinanceSourceCardData | null = null;
+    try {
+      const cached = JSON.parse(await readFile(path.join(process.cwd(), "data", "generated", "nevada-financial-coverage.json"), "utf8"));
+      fallback = campaignFinanceCardFromCoverage(cached, entityType, entityId);
+    } catch { /* Missing or invalid cache cannot become a fabricated finance record. */ }
+    if (fallback) return fallback;
+    throw error;
+  }
 }

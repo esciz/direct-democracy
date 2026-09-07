@@ -24,7 +24,7 @@ export function getEmailProviderStatus() {
   const provider = process.env.DIRECT_DEMOCRACY_EMAIL_PROVIDER;
   const sender = process.env.DIRECT_DEMOCRACY_EMAIL_FROM;
   const apiKey = process.env.DIRECT_DEMOCRACY_EMAIL_API_KEY;
-  if (provider && sender && apiKey && !/replace-with|placeholder|paste_[a-z0-9_]*_here/i.test(apiKey)) return "production_provider_configured" as const;
+  if (provider?.toLowerCase() === "resend" && sender && apiKey && !/replace-with|placeholder|paste_[a-z0-9_]*_here/i.test(apiKey)) return "production_provider_configured" as const;
   if (process.env.NODE_ENV !== "production") return "development_adapter" as const;
   return "email_provider_unconfigured" as const;
 }
@@ -140,6 +140,7 @@ export async function sendIdentityEmail(input: {
   subject: string;
   text: string;
   html?: string;
+  idempotencyKey?: string;
 }) {
   const status = getEmailProviderStatus();
   if (status === "email_provider_unconfigured") {
@@ -166,9 +167,11 @@ export async function sendIdentityEmail(input: {
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
+      signal: AbortSignal.timeout(15_000),
       headers: {
         Authorization: `Bearer ${process.env.DIRECT_DEMOCRACY_EMAIL_API_KEY}`,
         "Content-Type": "application/json",
+        ...(input.idempotencyKey ? { "Idempotency-Key": input.idempotencyKey } : {}),
       },
       body: JSON.stringify({
         from: process.env.DIRECT_DEMOCRACY_EMAIL_FROM,

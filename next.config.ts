@@ -9,10 +9,11 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingRoot: process.cwd(),
   outputFileTracingIncludes: {
-    "/*": ["./data/seed/public-meeting-sources.json"],
+    "/*": ["./data/seed/public-meeting-sources.json", "./data/generated/civic-data-release.json"],
   },
   outputFileTracingExcludes: {
     "/*": [
+      "./data/generated/.*",
       "./data/manual-sources/**/*",
       "./data/raw/**/*",
       "./data/imports/**/*",
@@ -40,6 +41,7 @@ const nextConfig: NextConfig = {
       "./data/generated/admin-operations/**/*",
       "./data/generated/**/*.pdf",
       "./data/generated/nv-sos-text/**/*",
+      "./data/generated/accountability-graph.json",
       "./data/generated/public-meeting-items.json",
       "./data/generated/public-meeting-voting-cards.json",
       "./data/generated/public-meetings.json",

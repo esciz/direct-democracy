@@ -168,9 +168,13 @@
       "level": "state",
       "providerGroup": "state",
       "website": "https://www.leg.state.nv.us/",
-      "discoveryUrls": ["https://www.leg.state.nv.us/app/calendar/a/"],
+      "discoveryUrls": [
+        "https://www.leg.state.nv.us/app/calendar/a/"
+      ],
       "scraperType": "html",
-      "platformHints": ["nevada_legislature"]
+      "platformHints": [
+        "nevada_legislature"
+      ]
     },
     {
       "id": "nv-governor-executive-boards",
@@ -179,9 +183,13 @@
       "level": "state",
       "providerGroup": "state",
       "website": "https://www.gov.nv.gov/",
-      "discoveryUrls": ["https://www.gov.nv.gov/board-appts/"],
+      "discoveryUrls": [
+        "https://www.gov.nv.gov/board-appts/"
+      ],
       "scraperType": "manual",
-      "platformHints": ["distributed_state_boards"]
+      "platformHints": [
+        "distributed_state_boards"
+      ]
     },
     {
       "id": "nshe-board-of-regents",
@@ -190,9 +198,24 @@
       "level": "university",
       "providerGroup": "state",
       "website": "https://nshe.nevada.edu/regents/",
-      "discoveryUrls": ["https://nshe.nevada.edu/regents/upcoming-meetings/"],
+      "discoveryUrls": [
+        "https://nshe.nevada.edu/regents/upcoming-meetings/",
+        "https://nshe.nevada.edu/regents/archive/"
+      ],
       "scraperType": "html",
-      "platformHints": ["html", "pdf"]
+      "platformHints": [
+        "html",
+        "pdf",
+        "nshe_calendar_archive"
+      ],
+      "agendaArchiveUrl": "https://nshe.nevada.edu/regents/archive/",
+      "minutesArchiveUrl": "https://nshe.nevada.edu/regents/archive/",
+      "packetArchiveUrl": "https://nshe.nevada.edu/regents/archive/",
+      "allowedHosts": [
+        "nshe.nevada.edu"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
     },
     {
       "id": "carson-city-board-of-supervisors",
@@ -201,9 +224,13 @@
       "level": "city",
       "providerGroup": "county",
       "website": "https://www.carsoncity.gov/",
-      "discoveryUrls": ["https://www.carsoncity.gov/government/city-meetings"],
+      "discoveryUrls": [
+        "https://www.carsoncity.gov/government/city-meetings"
+      ],
       "scraperType": "granicus",
-      "platformHints": ["granicus"]
+      "platformHints": [
+        "granicus"
+      ]
     },
     {
       "id": "churchill-county-commission",
@@ -212,7 +239,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.churchillcountynv.gov/",
-      "discoveryUrls": ["https://www.churchillcountynv.gov/"],
+      "discoveryUrls": [
+        "https://www.churchillcountynv.gov/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -222,9 +251,13 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.clarkcountynv.gov/",
-      "discoveryUrls": ["https://clark.legistar.com/"],
+      "discoveryUrls": [
+        "https://clark.legistar.com/"
+      ],
       "scraperType": "legistar",
-      "platformHints": ["legistar"]
+      "platformHints": [
+        "legistar"
+      ]
     },
     {
       "id": "douglas-county-commission",
@@ -233,7 +266,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.douglascountynv.gov/",
-      "discoveryUrls": ["https://www.douglascountynv.gov/"],
+      "discoveryUrls": [
+        "https://www.douglascountynv.gov/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -243,9 +278,23 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.elkocountynv.net/",
-      "discoveryUrls": ["https://www.elkocountynv.net/new_page/board_of_commissioners/index.php"],
+      "discoveryUrls": [
+        "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5"
+      ],
       "scraperType": "granicus",
-      "platformHints": ["granicus", "html"]
+      "platformHints": [
+        "granicus",
+        "html",
+        "granicus_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+      "minutesArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+      "packetArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+      "allowedHosts": [
+        "elkocounty.granicus.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
     },
     {
       "id": "esmeralda-county-commission",
@@ -254,7 +303,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.accessesmeralda.com/",
-      "discoveryUrls": ["https://www.accessesmeralda.com/"],
+      "discoveryUrls": [
+        "https://www.accessesmeralda.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -273,7 +324,10 @@
       "minutesArchiveUrl": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-minutes/",
       "replaceSourceUrls": true,
       "scraperType": "html",
-      "platformHints": ["html", "pdf"]
+      "platformHints": [
+        "html",
+        "pdf"
+      ]
     },
     {
       "id": "humboldt-county-commission",
@@ -282,7 +336,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.humboldtcountynv.gov/",
-      "discoveryUrls": ["https://www.humboldtcountynv.gov/"],
+      "discoveryUrls": [
+        "https://www.humboldtcountynv.gov/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -292,7 +348,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.landercountynv.org/",
-      "discoveryUrls": ["https://www.landercountynv.org/"],
+      "discoveryUrls": [
+        "https://www.landercountynv.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -302,7 +360,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://lincolncountynv.org/",
-      "discoveryUrls": ["https://lincolncountynv.org/"],
+      "discoveryUrls": [
+        "https://lincolncountynv.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -312,7 +372,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.lyon-county.org/",
-      "discoveryUrls": ["https://www.lyon-county.org/"],
+      "discoveryUrls": [
+        "https://www.lyon-county.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -322,7 +384,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://mineralcountynv.us/",
-      "discoveryUrls": ["https://mineralcountynv.us/"],
+      "discoveryUrls": [
+        "https://mineralcountynv.us/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -332,7 +396,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.nyecountynv.gov/",
-      "discoveryUrls": ["https://www.nyecountynv.gov/"],
+      "discoveryUrls": [
+        "https://www.nyecountynv.gov/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -342,7 +408,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.pershingcountynv.gov/",
-      "discoveryUrls": ["https://www.pershingcountynv.gov/"],
+      "discoveryUrls": [
+        "https://www.pershingcountynv.gov/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -352,7 +420,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.storeycounty.org/",
-      "discoveryUrls": ["https://www.storeycounty.org/"],
+      "discoveryUrls": [
+        "https://www.storeycounty.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -362,9 +432,13 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.washoecounty.gov/",
-      "discoveryUrls": ["https://washoe-nv.legistar.com/"],
+      "discoveryUrls": [
+        "https://washoe-nv.legistar.com/"
+      ],
       "scraperType": "legistar",
-      "platformHints": ["legistar"]
+      "platformHints": [
+        "legistar"
+      ]
     },
     {
       "id": "white-pine-county-commission",
@@ -373,7 +447,9 @@
       "level": "county",
       "providerGroup": "county",
       "website": "https://www.whitepinecounty.net/",
-      "discoveryUrls": ["https://www.whitepinecounty.net/"],
+      "discoveryUrls": [
+        "https://www.whitepinecounty.net/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -383,7 +459,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.bcnv.org/",
-      "discoveryUrls": ["https://www.bcnv.org/"],
+      "discoveryUrls": [
+        "https://www.bcnv.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -393,7 +471,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.cityofcaliente.com/",
-      "discoveryUrls": ["https://www.cityofcaliente.com/"],
+      "discoveryUrls": [
+        "https://www.cityofcaliente.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -403,7 +483,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.explorecarlinnv.com/",
-      "discoveryUrls": ["https://www.explorecarlinnv.com/"],
+      "discoveryUrls": [
+        "https://www.explorecarlinnv.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -413,9 +495,22 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.elkocity.com/",
-      "discoveryUrls": ["https://ob.elkocitynv.gov/onbaseagendaonline"],
+      "discoveryUrls": [
+        "https://ob.elkocitynv.gov/onbaseagendaonline/"
+      ],
       "scraperType": "html",
-      "platformHints": ["onbase"]
+      "platformHints": [
+        "onbase",
+        "onbase_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+      "minutesArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+      "packetArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+      "allowedHosts": [
+        "ob.elkocitynv.gov"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
     },
     {
       "id": "ely-city-council",
@@ -424,7 +519,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.cityofelynv.gov/",
-      "discoveryUrls": ["https://www.cityofelynv.gov/"],
+      "discoveryUrls": [
+        "https://www.cityofelynv.gov/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -434,7 +531,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.fallonnevada.gov/",
-      "discoveryUrls": ["https://www.fallonnevada.gov/"],
+      "discoveryUrls": [
+        "https://www.fallonnevada.gov/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -444,7 +543,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.cityoffernley.org/",
-      "discoveryUrls": ["https://www.cityoffernley.org/"],
+      "discoveryUrls": [
+        "https://www.cityoffernley.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -454,8 +555,21 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.cityofhenderson.com/",
-      "discoveryUrls": ["https://www.cityofhenderson.com/government/public-meeting-agendas"],
-      "scraperType": "html"
+      "discoveryUrls": [
+        "https://henderson.hylandcloud.com/231agendaonline/"
+      ],
+      "scraperType": "html",
+      "agendaArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+      "minutesArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+      "packetArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+      "platformHints": [
+        "onbase_public_calendar"
+      ],
+      "allowedHosts": [
+        "henderson.hylandcloud.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
     },
     {
       "id": "las-vegas-city-council",
@@ -464,9 +578,13 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.lasvegasnevada.gov/",
-      "discoveryUrls": ["https://lasvegas.primegov.com/public/portal"],
+      "discoveryUrls": [
+        "https://lasvegas.primegov.com/public/portal"
+      ],
       "scraperType": "granicus",
-      "platformHints": ["primegov"]
+      "platformHints": [
+        "primegov"
+      ]
     },
     {
       "id": "lovelock-city-council",
@@ -475,7 +593,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://cityoflovelock.com/",
-      "discoveryUrls": ["https://cityoflovelock.com/"],
+      "discoveryUrls": [
+        "https://cityoflovelock.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -485,7 +605,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.mesquitenv.gov/",
-      "discoveryUrls": ["https://www.mesquitenv.gov/"],
+      "discoveryUrls": [
+        "https://www.mesquitenv.gov/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -495,9 +617,13 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.cityofnorthlasvegas.com/",
-      "discoveryUrls": ["https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas"],
+      "discoveryUrls": [
+        "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas"
+      ],
       "scraperType": "granicus",
-      "platformHints": ["primegov"]
+      "platformHints": [
+        "primegov"
+      ]
     },
     {
       "id": "reno-city-council",
@@ -506,9 +632,22 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.reno.gov/",
-      "discoveryUrls": ["https://reno.primegov.com/public/portal"],
+      "discoveryUrls": [
+        "https://reno.primegov.com/public/portal"
+      ],
       "scraperType": "granicus",
-      "platformHints": ["primegov"]
+      "platformHints": [
+        "primegov",
+        "primegov_public_api"
+      ],
+      "agendaArchiveUrl": "https://reno.primegov.com/public/portal",
+      "minutesArchiveUrl": "https://reno.primegov.com/public/portal",
+      "packetArchiveUrl": "https://reno.primegov.com/public/portal",
+      "allowedHosts": [
+        "reno.primegov.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
     },
     {
       "id": "sparks-city-council",
@@ -517,8 +656,21 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.cityofsparks.us/",
-      "discoveryUrls": ["https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php"],
-      "scraperType": "html"
+      "discoveryUrls": [
+        "https://agendas.cityofsparks.us/OnBaseAgendaOnline/"
+      ],
+      "scraperType": "html",
+      "agendaArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+      "minutesArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+      "packetArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+      "platformHints": [
+        "onbase_public_calendar"
+      ],
+      "allowedHosts": [
+        "agendas.cityofsparks.us"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
     },
     {
       "id": "wells-city-council",
@@ -527,7 +679,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.cityofwellsnv.com/",
-      "discoveryUrls": ["https://www.cityofwellsnv.com/"],
+      "discoveryUrls": [
+        "https://www.cityofwellsnv.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -537,7 +691,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.westwendovercity.com/",
-      "discoveryUrls": ["https://www.westwendovercity.com/"],
+      "discoveryUrls": [
+        "https://www.westwendovercity.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -547,7 +703,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.winnemuccacity.org/",
-      "discoveryUrls": ["https://www.winnemuccacity.org/"],
+      "discoveryUrls": [
+        "https://www.winnemuccacity.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -557,7 +715,9 @@
       "level": "city",
       "providerGroup": "city",
       "website": "https://www.yerington.net/",
-      "discoveryUrls": ["https://www.yerington.net/"],
+      "discoveryUrls": [
+        "https://www.yerington.net/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -567,13 +727,22 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.carsoncityschools.com/",
-      "discoveryUrls": ["https://www.carsoncityschools.com/our-district/school-board"],
+      "discoveryUrls": [
+        "https://www.carsoncityschools.com/our-district/school-board"
+      ],
       "scraperType": "html",
       "agendaArchiveUrl": "https://drive.google.com/drive/folders/198r2RNzw25hyXzfwEUWurPGMfv5eUdax?usp=sharing",
       "minutesArchiveUrl": "https://drive.google.com/drive/folders/1WrwzbT0KmHhQq3ezNqBjBGZGUqyayGsZ?usp=sharing",
       "packetArchiveUrl": "https://drive.google.com/drive/folders/198r2RNzw25hyXzfwEUWurPGMfv5eUdax?usp=sharing",
-      "allowedHosts": ["drive.google.com", "drive.usercontent.google.com"],
-      "platformHints": ["finalsite", "public_drive_folders", "boarddocs_legacy"],
+      "allowedHosts": [
+        "drive.google.com",
+        "drive.usercontent.google.com"
+      ],
+      "platformHints": [
+        "finalsite",
+        "public_drive_folders",
+        "boarddocs_legacy"
+      ],
       "notes": "Official board calendar and dynamically discovered public Drive agenda/minutes folders. Legacy BoardDocs access is unavailable; it is not counted as parsed coverage."
     },
     {
@@ -583,7 +752,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.churchillcsd.com/",
-      "discoveryUrls": ["https://www.churchillcsd.com/"],
+      "discoveryUrls": [
+        "https://www.churchillcsd.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -593,9 +764,25 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.ccsd.net/",
-      "discoveryUrls": ["https://go.boarddocs.com/nv/ccsdlv/Board.nsf/Public"],
+      "discoveryUrls": [
+        "https://www.ccsd.net/about/school-board",
+        "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx"
+      ],
       "scraperType": "html",
-      "platformHints": ["boarddocs"]
+      "platformHints": [
+        "boarddocs",
+        "finalsite",
+        "diligent_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "minutesArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "packetArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "allowedHosts": [
+        "www.ccsd.net",
+        "ccsd.community.diligentoneplatform.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
     },
     {
       "id": "douglas-county-school-district",
@@ -604,7 +791,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.dcsd.net/",
-      "discoveryUrls": ["https://www.dcsd.net/"],
+      "discoveryUrls": [
+        "https://www.dcsd.net/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -614,7 +803,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.ecsdnv.net/",
-      "discoveryUrls": ["https://www.ecsdnv.net/"],
+      "discoveryUrls": [
+        "https://www.ecsdnv.net/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -624,7 +815,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.esmeralda.k12.nv.us/",
-      "discoveryUrls": ["https://www.esmeralda.k12.nv.us/"],
+      "discoveryUrls": [
+        "https://www.esmeralda.k12.nv.us/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -634,7 +827,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.eureka.k12.nv.us/",
-      "discoveryUrls": ["https://www.eureka.k12.nv.us/"],
+      "discoveryUrls": [
+        "https://www.eureka.k12.nv.us/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -644,7 +839,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.hcsdnv.com/",
-      "discoveryUrls": ["https://www.hcsdnv.com/"],
+      "discoveryUrls": [
+        "https://www.hcsdnv.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -654,7 +851,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.lander.k12.nv.us/",
-      "discoveryUrls": ["https://www.lander.k12.nv.us/"],
+      "discoveryUrls": [
+        "https://www.lander.k12.nv.us/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -664,7 +863,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://lcsdnv.com/",
-      "discoveryUrls": ["https://lcsdnv.com/"],
+      "discoveryUrls": [
+        "https://lcsdnv.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -674,7 +875,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.lyoncsd.org/",
-      "discoveryUrls": ["https://www.lyoncsd.org/"],
+      "discoveryUrls": [
+        "https://www.lyoncsd.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -684,7 +887,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://nvmcsd.org/",
-      "discoveryUrls": ["https://nvmcsd.org/"],
+      "discoveryUrls": [
+        "https://nvmcsd.org/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -694,7 +899,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.nye.k12.nv.us/",
-      "discoveryUrls": ["https://www.nye.k12.nv.us/"],
+      "discoveryUrls": [
+        "https://www.nye.k12.nv.us/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -704,7 +911,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.pcsdnv.com/",
-      "discoveryUrls": ["https://www.pcsdnv.com/"],
+      "discoveryUrls": [
+        "https://www.pcsdnv.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -714,7 +923,9 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.storeynv.com/",
-      "discoveryUrls": ["https://www.storeynv.com/"],
+      "discoveryUrls": [
+        "https://www.storeynv.com/"
+      ],
       "scraperType": "manual"
     },
     {
@@ -724,8 +935,24 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.washoeschools.net/",
-      "discoveryUrls": ["https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar"],
-      "scraperType": "html"
+      "discoveryUrls": [
+        "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
+        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx"
+      ],
+      "scraperType": "html",
+      "agendaArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "minutesArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "packetArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "platformHints": [
+        "finalsite",
+        "diligent_public_calendar"
+      ],
+      "allowedHosts": [
+        "www.washoeschools.net",
+        "washoeschools.community.diligentoneplatform.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
     },
     {
       "id": "white-pine-county-school-district",
@@ -734,75 +961,547 @@
       "level": "school",
       "providerGroup": "school",
       "website": "https://www.whitepine.k12.nv.us/",
-      "discoveryUrls": ["https://www.whitepine.k12.nv.us/"],
+      "discoveryUrls": [
+        "https://www.whitepine.k12.nv.us/"
+      ],
       "scraperType": "manual"
     }
   ],
   "jurisdictions": [
-    {"id": "state-nevada-legislature", "name": "Nevada Legislature", "kind": "state", "providerId": "nv-legislature", "communityIds": ["nevada"]},
-    {"id": "state-nevada-executive-boards", "name": "Nevada executive boards", "kind": "state", "providerId": "nv-governor-executive-boards", "communityIds": ["nevada"]},
-    {"id": "state-nevada-regents", "name": "Nevada Board of Regents", "kind": "state", "providerId": "nshe-board-of-regents", "communityIds": ["nevada"]},
-    {"id": "county-carson-city", "name": "Carson City county-equivalent", "kind": "county", "providerId": "carson-city-board-of-supervisors", "communityIds": ["carson-city-county"]},
-    {"id": "county-churchill", "name": "Churchill County", "kind": "county", "providerId": "churchill-county-commission", "communityIds": ["churchill-county"]},
-    {"id": "county-clark", "name": "Clark County", "kind": "county", "providerId": "clark-county-commission", "communityIds": ["clark-county"]},
-    {"id": "county-douglas", "name": "Douglas County", "kind": "county", "providerId": "douglas-county-commission", "communityIds": ["douglas-county"]},
-    {"id": "county-elko", "name": "Elko County", "kind": "county", "providerId": "elko-county-commission", "communityIds": ["elko-county"]},
-    {"id": "county-esmeralda", "name": "Esmeralda County", "kind": "county", "providerId": "esmeralda-county-commission", "communityIds": ["esmeralda-county"]},
-    {"id": "county-eureka", "name": "Eureka County", "kind": "county", "providerId": "eureka-county-commission", "communityIds": ["eureka-county"]},
-    {"id": "county-humboldt", "name": "Humboldt County", "kind": "county", "providerId": "humboldt-county-commission", "communityIds": ["humboldt-county"]},
-    {"id": "county-lander", "name": "Lander County", "kind": "county", "providerId": "lander-county-commission", "communityIds": ["lander-county"]},
-    {"id": "county-lincoln", "name": "Lincoln County", "kind": "county", "providerId": "lincoln-county-commission", "communityIds": ["lincoln-county"]},
-    {"id": "county-lyon", "name": "Lyon County", "kind": "county", "providerId": "lyon-county-commission", "communityIds": ["lyon-county"]},
-    {"id": "county-mineral", "name": "Mineral County", "kind": "county", "providerId": "mineral-county-commission", "communityIds": ["mineral-county"]},
-    {"id": "county-nye", "name": "Nye County", "kind": "county", "providerId": "nye-county-commission", "communityIds": ["nye-county"]},
-    {"id": "county-pershing", "name": "Pershing County", "kind": "county", "providerId": "pershing-county-commission", "communityIds": ["pershing-county"]},
-    {"id": "county-storey", "name": "Storey County", "kind": "county", "providerId": "storey-county-commission", "communityIds": ["storey-county"]},
-    {"id": "county-washoe", "name": "Washoe County", "kind": "county", "providerId": "washoe-county-commission", "communityIds": ["washoe-county"]},
-    {"id": "county-white-pine", "name": "White Pine County", "kind": "county", "providerId": "white-pine-county-commission", "communityIds": ["white-pine-county"]},
-    {"id": "city-boulder-city", "name": "Boulder City", "kind": "city", "providerId": "boulder-city-council", "communityIds": ["boulder-city"]},
-    {"id": "city-caliente", "name": "Caliente", "kind": "city", "providerId": "caliente-city-council", "communityIds": ["caliente"]},
-    {"id": "city-carlin", "name": "Carlin", "kind": "city", "providerId": "carlin-city-council", "communityIds": ["carlin"]},
-    {"id": "city-carson-city", "name": "Carson City", "kind": "city", "providerId": "carson-city-board-of-supervisors", "communityIds": ["carson-city"]},
-    {"id": "city-elko", "name": "Elko", "kind": "city", "providerId": "elko-city-council", "communityIds": ["elko"]},
-    {"id": "city-ely", "name": "Ely", "kind": "city", "providerId": "ely-city-council", "communityIds": ["ely"]},
-    {"id": "city-fallon", "name": "Fallon", "kind": "city", "providerId": "fallon-city-council", "communityIds": ["fallon"]},
-    {"id": "city-fernley", "name": "Fernley", "kind": "city", "providerId": "fernley-city-council", "communityIds": ["fernley"]},
-    {"id": "city-henderson", "name": "Henderson", "kind": "city", "providerId": "henderson-city-council", "communityIds": ["henderson"]},
-    {"id": "city-las-vegas", "name": "Las Vegas", "kind": "city", "providerId": "las-vegas-city-council", "communityIds": ["las-vegas"]},
-    {"id": "city-lovelock", "name": "Lovelock", "kind": "city", "providerId": "lovelock-city-council", "communityIds": ["lovelock"]},
-    {"id": "city-mesquite", "name": "Mesquite", "kind": "city", "providerId": "mesquite-city-council", "communityIds": ["mesquite"]},
-    {"id": "city-north-las-vegas", "name": "North Las Vegas", "kind": "city", "providerId": "north-las-vegas-city-council", "communityIds": ["north-las-vegas"]},
-    {"id": "city-reno", "name": "Reno", "kind": "city", "providerId": "reno-city-council", "communityIds": ["reno"]},
-    {"id": "city-sparks", "name": "Sparks", "kind": "city", "providerId": "sparks-city-council", "communityIds": ["sparks"]},
-    {"id": "city-wells", "name": "Wells", "kind": "city", "providerId": "wells-city-council", "communityIds": ["wells"]},
-    {"id": "city-west-wendover", "name": "West Wendover", "kind": "city", "providerId": "west-wendover-city-council", "communityIds": ["west-wendover"]},
-    {"id": "city-winnemucca", "name": "Winnemucca", "kind": "city", "providerId": "winnemucca-city-council", "communityIds": ["winnemucca"]},
-    {"id": "city-yerington", "name": "Yerington", "kind": "city", "providerId": "yerington-city-council", "communityIds": ["yerington"]},
-    {"id": "school-carson-city", "name": "Carson City School District", "kind": "school", "providerId": "carson-city-school-district", "communityIds": ["carson-city", "carson-city-county"]},
-    {"id": "school-churchill", "name": "Churchill County School District", "kind": "school", "providerId": "churchill-county-school-district", "communityIds": ["churchill-county"]},
-    {"id": "school-clark", "name": "Clark County School District", "kind": "school", "providerId": "clark-county-school-district", "communityIds": ["clark-county"]},
-    {"id": "school-douglas", "name": "Douglas County School District", "kind": "school", "providerId": "douglas-county-school-district", "communityIds": ["douglas-county"]},
-    {"id": "school-elko", "name": "Elko County School District", "kind": "school", "providerId": "elko-county-school-district", "communityIds": ["elko-county"]},
-    {"id": "school-esmeralda", "name": "Esmeralda County School District", "kind": "school", "providerId": "esmeralda-county-school-district", "communityIds": ["esmeralda-county"]},
-    {"id": "school-eureka", "name": "Eureka County School District", "kind": "school", "providerId": "eureka-county-school-district", "communityIds": ["eureka-county"]},
-    {"id": "school-humboldt", "name": "Humboldt County School District", "kind": "school", "providerId": "humboldt-county-school-district", "communityIds": ["humboldt-county"]},
-    {"id": "school-lander", "name": "Lander County School District", "kind": "school", "providerId": "lander-county-school-district", "communityIds": ["lander-county"]},
-    {"id": "school-lincoln", "name": "Lincoln County School District", "kind": "school", "providerId": "lincoln-county-school-district", "communityIds": ["lincoln-county"]},
-    {"id": "school-lyon", "name": "Lyon County School District", "kind": "school", "providerId": "lyon-county-school-district", "communityIds": ["lyon-county"]},
-    {"id": "school-mineral", "name": "Mineral County School District", "kind": "school", "providerId": "mineral-county-school-district", "communityIds": ["mineral-county"]},
-    {"id": "school-nye", "name": "Nye County School District", "kind": "school", "providerId": "nye-county-school-district", "communityIds": ["nye-county"]},
-    {"id": "school-pershing", "name": "Pershing County School District", "kind": "school", "providerId": "pershing-county-school-district", "communityIds": ["pershing-county"]},
-    {"id": "school-storey", "name": "Storey County School District", "kind": "school", "providerId": "storey-county-school-district", "communityIds": ["storey-county"]},
-    {"id": "school-washoe", "name": "Washoe County School District", "kind": "school", "providerId": "washoe-county-school-district", "communityIds": ["washoe-county"]},
-    {"id": "school-white-pine", "name": "White Pine County School District", "kind": "school", "providerId": "white-pine-county-school-district", "communityIds": ["white-pine-county"]}
+    {
+      "id": "state-nevada-legislature",
+      "name": "Nevada Legislature",
+      "kind": "state",
+      "providerId": "nv-legislature",
+      "communityIds": [
+        "nevada"
+      ]
+    },
+    {
+      "id": "state-nevada-executive-boards",
+      "name": "Nevada executive boards",
+      "kind": "state",
+      "providerId": "nv-governor-executive-boards",
+      "communityIds": [
+        "nevada"
+      ]
+    },
+    {
+      "id": "state-nevada-regents",
+      "name": "Nevada Board of Regents",
+      "kind": "state",
+      "providerId": "nshe-board-of-regents",
+      "communityIds": [
+        "nevada"
+      ]
+    },
+    {
+      "id": "county-carson-city",
+      "name": "Carson City county-equivalent",
+      "kind": "county",
+      "providerId": "carson-city-board-of-supervisors",
+      "communityIds": [
+        "carson-city-county"
+      ]
+    },
+    {
+      "id": "county-churchill",
+      "name": "Churchill County",
+      "kind": "county",
+      "providerId": "churchill-county-commission",
+      "communityIds": [
+        "churchill-county"
+      ]
+    },
+    {
+      "id": "county-clark",
+      "name": "Clark County",
+      "kind": "county",
+      "providerId": "clark-county-commission",
+      "communityIds": [
+        "clark-county"
+      ]
+    },
+    {
+      "id": "county-douglas",
+      "name": "Douglas County",
+      "kind": "county",
+      "providerId": "douglas-county-commission",
+      "communityIds": [
+        "douglas-county"
+      ]
+    },
+    {
+      "id": "county-elko",
+      "name": "Elko County",
+      "kind": "county",
+      "providerId": "elko-county-commission",
+      "communityIds": [
+        "elko-county"
+      ]
+    },
+    {
+      "id": "county-esmeralda",
+      "name": "Esmeralda County",
+      "kind": "county",
+      "providerId": "esmeralda-county-commission",
+      "communityIds": [
+        "esmeralda-county"
+      ]
+    },
+    {
+      "id": "county-eureka",
+      "name": "Eureka County",
+      "kind": "county",
+      "providerId": "eureka-county-commission",
+      "communityIds": [
+        "eureka-county"
+      ]
+    },
+    {
+      "id": "county-humboldt",
+      "name": "Humboldt County",
+      "kind": "county",
+      "providerId": "humboldt-county-commission",
+      "communityIds": [
+        "humboldt-county"
+      ]
+    },
+    {
+      "id": "county-lander",
+      "name": "Lander County",
+      "kind": "county",
+      "providerId": "lander-county-commission",
+      "communityIds": [
+        "lander-county"
+      ]
+    },
+    {
+      "id": "county-lincoln",
+      "name": "Lincoln County",
+      "kind": "county",
+      "providerId": "lincoln-county-commission",
+      "communityIds": [
+        "lincoln-county"
+      ]
+    },
+    {
+      "id": "county-lyon",
+      "name": "Lyon County",
+      "kind": "county",
+      "providerId": "lyon-county-commission",
+      "communityIds": [
+        "lyon-county"
+      ]
+    },
+    {
+      "id": "county-mineral",
+      "name": "Mineral County",
+      "kind": "county",
+      "providerId": "mineral-county-commission",
+      "communityIds": [
+        "mineral-county"
+      ]
+    },
+    {
+      "id": "county-nye",
+      "name": "Nye County",
+      "kind": "county",
+      "providerId": "nye-county-commission",
+      "communityIds": [
+        "nye-county"
+      ]
+    },
+    {
+      "id": "county-pershing",
+      "name": "Pershing County",
+      "kind": "county",
+      "providerId": "pershing-county-commission",
+      "communityIds": [
+        "pershing-county"
+      ]
+    },
+    {
+      "id": "county-storey",
+      "name": "Storey County",
+      "kind": "county",
+      "providerId": "storey-county-commission",
+      "communityIds": [
+        "storey-county"
+      ]
+    },
+    {
+      "id": "county-washoe",
+      "name": "Washoe County",
+      "kind": "county",
+      "providerId": "washoe-county-commission",
+      "communityIds": [
+        "washoe-county"
+      ]
+    },
+    {
+      "id": "county-white-pine",
+      "name": "White Pine County",
+      "kind": "county",
+      "providerId": "white-pine-county-commission",
+      "communityIds": [
+        "white-pine-county"
+      ]
+    },
+    {
+      "id": "city-boulder-city",
+      "name": "Boulder City",
+      "kind": "city",
+      "providerId": "boulder-city-council",
+      "communityIds": [
+        "boulder-city"
+      ]
+    },
+    {
+      "id": "city-caliente",
+      "name": "Caliente",
+      "kind": "city",
+      "providerId": "caliente-city-council",
+      "communityIds": [
+        "caliente"
+      ]
+    },
+    {
+      "id": "city-carlin",
+      "name": "Carlin",
+      "kind": "city",
+      "providerId": "carlin-city-council",
+      "communityIds": [
+        "carlin"
+      ]
+    },
+    {
+      "id": "city-carson-city",
+      "name": "Carson City",
+      "kind": "city",
+      "providerId": "carson-city-board-of-supervisors",
+      "communityIds": [
+        "carson-city"
+      ]
+    },
+    {
+      "id": "city-elko",
+      "name": "Elko",
+      "kind": "city",
+      "providerId": "elko-city-council",
+      "communityIds": [
+        "elko"
+      ]
+    },
+    {
+      "id": "city-ely",
+      "name": "Ely",
+      "kind": "city",
+      "providerId": "ely-city-council",
+      "communityIds": [
+        "ely"
+      ]
+    },
+    {
+      "id": "city-fallon",
+      "name": "Fallon",
+      "kind": "city",
+      "providerId": "fallon-city-council",
+      "communityIds": [
+        "fallon"
+      ]
+    },
+    {
+      "id": "city-fernley",
+      "name": "Fernley",
+      "kind": "city",
+      "providerId": "fernley-city-council",
+      "communityIds": [
+        "fernley"
+      ]
+    },
+    {
+      "id": "city-henderson",
+      "name": "Henderson",
+      "kind": "city",
+      "providerId": "henderson-city-council",
+      "communityIds": [
+        "henderson"
+      ]
+    },
+    {
+      "id": "city-las-vegas",
+      "name": "Las Vegas",
+      "kind": "city",
+      "providerId": "las-vegas-city-council",
+      "communityIds": [
+        "las-vegas"
+      ]
+    },
+    {
+      "id": "city-lovelock",
+      "name": "Lovelock",
+      "kind": "city",
+      "providerId": "lovelock-city-council",
+      "communityIds": [
+        "lovelock"
+      ]
+    },
+    {
+      "id": "city-mesquite",
+      "name": "Mesquite",
+      "kind": "city",
+      "providerId": "mesquite-city-council",
+      "communityIds": [
+        "mesquite"
+      ]
+    },
+    {
+      "id": "city-north-las-vegas",
+      "name": "North Las Vegas",
+      "kind": "city",
+      "providerId": "north-las-vegas-city-council",
+      "communityIds": [
+        "north-las-vegas"
+      ]
+    },
+    {
+      "id": "city-reno",
+      "name": "Reno",
+      "kind": "city",
+      "providerId": "reno-city-council",
+      "communityIds": [
+        "reno"
+      ]
+    },
+    {
+      "id": "city-sparks",
+      "name": "Sparks",
+      "kind": "city",
+      "providerId": "sparks-city-council",
+      "communityIds": [
+        "sparks"
+      ]
+    },
+    {
+      "id": "city-wells",
+      "name": "Wells",
+      "kind": "city",
+      "providerId": "wells-city-council",
+      "communityIds": [
+        "wells"
+      ]
+    },
+    {
+      "id": "city-west-wendover",
+      "name": "West Wendover",
+      "kind": "city",
+      "providerId": "west-wendover-city-council",
+      "communityIds": [
+        "west-wendover"
+      ]
+    },
+    {
+      "id": "city-winnemucca",
+      "name": "Winnemucca",
+      "kind": "city",
+      "providerId": "winnemucca-city-council",
+      "communityIds": [
+        "winnemucca"
+      ]
+    },
+    {
+      "id": "city-yerington",
+      "name": "Yerington",
+      "kind": "city",
+      "providerId": "yerington-city-council",
+      "communityIds": [
+        "yerington"
+      ]
+    },
+    {
+      "id": "school-carson-city",
+      "name": "Carson City School District",
+      "kind": "school",
+      "providerId": "carson-city-school-district",
+      "communityIds": [
+        "carson-city",
+        "carson-city-county"
+      ]
+    },
+    {
+      "id": "school-churchill",
+      "name": "Churchill County School District",
+      "kind": "school",
+      "providerId": "churchill-county-school-district",
+      "communityIds": [
+        "churchill-county"
+      ]
+    },
+    {
+      "id": "school-clark",
+      "name": "Clark County School District",
+      "kind": "school",
+      "providerId": "clark-county-school-district",
+      "communityIds": [
+        "clark-county"
+      ]
+    },
+    {
+      "id": "school-douglas",
+      "name": "Douglas County School District",
+      "kind": "school",
+      "providerId": "douglas-county-school-district",
+      "communityIds": [
+        "douglas-county"
+      ]
+    },
+    {
+      "id": "school-elko",
+      "name": "Elko County School District",
+      "kind": "school",
+      "providerId": "elko-county-school-district",
+      "communityIds": [
+        "elko-county"
+      ]
+    },
+    {
+      "id": "school-esmeralda",
+      "name": "Esmeralda County School District",
+      "kind": "school",
+      "providerId": "esmeralda-county-school-district",
+      "communityIds": [
+        "esmeralda-county"
+      ]
+    },
+    {
+      "id": "school-eureka",
+      "name": "Eureka County School District",
+      "kind": "school",
+      "providerId": "eureka-county-school-district",
+      "communityIds": [
+        "eureka-county"
+      ]
+    },
+    {
+      "id": "school-humboldt",
+      "name": "Humboldt County School District",
+      "kind": "school",
+      "providerId": "humboldt-county-school-district",
+      "communityIds": [
+        "humboldt-county"
+      ]
+    },
+    {
+      "id": "school-lander",
+      "name": "Lander County School District",
+      "kind": "school",
+      "providerId": "lander-county-school-district",
+      "communityIds": [
+        "lander-county"
+      ]
+    },
+    {
+      "id": "school-lincoln",
+      "name": "Lincoln County School District",
+      "kind": "school",
+      "providerId": "lincoln-county-school-district",
+      "communityIds": [
+        "lincoln-county"
+      ]
+    },
+    {
+      "id": "school-lyon",
+      "name": "Lyon County School District",
+      "kind": "school",
+      "providerId": "lyon-county-school-district",
+      "communityIds": [
+        "lyon-county"
+      ]
+    },
+    {
+      "id": "school-mineral",
+      "name": "Mineral County School District",
+      "kind": "school",
+      "providerId": "mineral-county-school-district",
+      "communityIds": [
+        "mineral-county"
+      ]
+    },
+    {
+      "id": "school-nye",
+      "name": "Nye County School District",
+      "kind": "school",
+      "providerId": "nye-county-school-district",
+      "communityIds": [
+        "nye-county"
+      ]
+    },
+    {
+      "id": "school-pershing",
+      "name": "Pershing County School District",
+      "kind": "school",
+      "providerId": "pershing-county-school-district",
+      "communityIds": [
+        "pershing-county"
+      ]
+    },
+    {
+      "id": "school-storey",
+      "name": "Storey County School District",
+      "kind": "school",
+      "providerId": "storey-county-school-district",
+      "communityIds": [
+        "storey-county"
+      ]
+    },
+    {
+      "id": "school-washoe",
+      "name": "Washoe County School District",
+      "kind": "school",
+      "providerId": "washoe-county-school-district",
+      "communityIds": [
+        "washoe-county"
+      ]
+    },
+    {
+      "id": "school-white-pine",
+      "name": "White Pine County School District",
+      "kind": "school",
+      "providerId": "white-pine-county-school-district",
+      "communityIds": [
+        "white-pine-county"
+      ]
+    }
   ],
   "communityInheritance": [
-    {"communityId": "tonopah", "providerId": "nye-county-commission"},
-    {"communityId": "pahrump", "providerId": "nye-county-commission"},
-    {"communityId": "incline-village", "providerId": "washoe-county-commission"},
-    {"communityId": "gardnerville", "providerId": "douglas-county-commission"},
-    {"communityId": "minden", "providerId": "douglas-county-commission"},
-    {"communityId": "laughlin", "providerId": "clark-county-commission"},
-    {"communityId": "battle-mountain", "providerId": "lander-county-commission"}
+    {
+      "communityId": "tonopah",
+      "providerId": "nye-county-commission"
+    },
+    {
+      "communityId": "pahrump",
+      "providerId": "nye-county-commission"
+    },
+    {
+      "communityId": "incline-village",
+      "providerId": "washoe-county-commission"
+    },
+    {
+      "communityId": "gardnerville",
+      "providerId": "douglas-county-commission"
+    },
+    {
+      "communityId": "minden",
+      "providerId": "douglas-county-commission"
+    },
+    {
+      "communityId": "laughlin",
+      "providerId": "clark-county-commission"
+    },
+    {
+      "communityId": "battle-mountain",
+      "providerId": "lander-county-commission"
+    }
   ]
 }

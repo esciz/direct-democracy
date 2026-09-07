@@ -1,0 +1,136 @@
+name: Civic Data Production
+
+on:
+  schedule:
+    - cron: "17 0,6,12,18 * * *"
+  workflow_dispatch:
+    inputs:
+      full_refresh:
+        description: Include finance, ads, officials, cases and organizations
+        type: boolean
+        default: true
+      publish:
+        description: Publish validated data and trigger a site deployment
+        type: boolean
+        default: true
+
+# One durable collection/publication writer; no overlapping snapshots.
+concurrency:
+  group: civic-data-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: production
+    timeout-minutes: 180
+    env:
+      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+      CIVIC_DATA_DEPLOY_HOOK: ${{ secrets.CIVIC_DATA_DEPLOY_HOOK }}
+      DIRECT_DEMOCRACY_PUBLIC_URL: https://www.directyourdemocracy.com
+      DATAOPS_NETWORK_ENABLED: "true"
+      CIVIC_DATA_RELEASE_ENABLED: "false"
+      DATAOPS_COMMAND_TIMEOUT_MS: "900000"
+      DATAOPS_OCR_MAX_PAGES: "20"
+      DATAOPS_OCR_TIMEOUT_MS: "30000"
+      OFFICIALS_EXECUTION_ENVIRONMENT: github_actions
+      OFFICIALS_NETWORK_ENABLED: "true"
+      OFFICIALS_WORKER_BACKEND: github_actions
+    steps:
+      - name: Make room for the persistent evidence archive
+        run: |
+          # This is a disposable GitHub-hosted VM; this job does not use Android.
+          test "$RUNNER_ENVIRONMENT" = "github-hosted"
+          sudo rm -rf /usr/local/lib/android/sdk
+          df -h "$GITHUB_WORKSPACE"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Load private project worker configuration
+        env:
+          CIVIC_WORKER_ENV: ${{ secrets.CIVIC_WORKER_ENV }}
+        run: node scripts/configure-civic-worker-env.mjs --required
+      - name: Install bounded PDF and OCR tools
+        run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils tesseract-ocr
+      - name: Verify worker credentials
+        run: node -e 'for (const key of ["BLOB_READ_WRITE_TOKEN","DATABASE_URL","CIVIC_DATA_DEPLOY_HOOK"]) if (!process.env[key]) throw Error("Missing worker setting " + key)'
+      - name: Restore persistent collection state and evidence
+        run: npm run dataops:checkpoint:restore
+      - name: Refresh civic sources
+        id: collection
+        continue-on-error: true
+        env:
+          FULL_REFRESH: ${{ inputs.full_refresh }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          args=(--limit=100)
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$FULL_REFRESH" != "true" ]]; then args+=(--meetings-only); fi
+          elif node -e 'const fs=require("fs");try {const a=JSON.parse(fs.readFileSync("data/generated/dataops-pipeline-run.json"));process.exit(a.completedAt?.slice(0,10) === new Date().toISOString().slice(0,10) ? 0 : 1)} catch {process.exit(1)}'; then
+            args+=(--meetings-only)
+          fi
+          npm run dataops:pipeline -- "${args[@]}"
+      - name: Compact web runtime without discarding evidence
+        run: npm run dataops:runtime:compact
+      - name: Save collection state even when a provider is incomplete
+        if: always() && (steps.collection.outcome == 'success' || steps.collection.outcome == 'failure')
+        run: npm run dataops:checkpoint
+      - name: Regenerate current integrity findings
+        run: npm run site:launch-audit
+      - name: Validate runtime release and record remaining coverage gaps
+        run: npm run dataops:release:prepare
+      - name: Validate application and source regressions
+        run: |
+          npm run dataops:release:test
+          npm run financials:nevada:test
+          npm run ads:nevada:test
+          npm run meetings:adapters:nevada:test
+          npm run meetings:priority-sources:test
+          npm run meetings:identity:test
+          npm run meetings:runtime:test
+          npm run auth:sessions:test
+          npm run auth:recovery:test
+          npm run financials:runtime:test
+          npm run sources:public:test
+          npm run worker:boundaries:test
+          npm run typecheck
+          npm run build
+          npm run meetings:bundle:audit
+      - name: Publish immutable release and deploy
+        if: github.event_name == 'schedule' || inputs.publish
+        run: npm run dataops:release:publish -- --automation --trigger-deploy
+      - name: Verify the actual live release
+        if: github.event_name == 'schedule' || inputs.publish
+        run: |
+          for attempt in $(seq 1 90); do
+            if npm run dataops:release:verify; then exit 0; fi
+            sleep 30
+          done
+          exit 1
+      - name: Preserve source failure status
+        if: steps.collection.outcome == 'failure'
+        run: |
+          echo "Source coverage remains incomplete. Inspect the current source audits; the release reports this explicitly."
+          exit 1
+      - name: Upload concise operational reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civic-data-reports-${{ github.run_id }}
+          retention-days: 14
+          path: |
+            data/generated/public-site-integrity-audit.json
+            data/generated/upcoming-meeting-coverage-audit.json
+            data/generated/nevada-financial-coverage-audit.json
+            data/generated/nevada-political-ad-coverage-audit.json
+            data/generated/meetings-pipeline-run.json
+            data/generated/dataops-pipeline-run.json

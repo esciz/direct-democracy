@@ -2,7 +2,9 @@ import "dotenv/config";
 
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, stat } from "node:fs/promises";
+import { pathToFileURL } from "node:url";
+import { atomicFinancialWrite, fetchFinancialCache, fetchFinancialBuffer, finiteMoney, sourceDate, type FinancialSourceAttempt } from "../lib/financials/source-cache";
 import path from "node:path";
 
 import {
@@ -29,6 +31,8 @@ const NV_SOS_STRUCTURED_PATH = path.join(ROOT, "data", "generated", "nv-sos-stru
 const CURRENT_CYCLE = 2026;
 const FEC_CYCLES = [2018, 2020, 2022, 2024, 2026];
 const AUTO_IMPORT_METHOD = "nevada_financial_coverage_v1";
+const sourceAttempts: FinancialSourceAttempt[] = [];
+let entityInventory = { source: "database", checkedAt: new Date().toISOString(), warning: null as string | null };
 
 type CatalogSource = {
   id: string;
@@ -81,6 +85,7 @@ type OfficialEntity = {
 type FinancialEntity = CandidateEntity | OfficialEntity;
 
 type FecTotal = {
+  sourceCheckedAt?: string | null;
   candidate_id: string;
   name: string;
   office: string;
@@ -124,6 +129,7 @@ type TransparencySnapshot = {
 };
 
 type FinancialSnapshot = {
+  sourceCheckedAt: string | null;
   sourceKind: "fec" | "transparency_usa";
   sourceName: string;
   sourceUrl: string;
@@ -313,14 +319,11 @@ function nameMatchScore(left: string, right: string) {
   return overlap / Math.max(leftTokens.length, rightTokens.length);
 }
 
-function finiteNumber(value: unknown) {
-  const parsed = typeof value === "number" ? value : Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
-}
+const finiteNumber = finiteMoney;
 
 function moneyFromText(value: string) {
-  const parsed = Number(value.replace(/[$,\s]/g, ""));
-  return Number.isFinite(parsed) ? parsed : null;
+  const normalized = value.replace(/[$,\s]/g, "");
+  return normalized && /^-?\d+(?:\.\d+)?$/.test(normalized) ? finiteMoney(normalized) : null;
 }
 
 function roundMoney(value: number) {
@@ -400,49 +403,29 @@ async function readJson<T>(filePath: string, fallback: T): Promise<T> {
 }
 
 async function writeJson(filePath: string, value: unknown) {
-  await mkdir(path.dirname(filePath), { recursive: true });
-  await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  await atomicFinancialWrite(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
-async function fetchBuffer(url: string, timeoutMs = 30_000) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+async function fetchToCache(url: string, cachePath: string, allowNetwork: boolean, validate?: (buffer: Buffer) => void) {
+  return fetchFinancialCache(url, cachePath, allowNetwork, { validate, attempts: sourceAttempts });
+}
+
+async function cacheCheckedAt(cachePath: string) {
+  const cached = await fetchFinancialCache("https://www.transparencyusa.org/", cachePath, false);
+  // The cache mtime is a truthful fallback for legacy files; matched metadata preserves the retrieval time.
   try {
-    const response = await fetch(url, {
-      headers: {
-        "User-Agent": "DirectDemocracyDataOps/0.1 (+https://directyourdemocracy.com; public-source-cache)",
-        Accept: "application/json,text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      },
-      signal: controller.signal,
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return Buffer.from(await response.arrayBuffer());
-  } finally {
-    clearTimeout(timeout);
-  }
+    const metadata = JSON.parse(await readFile(`${cachePath}.metadata.json`, "utf8"));
+    if (cached && metadata.sha256 === createHash("sha256").update(cached.buffer).digest("hex") && Number.isFinite(Date.parse(metadata.fetchedAt))) return metadata.fetchedAt as string;
+  } catch { /* Legacy cache. */ }
+  return cached?.fetchedAt ?? (await stat(cachePath)).mtime.toISOString();
 }
 
-async function fetchToCache(url: string, cachePath: string, allowNetwork: boolean) {
-  if (allowNetwork) {
-    try {
-      const buffer = await fetchBuffer(url);
-      await mkdir(path.dirname(cachePath), { recursive: true });
-      await writeFile(cachePath, buffer);
-      return { buffer, fetched: true, error: null as string | null };
-    } catch (error) {
-      if (!existsSync(cachePath)) throw error;
-      return {
-        buffer: await readFile(cachePath),
-        fetched: false,
-        error: error instanceof Error ? error.message : String(error),
-      };
-    }
-  }
-  if (!existsSync(cachePath)) return null;
-  return { buffer: await readFile(cachePath), fetched: false, error: null as string | null };
+function validateFecResponse(buffer: Buffer) {
+  const parsed = JSON.parse(buffer.toString("utf8"));
+  if (!Array.isArray(parsed.results) || parsed.results.some((record: FecTotal) => !record.candidate_id || !record.name || !record.office)) throw new Error("Invalid FEC candidate totals response");
 }
 
-async function loadEntities(): Promise<FinancialEntity[]> {
+async function loadDatabaseEntities(): Promise<FinancialEntity[]> {
   const [candidates, officials] = await Promise.all([
     prisma.candidate.findMany({
       include: {
@@ -498,6 +481,29 @@ async function loadEntities(): Promise<FinancialEntity[]> {
   ];
 }
 
+async function loadEntities(): Promise<FinancialEntity[]> {
+  try { return await loadDatabaseEntities(); }
+  catch {
+    const previous = await readJson<{ generatedAt?: string; entityInventory?: { source?: string; checkedAt?: string; records?: FinancialEntity[] }; records?: EntityCoverage[] }>(OUTPUT_PATH, {});
+    if (!previous.records?.length) throw new Error("Financial entity database unavailable and no last-known inventory exists");
+    entityInventory = { source: "last_known_coverage", checkedAt: previous.entityInventory?.checkedAt ?? previous.generatedAt ?? "unknown", warning: "Database unavailable. Collection uses the last-known entity inventory; database publication is pending." };
+    if (previous.entityInventory?.records?.length) return previous.entityInventory.records;
+    return previous.records.map(record => ({
+      entityType: record.entityType,
+      id: record.entityId,
+      name: record.name,
+      ballotName: null,
+      office: record.office,
+      jurisdiction: record.jurisdiction,
+      jurisdictionId: "", // Never used for database writes when inventory is cached.
+      district: null,
+      electionYear: record.electionYear,
+      electionTitle: record.entityType === "candidate" ? "Last-known election" : null,
+      status: "LAST_KNOWN",
+    } as FinancialEntity));
+  }
+}
+
 async function collectFecTotals(allowNetwork: boolean) {
   const apiKey = process.env.FEC_API_KEY?.trim() || "DEMO_KEY";
   const byCycle = new Map<number, FecTotal[]>();
@@ -506,21 +512,48 @@ async function collectFecTotals(allowNetwork: boolean) {
     const url = new URL("https://api.open.fec.gov/v1/candidates/totals/");
     url.searchParams.set("api_key", apiKey);
     url.searchParams.set("state", "NV");
-    url.searchParams.set("election_year", String(cycle));
+    // Two-year reporting periods are non-overlapping; election_year would exclude active
+    // Senate committees that are not up for election during this reporting cycle.
     url.searchParams.set("cycle", String(cycle));
+    url.searchParams.set("election_full", "false");
     url.searchParams.set("per_page", "100");
-    const result = await fetchToCache(url.toString(), cachePath, allowNetwork);
-    if (!result) {
-      byCycle.set(cycle, []);
-      continue;
-    }
-    const parsed = JSON.parse(result.buffer.toString("utf8")) as { results?: FecTotal[] };
-    byCycle.set(cycle, parsed.results ?? []);
+    const validated = (buffer: Buffer) => {
+      validateFecResponse(buffer);
+      const parsed = JSON.parse(buffer.toString("utf8"));
+      if (Number(parsed.pagination?.pages ?? 1) > 1 && parsed.complete !== true) throw new Error("Incomplete paginated FEC response");
+    };
+    let result;
+    if (allowNetwork) {
+      try {
+        const pages: FecTotal[] = [];
+        let totalPages = 1;
+        for (let page = 1; page <= totalPages; page++) {
+          url.searchParams.set("page", String(page));
+          const buffer = await fetchFinancialBuffer(url.toString());
+          validateFecResponse(buffer);
+          const parsed = JSON.parse(buffer.toString("utf8"));
+          totalPages = Math.max(1, Number(parsed.pagination?.pages ?? 1));
+          if (!Number.isInteger(totalPages) || totalPages > 20) throw new Error("FEC pagination exceeds bounded 20-page limit");
+          pages.push(...parsed.results);
+        }
+        // Commit only a complete set, preserving the last valid cache if any page fails.
+        const buffer = Buffer.from(JSON.stringify({ results: [...new Map(pages.map(record => [`${record.candidate_id}:${record.cycle}`, record])).values()], pagination: { pages: 1 }, complete: true }));
+        const responseFetch = async () => new Response(buffer);
+        url.searchParams.delete("page");
+        result = await fetchFinancialCache(url.toString(), cachePath, true, { validate: validated, attempts: sourceAttempts, fetchImpl: responseFetch });
+      } catch (error) {
+        url.searchParams.delete("page");
+        const failingFetch = async () => { throw new Error(error instanceof Error ? error.message : "FEC fetch failed"); };
+        result = await fetchFinancialCache(url.toString(), cachePath, true, { validate: validated, attempts: sourceAttempts, fetchImpl: failingFetch });
+      }
+    } else result = await fetchToCache(url.toString(), cachePath, false, validated);
+    const parsed = result ? JSON.parse(result.buffer.toString("utf8")) as { results: FecTotal[] } : { results: [] };
+    byCycle.set(cycle, parsed.results.map(record => ({ ...record, sourceCheckedAt: result?.fetchedAt ?? null })));
   }
   return byCycle;
 }
 
-function matchFec(entity: FinancialEntity, records: FecTotal[]) {
+export function matchFec(entity: FinancialEntity, records: FecTotal[]) {
   const officeCode = federalOfficeCode(entity.office);
   if (!officeCode) return null;
   const district = officeDistrict(entity.office, entity.district);
@@ -536,7 +569,9 @@ function matchFec(entity: FinancialEntity, records: FecTotal[]) {
 }
 
 async function collectTransparencySitemap(allowNetwork: boolean, source: CatalogSource) {
-  const result = await fetchToCache(source.sitemapUrl ?? "https://www.transparencyusa.org/sitemap-nv-candidates.xml", TRANSPARENCY_SITEMAP_CACHE, allowNetwork);
+  const result = await fetchToCache(source.sitemapUrl ?? "https://www.transparencyusa.org/sitemap-nv-candidates.xml", TRANSPARENCY_SITEMAP_CACHE, allowNetwork, (buffer) => {
+    if (!/<(?:urlset|sitemapindex)\b/i.test(buffer.toString("utf8"))) throw new Error("Invalid Transparency USA sitemap");
+  });
   if (!result) return [] as string[];
   const xml = result.buffer.toString("utf8");
   return [...xml.matchAll(/<loc>(https:\/\/www\.transparencyusa\.org\/nv\/candidate\/[^<]+)<\/loc>/g)]
@@ -573,7 +608,7 @@ function transparencyCycleUrl(baseUrl: string, cycle: number | "all") {
   return url.toString();
 }
 
-function parseTransparencyPage(html: string, sourceUrl: string, cycle: number | "all", checkedAt: string): TransparencySnapshot | null {
+export function parseTransparencyPage(html: string, sourceUrl: string, cycle: number | "all", checkedAt: string): TransparencySnapshot | null {
   const titleMatch = html.match(/<title>([\s\S]*?)\s*-\s*Nevada Candidate\s*-\s*Transparency USA<\/title>/i);
   const candidateName = titleMatch ? stripTags(titleMatch[1]) : "";
   const stats = [...html.matchAll(/<span class="user-display-stat-counter">([\s\S]*?)<\/span>\s*<span class="user-display-stat-title">([\s\S]*?)<\/span>/gi)]
@@ -598,10 +633,9 @@ function parseTransparencyPage(html: string, sourceUrl: string, cycle: number | 
     .filter((label) => /(?:20\d{2}.*(?:season|cycle)|2017 to now)/i.test(label))
     .filter((label, index, labels) => labels.indexOf(label) === index);
   const checkedDate = checkedAt.slice(0, 10);
-  const coverageEnd =
-    cycle === "all" || cycle === CURRENT_CYCLE
-      ? checkedDate
-      : `${cycle}-12-31`;
+  // A retrieval date is not a filing coverage date. The aggregate page does not
+  // establish an exact cutoff for the current cycle.
+  const coverageEnd = cycle === "all" || cycle === CURRENT_CYCLE ? null : `${cycle}-12-31`;
   const coverageStart = cycle === "all" ? "2017-01-01" : `${cycle - 1}-01-01`;
   const reportingPeriod =
     cycle === "all"
@@ -632,7 +666,6 @@ async function collectTransparencyPages(
   fullPass: boolean,
   missingOnly: boolean,
 ) {
-  const checkedAt = new Date().toISOString();
   const requestedByUrl = new Map<string, Set<number | "all">>();
   for (const entity of entities) {
     const match = matches.get(`${entity.entityType}:${entity.id}`);
@@ -644,7 +677,8 @@ async function collectTransparencyPages(
   }
 
   const shard = todayShard();
-  const scheduledUrls = [...requestedByUrl.keys()].filter((url) => fullPass || stableShard(url) === shard);
+  const requestedLimit = Number(argValue("limit-pages") ?? Infinity);
+  const scheduledUrls = [...requestedByUrl.keys()].filter((url) => fullPass || stableShard(url) === shard).slice(0, Number.isFinite(requestedLimit) ? Math.max(0, Math.floor(requestedLimit)) : undefined);
   let cursor = 0;
   const workers = Array.from({ length: 4 }, async () => {
     while (cursor < scheduledUrls.length) {
@@ -655,7 +689,9 @@ async function collectTransparencyPages(
         const cachePath = transparencyCachePath(baseUrl, cycle);
         if (missingOnly && existsSync(cachePath)) continue;
         try {
-          await fetchToCache(url, cachePath, allowNetwork);
+          await fetchToCache(url, cachePath, allowNetwork, (buffer) => {
+            if (!parseTransparencyPage(buffer.toString("utf8"), url, cycle, new Date().toISOString())) throw new Error("Invalid or blocked Transparency USA candidate page");
+          });
         } catch (error) {
           console.warn(`[financials] Transparency USA fetch failed for ${url}: ${error instanceof Error ? error.message : String(error)}`);
         }
@@ -666,7 +702,7 @@ async function collectTransparencyPages(
   await Promise.all(workers);
 
   const historicalCyclesByUrl = new Map<string, Set<number>>();
-  for (const baseUrl of scheduledUrls) {
+  for (const baseUrl of requestedByUrl.keys()) {
     const allCyclePath = transparencyCachePath(baseUrl, "all");
     if (!existsSync(allCyclePath)) continue;
     const allCycleHtml = await readFile(allCyclePath, "utf8");
@@ -674,7 +710,7 @@ async function collectTransparencyPages(
       allCycleHtml,
       transparencyCycleUrl(baseUrl, "all"),
       "all",
-      checkedAt,
+      await cacheCheckedAt(allCyclePath),
     );
     if (!allCycleSnapshot) continue;
     const baselineCycles = requestedByUrl.get(baseUrl) ?? new Set<number | "all">();
@@ -684,6 +720,10 @@ async function collectTransparencyPages(
         .filter((cycle) => FEC_CYCLES.includes(cycle) && !baselineCycles.has(cycle)),
     );
     historicalCyclesByUrl.set(baseUrl, historicalCycles);
+    for (const cycle of historicalCycles) {
+      if (existsSync(transparencyCachePath(baseUrl, cycle))) baselineCycles.add(cycle);
+    }
+    requestedByUrl.set(baseUrl, baselineCycles);
   }
 
   let historicalCursor = 0;
@@ -698,7 +738,9 @@ async function collectTransparencyPages(
         const cachePath = transparencyCachePath(baseUrl, cycle);
         if (missingOnly && existsSync(cachePath)) continue;
         try {
-          await fetchToCache(url, cachePath, allowNetwork);
+          await fetchToCache(url, cachePath, allowNetwork, (buffer) => {
+            if (!parseTransparencyPage(buffer.toString("utf8"), url, cycle, new Date().toISOString())) throw new Error("Invalid or blocked Transparency USA candidate page");
+          });
         } catch (error) {
           console.warn(`[financials] Transparency USA historical fetch failed for ${url}: ${error instanceof Error ? error.message : String(error)}`);
         }
@@ -715,32 +757,37 @@ async function collectTransparencyPages(
       const cachePath = transparencyCachePath(baseUrl, cycle);
       if (!existsSync(cachePath)) continue;
       const html = await readFile(cachePath, "utf8");
-      const parsed = parseTransparencyPage(html, transparencyCycleUrl(baseUrl, cycle), cycle, checkedAt);
+      const parsed = parseTransparencyPage(html, transparencyCycleUrl(baseUrl, cycle), cycle, await cacheCheckedAt(cachePath));
       if (parsed) snapshots.set(`${baseUrl}|${cycle}`, parsed);
     }
   }
   return { snapshots, scheduledUrls: scheduledUrls.length, shard };
 }
 
-function fecSnapshot(record: FecTotal): FinancialSnapshot {
+export function fecSnapshot(record: FecTotal): FinancialSnapshot | null {
+  const totalRaised = finiteMoney(record.receipts);
+  const totalSpent = finiteMoney(record.disbursements);
+  if (totalRaised === null || totalSpent === null) return null;
   const candidateUrl = `https://www.fec.gov/data/candidate/${record.candidate_id}/?cycle=${record.cycle}&election_full=false`;
   return {
+    sourceCheckedAt: record.sourceCheckedAt ?? null,
     sourceKind: "fec",
     sourceName: "Federal Election Commission OpenFEC",
     sourceUrl: candidateUrl,
     cycleYear: record.cycle,
-    totalRaised: finiteNumber(record.receipts) ?? 0,
-    totalSpent: finiteNumber(record.disbursements) ?? 0,
+    totalRaised,
+    totalSpent,
     cashOnHand: finiteNumber(record.cash_on_hand_end_period),
     reportingPeriod: `${record.coverage_start_date ?? `${record.cycle - 1}-01-01`} through ${record.coverage_end_date ?? "latest FEC report"}`,
-    periodStart: record.coverage_start_date ?? null,
-    periodEnd: record.coverage_end_date ?? null,
+    periodStart: sourceDate(record.coverage_start_date),
+    periodEnd: sourceDate(record.coverage_end_date),
     topContributors: [],
   };
 }
 
 function transparencySnapshot(snapshot: TransparencySnapshot): FinancialSnapshot {
   return {
+    sourceCheckedAt: snapshot.checkedAt,
     sourceKind: "transparency_usa",
     sourceName: "Transparency USA Nevada campaign finance",
     sourceUrl: snapshot.sourceUrl,
@@ -762,12 +809,23 @@ function matchedDisclosureFilings(entity: FinancialEntity, documents: NvSosStruc
     .map(
       (document): DisclosureSummary => ({
         name: document.filing_report_type ?? "Financial disclosure",
-        filedAt: document.election_year ? `${document.election_year}-01-01T00:00:00.000Z` : null,
+        // An election year does not establish the date a disclosure was filed.
+        filedAt: null,
         url: document.source_url ?? auroraSearchUrl(entity.name),
       }),
     )
     .filter((filing, index, filings) => filings.findIndex((candidate) => candidate.name === filing.name && candidate.filedAt === filing.filedAt && candidate.url === filing.url) === index)
     .sort((left, right) => (right.filedAt ?? "").localeCompare(left.filedAt ?? ""));
+}
+
+export function transparencyIdentityMatches(entityName: string, publishedName: string, sourceUrl: string, aliases: Record<string, string>) {
+  if (nameMatchScore(entityName, publishedName) >= 0.9) return true;
+  // Preserve explicit source-catalog aliases and nicknames present in the person's
+  // own recorded ballot name; a changed page title still has to match that identity.
+  const publishedVariants = new Set(nameVariants(publishedName));
+  if (nameVariants(entityName).some(variant => publishedVariants.has(variant))) return true;
+  const reviewedSlug = aliases[reorderCommaName(entityName)];
+  return Boolean(reviewedSlug && transparencySlug(sourceUrl) === reviewedSlug && publishedVariants.has(reviewedSlug));
 }
 
 function buildCoverage(
@@ -793,14 +851,16 @@ function buildCoverage(
         : null;
     const fecMatch = exactCycleMatch ?? historicalOfficialMatch;
     const transparencyMatch = transparencyMatches.get(`${entity.entityType}:${entity.id}`) ?? null;
-    const transparencyCurrent = transparencyMatch
+    const currentAggregate = transparencyMatch
       ? transparencySnapshots.get(`${transparencyMatch.url}|${entity.entityType === "candidate" ? entity.electionYear : CURRENT_CYCLE}`) ?? null
       : null;
-    const transparencyAll = transparencyMatch ? transparencySnapshots.get(`${transparencyMatch.url}|all`) ?? null : null;
+    const transparencyCurrent = currentAggregate && transparencyIdentityMatches(entity.name, currentAggregate.candidateName, currentAggregate.sourceUrl, catalog.transparencyIdentityAliases ?? {}) ? currentAggregate : null;
+    const allAggregate = transparencyMatch ? transparencySnapshots.get(`${transparencyMatch.url}|all`) ?? null : null;
+    const transparencyAll = allAggregate && transparencyIdentityMatches(entity.name, allAggregate.candidateName, allAggregate.sourceUrl, catalog.transparencyIdentityAliases ?? {}) ? allAggregate : null;
     const transparencyHistory = transparencyMatch
       ? FEC_CYCLES.flatMap((cycle) => {
           const record = transparencySnapshots.get(`${transparencyMatch.url}|${cycle}`);
-          return record && (record.totalRaised > 0 || record.totalSpent > 0)
+          return record && transparencyIdentityMatches(entity.name, record.candidateName, record.sourceUrl, catalog.transparencyIdentityAliases ?? {}) && (record.totalRaised > 0 || record.totalSpent > 0)
             ? [transparencySnapshot(record)]
             : [];
         })
@@ -816,7 +876,8 @@ function buildCoverage(
     const fecHistory = fecMatch
       ? FEC_CYCLES.flatMap((cycle) => {
           const record = (fecByCycle.get(cycle) ?? []).find((candidate) => candidate.candidate_id === fecMatch.record.candidate_id);
-          return record ? [fecSnapshot(record)] : [];
+          const snapshot = record ? fecSnapshot(record) : null;
+          return snapshot ? [snapshot] : [];
         })
       : [];
     const snapshot = fecMatch ? fecSnapshot(fecMatch.record) : transparencyCurrent ? transparencySnapshot(transparencyCurrent) : null;
@@ -859,7 +920,7 @@ function buildCoverage(
             aggregationMethod: "Published all-cycle aggregate derived from Nevada campaign-finance filings; official filings remain linked separately.",
           }
         : null;
-    const status: EntityCoverage["campaignFinance"]["status"] = fecMatch
+    const status: EntityCoverage["campaignFinance"]["status"] = fecMatch && snapshot
       ? "verified_totals"
       : transparencyCurrent
         ? "derived_totals"
@@ -928,7 +989,9 @@ function accessMethodForCatalog(source: CatalogSource) {
 async function upsertCatalogSources(catalog: Catalog, collectedAt: Date) {
   const sourceMap = new Map<string, { id: string }>();
   for (const source of catalog.sources) {
-    const successful = source.id === "fec-open-api-nevada" || source.id === "transparency-usa-nevada";
+    const attempts = sourceAttempts.filter(attempt => source.id === "fec-open-api-nevada" ? attempt.url.includes("api.open.fec.gov/") : source.id === "transparency-usa-nevada" ? attempt.url.includes("transparencyusa.org/") : false);
+    const successful = attempts.length > 0 && attempts.every(attempt => attempt.status === "fetched");
+    const attempted = attempts.some(attempt => attempt.attemptedAt);
     const row = await prisma.source.upsert({
       where: { slug: source.id },
       create: {
@@ -940,10 +1003,10 @@ async function upsertCatalogSources(catalog: Catalog, collectedAt: Date) {
         dataCategory: source.categories.join(","),
         accessMethod: accessMethodForCatalog(source),
         refreshFrequency: `direct every ${source.directCadenceDays} day(s); advanced every ${source.advancedCadenceDays} day(s)`,
-        lastCheckedAt: collectedAt,
+        lastCheckedAt: attempted ? collectedAt : null,
         lastSuccessAt: successful ? collectedAt : null,
         lastSyncAt: collectedAt,
-        syncStatus: successful ? SourceSyncStatus.SUCCESS : SourceSyncStatus.NEVER_SYNCED,
+        syncStatus: successful ? SourceSyncStatus.SUCCESS : attempted ? SourceSyncStatus.ERROR : SourceSyncStatus.NEVER_SYNCED,
         notes: source.notes,
         metadata: JSON.parse(JSON.stringify({ authority: source.authority, categories: source.categories })),
       },
@@ -955,8 +1018,8 @@ async function upsertCatalogSources(catalog: Catalog, collectedAt: Date) {
         dataCategory: source.categories.join(","),
         accessMethod: accessMethodForCatalog(source),
         refreshFrequency: `direct every ${source.directCadenceDays} day(s); advanced every ${source.advancedCadenceDays} day(s)`,
-        lastCheckedAt: collectedAt,
-        ...(successful ? { lastSuccessAt: collectedAt, syncStatus: SourceSyncStatus.SUCCESS } : {}),
+        ...(attempted ? { lastCheckedAt: collectedAt } : {}),
+        ...(successful ? { lastSuccessAt: collectedAt, syncStatus: SourceSyncStatus.SUCCESS } : attempted ? { syncStatus: SourceSyncStatus.ERROR } : {}),
         lastSyncAt: collectedAt,
         notes: source.notes,
         metadata: JSON.parse(JSON.stringify({ authority: source.authority, categories: source.categories })),
@@ -1052,7 +1115,7 @@ async function upsertCandidateSnapshot(
     where: { candidateId: entity.id, sourceUrl, reportingPeriod },
     select: { id: true },
   });
-  await prisma.campaignFinanceSummary.deleteMany({
+  if (!hasReviewedCurrentCycle) await prisma.campaignFinanceSummary.deleteMany({
     where: {
       candidateId: entity.id,
       sourceName: snapshot.sourceName,
@@ -1060,7 +1123,7 @@ async function upsertCandidateSnapshot(
     },
   });
   if (hasReviewedCurrentCycle) {
-    if (existingSummary) await prisma.campaignFinanceSummary.delete({ where: { id: existingSummary.id } });
+    // A reviewed aggregate owns the display; leave its summaries intact.
   } else if (existingSummary) {
     await prisma.campaignFinanceSummary.update({ where: { id: existingSummary.id }, data: summaryData });
   } else {
@@ -1401,7 +1464,14 @@ async function main() {
     transparency.snapshots,
     disclosureDocuments,
   );
-  const syncedEntities = noSync ? 0 : await syncCoverage(entities, coverage, catalog, collectedAt);
+  // Publish the valid collected artifact even if a later database write fails.
+  let syncedEntities = 0;
+  let syncError: string | null = null;
+  if (!noSync && entityInventory.source !== "database") syncError = "Database publication deferred because the entity inventory is cached";
+  if (!noSync && entityInventory.source === "database") {
+    try { syncedEntities = await syncCoverage(entities, coverage, catalog, collectedAt); }
+    catch (error) { syncError = error instanceof Error ? error.message.split("\n").slice(-3).join(" ") : "Financial database sync failed"; }
+  }
   const audit = buildAudit(coverage, {
     transparencyPagesFetched: transparency.scheduledUrls,
     transparencyShard: transparency.shard,
@@ -1418,14 +1488,26 @@ async function main() {
       ...audit,
       syncedEntities,
     },
+    sourceHealth: {
+      checkedAt: collectedAt.toISOString(),
+      attempted: sourceAttempts.filter(attempt => attempt.attemptedAt).length,
+      fetched: sourceAttempts.filter(attempt => attempt.status === "fetched").length,
+      cachedAfterError: sourceAttempts.filter(attempt => attempt.status === "cached_after_error").length,
+      unavailable: sourceAttempts.filter(attempt => attempt.status === "unavailable").length,
+      attempts: sourceAttempts,
+    },
+    entityInventory: { ...entityInventory, records: entities },
+    databaseSync: { requested: !noSync, succeeded: !noSync && !syncError, error: syncError },
     records: coverage,
   };
   await writeJson(OUTPUT_PATH, output);
   console.log(JSON.stringify(output.audit, null, 2));
   console.log(`Wrote statewide financial coverage to ${path.relative(ROOT, OUTPUT_PATH)}`);
+  console.log(JSON.stringify({ sourceHealth: { ...output.sourceHealth, attempts: undefined }, databaseSync: output.databaseSync }, null, 2));
+  if (syncError) process.exitCode = 1;
 }
 
-main()
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main()
   .catch((error) => {
     console.error(error);
     process.exitCode = 1;

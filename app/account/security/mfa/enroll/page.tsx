@@ -2,14 +2,15 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { MfaEnrollmentForm } from "@/components/domain/mfa-enrollment-form";
-import { getIdentityAccountById, startMfaEnrollment } from "@/lib/identity/accounts";
+import { getDurableIdentityAccountById } from "@/lib/identity/durable-accounts";
+import { startDurableMfaEnrollment } from "@/lib/identity/durable-security";
 import { buildOtpAuthUri, createPseudoQrSvgDataUri, decryptMfaSecret, getMfaConfigurationStatus } from "@/lib/identity/mfa";
 import { getCurrentSessionUser } from "@/lib/server/auth-session";
 
 export default async function MfaEnrollPage() {
   const user = await getCurrentSessionUser();
   if (!user) redirect("/auth");
-  const account = getIdentityAccountById(user.id);
+  const account = await getDurableIdentityAccountById(user.id);
   if (!account) redirect("/auth");
   const status = getMfaConfigurationStatus();
   const isConfigured = status === "configured";
@@ -22,7 +23,7 @@ export default async function MfaEnrollPage() {
   }
 
   if (isConfigured) {
-    const enrollment = startMfaEnrollment(user.id);
+    const enrollment = await startDurableMfaEnrollment(user.id);
     if (enrollment.ok) {
       manualKey = decryptMfaSecret(enrollment.encryptedSecret);
       otpauthUri = buildOtpAuthUri({ email: account.email, secret: manualKey });
@@ -36,7 +37,7 @@ export default async function MfaEnrollPage() {
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-200">Account security</p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-50">Admin MFA enrollment</h1>
         <p className="mt-3 text-sm leading-6 text-slate-400">
-          Admin accounts must enroll a time-based authenticator before full admin access. Submissions and recovery codes are held behind the local identity security boundary.
+          Admin accounts must enroll a time-based authenticator before full admin access. Your setup secret is encrypted, and recovery codes are stored as hashes.
         </p>
 
         {!isConfigured ? (

@@ -119,11 +119,12 @@ async function main() {
   const evidencePurgeReady = evidencePurgeAudit?.privateStorageOnly === true && evidencePurgeAudit?.rawEvidenceIncluded === false;
   const browserProductionReady = browserSessionStorage.status === "production_storage_configured" && smokePassed(browserSmoke, "production_storage_configured");
   const browserLocalSmokePassed = smokePassed(browserSmoke, "local_encrypted_development");
-  const workerSmokePassed = workerSmoke?.status === "smoke_passed";
+  const workerQueueSmokePassed = workerSmoke?.status === "queue_smoke_passed";
+  const workerHandlersReady = productionEmailReady && evidenceProductionReady && evidencePurgeReady;
   const backupReady = backupAudit?.backup === "backup_configured";
   const restoreReady = restoreAudit?.restore === "restore_tested";
   const secretsReady = Array.isArray(secretsAudit?.missingRequiredDomains) && secretsAudit.missingRequiredDomains.length === 0;
-  const dataOpsSchedulerPresent = sourceHas(".github/workflows/identity-worker.yml", "schedule:");
+  const dataOpsSchedulerPresent = sourceHas(".github/workflows/civic-data-production.yml", "schedule:");
   const officialsSchedulerPresent = sourceHas("lib/admin/operations/catalog.ts", "officials_carson_city_refresh");
   const failures = [
     identity.ready ? null : `identity_storage:${identity.status}`,
@@ -131,7 +132,7 @@ async function main() {
     productionEmailReady ? null : `email:${emailAudit?.status ?? emailProvider}`,
     evidenceProductionReady ? null : `evidence:${evidenceStorage}`,
     evidencePurgeReady ? null : "evidence_purge:not_verified",
-    worker.configured && workerSmokePassed ? null : `worker:${worker.status}:${workerSmoke?.status ?? "smoke_not_run"}`,
+    worker.configured && workerQueueSmokePassed && workerHandlersReady ? null : `worker:${worker.status}:${workerSmoke?.status ?? "smoke_not_run"}`,
     browserProductionReady ? null : `browser_session:${browserSessionStorage.status}`,
     backupReady ? null : `backup:${backupAudit?.backup ?? "backup_unconfigured"}`,
     restoreReady ? null : `restore:${restoreAudit?.restore ?? "restore_untested"}`,
@@ -148,7 +149,7 @@ async function main() {
     evidence: evidenceProductionReady ? "ready" : evidenceLocalSmokePassed ? "partially_ready" : evidenceStorage === "production_storage_configured" ? "degraded" : "unconfigured",
     evidencePurge: evidencePurgeReady ? "ready" : "blocked",
     browserSessionStorage: browserProductionReady ? "ready" : browserLocalSmokePassed ? "partially_ready" : browserSessionStorage.status === "production_storage_configured" ? "degraded" : "unconfigured",
-    worker: worker.configured && workerSmokePassed ? "ready" : worker.configured ? "partially_ready" : "unconfigured",
+    worker: worker.configured && workerQueueSmokePassed && workerHandlersReady ? "ready" : worker.configured ? "partially_ready" : "unconfigured",
     backup: backupReady ? "ready" : "unconfigured",
     restore: restoreReady ? "ready" : "blocked",
     secrets: secretsReady ? "ready" : "blocked",
@@ -222,8 +223,11 @@ async function main() {
       revocationRecorded: browserSmoke.revocationRecorded,
     } : null,
     worker: worker.status,
+    workerQueueReady: worker.configured && workerQueueSmokePassed,
+    workerHandlersReady,
     workerSmoke: workerSmoke ? {
       status: workerSmoke.status,
+      scope: "queue_round_trip_only",
       internalJob: asRecord(workerSmoke.internalJob)?.status ?? null,
       emailJob: asRecord(workerSmoke.emailJob)?.status ?? null,
       evidencePurgeJob: asRecord(workerSmoke.evidencePurgeJob)?.status ?? null,

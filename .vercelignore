@@ -15,3 +15,27 @@ data/generated/admin-operations/
 
 .DS_Store
 *.pdf
+
+# Full worker datasets have compact web replacements, restored by release.
+data/generated/accountability-graph.json
+data/generated/public-meetings.json
+data/generated/public-meeting-items.json
+data/generated/public-meeting-voting-cards.json
+data/generated/public-meeting-official-actions.json
+data/generated/public-civic-cases.json
+
+# Provider-managed environment only; never upload local secrets or editor backups.
+.env*
+data/generated/* 2.json
+data/generated/*.codex-sandbox.json
+data/generated/*.local-network-enabled.json
+data/generated/*.unknown.json
+data/generated/.*
+data/generated/public-meeting-source-documents.json
+data/generated/public-meeting-document-cache-index.json
+data/generated/public-meeting-document-text.json
+data/generated/public-meeting-cache-reconciliation.json
+data/generated/public-meeting-cache-quarantine.json
+data/generated/public-meeting-item-processing-state.json
+data/generated/public-meeting-document-refresh-state.json
+data/generated/dataops-change-log.json

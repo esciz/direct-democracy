@@ -153,7 +153,7 @@ function hasSource(record: ManualAdRecord) {
 }
 
 function isReviewed(record: ManualAdRecord) {
-  return record.reviewed === true || record.reviewStatus === "reviewed";
+  return record.reviewStatus !== "rejected" && (record.reviewed === true || record.reviewStatus === "reviewed");
 }
 
 function relationFor(adId: string, record: ManualAdRecord): PoliticalAdEntityRelation[] {
@@ -479,7 +479,7 @@ const campaignFinanceArray = Array.isArray(campaignFinanceRecords)
       : [];
 const fecImport = readJson<FecIndependentExpenditureImport>(FEC_IMPORT_PATH, { records: [] });
 const fecRecords = Array.isArray(fecImport.records) ? fecImport.records : [];
-const adSpendPattern = /\b(advertis|media|mailer|mail |digital|facebook|google|radio|television|tv\b|sign|print|postcard|banner|creative|production)\b/i;
+const adSpendPattern = /\b(advertis\w*|media|mail\w*|digital|facebook|google|radio|television|tv|sign\w*|print\w*|postcard\w*|banner\w*|creative|production)\b/i;
 const financeReviewQueue = campaignFinanceArray.flatMap((record) =>
   (record.itemized_expenses ?? [])
     .filter((expense) => adSpendPattern.test(expense.name ?? ""))

@@ -279,15 +279,19 @@
     "videoArchiveUrl": "https://nshe.nevada.edu/regents/archive/",
     "scraperType": "html",
     "active": true,
-    "notes": "Regents pages include upcoming meetings and archives with agenda materials.",
+    "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
     "providerGroup": "state",
     "discoveryUrls": [
-      "https://nshe.nevada.edu/regents/upcoming-meetings/"
+      "https://nshe.nevada.edu/regents/upcoming-meetings/",
+      "https://nshe.nevada.edu/regents/archive/"
     ],
-    "allowedHosts": [],
+    "allowedHosts": [
+      "nshe.nevada.edu"
+    ],
     "platformHints": [
       "html",
-      "pdf"
+      "pdf",
+      "nshe_calendar_archive"
     ],
     "coverageJurisdictionIds": [
       "state-nevada-regents"
@@ -414,23 +418,26 @@
     "jurisdiction": "Elko County, NV",
     "level": "county",
     "website": "https://www.elkocountynv.net/",
-    "sourceUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
-    "meetingIndexUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
-    "agendaArchiveUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
-    "minutesArchiveUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
-    "packetArchiveUrl": "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php",
+    "sourceUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+    "meetingIndexUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+    "agendaArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+    "minutesArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+    "packetArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
     "videoArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
     "scraperType": "granicus",
     "active": true,
-    "notes": "County meeting page links agendas, minutes, videos, and Granicus archives for the elected five-member commission.",
+    "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
     "providerGroup": "county",
     "discoveryUrls": [
-      "https://www.elkocountynv.net/new_page/board_of_commissioners/index.php"
+      "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5"
     ],
-    "allowedHosts": [],
+    "allowedHosts": [
+      "elkocounty.granicus.com"
+    ],
     "platformHints": [
       "granicus",
-      "html"
+      "html",
+      "granicus_public_calendar"
     ],
     "coverageJurisdictionIds": [
       "county-elko"
@@ -856,22 +863,25 @@
     "jurisdiction": "Elko, NV",
     "level": "city",
     "website": "https://www.elkocity.com/",
-    "sourceUrl": "https://ob.elkocitynv.gov/onbaseagendaonline",
-    "meetingIndexUrl": "https://ob.elkocitynv.gov/onbaseagendaonline",
-    "agendaArchiveUrl": "https://www.elkocity.com/government/agendas/minutes.php",
-    "minutesArchiveUrl": "https://www.elkocity.com/government/minutes.php",
-    "packetArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline",
+    "sourceUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+    "meetingIndexUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+    "agendaArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+    "minutesArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+    "packetArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
     "videoArchiveUrl": "https://www.elkocity.com/government/city_meetings__live_broadcst_and_archives/index.php",
     "scraperType": "html",
     "active": true,
-    "notes": "City uses a public OnBase agenda portal plus city-hosted agenda/minutes and video archive pages. Treat as HTML/manual until an OnBase-specific adapter is promoted.",
+    "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
     "providerGroup": "city",
     "discoveryUrls": [
-      "https://ob.elkocitynv.gov/onbaseagendaonline"
+      "https://ob.elkocitynv.gov/onbaseagendaonline/"
     ],
-    "allowedHosts": [],
+    "allowedHosts": [
+      "ob.elkocitynv.gov"
+    ],
     "platformHints": [
-      "onbase"
+      "onbase",
+      "onbase_public_calendar"
     ],
     "coverageJurisdictionIds": [
       "city-elko"
@@ -966,21 +976,25 @@
     "jurisdiction": "Henderson, NV",
     "level": "city",
     "website": "https://www.cityofhenderson.com/",
-    "sourceUrl": "https://www.cityofhenderson.com/government/public-meeting-agendas",
-    "meetingIndexUrl": "https://www.cityofhenderson.com/government/public-meeting-agendas",
-    "agendaArchiveUrl": "https://www.cityofhenderson.com/government/public-meeting-agendas",
-    "minutesArchiveUrl": "https://www.cityofhenderson.com/government/public-meeting-agendas",
-    "packetArchiveUrl": "https://www.cityofhenderson.com/government/public-meeting-agendas",
+    "sourceUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+    "meetingIndexUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+    "agendaArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+    "minutesArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+    "packetArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
     "videoArchiveUrl": null,
     "scraperType": "html",
     "active": true,
-    "notes": "Public meeting agendas page is the first-stage discovery target.",
+    "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
     "providerGroup": "city",
     "discoveryUrls": [
-      "https://www.cityofhenderson.com/government/public-meeting-agendas"
+      "https://henderson.hylandcloud.com/231agendaonline/"
     ],
-    "allowedHosts": [],
-    "platformHints": [],
+    "allowedHosts": [
+      "henderson.hylandcloud.com"
+    ],
+    "platformHints": [
+      "onbase_public_calendar"
+    ],
     "coverageJurisdictionIds": [
       "city-henderson"
     ],
@@ -1113,14 +1127,17 @@
     "videoArchiveUrl": "https://www.reno.gov/services/watch-and-learn",
     "scraperType": "granicus",
     "active": true,
-    "notes": "Reno uses a PrimeGov/Granicus public portal for agendas and meeting records.",
+    "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
     "providerGroup": "city",
     "discoveryUrls": [
       "https://reno.primegov.com/public/portal"
     ],
-    "allowedHosts": [],
+    "allowedHosts": [
+      "reno.primegov.com"
+    ],
     "platformHints": [
-      "primegov"
+      "primegov",
+      "primegov_public_api"
     ],
     "coverageJurisdictionIds": [
       "city-reno"
@@ -1134,21 +1151,25 @@
     "jurisdiction": "Sparks, NV",
     "level": "city",
     "website": "https://www.cityofsparks.us/",
-    "sourceUrl": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
-    "meetingIndexUrl": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
-    "agendaArchiveUrl": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
-    "minutesArchiveUrl": "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php",
-    "packetArchiveUrl": null,
+    "sourceUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+    "meetingIndexUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+    "agendaArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+    "minutesArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+    "packetArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
     "videoArchiveUrl": "https://www.youtube.com/@cityofsparksmeetings",
     "scraperType": "html",
     "active": true,
-    "notes": "Agenda and minutes archive appears as city-hosted HTML/document links.",
+    "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
     "providerGroup": "city",
     "discoveryUrls": [
-      "https://www.cityofsparks.us/your_government/departments/city_clerk_and_records_management/city_council_meeting_agendas_and_minutes/index.php"
+      "https://agendas.cityofsparks.us/OnBaseAgendaOnline/"
     ],
-    "allowedHosts": [],
-    "platformHints": [],
+    "allowedHosts": [
+      "agendas.cityofsparks.us"
+    ],
+    "platformHints": [
+      "onbase_public_calendar"
+    ],
     "coverageJurisdictionIds": [
       "city-sparks"
     ],
@@ -1330,22 +1351,28 @@
     "jurisdiction": "Clark County School District, NV",
     "level": "school",
     "website": "https://www.ccsd.net/",
-    "sourceUrl": "https://www.boarddocs.com/nv/ccsdlv/Board.nsf/Public",
-    "meetingIndexUrl": "https://www.boarddocs.com/nv/ccsdlv/Board.nsf/Public",
-    "agendaArchiveUrl": "https://www.boarddocs.com/nv/ccsdlv/Board.nsf/Public",
-    "minutesArchiveUrl": "https://www.boarddocs.com/nv/ccsdlv/Board.nsf/Public",
-    "packetArchiveUrl": "https://www.boarddocs.com/nv/ccsdlv/Board.nsf/Public",
+    "sourceUrl": "https://www.ccsd.net/about/school-board",
+    "meetingIndexUrl": "https://www.ccsd.net/about/school-board",
+    "agendaArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+    "minutesArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+    "packetArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
     "videoArchiveUrl": null,
     "scraperType": "html",
     "active": true,
-    "notes": "BoardDocs support belongs in the later automated scraper phase; keep as HTML/manual source until then.",
+    "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
     "providerGroup": "school",
     "discoveryUrls": [
-      "https://go.boarddocs.com/nv/ccsdlv/Board.nsf/Public"
+      "https://www.ccsd.net/about/school-board",
+      "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx"
     ],
-    "allowedHosts": [],
+    "allowedHosts": [
+      "www.ccsd.net",
+      "ccsd.community.diligentoneplatform.com"
+    ],
     "platformHints": [
-      "boarddocs"
+      "boarddocs",
+      "finalsite",
+      "diligent_public_calendar"
     ],
     "coverageJurisdictionIds": [
       "school-clark"
@@ -1685,19 +1712,26 @@
     "website": "https://www.washoeschools.net/",
     "sourceUrl": "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
     "meetingIndexUrl": "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
-    "agendaArchiveUrl": "https://www.washoeschools.net/trustees/board-of-trustees/board-meeting-archive",
-    "minutesArchiveUrl": "https://www.washoeschools.net/trustees/board-of-trustees/board-meeting-archive",
-    "packetArchiveUrl": "https://www.washoeschools.net/trustees/board-of-trustees/board-meeting-archive",
+    "agendaArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+    "minutesArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+    "packetArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
     "videoArchiveUrl": null,
     "scraperType": "html",
     "active": true,
-    "notes": "School district calendar and archive are HTML first-stage sources.",
+    "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
     "providerGroup": "school",
     "discoveryUrls": [
-      "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar"
+      "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
+      "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx"
     ],
-    "allowedHosts": [],
-    "platformHints": [],
+    "allowedHosts": [
+      "www.washoeschools.net",
+      "washoeschools.community.diligentoneplatform.com"
+    ],
+    "platformHints": [
+      "finalsite",
+      "diligent_public_calendar"
+    ],
     "coverageJurisdictionIds": [
       "school-washoe"
     ],

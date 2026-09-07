@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { mergeReviewedCourtRecords } from "../lib/civic-sources/court-records";
 
 import {
   CivicDataAccessMethod,
@@ -422,6 +423,15 @@ async function main() {
     const exclusionReason = reviewGate(record);
     if (exclusionReason) {
       exclusions.push({ id: record.id, caseNumber: record.caseNumber, caption: record.caption, reason: exclusionReason });
+      if (!skipDb && (record.id || (record.caseNumber && record.courtName))) {
+        try {
+          // A newly withheld record must also leave the database-backed public surface.
+          await prisma.courtCase.updateMany({
+            where: record.id ? { id: record.id } : { caseNumber: record.caseNumber!, courtJurisdiction: { name: { equals: record.courtName!, mode: "insensitive" } } },
+            data: { reviewStatus: CivicRecordReviewStatus.pending_review, publicVisibilityStatus: CourtCasePublicVisibilityStatus.pending_privacy_review },
+          });
+        } catch { dbFailures.push({ id: record.id, reason: "excluded_record_database_visibility_update_failed" }); }
+      }
       continue;
     }
 
@@ -446,6 +456,11 @@ async function main() {
     }
   }
 
+  const previousRuntime = await fs.readFile(runtimePath, "utf8").then((text) => JSON.parse(text) as { records?: ReturnType<typeof toRuntimeRecord>[] }).catch((error: NodeJS.ErrnoException) => {
+    if (error.code === "ENOENT") return { records: [] };
+    throw error; // A malformed last-good archive must not be silently discarded.
+  });
+  const mergedRuntimeRecords = mergeReviewedCourtRecords(previousRuntime.records ?? [], runtimeRecords, records);
   const generatedAt = new Date().toISOString();
   const runtime = {
     schemaVersion: 1,
@@ -453,10 +468,11 @@ async function main() {
     sourceManifest: manifestPath,
     counts: {
       manifestRecords: records.length,
-      runtimeRecords: runtimeRecords.length,
+      runtimeRecords: mergedRuntimeRecords.length,
+      retainedHistoricalRecords: mergedRuntimeRecords.length - runtimeRecords.length,
       excludedRecords: exclusions.length,
     },
-    records: runtimeRecords,
+    records: mergedRuntimeRecords,
   };
   const report = {
     generatedAt,
@@ -481,9 +497,12 @@ async function main() {
 
   await fs.mkdir(path.dirname(runtimePath), { recursive: true });
   await fs.mkdir(path.dirname(reportPath), { recursive: true });
-  await fs.writeFile(runtimePath, `${JSON.stringify(runtime, null, 2)}\n`);
+  const temporaryRuntime = `${runtimePath}.${process.pid}.tmp`;
+  await fs.writeFile(temporaryRuntime, `${JSON.stringify(runtime, null, 2)}\n`);
+  await fs.rename(temporaryRuntime, runtimePath);
   await fs.writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`);
 
+  if (dbFailures.length) process.exitCode = 1;
   console.log(
     JSON.stringify(
       {

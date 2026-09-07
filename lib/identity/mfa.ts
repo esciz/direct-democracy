@@ -110,8 +110,15 @@ export function verifyTotpCode(input: { secret: string; code: string; now?: numb
     const right = Buffer.from(code);
     if (left.length === right.length && timingSafeEqual(left, right)) {
       const counterHash = createHash("sha256").update(`${input.secret}:${counter}`).digest("hex");
-      if (input.lastAcceptedCounterHash && input.lastAcceptedCounterHash === counterHash) {
-        return { ok: false as const, reason: "replayed_code" as const };
+      if (input.lastAcceptedCounterHash) {
+        // Reject the previous counter and older counters still inside the accepted clock window.
+        // Merely comparing the submitted hash allowed an old code after a newer code was accepted.
+        for (let accepted = currentCounter - window; accepted <= currentCounter + window; accepted += 1) {
+          const acceptedHash = createHash("sha256").update(`${input.secret}:${accepted}`).digest("hex");
+          if (input.lastAcceptedCounterHash === acceptedHash && counter <= accepted) {
+            return { ok: false as const, reason: "replayed_code" as const };
+          }
+        }
       }
       return { ok: true as const, counter, counterHash };
     }

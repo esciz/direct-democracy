@@ -996,7 +996,7 @@ export const seededPoliticalAds: PoliticalAd[] = [
 ];
 
 export function formatPoliticalAdMoney(value: number | null | undefined, currency = "USD") {
-  if (!value) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
     return "Spend not reported";
   }
 

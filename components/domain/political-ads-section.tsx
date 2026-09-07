@@ -50,9 +50,9 @@ export function PoliticalAdsSection({
             <p className="mt-1 text-lg font-semibold text-white">{coverage.totals.filingOnlyRecords}</p>
           </div>
           <div>
-            <p className="text-xs font-semibold text-slate-500">Reported spend</p>
+            <p className="text-xs font-semibold text-slate-500">Reconciled spending total</p>
             <p className="mt-1 text-lg font-semibold text-white">
-              {formatPoliticalAdMoney(coverage.totals.reportedSpend)}
+              {coverage.totals.reportedSpend === null ? "Not available" : formatPoliticalAdMoney(coverage.totals.reportedSpend)}
             </p>
           </div>
           <p className="text-xs leading-5 text-slate-500 sm:col-span-4">{coverage.coverageNote}</p>

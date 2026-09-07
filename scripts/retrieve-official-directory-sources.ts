@@ -52,24 +52,24 @@ async function networkDiagnostics(generatedAt: string): Promise<OfficialsNetwork
   let https: OfficialsNetworkDiagnostics["https"] = "unknown";
 
   try {
-    await lookup("www.google.com");
+    await lookup("www.carsoncity.gov");
     dns = "available";
-    checkedUrls.push({ url: "dns:www.google.com", ok: true, status: "resolved", message: null });
+    checkedUrls.push({ url: "dns:www.carsoncity.gov", ok: true, status: "resolved", message: null });
   } catch (error) {
     dns = "blocked";
-    checkedUrls.push({ url: "dns:www.google.com", ok: false, status: "dns_failed", message: error instanceof Error ? error.message : String(error) });
+    checkedUrls.push({ url: "dns:www.carsoncity.gov", ok: false, status: "dns_failed", message: error instanceof Error ? error.message : String(error) });
   }
 
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10_000);
-    const response = await fetch("https://www.google.com", { method: "HEAD", redirect: "follow", signal: controller.signal });
+    const response = await fetch("https://www.carsoncity.gov", { method: "HEAD", redirect: "follow", signal: controller.signal });
     clearTimeout(timeout);
     https = response.ok || [301, 302, 303, 307, 308].includes(response.status) ? "available" : "blocked";
-    checkedUrls.push({ url: "https://www.google.com", ok: https === "available", status: `http_${response.status}`, message: null });
+    checkedUrls.push({ url: "https://www.carsoncity.gov", ok: https === "available", status: `http_${response.status}`, message: null });
   } catch (error) {
     https = "blocked";
-    checkedUrls.push({ url: "https://www.google.com", ok: false, status: "https_failed", message: error instanceof Error ? error.message : String(error) });
+    checkedUrls.push({ url: "https://www.carsoncity.gov", ok: false, status: "https_failed", message: error instanceof Error ? error.message : String(error) });
   }
 
   const downloadsHint = https === "available" && dns === "available" ? 1 : 0;
@@ -110,11 +110,20 @@ async function retrieveSource(source: ReturnType<typeof getOfficialDirectorySour
       redirect: "follow",
       signal: controller.signal,
     });
-    clearTimeout(timeout);
     const declaredContentType = response.headers.get("content-type");
     const finalUrl = response.url || source.sourceUrl;
     const redirectCount = response.redirected || finalUrl !== source.sourceUrl ? 1 : 0;
-    const body = await response.text();
+    const limit = 8 * 1024 * 1024;
+    if (Number(response.headers.get("content-length")) > limit) throw new Error("Official source exceeds 8 MiB limit");
+    const chunks: Uint8Array[] = [];
+    let bytes = 0;
+    if (!response.body) throw new Error("Official source response body is empty");
+    for await (const chunk of response.body as unknown as AsyncIterable<Uint8Array>) {
+      bytes += chunk.byteLength;
+      if (bytes > limit) { controller.abort(); throw new Error("Official source exceeds 8 MiB limit"); }
+      chunks.push(chunk);
+    }
+    const body = Buffer.concat(chunks).toString("utf8");
 
     return buildRetrievedEvidenceRecord({
       source,
@@ -136,7 +145,7 @@ async function retrieveSource(source: ReturnType<typeof getOfficialDirectorySour
       errorMessage: classification.message,
       rejectionReason: classification.diagnosticClassification,
     });
-  }
+  } finally { clearTimeout(timeout); }
 }
 
 async function main() {

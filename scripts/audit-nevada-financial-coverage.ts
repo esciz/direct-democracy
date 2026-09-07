@@ -34,6 +34,9 @@ type CoverageRecord = {
 type CoverageFile = {
   generatedAt: string;
   records: CoverageRecord[];
+  entityInventory?: { source: string; checkedAt: string };
+  sourceHealth?: { attempted: number; fetched: number; cachedAfterError: number; unavailable: number };
+  databaseSync?: { requested: boolean; succeeded: boolean; error: string | null };
 };
 
 function duplicateValues(values: string[]) {
@@ -47,10 +50,14 @@ async function main() {
     throw new Error("Run npm run financials:nevada:collect before the financial coverage audit.");
   }
   const coverage = JSON.parse(await readFile(INPUT_PATH, "utf8")) as CoverageFile;
+  let databaseAvailable = true;
   const [candidateIds, officialIds] = await Promise.all([
     prisma.candidate.findMany({ select: { id: true } }).then((records) => records.map((record) => record.id)),
     prisma.official.findMany({ where: { status: "CURRENT" }, select: { id: true } }).then((records) => records.map((record) => record.id)),
-  ]);
+  ]).catch(() => {
+    databaseAvailable = false;
+    return [coverage.records.filter(record => record.entityType === "candidate").map(record => record.entityId), coverage.records.filter(record => record.entityType === "official").map(record => record.entityId)];
+  });
   const expectedKeys = new Set([
     ...candidateIds.map((id) => `candidate:${id}`),
     ...officialIds.map((id) => `official:${id}`),
@@ -104,6 +111,13 @@ async function main() {
     }];
   });
   const totals = {
+    databaseAvailable,
+    expectedInventoryIsLive: databaseAvailable,
+    sourceRequestsAttempted: coverage.sourceHealth?.attempted ?? 0,
+    sourceRequestsSucceeded: coverage.sourceHealth?.fetched ?? 0,
+    sourceRequestsUsingCacheAfterError: coverage.sourceHealth?.cachedAfterError ?? 0,
+    sourcesUnavailable: coverage.sourceHealth?.unavailable ?? 0,
+    databasePublicationSucceeded: coverage.databaseSync?.succeeded ?? null,
     expectedEntities: expectedKeys.size,
     expectedCandidates: candidateIds.length,
     expectedCurrentOfficials: officialIds.length,
@@ -130,6 +144,8 @@ async function main() {
     aggregateReconciliationWarnings: aggregateReconciliationWarnings.length,
   };
   const strictFailures =
+    (databaseAvailable ? 0 : 1) +
+    (coverage.databaseSync?.requested && !coverage.databaseSync.succeeded ? 1 : 0) +
     missingEntities.length +
     unexpectedEntities.length +
     duplicateEntities.length +
@@ -141,6 +157,8 @@ async function main() {
     generatedAt: new Date().toISOString(),
     coverageGeneratedAt: coverage.generatedAt,
     strictPassed: strictFailures === 0,
+    scope: "Entity/source registration integrity and aggregation checks. This does not certify complete finance extraction or source freshness.",
+    databaseInventoryWarning: databaseAvailable ? null : "Database unavailable; expected entity inventory could not be independently verified.",
     totals,
     gaps: {
       missingEntities,

@@ -65,6 +65,7 @@ export default async function MeetingHealthPage({ searchParams }: { searchParams
     <div className="space-y-6 pb-12">
       <PageIntro eyebrow="Meeting operations" title="Calendar coverage and minutes follow-up" description="Track source checks, upcoming meetings, and the minutes still needed to document decisions. Carson City appears first; coverage includes the whole state." />
       <div className="flex flex-wrap gap-2">
+        <Link href="/admin/launch-health" className={button}>Published data health</Link>
         <Link href="/admin/operations" className={button}>Run a refresh</Link>
         <Link href="/admin/meeting-sources" className={button}>Source registry</Link>
         <Link href="/admin/meetings/upload" className={button}>Import meeting materials</Link>
