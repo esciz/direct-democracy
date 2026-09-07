@@ -3,6 +3,11 @@ name: Identity Worker
 on:
   workflow_dispatch:
     inputs:
+      diagnostics_only:
+        description: "Read-only database and queue audits; do not claim jobs, create smoke jobs, or send email."
+        type: boolean
+        required: true
+        default: true
       limit:
         description: "Maximum jobs to claim in this batch."
         required: true
@@ -63,11 +68,13 @@ jobs:
         run: npm run database:diagnose
 
       - name: Run bounded worker batch
+        if: github.event_name != 'workflow_dispatch' || !inputs.diagnostics_only
         env:
           WORKER_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.limit || '10' }}
         run: npm run worker:local -- --limit="$WORKER_LIMIT"
 
       - name: Worker smoke test
+        if: github.event_name != 'workflow_dispatch' || !inputs.diagnostics_only
         run: npm run worker:smoke-test
 
       - name: Worker audit
