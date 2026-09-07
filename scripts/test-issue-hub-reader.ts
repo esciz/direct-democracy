@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
 import ts from "typescript";
-import { hasTeacherPaySubjectEvidence } from "../lib/issues/utils";
+import { getCanonicalIssueTextOrNull, hasTeacherPaySubjectEvidence } from "../lib/issues/utils";
 import { getPublicMeetingItems } from "../lib/public-meetings/public-record-eligibility";
 import { getPublicMeetingVotingCards } from "../lib/public-meetings/voting-cards";
 import type { IssueHubRecord } from "../lib/issues/civic-hub";
@@ -47,6 +47,7 @@ function isolatedReader() {
   type Reader = {
     getIssueHubRecords(): Promise<IssueHubRecord[]>;
     getIssueHubRecordByRouteParam(value: string): Promise<IssueHubRecord | null>;
+    issueHubRecordToTopIssueSummary(value: IssueHubRecord): { category?: string };
   };
   const module = { exports: {} as Reader };
   vm.runInNewContext(compiled, {
@@ -56,7 +57,7 @@ function isolatedReader() {
     require(name: string) {
       if (name === "server-only") return {};
       if (name === "node:path") return path;
-      if (name === "@/lib/issues/utils") return { hasTeacherPaySubjectEvidence };
+      if (name === "@/lib/issues/utils") return { getCanonicalIssueTextOrNull, hasTeacherPaySubjectEvidence };
       if (name === "@/lib/public-meetings/public-record-eligibility") return { getPublicMeetingItems };
       if (name === "@/lib/public-meetings/voting-cards") return { getPublicMeetingVotingCards };
       if (name === "node:fs/promises") return {
@@ -95,6 +96,7 @@ async function main() {
   assert.deepEqual(structuredClone(await fixture.reader.getIssueHubRecordByRouteParam("school-funding")), schoolFunding);
 
   const supportedTeacherPay = issue({ publicRelationshipEvidenceVersion: 1, relationshipCounts: { ...staleTeacherPay.relationshipCounts, meetings: 1, agendaItems: 1 }, relatedMeetingIds: ["meeting-teacher-contract"], relatedAgendaItemIds: ["item-teacher-contract"] });
+  assert.equal(fixture.reader.issueHubRecordToTopIssueSummary({ ...supportedTeacherPay, policyAreas: ["Zoning"] }).category, "Education", "Canonical Teacher Pay category must not inherit an unrelated source-item classifier");
   fixture.setRuntime({ records: [supportedTeacherPay, housing] });
   const evidenceReadsBeforeVersioned = fixture.evidenceReadCount();
   assert.deepEqual(structuredClone(await fixture.reader.getIssueHubRecords()), [supportedTeacherPay, housing], "New generator evidence metadata preserves supported Teacher Pay");

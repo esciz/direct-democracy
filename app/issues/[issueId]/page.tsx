@@ -31,6 +31,7 @@ import { getFeedPostPreviews } from "@/lib/feed/posts";
 import { getQuickVoteCardsForUser } from "@/lib/feed/quick-votes";
 import { getAllCivicEventsForUser } from "@/lib/events/civic-events";
 import { getIssueHubRecordByRouteParam } from "@/lib/issues/civic-hub";
+import { getIssueLinkedMeetings } from "@/lib/issues/meeting-links";
 import { canPostToIssueScope, canSubmitIssueVoice, isIssueVoiceAccount, isPlatformWideIssue } from "@/lib/issues/posting-eligibility";
 import { valuesStronglyMatchIssueText } from "@/lib/issues/utils";
 import { getIssueReviewRequestsForIssue } from "@/lib/issues/review-requests";
@@ -1971,13 +1972,13 @@ async function EventsSectionLoader({ issueId, filter, issueText, currentUser }: 
 }
 
 async function MeetingsSectionLoader({ issueId, issueText, currentUser }: { issueId: string; issueText: string; currentUser: AuthUser }) {
-  const events = await getAllCivicEventsForUser(currentUser).catch(() => []);
+  const [events, issueEvidence] = await Promise.all([
+    getAllCivicEventsForUser(currentUser).catch(() => []),
+    getIssueHubRecordByRouteParam(issueId),
+  ]);
   const localCommunity = getDefaultCommunityForUser(currentUser);
   const localBundle = getLocalCommunityBundle(localCommunity.id);
-  const meetings = events
-    .filter((event) => event.isOfficialMeeting)
-    .filter((event) => valuesStronglyMatchIssueText(issueText, ...event.relatedIssueLabels, event.title, event.description))
-    .sort((left, right) => (Date.parse(right.startsAt ?? "") || 0) - (Date.parse(left.startsAt ?? "") || 0));
+  const meetings = getIssueLinkedMeetings(events, issueText, issueEvidence);
   const isNationalMeeting = (event: (typeof meetings)[number]) =>
     event.communityId === "united-states" || /united states|federal|congress/i.test(`${event.jurisdiction} ${event.hostName}`);
   const isLocalMeeting = (event: (typeof meetings)[number]) =>

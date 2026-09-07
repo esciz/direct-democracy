@@ -100,6 +100,7 @@ jobs:
           node --import tsx scripts/test-profile-mutation-session.ts
           npm run minutes:evidence:test
           npm run issues:integrity:test
+          node --import tsx scripts/test-decision-page-integrity.ts
           npm run meetings:items:test
           npm run financials:nevada:test
           npm run ads:nevada:test

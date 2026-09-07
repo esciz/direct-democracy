@@ -3,7 +3,7 @@ import "server-only";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import { hasTeacherPaySubjectEvidence } from "@/lib/issues/utils";
+import { getCanonicalIssueTextOrNull, hasTeacherPaySubjectEvidence } from "@/lib/issues/utils";
 import { getPublicMeetingItems } from "@/lib/public-meetings/public-record-eligibility";
 import { getPublicMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
 import type { MeetingVotingCardRecord, PublicMeetingItemRecord } from "@/lib/public-meetings/types";
@@ -131,7 +131,7 @@ export function issueHubRecordToTopIssueSummary(record: IssueHubRecord): PublicI
     createdByName: "Direct Democracy civic records",
     upvoteCount: 0,
     viewerHasUpvoted: false,
-    category: record.policyAreas[0] ?? record.issueText,
+    category: getCanonicalIssueTextOrNull(record.issueText) === "Teacher Pay" ? "Education" : record.policyAreas[0] ?? record.issueText,
     sourceBacked: record.sourceBacked,
     reviewStatus: record.reviewStatus,
     confidence: record.confidence,
