@@ -1,10 +1,11 @@
 import { existsSync, readFileSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { createInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 
-import { chromium, type BrowserContext, type Page } from "playwright";
+import { chromium, type BrowserContext, type Page, type Response } from "playwright";
 
 type ManifestEntry = {
   providerId: string;
@@ -29,7 +30,7 @@ type ManifestFailure = {
   attemptedAt: string;
 };
 
-type ProviderConfig = {
+export type ProviderConfig = {
   id: string;
   sourceName: string;
   governingBody: string;
@@ -86,6 +87,43 @@ const MAX_DISCOVERY_DEPTH = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_
 const SCHEDULED = process.argv.includes("--scheduled");
 const PENDING_FIRST_PASS = process.argv.includes("--pending-first-pass");
 const SCHEDULE_SHARDS = Math.max(1, Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_SHARDS ?? "7"));
+export class BootstrapBudgetExceeded extends Error {
+  constructor() { super("Scheduled browser collection time budget reached; remaining work is deferred."); }
+}
+
+export function createBootstrapBudget(durationMs: number, now = Date.now) {
+  if (!Number.isFinite(durationMs) || durationMs < 0) throw new Error("Browser collection duration must be a finite non-negative number.");
+  const deadline = now() + durationMs;
+  const remaining = () => Math.max(0, deadline - now());
+  const timeout = (cap: number) => {
+    const left = remaining();
+    if (left <= 0) throw new BootstrapBudgetExceeded();
+    return Math.max(1, Math.min(cap, left));
+  };
+  return {
+    remaining, timeout,
+    async run<T>(operation: () => Promise<T>, cap = 45000): Promise<T> {
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const duration = timeout(cap);
+      const deadlineLimited = remaining() <= cap;
+      try {
+        return await Promise.race([operation(), new Promise<never>((_, reject) => {
+          timer = setTimeout(() => reject(deadlineLimited ? new BootstrapBudgetExceeded() : new Error(`Public source operation timed out after ${duration} ms`)), duration);
+        })]);
+      } finally { if (timer) clearTimeout(timer); }
+    },
+  };
+}
+type BootstrapBudget = ReturnType<typeof createBootstrapBudget>;
+
+export function scheduledBootstrapDuration(commandTimeoutMs: number, requestedMs = 720000) {
+  return Math.max(1, Math.min(requestedMs, Math.max(1, commandTimeoutMs - 90000)));
+}
+
+export function orderBootstrapWork<T>(values: T[], attemptedAt: (value: T) => string | null | undefined) {
+  const timestamp = (value: T) => { const time = Date.parse(attemptedAt(value) ?? ""); return Number.isFinite(time) ? time : 0; };
+  return [...values].sort((left, right) => timestamp(left) - timestamp(right));
+}
 const nsheArchiveHost = ["nshe", "nevada", "edu"].join(".");
 const nsheArchiveUrl = `https://${nsheArchiveHost}/regents/archive/`;
 
@@ -426,7 +464,10 @@ async function readManifest(providerId: string): Promise<{ entries: ManifestEntr
 }
 
 async function writeManifest(providerId: string, manifest: { entries: ManifestEntry[]; failures?: ManifestFailure[]; [key: string]: unknown }) {
-  await writeFile(manifestPath(providerId), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  const target = manifestPath(providerId);
+  const temporary = `${target}.${process.pid}.tmp`;
+  await writeFile(temporary, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  await rename(temporary, target);
 }
 
 async function ensureProviderFolders(provider: ProviderConfig) {
@@ -532,12 +573,12 @@ function filenameFor(provider: ProviderConfig, sourceKind: ManifestEntry["source
   return `${year}-${safeFileBase(title)}-${safeFileBase(new URL(url).pathname).slice(0, 32)}.${extension || "html"}`;
 }
 
-async function saveRenderedPage(provider: ProviderConfig, page: Page, pageConfig: ProviderConfig["pages"][number], manifest: { entries: ManifestEntry[] }, stats: SavedStats) {
-  await page.goto(pageConfig.url, { waitUntil: "domcontentloaded", timeout: 45000 });
-  await page.waitForLoadState("networkidle", { timeout: 15000 }).catch(() => undefined);
-  const title = (await page.title().catch(() => "")) || pageConfig.titleHint;
-  const text = await page.locator("body").innerText({ timeout: 10000 }).catch(() => "");
-  const html = await page.content();
+async function saveRenderedPage(provider: ProviderConfig, page: Page, pageConfig: ProviderConfig["pages"][number], manifest: { entries: ManifestEntry[] }, stats: SavedStats, budget: BootstrapBudget) {
+  await page.goto(pageConfig.url, { waitUntil: "domcontentloaded", timeout: budget.timeout(45000) });
+  await page.waitForLoadState("networkidle", { timeout: budget.timeout(15000) }).catch(() => undefined);
+  const title = (await budget.run(() => page.title())) || pageConfig.titleHint;
+  const text = await page.locator("body").innerText({ timeout: budget.timeout(10000) }).catch(() => "");
+  const html = await budget.run(() => page.content());
   const meetingDate = inferDateFromText(`${title} ${text}`);
   const filename = filenameFor(provider, pageConfig.sourceKind, title || pageConfig.titleHint, pageConfig.url, "html");
   const localPath = relativeProviderPath(provider, pageConfig.sourceKind, filename);
@@ -611,8 +652,7 @@ async function discoverLinks(provider: ProviderConfig, page: Page) {
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
-    })
-    .slice(0, MAX_LINK_DOWNLOADS_PER_PROVIDER);
+    });
 }
 
 function isNavigableMeetingPage(url: string, label: string) {
@@ -696,25 +736,25 @@ function meetingRecordsFromJson(body: Buffer) {
   return records.slice(0, 100);
 }
 
-async function fetchPublicLinkedFile(provider: ProviderConfig, context: BrowserContext, link: { href: string; label: string; sourceKind: ManifestEntry["sourceKind"] }) {
+async function fetchPublicLinkedFile(provider: ProviderConfig, context: BrowserContext, link: { href: string; label: string; sourceKind: ManifestEntry["sourceKind"] }, budget: BootstrapBudget) {
   const href = normalizePublicUrl(provider, link.href);
   const requestOptions = {
     headers: {
       "user-agent": "Direct Democracy Playwright public-record preservation",
       accept: "application/pdf,application/json,text/html,text/plain,*/*",
     },
-    timeout: 45000,
+    timeout: budget.timeout(45000),
   };
   const first = await context.request.get(href, requestOptions);
   if (first.ok()) return first;
-  await new Promise((resolve) => setTimeout(resolve, 750));
-  const second = await context.request.get(href, requestOptions);
+  await budget.run(() => new Promise((resolve) => setTimeout(resolve, 750)));
+  const second = await context.request.get(href, { ...requestOptions, timeout: budget.timeout(45000) });
   return second.ok() ? second : first;
 }
 
-async function saveLinkedFile(provider: ProviderConfig, context: BrowserContext, link: { href: string; label: string; sourceKind: ManifestEntry["sourceKind"] }, manifest: { entries: ManifestEntry[]; failures?: ManifestFailure[] }, stats: SavedStats) {
+async function saveLinkedFile(provider: ProviderConfig, context: BrowserContext, link: { href: string; label: string; sourceKind: ManifestEntry["sourceKind"] }, manifest: { entries: ManifestEntry[]; failures?: ManifestFailure[] }, stats: SavedStats, budget: BootstrapBudget) {
   const href = normalizePublicUrl(provider, link.href);
-  const response = await fetchPublicLinkedFile(provider, context, { ...link, href });
+  const response = await fetchPublicLinkedFile(provider, context, { ...link, href }, budget);
   if (!response.ok()) {
     stats.failed += 1;
     recordManifestFailure(manifest, {
@@ -728,7 +768,7 @@ async function saveLinkedFile(provider: ProviderConfig, context: BrowserContext,
   }
   const contentType = response.headers()["content-type"] ?? "";
   const fileType = fileTypeFromUrl(href, contentType);
-  const body = await response.body();
+  const body = await budget.run(() => response.body());
   const title = link.label || new URL(href).pathname.split("/").filter(Boolean).at(-1) || provider.sourceName;
   const filename = filenameFor(provider, link.sourceKind, title, href, fileType === "pdf" ? "pdf" : fileType === "json" ? "json" : fileType === "xml" ? "xml" : fileType === "csv" ? "csv" : "html");
   const localPath = relativeProviderPath(provider, link.sourceKind, filename);
@@ -758,9 +798,11 @@ function shouldCaptureJson(provider: ProviderConfig, url: string, contentType: s
   return sameAllowedHost(provider, url) && /\bjson\b/i.test(contentType) && !/sockjs|hot-update|_next|favicon/i.test(url);
 }
 
-async function collectProvider(provider: ProviderConfig, context: BrowserContext) {
+export async function collectProvider(provider: ProviderConfig, context: BrowserContext, budget: BootstrapBudget) {
   await ensureProviderFolders(provider);
   const manifest = await readManifest(provider.id);
+  const previousCollection = (manifest.collection ?? {}) as { lastSucceededAt?: string | null };
+  const startedAt = new Date().toISOString();
   if (FORCE) {
     manifest.failures = [];
     manifest.entries = manifest.entries.filter(
@@ -773,16 +815,38 @@ async function collectProvider(provider: ProviderConfig, context: BrowserContext
   const discoveredPlatforms = new Set<string>();
   const visitedPages = new Set<string>();
   const downloadedLinks = new Set<string>();
+  const deferredLinks = new Set<string>();
   let successfulPages = 0;
+  let budgetReached = false;
+  let acceptingResponses = true;
   const responseTasks = new Set<Promise<void>>();
-  page.on("response", (response) => {
+  const pageAttempts: Record<string, string> = { ...((manifest.collection as { pageAttempts?: Record<string, string> } | undefined)?.pageAttempts ?? {}) };
+  const checkpoint = async (status: "running" | "partial" | "completed") => {
+    manifest.collection = {
+      ...previousCollection,
+      lastAttemptedAt: startedAt,
+      lastSucceededAt: successfulPages > 0 ? new Date().toISOString() : previousCollection.lastSucceededAt ?? null,
+      updatedAt: new Date().toISOString(), status, budgetReached,
+      pagesVisited: visitedPages.size, pagesSucceeded: successfulPages,
+      linkedFilesAttempted: downloadedLinks.size, publicJsonResponsesCaptured: capturedJson.size,
+      linkedFilesDeferred: deferredLinks.size,
+      failuresThisAttempt: stats.failed, pageAttempts,
+      discoveredPlatforms: [...discoveredPlatforms].sort(),
+      strategy: ["rendered_browser_discovery", "trusted_platform_handoff", "official_link_following", "public_json_capture", "linked_document_download"],
+    };
+    await writeManifest(provider.id, manifest);
+  };
+  await checkpoint("running");
+  const captureResponse = (response: Response) => {
     const task = (async () => {
       try {
+      if (!acceptingResponses || budget.remaining() <= 0) return;
       const url = response.url();
       const contentType = response.headers()["content-type"] ?? "";
       if (!response.ok() || !shouldCaptureJson(provider, url, contentType) || capturedJson.has(url)) return;
       capturedJson.add(url);
-      const body = await response.body();
+      const body = await budget.run(() => response.body());
+      if (!acceptingResponses || budget.remaining() <= 0) return;
       const filename = filenameFor(provider, "apiJson", `api-json-${capturedJson.size}`, url, "json");
       const localPath = relativeProviderPath(provider, "apiJson", filename);
       const saved = await writeIfNeeded(absoluteProviderPath(provider, localPath), body, stats);
@@ -839,25 +903,40 @@ async function collectProvider(provider: ProviderConfig, context: BrowserContext
     })();
     responseTasks.add(task);
     void task.finally(() => responseTasks.delete(task));
-  });
+  };
+  page.on("response", captureResponse);
 
-  const queue = provider.pages.map((pageConfig) => ({ pageConfig, depth: 0 }));
+  const queue = orderBootstrapWork(provider.pages, (config) => pageAttempts[config.url]).map((pageConfig) => ({ pageConfig, depth: 0 }));
   while (queue.length && visitedPages.size < MAX_DISCOVERY_PAGES_PER_PROVIDER) {
+    if (budget.remaining() <= 0) { budgetReached = true; break; }
     const next = queue.shift();
     if (!next || visitedPages.has(next.pageConfig.url)) continue;
     const { pageConfig, depth } = next;
     visitedPages.add(pageConfig.url);
+    pageAttempts[pageConfig.url] = new Date().toISOString();
     try {
-      await saveRenderedPage(provider, page, pageConfig, manifest, stats);
+      await saveRenderedPage(provider, page, pageConfig, manifest, stats, budget);
       successfulPages += 1;
-      const pageContent = await page.content().catch(() => "");
+      await checkpoint("running");
+      const pageContent = await budget.run(() => page.content());
       for (const platform of detectPlatforms(`${page.url()} ${pageContent}`)) discoveredPlatforms.add(platform);
-      const links = await discoverLinks(provider, page);
+      const links = orderBootstrapWork(await budget.run(() => discoverLinks(provider, page)), (link) => {
+        const failure = manifest.failures.find((candidate) => candidate.url === link.href);
+        const saved = manifest.entries.find((entry) => entry.officialSourceUrl === link.href);
+        return [failure?.attemptedAt, saved?.downloadedAt].filter(Boolean).sort().at(-1);
+      });
       for (const link of links) {
-        if (downloadedLinks.size >= MAX_LINK_DOWNLOADS_PER_PROVIDER || downloadedLinks.has(link.href)) continue;
+        if (downloadedLinks.has(link.href)) continue;
+        if (budget.remaining() <= 0 || downloadedLinks.size >= MAX_LINK_DOWNLOADS_PER_PROVIDER) {
+          if (budget.remaining() <= 0) budgetReached = true;
+          deferredLinks.add(link.href);
+          continue;
+        }
         downloadedLinks.add(link.href);
+        deferredLinks.delete(link.href);
         for (const platform of detectPlatforms(link.href)) discoveredPlatforms.add(platform);
-        await saveLinkedFile(provider, context, link, manifest, stats).catch((error) => {
+        await saveLinkedFile(provider, context, link, manifest, stats, budget).catch((error) => {
+          if (error instanceof BootstrapBudgetExceeded) budgetReached = true;
           stats.failed += 1;
           recordManifestFailure(manifest, {
             url: normalizePublicUrl(provider, link.href),
@@ -867,9 +946,10 @@ async function collectProvider(provider: ProviderConfig, context: BrowserContext
             attemptedAt: new Date().toISOString(),
           });
         });
+        await checkpoint("running");
       }
       if (depth < MAX_DISCOVERY_DEPTH) {
-        const navigationLinks = await discoverNavigationLinks(provider, page);
+        const navigationLinks = orderBootstrapWork(await budget.run(() => discoverNavigationLinks(provider, page)), (link) => pageAttempts[link.href]);
         for (const link of navigationLinks) {
           if (visitedPages.has(link.href) || queue.some((entry) => entry.pageConfig.url === link.href)) continue;
           queue.push({
@@ -884,6 +964,7 @@ async function collectProvider(provider: ProviderConfig, context: BrowserContext
         }
       }
     } catch (error) {
+      if (error instanceof BootstrapBudgetExceeded) budgetReached = true;
       stats.failed += 1;
       recordManifestFailure(manifest, {
         url: pageConfig.url,
@@ -894,27 +975,19 @@ async function collectProvider(provider: ProviderConfig, context: BrowserContext
       });
       console.error(`[${provider.id}] failed ${pageConfig.url}:`, error instanceof Error ? error.message : String(error));
     }
+    await checkpoint("running");
   }
-  await Promise.all([...responseTasks]);
+  page.off("response", captureResponse);
+  try { await budget.run(() => Promise.allSettled([...responseTasks])); }
+  catch (error) {
+    if (error instanceof BootstrapBudgetExceeded) budgetReached = true;
+    else stats.failed += 1;
+  }
+  acceptingResponses = false;
+  await page.close().catch(() => undefined);
+  await Promise.allSettled([...responseTasks]);
   markOutOfScopeManifestEntries(manifest);
-  manifest.collection = {
-    lastAttemptedAt: new Date().toISOString(),
-    lastSucceededAt: successfulPages > 0 ? new Date().toISOString() : null,
-    pagesVisited: visitedPages.size,
-    pagesSucceeded: successfulPages,
-    linkedFilesAttempted: downloadedLinks.size,
-    publicJsonResponsesCaptured: capturedJson.size,
-    discoveredPlatforms: [...discoveredPlatforms].sort(),
-    strategy: [
-      "rendered_browser_discovery",
-      "trusted_platform_handoff",
-      "official_link_following",
-      "public_json_capture",
-      "linked_document_download",
-    ],
-  };
-  await writeManifest(provider.id, manifest);
-  await page.close();
+  await checkpoint(budgetReached || queue.length || deferredLinks.size ? "partial" : "completed");
   return stats;
 }
 
@@ -961,9 +1034,20 @@ async function pauseForInteractiveSession(context: BrowserContext, providers: Pr
 }
 
 async function main() {
-  const providers = providersForRun();
+  const providers = orderBootstrapWork(providersForRun(), (provider) => {
+    try {
+      return JSON.parse(readFileSync(manifestPath(provider.id), "utf8")).collection?.lastAttemptedAt;
+    } catch { return null; }
+  });
+  if (!providers.length) { console.log("No browser collection providers are due in this scheduled shard."); return; }
+  const duration = SCHEDULED ? scheduledBootstrapDuration(
+    Number(process.env.DATAOPS_COMMAND_TIMEOUT_MS ?? 900000),
+    Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_DURATION_MS ?? 720000),
+  ) : Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_DURATION_MS ?? 86400000);
+  const budget = createBootstrapBudget(duration);
+  const providerDuration = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_PROVIDER_DURATION_MS ?? (SCHEDULED ? 180000 : duration));
   await mkdir(path.dirname(STORAGE_STATE), { recursive: true });
-  const browser = await chromium.launch({ headless: !HEADED });
+  const browser = await chromium.launch({ headless: !HEADED, timeout: budget.timeout(45000) });
   const context = await browser.newContext({
     acceptDownloads: true,
     ...(existsSync(STORAGE_STATE) ? { storageState: STORAGE_STATE } : {}),
@@ -976,8 +1060,12 @@ async function main() {
       console.log(`Saved Playwright storage state: ${path.relative(ROOT, STORAGE_STATE)}`);
     }
     for (const provider of providers) {
+      if (budget.remaining() <= 0) {
+        console.log(`Browser collection time budget reached; ${providers.slice(providers.indexOf(provider)).map((row) => row.id).join(", ")} remain due.`);
+        break;
+      }
       console.log(`Collecting ${provider.sourceName}...`);
-      const stats = await collectProvider(provider, context);
+      const stats = await collectProvider(provider, context, createBootstrapBudget(Math.min(providerDuration, budget.remaining())));
       for (const key of Object.keys(totals) as Array<keyof SavedStats>) totals[key] += stats[key];
       console.log(
         `- ${provider.id}: pages=${stats.pagesSaved} files=${stats.filesSaved} json=${stats.jsonSaved} manifest=${stats.manifestEntries} skipped=${stats.skipped} failed=${stats.failed} needsReview=${stats.needsReview}`,
@@ -998,7 +1086,9 @@ async function main() {
   console.log(`Needs review: ${totals.needsReview}`);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}

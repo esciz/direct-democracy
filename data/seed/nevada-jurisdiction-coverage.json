@@ -460,9 +460,21 @@
       "providerGroup": "city",
       "website": "https://www.bcnv.org/",
       "discoveryUrls": [
-        "https://www.bcnv.org/"
+        "https://bcnv.primegov.com/public/portal"
       ],
-      "scraperType": "manual"
+      "scraperType": "granicus",
+      "agendaArchiveUrl": "https://bcnv.primegov.com/public/portal",
+      "minutesArchiveUrl": "https://bcnv.primegov.com/public/portal",
+      "packetArchiveUrl": "https://bcnv.primegov.com/public/portal",
+      "platformHints": [
+        "primegov",
+        "primegov_public_calendar"
+      ],
+      "allowedHosts": [
+        "bcnv.primegov.com"
+      ],
+      "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
+      "replaceSourceUrls": true
     },
     {
       "id": "caliente-city-council",
@@ -583,8 +595,17 @@
       ],
       "scraperType": "granicus",
       "platformHints": [
-        "primegov"
-      ]
+        "primegov",
+        "primegov_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://lasvegas.primegov.com/public/portal",
+      "minutesArchiveUrl": "https://lasvegas.primegov.com/public/portal",
+      "packetArchiveUrl": "https://lasvegas.primegov.com/public/portal",
+      "allowedHosts": [
+        "lasvegas.primegov.com"
+      ],
+      "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
+      "replaceSourceUrls": true
     },
     {
       "id": "lovelock-city-council",
@@ -618,12 +639,21 @@
       "providerGroup": "city",
       "website": "https://www.cityofnorthlasvegas.com/",
       "discoveryUrls": [
-        "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas"
+        "https://cityofnorthlasvegas.primegov.com/public/portal"
       ],
       "scraperType": "granicus",
       "platformHints": [
-        "primegov"
-      ]
+        "primegov",
+        "primegov_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
+      "minutesArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
+      "packetArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
+      "allowedHosts": [
+        "cityofnorthlasvegas.primegov.com"
+      ],
+      "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
+      "replaceSourceUrls": true
     },
     {
       "id": "reno-city-council",

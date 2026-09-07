@@ -782,21 +782,26 @@
     "jurisdiction": "Boulder City, NV",
     "level": "city",
     "website": "https://www.bcnv.org/",
-    "sourceUrl": "https://www.bcnv.org/",
-    "meetingIndexUrl": "https://www.bcnv.org/",
-    "agendaArchiveUrl": null,
-    "minutesArchiveUrl": null,
-    "packetArchiveUrl": null,
+    "sourceUrl": "https://bcnv.primegov.com/public/portal",
+    "meetingIndexUrl": "https://bcnv.primegov.com/public/portal",
+    "agendaArchiveUrl": "https://bcnv.primegov.com/public/portal",
+    "minutesArchiveUrl": "https://bcnv.primegov.com/public/portal",
+    "packetArchiveUrl": "https://bcnv.primegov.com/public/portal",
     "videoArchiveUrl": null,
-    "scraperType": "manual",
+    "scraperType": "granicus",
     "active": true,
-    "notes": "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
+    "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
     "providerGroup": "city",
     "discoveryUrls": [
-      "https://www.bcnv.org/"
+      "https://bcnv.primegov.com/public/portal"
     ],
-    "allowedHosts": [],
-    "platformHints": [],
+    "allowedHosts": [
+      "bcnv.primegov.com"
+    ],
+    "platformHints": [
+      "primegov",
+      "primegov_public_calendar"
+    ],
     "coverageJurisdictionIds": [
       "city-boulder-city"
     ],
@@ -1015,14 +1020,17 @@
     "videoArchiveUrl": "https://lasvegas.primegov.com/public/portal",
     "scraperType": "granicus",
     "active": true,
-    "notes": "PrimeGov portal seed for agenda and packet discovery.",
+    "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
     "providerGroup": "city",
     "discoveryUrls": [
       "https://lasvegas.primegov.com/public/portal"
     ],
-    "allowedHosts": [],
+    "allowedHosts": [
+      "lasvegas.primegov.com"
+    ],
     "platformHints": [
-      "primegov"
+      "primegov",
+      "primegov_public_calendar"
     ],
     "coverageJurisdictionIds": [
       "city-las-vegas"
@@ -1090,22 +1098,25 @@
     "jurisdiction": "North Las Vegas, NV",
     "level": "city",
     "website": "https://www.cityofnorthlasvegas.com/",
-    "sourceUrl": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
-    "meetingIndexUrl": "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas",
+    "sourceUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
+    "meetingIndexUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
     "agendaArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
     "minutesArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
     "packetArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
     "videoArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
     "scraperType": "granicus",
     "active": true,
-    "notes": "City page points to a PrimeGov portal for meeting records.",
+    "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
     "providerGroup": "city",
     "discoveryUrls": [
-      "https://www.cityofnorthlasvegas.com/our-city/meetings-and-agendas"
+      "https://cityofnorthlasvegas.primegov.com/public/portal"
     ],
-    "allowedHosts": [],
+    "allowedHosts": [
+      "cityofnorthlasvegas.primegov.com"
+    ],
     "platformHints": [
-      "primegov"
+      "primegov",
+      "primegov_public_calendar"
     ],
     "coverageJurisdictionIds": [
       "city-north-las-vegas"

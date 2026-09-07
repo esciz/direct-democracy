@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { NATIVE_PDF_EXTRACTOR_VERSION } from "../lib/public-meetings/pdf-native-text";
 
 const projectRoot = process.cwd();
 const testRoot = mkdtempSync(path.join(os.tmpdir(), "meeting-text-version-test-"));
@@ -50,9 +51,9 @@ function scenario(name: string, options: { ocrSourceHash?: string; omitOcrHash?:
   return { root, existingPath, ocrPath };
 }
 
-function run(root: string, flags: string[] = []) {
+function run(root: string, flags: string[] = [], customPath?: string) {
   const child = spawnSync(process.execPath, ["--import", path.join(projectRoot, "node_modules/tsx/dist/loader.mjs"), path.join(projectRoot, "scripts/extract-public-meeting-document-text.ts"), ...flags], {
-    cwd: root, env: { ...process.env, TSX_TSCONFIG_PATH: path.join(projectRoot, "tsconfig.json") }, encoding: "utf8", timeout: 30_000, maxBuffer: 2_000_000,
+    cwd: root, env: { ...process.env, ...(customPath ? { PATH: customPath } : {}), TSX_TSCONFIG_PATH: path.join(projectRoot, "tsconfig.json") }, encoding: "utf8", timeout: 30_000, maxBuffer: 2_000_000,
   });
   assert.equal(child.status, 0, child.stderr || child.stdout || String(child.error));
   return JSON.parse(readFileSync(path.join(root, "data/generated/public-meeting-document-text.json"), "utf8"));
@@ -115,6 +116,20 @@ try {
   assert.equal(idOnlyOutput.audit.scope.documentsSelected, 2, "Repeated exact document filters work without a source filter");
   assert.equal(idOnlyOutput.records.length, 3);
 
+  sourceData.records[1].documentType = "agenda";
+  sourceData.records[2].documentType = "minutes_attachment";
+  writeJson(scoped.root, "public-meeting-source-documents.json", sourceData);
+  const beforeTypeLedger = readJson(scoped.root, "public-meeting-document-text.json");
+  const beforeTypeCache = readJson(scoped.root, "public-meeting-document-cache-index.json");
+  const minutesOnly = run(scoped.root, ["--document-type=minutes", "--all"]);
+  assert.deepEqual(minutesOnly.audit.scope.documentTypes, ["minutes"]);
+  assert.equal(minutesOnly.audit.scope.documentsSelected, 1, "Document type is an exact match, not a prefix");
+  assert.equal(minutesOnly.records.length, 3, "Minutes-only refresh retains unrelated text evidence");
+  for (const old of beforeTypeLedger.records.slice(1)) assert.deepEqual(minutesOnly.records.find((row: { documentId: string }) => row.documentId === old.documentId), old);
+  assert.deepEqual(readJson(scoped.root, "public-meeting-document-cache-index.json").records.slice(1), beforeTypeCache.records.slice(1), "Minutes-only refresh leaves agenda/attachment cache metadata unchanged");
+  const allFilters = run(scoped.root, ["--document-type=minutes,agenda", "--source=source", "--document-id=same-source-other-doc,other-source-doc"]);
+  assert.equal(allFilters.audit.scope.documentsSelected, 1, "Source, document ID, and exact types compose as AND");
+
   const tooLarge = scenario("size-limit-recovery", { noOcr: true });
   const tooLargeOutput = run(tooLarge.root, ["--max-pdf-bytes=1"]);
   assert.match(tooLargeOutput.records[0].failureReason, /pdf_native_text_size_limit/);
@@ -123,7 +138,73 @@ try {
   const recoveredOutput = run(limitRecovered.root, ["--max-pdf-bytes=1"]);
   assert.equal(recoveredOutput.records[0].extractionMethod, "ocr_text", "Matching OCR recovers text without parsing oversized PDFs");
   assert.match(recoveredOutput.records[0].nativeTextFailureReason, /pdf_native_text_size_limit/);
-  console.log("Document text tests passed: source/OCR version isolation, refresh and last-good reuse, immutable evidence paths, scoped ledger preservation, and PDF size-limit recovery.");
+  const bin = path.join(testRoot, "poppler"); mkdirSync(bin);
+  const page = "The board approved a motion after discussion of transportation, public safety, district staffing, financial statements, building maintenance, classroom resources and community recommendations. ".repeat(6);
+  const fullNative = Array.from({ length: 16 }, (_, index) => `Page ${index + 1}\n${page}`).join("\f") + "\f";
+  const stub = (name: string, body: string) => { const file = path.join(bin, name); writeFileSync(file, `#!${process.execPath}\n${body}\n`); chmodSync(file, 0o755); };
+  stub("pdfinfo", "process.stdout.write('Pages: 16\\n')");
+  stub("pdftotext", `process.stdout.write(process.argv.includes('-v')?'fixture Poppler':${JSON.stringify(fullNative)})`);
+  const lostPages = scenario("legacy-native-lost-pages", { existingSourceHash: currentHash, existingMethod: "native_text", existingText: "Final page footer only. ".repeat(28), noOcr: true });
+  const refreshed = run(lostPages.root, [], bin);
+  assert.equal(refreshed.audit.totals.documentsProcessed, 1, "Old PDFParse results must not remain cached merely because source bytes match");
+  assert.equal(refreshed.records[0].nativeTextExtractorVersion, NATIVE_PDF_EXTRACTOR_VERSION);
+  assert.equal(refreshed.records[0].nativeTextExtractor, "poppler");
+  assert.equal(refreshed.records[0].textCompleteness, "complete");
+  assert.ok(refreshed.records[0].textLength > 16_000);
+  assert.equal(run(lostPages.root, [], bin).audit.totals.reusedExistingText, 1, "Current matching Poppler results remain cached");
+  const retainedPartial = scenario("retained-partial-not-upgraded-by-discarded-native", { existingSourceHash: currentHash,
+    existingText: "Prior partial OCR evidence: the board approved a motion.\n".repeat(2000), noOcr: true });
+  const retainedLedger = readJson(retainedPartial.root, "public-meeting-document-text.json");
+  retainedLedger.records[0].textCompleteness = "partial";
+  writeJson(retainedPartial.root, "public-meeting-document-text.json", retainedLedger);
+  const oldPartialBytes = readFileSync(path.join(retainedPartial.root, retainedPartial.existingPath), "utf8");
+  const retainedResult = run(retainedPartial.root, [], bin).records[0];
+  assert.equal(retainedResult.extractedTextPath, retainedPartial.existingPath, "A shorter rerun preserves the earlier usable sidecar");
+  assert.equal(readFileSync(path.join(retainedPartial.root, retainedResult.extractedTextPath), "utf8"), oldPartialBytes);
+  assert.equal(retainedResult.textCompleteness, "partial", "Discarded complete native text must not upgrade the retained partial sidecar");
+  assert.equal(run(retainedPartial.root, [], bin).records[0].textCompleteness, "partial", "Cache reuse must retain the saved sidecar's actual completeness");
+  const retainedUnknown = scenario("retained-unknown-not-upgraded-by-discarded-native", { existingSourceHash: currentHash,
+    existingText: oldPartialBytes.replace(/\n$/, ""), noOcr: true });
+  const unknownResult = run(retainedUnknown.root, [], bin).records[0];
+  assert.equal(unknownResult.extractedTextPath, retainedUnknown.existingPath);
+  assert.notEqual(unknownResult.textCompleteness, "complete", "Legacy evidence without page proof cannot acquire completeness from discarded text");
+  const fallbackCache = scenario("fallback-becomes-poppler", { existingSourceHash: currentHash, existingMethod: "native_text", existingText: "Final page footer only. ".repeat(28), noOcr: true });
+  const cachedFallback = readJson(fallbackCache.root, "public-meeting-document-text.json");
+  Object.assign(cachedFallback.records[0], { nativeTextExtractorVersion: NATIVE_PDF_EXTRACTOR_VERSION, nativeTextExtractor: "pdf-parse" });
+  writeJson(fallbackCache.root, "public-meeting-document-text.json", cachedFallback);
+  const missingTools = path.join(testRoot, "missing-tools"); mkdirSync(missingTools);
+  assert.equal(run(fallbackCache.root, [], missingTools).audit.totals.reusedExistingText, 1);
+  assert.equal(run(fallbackCache.root, [], bin).audit.totals.documentsProcessed, 1, "Installing Poppler must invalidate an otherwise current fallback cache");
+  const bracketText = `Header with literal < ..\n${fullNative}\n> Final footer`;
+  stub("pdftotext", `process.stdout.write(process.argv.includes('-v')?'fixture Poppler':${JSON.stringify(bracketText)})`);
+  const brackets = scenario("plain-text-angle-brackets", { noOcr: true });
+  const bracketRecord = run(brackets.root, [], bin).records[0];
+  const bracketSidecar = readFileSync(path.join(brackets.root, bracketRecord.extractedTextPath), "utf8");
+  assert.ok(bracketSidecar.includes("Page 1\n") && bracketSidecar.includes("Page 16\n"));
+  assert.ok(bracketSidecar.includes("< ..") && bracketSidecar.includes("> Final footer"), "Plain PDF text must not be interpreted as HTML and lose intervening pages");
+  assert.ok(bracketRecord.textLength > 16_000);
+  const ocrBrackets = scenario("ocr-angle-brackets", { ocrText: bracketText });
+  const ocrBracketRecord = run(ocrBrackets.root, [], missingTools).records[0];
+  assert.ok(readFileSync(path.join(ocrBrackets.root, ocrBracketRecord.extractedTextPath), "utf8").includes("Page 1\n"), "OCR sidecars are also plain text");
+  const html = scenario("html-source", { noOcr: true });
+  writeFileSync(path.join(html.root, "source.html"), `<html><script>SECRET_SCRIPT_TEXT</script><p>${page}</p><p>SECOND_PARAGRAPH &amp; details</p></html>`);
+  const htmlSources = readJson(html.root, "public-meeting-source-documents.json");
+  htmlSources.records[0].sourcePath = htmlSources.records[0].cachedPath = "source.html";
+  writeJson(html.root, "public-meeting-source-documents.json", htmlSources);
+  writeJson(html.root, "public-meeting-document-cache-index.json", { records: [] });
+  const htmlRecord = run(html.root).records[0];
+  const htmlSidecar = readFileSync(path.join(html.root, htmlRecord.extractedTextPath), "utf8");
+  assert.ok(!htmlSidecar.includes("SECRET_SCRIPT_TEXT") && !htmlSidecar.includes("<p>"), "Actual HTML sources still remove markup and scripts");
+  assert.ok(htmlSidecar.includes("\nSECOND_PARAGRAPH & details"));
+  stub("pdftotext", `process.stdout.write(process.argv.includes('-v')?'fixture Poppler':${JSON.stringify("\f".repeat(15) + page + "\f")})`);
+  const partialNative = scenario("partial-native-pages", { noOcr: true });
+  const partialNativeRecord = run(partialNative.root, [], bin).records[0];
+  assert.equal(partialNativeRecord.textCompleteness, "partial");
+  assert.equal(partialNativeRecord.extractionQuality, "low");
+  assert.equal(partialNativeRecord.failureReason, "native_text_incomplete_pages");
+  assert.equal(partialNativeRecord.nativePagesDetected, 16);
+  assert.equal(partialNativeRecord.nativePagesWithText, 1);
+  console.log("Document text passed: parser/backend cache upgrades, complete versus partial native pages, source/OCR version isolation, last-good reuse, immutable evidence, scope, and size-limit recovery.");
 } finally {
   rmSync(testRoot, { recursive: true, force: true });
 }

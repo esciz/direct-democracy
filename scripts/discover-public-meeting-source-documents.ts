@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { slugify } from "@/lib/public-meetings/shared";
 import type { PublicBodyRecord, PublicMeetingItemRecord, PublicMeetingRecord } from "@/lib/public-meetings/types";
@@ -25,7 +26,7 @@ const PRIORITY_SOURCE_IDS = new Set([
 
 type SourceDocumentType = "agenda" | "minutes" | "packet" | "staff_report" | "attachment" | "vote_record" | "result_page" | "supporting_document" | "unknown";
 
-type SourceDocumentRecord = {
+export type SourceDocumentRecord = {
   id: string;
   meetingId: string;
   meetingItemIds: string[];
@@ -45,7 +46,67 @@ type SourceDocumentRecord = {
   retrievalStatus: "local_cached" | "remote_discovered" | "missing" | "unreadable_local";
   priorityBody: boolean;
   provenance: Array<{ meetingId: string; meetingItemId: string | null; field: string }>;
+  sourcePaths?: string[];
+  identityBaseId?: string;
 };
+
+type TextDocumentIdentity = { documentId: string; meetingId: string; documentType: string; sourceUrl?: string | null; sourcePath?: string | null; sourceContentHash?: string | null };
+
+function documentIdentity(record: SourceDocumentRecord) {
+  // A byte hash identifies content, not the meeting that owns it. Unreadable
+  // files must use their full path; a truncated path slug is not an identity.
+  const source = record.sourceUrl ? `url:${record.sourceUrl}` : record.contentHash ? `sha256:${record.contentHash}` : `path:${record.sourcePath}`;
+  return JSON.stringify([record.meetingId, record.bodyId, record.organizationId, record.documentType, source]);
+}
+
+/** Consolidate exact owners, then disambiguate shared bytes without losing history. */
+export function reconcileSourceDocumentIdentities(records: SourceDocumentRecord[], previous: SourceDocumentRecord[] = [], texts: TextDocumentIdentity[] = []) {
+  const groups = new Map<string, SourceDocumentRecord[]>();
+  for (const record of records) {
+    const key = documentIdentity(record);
+    const group = groups.get(key) ?? [];
+    group.push(record); groups.set(key, group);
+  }
+  const previousByIdentity = new Map<string, SourceDocumentRecord[]>();
+  for (const record of previous) {
+    const key = documentIdentity(record);
+    previousByIdentity.set(key, [...(previousByIdentity.get(key) ?? []), record]);
+  }
+  const merged = [...groups].map(([key, group]) => {
+    const preferred = group.find(record => record.cached && record.cachedPath) ?? group[0];
+    const priorScoped = previousByIdentity.get(key)?.find(record => record.identityBaseId);
+    const baseId = preferred.identityBaseId ?? preferred.id;
+    const id = priorScoped?.id ?? preferred.id;
+    const provenance = new Map(group.flatMap(record => record.provenance).map(entry => [JSON.stringify([entry.meetingId, entry.meetingItemId, entry.field]), entry]));
+    return { key, record: { ...preferred, id, identityBaseId: priorScoped?.identityBaseId ?? baseId,
+      meetingItemIds: [...new Set(group.flatMap(record => record.meetingItemIds))],
+      sourcePaths: [...new Set(group.flatMap(record => [record.sourcePath, ...(record.sourcePaths ?? [])]).filter((value): value is string => Boolean(value)))],
+      provenance: [...provenance.values()], priorityBody: group.some(record => record.priorityBody) } };
+  });
+  const claims = new Map<string, typeof merged>();
+  for (const entry of merged) claims.set(entry.record.id, [...(claims.get(entry.record.id) ?? []), entry]);
+  const used = new Set(merged.map(entry => entry.record.id));
+  for (const [id, entries] of claims) {
+    if (entries.length === 1) continue;
+    const retainedOwners = entries.filter(({ key }) => previousByIdentity.get(key)?.some(record => record.id === id && record.identityBaseId));
+    const ledgerOwners = entries.filter(({ record }) => texts.some(text => text.documentId === id
+      && text.meetingId === record.meetingId && text.documentType === record.documentType
+      && (Boolean(record.contentHash && text.sourceContentHash === record.contentHash)
+        || Boolean(record.sourceUrl && text.sourceUrl === record.sourceUrl)
+        || Boolean(text.sourcePath && record.sourcePaths?.includes(text.sourcePath)))));
+    const owner = retainedOwners.length === 1 ? retainedOwners[0] : ledgerOwners.length === 1 ? ledgerOwners[0] : [...entries].sort((a, b) => a.key.localeCompare(b.key))[0];
+    for (const entry of entries) {
+      if (entry === owner) continue;
+      const scopedId = `meeting-source-document-${hashText(`${entry.record.identityBaseId}\n${entry.key}`)}`;
+      if (used.has(scopedId)) throw new Error(`Conflicting scoped source-document identity: ${scopedId}`);
+      entry.record.id = scopedId;
+      used.add(scopedId);
+    }
+  }
+  const result = merged.map(entry => entry.record);
+  if (new Set(result.map(record => record.id)).size !== result.length) throw new Error("Source-document IDs must be unique");
+  return result;
+}
 
 function readJson<T>(fileName: string, fallback: T): T {
   try {
@@ -234,7 +295,10 @@ function discoverDocuments() {
     addDocument(records, { meeting, body, meetingItemId: item.id, field: "item_cached_text_path", sourcePath: item.cached_text_path, discoveredAt });
   }
 
-  const documents = [...records.values()].sort((left, right) => Number(right.priorityBody) - Number(left.priorityBody) || left.documentType.localeCompare(right.documentType));
+  const previous = readJson<{ records?: SourceDocumentRecord[] }>("public-meeting-source-documents.json", { records: [] }).records ?? [];
+  const textRecords = readJson<{ records?: TextDocumentIdentity[] }>("public-meeting-document-text.json", { records: [] }).records ?? [];
+  const documents = reconcileSourceDocumentIdentities([...records.values()], previous, textRecords)
+    .sort((left, right) => Number(right.priorityBody) - Number(left.priorityBody) || left.documentType.localeCompare(right.documentType));
   const audit = {
     generatedAt: discoveredAt,
     totals: {
@@ -258,8 +322,10 @@ function discoverDocuments() {
   return { generatedAt: discoveredAt, records: documents, audit };
 }
 
-mkdirSync(GENERATED_DIR, { recursive: true });
-const artifact = discoverDocuments();
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(artifact, null, 2)}\n`);
-console.log(`Discovered ${artifact.records.length} public meeting source documents at ${OUTPUT_PATH}`);
-console.log(JSON.stringify(artifact.audit.totals, null, 2));
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  mkdirSync(GENERATED_DIR, { recursive: true });
+  const artifact = discoverDocuments();
+  writeFileSync(OUTPUT_PATH, `${JSON.stringify(artifact, null, 2)}\n`);
+  console.log(`Discovered ${artifact.records.length} public meeting source documents at ${OUTPUT_PATH}`);
+  console.log(JSON.stringify(artifact.audit.totals, null, 2));
+}

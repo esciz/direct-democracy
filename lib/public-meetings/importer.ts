@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { copyFile, mkdir, readFile, readdir, rename, stat, writeFile } from "node:fs/promises";
+import { copyFile, lstat, mkdir, readFile, readdir, rename, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { reconcileNevadaAgencyMeetingHistory } from "@/lib/public-meetings/nevada-agency-identity";
@@ -25,7 +25,7 @@ import { extractOfficialActionsForItem, extractTopicOutcome, itemHasUnnamedVoteO
 import { buildMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
 import { writePublicMeetingRuntimeArtifacts } from "@/lib/public-meetings/runtime-artifacts";
 import { discoverNevadaAgencyMeetings, isNevadaAgencySource } from "@/lib/public-meetings/nevada-agency-sources";
-import { discoverNevadaPriorityMeetings, isNevadaPrioritySource, reconcilePriorityMeetingIdentities, removeMisclassifiedSchoolPortalDocuments } from "@/lib/public-meetings/nevada-priority-sources";
+import { discoverNevadaPriorityMeetings, isNevadaPrioritySource, reconcilePriorityMeetingIdentities, reconcilePriorityRetainedMetadataPaths, removeMisclassifiedSchoolPortalDocuments, type RetainedPrimeGovEvidence } from "@/lib/public-meetings/nevada-priority-sources";
 import { reconcileCarsonGranicusIdentities } from "@/lib/public-meetings/carson-granicus-identity";
 import type {
   CitizenVoteQuestionRecord,
@@ -92,6 +92,7 @@ type ArchiveMeetingDraft = {
   meetingCategory?: "government" | "parent_organization";
   aliasMeetingIds?: string[];
   sourceIdentityEvidence?: string[];
+  retainedMetadataPaths?: string[];
   meetingTimeKnown?: boolean;
   location?: string | null;
 };
@@ -150,19 +151,30 @@ function absolutizeUrl(url: string | null | undefined, baseUrl: string) {
   }
 }
 
-async function fetchText(url: string) {
-  const response = await fetch(url, {
-    signal: AbortSignal.timeout(20_000),
-    headers: {
-      "user-agent": "Direct Democracy civic meeting archive backfill; source-attribution research crawler",
-      accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    },
-  });
-  if (!response.ok) {
+export async function fetchPublicMeetingArchiveText(url: string) {
+  const eurekaCalendar = new URL(url).hostname === "events.eurekacountynv.gov";
+  for (let attempt = 0; attempt < (eurekaCalendar ? 2 : 1); attempt += 1) {
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(20_000),
+      headers: {
+        // This Govstack origin returns Azure Front Door OriginConnectionAborted
+        // for the longer archive User-Agent. Keep an honest collector identity.
+        "user-agent": eurekaCalendar ? "Direct Democracy civic meeting collector"
+          : "Direct Democracy civic meeting archive backfill; source-attribution research crawler",
+        accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      },
+    });
+    if (response.ok) return response.text();
+    await response.body?.cancel();
+    if (eurekaCalendar && attempt === 0 && [500, 502, 503, 504].includes(response.status)) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      continue;
+    }
     throw new Error(`Fetch failed ${response.status} for ${url}`);
   }
-  return response.text();
+  throw new Error(`Fetch failed for ${url}`);
 }
+const fetchText = fetchPublicMeetingArchiveText;
 
 async function fetchBuffer(url: string) {
   const response = await fetch(url, {
@@ -707,7 +719,28 @@ async function discoverWashoeSchoolsArchive(seed: PublicMeetingSourceSeed): Prom
   return [...drafts.values()];
 }
 
-async function collectHistoricalArchiveMeetings(seeds: PublicMeetingSourceSeed[]): Promise<ArchiveDiscoveryResult> {
+async function retainedPrimeGovEvidence(seed: PublicMeetingSourceSeed, previous: PublicMeetingRecord[], previousItems: PublicMeetingItemRecord[]) {
+  const root = absolutePublicMeetingPath(`data/manual-sources/public-meetings/${seed.id}/metadata`);
+  const topicSources = new Set(previousItems.filter((item) => item.source_local_path).map((item) => `${item.meeting_id}\n${item.source_local_path}`));
+  const candidates = previous.filter((meeting) => meeting.id.startsWith(`meeting-manual-${seed.id}-`) || meeting.id.startsWith(`meeting-${seed.id}-`))
+    .flatMap((meeting) => (meeting.source_local_paths ?? []).filter((sourcePath) => {
+      const absolute = absolutePublicMeetingPath(sourcePath);
+      return path.dirname(absolute) === root && path.extname(absolute).toLowerCase() === ".json";
+    }).map((sourcePath) => ({ meetingId: meeting.id, sourcePath, primaryTopicSource: topicSources.has(`${meeting.id}\n${sourcePath}`) })));
+  const evidence: RetainedPrimeGovEvidence[] = [];
+  for (let start = 0; start < candidates.length; start += 20) {
+    const results = await Promise.allSettled(candidates.slice(start, start + 20).map(async (candidate) => {
+      const filePath = absolutePublicMeetingPath(candidate.sourcePath);
+      const info = await lstat(filePath);
+      if (!info.isFile() || info.size > 1024 * 1024) return null;
+      return { ...candidate, payload: JSON.parse(await readFile(filePath, "utf8")) } satisfies RetainedPrimeGovEvidence;
+    }));
+    for (const result of results) if (result.status === "fulfilled" && result.value) evidence.push(result.value);
+  }
+  return evidence;
+}
+
+async function collectHistoricalArchiveMeetings(seeds: PublicMeetingSourceSeed[], previousItems: PublicMeetingItemRecord[]): Promise<ArchiveDiscoveryResult> {
   const drafts: ArchiveMeetingDraft[] = [];
   const errors: PublicMeetingIngestionReport["errors"] = [];
   const providerReports: PublicMeetingProviderReport[] = [];
@@ -720,7 +753,9 @@ async function collectHistoricalArchiveMeetings(seeds: PublicMeetingSourceSeed[]
       } else if (isNevadaPrioritySource(seed)) {
         const sourceWarnings: string[] = [];
         const previous = await readJsonFile<PublicMeetingRecord[]>(PUBLIC_MEETING_OUTPUT_FILES.meetings, []);
-        providerDrafts = reconcilePriorityMeetingIdentities(await discoverNevadaPriorityMeetings(seed, fetchText, new Date(), (warning) => sourceWarnings.push(warning)), previous).filter((draft) => isMeetingDateInDiscoveryWindow(draft.meetingDate));
+        const discovered = await discoverNevadaPriorityMeetings(seed, fetchText, new Date(), (warning) => sourceWarnings.push(warning));
+        const retainedEvidence = discovered.some((meeting) => meeting.sourceMeetingId !== undefined) ? await retainedPrimeGovEvidence(seed, previous, previousItems) : [];
+        providerDrafts = reconcilePriorityMeetingIdentities(discovered, previous, retainedEvidence).filter((draft) => isMeetingDateInDiscoveryWindow(draft.meetingDate));
         notes = sourceWarnings.length ? sourceWarnings.join(" ") : null;
       } else if (isNevadaAgencySource(seed)) {
         const sourceWarnings: string[] = [];
@@ -765,6 +800,7 @@ function archiveDraftToMeeting(draft: ArchiveMeetingDraft): PublicMeetingRecord 
     meeting_time_known: draft.meetingTimeKnown,
     meeting_alias_ids: draft.aliasMeetingIds,
     source_identity_evidence: draft.sourceIdentityEvidence,
+    source_local_paths: draft.retainedMetadataPaths,
     location: draft.location,
     meeting_type: draft.meetingType,
     title: draft.title,
@@ -1390,7 +1426,7 @@ export async function runPublicMeetingImport(options: { sourceIds?: string[] } =
     readJsonFile<CitizenVoteQuestionRecord[]>(PUBLIC_MEETING_PATHS.citizenQuestions, []),
     readJsonFile<PublicMeetingProviderReport[]>(PUBLIC_MEETING_PATHS.providerReport, []),
   ]);
-  const archiveDiscovery = await collectHistoricalArchiveMeetings(selectedSeeds);
+  const archiveDiscovery = await collectHistoricalArchiveMeetings(selectedSeeds, previousItems);
   const checkedAt = new Date().toISOString();
   const discoveryStatePath = "data/generated/public-meeting-discovery-state.json";
   type DiscoveryState = { sourceId: string; lastAttemptAt: string; lastSuccessAt: string | null; failures: number; meetingsDiscovered: number; error: string | null };
@@ -1481,7 +1517,7 @@ export async function runPublicMeetingImport(options: { sourceIds?: string[] } =
   }
 
   const agencyHistory = reconcileNevadaAgencyMeetingHistory(previousMeetings.map(removeMisclassifiedSchoolPortalDocuments), dedupeById([...meetings, ...archiveMeetings]));
-  const dedupedMeetings = reconcileCrossProviderMeetingIdentities(agencyHistory.meetings);
+  const dedupedMeetings = reconcilePriorityRetainedMetadataPaths(reconcileCrossProviderMeetingIdentities(agencyHistory.meetings), archiveDiscovery.drafts);
   const realMeetingIds = new Set(dedupedMeetings.map((meeting) => meeting.id));
   const canonicalMeetingIds = new Map(dedupedMeetings.flatMap((meeting) => (meeting.meeting_alias_ids ?? []).map((id) => [id, meeting.id] as const)));
   const dedupedItems = dedupeById([...previousItems, ...items].map((item) => {

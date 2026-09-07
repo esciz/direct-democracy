@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { normalizeWhitespace, summarizeText } from "@/lib/public-meetings/shared";
-import { extractPdfTextIsolated } from "@/lib/public-meetings/pdf-native-text";
+import { extractPdfTextIsolated, NATIVE_PDF_EXTRACTOR_VERSION, preferredNativePdfBackend, type PdfNativeTextResult } from "@/lib/public-meetings/pdf-native-text";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const TEXT_DIR = path.join(GENERATED_DIR, "public-meeting-document-text-cache");
@@ -62,12 +62,20 @@ type DocumentTextRecord = {
   ocrAttempted: boolean;
   ocrAvailable: boolean;
   failureReason: string | null;
-  extractedAt: string;
+  extractedAt: string | null;
   lastAttemptAt?: string;
   sourceContentHash?: string | null;
   ocrTextHash?: string | null;
   evaluatedOcrTextHash?: string | null;
   nativeTextFailureReason?: string | null;
+  nativeTextExtractorVersion?: number;
+  nativeTextExtractor?: "poppler" | "pdf-parse";
+  nativeTextEvaluationVersion?: number;
+  nativeTextEvaluationBackend?: "poppler" | "pdf-parse";
+  nativeTextCoverage?: "complete" | "partial" | "unknown";
+  nativePagesDetected?: number | null;
+  nativePagesWithText?: number | null;
+  textCompleteness?: "complete" | "partial" | "unknown";
 };
 
 type OcrResultRecord = {
@@ -79,6 +87,10 @@ type OcrResultRecord = {
   failureReason: string | null;
   sourceContentHash?: string | null;
   processedAt?: string;
+  pagesDetected?: number;
+  pagesSucceeded?: number;
+  pagesFailed?: number;
+  pagesTruncated?: boolean;
 };
 
 function readJson<T>(filePath: string, fallback: T): T {
@@ -95,13 +107,16 @@ function writeAtomically(filePath: string, value: string) {
   renameSync(temporaryPath, filePath);
 }
 
-function cleanText(value: string) {
+function cleanText(value: string, html = false) {
   // Preserve numbered headings and paragraph boundaries for the downstream topic parser.
-  return value.replace(/<script[\s\S]*?<\/script>/gi, " ")
+  // PDF/OCR text can contain literal angle brackets separated by many pages.
+  // Only remove markup from a source actually stored as HTML.
+  const content = html ? value.replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
     .replace(/<\/?(?:p|div|li|tr|h[1-6])\b[^>]*>|<br\s*\/?>/gi, "\n")
     .replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/gi, " ").replace(/&amp;/gi, "&")
-    .replace(/\r\n?/g, "\n").split("\n").map((line) => line.replace(/[\t ]+/g, " ").trim())
+    : value;
+  return content.replace(/\r\n?/g, "\n").split("\n").map((line) => line.replace(/[\t ]+/g, " ").trim())
     .filter(Boolean).join("\n").slice(0, MAX_TEXT_CHARS);
 }
 
@@ -185,12 +200,19 @@ function hasUsableExistingText(record: DocumentTextRecord | undefined) {
   } catch { return false; }
 }
 
+let preferredPdfBackend: ReturnType<typeof preferredNativePdfBackend> | undefined;
 function shouldReuseExisting(document: SourceDocumentRecord, forceAll: boolean) {
   if (forceAll) return false;
   const existing = existingTextByDocument.get(document.id);
   if (!hasUsableExistingText(existing)) return false;
   const sourceHash = sourceHashFor(document);
   if (!sourceHash || existing?.sourceContentHash !== sourceHash) return false;
+  const cachedPath = cacheByDocument.get(document.id)?.stableLocalPath ?? document.cachedPath ?? document.sourcePath;
+  if (cachedPath && /\.pdf$/i.test(cachedPath)) {
+    preferredPdfBackend ??= preferredNativePdfBackend();
+    if ((existing.nativeTextEvaluationVersion ?? existing.nativeTextExtractorVersion) !== NATIVE_PDF_EXTRACTOR_VERSION
+      || (existing.nativeTextEvaluationBackend ?? existing.nativeTextExtractor) !== preferredPdfBackend) return false;
+  }
   const ocr = eligibleOcrFor(document);
   // Source equality alone cannot hide newly completed/improved OCR, even for high-quality caches.
   if (ocr.textHash && ocr.textHash !== existing.ocrTextHash && ocr.textHash !== existing.evaluatedOcrTextHash) return false;
@@ -225,12 +247,13 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
   const absolutePath = path.isAbsolute(cachedPath) ? cachedPath : path.join(process.cwd(), cachedPath);
   let text = "";
   let failureReason: string | null = null;
+  let native: PdfNativeTextResult | null = null;
   try {
     if (/\.pdf$/i.test(cachedPath)) {
-      const native = await extractPdfTextIsolated(absolutePath, { timeoutMs: PDF_TIMEOUT_MS, maxBytes: PDF_MAX_BYTES, maxTextChars: MAX_TEXT_CHARS, workerPath: PDF_WORKER_PATH });
+      native = await extractPdfTextIsolated(absolutePath, { timeoutMs: PDF_TIMEOUT_MS, maxBytes: PDF_MAX_BYTES, maxTextChars: MAX_TEXT_CHARS, workerPath: PDF_WORKER_PATH });
       text = cleanText(native.text);
       failureReason = native.failureReason;
-    } else text = cleanText(readFileSync(absolutePath, "utf8"));
+    } else text = cleanText(readFileSync(absolutePath, "utf8"), /\.html?$/i.test(cachedPath) || /text\/html/i.test(cacheRecord?.contentType ?? ""));
   } catch (error) {
     failureReason = error instanceof Error ? error.message : "native_text_extraction_failed";
   }
@@ -240,16 +263,32 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
   const ocrText = ocrSidecar.text;
   const mergedText = text && ocrText ? `${text}\n\n${ocrText}` : text || ocrText;
   const mergedMethod: ExtractionMethod = text && ocrText ? "mixed" : ocrText ? "ocr_text" : method;
+  const incompleteNative = native?.coverage === "partial" || native?.truncated === true;
+  const textCompleteness = native?.coverage === "complete" && !native.truncated
+    || ocrText && ocr?.pagesDetected && ocr.pagesSucceeded === ocr.pagesDetected && !ocr.pagesTruncated && !ocr.pagesFailed
+    ? "complete" : incompleteNative || ocr?.pagesTruncated || ocr?.pagesFailed ? "partial" : "unknown";
+  const extractionQuality = mergedMethod === "native_text" && incompleteNative
+    ? (text.length >= 300 ? "low" : "insufficient") : qualityFor(mergedText);
   const existing = existingTextByDocument.get(document.id);
   const sourceHash = sourceHashFor(document);
   const qualityRank = { insufficient: 0, low: 1, medium: 2, high: 3 };
   // A failed/partial rerun must not overwrite good text from the same exact source version.
   if (existing && sourceHash && existing.sourceContentHash === sourceHash && hasUsableExistingText(existing)
-    && (mergedMethod === "failed" || qualityRank[qualityFor(mergedText)] < qualityRank[existing.extractionQuality]
+    && (mergedMethod === "failed" || qualityRank[extractionQuality] < qualityRank[existing.extractionQuality]
       || (existing.ocrAvailable && mergedText.length < existing.textLength))) {
     return { ...existing, meetingId: document.meetingId, meetingItemIds: document.meetingItemIds, documentType: document.documentType,
       sourceUrl: document.sourceUrl, sourcePath: document.sourcePath, evaluatedOcrTextHash: ocrSidecar.textHash ?? existing.evaluatedOcrTextHash,
-      nativeTextFailureReason: failureReason };
+      nativeTextFailureReason: failureReason,
+      // This branch keeps the OLD sidecar. A new complete parse that we do
+      // not store cannot prove completeness of those retained bytes. Preserve
+      // their prior proof; a known partial result may still downgrade it.
+      ...(textCompleteness === "partial" ? { textCompleteness } : {}),
+      ...(existing.extractionMethod === "native_text" && incompleteNative ? {
+        extractionQuality: existing.textLength >= 300 ? "low" as const : "insufficient" as const,
+        failureReason: "native_text_incomplete_pages", nativeTextCoverage: "partial" as const,
+        nativePagesDetected: native?.pagesDetected, nativePagesWithText: native?.pagesWithText,
+      } : {}),
+      ...(native?.backend && !native.failureReason ? { nativeTextEvaluationVersion: NATIVE_PDF_EXTRACTOR_VERSION, nativeTextEvaluationBackend: native.backend } : {}) };
   }
   // Immutable content paths keep an interrupted refresh from changing the text referenced by the old ledger.
   const textPath = mergedText.length ? path.join("data", "generated", "public-meeting-document-text-cache", `${document.id}-${createHash("sha256").update(mergedText).digest("hex").slice(0, 24)}.txt`) : null;
@@ -264,18 +303,22 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
     sourcePath: document.sourcePath,
     extractedTextPath: textPath,
     extractionMethod: mergedMethod,
-    extractionQuality: qualityFor(mergedText),
+    extractionQuality,
     textLength: mergedText.length,
     confidence: ocrText && !text ? Number(((ocr?.confidence ?? confidenceFor(mergedText, "ocr_text"))).toFixed(2)) : confidenceFor(mergedText, mergedMethod),
     sourceSnippet: mergedText ? summarizeText(mergedText, 700) : null,
     ocrAttempted: Boolean(ocr) || (method === "failed" && Boolean(cachedPath)),
     ocrAvailable: Boolean(ocrText),
-    failureReason: mergedMethod === "failed" ? failureReason ?? (ocrSidecar.missing ? "ocr_text_sidecar_missing" : "native_text_too_thin_ocr_unavailable") : null,
+    failureReason: mergedMethod === "failed" ? failureReason ?? (ocrSidecar.missing ? "ocr_text_sidecar_missing" : "native_text_too_thin_ocr_unavailable")
+      : mergedMethod === "native_text" && incompleteNative ? "native_text_incomplete_pages" : null,
     extractedAt,
     sourceContentHash: sourceHash,
     ocrTextHash: ocrSidecar.textHash,
     evaluatedOcrTextHash: ocrSidecar.textHash,
     nativeTextFailureReason: failureReason,
+    ...(native?.backend ? { nativeTextExtractorVersion: NATIVE_PDF_EXTRACTOR_VERSION, nativeTextExtractor: native.backend,
+      nativeTextCoverage: native.coverage ?? "unknown", nativePagesDetected: native.pagesDetected, nativePagesWithText: native.pagesWithText } : {}),
+    textCompleteness,
   };
 }
 
@@ -289,9 +332,10 @@ async function main() {
   const allDocuments = readJson<{ records?: SourceDocumentRecord[] }>(DOCUMENTS_PATH, { records: [] }).records ?? [];
   const sourceIds = new Set(process.argv.filter((arg) => arg.startsWith("--source=")).flatMap((arg) => arg.slice("--source=".length).split(",")).filter(Boolean));
   const documentIds = new Set(process.argv.filter((arg) => arg.startsWith("--document-id=")).flatMap((arg) => arg.slice("--document-id=".length).split(",")).filter(Boolean));
-  const scoped = sourceIds.size > 0 || documentIds.size > 0;
-  const documents = allDocuments.filter((document) => (!sourceIds.size || sourceIds.has(document.organizationId ?? "")) && (!documentIds.size || documentIds.has(document.id)));
-  if (scoped && !documents.length) throw new Error(`No source documents match the provided source/document filters`);
+  const documentTypes = new Set(process.argv.filter((arg) => arg.startsWith("--document-type=")).flatMap((arg) => arg.slice("--document-type=".length).split(",")).filter(Boolean));
+  const scoped = sourceIds.size > 0 || documentIds.size > 0 || documentTypes.size > 0;
+  const documents = allDocuments.filter((document) => (!sourceIds.size || sourceIds.has(document.organizationId ?? "")) && (!documentIds.size || documentIds.has(document.id)) && (!documentTypes.size || documentTypes.has(document.documentType)));
+  if (scoped && !documents.length) throw new Error(`No source documents match the provided source/document/type filters`);
   const selectedDocumentIds = new Set(documents.map((document) => document.id));
   // Retain deferred evidence exactly as it was. New work replaces one record at a
   // time; a bounded pass must never publish a ledger containing only its batch.
@@ -331,6 +375,18 @@ async function main() {
     if (extracted % 20 === 0) persist(false);
     if ((index + 1) % 100 === 0) console.log(`Document text extraction progress: ${index + 1}/${documents.length} scanned, ${reused} reused, ${extracted} processed`);
   }
+  // A bounded pass may discover more documents than it can attempt. Preserve
+  // explicit queue state for those new rows instead of making their absence
+  // indistinguishable from ledger corruption. No attempt time or text is invented.
+  for (const document of documents) if (!recordsByDocument.has(document.id)) {
+    recordsByDocument.set(document.id, {
+      id: `document-text-${document.id}`, documentId: document.id, meetingId: document.meetingId,
+      meetingItemIds: document.meetingItemIds, documentType: document.documentType, sourceUrl: document.sourceUrl,
+      sourcePath: document.sourcePath, extractedTextPath: null, extractionMethod: "failed", extractionQuality: "insufficient",
+      textLength: 0, confidence: 0, sourceSnippet: null, ocrAttempted: false, ocrAvailable: false,
+      failureReason: "extraction_budget_deferred", extractedAt: null, textCompleteness: "unknown",
+    });
+  }
   const audit = persist(true);
   console.log(`Processed ${extracted}/${documents.length} selected documents, reused ${reused}, deferred ${audit.totals.documentsDeferred}; retained ${recordsByDocument.size} text ledger records at ${OUTPUT_PATH}`);
   console.log(JSON.stringify(audit.totals, null, 2));
@@ -339,7 +395,7 @@ async function main() {
     const records = [...recordsByDocument.values()];
     const audit = {
       generatedAt: extractedAt,
-      scope: { sourceIds: [...sourceIds], documentIds: [...documentIds], documentsSelected: documents.length, pdfTimeoutMs: PDF_TIMEOUT_MS, pdfMaxBytes: PDF_MAX_BYTES, maxDocuments: Number.isFinite(MAX_DOCUMENTS) ? MAX_DOCUMENTS : null, maxDurationMs: Number.isFinite(MAX_DURATION_MS) ? MAX_DURATION_MS : null, completed, budgetReached },
+      scope: { sourceIds: [...sourceIds], documentIds: [...documentIds], documentTypes: [...documentTypes], documentsSelected: documents.length, pdfTimeoutMs: PDF_TIMEOUT_MS, pdfMaxBytes: PDF_MAX_BYTES, maxDocuments: Number.isFinite(MAX_DOCUMENTS) ? MAX_DOCUMENTS : null, maxDurationMs: Number.isFinite(MAX_DURATION_MS) ? MAX_DURATION_MS : null, completed, budgetReached },
       totals: {
         documentsScanned: scanned,
         documentsDeferred: documents.length - updatedDocumentIds.size,

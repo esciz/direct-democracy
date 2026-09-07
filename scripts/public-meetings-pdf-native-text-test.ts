@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { extractPdfTextIsolated } from "../lib/public-meetings/pdf-native-text";
+import { extractPdfTextIsolated, preferredNativePdfBackend } from "../lib/public-meetings/pdf-native-text";
 
 async function main() {
   const root = mkdtempSync(path.join(os.tmpdir(), "meeting-pdf-isolation-test-"));
@@ -35,7 +35,60 @@ async function main() {
     const native = await extractPdfTextIsolated(source);
     assert.equal(native.failureReason, null, "The actual PDF worker must return native text successfully");
     assert.match(native.text, /Official meeting motion approved/);
-    console.log("PDF isolation tests passed: CPU-bound hard timeout, next-document continuation, size guard, missing-source recovery, and real native PDF extraction.");
+    const bin = path.join(root, "tools"); mkdirSync(bin);
+    const originalPath = process.env.PATH;
+    const stub = (name: string, code: string) => { const file = path.join(bin, name); writeFileSync(file, `#!${process.execPath}\n${code}\n`); chmodSync(file, 0o755); };
+    const pageText = "Minutes: members reviewed public comments and approved the transportation budget after considering staffing, maintenance, accessibility, safety, community concerns, financial reports, district priorities and construction schedules. ".repeat(8);
+    try {
+      process.env.PATH = bin;
+      const allPages = Array.from({ length: 16 }, (_, index) => `PAGE_${index + 1}\n${pageText}`).join("\f") + "\f";
+      stub("pdfinfo", "process.stdout.write('Pages: 16\\n')");
+      stub("pdftotext", `process.stdout.write(process.argv.includes('-v')?'fixture Poppler':${JSON.stringify(allPages)})`);
+      assert.equal(preferredNativePdfBackend(), "poppler");
+      const poppler = await extractPdfTextIsolated(source);
+      assert.equal(poppler.backend, "poppler", "Poppler must be preferred over the fallback parser");
+      assert.equal(poppler.coverage, "complete");
+      assert.equal(poppler.pagesDetected, 16);
+      assert.equal(poppler.pagesWithText, 16);
+      assert.ok(poppler.text.includes("PAGE_1\n") && poppler.text.includes("PAGE_16\n"));
+      const capped = await extractPdfTextIsolated(source, { maxTextChars: 500 });
+      assert.equal(capped.text.length, 500);
+      assert.equal(capped.truncated, true);
+      assert.equal(capped.coverage, "partial", "Output limits must not claim complete extraction");
+      assert.match(capped.failureReason ?? "", /pdf_native_text_truncated/);
+      stub("pdftotext", `process.stdout.write(${JSON.stringify("\f".repeat(15) + pageText + "\f")})`);
+      const sparse = await extractPdfTextIsolated(source);
+      assert.equal(sparse.coverage, "partial", "Only the final page containing native text is incomplete");
+      assert.equal(sparse.pagesProcessed, 16);
+      assert.equal(sparse.pagesWithText, 1);
+      stub("pdftotext", `process.stdout.write(${JSON.stringify(Array.from({ length: 16 }, () => "SCANNED ARCHIVE HEADER PAGE NUMBER ".repeat(20)).join("\f") + "\f")})`);
+      const markers = await extractPdfTextIsolated(source);
+      assert.equal(markers.coverage, "partial", "Repeated header words are not substantive native page evidence");
+      assert.equal(markers.pagesWithText, 0);
+      stub("pdftotext", "process.exit(3)");
+      const rejected = await extractPdfTextIsolated(source);
+      assert.match(rejected.failureReason ?? "", /native_tool_exit:pdftotext:3/);
+      assert.equal(rejected.text, "", "A Poppler failure must not silently substitute potentially incomplete fallback text");
+      rmSync(path.join(bin, "pdftotext"));
+      assert.equal(preferredNativePdfBackend(), "pdf-parse");
+      const fallback = await extractPdfTextIsolated(source);
+      assert.equal(fallback.backend, "pdf-parse");
+      assert.equal(fallback.coverage, "unknown", "Fallback text has no verified page completeness");
+      assert.match(fallback.text, /Official meeting motion approved/);
+    } finally { process.env.PATH = originalPath; }
+
+    if (process.platform !== "win32") {
+      const marker = path.join(root, "grandchild-ticks.txt");
+      const grandchildWorker = path.join(root, "grandchild.mjs");
+      writeFileSync(grandchildWorker, `import { spawn } from 'node:child_process';\nspawn(process.execPath,['-e',${JSON.stringify(`const fs=require('node:fs'); fs.writeFileSync(${JSON.stringify(marker)},'start'); setInterval(()=>fs.appendFileSync(${JSON.stringify(marker)},'tick'),20);`)}],{stdio:'ignore'});\nwhile(true){}\n`);
+      const groupTimeout = await extractPdfTextIsolated(source, { workerPath: grandchildWorker, timeoutMs: 500 });
+      assert.match(groupTimeout.failureReason ?? "", /pdf_native_text_timeout/);
+      assert.ok(existsSync(marker), "Fixture subprocess must have started before the hard timeout");
+      const stopped = readFileSync(marker, "utf8");
+      await new Promise(resolve => setTimeout(resolve, 100));
+      assert.equal(readFileSync(marker, "utf8"), stopped, "Timed-out parser subprocesses must not survive their process group");
+    }
+    console.log("PDF isolation passed: Poppler preference, missing-tool fallback, page coverage, bounded output, hard timeout/process-group cleanup, source limits, and real PDF extraction.");
   } finally { rmSync(root, { recursive: true, force: true }); }
 }
 

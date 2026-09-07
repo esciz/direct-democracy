@@ -9,10 +9,12 @@ const tools = ["pdfinfo", "pdftotext", "pdftoppm", "tesseract", "ocrmypdf"] as c
 
 function detect(command: string) {
   try {
-    const binaryPath = execFileSync("command", ["-v", command], { encoding: "utf8", timeout: 3000 }).trim();
+    // `command` is a shell builtin on Linux, not an executable. Pass the fixed
+    // tool name as a positional argument so detection also works on workers.
+    const binaryPath = execFileSync("/bin/sh", ["-c", 'command -v "$1"', "ocr-tool-detection", command], { encoding: "utf8", timeout: 3000 }).trim();
     let version: string | null = null;
     try {
-      const output = execFileSync(command, command === "tesseract" ? ["--version"] : ["-v"], { encoding: "utf8", timeout: 5000 });
+      const output = execFileSync(binaryPath, [command === "tesseract" || command === "ocrmypdf" ? "--version" : "-v"], { encoding: "utf8", timeout: 5000, stdio: ["ignore", "pipe", "pipe"] });
       version = output.split("\n")[0]?.trim() || null;
     } catch (error) {
       const stderr = error && typeof error === "object" && "stderr" in error ? String((error as { stderr?: Buffer | string }).stderr ?? "") : "";

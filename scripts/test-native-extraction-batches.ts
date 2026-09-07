@@ -49,6 +49,14 @@ try {
   assert.ok(first.records.find((row: any) => row.documentId === "a-new-failure").lastAttemptAt);
   const cache = JSON.parse(readFileSync(path.join(generated, "public-meeting-document-cache-index.json"), "utf8"));
   assert.equal(cache.records.find((row: any) => row.documentId === "b-new-minutes").extractionStatus, "pending", "Deferred documents must remain pending in the cache");
+  const deferred = first.records.find((row: any) => row.documentId === "b-new-minutes");
+  assert.equal(deferred.failureReason, "extraction_budget_deferred", "A new unattempted document must have explicit budget queue state");
+  assert.equal(deferred.extractedAt, null);
+  assert.equal(deferred.lastAttemptAt, undefined, "Deferral must not fabricate an extraction attempt timestamp");
+  assert.equal(deferred.extractedTextPath, null);
+  assert.equal(deferred.textLength, 0);
+  execFileSync(process.execPath, ["--import", "tsx", path.join(project, "scripts/reprocess-cached-meeting-items.ts"), "--document-type=minutes"], { cwd: fixture, env: { ...process.env, TSX_TSCONFIG_PATH: path.join(project, "tsconfig.json") }, stdio: "pipe", timeout: 20000 });
+  assert.equal(load().records.find((row: any) => row.documentId === "b-new-minutes").extractedAt, null, "The topic parser must accept unattempted text records without fabricating evidence");
 
   run();
   const second = load();
@@ -57,7 +65,7 @@ try {
   assert.equal(recovered.sourceContentHash, hash(sourceText));
   assert.equal(readFileSync(path.join(fixture, recovered.extractedTextPath), "utf8"), sourceText.trim() + "\n");
   assert.equal(second.audit.totals.documentsProcessed, 1);
-  assert.ok(!second.records.some((row: any) => row.documentId === "d-agenda"), "Available minutes have priority over agendas");
+  assert.equal(second.records.find((row: any) => row.documentId === "d-agenda").failureReason, "extraction_budget_deferred", "Available minutes have priority over deferred agendas");
 
   run();
   const third = load();

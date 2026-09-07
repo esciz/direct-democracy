@@ -32,7 +32,7 @@ const approved = new Set([
   ...read<Array<{ topic_item_id: string; review_status: string }>>("public-meeting-voting-cards.json", []).filter((row) => row.review_status === "approved").map((row) => row.topic_item_id),
   ...read<Array<{ topic_item_id: string; review_status: string }>>("public-meeting-official-actions.json", []).filter((row) => row.review_status === "approved").map((row) => row.topic_item_id),
 ]);
-type TextRecord = { documentId: string; meetingId: string; documentType: string; extractedTextPath: string | null; sourceUrl: string | null; sourcePath: string | null; extractionQuality: string; extractionMethod: string; sourceContentHash?: string | null; extractedAt: string };
+type TextRecord = { documentId: string; meetingId: string; documentType: string; extractedTextPath: string | null; sourceUrl: string | null; sourcePath: string | null; extractionQuality: string; extractionMethod: string; sourceContentHash?: string | null; extractedAt: string | null };
 type ParseState = { documentId: string; meetingId: string; sourceHash: string; textHash: string; parserVersion: number; itemIds: string[]; parsedAt: string };
 const cache = new Map(read<{ records: Array<{ documentId: string; contentHash: string; stableLocalPath: string }> }>("public-meeting-document-cache-index.json", { records: [] }).records.map((row) => [row.documentId, row]));
 const state = new Map(read<{ records: ParseState[] }>("public-meeting-item-processing-state.json", { records: [] }).records.map((row) => [row.documentId, row]));
@@ -44,7 +44,7 @@ const key = (item: PublicMeetingItemRecord) => item.item_number ? `${item.meetin
 const identities = new Map([...items.values()].filter(item => !item.source_url || !heldDocumentUrls.has(item.source_url)).map((item) => [key(item), item.id]));
 const report: Array<{ documentId: string; meetingId: string; status: string; itemCount: number; reason?: string }> = [];
 let processed = 0;
-for (const document of [...documents].sort((left, right) => right.extractedAt.localeCompare(left.extractedAt))) {
+for (const document of [...documents].sort((left, right) => (right.extractedAt ?? "").localeCompare(left.extractedAt ?? ""))) {
   if (selectedDocuments.size && !selectedDocuments.has(document.documentId)) continue;
   if (document.sourceUrl && heldDocumentUrls.has(document.sourceUrl)) continue;
   const meeting = meetings.get(document.meetingId);

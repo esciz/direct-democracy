@@ -1,9 +1,9 @@
 import { createHash } from "node:crypto";
 import { nevadaMeetingDate, sourceLinks, type NevadaAgencyMeeting } from "./nevada-agency-sources";
-import { normalizeWhitespace, stripHtml } from "./shared";
+import { normalizeWhitespace, slugify, stripHtml } from "./shared";
 import type { PublicMeetingRecord, PublicMeetingSourceSeed } from "./types";
 
-export type PriorityMeeting = NevadaAgencyMeeting & { aliasMeetingIds?: string[]; sourceIdentityEvidence?: string[] };
+export type PriorityMeeting = NevadaAgencyMeeting & { aliasMeetingIds?: string[]; sourceIdentityEvidence?: string[]; sourceMeetingId?: number; sourceCommitteeId?: number; retainedMetadataPaths?: string[] };
 type FetchText = (url: string) => Promise<string>;
 const clean = (value: string) => normalizeWhitespace(stripHtml(value).replace(/&nbsp;/gi, " ").replace(/&#(\d+);/g, (_, c) => String.fromCodePoint(Number(c))));
 const hash = (value: string) => createHash("sha256").update(value).digest("hex").slice(0, 12);
@@ -204,15 +204,31 @@ export function parseNsheMeetings(html: string, seed: PublicMeetingSourceSeed, u
   return finish([...map.values()]);
 }
 
-export function isNevadaPrioritySource(seed: PublicMeetingSourceSeed) { return ["clark-county-school-district", "washoe-county-school-district", "clark-county-commission", "washoe-county-commission", "sparks-city-council", "nshe-board-of-regents", "elko-city-council", "henderson-city-council", "reno-city-council", "elko-county-commission", "eureka-county-commission"].includes(seed.id); }
+const primeGovHosts: Record<string, string> = {
+  "reno-city-council": "https://reno.primegov.com",
+  "las-vegas-city-council": "https://lasvegas.primegov.com",
+  "boulder-city-council": "https://bcnv.primegov.com",
+  "north-las-vegas-city-council": "https://cityofnorthlasvegas.primegov.com",
+};
+export function isNevadaPrioritySource(seed: PublicMeetingSourceSeed) { return Object.hasOwn(primeGovHosts, seed.id) || ["clark-county-school-district", "washoe-county-school-district", "clark-county-commission", "washoe-county-commission", "sparks-city-council", "nshe-board-of-regents", "elko-city-council", "henderson-city-council", "elko-county-commission", "eureka-county-commission"].includes(seed.id); }
 export async function discoverNevadaPriorityMeetings(seed: PublicMeetingSourceSeed, fetchText: FetchText, now = new Date(), warn = (_message: string) => {}): Promise<PriorityMeeting[]> {
   if (/^(clark|washoe)-county-school-district$/.test(seed.id)) return schoolMeetings(seed, fetchText, now, warn);
   if (seed.scraperType === "legistar") { const url = new URL("Calendar.aspx", seed.meetingIndexUrl!).toString(); return parseLegistarCalendar(await fetchText(url), seed, url); }
   const onbaseUrls: Record<string, string> = { "sparks-city-council": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/", "elko-city-council": "https://ob.elkocitynv.gov/onbaseagendaonline/", "henderson-city-council": "https://henderson.hylandcloud.com/231agendaonline/" };
   if (onbaseUrls[seed.id]) { const url = onbaseUrls[seed.id]; return parseOnBaseMeetings(await fetchText(url), seed, url); }
-  if (seed.id === "reno-city-council") { const url = "https://reno.primegov.com/public/portal"; const upcoming = JSON.parse(await fetchText("https://reno.primegov.com/api/v2/PublicPortal/ListUpcomingMeetings")); const archive = JSON.parse(await fetchText(`https://reno.primegov.com/api/v2/PublicPortal/ListArchivedMeetings?year=${now.getFullYear()}`)); const committees = JSON.parse(await fetchText("https://reno.primegov.com/api/committee/GetCommitteeesListByShowInPublicPortal")); const names = new Map<number, string>(committees.map((c: {id: number; name: string}) => [c.id, clean(c.name)])); return [...new Map(parsePrimeGovMeetings([...archive, ...upcoming], seed, url, names).map((r) => [r.id, r])).values()]; }
+  if (primeGovHosts[seed.id]) {
+    const host = primeGovHosts[seed.id];
+    const [upcoming, archive, committees] = await Promise.all([
+      fetchText(`${host}/api/v2/PublicPortal/ListUpcomingMeetings`),
+      fetchText(`${host}/api/v2/PublicPortal/ListArchivedMeetings?year=${now.getFullYear()}`),
+      fetchText(`${host}/api/committee/GetCommitteeesListByShowInPublicPortal`),
+    ]).then((responses) => responses.map((response) => JSON.parse(response)));
+    if (![upcoming, archive, committees].every(Array.isArray)) throw new Error("PrimeGov public archive, upcoming and committee responses must be lists");
+    const names = new Map<number, string>(committees.map((c: { id: number; name: string }) => [c.id, clean(c.name)]));
+    return [...new Map(parsePrimeGovMeetings([...archive, ...upcoming], seed, `${host}/public/portal`, names).map((r) => [r.id, r])).values()];
+  }
   if (seed.id === "elko-county-commission") { const url = "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5"; return parsePriorityGranicus(await fetchText(url), seed, url); }
-  if (seed.id === "eureka-county-commission") { const map = new Map<string, PriorityMeeting>(); for (const url of [seed.meetingIndexUrl!, seed.minutesArchiveUrl!].filter(Boolean)) for (const r of parseEurekaDocuments(await fetchText(url), seed, url)) { const old = map.get(r.id); map.set(r.id, old ? { ...old, ...r, agendaUrl: r.agendaUrl ?? old.agendaUrl, packetUrl: r.packetUrl ?? old.packetUrl, minutesUrl: r.minutesUrl ?? old.minutesUrl, sourceUrls: [...old.sourceUrls, ...r.sourceUrls] } : r); } return finish([...map.values()]); }
+  if (seed.id === "eureka-county-commission") return discoverEurekaMeetings(seed, fetchText, now, warn);
   if (seed.id === "nshe-board-of-regents") {
     const calendar = "https://nshe.nevada.edu/regents/upcoming-meetings/"; const archive = "https://nshe.nevada.edu/regents/archive/";
     const calendars = parseNsheMeetings(await fetchText(calendar), seed, calendar); const archives = parseNsheMeetings(await fetchText(archive), seed, archive);
@@ -222,7 +238,59 @@ export async function discoverNevadaPriorityMeetings(seed: PublicMeetingSourceSe
 }
 
 /** Provider identity from public URLs survives URL parameter order and calendar time corrections. */
-export function reconcilePriorityMeetingIdentities(incoming: PriorityMeeting[], previous: PublicMeetingRecord[]): PriorityMeeting[] {
+export type RetainedPrimeGovEvidence = { meetingId: string; sourcePath: string; payload: unknown; primaryTopicSource?: boolean };
+
+function retainedPrimeGovMatch(row: PriorityMeeting, old: PublicMeetingRecord, evidence: RetainedPrimeGovEvidence) {
+  const host = primeGovHosts[row.sourceId];
+  if (!host || evidence.meetingId !== old.id || !old.id.startsWith(`meeting-manual-${row.sourceId}-`)
+    || !old.public_body_id.startsWith(`body-manual-${row.sourceId}-`)
+    || !old.source_local_paths?.includes(evidence.sourcePath)) return null;
+  const prefix = `data/manual-sources/public-meetings/${row.sourceId}/metadata/`;
+  if (!evidence.sourcePath.startsWith(prefix) || !/^[^/\\]+\.json$/.test(evidence.sourcePath.slice(prefix.length))
+    || evidence.sourcePath.includes("..")) return null;
+  const expectedHost = new URL(host).hostname;
+  const officialPublicApi = old.source_urls.some(value => {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" && url.hostname === expectedHost
+        && /^\/api\/(?:v2\/PublicPortal\/List(?:Archived|Upcoming)Meetings|Meeting\/\d+)\/?$/i.test(url.pathname);
+    } catch { return false; }
+  });
+  if (!officialPublicApi || !evidence.payload || typeof evidence.payload !== "object" || Array.isArray(evidence.payload)) return null;
+  const payload = evidence.payload as Record<string, unknown>;
+  if (!Number.isInteger(payload.id) || !Number.isInteger(payload.committeeId)
+    || payload.id !== row.sourceMeetingId || payload.committeeId !== row.sourceCommitteeId
+    || row.id !== `meeting-${row.sourceId}-primegov-${payload.id}`
+    || typeof payload.title !== "string" || !payload.title.trim()
+    || typeof payload.date !== "string" || typeof payload.time !== "string" || !Array.isArray(payload.documentList)) return null;
+  const nativeDate = nevadaMeetingDate(payload.date);
+  if (!nativeDate) return null;
+  const nativeStart = priorityMeetingTime(nativeDate, payload.time);
+  if (!nativeStart.meetingTimeKnown || !row.meetingTimeKnown || nativeStart.meetingDate !== row.meetingDate) return null;
+  // A retained manual timestamp may have used the wrong winter UTC offset. Its
+  // explicit local meeting day must still agree with the authoritative API row.
+  if (!old.meeting_date || !Number.isFinite(Date.parse(old.meeting_date)) || day(old.meeting_date) !== nativeDate) return null;
+  const publishedTemplateKeys = new Set(payload.documentList.flatMap(value => {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return [];
+    const document = value as Record<string, unknown>;
+    if (document.meetingId !== payload.id || document.publishStatus !== 1 || document.compileOutputType !== 1) return [];
+    if (Number.isInteger(document.templateId) && Number(document.templateId) > 0) return [`template:${document.templateId}`];
+    return Number.isInteger(document.id) && Number(document.id) > 0 ? [`file:${document.id}`] : [];
+  }));
+  const sharedTemplate = row.sourceUrls.find(value => {
+    try {
+      const url = new URL(value);
+      if (url.protocol !== "https:" || url.hostname !== expectedHost) return false;
+      const parameters = new Map([...url.searchParams].map(([key, value]) => [key.toLowerCase(), value]));
+      return publishedTemplateKeys.has(`template:${parameters.get("meetingtemplateid")}`)
+        || publishedTemplateKeys.has(`file:${parameters.get("compiledmeetingdocumentfileid")}`);
+    } catch { return false; }
+  });
+  if (!sharedTemplate) return null;
+  return `Retained public PrimeGov metadata ${evidence.sourcePath} identifies provider meeting ${payload.id}, committee ${payload.committeeId}, and exact native start ${nativeStart.meetingDate}; its published document also matches ${sharedTemplate}.`;
+}
+
+export function reconcilePriorityMeetingIdentities(incoming: PriorityMeeting[], previous: PublicMeetingRecord[], retainedEvidence: RetainedPrimeGovEvidence[] = []): PriorityMeeting[] {
   function identity(url: string) {
     try {
       const u = new URL(url); const params = new Map([...u.searchParams].map(([k,v]) => [k.toLowerCase(), v]));
@@ -231,12 +299,116 @@ export function reconcilePriorityMeetingIdentities(incoming: PriorityMeeting[], 
       return null;
     } catch { return null; }
   }
+  const previousById = new Map(previous.map(row => [row.id, row]));
+  const rawClaims = new Map<string, Map<string, string>>();
+  const primaryClaims = new Map<string, Set<string>>();
+  const pathClaims = new Map<string, Set<string>>();
+  for (const evidence of retainedEvidence) {
+    const old = previousById.get(evidence.meetingId);
+    if (!old) continue;
+    for (const row of incoming) {
+      const proof = retainedPrimeGovMatch(row, old, evidence);
+      if (!proof) continue;
+      const claims = rawClaims.get(old.id) ?? new Map<string, string>();
+      claims.set(row.id, proof); rawClaims.set(old.id, claims);
+      const owners = pathClaims.get(evidence.sourcePath) ?? new Set<string>();
+      owners.add(row.id); pathClaims.set(evidence.sourcePath, owners);
+      const payload = evidence.payload as { title: string };
+      if (evidence.primaryTopicSource && clean(payload.title).toLowerCase() === clean(old.title).toLowerCase()) {
+        const primary = primaryClaims.get(old.id) ?? new Set<string>();
+        primary.add(row.id); primaryClaims.set(old.id, primary);
+      }
+    }
+  }
   for (const row of incoming) {
     const keys = new Set(row.sourceUrls.map(identity).filter(Boolean));
     const matches = previous.filter((old) => (old.id.startsWith(`meeting-${row.sourceId}-`) || old.id.startsWith(`meeting-manual-${row.sourceId}-`)) && old.id !== row.id && old.source_urls.some((u) => keys.has(identity(u)) && identity(u)));
     for (const old of matches) { row.aliasMeetingIds = [...new Set([...(row.aliasMeetingIds ?? []), old.id])]; row.sourceIdentityEvidence = [...new Set([...(row.sourceIdentityEvidence ?? []), "Official provider meeting ID and host match the retained historical record; calendar time corrections preserve its alias."])]; }
+    for (const [oldId, claims] of rawClaims) {
+      // A composite old row may contain several bodies' metadata. Its exact
+      // retained title AND topic's attached source must identify one primary row.
+      const primary = primaryClaims.get(oldId);
+      const selected = claims.size === 1 ? [...claims.keys()][0] : primary?.size === 1 ? [...primary][0] : null;
+      if (selected !== row.id) continue;
+      row.aliasMeetingIds = [...new Set([...(row.aliasMeetingIds ?? []), oldId])];
+      row.sourceIdentityEvidence = [...new Set([...(row.sourceIdentityEvidence ?? []), claims.get(row.id)!])];
+    }
+    for (const [sourcePath, owners] of pathClaims) {
+      if (owners.size !== 1 || !owners.has(row.id)) continue;
+      row.retainedMetadataPaths = [...new Set([...(row.retainedMetadataPaths ?? []), sourcePath])];
+    }
   }
+  reconcileEurekaDocumentIdentities(incoming, previous);
   return incoming;
+}
+
+function reconcileEurekaDocumentIdentities(incoming: PriorityMeeting[], previous: PublicMeetingRecord[]) {
+  const candidates = incoming.filter((row) => row.sourceId === "eureka-county-commission");
+  const reviewedLiquorUrl = "https://www.eurekacountynv.gov/media/rdagiosf/jan-6-2026-liquor-board-minutes.pdf";
+  // Reviewed against the retained PDF bytes and its native January 6 Liquor Board
+  // header. This corrects one identified legacy generic-body assignment, not all
+  // commission records mentioning liquor or sharing another body's attachments.
+  const reviewedLiquorIdentity = (row: PriorityMeeting, old: PublicMeetingRecord) => old.id === "meeting-eureka-county-commission-2026-01-06-614b563a"
+    && row.id === "meeting-eureka-county-commission-2026-01-06-cbc0a39db977"
+    && row.publicBodyName === "Eureka County Liquor Board"
+    && old.public_body_id === "body-eureka-county-commission-eureka-county-commission"
+    && row.minutesUrl === reviewedLiquorUrl && old.minutes_url === reviewedLiquorUrl
+    && !old.agenda_url && !old.packet_url && !old.transcript_url
+    && !!old.meeting_date && day(old.meeting_date) === "2026-01-06" && day(row.meetingDate) === "2026-01-06";
+  for (const old of previous) {
+    if (!old.id.startsWith("meeting-eureka-county-commission-") || !old.meeting_date || !Number.isFinite(Date.parse(old.meeting_date))) continue;
+    const oldDay = day(old.meeting_date);
+    const matches = candidates.filter((row) => {
+      if ((!reviewedLiquorIdentity(row, old) && old.public_body_id !== `body-${row.sourceId}-${slugify(row.publicBodyName)}`) || oldDay !== day(row.meetingDate)) return false;
+      if (!row.minutesUrl || old.minutes_url !== row.minutesUrl || !old.source_urls.includes(row.minutesUrl)) return false;
+      try {
+        const url = new URL(row.minutesUrl);
+        return url.protocol === "https:" && url.hostname === "www.eurekacountynv.gov" && /\/media\/[^/]+\/[^/]+\.pdf$/i.test(url.pathname)
+          && /minutes/i.test(url.pathname) && nevadaMeetingDate(decodeURIComponent(url.pathname.split("/").at(-1)!)) === day(row.meetingDate);
+      } catch { return false; }
+    });
+    if (matches.length !== 1 || matches[0].id === old.id) continue;
+    const row = matches[0];
+    const ownedElsewhere = (id: string) => incoming.some((other) => other.id !== row.id && (other.id === id || other.aliasMeetingIds?.includes(id)));
+    if (ownedElsewhere(old.id)) continue;
+    row.aliasMeetingIds = [...new Set([...(row.aliasMeetingIds ?? []), old.id, ...(old.meeting_alias_ids ?? [])])].filter((id) => id !== row.id && !ownedElsewhere(id));
+    const proof = reviewedLiquorIdentity(row, old)
+      ? `Reviewed legacy Eureka body correction for ${old.id}: ${reviewedLiquorUrl}; PDF SHA256 43a8c5c32854f1d1a2f71c5d13a1932c22df594a5712dfb3c28008011475f1f6; native header EUREI(A COUNTY LIQUOR BOARD / JANUARY 6,2026 MEETING MINUTES, and opening paragraph identifies the Liquor Board meeting on January 6, 2026. Retain the old ID under Eureka County Liquor Board; no other document establishes a separate commission meeting.`
+      : `Eureka archive identity: exact official minutes PDF ${row.minutesUrl}, public body ${old.public_body_id}, and Pacific meeting day ${day(row.meetingDate)} match retained record ${old.id}.`;
+    row.sourceIdentityEvidence = [...new Set([...(row.sourceIdentityEvidence ?? []), proof])];
+  }
+}
+
+/** Move only validated metadata paths whose canonical owner actually survived the merge. */
+export function reconcilePriorityRetainedMetadataPaths(meetings: PublicMeetingRecord[], incoming: Array<{ id: string; retainedMetadataPaths?: string[] }>): PublicMeetingRecord[] {
+  const canonicalOwners = new Map<string, Set<string>>();
+  for (const meeting of meetings) for (const id of [meeting.id, ...(meeting.meeting_alias_ids ?? [])]) {
+    const owners = canonicalOwners.get(id) ?? new Set<string>();
+    owners.add(meeting.id); canonicalOwners.set(id, owners);
+  }
+  const pathOwners = new Map<string, Set<string>>();
+  const unresolvedPaths = new Set<string>();
+  for (const row of incoming) {
+    const owners = canonicalOwners.get(row.id);
+    if (owners?.size !== 1) {
+      for (const sourcePath of row.retainedMetadataPaths ?? []) unresolvedPaths.add(sourcePath);
+      continue;
+    }
+    const canonicalId = [...owners][0];
+    for (const sourcePath of row.retainedMetadataPaths ?? []) {
+      const paths = pathOwners.get(sourcePath) ?? new Set<string>();
+      paths.add(canonicalId); pathOwners.set(sourcePath, paths);
+    }
+  }
+  const uniqueOwners = new Map([...pathOwners].filter(([sourcePath, owners]) => owners.size === 1 && !unresolvedPaths.has(sourcePath)).map(([sourcePath, owners]) => [sourcePath, [...owners][0]]));
+  if (!uniqueOwners.size) return meetings;
+  return meetings.map(meeting => {
+    const retained = (meeting.source_local_paths ?? []).filter(sourcePath => !uniqueOwners.has(sourcePath) || uniqueOwners.get(sourcePath) === meeting.id);
+    const assigned = [...uniqueOwners].filter(([, owner]) => owner === meeting.id).map(([sourcePath]) => sourcePath);
+    const paths = [...new Set([...retained, ...assigned])];
+    const oldPaths = meeting.source_local_paths ?? [];
+    return oldPaths.length === paths.length && oldPaths.every((sourcePath, index) => sourcePath === paths[index]) ? meeting : { ...meeting, source_local_paths: paths };
+  });
 }
 
 
@@ -245,7 +417,13 @@ export function parsePrimeGovMeetings(data: PrimeGovMeeting[], seed: PublicMeeti
   if (!Array.isArray(data)) throw new Error("PrimeGov public calendar response is not a meeting list");
   return finish(data.flatMap((m) => {
     const date = nevadaMeetingDate(m.date ?? ""); if (!date || !m.id || !m.title) return [];
-    const rawBody = committeeNames.get(m.committeeId ?? -1) ?? m.title.replace(/^(?:CANCELLED|CANCELED)[: -]*/i, "").replace(/\s+(?:Regular\s+|Special\s+)?Meeting(?: Agenda)?$/i, ""); const body = rawBody === "City Council" ? "Reno City Council" : rawBody; const r = record(seed, `primegov-${m.id}`, m.title, date, url, body);
+    const rawBody = committeeNames.get(m.committeeId ?? -1) ?? m.title.replace(/^(?:CANCELLED|CANCELED)[: -]*/i, "").replace(/\s+(?:Regular\s+|Special\s+)?Meeting(?: Agenda)?$/i, "");
+    // Some portals file a joint session under the ordinary Council committee ID;
+    // its explicit joint title still identifies the actual combined public body.
+    const jointBody = m.title.match(/\bCity Council\s*(?:\/\s*(?:RDA|Redevelopment Agency)|and\s+(?:Redevelopment Agency|Planning Commission))\b/i)?.[0];
+    const body = jointBody ?? (rawBody === "City Council" ? seed.name : rawBody);
+    const r = record(seed, `primegov-${m.id}`, m.title, date, url, body);
+    r.sourceMeetingId = m.id; r.sourceCommitteeId = m.committeeId;
     Object.assign(r, priorityMeetingTime(date, m.time ?? "")); r.location = m.location || null; r.videoUrl = m.videoUrl || null;
     for (const d of m.documentList ?? []) {
       if (d.meetingId !== m.id || d.publishStatus !== 1 || d.compileOutputType !== 1) continue;
@@ -254,6 +432,7 @@ export function parsePrimeGovMeetings(data: PrimeGovMeeting[], seed: PublicMeeti
       if (/^agenda$/i.test(d.templateName)) r.agendaUrl = link;
       else if (/packet/i.test(d.templateName)) r.packetUrl = link;
       else if (/minutes/i.test(d.templateName)) r.minutesUrl = link;
+      else if (/^(?:notice of cancellation|cancellation notice)$/i.test(d.templateName.trim())) { r.meetingStatus = "cancelled"; r.agendaUrl ??= link; }
     }
     r.sourceUrl = r.agendaUrl ?? url; return [r];
   }));
@@ -274,6 +453,92 @@ export function parseEurekaDocuments(html: string, seed: PublicMeetingSourceSeed
     map.set(id, r);
   }
   return finish([...map.values()]);
+}
+
+function eurekaCalendarIdentity(url: string) {
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "https:" || parsed.hostname !== "events.eurekacountynv.gov") return null;
+    // Govstack exposes the same occurrence in both its default and meetings views.
+    // An additional UUID path segment is an attachment, not another occurrence.
+    return parsed.pathname.match(/^\/(?:default|meetings)\/detail\/(20\d{2}-\d{2}-\d{2}-\d{4}-[^/]+)\/?$/i)?.[1].toLowerCase() ?? null;
+  } catch { return null; }
+}
+
+/** Read the published event content; the URL's date/time is never a fallback. */
+export function parseEurekaCalendarEvent(html: string, seed: PublicMeetingSourceSeed, url: string): PriorityMeeting[] {
+  const identity = eurekaCalendarIdentity(url);
+  if (!identity) return [];
+  const content = html.match(/<div\b[^>]*id=["']dvTitle["'][^>]*>[\s\S]*?(?=<div\b[^>]*id=["']calendar-popover-title["']|$)/i)?.[0] ?? "";
+  const title = clean(content.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? "");
+  const dated = content.match(/<h3\b[^>]*>\s*Dates\s*(?:&amp;|&)\s*Times\s*<\/h3>\s*<\/div>\s*<p\b[^>]*>([\s\S]*?)<\/p>\s*(?:<p\b[^>]*>([\s\S]*?)<\/p>)?/i);
+  const date = nevadaMeetingDate(clean(dated?.[1] ?? ""));
+  if (!date || date !== identity.slice(0, 10) || !/\b(?:commission(?:ers)?|committee|board|council|district)\b/i.test(title)) return [];
+  const bodyTitle = title.replace(/^(?:cancelled|canceled|rescheduled|postponed)\s*[-:–]?\s*/i, "").replace(/\s+(?:regular |special )?meeting$/i, "").replace(/^Heatlh\b/, "Health");
+  const body = /^Board of County Commissioners$/i.test(bodyTitle) ? seed.name
+    : /^(?:Eureka County|Diamond Valley)\b/i.test(bodyTitle) ? bodyTitle : `Eureka County ${bodyTitle}`;
+  const row = record(seed, `calendar-${hash(identity)}`, title, date, url, body);
+  Object.assign(row, priorityMeetingTime(date, dated?.[2] ?? ""));
+  row.location = clean(content.match(/<h3\b[^>]*>\s*Location:\s*<\/h3>\s*<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1] ?? "") || null;
+  for (const [label, field] of [["Agenda", "agendaUrl"], ["Minutes", "minutesUrl"]] as const) {
+    const section = content.match(new RegExp(`<h3\\b[^>]*>\\s*${label}\\s*(?:\\(PDF\\))?:?\\s*<\\/h3>([\\s\\S]*?)<\\/div>`, "i"))?.[1] ?? "";
+    const documents = sourceLinks(section, url).filter((link) => {
+      const target = new URL(link.href);
+      return target.protocol === "https:" && ["www.eurekacountynv.gov", "events.eurekacountynv.gov"].includes(target.hostname)
+        && /\.pdf\b/i.test(`${target.pathname} ${link.label}`);
+    });
+    if (documents.length === 1) row[field] = documents[0].href;
+  }
+  row.sourceIdentityEvidence = [`Official Govstack occurrence ${identity}: rendered ${date}; body ${body}; ${row.meetingTimeKnown ? "published start time" : "start time not published"}.`];
+  return finish([row]);
+}
+
+async function discoverEurekaMeetings(seed: PublicMeetingSourceSeed, fetchText: FetchText, now: Date, warn: (message: string) => void) {
+  const archives = new Map<string, PriorityMeeting>();
+  for (const url of [seed.meetingIndexUrl!, seed.minutesArchiveUrl!].filter(Boolean)) {
+    for (const row of parseEurekaDocuments(await fetchText(url), seed, url)) {
+      const old = archives.get(row.id);
+      archives.set(row.id, old ? { ...old, ...row, agendaUrl: row.agendaUrl ?? old.agendaUrl, packetUrl: row.packetUrl ?? old.packetUrl, minutesUrl: row.minutesUrl ?? old.minutesUrl, sourceUrls: [...old.sourceUrls, ...row.sourceUrls] } : row);
+    }
+  }
+  const calendarSources = ["https://www.eurekacountynv.gov/", "https://events.eurekacountynv.gov/meetings"];
+  const occurrences = new Map<string, Set<string>>();
+  for (const source of calendarSources) {
+    try {
+      for (const link of sourceLinks(await fetchText(source), source)) {
+        const identity = eurekaCalendarIdentity(link.href);
+        if (!identity || identity.slice(0, 10) < day(now.toISOString())) continue;
+        const urls = occurrences.get(identity) ?? new Set<string>();
+        urls.add(link.href); occurrences.set(identity, urls);
+      }
+    } catch (error) { warn(`Eureka calendar listing failed for ${source}: ${String(error)}`); }
+  }
+  const calendars: PriorityMeeting[] = [];
+  for (const [, urls] of [...occurrences].sort(([a], [b]) => a.localeCompare(b)).slice(0, 24)) {
+    const url = [...urls][0];
+    try {
+      const [row] = parseEurekaCalendarEvent(await fetchText(url), seed, url);
+      if (!row) { warn(`Eureka calendar event lacked consistent published meeting metadata: ${url}`); continue; }
+      row.sourceUrls.push(...urls);
+      calendars.push(row);
+    } catch (error) { warn(`Eureka calendar event failed for ${url}: ${String(error)}`); }
+  }
+  // A shared document is necessary: two meetings of one body can occur on one day.
+  // Preserve the archive ID/date and retain the calendar ID as a permanent alias.
+  for (const row of calendars) {
+    const documents = [row.agendaUrl, row.minutesUrl, row.packetUrl].filter(Boolean);
+    const candidates = [...archives.values()].filter((old) => old.publicBodyName === row.publicBodyName && day(old.meetingDate) === day(row.meetingDate)
+      && documents.some((document) => [old.agendaUrl, old.minutesUrl, old.packetUrl].includes(document)));
+    const competing = calendars.filter((other) => other.publicBodyName === row.publicBodyName && day(other.meetingDate) === day(row.meetingDate)
+      && documents.some((document) => [other.agendaUrl, other.minutesUrl, other.packetUrl].includes(document)));
+    if (candidates.length !== 1 || competing.length !== 1) { archives.set(row.id, row); continue; }
+    const old = candidates[0];
+    archives.set(old.id, { ...old, agendaUrl: old.agendaUrl ?? row.agendaUrl, minutesUrl: old.minutesUrl ?? row.minutesUrl,
+      location: old.location ?? row.location, sourceUrls: [...old.sourceUrls, ...row.sourceUrls],
+      aliasMeetingIds: [...new Set([...(old.aliasMeetingIds ?? []), row.id])],
+      sourceIdentityEvidence: [...(old.sourceIdentityEvidence ?? []), ...(row.sourceIdentityEvidence ?? []), "Calendar and archive share the exact official document URL, body and date."] });
+  }
+  return finish([...archives.values()]);
 }
 
 export function parsePriorityGranicus(html: string, seed: PublicMeetingSourceSeed, url: string): PriorityMeeting[] {

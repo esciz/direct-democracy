@@ -20,8 +20,12 @@ type DocumentTextArtifact = {
     extractionQuality: string;
     sourceSnippet: string | null;
     failureReason: string | null;
+    sourceContentHash?: string | null;
+    textCompleteness?: "complete" | "partial" | "unknown";
+    nativeTextCoverage?: "complete" | "partial" | "unknown";
   }>;
 };
+type OcrCoverage = { documentId: string; sourceContentHash?: string; ocrStatus: string; pagesDetected?: number | null; pagesSucceeded?: number; pagesFailed?: number; pagesTruncated?: boolean };
 
 function readJson<T>(fileName: string, fallback: T): T {
   try {
@@ -44,7 +48,7 @@ function readCachedText(localPath: string | null | undefined) {
     if (/^\s*%PDF-/.test(bytes.subarray(0, 1024).toString("latin1")) || /\.(?:pdf|docx?|png|jpe?g|gif|webp|zip)$/i.test(absolutePath)) return { text: "", quality: "blocked" as ExtractionQuality, reason: "binary_document_requires_text_extraction" };
     const raw = new TextDecoder("utf-8", { fatal: true }).decode(bytes).slice(0, MAX_SOURCE_CHARS);
     if (sourceLooksBinary(raw)) return { text: "", quality: "blocked" as ExtractionQuality, reason: "binary_document_requires_text_extraction" };
-    const text = cleanSourceText(raw);
+    const text = cleanSourceText(raw, /\.html?$/i.test(absolutePath));
     return { text, quality: qualityForText(text), reason: null };
   } catch {
     return { text: "", quality: "unreadable" as ExtractionQuality, reason: "source_file_unreadable" };
@@ -55,15 +59,17 @@ function sourceLooksBinary(value: string) {
   return /%PDF-\d\.\d|\u0000|PK\u0003\u0004/.test(value) || (value.match(/\uFFFD/g)?.length ?? 0) > Math.max(3, value.length * 0.01);
 }
 
-function cleanSourceText(value: string) {
+function cleanSourceText(value: string, html = false) {
   if (sourceLooksBinary(value)) return "";
-  return normalizeWhitespace(
-    value
+  const content = html ? value
       .replace(/<script[\s\S]*?<\/script>/gi, " ")
       .replace(/<style[\s\S]*?<\/style>/gi, " ")
       .replace(/<[^>]+>/g, " ")
       .replace(/&nbsp;|&#160;/gi, " ")
       .replace(/&amp;/gi, "&")
+      : value;
+  return normalizeWhitespace(
+    content
       .replace(/\b(?:font-family|font-size|Times New Roman|Helvetica|Arial|serif|sans-serif)\b/gi, " ")
       .replace(/\s+/g, " "),
   );
@@ -150,6 +156,7 @@ function generateAudit() {
   const items = readJson<PublicMeetingItemRecord[]>("public-meeting-items.json", []);
   const bodies = readJson<PublicBodyRecord[]>("public-meeting-bodies.json", []);
   const documentText = readJson<DocumentTextArtifact>("public-meeting-document-text.json", { records: [] });
+  const ocrByDocument = new Map(readJson<{ records: OcrCoverage[] }>("public-meeting-ocr-results.json", { records: [] }).records.map(row => [row.documentId, row]));
   const bodyById = new Map(bodies.map((body) => [body.id, body]));
   const itemsByMeeting = new Map<string, PublicMeetingItemRecord[]>();
   for (const item of items) itemsByMeeting.set(item.meeting_id, [...(itemsByMeeting.get(item.meeting_id) ?? []), item]);
@@ -160,12 +167,27 @@ function generateAudit() {
     .filter((meeting) => Boolean(meeting.minutes_url) || (meeting.source_local_paths ?? []).some((sourcePath) => /(?:^|[\/_ .-])minutes?(?:[\/_ .-]|$)/i.test(sourcePath)) || (documentTextByMeeting.get(meeting.id) ?? []).some((document) => document.documentType === "minutes"))
     .map((meeting) => {
       const body = bodyById.get(meeting.public_body_id);
-      const sources = sourceTextsForMeeting(meeting, itemsByMeeting.get(meeting.id) ?? [], documentTextByMeeting.get(meeting.id) ?? []);
+      const meetingTexts = documentTextByMeeting.get(meeting.id) ?? [];
+      const pageCoverage = meetingTexts.filter(row => row.documentType === "minutes").map(row => {
+        if (row.textCompleteness === "complete" && (readCachedText(row.extractedTextPath)?.text.length ?? 0) >= 300) return { documentId: row.documentId, status: "complete" };
+        const ocr = ocrByDocument.get(row.documentId);
+        const matchingOcr = /^(mixed|ocr_text)$/.test(row.extractionMethod) && row.sourceContentHash
+          && ocr?.sourceContentHash === row.sourceContentHash && ocr.ocrStatus === "succeeded";
+        const partial = row.textCompleteness === "partial"
+          || row.extractionMethod === "native_text" && row.nativeTextCoverage === "partial"
+          || matchingOcr && (ocr.pagesTruncated || (ocr.pagesFailed ?? 0) > 0 || (ocr.pagesDetected ?? 0) > (ocr.pagesSucceeded ?? 0));
+        return { documentId: row.documentId, status: partial ? "partial" : "unknown" };
+      });
+      const incompletePageDocuments = pageCoverage.filter(row => row.status === "partial").map(row => row.documentId);
+      // Long excerpts and old text-path aliases cannot fill known missing pages.
+      // Another explicitly complete minutes document can establish full coverage.
+      const knownPartialPages = incompletePageDocuments.length > 0 && !pageCoverage.some(row => row.status === "complete");
+      const sources = sourceTextsForMeeting(meeting, itemsByMeeting.get(meeting.id) ?? [], meetingTexts);
       const combinedText = [...new Set(sources.map((source) => source.text).filter(Boolean))].join(" ");
       const sourceDocuments = [...new Set(sources.map((source) => source.document).filter(Boolean))];
       const flags = flagsFor(sources.filter((source) => source.quality === "full_text" || source.quality === "partial_text").map((source) => source.text).join(" "));
       const bestQuality = sources.some((source) => source.quality === "full_text")
-        ? "full_text"
+        ? knownPartialPages ? "partial_text" : "full_text"
         : sources.some((source) => source.quality === "partial_text")
           ? "partial_text"
           : sources.some((source) => source.quality === "metadata_only")
@@ -182,6 +204,8 @@ function generateAudit() {
         meetingDate: meeting.meeting_date,
         minutesUrl: meeting.minutes_url,
         extractionQuality: bestQuality as ExtractionQuality,
+        knownPartialPages,
+        incompletePageDocuments,
         sourceDocuments,
         sourceDocumentCount: sourceDocuments.length,
         cachedTextLength: combinedText.length,

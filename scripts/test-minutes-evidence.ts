@@ -56,6 +56,42 @@ try {
   assert.equal(rows.get("pdf-and-text").hasActionResult, true);
   assert(!rows.get("pdf-and-text").sourceSnippet.includes("%PDF"));
   assert.equal(rows.get("pdf-and-text").cachedTextLength, minutes.trim().length);
+  const coverageIds = ["native-partial", "ocr-partial", "complete-native", "stale-ocr", "missing-partial"];
+  write("public-meetings.json", coverageIds.map(id => ({ ...makeMeeting(id), source_local_paths: ["data/generated/minutes.txt"] })));
+  write("public-meeting-items.json", [{ id: "long-excerpt", meeting_id: "native-partial", source_text: minutes, source_url: "https://example.gov/native-partial.pdf" }]);
+  write("public-meeting-document-text.json", { records: coverageIds.map(id => ({
+    meetingId: id, documentId: id, documentType: "minutes", extractedTextPath: id === "missing-partial" ? "data/generated/missing.txt" : "data/generated/minutes.txt",
+    extractionQuality: "high", extractionMethod: id === "native-partial" ? "native_text" : "mixed", sourceContentHash: id,
+    textCompleteness: id === "native-partial" || id === "missing-partial" ? "partial" : id === "complete-native" ? "complete" : "unknown",
+  })) });
+  write("public-meeting-ocr-results.json", { records: coverageIds.slice(1).map(id => ({
+    documentId: id, sourceContentHash: id === "stale-ocr" ? "superseded-source" : id,
+    ocrStatus: "succeeded", pagesDetected: 12, pagesSucceeded: 11, pagesFailed: 1, pagesTruncated: false,
+  })) });
+  execFileSync(process.execPath, ["--import", require.resolve("tsx"), path.join(root, "scripts/audit-minutes-extraction.ts")], { cwd: fixture, env: { ...process.env, TSX_TSCONFIG_PATH: path.join(root, "tsconfig.json") }, stdio: "pipe" });
+  const coverageAudit = JSON.parse(readFileSync(path.join(generated, "minutes-extraction-audit.json"), "utf8"));
+  const coverageRows = new Map<string, any>(coverageAudit.records.map((row: any) => [row.meetingId, row]));
+  for (const id of ["native-partial", "ocr-partial", "missing-partial"]) {
+    assert.equal(coverageRows.get(id).extractionQuality, "partial_text", "Known missing pages must remain partial despite long excerpts and reused source paths");
+    assert.equal(coverageRows.get(id).knownPartialPages, true);
+  }
+  for (const id of ["complete-native", "stale-ocr"]) assert.equal(coverageRows.get(id).extractionQuality, "full_text", "Complete native coverage and superseded OCR must not be downgraded");
+  writeFileSync(path.join(generated, "bracket-minutes.txt"), `Header < ..\n${minutes}\n> Footer`);
+  writeFileSync(path.join(generated, "html-minutes.html"), `<script>UNTRUSTED_SCRIPT</script><p>${minutes}</p>`);
+  write("public-meetings.json", [makeMeeting("bracket-minutes"), makeMeeting("html-minutes")]);
+  write("public-meeting-items.json", []);
+  write("public-meeting-document-text.json", { records: ["bracket-minutes", "html-minutes"].map(id => ({
+    meetingId: id, documentId: id, documentType: "minutes", extractionQuality: "high", extractionMethod: "native_text", textCompleteness: "complete",
+    extractedTextPath: `data/generated/${id}.${id === "html-minutes" ? "html" : "txt"}`,
+  })) });
+  execFileSync(process.execPath, ["--import", require.resolve("tsx"), path.join(root, "scripts/audit-minutes-extraction.ts")], { cwd: fixture, env: { ...process.env, TSX_TSCONFIG_PATH: path.join(root, "tsconfig.json") }, stdio: "pipe" });
+  const bracketAudit = JSON.parse(readFileSync(path.join(generated, "minutes-extraction-audit.json"), "utf8"));
+  for (const row of bracketAudit.records) {
+    assert.equal(row.extractionQuality, "full_text");
+    assert.equal(row.hasActionResult, true, "Literal angle brackets must not hide actions between PDF pages");
+    assert.ok(row.cachedTextLength >= minutes.trim().length);
+    assert.ok(!row.sourceSnippet.includes("UNTRUSTED_SCRIPT"), "Actual HTML still excludes script contents");
+  }
   write("public-meetings.json", [
     { ...makeMeeting("later-approval"), minutes_url: null, source_urls: ["https://example.gov/prior-minutes.pdf"] },
     { ...makeMeeting("prior-meeting"), minutes_url: "https://example.gov/prior-minutes.pdf", source_urls: [] },
