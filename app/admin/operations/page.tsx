@@ -1,3 +1,4 @@
+import { identityReviewBuckets } from "@/lib/admin/operations/first-pass";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import Link from "next/link";
@@ -185,18 +186,7 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
     ...(voteReviewAudit.attendanceReviewActions ?? []).map((item) => ({ ...item, reviewType: "attendance_review", bucket: "Attendance review" })),
     ...(voteReviewAudit.distributionReviewActions ?? []).map((item) => ({ ...item, reviewType: "distribution_review", bucket: "Distribution review" })),
   ];
-  const identityBuckets = Array.from(
-    (attendanceIdentity.records ?? [])
-      .filter((record) => record.matchConfidence === "unmatched_name" && record.votingEligibility === "eligible_voting_member")
-      .reduce((map, record) => {
-        const key = `${record.personName}|${record.organizationId ?? "unknown"}|${record.attendanceStatus}`;
-        const current = map.get(key) ?? { itemId: `identity-${key.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`, personName: record.personName, organizationId: record.organizationId ?? "unknown", attendanceStatus: record.attendanceStatus, count: 0, sample: record.sourceSnippet };
-        current.count += 1;
-        map.set(key, current);
-        return map;
-      }, new Map<string, { itemId: string; personName: string; organizationId: string; attendanceStatus: string; count: number; sample: string }>())
-      .values(),
-  ).sort((left, right) => right.count - left.count || left.personName.localeCompare(right.personName));
+  const identityBuckets = identityReviewBuckets(attendanceIdentity.records ?? []);
   const reviewedWorkflowCount = Object.values(reviewState).filter((record) => record.status && record.status !== "pending").length;
   const reviewView = query?.review === "completed" || query?.review === "all" ? query.review : "open";
   const matchesReviewView = (type: string, id: string) => {
@@ -389,7 +379,7 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
               ["Ambiguous", openVoteItems.filter(item => item.reviewType === "ambiguous_vote").length],
               ["Attendance", openVoteItems.filter(item => item.reviewType === "attendance_review").length],
               ["Distribution", openVoteItems.filter(item => item.reviewType === "distribution_review").length],
-              ["Unmatched voting names", sprint2Readiness.gates?.attendanceIdentity?.unmatchedVotingMemberNames ?? identityBuckets.reduce((sum, row) => sum + row.count, 0)],
+              ["Identities needing review", identityBuckets.filter(item => !reviewIsComplete(reviewState[reviewKey("identity_quality", item.itemId)]?.status)).length],
             ].map(([label, value]) => (
               <div key={label} className="rounded-xl border border-white/10 bg-slate-950/35 p-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
@@ -399,6 +389,8 @@ export default async function AdminOperationsPage({ searchParams }: { searchPara
           </div>
 
           {sprint2Readiness.recommendation ? <p className="mt-4 rounded-xl border border-emerald-300/15 bg-emerald-500/10 p-3 text-sm leading-6 text-emerald-100">{sprint2Readiness.recommendation}</p> : null}
+
+          {voteReviewAudit.totals?.excludedRoutineActions ? <p className="mt-4 text-sm text-slate-300">{voteReviewAudit.totals.excludedRoutineActions.toLocaleString()} routine meeting items are excluded from voter reporting. Original source evidence is retained.</p> : null}
 
           <nav aria-label="Review queue" className="mt-4 flex flex-wrap items-center gap-3 text-sm">
             {[["open", "Open"], ["completed", "Completed"], ["all", "All"]].map(([view, label]) => <Link key={view} href={reviewHref(view)} aria-current={reviewView === view ? "page" : undefined} className={`rounded-full border px-4 py-2 ${reviewView === view ? "border-cyan-300/40 bg-cyan-300/10 text-cyan-100" : "border-white/10 text-slate-300"}`}>{label}</Link>)}

@@ -1,3 +1,4 @@
+import { routineReportingExclusion } from "@/lib/public-meetings/reporting-policy";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
@@ -150,6 +151,7 @@ function buildCards() {
   const output = cards.flatMap((card): GeneratedVotingCard[] => {
     const meeting = meetingById.get(card.meeting_id);
     const item = itemById.get(card.topic_item_id);
+    if (routineReportingExclusion(item ?? card)) return [];
     const body = meeting ? bodyById.get(meeting.public_body_id) : undefined;
     const sourceReferences = sourceReferencesFor(card, item, meeting);
     if (!sourceReferences.length) return [];

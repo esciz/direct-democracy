@@ -1,3 +1,4 @@
+import { routineReportingExclusion, nonPersonExtractionReason } from "@/lib/public-meetings/reporting-policy";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
@@ -322,7 +323,7 @@ function parseAttendanceRoster(meeting: PublicMeetingRecord | undefined, item: P
 }
 
 function attendanceRosterFromArtifact(meetingId: string, records: AttendanceArtifactRecord[]): AttendanceRoster | null {
-  const meetingRecords = records.filter((record) => record.meetingId === meetingId);
+  const meetingRecords = records.filter((record) => record.meetingId === meetingId && (record.matchedOfficialId || !nonPersonExtractionReason(record.personName)));
   if (!meetingRecords.length) return null;
   const eligibleRecords = meetingRecords.filter((record) => record.votingEligibility === "eligible_voting_member" && !record.needsReview);
   const toMember = (record: AttendanceArtifactRecord): RosterMember => ({
@@ -649,11 +650,14 @@ function generateVotes() {
   const ambiguousVoteActions: Array<{ meeting_item_id: string; meeting_id: string; title: string; source_url: string | null; reason: string; sourceSnippet: string; evidenceType: EvidenceType }> = [];
   const attendanceReviewActions: Array<{ meeting_item_id: string; meeting_id: string; title: string; source_url: string | null; reason: string; outcome: StructuredVoteOutcome | null }> = [];
   const distributionReviewActions: Array<{ meeting_item_id: string; meeting_id: string; title: string; source_url: string | null; reason: string; outcome: StructuredVoteOutcome | null }> = [];
+  const excludedRoutineActions: Array<{ meeting_item_id: string; title: string; reason: string }> = [];
   const attendanceRosters = new Map<string, AttendanceRoster>();
   let totalVoteLikeActions = 0;
   let skippedDueToInsufficientEvidence = 0;
 
   for (const item of items) {
+    const exclusion = routineReportingExclusion(item);
+    if (exclusion) { excludedRoutineActions.push({ meeting_item_id: item.id, title: item.title, reason: exclusion }); continue; }
     if (cachedTopicNeedsEvidenceReview(item)) { skippedDueToInsufficientEvidence += 1; continue; }
     const meeting = meetingById.get(item.meeting_id);
     const body = meeting ? bodyById.get(meeting.public_body_id) ?? null : null;
@@ -772,6 +776,7 @@ function generateVotes() {
     sourceArtifacts: ["data/generated/public-meeting-items.json", "data/generated/public-meetings.json", "data/generated/public-meeting-bodies.json"],
     totals: {
       meetingItems: items.length,
+      excludedRoutineActions: excludedRoutineActions.length,
       totalVoteLikeActions,
       unanimousActionsFound: aggregateOnlyOutcomes.filter((outcome) => outcome.structuredOutcome?.kind === "unanimous_yes" || outcome.structuredOutcome?.kind === "unanimous_no").length,
       aggregateVoteCountActionsFound: aggregateOnlyOutcomes.filter((outcome) => outcome.structuredOutcome?.kind === "count").length,
@@ -792,6 +797,7 @@ function generateVotes() {
       remainingUnresolvedVoteActions: ambiguousVoteActions.length + attendanceReviewActions.length + distributionReviewActions.length,
       skippedDueToInsufficientEvidence,
     },
+    excludedRoutineActions,
     aggregateOnlyOutcomes: aggregateOnlyRetained,
     ambiguousVoteActions,
     attendanceReviewActions,

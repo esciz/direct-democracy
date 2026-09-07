@@ -1,3 +1,4 @@
+import { nonPersonExtractionReason } from "@/lib/public-meetings/reporting-policy";
 import { mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
@@ -468,6 +469,7 @@ function generateAttendance() {
         for (const rawName of splitCandidateNames(section.sourceSnippet)) {
           const rosterMatch = matchRosterMember(rawName, roster);
           const matchedName = rosterMatch?.member?.fullName ?? displayName(rawName);
+          if (!rosterMatch && nonPersonExtractionReason(matchedName)) continue;
           const votingEligibility: VotingEligibility = section.status === "non_voting_present"
             ? "non_voting"
             : rosterMatch?.member && section.votingSection

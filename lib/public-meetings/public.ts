@@ -1,3 +1,4 @@
+import { routineReportingExclusion } from "@/lib/public-meetings/reporting-policy";
 import "server-only";
 
 import { existsSync } from "node:fs";
@@ -138,7 +139,7 @@ export async function getOfficialMeetingRecordSummary(
   const bodiesById = new Map(dashboard.publicBodies.map((body) => [body.id, body]));
   const normalizedJurisdiction = normalizeName(jurisdictionName);
   const matchedVotes = dashboard.voteRecords.filter((vote) => {
-    if (!namesMatch(officialName, vote.official_name)) return false;
+    if (!namesMatch(officialName, vote.official_name) || routineReportingExclusion(itemsById.get(vote.meeting_item_id) ?? {})) return false;
     if (!normalizedJurisdiction) return true;
     const item = itemsById.get(vote.meeting_item_id);
     const meeting = item ? meetingsById.get(item.meeting_id) : null;

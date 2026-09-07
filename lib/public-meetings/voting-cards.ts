@@ -1,3 +1,4 @@
+import { routineReportingExclusion } from "@/lib/public-meetings/reporting-policy";
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -198,7 +199,7 @@ export function buildMeetingVotingCards(context: BuildContext): MeetingVotingCar
 
   return context.items.flatMap((item): MeetingVotingCardRecord[] => {
     const meeting = meetingById.get(item.meeting_id);
-    if (!meeting || !hasPublicPolicySignal(item)) return [];
+    if (!meeting || routineReportingExclusion(item) || !hasPublicPolicySignal(item)) return [];
     const body = bodyById.get(meeting.public_body_id) ?? null;
     const actionResult = actionResultByItemId.get(item.id);
     const effectiveOutcome = item.vote_outcome ?? actionResult?.outcome ?? null;
@@ -311,5 +312,5 @@ export function hasSpecificMeetingQuestion(question: string) {
 }
 
 export function getPublicMeetingVotingCards(cards: MeetingVotingCardRecord[]) {
-  return cards.filter((card) => card.review_status === "approved" && card.confidence_score >= 0.8 && hasSpecificMeetingQuestion(card.public_question || card.question_text));
+  return cards.filter((card) => !routineReportingExclusion(card) && card.review_status === "approved" && card.confidence_score >= 0.8 && hasSpecificMeetingQuestion(card.public_question || card.question_text));
 }
