@@ -188,13 +188,26 @@ function buildTopicVariants(topic: CanonicalIssueTopic) {
 
 /** A narrow compensation/staffing topic needs its teaching subject in the source. */
 export function hasTeacherPaySubjectEvidence(value: string) {
-  const normalized = normalizeIssueText(value).replace(/[’']/g, " ");
+  const normalized = normalizeIssueText(value).replace(/[’']/g, " ")
+    // Workplace injury insurance is not evidence of teacher remuneration. Remove
+    // only that phrase so a separate salary/staffing clause can still qualify.
+    .replace(/\bworkers?[\s-]+compensation(?:\s+(?:insurance|coverage|claims?|benefits?))*\b/g, " ");
   if (/\b(?:school|classroom)\s+(?:staffing|teacher\s+vacancies)\b/.test(normalized)) return true;
-  const subject = "(?:teachers?|educators?|faculty|adjuncts?)";
-  const subjectMatter = "(?:pay(?:roll)?|salar(?:y|ies)|wages?|compensation|benefits?|staffing|retention|retain(?:ing)?|recruit(?:ment|ing)?|hiring|vacanc(?:y|ies)|shortages?)";
+  const subject = "(?:teachers?|educators?|faculty|adjuncts?|teaching(?:[ -]+positions?)?)";
+  const subjectMatter = "(?:payroll|salar(?:y|ies)|wages?|compensation|benefits?|staffing|retention|retain(?:ing)?|recruit(?:ment|ing)?|hiring|vacanc(?:y|ies)|shortages?)";
   // Keep the two concepts in a short clause; words elsewhere in a long minutes
   // excerpt (such as cannabis education and investor funding) are insufficient.
-  return new RegExp(`\\b${subject}\\b[^.!?;]{0,120}\\b${subjectMatter}\\b|\\b${subjectMatter}\\b[^.!?;]{0,120}\\b${subject}\\b`, "i").test(normalized);
+  if (new RegExp(`\\b${subject}\\b[^.!?;]{0,120}\\b${subjectMatter}\\b|\\b${subjectMatter}\\b[^.!?;]{0,120}\\b${subject}\\b`, "i").test(normalized)) return true;
+
+  // "Pay" also describes teachers spending their own money. Require a pay noun
+  // or a teacher receiving payment, rather than arbitrary subject/pay proximity.
+  const spendingComplement = "(?:for|to|towards?|on|out|into|tax(?:es)?|union|dues|fees|bills|premiums|insurance|rent|tuition|supplies)";
+  const purchaseAfterPay = `\\s+(?:${spendingComplement}\\b|\\$?\\d[\\d,.]*(?:\\s+dollars?)?\\s+(?:for|on|towards?)\\b)`;
+  const payNoun = `\\b${subject}(?:\\s+s)?\\s+(?:(?:base|annual|hourly|starting)\\s+)?pay\\b(?!${purchaseAfterPay})`;
+  const purchaseNoun = "(?:training|courses?|licen[cs](?:e|ing)|renewals?|supplies|insurance|dues|fees|tuition)";
+  const payRecipient = `\\bpay(?:ing)?\\s+(?:(?:for|to)\\s+)?(?:the\\s+)?${subject}\\b(?!\\s+${purchaseNoun}\\b)`;
+  const paidTeacher = `\\b${subject}\\s+(?:(?:are|were|will\\s+be|must\\s+be|should\\s+be|to\\s+be)\\s+paid\\b|paid\\b(?!${purchaseAfterPay}))`;
+  return new RegExp(`${payNoun}|${payRecipient}|${paidTeacher}`, "i").test(normalized);
 }
 
 function getIssueTopicMatchScore(issueText: string, topic: CanonicalIssueTopic) {

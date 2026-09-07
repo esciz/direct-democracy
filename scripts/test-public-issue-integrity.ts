@@ -3,14 +3,21 @@ import { buildPublicIssueHubRecords } from "./generate-issue-hubs";
 import { getCanonicalIssueTextOrNull, hasTeacherPaySubjectEvidence, valuesMatchIssueText, valuesStronglyMatchIssueText } from "../lib/issues/utils";
 
 const cannabisText = "Rachel Lee explained her continuing education in the cannabis market and challenges getting funding as a social equity applicant. Chandler Cooks identified issues with securing funding from the right investors.";
+const teacherPurchases = "A serious omission in the statutes is the fact that teachers in Clark County School District often have to pay for necessary classroom supplies out of their own pockets because Clark County School District simply does not provide enough. These teachers do not receive any sort of sales tax exemption when buying necessary supplies for their students and they should.";
+const schoolInsurance = "educators legal liability, and employment practices liability, excess liability for general liability coverage, excess workers compensation";
+const teachingSalaryFunding = "Approve an MOU with the Washoe Education Association implementing AB 398 (2025) hard-to-fill teaching position salary incentive funding under Article 24.1.2.3 of the 2025–2027 negotiated agreement.";
+const teacherShortages = "Teacher, Licensed Administrator, School Police Officer, School Psychologist, and School Counselor as a critical labor shortage area to hire individuals under the critical labor shortage status.";
 assert.equal(hasTeacherPaySubjectEvidence(cannabisText), false);
 assert.notEqual(getCanonicalIssueTextOrNull(cannabisText), "Teacher Pay");
 assert.equal(valuesMatchIssueText("Teacher Pay", cannabisText), false);
 assert.equal(valuesStronglyMatchIssueText("Teacher Pay", cannabisText), false);
-for (const text of ["Education funding for a college building", "Classroom space will support enrollment growth", "Teachers completed license renewal training", "Teachers provided public comment. Cannabis businesses requested salary assistance."]) {
+for (const text of ["Education funding for a college building", "Classroom space will support enrollment growth", "Teachers completed license renewal training", "Teachers provided public comment. Cannabis businesses requested salary assistance.", teacherPurchases, schoolInsurance,
+  "Teachers pay union dues", "Teachers pay for license renewals", "Teachers pay $300 for classroom supplies", "Teachers paid for classroom supplies themselves", "District will pay for teacher training", "Workers’ compensation insurance coverage for teachers", "Teacher workers compensation claims", "Teaching positions were discussed"]) {
   assert.equal(hasTeacherPaySubjectEvidence(text), false, text);
+  assert.notEqual(getCanonicalIssueTextOrNull(text), "Teacher Pay", text);
 }
-for (const text of ["Raise teachers' salaries by 5 percent", "Teacher retention and recruitment plan", "Increase educator compensation", "Faculty wage negotiations", "Funding to retain teachers", "School staffing shortages", "Teacher\npay agreement"]) {
+for (const text of ["Raise teachers' salaries by 5 percent", "Teacher retention and recruitment plan", "Increase educator compensation", "Faculty wage negotiations", "Funding to retain teachers", "School staffing shortages", "Teacher\npay agreement", teachingSalaryFunding, teacherShortages,
+  "Pay teachers $60,000 annually", "Increase pay for teachers", "Pay for teachers will increase", "Teachers will be paid under the salary schedule", "Teachers are paid $60,000 annually", "Teachers are paid for teaching", "Teachers’ compensation and benefits agreement", "Teaching positions with starting salaries of $55,000", "Hard-to-fill teaching salary funding", `${schoolInsurance}. Approve a teacher salary increase.`]) {
   assert.equal(hasTeacherPaySubjectEvidence(text), true, text);
   assert.equal(getCanonicalIssueTextOrNull(text), "Teacher Pay", text);
 }
@@ -31,6 +38,16 @@ const card = (id: string, topicId = "teacher-one", overrides: Record<string, unk
 });
 const teacherIssue = (records: ReturnType<typeof buildPublicIssueHubRecords>) => records.find(record => record.issueSlug === "teacher-pay");
 const publicItem = item("teacher-one");
+const sourceClauseIssue = teacherIssue(buildPublicIssueHubRecords({
+  meetings: [{ id: "washoe-june" }, { id: "washoe-august" }, { id: "taxation-march" }],
+  meetingItems: [
+    item("washoe-june-consent", { meeting_id: "washoe-june", title: "Consent Agenda", source_text: `${schoolInsurance}. ${teachingSalaryFunding}`, parser_status: "source_excerpt", confidence_score: 0.72 }),
+    item("washoe-august-consent", { meeting_id: "washoe-august", title: "Consent Agenda", source_text: teacherShortages, parser_status: "source_excerpt", confidence_score: 0.72 }),
+    item("taxation-public-comment", { meeting_id: "taxation-march", title: "Public Comment", source_text: teacherPurchases, parser_status: "source_excerpt", confidence_score: 0.72 }),
+  ], votingCards: [],
+}))!;
+assert.deepEqual(new Set(sourceClauseIssue.relatedAgendaItemIds), new Set(["washoe-june-consent", "washoe-august-consent"]), "The two Washoe salary/staffing sources qualify; teachers purchasing classroom supplies do not");
+assert.equal(sourceClauseIssue.relationshipCounts.meetings, 2);
 const visibleExcerpt = item("teacher-excerpt", { parser_status: "source_excerpt", confidence_score: 0.72 });
 const blocked = buildPublicIssueHubRecords({ meetings: [meeting], meetingItems: [
   item("cannabis", { title: "I. Public Comment", source_text: cannabisText, plain_english_explanation: cannabisText, parser_status: "source_excerpt", confidence_score: 0.72 }),
