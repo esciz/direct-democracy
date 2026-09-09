@@ -71,6 +71,12 @@ export async function describeArtifacts(root: string, paths: string[]): Promise<
   });
 }
 
+export async function assertArtifactSnapshot(root: string, manifest: CivicManifest) {
+  const current = await describeArtifacts(root, manifest.files.map(entry => entry.path));
+  const changed = current.filter((entry, index) => entry.sha256 !== manifest.files[index].sha256 || entry.bytes !== manifest.files[index].bytes);
+  if (changed.length) throw new Error(`prepared_civic_artifacts_changed:${changed.map(entry => entry.path).join(",")}`);
+}
+
 export async function existingArtifactObjects() {
   const objects = new Map<string, number>();
   for (const prefix of ["public-meeting-cache/sha256/", "civic-data/objects/"]) {

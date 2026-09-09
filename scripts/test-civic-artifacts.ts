@@ -5,8 +5,9 @@ import os from "node:os";
 import path from "node:path";
 import { get, put } from "@vercel/blob";
 import { REQUIRED_RELEASE_FILES, civicManifestId, releaseArtifactAllowed, validateManifest, workerArtifactAllowed, type ArtifactEntry, type CivicManifest } from "@/lib/dataops/artifact-policy";
-import { describeArtifacts, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths } from "@/lib/dataops/blob-checkpoint";
-import { releaseGateAt } from "./civic-artifacts";
+import { assertArtifactSnapshot, describeArtifacts, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths } from "@/lib/dataops/blob-checkpoint";
+import { copyPreparedRelease, releaseGateAt } from "./civic-artifacts";
+import { applyReportingPolicy } from "./apply-reporting-policy";
 
 const at = Date.parse("2026-09-06T12:00:00Z");
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
@@ -44,7 +45,7 @@ async function releaseFixture(root: string) {
     "events-runtime.json": [{ id: "meeting", meeting_alias_ids: ["historical-meeting"] }, { id: "other-meeting" }],
     "public-meeting-items-runtime.json": [{ id: "topic", meeting_id: "meeting" }],
     "voting-cards-runtime.json": [{ id: "question", meeting_id: "historical-meeting", topic_item_id: "topic" }],
-    "voting-cards.json": { records: [{ id: "decision", meetingId: "historical-meeting" }] },
+    "voting-cards.json": { records: [{ id: "decision", meetingId: "historical-meeting", title: "Approve a budget", jurisdiction: "Nevada", sourceReferences: [], meeting: { title: "Public meeting", href: "/events/meeting", date: "2026-09-06" }, voteCount: { display: "Unknown", totalKnown: 0 }, relatedOfficials: [], relatedIssues: [], financialImpact: {} }] },
     "accountability-graph-runtime.json": { generatedAt: new Date(at).toISOString(), communitySummaries: {} },
     "issues-runtime.json": { records: [{ id: "issue", relatedMeetingIds: ["historical-meeting"] }] },
     "nevada-financial-coverage.json": { records: [{ entityType: "official", entityId: "official-one", campaignFinance: { snapshot: { totalRaised: 1200, totalSpent: 800, cashOnHand: null } } }] },
@@ -305,6 +306,25 @@ async function main() {
     const historicalFiles = await describeArtifacts(root, Object.keys(fixtures).map(name => `data/generated/${name}`).sort());
     const release = manifest(historicalFiles, { kind: "release", metrics: current.metrics });
     validateManifest(release, "release");
+    await assertArtifactSnapshot(root, release);
+    // Reproduce the production failure: prebuild changes the accountability
+    // summary after prepare, even when public record counts remain unchanged.
+    applyReportingPolicy(root);
+    await assert.rejects(assertArtifactSnapshot(root, release), /prepared_civic_artifacts_changed:.*accountability-graph-runtime/);
+    const finalizedFiles = await describeArtifacts(root, await selectArtifactPaths(root, "release"));
+    const finalized = manifest(finalizedFiles, { kind: "release", metrics: current.metrics });
+    const handoff = await mkdtemp(path.join(os.tmpdir(), "civic-public-handoff-"));
+    try {
+      await copyPreparedRelease(root, handoff, finalized);
+      await assertArtifactSnapshot(handoff, finalized);
+      assert.deepEqual(await describeArtifacts(handoff, finalized.files.map(file => file.path)), finalized.files);
+      assert.deepEqual((await readdir(handoff)).sort(), ["data"], "Handoff contains only public artifacts");
+      await writeJson(handoff, "events-runtime.json", [{ id: "tampered" }]);
+      await assert.rejects(copyPreparedRelease(handoff, root, finalized), /prepared_civic_artifacts_changed:.*events-runtime/);
+      await assertArtifactSnapshot(root, finalized); // Reject before copying any file.
+    } finally { await rm(handoff, { recursive: true, force: true }); }
+    // Restore the earlier fixture for independent historical rollback tests.
+    for (const [name, value] of Object.entries(fixtures)) await writeJson(root, name, value);
     const restoredRoot = await mkdtemp(path.join(os.tmpdir(), "civic-release-history-"));
     try {
       const objects = new Map(await Promise.all(historicalFiles.map(async file => [file.objectKey, await readFile(path.join(root, file.path), "utf8")] as const)));

@@ -1,12 +1,12 @@
 import "@/lib/env/load-local-env";
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
-import { mkdir, mkdtemp, rm, rename, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, mkdtemp, rm, rename, writeFile } from "node:fs/promises";
 import os from "node:os";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { REQUIRED_RELEASE_FILES, civicManifestId, validateManifest, type CivicManifest } from "@/lib/dataops/artifact-policy";
-import { describeArtifacts, existingArtifactObjects, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths, uploadArtifact } from "@/lib/dataops/blob-checkpoint";
+import { assertArtifactSnapshot, describeArtifacts, existingArtifactObjects, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths, uploadArtifact } from "@/lib/dataops/blob-checkpoint";
 
 const root = process.cwd();
 const mode = process.argv[2];
@@ -130,6 +130,9 @@ async function candidate(kind: CivicManifest["kind"]): Promise<CivicManifest> {
 }
 
 async function upload(manifest: CivicManifest) {
+  // Fail before any network writes when prebuild or another process changed a
+  // prepared file. Keep the second check to catch changes during upload too.
+  await assertArtifactSnapshot(root, manifest);
   const inventory = await existingArtifactObjects();
   const uploading = new Map<string, Promise<Awaited<ReturnType<typeof uploadArtifact>>>>();
   let complete = 0;
@@ -143,11 +146,23 @@ async function upload(manifest: CivicManifest) {
     return result;
   });
   // A concurrent collector cannot publish a mixture of two snapshots.
-  const checked = await describeArtifacts(root, manifest.files.map((entry) => entry.path));
-  if (checked.some((entry, index) => entry.sha256 !== manifest.files[index].sha256)) throw new Error("civic_snapshot_changed_during_upload");
+  await assertArtifactSnapshot(root, manifest);
   const stored = { ...manifest, files, id: civicManifestId({ ...manifest, files }) };
   await saveManifest(stored);
   return stored;
+}
+
+// The job handoff contains only the validated public release, never the worker
+// archive, identity data, environment files or credentials.
+export async function copyPreparedRelease(source: string, destination: string, manifest: CivicManifest) {
+  validateManifest(manifest, "release");
+  await assertArtifactSnapshot(source, manifest);
+  for (const entry of manifest.files) {
+    const target = path.join(destination, entry.path);
+    await mkdir(path.dirname(target), { recursive: true });
+    await copyFile(path.join(source, entry.path), target);
+  }
+  await assertArtifactSnapshot(destination, manifest);
 }
 
 function requireDeployHook() {
@@ -163,6 +178,19 @@ async function writeLocalManifest(manifest: CivicManifest) {
 
 async function main() {
   await mkdir(path.join(root, ".local"), { recursive: true });
+  if (mode === "export-candidate" || mode === "import-candidate") {
+    const handoff = path.join(root, ".local/civic-release-handoff");
+    const importing = mode === "import-candidate";
+    const manifestPath = importing ? path.join(handoff, "manifest.json") : localManifestPath;
+    const manifest = validateManifest(JSON.parse(readFileSync(manifestPath, "utf8")), "release");
+    if (manifest.sourceCommit !== process.env.GITHUB_SHA) throw new Error("candidate_handoff_source_mismatch");
+    if (!importing) await rm(handoff, { recursive: true, force: true });
+    await copyPreparedRelease(importing ? handoff : root, importing ? root : handoff, manifest);
+    if (importing) await writeLocalManifest(manifest);
+    else await writeFile(path.join(handoff, "manifest.json"), JSON.stringify(manifest));
+    console.log(JSON.stringify({ status: importing ? "candidate_imported" : "candidate_exported", id: manifest.id, files: manifest.files.length }));
+    return;
+  }
   if (mode === "prepare") {
     const manifest = await candidate("release");
     await writeLocalManifest(manifest);
@@ -244,7 +272,7 @@ async function main() {
     console.log(JSON.stringify({ status: "live_release_verified", id: actual.id, url: new URL("/api/data-release", base).href }));
     return;
   }
-  throw new Error("Usage: civic-artifacts.ts prepare|publish [--approve|--automation] [--trigger-deploy]|rollback --id=HASH --approve [--trigger-deploy]|checkpoint [--dry-run]|restore-worker|restore-release|verify-live");
+  throw new Error("Usage: civic-artifacts.ts prepare|export-candidate|import-candidate|publish [--approve|--automation] [--trigger-deploy]|rollback --id=HASH --approve [--trigger-deploy]|checkpoint [--dry-run]|restore-worker|restore-release|verify-live");
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main().catch((error) => {
