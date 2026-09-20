@@ -13,6 +13,10 @@ on:
         description: Include finance, ads, officials, cases and organizations
         type: boolean
         default: true
+      all_source_shards:
+        description: Manual catch-up across all source partitions (bounded, resumable)
+        type: boolean
+        default: false
       publish:
         description: Publish validated data and trigger a site deployment
         type: boolean
@@ -83,11 +87,13 @@ jobs:
         continue-on-error: true
         env:
           FULL_REFRESH: ${{ inputs.full_refresh }}
+          ALL_SOURCE_SHARDS: ${{ inputs.all_source_shards }}
           SCHEDULE: ${{ github.event.schedule }}
         run: |
           args=(--limit=100)
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
             if [[ "$FULL_REFRESH" != "true" ]]; then args+=(--meetings-only); fi
+            if [[ "$ALL_SOURCE_SHARDS" == "true" ]]; then args+=(--all-source-shards); fi
           elif [[ "$SCHEDULE" != "17 6 * * *" ]]; then
             args+=(--meetings-only)
           fi

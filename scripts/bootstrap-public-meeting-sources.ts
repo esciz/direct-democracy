@@ -85,6 +85,7 @@ const MAX_LINK_DOWNLOADS_PER_PROVIDER = Number(process.env.PLAYWRIGHT_MEETING_BO
 const MAX_DISCOVERY_PAGES_PER_PROVIDER = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_PAGES ?? "5");
 const MAX_DISCOVERY_DEPTH = Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_MAX_DEPTH ?? "2");
 const SCHEDULED = process.argv.includes("--scheduled");
+const ALL_SOURCE_SHARDS = process.argv.includes("--all-source-shards");
 const PENDING_FIRST_PASS = process.argv.includes("--pending-first-pass");
 const SCHEDULE_SHARDS = Math.max(1, Number(process.env.PLAYWRIGHT_MEETING_BOOTSTRAP_SHARDS ?? "7"));
 export class BootstrapBudgetExceeded extends Error {
@@ -1008,7 +1009,7 @@ function providersForRun() {
     });
     console.log(`Pending first advanced collection pass: ${providers.length} providers`);
   }
-  if (SCHEDULED) {
+  if (SCHEDULED && !ALL_SOURCE_SHARDS) {
     const currentShard = Math.floor(Date.now() / 86_400_000) % SCHEDULE_SHARDS;
     providers = providers.filter((provider) => {
       let hash = 0;
@@ -1017,6 +1018,7 @@ function providersForRun() {
     });
     console.log(`Scheduled advanced collection shard ${currentShard + 1}/${SCHEDULE_SHARDS}: ${providers.length} providers`);
   }
+  if (SCHEDULED && ALL_SOURCE_SHARDS) console.log(`Manual catch-up selects all ${providers.length} providers; scheduled time budgets and oldest-attempt ordering still apply.`);
   return providers;
 }
 

@@ -22,7 +22,7 @@ function argValue(name: string) {
 
 if (process.argv.includes("--help")) {
   console.log([
-    "Usage: node --import tsx scripts/run-dataops-pipeline.ts [--limit=N] [--from=stage] [--to=stage] [--offline] [--meetings-only] [--dry-run] [--force]",
+    "Usage: node --import tsx scripts/run-dataops-pipeline.ts [--limit=N] [--from=stage] [--to=stage] [--offline] [--meetings-only] [--all-source-shards] [--dry-run] [--force]",
     "",
     "Runs the DataOps refresh pipeline. Use --from/--to for targeted recovery runs.",
     "Known stages:",
@@ -53,6 +53,9 @@ if (process.argv.includes("--help")) {
 }
 
 const meetingsOnly = process.argv.includes("--meetings-only");
+// Manual catch-up selects every source partition, not just today's rotation.
+// Per-request/document/time budgets and resumable progress still apply.
+const allSourceShards = process.argv.includes("--all-source-shards");
 const isTargetedRun = Boolean(argValue("from") || argValue("to"));
 const OUTPUT_PATH = meetingsOnly ? path.join(GENERATED_DIR, isTargetedRun ? "meetings-pipeline-targeted-run.json" : "meetings-pipeline-run.json") : isTargetedRun ? TARGETED_OUTPUT_PATH : CANONICAL_OUTPUT_PATH;
 
@@ -100,7 +103,7 @@ const stages: Stage[] = [
     commands: [
       runNodeScript("scripts/generate-nevada-public-meeting-source-seeds.ts"),
       runNodeScript("scripts/discover-nevada-meeting-sources.ts"),
-      runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--scheduled"]),
+      runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--scheduled", ...(allSourceShards ? ["--all-source-shards"] : [])]),
     ],
   },
   {
@@ -109,7 +112,7 @@ const stages: Stage[] = [
     network: true,
     commands: [
       runNodeScript("scripts/run-officials-refresh.ts"),
-      runNodeScript("scripts/collect-nevada-financials.ts", ["--scheduled"]),
+      runNodeScript("scripts/collect-nevada-financials.ts", [allSourceShards ? "--full" : "--scheduled"]),
       runNodeScript("scripts/audit-nevada-financial-coverage.ts", ["--strict"]),
     ],
   },
@@ -121,12 +124,12 @@ const stages: Stage[] = [
       runNodeScript("scripts/collect-nevada-case-coverage.ts"),
       runNodeScript("scripts/audit-nevada-case-coverage.ts", ["--strict"]),
       runNodeScript("scripts/generate-nevada-political-ad-sources.ts"),
-      runNodeScript("scripts/download-nevada-fec-political-ads.ts", ["--scheduled", "--limit=1600"]),
+      runNodeScript("scripts/download-nevada-fec-political-ads.ts", [...(allSourceShards ? [] : ["--scheduled"]), "--limit=1600"]),
       runNodeScript("scripts/import-nevada-political-ads.ts"),
       runNodeScript("scripts/audit-nevada-political-ads.ts"),
       runNodeScript("scripts/generate-nevada-political-ad-coverage.ts"),
       runNodeScript("scripts/audit-nevada-political-ad-coverage.ts", ["--strict"]),
-      runNodeScript("scripts/collect-nevada-organizations.ts"),
+      runNodeScript("scripts/collect-nevada-organizations.ts", allSourceShards ? ["--first-pass"] : []),
       runNodeScript("scripts/audit-nevada-organizations.ts", ["--strict"]),
     ],
   },
@@ -265,7 +268,7 @@ function artifactMetrics() {
 }
 
 if (process.argv.includes("--dry-run")) {
-  console.log(JSON.stringify({ meetingsOnly, stages: selectedStages() }, null, 2));
+  console.log(JSON.stringify({ meetingsOnly, allSourceShards, stages: selectedStages() }, null, 2));
   process.exit(0);
 }
 mkdirSync(GENERATED_DIR, { recursive: true });
@@ -327,6 +330,7 @@ const artifact = {
   completedAt,
   canonicalRun: !isTargetedRun,
   meetingsOnly,
+  allSourceShards,
   environment: { offline, networkAvailable: smoke.available, networkReason: smoke.reason, cwd: process.cwd() },
   stagesAttempted: stageReports.filter((stage) => stage.status !== "skipped").length,
   stagesSucceeded: stageReports.filter((stage) => stage.status === "succeeded").length,
