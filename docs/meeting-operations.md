@@ -47,7 +47,7 @@ The added first-party intake includes:
 | [Nevada Public Notice](https://notice.nv.gov/) | Discovery of additional public bodies and source links. Leads require source review; they are not automatically published as duplicate meetings. |
 | [State Board of Education](https://doe.nv.gov/boards-commissions-councils/state-board-of-education) and [education meeting directory](https://doe.nv.gov/boards-commissions-councils/publicmeetings/) | State education bodies, committees, dated records and additional discovery routes. |
 | [School and district directory](https://doe.nv.gov/school-and-district-information) | First-party roots for statewide school-level calendar discovery. |
-| [Carson City school calendars](https://www.carsoncityschools.com/families-and-students/calendars) | Published PTA/PTO and parent-organization meetings, with school identity. Routine school holidays and sports are excluded. |
+| [Carson City school calendars](https://www.carsoncityschools.com/families-and-students/calendars) and the district's public ParentSquare widget | Published PTA/PTO and parent-organization meetings, with school identity. Routine school holidays and sports are excluded. Each listed school is monitored separately so one school's event cannot make the whole district look covered. Authenticated family-group posts are never accessed. |
 | [Carson City school board](https://www.carsoncityschools.com/our-district/school-board) | Official dated board calendar and linked public folders containing dated agendas and approved minutes. Replaces reliance on the inaccessible legacy BoardDocs route. |
 | [Nevada PTA](https://www.nevadapta.org/running-your-pta/pta-basics/) | Parent-organization discovery/contact route. Directory membership does not establish a meeting date or access to private minutes. |
 
@@ -55,7 +55,13 @@ Carson City is the first operational priority; all Nevada jurisdictions remain i
 
 The source-discovery queue is `data/generated/nevada-meeting-source-discovery.json`. Each lead preserves the source URL, discovery origin, first/last seen times, source category, and review state. Review the parent body, jurisdiction, official calendar, agenda/minutes archives, timezone, parser support, and a real dated sample before adding a source to the registry. A private PTA calendar needs an authorized organizer-provided calendar or reviewed file; never infer a recurring event from last year's schedule.
 
+The upcoming-coverage audit also emits `bodyCoverage` for configured school-calendar bodies. `no_public_meeting_observed` and `stale_public_visibility` are coverage findings, not claims that the group did not meet. They mean the public channels did not provide enough evidence. The daily production run reports unresolved source coverage once per day; sub-daily meeting checks continue to collect and publish without repeating the same failure email.
+
 ## Lifecycle and evidence rules
+
+September 20 recovery: Actions run `35508137018` saved its worker checkpoint but failed release preparation with `release_ambiguous_meeting_alias`. Retained URL unions had created reciprocal native-provider aliases (Clark Diligent 1437/1438 and Reno PrimeGov 2255/2286). Native IDs now outrank shared evidence URLs; historical false native-ID claims are retracted with provenance, while the explicit school amendment proof is preserved. The release ambiguity gate remains unchanged. This repair was exercised read-only against checkpoint `feff46fb957f756676817050ae94762a5cc4e37610b767543347541ac882d351`, resolving every collision without deleting evidence.
+
+Public ParentSquare and the district calendar are checked independently. A failed calendar must not skip the public feed; an unavailable feed is reported rather than treated as empty. Multi-school/undated notices are held rather than assigned speculatively. Private family posts and attachment-only announcements are not covered by the public-text adapter. Empire's reported September 17 PTO meeting remains unverified until a public notice or organizer-provided source establishes its details. Do not turn test fixtures into meeting records.
 
 - Preserve previously discovered meetings when source pages disappear, calendars roll over, or requests fail. Absence is not cancellation. Preserve original creation times and evidence links.
 - Keep stable provider event IDs where available. Reconcile revised dates and titles against those IDs. Keep distinct bodies on the same day separate.

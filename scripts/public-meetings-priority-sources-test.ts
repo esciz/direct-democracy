@@ -101,6 +101,10 @@ const granicus = parsePriorityGranicus(`<tr><td>Elko TV District</td><td>Sep&nbs
 assert.equal(granicus[0].meetingDate, "2026-09-11T01:00:00.000Z");
 const old = { id: "meeting-washoe-county-school-district-old", source_urls: ["https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx?Org=Cal&Id=1493"], agenda_url: listings[0].url, minutes_url: listings[0].url, packet_url: listings[0].url } as PublicMeetingRecord;
 const current = { ...calendars[0], sourceUrls: [listings[0].url] }; reconcilePriorityMeetingIdentities([current], [old]); assert.ok(current.aliasMeetingIds?.includes(old.id));
+const nativeConflict = { ...old, id: "meeting-washoe-county-school-district-diligent-99999" };
+const freshNative = { ...calendars[0], sourceUrls: [listings[0].url], aliasMeetingIds: undefined };
+reconcilePriorityMeetingIdentities([freshNative], [nativeConflict]);
+assert.equal(freshNative.aliasMeetingIds, undefined, "A different native provider ID cannot be inherited from shared evidence URLs");
 assert.equal(removeMisclassifiedSchoolPortalDocuments(old).minutes_url, null); assert.deepEqual(removeMisclassifiedSchoolPortalDocuments(old).source_urls, old.source_urls);
 console.log("Priority Nevada source adapters: dates, committees, published-document ownership, cancellation, aliases and false-minutes regression passed.");
 

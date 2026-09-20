@@ -115,6 +115,12 @@ export type PublicMeetingSourceSeed = {
   packetArchiveUrl?: string | null;
   videoArchiveUrl?: string | null;
   discoveryUrls?: string[];
+  publicFeedUrls?: string[];
+  coverageBodies?: Array<{
+    id: string;
+    name: string;
+    aliases?: string[];
+  }>;
   allowedHosts?: string[];
   platformHints?: string[];
   coverageJurisdictionIds?: string[];

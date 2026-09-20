@@ -106,6 +106,8 @@ const merged = catalog.providers.map((provider): ExtendedMeetingSourceSeed => {
       "Official jurisdiction root registered for bounded browser discovery, public JSON capture, linked-document retrieval, native text extraction, and OCR fallback.",
     providerGroup: provider.providerGroup,
     discoveryUrls,
+    ...(previous?.publicFeedUrls ? { publicFeedUrls: previous.publicFeedUrls } : {}),
+    ...(previous?.coverageBodies ? { coverageBodies: previous.coverageBodies } : {}),
     allowedHosts: unique([...(previous?.allowedHosts ?? []), ...(provider.allowedHosts ?? [])]),
     platformHints: unique([...(previous?.platformHints ?? []), ...(provider.platformHints ?? [])]),
     coverageJurisdictionIds: unique(jurisdictionIdsByProvider.get(provider.id) ?? []),
