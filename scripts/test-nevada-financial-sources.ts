@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm, stat, utimes, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, utimes, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { finiteMoney, sourceDate, fetchFinancialBuffer, fetchFinancialCache, type FinancialSourceAttempt } from "../lib/financials/source-cache";
 import { fecSnapshot, parseTransparencyPage, transparencyIdentityMatches } from "./collect-nevada-financials";
+import { financeFreshnessFailures, financialSourceFreshness } from "../lib/financials/source-freshness";
 
 async function main() {
 const folder = await mkdtemp(path.join(tmpdir(), "dd-finance-test-"));
@@ -33,6 +34,13 @@ try {
   const snapshot = parseTransparencyPage(html, "https://www.transparencyusa.org/nv/candidate/test", 2026, "2026-09-06T00:00:00Z");
   assert.equal(snapshot?.totalRaised, 1234);
   assert.equal(snapshot?.coverageEnd, null, "Retrieval date cannot become a reporting cutoff");
+  const unknownDate = parseTransparencyPage(html, "https://www.transparencyusa.org/nv/candidate/test", 2026, null);
+  assert.equal(unknownDate?.checkedAt, null);
+  assert.match(unknownDate!.reportingPeriod, /retrieval date unknown/);
+  assert.equal(financeFreshnessFailures({ attempted: 10, cachedAfterError: 9, unavailable: 0 }).length, 1);
+  assert.equal(financeFreshnessFailures({ attempted: 10, cachedAfterError: 0, unavailable: 0 }).length, 0);
+  assert.equal(financeFreshnessFailures(undefined).length, 1);
+  assert.equal(financialSourceFreshness({ attempts: {} }, "https://example.org/"), null);
   assert.equal(parseTransparencyPage(html.replace("$1,234", ""), "https://www.transparencyusa.org/nv/candidate/test", 2026, "2026-09-06T00:00:00Z"), null);
   await assert.rejects(fetchFinancialBuffer(`${baseUrl}/slow`, { timeoutMs: 80 }), /abort|timed out/i);
   await assert.rejects(fetchFinancialBuffer(`${baseUrl}/large`, { maxBytes: 10 }), /byte limit/);
@@ -49,6 +57,9 @@ try {
   assert.equal(cached?.fetchedAt, first?.fetchedAt);
   assert.equal(await readFile(file, "utf8"), '{"results":[]}');
   assert.equal(cached?.timestampBasis, "retrieval_metadata");
+  await utimes(file, new Date(), new Date());
+  const restored = await fetchFinancialCache(`${baseUrl}/good?api_key=never-log-this`, file, false, { validate });
+  assert.equal(restored?.fetchedAt, first?.fetchedAt, "Restore time must not replace verified retrieval metadata");
   const missing = await fetchFinancialCache(`${baseUrl}/missing`, path.join(folder, "absent"), false, { attempts, validate });
   assert.equal(missing, null);
   assert.equal(attempts.at(-1)?.status, "unavailable");
@@ -56,8 +67,12 @@ try {
   await writeFile(legacy, '{"results":[]}');
   await utimes(legacy, new Date("2025-01-01T00:00:00Z"), new Date("2025-01-01T00:00:00Z"));
   const legacyResult = await fetchFinancialCache(`${baseUrl}/legacy`, legacy, false, { validate });
-  assert.equal(legacyResult?.fetchedAt, (await stat(legacy)).mtime.toISOString());
-  assert.equal(legacyResult?.timestampBasis, "legacy_file_mtime");
+  assert.equal(legacyResult?.fetchedAt, null);
+  assert.equal(legacyResult?.timestampBasis, null);
+  await utimes(legacy, new Date(), new Date());
+  assert.equal((await fetchFinancialCache(`${baseUrl}/legacy`, legacy, false, { validate }))?.fetchedAt, null, "Restored legacy bytes do not become freshly sourced");
+  await writeFile(file, '{"results":[{"changed":true}]}');
+  assert.equal((await fetchFinancialCache(`${baseUrl}/good`, file, false, { validate }))?.fetchedAt, null, "Mismatched content cannot reuse retrieval metadata");
   console.log("Finance source tests passed: unknown amounts, actual reporting periods, full-body timeouts, size cap, invalid response rejection, last-good retention, cache timestamps, and secret-safe logs.");
 } finally {
   server.closeAllConnections();

@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from "node:crypto";
-import { mkdir, readFile, rename, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 export type FinancialSourceAttempt = {
@@ -35,6 +35,18 @@ export async function atomicFinancialWrite(file: string, value: string | Buffer)
   const temporary = `${file}.${randomUUID()}.tmp`;
   await writeFile(temporary, value);
   await rename(temporary, file);
+}
+
+// A restored file's mtime describes restoration, not source retrieval. Only
+// content-bound retrieval metadata can establish when cached data was fetched.
+export async function financialCacheRetrievedAt(cachePath: string, buffer: Buffer, expectedUrl?: string): Promise<string | null> {
+  try {
+    const metadata = JSON.parse(await readFile(`${cachePath}.metadata.json`, "utf8"));
+    if ((!expectedUrl || metadata.url === redactFinancialUrl(expectedUrl)) &&
+      metadata.sha256 === createHash("sha256").update(buffer).digest("hex") &&
+      typeof metadata.fetchedAt === "string" && Number.isFinite(Date.parse(metadata.fetchedAt))) return metadata.fetchedAt;
+  } catch { /* Legacy or mismatched metadata cannot establish a retrieval date. */ }
+  return null;
 }
 
 export async function fetchFinancialBuffer(url: string, options: { timeoutMs?: number; maxBytes?: number; fetchImpl?: typeof fetch } = {}) {
@@ -92,17 +104,10 @@ export async function fetchFinancialCache(url: string, cachePath: string, allowN
     }
   }
   try {
-    const [buffer, info] = await Promise.all([readFile(cachePath), stat(cachePath)]);
+    const buffer = await readFile(cachePath);
     options.validate?.(buffer);
-    let fetchedAt = info.mtime.toISOString();
-    let timestampBasis: FinancialSourceAttempt["timestampBasis"] = "legacy_file_mtime";
-    try {
-      const metadata = JSON.parse(await readFile(`${cachePath}.metadata.json`, "utf8"));
-      if (metadata.url === safeUrl && metadata.sha256 === createHash("sha256").update(buffer).digest("hex") && Number.isFinite(Date.parse(metadata.fetchedAt))) {
-        fetchedAt = metadata.fetchedAt;
-        timestampBasis = "retrieval_metadata";
-      }
-    } catch { /* Legacy caches retain their actual file timestamp; never use the current check time. */ }
+    const fetchedAt = await financialCacheRetrievedAt(cachePath, buffer, safeUrl);
+    const timestampBasis = fetchedAt ? "retrieval_metadata" as const : null;
     const attempt: FinancialSourceAttempt = { url: safeUrl, attemptedAt, fetchedAt, status: error ? "cached_after_error" : "cached", error, timestampBasis };
     options.attempts?.push(attempt);
     return { buffer, fetched: false, ...attempt };

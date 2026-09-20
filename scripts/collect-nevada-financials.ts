@@ -2,9 +2,9 @@ import "dotenv/config";
 
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { mkdir, readFile, stat } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
-import { atomicFinancialWrite, fetchFinancialCache, fetchFinancialBuffer, finiteMoney, sourceDate, type FinancialSourceAttempt } from "../lib/financials/source-cache";
+import { atomicFinancialWrite, financialCacheRetrievedAt, fetchFinancialCache, fetchFinancialBuffer, finiteMoney, sourceDate, type FinancialSourceAttempt } from "../lib/financials/source-cache";
 import path from "node:path";
 
 import {
@@ -125,7 +125,7 @@ type TransparencySnapshot = {
   reportingPeriod: string;
   topContributors: TransparencyContributor[];
   availableCycleLabels: string[];
-  checkedAt: string;
+  checkedAt: string | null;
 };
 
 type FinancialSnapshot = {
@@ -411,13 +411,7 @@ async function fetchToCache(url: string, cachePath: string, allowNetwork: boolea
 }
 
 async function cacheCheckedAt(cachePath: string) {
-  const cached = await fetchFinancialCache("https://www.transparencyusa.org/", cachePath, false);
-  // The cache mtime is a truthful fallback for legacy files; matched metadata preserves the retrieval time.
-  try {
-    const metadata = JSON.parse(await readFile(`${cachePath}.metadata.json`, "utf8"));
-    if (cached && metadata.sha256 === createHash("sha256").update(cached.buffer).digest("hex") && Number.isFinite(Date.parse(metadata.fetchedAt))) return metadata.fetchedAt as string;
-  } catch { /* Legacy cache. */ }
-  return cached?.fetchedAt ?? (await stat(cachePath)).mtime.toISOString();
+  return financialCacheRetrievedAt(cachePath, await readFile(cachePath));
 }
 
 function validateFecResponse(buffer: Buffer) {
@@ -608,7 +602,7 @@ function transparencyCycleUrl(baseUrl: string, cycle: number | "all") {
   return url.toString();
 }
 
-export function parseTransparencyPage(html: string, sourceUrl: string, cycle: number | "all", checkedAt: string): TransparencySnapshot | null {
+export function parseTransparencyPage(html: string, sourceUrl: string, cycle: number | "all", checkedAt: string | null): TransparencySnapshot | null {
   const titleMatch = html.match(/<title>([\s\S]*?)\s*-\s*Nevada Candidate\s*-\s*Transparency USA<\/title>/i);
   const candidateName = titleMatch ? stripTags(titleMatch[1]) : "";
   const stats = [...html.matchAll(/<span class="user-display-stat-counter">([\s\S]*?)<\/span>\s*<span class="user-display-stat-title">([\s\S]*?)<\/span>/gi)]
@@ -632,16 +626,16 @@ export function parseTransparencyPage(html: string, sourceUrl: string, cycle: nu
     .map((match) => stripTags(match[1]))
     .filter((label) => /(?:20\d{2}.*(?:season|cycle)|2017 to now)/i.test(label))
     .filter((label, index, labels) => labels.indexOf(label) === index);
-  const checkedDate = checkedAt.slice(0, 10);
+  const checkedLabel = checkedAt ? `source retrieved ${checkedAt.slice(0, 10)}` : "source retrieval date unknown";
   // A retrieval date is not a filing coverage date. The aggregate page does not
   // establish an exact cutoff for the current cycle.
   const coverageEnd = cycle === "all" || cycle === CURRENT_CYCLE ? null : `${cycle}-12-31`;
   const coverageStart = cycle === "all" ? "2017-01-01" : `${cycle - 1}-01-01`;
   const reportingPeriod =
     cycle === "all"
-      ? `All published Nevada campaign records since 2017; source checked ${checkedDate}`
+      ? `All published Nevada campaign records since 2017; ${checkedLabel}`
       : cycle === CURRENT_CYCLE
-        ? `${cycle - 1}-${cycle} election cycle; source checked ${checkedDate}`
+        ? `${cycle - 1}-${cycle} election cycle; ${checkedLabel}`
         : `${cycle - 1}-${cycle} election cycle`;
   return {
     candidateName,

@@ -5,6 +5,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { PrismaClient } from "@prisma/client";
+import { financeFreshnessFailures } from "../lib/financials/source-freshness";
 
 const prisma = new PrismaClient();
 const INPUT_PATH = path.join(process.cwd(), "data", "generated", "nevada-financial-coverage.json");
@@ -153,10 +154,13 @@ async function main() {
     missingDisclosureSources.length +
     invalidZeroSubstitutions.length +
     aggregateReconciliationWarnings.length;
+  const freshnessFailures = financeFreshnessFailures(coverage.sourceHealth);
   const output = {
     generatedAt: new Date().toISOString(),
     coverageGeneratedAt: coverage.generatedAt,
     strictPassed: strictFailures === 0,
+    freshnessPassed: freshnessFailures.length === 0,
+    freshnessFailures,
     scope: "Entity/source registration integrity and aggregation checks. This does not certify complete finance extraction or source freshness.",
     databaseInventoryWarning: databaseAvailable ? null : "Database unavailable; expected entity inventory could not be independently verified.",
     totals,
@@ -183,7 +187,8 @@ async function main() {
   await writeFile(AUDIT_PATH, `${JSON.stringify(output, null, 2)}\n`);
   console.log(JSON.stringify(totals, null, 2));
   console.log(`Strict coverage: ${output.strictPassed ? "passed" : "failed"}`);
-  if (process.argv.includes("--strict") && !output.strictPassed) process.exitCode = 1;
+  console.log(`Source freshness: ${output.freshnessPassed ? "passed" : "incomplete"}`);
+  if (process.argv.includes("--strict") && (!output.strictPassed || !output.freshnessPassed)) process.exitCode = 1;
 }
 
 main()

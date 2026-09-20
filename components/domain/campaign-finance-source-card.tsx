@@ -7,7 +7,7 @@ import {
 import type { CampaignFinanceSourceCardData } from "@/lib/civic-data/profile-source-cards";
 
 function formatDate(value: string | null) {
-  if (!value) return "Last checked pending";
+  if (!value) return "Retrieval date unknown";
   return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(value));
 }
 
@@ -206,7 +206,7 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
           </p>
         </div>
         <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Last checked</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Source last retrieved</p>
           <p className="mt-3 text-sm font-semibold text-slate-100">{formatDate(data.lastCheckedAt)}</p>
           <p className="mt-2 text-xs text-slate-500">
             {data.approvedCount > 0
@@ -217,6 +217,12 @@ export function CampaignFinanceSourceCard({ data }: { data: CampaignFinanceSourc
           </p>
         </div>
       </div>
+
+      {data.freshnessNote ? (
+        <p role="status" className="mt-4 rounded-2xl border border-amber-300/20 bg-amber-500/10 p-4 text-sm leading-6 text-amber-100">
+          {data.freshnessNote}
+        </p>
+      ) : null}
 
       {data.filingSummaries.length && !data.cycleHistory.length ? (
         <div className="mt-5 rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-4">

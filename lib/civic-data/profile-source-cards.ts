@@ -1,9 +1,11 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { CivicEntityType } from "@prisma/client";
+import { cache } from "react";
 
 import { getCandidateFundingBreakdown, type CandidateFundingBreakdown } from "@/lib/campaign-finance/breakdown";
 import { prisma } from "@/lib/prisma";
+import { financialSourceFreshness, withoutUnverifiedRetrievalDate } from "@/lib/financials/source-freshness";
 
 export type CampaignFinanceCycleRecord = {
   cycleYear: number;
@@ -80,6 +82,7 @@ export type CampaignFinanceContributorAttribution = {
 };
 
 export type CampaignFinanceSourceCardData = {
+  freshnessNote?: string | null;
   sourceName: string | null;
   sourceUrl: string | null;
   filingStatus: string | null;
@@ -612,15 +615,44 @@ export function campaignFinanceCardFromCoverage(value: unknown, entityType: "can
   };
 }
 
+export function applyFinanceSourceHealth(data: CampaignFinanceSourceCardData, coverage: unknown): CampaignFinanceSourceCardData {
+  const health = asFinanceRawData(coverage)?.sourceHealth;
+  if (!health || !data.financialSnapshot) return data;
+  const snapshot = data.financialSnapshot;
+  const status = financialSourceFreshness(health, snapshot.sourceUrl, snapshot.sourceCheckedAt);
+  if (!status) return data;
+  const safePeriod = status.retrievedAt ? (value: string) => value : withoutUnverifiedRetrievalDate;
+  const cycleHistory = data.cycleHistory.map(cycle => {
+    const observation = cycle.sourceUrl ? financialSourceFreshness(health, cycle.sourceUrl) : null;
+    return observation && !observation.retrievedAt ? { ...cycle, reportingPeriod: withoutUnverifiedRetrievalDate(cycle.reportingPeriod) } : cycle;
+  });
+  const allObservation = data.allReportedTotals?.sourceUrl ? financialSourceFreshness(health, data.allReportedTotals.sourceUrl) : null;
+  return {
+    ...data, freshnessNote: status.note, lastCheckedAt: status.retrievedAt,
+    financialSnapshot: { ...snapshot, sourceCheckedAt: status.retrievedAt, reportingPeriod: safePeriod(snapshot.reportingPeriod) },
+    filingStatus: data.filingStatus && safePeriod(data.filingStatus),
+    campaignReportedSummary: data.campaignReportedSummary && safePeriod(data.campaignReportedSummary),
+    cycleHistory,
+    allReportedTotals: data.allReportedTotals && allObservation && !allObservation.retrievedAt
+      ? { ...data.allReportedTotals, reportingPeriod: withoutUnverifiedRetrievalDate(data.allReportedTotals.reportingPeriod) } : data.allReportedTotals,
+  };
+}
+
+const readFinanceCoverage = cache(async (): Promise<unknown> => {
+  try { return JSON.parse(await readFile(path.join(process.cwd(), "data", "generated", "nevada-financial-coverage.json"), "utf8")); }
+  catch { return null; }
+});
+
 export async function getCampaignFinanceSourceCard(entityType: "candidate" | "official", entityId: string): Promise<CampaignFinanceSourceCardData> {
-  try { return await getDatabaseCampaignFinanceSourceCard(entityType, entityId); }
+  const coveragePromise = readFinanceCoverage();
+  try { return applyFinanceSourceHealth(await getDatabaseCampaignFinanceSourceCard(entityType, entityId), await coveragePromise); }
   catch (error) {
     let fallback: CampaignFinanceSourceCardData | null = null;
     try {
-      const cached = JSON.parse(await readFile(path.join(process.cwd(), "data", "generated", "nevada-financial-coverage.json"), "utf8"));
+      const cached = await coveragePromise;
       fallback = campaignFinanceCardFromCoverage(cached, entityType, entityId);
     } catch { /* Missing or invalid cache cannot become a fabricated finance record. */ }
-    if (fallback) return fallback;
+    if (fallback) return applyFinanceSourceHealth(fallback, await coveragePromise);
     throw error;
   }
 }
