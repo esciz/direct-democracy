@@ -57,6 +57,8 @@ jobs:
           node --import tsx scripts/test-bootstrap-meeting-budget.ts
           node --import tsx scripts/test-meeting-archive-transport.ts
           node --import tsx scripts/test-carson-public-calendar.ts
+          node --import tsx scripts/test-current-election-questions.ts
+          node --import tsx scripts/test-civic-database-refresh.ts
           npm run meetings:pdf:test
           npm run meetings:text:test
           npm run meetings:identity:test

@@ -6,7 +6,7 @@ import { getVoteObjectLabel, getVoteResponseLabels } from "@/lib/votes/presentat
 
 export default async function VotingHistoryPage() {
   const user = await getCurrentUser();
-  const answeredQuestions = (await getVotingLibrary(user, { scope: "all", category: "all", objectType: "all" })).filter(
+  const answeredQuestions = (await getVotingLibrary(user, { scope: "all", category: "all", objectType: "all" }, true)).filter(
     (question) => Boolean(question.userAnswer),
   );
 

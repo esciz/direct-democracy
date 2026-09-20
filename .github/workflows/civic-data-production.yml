@@ -113,6 +113,8 @@ jobs:
           node --import tsx scripts/test-reporting-policy.ts
           node --import tsx scripts/test-civic-workflows.ts
           node --import tsx scripts/test-carson-public-calendar.ts
+          node --import tsx scripts/test-current-election-questions.ts
+          node --import tsx scripts/test-civic-database-refresh.ts
       - name: Freeze validated runtime release and record coverage gaps
         run: npm run dataops:release:prepare
       - name: Export the immutable public candidate
@@ -138,6 +140,7 @@ jobs:
             data/generated/nevada-political-ad-coverage-audit.json
             data/generated/meetings-pipeline-run.json
             data/generated/dataops-pipeline-run.json
+            data/generated/civic-database-refresh.json
 
   publish:
     name: Publish civic release and verify deployment

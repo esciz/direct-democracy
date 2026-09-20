@@ -24,12 +24,12 @@ export function createPlaceholderAdapter({
 
       return {
         sourceSlug: context.source.slug,
-        status: SourceSyncStatus.SUCCESS,
+        status: SourceSyncStatus.ERROR,
         cursor: context.cursor ?? null,
         data,
         issues: [
           {
-            severity: "info",
+            severity: "warning",
             message: `${displayName} adapter is registered. Parser implementation is pending; no records were imported.`,
           },
         ],
@@ -39,4 +39,3 @@ export function createPlaceholderAdapter({
     },
   };
 }
-

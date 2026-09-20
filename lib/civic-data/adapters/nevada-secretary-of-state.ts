@@ -603,12 +603,12 @@ export const nevadaSecretaryOfStateAdapter: CivicDataAdapter = {
     ) {
       return {
         sourceSlug: context.source.slug,
-        status: SourceSyncStatus.SUCCESS,
+        status: SourceSyncStatus.ERROR,
         cursor: new Date().toISOString(),
         data: createEmptyNormalizedCivicData(),
         issues: [
           {
-            severity: "info",
+            severity: "warning",
             message: `${context.source.name} parser is registered for scheduled checks; source data import is pending implementation.`,
           },
         ],
@@ -625,7 +625,7 @@ export const nevadaSecretaryOfStateAdapter: CivicDataAdapter = {
 
     return {
       sourceSlug: context.source.slug,
-      status: sourceIssues.some((issue) => issue.severity === "error") ? SourceSyncStatus.ERROR : SourceSyncStatus.SUCCESS,
+      status: sourceIssues.some((issue) => issue.severity === "error" || issue.severity === "warning") ? SourceSyncStatus.ERROR : SourceSyncStatus.SUCCESS,
       cursor: new Date().toISOString(),
       data,
       issues: sourceIssues,

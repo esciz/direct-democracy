@@ -29,6 +29,7 @@ if (process.argv.includes("--help")) {
     ...[
       "refresh-meeting-calendars",
       "refresh-public-data",
+      "refresh-civic-database",
       "public-records",
       "import-meetings",
       "register-sources",
@@ -96,6 +97,12 @@ const retrieveArgs = [
 const nativeExtractArgs = ["--max-pdf-bytes=250000000", "--pdf-timeout-ms=60000", "--max-documents=400", "--max-duration-ms=600000"];
 
 const stages: Stage[] = [
+  {
+    id: "refresh-civic-database",
+    description: "Refresh due database-backed elections, candidates, legislative and registered civic sources with bounded workers.",
+    network: true,
+    commands: [runNodeScript("scripts/refresh-civic-database.ts", allSourceShards ? ["--all-source-shards"] : [])],
+  },
   {
     id: "refresh-meeting-calendars",
     description: "Discover current Nevada calendars and refresh due official-source caches.",
@@ -207,7 +214,7 @@ function selectedStages() {
   if (toIndex === -1) throw new Error(`Unknown --to stage: ${to}`);
   if (fromIndex > toIndex) throw new Error("--from must precede --to");
   return stages.slice(fromIndex, toIndex + 1)
-    .filter((stage) => !meetingsOnly || !["refresh-public-data", "public-records"].includes(stage.id))
+    .filter((stage) => !meetingsOnly || !["refresh-public-data", "public-records", "refresh-civic-database"].includes(stage.id))
     .map((stage) => meetingsOnly && stage.id === "freshness-audit" ? { ...stage, commands: stage.commands.filter((command) => !/nv-sos|audit-public-site-integrity/.test(command.join(" "))) } : stage);
 }
 

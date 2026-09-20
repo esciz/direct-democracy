@@ -7,6 +7,7 @@ import { getCommunityById, getDefaultCommunityForUser, getLocalCommunityBundle }
 import { communityMatchesJurisdiction } from "@/lib/community/membership";
 import { generateVoteQuestionsFromApprovedIssuePositions } from "@/lib/issue-positions/store";
 import { prisma } from "@/lib/prisma";
+import { currentElectionQuestionWhere, currentElectionWhere } from "@/lib/feed/current-election-questions";
 import { appendTaxCostContext } from "@/lib/public-meetings/financial-impact";
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath } from "@/lib/public-meetings/shared";
 import type { MeetingVotingCardRecord } from "@/lib/public-meetings/types";
@@ -599,13 +600,13 @@ export async function ensureInitialRealDataCivicQuestions() {
       take: 30,
     }),
     prisma.candidate.findMany({
-      where: { sourceId: { not: null }, status: { not: "NEEDS_REVIEW" } },
+      where: { sourceId: { not: null }, status: { not: "NEEDS_REVIEW" }, election: currentElectionWhere() },
       include: { jurisdiction: true, office: true, election: true, source: true },
       orderBy: { updatedAt: "desc" },
       take: 40,
     }),
     prisma.ballotQuestion.findMany({
-      where: { sourceId: { not: null } },
+      where: { sourceId: { not: null }, election: currentElectionWhere() },
       include: { jurisdiction: true, election: true, source: true },
       orderBy: { updatedAt: "desc" },
       take: 25,
@@ -623,7 +624,7 @@ export async function ensureInitialRealDataCivicQuestions() {
       take: 25,
     }),
     prisma.election.findMany({
-      where: { sourceId: { not: null } },
+      where: { sourceId: { not: null }, ...currentElectionWhere() },
       include: { jurisdiction: true, source: true },
       orderBy: { electionDate: "desc" },
       take: 20,
@@ -859,12 +860,13 @@ export async function getAllVoteQuestions() {
   return questions.map((question) => mapQuestion(question, ""));
 }
 
-export async function getQuickVoteCardsForUser(user: AuthUser, communityId?: string): Promise<VoteQuestionCardSummary[]> {
+export async function getQuickVoteCardsForUser(user: AuthUser, communityId?: string, includeHistorical = false): Promise<VoteQuestionCardSummary[]> {
   const questions = await prisma.voteQuestion.findMany({
     where: {
       generatedFromRealData: true,
       reviewStatus: { in: [...PUBLIC_REVIEW_STATUSES] },
       sourceUrl: { not: null },
+      ...(includeHistorical ? {} : { AND: [await currentElectionQuestionWhere(prisma)] }),
     },
     include: questionInclude,
     orderBy: [{ updatedAt: "desc" }],
@@ -919,7 +921,7 @@ export async function getVotingQuestionWindow(
     index: number;
   },
 ): Promise<VotingQuestionWindow> {
-  const where = votingQuestionWhere(user, options.filter);
+  const where = { ...votingQuestionWhere(user, options.filter), AND: [await currentElectionQuestionWhere(prisma)] };
   const total = await prisma.voteQuestion.count({ where });
   const index = Math.min(Math.max(options.index, 0), Math.max(total - 1, 0));
   const rows = total
@@ -970,8 +972,8 @@ export async function getDailyVoteExperience(user: AuthUser, communityId?: strin
   };
 }
 
-export async function getVotingLibrary(user: AuthUser, filters: VotingLibraryFilters = {}) {
-  const questions = await getQuickVoteCardsForUser(user);
+export async function getVotingLibrary(user: AuthUser, filters: VotingLibraryFilters = {}, includeHistorical = false) {
+  const questions = await getQuickVoteCardsForUser(user, undefined, includeHistorical);
   const normalizedSearch = filters.search?.trim().toLowerCase() ?? "";
 
   return questions.filter((question) => {
