@@ -78,7 +78,7 @@ export default async function MeetingHealthPage({ searchParams }: { searchParams
   const staleReport = !report || !Number.isFinite(Date.parse(report.generatedAt)) || Date.now() - Date.parse(report.generatedAt) > 48 * 3_600_000;
   const discoveryLeads = leads.filter((lead) => !lead.registeredProviderId && matches(`${lead.bodyName} ${lead.sourceKind} ${lead.discoveredFrom}`));
   const schoolCoverageGaps = (upcomingCoverage?.rows ?? [])
-    .flatMap((row) => row.bodyCoverage.filter((body) => ["no_public_meeting_observed", "stale_public_visibility"].includes(body.status)).map((body) => ({ ...body, providerName: row.providerName, jurisdiction: row.jurisdiction })))
+    .flatMap((row) => (row.bodyCoverage ?? []).filter((body) => ["no_public_meeting_observed", "stale_public_visibility"].includes(body.status)).map((body) => ({ ...body, providerName: row.providerName, jurisdiction: row.jurisdiction })))
     .filter((body) => matches(`${body.name} ${body.providerName} ${body.jurisdiction}`));
   return (
     <div className="space-y-6 pb-12">
@@ -135,7 +135,7 @@ export default async function MeetingHealthPage({ searchParams }: { searchParams
           <p className="mt-1 text-sm text-slate-400">{body.providerName} · {body.totalDatedMeetings} retained · {body.upcomingMeetings} upcoming</p>
           <p className="mt-2 text-xs text-slate-400">Newest public meeting evidence: {body.newestKnownMeetingAt ? date(body.newestKnownMeetingAt) : "None found"}</p>
         </article>)}
-        {!schoolCoverageGaps.length ? <p className="text-sm text-slate-400">No school-level visibility gaps are recorded in the current audit.</p> : null}
+        {!schoolCoverageGaps.length ? <p className="text-sm text-slate-400">{upcomingCoverage?.rows.some((row) => row.bodyCoverage?.length) ? "No school-level visibility gaps match this view. Public feeds do not establish complete ParentSquare coverage." : "School-level coverage has not been audited in this report. Coverage is unverified."}</p> : null}
       </section>
       <section className="space-y-3">
         <h2 className="text-xl font-semibold text-white">Minutes to follow up · {followUps.length}</h2>

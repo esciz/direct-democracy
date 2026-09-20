@@ -362,14 +362,19 @@ export function parsePublicParentSquareMeetings(html: string, seed: PublicMeetin
   const posts = html.split(/<li\b[^>]*class=["'][^"']*rss-widget-feed-list-item[^"']*["'][^>]*>/i).slice(1);
   for (const post of posts) {
     const sourceUrl = sourceLinks(post, feedUrl).find((link) => /parentsquare\.com\/feeds\//i.test(link.href))?.href ?? feedUrl;
-    const postText = text(post);
+    const description = post.match(/<p\b[^>]*class=["'][^"']*rss-widget-feed-content-description[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1];
+    const postText = text(description ?? post.replace(/<time\b[^>]*>[\s\S]*?<\/time>/gi, ""));
     if (!/\b(?:PTA|PTO|PTSA|parent[- ]teacher|parent organization)\b/i.test(postText) || !/\b(?:meeting|council|committee)\b/i.test(postText)) continue;
-    const school = schools.find((candidate) => new RegExp(`\\b${candidate.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(postText));
-    if (!school) continue;
+    const mentionedSchools = new Map(schools.filter((candidate) => new RegExp(`\\b${candidate.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(postText)).map((school) => [school.canonicalName, school]));
+    // District newsletters can mention several schools. Never assign a meeting
+    // to whichever school happens to match first in the configuration.
+    if (mentionedSchools.size !== 1) continue;
+    const school = [...mentionedSchools.values()][0];
     // Require an explicit year in the public post. Inferring a recurrence or year can publish a false meeting.
     const mention = postText.match(/(?:[^.!?]|\.(?!\s)){0,180}\b(?:PTA|PTO|PTSA|parent[- ]teacher|parent organization)\b(?:[^.!?]|\.(?!\s)){0,360}\b(?:meeting|council|committee)\b(?:[^.!?]|\.(?!\s)){0,360}/i)?.[0]
       ?? postText.match(/(?:[^.!?]|\.(?!\s)){0,180}\b(?:meeting|council|committee)\b(?:[^.!?]|\.(?!\s)){0,360}\b(?:PTA|PTO|PTSA|parent[- ]teacher|parent organization)\b(?:[^.!?]|\.(?!\s)){0,360}/i)?.[0];
-    const date = mention && /\b20\d{2}\b/.test(mention) ? nevadaMeetingDate(mention) : null;
+    const explicitDates = mention?.match(/\b(?:(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?\s+\d{1,2}(?:st|nd|rd|th)?[,]?\s+20\d{2}|20\d{2}-\d{2}-\d{2})\b/gi) ?? [];
+    const date = explicitDates.length === 1 ? nevadaMeetingDate(explicitDates[0]) : null;
     if (!mention || !date) continue;
     const group = mention.match(/\b(?:PTA|PTO|PTSA)\b/i)?.[0].toUpperCase() ?? "Parent Organization";
     const record = getMeeting(map, seed, `${school.canonicalName} ${group}`, date, feedUrl, sourceUrl);
@@ -397,27 +402,30 @@ export async function discoverNevadaAgencyMeetings(seed: PublicMeetingSourceSeed
   if (seed.id === "nv-taxation-public-meetings") return requireArchiveRecords(parseTaxationMeetings(await fetchHtml(index), seed, index));
   if (seed.id === "carson-city-school-district") return discoverCarsonSchoolBoardMeetings(seed, fetchHtml, now, onWarning);
   if (seed.id === "carson-city-school-participation") {
-    const html = await fetchHtml(index);
-    if (!/fsCalendar/i.test(html)) throw new Error("Official school calendar markup was not available; source layout needs review.");
-    const meetings = parseSchoolParentMeetings(html, seed, index);
+    const meetings: NevadaAgencyMeeting[] = [];
+    let availableSources = 0;
+    try {
+      const html = await fetchHtml(index);
+      if (!/fsCalendar/i.test(html)) throw new Error("Official school calendar markup was not available; source layout needs review.");
+      meetings.push(...parseSchoolParentMeetings(html, seed, index));
+      availableSources++;
+    } catch (error) {
+      onWarning?.(`Official school calendar: ${error instanceof Error ? error.message : String(error)}. Public feeds will still be checked.`);
+    }
     for (const feedUrl of seed.publicFeedUrls ?? []) {
       try {
-        meetings.push(...parsePublicParentSquareMeetings(await fetchHtml(feedUrl), seed, feedUrl));
+        const html = await fetchHtml(feedUrl);
+        if (!/rss-widget-feed/i.test(html)) throw new Error("Public feed markup was not available; source layout needs review");
+        meetings.push(...parsePublicParentSquareMeetings(html, seed, feedUrl));
+        availableSources++;
       } catch (error) {
         onWarning?.(`Public family-communication feed ${feedUrl}: ${error instanceof Error ? error.message : String(error)}. Official calendar results retained.`);
       }
     }
-    const byBodyAndDate = new Map<string, NevadaAgencyMeeting>();
-    for (const meeting of meetings) {
-      const key = `${meeting.publicBodyName.toLowerCase()}\n${meeting.meetingDate.slice(0, 10)}`;
-      const existing = byBodyAndDate.get(key);
-      byBodyAndDate.set(key, existing ? {
-        ...existing,
-        sourceUrls: [...new Set([...existing.sourceUrls, ...meeting.sourceUrls])],
-        sourceUrl: existing.sourceUrl ?? meeting.sourceUrl,
-      } : meeting);
-    }
-    return [...byBodyAndDate.values()].sort((left, right) => right.meetingDate.localeCompare(left.meetingDate) || left.id.localeCompare(right.id));
+    if (!availableSources) throw new Error("All public school participation sources were unavailable");
+    // Same body/day is not proof of identity (committee and general meetings may
+    // share a day). Retain provider IDs until explicit cross-source proof exists.
+    return [...new Map(meetings.map((meeting) => [meeting.id, meeting])).values()].sort((left, right) => right.meetingDate.localeCompare(left.meetingDate) || left.id.localeCompare(right.id));
   }
   if (seed.id === "nv-state-board-of-education") {
     const html = await fetchHtml(index);

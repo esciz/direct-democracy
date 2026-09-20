@@ -69,6 +69,20 @@ assert.equal(remapMeetingReferences({ meetingId: schoolOriginal.id }, amended).m
 assert.equal(reconcileCrossProviderMeetingIdentities([schoolOriginal, { ...schoolAmended, meeting_alias_ids: [] }]).length, 1, "Unique official amendment identity remains valid after assigning the calendar alias only once");
 assert.equal(reconcileCrossProviderMeetingIdentities(mergeMeetingHistory(amended, [{ ...schoolOriginal, meeting_alias_ids: [] }])).length, 1, "Original source refresh cannot revive a superseded posting");
 assert.deepEqual(reconcileCrossProviderMeetingIdentities(amended), amended);
+const degradedAmended = { ...amended[0], meeting_date: "2026-09-02", meeting_time_known: false };
+const revivedOriginal = { ...schoolOriginal, meeting_date: "2026-09-02", meeting_time_known: false, meeting_alias_ids: [schoolAmended.id] };
+const repairedAmendment = mergeMeetingHistory([degradedAmended, revivedOriginal], []);
+assert.equal(repairedAmendment.length, 1, "Retained explicit amendment proof survives date-only refresh and a false reverse alias");
+assert.equal(repairedAmendment[0].id, schoolAmended.id);
+assert.ok(repairedAmendment[0].source_identity_evidence?.some((proof) => proof.includes("Retracted URL-union alias")));
+const nativeA = fixture({ id: "meeting-reno-city-council-primegov-2286", public_body_id: "parks", meeting_alias_ids: ["meeting-reno-city-council-primegov-2255", "retained-manual-alias"], source_urls: ["https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9324", "https://reno.primegov.com/Public/CompiledDocument?meetingTemplateId=9210"] });
+const nativeB = fixture({ id: "meeting-reno-city-council-primegov-2255", public_body_id: "ward2", meeting_alias_ids: [nativeA.id] });
+const repairedNative = mergeMeetingHistory([nativeA, nativeB], []);
+assert.equal(repairedNative.length, 2, "Different native provider meetings cannot alias each other through shared retained URLs");
+assert.deepEqual(repairedNative[0].meeting_alias_ids, ["retained-manual-alias"]);
+assert.deepEqual(repairedNative[1].meeting_alias_ids, []);
+assert.deepEqual(repairedNative[0].source_urls, nativeA.source_urls, "Repair keeps historical evidence");
+assert.deepEqual(mergeMeetingHistory(repairedNative, []), repairedNative, "Repair is idempotent");
 for (const changed of [{ title: "Clark County School District Board of Trustees — AMENDED Special Meeting" }, { meeting_type: "AMENDED Special Meeting" }, { meeting_date: "2026-09-03T00:00:00.000Z" }, { meeting_time_known: false }, { location: "A different room" }, { public_body_id: "body-clark-county-school-district-another-committee" }, { agenda_url: "https://unrelated.example/document/69186" }, { source_urls: [] }]) {
   assert.equal(reconcileCrossProviderMeetingIdentities([schoolOriginal, { ...schoolAmended, ...changed }]).length, 2);
 }

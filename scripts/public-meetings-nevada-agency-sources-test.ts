@@ -145,6 +145,17 @@ async function main() {
   assert.equal(parentSquareMeeting[0].publicBodyName, "Empire Elementary PTO");
   assert.equal(parentSquareMeeting[0].meetingDate, "2026-09-18T00:30:00.000Z");
   assert.equal(parentSquareMeeting[0].sourceUrl, "https://www.parentsquare.com/feeds/12345");
+  assert.equal(parsePublicParentSquareMeetings(`<li class="rss-widget-feed-list-item"><time>September 10, 2026</time><p class="rss-widget-feed-content-description">Empire Elementary PTO meeting Thursday at 5:30 p.m.</p></li>`, carson, "https://www.parentsquare.com/districts/573/rss_widget").length, 0, "Publication dates are not meeting dates");
+  const feed = "https://www.parentsquare.com/districts/573/rss_widget";
+  carson.publicFeedUrls = [feed];
+  assert.equal(parsePublicParentSquareMeetings(publicParentSquare.replace("</p>", " Bordewich Elementary news.</p>"), carson, feed).length, 0, "A multi-school newsletter cannot assign a meeting by first school mention");
+  const feedWarnings: string[] = [];
+  const feedOnly = await discoverNevadaAgencyMeetings(carson, async (url) => { if (url === feed) return publicParentSquare; throw new Error("Calendar unavailable"); }, new Date(), warning => feedWarnings.push(warning));
+  assert.equal(feedOnly.length, 1, "A calendar outage must not suppress available ParentSquare notices");
+  assert.equal(feedWarnings.length, 1);
+  const sameDay = await discoverNevadaAgencyMeetings(carson, async (url) => url === feed ? publicParentSquare : event("123", "PTO meeting", "2026-09-09T17:30:00-07:00") + event("124", "PTO committee meeting", "2026-09-09T18:30:00-07:00"));
+  assert.equal(sameDay.length, 3, "Distinct same-day school occurrences survive discovery");
+  await assert.rejects(discoverNevadaAgencyMeetings(carson, async () => { throw new Error("Offline"); }), /All public school participation sources/);
   assert.equal(parsePublicParentSquareMeetings(`<li class="rss-widget-feed-list-item"><p>Empire Elementary PTO meeting is Thursday at 5:30 p.m.</p></li>`, carson, "https://www.parentsquare.com/districts/573/rss_widget").length, 0, "Never infer a date or recurrence from an undated family post");
 
   const schoolBoard = seed("carson-city-school-district", "https://www.carsoncityschools.com/our-district/school-board");

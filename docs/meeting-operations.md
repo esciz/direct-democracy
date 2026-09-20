@@ -59,6 +59,10 @@ The upcoming-coverage audit also emits `bodyCoverage` for configured school-cale
 
 ## Lifecycle and evidence rules
 
+September 20 recovery: Actions run `35508137018` saved its worker checkpoint but failed release preparation with `release_ambiguous_meeting_alias`. Retained URL unions had created reciprocal native-provider aliases (Clark Diligent 1437/1438 and Reno PrimeGov 2255/2286). Native IDs now outrank shared evidence URLs; historical false native-ID claims are retracted with provenance, while the explicit school amendment proof is preserved. The release ambiguity gate remains unchanged. This repair was exercised read-only against checkpoint `feff46fb957f756676817050ae94762a5cc4e37610b767543347541ac882d351`, resolving every collision without deleting evidence.
+
+Public ParentSquare and the district calendar are checked independently. A failed calendar must not skip the public feed; an unavailable feed is reported rather than treated as empty. Multi-school/undated notices are held rather than assigned speculatively. Private family posts and attachment-only announcements are not covered by the public-text adapter. Empire's reported September 17 PTO meeting remains unverified until a public notice or organizer-provided source establishes its details. Do not turn test fixtures into meeting records.
+
 - Preserve previously discovered meetings when source pages disappear, calendars roll over, or requests fail. Absence is not cancellation. Preserve original creation times and evidence links.
 - Keep stable provider event IDs where available. Reconcile revised dates and titles against those IDs. Keep distinct bodies on the same day separate.
 - Use Pacific local calendar days for Nevada. Meetings with no known end remain on today's calendar until the local day ends. Date-only notices never display an invented time.

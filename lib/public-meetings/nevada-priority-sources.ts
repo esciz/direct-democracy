@@ -322,7 +322,13 @@ export function reconcilePriorityMeetingIdentities(incoming: PriorityMeeting[], 
   }
   for (const row of incoming) {
     const keys = new Set(row.sourceUrls.map(identity).filter(Boolean));
-    const matches = previous.filter((old) => (old.id.startsWith(`meeting-${row.sourceId}-`) || old.id.startsWith(`meeting-manual-${row.sourceId}-`)) && old.id !== row.id && old.source_urls.some((u) => keys.has(identity(u)) && identity(u)));
+    // Native provider IDs outrank the union of retained evidence URLs. A merged
+    // record can reference several postings/documents without owning their IDs.
+    // Explicit publisher amendments are reconciled separately with stronger proof.
+    const matches = previous.filter((old) => (old.id.startsWith(`meeting-${row.sourceId}-`) || old.id.startsWith(`meeting-manual-${row.sourceId}-`))
+      && !/^meeting-.+-(?:primegov|diligent)-\d+$/.test(old.id)
+      && old.id !== row.id && !old.meeting_alias_ids?.includes(row.id)
+      && old.source_urls.some((u) => keys.has(identity(u)) && identity(u)));
     for (const old of matches) { row.aliasMeetingIds = [...new Set([...(row.aliasMeetingIds ?? []), old.id])]; row.sourceIdentityEvidence = [...new Set([...(row.sourceIdentityEvidence ?? []), "Official provider meeting ID and host match the retained historical record; calendar time corrections preserve its alias."])]; }
     for (const [oldId, claims] of rawClaims) {
       // A composite old row may contain several bodies' metadata. Its exact

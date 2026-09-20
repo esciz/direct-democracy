@@ -3,6 +3,7 @@ import type { PublicMeetingRecord } from "@/lib/public-meetings/types";
 const DAY = 86_400_000;
 
 function collapseDeclaredMeetingAliases(meetings: PublicMeetingRecord[]) {
+  meetings = repairNativeProviderAliasClaims(meetings);
   const byId = new Map(meetings.map((meeting) => [meeting.id, meeting]));
   const claims = new Map<string, Set<string>>();
   for (const meeting of meetings) for (const alias of meeting.meeting_alias_ids ?? []) {
@@ -46,6 +47,35 @@ function collapseDeclaredMeetingAliases(meetings: PublicMeetingRecord[]) {
     merged.created_at = group.map((meeting) => meeting.created_at).sort()[0];
     merged.updated_at = group.map((meeting) => meeting.updated_at).sort().at(-1)!;
     return merged;
+  });
+}
+
+/** Repair the historical URL-union bug, without weakening ambiguous-alias validation.
+ * Two native provider IDs identify distinct postings. Only the explicit school
+ * amendment proof produced by our evidence reconciler can supersede one posting.
+ * Keep all documents, records, and retracted claims available for review.
+ */
+export function repairNativeProviderAliasClaims(meetings: PublicMeetingRecord[]) {
+  const native = (id: string) => id.match(/^meeting-(.+)-(primegov|diligent)-(\d+)$/);
+  return meetings.map((meeting) => {
+    const own = native(meeting.id);
+    if (!own) return meeting;
+    const retracted: string[] = [];
+    const aliases = (meeting.meeting_alias_ids ?? []).filter((alias) => {
+      const other = native(alias);
+      if (!other || own[1] !== other[1] || own[2] !== other[2] || alias === meeting.id) return true;
+      const explicitAmendment = own[2] === "diligent" && /^(?:clark|washoe)-county-school-district$/.test(own[1])
+        && /\bamended\b/i.test(meeting.title)
+        && meeting.source_identity_evidence?.some((proof) => proof.startsWith(`The official school Diligent portal explicitly labels ${meeting.id} AMENDED. Its original posting ${alias} has the same provider, governing body, exact published start `));
+      if (explicitAmendment) return true;
+      retracted.push(alias);
+      return false;
+    });
+    if (!retracted.length) return meeting;
+    return { ...meeting, meeting_alias_ids: aliases, source_identity_evidence: [...new Set([
+      ...(meeting.source_identity_evidence ?? []),
+      ...retracted.map((alias) => `Retracted URL-union alias claim ${alias} -> ${meeting.id}: distinct native ${own[2]} meeting IDs are not identity evidence; retained source documents are unchanged.`),
+    ])] };
   });
 }
 
