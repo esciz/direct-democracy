@@ -353,6 +353,39 @@ export function parseSchoolParentMeetings(html: string, seed: PublicMeetingSourc
   return finalize(map);
 }
 
+/** Public ParentSquare widgets expose only posts deliberately shared without a family login. */
+export function parsePublicParentSquareMeetings(html: string, seed: PublicMeetingSourceSeed, feedUrl: string): NevadaAgencyMeeting[] {
+  const map = new Map<string, NevadaAgencyMeeting>();
+  const schools = (seed.coverageBodies ?? []).flatMap((body) => [body.name, ...(body.aliases ?? [])]
+    .map((name) => ({ name, canonicalName: body.name })))
+    .sort((left, right) => right.name.length - left.name.length);
+  const posts = html.split(/<li\b[^>]*class=["'][^"']*rss-widget-feed-list-item[^"']*["'][^>]*>/i).slice(1);
+  for (const post of posts) {
+    const sourceUrl = sourceLinks(post, feedUrl).find((link) => /parentsquare\.com\/feeds\//i.test(link.href))?.href ?? feedUrl;
+    const postText = text(post);
+    if (!/\b(?:PTA|PTO|PTSA|parent[- ]teacher|parent organization)\b/i.test(postText) || !/\b(?:meeting|council|committee)\b/i.test(postText)) continue;
+    const school = schools.find((candidate) => new RegExp(`\\b${candidate.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(postText));
+    if (!school) continue;
+    // Require an explicit year in the public post. Inferring a recurrence or year can publish a false meeting.
+    const mention = postText.match(/(?:[^.!?]|\.(?!\s)){0,180}\b(?:PTA|PTO|PTSA|parent[- ]teacher|parent organization)\b(?:[^.!?]|\.(?!\s)){0,360}\b(?:meeting|council|committee)\b(?:[^.!?]|\.(?!\s)){0,360}/i)?.[0]
+      ?? postText.match(/(?:[^.!?]|\.(?!\s)){0,180}\b(?:meeting|council|committee)\b(?:[^.!?]|\.(?!\s)){0,360}\b(?:PTA|PTO|PTSA|parent[- ]teacher|parent organization)\b(?:[^.!?]|\.(?!\s)){0,360}/i)?.[0];
+    const date = mention && /\b20\d{2}\b/.test(mention) ? nevadaMeetingDate(mention) : null;
+    if (!mention || !date) continue;
+    const group = mention.match(/\b(?:PTA|PTO|PTSA)\b/i)?.[0].toUpperCase() ?? "Parent Organization";
+    const record = getMeeting(map, seed, `${school.canonicalName} ${group}`, date, feedUrl, sourceUrl);
+    Object.assign(record, meetingTime(date, mention));
+    record.id = `meeting-${seed.id}-parentsquare-${createHash("sha256").update(sourceUrl + record.publicBodyName + date).digest("hex").slice(0, 16)}`;
+    record.meetingCategory = "parent_organization";
+    record.meetingType = "Parent organization meeting";
+    record.title = `${school.canonicalName} — ${group} meeting`;
+    record.sourceUrl = sourceUrl;
+    record.sourceUrls = [...new Set([feedUrl, sourceUrl])];
+    record.meetingSummary = "Parent organization meeting announced in a publicly shared school-district ParentSquare post. Private family-group posts are not accessed.";
+    record.meetingStatus = /cancelled|canceled/i.test(mention) ? "cancelled" : /rescheduled|postponed/i.test(mention) ? "rescheduled" : "scheduled";
+  }
+  return finalize(map);
+}
+
 export async function discoverNevadaAgencyMeetings(seed: PublicMeetingSourceSeed, fetchHtml: FetchHtml, now = new Date(), onWarning?: (warning: string) => void) {
   const index = seed.meetingIndexUrl;
   if (!index) throw new Error(`Missing official meeting index for ${seed.id}`);
@@ -366,7 +399,25 @@ export async function discoverNevadaAgencyMeetings(seed: PublicMeetingSourceSeed
   if (seed.id === "carson-city-school-participation") {
     const html = await fetchHtml(index);
     if (!/fsCalendar/i.test(html)) throw new Error("Official school calendar markup was not available; source layout needs review.");
-    return parseSchoolParentMeetings(html, seed, index);
+    const meetings = parseSchoolParentMeetings(html, seed, index);
+    for (const feedUrl of seed.publicFeedUrls ?? []) {
+      try {
+        meetings.push(...parsePublicParentSquareMeetings(await fetchHtml(feedUrl), seed, feedUrl));
+      } catch (error) {
+        onWarning?.(`Public family-communication feed ${feedUrl}: ${error instanceof Error ? error.message : String(error)}. Official calendar results retained.`);
+      }
+    }
+    const byBodyAndDate = new Map<string, NevadaAgencyMeeting>();
+    for (const meeting of meetings) {
+      const key = `${meeting.publicBodyName.toLowerCase()}\n${meeting.meetingDate.slice(0, 10)}`;
+      const existing = byBodyAndDate.get(key);
+      byBodyAndDate.set(key, existing ? {
+        ...existing,
+        sourceUrls: [...new Set([...existing.sourceUrls, ...meeting.sourceUrls])],
+        sourceUrl: existing.sourceUrl ?? meeting.sourceUrl,
+      } : meeting);
+    }
+    return [...byBodyAndDate.values()].sort((left, right) => right.meetingDate.localeCompare(left.meetingDate) || left.id.localeCompare(right.id));
   }
   if (seed.id === "nv-state-board-of-education") {
     const html = await fetchHtml(index);

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 
-import { discoverNevadaAgencyMeetings, nevadaMeetingDate, parseCannabisMeetings, parseCarsonSchoolBoardCalendar, parseEducationMeetings, parseNevadaPublicNoticeLeads, parsePublicDriveFolder, parseSchoolParentMeetings, parseTaxationMeetings } from "@/lib/public-meetings/nevada-agency-sources";
+import { discoverNevadaAgencyMeetings, nevadaMeetingDate, parseCannabisMeetings, parseCarsonSchoolBoardCalendar, parseEducationMeetings, parseNevadaPublicNoticeLeads, parsePublicDriveFolder, parsePublicParentSquareMeetings, parseSchoolParentMeetings, parseTaxationMeetings } from "@/lib/public-meetings/nevada-agency-sources";
 import { reconcileCarsonGranicusIdentities } from "@/lib/public-meetings/carson-granicus-identity";
 import { reconcileNevadaAgencyMeetingHistory } from "@/lib/public-meetings/nevada-agency-identity";
 import { slugify } from "@/lib/public-meetings/shared";
@@ -133,11 +133,19 @@ async function main() {
   assert.ok(fetched.some((url) => url.includes("2027-state")));
 
   const carson = seed("carson-city-school-participation", "https://www.carsoncityschools.com/families-and-students/calendars");
+  carson.coverageBodies = [{ id: "bordewich", name: "Bordewich Elementary" }, { id: "empire", name: "Empire Elementary" }];
   const event = (id: string, title: string, start: string) => `<div class="fsCalendarInfo"><span class='fsStyleSROnly'>Bordewich Elementary</span><a class="fsCalendarEventTitle fsCalendarEventLink" data-occur-id="${id}" href="#">${title}</a><time datetime="${start}" class="fsStartTime">5:30 PM</time></div>`;
   const school = parseSchoolParentMeetings(event("123", "PTO meeting", "2026-09-09T17:30:00-07:00") + event("123", "PTO meeting", "2026-09-09T17:30:00-07:00") + event("124", "PTO committee meeting", "2026-09-09T18:30:00-07:00") + event("125", "Basketball practice", "2026-09-09T18:30:00-07:00"), carson, carson.meetingIndexUrl!);
   assert.equal(school.length, 2);
   assert.ok(school.every((m) => m.meetingCategory === "parent_organization" && m.publicBodyName === "Bordewich Elementary PTO"));
   assert.equal(school.find((m) => m.id.endsWith("123"))?.id, parseSchoolParentMeetings(event("123", "PTO meeting", "2026-09-10T17:30:00-07:00"), carson, carson.meetingIndexUrl!)[0].id, "Rescheduled school occurrence keeps its ID");
+  const publicParentSquare = `<li class="rss-widget-feed-list-item"><a href="https://www.parentsquare.com/feeds/12345">Empire family update</a><p>Empire Elementary PTO meeting is Thursday, September 17, 2026 at 5:30 p.m. in the school library.</p></li>`;
+  const parentSquareMeeting = parsePublicParentSquareMeetings(publicParentSquare, carson, "https://www.parentsquare.com/districts/573/rss_widget");
+  assert.equal(parentSquareMeeting.length, 1);
+  assert.equal(parentSquareMeeting[0].publicBodyName, "Empire Elementary PTO");
+  assert.equal(parentSquareMeeting[0].meetingDate, "2026-09-18T00:30:00.000Z");
+  assert.equal(parentSquareMeeting[0].sourceUrl, "https://www.parentsquare.com/feeds/12345");
+  assert.equal(parsePublicParentSquareMeetings(`<li class="rss-widget-feed-list-item"><p>Empire Elementary PTO meeting is Thursday at 5:30 p.m.</p></li>`, carson, "https://www.parentsquare.com/districts/573/rss_widget").length, 0, "Never infer a date or recurrence from an undated family post");
 
   const schoolBoard = seed("carson-city-school-district", "https://www.carsoncityschools.com/our-district/school-board");
   schoolBoard.name = "Carson City School District Board of Trustees";

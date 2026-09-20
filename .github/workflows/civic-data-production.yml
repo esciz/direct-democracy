@@ -2,7 +2,11 @@ name: Civic Data Production
 
 on:
   schedule:
-    - cron: "17 0,6,12,18 * * *"
+    # A daily run carries the full civic refresh and the failure notification.
+    - cron: "17 6 * * *"
+    # Meeting-only checks still run every six hours without repeating the same
+    # source-coverage failure email four times a day.
+    - cron: "17 0,12,18 * * *"
   workflow_dispatch:
     inputs:
       full_refresh:
@@ -84,7 +88,7 @@ jobs:
           args=(--limit=100)
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
             if [[ "$FULL_REFRESH" != "true" ]]; then args+=(--meetings-only); fi
-          elif node -e 'const fs=require("fs");try {const a=JSON.parse(fs.readFileSync("data/generated/dataops-pipeline-run.json"));process.exit(a.completedAt?.slice(0,10) === new Date().toISOString().slice(0,10) ? 0 : 1)} catch {process.exit(1)}'; then
+          elif [[ "$SCHEDULE" != "17 6 * * *" ]]; then
             args+=(--meetings-only)
           fi
           npm run dataops:pipeline -- "${args[@]}"
@@ -173,10 +177,10 @@ jobs:
   source-coverage:
     name: Source coverage status
     needs: refresh
-    if: always() && needs.refresh.outputs.collection_outcome == 'failure'
+    if: always() && needs.refresh.outputs.collection_outcome == 'failure' && (github.event_name == 'workflow_dispatch' || github.event.schedule == '17 6 * * *')
     runs-on: ubuntu-24.04
     steps:
       - name: Report incomplete source collection separately from publication
         run: |
-          echo "::error::Source collection has unresolved failures. Inspect civic-data-reports for this run. Publication has its own job status."
+          echo "::error::Daily source collection has unresolved failures. Inspect civic-data-reports for this run. Publication has its own job status; sub-daily checks do not repeat this notification."
           exit 1

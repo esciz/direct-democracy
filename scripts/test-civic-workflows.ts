@@ -25,6 +25,8 @@ assert.doesNotMatch(publication, /dataops:pipeline|dataops:release:prepare|apply
 assert.match(collection, /name: civic-release-candidate-\$\{\{ github.run_id \}\}/);
 assert.match(publication, /name: civic-release-candidate-\$\{\{ github.run_id \}\}/);
 assert.match(civic, /needs.refresh.outputs.collection_outcome == 'failure'/);
+assert.match(civic, /github\.event\.schedule == '17 6 \* \* \*'/);
+assert.match(civic, /SCHEDULE" != "17 6 \* \* \*"/);
 assert.match(civic, /cancel-in-progress: false/);
 assert.match(application, /\n  push:/);
 assert.match(application, /\n  pull_request:/);

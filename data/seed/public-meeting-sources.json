@@ -195,7 +195,23 @@
     "discoveryUrls": [
       "https://www.carsoncityschools.com/families-and-students/calendars",
       "https://www.carsoncityschools.com/",
-      "https://www.carsoncityschools.com/families-and-students"
+      "https://www.carsoncityschools.com/families-and-students",
+      "https://www.parentsquare.com/districts/573/rss_widget"
+    ],
+    "publicFeedUrls": [
+      "https://www.parentsquare.com/districts/573/rss_widget"
+    ],
+    "coverageBodies": [
+      { "id": "bordewich-elementary", "name": "Bordewich Elementary", "aliases": ["Bordewich Bray Elementary"] },
+      { "id": "empire-elementary", "name": "Empire Elementary" },
+      { "id": "fremont-elementary", "name": "Fremont Elementary" },
+      { "id": "fritsch-elementary", "name": "Fritsch Elementary", "aliases": ["Edith W. Fritsch Elementary"] },
+      { "id": "mark-twain-elementary", "name": "Mark Twain Elementary" },
+      { "id": "seeliger-elementary", "name": "Seeliger Elementary", "aliases": ["Al Seeliger Elementary"] },
+      { "id": "carson-middle", "name": "Carson Middle" },
+      { "id": "eagle-valley", "name": "Eagle Valley" },
+      { "id": "carson-high-school", "name": "Carson High School" },
+      { "id": "silver-campus", "name": "Silver Campus" }
     ],
     "allowedHosts": [],
     "platformHints": [

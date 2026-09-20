@@ -22,6 +22,15 @@ type HealthReport = {
   generatedAt: string; totals: Record<string, number>; sources: SourceHealth[]; records: MeetingFollowUp[];
 };
 type DiscoveryLead = { id: string; bodyName: string; sourceUrl: string | null; discoveredFrom: string; status: string; sourceKind: string; registeredProviderId: string | null };
+type SchoolBodyCoverage = {
+  id: string; name: string; status: string; totalDatedMeetings: number; upcomingMeetings: number;
+  newestKnownMeetingAt: string | null; nextUpcomingAt: string | null;
+};
+type UpcomingCoverageRow = {
+  providerId: string; providerName: string; jurisdiction: string; strictBlocking: boolean;
+  bodyVisibilityGaps: number; bodyCoverage: SchoolBodyCoverage[]; nextAction: string;
+};
+type UpcomingCoverageReport = { generatedAt: string; totals: Record<string, number>; rows: UpcomingCoverageRow[] };
 async function readDiscovery(): Promise<DiscoveryLead[]> {
   try {
     const data = JSON.parse(await readFile(path.join(process.cwd(), "data/generated/nevada-meeting-source-discovery.json"), "utf8"));
@@ -33,6 +42,13 @@ async function readReport(): Promise<HealthReport | null> {
   try {
     const data = JSON.parse(await readFile(path.join(process.cwd(), "data/generated/public-meeting-lifecycle.json"), "utf8"));
     return Array.isArray(data.sources) && Array.isArray(data.records) && data.totals ? data : null;
+  } catch { return null; }
+}
+
+async function readUpcomingCoverage(): Promise<UpcomingCoverageReport | null> {
+  try {
+    const data = JSON.parse(await readFile(path.join(process.cwd(), "data/generated/upcoming-meeting-coverage-audit.json"), "utf8"));
+    return Array.isArray(data.rows) && data.totals ? data : null;
   } catch { return null; }
 }
 
@@ -52,7 +68,7 @@ const actionLabels: Record<string, string> = {
 export default async function MeetingHealthPage({ searchParams }: { searchParams?: Promise<{ q?: string }> }) {
   const user = await getCurrentUser();
   if (user.role !== "admin" && user.role !== "platform_admin") redirect("/profile");
-  const [report, params, leads] = await Promise.all([readReport(), searchParams ?? Promise.resolve({ q: "" }), readDiscovery()]);
+  const [report, upcomingCoverage, params, leads] = await Promise.all([readReport(), readUpcomingCoverage(), searchParams ?? Promise.resolve({ q: "" }), readDiscovery()]);
   const query = (params.q ?? "").trim().toLowerCase();
   const matches = (text: string) => !query || text.toLowerCase().includes(query);
   const sources = (report?.sources ?? []).filter((source) => matches(`${source.name} ${source.jurisdiction}`))
@@ -61,6 +77,9 @@ export default async function MeetingHealthPage({ searchParams }: { searchParams
     .sort((a, b) => Number(/carson/i.test(b.jurisdiction ?? "")) - Number(/carson/i.test(a.jurisdiction ?? "")) || (Date.parse(b.meetingDate ?? "") || 0) - (Date.parse(a.meetingDate ?? "") || 0));
   const staleReport = !report || !Number.isFinite(Date.parse(report.generatedAt)) || Date.now() - Date.parse(report.generatedAt) > 48 * 3_600_000;
   const discoveryLeads = leads.filter((lead) => !lead.registeredProviderId && matches(`${lead.bodyName} ${lead.sourceKind} ${lead.discoveredFrom}`));
+  const schoolCoverageGaps = (upcomingCoverage?.rows ?? [])
+    .flatMap((row) => row.bodyCoverage.filter((body) => ["no_public_meeting_observed", "stale_public_visibility"].includes(body.status)).map((body) => ({ ...body, providerName: row.providerName, jurisdiction: row.jurisdiction })))
+    .filter((body) => matches(`${body.name} ${body.providerName} ${body.jurisdiction}`));
   return (
     <div className="space-y-6 pb-12">
       <PageIntro eyebrow="Meeting operations" title="Calendar coverage and minutes follow-up" description="Track source checks, upcoming meetings, and the minutes still needed to document decisions. Carson City appears first; coverage includes the whole state." />
@@ -104,6 +123,19 @@ export default async function MeetingHealthPage({ searchParams }: { searchParams
             {source.calendarUrl ? <a href={source.calendarUrl} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sm text-cyan-200 underline">Check official calendar</a> : null}
           </article>)}
         </div>
+      </section>
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold text-white">School and parent-organization visibility gaps · {schoolCoverageGaps.length}</h2>
+        <p className="text-sm text-slate-400">Each configured school calendar is checked independently. A gap means no recent public PTA/PTO meeting evidence was found; it does not mean the group did not meet. Authenticated family posts remain private unless an organizer supplies a public notice.</p>
+        {schoolCoverageGaps.map((body) => <article key={`${body.providerName}-${body.id}`} className="rounded-2xl border border-amber-300/20 bg-amber-500/[0.06] p-4">
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <h3 className="font-semibold text-white">{body.name}</h3>
+            <span className="rounded-full bg-amber-500/10 px-2 py-1 text-xs text-amber-100">{body.status.replaceAll("_", " ")}</span>
+          </div>
+          <p className="mt-1 text-sm text-slate-400">{body.providerName} · {body.totalDatedMeetings} retained · {body.upcomingMeetings} upcoming</p>
+          <p className="mt-2 text-xs text-slate-400">Newest public meeting evidence: {body.newestKnownMeetingAt ? date(body.newestKnownMeetingAt) : "None found"}</p>
+        </article>)}
+        {!schoolCoverageGaps.length ? <p className="text-sm text-slate-400">No school-level visibility gaps are recorded in the current audit.</p> : null}
       </section>
       <section className="space-y-3">
         <h2 className="text-xl font-semibold text-white">Minutes to follow up · {followUps.length}</h2>

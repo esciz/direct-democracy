@@ -47,13 +47,15 @@ The added first-party intake includes:
 | [Nevada Public Notice](https://notice.nv.gov/) | Discovery of additional public bodies and source links. Leads require source review; they are not automatically published as duplicate meetings. |
 | [State Board of Education](https://doe.nv.gov/boards-commissions-councils/state-board-of-education) and [education meeting directory](https://doe.nv.gov/boards-commissions-councils/publicmeetings/) | State education bodies, committees, dated records and additional discovery routes. |
 | [School and district directory](https://doe.nv.gov/school-and-district-information) | First-party roots for statewide school-level calendar discovery. |
-| [Carson City school calendars](https://www.carsoncityschools.com/families-and-students/calendars) | Published PTA/PTO and parent-organization meetings, with school identity. Routine school holidays and sports are excluded. |
+| [Carson City school calendars](https://www.carsoncityschools.com/families-and-students/calendars) and the district's public ParentSquare widget | Published PTA/PTO and parent-organization meetings, with school identity. Routine school holidays and sports are excluded. Each listed school is monitored separately so one school's event cannot make the whole district look covered. Authenticated family-group posts are never accessed. |
 | [Carson City school board](https://www.carsoncityschools.com/our-district/school-board) | Official dated board calendar and linked public folders containing dated agendas and approved minutes. Replaces reliance on the inaccessible legacy BoardDocs route. |
 | [Nevada PTA](https://www.nevadapta.org/running-your-pta/pta-basics/) | Parent-organization discovery/contact route. Directory membership does not establish a meeting date or access to private minutes. |
 
 Carson City is the first operational priority; all Nevada jurisdictions remain in the denominator. PTA/PTO meetings remain parent-organization activities, with no assumption that government minutes publication requirements apply.
 
 The source-discovery queue is `data/generated/nevada-meeting-source-discovery.json`. Each lead preserves the source URL, discovery origin, first/last seen times, source category, and review state. Review the parent body, jurisdiction, official calendar, agenda/minutes archives, timezone, parser support, and a real dated sample before adding a source to the registry. A private PTA calendar needs an authorized organizer-provided calendar or reviewed file; never infer a recurring event from last year's schedule.
+
+The upcoming-coverage audit also emits `bodyCoverage` for configured school-calendar bodies. `no_public_meeting_observed` and `stale_public_visibility` are coverage findings, not claims that the group did not meet. They mean the public channels did not provide enough evidence. The daily production run reports unresolved source coverage once per day; sub-daily meeting checks continue to collect and publish without repeating the same failure email.
 
 ## Lifecycle and evidence rules
 

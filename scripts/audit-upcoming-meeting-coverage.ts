@@ -13,10 +13,12 @@ type MeetingSource = {
   active: boolean;
   scraperType?: string | null;
   directCollectionCadenceDays?: number | null;
+  coverageBodies?: Array<{ id: string; name: string; aliases?: string[] }>;
 };
 
 type PublicBody = {
   id: string;
+  name: string;
   seed_source_id: string;
 };
 
@@ -80,10 +82,11 @@ function hasFlag(name: string) {
 
 if (hasFlag("help")) {
   console.log([
-    "Usage: node --import tsx scripts/audit-upcoming-meeting-coverage.ts [--strict] [--max-stale-days=N]",
+    "Usage: node --import tsx scripts/audit-upcoming-meeting-coverage.ts [--strict] [--max-stale-days=N] [--body-visibility-days=N]",
     "",
     "Checks every configured meeting provider for future-dated meeting coverage.",
     "--strict exits non-zero when direct, non-manual providers are stale or failing.",
+    "Configured school bodies are checked independently; the default public-visibility horizon is 120 days.",
   ].join("\n"));
   process.exit(0);
 }
@@ -91,6 +94,7 @@ if (hasFlag("help")) {
 const generatedAt = new Date().toISOString();
 const now = Date.now();
 const maxStaleDays = numberArg("max-stale-days", 3);
+const bodyVisibilityDays = numberArg("body-visibility-days", 120);
 const strict = hasFlag("strict");
 const sources = readJson<MeetingSource[]>(SEED_PATH, []).filter((source) => source.active);
 const coverage = readJson<CoverageCatalog>(COVERAGE_PATH, {});
@@ -127,6 +131,34 @@ const rows = [...providerIds].map((providerId) => {
     .filter((meeting) => parseTime(meeting.meeting_date) !== null)
     .sort((left, right) => (parseTime(left.meeting_date) ?? 0) - (parseTime(right.meeting_date) ?? 0));
   const upcomingMeetings = providerMeetings.filter((meeting) => meeting.meeting_status !== "cancelled" && (parseTime(meeting.meeting_date) ?? 0) >= now);
+  const bodyVisibilityCutoff = now - bodyVisibilityDays * 86_400_000;
+  const bodyCoverage = (source?.coverageBodies ?? []).map((expectedBody) => {
+    const names = [expectedBody.name, ...(expectedBody.aliases ?? [])].map((name) => name.toLowerCase());
+    const bodyIds = new Set(bodies
+      .filter((body) => body.seed_source_id === providerId && names.some((name) => body.name.toLowerCase().startsWith(name)))
+      .map((body) => body.id));
+    const bodyMeetings = providerMeetings.filter((meeting) => bodyIds.has(meeting.public_body_id));
+    const bodyUpcoming = bodyMeetings.filter((meeting) => meeting.meeting_status !== "cancelled" && (parseTime(meeting.meeting_date) ?? 0) >= now);
+    const newest = bodyMeetings.at(-1) ?? null;
+    const newestTime = parseTime(newest?.meeting_date);
+    const visibilityStatus = bodyUpcoming.length > 0
+      ? "upcoming_found"
+      : newestTime !== null && newestTime >= bodyVisibilityCutoff
+        ? "recent_public_observation"
+        : newestTime === null
+          ? "no_public_meeting_observed"
+          : "stale_public_visibility";
+    return {
+      id: expectedBody.id,
+      name: expectedBody.name,
+      status: visibilityStatus,
+      totalDatedMeetings: bodyMeetings.length,
+      upcomingMeetings: bodyUpcoming.length,
+      newestKnownMeetingAt: newest?.meeting_date ?? null,
+      nextUpcomingAt: bodyUpcoming[0]?.meeting_date ?? null,
+    };
+  });
+  const bodyVisibilityGaps = bodyCoverage.filter((body) => body.status === "no_public_meeting_observed" || body.status === "stale_public_visibility");
   const newestKnownMeeting = providerMeetings.at(-1) ?? null;
   const hasParsedProvider = Boolean(
     (direct?.meetings_parsed ?? 0) > 0 ||
@@ -163,7 +195,8 @@ const rows = [...providerIds].map((providerId) => {
         status === "source_gap" ||
         status === "adapter_gap" ||
         freshnessStatus === "stale_latest_meeting" ||
-        freshnessStatus === "unknown_latest_meeting"
+        freshnessStatus === "unknown_latest_meeting" ||
+        bodyVisibilityGaps.length > 0
       ),
   );
 
@@ -179,6 +212,8 @@ const rows = [...providerIds].map((providerId) => {
       kind: requirement.kind,
       communityIds: requirement.communityIds,
     })),
+    bodyCoverage,
+    bodyVisibilityGaps: bodyVisibilityGaps.length,
     status,
     freshnessStatus,
     strictBlocking,
@@ -209,7 +244,9 @@ const rows = [...providerIds].map((providerId) => {
     })),
     nextAction:
       status === "upcoming_found"
-        ? "Continue daily monitoring."
+        ? bodyVisibilityGaps.length
+          ? `Review ${bodyVisibilityGaps.length} expected school calendar channel${bodyVisibilityGaps.length === 1 ? "" : "s"} with no recent public parent-organization meeting evidence.`
+          : "Continue daily monitoring."
         : strictBlocking
           ? "Blocking daily freshness gap: inspect the official calendar, refresh the source, or repair the adapter before trusting coverage."
         : status === "zero_upcoming_review"
@@ -236,6 +273,8 @@ const totals = {
   strictBlockingProviders: rows.filter((row) => row.strictBlocking).length,
   staleLatestMeetingProviders: rows.filter((row) => row.freshnessStatus === "stale_latest_meeting").length,
   recentPastOnlyProviders: rows.filter((row) => row.freshnessStatus === "recent_past_meeting_only").length,
+  monitoredSchoolBodies: rows.reduce((total, row) => total + row.bodyCoverage.length, 0),
+  schoolBodyVisibilityGaps: rows.reduce((total, row) => total + row.bodyVisibilityGaps, 0),
 };
 
 mkdirSync(GENERATED_DIR, { recursive: true });
