@@ -112,6 +112,7 @@ jobs:
           npm run dataops:release:test
           node --import tsx scripts/test-reporting-policy.ts
           node --import tsx scripts/test-civic-workflows.ts
+          node --import tsx scripts/test-carson-public-calendar.ts
       - name: Freeze validated runtime release and record coverage gaps
         run: npm run dataops:release:prepare
       - name: Export the immutable public candidate

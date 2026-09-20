@@ -27,6 +27,7 @@ import { writePublicMeetingRuntimeArtifacts } from "@/lib/public-meetings/runtim
 import { discoverNevadaAgencyMeetings, isNevadaAgencySource } from "@/lib/public-meetings/nevada-agency-sources";
 import { discoverNevadaPriorityMeetings, isNevadaPrioritySource, reconcilePriorityMeetingIdentities, reconcilePriorityRetainedMetadataPaths, removeMisclassifiedSchoolPortalDocuments, type RetainedPrimeGovEvidence } from "@/lib/public-meetings/nevada-priority-sources";
 import { reconcileCarsonGranicusIdentities } from "@/lib/public-meetings/carson-granicus-identity";
+import { discoverCarsonPublicCalendar } from "@/lib/public-meetings/carson-calendar";
 import type {
   CitizenVoteQuestionRecord,
   MeetingIngestionStatus,
@@ -767,7 +768,16 @@ async function collectHistoricalArchiveMeetings(seeds: PublicMeetingSourceSeed[]
         if (seed.id === "carson-city-school-district") sourceWarnings.unshift("Dated board meetings come from the official district page; actual agendas/minutes come from its publicly linked Drive folders. Legacy BoardDocs remains unparsed and is not counted as document coverage.");
         notes = sourceWarnings.length ? sourceWarnings.join(" ") : null;
       } else if (seed.id === "carson-city-board-of-supervisors") {
-        providerDrafts = await discoverCarsonGranicusArchive(seed);
+        const warnings: string[] = [];
+        let available = 0;
+        // A published calendar occurrence can precede its agenda/video archive.
+        // Either source can fail without discarding records from the other.
+        try { providerDrafts.push(...await discoverCarsonGranicusArchive(seed)); available++; }
+        catch (error) { warnings.push(`Carson archive: ${error instanceof Error ? error.message : String(error)}`); }
+        try { providerDrafts.push(...await discoverCarsonPublicCalendar(seed, fetchText, new Date(), warning => warnings.push(warning))); available++; }
+        catch (error) { warnings.push(error instanceof Error ? error.message : String(error)); }
+        if (!available) throw new Error(warnings.join(" "));
+        notes = warnings.length ? warnings.join(" ") : null;
       } else if (seed.scraperType === "legistar") {
         providerDrafts = await discoverLegistarArchive(seed);
       } else if (seed.id === "nv-legislature") {

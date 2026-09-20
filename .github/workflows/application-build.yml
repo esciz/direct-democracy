@@ -56,6 +56,7 @@ jobs:
           node --import tsx scripts/test-primegov-retained-identities.ts
           node --import tsx scripts/test-bootstrap-meeting-budget.ts
           node --import tsx scripts/test-meeting-archive-transport.ts
+          node --import tsx scripts/test-carson-public-calendar.ts
           npm run meetings:pdf:test
           npm run meetings:text:test
           npm run meetings:identity:test

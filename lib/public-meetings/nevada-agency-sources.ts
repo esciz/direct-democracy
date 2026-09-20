@@ -73,7 +73,7 @@ export function nevadaMeetingDate(value: string): string | null {
   return date.toISOString().slice(0, 10);
 }
 
-function meetingTime(date: string, sourceText: string) {
+export function meetingTime(date: string, sourceText: string) {
   const match = text(sourceText).match(/\b(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?\b/i);
   if (!match) return { meetingDate: date, meetingTimeKnown: false };
   const hour = Number(match[1]); const minute = Number(match[2] ?? "00");
