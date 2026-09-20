@@ -1,0 +1,78 @@
+name: Application Build
+
+on:
+  push:
+    branches: [main, 'codex/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: application-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Application regressions and production build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CIVIC_DATA_RELEASE_ENABLED: "false"
+      DATAOPS_NETWORK_ENABLED: "false"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Validate application and source regressions
+        run: |
+          npm run dataops:release:test
+          node --import tsx scripts/test-dataops-freshness.ts
+          node --import tsx scripts/test-ocr-capabilities.ts
+          node --import tsx scripts/test-public-meeting-ocr.ts
+          node --import tsx scripts/test-packed-civic-runtime.ts
+          node --import tsx scripts/test-retrieval-history.ts
+          node --import tsx scripts/test-native-extraction-batches.ts
+          node --import tsx scripts/test-meeting-source-document-identity.ts
+          node --import tsx scripts/test-public-session-boundary.cjs
+          node --import tsx scripts/test-durable-profile-content.ts
+          node --import tsx scripts/test-profile-mutation-session.ts
+          npm run minutes:evidence:test
+          npm run issues:integrity:test
+          node --import tsx scripts/test-decision-page-integrity.ts
+          npm run meetings:items:test
+          npm run financials:nevada:test
+          npm run ads:nevada:test
+          npm run meetings:adapters:nevada:test
+          npm run meetings:priority-sources:test
+          node --import tsx scripts/test-primegov-retained-identities.ts
+          node --import tsx scripts/test-bootstrap-meeting-budget.ts
+          node --import tsx scripts/test-meeting-archive-transport.ts
+          npm run meetings:pdf:test
+          npm run meetings:text:test
+          npm run meetings:identity:test
+          npm run meetings:lifecycle:test
+          node --import tsx scripts/test-reviewed-document-associations.ts
+          npm run meetings:runtime:test
+          npm run auth:sessions:test
+          npm run auth:recovery:test
+          npm run financials:runtime:test
+          npm run sources:public:test
+          npm run worker:boundaries:test
+          node --import tsx scripts/test-historical-identity-test-resolution.ts
+          node --import tsx scripts/test-reporting-policy.ts
+          node --import tsx scripts/test-civic-workflows.ts
+      - name: Typecheck application
+        run: npm run typecheck
+      - name: Build application
+        run: npm run build
+      - name: Audit production bundle
+        run: npm run meetings:bundle:audit
