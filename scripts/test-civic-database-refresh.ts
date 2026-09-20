@@ -9,6 +9,11 @@ async function main() {
   assert.equal(plan.allSources, true);
   assert.ok(plan.budgetMs < 900_000);
   assert.ok(plan.perSourceMs < plan.budgetMs);
+  const only = "nevada-secretary-of-state-candidate-filings";
+  const targeted = JSON.parse(execFileSync(process.execPath, ["--import", "tsx", "scripts/refresh-civic-database.ts", "--dry-run", "--all-source-shards", `--only=${only}`], { encoding: "utf8" }));
+  assert.deepEqual(targeted.sources, [only]);
+  assert.equal(targeted.perSourceMs, plan.perSourceMs, "Single-source recovery keeps the existing timeout and cleanup worker");
+  assert.throws(() => execFileSync(process.execPath, ["--import", "tsx", "scripts/refresh-civic-database.ts", "--dry-run", "--only=unknown-source"], { stdio: "pipe" }), "Unknown targets fail before database work");
   const source = NEVADA_BETA_SOURCE_DEFINITIONS.find(source => source.slug === "nevada-secretary-of-state-election-results")!;
   const context = { source, mode: "scheduled" as const, cursor: null, requestedAt: new Date() };
   for (const adapter of [createPlaceholderAdapter({ key: "county-election-office", displayName: "Unimplemented source" }), nevadaSecretaryOfStateAdapter]) {

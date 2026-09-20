@@ -116,4 +116,8 @@ A queue round trip proves queue processing only. Email delivery must be verified
 
 ### Routine civic business and first-pass reviews
 
+The SOS elections and candidate-filings registry entries share the same adapter's native record IDs. Imports reuse those exact IDs across this explicitly paired namespace, preserving the original owner and recording tracked changes against the observing feed. Matching titles/slugs alone cannot merge records; ambiguous IDs, unrelated owners and jurisdiction conflicts fail closed. Protected election/candidate changes retain their review gate. Regression: `node --import tsx scripts/test-civic-import-identity.ts`.
+
+For a diagnosed single database import failure, set the manual Civic Data Production workflow's `database_source` to its registered slug. This replaces the full collection/publication jobs with an isolated two-minute source worker and report; it does not replace the packaged civic release. It shares the production workflow concurrency lock and cannot overlap another collector. Leave it blank for normal full or meeting-only refreshes. Unknown slugs fail before any database work.
+
 Builds apply the standing civic reporting policy after restoring a release and before packing runtime data. This excludes routine minutes/agenda approvals from derived votes, questions, decisions and accountability summaries while preserving original source evidence. Mixed or substantive consent business stays eligible. The owner-authorized September 2026 first pass and operating commands are documented in [civic first pass](civic-first-pass-2026-09-07.md).

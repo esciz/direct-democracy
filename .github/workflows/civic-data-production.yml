@@ -21,6 +21,10 @@ on:
         description: Publish validated data and trigger a site deployment
         type: boolean
         default: true
+      database_source:
+        description: Optional single database source slug (replaces collection/publication with a bounded source retry)
+        type: string
+        default: ""
 
 # One durable collection/publication writer; no overlapping snapshots.
 concurrency:
@@ -35,7 +39,7 @@ jobs:
     name: Collect and validate civic data
     outputs:
       collection_outcome: ${{ steps.collection.outcome }}
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (github.event_name != 'workflow_dispatch' || inputs.database_source == '')
     runs-on: ubuntu-24.04
     environment: production
     timeout-minutes: 180
@@ -115,6 +119,7 @@ jobs:
           node --import tsx scripts/test-carson-public-calendar.ts
           node --import tsx scripts/test-current-election-questions.ts
           node --import tsx scripts/test-civic-database-refresh.ts
+          node --import tsx scripts/test-civic-import-identity.ts
       - name: Freeze validated runtime release and record coverage gaps
         run: npm run dataops:release:prepare
       - name: Export the immutable public candidate
@@ -141,6 +146,42 @@ jobs:
             data/generated/meetings-pipeline-run.json
             data/generated/dataops-pipeline-run.json
             data/generated/civic-database-refresh.json
+
+  database-source:
+    name: Retry one registered database source
+    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && inputs.database_source != ''
+    runs-on: ubuntu-24.04
+    environment: production
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      CIVIC_DATA_RELEASE_ENABLED: "false"
+      DATAOPS_NETWORK_ENABLED: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Load private project worker configuration
+        env:
+          CIVIC_WORKER_ENV: ${{ secrets.CIVIC_WORKER_ENV }}
+        run: node scripts/configure-civic-worker-env.mjs --required
+      - name: Retry only the selected registered source
+        timeout-minutes: 5
+        env:
+          DATABASE_SOURCE: ${{ inputs.database_source }}
+        run: node --import tsx scripts/refresh-civic-database.ts --all-source-shards --only="$DATABASE_SOURCE"
+      - name: Upload bounded source recovery report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civic-database-recovery-${{ github.run_id }}
+          path: data/generated/civic-database-refresh.json
+          retention-days: 14
 
   publish:
     name: Publish civic release and verify deployment

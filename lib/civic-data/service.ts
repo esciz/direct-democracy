@@ -4,6 +4,7 @@ import { getCivicDataAdapter } from "@/lib/civic-data/adapters";
 import { NEVADA_BETA_SOURCE_DEFINITIONS, getSourceDefinition } from "@/lib/civic-data/source-definitions";
 import type { CivicSourceDefinition, ImportMode, IngestionIssue, NormalizedCivicData } from "@/lib/civic-data/types";
 import { prisma } from "@/lib/prisma";
+import { resolveSourceImportWhere, SHARED_SOS_SOURCE_SLUGS } from "@/lib/civic-data/import-identity";
 
 export type AdminSourceRow = CivicSourceDefinition & {
   id?: string;
@@ -652,7 +653,7 @@ async function ensureFoundationalJurisdictions() {
   return idsBySlug;
 }
 
-async function upsertOfficialsFoundation(sourceId: string, data: NormalizedCivicData) {
+async function upsertOfficialsFoundation(sourceId: string, data: NormalizedCivicData, sharedSourceIds = [sourceId]) {
   const jurisdictionIds = await ensureFoundationalJurisdictions();
   const stats = emptyImportStats();
 
@@ -686,12 +687,7 @@ async function upsertOfficialsFoundation(sourceId: string, data: NormalizedCivic
     if (!jurisdictionId) continue;
 
     const upserted = await prisma.district.upsert({
-      where: {
-        sourceId_externalId: {
-          sourceId,
-          externalId: district.externalId,
-        },
-      },
+      where: await resolveSourceImportWhere(prisma.district, { sourceId, sharedSourceIds, externalId: district.externalId, slug: district.slug, jurisdictionId }),
       create: {
         sourceId,
         externalId: district.externalId,
@@ -723,12 +719,7 @@ async function upsertOfficialsFoundation(sourceId: string, data: NormalizedCivic
     if (!jurisdictionId) continue;
 
     const upserted = await prisma.office.upsert({
-      where: {
-        sourceId_externalId: {
-          sourceId,
-          externalId: office.externalId,
-        },
-      },
+      where: await resolveSourceImportWhere(prisma.office, { sourceId, sharedSourceIds, externalId: office.externalId, slug: office.slug, jurisdictionId }),
       create: {
         sourceId,
         externalId: office.externalId,
@@ -816,7 +807,7 @@ async function loadSourceEntityIds<T extends { id: string; externalId: string | 
   return new Map(records.flatMap((record) => (record.externalId ? [[record.externalId, record.id] as const] : [])));
 }
 
-async function upsertElectionFoundation(sourceId: string, sourceSyncRunId: string, sourceName: string, data: NormalizedCivicData) {
+async function upsertElectionFoundation(sourceId: string, sourceSyncRunId: string, sourceName: string, data: NormalizedCivicData, sharedSourceIds = [sourceId]) {
   const neededJurisdictionSlugs = new Set<string>([
     ...foundationalJurisdictions.map((jurisdiction) => jurisdiction.slug),
     ...data.elections.map((election) => election.jurisdictionSlug),
@@ -835,11 +826,11 @@ async function upsertElectionFoundation(sourceId: string, sourceSyncRunId: strin
   const jurisdictionIds = new Map(jurisdictions.map((jurisdiction) => [jurisdiction.slug, jurisdiction.id]));
   const [sourceOffices, sourceDistricts] = await Promise.all([
     prisma.office.findMany({
-      where: { sourceId, externalId: { in: data.offices.map((office) => office.externalId) } },
+      where: { sourceId: { in: sharedSourceIds }, externalId: { in: data.offices.map((office) => office.externalId) } },
       select: { id: true, externalId: true },
     }),
     prisma.district.findMany({
-      where: { sourceId, externalId: { in: data.districts.map((district) => district.externalId) } },
+      where: { sourceId: { in: sharedSourceIds }, externalId: { in: data.districts.map((district) => district.externalId) } },
       select: { id: true, externalId: true },
     }),
   ]);
@@ -880,12 +871,7 @@ async function upsertElectionFoundation(sourceId: string, sourceSyncRunId: strin
     };
     const { record: upserted, stats: rowStats } = await upsertTrackedImport({
       model: prisma.election as unknown as ImportableDelegate,
-      where: {
-        sourceId_externalId: {
-          sourceId,
-          externalId: election.externalId,
-        },
-      },
+      where: await resolveSourceImportWhere(prisma.election, { sourceId, sharedSourceIds, externalId: election.externalId, slug: election.slug, jurisdictionId }),
       createData,
       updateData,
       sourceId,
@@ -950,12 +936,7 @@ async function upsertElectionFoundation(sourceId: string, sourceSyncRunId: strin
     };
     const { record: upserted, stats: rowStats } = await upsertTrackedImport({
       model: prisma.candidate as unknown as ImportableDelegate,
-      where: {
-        sourceId_externalId: {
-          sourceId,
-          externalId: candidate.externalId,
-        },
-      },
+      where: await resolveSourceImportWhere(prisma.candidate, { sourceId, sharedSourceIds, externalId: candidate.externalId, jurisdictionId }),
       createData,
       updateData,
       sourceId,
@@ -977,12 +958,7 @@ async function upsertElectionFoundation(sourceId: string, sourceSyncRunId: strin
     if (!electionId || !jurisdictionId) continue;
 
     const upserted = await prisma.ballotInitiative.upsert({
-      where: {
-        sourceId_externalId: {
-          sourceId,
-          externalId: initiative.externalId,
-        },
-      },
+      where: await resolveSourceImportWhere(prisma.ballotInitiative, { sourceId, sharedSourceIds, externalId: initiative.externalId, slug: initiative.slug, jurisdictionId }),
       create: {
         sourceId,
         externalId: initiative.externalId,
@@ -1030,12 +1006,7 @@ async function upsertElectionFoundation(sourceId: string, sourceSyncRunId: strin
     if (!electionId || !jurisdictionId) continue;
 
     await prisma.ballotQuestion.upsert({
-      where: {
-        sourceId_externalId: {
-          sourceId,
-          externalId: question.externalId,
-        },
-      },
+      where: await resolveSourceImportWhere(prisma.ballotQuestion, { sourceId, sharedSourceIds, externalId: question.externalId, slug: question.slug, jurisdictionId }),
       create: {
         sourceId,
         externalId: question.externalId,
@@ -1109,12 +1080,7 @@ async function upsertElectionFoundation(sourceId: string, sourceSyncRunId: strin
     };
     const { stats: rowStats } = await upsertTrackedImport({
       model: prisma.electionResult as unknown as ImportableDelegate,
-      where: {
-        sourceId_externalId: {
-          sourceId,
-          externalId: result.externalId,
-        },
-      },
+      where: await resolveSourceImportWhere(prisma.electionResult, { sourceId, sharedSourceIds, externalId: result.externalId, jurisdictionId: result.jurisdictionSlug ? jurisdictionIds.get(result.jurisdictionSlug) : undefined }),
       createData,
       updateData,
       sourceId,
@@ -1663,8 +1629,11 @@ export async function syncCivicSource(sourceSlug: string, mode: ImportMode = "ma
     });
     const officialsValidation = validateOfficialsFoundation(result.data);
     const electionValidation = validateElectionFoundation(officialsValidation.data);
-    const officialsChanged = await upsertOfficialsFoundation(source.id, electionValidation.data);
-    const electionsChanged = await upsertElectionFoundation(source.id, run.id, definition.name, electionValidation.data);
+    const sharedSourceIds = SHARED_SOS_SOURCE_SLUGS.some(slug => slug === definition.slug)
+      ? [...new Set([source.id, ...(await prisma.source.findMany({ where: { slug: { in: [...SHARED_SOS_SOURCE_SLUGS] }, adapterKey: definition.adapterKey }, select: { id: true } })).map(row => row.id)])]
+      : [source.id];
+    const officialsChanged = await upsertOfficialsFoundation(source.id, electionValidation.data, sharedSourceIds);
+    const electionsChanged = await upsertElectionFoundation(source.id, run.id, definition.name, electionValidation.data, sharedSourceIds);
     const importStats = mergeImportStats(officialsChanged, electionsChanged);
     const recordsChanged = importStats.recordsCreated + importStats.recordsUpdated;
     const issues = [...result.issues, ...officialsValidation.issues, ...electionValidation.issues];

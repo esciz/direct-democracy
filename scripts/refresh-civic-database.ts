@@ -7,14 +7,17 @@ import { syncCivicSource } from "../lib/civic-data/service";
 import { prisma } from "../lib/prisma";
 
 const sourceSlug = process.argv.find(arg => arg.startsWith("--source="))?.slice(9);
+const onlySourceSlug = process.argv.find(arg => arg.startsWith("--only="))?.slice(7);
 const allSources = process.argv.includes("--all-source-shards");
 const reportPath = path.join(process.cwd(), "data/generated/civic-database-refresh.json");
 const budgetMs = 12 * 60_000;
 const perSourceMs = 120_000;
 
 async function main() {
+  if (onlySourceSlug !== undefined && !NEVADA_BETA_SOURCE_DEFINITIONS.some(source => source.slug === onlySourceSlug)) throw new Error("unknown_civic_source");
+  const definitions = NEVADA_BETA_SOURCE_DEFINITIONS.filter(source => !onlySourceSlug || source.slug === onlySourceSlug);
   if (process.argv.includes("--dry-run")) {
-    console.log(JSON.stringify({ sources: NEVADA_BETA_SOURCE_DEFINITIONS.map(source => source.slug), allSources, budgetMs, perSourceMs }));
+    console.log(JSON.stringify({ sources: definitions.map(source => source.slug), allSources, onlySourceSlug, budgetMs, perSourceMs }));
     return;
   }
   if (sourceSlug) {
@@ -27,14 +30,14 @@ async function main() {
   const startedAt = new Date();
   const previous = await prisma.source.findMany({ select: { slug: true, lastCheckedAt: true } });
   const lastChecked = new Map(previous.map(source => [source.slug, source.lastCheckedAt?.getTime() ?? 0]));
-  const due = NEVADA_BETA_SOURCE_DEFINITIONS.filter(source => {
+  const due = definitions.filter(source => {
     const cadence = source.refreshFrequency?.includes("monthly") ? 30 : source.refreshFrequency?.includes("weekly") ? 7 : 1;
     return allSources || startedAt.getTime() - (lastChecked.get(source.slug) ?? 0) >= cadence * 86_400_000;
   }).sort((a, b) => (lastChecked.get(a.slug) ?? 0) - (lastChecked.get(b.slug) ?? 0) || (a.importPriority ?? 100) - (b.importPriority ?? 100));
   const rows: Array<{ source: string; status: string; checkedAt: string }> = [];
   const save = () => {
     mkdirSync(path.dirname(reportPath), { recursive: true });
-    writeFileSync(reportPath, JSON.stringify({ startedAt: startedAt.toISOString(), updatedAt: new Date().toISOString(), allSources, registered: NEVADA_BETA_SOURCE_DEFINITIONS.length, due: due.length, results: rows, deferred: due.slice(rows.length).map(source => source.slug) }, null, 2));
+    writeFileSync(reportPath, JSON.stringify({ startedAt: startedAt.toISOString(), updatedAt: new Date().toISOString(), allSources, onlySourceSlug, registered: NEVADA_BETA_SOURCE_DEFINITIONS.length, due: due.length, results: rows, deferred: due.slice(rows.length).map(source => source.slug) }, null, 2));
   };
   save();
   for (const source of due) {
