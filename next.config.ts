@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingRoot: process.cwd(),
   outputFileTracingIncludes: {
-    "/*": ["./data/seed/public-meeting-sources.json", "./data/generated/civic-data-release.json", "./data/generated/public-meeting-votes-runtime.json.gz", "./data/generated/nevada-community-relationships-runtime.json.gz", "./data/generated/voting-cards-runtime.json.gz"],
+    "/*": ["./data/seed/public-meeting-sources.json", "./data/generated/civic-data-release.json", "./data/generated/public-meeting-votes-runtime.json.gz", "./data/generated/nevada-community-relationships-runtime.json.gz", "./data/generated/voting-cards-runtime.json.gz", "./data/generated/nevada-political-ads-runtime.json.gz", "./data/generated/projects-runtime-runtime.json.gz", "./data/generated/public-cases-runtime-runtime.json.gz"],
   },
   outputFileTracingExcludes: {
     "/*": [
@@ -47,6 +47,9 @@ const nextConfig: NextConfig = {
       "./data/generated/public-meeting-votes.json",
       "./data/generated/nevada-community-relationships.json",
       "./data/generated/voting-cards.json",
+      "./data/generated/nevada-political-ads.json",
+      "./data/generated/projects-runtime.json",
+      "./data/generated/public-cases-runtime.json",
       "./data/generated/public-meeting-items.json",
       "./data/generated/public-meeting-voting-cards.json",
       "./data/generated/public-meetings.json",

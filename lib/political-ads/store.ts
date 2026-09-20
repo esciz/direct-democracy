@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { civicJsonPath, readCivicJsonSync } from "@/lib/dataops/packed-runtime";
 
 import type {
   AdClaim,
@@ -131,12 +132,13 @@ function isPoliticalAd(value: unknown): value is PoliticalAd {
 }
 
 function readGeneratedPoliticalAds(): PoliticalAd[] {
-  if (!fs.existsSync(GENERATED_POLITICAL_ADS_PATH)) {
+  const filePath = civicJsonPath(GENERATED_POLITICAL_ADS_PATH);
+  if (!filePath) {
     return [];
   }
 
   try {
-    const parsed = JSON.parse(fs.readFileSync(GENERATED_POLITICAL_ADS_PATH, "utf8")) as GeneratedPoliticalAdsFile | PoliticalAd[];
+    const parsed = readCivicJsonSync<GeneratedPoliticalAdsFile | PoliticalAd[]>(filePath);
     const ads = Array.isArray(parsed) ? parsed : parsed.ads;
     return Array.isArray(ads) ? ads.filter(isPoliticalAd) : [];
   } catch (error) {

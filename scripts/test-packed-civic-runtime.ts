@@ -3,6 +3,8 @@ import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import vm from "node:vm";
+import * as fs from "node:fs";
+import * as fsPromises from "node:fs/promises";
 import ts from "typescript";
 import { packCivicRuntime } from "./pack-civic-runtime";
 import { PACKED_CIVIC_FILES, packedCivicPath, civicJsonPath, readCivicJson, readCivicJsonSync } from "@/lib/dataops/packed-runtime";
@@ -10,6 +12,8 @@ import { getPublicMeetingItems } from "@/lib/public-meetings/public-record-eligi
 import { getPublicMeetingVotingCards } from "@/lib/public-meetings/voting-cards";
 import { cachedTopicNeedsEvidenceReview } from "@/lib/public-meetings/evidence-review";
 import { compareDecisionTrustThenDate, getDecisionTrustView } from "@/lib/civic/public-decision-trust";
+import { installedPublicArtifactPath } from "@/lib/dataops/installed-release";
+import * as meetingShared from "@/lib/public-meetings/shared";
 
 async function compressedVotingCardConsumers(root: string) {
   const save = (name: string, data: unknown) => writeFile(path.join(root, "data/generated", name), JSON.stringify(data));
@@ -21,11 +25,19 @@ async function compressedVotingCardConsumers(root: string) {
   const held = { ...decision, id: "held-decision", reviewStatus: "needs_review" };
   const topic = { id: decision.agendaItemId, meeting_id: decision.meetingId, title: decision.title, source_url: "https://example.gov/minutes.pdf", source_method: "automated_archive", parser_status: "partially_parsed", confidence_score: 0.92 };
   const question = { id: decision.sourceVotingCardId, topic_item_id: topic.id, meeting_id: topic.meeting_id, review_status: "approved", confidence_score: 0.92, source_url: topic.source_url, public_question: "Should Carson City approve the transportation contract?" };
+  const project = { id: "project-transport", title: "Transportation project", jurisdiction: "Carson City", relatedVotingCardIds: [decision.id], relatedIssues: [], futureEvidence: decision.futureEvidence };
+  const publicCase = { id: "case-transport", title: "Transportation hearing", jurisdiction: "Carson City", updated_at: "2026-09-20", priority: "high", confidence_score: 0.9, futureEvidence: decision.futureEvidence };
+  const politicalAd = { id: "ad-transport", title: "Source-backed filing", description: "Filing only — café", sourceType: "otherUnknown", sponsorName: "Example committee", sponsorType: "pac", paidForBy: "Example committee", currency: "USD", firstSeenAt: "2026-09-20", electionCycle: "2026", geographySummary: "Nevada", overallSystemRating: "unrated", overallSystemConfidence: "low", status: "active", media: [], entityRelations: [], geographies: [], claims: [], citizenRatings: [], challenges: [], futureEvidence: decision.futureEvidence };
   await save("voting-cards.json", { generatedAt: "2026-09-07", records: [decision, held] });
+  await save("projects-runtime.json", { records: [project] });
+  await save("public-cases-runtime.json", [publicCase]);
+  await save("nevada-political-ads.json", { ads: [politicalAd, { id: "invalid" }] });
+  await save("civic-data-release.json", { id: "a".repeat(64), sourceCommit: "b".repeat(40), createdAt: "2026-09-20T15:00:00Z" });
   await save("public-meeting-items-runtime.json", [topic]);
   await save("voting-cards-runtime.json", [question]);
   await packCivicRuntime(root);
   await rm(path.join(root, "data/generated/voting-cards.json"));
+  for (const name of ["projects-runtime.json", "public-cases-runtime.json", "nevada-political-ads.json"]) await rm(path.join(root, "data/generated", name));
   assert.equal(civicJsonPath(path.join(root, "data/generated/voting-cards-runtime.json")), path.join(root, "data/generated/voting-cards-runtime.json"), "The separate meeting-question schema must keep its own plain runtime file");
   const community = { id: "carson-city", name: "Carson City", primaryJurisdictionName: "Carson City", jurisdictionMatches: ["Carson City"] };
   const relationships = { name: community.name, records: { votingCards: [], meetings: [], projects: [], spendingRecords: [], courtCases: [], officialActionRecords: [], elections: [], issues: [] } };
@@ -36,7 +48,12 @@ async function compressedVotingCardConsumers(root: string) {
     vm.runInNewContext(compiled, { module, exports: module.exports, process: { cwd: () => root }, require(name: string) {
       if (name === "server-only") return {};
       if (name === "node:path") return path;
-      if (name === "@/lib/dataops/packed-runtime") return { civicJsonPath, readCivicJson };
+      if (name === "node:fs") return fs;
+      if (name === "node:fs/promises") return fsPromises;
+      if (name === "@/lib/dataops/packed-runtime") return { civicJsonPath, readCivicJson, readCivicJsonSync };
+      if (name === "@/lib/dataops/installed-release") return { installedPublicArtifactPath: (relative: string) => installedPublicArtifactPath(relative, root) };
+      if (name === "@/lib/public-meetings/shared") return { ...meetingShared, absolutePublicMeetingPath: (relative: string) => path.join(root, relative) };
+      if (name === "@/lib/civic/jurisdiction-context") return {};
       if (name === "@/lib/public-meetings/public-record-eligibility") return { getPublicMeetingItems };
       if (name === "@/lib/public-meetings/voting-cards") return { getPublicMeetingVotingCards };
       if (name === "@/lib/public-meetings/evidence-review") return { cachedTopicNeedsEvidenceReview };
@@ -49,9 +66,17 @@ async function compressedVotingCardConsumers(root: string) {
   }
   const decisions = await reader<Pick<typeof import("../lib/civic/decision-pages"), "getDecisionCards">>("lib/civic/decision-pages.ts");
   const hub = await reader<Pick<typeof import("../lib/community/product-hub"), "getCommunityHubData">>("lib/community/product-hub.ts");
+  const cases = await reader<Pick<typeof import("../lib/public-cases/public-civic-cases"), "getPublicCivicCasesForCommunity" | "getPublicCivicCaseAdminQueue">>("lib/public-cases/public-civic-cases.ts");
+  const ads = await reader<Pick<typeof import("../lib/political-ads/store"), "getGeneratedPoliticalAds">>("lib/political-ads/store.ts");
   const plain = (value: unknown) => JSON.parse(JSON.stringify(value));
   assert.deepEqual(plain(await decisions.getDecisionCards()), [decision], "Real decision reader works compressed-only while preserving approval guards and nested fields");
   assert.deepEqual(plain((await hub.getCommunityHubData(community.id))?.decisions), [decision, held], "Community hub reads every decision and keeps held records' actual status from compressed-only storage");
+  const projects = plain((await hub.getCommunityHubData(community.id))?.projects) as Array<Record<string, unknown>>;
+  assert.equal(projects.length, 1);
+  assert.deepEqual(Object.fromEntries(Object.keys(project).map(key => [key, projects[0][key]])), project, "Project fields survive compressed-only production packaging and normal display enrichment");
+  assert.deepEqual(plain(await cases.getPublicCivicCasesForCommunity(community as Parameters<typeof cases.getPublicCivicCasesForCommunity>[0])), [publicCase]);
+  assert.deepEqual(plain(await cases.getPublicCivicCaseAdminQueue()), [publicCase], "Installed-release remapping reaches compressed case data");
+  assert.deepEqual(plain(ads.getGeneratedPoliticalAds()), [politicalAd], "Political-ad reader preserves full valid records and rejects invalid ones");
   const updated = { ...decision, summary: "Fresh source revision" };
   await save("voting-cards.json", { records: [updated] });
   assert.deepEqual(plain(await decisions.getDecisionCards()), [updated]);
@@ -85,7 +110,7 @@ try {
   await packCivicRuntime(root);
   for (const name of PACKED_CIVIC_FILES) assert.equal(civicJsonPath(path.join(root, "data/generated", name)), null, "Missing source removes old build copy");
   await compressedVotingCardConsumers(root);
-  console.log("Packed civic runtime passed: lossless evidence, compressed-only decision/community readers, distinct question schema, fresh source precedence and corrupt-file rejection.");
+  console.log("Packed civic runtime passed: lossless evidence, compressed-only decisions/projects/cases/ads, installed-release remapping, distinct question schema, fresh source precedence and corrupt-file rejection.");
 } finally { await rm(root, { recursive: true, force: true }); }
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

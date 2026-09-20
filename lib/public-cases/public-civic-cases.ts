@@ -1,7 +1,7 @@
-import { existsSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { installedPublicArtifactPath } from "@/lib/dataops/installed-release";
+import { civicJsonPath, readCivicJson } from "@/lib/dataops/packed-runtime";
 
 import { getCivicJurisdictionContext } from "@/lib/civic/jurisdiction-context";
 import { PUBLIC_MEETING_PATHS, absolutePublicMeetingPath, normalizeWhitespace, slugify, summarizeText } from "@/lib/public-meetings/shared";
@@ -17,9 +17,9 @@ import type { CommunitySummary } from "@/types/domain";
 async function readJsonFile<T>(relativePath: string, fallback: T): Promise<T> {
   const selected = installedPublicArtifactPath(relativePath);
   if (!selected) return fallback;
-  const filePath = absolutePublicMeetingPath(selected);
-  if (!existsSync(filePath)) return fallback;
-  return JSON.parse(await readFile(filePath, "utf8")) as T;
+  const filePath = civicJsonPath(absolutePublicMeetingPath(selected));
+  if (!filePath) return fallback;
+  return readCivicJson<T>(filePath);
 }
 
 async function writeJsonFile(relativePath: string, value: unknown) {
