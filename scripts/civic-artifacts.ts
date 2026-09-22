@@ -68,7 +68,19 @@ function generationEvidence(directory: string, now: number) {
       const audit = json<{ generatedAt: string; coverageGeneratedAt: string; coverageSha256: string; strictPassed: boolean; freshnessPassed: boolean }>("nevada-financial-coverage-audit.json", directory);
       const bytes = readFileSync(path.join(directory, "data/generated/nevada-financial-coverage.json"));
       const audited = Date.parse(audit.generatedAt);
-      if (audit.strictPassed !== true || typeof audit.freshnessPassed !== "boolean" || !Number.isFinite(audited) || audited < started || audited > now + 5 * 60_000 || now - audited > 24 * 60 * 60_000 || audit.coverageGeneratedAt !== JSON.parse(bytes.toString()).generatedAt || audit.coverageSha256 !== createHash("sha256").update(bytes).digest("hex")) throw new Error("release_finance_integrity_not_verified");
+      const coverage = JSON.parse(bytes.toString()) as { generatedAt?: unknown };
+      const actualCoverageSha256 = createHash("sha256").update(bytes).digest("hex");
+      const invalidReasons = [
+        audit.strictPassed !== true ? "strict_audit_failed" : null,
+        typeof audit.freshnessPassed !== "boolean" ? "freshness_status_missing" : null,
+        !Number.isFinite(audited) ? "audit_timestamp_invalid" : null,
+        Number.isFinite(audited) && audited < started ? "audit_before_collection_run" : null,
+        Number.isFinite(audited) && audited > now + 5 * 60_000 ? "audit_timestamp_in_future" : null,
+        Number.isFinite(audited) && now - audited > 24 * 60 * 60_000 ? "audit_stale" : null,
+        audit.coverageGeneratedAt !== coverage.generatedAt ? "coverage_generation_mismatch" : null,
+        audit.coverageSha256 !== actualCoverageSha256 ? "coverage_hash_mismatch" : null,
+      ].filter((reason): reason is string => Boolean(reason));
+      if (invalidReasons.length) throw new Error(`release_finance_integrity_not_verified:${invalidReasons.join(",")}`);
       if (status !== "succeeded" && (status !== "failed" || audit.freshnessPassed !== false)) throw new Error("release_finance_audit_failure_unexplained");
       financeFresh &&= audit.freshnessPassed;
       continue;
@@ -206,95 +218,3 @@ async function main() {
     else await writeFile(path.join(handoff, "manifest.json"), JSON.stringify(manifest));
     console.log(JSON.stringify({ status: importing ? "candidate_imported" : "candidate_exported", id: manifest.id, files: manifest.files.length }));
     return;
-  }
-  if (mode === "prepare") {
-    const manifest = await candidate("release");
-    await writeLocalManifest(manifest);
-    console.log(JSON.stringify({ id: manifest.id, status: "prepared_not_published", files: manifest.files.length, bytes: manifest.files.reduce((sum, row) => sum + row.bytes, 0), metrics: manifest.metrics, coverageComplete: manifest.coverageComplete }));
-    return;
-  }
-  if (mode === "checkpoint") {
-    if (existsSync(path.join(root, "data/generated/.dataops-pipeline.lock"))) throw new Error("wait_for_active_collector_before_checkpoint");
-    const manifest = await candidate("worker");
-    if (process.argv.includes("--dry-run")) { console.log(JSON.stringify({ id: manifest.id, files: manifest.files.length, bytes: manifest.files.reduce((sum, row) => sum + row.bytes, 0) })); return; }
-    const stored = await upload(manifest);
-    console.log(JSON.stringify({ status: "worker_checkpoint_saved", id: stored.id, files: stored.files.length }));
-    return;
-  }
-  if (mode === "restore-worker" || mode === "restore-release") {
-    if (mode === "restore-release" && process.env.CIVIC_DATA_RELEASE_ENABLED !== "true" && !process.argv.includes("--required")) { console.log("Civic data release overlay disabled; using packaged artifacts."); return; }
-    const kind = mode === "restore-worker" ? "worker" : "release";
-    const manifest = await readManifest(kind, option("id") ?? (kind === "release" ? process.env.CIVIC_DATA_RELEASE_ID : undefined) ?? "latest");
-    if (!manifest) {
-      if (kind === "worker" && process.argv.includes("--allow-empty")) { console.log("No prior worker checkpoint; initializing from repository artifacts."); return; }
-      throw new Error(`missing_${kind}_manifest`);
-    }
-    const result = await restoreManifest(root, manifest);
-    if (kind === "release") await writeFile(path.join(root, "data/generated/civic-data-release.json"), JSON.stringify({ id: manifest.id, createdAt: manifest.createdAt, sourceCommit: manifest.sourceCommit, metrics: manifest.metrics, coverageComplete: manifest.coverageComplete }));
-    else await rm(path.join(root, "data/generated/civic-data-release.json"), { force: true });
-    console.log(JSON.stringify({ status: `${kind}_restored`, ...result }));
-    return;
-  }
-  if (mode === "publish") {
-    const automated = process.argv.includes("--automation") && process.env.GITHUB_ACTIONS === "true" && process.env.GITHUB_REF === "refs/heads/main" && ["schedule", "workflow_dispatch"].includes(process.env.GITHUB_EVENT_NAME ?? "");
-    if (!automated && !process.argv.includes("--approve")) throw new Error("release_requires_approval_or_trusted_scheduled_worker");
-    const manifest = validateManifest(JSON.parse(readFileSync(localManifestPath, "utf8")) as CivicManifest, "release");
-    const verified = releaseGateAt();
-    if (JSON.stringify(verified.metrics) !== JSON.stringify(manifest.metrics) || verified.coverageComplete !== manifest.coverageComplete) throw new Error("prepared_release_metadata_changed");
-    if (process.argv.includes("--trigger-deploy")) requireDeployHook();
-    const previous = await readManifest("release");
-    if (previous) for (const [name, value] of Object.entries(previous.metrics)) if (value > 0 && (manifest.metrics[name] ?? 0) < value * 0.8) throw new Error(`release_unexpected_record_loss:${name}`);
-    const stored = await upload(manifest);
-    await writeLocalManifest(stored);
-    console.log(JSON.stringify({ status: "release_published_to_storage", id: stored.id, metrics: stored.metrics, coverageComplete: stored.coverageComplete }));
-    if (process.argv.includes("--trigger-deploy")) {
-      const hook = requireDeployHook();
-      const response = await fetch(hook, { method: "POST", signal: AbortSignal.timeout(30_000) });
-      if (!response.ok) throw new Error(`deployment_trigger_failed:${response.status}`);
-      console.log("Deployment triggered; verify the public release ID before reporting live success.");
-    }
-    return;
-  }
-  if (mode === "rollback") {
-    if (!process.argv.includes("--approve")) throw new Error("rollback_requires_explicit_approval");
-    const id = option("id");
-    if (!id || !/^[a-f0-9]{64}$/.test(id)) throw new Error("rollback_requires_versioned_release_id");
-    if (process.argv.includes("--trigger-deploy")) requireDeployHook();
-    const prior = await readManifest("release", id);
-    if (!prior) throw new Error("rollback_release_not_found");
-    const temporary = await mkdtemp(path.join(os.tmpdir(), "civic-rollback-validation-"));
-    try {
-      await restoreManifest(temporary, prior);
-      const verified = releaseGateAt(temporary, { at: Date.parse(prior.createdAt), historical: true });
-      if (JSON.stringify(verified.metrics) !== JSON.stringify(prior.metrics) || verified.coverageComplete !== prior.coverageComplete) throw new Error("rollback_release_metadata_invalid");
-      await saveManifest(prior, undefined, undefined, { rollback: true });
-      await writeLocalManifest(prior);
-    } finally { await rm(temporary, { recursive: true, force: true }); }
-    console.log(JSON.stringify({ status: "release_rollback_published_to_storage", id: prior.id, sourceCommit: prior.sourceCommit }));
-    if (process.argv.includes("--trigger-deploy")) {
-      const response = await fetch(requireDeployHook(), { method: "POST", signal: AbortSignal.timeout(30_000) });
-      if (!response.ok) throw new Error(`deployment_trigger_failed:${response.status}`);
-      console.log("Rollback deployment triggered; verify the live release ID before reporting success.");
-    }
-    return;
-  }
-  if (mode === "verify-live") {
-    const base = option("url") ?? process.env.DIRECT_DEMOCRACY_PUBLIC_URL;
-    if (!base || !/^https:\/\//.test(base)) throw new Error("live_https_url_required");
-    const expected = option("id") ?? JSON.parse(readFileSync(localManifestPath, "utf8")).id;
-    const response = await fetch(new URL("/api/data-release", base), { cache: "no-store", signal: AbortSignal.timeout(30_000) });
-    const actual = await response.json() as { id?: string };
-    if (!response.ok || actual.id !== expected) throw new Error("live_release_not_yet_verified");
-    console.log(JSON.stringify({ status: "live_release_verified", id: actual.id, url: new URL("/api/data-release", base).href }));
-    return;
-  }
-  throw new Error("Usage: civic-artifacts.ts prepare|export-candidate|import-candidate|publish [--approve|--automation] [--trigger-deploy]|rollback --id=HASH --approve [--trigger-deploy]|checkpoint [--dry-run]|restore-worker|restore-release|verify-live");
-}
-
-if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main().catch((error) => {
-  // Provider error objects can contain request details; only expose our bounded
-  // error classifications, never credentials or signed request URLs.
-  const message = error instanceof Error ? error.message : "unknown_error";
-  console.error(message.replace(/https?:\/\/\S+/g, "[provider_url]").replace(/(?:token|key|secret|password)=[^\s&]+/gi, "credential=[redacted]").slice(0, 500));
-  process.exitCode = 1;
-});
