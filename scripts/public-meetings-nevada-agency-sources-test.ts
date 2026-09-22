@@ -182,6 +182,20 @@ async function main() {
   assert.equal(calendarOnly.length, 1);
   assert.equal(calendarOnly[0].minutesUrl, null);
   assert.equal(sourceWarnings.length, 2, "Blocked document folders stay explicit while dates remain usable");
+  for (const standaloneFirst of [true, false]) {
+    const short = driveRow("shortAgenda", "2026-09-08 Agenda.pdf");
+    const packet = driveRow("fullPacket", "2026-09-08 Agenda &amp; Supporting Material.pdf");
+    const discovered = await discoverNevadaAgencyMeetings(schoolBoard, async url => {
+      if (url === schoolBoard.meetingIndexUrl) return boardSource;
+      if (url.endsWith("agendaRoot")) return driveRow("agendaYear", "2026", true);
+      if (url.endsWith("minutesRoot")) return driveRow("minutesYear", "2026", true);
+      if (url.endsWith("agendaYear")) return standaloneFirst ? short + packet : packet + short;
+      return driveRow("minutesPdf", "2026-08-25 Approved Meeting Minutes.pdf");
+    }, new Date("2026-09-06T12:00:00Z"));
+    const board = discovered.find(meeting => meeting.meetingTimeKnown)!;
+    assert.equal(board.agendaUrl, "https://drive.google.com/uc?export=download&id=shortAgenda");
+    assert.equal(board.packetUrl, "https://drive.google.com/uc?export=download&id=fullPacket");
+  }
 
   const notices = parseNevadaPublicNoticeLeads(`<div class="subtoday-notice-item is-cancelled"><span class="subtoday-notice-time-date">09/08/2026</span><span class="subtoday-notice-time-clock">10:00 AM</span><div class="subtoday-notice-body"><a href="https://tax.nv.gov/boards-meetings/">Tax board</a></div><div class="subtoday-notice-posted">Date Posted: <strong>08/01/2026</strong></div></div>
     <div class="subtoday-notice-item "><span class="subtoday-notice-time-date">09/09/2026</span><div class="subtoday-notice-body"><a href="mailto:office@example.gov">Local board</a></div></div>`);

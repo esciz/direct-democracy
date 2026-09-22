@@ -3,6 +3,8 @@ import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { CACHED_MEETING_TOPIC_PARSER_VERSION, parseCachedPublicMeetingDocument, resolveCachedMeetingDocumentUrl } from "@/lib/public-meetings/importer";
 import type { PublicBodyRecord, PublicMeetingItemRecord, PublicMeetingRecord } from "@/lib/public-meetings/types";
+import { completeNativeAgendaSection } from "@/lib/public-meetings/agenda-section";
+import { civicEventDay } from "@/lib/events/lifecycle";
 
 const root = path.join(process.cwd(), "data/generated");
 function read<T>(file: string, fallback: T): T {
@@ -32,8 +34,8 @@ const approved = new Set([
   ...read<Array<{ topic_item_id: string; review_status: string }>>("public-meeting-voting-cards.json", []).filter((row) => row.review_status === "approved").map((row) => row.topic_item_id),
   ...read<Array<{ topic_item_id: string; review_status: string }>>("public-meeting-official-actions.json", []).filter((row) => row.review_status === "approved").map((row) => row.topic_item_id),
 ]);
-type TextRecord = { documentId: string; meetingId: string; documentType: string; extractedTextPath: string | null; sourceUrl: string | null; sourcePath: string | null; extractionQuality: string; extractionMethod: string; sourceContentHash?: string | null; extractedAt: string | null };
-type ParseState = { documentId: string; meetingId: string; sourceHash: string; textHash: string; parserVersion: number; itemIds: string[]; parsedAt: string };
+type TextRecord = { documentId: string; meetingId: string; documentType: string; extractedTextPath: string | null; sourceUrl: string | null; sourcePath: string | null; extractionQuality: string; extractionMethod: string; sourceContentHash?: string | null; extractedAt: string | null; nativeTextPath?: string | null; nativeTextSha256?: string | null; nativeSidecarCompleteness?: string; nativeSidecarQuality?: string };
+type ParseState = { documentId: string; meetingId: string; sourceHash: string; textHash: string; evidenceKey?: string; parserVersion: number; itemIds: string[]; parsedAt: string };
 const cache = new Map(read<{ records: Array<{ documentId: string; contentHash: string; stableLocalPath: string }> }>("public-meeting-document-cache-index.json", { records: [] }).records.map((row) => [row.documentId, row]));
 const state = new Map(read<{ records: ParseState[] }>("public-meeting-item-processing-state.json", { records: [] }).records.map((row) => [row.documentId, row]));
 const sourceDocuments = read<{ records: Array<{ id: string; meetingId: string; documentType: string; sourceUrl: string | null; provenance?: Array<{ meetingId: string }> }> }>("public-meeting-source-documents.json", { records: [] }).records;
@@ -44,7 +46,13 @@ const key = (item: PublicMeetingItemRecord) => item.item_number ? `${item.meetin
 const identities = new Map([...items.values()].filter(item => !item.source_url || !heldDocumentUrls.has(item.source_url)).map((item) => [key(item), item.id]));
 const report: Array<{ documentId: string; meetingId: string; status: string; itemCount: number; reason?: string }> = [];
 let processed = 0;
-for (const document of [...documents].sort((left, right) => (right.extractedAt ?? "").localeCompare(left.extractedAt ?? ""))) {
+const today = civicEventDay(now)!;
+const upcoming = (document: TextRecord) => {
+  const date = meetings.get(document.meetingId)?.meeting_date;
+  const day = date ? civicEventDay(date) : null;
+  return Boolean(day && day >= today && day <= civicEventDay(new Date(Date.parse(now) + 45 * 86400_000))!);
+};
+for (const document of [...documents].sort((left, right) => Number(upcoming(right)) - Number(upcoming(left)) || (right.extractedAt ?? "").localeCompare(left.extractedAt ?? ""))) {
   if (selectedDocuments.size && !selectedDocuments.has(document.documentId)) continue;
   if (document.sourceUrl && heldDocumentUrls.has(document.sourceUrl)) continue;
   const meeting = meetings.get(document.meetingId);
@@ -52,7 +60,7 @@ for (const document of [...documents].sort((left, right) => (right.extractedAt ?
   if (!meeting || meeting.source_method === "manual_fixture" || !["agenda", "minutes", "packet"].includes(document.documentType) || !document.extractedTextPath) continue;
   if (selectedDocumentType && document.documentType !== selectedDocumentType) continue;
   if (selectedSources.length && (!body || !selectedSources.includes(body.seed_source_id))) continue;
-  if (!["high", "medium"].includes(document.extractionQuality)) continue;
+  if (!["high", "medium"].includes(document.extractionQuality) && !document.nativeTextPath) continue;
   let text: string;
   try { text = readFileSync(path.resolve(process.cwd(), document.extractedTextPath), "utf8"); }
   catch { report.push({ documentId: document.documentId, meetingId: meeting.id, status: "blocked", itemCount: 0, reason: "extracted_text_missing" }); continue; }
@@ -62,20 +70,47 @@ for (const document of [...documents].sort((left, right) => (right.extractedAt ?
   }
   const textHash = hash(text);
   const sourceHash = document.sourceContentHash ?? cached?.contentHash ?? textHash;
+  let parseText = text;
+  let parseTextPath = document.extractedTextPath;
+  let ocr = document.extractionMethod !== "native_text";
+  let nativeText = !ocr && ["high", "medium"].includes(document.extractionQuality) ? text : null;
+  if (document.nativeTextPath && document.nativeTextSha256 && document.sourceContentHash && cached?.contentHash === document.sourceContentHash) {
+    try {
+      const native = readFileSync(path.resolve(process.cwd(), document.nativeTextPath), "utf8");
+      if (hash(native) === document.nativeTextSha256) {
+        nativeText = native;
+        // Complete native minutes are independent evidence even when an older
+        // merged OCR sidecar is retained. Outcomes remain separately reviewed.
+        if (document.nativeSidecarCompleteness === "complete" && ["high", "medium"].includes(document.nativeSidecarQuality ?? "")) {
+          parseText = native; parseTextPath = document.nativeTextPath; ocr = false;
+        }
+      }
+    } catch { /* No independently verified native sidecar: retain the OCR hold. */ }
+  }
+  if (document.documentType !== "minutes") {
+    const section = nativeText ? completeNativeAgendaSection(nativeText) : null;
+    if (section) {
+      parseText = section;
+      parseTextPath = document.nativeTextPath && nativeText !== text ? document.nativeTextPath : document.extractedTextPath;
+      ocr = false;
+    }
+  }
+  if (!["high", "medium"].includes(document.extractionQuality) && (ocr || parseText === text)) continue;
+  const evidenceKey = hash(JSON.stringify([document.documentType, ocr, document.sourceUrl, parseTextPath, parseText]));
   const previous = state.get(document.documentId);
-  if (!force && previous?.meetingId === meeting.id && previous.textHash === textHash && previous.sourceHash === sourceHash && previous.parserVersion === CACHED_MEETING_TOPIC_PARSER_VERSION && previous.itemIds.every((id) => items.has(id))) continue;
+  if (!force && previous?.meetingId === meeting.id && previous.textHash === textHash && previous.sourceHash === sourceHash && previous.evidenceKey === evidenceKey && previous.parserVersion === CACHED_MEETING_TOPIC_PARSER_VERSION && previous.itemIds.every((id) => items.has(id))) continue;
   if (processed >= limit) continue;
   processed += 1;
   const drafts = parseCachedPublicMeetingDocument({ meeting, body: body ?? null, documentId: document.documentId,
     documentType: document.documentType === "packet" ? "board_packet" : document.documentType as "agenda" | "minutes",
-    text, sourceUrl: resolveCachedMeetingDocumentUrl({ meeting, documentId: document.documentId, documentType: document.documentType, sourceHash, sourceUrl: document.sourceUrl, documents: sourceDocuments, cache: [...cache.values()] }), sourceHash, textPath: document.extractedTextPath,
-    sourcePath: cached?.stableLocalPath ?? document.sourcePath, ocr: document.extractionMethod !== "native_text" });
+    text: parseText, sourceUrl: resolveCachedMeetingDocumentUrl({ meeting, documentId: document.documentId, documentType: document.documentType, sourceHash, sourceUrl: document.sourceUrl, documents: sourceDocuments, cache: [...cache.values()] }), sourceHash, textPath: parseTextPath,
+    sourcePath: cached?.stableLocalPath ?? document.sourcePath, ocr });
   const newIds: string[] = [];
   for (const draft of drafts) {
     const existingId = identities.get(key(draft));
     const old = existingId ? items.get(existingId) : undefined;
     const next = { ...draft, id: old?.id ?? draft.id };
-    const keepExisting = old && (approved.has(old.id) || (document.documentType !== "minutes" && old.source_url && minutesUrls.has(old.source_url)));
+    const keepExisting = old && (approved.has(old.id) || (old.parser_status === "source_excerpt" && next.parser_status === "needs_review" && old.source_document_hash === sourceHash) || (document.documentType !== "minutes" && old.source_url && minutesUrls.has(old.source_url)));
     if (old && approved.has(old.id) && old.source_document_hash !== sourceHash && old.source_text !== next.source_text) {
       const candidateId = `${document.documentId}:${old.id}:${sourceHash}`;
       reviewCandidates.set(candidateId, { id: candidateId, status: "needs_review", reason: "reviewed_item_has_new_source_evidence", documentId: document.documentId, existingItemId: old.id, meetingId: meeting.id, sourceHash, detectedAt: now, proposedItem: next });
@@ -88,7 +123,7 @@ for (const document of [...documents].sort((left, right) => (right.extractedAt ?
   for (const oldId of previous?.itemIds ?? []) {
     if (!newIds.includes(oldId) && !approved.has(oldId) && ![...state.values()].some((row) => row.documentId !== document.documentId && row.itemIds.includes(oldId))) items.delete(oldId);
   }
-  state.set(document.documentId, { documentId: document.documentId, meetingId: meeting.id, sourceHash, textHash, parserVersion: CACHED_MEETING_TOPIC_PARSER_VERSION, itemIds: newIds, parsedAt: now });
+  state.set(document.documentId, { documentId: document.documentId, meetingId: meeting.id, sourceHash, textHash, evidenceKey, parserVersion: CACHED_MEETING_TOPIC_PARSER_VERSION, itemIds: newIds, parsedAt: now });
   report.push({ documentId: document.documentId, meetingId: meeting.id, status: drafts.some((draft) => !draft.item_number) ? "needs_document_review" : "topics_extracted_for_review", itemCount: newIds.length });
 }
 const artifact = { generatedAt: now, dryRun, limit, sources: selectedSources, documents: [...selectedDocuments], documentType: selectedDocumentType, totals: { documentsProcessed: processed, itemRecords: items.size, reviewedItemChangesPending: reviewCandidates.size, documentsBlocked: report.filter((row) => row.status === "blocked").length, documentsNeedingReview: report.filter((row) => row.status === "needs_document_review").length }, records: report };

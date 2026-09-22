@@ -3,9 +3,9 @@ import { createHash } from "node:crypto";
 import { mkdtemp, mkdir, readFile, readdir, rename, rm, statfs, symlink, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { get, put } from "@vercel/blob";
+import { get, put, head } from "@vercel/blob";
 import { REQUIRED_RELEASE_FILES, civicManifestId, releaseArtifactAllowed, validateManifest, workerArtifactAllowed, type ArtifactEntry, type CivicManifest } from "@/lib/dataops/artifact-policy";
-import { assertArtifactSnapshot, describeArtifacts, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths } from "@/lib/dataops/blob-checkpoint";
+import { assertArtifactSnapshot, describeArtifacts, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths, uploadArtifact } from "@/lib/dataops/blob-checkpoint";
 import { copyPreparedRelease, releaseGateAt } from "./civic-artifacts";
 import { applyReportingPolicy } from "./apply-reporting-policy";
 
@@ -249,10 +249,38 @@ async function main() {
     assert(selected.includes("data/imports/political-ads/fec-nevada-independent-expenditures.json"));
 
     const fixtures = await releaseFixture(root);
+    const uploadBytes = "durable agenda text";
+    const uploading = entry("retry-fixture.txt", uploadBytes);
+    await writeFile(path.join(root, uploading.path), uploadBytes);
+    const replayPut = (async (_key: string, body: Buffer, options: { multipart: boolean }) => {
+      assert.ok(Buffer.isBuffer(body), "Non-multipart retries need replayable bytes, not a consumed stream");
+      assert.equal(options.multipart, false);
+      for (let retry = 0; retry < 2; retry++) assert.equal(await new Response(new Uint8Array(body)).text(), uploadBytes);
+      return {};
+    }) as unknown as typeof put;
+    const uploadHead = (async () => ({ size: uploading.bytes })) as unknown as typeof head;
+    await uploadArtifact(root, uploading, new Map(), { put: replayPut, head: uploadHead });
+    await writeFile(path.join(root, uploading.path), "changed before upload");
+    await assert.rejects(uploadArtifact(root, uploading, new Map(), { put: replayPut, head: uploadHead }), /changed_before_upload/);
     const current = releaseGateAt(root, { at });
     assert.equal(current.coverageComplete, false, "explicit coverage gaps and failed collection must preserve valid last-good data");
     assert.equal(current.metrics.meetings, 2);
     assert.equal(current.metrics.decisions, 1);
+    const financeReport = generationReport();
+    financeReport.stages[0].commands.push({ command: ["tsx", "scripts/audit-nevada-financial-coverage.ts", "--strict"], status: "failed" });
+    await writeJson(root, "meetings-pipeline-run.json", financeReport);
+    assert.throws(() => releaseGateAt(root, { at }), /finance_audit_missing/);
+    const financeAudit = { generatedAt: new Date(at - 60_000).toISOString(), coverageSha256: hash(JSON.stringify(fixtures["nevada-financial-coverage.json"])), strictPassed: true, freshnessPassed: false };
+    await writeJson(root, "nevada-financial-coverage-audit.json", financeAudit);
+    assert.equal(releaseGateAt(root, { at }).coverageComplete, false, "Verified structural integrity permits publication with an explicit freshness gap");
+    for (const change of [{ strictPassed: false }, { coverageSha256: "a".repeat(64) }, { generatedAt: new Date(at - 86400_000).toISOString() }, { coverageGeneratedAt: "unrelated" }]) {
+      await writeJson(root, "nevada-financial-coverage-audit.json", { ...financeAudit, ...change });
+      assert.throws(() => releaseGateAt(root, { at }), /finance_integrity_not_verified/);
+    }
+    await writeJson(root, "nevada-financial-coverage-audit.json", { ...financeAudit, freshnessPassed: true });
+    assert.throws(() => releaseGateAt(root, { at }), /finance_audit_failure_unexplained/);
+    await writeJson(root, "meetings-pipeline-run.json", fixtures["meetings-pipeline-run.json"]);
+    await rm(path.join(root, "data/generated/nevada-financial-coverage-audit.json"));
     const cases: Array<[string, unknown, RegExp]> = [
       ["public-meeting-items-runtime.json", [{ id: "topic", meeting_id: "missing" }], /topic_missing_meeting/],
       ["voting-cards-runtime.json", [{ id: "question", meeting_id: "other-meeting", topic_item_id: "topic" }], /invalid_topic_reference/],

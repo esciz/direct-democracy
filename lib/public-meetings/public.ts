@@ -1,5 +1,7 @@
 import { routineReportingExclusion } from "@/lib/public-meetings/reporting-policy";
 import "server-only";
+import { getEventLifecycleStatus } from "@/lib/events/lifecycle";
+import { prioritizePublicMeetingTopics } from "@/lib/public-meetings/public-record-eligibility";
 
 import { existsSync } from "node:fs";
 import { civicJsonPath, readCivicJson } from "@/lib/dataops/packed-runtime";
@@ -232,8 +234,10 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
   const matchingMeetingIds = new Set(matchingMeetings.map((meeting) => meeting.id));
   const matchingItems = dashboard.meetingItems.filter((item) => matchingMeetingIds.has(item.meeting_id));
   const topicsByMeetingId = new Map<string, string[]>();
-  for (const item of dashboard.meetingItems) {
-    const topics = topicsByMeetingId.get(item.meeting_id) ?? [];
+  const canonicalMeetingId = new Map(dashboard.meetings.flatMap(meeting => [meeting.id, ...(meeting.meeting_alias_ids ?? [])].map(id => [id, meeting.id] as const)));
+  for (const item of prioritizePublicMeetingTopics(dashboard.meetingItems)) {
+    const meetingId = canonicalMeetingId.get(item.meeting_id) ?? item.meeting_id;
+    const topics = topicsByMeetingId.get(meetingId) ?? [];
     const topic = (item.one_sentence_summary || item.plain_english_explanation || item.title)
       .replace(/^\s*\d+(?:\.[A-Z0-9]+)*\s*[.)]\s*/i, "")
       .replace(/\b(?:recommendation|appearance|discussion|possible action|for possible action)\b[:\s-]*/gi, "")
@@ -241,7 +245,7 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
       .trim();
     if (topic && !topics.includes(topic)) {
       topics.push(topic);
-      topicsByMeetingId.set(item.meeting_id, topics.slice(0, 4));
+      topicsByMeetingId.set(meetingId, topics.slice(0, 4));
     }
   }
   const itemById = new Map(dashboard.meetingItems.map((item) => [item.id, item]));
@@ -254,14 +258,13 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
     title: meeting.title,
     public_body_name: bodyById.get(meeting.public_body_id)?.name ?? "Public body pending",
     meeting_date: meeting.meeting_date,
-    agenda_url: meeting.agenda_url ?? meeting.source_urls[0] ?? null,
+    agenda_url: meeting.agenda_url ?? null,
     relationship_scope: relationshipScope,
     major_topics: topicsByMeetingId.get(meeting.id) ?? [],
   });
   const localUpcomingMeetings = matchingMeetings
     .filter((meeting) => {
-      const time = meeting.meeting_date ? Date.parse(meeting.meeting_date) : Number.NaN;
-      return Number.isFinite(time) && time >= now;
+      return getEventLifecycleStatus({ startsAt: meeting.meeting_date, title: meeting.title, sourceStatus: meeting.meeting_status }, new Date(now)) === "upcoming";
     })
     .sort((left, right) => (Date.parse(left.meeting_date ?? "") || 0) - (Date.parse(right.meeting_date ?? "") || 0))
     .slice(0, 5)
@@ -269,8 +272,7 @@ export async function getCommunityMeetingSummary(community: CommunitySummary): P
   const allStatewideUpcomingMeetings = dashboard.meetings
     .filter((meeting) => statewideBodyIds.has(meeting.public_body_id))
     .filter((meeting) => {
-      const time = meeting.meeting_date ? Date.parse(meeting.meeting_date) : Number.NaN;
-      return Number.isFinite(time) && time >= now;
+      return getEventLifecycleStatus({ startsAt: meeting.meeting_date, title: meeting.title, sourceStatus: meeting.meeting_status }, new Date(now)) === "upcoming";
     })
     .sort((left, right) => (Date.parse(left.meeting_date ?? "") || 0) - (Date.parse(right.meeting_date ?? "") || 0))
     .map((meeting) => toUpcomingMeeting(meeting, "statewide_overlay"));

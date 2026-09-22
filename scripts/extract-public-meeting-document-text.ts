@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 import { normalizeWhitespace, summarizeText } from "@/lib/public-meetings/shared";
 import { extractPdfTextIsolated, NATIVE_PDF_EXTRACTOR_VERSION, preferredNativePdfBackend, type PdfNativeTextResult } from "@/lib/public-meetings/pdf-native-text";
+import { civicEventDay } from "@/lib/events/lifecycle";
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const TEXT_DIR = path.join(GENERATED_DIR, "public-meeting-document-text-cache");
@@ -73,6 +74,11 @@ type DocumentTextRecord = {
   nativeTextEvaluationVersion?: number;
   nativeTextEvaluationBackend?: "poppler" | "pdf-parse";
   nativeTextCoverage?: "complete" | "partial" | "unknown";
+  nativeTextPath?: string | null;
+  nativeTextSha256?: string | null;
+  nativeTextEvidenceVersion?: number;
+  nativeSidecarCompleteness?: "complete" | "partial" | "unknown";
+  nativeSidecarQuality?: DocumentTextRecord["extractionQuality"];
   nativePagesDetected?: number | null;
   nativePagesWithText?: number | null;
   textCompleteness?: "complete" | "partial" | "unknown";
@@ -207,6 +213,7 @@ function shouldReuseExisting(document: SourceDocumentRecord, forceAll: boolean) 
   if (!hasUsableExistingText(existing)) return false;
   const sourceHash = sourceHashFor(document);
   if (!sourceHash || existing?.sourceContentHash !== sourceHash) return false;
+  if (existing.extractionMethod === "mixed" && existing.nativeTextEvidenceVersion !== 1) return false;
   const cachedPath = cacheByDocument.get(document.id)?.stableLocalPath ?? document.cachedPath ?? document.sourcePath;
   if (cachedPath && /\.pdf$/i.test(cachedPath)) {
     preferredPdfBackend ??= preferredNativePdfBackend();
@@ -271,12 +278,25 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
     ? (text.length >= 300 ? "low" : "insufficient") : qualityFor(mergedText);
   const existing = existingTextByDocument.get(document.id);
   const sourceHash = sourceHashFor(document);
+  // Keep native bytes separately: OCR of attachments must not taint a readable
+  // front agenda, nor may a merged sidecar masquerade as native evidence.
+  const nativeBody = text.length >= 120 ? `${text}\n` : null;
+  const nativeTextSha256 = nativeBody ? createHash("sha256").update(nativeBody).digest("hex") : null;
+  const nativeTextPath = nativeTextSha256 ? path.join("data", "generated", "public-meeting-document-text-cache", `${document.id}-native-${nativeTextSha256.slice(0, 24)}.txt`) : null;
+  if (nativeTextPath && nativeBody) writeAtomically(path.join(process.cwd(), nativeTextPath), nativeBody);
+  const nativeEvidence = nativeBody ? { nativeTextPath, nativeTextSha256, nativeTextEvidenceVersion: 1,
+    nativeSidecarCompleteness: native?.coverage === "complete" && !native.truncated ? "complete" as const : "partial" as const,
+    nativeSidecarQuality: qualityFor(text) } : { nativeTextPath: existing?.sourceContentHash === sourceHash ? existing.nativeTextPath : null,
+    nativeTextSha256: existing?.sourceContentHash === sourceHash ? existing.nativeTextSha256 : null, nativeTextEvidenceVersion: 1,
+    nativeSidecarCompleteness: existing?.sourceContentHash === sourceHash ? existing.nativeSidecarCompleteness : "unknown" as const,
+    nativeSidecarQuality: existing?.sourceContentHash === sourceHash ? existing.nativeSidecarQuality : "insufficient" as const };
   const qualityRank = { insufficient: 0, low: 1, medium: 2, high: 3 };
   // A failed/partial rerun must not overwrite good text from the same exact source version.
   if (existing && sourceHash && existing.sourceContentHash === sourceHash && hasUsableExistingText(existing)
     && (mergedMethod === "failed" || qualityRank[extractionQuality] < qualityRank[existing.extractionQuality]
       || (existing.ocrAvailable && mergedText.length < existing.textLength))) {
     return { ...existing, meetingId: document.meetingId, meetingItemIds: document.meetingItemIds, documentType: document.documentType,
+      ...nativeEvidence,
       sourceUrl: document.sourceUrl, sourcePath: document.sourcePath, evaluatedOcrTextHash: ocrSidecar.textHash ?? existing.evaluatedOcrTextHash,
       nativeTextFailureReason: failureReason,
       // This branch keeps the OLD sidecar. A new complete parse that we do
@@ -302,6 +322,7 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
     sourceUrl: document.sourceUrl,
     sourcePath: document.sourcePath,
     extractedTextPath: textPath,
+    ...nativeEvidence,
     extractionMethod: mergedMethod,
     extractionQuality,
     textLength: mergedText.length,
@@ -326,7 +347,7 @@ async function main() {
   if (![PDF_TIMEOUT_MS, PDF_MAX_BYTES].every((limit) => Number.isFinite(limit) && limit > 0)) throw new Error("PDF timeout and byte limits must be finite positive numbers");
   if (!(MAX_DOCUMENTS > 0) || (Number.isFinite(MAX_DOCUMENTS) && !Number.isInteger(MAX_DOCUMENTS)) || !(MAX_DURATION_MS > 0)) throw new Error("Extraction batch limits must be positive; document count must be an integer");
   mkdirSync(TEXT_DIR, { recursive: true });
-  const startedAt = Date.now();
+  const startedAt = performance.now();
   const extractedAt = new Date().toISOString();
   const forceAll = process.argv.includes("--all");
   const allDocuments = readJson<{ records?: SourceDocumentRecord[] }>(DOCUMENTS_PATH, { records: [] }).records ?? [];
@@ -346,15 +367,22 @@ async function main() {
     const record = existingTextByDocument.get(document.id);
     return Date.parse(record?.lastAttemptAt ?? record?.extractedAt ?? "") || 0;
   };
+  const today = civicEventDay(new Date())!;
+  const horizon = civicEventDay(new Date(Date.now() + 45 * 86400_000))!;
+  const upcomingIds = new Set(readJson<Array<{ id: string; meeting_date?: string }>>(path.join(GENERATED_DIR, "public-meetings.json"), []).filter(meeting => {
+    const day = meeting.meeting_date ? civicEventDay(meeting.meeting_date) : null;
+    return day && day >= today && day <= horizon;
+  }).map(meeting => meeting.id));
+  const upcomingAgenda = (document: SourceDocumentRecord) => upcomingIds.has(document.meetingId) && ["agenda", "packet"].includes(document.documentType);
   // Work on available minutes first. Old failures rotate behind previously
   // unattempted documents instead of consuming the same batch every run.
-  documents.sort((a, b) => Number(cached(b)) - Number(cached(a)) || lastAttempt(a) - lastAttempt(b) || Number(b.documentType === "minutes") - Number(a.documentType === "minutes") || a.id.localeCompare(b.id));
+  documents.sort((a, b) => Number(cached(b)) - Number(cached(a)) || Number(upcomingAgenda(b)) - Number(upcomingAgenda(a)) || lastAttempt(a) - lastAttempt(b) || Number(b.documentType === "minutes") - Number(a.documentType === "minutes") || a.id.localeCompare(b.id));
   let reused = 0;
   let extracted = 0;
   let scanned = 0;
   let budgetReached = false;
   for (const [index, document] of documents.entries()) {
-    if (Date.now() - startedAt >= MAX_DURATION_MS) { budgetReached = true; break; }
+    if (performance.now() - startedAt >= MAX_DURATION_MS) { budgetReached = true; break; }
     scanned += 1;
     if (shouldReuseExisting(document, forceAll)) {
       const existing = existingTextByDocument.get(document.id);

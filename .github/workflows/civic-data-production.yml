@@ -1,6 +1,20 @@
 name: Civic Data Production
 
 on:
+  # Parser/storage fixes must regenerate the public data, not just rebuild the UI.
+  # UI-only pushes do not spend provider quotas. The existing single-writer lock
+  # also serializes these incremental refreshes with scheduled/manual runs.
+  push:
+    branches: [main]
+    paths:
+      - 'lib/public-meetings/**'
+      - 'lib/dataops/**'
+      - 'scripts/*public-meeting*.ts'
+      - 'scripts/reprocess-cached-meeting-items.ts'
+      - 'scripts/civic-artifacts.ts'
+      - 'scripts/audit-nevada-financial-coverage.ts'
+      - 'scripts/run-dataops-pipeline.ts'
+      - '.github/workflows/civic-data-production.yml'
   schedule:
     # A daily run carries the full civic refresh and the failure notification.
     - cron: "17 6 * * *"
@@ -98,7 +112,7 @@ jobs:
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
             if [[ "$FULL_REFRESH" != "true" ]]; then args+=(--meetings-only); fi
             if [[ "$ALL_SOURCE_SHARDS" == "true" ]]; then args+=(--all-source-shards); fi
-          elif [[ "$SCHEDULE" != "17 6 * * *" ]]; then
+          elif [[ "$GITHUB_EVENT_NAME" == "schedule" && "$SCHEDULE" != "17 6 * * *" ]]; then
             args+=(--meetings-only)
           fi
           npm run dataops:pipeline -- "${args[@]}"
@@ -114,6 +128,7 @@ jobs:
       - name: Validate civic release regressions
         run: |
           npm run dataops:release:test
+          node --import tsx scripts/test-native-agenda-packets.ts
           node --import tsx scripts/test-reporting-policy.ts
           node --import tsx scripts/test-civic-workflows.ts
           node --import tsx scripts/test-carson-public-calendar.ts
@@ -186,7 +201,7 @@ jobs:
   publish:
     name: Publish civic release and verify deployment
     needs: refresh
-    if: github.event_name == 'schedule' || inputs.publish
+    if: github.event_name == 'schedule' || github.event_name == 'push' || inputs.publish
     runs-on: ubuntu-24.04
     environment: production
     timeout-minutes: 60
@@ -228,7 +243,7 @@ jobs:
   source-coverage:
     name: Source coverage status
     needs: refresh
-    if: always() && needs.refresh.outputs.collection_outcome == 'failure' && (github.event_name == 'workflow_dispatch' || github.event.schedule == '17 6 * * *')
+    if: always() && needs.refresh.outputs.collection_outcome == 'failure' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.schedule == '17 6 * * *')
     runs-on: ubuntu-24.04
     steps:
       - name: Report incomplete source collection separately from publication

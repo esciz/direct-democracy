@@ -313,7 +313,15 @@ async function discoverCarsonSchoolBoardMeetings(seed: PublicMeetingSourceSeed, 
     const downloadUrl = `https://drive.google.com/uc?export=download&id=${document.id}`;
     const viewUrl = `https://drive.google.com/file/d/${document.id}/view`;
     if (document.kind === "minutes" && /minutes/i.test(document.name)) record.minutesUrl = downloadUrl;
-    if (document.kind === "agenda" && /agenda|board retreat/i.test(document.name)) { record.agendaUrl = downloadUrl; record.packetUrl = downloadUrl; }
+    if (document.kind === "agenda" && /agenda|board retreat/i.test(document.name)) {
+      const packet = /supporting|material|packet/i.test(document.name);
+      if (packet) {
+        // A packet must not overwrite a standalone agenda merely because Drive
+        // changed its row order. Retain both citations and prefer the short agenda.
+        if (!record.agendaUrl || record.agendaUrl === record.packetUrl) record.agendaUrl = downloadUrl;
+        record.packetUrl = downloadUrl;
+      } else record.agendaUrl = downloadUrl;
+    }
     if (/board retreat/i.test(document.name)) record.meetingType = "Board retreat";
     record.meetingCategory = "government";
     record.sourceUrls = [...new Set([...record.sourceUrls, document.folderUrl, downloadUrl, viewUrl])];

@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { createHash } from "node:crypto";
 
 import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
@@ -50,7 +51,8 @@ async function main() {
   if (!existsSync(INPUT_PATH)) {
     throw new Error("Run npm run financials:nevada:collect before the financial coverage audit.");
   }
-  const coverage = JSON.parse(await readFile(INPUT_PATH, "utf8")) as CoverageFile;
+  const coverageBytes = await readFile(INPUT_PATH);
+  const coverage = JSON.parse(coverageBytes.toString("utf8")) as CoverageFile;
   let databaseAvailable = true;
   const [candidateIds, officialIds] = await Promise.all([
     prisma.candidate.findMany({ select: { id: true } }).then((records) => records.map((record) => record.id)),
@@ -158,6 +160,7 @@ async function main() {
   const output = {
     generatedAt: new Date().toISOString(),
     coverageGeneratedAt: coverage.generatedAt,
+    coverageSha256: createHash("sha256").update(coverageBytes).digest("hex"),
     strictPassed: strictFailures === 0,
     freshnessPassed: freshnessFailures.length === 0,
     freshnessFailures,

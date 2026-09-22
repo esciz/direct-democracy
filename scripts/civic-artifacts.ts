@@ -1,5 +1,6 @@
 import "@/lib/env/load-local-env";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { copyFile, mkdir, mkdtemp, rm, rename, writeFile } from "node:fs/promises";
 import os from "node:os";
@@ -36,7 +37,8 @@ function generationEvidence(directory: string, now: number) {
     return Number.isFinite(started) && now - started <= 24 * 60 * 60_000 && started <= now + 5 * 60_000 ? [{ ...value, started, complete }] : [];
   }).sort((a, b) => a.started - b.started);
   const commands = new Map<string, string>();
-  const invocations = new Map<string, { script: string; status: string }>();
+  const invocations = new Map<string, { script: string; status: string; started: number }>();
+  let financeFresh = true;
   let latestCompleted = -Infinity;
   for (const report of reports) {
     if (!report.complete) continue;
@@ -50,18 +52,32 @@ function generationEvidence(directory: string, now: number) {
       // A successful default pass cannot erase a failed minutes-only pass.
       // Ignore the TS launcher, but require the same script and arguments for
       // a later completed retry to recover an earlier failed invocation.
-      invocations.set(JSON.stringify(command.command.slice(scriptIndex)), { script, status });
+      invocations.set(JSON.stringify(command.command.slice(scriptIndex)), { script, status, started: report.started });
     }
   }
   if (reports.some(report => report.started > latestCompleted && !report.complete)) throw new Error("release_collection_run_incomplete");
   for (const script of ["scripts/publish-public-meeting-runtime.ts", "scripts/generate-voting-cards.ts", "scripts/generate-issue-hubs.ts"]) {
     if (commands.get(script) !== "succeeded") throw new Error(`release_core_generation_not_verified:${path.basename(script)}`);
   }
-  for (const { script, status } of invocations.values()) {
+  for (const { script, status, started } of invocations.values()) {
+    if (script === "scripts/audit-nevada-financial-coverage.ts") {
+      // A provider outage is coverage failure, not corrupt generated data. Only
+      // a fresh structural audit of these exact bytes can establish that split.
+      const auditPath = path.join(directory, "data/generated/nevada-financial-coverage-audit.json");
+      if (!existsSync(auditPath)) throw new Error("release_finance_audit_missing");
+      const audit = json<{ generatedAt: string; coverageGeneratedAt: string; coverageSha256: string; strictPassed: boolean; freshnessPassed: boolean }>("nevada-financial-coverage-audit.json", directory);
+      const bytes = readFileSync(path.join(directory, "data/generated/nevada-financial-coverage.json"));
+      const audited = Date.parse(audit.generatedAt);
+      if (audit.strictPassed !== true || typeof audit.freshnessPassed !== "boolean" || !Number.isFinite(audited) || audited < started || audited > now + 5 * 60_000 || now - audited > 24 * 60 * 60_000 || audit.coverageGeneratedAt !== JSON.parse(bytes.toString()).generatedAt || audit.coverageSha256 !== createHash("sha256").update(bytes).digest("hex")) throw new Error("release_finance_integrity_not_verified");
+      if (status !== "succeeded" && (status !== "failed" || audit.freshnessPassed !== false)) throw new Error("release_finance_audit_failure_unexplained");
+      financeFresh &&= audit.freshnessPassed;
+      continue;
+    }
     const core = /^scripts\/(?:generate-|regenerate-|publish-|reprocess-|import-|public-meetings-import)/.test(script);
     const integrity = /scripts\/audit-nevada-(?:financial-coverage|political-ads)\.ts$/.test(script);
     if ((core || integrity) && status !== "succeeded") throw new Error(`release_core_generation_failed:${path.basename(script)}`);
   }
+  return { financeFresh };
 }
 
 export function releaseGateAt(directory = root, options: { at?: number; historical?: boolean } = {}) {
@@ -71,7 +87,7 @@ export function releaseGateAt(directory = root, options: { at?: number; historic
   const integrity = json<{ generatedAt: string; launchReady: boolean; totals: { critical: number } }>("public-site-integrity-audit.json", directory);
   const audited = Date.parse(integrity.generatedAt);
   if (!integrity.totals || integrity.totals.critical !== 0 || typeof integrity.launchReady !== "boolean" || !Number.isFinite(audited) || now - audited > 24 * 60 * 60_000 || audited > now + 5 * 60_000) throw new Error("release_integrity_audit_missing_stale_or_critical");
-  generationEvidence(directory, now);
+  const generation = generationEvidence(directory, now);
   const events = recordArray(json("events-runtime.json", directory), "events");
   const eventIds = identitySet(events, "events");
   const eventCanonical = new Map([...eventIds].map(id => [id, id]));
@@ -112,7 +128,7 @@ export function releaseGateAt(directory = root, options: { at?: number; historic
   identitySet(organizations, "organizations");
   const current = { meetings: events.length, meetingTopics: topics.length, votingQuestions: cards.length, decisions: decisions.length, issues: issues.length, financialEntities: finance.length, adFilings: ads.length, organizations: organizations.length };
   if (Object.values(current).some(value => value === 0)) throw new Error("release_empty_core_dataset");
-  return { metrics: current, coverageComplete: integrity.launchReady === true };
+  return { metrics: current, coverageComplete: integrity.launchReady === true && generation.financeFresh };
 }
 
 function metrics() {

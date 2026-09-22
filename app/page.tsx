@@ -26,6 +26,7 @@ import { getIssueDirectoryForUser } from "@/lib/server/issues";
 import { getElectionSummaries } from "@/lib/server/elections-context";
 import { getCommunityMeetingSummary } from "@/lib/public-meetings/public";
 import { formatDateUtc } from "@/lib/dates";
+import { formatCivicEventDate } from "@/lib/events/lifecycle";
 import type { AuthUser, CommunitySummary, ElectionSummary } from "@/types/domain";
 
 function formatDateLabel(value: string | null | undefined) {
@@ -308,8 +309,8 @@ export default async function HomePage() {
       title: meeting.title,
       summary: meeting.major_topics?.length
         ? meeting.major_topics.slice(0, 2).join(" · ")
-        : "Agenda topics will appear as source parsing improves.",
-      meta: `${formatDateLabel(meeting.meeting_date)} · ${meeting.public_body_name}${meeting.relationship_scope === "statewide_overlay" ? " · Nevada state" : ""}`,
+        : meeting.agenda_url ? "Agenda linked. Open the meeting to read the source; topic extraction is not verified yet." : "No agenda linked yet. Open the meeting for its official notice and available documents.",
+      meta: `${formatCivicEventDate(meeting.meeting_date, true)} · ${meeting.public_body_name}${meeting.relationship_scope === "statewide_overlay" ? " · Nevada state" : ""}`,
       href: `/events/${meeting.id}`,
       status: "upcoming" as const,
     })),
@@ -317,7 +318,7 @@ export default async function HomePage() {
       id: `event-${event.id}`,
       title: event.title,
       summary: clipText(event.description, 120) || "Upcoming civic event discovered from public meeting data.",
-      meta: `${formatDateLabel(event.startsAt)} · ${event.distanceLabel}`,
+      meta: `${formatCivicEventDate(event.startsAt, true)} · ${event.distanceLabel}`,
       href: `/events/${event.id}`,
       status: "upcoming" as const,
     })),
@@ -325,7 +326,7 @@ export default async function HomePage() {
       id: `decision-${decision.id}`,
       title: decision.title,
       summary: decision.result ? `Result: ${decision.result}` : "Reviewed meeting action from public source material.",
-      meta: `${formatDateLabel(decision.meeting_date)} · ${decision.public_body_name}`,
+      meta: `${formatCivicEventDate(decision.meeting_date, true)} · ${decision.public_body_name}`,
       href: decision.source_url ?? "/events",
       status: "past" as const,
     })),

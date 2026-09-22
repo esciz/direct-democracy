@@ -20,6 +20,7 @@ for (const command of ordered) {
   previous = index;
 }
 assert.match(publication, /needs: refresh/);
+assert.match(publication, /github.event_name == 'push' \|\| inputs.publish/, "Code-triggered data refreshes must also publish their validated candidate");
 assert.match(publication, /actions\/download-artifact/);
 assert.ok(publication.indexOf("import-candidate") < publication.indexOf("dataops:release:publish"));
 assert.doesNotMatch(publication, /dataops:pipeline|dataops:release:prepare|apply-reporting-policy/);
@@ -29,6 +30,9 @@ assert.match(civic, /needs.refresh.outputs.collection_outcome == 'failure'/);
 assert.match(civic, /github\.event\.schedule == '17 6 \* \* \*'/);
 assert.match(civic, /SCHEDULE" != "17 6 \* \* \*"/);
 assert.match(civic, /cancel-in-progress: false/);
+assert.match(civic, /push:\s+branches: \[main\]\s+paths:/);
+assert.ok(civic.includes("'lib/public-meetings/**'"), "Parser fixes must schedule regenerated civic data");
+assert.match(civic, /GITHUB_EVENT_NAME" == "schedule" && "\$SCHEDULE" !=/, "Code-triggered refresh includes a new finance integrity audit");
 assert.match(civic, /all_source_shards:/);
 assert.match(civic, /database_source:/);
 assert.match(civic, /inputs.database_source == ''/);

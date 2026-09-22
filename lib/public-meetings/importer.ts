@@ -1105,6 +1105,22 @@ function splitMeetingItems(text: string, method: PublicMeetingExtractionMethod):
     let next = index + 1;
     while (!content && next < lines.length && !lines[next]) next += 1;
     if (!content && next < lines.length && !/^(?:\d{1,3}|[A-Za-z]+)[.)](?:\s|$)/.test(lines[next])) content = lines[next++];
+    // Agenda headings commonly wrap across a presenter column. A nearby
+    // explicit action/discussion marker or list-introducing colon bounds the
+    // title; otherwise retain the conservative general wrapping rule below.
+    if (/^(?:discussion|presentation)\b/i.test(content) && !/for (?:possible action|discussion only|information only)/i.test(content)) {
+      const continuation: string[] = [];
+      for (let cursor = next; cursor < Math.min(lines.length, next + 7); cursor++) {
+        const line = lines[cursor];
+        if (!line) continue;
+        if (/^(?:[•*]|(?:\d{1,3}|[A-Za-z]+)[.)](?:\s|$))/.test(line) || /^(?:Motion|Moved|Seconded|The board|The committee)\b/i.test(line)) break;
+        continuation.push(line);
+        if (/for (?:possible action|discussion only|information only)|:\s*$/i.test(line)) {
+          if ([content, ...continuation].join(" ").length <= 420) { content += ` ${continuation.join(" ")}`; next = cursor + 1; }
+          break;
+        }
+      }
+    }
     // Join wrapped headings, preserving the original lines separately in sourceText.
     for (let count = 0; count < 4 && next < lines.length; next += 1) {
       const following = lines[next];
@@ -1208,7 +1224,7 @@ function buildItems(meeting: PublicMeetingRecord, extracted: ExtractedDocument, 
 }
 
 /** Parse evidence using its existing meeting identity; never manufacture an event from a document. */
-export const CACHED_MEETING_TOPIC_PARSER_VERSION = 3;
+export const CACHED_MEETING_TOPIC_PARSER_VERSION = 4;
 
 export function isSpecificMeetingDocumentUrl(value: string | null): boolean {
   try {

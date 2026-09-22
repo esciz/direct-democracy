@@ -49,6 +49,7 @@ jobs:
           npm run issues:integrity:test
           node --import tsx scripts/test-decision-page-integrity.ts
           npm run meetings:items:test
+          node --import tsx scripts/test-native-agenda-packets.ts
           npm run financials:nevada:test
           npm run ads:nevada:test
           npm run meetings:adapters:nevada:test

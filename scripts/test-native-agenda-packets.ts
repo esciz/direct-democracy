@@ -1,0 +1,61 @@
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync, symlinkSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { completeNativeAgendaSection } from "../lib/public-meetings/agenda-section";
+import { getPublicMeetingItems, prioritizePublicMeetingTopics } from "../lib/public-meetings/public-record-eligibility";
+
+const project = process.cwd();
+// Official native text: Carson school board, Sep 22 2026, public Drive agenda.
+const agenda = readFileSync(path.join(project, "scripts/fixtures/carson-school-board-2026-09-22-agenda.txt"), "utf8");
+const native = agenda + "\nEXECUTIVE SUMMARY\n7. Discussion and Possible Action to Interview\nSupporting materials repeat agenda numbering.\n8. Discussion on Proposed Changes\n";
+assert.ok(completeNativeAgendaSection(native)?.includes("10. Presentation"));
+assert.ok(!completeNativeAgendaSection(native)?.includes("EXECUTIVE SUMMARY"));
+assert.equal(completeNativeAgendaSection(native.replace("14. Adjournment", "14. Closing remarks")), null);
+assert.equal(completeNativeAgendaSection(native.replace("8. Discussion", "7. Discussion")), null);
+assert.equal(completeNativeAgendaSection(native.replace("9. Discussion", "19. Discussion")), null);
+const scratch = mkdtempSync(path.join(os.tmpdir(), "native-agenda-packet-"));
+const sha = (text: string) => createHash("sha256").update(text).digest("hex");
+const save = (name: string, data: unknown) => writeFileSync(path.join(scratch, "data/generated", name), JSON.stringify(data));
+const load = (name: string) => JSON.parse(readFileSync(path.join(scratch, "data/generated", name), "utf8"));
+try {
+  mkdirSync(path.join(scratch, "data/generated"), { recursive: true });
+  symlinkSync(path.join(project, "node_modules"), path.join(scratch, "node_modules"));
+  writeFileSync(path.join(scratch, "tsconfig.json"), JSON.stringify({ compilerOptions: { baseUrl: project, paths: { "@/*": ["./*"] } } }));
+  const nativePath = "data/generated/native.txt";
+  const mergedPath = "data/generated/merged.txt";
+  writeFileSync(path.join(scratch, nativePath), native);
+  writeFileSync(path.join(scratch, mergedPath), native + "\n7. OCR-only fabricated claim must never publish\n8. Uncertain OCR\n");
+  const url = "https://drive.google.com/uc?export=download&id=1Wxgri2Cr-VwPCJSSUQfpMoNGm__mnjy2";
+  const sourceHash = "a".repeat(64);
+  save("public-meetings.json", [{ id: "meeting", public_body_id: "body", title: "School board — 2026-09-22", meeting_date: "2026-09-23T01:00:00Z", agenda_url: url, source_urls: [url] }]);
+  save("public-meeting-bodies.json", [{ id: "body", name: "Carson City School District Board of Trustees", seed_source_id: "carson-city-school-district" }]);
+  save("public-meeting-document-cache-index.json", { records: [{ documentId: "packet", contentHash: sourceHash, stableLocalPath: "data/generated/packet.pdf" }] });
+  save("public-meeting-source-documents.json", { records: [{ id: "packet", meetingId: "meeting", documentType: "agenda", sourceUrl: url }] });
+  const record = { documentId: "packet", meetingId: "meeting", documentType: "agenda", sourceUrl: url, extractedTextPath: mergedPath, extractionQuality: "high", extractionMethod: "mixed", sourceContentHash: sourceHash, nativeTextPath: nativePath, nativeTextSha256: sha(native) };
+  const run = (changes = {}) => {
+    const current = { ...record, ...changes };
+    save("public-meeting-items.json", []);
+    save("public-meeting-item-processing-state.json", { records: [] });
+    save("public-meeting-document-text.json", { records: [current] });
+    save("public-meeting-source-documents.json", { records: [{ id: "packet", meetingId: "meeting", documentType: current.documentType, sourceUrl: url }] });
+    execFileSync(process.execPath, ["--import", "tsx", path.join(project, "scripts/reprocess-cached-meeting-items.ts")], { cwd: scratch, stdio: "pipe" });
+    return load("public-meeting-items.json");
+  };
+  const topics = getPublicMeetingItems(run());
+  assert.deepEqual(prioritizePublicMeetingTopics(topics).slice(0, 4).map(topic => topic.item_number), ["7", "8", "9", "10"], "Home highlights substantive agenda topics before board reports/public comment");
+  for (const item of ["7", "8", "9", "10"]) assert.ok(topics.some(topic => topic.item_number === item), `Native agenda topic ${item} should publish from the mixed packet`);
+  assert.ok(topics.every(topic => topic.cached_text_path === nativePath && topic.source_document_hash === sourceHash && topic.source_url === url && topic.vote_outcome === null));
+  assert.ok(topics.every(topic => !topic.source_text.includes("OCR-only") && !topic.source_text.includes("EXECUTIVE SUMMARY")));
+  assert.equal(getPublicMeetingItems(run({ nativeTextSha256: "b".repeat(64) })).length, 0, "Changed sidecar bytes cannot claim native evidence");
+  assert.equal(getPublicMeetingItems(run({ nativeTextPath: null })).length, 0, "Merged OCR is not native text");
+  assert.equal(getPublicMeetingItems(run({ sourceContentHash: "b".repeat(64) })).length, 0, "Native evidence must match current PDF bytes");
+  assert.equal(getPublicMeetingItems(run({ documentType: "minutes" })).length, 0, "Agenda boundary recovery cannot certify mixed minutes or outcomes");
+  const completeMinutes = getPublicMeetingItems(run({ documentType: "minutes", nativeSidecarCompleteness: "complete", nativeSidecarQuality: "high" }));
+  assert.ok(completeMinutes.length > 0, "Independently complete native minutes can supply topics despite a retained OCR sidecar");
+  assert.ok(completeMinutes.every(topic => topic.vote_outcome === null && topic.related_official_names.length === 0 && !topic.source_text.includes("OCR-only")));
+  assert.equal(getPublicMeetingItems(run({ documentType: "minutes", nativeSidecarCompleteness: "partial", nativeSidecarQuality: "high" })).length, 0, "Partial native minutes remain held");
+  console.log(`Mixed packet native agenda recovery: ${topics.length} public topics; OCR, hash, boundary and minutes guards passed.`);
+} finally { rmSync(scratch, { recursive: true, force: true }); }

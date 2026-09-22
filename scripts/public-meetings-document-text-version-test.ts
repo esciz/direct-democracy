@@ -151,6 +151,9 @@ try {
   assert.equal(refreshed.records[0].nativeTextExtractor, "poppler");
   assert.equal(refreshed.records[0].textCompleteness, "complete");
   assert.ok(refreshed.records[0].textLength > 16_000);
+  const recoveredNative = readFileSync(path.join(lostPages.root, refreshed.records[0].nativeTextPath), "utf8");
+  assert.equal(createHash("sha256").update(recoveredNative).digest("hex"), refreshed.records[0].nativeTextSha256);
+  assert.ok(!recoveredNative.includes("STALE_OCR"), "Native proof sidecars must not include merged OCR text");
   assert.equal(run(lostPages.root, [], bin).audit.totals.reusedExistingText, 1, "Current matching Poppler results remain cached");
   const retainedPartial = scenario("retained-partial-not-upgraded-by-discarded-native", { existingSourceHash: currentHash,
     existingText: "Prior partial OCR evidence: the board approved a motion.\n".repeat(2000), noOcr: true });
@@ -160,6 +163,9 @@ try {
   const oldPartialBytes = readFileSync(path.join(retainedPartial.root, retainedPartial.existingPath), "utf8");
   const retainedResult = run(retainedPartial.root, [], bin).records[0];
   assert.equal(retainedResult.extractedTextPath, retainedPartial.existingPath, "A shorter rerun preserves the earlier usable sidecar");
+  assert.ok(retainedResult.nativeTextPath, "Preserving older mixed evidence still stores independently usable new native text");
+  assert.equal(retainedResult.nativeSidecarCompleteness, "complete", "New native sidecar has its own coverage proof, independent of retained mixed bytes");
+  assert.notEqual(retainedResult.nativeTextPath, retainedResult.extractedTextPath);
   assert.equal(readFileSync(path.join(retainedPartial.root, retainedResult.extractedTextPath), "utf8"), oldPartialBytes);
   assert.equal(retainedResult.textCompleteness, "partial", "Discarded complete native text must not upgrade the retained partial sidecar");
   assert.equal(run(retainedPartial.root, [], bin).records[0].textCompleteness, "partial", "Cache reuse must retain the saved sidecar's actual completeness");

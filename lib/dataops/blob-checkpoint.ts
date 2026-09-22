@@ -91,7 +91,9 @@ export async function existingArtifactObjects() {
   return objects;
 }
 
-export async function uploadArtifact(root: string, entry: ArtifactEntry, inventory?: Map<string, number>) {
+export async function uploadArtifact(root: string, entry: ArtifactEntry, inventory?: Map<string, number>, dependencies: { put?: typeof put; head?: typeof head } = {}) {
+  const writeObject = dependencies.put ?? put;
+  const inspectObject = dependencies.head ?? head;
   // Reuse the established content-addressed meeting archive when possible.
   for (const key of [`public-meeting-cache/sha256/${entry.sha256.slice(0, 2)}/${entry.sha256}`, entry.objectKey]) {
     if (inventory) {
@@ -101,7 +103,7 @@ export async function uploadArtifact(root: string, entry: ArtifactEntry, invento
       return { ...entry, objectKey: key };
     }
     try {
-      const existing = await head(key, { abortSignal: AbortSignal.timeout(30_000) });
+      const existing = await inspectObject(key, { abortSignal: AbortSignal.timeout(30_000) });
       if (existing.size === entry.bytes) return { ...entry, objectKey: key };
       throw new Error(`stored_artifact_size_mismatch:${entry.path}`);
     } catch (error) {
@@ -110,7 +112,11 @@ export async function uploadArtifact(root: string, entry: ArtifactEntry, invento
   }
   if (await fileHash(path.join(root, entry.path)) !== entry.sha256) throw new Error(`artifact_changed_before_upload:${entry.path}`);
   await rejectSymlinkParents(root, entry.path);
-  const uploadStream = Readable.from((async function* () {
+  // The SDK retries non-multipart requests with the same body. A Readable is
+  // consumed after the first attempt; a bounded Buffer is safe to replay.
+  // Multipart uploads buffer/retry individual parts inside the SDK.
+  const multipart = entry.bytes > 5_000_000;
+  const body = multipart ? Readable.from((async function* () {
     const hash = createHash("sha256");
     let bytes = 0;
     for await (const chunk of createReadStream(path.join(root, entry.path))) {
@@ -120,9 +126,10 @@ export async function uploadArtifact(root: string, entry: ArtifactEntry, invento
       yield chunk;
     }
     if (bytes !== entry.bytes || hash.digest("hex") !== entry.sha256) throw new Error("artifact_changed_during_stream_upload");
-  })());
-  await put(entry.objectKey, uploadStream, { access: "private", addRandomSuffix: false, contentType: "application/octet-stream", multipart: entry.bytes > 5_000_000, abortSignal: AbortSignal.timeout(300_000) });
-  const result = await head(entry.objectKey, { abortSignal: AbortSignal.timeout(30_000) });
+  })()) : await readFile(path.join(root, entry.path));
+  if (Buffer.isBuffer(body) && (body.length !== entry.bytes || createHash("sha256").update(body).digest("hex") !== entry.sha256)) throw new Error("artifact_changed_before_buffer_upload");
+  await writeObject(entry.objectKey, body, { access: "private", addRandomSuffix: false, contentType: "application/octet-stream", multipart, abortSignal: AbortSignal.timeout(300_000) });
+  const result = await inspectObject(entry.objectKey, { abortSignal: AbortSignal.timeout(30_000) });
   if (result.size !== entry.bytes) throw new Error(`artifact_upload_size_mismatch:${entry.path}`);
   inventory?.set(entry.objectKey, entry.bytes);
   return entry;
