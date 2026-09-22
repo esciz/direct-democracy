@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { copyFile, lstat, mkdir, readFile, readdir, rename, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { agendaTitleText } from "@/lib/public-meetings/agenda-section";
 
 import { reconcileNevadaAgencyMeetingHistory } from "@/lib/public-meetings/nevada-agency-identity";
 import { reconcileCrossProviderMeetingIdentities } from "@/lib/public-meetings/cross-provider-identity";
@@ -1081,8 +1082,9 @@ function buildMeeting(extracted: ExtractedDocument): PublicMeetingRecord {
   };
 }
 
-function splitMeetingItems(text: string, method: PublicMeetingExtractionMethod): ParsedItemDraft[] {
+function splitMeetingItems(text: string, method: PublicMeetingExtractionMethod, titleText = text): ParsedItemDraft[] {
   const lines = normalizeTextLines(text).split("\n");
+  const titleLines = normalizeTextLines(titleText).split("\n");
   const civicHeading = /^(?:public comment|call (?:the meeting )?to order|roll call|adjournment|consideration|consider|discussion|review|approval|adoption|presentation|research|questions for|future meetings|member introduction|transfers of interest|hearing on (?:the )?summary suspension|status check|(?:three|3)[\s\-\u2010-\u2015]month status update|license agreement|consent (?:agenda|calendar)|action items?|staff reports?|board reports?|committee reports?|financial reports?|budget|new business|old business|public hearing|ordinance|resolution|approve|adopt|authorize|appoint|amend|accept|award|receive|recess)\b/i;
   type Heading = { index: number; number: string | null; family: "roman" | "numeric" | "alpha" | "named"; ordinal: number; title: string; meaningful: boolean };
   const romanValue = (value: string) => [...value].reduce((sum, letter, index, all) => {
@@ -1091,7 +1093,7 @@ function splitMeetingItems(text: string, method: PublicMeetingExtractionMethod):
   }, 0);
   const headings: Heading[] = [];
   for (let index = 0; index < lines.length; index += 1) {
-    const line = lines[index];
+    const line = titleLines[index];
     const numbered = line.match(/^(?:[Ii]tem\s+)?(\d{1,3}[a-z]?|[IVX]{1,6}|[A-Z])[.)](?:\s+(.+))?$/);
     let family: Heading["family"] = "named";
     let number: string | null = null;
@@ -1104,14 +1106,14 @@ function splitMeetingItems(text: string, method: PublicMeetingExtractionMethod):
     } else if (!/^(?:agenda item|public hearing|ordinance|resolution|consent agenda|new business|old business|action item)\b/i.test(line)) continue;
     let next = index + 1;
     while (!content && next < lines.length && !lines[next]) next += 1;
-    if (!content && next < lines.length && !/^(?:\d{1,3}|[A-Za-z]+)[.)](?:\s|$)/.test(lines[next])) content = lines[next++];
+    if (!content && next < lines.length && !/^(?:\d{1,3}|[A-Za-z]+)[.)](?:\s|$)/.test(titleLines[next])) content = titleLines[next++];
     // Agenda headings commonly wrap across a presenter column. A nearby
     // explicit action/discussion marker or list-introducing colon bounds the
     // title; otherwise retain the conservative general wrapping rule below.
     if (/^(?:discussion|presentation)\b/i.test(content) && !/for (?:possible action|discussion only|information only)/i.test(content)) {
       const continuation: string[] = [];
       for (let cursor = next; cursor < Math.min(lines.length, next + 7); cursor++) {
-        const line = lines[cursor];
+        const line = titleLines[cursor];
         if (!line) continue;
         if (/^(?:[•*]|(?:\d{1,3}|[A-Za-z]+)[.)](?:\s|$))/.test(line) || /^(?:Motion|Moved|Seconded|The board|The committee)\b/i.test(line)) break;
         continuation.push(line);
@@ -1123,10 +1125,10 @@ function splitMeetingItems(text: string, method: PublicMeetingExtractionMethod):
     }
     // Join wrapped headings, preserving the original lines separately in sourceText.
     for (let count = 0; count < 4 && next < lines.length; next += 1) {
-      const following = lines[next];
+      const following = titleLines[next];
       if (!following) continue;
       if (/^(?:\d{1,3}|[A-Za-z]+)[.)](?:\s|$)/.test(following) || /^(?:Chair|Commissioner|Member|There|The board|The committee|Motion|Moved|Seconded)\b/i.test(following)) break;
-      const unfinished = /\b(?:of|the|and|on|for|to|from|by|with|Meeting)\s*$/i.test(content) || (content.includes("(") && !content.includes(")"));
+      const unfinished = /\b(?:of|the|and|on|in|for|to|from|by|with|Meeting)\s*$/i.test(content) || (content.includes("(") && !content.includes(")"));
       if (!unfinished && !/^\(for (?:possible action|discussion only)\)/i.test(following)) break;
       if (content.length + following.length > 360) break;
       content += ` ${following}`; count += 1;
@@ -1224,7 +1226,7 @@ function buildItems(meeting: PublicMeetingRecord, extracted: ExtractedDocument, 
 }
 
 /** Parse evidence using its existing meeting identity; never manufacture an event from a document. */
-export const CACHED_MEETING_TOPIC_PARSER_VERSION = 4;
+export const CACHED_MEETING_TOPIC_PARSER_VERSION = 5;
 
 export function isSpecificMeetingDocumentUrl(value: string | null): boolean {
   try {
@@ -1277,7 +1279,8 @@ export function parseCachedPublicMeetingDocument(input: {
     agenda_url: input.meeting.agenda_url, minutes_url: input.meeting.minutes_url, packet_url: input.meeting.packet_url,
     video_url: input.meeting.video_url, transcript_url: input.meeting.transcript_url, notes: null,
   };
-  const drafts = splitMeetingItems(input.text, input.ocr ? "ocr_needed" : "plain_text");
+  const titleText = !input.ocr && input.documentType !== "minutes" ? agendaTitleText(input.text) : input.text;
+  const drafts = splitMeetingItems(input.text, input.ocr ? "ocr_needed" : "plain_text", titleText);
   const nativeEvidence = !input.ocr && isSpecificMeetingDocumentUrl(input.sourceUrl) && /^[a-f\d]{64}$/i.test(input.sourceHash) && Boolean(input.textPath.trim());
   return buildItems(input.meeting, { importDocument: document, body: input.body, text: input.text, hash: input.sourceHash,
     cachedTextPath: input.textPath, rawPath: input.sourcePath, method: "plain_text", status: "needs_review", error: null }, drafts)

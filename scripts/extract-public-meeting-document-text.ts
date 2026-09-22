@@ -213,7 +213,7 @@ function shouldReuseExisting(document: SourceDocumentRecord, forceAll: boolean) 
   if (!hasUsableExistingText(existing)) return false;
   const sourceHash = sourceHashFor(document);
   if (!sourceHash || existing?.sourceContentHash !== sourceHash) return false;
-  if (existing.extractionMethod === "mixed" && existing.nativeTextEvidenceVersion !== 1) return false;
+  if ((existing.extractionMethod === "mixed" || ["agenda", "packet"].includes(document.documentType)) && existing.nativeTextEvidenceVersion !== 2) return false;
   const cachedPath = cacheByDocument.get(document.id)?.stableLocalPath ?? document.cachedPath ?? document.sourcePath;
   if (cachedPath && /\.pdf$/i.test(cachedPath)) {
     preferredPdfBackend ??= preferredNativePdfBackend();
@@ -280,14 +280,16 @@ async function extractDocument(document: SourceDocumentRecord, extractedAt: stri
   const sourceHash = sourceHashFor(document);
   // Keep native bytes separately: OCR of attachments must not taint a readable
   // front agenda, nor may a merged sidecar masquerade as native evidence.
-  const nativeBody = text.length >= 120 ? `${text}\n` : null;
+  // Preserve Poppler column positions for title parsing. The merged display
+  // sidecar stays normalized; this independent sidecar retains native layout.
+  const nativeBody = text.length >= 120 ? `${(native?.text ?? text).replace(/\r\n?/g, "\n").trimEnd()}\n` : null;
   const nativeTextSha256 = nativeBody ? createHash("sha256").update(nativeBody).digest("hex") : null;
   const nativeTextPath = nativeTextSha256 ? path.join("data", "generated", "public-meeting-document-text-cache", `${document.id}-native-${nativeTextSha256.slice(0, 24)}.txt`) : null;
   if (nativeTextPath && nativeBody) writeAtomically(path.join(process.cwd(), nativeTextPath), nativeBody);
-  const nativeEvidence = nativeBody ? { nativeTextPath, nativeTextSha256, nativeTextEvidenceVersion: 1,
+  const nativeEvidence = nativeBody ? { nativeTextPath, nativeTextSha256, nativeTextEvidenceVersion: 2,
     nativeSidecarCompleteness: native?.coverage === "complete" && !native.truncated ? "complete" as const : "partial" as const,
     nativeSidecarQuality: qualityFor(text) } : { nativeTextPath: existing?.sourceContentHash === sourceHash ? existing.nativeTextPath : null,
-    nativeTextSha256: existing?.sourceContentHash === sourceHash ? existing.nativeTextSha256 : null, nativeTextEvidenceVersion: 1,
+    nativeTextSha256: existing?.sourceContentHash === sourceHash ? existing.nativeTextSha256 : null, nativeTextEvidenceVersion: 2,
     nativeSidecarCompleteness: existing?.sourceContentHash === sourceHash ? existing.nativeSidecarCompleteness : "unknown" as const,
     nativeSidecarQuality: existing?.sourceContentHash === sourceHash ? existing.nativeSidecarQuality : "insufficient" as const };
   const qualityRank = { insufficient: 0, low: 1, medium: 2, high: 3 };

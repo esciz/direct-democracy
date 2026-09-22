@@ -4,18 +4,20 @@ import { execFileSync } from "node:child_process";
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync, symlinkSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { completeNativeAgendaSection } from "../lib/public-meetings/agenda-section";
+import { completeNativeAgendaSection, agendaTitleText } from "../lib/public-meetings/agenda-section";
 import { getPublicMeetingItems, prioritizePublicMeetingTopics } from "../lib/public-meetings/public-record-eligibility";
 
 const project = process.cwd();
 // Official native text: Carson school board, Sep 22 2026, public Drive agenda.
-const agenda = readFileSync(path.join(project, "scripts/fixtures/carson-school-board-2026-09-22-agenda.txt"), "utf8");
+const agenda = readFileSync(path.join(project, "scripts/fixtures/carson-school-board-2026-09-22-layout.txt"), "utf8");
+const plainAgenda = readFileSync(path.join(project, "scripts/fixtures/carson-school-board-2026-09-22-agenda.txt"), "utf8");
+assert.equal(agendaTitleText(plainAgenda), plainAgenda, "Without layout proof, names cannot be removed from source-derived titles");
 const native = agenda + "\nEXECUTIVE SUMMARY\n7. Discussion and Possible Action to Interview\nSupporting materials repeat agenda numbering.\n8. Discussion on Proposed Changes\n";
-assert.ok(completeNativeAgendaSection(native)?.includes("10. Presentation"));
+assert.match(completeNativeAgendaSection(native)!, /10\.\s+Presentation/);
 assert.ok(!completeNativeAgendaSection(native)?.includes("EXECUTIVE SUMMARY"));
-assert.equal(completeNativeAgendaSection(native.replace("14. Adjournment", "14. Closing remarks")), null);
-assert.equal(completeNativeAgendaSection(native.replace("8. Discussion", "7. Discussion")), null);
-assert.equal(completeNativeAgendaSection(native.replace("9. Discussion", "19. Discussion")), null);
+assert.equal(completeNativeAgendaSection(native.replace(/14\.\s+Adjournment/, "14. Closing remarks")), null);
+assert.equal(completeNativeAgendaSection(native.replace(/8\.\s+Discussion/, "7. Discussion")), null);
+assert.equal(completeNativeAgendaSection(native.replace(/9\.\s+Discussion/, "19. Discussion")), null);
 const scratch = mkdtempSync(path.join(os.tmpdir(), "native-agenda-packet-"));
 const sha = (text: string) => createHash("sha256").update(text).digest("hex");
 const save = (name: string, data: unknown) => writeFileSync(path.join(scratch, "data/generated", name), JSON.stringify(data));
@@ -46,6 +48,10 @@ try {
   };
   const topics = getPublicMeetingItems(run());
   assert.deepEqual(prioritizePublicMeetingTopics(topics).slice(0, 4).map(topic => topic.item_number), ["7", "8", "9", "10"], "Home highlights substantive agenda topics before board reports/public comment");
+  assert.match(topics.find(topic => topic.item_number === "8")!.title, /Section 200, Programs/);
+  assert.match(topics.find(topic => topic.item_number === "9")!.title, /First Reading/);
+  assert.ok(topics.filter(topic => ["7", "8", "9", "10"].includes(topic.item_number!)).every(topic => !/Brandon Bringhurst|Sheila Story|Christine Lenox|Andrew Feuling/.test(topic.title)), "Aligned presenters must not be spliced into proposal titles");
+  assert.match(topics.find(topic => topic.item_number === "8")!.source_text, /Christine Lenox/, "Original evidence retains its presenter column");
   for (const item of ["7", "8", "9", "10"]) assert.ok(topics.some(topic => topic.item_number === item), `Native agenda topic ${item} should publish from the mixed packet`);
   assert.ok(topics.every(topic => topic.cached_text_path === nativePath && topic.source_document_hash === sourceHash && topic.source_url === url && topic.vote_outcome === null));
   assert.ok(topics.every(topic => !topic.source_text.includes("OCR-only") && !topic.source_text.includes("EXECUTIVE SUMMARY")));
