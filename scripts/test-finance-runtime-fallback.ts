@@ -30,6 +30,20 @@ async function main() {
   const newer = { ...derived, financialSnapshot: { ...derived.financialSnapshot, sourceCheckedAt: "2026-09-21T00:00:00Z" } };
   assert.equal(applyFinanceSourceHealth(newer, { sourceHealth: { attempts: [observation] } }), newer, "An old release must not override a newer independent retrieval");
   assert.equal(applyFinanceSourceHealth(derived, { sourceHealth: { attempts: [{ ...observation, url: "https://unrelated.example/" }] } }), derived);
+  // A rotating source shard may omit this exact URL. The provider-wide check
+  // date must not make that retained, undated snapshot look freshly retrieved.
+  const unobserved = { ...derived, lastCheckedAt: "2026-09-23T01:33:15Z", financialSnapshot: { ...derived.financialSnapshot, sourceCheckedAt: null } };
+  for (const coverage of [null, {}, { sourceHealth: { attempts: [] } }, { sourceHealth: { attempts: [{ ...observation, url: "https://unrelated.example/" }] } }]) {
+    const normalized = applyFinanceSourceHealth(unobserved, coverage);
+    assert.equal(normalized.lastCheckedAt, null, "A provider check cannot establish this record's retrieval date");
+    assert.equal(normalized.financialSnapshot?.sourceCheckedAt, null);
+    assert.equal(normalized.financialSnapshot?.totalRaised, unobserved.financialSnapshot.totalRaised);
+    assert.match(normalized.freshnessNote!, /retrieval date unknown/i);
+    assert.doesNotMatch(normalized.freshnessNote!, /refresh unavailable/i, "No matching attempt is not proof that this URL failed");
+    assert.match(normalized.financialSnapshot!.reportingPeriod, /retrieval date unknown/);
+  }
+  assert.equal(unobserved.lastCheckedAt, "2026-09-23T01:33:15Z", "Normalization does not mutate database records");
+  assert.equal(applyFinanceSourceHealth(derived, { sourceHealth: { attempts: [] } }), derived, "An omitted shard preserves a known per-record retrieval date");
   const missing = campaignFinanceCardFromCoverage({ records: [{ ...emptyRecord, campaignFinance: { ...emptyRecord.campaignFinance, snapshot: { ...snapshot, totalRaised: null } } }] }, "candidate", "fixture");
   assert.equal(missing?.financialSnapshot, null);
 
@@ -37,6 +51,25 @@ async function main() {
   const candidate = file.records.find((record: { entityType: string; campaignFinance: { snapshot: unknown } }) => record.entityType === "candidate" && record.campaignFinance.snapshot);
   assert.ok(candidate);
   const previous = globalThis.prisma;
+  const providerCheckedAt = new Date("2026-09-23T01:33:15Z");
+  const databaseSnapshot = { ...snapshot, sourceUrl: "https://example.org/unobserved-finance", sourceCheckedAt: null };
+  globalThis.prisma = {
+    sourceAttribution: { findMany: async ({ where }: { where: { fieldName: string } }) => where.fieldName === "campaign_finance" ? [{ sourceName: "Fixture finance provider", sourceUrl: databaseSnapshot.sourceUrl, reviewStatus: "approved", metadata: { financialSnapshot: databaseSnapshot } }] : [] },
+    campaignFinanceFiling: {
+      count: async () => 0,
+      findMany: async () => [],
+      findFirst: async () => ({ filingType: "OTHER", source: { name: "Fixture finance provider", lastCheckedAt: providerCheckedAt } }),
+    },
+    campaignFinanceContribution: { findMany: async () => [] },
+    campaignFinanceSummary: { findFirst: async () => null },
+    civicDocument: { findMany: async () => [] },
+  } as unknown as PrismaClient;
+  try {
+    const card = await getCampaignFinanceSourceCard("candidate", "fixture-unobserved");
+    assert.equal(card.financialSnapshot?.totalRaised, 0);
+    assert.equal(card.lastCheckedAt, null, "Database-backed cards cannot use provider-level attempted timestamps");
+    assert.match(card.freshnessNote!, /retrieval date unknown/i);
+  } finally { globalThis.prisma = previous; }
   const failure = new Proxy({}, { get: () => async () => { throw new Error("fixture database unavailable"); } });
   globalThis.prisma = new Proxy({}, { get: () => failure }) as PrismaClient;
   try {

@@ -547,7 +547,9 @@ async function getDatabaseCampaignFinanceSourceCard(entityType: "candidate" | "o
           ? "Source link stored; filing extraction pending"
           : null),
     reviewStatus: attribution?.reviewStatus ?? null,
-    lastCheckedAt: financialSnapshot?.sourceCheckedAt ?? latestFiling?.source?.lastCheckedAt?.toISOString() ?? null,
+    // Provider checks include failed requests and other entities in a rotating
+    // shard. Only this snapshot's retrieval metadata can date its totals.
+    lastCheckedAt: financialSnapshot?.sourceCheckedAt ?? null,
     filingCount: dedupeFilings(parsedFilings).length,
     filingSummaries: metadataFilings.length ? dedupeFilings(metadataFilings) : parsedFilings.length ? dedupeFilings(parsedFilings) : dedupeFilings(documentFilings),
     sourceLinks: dedupedLinks,
@@ -617,9 +619,15 @@ export function campaignFinanceCardFromCoverage(value: unknown, entityType: "can
 
 export function applyFinanceSourceHealth(data: CampaignFinanceSourceCardData, coverage: unknown): CampaignFinanceSourceCardData {
   const health = asFinanceRawData(coverage)?.sourceHealth;
-  if (!health || !data.financialSnapshot) return data;
+  if (!data.financialSnapshot) return data;
   const snapshot = data.financialSnapshot;
-  const status = financialSourceFreshness(health, snapshot.sourceUrl, snapshot.sourceCheckedAt);
+  // Missing observations are normal for a rotating shard. They cannot upgrade
+  // an undated retained record, nor prove that its particular URL was blocked.
+  const status = financialSourceFreshness(health, snapshot.sourceUrl, snapshot.sourceCheckedAt)
+    ?? (!snapshot.sourceCheckedAt ? {
+      retrievedAt: null,
+      note: "Source retrieval date unknown. Saved totals have not been verified current.",
+    } : null);
   if (!status) return data;
   const safePeriod = status.retrievedAt ? (value: string) => value : withoutUnverifiedRetrievalDate;
   const cycleHistory = data.cycleHistory.map(cycle => {
