@@ -6,7 +6,7 @@ import path from "node:path";
 import { get, put, head } from "@vercel/blob";
 import { REQUIRED_RELEASE_FILES, civicManifestId, releaseArtifactAllowed, validateManifest, workerArtifactAllowed, type ArtifactEntry, type CivicManifest } from "@/lib/dataops/artifact-policy";
 import { assertArtifactSnapshot, describeArtifacts, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths, uploadArtifact } from "@/lib/dataops/blob-checkpoint";
-import { copyPreparedRelease, releaseGateAt } from "./civic-artifacts";
+import { copyPreparedRelease, releaseGateAt, trustedCivicAutomation } from "./civic-artifacts";
 import { applyReportingPolicy } from "./apply-reporting-policy";
 import { compactCivicRuntime } from "./compact-civic-runtime";
 
@@ -60,6 +60,16 @@ async function releaseFixture(root: string) {
 }
 
 async function main() {
+  for (const event of ["push", "schedule", "workflow_dispatch"]) {
+    const env = { GITHUB_ACTIONS: "true", GITHUB_REF: "refs/heads/main", GITHUB_EVENT_NAME: event };
+    assert.equal(trustedCivicAutomation(env, ["--automation"]), true, "Trusted main refresh can publish its validated candidate");
+    assert.equal(trustedCivicAutomation(env, []), false);
+    assert.equal(trustedCivicAutomation({ ...env, GITHUB_REF: "refs/heads/codex/preview" }, ["--automation"]), false);
+    assert.equal(trustedCivicAutomation({ ...env, GITHUB_ACTIONS: "false" }, ["--automation"]), false);
+  }
+  for (const event of ["pull_request", "pull_request_target", "", "unknown"]) {
+    assert.equal(trustedCivicAutomation({ GITHUB_ACTIONS: "true", GITHUB_REF: "refs/heads/main", GITHUB_EVENT_NAME: event }, ["--automation"]), false);
+  }
   const root = await mkdtemp(path.join(os.tmpdir(), "civic-artifacts-"));
   try {
     for (const name of ["../.env", "data/private/identity/identity-store.json", "data/generated/nv-sos-session.json", "data/raw/nv-sos/blocked/cookie.json", "data/generated/../private/a.json", "data/generated/meetings-pipeline-run 2.json", "data/generated/.dataops-pipeline.lock", "data/imports/political-ads/resident-uploads.json", "data/imports/political-ads/fec-api-token.json"]) assert.equal(workerArtifactAllowed(name), false, name);

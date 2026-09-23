@@ -13,6 +13,11 @@ const root = process.cwd();
 const mode = process.argv[2];
 const option = (name: string) => process.argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3);
 const localManifestPath = path.join(root, ".local/civic-release-candidate.json");
+export function trustedCivicAutomation(env: Record<string, string | undefined>, args: string[]) {
+  return args.includes("--automation") && env.GITHUB_ACTIONS === "true"
+    && env.GITHUB_REF === "refs/heads/main"
+    && ["schedule", "workflow_dispatch", "push"].includes(env.GITHUB_EVENT_NAME ?? "");
+}
 function json<T>(name: string, directory = root): T { return JSON.parse(readFileSync(path.join(directory, "data/generated", name), "utf8")) as T; }
 function count(value: unknown): number { return Array.isArray(value) ? value.length : 0; }
 
@@ -248,7 +253,7 @@ async function main() {
     return;
   }
   if (mode === "publish") {
-    const automated = process.argv.includes("--automation") && process.env.GITHUB_ACTIONS === "true" && process.env.GITHUB_REF === "refs/heads/main" && ["schedule", "workflow_dispatch"].includes(process.env.GITHUB_EVENT_NAME ?? "");
+    const automated = trustedCivicAutomation(process.env, process.argv);
     if (!automated && !process.argv.includes("--approve")) throw new Error("release_requires_approval_or_trusted_scheduled_worker");
     const manifest = validateManifest(JSON.parse(readFileSync(localManifestPath, "utf8")) as CivicManifest, "release");
     const verified = releaseGateAt();
