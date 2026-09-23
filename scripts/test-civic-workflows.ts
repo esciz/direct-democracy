@@ -32,6 +32,9 @@ assert.match(civic, /SCHEDULE" != "17 6 \* \* \*"/);
 assert.match(civic, /cancel-in-progress: false/);
 assert.match(civic, /push:\s+branches: \[main\]\s+paths:/);
 assert.ok(civic.includes("'lib/public-meetings/**'"), "Parser fixes must schedule regenerated civic data");
+for (const source of ["lib/financials/**", "scripts/collect-nevada-financials.ts", "scripts/compact-civic-runtime.ts"]) {
+  assert.ok(civic.includes(`'${source}'`), "Finance and packaging fixes must regenerate the public release");
+}
 assert.match(civic, /GITHUB_EVENT_NAME" == "schedule" && "\$SCHEDULE" !=/, "Code-triggered refresh includes a new finance integrity audit");
 assert.match(civic, /all_source_shards:/);
 assert.match(civic, /database_source:/);

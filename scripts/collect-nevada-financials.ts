@@ -1494,7 +1494,9 @@ async function main() {
     databaseSync: { requested: !noSync, succeeded: !noSync && !syncError, error: syncError },
     records: coverage,
   };
-  await writeJson(OUTPUT_PATH, output);
+  // Serialize once, before the exact-byte audit. Release packaging must not
+  // rewrite this snapshot after its provenance has been verified.
+  await atomicFinancialWrite(OUTPUT_PATH, `${JSON.stringify(output)}\n`);
   console.log(JSON.stringify(output.audit, null, 2));
   console.log(`Wrote statewide financial coverage to ${path.relative(ROOT, OUTPUT_PATH)}`);
   console.log(JSON.stringify({ sourceHealth: { ...output.sourceHealth, attempts: undefined }, databaseSync: output.databaseSync }, null, 2));

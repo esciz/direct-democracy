@@ -9,9 +9,12 @@ on:
     paths:
       - 'lib/public-meetings/**'
       - 'lib/dataops/**'
+      - 'lib/financials/**'
       - 'scripts/*public-meeting*.ts'
       - 'scripts/reprocess-cached-meeting-items.ts'
       - 'scripts/civic-artifacts.ts'
+      - 'scripts/compact-civic-runtime.ts'
+      - 'scripts/collect-nevada-financials.ts'
       - 'scripts/audit-nevada-financial-coverage.ts'
       - 'scripts/run-dataops-pipeline.ts'
       - '.github/workflows/civic-data-production.yml'

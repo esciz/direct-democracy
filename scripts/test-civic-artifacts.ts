@@ -8,6 +8,7 @@ import { REQUIRED_RELEASE_FILES, civicManifestId, releaseArtifactAllowed, valida
 import { assertArtifactSnapshot, describeArtifacts, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths, uploadArtifact } from "@/lib/dataops/blob-checkpoint";
 import { copyPreparedRelease, releaseGateAt } from "./civic-artifacts";
 import { applyReportingPolicy } from "./apply-reporting-policy";
+import { compactCivicRuntime } from "./compact-civic-runtime";
 
 const at = Date.parse("2026-09-06T12:00:00Z");
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
@@ -273,6 +274,22 @@ async function main() {
     const financeAudit = { generatedAt: new Date(at - 60_000).toISOString(), coverageSha256: hash(JSON.stringify(fixtures["nevada-financial-coverage.json"])), strictPassed: true, freshnessPassed: false };
     await writeJson(root, "nevada-financial-coverage-audit.json", financeAudit);
     assert.equal(releaseGateAt(root, { at }).coverageComplete, false, "Verified structural integrity permits publication with an explicit freshness gap");
+    // Exercise the actual production order: finance audit -> runtime packaging
+    // -> release gate. Both legacy and newly collected serialization must survive.
+    await writeJson(root, "accountability-graph.json", { generatedAt: new Date(at).toISOString(), totals: {}, communitySummaries: {} });
+    for (const financeBytes of [JSON.stringify(fixtures["nevada-financial-coverage.json"], null, 2) + "\n", JSON.stringify(fixtures["nevada-financial-coverage.json"]) + "\n"]) {
+      await writeFile(path.join(root, "data/generated/nevada-financial-coverage.json"), financeBytes);
+      await writeJson(root, "nevada-financial-coverage-audit.json", { ...financeAudit, coverageSha256: hash(financeBytes) });
+      const beforePackaging = releaseGateAt(root, { at });
+      await compactCivicRuntime(root);
+      await compactCivicRuntime(root);
+      assert.equal(await readFile(path.join(root, "data/generated/nevada-financial-coverage.json"), "utf8"), financeBytes, "Packaging must preserve exact audited financial bytes");
+      assert.deepEqual(releaseGateAt(root, { at }), beforePackaging);
+      await writeFile(path.join(root, "data/generated/nevada-financial-coverage.json"), financeBytes.replace("1200", "1201"));
+      assert.throws(() => releaseGateAt(root, { at }), /coverage_hash_mismatch/, "Actual financial changes must still fail closed");
+    }
+    for (const [name, body] of Object.entries(fixtures)) await writeJson(root, name, body);
+    await writeJson(root, "meetings-pipeline-run.json", financeReport);
     for (const change of [{ strictPassed: false }, { coverageSha256: "a".repeat(64) }, { generatedAt: new Date(at - 86400_000).toISOString() }, { coverageGeneratedAt: "unrelated" }]) {
       await writeJson(root, "nevada-financial-coverage-audit.json", { ...financeAudit, ...change });
       assert.throws(() => releaseGateAt(root, { at }), /finance_integrity_not_verified/);
