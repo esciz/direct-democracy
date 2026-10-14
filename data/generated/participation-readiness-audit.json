@@ -1,0 +1,475 @@
+{
+  "generatedAt": "2026-06-26T18:32:51.541Z",
+  "totals": {
+    "users": 22,
+    "verifiedVoters": 18,
+    "verifiedResidents": 0,
+    "unverified": 3,
+    "anonymousPublic": 1,
+    "trustedCitizens": 3
+  },
+  "validation": {
+    "allVoteWeightsOne": true,
+    "hiddenWeightingDisabled": true,
+    "trustedCitizenDoesNotChangeVoteWeight": true,
+    "publicDataSeparationExplained": true,
+    "trustedStewardshipExplained": true
+  },
+  "pass": true,
+  "records": [
+    {
+      "userId": "user_guest_browse",
+      "role": "citizen",
+      "verificationClass": "anonymous_public",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse"
+      ],
+      "verificationUnlocks": [
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_citizen_alicia_hart",
+      "role": "citizen",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages"
+      ],
+      "verificationUnlocks": [
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_citizen_miles_reed",
+      "role": "citizen",
+      "verificationClass": "authenticated_unverified",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile"
+      ],
+      "verificationUnlocks": [
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_citizen_tiana_moore",
+      "role": "citizen",
+      "verificationClass": "authenticated_unverified",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile"
+      ],
+      "verificationUnlocks": [
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_citizen_casey_rivera",
+      "role": "citizen",
+      "verificationClass": "authenticated_unverified",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile"
+      ],
+      "verificationUnlocks": [
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_citizen_daniel_rowe",
+      "role": "citizen",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages"
+      ],
+      "verificationUnlocks": [
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_citizen_aaron_hale",
+      "role": "citizen",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages"
+      ],
+      "verificationUnlocks": [
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_trusted_citizen_marco_silva",
+      "role": "trustedCitizen",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating",
+        "trusted_status",
+        "curate_evidence",
+        "flag_claims",
+        "debates",
+        "moderation"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_trusted_citizen_hannah_cho",
+      "role": "trustedCitizen",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating",
+        "trusted_status",
+        "curate_evidence",
+        "flag_claims",
+        "debates",
+        "moderation"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_trusted_citizen_nora_patel",
+      "role": "trustedCitizen",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating",
+        "trusted_status",
+        "curate_evidence",
+        "flag_claims",
+        "debates",
+        "moderation"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_candidate_sofia_bennett",
+      "role": "candidate",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_candidate_owen_castillo",
+      "role": "candidate",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_candidate_ava_marquette",
+      "role": "candidate",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_candidate_luke_holloway",
+      "role": "candidate",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_candidate_maya_ortega",
+      "role": "candidate",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_candidate_cole_wyatt",
+      "role": "candidate",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_official_elena_ramirez",
+      "role": "official",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_official_david_park",
+      "role": "official",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_official_adrian_castillo",
+      "role": "official",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "truth_rating"
+      ],
+      "verificationUnlocks": []
+    },
+    {
+      "userId": "user_media_nevada_public_signal",
+      "role": "media",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages"
+      ],
+      "verificationUnlocks": [
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_media_carson_civic_watch",
+      "role": "media",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages"
+      ],
+      "verificationUnlocks": [
+        "truth_rating"
+      ]
+    },
+    {
+      "userId": "user_admin_riley_morgan",
+      "role": "admin",
+      "verificationClass": "verified_voter",
+      "voteWeight": 1,
+      "hiddenWeighting": false,
+      "trustedGrantStatus": "not_active",
+      "readyCapabilities": [
+        "browse",
+        "profile",
+        "vote",
+        "discussion",
+        "evidence",
+        "verification",
+        "petitions",
+        "official_messages",
+        "curate_evidence",
+        "moderation"
+      ],
+      "verificationUnlocks": [
+        "truth_rating"
+      ]
+    }
+  ]
+}

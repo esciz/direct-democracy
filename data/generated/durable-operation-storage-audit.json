@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-21T16:22:00.849Z",
+  "durable": {
+    "status": "schema_error",
+    "configured": true,
+    "ready": false,
+    "missingTables": [
+      "AdminOperation",
+      "AdminOperationStage",
+      "AdminOperationAuditEvent",
+      "AdminOperationLogReference"
+    ],
+    "error": "\nInvalid `prisma.$queryRawUnsafe()` invocation:\n\n\nCan't reach database server at `[redacted_database_host]:5432`\n\nPlease make sure your database server is running at `[redacted_database_host]:5432`."
+  },
+  "localDevelopmentStore": {
+    "status": "local_file_adapter_with_prisma_durable_adapter",
+    "records": 10,
+    "activeRecords": 0,
+    "staleRecords": 0,
+    "sanitizedLogPreviewOnly": true
+  },
+  "guarantees": {
+    "allowlistedOperationsOnly": true,
+    "arbitraryCommandsPersisted": false,
+    "idempotencyKeyRequiredForDurableWrites": true,
+    "productionFailsClosedWhenDurableStorageUnavailable": true,
+    "normalPersistenceMirrorsToDurableStoreWhenReady": true,
+    "localFilesystemAdapterDevelopmentOnly": true,
+    "rawUnsanitizedLogsExposed": false
+  }
+}

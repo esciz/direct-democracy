@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-06-26T13:50:49.058Z",
+  "totals": {
+    "decisions": 756,
+    "sourceBackedDecisions": 756,
+    "decisionsNeedingReview": 281,
+    "decisionsMissingSourceReferences": 0,
+    "projects": 314,
+    "projectsWithDecisionLinks": 314,
+    "relationshipVoteLinksToDecisionPages": 320,
+    "relationshipVoteLinksToSources": 0,
+    "relationshipVoteLinksMissing": 0,
+    "graphDecisionNodes": 756,
+    "graphDecisionNodesWithDecisionHref": 756,
+    "deadRelationshipDecisionLinks": 0,
+    "deadGraphDecisionLinks": 0
+  },
+  "failures": [],
+  "samples": {
+    "deadRelationshipDecisionLinks": [],
+    "deadGraphDecisionLinks": [],
+    "projectsWithoutDecisionLinks": []
+  }
+}

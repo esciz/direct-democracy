@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "batch": {
+    "name": "Nevada statewide candidate campaign-finance history since 2017",
+    "retrievedAt": "2026-07-23T21:00:00.000Z",
+    "coverageStart": "2017-01-01",
+    "coverageEnd": "2026-06-30",
+    "notes": "Reviewed exact cycle aggregates and source-published 2017-to-current totals. Zero-activity cycles are omitted."
+  },
+  "source": {
+    "name": "Transparency USA (Nevada SOS-derived)",
+    "url": "https://www.transparencyusa.org/nv/?cycle=2017-to-now",
+    "officialUrl": "https://www.nvsos.gov/elections/aurora-public-search",
+    "notes": "Transparency USA republishes Nevada state-level campaign-finance records by election cycle and as a 2017-to-current aggregate."
+  },
+  "profiles": [
+    {
+      "key": "aaron-ford-governor-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 12388664.7,
+        "totalSpent": 11411054.75,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/aaron-ford?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2018, "periodEnd": "2018-12-31", "totalRaised": 2289935.3, "totalSpent": 2442793, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/aaron-ford?cycle=2018-election-cycle" },
+        { "cycleYear": 2020, "periodEnd": "2020-12-31", "totalRaised": 391625.06, "totalSpent": 407632.94, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/aaron-ford?cycle=2020-election-cycle" },
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 4517502.47, "totalSpent": 5289954.38, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/aaron-ford?cycle=2022-election-cycle" },
+        { "cycleYear": 2024, "periodEnd": "2024-12-31", "totalRaised": 904295.01, "totalSpent": 483858.07, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/aaron-ford?cycle=2024-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 4285306.86, "totalSpent": 2786816.36, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/aaron-ford?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "joseph-lombardo-governor-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 8873810.25,
+        "totalSpent": 9120734.7,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/joseph-lombardo?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2018, "periodEnd": "2018-12-31", "totalRaised": 1444720.6, "totalSpent": 1158406.39, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/joseph-lombardo?cycle=2018-election-cycle" },
+        { "cycleYear": 2020, "periodEnd": "2020-12-31", "totalRaised": 23000, "totalSpent": 93375.68, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/joseph-lombardo?cycle=2020-election-cycle" },
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 4699158.88, "totalSpent": 4161473.06, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/joseph-lombardo?cycle=2022-election-cycle" },
+        { "cycleYear": 2024, "periodEnd": "2024-12-31", "totalRaised": 431856.08, "totalSpent": 318644.73, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/joseph-lombardo?cycle=2024-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 2275074.69, "totalSpent": 3388834.84, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/joseph-lombardo?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "sandra-jauregui-lieutenant-governor-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 2185694.19,
+        "totalSpent": 1933139.51,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/sandra-jauregui?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2018, "periodEnd": "2018-12-31", "totalRaised": 187713.91, "totalSpent": 149706.92, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/sandra-jauregui?cycle=2018-election-cycle" },
+        { "cycleYear": 2020, "periodEnd": "2020-12-31", "totalRaised": 172012, "totalSpent": 161146.71, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/sandra-jauregui?cycle=2020-election-cycle" },
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 606694.1, "totalSpent": 584644.21, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/sandra-jauregui?cycle=2022-election-cycle" },
+        { "cycleYear": 2024, "periodEnd": "2024-12-31", "totalRaised": 736348.25, "totalSpent": 690420.77, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/sandra-jauregui?cycle=2024-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 482925.93, "totalSpent": 347220.9, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/sandra-jauregui?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "stavros-anthony-lieutenant-governor-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 2553817.07,
+        "totalSpent": 2553971.64,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/stavros-anthony?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2018, "periodEnd": "2018-12-31", "totalRaised": 206678.55, "totalSpent": 233209.4, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/stavros-anthony?cycle=2018-election-cycle" },
+        { "cycleYear": 2020, "periodEnd": "2020-12-31", "totalRaised": 1220598, "totalSpent": 1454512.25, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/stavros-anthony?cycle=2020-election-cycle" },
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 711818.25, "totalSpent": 771142.33, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/stavros-anthony?cycle=2022-election-cycle" },
+        { "cycleYear": 2024, "periodEnd": "2024-12-31", "totalRaised": 17650, "totalSpent": 1027, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/stavros-anthony?cycle=2024-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 397072.27, "totalSpent": 94080.66, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/stavros-anthony?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "francisco-aguilar-secretary-of-state-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 4209021.2,
+        "totalSpent": 3843516.53,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/francisco-aguilar?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 2759859.91, "totalSpent": 3248772.2, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/francisco-aguilar?cycle=2022-election-cycle" },
+        { "cycleYear": 2024, "periodEnd": "2024-12-31", "totalRaised": 418118.26, "totalSpent": 243414.56, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/francisco-aguilar?cycle=2024-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 1031043.03, "totalSpent": 351329.77, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/francisco-aguilar?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "james-marchant-secretary-of-state-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 771548.36,
+        "totalSpent": 774981.75,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/james-marchant?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2018, "periodEnd": "2018-12-31", "totalRaised": 195411.87, "totalSpent": 140302.66, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/james-marchant?cycle=2018-election-cycle" },
+        { "cycleYear": 2020, "periodEnd": "2020-12-31", "totalRaised": 1800.75, "totalSpent": 5589.26, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/james-marchant?cycle=2020-election-cycle" },
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 573335.74, "totalSpent": 628273.9, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/james-marchant?cycle=2022-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 1000, "totalSpent": 815.93, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/james-marchant?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "tya-mathis-coleman-treasurer-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 176206.16,
+        "totalSpent": 159967.1,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/tya-mathis-coleman?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 176206.16, "totalSpent": 159967.1, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/tya-mathis-coleman?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "drew-johnson-treasurer-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 593609.64,
+        "totalSpent": 555463.65,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/drew-johnson?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 475642.97, "totalSpent": 477204.6, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/drew-johnson?cycle=2022-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 117966.67, "totalSpent": 78259.05, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/drew-johnson?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "michael-macdougall-controller-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 33206,
+        "totalSpent": 23711.33,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/michael-macdougall?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 33206, "totalSpent": 23711.33, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/michael-macdougall?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "andrew-matthews-controller-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 1155817.41,
+        "totalSpent": 868034.04,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/andrew-matthews?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2020, "periodEnd": "2020-12-31", "totalRaised": 443673.32, "totalSpent": 392188.63, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/andrew-matthews?cycle=2020-election-cycle" },
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 345985.49, "totalSpent": 387105.45, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/andrew-matthews?cycle=2022-election-cycle" },
+        { "cycleYear": 2024, "periodEnd": "2024-12-31", "totalRaised": 129125, "totalSpent": 22239.72, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/andrew-matthews?cycle=2024-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 237033.6, "totalSpent": 66500.24, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/andrew-matthews?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "nicole-cannizzaro-attorney-general-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 4678290.65,
+        "totalSpent": 4502180.78,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/nicole-cannizzaro?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2018, "periodEnd": "2018-12-31", "totalRaised": 443707.98, "totalSpent": 241996.57, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/nicole-cannizzaro?cycle=2018-election-cycle" },
+        { "cycleYear": 2020, "periodEnd": "2020-12-31", "totalRaised": 1068163.02, "totalSpent": 1182729.08, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/nicole-cannizzaro?cycle=2020-election-cycle" },
+        { "cycleYear": 2022, "periodEnd": "2022-12-31", "totalRaised": 420004.56, "totalSpent": 128613.29, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/nicole-cannizzaro?cycle=2022-election-cycle" },
+        { "cycleYear": 2024, "periodEnd": "2024-12-31", "totalRaised": 1292977.04, "totalSpent": 1278517.33, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/nicole-cannizzaro?cycle=2024-election-cycle" },
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 1453438.05, "totalSpent": 1670324.51, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/nicole-cannizzaro?cycle=2026-election-cycle" }
+      ]
+    },
+    {
+      "key": "adriana-fralick-attorney-general-2026",
+      "allReported": {
+        "periodStart": "2017-01-01",
+        "periodEnd": "2026-06-30",
+        "totalRaised": 438864.82,
+        "totalSpent": 383979.93,
+        "sourceUrl": "https://www.transparencyusa.org/nv/candidate/adriana-fralick?cycle=2017-to-now"
+      },
+      "cycles": [
+        { "cycleYear": 2026, "periodEnd": "2026-06-30", "totalRaised": 438864.82, "totalSpent": 383979.93, "sourceUrl": "https://www.transparencyusa.org/nv/candidate/adriana-fralick?cycle=2026-election-cycle" }
+      ]
+    }
+  ]
+}

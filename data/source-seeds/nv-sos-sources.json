@@ -1,0 +1,98 @@
+[
+  {
+    "id": "nvsos-2026-candidate-public-media",
+    "source_type": "candidate_public_media",
+    "source_url": "https://www.nvsos.gov/elections/election-information/2026-election-information/2026-candidate-public-media-information",
+    "candidate_name": null,
+    "office_name": null,
+    "jurisdiction": "Nevada",
+    "election_year": 2026,
+    "expected_content_type": "html",
+    "notes": "Public media information page for congressional, statewide, legislative, and Board of Regents candidates.",
+    "enabled": true
+  },
+  {
+    "id": "nvsos-candidate-filing-list",
+    "source_type": "candidate_filing",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchUU/CertCandList.aspx",
+    "candidate_name": null,
+    "office_name": null,
+    "jurisdiction": "Nevada",
+    "election_year": 2026,
+    "expected_content_type": "html",
+    "notes": "Aurora candidate filing list. Indexed as plain HTML but currently blocked for ordinary HTTP clients.",
+    "enabled": true
+  },
+  {
+    "id": "nvsos-danny-tarkanian-candidate-details",
+    "source_type": "candidate_detail",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchUU/CandidateDetails.aspx?o=tvpre0ayXF84hHcGjkZ1Fw%253d%253d",
+    "candidate_name": "Danny Tarkanian",
+    "office_name": null,
+    "jurisdiction": "Nevada",
+    "election_year": 2026,
+    "expected_content_type": "html",
+    "notes": "Sample candidate detail page with campaign finance report links.",
+    "enabled": true
+  },
+  {
+    "id": "nvsos-joe-lombardo-candidate-details",
+    "source_type": "candidate_detail",
+    "source_url": "https://www.nvsos.gov/soscandidateservices/anonymousaccess/cefdsearchuu/CandidateDetails.aspx?o=NZZn4mEHsNMU0L1EsD6oJg%253d%253d",
+    "candidate_name": "Joe Lombardo",
+    "office_name": "Governor",
+    "jurisdiction": "Nevada",
+    "election_year": 2026,
+    "expected_content_type": "html",
+    "notes": "Known Lombardo campaign finance details page used by existing seeded enrichment.",
+    "enabled": true
+  },
+  {
+    "id": "nvsos-expense-results-secretary-of-state",
+    "source_type": "campaign_finance_report",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchUU/ExpenseResults.aspx?ns=Office+of+the+Secretary+of+State",
+    "candidate_name": null,
+    "office_name": "Secretary of State",
+    "jurisdiction": "Nevada",
+    "election_year": null,
+    "expected_content_type": "html",
+    "notes": "Expense results search page. Campaign finance reports may be HTML rather than PDFs.",
+    "enabled": true
+  },
+  {
+    "id": "nvsos-browse-reports-2021",
+    "source_type": "campaign_finance_archive",
+    "source_url": "https://www.nvsos.gov/SOSCandidateServices/AnonymousAccess/CEFDSearchuu/BrowseReports.aspx?nd=0002021_Reports",
+    "candidate_name": null,
+    "office_name": null,
+    "jurisdiction": "Nevada",
+    "election_year": 2021,
+    "expected_content_type": "html",
+    "notes": "Archive pattern for campaign finance and financial disclosure report folders.",
+    "enabled": true
+  },
+  {
+    "id": "nvsos-show-document-id-4281",
+    "source_type": "show_document",
+    "source_url": "https://www.nvsos.gov/Modules/ShowDocument.aspx?id=4281",
+    "candidate_name": null,
+    "office_name": null,
+    "jurisdiction": "Nevada",
+    "election_year": null,
+    "expected_content_type": "unknown",
+    "notes": "CMS ShowDocument handler sample with id parameter.",
+    "enabled": true
+  },
+  {
+    "id": "nvsos-show-document-documentid-4281",
+    "source_type": "show_document",
+    "source_url": "https://www.nvsos.gov/Modules/ShowDocument.aspx?documentid=4281",
+    "candidate_name": null,
+    "office_name": null,
+    "jurisdiction": "Nevada",
+    "election_year": null,
+    "expected_content_type": "unknown",
+    "notes": "CMS ShowDocument handler sample with documentid parameter.",
+    "enabled": true
+  }
+]

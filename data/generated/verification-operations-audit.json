@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-06-21T17:08:55.108Z",
+  "provenance": {
+    "runId": "20260621170855-codex-sandbox-c532il",
+    "generatedAt": "2026-06-21T17:08:55.108Z",
+    "executionEnvironment": "codex_sandbox",
+    "networkCapability": "unavailable",
+    "databaseReachability": "schema_error",
+    "storageBackend": "verification_evidence_storage_unconfigured",
+    "workerBackend": "worker_unconfigured",
+    "gitCommit": "d63f485c43da",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "verification-operations-audit"
+  },
+  "status": "manual_review_boundary_present_storage_unconfigured",
+  "residency": {
+    "evidenceIntakeEnabled": false,
+    "evidenceStorage": "verification_evidence_storage_unconfigured",
+    "sensitiveAccessPermission": "verification.view_sensitive",
+    "submissionsPublishedAutomatically": false,
+    "exactAddressesPublic": false,
+    "govCrmReceivesExactAddressesByDefault": false
+  },
+  "voterVerification": {
+    "providerStatus": "provider_unconfigured",
+    "liveVoterRegistrationMatchingEnabled": false,
+    "equalWeightVerifiedResidentAndVoter": true,
+    "importsPoliticalPartyAutomatically": false
+  },
+  "durableStorage": {
+    "status": "schema_error",
+    "ready": false
+  },
+  "worker": {
+    "status": "worker_unconfigured",
+    "queueDepth": null,
+    "deadLetters": null
+  },
+  "controls": {
+    "publicTruthSeparateFromUnverifiedSubmissions": true,
+    "privateEvidenceRequiredBeforeRealCollection": true,
+    "officialScorecardsEnabled": false,
+    "hiddenVoteWeightingEnabled": false
+  },
+  "sensitiveValuesIncluded": false
+}

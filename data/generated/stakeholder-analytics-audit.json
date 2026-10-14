@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-06-27T04:44:36.111Z",
+  "policy": {
+    "policyVersion": "signal-segmentation-v1",
+    "minimumCohortSize": 10,
+    "hiddenWeighting": false,
+    "voteWeight": 1,
+    "unrestrictedCrossFilteringAllowed": false,
+    "individualRecordsExposed": false
+  },
+  "totals": {
+    "questionsAnalyzed": 372,
+    "totalResponses": 0,
+    "verifiedResponses": 0,
+    "publicSegments": 0,
+    "suppressedSegments": 1488
+  },
+  "validation": {
+    "noIndividualRecordsExposed": true,
+    "unrestrictedCrossFilteringDisabled": true,
+    "hiddenWeightingDisabled": true,
+    "allPublicSegmentsVoteWeightOne": true,
+    "smallCohortsSuppressed": true,
+    "sourceBackedQuestionsOnly": true
+  },
+  "pass": true,
+  "reviewNotes": [
+    "Generated stakeholder analytics expose only aggregate segment summaries.",
+    "No user IDs, names, addresses, demographic combinations, or individual vote records are written to the runtime artifact.",
+    "Segments below the minimum cohort size are suppressed."
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "generatedAt": "2026-06-21T03:43:45.035Z",
+  "totals": {
+    "tenantTypesRequired": 8,
+    "fixtureTenants": 5,
+    "universalModules": 7,
+    "govCrmFiles": 31,
+    "readOnlyPublicRecordLinks": 7,
+    "failures": 0
+  },
+  "tenantTypes": [
+    "CITY",
+    "COUNTY",
+    "SCHOOL_DISTRICT",
+    "STATE_AGENCY",
+    "LEGISLATURE",
+    "COURT",
+    "UNIVERSITY",
+    "SPECIAL_DISTRICT"
+  ],
+  "fixtureTenants": [
+    {
+      "id": "tenant-carson-city",
+      "slug": "carson-city",
+      "type": "CITY",
+      "demoLabel": "DEMO_DEV_ONLY",
+      "modules": [
+        "cases",
+        "submissions",
+        "comments",
+        "documents",
+        "meetings",
+        "reports",
+        "audit_log",
+        "public_works",
+        "code_enforcement",
+        "permits"
+      ],
+      "capabilities": [
+        "case_triage",
+        "assignment",
+        "internal_notes",
+        "official_response_drafting",
+        "read_only_public_record_links",
+        "audit_trail",
+        "resident_portal_intake",
+        "public_comment_intake",
+        "document_intake",
+        "meeting_context",
+        "records_request_tracking",
+        "service_request_tracking",
+        "public_works_routing",
+        "code_enforcement_routing",
+        "permit_inquiry_tracking"
+      ]
+    },
+    {
+      "id": "tenant-washoe-county",
+      "slug": "washoe-county",
+      "type": "COUNTY",
+      "demoLabel": "DEMO_DEV_ONLY",
+      "modules": [
+        "cases",
+        "submissions",
+        "comments",
+        "documents",
+        "meetings",
+        "reports",
+        "audit_log",
+        "roads",
+        "elections",
+        "county_services"
+      ],
+      "capabilities": [
+        "case_triage",
+        "assignment",
+        "internal_notes",
+        "official_response_drafting",
+        "read_only_public_record_links",
+        "audit_trail",
+        "resident_portal_intake",
+        "public_comment_intake",
+        "document_intake",
+        "meeting_context",
+        "records_request_tracking",
+        "service_request_tracking",
+        "roads_routing",
+        "elections_inquiry_tracking"
+      ]
+    },
+    {
+      "id": "tenant-wcsd",
+      "slug": "washoe-county-school-district",
+      "type": "SCHOOL_DISTRICT",
+      "demoLabel": "DEMO_DEV_ONLY",
+      "modules": [
+        "cases",
+        "submissions",
+        "comments",
+        "documents",
+        "meetings",
+        "reports",
+        "audit_log",
+        "parent_requests",
+        "board_comments",
+        "student_services"
+      ],
+      "capabilities": [
+        "case_triage",
+        "assignment",
+        "internal_notes",
+        "official_response_drafting",
+        "read_only_public_record_links",
+        "audit_trail",
+        "resident_portal_intake",
+        "public_comment_intake",
+        "document_intake",
+        "meeting_context",
+        "records_request_tracking",
+        "parent_request_triage",
+        "student_service_routing"
+      ]
+    },
+    {
+      "id": "tenant-nevada-legislature",
+      "slug": "nevada-legislature",
+      "type": "LEGISLATURE",
+      "demoLabel": "DEMO_DEV_ONLY",
+      "modules": [
+        "cases",
+        "submissions",
+        "comments",
+        "documents",
+        "meetings",
+        "reports",
+        "audit_log",
+        "bill_tracking",
+        "testimony",
+        "committees"
+      ],
+      "capabilities": [
+        "case_triage",
+        "assignment",
+        "internal_notes",
+        "official_response_drafting",
+        "read_only_public_record_links",
+        "audit_trail",
+        "resident_portal_intake",
+        "public_comment_intake",
+        "document_intake",
+        "meeting_context",
+        "records_request_tracking",
+        "testimony_queue",
+        "bill_context",
+        "committee_routing"
+      ]
+    },
+    {
+      "id": "tenant-nevada-agency",
+      "slug": "nevada-state-agency",
+      "type": "STATE_AGENCY",
+      "demoLabel": "DEMO_DEV_ONLY",
+      "modules": [
+        "cases",
+        "submissions",
+        "comments",
+        "documents",
+        "meetings",
+        "reports",
+        "audit_log",
+        "regulatory_comments",
+        "licensing",
+        "program_inquiries"
+      ],
+      "capabilities": [
+        "case_triage",
+        "assignment",
+        "internal_notes",
+        "official_response_drafting",
+        "read_only_public_record_links",
+        "audit_trail",
+        "resident_portal_intake",
+        "public_comment_intake",
+        "document_intake",
+        "meeting_context",
+        "records_request_tracking",
+        "regulatory_comment_triage",
+        "licensing_inquiry_tracking",
+        "program_inquiry_routing"
+      ]
+    }
+  ],
+  "separation": {
+    "govOwns": "customer-facing government CRM workflows",
+    "adminOperationsOwns": "Direct Democracy platform DataOps, ingestion, source adapters, evidence acquisition, trust artifacts, and platform audits",
+    "publicRecordLinks": "read_only",
+    "forbiddenGovCrmImportsFound": []
+  },
+  "failures": []
+}

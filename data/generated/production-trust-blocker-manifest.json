@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-06-24T01:59:56.581Z",
+  "sourceAuditRunId": "20260624015923-local-network-enabled-yvh0d4",
+  "sourceAuditStatus": "blocked",
+  "promotionEligible": false,
+  "deploymentSecretStore": {
+    "localVercelProjectLinked": true,
+    "secretValuesIncluded": false,
+    "note": "Only names/status are recorded. Required production trust secrets are not present in the active local audit environment."
+  },
+  "blockers": [
+    {
+      "domain": "production_email",
+      "providerOrSystem": "Direct Democracy identity email adapter; concrete production adapter currently Resend",
+      "missingConfiguration": [
+        "DIRECT_DEMOCRACY_EMAIL_PROVIDER",
+        "DIRECT_DEMOCRACY_EMAIL_FROM",
+        "DIRECT_DEMOCRACY_EMAIL_API_KEY",
+        "DIRECT_DEMOCRACY_EMAIL_TEST_RECIPIENT_ALLOWLIST",
+        "DIRECT_DEMOCRACY_NETWORK_ENABLED=true"
+      ],
+      "validationNotRun": "Worker-backed provider email acceptance via npm run email:production-test -- --recipient=<authorized> --confirm-production-send",
+      "codeComplete": true,
+      "nextAction": "Configure verified sender/domain, provider API credential, and an authorized audit recipient; rerun email:production-test and email:audit."
+    },
+    {
+      "domain": "verification_evidence_storage",
+      "providerOrSystem": "Private production-capable object storage behind lib/identity/evidence-storage.ts",
+      "missingConfiguration": [
+        "IDENTITY_EVIDENCE_STORAGE_BUCKET",
+        "IDENTITY_EVIDENCE_ENCRYPTION_KEY"
+      ],
+      "validationNotRun": "Durable private storage upload/read/hash/namespace/delete smoke test; current smoke refused because storage is unconfigured.",
+      "codeComplete": false,
+      "nextAction": "Configure the intended private storage provider and ensure evidence:smoke-test exercises the real durable adapter rather than local development storage."
+    },
+    {
+      "domain": "browser_session_storage",
+      "providerOrSystem": "Private server-side Playwright/browser-session storage behind lib/admin/operations/browser-session-storage.ts",
+      "missingConfiguration": [
+        "PLAYWRIGHT_SESSION_STORAGE_BUCKET",
+        "PLAYWRIGHT_SESSION_STORAGE_KEY"
+      ],
+      "validationNotRun": "Durable encrypted create/read/update/expire/revoke smoke test; current smoke refused because storage is unconfigured.",
+      "codeComplete": false,
+      "nextAction": "Configure the intended private storage backend and ensure browser-sessions:smoke-test exercises durable storage with no raw cookie/token artifact leakage."
+    },
+    {
+      "domain": "backup",
+      "providerOrSystem": "Database provider native backup/restore preferred",
+      "missingConfiguration": [
+        "DIRECT_DEMOCRACY_DATABASE_BACKUP_CONFIGURED",
+        "DIRECT_DEMOCRACY_DATABASE_BACKUP_PROVIDER"
+      ],
+      "validationNotRun": "Real provider-backed backup with sanitized backup identifier, timestamps, encryption status, and integrity evidence.",
+      "codeComplete": false,
+      "nextAction": "Configure and run the approved provider backup mechanism; do not substitute schema export or documentation-only evidence."
+    },
+    {
+      "domain": "restore",
+      "providerOrSystem": "Isolated non-production restore target",
+      "missingConfiguration": [
+        "DIRECT_DEMOCRACY_RESTORE_TEST_DATABASE_URL",
+        "DIRECT_DEMOCRACY_DATABASE_RESTORE_TESTED"
+      ],
+      "validationNotRun": "Restore backup into isolated temporary DB/schema, validate schema and representative identity/admin-operation counts, then remove or retain per policy.",
+      "codeComplete": false,
+      "nextAction": "Provision isolated restore target and real backup artifact; run restore smoke test without touching production database."
+    }
+  ],
+  "services": [
+    {
+      "service": "durable_identity_and_admin_operations",
+      "selectedBackend": "Prisma postgresql",
+      "configurationStatus": "database_configured_unverified_by_plan"
+    },
+    {
+      "service": "production_email",
+      "selectedBackend": "Existing provider-neutral identity email adapter; Resend is the only concrete production adapter currently implemented.",
+      "configurationStatus": "development_adapter"
+    },
+    {
+      "service": "private_verification_evidence_storage",
+      "selectedBackend": "Existing identity evidence storage boundary with encrypted local-development storage and production private object-storage configuration gate.",
+      "configurationStatus": "verification_evidence_storage_unconfigured"
+    },
+    {
+      "service": "encrypted_browser_session_storage",
+      "selectedBackend": "Existing admin operations browser-session storage boundary with separate Playwright session key namespace.",
+      "configurationStatus": "browser_session_storage_unconfigured"
+    },
+    {
+      "service": "durable_network_worker",
+      "selectedBackend": "GitHub Actions durable worker plus local operator worker",
+      "configurationStatus": "worker_configured"
+    },
+    {
+      "service": "backup_and_restore",
+      "selectedBackend": "Database-provider native backup/restore first; encrypted private-storage fallback only if provider-native backup is unavailable.",
+      "configurationStatus": "backup_unconfigured"
+    },
+    {
+      "service": "carson_city_officials_pipeline",
+      "selectedBackend": "Existing officials source registry, network retrieval, verification, reconciliation, guarded promotion, and coverage audit.",
+      "configurationStatus": "manual_operator_sync_available"
+    }
+  ],
+  "sensitiveValuesIncluded": false
+}

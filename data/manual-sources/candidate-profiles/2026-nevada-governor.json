@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "batch": {
+    "name": "2026 Nevada governor candidate profiles",
+    "reviewedAt": "2026-07-22T00:00:00.000Z",
+    "notes": "Reviewed bios and issue positions for two prioritized governor candidates. This batch enriches existing candidate records and does not certify the general-election ballot slate."
+  },
+  "profiles": [
+    {
+      "key": "aaron-ford-2026-governor",
+      "candidate": {
+        "aliases": ["Ford, Aaron D.", "Aaron D. Ford", "Aaron Ford"],
+        "officeContains": "Governor",
+        "electionYear": 2026
+      },
+      "official": {
+        "aliases": ["Aaron D. Ford", "Aaron Ford"],
+        "officeContains": "Attorney General"
+      },
+      "profile": {
+        "bioSummary": "Aaron D. Ford is Nevada's 34th Attorney General. His official state biography says he previously served in the Nevada Senate as both majority leader and minority leader, practiced law in Las Vegas, taught public-school mathematics, and earned five degrees including a law degree and a Ph.D. in educational administration.",
+        "experienceSummary": "Ford's official biography describes service as Nevada attorney general, leadership in the Nevada Senate, private legal practice, and work as a public-school mathematics teacher.",
+        "officialSource": {
+          "name": "Nevada Attorney General - Aaron Ford",
+          "slug": "nevada-attorney-general-aaron-ford-profile",
+          "url": "https://ag.nv.gov/About/AG_Aaron_Ford/",
+          "homeUrl": "https://ag.nv.gov/",
+          "headshotUrl": "https://ag.nv.gov/uploadedImages/agnvgov/Content/About/20210324_AGPic.jpg"
+        },
+        "campaignSource": {
+          "name": "Aaron Ford for Nevada",
+          "slug": "aaron-ford-2026-campaign-issues",
+          "url": "https://www.fordfornevada.com/issues",
+          "homeUrl": "https://www.fordfornevada.com/"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Affordable Housing",
+          "issueSlug": "affordable-housing",
+          "stance": "SUPPORTS",
+          "summary": "Supports encouraging new housing construction by working with municipalities on permitting and vacant land, while opposing large investment firms pricing families out of neighborhoods.",
+          "source": "campaign",
+          "evidenceTitle": "Aaron's Top Issues - Housing"
+        },
+        {
+          "issueText": "Healthcare Access",
+          "issueSlug": "healthcare-access",
+          "stance": "SUPPORTS",
+          "summary": "Supports addressing pharmacy-benefit-manager practices, creating medical-debt relief, and challenging price gouging and fraudulent medical billing.",
+          "source": "campaign",
+          "evidenceTitle": "Aaron's Top Issues - Health Care"
+        },
+        {
+          "issueText": "Energy Reliability",
+          "issueSlug": "energy-reliability",
+          "stance": "SUPPORTS",
+          "summary": "Supports clean and affordable energy, residential solar and efficiency incentives, and requiring large data centers to pay their share of energy demand while conserving water.",
+          "source": "campaign",
+          "evidenceTitle": "Aaron's Top Issues - Energy"
+        },
+        {
+          "issueText": "Education",
+          "issueSlug": "education",
+          "stance": "SUPPORTS",
+          "summary": "Supports protecting federal education funding and using state leadership to expand educational opportunity, drawing on his prior work as a public-school teacher.",
+          "source": "campaign",
+          "evidenceTitle": "Aaron's Top Issues - Education"
+        }
+      ]
+    },
+    {
+      "key": "joe-lombardo-2026-governor",
+      "candidate": {
+        "aliases": ["Lombardo, Joseph", "Joe Lombardo", "Joseph Lombardo", "Joseph Michael Lombardo"],
+        "officeContains": "Governor",
+        "electionYear": 2026
+      },
+      "official": {
+        "aliases": ["Joe Lombardo", "Joseph Lombardo"],
+        "officeContains": "Governor"
+      },
+      "applyPositionsToOfficial": true,
+      "profile": {
+        "campaignSource": {
+          "name": "Joe Lombardo for Governor",
+          "slug": "joe-lombardo-2026-campaign",
+          "url": "https://www.joelombardofornv.com/",
+          "homeUrl": "https://www.joelombardofornv.com/"
+        },
+        "positionSource": {
+          "name": "Nevada Governor - Continued Priorities",
+          "slug": "nevada-governor-lombardo-continued-priorities-2026",
+          "url": "https://www.gov.nv.gov/press-releases/governor-lombardo-highlights-record-of-results-outlines-continued-priorities-at-vegas-chamber-luncheon/"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Growth and Infrastructure",
+          "issueSlug": "growth-and-infrastructure",
+          "stance": "SUPPORTS",
+          "summary": "Supports diversifying Nevada's economy, attracting private investment and jobs, and reducing regulations and business taxes to improve long-term competitiveness.",
+          "source": "position",
+          "evidenceTitle": "Governor Lombardo outlines continued priorities"
+        },
+        {
+          "issueText": "Education",
+          "issueSlug": "education",
+          "stance": "SUPPORTS",
+          "summary": "Supports improving K-12 outcomes through education investment, school choice, school safety, stronger school performance, and college-or-career readiness.",
+          "source": "position",
+          "evidenceTitle": "Governor Lombardo outlines continued priorities"
+        },
+        {
+          "issueText": "Public Safety",
+          "issueSlug": "public-safety",
+          "stance": "SUPPORTS",
+          "summary": "Identifies public safety as a continued administration priority for Nevada families.",
+          "source": "position",
+          "evidenceTitle": "Governor Lombardo outlines continued priorities"
+        },
+        {
+          "issueText": "Healthcare Access",
+          "issueSlug": "healthcare-access",
+          "stance": "SUPPORTS",
+          "summary": "Identifies health care as a continued administration priority for Nevada families.",
+          "source": "position",
+          "evidenceTitle": "Governor Lombardo outlines continued priorities"
+        },
+        {
+          "issueText": "Affordable Housing",
+          "issueSlug": "affordable-housing",
+          "stance": "SUPPORTS",
+          "summary": "Identifies housing and affordability as continued administration priorities for Nevada families.",
+          "source": "position",
+          "evidenceTitle": "Governor Lombardo outlines continued priorities"
+        }
+      ]
+    }
+  ]
+}

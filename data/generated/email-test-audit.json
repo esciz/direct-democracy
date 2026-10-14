@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-28T17:26:25.134Z",
+  "provenance": {
+    "runId": "20260628172625-unknown-lxxv3p",
+    "generatedAt": "2026-06-28T17:26:25.134Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "available",
+    "databaseReachability": "durable_queue_required",
+    "storageBackend": "identity_token_prisma_when_available",
+    "workerBackend": "durable_queue",
+    "gitCommit": "66b8680416aa",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "email-test-audit"
+  },
+  "providerStatus": "production_provider_configured",
+  "productionConfirmed": true,
+  "emailSent": true,
+  "queuedThroughDurableWorker": true,
+  "tokenPrinted": false,
+  "sensitiveValuesIncluded": false,
+  "status": "sent",
+  "recipient": "ad***@directyourdemocracy.com",
+  "tokenCreated": true,
+  "tokenHashPersisted": true,
+  "operatorAccountResolved": true,
+  "jobId": "job_d5c5f98e8320dfa802e7231e",
+  "workerId": "production_email_test_51471",
+  "workerResult": "succeeded"
+}

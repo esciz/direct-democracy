@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-06-26T00:03:28.543Z",
+  "totals": {
+    "consentRecords": 0,
+    "activeConsents": 0,
+    "withdrawnConsents": 0,
+    "privacyRequests": 0,
+    "evidencePurgedThisRun": 0
+  },
+  "controls": {
+    "optionalDemographicsRequiredForRegistration": false,
+    "politicalAffiliationRequired": false,
+    "politicalAffiliationPrivateByDefault": true,
+    "organizationAffiliationsOfficialByDefault": false,
+    "participationRecordsRetainedWithPrivacySafeSnapshot": true
+  }
+}

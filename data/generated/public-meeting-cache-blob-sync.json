@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-06-28T22:26:48.133Z",
+  "status": "blob_sync_complete",
+  "credentials": {
+    "classicBlobTokenConfigured": true,
+    "oidcTokenAndStoreConfigured": false,
+    "bucketConfigured": false,
+    "sensitiveValuesIncluded": false
+  },
+  "manifest": {
+    "cachedDocuments": 1936,
+    "cachedBytes": 9486378743
+  },
+  "localObjectCache": {
+    "status": "object_cache_complete",
+    "objectsPresent": 1936,
+    "missingObjects": 0,
+    "objectSizeMismatches": 0,
+    "providerErrors": 0
+  },
+  "vercelBlob": {
+    "status": "object_cache_complete",
+    "objectsPresent": 1936,
+    "missingObjects": 0,
+    "objectSizeMismatches": 0,
+    "providerErrors": 0,
+    "lastExportStatus": "export_complete",
+    "lastExportObjectsWritten": 1,
+    "lastExportProviderErrors": 0,
+    "lastExportProviderErrorSamples": []
+  },
+  "nextRequiredAction": null
+}

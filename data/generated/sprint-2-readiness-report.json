@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-06-25T18:33:01.104Z",
+  "status": "green",
+  "recommendation": "Sprint 2 source plumbing is ready to close. Remaining vote items are human-review/identity-quality work, not blockers for the next product sprint.",
+  "gates": {
+    "documents": {
+      "status": "green",
+      "documentsScanned": 1392,
+      "documentsExtracted": 1392,
+      "documentFailures": 0,
+      "retrievalBlocked": 0
+    },
+    "sourceAdapters": {
+      "status": "green",
+      "priorityOrganizations": 13,
+      "adapterRows": 28,
+      "coveredRows": 28,
+      "partialRows": 0,
+      "adapterNeededRows": 0,
+      "notConfiguredRows": 0,
+      "blockedDocuments": 0,
+      "recoveredByAdapter": 1
+    },
+    "officials": {
+      "status": "green",
+      "priorityJurisdictions": 11,
+      "complete": 11,
+      "partial": 0,
+      "sourceConfiguredNotImported": 0,
+      "sourceMissing": 0,
+      "linkageFailed": 0,
+      "emptyPublicSectionRisks": 0,
+      "runtimeOfficials": 154,
+      "carsonCityRuntimeOfficials": 25,
+      "failures": 0
+    },
+    "actionResults": {
+      "status": "green",
+      "meetingItemsScanned": 2675,
+      "actionResultsExtracted": 636,
+      "withMotion": 284,
+      "withMover": 283,
+      "withSeconder": 293,
+      "withOutcome": 634,
+      "withVoteCount": 348,
+      "withNamedVotes": 214,
+      "unanimousActions": 65,
+      "needsReview": 308,
+      "unlinkedToAgendaItem": 173
+    },
+    "voteAttribution": {
+      "status": "green",
+      "meetingItems": 2675,
+      "totalVoteLikeActions": 626,
+      "unanimousActionsFound": 12,
+      "aggregateVoteCountActionsFound": 331,
+      "attendanceRostersParsed": 207,
+      "fullRosterMatches": 82,
+      "parsedNamedVotes": 1477,
+      "explicitNamedVotesParsed": 973,
+      "parsedNamedVoteActions": 293,
+      "individualVotesInferredFromUnanimousOutcomes": 144,
+      "individualVotesInferredFromAggregateCounts": 360,
+      "aggregateOnlyOutcomes": 228,
+      "motionSecondParsed": 1140,
+      "ambiguousVoteActionsNeedingReview": 1,
+      "actionsNeedingAttendanceReview": 5,
+      "actionsNeedingDistributionReview": 50,
+      "unnamedVoteActions": 229,
+      "needsReview": 56,
+      "remainingUnresolvedVoteActions": 56,
+      "skippedDueToInsufficientEvidence": 2152,
+      "remainingHumanReview": 56,
+      "reviewBuckets": {
+        "ambiguousVoteActions": 1,
+        "attendanceReviewActions": 5,
+        "distributionReviewActions": 50
+      }
+    },
+    "attendanceIdentity": {
+      "status": "green",
+      "meetingsScanned": 691,
+      "meetingsWithAttendanceParsed": 223,
+      "attendanceRecords": 1170,
+      "votingMemberAttendanceRecords": 947,
+      "nonVotingAttendanceRecords": 223,
+      "unmatchedNames": 981,
+      "meetingsNeedingAttendanceReview": 0,
+      "meetingsWithVerifiedVotingAttendance": 207,
+      "meetingsEligibleForUnanimousOrAggregateVoteAttribution": 19,
+      "voteActionsUnlockedByAttendance": 2,
+      "unmatchedVotingMemberNames": 758,
+      "unmatchedNonVotingNames": 223,
+      "matchConfidenceCounts": {
+        "unmatched_name": 981,
+        "title_plus_name_match": 82,
+        "exact_name_match": 98,
+        "normalized_name_match": 9
+      },
+      "note": "Unmatched names are preserved as source-backed attendance names. They are not used for vote attribution unless attendance and roster evidence are sufficient."
+    },
+    "communityAndBrowse": {
+      "status": "green",
+      "communityPagesReady": 39,
+      "communitiesWithUsefulDashboardData": 39,
+      "browseCategoriesWithDemoData": 0
+    }
+  },
+  "remainingWork": [
+    {
+      "bucket": "vote_distribution_review",
+      "count": 50,
+      "nextAction": "Human or source-specific roll-call review; do not infer split votes without named distribution."
+    },
+    {
+      "bucket": "attendance_identity_matching",
+      "count": 758,
+      "nextAction": "Add reviewed rosters for Carson City special boards and regional bodies when official rosters are source-backed."
+    },
+    {
+      "bucket": "ambiguous_vote_language",
+      "count": 1,
+      "nextAction": "Review manually; parser intentionally refuses to assign votes without explicit name-to-vote evidence."
+    }
+  ]
+}

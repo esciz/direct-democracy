@@ -1,0 +1,353 @@
+import { execFileSync } from "node:child_process";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import path from "node:path";
+
+const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
+const LOCK_PATH = path.join(GENERATED_DIR, ".dataops-pipeline.lock");
+const CANONICAL_OUTPUT_PATH = path.join(GENERATED_DIR, "dataops-pipeline-run.json");
+const TARGETED_OUTPUT_PATH = path.join(GENERATED_DIR, "dataops-pipeline-targeted-run.json");
+
+type StageStatus = "pending" | "running" | "succeeded" | "failed" | "skipped";
+
+type Stage = {
+  id: string;
+  description: string;
+  commands: string[][];
+  network?: boolean;
+};
+
+function argValue(name: string) {
+  return process.argv.find((arg) => arg.startsWith(`--${name}=`))?.split("=").slice(1).join("=");
+}
+
+if (process.argv.includes("--help")) {
+  console.log([
+    "Usage: node --import tsx scripts/run-dataops-pipeline.ts [--limit=N] [--from=stage] [--to=stage] [--offline] [--meetings-only] [--all-source-shards] [--dry-run] [--force]",
+    "",
+    "Runs the DataOps refresh pipeline. Use --from/--to for targeted recovery runs.",
+    "Known stages:",
+    ...[
+      "refresh-meeting-calendars",
+      "refresh-public-data",
+      "refresh-civic-database",
+      "public-records",
+      "import-meetings",
+      "register-sources",
+      "discover-documents",
+      "monitor-sources",
+      "retrieve-minutes",
+      "retrieve-documents",
+      "verify-cache",
+      "extract-native-text",
+      "ocr",
+      "parse-meeting-items",
+      "source-completeness",
+      "meeting-lifecycle",
+      "attendance",
+      "votes",
+      "accountability",
+      "communities",
+      "freshness-audit",
+    ].map((stage) => `- ${stage}`),
+  ].join("\n"));
+  process.exit(0);
+}
+
+const meetingsOnly = process.argv.includes("--meetings-only");
+// Manual catch-up selects every source partition, not just today's rotation.
+// Per-request/document/time budgets and resumable progress still apply.
+const allSourceShards = process.argv.includes("--all-source-shards");
+const isTargetedRun = Boolean(argValue("from") || argValue("to"));
+const OUTPUT_PATH = meetingsOnly ? path.join(GENERATED_DIR, isTargetedRun ? "meetings-pipeline-targeted-run.json" : "meetings-pipeline-run.json") : isTargetedRun ? TARGETED_OUTPUT_PATH : CANONICAL_OUTPUT_PATH;
+
+function readJson<T>(fileName: string, fallback: T): T {
+  try {
+    return JSON.parse(readFileSync(path.join(GENERATED_DIR, fileName), "utf8")) as T;
+  } catch {
+    return fallback;
+  }
+}
+
+function runNodeScript(script: string, args: string[] = []) {
+  return ["node", "--import", "tsx", script, ...args];
+}
+
+function networkSmokeTest() {
+  // Probe official sources rather than treating an unrelated search site as the network authority.
+  // A reachable HTTP error still proves transport; each adapter records the actual source outcome.
+  for (const url of ["https://ccb.nv.gov/public-meetings/", "https://tax.nv.gov/", "https://notice.nv.gov/"]) {
+    try {
+      execFileSync("curl", ["-I", "--connect-timeout", "4", "--max-time", "8", url], { stdio: "ignore" });
+      return { available: true, reason: null };
+    } catch { /* Try another independent official host before skipping network stages. */ }
+  }
+  return { available: false, reason: "official_source_connectivity_probes_failed" };
+}
+
+const retrieveArgs = [
+  argValue("limit") ? `--limit=${argValue("limit")}` : null,
+  argValue("jurisdiction") ? `--jurisdiction=${argValue("jurisdiction")}` : null,
+  argValue("host") ? `--host=${argValue("host")}` : null,
+  argValue("document-type") ? `--document-type=${argValue("document-type")}` : null,
+  process.argv.includes("--priority-only") ? "--priority-only" : null,
+  process.argv.includes("--retry-only") ? "--retry-only" : null,
+].filter(Boolean) as string[];
+// Match the minutes retrieval ceiling so large board minutes can be read after
+// download. Each PDF still runs in an isolated worker with a bounded timeout.
+const nativeExtractArgs = ["--max-pdf-bytes=250000000", "--pdf-timeout-ms=60000", "--max-documents=400", "--max-duration-ms=600000"];
+
+const stages: Stage[] = [
+  {
+    id: "refresh-civic-database",
+    description: "Refresh due database-backed elections, candidates, legislative and registered civic sources with bounded workers.",
+    network: true,
+    commands: [runNodeScript("scripts/refresh-civic-database.ts", allSourceShards ? ["--all-source-shards"] : [])],
+  },
+  {
+    id: "refresh-meeting-calendars",
+    description: "Discover current Nevada calendars and refresh due official-source caches.",
+    network: true,
+    commands: [
+      runNodeScript("scripts/generate-nevada-public-meeting-source-seeds.ts"),
+      runNodeScript("scripts/discover-nevada-meeting-sources.ts"),
+      runNodeScript("scripts/bootstrap-public-meeting-sources.ts", ["--blocked-retry", "--all-nevada", "--scheduled", ...(allSourceShards ? ["--all-source-shards"] : [])]),
+    ],
+  },
+  {
+    id: "refresh-public-data",
+    description: "Refresh officials and financial data independently of the meeting calendar.",
+    network: true,
+    commands: [
+      runNodeScript("scripts/run-officials-refresh.ts"),
+      runNodeScript("scripts/collect-nevada-financials.ts", [allSourceShards ? "--full" : "--scheduled"]),
+      runNodeScript("scripts/audit-nevada-financial-coverage.ts", ["--strict"]),
+    ],
+  },
+  {
+    id: "public-records",
+    description: "Refresh and reconcile statewide case, political-ad, and public-organization records.",
+    network: true,
+    commands: [
+      runNodeScript("scripts/collect-nevada-case-coverage.ts"),
+      runNodeScript("scripts/audit-nevada-case-coverage.ts", ["--strict"]),
+      runNodeScript("scripts/generate-nevada-political-ad-sources.ts"),
+      runNodeScript("scripts/download-nevada-fec-political-ads.ts", [...(allSourceShards ? [] : ["--scheduled"]), "--limit=1600"]),
+      runNodeScript("scripts/import-nevada-political-ads.ts"),
+      runNodeScript("scripts/audit-nevada-political-ads.ts"),
+      runNodeScript("scripts/generate-nevada-political-ad-coverage.ts"),
+      runNodeScript("scripts/audit-nevada-political-ad-coverage.ts", ["--strict"]),
+      runNodeScript("scripts/collect-nevada-organizations.ts", allSourceShards ? ["--first-pass"] : []),
+      runNodeScript("scripts/audit-nevada-organizations.ts", ["--strict"]),
+    ],
+  },
+  {
+    id: "import-meetings",
+    description: "Import current calendars and merge reviewed official-source caches.",
+    network: true,
+    commands: [
+      runNodeScript("scripts/public-meetings-import.ts"),
+      runNodeScript("scripts/public-meetings-import-manual.ts"),
+    ],
+  },
+  { id: "register-sources", description: "Register RSS/feed sources.", commands: [runNodeScript("scripts/generate-rss-source-registry.ts")] },
+  { id: "discover-documents", description: "Discover public meeting source documents.", commands: [runNodeScript("scripts/discover-public-meeting-source-documents.ts")] },
+  {
+    id: "monitor-sources",
+    description: "Monitor source health and upcoming-meeting coverage by configured provider.",
+    commands: [
+      runNodeScript("scripts/generate-dataops-source-registry.ts"),
+      runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"),
+      runNodeScript("scripts/monitor-civic-sources.ts"),
+      runNodeScript("scripts/generate-public-meeting-lifecycle.ts"),
+      runNodeScript("scripts/audit-nevada-jurisdiction-meeting-coverage.ts", ["--strict"]),
+      runNodeScript("scripts/audit-upcoming-meeting-coverage.ts", ["--strict"]),
+    ],
+  },
+  { id: "retrieve-minutes", description: "Reserve a retrieval batch for published minutes, including archived meetings.", network: true, commands: [runNodeScript("scripts/retrieve-public-meeting-documents.ts", [
+    ...retrieveArgs.filter(arg => !arg.startsWith("--limit=") && !arg.startsWith("--document-type=")),
+    "--document-type=minutes", `--limit=${argValue("minutes-limit") ?? "60"}`, "--max-bytes=250000000",
+  ])] },
+  { id: "retrieve-documents", description: "Retrieve/cache queued remote documents.", network: true, commands: [runNodeScript("scripts/retrieve-public-meeting-documents.ts", retrieveArgs)] },
+  { id: "verify-cache", description: "Verify cached content and reconcile cache counts.", commands: [runNodeScript("scripts/verify-public-meeting-cache-content.ts"), runNodeScript("scripts/audit-public-meeting-document-cache.ts")] },
+  { id: "extract-native-text", description: "Extract native text from cached documents.", commands: [runNodeScript("scripts/extract-public-meeting-document-text.ts", nativeExtractArgs)] },
+  { id: "ocr", description: "Audit OCR capabilities and reserve a bounded minutes batch before other scans.", commands: [runNodeScript("scripts/audit-ocr-capabilities.ts"), runNodeScript("scripts/run-public-meeting-ocr.ts", ["--document-type=minutes", "--limit=10"]), runNodeScript("scripts/run-public-meeting-ocr.ts"), runNodeScript("scripts/extract-public-meeting-document-text.ts", nativeExtractArgs), runNodeScript("scripts/audit-public-meeting-ocr.ts")] },
+  { id: "parse-meeting-items", description: "Reconcile reviewed document ownership, then parse minutes and cached topics while keeping outcomes held.", commands: [runNodeScript("scripts/reconcile-reviewed-meeting-document-associations.ts"), runNodeScript("scripts/reprocess-cached-meeting-items.ts", ["--document-type=minutes", "--limit=400"]), runNodeScript("scripts/reprocess-cached-meeting-items.ts")] },
+  { id: "source-completeness", description: "Regenerate source completeness and accountability readiness.", commands: [runNodeScript("scripts/generate-public-meeting-retrieval-queue.ts"), runNodeScript("scripts/audit-minutes-extraction.ts"), runNodeScript("scripts/generate-public-meeting-action-results.ts"), runNodeScript("scripts/generate-public-meeting-source-completeness.ts"), runNodeScript("scripts/audit-public-meeting-documents.ts")] },
+  { id: "meeting-lifecycle", description: "Archive elapsed meetings and report delayed minutes, source freshness, and due follow-ups.", commands: [runNodeScript("scripts/generate-public-meeting-lifecycle.ts")] },
+  { id: "attendance", description: "Regenerate rosters and attendance.", commands: [runNodeScript("scripts/generate-governing-body-rosters.ts"), runNodeScript("scripts/generate-public-meeting-attendance.ts"), runNodeScript("scripts/audit-public-meeting-attendance.ts")] },
+  { id: "votes", description: "Regenerate votes and attribution readiness.", commands: [runNodeScript("scripts/generate-public-meeting-votes.ts"), runNodeScript("scripts/audit-public-meeting-votes.ts"), runNodeScript("scripts/generate-vote-attribution-readiness.ts")] },
+  { id: "accountability", description: "Regenerate voting cards, projects, and accountability graph.", commands: [runNodeScript("scripts/regenerate-public-meeting-voting-cards.ts"), runNodeScript("scripts/generate-voting-cards.ts"), runNodeScript("scripts/publish-public-meeting-runtime.ts"), runNodeScript("scripts/generate-projects.ts"), runNodeScript("scripts/generate-accountability-graph.ts")] },
+  {
+    id: "communities",
+    description: "Publish source-backed issues, events, and community relationships, then audit the public views.",
+    commands: [
+      runNodeScript("scripts/generate-issue-hubs.ts"),
+      runNodeScript("scripts/audit-issues.ts"),
+      runNodeScript("scripts/report-issues.ts"),
+      runNodeScript("scripts/generate-nevada-community-relationships.ts"),
+      runNodeScript("scripts/report-nevada-community-coverage.ts"),
+      runNodeScript("scripts/audit-nevada-community-linkage.ts"),
+      runNodeScript("scripts/audit-event-freshness.ts"),
+      runNodeScript("scripts/audit-browse-previews.ts"),
+    ],
+  },
+  {
+    id: "freshness-audit",
+    description: "Record reprocessing and final DataOps and public-site integrity audits.",
+    commands: [
+      runNodeScript("scripts/reprocess-civic-data.ts", ["--all-cached"]),
+      runNodeScript("scripts/monitor-civic-sources.ts"),
+      runNodeScript("scripts/audit-dataops-freshness.ts"),
+      runNodeScript("scripts/nv-sos-data-quality-report.ts"),
+      runNodeScript("scripts/nv-sos-operational-status.ts"),
+      runNodeScript("scripts/audit-public-site-integrity.ts"),
+    ],
+  },
+];
+
+function selectedStages() {
+  const from = argValue("from");
+  const to = argValue("to");
+  const fromIndex = from ? stages.findIndex((stage) => stage.id === from) : 0;
+  const toIndex = to ? stages.findIndex((stage) => stage.id === to) : stages.length - 1;
+  if (fromIndex === -1) throw new Error(`Unknown --from stage: ${from}`);
+  if (toIndex === -1) throw new Error(`Unknown --to stage: ${to}`);
+  if (fromIndex > toIndex) throw new Error("--from must precede --to");
+  return stages.slice(fromIndex, toIndex + 1)
+    .filter((stage) => !meetingsOnly || !["refresh-public-data", "public-records", "refresh-civic-database"].includes(stage.id))
+    .map((stage) => meetingsOnly && stage.id === "freshness-audit" ? { ...stage, commands: stage.commands.filter((command) => !/nv-sos|audit-public-site-integrity/.test(command.join(" "))) } : stage);
+}
+
+function artifactMetrics() {
+  const retrieval = readJson<{ audit?: { totals?: Record<string, number> } }>("dataops-retrieval-run.json", {});
+  const text = readJson<{ audit?: { totals?: Record<string, number> } }>("public-meeting-document-text.json", {});
+  const ocr = readJson<{ audit?: { totals?: Record<string, number> } }>("public-meeting-ocr-results.json", {});
+  const source = readJson<{ totals?: Record<string, number> }>("public-meeting-source-completeness.json", {});
+  const votes = readJson<{ totals?: Record<string, number> }>("public-meeting-vote-extraction-audit.json", {});
+  const meetings = readJson<Array<{ meeting_date?: string | null }>>("public-meetings.json", []);
+  const issueRuntime = readJson<{ records?: Array<{ sourceBacked?: boolean }> }>("issues-runtime.json", {});
+  const sourceRegistry = readJson<{ records?: unknown[] }>("dataops-source-registry.json", {});
+  const meetingImport = readJson<{ errors?: unknown[] }>("public-meeting-ingestion-report.json", {});
+  const upcomingCoverage = readJson<{ totals?: Record<string, number> }>("upcoming-meeting-coverage-audit.json", {});
+  const statewideCoverage = readJson<{ totals?: Record<string, number> }>("nevada-jurisdiction-meeting-coverage.json", {});
+  const caseCoverage = readJson<{ totals?: Record<string, number> }>("nevada-case-coverage.json", {});
+  const adCoverage = readJson<{ totals?: Record<string, number> }>("nevada-political-ad-coverage.json", {});
+  const organizationCoverage = readJson<{ totals?: Record<string, number> }>("nevada-public-organizations.json", {});
+  const now = Date.now();
+  return {
+    registeredSourcesChecked: sourceRegistry.records?.length ?? 0,
+    upcomingMeetings: meetings.filter((meeting) => {
+      const date = Date.parse(meeting.meeting_date ?? "");
+      return Number.isFinite(date) && date >= now;
+    }).length,
+    meetingProvidersWithUpcoming: upcomingCoverage.totals?.providersWithUpcomingMeetings ?? 0,
+    requiredNevadaJurisdictions: statewideCoverage.totals?.requiredJurisdictions ?? 0,
+    configuredNevadaJurisdictions: statewideCoverage.totals?.jurisdictionsWithConfiguredSource ?? 0,
+    nevadaProvidersPendingAdvancedPass: statewideCoverage.totals?.pendingFirstAdvancedPass ?? 0,
+    meetingProvidersZeroUpcoming: upcomingCoverage.totals?.zeroUpcomingReview ?? 0,
+    meetingProviderAdapterGaps: upcomingCoverage.totals?.adapterGaps ?? 0,
+    meetingProviderSourceFailures: upcomingCoverage.totals?.sourceFailures ?? 0,
+    sourceBackedIssues: issueRuntime.records?.filter((issue) => issue.sourceBacked).length ?? 0,
+    meetingProviderFailures: meetingImport.errors?.length ?? 0,
+    documentsDownloaded: retrieval.audit?.totals?.downloaded ?? 0,
+    documentsChanged: retrieval.audit?.totals?.updatedContent ?? retrieval.audit?.totals?.changed ?? 0,
+    documentsExtracted: text.audit?.totals?.textExtracted ?? 0,
+    pagesOcrd: ocr.audit?.totals?.pagesSucceeded ?? 0,
+    ocrSucceeded: ocr.audit?.totals?.ocrSucceeded ?? 0,
+    meetingsReadyForAccountability: source.totals?.meetingsReadyForAccountability ?? 0,
+    sourceGapMeetings: source.totals?.meetingsBlockedBySourceGaps ?? 0,
+    parserGapMeetings: source.totals?.meetingsBlockedByParserGaps ?? 0,
+    parsedNamedVotes: votes.totals?.parsedNamedVotes ?? 0,
+    publishedNevadaCases: caseCoverage.totals?.publishedPublicCases ?? 0,
+    nevadaCaseSourceRoutes: caseCoverage.totals?.sourceRoutes ?? 0,
+    nevadaNinthCircuitCases: caseCoverage.totals?.federalCircuitCases ?? 0,
+    nevadaSupremeCourtCases: caseCoverage.totals?.supremeCourtCases ?? 0,
+    nevadaPoliticalAdRecords: adCoverage.totals?.repositoryRecords ?? 0,
+    nevadaEntitiesWithMatchedAds: adCoverage.totals?.entitiesWithMatchedRecords ?? 0,
+    nevadaPublicOrganizations: organizationCoverage.totals?.organizations ?? 0,
+    nevadaOrganizationCategories: organizationCoverage.totals?.categories ?? 0,
+    nevadaPoliticalPartyOrganizations: organizationCoverage.totals?.politicalPartyOrganizations ?? 0,
+    nevadaDemocraticPartyNetwork: organizationCoverage.totals?.democraticPartyNetwork ?? 0,
+    nevadaRepublicanPartyNetwork: organizationCoverage.totals?.republicanPartyNetwork ?? 0,
+    nevadaCountyPartyOrganizations: organizationCoverage.totals?.countyPartyOrganizations ?? 0,
+    nevadaPartyCaucusesAndClubs: organizationCoverage.totals?.partyCaucusesAndClubs ?? 0,
+  };
+}
+
+if (process.argv.includes("--dry-run")) {
+  console.log(JSON.stringify({ meetingsOnly, allSourceShards, stages: selectedStages() }, null, 2));
+  process.exit(0);
+}
+mkdirSync(GENERATED_DIR, { recursive: true });
+const runId = `dataops-${new Date().toISOString()}-${process.pid}`;
+if (process.argv.includes("--force")) rmSync(LOCK_PATH, { force: true });
+try {
+  writeFileSync(LOCK_PATH, `${runId}\n`, { flag: "wx" });
+} catch (error) {
+  if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new Error(`DataOps pipeline lock exists at ${LOCK_PATH}. Use --force only after confirming no run is active.`);
+  throw error;
+}
+
+const startedAt = new Date().toISOString();
+const offline = process.argv.includes("--offline") || process.env.DATAOPS_NETWORK_ENABLED === "false";
+const smoke = offline ? { available: false, reason: "offline_mode_requested" } : networkSmokeTest();
+const stageReports: Array<{ id: string; description: string; status: StageStatus; startedAt: string | null; completedAt: string | null; durationMs: number; error: string | null; commands: Array<{ command: string[]; status: "succeeded" | "failed"; error: string | null }> }> = [];
+
+try {
+  for (const stage of selectedStages()) {
+    const report = { id: stage.id, description: stage.description, status: "pending" as StageStatus, startedAt: null as string | null, completedAt: null as string | null, durationMs: 0, error: null as string | null, commands: [] as Array<{ command: string[]; status: "succeeded" | "failed"; error: string | null }> };
+    stageReports.push(report);
+    if (stage.network && !smoke.available) {
+      report.status = "skipped";
+      report.error = `network_unavailable:${smoke.reason}`;
+      continue;
+    }
+    const started = Date.now();
+    report.startedAt = new Date().toISOString();
+    report.status = "running";
+    try {
+      for (const command of stage.commands) {
+        try {
+          execFileSync(command[0], command.slice(1), { stdio: "inherit", env: process.env,
+            timeout: Number(process.env.DATAOPS_COMMAND_TIMEOUT_MS ?? 1_200_000) });
+          report.commands.push({ command, status: "succeeded", error: null });
+        } catch (error) {
+          const message = error instanceof Error ? error.message : "command_failed";
+          report.commands.push({ command, status: "failed", error: message });
+          console.error(`DataOps command failed; continuing remaining recovery work: ${command.join(" ")}`);
+        }
+      }
+      const failures = report.commands.filter((command) => command.status === "failed");
+      report.status = failures.length ? "failed" : "succeeded";
+      report.error = failures.length ? failures.map((command) => command.error).join("\n") : null;
+    } finally {
+      report.completedAt = new Date().toISOString();
+      report.durationMs = Date.now() - started;
+      writeFileSync(OUTPUT_PATH, `${JSON.stringify({ runId, startedAt, updatedAt: new Date().toISOString(), environment: { offline, networkAvailable: smoke.available, networkReason: smoke.reason, cwd: process.cwd() }, stages: stageReports, metrics: artifactMetrics() }, null, 2)}\n`);
+    }
+  }
+} finally {
+  if (existsSync(LOCK_PATH) && readFileSync(LOCK_PATH, "utf8").trim() === runId) rmSync(LOCK_PATH, { force: true });
+}
+
+const completedAt = new Date().toISOString();
+const artifact = {
+  runId,
+  startedAt,
+  completedAt,
+  canonicalRun: !isTargetedRun,
+  meetingsOnly,
+  allSourceShards,
+  environment: { offline, networkAvailable: smoke.available, networkReason: smoke.reason, cwd: process.cwd() },
+  stagesAttempted: stageReports.filter((stage) => stage.status !== "skipped").length,
+  stagesSucceeded: stageReports.filter((stage) => stage.status === "succeeded").length,
+  stagesFailed: stageReports.filter((stage) => stage.status === "failed").length,
+  stagesSkipped: stageReports.filter((stage) => stage.status === "skipped").length,
+  stages: stageReports,
+  metrics: artifactMetrics(),
+};
+writeFileSync(OUTPUT_PATH, `${JSON.stringify(artifact, null, 2)}\n`);
+console.log(`DataOps pipeline completed: ${artifact.stagesSucceeded} succeeded, ${artifact.stagesFailed} failed, ${artifact.stagesSkipped} skipped.`);
+console.log(JSON.stringify(artifact.metrics, null, 2));
+
+if (artifact.stagesFailed || (!offline && !smoke.available)) process.exit(1);

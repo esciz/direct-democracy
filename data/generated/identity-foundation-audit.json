@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-06-26T00:03:28.543Z",
+  "storage": {
+    "adapter": "local_private_json_development",
+    "path": "data/private/identity/identity-store.json",
+    "gitignored": true,
+    "productionStatus": "durable_identity_storage_unconfigured"
+  },
+  "boundaries": [
+    "Public Civic Data",
+    "User Identity Data",
+    "Verification Data",
+    "Participation Data",
+    "Aggregate Analytics",
+    "Admin Operations",
+    "GovCRM Tenant Data"
+  ],
+  "capabilities": {
+    "anonymous": [
+      "browse_public_civic_information"
+    ],
+    "public_user": [
+      "browse_public_civic_information"
+    ],
+    "citizen": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification"
+    ],
+    "verified_resident": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "vote_on_eligible_civic_questions",
+      "participate_in_eligible_civic_discussions",
+      "submit_evidence"
+    ],
+    "trustedCitizen": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "vote_on_eligible_civic_questions",
+      "participate_in_eligible_civic_discussions",
+      "submit_evidence",
+      "create_debates",
+      "comment_publicly",
+      "curate_evidence",
+      "flag_content",
+      "moderate_limited_community_spaces"
+    ],
+    "candidate": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "vote_on_eligible_civic_questions",
+      "participate_in_eligible_civic_discussions",
+      "submit_evidence",
+      "comment_publicly"
+    ],
+    "official": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "vote_on_eligible_civic_questions",
+      "participate_in_eligible_civic_discussions",
+      "submit_evidence",
+      "comment_publicly"
+    ],
+    "media": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "vote_on_eligible_civic_questions",
+      "participate_in_eligible_civic_discussions",
+      "submit_evidence",
+      "comment_publicly"
+    ],
+    "moderator": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "vote_on_eligible_civic_questions",
+      "participate_in_eligible_civic_discussions",
+      "submit_evidence",
+      "create_debates",
+      "comment_publicly",
+      "curate_evidence",
+      "flag_content",
+      "moderate_limited_community_spaces"
+    ],
+    "admin": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "vote_on_eligible_civic_questions",
+      "participate_in_eligible_civic_discussions",
+      "submit_evidence",
+      "create_debates",
+      "comment_publicly",
+      "curate_evidence",
+      "flag_content",
+      "moderate_limited_community_spaces",
+      "access_public_platform_admin_tools"
+    ],
+    "platform_admin": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "vote_on_eligible_civic_questions",
+      "participate_in_eligible_civic_discussions",
+      "submit_evidence",
+      "create_debates",
+      "comment_publicly",
+      "curate_evidence",
+      "flag_content",
+      "moderate_limited_community_spaces",
+      "access_public_platform_admin_tools"
+    ],
+    "government_admin": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "access_government_tools"
+    ],
+    "government_staff": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "access_government_tools"
+    ],
+    "government_observer": [
+      "browse_public_civic_information",
+      "manage_own_account",
+      "manage_own_profile",
+      "begin_verification",
+      "access_government_tools"
+    ]
+  },
+  "validation": {
+    "publicBrowsingOpen": true,
+    "unverifiedCannotVote": true,
+    "verifiedResidentCanVote": true,
+    "verifiedVoterCanVote": true,
+    "verifiedResidentAndVoterEqualWeight": true,
+    "trustedCitizenNoExtraVoteWeight": true,
+    "governmentIdentitySeparateFromGovCrm": true,
+    "officialScorecardsDisabled": true,
+    "duplicateVotesBlockedByUniqueConstraint": "VoteResponse @@unique([userId, questionId]) and PollVote @@unique([pollId, userId])",
+    "verificationClasses": {
+      "anonymous": "anonymous_public",
+      "unverified": "authenticated_unverified",
+      "resident": "verified_resident",
+      "voter": "verified_voter"
+    }
+  },
+  "failures": []
+}

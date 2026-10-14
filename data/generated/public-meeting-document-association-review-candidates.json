@@ -1,0 +1,28 @@
+{
+  "associations": [
+    {
+      "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2908&doc_id=8076bd7d-855a-11f1-bb61-005056a89546",
+      "sourceHash": "df2d876eb90fbc031c4bb82b70cc9beb7bdff77cf2f22d17b3f0b4f193b8b962",
+      "documentId": "meeting-source-document-375e04a3787f0f8ba7844455313450b2dec0e691ed83dc43c45f4846d61b1827",
+      "fromMeetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2",
+      "targetMeetingId": "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2"
+    }
+  ],
+  "pendingReview": [
+    {
+      "sourceUrl": "https://carsoncity.granicus.com/MinutesViewer.php?view_id=2&clip_id=2869&doc_id=dd7929f4-45a8-11f1-bb28-005056a89546",
+      "reason": "reviewed_association_displaced_unverified_minutes",
+      "documentIds": [],
+      "meetingIds": [
+        "meeting-carson-city-board-of-supervisors-9-1-1-surcharge-advisory-committee-2026-04-21-586e98a2"
+      ]
+    }
+  ],
+  "heldDerivedRecords": [],
+  "totals": {
+    "reviewedSourceUrls": 1,
+    "pendingSourceUrls": 1,
+    "movedItems": 0,
+    "heldItems": 11
+  }
+}

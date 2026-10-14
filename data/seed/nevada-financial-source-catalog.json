@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "scope": {
+    "description": "Campaign-finance and personal-financial-disclosure source policy for every Nevada candidate and current official in the application database.",
+    "entityTypes": [
+      "candidate",
+      "official"
+    ],
+    "campaignFinanceRule": "Federal campaign committees use FEC records. Nevada state and local campaign committees use Nevada Secretary of State Aurora records, with Transparency USA as a derived cross-check and aggregate adapter.",
+    "personalDisclosureRule": "Nevada nonjudicial candidates and public officers use Nevada Secretary of State financial disclosure records when filing requirements apply. Judicial candidates and officers use the Nevada Administrative Office of the Courts. Federal officeholders use their branch disclosure portal.",
+    "noDataRule": "A registered source or search route is not a financial total. Profiles without matched filings must remain source_registered or extraction_pending and must never display zero as a substitute."
+  },
+  "transparencyIdentityAliases": {
+    "Cisco Aguilar": "francisco-aguilar",
+    "Mariluz Garcia": "marialuz-garcia",
+    "PK O’Neill": "philip-oneill",
+    "Reuben D'Silva": "reuben-dsilva",
+    "Selena Torres-Fossett": "selena-torres",
+    "Skip Daly": "richard-daly",
+    "Tick Segerblom": "richard-segerblom",
+    "Zach Conine": "zachary-conine"
+  },
+  "sources": [
+    {
+      "id": "fec-open-api-nevada",
+      "name": "Federal Election Commission OpenFEC",
+      "authority": "primary",
+      "categories": [
+        "campaign_finance"
+      ],
+      "entityRules": [
+        "federal_candidate",
+        "federal_official"
+      ],
+      "url": "https://www.fec.gov/data/",
+      "apiUrl": "https://api.open.fec.gov/v1/candidates/totals/",
+      "accessMethod": "api",
+      "directCadenceDays": 1,
+      "advancedCadenceDays": 7,
+      "historyStartCycle": 2018,
+      "notes": "Official federal candidate and committee totals. Itemized receipt and disbursement expansion is sharded separately from the daily statewide totals request."
+    },
+    {
+      "id": "nevada-sos-aurora-campaign-finance",
+      "name": "Nevada Secretary of State Aurora campaign finance",
+      "authority": "primary",
+      "categories": [
+        "campaign_finance",
+        "candidate_filing"
+      ],
+      "entityRules": [
+        "state_candidate",
+        "local_candidate",
+        "state_elected_official",
+        "local_elected_official",
+        "judicial_candidate"
+      ],
+      "url": "https://www.nvsos.gov/elections/aurora-public-search",
+      "accessMethod": "browser_session",
+      "directCadenceDays": 1,
+      "advancedCadenceDays": 7,
+      "notes": "Official Nevada contribution and expense reports. The public application uses edge protection, so cached records remain usable while browser-session recovery is required for new official documents."
+    },
+    {
+      "id": "transparency-usa-nevada",
+      "name": "Transparency USA Nevada campaign finance",
+      "authority": "derived_cross_check",
+      "categories": [
+        "campaign_finance_aggregate",
+        "contributors",
+        "expenditures"
+      ],
+      "entityRules": [
+        "state_candidate",
+        "local_candidate",
+        "state_elected_official",
+        "local_elected_official"
+      ],
+      "url": "https://www.transparencyusa.org/nv/",
+      "sitemapUrl": "https://www.transparencyusa.org/sitemap-nv-candidates.xml",
+      "accessMethod": "html",
+      "directCadenceDays": 1,
+      "advancedCadenceDays": 7,
+      "historyStartCycle": 2018,
+      "notes": "Public aggregate and contributor adapter derived from Nevada filings. It is displayed as a derived source and cross-check, not substituted for the official filing authority."
+    },
+    {
+      "id": "nevada-sos-financial-disclosures",
+      "name": "Nevada Secretary of State financial disclosures",
+      "authority": "primary",
+      "categories": [
+        "personal_financial_disclosure"
+      ],
+      "entityRules": [
+        "state_nonjudicial_candidate",
+        "local_nonjudicial_candidate",
+        "state_nonjudicial_official",
+        "local_nonjudicial_official"
+      ],
+      "url": "https://www.nvsos.gov/elections/aurora-public-search",
+      "accessMethod": "browser_session",
+      "directCadenceDays": 1,
+      "advancedCadenceDays": 7,
+      "retentionYears": 6,
+      "notes": "Nevada law requires covered candidates and public officers to file electronically with the Secretary of State. Eligibility depends on office, election or appointment status, and statutory compensation thresholds."
+    },
+    {
+      "id": "nevada-aoc-judicial-financial-disclosures",
+      "name": "Nevada Administrative Office of the Courts judicial financial disclosures",
+      "authority": "primary",
+      "categories": [
+        "personal_financial_disclosure"
+      ],
+      "entityRules": [
+        "judicial_candidate",
+        "judicial_official"
+      ],
+      "url": "https://nvcourts.gov/aoc/financialdisclosures/fdsearch",
+      "accessMethod": "html_search",
+      "directCadenceDays": 1,
+      "advancedCadenceDays": 7,
+      "historyStartYear": 2013,
+      "notes": "Official public search for Nevada justices, judges, senior judges, and judicial candidates."
+    },
+    {
+      "id": "us-house-financial-disclosures",
+      "name": "U.S. House Clerk financial disclosures",
+      "authority": "primary",
+      "categories": [
+        "personal_financial_disclosure"
+      ],
+      "entityRules": [
+        "us_house_candidate",
+        "us_house_official"
+      ],
+      "url": "https://disclosures-clerk.house.gov/FinancialDisclosure",
+      "accessMethod": "html_search",
+      "directCadenceDays": 1,
+      "advancedCadenceDays": 7,
+      "notes": "Official House financial disclosure search. Candidate and member statements are separate from FEC campaign committee records."
+    },
+    {
+      "id": "us-senate-financial-disclosures",
+      "name": "U.S. Senate electronic financial disclosures",
+      "authority": "primary",
+      "categories": [
+        "personal_financial_disclosure"
+      ],
+      "entityRules": [
+        "us_senate_candidate",
+        "us_senate_official"
+      ],
+      "url": "https://efdsearch.senate.gov/search/",
+      "accessMethod": "html_search",
+      "directCadenceDays": 1,
+      "advancedCadenceDays": 7,
+      "notes": "Official Senate disclosure search. Personal disclosures are kept distinct from FEC campaign committee totals."
+    },
+    {
+      "id": "oge-public-financial-disclosures",
+      "name": "U.S. Office of Government Ethics public financial disclosures",
+      "authority": "primary",
+      "categories": [
+        "personal_financial_disclosure"
+      ],
+      "entityRules": [
+        "presidential_candidate",
+        "federal_executive_official"
+      ],
+      "url": "https://www.oge.gov/web/oge.nsf/Officials%20Individual%20Disclosures%20Search%20Collection",
+      "accessMethod": "html_search",
+      "directCadenceDays": 1,
+      "advancedCadenceDays": 7,
+      "notes": "Official executive-branch public financial disclosure collection."
+    }
+  ],
+  "verificationSources": [
+    {
+      "name": "Nevada Revised Statutes Chapter 281",
+      "url": "https://www.leg.state.nv.us/NRS/NRS-281.html",
+      "supports": "Nevada candidate and public-officer financial disclosure filing duties, contents, and retention."
+    },
+    {
+      "name": "Nevada AOC judicial financial disclosures",
+      "url": "https://nvcourts.gov/aoc/financialdisclosures/judicial_statement_of_financial_disclosures",
+      "supports": "Separate judicial disclosure filing and public search process."
+    },
+    {
+      "name": "OpenFEC API documentation",
+      "url": "https://api.open.fec.gov/developers/",
+      "supports": "Official federal campaign totals, filings, receipts, and disbursements API."
+    }
+  ]
+}

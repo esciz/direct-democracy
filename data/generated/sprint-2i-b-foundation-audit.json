@@ -1,0 +1,165 @@
+{
+  "generatedAt": "2026-06-21T06:07:14.141Z",
+  "existingPrismaArchitecture": {
+    "reusablePublicModels": [
+      "User",
+      "VoteResponse",
+      "PollVote",
+      "PublicProfile",
+      "Organization",
+      "Jurisdiction"
+    ],
+    "identityBoundaryModels": [
+      "IdentityAccount",
+      "IdentityCredential",
+      "IdentitySession",
+      "IdentityRoleGrant",
+      "IdentityPermissionGrant",
+      "IdentityToken",
+      "IdentityMfaRecoveryCode",
+      "IdentityVerificationClaim",
+      "IdentityVerificationEvent",
+      "IdentityVerificationReview",
+      "IdentityConsentRecord",
+      "IdentityProfileClaim",
+      "IdentityOrganizationAffiliation",
+      "IdentityTrustedCitizenGrant",
+      "IdentitySecurityEvent",
+      "IdentityPrivacyRequest",
+      "IdentityEvidenceMetadata",
+      "IdentityEligibilitySnapshot",
+      "IdentityJob",
+      "IdentityJobEvent"
+    ],
+    "operationBoundaryModels": [
+      "AdminOperation",
+      "AdminOperationStage",
+      "AdminOperationAuditEvent",
+      "AdminOperationLogReference"
+    ],
+    "schemaModelsPresent": {
+      "User": true,
+      "VoteResponse": true,
+      "PollVote": true,
+      "IdentityAccount": true,
+      "IdentityCredential": true,
+      "IdentitySession": true,
+      "IdentityPermissionGrant": true,
+      "IdentityMfaRecoveryCode": true,
+      "IdentityVerificationClaim": true,
+      "IdentityConsentRecord": true,
+      "IdentityTrustedCitizenGrant": true,
+      "AdminOperation": true,
+      "AdminOperationStage": true,
+      "AdminOperationAuditEvent": true,
+      "AdminOperationLogReference": true
+    },
+    "duplicateSystemCreated": false,
+    "notes": [
+      "Existing public User/profile models remain public participation/profile records.",
+      "IdentityAccount and related models hold credential, session, MFA, consent, verification, and trust security state.",
+      "AdminOperation and related models hold allowlisted operation state only, not arbitrary commands."
+    ]
+  },
+  "localMigrationSource": {
+    "source": "data/private/identity/identity-store.json",
+    "sourceCounts": {
+      "accounts": 1,
+      "sessions": 4,
+      "activeSessions": 2,
+      "permissionGrants": 23,
+      "verificationClaims": 0,
+      "consentRecords": 0,
+      "profileClaims": 0,
+      "organizationAffiliations": 0,
+      "trustedCitizenGrants": 0,
+      "securityEvents": 11,
+      "privacyRequests": 0,
+      "verificationEvidence": 0,
+      "mfaEnabledAccounts": 1,
+      "mfaRecoveryCodeHashes": 10
+    },
+    "ownerAdmin": {
+      "present": true,
+      "role": "admin",
+      "status": "active",
+      "mustChangePassword": false,
+      "mfaEnrollmentRequired": false,
+      "mfaEnabled": true,
+      "mfaEnrolled": true,
+      "recoveryCodeHashes": 10
+    },
+    "sensitiveValuesIncluded": false
+  },
+  "durableStorage": {
+    "identity": {
+      "status": "schema_error",
+      "configured": true,
+      "ready": false,
+      "missingTables": [
+        "IdentityAccount",
+        "IdentityCredential",
+        "IdentitySession",
+        "IdentityRoleGrant",
+        "IdentityPermissionGrant",
+        "IdentityToken",
+        "IdentityMfaRecoveryCode",
+        "IdentityVerificationClaim",
+        "IdentityVerificationEvent",
+        "IdentityVerificationReview",
+        "IdentityConsentRecord",
+        "IdentityProfileClaim",
+        "IdentityOrganizationAffiliation",
+        "IdentityTrustedCitizenGrant",
+        "IdentitySecurityEvent",
+        "IdentityPrivacyRequest",
+        "IdentityEvidenceMetadata",
+        "IdentityEligibilitySnapshot",
+        "IdentityJob",
+        "IdentityJobEvent"
+      ],
+      "error": "\nInvalid `prisma.$queryRawUnsafe()` invocation:\n\n\nCan't reach database server at `ep-divine-violet-afun7029-pooler.c-2.us-west-2.aws.neon.tech:5432`\n\nPlease make sure your database server is running at `ep-divine-violet-afun7029-pooler.c-2.us-west-2.aws.neon.tech:5432`."
+    },
+    "operations": {
+      "status": "schema_error",
+      "configured": true,
+      "ready": false,
+      "missingTables": [
+        "AdminOperation",
+        "AdminOperationStage",
+        "AdminOperationAuditEvent",
+        "AdminOperationLogReference"
+      ],
+      "error": "\nInvalid `prisma.$queryRawUnsafe()` invocation:\n\n\nCan't reach database server at `ep-divine-violet-afun7029-pooler.c-2.us-west-2.aws.neon.tech:5432`\n\nPlease make sure your database server is running at `ep-divine-violet-afun7029-pooler.c-2.us-west-2.aws.neon.tech:5432`."
+    },
+    "states": {
+      "identity": "prisma_identity_unconfigured",
+      "operations": "durable_operations_unconfigured",
+      "mfa": "configured"
+    }
+  },
+  "adminOperations": {
+    "localRecords": 10,
+    "activeRecords": 0,
+    "allowlistedCatalog": true,
+    "arbitraryCommandsAllowed": false,
+    "sanitizedLogsOnly": true
+  },
+  "routeAndAuthorizationBoundaries": {
+    "adminIndexRedirects": true,
+    "adminLayoutRequiresPermission": true,
+    "proxyProtectsAdmin": true,
+    "proxyProtectsAdminApi": true,
+    "profileAdminButtonServerGated": true,
+    "mfaChallengeRequiredForAdmin": true
+  },
+  "governanceBoundaries": {
+    "publicRecordsSourceBacked": true,
+    "lowConfidenceReviewGated": true,
+    "rawEvidenceExcludedFromPublicRuntime": true,
+    "sensitiveIdentityDataExcludedFromGeneratedArtifacts": true,
+    "govCrmSeparate": true,
+    "officialScorecardsDisabled": true,
+    "verifiedResidentAndVoterEqualWeightCohorts": true
+  }
+}

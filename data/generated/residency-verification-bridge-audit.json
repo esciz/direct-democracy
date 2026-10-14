@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-06-27T17:06:26.002Z",
+  "status": "residency_verification_bridge_audited",
+  "sensitiveValuesIncluded": false,
+  "totals": {
+    "activeVerifiedIdentityAccounts": 1,
+    "residencyClaims": 0,
+    "pendingManualReview": 0,
+    "verifiedResidencyClaims": 0,
+    "rejectedResidencyClaims": 0,
+    "voterClaims": 0,
+    "stakeholderAnalyticsEligibleAccounts": 0
+  },
+  "validation": {
+    "manualReviewPathAvailable": true,
+    "noAutomaticResidencyVerification": true,
+    "rawSensitiveEvidenceNotRetained": true,
+    "verifiedClaimsChangeVerificationClass": true,
+    "matchedVoterClaimsChangeVerificationClass": true,
+    "voterProviderStillNotFaked": true
+  },
+  "accounts": [
+    {
+      "userId": "identity_owner_admin",
+      "role": "admin",
+      "verificationClass": "authenticated_unverified",
+      "activeVerifiedResidencyClaims": 0,
+      "activeMatchedVoterClaims": 0,
+      "stakeholderAnalyticsEligible": false
+    }
+  ],
+  "pass": true
+}

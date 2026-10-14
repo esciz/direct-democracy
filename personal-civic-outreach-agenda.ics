@@ -1,0 +1,52 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Direct Democracy//Personal Civic Outreach//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Personal Civic Outreach
+X-WR-TIMEZONE:America/Los_Angeles
+BEGIN:VEVENT
+UID:direct-democracy-prep-20260812@personal
+DTSTAMP:20260801T000000Z
+DTSTART;TZID=America/Los_Angeles:20260812T174500
+DTEND;TZID=America/Los_Angeles:20260812T181500
+SUMMARY:Personal prep — civic outreach meetings
+DESCRIPTION:Prepare a 20-second introduction for Direct Democracy. Bring a QR code or short link. Goal: ask for conversations and beta testers, not a sales pitch. Draft two questions: what makes civic information hard to follow, and what would make a recurring voting tool useful? This is a personal planning block.
+END:VEVENT
+BEGIN:VEVENT
+UID:direct-democracy-ccsd-board-20260813@personal
+DTSTAMP:20260801T000000Z
+DTSTART;TZID=America/Los_Angeles:20260813T170000
+DTEND;TZID=America/Los_Angeles:20260813T180000
+SUMMARY:Attend — CCSD Regular Board Meeting
+LOCATION:Clark County School District, 5100 W Sahara Ave, Las Vegas, NV 89146
+DESCRIPTION:Personal civic outreach. Observe first, meet parents/educators/community members, and ask permission before sharing the beta. Official recurring schedule: second and fourth Thursday at 5:00 PM; verify the posted agenda and location before attending. Public comment requires sign-up at least 8 business hours before the meeting or in person before the agenda begins. Official source: https://www.ccsd.net/about/school-board/~board/trustees/post/ccsd-invites-families-to-community-engagement-meeting
+URL:https://www.ccsd.net/about/school-board/~board/trustees/post/ccsd-invites-families-to-community-engagement-meeting
+END:VEVENT
+BEGIN:VEVENT
+UID:direct-democracy-followup-20260814@personal
+DTSTAMP:20260801T000000Z
+DTSTART;TZID=America/Los_Angeles:20260814T090000
+DTEND;TZID=America/Los_Angeles:20260814T093000
+SUMMARY:Follow up — school-board conversations
+DESCRIPTION:Write down names and interests while fresh. Send no more than three thoughtful follow-ups. Invite only people who expressed interest to a 15-minute beta walkthrough. Record objections and feature requests without promising a roadmap.
+END:VEVENT
+BEGIN:VEVENT
+UID:direct-democracy-government-affairs-20260827@personal
+DTSTAMP:20260801T000000Z
+DTSTART;TZID=America/Los_Angeles:20260827T130000
+DTEND;TZID=America/Los_Angeles:20260827T143000
+SUMMARY:Attend — Nevada Joint Interim Government Affairs
+LOCATION:Room 165, Nevada Legislature, Las Vegas, NV
+DESCRIPTION:Personal civic outreach. This is the sixth and final meeting of the 2025-2026 Interim; the official page says the agenda is not yet available. Plan to listen for civic-information pain points, meet public-interest participants, and offer the beta only after a relevant conversation. The 1:00 PM start is official; the 2:30 PM end is a personal planning estimate. Verify agenda, room, access, and public-comment instructions before attending. Official source: https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35179
+URL:https://www.leg.state.nv.us/App/InterimCommittee/REL/Interim2025/Meeting/35179
+END:VEVENT
+BEGIN:VEVENT
+UID:direct-democracy-state-followup-20260828@personal
+DTSTAMP:20260801T000000Z
+DTSTART;TZID=America/Los_Angeles:20260828T090000
+DTEND;TZID=America/Los_Angeles:20260828T093000
+SUMMARY:Follow up — state-level civic contacts
+DESCRIPTION:Sort contacts into: potential beta tester, connector, and future conversation. Send a short thank-you and one clear beta invitation. Keep the message centered on learning how people track public decisions.
+END:VEVENT
+END:VCALENDAR

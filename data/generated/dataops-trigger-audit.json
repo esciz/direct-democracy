@@ -1,0 +1,169 @@
+{
+  "generatedAt": "2026-06-22T04:17:59.177Z",
+  "triggerClasses": {
+    "scheduled": "github_actions_dataops_daily",
+    "adminRunNow": "admin_operations_allowlisted_runner",
+    "guidedSource": "playwright_session_bootstrap_metadata_only_worker_unconfigured",
+    "manualFileAndUrl": "manual_url_import_and_manual_file_import_are_review_gated_worker_boundaries",
+    "changeEvent": "rss_and_hash_change_events_recorded_for_scoped_reprocessing",
+    "retryRecovery": "retryAdminOperation_creates_parent_linked_operation"
+  },
+  "operations": [
+    {
+      "id": "dataops_full",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "development_only"
+    },
+    {
+      "id": "dataops_offline",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "development_only"
+    },
+    {
+      "id": "document_retrieval",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "development_only"
+    },
+    {
+      "id": "cache_verification",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "development_only"
+    },
+    {
+      "id": "ocr_execution",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "development_only"
+    },
+    {
+      "id": "validation_suite",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "development_only"
+    },
+    {
+      "id": "officials_refresh",
+      "backend": "github_actions",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "officials_carson_city_refresh",
+      "backend": "github_actions",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "officials_retrieve_sources",
+      "backend": "github_actions",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "officials_reconcile_sources",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "development_only"
+    },
+    {
+      "id": "officials_import_evidence",
+      "backend": "github_actions",
+      "trigger": "manual_import",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "officials_refresh_jurisdiction",
+      "backend": "github_actions",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "officials_promote_runtime",
+      "backend": "github_actions",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "playwright_public_run",
+      "backend": "local_process",
+      "trigger": "guided",
+      "productionAvailability": "development_only"
+    },
+    {
+      "id": "playwright_session_bootstrap",
+      "backend": "production_worker",
+      "trigger": "guided",
+      "productionAvailability": "worker_unconfigured"
+    },
+    {
+      "id": "production_email_test",
+      "backend": "production_worker",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "worker_smoke_test",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "run_worker_once",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "evidence_purge",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "evidence_smoke_test",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "browser_session_smoke_test",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "backup_request",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "restore_smoke_test",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "production_trust_audit",
+      "backend": "local_process",
+      "trigger": "admin_run_now",
+      "productionAvailability": "available"
+    },
+    {
+      "id": "manual_url_import",
+      "backend": "production_worker",
+      "trigger": "manual_import",
+      "productionAvailability": "worker_unconfigured"
+    },
+    {
+      "id": "publish_runtime_artifacts",
+      "backend": "production_worker",
+      "trigger": "admin_run_now",
+      "productionAvailability": "manual_review_only"
+    }
+  ]
+}

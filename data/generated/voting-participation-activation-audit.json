@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-06-27T04:44:37.062Z",
+  "policy": {
+    "capabilityPolicyVersion": "identity-capability-policy-v1",
+    "signalPolicyVersion": "signal-segmentation-v1",
+    "minimumCohortSize": 10,
+    "hiddenWeighting": false,
+    "voteWeight": 1,
+    "oneResponsePerUserPerQuestion": true,
+    "sourceBackedQuestionsOnly": true,
+    "individualRecordsExposed": false
+  },
+  "totals": {
+    "sourceBackedQuestions": 372,
+    "reviewedSourceBackedQuestions": 372,
+    "questionsWithResponses": 0,
+    "questionsWithVerifiedResponses": 0,
+    "totalResponses": 0,
+    "verifiedResponses": 0,
+    "verifiedResidentResponses": 0,
+    "verifiedVoterResponses": 0,
+    "unverifiedResponses": 0,
+    "trustedCitizenVerifiedResponses": 0,
+    "realParticipantResponses": 0,
+    "qaFixtureResponses": 0,
+    "demoSeedResponses": 0,
+    "importedTestResponses": 0,
+    "excludedFromAnalyticsResponses": 0,
+    "excludedQaFixtureResponses": 0,
+    "excludedDemoSeedResponses": 0,
+    "excludedImportedTestResponses": 0,
+    "stakeholderPublicSegments": 0,
+    "stakeholderSuppressedSegments": 1488
+  },
+  "byScope": [
+    {
+      "scope": "state",
+      "questions": 287,
+      "totalResponses": 0,
+      "verifiedResponses": 0
+    },
+    {
+      "scope": "local",
+      "questions": 85,
+      "totalResponses": 0,
+      "verifiedResponses": 0
+    }
+  ],
+  "byJurisdiction": [
+    {
+      "jurisdictionName": "Nevada",
+      "questions": 287,
+      "totalResponses": 0,
+      "verifiedResponses": 0
+    },
+    {
+      "jurisdictionName": "Reno, Nevada",
+      "questions": 39,
+      "totalResponses": 0,
+      "verifiedResponses": 0
+    },
+    {
+      "jurisdictionName": "Washoe County, Nevada",
+      "questions": 33,
+      "totalResponses": 0,
+      "verifiedResponses": 0
+    },
+    {
+      "jurisdictionName": "Carson City",
+      "questions": 11,
+      "totalResponses": 0,
+      "verifiedResponses": 0
+    },
+    {
+      "jurisdictionName": "University of Nevada, Reno",
+      "questions": 2,
+      "totalResponses": 0,
+      "verifiedResponses": 0
+    }
+  ],
+  "validation": {
+    "votingQueueSourceBackedByDefault": true,
+    "responseMutationRequiresVerification": true,
+    "noDemoQuestionsCounted": true,
+    "noIndividualRecordsExposed": true,
+    "hiddenWeightingDisabled": true,
+    "oneVotePerQuestionEnforcedBySchema": true,
+    "stakeholderAnalyticsRefreshRequiredAfterVote": true,
+    "excludedResponsesNotCountedInAnalytics": true,
+    "demoAndQaResponsesExcludedByDefault": true
+  },
+  "readinessNotes": [
+    "Voting pages read reviewed source-backed VoteQuestion rows only.",
+    "Vote mutations require existing civic vote eligibility before a response is persisted.",
+    "The participation audit and stakeholder analytics artifacts expose counts and aggregate cohorts, not individual vote records.",
+    "Run npm run voting:participation-audit after meaningful response activity to refresh stakeholder analytics and this audit together."
+  ],
+  "pass": true,
+  "stakeholderAnalyticsGeneratedAt": "2026-06-27T04:44:36.870Z"
+}

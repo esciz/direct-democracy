@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-06-26T00:19:38.567Z",
+  "totals": {
+    "sources": 12,
+    "sourcesWithAcquisitionMode": 12,
+    "sourcesWithTriggerPath": 12,
+    "automated": 7,
+    "automatedWithFallback": 5,
+    "adminGuided": 0,
+    "manualImport": 0,
+    "blocked": 0,
+    "unknown": 0,
+    "playwrightRequired": 0
+  },
+  "unknown": []
+}

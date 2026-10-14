@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-06-21T16:27:03.005Z",
+  "ok": true,
+  "dryRun": false,
+  "wrote": true,
+  "status": "schema_ready",
+  "sourceCounts": {
+    "accounts": 1,
+    "sessions": 4,
+    "activeSessions": 2,
+    "permissionGrants": 23,
+    "verificationClaims": 0,
+    "consentRecords": 0,
+    "profileClaims": 0,
+    "organizationAffiliations": 0,
+    "trustedCitizenGrants": 0,
+    "securityEvents": 11,
+    "privacyRequests": 0,
+    "verificationEvidence": 0,
+    "mfaEnabledAccounts": 1,
+    "mfaRecoveryCodeHashes": 10
+  },
+  "targetCounts": {
+    "accounts": 1,
+    "credentials": 1,
+    "sessions": 4,
+    "roleGrants": 1,
+    "permissionGrants": 23,
+    "tokens": 0,
+    "mfaRecoveryCodes": 10,
+    "verificationClaims": 0,
+    "consentRecords": 0,
+    "profileClaims": 0,
+    "organizationAffiliations": 0,
+    "trustedCitizenGrants": 0,
+    "securityEvents": 12,
+    "privacyRequests": 0,
+    "verificationEvidence": 0
+  },
+  "migrationPlan": {
+    "accountsToCreate": 1,
+    "accountsAlreadyPresent": 0,
+    "rolesToMigrate": 1,
+    "permissionsToMigrate": 23,
+    "mfaAccountsToMigrate": 1,
+    "mfaRecoveryCodeHashesToMigrate": 10,
+    "sessionsToRecordRevokedForCutover": 4,
+    "consentRecordsToMigrate": 0,
+    "claimsToMigrate": 0,
+    "organizationAffiliationsToMigrate": 0,
+    "trustedCitizenGrantsToMigrate": 0,
+    "privacyRequestsToMigrate": 0,
+    "evidenceMetadataToMigrate": 0
+  },
+  "invalidRecords": [],
+  "conflicts": [],
+  "warnings": [],
+  "cutover": {
+    "localSessionsRecordedRevoked": 4,
+    "requiresNewLogin": true,
+    "rawSessionTokensMigrated": false
+  }
+}

@@ -1,0 +1,689 @@
+{
+  "version": 1,
+  "batch": {
+    "name": "2026 Nevada statewide executive candidate profiles",
+    "reviewedAt": "2026-07-22T00:00:00.000Z",
+    "notes": "Human-reviewed biographies and issue positions for the major-party statewide executive candidates beyond the governor race. Campaign claims are attributed to campaign sources; government biographies are used only where an official profile supports them."
+  },
+  "profiles": [
+    {
+      "key": "sandra-jauregui-2026-lieutenant-governor",
+      "candidate": {
+        "aliases": ["Jauregui, Sandra", "Sandra Jauregui"],
+        "officeContains": "Lieutenant Governor",
+        "electionYear": 2026
+      },
+      "official": {
+        "aliases": ["Sandra Jauregui", "Jauregui, Sandra"],
+        "officeContains": "Assembly District 41"
+      },
+      "profile": {
+        "bioSummary": "Sandra Jauregui is the Nevada Assembly majority floor leader for District 41. Her legislative profile says she was first elected in 2016, has served on Commerce and Labor, Legislative Operations and Elections, and Ways and Means, and works in housing and real estate.",
+        "experienceSummary": "Jauregui has served in the Nevada Assembly since 2017 and currently leads the chamber as majority floor leader. Her legislative record includes committee work on commerce, elections, budgets, education accountability, and affordable housing.",
+        "officialSource": {
+          "name": "Nevada Legislature - Sandra Jauregui",
+          "slug": "nevada-legislature-sandra-jauregui-profile",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/Current/41",
+          "homeUrl": "https://www.leg.state.nv.us/App/Legislator/A/Assembly/Current/41"
+        },
+        "campaignSource": {
+          "name": "Sandra Jauregui for Lieutenant Governor",
+          "slug": "sandra-jauregui-2026-campaign-biography",
+          "url": "https://sandrafornevada.com/my-story-1",
+          "homeUrl": "https://sandrafornevada.com/"
+        },
+        "positionSource": {
+          "name": "Sandra Jauregui - Campaign Priorities",
+          "slug": "sandra-jauregui-2026-campaign-priorities",
+          "url": "https://sandrafornevada.com/issues"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Healthcare and Prescription Costs",
+          "issueSlug": "healthcare-and-prescription-costs",
+          "stance": "SUPPORTS",
+          "summary": "Supports capping high prescription costs, expanding affordable coverage, requiring hospital price transparency, and holding pharmaceutical and insurance companies accountable.",
+          "source": "position",
+          "evidenceTitle": "Sandra Jauregui campaign priorities - health care"
+        },
+        {
+          "issueText": "Affordable Housing",
+          "issueSlug": "affordable-housing",
+          "stance": "SUPPORTS",
+          "summary": "Supports stronger renter protections, action against hidden fees and anticompetitive housing practices, faster housing development, and limits on large investment firms buying homes.",
+          "source": "position",
+          "evidenceTitle": "Sandra Jauregui campaign priorities - housing"
+        },
+        {
+          "issueText": "Gun and Community Safety",
+          "issueSlug": "gun-and-community-safety",
+          "stance": "SUPPORTS",
+          "summary": "Supports universal background checks, bans on bump stocks and ghost guns, extreme-risk protection orders, and restrictions for violent offenders and domestic abusers.",
+          "source": "position",
+          "evidenceTitle": "Sandra Jauregui campaign priorities - community safety"
+        },
+        {
+          "issueText": "Jobs and Workforce Training",
+          "issueSlug": "jobs-and-workforce-training",
+          "stance": "SUPPORTS",
+          "summary": "Supports low-water, sustainable economic development and expanded paid apprenticeships and job training through partnerships among unions, community colleges, and businesses.",
+          "source": "position",
+          "evidenceTitle": "Sandra Jauregui campaign priorities - jobs"
+        },
+        {
+          "issueText": "Reproductive Rights",
+          "issueSlug": "reproductive-rights",
+          "stance": "SUPPORTS",
+          "summary": "Supports protecting access to abortion and birth control in Nevada against federal restrictions.",
+          "source": "position",
+          "evidenceTitle": "Sandra Jauregui campaign priorities - reproductive rights"
+        }
+      ]
+    },
+    {
+      "key": "stavros-anthony-2026-lieutenant-governor",
+      "candidate": {
+        "aliases": ["Anthony, Stavros", "Stavros Anthony"],
+        "officeContains": "Lieutenant Governor",
+        "electionYear": 2026
+      },
+      "official": {
+        "aliases": ["Stavros Anthony", "Anthony, Stavros"],
+        "officeContains": "Lieutenant Governor"
+      },
+      "profile": {
+        "bioSummary": "Stavros Anthony is Nevada's lieutenant governor. His official biography describes nearly 30 years with the Las Vegas Metropolitan Police Department, two terms on the Nevada System of Higher Education Board of Regents, and three terms on the Las Vegas City Council before his 2022 statewide election.",
+        "experienceSummary": "Anthony's public service includes leadership roles in law enforcement, higher education governance, Las Vegas city government, and the lieutenant governor's office. He holds degrees from Wayne State University and UNLV and attended the FBI National Academy.",
+        "officialSource": {
+          "name": "Nevada Lieutenant Governor - Stavros Anthony",
+          "slug": "nevada-lieutenant-governor-stavros-anthony-biography",
+          "url": "https://ltgov.nv.gov/AboutUs/BiographyStavrosAnthony/",
+          "homeUrl": "https://ltgov.nv.gov/"
+        },
+        "campaignSource": {
+          "name": "Stavros Anthony for Lieutenant Governor",
+          "slug": "stavros-anthony-2026-campaign-biography",
+          "url": "https://www.stavrosfornv.com/about",
+          "homeUrl": "https://www.stavrosfornv.com/"
+        },
+        "positionSource": {
+          "name": "Stavros Anthony - Campaign Issues",
+          "slug": "stavros-anthony-2026-campaign-issues",
+          "url": "https://www.stavrosfornv.com/services"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Tourism and Outdoor Recreation",
+          "issueSlug": "tourism-and-outdoor-recreation",
+          "stance": "SUPPORTS",
+          "summary": "Supports continued tourism growth across Las Vegas, rural Nevada, state parks, and outdoor-recreation destinations.",
+          "source": "position",
+          "evidenceTitle": "Stavros Anthony campaign issues - tourism and outdoor recreation"
+        },
+        {
+          "issueText": "Economic Development",
+          "issueSlug": "economic-development",
+          "stance": "SUPPORTS",
+          "summary": "Supports attracting capital investment and businesses to create jobs and diversify Nevada's economy through the state's economic-development boards.",
+          "source": "position",
+          "evidenceTitle": "Stavros Anthony campaign issues - economic development"
+        },
+        {
+          "issueText": "Public Safety",
+          "issueSlug": "public-safety",
+          "stance": "SUPPORTS",
+          "summary": "Supports providing state and local law-enforcement agencies with resources for public safety and critical-infrastructure protection.",
+          "source": "position",
+          "evidenceTitle": "Stavros Anthony campaign issues - public safety"
+        },
+        {
+          "issueText": "Sex-Based Athletic Eligibility",
+          "issueSlug": "sex-based-athletic-eligibility",
+          "stance": "SUPPORTS",
+          "summary": "Supports sex-based eligibility restrictions for girls' and women's athletic categories and cites the lieutenant governor's task force as the vehicle for that policy.",
+          "source": "position",
+          "evidenceTitle": "Stavros Anthony campaign issues - women athletes"
+        },
+        {
+          "issueText": "Transportation and Infrastructure",
+          "issueSlug": "transportation-and-infrastructure",
+          "stance": "SUPPORTS",
+          "summary": "Supports continued transportation and infrastructure investment, connecting that work to mobility and economic growth.",
+          "source": "position",
+          "evidenceTitle": "Stavros Anthony campaign issues - infrastructure"
+        }
+      ]
+    },
+    {
+      "key": "cisco-aguilar-2026-secretary-of-state",
+      "candidate": {
+        "aliases": ["Aguilar, Francisco Cisco", "Francisco Cisco Aguilar", "Cisco Aguilar", "Francisco V. Aguilar"],
+        "officeContains": "Secretary of State",
+        "electionYear": 2026
+      },
+      "official": {
+        "aliases": ["Francisco Cisco Aguilar", "Cisco Aguilar", "Francisco V. Aguilar"],
+        "officeContains": "Secretary of State"
+      },
+      "profile": {
+        "bioSource": "campaign",
+        "bioSummary": "Cisco Aguilar is Nevada's secretary of state. His campaign biography says he previously spent 12 years as general counsel for Agassi Graf and the Andre Agassi Foundation for Education, founded a sports-technology company, chaired Cristo Rey St. Viator High School, and served on the Nevada Athletic Commission.",
+        "experienceSummary": "Aguilar's campaign highlights his current statewide office, legal and business experience, education nonprofit leadership, and eight years regulating boxing and mixed martial arts on the Nevada Athletic Commission.",
+        "officialSource": {
+          "name": "Nevada Secretary of State - Francisco V. Aguilar",
+          "slug": "nevada-secretary-of-state-francisco-aguilar-profile",
+          "url": "https://www.nvsos.gov/sos/sos-information/office-facts/about-francisco-v-aguilar",
+          "homeUrl": "https://www.nvsos.gov/"
+        },
+        "campaignSource": {
+          "name": "Cisco Aguilar for Secretary of State",
+          "slug": "cisco-aguilar-2026-campaign-biography",
+          "url": "https://cisconv.co/about/",
+          "homeUrl": "https://cisconv.co/"
+        },
+        "positionSource": {
+          "name": "Cisco Aguilar - Record and Plan",
+          "slug": "cisco-aguilar-2026-record-and-plan",
+          "url": "https://cisconv.co/record-and-plan/"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Business Licensing Modernization",
+          "issueSlug": "business-licensing-modernization",
+          "stance": "SUPPORTS",
+          "summary": "Supports modernizing Nevada's business-filing infrastructure to reduce wait times and outages and make compliance easier for small businesses.",
+          "source": "position",
+          "evidenceTitle": "Cisco Aguilar record and plan - business licensing"
+        },
+        {
+          "issueText": "Election Cybersecurity",
+          "issueSlug": "election-cybersecurity",
+          "stance": "SUPPORTS",
+          "summary": "Supports election cybersecurity investment and legal protections for election workers, including penalties for harassment and doxxing.",
+          "source": "position",
+          "evidenceTitle": "Cisco Aguilar record and plan - election integrity"
+        },
+        {
+          "issueText": "Poll Worker Recruitment",
+          "issueSlug": "poll-worker-recruitment",
+          "stance": "SUPPORTS",
+          "summary": "Supports recruiting new poll workers, including veterans and military family members through Vet the Vote.",
+          "source": "position",
+          "evidenceTitle": "Cisco Aguilar record and plan - civic engagement"
+        },
+        {
+          "issueText": "Voter Participation",
+          "issueSlug": "voter-participation",
+          "stance": "SUPPORTS",
+          "summary": "Supports programs intended to increase voter participation among Native American communities and young voters.",
+          "source": "position",
+          "evidenceTitle": "Cisco Aguilar record and plan - civic engagement"
+        }
+      ]
+    },
+    {
+      "key": "jim-marchant-2026-secretary-of-state",
+      "candidate": {
+        "aliases": ["Marchant, Jim", "Jim Marchant"],
+        "officeContains": "Secretary of State",
+        "electionYear": 2026
+      },
+      "profile": {
+        "bioSource": "campaign",
+        "bioSummary": "Jim Marchant is a technology entrepreneur and former Nevada assemblymember. His campaign biography says he founded internet and telecommunications companies, led an internet-service-provider trade association, moved to Nevada in 2005, and represented Assembly District 37 during the 2017 legislative session.",
+        "experienceSummary": "Marchant's campaign describes a career in software, internet, telecommunications, trade-association advocacy, and one term in the Nevada Assembly. He was also the Republican nominee for Nevada secretary of state in 2022.",
+        "campaignSource": {
+          "name": "Jim Marchant for Secretary of State",
+          "slug": "jim-marchant-2026-campaign-biography",
+          "url": "https://jimmarchant.com/about/",
+          "homeUrl": "https://jimmarchant.com/"
+        },
+        "positionSource": {
+          "name": "Jim Marchant - Why I Am Running",
+          "slug": "jim-marchant-2026-election-and-business-plan",
+          "url": "https://jimmarchant.com/whyiamrunning/"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Voter Identification",
+          "issueSlug": "voter-identification",
+          "stance": "SUPPORTS",
+          "summary": "Supports voter identification requirements and proof of United States citizenship to register and vote.",
+          "source": "position",
+          "evidenceTitle": "Jim Marchant election plan - voter identification"
+        },
+        {
+          "issueText": "Paper and Hand-Counted Ballots",
+          "issueSlug": "paper-and-hand-counted-ballots",
+          "stance": "SUPPORTS",
+          "summary": "Supports replacing electronic voting machines with paper ballots counted by hand at the precinct level with public observation.",
+          "source": "position",
+          "evidenceTitle": "Jim Marchant election plan - paper ballots"
+        },
+        {
+          "issueText": "Universal Mail Voting",
+          "issueSlug": "universal-mail-voting",
+          "stance": "OPPOSES",
+          "summary": "Opposes universal mail voting and supports limiting absentee ballots to specified groups such as military, overseas, traveling, elderly, and medically unable voters.",
+          "source": "position",
+          "evidenceTitle": "Jim Marchant election plan - absentee voting"
+        },
+        {
+          "issueText": "Voter Roll Administration",
+          "issueSlug": "voter-roll-administration",
+          "stance": "SUPPORTS",
+          "summary": "Supports requiring Nevada voters to re-register, leaving ERIC, and placing voter-roll maintenance under the secretary of state.",
+          "source": "position",
+          "evidenceTitle": "Jim Marchant election plan - voter rolls"
+        },
+        {
+          "issueText": "Business Registration Reform",
+          "issueSlug": "business-registration-reform",
+          "stance": "SUPPORTS",
+          "summary": "Supports reducing incorporation costs, simplifying business filings, and advocating repeal of Nevada's Commerce Tax.",
+          "source": "position",
+          "evidenceTitle": "Jim Marchant business reform plan"
+        }
+      ]
+    },
+    {
+      "key": "tya-mathis-coleman-2026-state-treasurer",
+      "candidate": {
+        "aliases": ["Mathis-Coleman, Tya", "Tya Mathis-Coleman", "Tya R. Mathis-Coleman"],
+        "officeContains": "State Treasurer",
+        "electionYear": 2026
+      },
+      "profile": {
+        "bioSource": "campaign",
+        "bioSummary": "Tya Mathis-Coleman is Nevada's deputy treasurer for college savings. Her campaign biography says she was born and raised in Nevada, graduated from Clark County schools, UNLV, and UNR, teaches part time at UNLV, and holds a doctorate in public policy.",
+        "experienceSummary": "Mathis-Coleman's campaign highlights executive work leading Nevada's College Savings Division, public-dollar oversight, strategic planning, higher-education teaching, and community board service.",
+        "campaignSource": {
+          "name": "Tya Mathis-Coleman for State Treasurer",
+          "slug": "tya-mathis-coleman-2026-campaign-biography",
+          "url": "https://votetyafornevada.com/about",
+          "homeUrl": "https://votetyafornevada.com/"
+        },
+        "positionSource": {
+          "name": "Tya Mathis-Coleman - Campaign Priorities",
+          "slug": "tya-mathis-coleman-2026-campaign-priorities",
+          "url": "https://votetyafornevada.com/priorities"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Safeguarding State Funds",
+          "issueSlug": "safeguarding-state-funds",
+          "stance": "SUPPORTS",
+          "summary": "Supports responsible investment strategies and stronger oversight intended to protect Nevada's financial stability across economic cycles.",
+          "source": "position",
+          "evidenceTitle": "Tya Mathis-Coleman plan - protect Nevada's money"
+        },
+        {
+          "issueText": "Financial Transparency",
+          "issueSlug": "financial-transparency",
+          "stance": "SUPPORTS",
+          "summary": "Supports clear public reporting, accessible financial data, and regular communication about the management of state funds.",
+          "source": "position",
+          "evidenceTitle": "Tya Mathis-Coleman plan - open and accountable government"
+        },
+        {
+          "issueText": "Education Savings",
+          "issueSlug": "education-savings",
+          "stance": "SUPPORTS",
+          "summary": "Supports expanding college-savings opportunities so families across income levels can plan for higher education.",
+          "source": "position",
+          "evidenceTitle": "Tya Mathis-Coleman plan - education savings"
+        },
+        {
+          "issueText": "Prudent State Investment",
+          "issueSlug": "prudent-state-investment",
+          "stance": "SUPPORTS",
+          "summary": "Supports evidence-based investment strategies intended to grow Nevada's resources while limiting risk.",
+          "source": "position",
+          "evidenceTitle": "Tya Mathis-Coleman plan - invest wisely"
+        },
+        {
+          "issueText": "Community-Focused Financial Policy",
+          "issueSlug": "community-focused-financial-policy",
+          "stance": "SUPPORTS",
+          "summary": "Supports weighing the needs of Nevada families and communities rather than special interests when making state financial decisions.",
+          "source": "position",
+          "evidenceTitle": "Tya Mathis-Coleman plan - communities first"
+        }
+      ]
+    },
+    {
+      "key": "drew-johnson-2026-state-treasurer",
+      "candidate": {
+        "aliases": ["Johnson, Drew", "Drew Johnson"],
+        "officeContains": "State Treasurer",
+        "electionYear": 2026
+      },
+      "profile": {
+        "bioSource": "campaign",
+        "bioSummary": "Drew Johnson is a public-policy analyst, author, and government-spending watchdog. His campaign biography says he founded a Tennessee free-market think tank, worked on tax and budget policy, earned a master's degree in public policy from Pepperdine, and has lived in Southern Nevada for nearly a decade.",
+        "experienceSummary": "Johnson's campaign describes more than 25 years in public policy, including work at taxpayer-advocacy organizations, leadership of a state-focused think tank, investigative research on government spending, and ownership of a consulting business.",
+        "campaignSource": {
+          "name": "Drew Johnson for State Treasurer",
+          "slug": "drew-johnson-2026-campaign-biography",
+          "url": "https://drewfornevada.com/meet-drew-bc/",
+          "homeUrl": "https://drewfornevada.com/"
+        },
+        "positionSource": {
+          "name": "Drew Johnson - Campaign Priorities",
+          "slug": "drew-johnson-2026-campaign-priorities",
+          "url": "https://drewfornevada.com/priorities/"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "State Credit Rating",
+          "issueSlug": "state-credit-rating",
+          "stance": "SUPPORTS",
+          "summary": "Supports strengthening Nevada's credit rating through fiscal management, transparency, and reserve protection to reduce borrowing costs.",
+          "source": "position",
+          "evidenceTitle": "Drew Johnson priorities - credit rating"
+        },
+        {
+          "issueText": "Financial Literacy",
+          "issueSlug": "financial-literacy",
+          "stance": "SUPPORTS",
+          "summary": "Supports practical financial education for young people and seniors, including fraud awareness and information about predatory lending and debt.",
+          "source": "position",
+          "evidenceTitle": "Drew Johnson priorities - financial literacy"
+        },
+        {
+          "issueText": "State Debt Refinancing",
+          "issueSlug": "state-debt-refinancing",
+          "stance": "SUPPORTS",
+          "summary": "Supports refinancing state bonds when lower interest rates could reduce long-term borrowing costs.",
+          "source": "position",
+          "evidenceTitle": "Drew Johnson priorities - refinance state bonds"
+        },
+        {
+          "issueText": "State Investment Returns",
+          "issueSlug": "state-investment-returns",
+          "stance": "SUPPORTS",
+          "summary": "Supports long-term state investment strategies intended to improve returns while limiting unnecessary risk and increasing oversight.",
+          "source": "position",
+          "evidenceTitle": "Drew Johnson priorities - maximize investment returns"
+        },
+        {
+          "issueText": "Unclaimed Property Returns",
+          "issueSlug": "unclaimed-property-returns",
+          "stance": "SUPPORTS",
+          "summary": "Supports modernizing outreach, notification, and claims systems to return more unclaimed property to its owners.",
+          "source": "position",
+          "evidenceTitle": "Drew Johnson priorities - return unclaimed dollars"
+        }
+      ]
+    },
+    {
+      "key": "michael-macdougall-2026-state-controller",
+      "candidate": {
+        "aliases": ["MacDougall, Michael", "Michael MacDougall"],
+        "officeContains": "State Controller",
+        "electionYear": 2026
+      },
+      "profile": {
+        "bioSource": "campaign",
+        "bioSummary": "Michael MacDougall is a Nevada educator and civic-engagement advocate. His campaign biography says he has lived in Nevada since 1998, graduated from Advanced Technologies Academy, earned an undergraduate degree from Allegheny College and two master's degrees, and teaches high-school social studies.",
+        "experienceSummary": "MacDougall's campaign highlights work as a high-school teacher and at the Mob Museum, along with a background in education, public service, storytelling, and civic participation.",
+        "campaignSource": {
+          "name": "Michael MacDougall for State Controller",
+          "slug": "michael-macdougall-2026-campaign-biography",
+          "url": "https://www.michaelmacdougall.com/",
+          "homeUrl": "https://www.michaelmacdougall.com/"
+        },
+        "positionSource": {
+          "name": "Michael MacDougall - Campaign Priorities",
+          "slug": "michael-macdougall-2026-campaign-priorities",
+          "url": "https://www.michaelmacdougall.com/priorities"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Annual Financial Reporting",
+          "issueSlug": "annual-financial-reporting",
+          "stance": "SUPPORTS",
+          "summary": "Supports bringing Nevada's annual financial reports current and into compliance so the public and policymakers have timely information on state finances.",
+          "source": "position",
+          "evidenceTitle": "Michael MacDougall priorities - annual report"
+        },
+        {
+          "issueText": "Public Transportation",
+          "issueSlug": "public-transportation",
+          "stance": "SUPPORTS",
+          "summary": "Supports using the controller's seat on the State Board of Transportation to improve public-transit access in every county.",
+          "source": "position",
+          "evidenceTitle": "Michael MacDougall priorities - public transit"
+        },
+        {
+          "issueText": "Collection of Unpaid State Taxes",
+          "issueSlug": "collection-of-unpaid-state-taxes",
+          "stance": "SUPPORTS",
+          "summary": "Supports reviewing outstanding state tax receivables, determining what is recoverable, and encouraging earlier payment of money owed to Nevada.",
+          "source": "position",
+          "evidenceTitle": "Michael MacDougall priorities - collecting taxes"
+        }
+      ]
+    },
+    {
+      "key": "andy-matthews-2026-state-controller",
+      "candidate": {
+        "aliases": ["Matthews, Andy", "Andy Matthews", "Andrew Matthews"],
+        "officeContains": "State Controller",
+        "electionYear": 2026
+      },
+      "official": {
+        "aliases": ["Andy Matthews", "Andrew Matthews", "Matthews, Andy"],
+        "officeContains": "State Controller"
+      },
+      "profile": {
+        "bioSummary": "Andy Matthews has served as Nevada state controller since January 2023. His official biography says he previously led the Nevada Policy Research Institute, represented Assembly District 37 from 2020 to 2022, and worked on fiscal responsibility, government transparency, and public-policy reform.",
+        "experienceSummary": "Matthews' official profile describes experience as state controller, a Nevada assemblymember, and president of a public-policy organization. He is a Boston University graduate and has lived in Nevada since 2006.",
+        "officialSource": {
+          "name": "Nevada State Controller - Andy Matthews",
+          "slug": "nevada-state-controller-andy-matthews-profile",
+          "url": "https://www.controller.nv.gov/controller-info/",
+          "homeUrl": "https://www.controller.nv.gov/"
+        },
+        "campaignSource": {
+          "name": "Andy Matthews for State Controller",
+          "slug": "andy-matthews-2026-campaign-biography",
+          "url": "https://andyfornevada.com/about-andy/",
+          "homeUrl": "https://andyfornevada.com/"
+        },
+        "positionSource": {
+          "name": "Andy Matthews - Campaign Priorities",
+          "slug": "andy-matthews-2026-campaign-priorities",
+          "url": "https://andyfornevada.com/priorities/"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "State Inspector General",
+          "issueSlug": "state-inspector-general",
+          "stance": "SUPPORTS",
+          "summary": "Supports legislation creating a Nevada inspector general with authority to conduct independent forensic audits of entities receiving state funds.",
+          "source": "position",
+          "evidenceTitle": "Andy Matthews priorities - inspector general"
+        },
+        {
+          "issueText": "Local Spending Transparency",
+          "issueSlug": "local-spending-transparency",
+          "stance": "SUPPORTS",
+          "summary": "Supports helping counties, cities, and school districts publish more accessible information about local-government spending.",
+          "source": "position",
+          "evidenceTitle": "Andy Matthews priorities - local transparency"
+        },
+        {
+          "issueText": "Timely Audits and Financial Reports",
+          "issueSlug": "timely-audits-and-financial-reports",
+          "stance": "SUPPORTS",
+          "summary": "Supports building on state reporting reforms so audit and financial information is produced more quickly and efficiently.",
+          "source": "position",
+          "evidenceTitle": "Andy Matthews priorities - faster reporting"
+        },
+        {
+          "issueText": "Fiscal Discipline",
+          "issueSlug": "fiscal-discipline",
+          "stance": "SUPPORTS",
+          "summary": "Supports continued scrutiny of state finances and describes fiscal discipline as a second-term priority.",
+          "source": "position",
+          "evidenceTitle": "Andy Matthews priorities - fiscal discipline"
+        }
+      ]
+    },
+    {
+      "key": "nicole-cannizzaro-2026-attorney-general",
+      "candidate": {
+        "aliases": ["Cannizzaro, Nicole Jeanette", "Nicole Jeanette Cannizzaro", "Nicole J. Cannizzaro", "Nicole Cannizzaro"],
+        "officeContains": "Attorney General",
+        "electionYear": 2026
+      },
+      "official": {
+        "aliases": ["Nicole J. Cannizzaro", "Nicole Cannizzaro", "Cannizzaro, Nicole Jeanette"],
+        "officeContains": "Senate District 6"
+      },
+      "profile": {
+        "bioSummary": "Nicole Cannizzaro is the majority leader of the Nevada Senate and has represented District 6 since 2016. Her legislative profile says she earned degrees from the University of Nevada, Reno and UNLV's Boyd School of Law and is affiliated with the Clark County Prosecutors' Association.",
+        "experienceSummary": "Cannizzaro has served in the Nevada Senate since 2016 and as majority leader since 2019. Her official profile documents legal education, prosecutorial affiliation, and awards for government legal work.",
+        "officialSource": {
+          "name": "Nevada Legislature - Nicole J. Cannizzaro",
+          "slug": "nevada-legislature-nicole-cannizzaro-profile",
+          "url": "https://www.leg.state.nv.us/App/Legislator/A/Senate/Current/6",
+          "homeUrl": "https://www.leg.state.nv.us/App/Legislator/A/Senate/Current/6"
+        },
+        "campaignSource": {
+          "name": "Nicole Cannizzaro for Attorney General",
+          "slug": "nicole-cannizzaro-2026-campaign-biography",
+          "url": "https://www.nicolecannizzaro.com/about-nicole",
+          "homeUrl": "https://www.nicolecannizzaro.com/"
+        },
+        "positionSource": {
+          "name": "Nicole Cannizzaro - Campaign Issues",
+          "slug": "nicole-cannizzaro-2026-campaign-issues",
+          "url": "https://www.nicolecannizzaro.com/issues"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Public Safety",
+          "issueSlug": "public-safety",
+          "stance": "SUPPORTS",
+          "summary": "Supports law-enforcement efforts against drug and human trafficking, gun violence, online child exploitation, fraud, and scams targeting Nevadans.",
+          "source": "position",
+          "evidenceTitle": "Nicole Cannizzaro issues - public safety",
+          "evidenceUrl": "https://www.nicolecannizzaro.com/community-safety"
+        },
+        {
+          "issueText": "Reproductive Rights",
+          "issueSlug": "reproductive-rights",
+          "stance": "SUPPORTS",
+          "summary": "Supports defending access to abortion, birth control, and IVF and protecting patients and providers from out-of-state prosecution or harassment for legal care.",
+          "source": "position",
+          "evidenceTitle": "Nicole Cannizzaro issues - reproductive rights",
+          "evidenceUrl": "https://www.nicolecannizzaro.com/womens-rights"
+        },
+        {
+          "issueText": "Consumer and Worker Protection",
+          "issueSlug": "consumer-and-worker-protection",
+          "stance": "SUPPORTS",
+          "summary": "Supports enforcement against corporate price abuses, wage theft, worker misclassification, housing fees, fraud, and cyber scams.",
+          "source": "position",
+          "evidenceTitle": "Nicole Cannizzaro issues - consumers and workers",
+          "evidenceUrl": "https://www.nicolecannizzaro.com/veterans-and-military-families"
+        },
+        {
+          "issueText": "Clean Energy and Environment",
+          "issueSlug": "clean-energy-and-environment",
+          "stance": "SUPPORTS",
+          "summary": "Supports action against corporate polluters, protection of public lands, clean-energy development, and enforcement related to climate-driven harms.",
+          "source": "position",
+          "evidenceTitle": "Nicole Cannizzaro issues - clean energy and environment",
+          "evidenceUrl": "https://www.nicolecannizzaro.com/schools"
+        },
+        {
+          "issueText": "Civil and Voting Rights",
+          "issueSlug": "civil-and-voting-rights",
+          "stance": "SUPPORTS",
+          "summary": "Supports using the attorney general's office to challenge illegal discrimination and defend election integrity and eligible voters' access to the ballot.",
+          "source": "position",
+          "evidenceTitle": "Nicole Cannizzaro issues - civil and voting rights",
+          "evidenceUrl": "https://www.nicolecannizzaro.com/health-care"
+        }
+      ]
+    },
+    {
+      "key": "adriana-guzman-fralick-2026-attorney-general",
+      "candidate": {
+        "aliases": ["Guzman Fralick, Adriana", "Guzmán Fralick, Adriana", "Adriana Guzman Fralick", "Adriana Guzmán Fralick"],
+        "officeContains": "Attorney General",
+        "electionYear": 2026
+      },
+      "profile": {
+        "bioSource": "campaign",
+        "bioSummary": "Adriana Guzman Fralick is an attorney, former state-agency counsel, and former Carson City chief deputy district attorney. Her campaign biography says she has also served as Carson City deputy city manager, chaired the Nevada Cannabis Compliance Board, and held roles with Nevada ethics, utilities, gaming, and education bodies.",
+        "experienceSummary": "Guzman Fralick's campaign describes legal and executive work across the Nevada Commission on Ethics, governor's office, Public Utilities Commission, Gaming Control Board and Gaming Commission, Carson City, and the Cannabis Compliance Board.",
+        "campaignSource": {
+          "name": "Adriana Guzman Fralick for Attorney General",
+          "slug": "adriana-guzman-fralick-2026-campaign-biography",
+          "url": "https://www.adrianafornevada.com/bio/",
+          "homeUrl": "https://www.adrianafornevada.com/"
+        },
+        "positionSource": {
+          "name": "Adriana Guzman Fralick - Campaign Issues",
+          "slug": "adriana-guzman-fralick-2026-campaign-issues",
+          "url": "https://www.adrianafornevada.com/issues/"
+        }
+      },
+      "positions": [
+        {
+          "issueText": "Child Exploitation",
+          "issueSlug": "child-exploitation",
+          "stance": "SUPPORTS",
+          "summary": "Supports aggressive prosecution of child trafficking and abuse, stronger prevention work with schools and law enforcement, and expanded services for victims and families.",
+          "source": "position",
+          "evidenceTitle": "Adriana Guzman Fralick issues - child exploitation"
+        },
+        {
+          "issueText": "Domestic Violence",
+          "issueSlug": "domestic-violence",
+          "stance": "SUPPORTS",
+          "summary": "Supports stronger restraining-order enforcement, prompt prosecution, expanded survivor resources, and additional training for police and prosecutors.",
+          "source": "position",
+          "evidenceTitle": "Adriana Guzman Fralick issues - domestic violence"
+        },
+        {
+          "issueText": "Criminal Sentencing",
+          "issueSlug": "criminal-sentencing",
+          "stance": "SUPPORTS",
+          "summary": "Supports rolling back provisions of Nevada's 2019 criminal-justice law and increasing penalties for violent offenders, drug traffickers, repeat offenders, and some theft offenses.",
+          "source": "position",
+          "evidenceTitle": "Adriana Guzman Fralick issues - sentencing"
+        },
+        {
+          "issueText": "Government Transparency",
+          "issueSlug": "government-transparency",
+          "stance": "SUPPORTS",
+          "summary": "Supports faster public-records responses and applying transparency and open-meeting requirements more broadly to the Legislature and state government.",
+          "source": "position",
+          "evidenceTitle": "Adriana Guzman Fralick issues - government transparency"
+        },
+        {
+          "issueText": "Election Administration",
+          "issueSlug": "election-administration",
+          "stance": "SUPPORTS",
+          "summary": "Supports same-day ballot counting, citizenship checks in voter registration, ending automatic voter registration, and ending universal mail ballots.",
+          "source": "position",
+          "evidenceTitle": "Adriana Guzman Fralick issues - elections"
+        }
+      ]
+    }
+  ]
+}

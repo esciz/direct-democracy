@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-06-27T19:17:48.425Z",
+  "sources": [
+    {
+      "providerId": "washoe_county_data_transparency",
+      "name": "Washoe County Registrar of Voters Data Transparency",
+      "registryUrl": "https://rovdatatransparencyapi.washoecounty.gov/api/datatransparency",
+      "latestRecordUrl": "https://washoeregistrarofvoters.blob.core.windows.net/rov-data-transparency/dataTransparencyPull_2026-06-27.csv",
+      "dateOfRecord": "2026-06-27T00:00:00",
+      "hashVerified": true,
+      "sourceHash": "F1D8006DEFB4F271D0B008F50B1F83853E3E5CB215B7C8DA9CB840F0DCB782A5",
+      "publishedSourceHashAvailable": true,
+      "privateRawCache": true,
+      "privateHashedIndex": true
+    },
+    {
+      "providerId": "clark_county_active_voter_file",
+      "name": "Clark County Election Department Active Voter List File",
+      "registryUrl": "https://www.clarkcountynv.gov/government/departments/elections/reports_data_maps/voter-list-data-files",
+      "latestRecordUrl": "https://elections.clarkcountynv.gov/VoterRequestsTV/COUNTY_active_TV.zip",
+      "dateOfRecord": "2026-06-25T20:53:00.000Z",
+      "hashVerified": false,
+      "sourceHash": "5FFB43D4EE88469A8AC5F3FB82D0679FD6DE5114A0513BB430CA70F027023C60",
+      "publishedSourceHashAvailable": false,
+      "privateRawCache": true,
+      "privateHashedIndex": true
+    }
+  ]
+}

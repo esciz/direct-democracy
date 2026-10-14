@@ -1,0 +1,562 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --surface-shadow: 0 28px 72px -36px rgba(2, 8, 23, 0.72);
+  --dd-bg: #050b16;
+  --dd-bg-alt: #091325;
+  --dd-panel: rgba(11, 21, 37, 0.92);
+  --dd-panel-strong: rgba(8, 16, 30, 0.98);
+  --dd-border: rgba(148, 163, 184, 0.16);
+  --dd-text: #e5eef7;
+  --dd-muted: #8ba0bd;
+  --dd-accent: #34d399;
+  --dd-accent-2: #22d3ee;
+}
+
+:root[data-theme="civic-light"] {
+  color-scheme: light;
+  --surface-shadow: 0 24px 60px -38px rgba(28, 65, 122, 0.3);
+  --dd-bg: #f8fafc;
+  --dd-bg-alt: #f1f5f9;
+  --dd-panel: #ffffff;
+  --dd-panel-strong: #ffffff;
+  --dd-border: rgba(30, 64, 175, 0.16);
+  --dd-text: #111827;
+  --dd-muted: #526176;
+  --dd-accent: #c72f45;
+  --dd-accent-2: #1f5ea8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family:
+    "Inter",
+    "SF Pro Text",
+    "SF Pro Display",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  background:
+    radial-gradient(circle at top left, rgba(45, 212, 191, 0.12), transparent 24%),
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 18%),
+    radial-gradient(circle at 50% 120%, rgba(76, 29, 149, 0.16), transparent 34%),
+    linear-gradient(180deg, var(--dd-bg) 0%, #071120 54%, var(--dd-bg) 100%);
+  color: var(--dd-text);
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html[data-theme="civic-light"] body {
+  background:
+    radial-gradient(circle at top left, rgba(199, 47, 69, 0.07), transparent 22%),
+    radial-gradient(circle at top right, rgba(31, 94, 168, 0.1), transparent 22%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 48%, #f1f5f9 100%);
+}
+
+.app-shell {
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+  padding-bottom: calc(6.5rem + env(safe-area-inset-bottom));
+}
+
+.mobile-bottom-nav {
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  padding-bottom: calc(0.25rem + env(safe-area-inset-bottom));
+}
+
+.mobile-floating-create {
+  bottom: calc(5.75rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 768px) {
+  .app-shell {
+    padding-bottom: 3rem;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(52, 211, 153, 0.2);
+}
+
+button,
+[role="button"],
+a {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+button:active,
+[role="button"]:active {
+  transform: translateY(1px);
+}
+
+@layer components {
+  .dd-panel {
+    border: 1px solid var(--dd-border);
+    background:
+      linear-gradient(165deg, rgba(13, 24, 42, 0.98), rgba(8, 16, 30, 0.95)),
+      radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 26%);
+    box-shadow: var(--surface-shadow);
+    backdrop-filter: blur(24px);
+  }
+
+  .dd-panel-muted {
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: linear-gradient(160deg, rgba(10, 19, 34, 0.9), rgba(6, 12, 24, 0.92));
+    box-shadow: 0 22px 54px -40px rgba(2, 8, 23, 0.9);
+    backdrop-filter: blur(20px);
+  }
+
+  .dd-chip {
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    background: rgba(15, 23, 42, 0.7);
+    color: #c7d2e6;
+  }
+
+  .dd-chip-accent {
+    border: 1px solid rgba(52, 211, 153, 0.22);
+    background: rgba(6, 78, 59, 0.25);
+    color: #86efac;
+  }
+
+  .dd-chip-warning {
+    border: 1px solid rgba(250, 204, 21, 0.22);
+    background: rgba(120, 53, 15, 0.28);
+    color: #fde68a;
+  }
+
+  .dd-button-primary {
+    background: linear-gradient(135deg, #34d399, #14b8a6);
+    color: #02110b;
+    box-shadow: 0 18px 40px -22px rgba(20, 184, 166, 0.75);
+  }
+
+  .dd-button-secondary {
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    background: rgba(15, 23, 42, 0.78);
+    color: #d9e4f4;
+  }
+
+  .dd-input {
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: rgba(8, 15, 28, 0.9);
+    color: #e5eef7;
+  }
+
+}
+
+html[data-theme="civic-light"] {
+  --civic-navy: #102d55;
+  --civic-blue: #1f5ea8;
+  --civic-red: #c72f45;
+  --civic-orange: #e66b24;
+  --civic-teal: #0f766e;
+}
+
+html[data-theme="civic-light"] ::selection {
+  background: rgba(230, 107, 36, 0.22);
+}
+
+html[data-theme="civic-light"] .dd-panel {
+  border-color: rgba(30, 64, 175, 0.16);
+  background:
+    radial-gradient(circle at top right, rgba(31, 94, 168, 0.045), transparent 28%),
+    #ffffff;
+}
+
+html[data-theme="civic-light"] .dd-panel-muted {
+  border-color: rgba(30, 64, 175, 0.13);
+  background: #f8fafc;
+  box-shadow: 0 20px 48px -38px rgba(28, 65, 122, 0.35);
+}
+
+html[data-theme="civic-light"] .dd-chip {
+  border-color: rgba(31, 94, 168, 0.16);
+  background: rgba(230, 238, 249, 0.9);
+  color: var(--civic-navy);
+}
+
+html[data-theme="civic-light"] .dd-chip-accent {
+  border-color: rgba(15, 118, 110, 0.24);
+  background: rgba(204, 251, 241, 0.74);
+  color: #0b5f59;
+}
+
+html[data-theme="civic-light"] .dd-chip-warning {
+  border-color: rgba(230, 107, 36, 0.24);
+  background: rgba(255, 237, 213, 0.82);
+  color: #9a4317;
+}
+
+html[data-theme="civic-light"] .dd-button-primary {
+  background: linear-gradient(135deg, var(--civic-blue), #234a87);
+  color: #ffffff;
+  box-shadow: 0 16px 34px -20px rgba(31, 94, 168, 0.62);
+}
+
+html[data-theme="civic-light"] .dd-button-primary:hover {
+  background: linear-gradient(135deg, #1b5192, var(--civic-red));
+}
+
+html[data-theme="civic-light"] .dd-button-secondary {
+  border-color: rgba(31, 94, 168, 0.18);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--civic-navy);
+}
+
+html[data-theme="civic-light"] .dd-input,
+html[data-theme="civic-light"] input,
+html[data-theme="civic-light"] textarea,
+html[data-theme="civic-light"] select {
+  border-color: rgba(31, 94, 168, 0.18) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: var(--civic-navy) !important;
+}
+
+html[data-theme="civic-light"] input::placeholder,
+html[data-theme="civic-light"] textarea::placeholder {
+  color: #8795a9;
+}
+
+html[data-theme="civic-light"] .dd-theme-choice {
+  border-color: rgba(31, 94, 168, 0.16) !important;
+  background: #ffffff !important;
+}
+
+html[data-theme="civic-light"] .dd-theme-choice-input:checked + .dd-theme-choice {
+  border-color: var(--civic-blue) !important;
+  background: #eff6ff !important;
+  box-shadow: 0 0 0 2px rgba(31, 94, 168, 0.12);
+}
+
+html[data-theme="civic-light"] .dd-nav-shell,
+html[data-theme="civic-light"] .dd-mobile-nav {
+  border-color: rgba(31, 94, 168, 0.15) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 22px 48px -34px rgba(28, 65, 122, 0.42);
+}
+
+html[data-theme="civic-light"] .dd-nav-link-active {
+  background: linear-gradient(135deg, var(--civic-blue), var(--civic-red)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 14px 28px -18px rgba(31, 94, 168, 0.62);
+}
+
+html[data-theme="civic-light"] .dd-nav-link-idle {
+  color: #425a78 !important;
+}
+
+html[data-theme="civic-light"] .dd-nav-link-idle:hover {
+  background: rgba(31, 94, 168, 0.08) !important;
+  color: var(--civic-navy) !important;
+}
+
+html[data-theme="civic-light"] .text-slate-50,
+html[data-theme="civic-light"] .text-slate-100 {
+  color: #111827 !important;
+}
+
+html[data-theme="civic-light"] .text-slate-200,
+html[data-theme="civic-light"] .text-slate-300 {
+  color: #25364d !important;
+}
+
+html[data-theme="civic-light"] .text-slate-400,
+html[data-theme="civic-light"] .text-slate-500 {
+  color: #526176 !important;
+}
+
+html[data-theme="civic-light"] .text-slate-600,
+html[data-theme="civic-light"] .text-slate-700,
+html[data-theme="civic-light"] .text-slate-800,
+html[data-theme="civic-light"] .text-slate-900,
+html[data-theme="civic-light"] .text-slate-950,
+html[data-theme="civic-light"] .text-ink {
+  color: #111827 !important;
+}
+
+html[data-theme="civic-light"] [class*="border-white/"] {
+  border-color: rgba(31, 94, 168, 0.14) !important;
+}
+
+html[data-theme="civic-light"] [class*="bg-white/"] {
+  background-color: rgba(255, 255, 255, 0.78) !important;
+}
+
+html[data-theme="civic-light"] [class*="bg-slate-950/"],
+html[data-theme="civic-light"] [class*="bg-slate-900/"],
+html[data-theme="civic-light"] [class*="bg-slate-800/"] {
+  background-color: rgba(248, 250, 252, 0.96) !important;
+}
+
+html[data-theme="civic-light"] .bg-slate-950,
+html[data-theme="civic-light"] .bg-slate-900,
+html[data-theme="civic-light"] .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+}
+
+html[data-theme="civic-light"] a.bg-slate-950,
+html[data-theme="civic-light"] button.bg-slate-950,
+html[data-theme="civic-light"] a.bg-slate-900,
+html[data-theme="civic-light"] button.bg-slate-900 {
+  background-color: var(--civic-navy) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="civic-light"] [class*="absolute"][class*="inset-0"][class*="bg-slate-950/"],
+html[data-theme="civic-light"] .dd-media-overlay {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+}
+
+html[data-theme="civic-light"] [class*="border-slate-"],
+html[data-theme="civic-light"] [class*="ring-slate-"] {
+  border-color: rgba(51, 65, 85, 0.18) !important;
+}
+
+html[data-theme="civic-light"] details,
+html[data-theme="civic-light"] dialog,
+html[data-theme="civic-light"] [role="menu"] {
+  color: #111827;
+}
+
+html[data-theme="civic-light"] .text-cyan-100,
+html[data-theme="civic-light"] .text-cyan-200,
+html[data-theme="civic-light"] .text-emerald-100,
+html[data-theme="civic-light"] .text-emerald-200 {
+  color: var(--civic-teal) !important;
+}
+
+html[data-theme="civic-light"] .text-amber-100,
+html[data-theme="civic-light"] .text-amber-200 {
+  color: #a84b18 !important;
+}
+
+/*
+ * Some feature cards predate the shared surface tokens and carry their own
+ * dark Tailwind gradients. Keep those designs in dark mode, but normalize the
+ * actual card containers when Civic daylight is active.
+ */
+html[data-theme="civic-light"] article[class*="bg-[#0"],
+html[data-theme="civic-light"] article[class*="bg-[#1"],
+html[data-theme="civic-light"] section[class*="bg-[#0"],
+html[data-theme="civic-light"] section[class*="bg-[#1"],
+html[data-theme="civic-light"] aside[class*="bg-[#0"],
+html[data-theme="civic-light"] header[class*="bg-[#0"],
+html[data-theme="civic-light"] main[class*="bg-[#0"],
+html[data-theme="civic-light"] div.min-h-screen[class*="bg-[#0"] {
+  border-color: rgba(31, 94, 168, 0.16) !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #111827 !important;
+  box-shadow: 0 22px 52px -40px rgba(28, 65, 122, 0.34) !important;
+}
+
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(165deg,rgba(12,22,39"],
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(165deg,rgba(11,21,37"],
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(165deg,rgba(19,14,28"],
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(165deg,rgba(26,15,22"],
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(160deg,rgba(11,19,33"],
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(160deg,rgba(15,23,42"],
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(145deg,rgba(15,23,42"] {
+  border-color: rgba(31, 94, 168, 0.16) !important;
+  background: #ffffff !important;
+  color: #111827 !important;
+  box-shadow: 0 22px 52px -40px rgba(28, 65, 122, 0.34) !important;
+}
+
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(160deg,rgba(6,78,59"] {
+  background: linear-gradient(160deg, #ecfdf5, #ffffff) !important;
+}
+
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(160deg,rgba(136,19,55"] {
+  background: linear-gradient(160deg, #fff1f2, #ffffff) !important;
+}
+
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(135deg,rgba(154,52,18"] {
+  background: linear-gradient(135deg, #fff7ed, #ffffff) !important;
+}
+
+html[data-theme="civic-light"] [class*="bg-[linear-gradient(145deg,rgba(22,78,99"] {
+  border-color: rgba(15, 118, 110, 0.2) !important;
+  background: #ecfeff !important;
+  color: var(--civic-teal) !important;
+}
+
+html[data-theme="civic-light"] .text-emerald-50,
+html[data-theme="civic-light"] .text-emerald-100,
+html[data-theme="civic-light"] .text-emerald-200 {
+  color: #0b6b55 !important;
+}
+
+html[data-theme="civic-light"] .text-rose-50,
+html[data-theme="civic-light"] .text-rose-100,
+html[data-theme="civic-light"] .text-rose-200 {
+  color: #a11d38 !important;
+}
+
+html[data-theme="civic-light"] .text-orange-50,
+html[data-theme="civic-light"] .text-orange-100,
+html[data-theme="civic-light"] .text-orange-200,
+html[data-theme="civic-light"] .text-amber-50 {
+  color: #9a4317 !important;
+}
+
+html[data-theme="civic-light"] .dd-root-striker-promo {
+  border-color: rgba(31, 94, 168, 0.18) !important;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(31, 94, 168, 0.1), transparent 30%),
+    radial-gradient(circle at 78% 24%, rgba(199, 47, 69, 0.08), transparent 28%),
+    linear-gradient(145deg, #ffffff, #f4f8fd) !important;
+  box-shadow: 0 28px 72px -44px rgba(31, 94, 168, 0.38) !important;
+}
+
+html[data-theme="civic-light"] .dd-root-striker-promo-cta {
+  background: linear-gradient(135deg, var(--civic-blue), var(--civic-red)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 36px -20px rgba(31, 94, 168, 0.58) !important;
+}
+
+@layer components {
+  .dd-simple-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.35rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 1.125rem;
+  }
+
+  .dd-civic-details {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.75rem;
+  }
+
+  .dd-civic-details summary {
+    display: flex;
+    cursor: pointer;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 650;
+  }
+
+  .dd-civic-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .dd-civic-details-icon {
+    display: inline-flex;
+    height: 1.5rem;
+    width: 1.5rem;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    color: #cbd5e1;
+    transition: transform 160ms ease;
+  }
+
+  .dd-civic-details[open] .dd-civic-details-icon {
+    transform: rotate(45deg);
+  }
+
+  .dd-civic-details-content {
+    margin-top: 0.75rem;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    line-height: 1.65;
+  }
+}
+
+html[data-theme="civic-light"] .dd-simple-card {
+  border-color: rgba(31, 94, 168, 0.14);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+html[data-theme="civic-light"] .dd-civic-details {
+  border-color: rgba(31, 94, 168, 0.12);
+}
+
+html[data-theme="civic-light"] .dd-civic-details summary,
+html[data-theme="civic-light"] .dd-civic-details-content {
+  color: #60728b;
+}
+
+html[data-theme="civic-light"] .dd-civic-details-icon {
+  border-color: rgba(31, 94, 168, 0.15);
+  color: #294b75;
+}
+
+/* Emergency alerts intentionally stay dark in every theme. Keep their safety copy
+   on an explicit, high-contrast palette instead of inheriting daylight text colors. */
+.dd-emergency-alert .dd-emergency-headline {
+  color: #fff7ed !important;
+}
+
+.dd-emergency-alert .dd-emergency-body {
+  color: #e7edf6 !important;
+}
+
+.dd-emergency-alert .dd-emergency-muted,
+.dd-emergency-alert .dd-emergency-details,
+.dd-emergency-alert .dd-emergency-details summary,
+.dd-emergency-alert .dd-emergency-details .dd-civic-details-content {
+  color: #cbd5e1 !important;
+}
+
+.dd-emergency-alert .dd-emergency-details strong {
+  color: #f8fafc !important;
+}
+
+.dd-emergency-alert .dd-emergency-label,
+.dd-emergency-alert .dd-emergency-link {
+  color: #fde68a !important;
+}
+
+.dd-emergency-alert .dd-emergency-chip {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  background: rgba(15, 23, 42, 0.58) !important;
+  color: #f8fafc !important;
+}
+
+.dd-emergency-alert .dd-emergency-secondary-action {
+  border-color: rgba(255, 255, 255, 0.34) !important;
+  background: #f8fafc !important;
+  color: #172033 !important;
+}
+
+.dd-emergency-alert .dd-emergency-details {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dd-emergency-alert .dd-emergency-details .dd-civic-details-icon {
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  color: #f8fafc !important;
+}

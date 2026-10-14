@@ -1,0 +1,841 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head id="ctl00_Head1"><title>
+	Clark County - Calendar
+</title><link href="CalendarControl.css" rel="stylesheet" type="text/css" /><link href="Skins/Tacoma/TabStrip.Tacoma.css" rel="Stylesheet" type="text/css" /><link href="Skins/Tacoma/AccessibilityCommons.css" rel="Stylesheet" type="text/css" />
+    <script type="text/JavaScript" src="AccessibilityFocusManagement.js"></script>
+
+
+    <style>
+        .skip-to-content {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: 100;
+            color: #0443B0;
+            padding: 10px;
+            text-decoration: none;
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        .skip-to-content:focus {
+            position: fixed;
+            left: 4px;
+            top: 4px;
+            width: auto;
+            height: auto;
+            overflow: visible;
+            outline: 2px solid #0443B0;
+        }
+    </style>
+
+    <script>
+        function focusMainContent() {
+            var mainContent = document.getElementById('mainContent');
+            if (mainContent) {
+                mainContent.setAttribute('tabindex', '-1');
+                mainContent.focus();
+            }
+        }
+    </script>
+
+    <script type="text/javascript" src="./Scripts/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript" src="CalendarControl.js" language="javascript"></script>
+    <script type="text/javascript">
+        var addthis_config = {
+            ui_cobrand: "powered by Legistar",
+            ui_header_color: "#660000",
+            ui_header_background: "#f7eecd",
+            ui_508_compliant: true,
+            data_track_clickback: true
+        }
+    </script>
+    <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#username=legistarinsite" async="async"></script>
+    <script type="text/javascript">
+        window.name = "MasterWindow";
+        var first = true;
+        var first2 = true;
+        function OpenTelerikWindow(url) {
+            var w = radopen(url, 'RadWindow1');
+            w.add_pageLoad(function () {
+                focusRadWindow(w);
+            });
+
+            if (first) {
+                //w.togglePin(); 
+                first = false;
+            }
+        }
+        function OpenTelerikWindow2(url) {
+            var w = radopen(url, 'RadWindow2')
+            if (first2) {
+                //w.togglePin(); 
+                first2 = false;
+            }
+        }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTMGN2RHVZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-TTMGN2RHVZ');
+    </script>
+    <meta name="author" content="Granicus, Inc." />
+     
+    <link href="Skins/Tacoma/Scheduler.Tacoma.css" rel="Stylesheet" type="text/css" />
+    <link href="Skins/Tacoma/General.Tacoma.css" rel="Stylesheet" type="text/css" />
+    <link href="Skins/Tacoma/TabStrip.Tacoma.css" rel="Stylesheet" type="text/css" />
+    <link href="Skins/Tacoma/Grid.Tacoma.css" rel="Stylesheet" type="text/css" />
+    <link href="Skins/Tacoma/Calendar.Tacoma.css" rel="Stylesheet" type="text/css" />
+    <link href="Skins/Tacoma/Menu.Tacoma.css" rel="Stylesheet" type="text/css" />
+    <link href="Skins/Tacoma/ComboBox.Tacoma.css" rel="Stylesheet" type="text/css" />
+    <script type="text/JavaScript" src="GridFilter.js"></script> 
+
+    <script type="text/javascript">
+        function pageLoad() {
+            var combo1 = $find("ctl00_ContentPlaceHolder1_lstYears");
+            if (combo1 != null) {
+                if (combo1.get_selectedItem()) {
+                    combo1.set_text(combo1.get_selectedItem().get_text());
+                }
+            }
+        }
+        
+    </script>
+           <script type ="text/javascript">
+               function press(e) {
+                   var code = (e.keyCode ? e.keyCode : e.which);
+                   if (code == 13) { //Enter keycode
+                       e.suppressKey = true;
+                       var ajaxManager = $find("ctl00_ContentPlaceHolder1_RadAjaxManager1");
+                    ajaxManager.ajaxRequestWithTarget('ctl00$ContentPlaceHolder1$btnSearch', '');
+                    return false;
+                }
+            }
+        </script>
+
+        <script type="text/javascript">
+            function RadDatePicker1_PopupOpening(sender, args) {
+                setTimeout(function() {
+                    var calendarElement = sender.get_calendar().get_element();
+                    if (calendarElement) {
+                        // Find the first focusable element inside the calendar
+                        var focusableElements = calendarElement.querySelectorAll('a, button, input');
+                        if (focusableElements.length > 0) {
+                            // Set focus to the first focusable element
+                            focusableElements[0].focus();
+                        }
+                    }
+                }, 0);
+            }
+        </script>
+
+    <style type="text/css">
+        #facebox #eCommentFrame {
+            display: block;
+        }
+
+         #facebox #eCommentFrame > iframe
+        {
+            height: 700px;
+            width: 800px;
+        }
+
+    </style>
+<meta name="format-detection" content="telephone=no" /><link href="/WebResource.axd?d=HkmiNSkKJcp9zYO7iQ4LQenL3JpSZe2UGKB_Pk4r5YQRuZzPsLMsZzwrSvy9lruIl5GkgwLvHWu67vwJMwKSFxUTlVdL05GtcnLDPfablFs-ZjDTV4SRhTyPSYW1NSg5lG_yG93x297US-_TNEi91A2&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=uMHMJgpmGPen0kzqrN8LWYpZovkUM17mZ-jnfMO1-mIpfJ3Mr86M6T5OMXNr2U0Pk9W3KFcYt5svpDY2wx41YtI055hyXPIDrtrd24Kg09JMsO8GiraCk1bp2kCwGMqpZqezdMXXuW0xEV6n7QuSEOHmuyo6kgwFzlOpXFFZ29M1&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=urCACUaUZeT6oPoIZXShbnlgytxq3wMs7tMUnmP4aoFvw0sx5OWFviaAe2ZbWlhhQMX8Mi0FTDYCb8Y-WNvbuSFn44BI8cOyIzL5cbvgqlL7S5R5XTCNn8Q3MetXqXHM0&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=QKX1AO1vX8ebWKfbb4eOTKZ7XgDBItWqLqM672Ig3qQ3HhlG_I-hz_SrjdyOSSXr635e3yq9ulHFcK2kM9nd4YaoR3EZIdjDueENN-Tv2S715C9DxrcbNBHvWPj-Uh8x0&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=VTwVlk6LPBUQNnEgvORazChEHtncoK7FwkRZQJcbGr2BVqdGj-iMW8n84CsnH6sQIOMorYFprF7_7AGvMwNv4z3tzIzceC4LR6sIHT6HRi6eIJjhdKwZEvy_5yWg5u7LkNe9t3Ja19e1HCM9RMXxDcgFCvouxputivbLJtwdIiw1&amp;t=639229570001538461" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=Nhf6TpUj19KZ9rhEj2xtdQWB1AE9x3dfjERCbojyAxXP6CcFUcpIuRIjIS_IzCgwDtzHlcE6eqDW_UkCZmMuD4x586LEbaG9IrmDoMtO4sXgHE8h6D9e_UqLYjifNbvG0&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=7RkMGAtaEIp2mKcOqdFCIpTlALKrRqMWBcpUfEVqZDRAcTON93eeg1VWMn9vjLDHerUGnVdJKMZP8zv8YJhqkfjFeF3AJkEqmbxWwem3_RafwQTUXWmkdAR-pgkwzOwyHrBav9bQkHGzPkQG7ZRd_Q2&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=lsHxUYuoKn-ifTgGVgyNZf3eZVw2bqdnrrfBJ8SSWF0J6XTAyGsj2XcoukzmozU2bdmLMxJ7YwvzKl3RXRh794KwnXvNcPwTMFgJz1q2H-NkU9XddzMi2rc7GFYRGxglrSKxgkmfnuvKqK1tihnG7Q2&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=b8adWYak0tImLef4A3fc9fmZpq88PWWZcxwLVtrWZKp2BO7PP9PF_59p0745Rby3QtLF_LicLMTj4G7AR48I0PL0ONUCX01bwmm8zOnnppqZvCf-34W6NP0TcnWe_y7_0EM9tl77R6bZd9QOth0LRA2&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=h0MkSn0fIoCPzk73lQFHITLxOUzqpHbb4Mdj_jWBcPZCMs2k85woCJirNq53td-eihn4AEFlAJyrbSBtG0qMnpjS0myynVz4KPuJmRCPZ8GAmiTQuvzI-ZHORVWUslJ1TMDhMJpCymUmH0-QXOyKOpFUDlZutRHXNPVpcZyOJ201&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=vsKpXOsoEwDUfVug9KOqSmMo0ZYmPmZq9pNuuInW9K8LhCVDiGx-4gStdZMuqyTrdQnKi2y2KGw-JDYkasLPmGPVTN_zZ42kaVpGhkB2gwWbSGRzM94ksIhHXxPA1yg_0&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=gGPJcKA2egeNvbDi_oMTrZQzMPZHhEQ0hmhbdFcuHMCg1mLBd2_O72dBkCkDfQ_FtyfPokWEk71-f0biNDBijcKF2cbjGOFkLqzBLNnzrv7MZm8BQmoKzeN6l0sbKF2FwrVKqiAYBc-g20wgLAmF3Q2&amp;t=639229569996495677" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
+<body id="ctl00_body1" style="margin: 0px; border: 0px;">
+    <div id="globalTooltip" class="custom-tooltip"></div>
+    <a href="#mainContent" class="skip-to-content" onclick="focusMainContent()">Skip to main content</a>
+    <form name="aspnetForm" method="post" action="./Calendar.aspx?From=01%2f01%2f2027&amp;To=12%2f31%2f2027" id="aspnetForm" style="direction:ltr;">
+<input type="hidden" name="ctl00_RadScriptManager1_TSM" id="ctl00_RadScriptManager1_TSM" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+
+<script src="/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl00_RadScriptManager1_TSM&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bSystem.Web.Extensions%2c+Version%3d4.0.0.0%2c+Culture%3dneutral%2c+PublicKeyToken%3d31bf3856ad364e35%3aen-US%3a15e07564-f3d5-441e-a01b-5763caea6096%3aea597d4b%3bTelerik.Web.UI%2c+Version%3d2020.1.114.45%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-US%3a40a36146-6362-49db-b4b5-57ab81f34dac%3ae330518b%3a16e4e7cd%3af7645509%3a24ee1bba%3a33715776%3a88144a7a%3a1e771326%3a8e6f0d33%3a1f3a7489%3aed16cbdc%3af46195d3%3ab2e06756%3a92fe8ea0%3afa31b949%3a4877f69a%3ac128760b%3a19620875%3a874f8ea2%3a490a9d4e%3abd8f85e4%3a58366029%3a6a6d718d%3a2003d0b8%3aaa288e2d%3a258f1c72%3ac8618e41%3a1a73651d%3a333f8d94" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="B66867E1" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="9H7AGN30pd8R8sWoURNErrBr9jTguL546bWbkzhTpY3xLw1iizH1ObFKkH13BbC2T1Y2Exy0a2YTkeA39lXZC1Fa+9ZgiiFP+WO8ipXZFWhsUZZV8egobF+cbGHsMmky/iU349N3eo+ISHlnTPPH3w2mKFc1JTfn3sl1wOihZtF02CTCgz4kBB5JE7DDg9zA3r4rvKq+YRbIeFVgEo7xSRgS886V6s+hOSdpaUsnb+lvfS+Mi1lMLNQCviSyHO0oye+/HW1CMC/XtMW9AcRrpmc+N3Q+262zNxaccB3KPwjBKww/aW3MdtKA/gLVv7iDiEBCuw8NueP9BxvSKjaTQmMzWt+YE8W0+p5m8fphzaOln/iXHrgdhUhy/A3YtvNN2OL7vwgrGkVBb0eSy9960nxqQ2qDvLAId/HFlWkrtRfZZXLWrWpkfXfhHaZ4SB/JQcLeU0dplOoriQNanejz8cpegj0JFOjLz+ZgaCHOshwZ0m2XzJVFSFuM0UXyCPsHwZcbglEFNXYN9lmnZYa8ukRkd+8kWJVm0MDDLW/AGucBqxCBAv5ySProZRKXZtcDuR/RoN47nFSW4NhY5Zm+0N5Pv51/wgqbW4PTIFpeqQrtEUlgAUITOlcSqUd5K3BL5uV4Zm6RRb8AE1m2QyU/EOq0jHRBOzdSfvN+4vVwxJfQrk8F3YPftLgpGBtyXR5JzhIIc83Ah6yakeqhIHPncmQn2OUJgcxTzUS49A+QzVUWI+W42eApPJ14xG0l40oQQGe6KoQIQ5ixgfYLoZESu1cEszizhDKzqleSn3rk6mzo5KAzENWmLxc0HYn8xCc3dyXVWapgsBvNJKrr/6U8qmR4oQqmWeGEl/AiMEHQ3w2/vWq7fyL8iqmsyWQho3RvquRsHQy0LZf8S/bPAyeN4HVO0u4USLSb7FWEKH6s4gz0qOUI4VPxc2bNGqARfQfGoA7xGjCv/7FODCd58QN6dQ==" />
+        
+        <div id="ctl00_divBody">
+            <div id="ctl00_divMyAccountOut" style="position: absolute; right: 5px; top: 5px;">
+                <a id="ctl00_hypSignIn" href="SignIn.aspx?ReturnUrl=TXlBY2NvdW50LmFzcHg%3d"><font face="Tahoma" color="Blue" size="2">Sign In</font></a>
+            </div>
+            
+            <div id="ctl00_divTop"><img alt="Clark County NV Logo" src="//webcontent.granicusops.com/content/clark%20county/images/clarkcountybanner.png" style="width: 100%;" />  <!-- start: Google Translate -->  <div id="google_translate_element" style="display: inline;"></div>  <script type="text/javascript">      function googleTranslateElementInit() {          new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');       }  </script>  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  <!-- end: Google Translate --> <style> #google_translate_element { 	float: right; 	padding-right: .5em;     padding-top: 5px; } </style></div>
+            
+            <div id="ctl00_divTabs">
+                <div id="ctl00_tabTop" class="RadTabStrip RadTabStrip_Default RadTabStripTop_Default RadTabStripTop"><font face="Tahoma" size="2">
+	<!-- 2020.1.114.45 --><div class="rtsLevel rtsLevel1">
+		<ul class="rtsUL"><li class="rtsLI rtsFirst"><a class="rtsLink" href="http://clark.legistar.com/"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Home</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsBefore" href="Legislation.aspx"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Search Agenda Items</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsSelected" href="Calendar.aspx"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Calendar</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsAfter" href="https://www.clarkcountynv.gov/government/board_of_county_commissioners/index.php"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Clark County Website</span></span></span></a></li><li class="rtsLI rtsLast"><a class="rtsLink" href="https://clark.granicus.com/ViewPublisher.php?view_id=17"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Other Agendas</span></span></span></a></li></ul>
+	</div><input id="ctl00_tabTop_ClientState" name="ctl00_tabTop_ClientState" type="hidden" />
+</font></div>
+            </div>
+            <div id="ctl00_divLeft">
+            </div>
+            <div id="ctl00_divHeader" style="width: 100%; height: 28px">
+                <div id="divHeaderLeft">
+                    
+                </div>
+                <div id="divHeaderRight" style="float: right; height: 16px">
+                    <input type="image" name="ctl00$ButtonRSS" id="ctl00_ButtonRSS" disabled="disabled" src="Images/RSS-Disabled.gif" alt="RSS button" border="0" />
+                    <input type="image" name="ctl00$ButtonAlerts" id="ctl00_ButtonAlerts" disabled="disabled" src="Images/Alerts-Disabled.gif" alt="Alerts button" border="0" />
+                </div>
+            </div>
+            <div id="ctl00_Div1">
+                <div id="ctl00_Div2">
+                    <main id="mainContent" role="main" tabindex="-1">
+                    <div id="ctl00_divMiddle">
+                        
+
+   <div id="globalTooltip" class="custom-tooltip"></div>
+    <div id="ctl00_ContentPlaceHolder1_RadAjaxManager1SU">
+	<span id="ctl00_ContentPlaceHolder1_RadAjaxManager1" style="display:none;"></span>
+</div>
+    <div id="ctl00_ContentPlaceHolder1_RadAjaxLoadingPanel1" style="display:none;height:75px;width:75px;">
+	
+        <img alt="Loading..." src='/WebResource.axd?d=GlPPRoa3q1QmM_XFN5If4CxfN3S-cgQzypn6SHyBpvWh8wyZ5Cm_qsz7Vq9HLR86gm168gofzhhVQd4idaTUzMIuCpSQXhldpsbKcc80H-BmChfdAao3Pq3facHVJk-jMrBOnhhYV9yZqT-SvW4bfQ2&amp;t=639229569996495677'
+            style="border: 0px;" />
+    
+</div>
+    <div id="ctl00_ContentPlaceHolder1_RadWindowManager1" style="display:none;z-index:100000;"><font face="Tahoma" size="2">
+	<div id="ctl00_ContentPlaceHolder1_RadWindowManager1_alerttemplate" style="display:none;">
+		<div class="rwDialogPopup radalert">			
+			<div class="rwDialogText">
+			{1}				
+			</div>
+			
+			<div>
+				<a  onclick="$find('{0}').close(true);"
+				class="rwPopupButton" href="javascript:void(0);">
+					<span class="rwOuterSpan">
+						<span class="rwInnerSpan">##LOC[OK]##</span>
+					</span>
+				</a>				
+			</div>
+		</div>
+		</div><div id="ctl00_ContentPlaceHolder1_RadWindowManager1_prompttemplate" style="display:none;">
+		 <div class="rwDialogPopup radprompt">			
+			    <div class="rwDialogText">
+			    {1}				
+			    </div>		
+			    <div>
+				    <script type="text/javascript">
+				    function RadWindowprompt_detectenter(id, ev, input)
+				    {							
+					    if (!ev) ev = window.event;                
+					    if (ev.keyCode == 13)
+					    {															        
+					        var but = input.parentNode.parentNode.getElementsByTagName("A")[0];					        
+					        if (but)
+						    {							
+							    if (but.click) but.click();
+							    else if (but.onclick)
+							    {
+							        but.focus(); var click = but.onclick; but.onclick = null; if (click) click.call(but);							 
+							    }
+						    }
+					       return false;
+					    } 
+					    else return true;
+				    }	 
+				    </script>
+				    <input title="Enter Value" onkeydown="return RadWindowprompt_detectenter('{0}', event, this);" type="text"  class="rwDialogInput" value="{2}" />
+			    </div>
+			    <div>
+				    <a onclick="$find('{0}').close(this.parentNode.parentNode.getElementsByTagName('input')[0].value);"				
+					    class="rwPopupButton" href="javascript:void(0);" ><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+				    <a onclick="$find('{0}').close(null);" class="rwPopupButton"  href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+			    </div>
+		    </div>				       
+		</div><div id="ctl00_ContentPlaceHolder1_RadWindowManager1_confirmtemplate" style="display:none;">
+		<div class="rwDialogPopup radconfirm">			
+			<div class="rwDialogText">
+			{1}				
+			</div>						
+			<div>
+				<a onclick="$find('{0}').close(true);"  class="rwPopupButton" href="javascript:void(0);" ><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+				<a onclick="$find('{0}').close(false);" class="rwPopupButton"  href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+			</div>
+		</div>		
+		</div><input id="ctl00_ContentPlaceHolder1_RadWindowManager1_ClientState" name="ctl00_ContentPlaceHolder1_RadWindowManager1_ClientState" type="hidden" />
+</font></div>
+    
+    <!-- govDelivery Signup Form -->    
+    <h1 class="sr-only">Meeting Calendar</h1>
+    <div id="mainContent">
+                 
+    </div>         
+
+    <!-- Upcoming Meetings -->
+    <div id="ctl00_ContentPlaceHolder1_divUpcomingMeetings" style="width: 100%;">
+        <table id="ctl00_ContentPlaceHolder1_tblUpcomingMeetings" border="0" cellpadding="2" cellspacing="2" width="100%">
+	<tr>
+		<td>
+                    <span id="ctl00_ContentPlaceHolder1_lblUpcomingMeetings"><b><font face="Tahoma" color="Black" size="3">Upcoming Meetings</font></b></span>
+                </td>
+	</tr>
+</table>
+
+
+        <div id="ctl00_ContentPlaceHolder1_gridUpcomingMeetings" class="RadGrid RadGrid_Default" style="font-family:Tahoma;font-size:10pt;width:99.5%;">
+
+<table class="rgMasterTable" border="0" id="ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ctl00" frame="void" width="100%" style="table-layout:auto;empty-cells:show;">
+	<colgroup>
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+	</colgroup>
+<thead>
+		<tr>
+			<th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><a onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ctl00&#39;), &#39;BodyName&#39;); return false;" title="Click here to sort" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridUpcomingMeetings$ctl00$ctl02$ctl01$ctl00&#39;,&#39;&#39;)">Name</a></th><th scope="col" class="rgHeader rgSorted" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><a onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ctl00&#39;), &#39;MeetingStartDate&#39;); return false;" title="Click here to sort" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridUpcomingMeetings$ctl00$ctl02$ctl01$ctl01&#39;,&#39;&#39;)">Meeting Date</a></th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><img title="Export to Calendar" src="Images/ical.gif" alt="Export to Calendar" border="0" /></th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><a onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ctl00&#39;), &#39;MeetingTime2&#39;); return false;" title="Click here to sort" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridUpcomingMeetings$ctl00$ctl02$ctl01$ctl06&#39;,&#39;&#39;)">Meeting Time</a></th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><a onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ctl00&#39;), &#39;MeetingLocation&#39;); return false;" title="Click here to sort" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridUpcomingMeetings$ctl00$ctl02$ctl01$ctl07&#39;,&#39;&#39;)">Meeting Note</a></th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Meeting Details</th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Final Action</th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Agenda</th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Accessible Agenda</th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Agenda Packet</th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Minutes</th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Accessible Minutes</th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Video/Audio</th>
+		</tr>
+	</thead><tbody>
+	<tr class="rgNoRecords">
+		<td colspan="13" style="text-align:left;"><div>No records to display.</div></td>
+	</tr>
+	</tbody>
+
+</table><div id="ctl00_ContentPlaceHolder1_gridUpcomingMeetings_SharedCalendarContainer" style="display:none;">
+
+</div><input id="ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ClientState" name="ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ClientState" type="hidden" />	</div>
+
+
+        <table id="ctl00_ContentPlaceHolder1_tblAllMeetings" border="0" cellpadding="2" cellspacing="2" width="100%">
+	<tr>
+		<td><br /></td>
+	</tr>
+	<tr>
+		<td>
+                    <span id="ctl00_ContentPlaceHolder1_lblAllMeetings"><b><font face="Tahoma" color="Black" size="3">All Meetings</font></b></span>
+                </td>
+	</tr>
+</table>
+
+   </div>
+   <!-- Upcoming Meetings -->
+
+     
+
+    <div id="ctl00_ContentPlaceHolder1_MultiPageCalendar" class="RadMultiPage RadMultiPage_Default">
+	<div id="ctl00_ContentPlaceHolder1_pageGrid" class="rmpView">
+		
+            <div id="ctl00_ContentPlaceHolder1_panMain">
+			
+                <table id="ctl00_ContentPlaceHolder1_Calendar1" width="100%" cellpadding="2" cellspacing="2" border="0" style="margin-top: 10px;">
+				<tr align="left">
+					<td style="width: 50px;">
+                            <span id="ctl00_ContentPlaceHolder1_lblSearch"><font face="Tahoma" color="Navy" size="2">Search:</font></span>
+                        </td>
+					<td id="ctl00_ContentPlaceHolder1_tdSearch" style="width: 175px;" width="175">
+                            <input name="ctl00$ContentPlaceHolder1$txtSearch" type="text" maxlength="1000" id="ctl00_ContentPlaceHolder1_txtSearch" title="Search Text Box" data-tooltip="Search Text Box" alt="Search" onkeypress="return press(event)" />
+                        </td>
+					<td id="ctl00_ContentPlaceHolder1_tdYears" style="width: 175px;" width="175">
+                            <div id="ctl00_ContentPlaceHolder1_lstYears" class="RadComboBox RadComboBox_Default" data-tooltip="Date Range Dropdown List" alt="Years"><font face="Tahoma" size="2">
+						<table summary="combobox" border="0" style="border-width:0;border-collapse:collapse;width:100%">
+							<tr class="rcbReadOnly">
+								<td class="rcbInputCell rcbInputCellLeft" style="width:100%;"><input name="ctl00$ContentPlaceHolder1$lstYears" type="text" class="rcbInput radPreventDecorate" id="ctl00_ContentPlaceHolder1_lstYears_Input" value="This Month" readonly="readonly" title="Date Range Dropdown List" style="font-family:Tahoma;font-size:10pt;" /></td><td class="rcbArrowCell rcbArrowCellRight"><a id="ctl00_ContentPlaceHolder1_lstYears_Arrow" style="overflow: hidden;display: block;position: relative;outline: none;">select</a></td>
+							</tr>
+						</table><div class="rcbSlide" style="z-index:10000;display:none;"><div id="ctl00_ContentPlaceHolder1_lstYears_DropDown" class="RadComboBoxDropDown RadComboBoxDropDown_Default "><div class="rcbScroll rcbWidth"><ul class="rcbList"><li class="rcbItem">All Years</li><li class="rcbItem">2026</li><li class="rcbItem">2025</li><li class="rcbItem">2024</li><li class="rcbItem">2023</li><li class="rcbItem">2022</li><li class="rcbItem">2021</li><li class="rcbItem">2020</li><li class="rcbItem">2019</li><li class="rcbItem">2018</li><li class="rcbItem">2017</li><li class="rcbItem">2016</li><li class="rcbItem">2015</li><li class="rcbItem">2014</li><li class="rcbItem">2013</li><li class="rcbItem">2012</li><li class="rcbItem">2011</li><li class="rcbItem">2010</li><li class="rcbItem">Last Year</li><li class="rcbItem">Last Month</li><li class="rcbItem">Last Week</li><li class="rcbItem">This Year</li><li class="rcbItem">This Month</li><li class="rcbItem">This Week</li><li class="rcbItem">Today</li><li class="rcbItem">Next Week</li><li class="rcbItem">Next Month</li><li class="rcbItem">Next Year</li></ul></div></div></div><input id="ctl00_ContentPlaceHolder1_lstYears_ClientState" name="ctl00_ContentPlaceHolder1_lstYears_ClientState" type="hidden" />
+					</font></div>
+                        </td>
+					<td id="ctl00_ContentPlaceHolder1_tdBodies" style="width: 305px;" width="305">
+                            <div id="ctl00_ContentPlaceHolder1_lstBodies" class="RadComboBox RadComboBox_Default" data-tooltip="Departments Dropdown List"><font face="Tahoma" size="2">
+						<table summary="combobox" border="0" style="border-width:0;border-collapse:collapse;width:100%">
+							<tr class="rcbReadOnly">
+								<td class="rcbInputCell rcbInputCellLeft" style="width:100%;"><input name="ctl00$ContentPlaceHolder1$lstBodies" type="text" class="rcbInput radPreventDecorate" id="ctl00_ContentPlaceHolder1_lstBodies_Input" value="All Boards and Commissions" readonly="readonly" title="Departments Dropdown List" style="font-family:Tahoma;font-size:10pt;" /></td><td class="rcbArrowCell rcbArrowCellRight"><a id="ctl00_ContentPlaceHolder1_lstBodies_Arrow" style="overflow: hidden;display: block;position: relative;outline: none;">select</a></td>
+							</tr>
+						</table><div class="rcbSlide" style="z-index:10000;display:none;"><div id="ctl00_ContentPlaceHolder1_lstBodies_DropDown" class="RadComboBoxDropDown RadComboBoxDropDown_Default "><div class="rcbScroll rcbWidth"><ul class="rcbList"><li class="rcbItem">All Boards and Commissions</li><li class="rcbItem">Clark County Board of Commissioners</li><li class="rcbItem">Clark County Planning Commission</li><li class="rcbItem">Clark County Planning Commission Briefing</li><li class="rcbItem">Clark County Redevelopment Agency</li><li class="rcbItem">Clark County Zoning Commission </li><li class="rcbItem">Debt Management Commission</li><li class="rcbItem">Emergency Meeting</li><li class="rcbItem">Police Fatality Public Fact-finding Review</li><li class="rcbItem">Special Meeting</li><li class="rcbItem">Zoning Workshop</li></ul></div></div></div><input id="ctl00_ContentPlaceHolder1_lstBodies_ClientState" name="ctl00_ContentPlaceHolder1_lstBodies_ClientState" type="hidden" />
+					</font></div>
+                        </td>
+					<td id="ctl00_ContentPlaceHolder1_tdOptions" style="width: 245px;">
+                            <span id="ctl00_ContentPlaceHolder1_chkOptions" title="basic info=name, date, time, location, comments; notes=agenda notes, minutes (action) notes; captions=closed caption for videos based on year; searching captions for ALL Years is not allowed." data-tooltip="basic info=name, date, time, location, comments; notes=agenda notes, minutes (action) notes; captions=closed caption for videos based on year; searching captions for ALL Years is not allowed." style="display:inline-block;"><font face="Tahoma" color="#626262" size="1"><input id="ctl00_ContentPlaceHolder1_chkOptions_0" type="checkbox" name="ctl00$ContentPlaceHolder1$chkOptions$0" /><label for="ctl00_ContentPlaceHolder1_chkOptions_0">notes</label><input id="ctl00_ContentPlaceHolder1_chkOptions_1" type="checkbox" name="ctl00$ContentPlaceHolder1$chkOptions$1" /><label for="ctl00_ContentPlaceHolder1_chkOptions_1">closed captions</label></font></span>
+                        </td>
+					<td>&nbsp;
+                        </td>
+				</tr>
+				<tr>
+					<td colspan="6">
+                            
+                        </td>
+				</tr>
+			</table>
+			
+                <table id="ctl00_ContentPlaceHolder1_Calendar2" border="0" cellpadding="4" cellspacing="4" width="100%">
+				<tr>
+					<td>
+                            <input type="submit" name="ctl00$ContentPlaceHolder1$btnSearch" value="Search Calendar" id="ctl00_ContentPlaceHolder1_btnSearch" />
+                            <a id="ctl00_ContentPlaceHolder1_hypHelp" title="Help Link" data-tooltip="Help Link" href="Help.aspx?M=C" target="_blank"><font face="Tahoma" color="#626262" size="2">Help</font></a>
+                        </td>
+				</tr>
+			</table>
+			
+                
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td>
+                            <div tabindex="0" id="ctl00_ContentPlaceHolder1_menuCalendar" class="RadMenu RadMenu_Default" role="menubar" style="z-index:3500;"><font face="Tahoma" size="2">
+				<ul class="rmRootGroup rmHorizontal">
+					<li class="rmItem rmFirst"><a class="rmLink rmRootLink rmDisabled" href="#"><font color="Black"><span class="rmText">6 records</span></font></a></li><li class="rmItem "><a class="rmLink rmRootLink group-menu-item" ID="menuItemDropdown" href="#"><span class="rmText">Group</span></a><div class="rmSlide">
+						<ul class="rmVertical rmGroup rmLevel1">
+							<li class="rmItem rmFirst"><a class="rmLink" href="#"><span class="rmText">Clear sorting</span></a></li><li class="rmItem "><a class="rmLink" href="#"><span class="rmText">Clear grouping</span></a></li><li class="rmItem "><a class="rmLink" href="#"><span class="rmText">Group by Name</span></a></li><li class="rmItem "><a class="rmLink" href="#"><span class="rmText">Group by Meeting Date</span></a></li><li class="rmItem "><a class="rmLink" href="#"><span class="rmText">Group by Meeting Date (Month)</span></a></li><li class="rmItem "><a class="rmLink" href="#"><span class="rmText">Group by Meeting Date (Year)</span></a></li><li class="rmItem rmLast"><a class="rmLink" href="#"><span class="rmText">Group by Meeting Note</span></a></li>
+						</ul>
+					</div></li><li class="rmItem rmLast"><a class="rmLink rmRootLink export-menu-item" href="#"><span class="rmText">Export</span></a><div class="rmSlide">
+						<ul class="rmVertical rmGroup rmLevel1">
+							<li class="rmItem rmFirst"><a class="rmLink" href="#"><span class="rmText">Export to Excel</span></a></li><li class="rmItem "><a class="rmLink" href="#"><span class="rmText">Export to PDF</span></a></li><li class="rmItem rmLast"><a class="rmLink" href="#"><span class="rmText">Export to Word</span></a></li>
+						</ul>
+					</div></li>
+				</ul><input id="ctl00_ContentPlaceHolder1_menuCalendar_ClientState" name="ctl00_ContentPlaceHolder1_menuCalendar_ClientState" type="hidden" />
+			</font></div>
+                        </td>
+                    </tr>
+                </table>
+                <!--PAGEWATCH CODE=""-->
+                <div id="ctl00_ContentPlaceHolder1_divGrid" style="width: 100%;">
+                    <div class="RadAjaxPanel" id="ctl00_ContentPlaceHolder1_ctl00_ContentPlaceHolder1_gridCalendarPanel">
+				<div id="ctl00_ContentPlaceHolder1_gridCalendar" class="RadGrid RadGrid_Default" style="font-family:Tahoma;font-size:10pt;width:99.5%;">
+
+				<table class="rgMasterTable" border="0" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00" frame="void" width="100%" style="table-layout:auto;empty-cells:show;">
+					<colgroup>
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+		<col  />
+	</colgroup>
+<thead>
+						<tr>
+							<th scope="col" class="rgHeader" valign="middle" abbr="200px" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><a onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;BodyName&#39;); return false;" title="Click here to sort" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl04&#39;,&#39;&#39;)">Name</a><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl05" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;BodyName&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl05&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__BodyName__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl06" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;BodyName&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl06&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__BodyName__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader rgSorted" valign="middle" abbr="65px" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><a onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingStartDate&#39;); return false;" title="Click here to sort" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl07&#39;,&#39;&#39;)">Meeting Date</a>&nbsp;<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl08" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingStartDate&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl08&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl09" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingStartDate&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl09&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__MeetingDate__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl10" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingStartDate&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl10&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__MeetingDate__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="0px" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><img title="Export to Calendar" src="Images/ical.gif" alt="Export to Calendar" border="0" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl12" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl12&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__ExportToCalendar__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl13" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl13&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__ExportToCalendar__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="85px" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><a onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingTime2&#39;); return false;" title="Click here to sort" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl24&#39;,&#39;&#39;)">Meeting Time</a><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl25" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingTime2&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl25&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__MeetingTime__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl26" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingTime2&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl26&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__MeetingTime__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;"><a onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingLocation&#39;); return false;" title="Click here to sort" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl27&#39;,&#39;&#39;)">Meeting Note</a><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl28" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingLocation&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl28&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__MeetingLocation__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl29" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;MeetingLocation&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl29&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__MeetingLocation__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="0px" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Meeting Details<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl39" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl39&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__MeetingDetails__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl40" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl40&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__MeetingDetails__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Final Action<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl41" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl41&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__Extra1__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl42" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl42&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__Extra1__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="0px" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Agenda<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl43" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl43&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__Agenda__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl44" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl44&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__Agenda__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="0px" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Accessible Agenda<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl45" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl45&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__AccessibleAgendaHTML__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl46" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl46&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__AccessibleAgendaHTML__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="0px" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Agenda Packet<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl47" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl47&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__AgendaPacket__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl48" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl48&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__AgendaPacket__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="0px" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Minutes<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl49" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl49&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__Minutes__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl50" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl50&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__Minutes__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="0px" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Accessible Minutes<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl51" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl51&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__AccessibleMinutesHTML__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl52" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl52&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__AccessibleMinutesHTML__SortDesc" style="display:none;" /></th><th scope="col" class="rgHeader" valign="middle" abbr="0px" nowrap="nowrap" style="text-align:left;vertical-align:middle;">Video/Audio<input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl57" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl57&#39;,&#39;&#39;)" title="Sorted asc" class="rgSortAsc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__Video__SortAsc" style="display:none;" /><input type="button" name="ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl58" value=" " onclick="Telerik.Web.UI.Grid.Sort($find(&#39;ctl00_ContentPlaceHolder1_gridCalendar_ctl00&#39;), &#39;&#39;); return false;__doPostBack(&#39;ctl00$ContentPlaceHolder1$gridCalendar$ctl00$ctl02$ctl01$ctl58&#39;,&#39;&#39;)" title="Sorted desc" class="rgSortDesc" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__Video__SortDesc" style="display:none;" /></th>
+						</tr>
+					</thead><tbody>
+					<tr class="rgRow" valign="top" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__0">
+						<td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypBody"><font face="Tahoma" color="Black" size="2">Police Fatality Public Fact-finding Review</font></a>
+                                    </font></td><td class="rgSorted"><font face="Tahoma" size="2">9/3/2026</font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypiCal" href="View.ashx?M=IC&amp;ID=1440223&amp;GUID=2F7123AB-D090-417A-92DE-2C902913E162"><font face="Tahoma" color="Blue" size="2"><img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_btnExportToCalendar1" CommandName="Export" src="Images/ical.gif" alt="Export to iCalendar" border="0" /></font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_lblTime"><font face="Tahoma" color="Black" size="2">2:00 PM</font></span>
+                                    </font></td><td><font face="Tahoma" size="2">&nbsp;</font></td><td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypMeetingDetail" href="MeetingDetail.aspx?ID=1440223&amp;GUID=2F7123AB-D090-417A-92DE-2C902913E162&amp;Options=info|&amp;Search="><font face="Tahoma" color="Blue" size="2">Meeting&nbsp;details</font></a>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypExtra1" class="extraFileNotAvailableLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_imgAgenda" src="Images/PDF.gif" alt="News Release" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypAgenda" href="View.ashx?M=A&amp;ID=1440223&amp;GUID=2F7123AB-D090-417A-92DE-2C902913E162" target="_blank"><font face="Tahoma" color="Blue" size="2">News Release</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypAccessibleAgendaHTML" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypAgendaPacket" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypMinutes" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypAccessibleMinutesHTML" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_imgVideo" src="Images/Video.gif" alt="Video/Audio" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl04_hypVideo" data-event-id="93a87127-d0a7-4600-8ec0-c293ce17569a" data-running-text="In&amp;nbsp;progress" class="videolink" onclick="window.open(&#39;Video.aspx?Mode=Granicus&amp;ID1=8156&amp;Mode2=Video&#39;,&#39;video&#39;);return false;" href="#"><font face="Tahoma" color="Blue" size="2">Video/Audio</font></a>
+                                        </span>
+                                    </font></td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__1">
+						<td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypBody"><font face="Tahoma" color="Black" size="2">Debt Management Commission</font></a>
+                                    </font></td><td class="rgSorted"><font face="Tahoma" size="2">9/3/2026</font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypiCal" href="View.ashx?M=IC&amp;ID=1440222&amp;GUID=20E97FD6-54A8-45E9-83B7-2A71459859F7"><font face="Tahoma" color="Blue" size="2"><img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_btnExportToCalendar1" CommandName="Export" src="Images/ical.gif" alt="Export to iCalendar" border="0" /></font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_lblTime"><font face="Tahoma" color="Black" size="2">9:00 AM</font></span>
+                                    </font></td><td><font face="Tahoma" size="2">&nbsp;</font></td><td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypMeetingDetail" href="MeetingDetail.aspx?ID=1440222&amp;GUID=20E97FD6-54A8-45E9-83B7-2A71459859F7&amp;Options=info|&amp;Search="><font face="Tahoma" color="Blue" size="2">Meeting&nbsp;details</font></a>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypExtra1" class="extraFileNotAvailableLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_imgAgenda" src="Images/PDF.gif" alt="Agenda" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypAgenda" href="View.ashx?M=A&amp;ID=1440222&amp;GUID=20E97FD6-54A8-45E9-83B7-2A71459859F7" target="_blank"><font face="Tahoma" color="Blue" size="2">Agenda</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypAccessibleAgendaHTML" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypAgendaPacket" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypMinutes" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypAccessibleMinutesHTML" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_imgVideo" src="Images/Video.gif" alt="Video/Audio" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl06_hypVideo" data-event-id="08a95bab-a383-4528-a7f9-61381f3ea0a8" data-running-text="In&amp;nbsp;progress" class="videolink" onclick="window.open(&#39;Video.aspx?Mode=Granicus&amp;ID1=8154&amp;Mode2=Video&#39;,&#39;video&#39;);return false;" href="#"><font face="Tahoma" color="Blue" size="2">Video/Audio</font></a>
+                                        </span>
+                                    </font></td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__2">
+						<td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypBody"><font face="Tahoma" color="Black" size="2">Clark County Zoning Commission </font></a>
+                                    </font></td><td class="rgSorted"><font face="Tahoma" size="2">9/2/2026</font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypiCal" href="View.ashx?M=IC&amp;ID=1438808&amp;GUID=60ECEE2E-164A-4696-B77B-65F4F1E24BFD"><font face="Tahoma" color="Blue" size="2"><img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_btnExportToCalendar1" CommandName="Export" src="Images/ical.gif" alt="Export to iCalendar" border="0" /></font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_lblTime"><font face="Tahoma" color="Black" size="2">9:00 AM</font></span>
+                                    </font></td><td><font face="Tahoma" size="2">&nbsp;</font></td><td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypMeetingDetail" href="MeetingDetail.aspx?ID=1438808&amp;GUID=60ECEE2E-164A-4696-B77B-65F4F1E24BFD&amp;Options=info|&amp;Search="><font face="Tahoma" color="Blue" size="2">Meeting&nbsp;details</font></a>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypExtra1" class="extraFileNotAvailableLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_imgAgenda" src="Images/PDF.gif" alt="Agenda" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypAgenda" href="View.ashx?M=A&amp;ID=1438808&amp;GUID=60ECEE2E-164A-4696-B77B-65F4F1E24BFD" target="_blank"><font face="Tahoma" color="Blue" size="2">Agenda</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypAccessibleAgendaHTML" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypAgendaPacket" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypMinutes" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypAccessibleMinutesHTML" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_imgVideo" src="Images/Video.gif" alt="Video/Audio" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl08_hypVideo" data-event-id="8c4a7033-2ad6-4db3-95f2-c9e232dad8b0" data-running-text="In&amp;nbsp;progress" class="videolink" onclick="window.open(&#39;Video.aspx?Mode=Granicus&amp;ID1=8152&amp;Mode2=Video&#39;,&#39;video&#39;);return false;" href="#"><font face="Tahoma" color="Blue" size="2">Video/Audio</font></a>
+                                        </span>
+                                    </font></td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__3">
+						<td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypBody"><font face="Tahoma" color="Black" size="2">Clark County Planning Commission</font></a>
+                                    </font></td><td class="rgSorted"><font face="Tahoma" size="2">9/1/2026</font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypiCal" href="View.ashx?M=IC&amp;ID=1438767&amp;GUID=91C0B7CC-C946-40B6-95E2-66AC25647129"><font face="Tahoma" color="Blue" size="2"><img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_btnExportToCalendar1" CommandName="Export" src="Images/ical.gif" alt="Export to iCalendar" border="0" /></font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_lblTime"><font face="Tahoma" color="Black" size="2">7:00 PM</font></span>
+                                    </font></td><td><font face="Tahoma" size="2">&nbsp;</font></td><td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypMeetingDetail" href="MeetingDetail.aspx?ID=1438767&amp;GUID=91C0B7CC-C946-40B6-95E2-66AC25647129&amp;Options=info|&amp;Search="><font face="Tahoma" color="Blue" size="2">Meeting&nbsp;details</font></a>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypExtra1" class="extraFileNotAvailableLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_imgAgenda" src="Images/PDF.gif" alt="Agenda" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypAgenda" href="View.ashx?M=A&amp;ID=1438767&amp;GUID=91C0B7CC-C946-40B6-95E2-66AC25647129" target="_blank"><font face="Tahoma" color="Blue" size="2">Agenda</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypAccessibleAgendaHTML" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypAgendaPacket" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypMinutes" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypAccessibleMinutesHTML" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_imgVideo" src="Images/Video.gif" alt="Video/Audio" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl10_hypVideo" data-event-id="7034be9d-f1f2-434e-8995-cb1a0c5cc2cf" data-running-text="In&amp;nbsp;progress" class="videolink" onclick="window.open(&#39;Video.aspx?Mode=Granicus&amp;ID1=8151&amp;Mode2=Video&#39;,&#39;video&#39;);return false;" href="#"><font face="Tahoma" color="Blue" size="2">Video/Audio</font></a>
+                                        </span>
+                                    </font></td>
+					</tr><tr class="rgRow" valign="top" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__4">
+						<td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypBody"><font face="Tahoma" color="Black" size="2">Clark County Planning Commission Briefing</font></a>
+                                    </font></td><td class="rgSorted"><font face="Tahoma" size="2">9/1/2026</font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypiCal" href="View.ashx?M=IC&amp;ID=1437468&amp;GUID=57926CA0-914C-46E6-84EA-4495EF8D0164"><font face="Tahoma" color="Blue" size="2"><img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_btnExportToCalendar1" CommandName="Export" src="Images/ical.gif" alt="Export to iCalendar" border="0" /></font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_lblTime"><font face="Tahoma" color="Black" size="2">6:00 PM</font></span>
+                                    </font></td><td><font face="Tahoma" size="2">&nbsp;</font></td><td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypMeetingDetail" href="MeetingDetail.aspx?ID=1437468&amp;GUID=57926CA0-914C-46E6-84EA-4495EF8D0164&amp;Options=info|&amp;Search="><font face="Tahoma" color="Blue" size="2">Meeting&nbsp;details</font></a>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypExtra1" class="extraFileNotAvailableLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_imgAgenda" src="Images/PDF.gif" alt="Agenda" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypAgenda" href="View.ashx?M=A&amp;ID=1437468&amp;GUID=57926CA0-914C-46E6-84EA-4495EF8D0164" target="_blank"><font face="Tahoma" color="Blue" size="2">Agenda</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypAccessibleAgendaHTML" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypAgendaPacket" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypMinutes" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypAccessibleMinutesHTML" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_imgVideo" src="Images/Video.gif" alt="Video/Audio" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl12_hypVideo" data-event-id="eb7de4bc-0ce4-4f79-a1b3-46963ee484b3" data-running-text="In&amp;nbsp;progress" class="videolink" onclick="window.open(&#39;Video.aspx?Mode=Granicus&amp;ID1=8150&amp;Mode2=Video&#39;,&#39;video&#39;);return false;" href="#"><font face="Tahoma" color="Blue" size="2">Video/Audio</font></a>
+                                        </span>
+                                    </font></td>
+					</tr><tr class="rgAltRow" valign="top" id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00__5">
+						<td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypBody"><font face="Tahoma" color="Black" size="2">Clark County Board of Commissioners</font></a>
+                                    </font></td><td class="rgSorted"><font face="Tahoma" size="2">9/1/2026</font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypiCal" href="View.ashx?M=IC&amp;ID=1431759&amp;GUID=26564624-0669-485E-8CFF-8740A4F86DDD"><font face="Tahoma" color="Blue" size="2"><img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_btnExportToCalendar1" CommandName="Export" src="Images/ical.gif" alt="Export to iCalendar" border="0" /></font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_lblTime"><font face="Tahoma" color="Black" size="2">9:05 AM</font></span>
+                                    </font></td><td><font face="Tahoma" size="2">&nbsp;</font></td><td><font face="Tahoma" size="2">
+                                        <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypMeetingDetail" href="MeetingDetail.aspx?ID=1431759&amp;GUID=26564624-0669-485E-8CFF-8740A4F86DDD&amp;Options=info|&amp;Search="><font face="Tahoma" color="Blue" size="2">Meeting&nbsp;details</font></a>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_imgExtra1" src="Images/PDF.gif" alt="Action Summary" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypExtra1" href="View.ashx?M=E1&amp;ID=1431759&amp;GUID=26564624-0669-485E-8CFF-8740A4F86DDD"><font face="Tahoma" color="Blue" size="2">Action Summary</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_imgAgenda" src="Images/PDF.gif" alt="Agenda" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypAgenda" href="View.ashx?M=A&amp;ID=1431759&amp;GUID=26564624-0669-485E-8CFF-8740A4F86DDD" target="_blank"><font face="Tahoma" color="Blue" size="2">Agenda</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypAccessibleAgendaHTML" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypAgendaPacket" class="meetingAgendaNotAvailbleLink"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypMinutes" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypAccessibleMinutesHTML" class="otherNotAvaiableMinutes"><font face="Tahoma" color="Gray" size="2">Not&nbsp;available</font></a>
+                                        </span>
+                                    </font></td><td><font face="Tahoma" size="2">
+                                        <span style="white-space: nowrap;">
+                                            <img id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_imgVideo" src="Images/Video.gif" alt="Video/Audio" border="0" />
+                                            
+                                            <a id="ctl00_ContentPlaceHolder1_gridCalendar_ctl00_ctl14_hypVideo" data-event-id="91fabcab-d23d-4660-952d-66f416d9cd1f" data-running-text="In&amp;nbsp;progress" class="videolink" onclick="window.open(&#39;Video.aspx?Mode=Granicus&amp;ID1=8149&amp;Mode2=Video&#39;,&#39;video&#39;);return false;" href="#"><font face="Tahoma" color="Blue" size="2">Video/Audio</font></a>
+                                        </span>
+                                    </font></td>
+					</tr>
+					</tbody>
+
+				</table><div id="ctl00_ContentPlaceHolder1_gridCalendar_SharedCalendarContainer" style="display:none;">
+
+				</div><input id="ctl00_ContentPlaceHolder1_gridCalendar_ClientState" name="ctl00_ContentPlaceHolder1_gridCalendar_ClientState" type="hidden" />	</div>
+
+			</div>
+                </div>
+                <!--/PAGEWATCH CODE=""-->
+            
+		</div>
+        
+	</div><input id="ctl00_ContentPlaceHolder1_MultiPageCalendar_ClientState" name="ctl00_ContentPlaceHolder1_MultiPageCalendar_ClientState" type="hidden" />
+</div>
+    
+    
+        <script type="text/javascript">
+            $.ajax("//clark.granicus.com/running_events.php", {
+                dataType: "jsonp",
+                success: function (data, textStatus, jqxhr) {
+                    for (var i = 0; i < data.length; i++) {
+                        var running_text = $(".videolink[data-event-id=" + data[i] + "]").attr('data-running-text');
+                        $(".videolink[data-event-id=" + data[i] + "]")
+                            .attr('href', 'https://' + 'clark.granicus.com' + '/mediaplayer.php?event_id=' + data[i])
+                        .attr('onclick', '').attr('target', '_blank')
+                        .html(running_text)
+                        .css('color', 'blue')
+                        .attr('style', 'videolink')
+                        .removeClass('videoFileNotAvailableLink');
+                }
+            }
+        });
+        </script>
+    
+
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    </main>
+                </div>
+            </div>
+            <div id="ctl00_divRight">
+            </div>
+            <div id="ctl00_divBottom"><script>	var lastTabLink = $('.rtsLevel1').first('.rtsUL').find('.rtsLast').find('.rtsLink');	var secondToLastTabLink = $('.rtsLevel1').first('.rtsUL').find('.rtsLast').prev().find('a');	if (lastTabLink) {		$(lastTabLink).attr("target", "_blank");		}	if (secondToLastTabLink) {		$(secondToLastTabLink).attr("target", "_blank");	}</script><script>	let url = location.href;	if (url.indexOf('Legislation.aspx') >= 0 ) {	let textBox = document.getElementById('ctl00_ContentPlaceHolder1_chkText');	if (textBox) {		textBox.checked = true;	}	}</script><script> 	// Script to open attachments in new tab	var links = document.querySelectorAll('a'); 	var links2 = document.querySelectorAll('table#ctl00_ContentPlaceHolder1_ucAttachments_tdAttachments a'); 	for (var x=0; x < links2.length; x++){ 		links2[x].setAttribute("target","_blank");	}; 	for (var i=0; i < links.length;i++) {		if(links[i].id.indexOf('hypMinutes') != -1 || (links[i].id.indexOf('hypText') != -1) || (links[i].id.indexOf('hypExtra1') != -1)) { 			links[i].target = "_blank"; 		} 	} 	var links3 =document.querySelectorAll('table#ctl00_ContentPlaceHolder1_tblAttachments a');	for (var z=0; z < links3.length; z++) { 		links3[z].setAttribute("target","_blank") 	};</script></div>
+        </div>
+        
+        
+    
+
+<script type="text/javascript">
+//<![CDATA[
+window.__TsmHiddenField = $get('ctl00_RadScriptManager1_TSM');Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadTabStrip, {"_selectedIndex":2,"_skin":"Default","causesValidation":false,"clickSelectedTab":true,"clientStateFieldID":"ctl00_tabTop_ClientState","selectedIndexes":["2"],"tabData":[{"value":"Home"},{"value":"Legislation"},{"value":"Calendar"},{"value":"Y"},{"value":"Z"}]}, null, null, $get("ctl00_tabTop"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxManager, {"_updatePanels":"","ajaxSettings":[{InitControlID : "ctl00_ContentPlaceHolder1_gridCalendar",UpdatedControls : [{ControlID:"ctl00_ContentPlaceHolder1_gridCalendar",PanelID:"ctl00_ContentPlaceHolder1_RadAjaxLoadingPanel1"}]},{InitControlID : "ctl00_ContentPlaceHolder1_RadScheduler1",UpdatedControls : [{ControlID:"ctl00_ContentPlaceHolder1_RadScheduler1",PanelID:"ctl00_ContentPlaceHolder1_RadAjaxLoadingPanel1"}]}],"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"defaultLoadingPanelID":"","enableAJAX":true,"enableHistory":false,"links":[],"styles":[],"uniqueID":"ctl00$ContentPlaceHolder1$RadAjaxManager1","updatePanelsRenderMode":0}, null, null, $get("ctl00_ContentPlaceHolder1_RadAjaxManager1"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxLoadingPanel, {"initialDelayTime":0,"isSticky":false,"minDisplayTime":0,"skin":"","uniqueID":"ctl00$ContentPlaceHolder1$RadAjaxLoadingPanel1","zIndex":90000}, null, null, $get("ctl00_ContentPlaceHolder1_RadAjaxLoadingPanel1"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindowManager, {"behaviors":44,"clientStateFieldID":"ctl00_ContentPlaceHolder1_RadWindowManager1_ClientState","destroyOnClose":true,"enableAriaSupport":true,"formID":"aspnetForm","height":"600px","iconUrl":"","initialBehaviors":8,"minimizeIconUrl":"","name":"RadWindowManager1","shortcuts":"[[\u0027close\u0027,\u0027Esc\u0027]]","skin":"WebBlue","visibleStatusbar":false,"width":"800px","windowControls":"[]"}, null, null, $get("ctl00_ContentPlaceHolder1_RadWindowManager1"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadGrid, {"ClientID":"ctl00_ContentPlaceHolder1_gridUpcomingMeetings","ClientSettings":{"AllowAutoScrollOnDragDrop":true,"AllowDragToGroup":true,"AllowKeyboardNavigation":true,"ShouldCreateRows":true,"ReorderColumnsOnClient":true,"DataBinding":{},"Selecting":{"CellSelectionMode":0,"AllowRowSelect":true,"EnableDragToSelectRows":true,"UseClientSelectColumnOnly":true},"Scrolling":{},"Resizing":{"AllowColumnResize":true},"ClientMessages":{"DragToGroupOrReorder":""},"KeyboardNavigationSettings":{"AllowActiveRowCycle":true,"EnableKeyboardShortcuts":true,"FocusKey":89,"InitInsertKey":73,"RebindKey":82,"ExitEditInsertModeKey":27,"UpdateInsertItemKey":13,"DeleteActiveRow":127,"ExpandDetailTableKey":39,"CollapseDetailTableKey":37,"MoveDownKey":40,"MoveUpKey":38,"SaveChangesKey":85,"CancelChangesKey":81},"Animation":{},"Virtualization":{}},"Skin":"Default","SortingSettings":{"SortToolTip":"Click here to sort","SortedAscToolTip":"Sorted asc","SortedDescToolTip":"Sorted desc","SortedBackColor":{"R":0,"G":0,"B":0,"A":0,"IsKnownColor":false,"IsEmpty":true,"IsNamedColor":false,"IsSystemColor":false,"Name":"0"},"EnableSkinSortStyles":true,"ViewState":{}},"UniqueID":"ctl00$ContentPlaceHolder1$gridUpcomingMeetings","ValidationSettings":{"EnableValidation":true,"ValidationGroup":"","CommandsToValidate":["PerformInsert","Update"]},"_activeRowIndex":"","_controlToFocus":"","_currentPageIndex":0,"_defaultDateTimeFormat":"M/d/yyyy h:mm:ss tt","_editIndexes":"[]","_embeddedSkin":true,"_freezeText":"Freeze","_gridTableViewsData":"[{\"ClientID\":\"ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ctl00\",\"UniqueID\":\"ctl00$ContentPlaceHolder1$gridUpcomingMeetings$ctl00\",\"PageSize\":100,\"PageCount\":1,\"EditMode\":\"EditForms\",\"AllowPaging\":true,\"CurrentPageIndex\":0,\"VirtualItemCount\":0,\"AllowMultiColumnSorting\":false,\"AllowNaturalSort\":false,\"AllowFilteringByColumn\":false,\"PageButtonCount\":10,\"HasDetailTables\":false,\"HasMultiHeaders\":false,\"CheckListWebServicePath\":\"\",\"GroupLoadMode\":\"Server\",\"PagerAlwaysVisible\":false,\"IsItemInserted\":false,\"clientDataKeyNames\":[],\"hasDetailItemTemplate\":false,\"_dataBindTemplates\":false,\"_selectedItemStyle\":\"\",\"_selectedItemStyleClass\":\"rgSelectedRow\",\"_renderActiveItemStyle\":\"\",\"_renderActiveItemStyleClass\":\"rgActiveRow\",\"_columnsData\":[{\"UniqueName\":\"BodyName\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"SortExpression\":\"BodyName\",\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"MeetingDate\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"SortExpression\":\"MeetingStartDate\",\"DataTypeName\":\"System.DateTime\",\"DataField\":\"MeetingDate\",\"DataFormatString\":\"{0:M/d/yyyy}\",\"Display\":true},{\"UniqueName\":\"ExportToCalendar\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"MeetingTime\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"SortExpression\":\"MeetingTime2\",\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"MeetingLocation\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"SortExpression\":\"MeetingLocation\",\"DataTypeName\":\"System.String\",\"DataField\":\"MeetingLocation\",\"Display\":true},{\"UniqueName\":\"MeetingDetails\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"Extra1\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"Agenda\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"AccessibleAgendaHTML\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"AgendaPacket\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"Minutes\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"AccessibleMinutesHTML\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"Video\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true}]}]","_masterClientID":"ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ctl00","_shouldFocusOnPage":false,"_unfreezeText":"Unfreeze","allowMultiRowSelection":true,"clientStateFieldID":"ctl00_ContentPlaceHolder1_gridUpcomingMeetings_ClientState","renderMode":1}, {"filterMenuShowing":gridFilterMenuShowing}, null, $get("ctl00_ContentPlaceHolder1_gridUpcomingMeetings"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadComboBox, {"_dropDownWidth":0,"_height":0,"_postBackReference":"__doPostBack(\u0027ctl00$ContentPlaceHolder1$lstYears\u0027,\u0027arguments\u0027)","_skin":"Default","_text":"This Month","_uniqueId":"ctl00$ContentPlaceHolder1$lstYears","_value":"This Month","attributes":{"data-tooltip":"Date Range Dropdown List","alt":"Years"},"clientStateFieldID":"ctl00_ContentPlaceHolder1_lstYears_ClientState","collapseAnimation":"{\"type\":12,\"duration\":100}","expandAnimation":"{\"duration\":100}","itemData":[{"value":"All"},{"value":"2026"},{"value":"2025"},{"value":"2024"},{"value":"2023"},{"value":"2022"},{"value":"2021"},{"value":"2020"},{"value":"2019"},{"value":"2018"},{"value":"2017"},{"value":"2016"},{"value":"2015"},{"value":"2014"},{"value":"2013"},{"value":"2012"},{"value":"2011"},{"value":"2010"},{"value":"Last Year"},{"value":"Last Month"},{"value":"Last Week"},{"value":"This Year"},{"value":"This Month","selected":true},{"value":"This Week"},{"value":"Today"},{"value":"Next Week"},{"value":"Next Month"},{"value":"Next Year"}],"localization":"{\"AllItemsCheckedString\":\"All items checked\",\"ItemsCheckedString\":\"items checked\",\"CheckAllString\":\"Check All\"}","selectedIndex":22}, {"keyPressing":onKeyPressing}, null, $get("ctl00_ContentPlaceHolder1_lstYears"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadComboBox, {"_dropDownWidth":0,"_height":0,"_postBackReference":"__doPostBack(\u0027ctl00$ContentPlaceHolder1$lstBodies\u0027,\u0027arguments\u0027)","_skin":"Default","_text":"All Boards and Commissions","_uniqueId":"ctl00$ContentPlaceHolder1$lstBodies","_value":"All","attributes":{"data-tooltip":"Departments Dropdown List"},"clientStateFieldID":"ctl00_ContentPlaceHolder1_lstBodies_ClientState","collapseAnimation":"{\"type\":12,\"duration\":100}","expandAnimation":"{\"duration\":100}","itemData":[{"value":"All","selected":true},{"value":"39646"},{"value":"39823"},{"value":"44699"},{"value":"46054"},{"value":"39824"},{"value":"53783"},{"value":"44700"},{"value":"54747"},{"value":"42258"},{"value":"45072"}],"localization":"{\"AllItemsCheckedString\":\"All items checked\",\"ItemsCheckedString\":\"items checked\",\"CheckAllString\":\"Check All\"}","selectedIndex":0}, {"keyPressing":onKeyPressing}, null, $get("ctl00_ContentPlaceHolder1_lstBodies"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadMenu, {"_childListElementCssClass":null,"_postBackReference":"__doPostBack(\u0027ctl00$ContentPlaceHolder1$menuCalendar\u0027,\u0027arguments\u0027)","_skin":"Default","attributes":{"role":"menubar"},"clientStateFieldID":"ctl00_ContentPlaceHolder1_menuCalendar_ClientState","collapseAnimation":"{\"type\":12,\"duration\":200}","collapseDelay":50,"defaultGroupSettings":"{\"flow\":0,\"expandDirection\":0}","enableAriaSupport":true,"expandAnimation":"{\"duration\":450}","expandDelay":50,"itemData":[{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"0 records"},"postBack":0,"value":"Results","enabled":false},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-haspopup":"true","aria-expanded":"false"},"items":[{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Clear sorting"},"value":"ClearSort"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Clear grouping"},"value":"Clear"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Group by Name"},"value":"BodyName"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Group by Meeting Date"},"value":"MeetingDate"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Group by Meeting Date (Month)"},"value":"MeetingMonth"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Group by Meeting Date (Year)"},"value":"MeetingYear"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Group by Meeting Location"},"value":"MeetingLocation"}],"postBack":0,"value":"Group","cssClass":"group-menu-item"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-haspopup":"true"},"items":[{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Export to Excel"},"value":"Excel"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Export to PDF"},"value":"PDF"},{"groupSettings":{"flow":0,"expandDirection":0},"attributes":{"role":"menuitem","aria-label":"Export to Word"},"value":"Word"}],"postBack":0,"value":"Export","cssClass":"export-menu-item"}]}, null, null, $get("ctl00_ContentPlaceHolder1_menuCalendar"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadGrid, {"ClientID":"ctl00_ContentPlaceHolder1_gridCalendar","ClientSettings":{"AllowAutoScrollOnDragDrop":true,"AllowDragToGroup":true,"AllowKeyboardNavigation":true,"ShouldCreateRows":true,"ReorderColumnsOnClient":true,"DataBinding":{},"Selecting":{"CellSelectionMode":0,"AllowRowSelect":true,"EnableDragToSelectRows":true,"UseClientSelectColumnOnly":true},"Scrolling":{},"Resizing":{"AllowColumnResize":true},"ClientMessages":{"DragToGroupOrReorder":""},"KeyboardNavigationSettings":{"AllowActiveRowCycle":true,"EnableKeyboardShortcuts":true,"FocusKey":89,"InitInsertKey":73,"RebindKey":82,"ExitEditInsertModeKey":27,"UpdateInsertItemKey":13,"DeleteActiveRow":127,"ExpandDetailTableKey":39,"CollapseDetailTableKey":37,"MoveDownKey":40,"MoveUpKey":38,"SaveChangesKey":85,"CancelChangesKey":81},"Animation":{},"Virtualization":{}},"Skin":"Default","SortingSettings":{"SortToolTip":"Click here to sort","SortedAscToolTip":"Sorted asc","SortedDescToolTip":"Sorted desc","SortedBackColor":{"R":0,"G":0,"B":0,"A":0,"IsKnownColor":false,"IsEmpty":true,"IsNamedColor":false,"IsSystemColor":false,"Name":"0"},"EnableSkinSortStyles":true,"ViewState":{}},"UniqueID":"ctl00$ContentPlaceHolder1$gridCalendar","ValidationSettings":{"EnableValidation":true,"ValidationGroup":"","CommandsToValidate":["PerformInsert","Update"]},"_activeRowIndex":"","_controlToFocus":"","_currentPageIndex":0,"_defaultDateTimeFormat":"M/d/yyyy h:mm:ss tt","_editIndexes":"[]","_embeddedSkin":true,"_freezeText":"Freeze","_gridTableViewsData":"[{\"ClientID\":\"ctl00_ContentPlaceHolder1_gridCalendar_ctl00\",\"UniqueID\":\"ctl00$ContentPlaceHolder1$gridCalendar$ctl00\",\"PageSize\":100,\"PageCount\":1,\"EditMode\":\"EditForms\",\"AllowPaging\":true,\"CurrentPageIndex\":0,\"VirtualItemCount\":0,\"AllowMultiColumnSorting\":false,\"AllowNaturalSort\":false,\"AllowFilteringByColumn\":false,\"PageButtonCount\":10,\"HasDetailTables\":false,\"HasMultiHeaders\":false,\"CheckListWebServicePath\":\"\",\"GroupLoadMode\":\"Server\",\"PagerAlwaysVisible\":false,\"IsItemInserted\":false,\"clientDataKeyNames\":[],\"hasDetailItemTemplate\":false,\"_dataBindTemplates\":false,\"_selectedItemStyle\":\"\",\"_selectedItemStyleClass\":\"rgSelectedRow\",\"_renderActiveItemStyle\":\"\",\"_renderActiveItemStyleClass\":\"rgActiveRow\",\"_columnsData\":[{\"UniqueName\":\"BodyName\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"SortExpression\":\"BodyName\",\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"MeetingDate\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"SortExpression\":\"MeetingStartDate\",\"DataTypeName\":\"System.DateTime\",\"DataField\":\"MeetingDate\",\"DataFormatString\":\"{0:M/d/yyyy}\",\"Display\":true},{\"UniqueName\":\"ExportToCalendar\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"MeetingTime\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"SortExpression\":\"MeetingTime2\",\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"MeetingLocation\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"SortExpression\":\"MeetingLocation\",\"DataTypeName\":\"System.String\",\"DataField\":\"MeetingLocation\",\"Display\":true},{\"UniqueName\":\"MeetingDetails\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"Extra1\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"Agenda\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"AccessibleAgendaHTML\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"AgendaPacket\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"Minutes\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"AccessibleMinutesHTML\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true},{\"UniqueName\":\"Video\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":false,\"ColumnType\":\"GridTemplateColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"DataField\":\"\",\"Display\":true}]}]","_masterClientID":"ctl00_ContentPlaceHolder1_gridCalendar_ctl00","_shouldFocusOnPage":false,"_unfreezeText":"Unfreeze","allowMultiRowSelection":true,"clientStateFieldID":"ctl00_ContentPlaceHolder1_gridCalendar_ClientState","expandItems":{},"renderMode":1}, {"command":RadGrid1_OnCommand,"filterMenuShowing":gridFilterMenuShowing,"gridCreated":RadGrid1_OnGridCreated}, null, $get("ctl00_ContentPlaceHolder1_gridCalendar"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadMultiPage, {"clientStateFieldID":"ctl00_ContentPlaceHolder1_MultiPageCalendar_ClientState","pageViewData":[{"id":"ctl00_ContentPlaceHolder1_pageGrid"},{"id":"ctl00_ContentPlaceHolder1_pageScheduler"}],"selectedIndex":0}, null, null, $get("ctl00_ContentPlaceHolder1_MultiPageCalendar"));
+});
+//]]>
+</script>
+</form>
+</body>
+</html>

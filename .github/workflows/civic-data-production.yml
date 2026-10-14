@@ -1,0 +1,255 @@
+name: Civic Data Production
+
+on:
+  # Parser/storage fixes must regenerate the public data, not just rebuild the UI.
+  # UI-only pushes do not spend provider quotas. The existing single-writer lock
+  # also serializes these incremental refreshes with scheduled/manual runs.
+  push:
+    branches: [main]
+    paths:
+      - 'lib/public-meetings/**'
+      - 'lib/dataops/**'
+      - 'lib/financials/**'
+      - 'scripts/*public-meeting*.ts'
+      - 'scripts/reprocess-cached-meeting-items.ts'
+      - 'scripts/civic-artifacts.ts'
+      - 'scripts/compact-civic-runtime.ts'
+      - 'scripts/collect-nevada-financials.ts'
+      - 'scripts/audit-nevada-financial-coverage.ts'
+      - 'scripts/run-dataops-pipeline.ts'
+      - '.github/workflows/civic-data-production.yml'
+  schedule:
+    # A daily run carries the full civic refresh and the failure notification.
+    - cron: "17 6 * * *"
+    # Meeting-only checks still run every six hours without repeating the same
+    # source-coverage failure email four times a day.
+    - cron: "17 0,12,18 * * *"
+  workflow_dispatch:
+    inputs:
+      full_refresh:
+        description: Include finance, ads, officials, cases and organizations
+        type: boolean
+        default: true
+      all_source_shards:
+        description: Manual catch-up across all source partitions (bounded, resumable)
+        type: boolean
+        default: false
+      publish:
+        description: Publish validated data and trigger a site deployment
+        type: boolean
+        default: true
+      database_source:
+        description: Optional single database source slug (replaces collection/publication with a bounded source retry)
+        type: string
+        default: ""
+
+# One durable collection/publication writer; no overlapping snapshots.
+concurrency:
+  group: civic-data-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    name: Collect and validate civic data
+    outputs:
+      collection_outcome: ${{ steps.collection.outcome }}
+    if: github.ref == 'refs/heads/main' && (github.event_name != 'workflow_dispatch' || inputs.database_source == '')
+    runs-on: ubuntu-24.04
+    environment: production
+    timeout-minutes: 180
+    env:
+      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+      DIRECT_DEMOCRACY_PUBLIC_URL: https://www.directyourdemocracy.com
+      DATAOPS_NETWORK_ENABLED: "true"
+      CIVIC_DATA_RELEASE_ENABLED: "false"
+      DATAOPS_COMMAND_TIMEOUT_MS: "900000"
+      DATAOPS_OCR_MAX_PAGES: "20"
+      DATAOPS_OCR_MAX_FILE_SIZE_BYTES: "100000000"
+      DATAOPS_OCR_TIMEOUT_MS: "30000"
+      OFFICIALS_EXECUTION_ENVIRONMENT: github_actions
+      OFFICIALS_NETWORK_ENABLED: "true"
+      OFFICIALS_WORKER_BACKEND: github_actions
+    steps:
+      - name: Make room for the persistent evidence archive
+        run: |
+          # This is a disposable GitHub-hosted VM; this job does not use Android.
+          test "$RUNNER_ENVIRONMENT" = "github-hosted"
+          sudo rm -rf /usr/local/lib/android/sdk
+          df -h "$GITHUB_WORKSPACE"
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Load private project worker configuration
+        env:
+          CIVIC_WORKER_ENV: ${{ secrets.CIVIC_WORKER_ENV }}
+        run: node scripts/configure-civic-worker-env.mjs --required
+      - name: Install bounded PDF and OCR tools
+        run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils tesseract-ocr
+      - name: Install and verify the public-source browser
+        run: |
+          npx playwright install --with-deps chromium
+          node -e 'const {chromium}=require("playwright");(async()=>{const browser=await chromium.launch({headless:true});await browser.close()})().catch(()=>{console.error("Public-source browser failed to launch");process.exit(1)})'
+      - name: Verify worker credentials
+        run: node -e 'for (const key of ["BLOB_READ_WRITE_TOKEN","DATABASE_URL"]) if (!process.env[key]) throw Error("Missing worker setting " + key)'
+      - name: Restore persistent collection state and evidence
+        run: npm run dataops:checkpoint:restore
+      - name: Refresh civic sources
+        id: collection
+        continue-on-error: true
+        env:
+          FULL_REFRESH: ${{ inputs.full_refresh }}
+          ALL_SOURCE_SHARDS: ${{ inputs.all_source_shards }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          args=(--limit=100)
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$FULL_REFRESH" != "true" ]]; then args+=(--meetings-only); fi
+            if [[ "$ALL_SOURCE_SHARDS" == "true" ]]; then args+=(--all-source-shards); fi
+          elif [[ "$GITHUB_EVENT_NAME" == "schedule" && "$SCHEDULE" != "17 6 * * *" ]]; then
+            args+=(--meetings-only)
+          fi
+          npm run dataops:pipeline -- "${args[@]}"
+      - name: Compact web runtime without discarding evidence
+        run: npm run dataops:runtime:compact
+      - name: Save collection state even when a provider is incomplete
+        if: always() && (steps.collection.outcome == 'success' || steps.collection.outcome == 'failure')
+        run: npm run dataops:checkpoint
+      - name: Apply reporting policy before freezing release bytes
+        run: node --import tsx scripts/apply-reporting-policy.ts
+      - name: Regenerate current integrity findings
+        run: npm run site:launch-audit
+      - name: Validate civic release regressions
+        run: |
+          npm run dataops:release:test
+          node --import tsx scripts/test-native-agenda-packets.ts
+          node --import tsx scripts/test-reporting-policy.ts
+          node --import tsx scripts/test-civic-workflows.ts
+          node --import tsx scripts/test-carson-public-calendar.ts
+          node --import tsx scripts/test-current-election-questions.ts
+          node --import tsx scripts/test-civic-database-refresh.ts
+          node --import tsx scripts/test-civic-import-identity.ts
+      - name: Freeze validated runtime release and record coverage gaps
+        run: npm run dataops:release:prepare
+      - name: Export the immutable public candidate
+        run: node --import tsx scripts/civic-artifacts.ts export-candidate
+      - name: Hand off public release to publication job
+        uses: actions/upload-artifact@v4
+        with:
+          name: civic-release-candidate-${{ github.run_id }}
+          path: .local/civic-release-handoff/
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
+      - name: Upload concise operational reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civic-data-reports-${{ github.run_id }}
+          retention-days: 14
+          path: |
+            data/generated/public-site-integrity-audit.json
+            data/generated/upcoming-meeting-coverage-audit.json
+            data/generated/nevada-financial-coverage-audit.json
+            data/generated/nevada-political-ad-coverage-audit.json
+            data/generated/meetings-pipeline-run.json
+            data/generated/dataops-pipeline-run.json
+            data/generated/civic-database-refresh.json
+
+  database-source:
+    name: Retry one registered database source
+    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && inputs.database_source != ''
+    runs-on: ubuntu-24.04
+    environment: production
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      CIVIC_DATA_RELEASE_ENABLED: "false"
+      DATAOPS_NETWORK_ENABLED: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Load private project worker configuration
+        env:
+          CIVIC_WORKER_ENV: ${{ secrets.CIVIC_WORKER_ENV }}
+        run: node scripts/configure-civic-worker-env.mjs --required
+      - name: Retry only the selected registered source
+        timeout-minutes: 5
+        env:
+          DATABASE_SOURCE: ${{ inputs.database_source }}
+        run: node --import tsx scripts/refresh-civic-database.ts --all-source-shards --only="$DATABASE_SOURCE"
+      - name: Upload bounded source recovery report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civic-database-recovery-${{ github.run_id }}
+          path: data/generated/civic-database-refresh.json
+          retention-days: 14
+
+  publish:
+    name: Publish civic release and verify deployment
+    needs: refresh
+    if: github.event_name == 'schedule' || github.event_name == 'push' || inputs.publish
+    runs-on: ubuntu-24.04
+    environment: production
+    timeout-minutes: 60
+    env:
+      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      CIVIC_DATA_DEPLOY_HOOK: ${{ secrets.CIVIC_DATA_DEPLOY_HOOK }}
+      DIRECT_DEMOCRACY_PUBLIC_URL: https://www.directyourdemocracy.com
+      CIVIC_DATA_RELEASE_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Load private project worker configuration
+        env:
+          CIVIC_WORKER_ENV: ${{ secrets.CIVIC_WORKER_ENV }}
+        run: node scripts/configure-civic-worker-env.mjs --required
+      - name: Download this run's frozen public candidate
+        uses: actions/download-artifact@v4
+        with:
+          name: civic-release-candidate-${{ github.run_id }}
+          path: .local/civic-release-handoff/
+      - name: Verify candidate provenance and every file hash
+        run: node --import tsx scripts/civic-artifacts.ts import-candidate
+      - name: Publish immutable release and trigger deployment
+        run: npm run dataops:release:publish -- --automation --trigger-deploy
+      - name: Verify the actual live release
+        run: |
+          for attempt in $(seq 1 90); do
+            if npm run dataops:release:verify; then exit 0; fi
+            sleep 30
+          done
+          exit 1
+
+  source-coverage:
+    name: Source coverage status
+    needs: refresh
+    if: always() && needs.refresh.outputs.collection_outcome == 'failure' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.schedule == '17 6 * * *')
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Report incomplete source collection separately from publication
+        run: |
+          echo "::error::Daily source collection has unresolved failures. Inspect civic-data-reports for this run. Publication has its own job status; sub-daily checks do not repeat this notification."
+          exit 1

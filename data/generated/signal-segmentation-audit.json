@@ -1,0 +1,57 @@
+{
+  "generatedAt": "2026-06-26T00:03:28.543Z",
+  "minimumCohortSize": 10,
+  "validation": {
+    "allVotesWeightOne": true,
+    "residentsAndVotersSegmented": true,
+    "smallCohortsSuppressed": true,
+    "unrestrictedCrossFilteringAllowed": false,
+    "individualDemographicVoteHistoryExposed": false
+  },
+  "examples": {
+    "smallCohort": {
+      "policyVersion": "signal-segmentation-v1",
+      "hiddenWeighting": false,
+      "minimumCohortSize": 10,
+      "allVerified": {
+        "suppressed": true,
+        "reason": "minimum_cohort_size",
+        "minimumCohortSize": 10
+      },
+      "verifiedResidents": {
+        "suppressed": true,
+        "reason": "minimum_cohort_size",
+        "minimumCohortSize": 10
+      },
+      "verifiedVoters": {
+        "suppressed": true,
+        "reason": "minimum_cohort_size",
+        "minimumCohortSize": 10
+      }
+    },
+    "largeCohort": {
+      "policyVersion": "signal-segmentation-v1",
+      "hiddenWeighting": false,
+      "minimumCohortSize": 10,
+      "allVerified": {
+        "suppressed": false,
+        "count": 12,
+        "yes": 7,
+        "no": 5,
+        "skip": 0,
+        "supportPercent": 58,
+        "voteWeight": 1
+      },
+      "verifiedResidents": {
+        "suppressed": true,
+        "reason": "minimum_cohort_size",
+        "minimumCohortSize": 10
+      },
+      "verifiedVoters": {
+        "suppressed": true,
+        "reason": "minimum_cohort_size",
+        "minimumCohortSize": 10
+      }
+    }
+  }
+}

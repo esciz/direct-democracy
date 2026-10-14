@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-06-19T16:12:47.699Z",
+  "sourceManifest": "data/manual-sources/issues/review-requests/manifest.json",
+  "runtimePath": "data/generated/issue-review-requests-runtime.json",
+  "counts": {
+    "manifestRecords": 0,
+    "runtimeRecords": 0,
+    "submitted": 0,
+    "underReview": 0,
+    "verified": 0,
+    "resolved": 0,
+    "archived": 0,
+    "needsReview": 0,
+    "linkedRecords": 0,
+    "migratedCommunityCases": 0
+  },
+  "exclusions": []
+}

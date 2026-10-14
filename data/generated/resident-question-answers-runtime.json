@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-03T18:08:02.404Z",
+  "policy": "Only reviewed answer summaries are public. Raw resident submissions and routing notes remain private.",
+  "records": [],
+  "totals": {
+    "reviewedAnswers": 0,
+    "answersWithSourceUrl": 0
+  }
+}

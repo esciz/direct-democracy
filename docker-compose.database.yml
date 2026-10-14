@@ -1,0 +1,21 @@
+services:
+  direct-democracy-postgres:
+    image: postgres:16-alpine
+    container_name: direct-democracy-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: direct_democracy
+      POSTGRES_PASSWORD: direct_democracy_dev
+      POSTGRES_DB: direct_democracy
+    ports:
+      - "54329:5432"
+    volumes:
+      - direct-democracy-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U direct_democracy -d direct_democracy"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  direct-democracy-postgres-data:

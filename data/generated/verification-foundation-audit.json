@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-06-26T00:03:28.543Z",
+  "totals": {
+    "residencyClaims": 0,
+    "voterClaims": 0,
+    "pendingManualReview": 0,
+    "providerUnconfigured": 0,
+    "evidenceRecords": 0
+  },
+  "providerStatus": {
+    "residency": "provider_unconfigured_with_manual_review_foundation",
+    "voter": "provider_unconfigured_requires_verified_resident",
+    "developmentTestProvider": "available_for_audits_only"
+  },
+  "privacy": {
+    "exactAddressesInPublicOutputs": false,
+    "fullVoterFileStored": false,
+    "partyRegistrationImportedToProfile": false
+  }
+}

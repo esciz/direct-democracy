@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-06-21T06:06:15.084Z",
+  "status": "configured",
+  "totals": {
+    "adminAccounts": 1,
+    "mfaEnrollmentRequired": 0,
+    "mfaEnrolled": 1
+  },
+  "enforcement": {
+    "fullAdminRequiresPasswordRotation": true,
+    "fullAdminRequiresMfaEnrollment": true,
+    "mfaSecretsInGeneratedArtifacts": false,
+    "backupCodesHashed": true,
+    "ownerPasswordRotated": true
+  },
+  "configurationRequired": [
+    "IDENTITY_MFA_ENCRYPTION_KEY"
+  ]
+}

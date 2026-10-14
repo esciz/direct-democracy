@@ -1,0 +1,62 @@
+{
+  "generatedAt": "2026-07-03T18:08:03.820Z",
+  "provenance": {
+    "runId": "20260703180803-unknown-c9agxj",
+    "generatedAt": "2026-07-03T18:08:03.805Z",
+    "executionEnvironment": "unknown",
+    "networkCapability": "unknown",
+    "databaseReachability": "unknown",
+    "storageBackend": "identity_token_prisma_when_available",
+    "workerBackend": "durable_queue",
+    "gitCommit": "46a6e1e1ff94",
+    "canonicalStatus": "not_canonical",
+    "artifactName": "email-provider-audit"
+  },
+  "status": "production_configured",
+  "providerStatus": "production_provider_configured",
+  "providerConfigured": true,
+  "providerConfiguredPendingTest": false,
+  "developmentAdapterAvailable": true,
+  "configuredProviderNamePresent": true,
+  "fromAddressConfigured": true,
+  "apiKeyConfigured": true,
+  "configurationRequired": [
+    "DIRECT_DEMOCRACY_EMAIL_PROVIDER",
+    "DIRECT_DEMOCRACY_EMAIL_FROM",
+    "DIRECT_DEMOCRACY_EMAIL_API_KEY"
+  ],
+  "tokenPolicy": {
+    "oneTimeUse": true,
+    "hashedTokensOnlyInDurableStorage": true,
+    "expiryRequired": true,
+    "consumeInvalidatesToken": true,
+    "nonEnumeratingResponsesRequired": true,
+    "rateLimitingBoundary": "IdentityToken recent-token counting foundation"
+  },
+  "deliveryBoundary": {
+    "developmentOutboxPrivate": true,
+    "generatedArtifactsContainTokens": false,
+    "hardcodedPersonalRecipient": false,
+    "productionNetworkSendMayRequireOperatorEnvironment": true,
+    "productionRequiresConfirmedSuccessfulTest": true
+  },
+  "latestEmailTest": {
+    "status": "sent",
+    "providerStatus": "production_provider_configured",
+    "emailSent": true,
+    "productionConfirmed": true,
+    "queuedThroughDurableWorker": true
+  },
+  "durableTokenCounts": {
+    "status": "schema_ready",
+    "totalTokens": 6,
+    "activeTokens": 0,
+    "expiredUnconsumed": 5
+  },
+  "promotion": {
+    "eligible": true,
+    "validationPassed": true,
+    "requiresExplicitCommand": false
+  },
+  "sensitiveValuesIncluded": false
+}

@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-06-28T22:25:24.037Z",
+  "status": "export_complete",
+  "backend": "vercel_blob",
+  "access": "private",
+  "storageRootFingerprint": null,
+  "bucketConfigured": false,
+  "bucketNameRedacted": null,
+  "tokenConfigured": true,
+  "objectKeyScheme": "public-meeting-cache/sha256/<first-two-hex>/<sha256>",
+  "runMode": {
+    "dryRun": false,
+    "verifyOnly": false,
+    "limit": "all"
+  },
+  "totals": {
+    "cacheRecords": 1936,
+    "attempted": 1936,
+    "sourceFilesFound": 1936,
+    "objectsAlreadyPresent": 1935,
+    "objectsWritten": 1,
+    "bytesWritten": 71690,
+    "missingSourceFiles": 0,
+    "hashMismatches": 0,
+    "providerErrors": 0
+  },
+  "samples": {
+    "exported": [
+      {
+        "documentId": "meeting-source-document-56fa670128ebc7ac2613b954b99d9c823658389d68b2e16b008185528732b7fe",
+        "objectKey": "public-meeting-cache/sha256/af/af56a547f198ddd3ca6dcb7550f7ede47f8e4322ccf216d4ad2b00835864ff72",
+        "bytes": 71690
+      }
+    ],
+    "missing": [],
+    "mismatches": [],
+    "providerErrors": []
+  },
+  "notes": [
+    "This export is additive and does not delete runtime cache files.",
+    "The vercel_blob backend uploads content-hash-addressed meeting evidence to Vercel Blob."
+  ]
+}

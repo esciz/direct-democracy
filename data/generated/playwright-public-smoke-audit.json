@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-06-21T04:50:30.373Z",
+  "adapter": "playwright_public_fixture",
+  "publicDnsUsed": false,
+  "authenticationUsed": false,
+  "captchaBypassAttempted": false,
+  "paywallBypassAttempted": false,
+  "status": "passed_fixture_boundary",
+  "limitations": "This smoke test validates the public adapter boundary without launching external public-source collection."
+}

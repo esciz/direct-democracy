@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "batch": {
+    "name": "2026 Nevada statewide executive campaign finance through Q2",
+    "periodStart": "2025-01-01",
+    "periodEnd": "2026-06-30",
+    "periodStartLabel": "January 1, 2025",
+    "periodEndLabel": "June 30, 2026",
+    "retrievedAt": "2026-07-23T19:00:00.000Z",
+    "notes": "Human-reviewed cycle-to-date totals and top-contributor aggregates. The reporting frame reaches back to the start of the 2025-2026 election cycle instead of showing only the latest quarter."
+  },
+  "source": {
+    "name": "Transparency USA (Nevada SOS-derived)",
+    "slug": "transparency-usa-nevada-2026-cycle",
+    "url": "https://www.transparencyusa.org/nv/?cycle=2026-election-cycle",
+    "derivedFrom": "Nevada Secretary of State campaign-finance records",
+    "officialUrl": "https://www.nvsos.gov/elections/aurora-public-search",
+    "crossCheckUrl": "https://thenevadaindependent.com/article/what-we-learned-from-nevadas-latest-campaign-finance-reports",
+    "notes": "Transparency USA republishes and aggregates Nevada Secretary of State campaign-finance records. Exact candidate totals were reviewed against its June 30, 2026 cycle data and cross-checked against the Nevada Independent's July 16 statewide finance report. Cash on hand is not included because the candidate aggregate does not publish it."
+  },
+  "profiles": [
+    {
+      "key": "aaron-ford-governor-2026",
+      "candidate": {
+        "aliases": ["Aaron Ford", "Aaron D. Ford", "Ford, Aaron D."],
+        "officeContains": "Governor",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/aaron-ford?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/governor-of-nevada-76762?cycle=2026-election-cycle",
+      "totalRaised": 4285306.86,
+      "totalSpent": 2786816.36,
+      "topContributors": [
+        { "name": "Robin and Daniel Greenspun", "amount": 15093.75, "type": "INDIVIDUAL" },
+        { "name": "Columbia Bank - Money Market Interest", "amount": 12683.83, "type": "ENTITY" },
+        { "name": "Melissa Suster", "amount": 11000, "type": "INDIVIDUAL" },
+        { "name": "Anne Lewis Strategies LLC", "amount": 10157.56, "type": "ENTITY" },
+        { "name": "Abigail Dow", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "All for Our Country Leadership PAC - Federal", "amount": 10000, "type": "ENTITY" },
+        { "name": "Alorah Healthcare Las Vegas LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Anthea Hamile", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Ashish Patel", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Ben Crump Law PLLC", "amount": 10000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "joseph-lombardo-governor-2026",
+      "candidate": {
+        "aliases": ["Joe Lombardo", "Joseph Lombardo", "Lombardo, Joseph"],
+        "officeContains": "Governor",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/joseph-lombardo?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/governor-of-nevada-76762?cycle=2026-election-cycle",
+      "totalRaised": 2275074.69,
+      "totalSpent": 3388834.84,
+      "topContributors": [
+        { "name": "Nevada State Bank", "amount": 18127.71, "type": "ENTITY" },
+        { "name": "13855 Cornhusker Partners LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "1400 Trees LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Adi Chugh", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Alliance Trust Company LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "American Southwest Framing LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "American Southwest Integration LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "American Southwest Mechanical LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Asfab LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Avantus LLC", "amount": 10000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "sandra-jauregui-lieutenant-governor-2026",
+      "candidate": {
+        "aliases": ["Sandra Jauregui", "Jauregui, Sandra"],
+        "officeContains": "Lieutenant Governor",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/sandra-jauregui?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/lieutenant-governor-of-nevada?cycle=2026-election-cycle",
+      "totalRaised": 482925.93,
+      "totalSpent": 347220.9,
+      "topContributors": [
+        { "name": "All for Our Country Leadership PAC - Federal", "amount": 10000, "type": "ENTITY" },
+        { "name": "CCEA", "amount": 10000, "type": "ENTITY" },
+        { "name": "Democratic LT Governor's Association", "amount": 10000, "type": "ENTITY" },
+        { "name": "Expo & Convention Center", "amount": 10000, "type": "ENTITY" },
+        { "name": "Forward Nevada PAC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Glen E Tullman Revocable Trust", "amount": 10000, "type": "ENTITY" },
+        { "name": "JML Holdings LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Justin Jones", "amount": 10000, "type": "ENTITY" },
+        { "name": "Leadership in Nevada", "amount": 10000, "type": "ENTITY" },
+        { "name": "LSN Partners LLC", "amount": 10000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "stavros-anthony-lieutenant-governor-2026",
+      "candidate": {
+        "aliases": ["Stavros Anthony", "Anthony, Stavros"],
+        "officeContains": "Lieutenant Governor",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/stavros-anthony?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/lieutenant-governor-of-nevada?cycle=2026-election-cycle",
+      "totalRaised": 397072.27,
+      "totalSpent": 94080.66,
+      "topContributors": [
+        { "name": "F & M Advertising", "amount": 10000, "type": "ENTITY" },
+        { "name": "Guy Madmon", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "John Buscema", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Las Vegas Sands Corp", "amount": 10000, "type": "ENTITY" },
+        { "name": "MGM Resorts International", "amount": 10000, "type": "ENTITY" },
+        { "name": "South Point Casino", "amount": 10000, "type": "ENTITY" },
+        { "name": "Zuffa LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "McWhinney Real Estate Services LLC", "amount": 7500, "type": "ENTITY" },
+        { "name": "American Nevada Holdings LLC", "amount": 5000, "type": "ENTITY" },
+        { "name": "Burke Construction Group Inc", "amount": 5000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "francisco-aguilar-secretary-of-state-2026",
+      "candidate": {
+        "aliases": ["Cisco Aguilar", "Francisco Aguilar", "Aguilar, Francisco Cisco", "Aguilar, Francisco \"Cisco\""],
+        "officeContains": "Secretary of State",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/francisco-aguilar?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/nevada-secretary-of-state-76765?cycle=2026-election-cycle",
+      "totalRaised": 1031043.03,
+      "totalSpent": 351329.77,
+      "topContributors": [
+        { "name": "National Material Company LLC", "amount": 20000, "type": "ENTITY" },
+        { "name": "Aaron Sosnick", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Abigail Dow", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "All for Our Country Leadership PAC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Amy Goldman Goldman Fowler", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Aviva Systems Biology Corporation", "amount": 10000, "type": "ENTITY" },
+        { "name": "Barbara Karplus", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Cale Bonderman", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "CCEA", "amount": 10000, "type": "ENTITY" },
+        { "name": "Cort Christie", "amount": 10000, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "james-marchant-secretary-of-state-2026",
+      "candidate": {
+        "aliases": ["Jim Marchant", "James Marchant", "Marchant, Jim"],
+        "officeContains": "Secretary of State",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/james-marchant?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/nevada-secretary-of-state-76765?cycle=2026-election-cycle",
+      "totalRaised": 1000,
+      "totalSpent": 815.93,
+      "topContributors": [
+        { "name": "John B Estill", "amount": 1000, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "tya-mathis-coleman-treasurer-2026",
+      "candidate": {
+        "aliases": ["Tya Mathis-Coleman", "Mathis-Coleman, Tya"],
+        "officeContains": "Treasurer",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/tya-mathis-coleman?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/nevada-state-treasurer-76767?cycle=2026-election-cycle",
+      "totalRaised": 176206.16,
+      "totalSpent": 159967.1,
+      "topContributors": [
+        { "name": "All for Our Country Leadership PAC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Let's Get to Work Nevada", "amount": 9667, "type": "ENTITY" },
+        { "name": "Diana L Bennett", "amount": 5000, "type": "INDIVIDUAL" },
+        { "name": "Drive Committee - Federal", "amount": 5000, "type": "ENTITY" },
+        { "name": "Harry Hayes", "amount": 4000, "type": "INDIVIDUAL" },
+        { "name": "Lauren Stamis", "amount": 2868, "type": "INDIVIDUAL" },
+        { "name": "2 PAC", "amount": 2500, "type": "ENTITY" },
+        { "name": "Southwest Gas Corporation", "amount": 2500, "type": "ENTITY" },
+        { "name": "Blakeley Griffith", "amount": 2250, "type": "INDIVIDUAL" },
+        { "name": "Latisha O'Neal", "amount": 2192.56, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "drew-johnson-treasurer-2026",
+      "candidate": {
+        "aliases": ["Drew Johnson", "Johnson, Drew"],
+        "officeContains": "Treasurer",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/drew-johnson?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/nevada-state-treasurer-76767?cycle=2026-election-cycle",
+      "totalRaised": 117966.67,
+      "totalSpent": 78259.05,
+      "topContributors": [
+        { "name": "James Thomson", "amount": 10410.16, "type": "INDIVIDUAL" },
+        { "name": "Derek J Stevens", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Jung Lee", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Marnell Gaming Management LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "Myong Lee", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Spotlight Liberty LLC", "amount": 9325, "type": "ENTITY" },
+        { "name": "Armed Forces Chamber PAC", "amount": 5000, "type": "ENTITY" },
+        { "name": "Brittney Barry", "amount": 5000, "type": "INDIVIDUAL" },
+        { "name": "Daoqi Lin", "amount": 5000, "type": "INDIVIDUAL" },
+        { "name": "Drew Johnson", "amount": 4062.56, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "michael-macdougall-controller-2026",
+      "candidate": {
+        "aliases": ["Michael MacDougall", "MacDougall, Michael"],
+        "officeContains": "Controller",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/michael-macdougall?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/nevada-controller-76766?cycle=2026-election-cycle",
+      "totalRaised": 33206,
+      "totalSpent": 23711.33,
+      "topContributors": [
+        { "name": "Catherine MacDougall", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Diana MacDougall", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Drive Committee FEC ID C00032979", "amount": 5000, "type": "ENTITY" },
+        { "name": "James MacDougall", "amount": 5000, "type": "INDIVIDUAL" },
+        { "name": "Robin Schmuckal", "amount": 1000, "type": "INDIVIDUAL" },
+        { "name": "Sheet Metal Workers #88 PAC", "amount": 1000, "type": "ENTITY" },
+        { "name": "Hannah Utecht", "amount": 200, "type": "INDIVIDUAL" },
+        { "name": "Michael MacDougall", "amount": 200, "type": "INDIVIDUAL" },
+        { "name": "Jacqueline Izawa", "amount": 150, "type": "INDIVIDUAL" },
+        { "name": "Clayton Mello", "amount": 100, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "andrew-matthews-controller-2026",
+      "candidate": {
+        "aliases": ["Andy Matthews", "Andrew Matthews", "Andrew Thomas Matthews", "Matthews, Andy"],
+        "officeContains": "Controller",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/andrew-matthews?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/nevada-controller-76766?cycle=2026-election-cycle",
+      "totalRaised": 237033.6,
+      "totalSpent": 66500.24,
+      "topContributors": [
+        { "name": "Debra Collins", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "David Cantwell", "amount": 6500, "type": "INDIVIDUAL" },
+        { "name": "Edward Hayes", "amount": 6000, "type": "INDIVIDUAL" },
+        { "name": "5212 Spanish Heights LLC", "amount": 5000, "type": "ENTITY" },
+        { "name": "Brand England", "amount": 5000, "type": "INDIVIDUAL" },
+        { "name": "Harmony Homes Inc", "amount": 5000, "type": "ENTITY" },
+        { "name": "Keystone Corporation", "amount": 5000, "type": "ENTITY" },
+        { "name": "Kirk Ledbetter", "amount": 5000, "type": "INDIVIDUAL" },
+        { "name": "Las Vegas Sands Corp", "amount": 5000, "type": "ENTITY" },
+        { "name": "Lisa Thomson", "amount": 5000, "type": "INDIVIDUAL" }
+      ]
+    },
+    {
+      "key": "nicole-cannizzaro-attorney-general-2026",
+      "candidate": {
+        "aliases": ["Nicole Cannizzaro", "Nicole Jeanette Cannizzaro", "Cannizzaro, Nicole Jeanette"],
+        "officeContains": "Attorney General",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/nicole-cannizzaro?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/attorney-general-of-nevada?cycle=2026-election-cycle",
+      "totalRaised": 1453438.05,
+      "totalSpent": 1670324.51,
+      "topContributors": [
+        { "name": "Alisa and James E Nave", "amount": 20000, "type": "INDIVIDUAL" },
+        { "name": "Caesars Enterprise Services LLC", "amount": 15000, "type": "ENTITY" },
+        { "name": "Adam Muslusky", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "All for Our Country", "amount": 10000, "type": "ENTITY" },
+        { "name": "Altria Client Services LLC", "amount": 10000, "type": "ENTITY" },
+        { "name": "American Federation of State County & Municipal Employees AFSCME - Federal", "amount": 10000, "type": "ENTITY" },
+        { "name": "Andersen Beede Weisenmiller", "amount": 10000, "type": "ENTITY" },
+        { "name": "Battle Born and Raised Leadership", "amount": 10000, "type": "ENTITY" },
+        { "name": "Big Horn Law", "amount": 10000, "type": "ENTITY" },
+        { "name": "Building a Stronger Nevada - Inactivated", "amount": 10000, "type": "ENTITY" }
+      ]
+    },
+    {
+      "key": "adriana-fralick-attorney-general-2026",
+      "candidate": {
+        "aliases": ["Adriana Fralick", "Adriana Guzman Fralick", "Adriana Guzmán Fralick", "Guzmán Fralick, Adriana"],
+        "officeContains": "Attorney General",
+        "electionYear": 2026
+      },
+      "candidateSourceUrl": "https://www.transparencyusa.org/nv/candidate/adriana-fralick?cycle=2026-election-cycle",
+      "raceSourceUrl": "https://www.transparencyusa.org/nv/race/attorney-general-of-nevada?cycle=2026-election-cycle",
+      "totalRaised": 438864.82,
+      "totalSpent": 383979.93,
+      "topContributors": [
+        { "name": "Marnell Gaming Management LLC", "amount": 20000, "type": "ENTITY" },
+        { "name": "Adriana Guzman Fralick", "amount": 14237.39, "type": "INDIVIDUAL" },
+        { "name": "Gary Gilmore", "amount": 10410.16, "type": "INDIVIDUAL" },
+        { "name": "Andrea M Hendrick", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Betty and John Stanko", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Carol and Dennis Troesh", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Claggett & Sykes Law Firm", "amount": 10000, "type": "ENTITY" },
+        { "name": "James Thomson", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Kirk D Hendrick", "amount": 10000, "type": "INDIVIDUAL" },
+        { "name": "Marnell AK LLC", "amount": 10000, "type": "ENTITY" }
+      ]
+    }
+  ]
+}

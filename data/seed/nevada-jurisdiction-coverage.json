@@ -1,0 +1,1537 @@
+{
+  "version": 1,
+  "scope": {
+    "description": "Statewide baseline for Nevada public-meeting acquisition. Covers every county or county-equivalent government, incorporated city, county school district, and the primary statewide meeting layers.",
+    "countyGovernments": 17,
+    "incorporatedCities": 19,
+    "countySchoolDistricts": 17,
+    "statewideLayers": 3,
+    "unincorporatedCommunityPolicy": "County meeting coverage is inherited until a separate town board or special district source is registered.",
+    "expansionClasses": [
+      "individual state boards and commissions",
+      "general improvement and special districts",
+      "unincorporated town advisory boards",
+      "charter school governing boards"
+    ]
+  },
+  "verificationSources": [
+    {
+      "label": "Nevada Association of Counties members",
+      "url": "https://nvnaco.org/members/index.php"
+    },
+    {
+      "label": "Nevada League of Cities member municipalities",
+      "url": "https://nvleague.com/member-municipalities/"
+    },
+    {
+      "label": "Nevada Department of Education district websites",
+      "url": "https://doe.nv.gov/school-and-district-information"
+    }
+  ],
+  "providers": [
+    {
+      "id": "nv-cannabis-public-meetings",
+      "name": "Nevada Cannabis Compliance Board and Cannabis Advisory Commission",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://ccb.nv.gov/public-meetings/",
+      "discoveryUrls": [
+        "https://ccb.nv.gov/public-meetings/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_cannabis_table",
+        "html",
+        "pdf"
+      ],
+      "notes": "Structured adapter preserves each CAC subcommittee, board, workshop, cancellation, and separately dated minutes."
+    },
+    {
+      "id": "nv-taxation-public-meetings",
+      "name": "Nevada Department of Taxation Boards and Committees",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://tax.nv.gov/boards-meetings/",
+      "discoveryUrls": [
+        "https://tax.nv.gov/boards-meetings/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_taxation_sections",
+        "html",
+        "pdf"
+      ],
+      "notes": "Structured adapter separates Tax Commission, Equalization, Mining Oversight, Local Government Finance and Appraiser Certification records. Cannabis Advisory Commission Taxation meetings are collected from CCB."
+    },
+    {
+      "id": "nv-state-board-of-education",
+      "name": "Nevada State Board of Education and Subcommittees",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://doe.nv.gov/boards-commissions-councils/state-board-of-education",
+      "discoveryUrls": [
+        "https://doe.nv.gov/boards-commissions-councils/state-board-of-education"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_education_headings",
+        "html",
+        "pdf"
+      ],
+      "notes": "Discovers current and adjacent published annual archives, including legislative, NRS 388G, and other subcommittee meetings. Unlinked minutes labels are not available documents.",
+      "allowedHosts": [
+        "doe.nv.gov",
+        "webapp-strapi-paas-prod-nde-001.azurewebsites.net",
+        "www.youtube.com"
+      ]
+    },
+    {
+      "id": "nv-statewide-public-notices",
+      "name": "Nevada Statewide Public Notice Discovery",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://notice.nv.gov/",
+      "discoveryUrls": [
+        "https://notice.nv.gov/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "official_notice"
+      ],
+      "notes": "Statewide new-body discovery queue across state, county, city, K-12, higher education, libraries and special districts. A listed link is not evidence that minutes are ingested."
+    },
+    {
+      "id": "nv-education-public-meetings-discovery",
+      "name": "Nevada Education Boards and Councils Discovery",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://doe.nv.gov/boards-commissions-councils/publicmeetings/",
+      "discoveryUrls": [
+        "https://doe.nv.gov/boards-commissions-councils/publicmeetings/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "education_calendar"
+      ],
+      "notes": "Discovery net for education councils and subcommittees beyond the State Board. Review linked body archives before importing."
+    },
+    {
+      "id": "nv-school-participation-discovery",
+      "name": "Nevada School and Parent Organization Discovery",
+      "jurisdiction": "Nevada",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://doe.nv.gov/school-and-district-information",
+      "discoveryUrls": [
+        "https://doe.nv.gov/school-and-district-information",
+        "https://www.nevadapta.org/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "discovery_only",
+        "school_directory",
+        "parent_organization"
+      ],
+      "notes": "Official statewide school and district directory plus Nevada PTA discovery. Private parent portals and unpublished PTA minutes require organizer-submitted public information; no inferred recurring dates."
+    },
+    {
+      "id": "carson-city-school-participation",
+      "name": "Carson City School and Parent Participation",
+      "jurisdiction": "Carson City, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.carsoncityschools.com/families-and-students/calendars",
+      "discoveryUrls": [
+        "https://www.carsoncityschools.com/families-and-students/calendars",
+        "https://www.carsoncityschools.com/",
+        "https://www.carsoncityschools.com/families-and-students"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "finalsite_parent_meetings",
+        "school_calendar",
+        "parent_organization"
+      ],
+      "notes": "First-priority Carson City school participation. Structured adapter imports only explicitly published PTA/PTO/PTSA meetings with a school and occurrence timestamp. Public school directory links feed source review; private or unpublished parent communications require organizer submission."
+    },
+    {
+      "id": "nv-legislature",
+      "name": "Nevada Legislature",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://www.leg.state.nv.us/",
+      "discoveryUrls": [
+        "https://www.leg.state.nv.us/app/calendar/a/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "nevada_legislature"
+      ]
+    },
+    {
+      "id": "nv-governor-executive-boards",
+      "name": "Governor / Executive Boards",
+      "jurisdiction": "Nevada",
+      "level": "state",
+      "providerGroup": "state",
+      "website": "https://www.gov.nv.gov/",
+      "discoveryUrls": [
+        "https://www.gov.nv.gov/board-appts/"
+      ],
+      "scraperType": "manual",
+      "platformHints": [
+        "distributed_state_boards"
+      ]
+    },
+    {
+      "id": "nshe-board-of-regents",
+      "name": "Nevada System of Higher Education Board of Regents",
+      "jurisdiction": "Nevada System of Higher Education",
+      "level": "university",
+      "providerGroup": "state",
+      "website": "https://nshe.nevada.edu/regents/",
+      "discoveryUrls": [
+        "https://nshe.nevada.edu/regents/upcoming-meetings/",
+        "https://nshe.nevada.edu/regents/archive/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "html",
+        "pdf",
+        "nshe_calendar_archive"
+      ],
+      "agendaArchiveUrl": "https://nshe.nevada.edu/regents/archive/",
+      "minutesArchiveUrl": "https://nshe.nevada.edu/regents/archive/",
+      "packetArchiveUrl": "https://nshe.nevada.edu/regents/archive/",
+      "allowedHosts": [
+        "nshe.nevada.edu"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "carson-city-board-of-supervisors",
+      "name": "Carson City Board of Supervisors",
+      "jurisdiction": "Carson City, NV",
+      "level": "city",
+      "providerGroup": "county",
+      "website": "https://www.carsoncity.gov/",
+      "discoveryUrls": [
+        "https://www.carsoncity.gov/government/city-meetings"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "granicus"
+      ]
+    },
+    {
+      "id": "churchill-county-commission",
+      "name": "Churchill County Commission",
+      "jurisdiction": "Churchill County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.churchillcountynv.gov/",
+      "discoveryUrls": [
+        "https://www.churchillcountynv.gov/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "clark-county-commission",
+      "name": "Clark County Commission",
+      "jurisdiction": "Clark County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.clarkcountynv.gov/",
+      "discoveryUrls": [
+        "https://clark.legistar.com/"
+      ],
+      "scraperType": "legistar",
+      "platformHints": [
+        "legistar"
+      ]
+    },
+    {
+      "id": "douglas-county-commission",
+      "name": "Douglas County Commission",
+      "jurisdiction": "Douglas County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.douglascountynv.gov/",
+      "discoveryUrls": [
+        "https://www.douglascountynv.gov/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "elko-county-commission",
+      "name": "Elko County Commission",
+      "jurisdiction": "Elko County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.elkocountynv.net/",
+      "discoveryUrls": [
+        "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "granicus",
+        "html",
+        "granicus_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+      "minutesArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+      "packetArchiveUrl": "https://elkocounty.granicus.com/ViewPublisher.php?view_id=5",
+      "allowedHosts": [
+        "elkocounty.granicus.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "esmeralda-county-commission",
+      "name": "Esmeralda County Commission",
+      "jurisdiction": "Esmeralda County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.accessesmeralda.com/",
+      "discoveryUrls": [
+        "https://www.accessesmeralda.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "eureka-county-commission",
+      "name": "Eureka County Commission",
+      "jurisdiction": "Eureka County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.eurekacountynv.gov/",
+      "discoveryUrls": [
+        "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+        "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-minutes/",
+        "https://www.eurekacountynv.gov/"
+      ],
+      "agendaArchiveUrl": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-agendas/",
+      "minutesArchiveUrl": "https://www.eurekacountynv.gov/departments/commissioners/commission-meeting-minutes/",
+      "replaceSourceUrls": true,
+      "scraperType": "html",
+      "platformHints": [
+        "html",
+        "pdf"
+      ]
+    },
+    {
+      "id": "humboldt-county-commission",
+      "name": "Humboldt County Commission",
+      "jurisdiction": "Humboldt County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.humboldtcountynv.gov/",
+      "discoveryUrls": [
+        "https://www.humboldtcountynv.gov/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "lander-county-commission",
+      "name": "Lander County Commission",
+      "jurisdiction": "Lander County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.landercountynv.org/",
+      "discoveryUrls": [
+        "https://www.landercountynv.org/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "lincoln-county-commission",
+      "name": "Lincoln County Commission",
+      "jurisdiction": "Lincoln County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://lincolncountynv.org/",
+      "discoveryUrls": [
+        "https://lincolncountynv.org/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "lyon-county-commission",
+      "name": "Lyon County Commission",
+      "jurisdiction": "Lyon County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.lyon-county.org/",
+      "discoveryUrls": [
+        "https://www.lyon-county.org/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "mineral-county-commission",
+      "name": "Mineral County Commission",
+      "jurisdiction": "Mineral County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://mineralcountynv.us/",
+      "discoveryUrls": [
+        "https://mineralcountynv.us/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "nye-county-commission",
+      "name": "Nye County Commission",
+      "jurisdiction": "Nye County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.nyecountynv.gov/",
+      "discoveryUrls": [
+        "https://www.nyecountynv.gov/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "pershing-county-commission",
+      "name": "Pershing County Commission",
+      "jurisdiction": "Pershing County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.pershingcountynv.gov/",
+      "discoveryUrls": [
+        "https://www.pershingcountynv.gov/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "storey-county-commission",
+      "name": "Storey County Commission",
+      "jurisdiction": "Storey County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.storeycounty.org/",
+      "discoveryUrls": [
+        "https://www.storeycounty.org/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "washoe-county-commission",
+      "name": "Washoe County Commission",
+      "jurisdiction": "Washoe County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.washoecounty.gov/",
+      "discoveryUrls": [
+        "https://washoe-nv.legistar.com/"
+      ],
+      "scraperType": "legistar",
+      "platformHints": [
+        "legistar"
+      ]
+    },
+    {
+      "id": "white-pine-county-commission",
+      "name": "White Pine County Commission",
+      "jurisdiction": "White Pine County, NV",
+      "level": "county",
+      "providerGroup": "county",
+      "website": "https://www.whitepinecounty.net/",
+      "discoveryUrls": [
+        "https://www.whitepinecounty.net/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "boulder-city-council",
+      "name": "Boulder City Council",
+      "jurisdiction": "Boulder City, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.bcnv.org/",
+      "discoveryUrls": [
+        "https://bcnv.primegov.com/public/portal"
+      ],
+      "scraperType": "granicus",
+      "agendaArchiveUrl": "https://bcnv.primegov.com/public/portal",
+      "minutesArchiveUrl": "https://bcnv.primegov.com/public/portal",
+      "packetArchiveUrl": "https://bcnv.primegov.com/public/portal",
+      "platformHints": [
+        "primegov",
+        "primegov_public_calendar"
+      ],
+      "allowedHosts": [
+        "bcnv.primegov.com"
+      ],
+      "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "caliente-city-council",
+      "name": "Caliente City Council",
+      "jurisdiction": "Caliente, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.cityofcaliente.com/",
+      "discoveryUrls": [
+        "https://www.cityofcaliente.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "carlin-city-council",
+      "name": "Carlin City Council",
+      "jurisdiction": "Carlin, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.explorecarlinnv.com/",
+      "discoveryUrls": [
+        "https://www.explorecarlinnv.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "elko-city-council",
+      "name": "Elko City Council",
+      "jurisdiction": "Elko, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.elkocity.com/",
+      "discoveryUrls": [
+        "https://ob.elkocitynv.gov/onbaseagendaonline/"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "onbase",
+        "onbase_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+      "minutesArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+      "packetArchiveUrl": "https://ob.elkocitynv.gov/onbaseagendaonline/",
+      "allowedHosts": [
+        "ob.elkocitynv.gov"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "ely-city-council",
+      "name": "Ely City Council",
+      "jurisdiction": "Ely, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.cityofelynv.gov/",
+      "discoveryUrls": [
+        "https://www.cityofelynv.gov/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "fallon-city-council",
+      "name": "Fallon City Council",
+      "jurisdiction": "Fallon, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.fallonnevada.gov/",
+      "discoveryUrls": [
+        "https://www.fallonnevada.gov/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "fernley-city-council",
+      "name": "Fernley City Council",
+      "jurisdiction": "Fernley, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.cityoffernley.org/",
+      "discoveryUrls": [
+        "https://www.cityoffernley.org/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "henderson-city-council",
+      "name": "Henderson City Council",
+      "jurisdiction": "Henderson, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.cityofhenderson.com/",
+      "discoveryUrls": [
+        "https://henderson.hylandcloud.com/231agendaonline/"
+      ],
+      "scraperType": "html",
+      "agendaArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+      "minutesArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+      "packetArchiveUrl": "https://henderson.hylandcloud.com/231agendaonline/",
+      "platformHints": [
+        "onbase_public_calendar"
+      ],
+      "allowedHosts": [
+        "henderson.hylandcloud.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "las-vegas-city-council",
+      "name": "Las Vegas City Council",
+      "jurisdiction": "Las Vegas, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.lasvegasnevada.gov/",
+      "discoveryUrls": [
+        "https://lasvegas.primegov.com/public/portal"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "primegov",
+        "primegov_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://lasvegas.primegov.com/public/portal",
+      "minutesArchiveUrl": "https://lasvegas.primegov.com/public/portal",
+      "packetArchiveUrl": "https://lasvegas.primegov.com/public/portal",
+      "allowedHosts": [
+        "lasvegas.primegov.com"
+      ],
+      "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "lovelock-city-council",
+      "name": "Lovelock City Council",
+      "jurisdiction": "Lovelock, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://cityoflovelock.com/",
+      "discoveryUrls": [
+        "https://cityoflovelock.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "mesquite-city-council",
+      "name": "Mesquite City Council",
+      "jurisdiction": "Mesquite, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.mesquitenv.gov/",
+      "discoveryUrls": [
+        "https://www.mesquitenv.gov/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "north-las-vegas-city-council",
+      "name": "North Las Vegas City Council",
+      "jurisdiction": "North Las Vegas, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.cityofnorthlasvegas.com/",
+      "discoveryUrls": [
+        "https://cityofnorthlasvegas.primegov.com/public/portal"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "primegov",
+        "primegov_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
+      "minutesArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
+      "packetArchiveUrl": "https://cityofnorthlasvegas.primegov.com/public/portal",
+      "allowedHosts": [
+        "cityofnorthlasvegas.primegov.com"
+      ],
+      "notes": "Public PrimeGov calendar and published PDF minutes adapter verified September 2026. Daily metadata refresh preserves committee identities, cancellations, and retained meeting aliases.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "reno-city-council",
+      "name": "Reno City Council",
+      "jurisdiction": "Reno, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.reno.gov/",
+      "discoveryUrls": [
+        "https://reno.primegov.com/public/portal"
+      ],
+      "scraperType": "granicus",
+      "platformHints": [
+        "primegov",
+        "primegov_public_api"
+      ],
+      "agendaArchiveUrl": "https://reno.primegov.com/public/portal",
+      "minutesArchiveUrl": "https://reno.primegov.com/public/portal",
+      "packetArchiveUrl": "https://reno.primegov.com/public/portal",
+      "allowedHosts": [
+        "reno.primegov.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "sparks-city-council",
+      "name": "Sparks City Council",
+      "jurisdiction": "Sparks, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.cityofsparks.us/",
+      "discoveryUrls": [
+        "https://agendas.cityofsparks.us/OnBaseAgendaOnline/"
+      ],
+      "scraperType": "html",
+      "agendaArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+      "minutesArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+      "packetArchiveUrl": "https://agendas.cityofsparks.us/OnBaseAgendaOnline/",
+      "platformHints": [
+        "onbase_public_calendar"
+      ],
+      "allowedHosts": [
+        "agendas.cityofsparks.us"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "wells-city-council",
+      "name": "Wells City Council",
+      "jurisdiction": "Wells, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.cityofwellsnv.com/",
+      "discoveryUrls": [
+        "https://www.cityofwellsnv.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "west-wendover-city-council",
+      "name": "West Wendover City Council",
+      "jurisdiction": "West Wendover, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.westwendovercity.com/",
+      "discoveryUrls": [
+        "https://www.westwendovercity.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "winnemucca-city-council",
+      "name": "Winnemucca City Council",
+      "jurisdiction": "Winnemucca, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.winnemuccacity.org/",
+      "discoveryUrls": [
+        "https://www.winnemuccacity.org/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "yerington-city-council",
+      "name": "Yerington City Council",
+      "jurisdiction": "Yerington, NV",
+      "level": "city",
+      "providerGroup": "city",
+      "website": "https://www.yerington.net/",
+      "discoveryUrls": [
+        "https://www.yerington.net/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "carson-city-school-district",
+      "name": "Carson City School District Board of Trustees",
+      "jurisdiction": "Carson City School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.carsoncityschools.com/",
+      "discoveryUrls": [
+        "https://www.carsoncityschools.com/our-district/school-board"
+      ],
+      "scraperType": "html",
+      "agendaArchiveUrl": "https://drive.google.com/drive/folders/198r2RNzw25hyXzfwEUWurPGMfv5eUdax?usp=sharing",
+      "minutesArchiveUrl": "https://drive.google.com/drive/folders/1WrwzbT0KmHhQq3ezNqBjBGZGUqyayGsZ?usp=sharing",
+      "packetArchiveUrl": "https://drive.google.com/drive/folders/198r2RNzw25hyXzfwEUWurPGMfv5eUdax?usp=sharing",
+      "allowedHosts": [
+        "drive.google.com",
+        "drive.usercontent.google.com"
+      ],
+      "platformHints": [
+        "finalsite",
+        "public_drive_folders",
+        "boarddocs_legacy"
+      ],
+      "notes": "Official board calendar and dynamically discovered public Drive agenda/minutes folders. Legacy BoardDocs access is unavailable; it is not counted as parsed coverage."
+    },
+    {
+      "id": "churchill-county-school-district",
+      "name": "Churchill County School District Board of Trustees",
+      "jurisdiction": "Churchill County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.churchillcsd.com/",
+      "discoveryUrls": [
+        "https://www.churchillcsd.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "clark-county-school-district",
+      "name": "Clark County School District Board of Trustees",
+      "jurisdiction": "Clark County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.ccsd.net/",
+      "discoveryUrls": [
+        "https://www.ccsd.net/about/school-board",
+        "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx"
+      ],
+      "scraperType": "html",
+      "platformHints": [
+        "boarddocs",
+        "finalsite",
+        "diligent_public_calendar"
+      ],
+      "agendaArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "minutesArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "packetArchiveUrl": "https://ccsd.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "allowedHosts": [
+        "www.ccsd.net",
+        "ccsd.community.diligentoneplatform.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "douglas-county-school-district",
+      "name": "Douglas County School District Board of Trustees",
+      "jurisdiction": "Douglas County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.dcsd.net/",
+      "discoveryUrls": [
+        "https://www.dcsd.net/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "elko-county-school-district",
+      "name": "Elko County School District Board of Trustees",
+      "jurisdiction": "Elko County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.ecsdnv.net/",
+      "discoveryUrls": [
+        "https://www.ecsdnv.net/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "esmeralda-county-school-district",
+      "name": "Esmeralda County School District Board of Trustees",
+      "jurisdiction": "Esmeralda County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.esmeralda.k12.nv.us/",
+      "discoveryUrls": [
+        "https://www.esmeralda.k12.nv.us/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "eureka-county-school-district",
+      "name": "Eureka County School District Board of Trustees",
+      "jurisdiction": "Eureka County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.eureka.k12.nv.us/",
+      "discoveryUrls": [
+        "https://www.eureka.k12.nv.us/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "humboldt-county-school-district",
+      "name": "Humboldt County School District Board of Trustees",
+      "jurisdiction": "Humboldt County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.hcsdnv.com/",
+      "discoveryUrls": [
+        "https://www.hcsdnv.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "lander-county-school-district",
+      "name": "Lander County School District Board of Trustees",
+      "jurisdiction": "Lander County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.lander.k12.nv.us/",
+      "discoveryUrls": [
+        "https://www.lander.k12.nv.us/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "lincoln-county-school-district",
+      "name": "Lincoln County School District Board of Trustees",
+      "jurisdiction": "Lincoln County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://lcsdnv.com/",
+      "discoveryUrls": [
+        "https://lcsdnv.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "lyon-county-school-district",
+      "name": "Lyon County School District Board of Trustees",
+      "jurisdiction": "Lyon County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.lyoncsd.org/",
+      "discoveryUrls": [
+        "https://www.lyoncsd.org/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "mineral-county-school-district",
+      "name": "Mineral County School District Board of Trustees",
+      "jurisdiction": "Mineral County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://nvmcsd.org/",
+      "discoveryUrls": [
+        "https://nvmcsd.org/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "nye-county-school-district",
+      "name": "Nye County School District Board of Trustees",
+      "jurisdiction": "Nye County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.nye.k12.nv.us/",
+      "discoveryUrls": [
+        "https://www.nye.k12.nv.us/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "pershing-county-school-district",
+      "name": "Pershing County School District Board of Trustees",
+      "jurisdiction": "Pershing County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.pcsdnv.com/",
+      "discoveryUrls": [
+        "https://www.pcsdnv.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "storey-county-school-district",
+      "name": "Storey County School District Board of Trustees",
+      "jurisdiction": "Storey County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.storeynv.com/",
+      "discoveryUrls": [
+        "https://www.storeynv.com/"
+      ],
+      "scraperType": "manual"
+    },
+    {
+      "id": "washoe-county-school-district",
+      "name": "Washoe County School District Board of Trustees",
+      "jurisdiction": "Washoe County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.washoeschools.net/",
+      "discoveryUrls": [
+        "https://www.washoeschools.net/trustees/board-of-trustees/board-meetings-calendar",
+        "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx"
+      ],
+      "scraperType": "html",
+      "agendaArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "minutesArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "packetArchiveUrl": "https://washoeschools.community.diligentoneplatform.com/Portal/MeetingInformation.aspx",
+      "platformHints": [
+        "finalsite",
+        "diligent_public_calendar"
+      ],
+      "allowedHosts": [
+        "www.washoeschools.net",
+        "washoeschools.community.diligentoneplatform.com"
+      ],
+      "notes": "Public calendar and published document adapter verified September 2026. Separate committees retain their own body identities; generic portals are not counted as minutes.",
+      "replaceSourceUrls": true
+    },
+    {
+      "id": "white-pine-county-school-district",
+      "name": "White Pine County School District Board of Trustees",
+      "jurisdiction": "White Pine County School District, NV",
+      "level": "school",
+      "providerGroup": "school",
+      "website": "https://www.whitepine.k12.nv.us/",
+      "discoveryUrls": [
+        "https://www.whitepine.k12.nv.us/"
+      ],
+      "scraperType": "manual"
+    }
+  ],
+  "jurisdictions": [
+    {
+      "id": "state-nevada-legislature",
+      "name": "Nevada Legislature",
+      "kind": "state",
+      "providerId": "nv-legislature",
+      "communityIds": [
+        "nevada"
+      ]
+    },
+    {
+      "id": "state-nevada-executive-boards",
+      "name": "Nevada executive boards",
+      "kind": "state",
+      "providerId": "nv-governor-executive-boards",
+      "communityIds": [
+        "nevada"
+      ]
+    },
+    {
+      "id": "state-nevada-regents",
+      "name": "Nevada Board of Regents",
+      "kind": "state",
+      "providerId": "nshe-board-of-regents",
+      "communityIds": [
+        "nevada"
+      ]
+    },
+    {
+      "id": "county-carson-city",
+      "name": "Carson City county-equivalent",
+      "kind": "county",
+      "providerId": "carson-city-board-of-supervisors",
+      "communityIds": [
+        "carson-city-county"
+      ]
+    },
+    {
+      "id": "county-churchill",
+      "name": "Churchill County",
+      "kind": "county",
+      "providerId": "churchill-county-commission",
+      "communityIds": [
+        "churchill-county"
+      ]
+    },
+    {
+      "id": "county-clark",
+      "name": "Clark County",
+      "kind": "county",
+      "providerId": "clark-county-commission",
+      "communityIds": [
+        "clark-county"
+      ]
+    },
+    {
+      "id": "county-douglas",
+      "name": "Douglas County",
+      "kind": "county",
+      "providerId": "douglas-county-commission",
+      "communityIds": [
+        "douglas-county"
+      ]
+    },
+    {
+      "id": "county-elko",
+      "name": "Elko County",
+      "kind": "county",
+      "providerId": "elko-county-commission",
+      "communityIds": [
+        "elko-county"
+      ]
+    },
+    {
+      "id": "county-esmeralda",
+      "name": "Esmeralda County",
+      "kind": "county",
+      "providerId": "esmeralda-county-commission",
+      "communityIds": [
+        "esmeralda-county"
+      ]
+    },
+    {
+      "id": "county-eureka",
+      "name": "Eureka County",
+      "kind": "county",
+      "providerId": "eureka-county-commission",
+      "communityIds": [
+        "eureka-county"
+      ]
+    },
+    {
+      "id": "county-humboldt",
+      "name": "Humboldt County",
+      "kind": "county",
+      "providerId": "humboldt-county-commission",
+      "communityIds": [
+        "humboldt-county"
+      ]
+    },
+    {
+      "id": "county-lander",
+      "name": "Lander County",
+      "kind": "county",
+      "providerId": "lander-county-commission",
+      "communityIds": [
+        "lander-county"
+      ]
+    },
+    {
+      "id": "county-lincoln",
+      "name": "Lincoln County",
+      "kind": "county",
+      "providerId": "lincoln-county-commission",
+      "communityIds": [
+        "lincoln-county"
+      ]
+    },
+    {
+      "id": "county-lyon",
+      "name": "Lyon County",
+      "kind": "county",
+      "providerId": "lyon-county-commission",
+      "communityIds": [
+        "lyon-county"
+      ]
+    },
+    {
+      "id": "county-mineral",
+      "name": "Mineral County",
+      "kind": "county",
+      "providerId": "mineral-county-commission",
+      "communityIds": [
+        "mineral-county"
+      ]
+    },
+    {
+      "id": "county-nye",
+      "name": "Nye County",
+      "kind": "county",
+      "providerId": "nye-county-commission",
+      "communityIds": [
+        "nye-county"
+      ]
+    },
+    {
+      "id": "county-pershing",
+      "name": "Pershing County",
+      "kind": "county",
+      "providerId": "pershing-county-commission",
+      "communityIds": [
+        "pershing-county"
+      ]
+    },
+    {
+      "id": "county-storey",
+      "name": "Storey County",
+      "kind": "county",
+      "providerId": "storey-county-commission",
+      "communityIds": [
+        "storey-county"
+      ]
+    },
+    {
+      "id": "county-washoe",
+      "name": "Washoe County",
+      "kind": "county",
+      "providerId": "washoe-county-commission",
+      "communityIds": [
+        "washoe-county"
+      ]
+    },
+    {
+      "id": "county-white-pine",
+      "name": "White Pine County",
+      "kind": "county",
+      "providerId": "white-pine-county-commission",
+      "communityIds": [
+        "white-pine-county"
+      ]
+    },
+    {
+      "id": "city-boulder-city",
+      "name": "Boulder City",
+      "kind": "city",
+      "providerId": "boulder-city-council",
+      "communityIds": [
+        "boulder-city"
+      ]
+    },
+    {
+      "id": "city-caliente",
+      "name": "Caliente",
+      "kind": "city",
+      "providerId": "caliente-city-council",
+      "communityIds": [
+        "caliente"
+      ]
+    },
+    {
+      "id": "city-carlin",
+      "name": "Carlin",
+      "kind": "city",
+      "providerId": "carlin-city-council",
+      "communityIds": [
+        "carlin"
+      ]
+    },
+    {
+      "id": "city-carson-city",
+      "name": "Carson City",
+      "kind": "city",
+      "providerId": "carson-city-board-of-supervisors",
+      "communityIds": [
+        "carson-city"
+      ]
+    },
+    {
+      "id": "city-elko",
+      "name": "Elko",
+      "kind": "city",
+      "providerId": "elko-city-council",
+      "communityIds": [
+        "elko"
+      ]
+    },
+    {
+      "id": "city-ely",
+      "name": "Ely",
+      "kind": "city",
+      "providerId": "ely-city-council",
+      "communityIds": [
+        "ely"
+      ]
+    },
+    {
+      "id": "city-fallon",
+      "name": "Fallon",
+      "kind": "city",
+      "providerId": "fallon-city-council",
+      "communityIds": [
+        "fallon"
+      ]
+    },
+    {
+      "id": "city-fernley",
+      "name": "Fernley",
+      "kind": "city",
+      "providerId": "fernley-city-council",
+      "communityIds": [
+        "fernley"
+      ]
+    },
+    {
+      "id": "city-henderson",
+      "name": "Henderson",
+      "kind": "city",
+      "providerId": "henderson-city-council",
+      "communityIds": [
+        "henderson"
+      ]
+    },
+    {
+      "id": "city-las-vegas",
+      "name": "Las Vegas",
+      "kind": "city",
+      "providerId": "las-vegas-city-council",
+      "communityIds": [
+        "las-vegas"
+      ]
+    },
+    {
+      "id": "city-lovelock",
+      "name": "Lovelock",
+      "kind": "city",
+      "providerId": "lovelock-city-council",
+      "communityIds": [
+        "lovelock"
+      ]
+    },
+    {
+      "id": "city-mesquite",
+      "name": "Mesquite",
+      "kind": "city",
+      "providerId": "mesquite-city-council",
+      "communityIds": [
+        "mesquite"
+      ]
+    },
+    {
+      "id": "city-north-las-vegas",
+      "name": "North Las Vegas",
+      "kind": "city",
+      "providerId": "north-las-vegas-city-council",
+      "communityIds": [
+        "north-las-vegas"
+      ]
+    },
+    {
+      "id": "city-reno",
+      "name": "Reno",
+      "kind": "city",
+      "providerId": "reno-city-council",
+      "communityIds": [
+        "reno"
+      ]
+    },
+    {
+      "id": "city-sparks",
+      "name": "Sparks",
+      "kind": "city",
+      "providerId": "sparks-city-council",
+      "communityIds": [
+        "sparks"
+      ]
+    },
+    {
+      "id": "city-wells",
+      "name": "Wells",
+      "kind": "city",
+      "providerId": "wells-city-council",
+      "communityIds": [
+        "wells"
+      ]
+    },
+    {
+      "id": "city-west-wendover",
+      "name": "West Wendover",
+      "kind": "city",
+      "providerId": "west-wendover-city-council",
+      "communityIds": [
+        "west-wendover"
+      ]
+    },
+    {
+      "id": "city-winnemucca",
+      "name": "Winnemucca",
+      "kind": "city",
+      "providerId": "winnemucca-city-council",
+      "communityIds": [
+        "winnemucca"
+      ]
+    },
+    {
+      "id": "city-yerington",
+      "name": "Yerington",
+      "kind": "city",
+      "providerId": "yerington-city-council",
+      "communityIds": [
+        "yerington"
+      ]
+    },
+    {
+      "id": "school-carson-city",
+      "name": "Carson City School District",
+      "kind": "school",
+      "providerId": "carson-city-school-district",
+      "communityIds": [
+        "carson-city",
+        "carson-city-county"
+      ]
+    },
+    {
+      "id": "school-churchill",
+      "name": "Churchill County School District",
+      "kind": "school",
+      "providerId": "churchill-county-school-district",
+      "communityIds": [
+        "churchill-county"
+      ]
+    },
+    {
+      "id": "school-clark",
+      "name": "Clark County School District",
+      "kind": "school",
+      "providerId": "clark-county-school-district",
+      "communityIds": [
+        "clark-county"
+      ]
+    },
+    {
+      "id": "school-douglas",
+      "name": "Douglas County School District",
+      "kind": "school",
+      "providerId": "douglas-county-school-district",
+      "communityIds": [
+        "douglas-county"
+      ]
+    },
+    {
+      "id": "school-elko",
+      "name": "Elko County School District",
+      "kind": "school",
+      "providerId": "elko-county-school-district",
+      "communityIds": [
+        "elko-county"
+      ]
+    },
+    {
+      "id": "school-esmeralda",
+      "name": "Esmeralda County School District",
+      "kind": "school",
+      "providerId": "esmeralda-county-school-district",
+      "communityIds": [
+        "esmeralda-county"
+      ]
+    },
+    {
+      "id": "school-eureka",
+      "name": "Eureka County School District",
+      "kind": "school",
+      "providerId": "eureka-county-school-district",
+      "communityIds": [
+        "eureka-county"
+      ]
+    },
+    {
+      "id": "school-humboldt",
+      "name": "Humboldt County School District",
+      "kind": "school",
+      "providerId": "humboldt-county-school-district",
+      "communityIds": [
+        "humboldt-county"
+      ]
+    },
+    {
+      "id": "school-lander",
+      "name": "Lander County School District",
+      "kind": "school",
+      "providerId": "lander-county-school-district",
+      "communityIds": [
+        "lander-county"
+      ]
+    },
+    {
+      "id": "school-lincoln",
+      "name": "Lincoln County School District",
+      "kind": "school",
+      "providerId": "lincoln-county-school-district",
+      "communityIds": [
+        "lincoln-county"
+      ]
+    },
+    {
+      "id": "school-lyon",
+      "name": "Lyon County School District",
+      "kind": "school",
+      "providerId": "lyon-county-school-district",
+      "communityIds": [
+        "lyon-county"
+      ]
+    },
+    {
+      "id": "school-mineral",
+      "name": "Mineral County School District",
+      "kind": "school",
+      "providerId": "mineral-county-school-district",
+      "communityIds": [
+        "mineral-county"
+      ]
+    },
+    {
+      "id": "school-nye",
+      "name": "Nye County School District",
+      "kind": "school",
+      "providerId": "nye-county-school-district",
+      "communityIds": [
+        "nye-county"
+      ]
+    },
+    {
+      "id": "school-pershing",
+      "name": "Pershing County School District",
+      "kind": "school",
+      "providerId": "pershing-county-school-district",
+      "communityIds": [
+        "pershing-county"
+      ]
+    },
+    {
+      "id": "school-storey",
+      "name": "Storey County School District",
+      "kind": "school",
+      "providerId": "storey-county-school-district",
+      "communityIds": [
+        "storey-county"
+      ]
+    },
+    {
+      "id": "school-washoe",
+      "name": "Washoe County School District",
+      "kind": "school",
+      "providerId": "washoe-county-school-district",
+      "communityIds": [
+        "washoe-county"
+      ]
+    },
+    {
+      "id": "school-white-pine",
+      "name": "White Pine County School District",
+      "kind": "school",
+      "providerId": "white-pine-county-school-district",
+      "communityIds": [
+        "white-pine-county"
+      ]
+    }
+  ],
+  "communityInheritance": [
+    {
+      "communityId": "tonopah",
+      "providerId": "nye-county-commission"
+    },
+    {
+      "communityId": "pahrump",
+      "providerId": "nye-county-commission"
+    },
+    {
+      "communityId": "incline-village",
+      "providerId": "washoe-county-commission"
+    },
+    {
+      "communityId": "gardnerville",
+      "providerId": "douglas-county-commission"
+    },
+    {
+      "communityId": "minden",
+      "providerId": "douglas-county-commission"
+    },
+    {
+      "communityId": "laughlin",
+      "providerId": "clark-county-commission"
+    },
+    {
+      "communityId": "battle-mountain",
+      "providerId": "lander-county-commission"
+    }
+  ]
+}

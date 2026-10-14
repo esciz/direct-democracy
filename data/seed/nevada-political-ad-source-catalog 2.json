@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-25",
+  "historicalCycles": [2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026],
+  "sources": [
+    {
+      "id": "fec-schedule-e-nevada",
+      "name": "FEC Schedule E independent expenditures",
+      "authority": "official",
+      "coverage": "Federal candidate communications reported as independent expenditures, including sponsor, candidate, support or oppose direction, purpose, date, and amount.",
+      "sourceUrl": "https://api.open.fec.gov/developers/",
+      "accessMethod": "public_api",
+      "collectionStatus": "automated",
+      "cadenceDays": 1,
+      "creativeCoverage": false
+    },
+    {
+      "id": "fcc-nevada-political-files",
+      "name": "FCC public inspection political files",
+      "authority": "official",
+      "coverage": "Political time orders and related files uploaded by Nevada television, radio, cable, DBS, and satellite-radio entities.",
+      "sourceUrl": "https://publicfiles.fcc.gov/",
+      "accessMethod": "public_files_and_rss",
+      "collectionStatus": "station_registry_pending",
+      "cadenceDays": 1,
+      "creativeCoverage": false
+    },
+    {
+      "id": "nevada-sos-ad-expenditures",
+      "name": "Nevada Secretary of State campaign-finance expenditures",
+      "authority": "official",
+      "coverage": "State and local campaign expenditures that identify advertising, media, mail, television, radio, digital, print, production, or related vendors.",
+      "sourceUrl": "https://www.nvsos.gov/sos/elections/campaign-finance-reporting",
+      "accessMethod": "public_web_and_documents",
+      "collectionStatus": "lead_generation",
+      "cadenceDays": 1,
+      "creativeCoverage": false
+    },
+    {
+      "id": "meta-ad-library-nevada",
+      "name": "Meta Ad Library",
+      "authority": "platform_archive",
+      "coverage": "Political and social-issue ads delivered on Meta technologies with advertiser, creative, date, spend-range, impression-range, and regional delivery fields when available.",
+      "sourceUrl": "https://www.facebook.com/ads/library/",
+      "accessMethod": "public_search_and_credentialed_api",
+      "collectionStatus": "credential_required_for_automation",
+      "cadenceDays": 1,
+      "creativeCoverage": true
+    },
+    {
+      "id": "google-ads-transparency-nevada",
+      "name": "Google Ads Transparency Center",
+      "authority": "platform_archive",
+      "coverage": "Verified advertiser and ad creative search across Google surfaces, filterable by region and date where available.",
+      "sourceUrl": "https://adstransparency.google.com/",
+      "accessMethod": "public_search",
+      "collectionStatus": "export_or_review_required",
+      "cadenceDays": 7,
+      "creativeCoverage": true
+    },
+    {
+      "id": "reviewed-nevada-ad-creative",
+      "name": "Reviewed Nevada ad creative intake",
+      "authority": "reviewed_public_source",
+      "coverage": "Campaign videos, public archive links, mailers, SMS captures, and other creative reviewed against a public source.",
+      "sourceUrl": "data/imports/political-ads/nevada-reviewed-video-ads.json",
+      "accessMethod": "manual_review",
+      "collectionStatus": "active",
+      "cadenceDays": 7,
+      "creativeCoverage": true
+    }
+  ]
+}

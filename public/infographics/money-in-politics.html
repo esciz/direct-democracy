@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Animated Infographic: Money in Politics After Citizens United</title>
+<style>
+  :root{
+    --bg:#07111f;
+    --bg2:#0d1830;
+    --ink:#eef6ff;
+    --muted:#a9b7cd;
+    --line:#33445f;
+    --cyan:#58d4ff;
+    --gold:#ffd66b;
+    --pink:#ff7ea8;
+    --green:#8cffc1;
+    --purple:#b49cff;
+    --orange:#ffb45e;
+    --card:rgba(255,255,255,.075);
+    --card2:rgba(255,255,255,.11);
+    --shadow:0 28px 80px rgba(0,0,0,.35);
+    --radius:28px;
+    --dur:1.2s;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 18% 10%, rgba(88,212,255,.20), transparent 34%),
+      radial-gradient(circle at 84% 8%, rgba(255,214,107,.14), transparent 32%),
+      radial-gradient(circle at 52% 115%, rgba(255,126,168,.18), transparent 42%),
+      linear-gradient(135deg,var(--bg),var(--bg2));
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    overflow-x:hidden;
+  }
+  a{color:var(--cyan)}
+  .wrap{max-width:1280px;margin:0 auto;padding:28px 20px 52px}
+  .hero{
+    display:grid;
+    grid-template-columns: 1.12fr .88fr;
+    gap:22px;
+    align-items:stretch;
+    min-height:calc(100vh - 60px);
+  }
+  .panel{
+    position:relative;
+    border:1px solid rgba(255,255,255,.12);
+    background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.055));
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    backdrop-filter: blur(15px);
+    overflow:hidden;
+  }
+  .panel::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(110deg, transparent 0 18%, rgba(255,255,255,.08) 24%, transparent 32% 100%);
+    transform:translateX(-130%);
+    animation: sheen 8s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes sheen{ 0%,38%{transform:translateX(-130%)} 55%,100%{transform:translateX(140%)} }
+  .story{padding:34px 34px 24px;display:flex;flex-direction:column;justify-content:space-between;min-height:720px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--green);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.82rem}
+  .pulse-dot{width:9px;height:9px;border-radius:999px;background:var(--green);box-shadow:0 0 0 0 rgba(140,255,193,.7);animation:pulseDot 1.8s infinite}
+  @keyframes pulseDot{to{box-shadow:0 0 0 18px rgba(140,255,193,0)}}
+  h1{font-size:clamp(2.35rem,6.2vw,6.6rem);line-height:.90;margin:16px 0 18px;letter-spacing:-.07em}
+  h1 .grad{display:block;background:linear-gradient(90deg,var(--gold),var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .subtitle{font-size:clamp(1.05rem,1.55vw,1.45rem);line-height:1.5;color:var(--muted);max-width:760px}
+  .subtitle b{color:var(--ink)}
+  .captionCard{
+    margin-top:26px;
+    border-radius:22px;
+    background:rgba(3,9,19,.52);
+    border:1px solid rgba(255,255,255,.12);
+    padding:20px 22px;
+    min-height:132px;
+  }
+  .captionKicker{font-size:.84rem;color:var(--gold);font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+  .caption{font-size:clamp(1.05rem,1.4vw,1.35rem);line-height:1.42;margin:0;color:#f8fbff}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+  button,.sceneTab{
+    cursor:pointer;
+    color:var(--ink);
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.09);
+    border-radius:999px;
+    padding:10px 14px;
+    font-weight:800;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease;
+  }
+  button:hover,.sceneTab:hover{transform:translateY(-2px);background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.35)}
+  .sceneTabs{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+  .sceneTab{font-size:.82rem;color:var(--muted);padding:8px 10px}
+  body[data-scene="0"] .sceneTab[data-i="0"],
+  body[data-scene="1"] .sceneTab[data-i="1"],
+  body[data-scene="2"] .sceneTab[data-i="2"],
+  body[data-scene="3"] .sceneTab[data-i="3"],
+  body[data-scene="4"] .sceneTab[data-i="4"]{background:rgba(88,212,255,.22);border-color:rgba(88,212,255,.55);color:#fff}
+  .progress{height:8px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden;margin-top:18px}
+  .progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--pink));border-radius:999px;transition:width .45s ease}
+
+  .visual{padding:22px;min-height:720px;display:grid;grid-template-rows: auto 1fr auto;gap:14px}
+  .bigMetric{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    position:relative;z-index:2
+  }
+  .metric{
+    padding:18px;
+    border-radius:22px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.11);
+    min-height:128px;
+  }
+  .metric .number{font-size:clamp(2rem,4.7vw,4.8rem);font-weight:950;letter-spacing:-.06em;line-height:.9}
+  .metric .label{margin-top:9px;color:var(--muted);font-weight:700;line-height:1.28}
+  .metric.hot{background:linear-gradient(160deg, rgba(255,214,107,.18), rgba(255,126,168,.08))}
+  .metric.cool{background:linear-gradient(160deg, rgba(88,212,255,.18), rgba(180,156,255,.09))}
+
+  .moneyStage{
+    position:relative;
+    min-height:430px;
+    border-radius:28px;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(255,214,107,.13), transparent 30%),
+      radial-gradient(circle at 48% 58%, rgba(88,212,255,.12), transparent 26%),
+      rgba(0,0,0,.13);
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.10);
+  }
+  .node{
+    position:absolute;
+    min-width:124px;
+    border-radius:22px;
+    padding:12px 14px;
+    text-align:center;
+    font-weight:900;
+    background:rgba(7,17,31,.82);
+    border:1px solid rgba(255,255,255,.16);
+    box-shadow:0 18px 46px rgba(0,0,0,.25);
+    z-index:3;
+    transition:transform .75s cubic-bezier(.2,.9,.2,1), opacity .75s ease, filter .75s ease;
+  }
+  .node small{display:block;color:var(--muted);font-weight:700;margin-top:3px;font-size:.72rem;line-height:1.16}
+  .node.donors{left:3%;top:26%;border-color:rgba(255,214,107,.38)}
+  .node.dark{left:38%;top:10%;border-color:rgba(180,156,255,.38)}
+  .node.super{left:39%;bottom:12%;border-color:rgba(88,212,255,.44)}
+  .node.ads{right:4%;top:18%;border-color:rgba(255,126,168,.44)}
+  .node.policy{right:4%;bottom:12%;border-color:rgba(140,255,193,.38)}
+  .megaPhone{
+    position:absolute;right:18%;top:42%;width:120px;height:92px;z-index:2;
+    filter:drop-shadow(0 18px 24px rgba(0,0,0,.30));
+    transform-origin:center;
+    animation:phonePulse 2.5s ease-in-out infinite;
+  }
+  @keyframes phonePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+  .cone{position:absolute;left:30px;top:20px;width:76px;height:52px;background:linear-gradient(90deg,var(--gold),var(--orange));clip-path:polygon(0 24%,100% 0,100% 100%,0 76%);border-radius:8px;box-shadow:inset 0 -6px 0 rgba(0,0,0,.13)}
+  .handle{position:absolute;left:24px;top:56px;width:18px;height:38px;background:#dbe7ff;border-radius:6px;transform:rotate(-12deg)}
+  .mouth{position:absolute;left:4px;top:33px;width:38px;height:26px;background:#fff;border-radius:8px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.10)}
+  .sound{position:absolute;border:2px solid rgba(255,214,107,.8);border-left:none;border-radius:0 100px 100px 0;opacity:.0;animation:sound 2.4s ease-out infinite}
+  .sound.s1{left:100px;top:20px;width:34px;height:52px}.sound.s2{left:106px;top:9px;width:58px;height:75px;animation-delay:.3s}.sound.s3{left:112px;top:-4px;width:84px;height:101px;animation-delay:.6s}
+  @keyframes sound{0%{opacity:0;transform:scaleX(.4)}25%{opacity:.8}100%{opacity:0;transform:scaleX(1.18)}}
+
+  svg.flow{position:absolute;inset:0;width:100%;height:100%;z-index:1;overflow:visible}
+  .flow path{fill:none;stroke-linecap:round;stroke-width:4;stroke-dasharray:9 12;opacity:.55;filter:drop-shadow(0 0 12px rgba(88,212,255,.20));animation:flowDash 2.4s linear infinite}
+  .flow .p1{stroke:var(--gold)}.flow .p2{stroke:var(--purple)}.flow .p3{stroke:var(--cyan)}.flow .p4{stroke:var(--pink)}.flow .p5{stroke:var(--green)}
+  @keyframes flowDash{to{stroke-dashoffset:-120}}
+  .coin{
+    position:absolute;width:30px;height:30px;border-radius:999px;background:radial-gradient(circle at 34% 30%, #fff7cc, var(--gold) 38%, #c98d16 88%);
+    display:grid;place-items:center;color:#65440a;font-weight:950;font-size:16px;box-shadow:0 8px 20px rgba(255,214,107,.25);z-index:2;opacity:.9;
+  }
+  .coin::after{content:"$"}
+  .coin.c1{left:10%;top:19%;animation:coinA 5.2s linear infinite}
+  .coin.c2{left:9%;top:53%;animation:coinB 5.8s linear .9s infinite}
+  .coin.c3{left:47%;top:23%;animation:coinC 5.5s linear 1.2s infinite}
+  .coin.c4{left:50%;top:64%;animation:coinD 5.1s linear .4s infinite}
+  .coin.c5{left:72%;top:38%;animation:coinE 4.9s linear 1.6s infinite}
+  @keyframes coinA{0%{transform:translate(0,0) scale(.55);opacity:0}18%{opacity:1}55%{transform:translate(205px,-32px) scale(1)}100%{transform:translate(520px,45px) scale(.75);opacity:0}}
+  @keyframes coinB{0%{transform:translate(0,0) scale(.55);opacity:0}18%{opacity:1}55%{transform:translate(214px,86px) scale(1)}100%{transform:translate(520px,-25px) scale(.75);opacity:0}}
+  @keyframes coinC{0%{transform:translate(0,0) scale(.55);opacity:0}20%{opacity:1}100%{transform:translate(300px,34px) scale(.8);opacity:0}}
+  @keyframes coinD{0%{transform:translate(0,0) scale(.55);opacity:0}20%{opacity:1}100%{transform:translate(294px,-92px) scale(.8);opacity:0}}
+  @keyframes coinE{0%{transform:translate(0,0) scale(.55);opacity:0}20%{opacity:1}100%{transform:translate(120px,112px) scale(.72);opacity:0}}
+  .decision{
+    position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);
+    display:grid;place-items:center;z-index:4;width:174px;height:174px;border-radius:999px;
+    background:radial-gradient(circle, rgba(255,214,107,.22), rgba(255,126,168,.12) 58%, rgba(88,212,255,.05));
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 0 0 0 rgba(255,214,107,.30), 0 24px 70px rgba(0,0,0,.32);
+    animation:decisionPulse 2.5s infinite;
+  }
+  @keyframes decisionPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,214,107,.26),0 24px 70px rgba(0,0,0,.32)}50%{box-shadow:0 0 0 18px rgba(255,214,107,.02),0 24px 70px rgba(0,0,0,.32)}}
+  .decision .year{font-size:2.15rem;font-weight:950;letter-spacing:-.06em}.decision .text{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900;text-align:center;line-height:1.2}
+
+  .barBox{display:grid;grid-template-columns:1fr;gap:13px;padding:16px 4px 2px}
+  .barRow{display:grid;grid-template-columns:78px 1fr 100px;gap:12px;align-items:center}
+  .barLabel{color:var(--muted);font-weight:900}
+  .barTrack{height:22px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.11);border-radius:999px;overflow:hidden;position:relative}
+  .bar{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold),var(--pink));width:0;transition:width 1.4s cubic-bezier(.2,.9,.2,1)}
+  .bar.y2024{background:linear-gradient(90deg,var(--cyan),var(--gold),var(--pink))}
+  .barVal{text-align:right;font-weight:950}.barNote{color:var(--muted);font-size:.78rem;line-height:1.35;margin-top:2px}
+
+  body[data-scene="0"] .bar.y2008{width:4%} body[data-scene="0"] .bar.y2024{width:0}
+  body[data-scene="1"] .bar.y2008{width:4%} body[data-scene="1"] .bar.y2024{width:0}
+  body[data-scene="2"] .bar.y2008{width:4%} body[data-scene="2"] .bar.y2024{width:96%}
+  body[data-scene="3"] .bar.y2008{width:4%} body[data-scene="3"] .bar.y2024{width:96%}
+  body[data-scene="4"] .bar.y2008{width:4%} body[data-scene="4"] .bar.y2024{width:96%}
+
+  body[data-scene="0"] .node.dark,body[data-scene="0"] .node.super,body[data-scene="0"] .node.ads,body[data-scene="0"] .node.policy{opacity:.35;filter:saturate(.3);transform:scale(.86)}
+  body[data-scene="0"] .decision{opacity:.35;transform:translate(-50%,-50%) scale(.86)}
+  body[data-scene="1"] .decision{transform:translate(-50%,-50%) scale(1.12)}
+  body[data-scene="2"] .node.super,body[data-scene="2"] .node.dark{transform:scale(1.08)}
+  body[data-scene="3"] .node.ads, body[data-scene="3"] .megaPhone{transform:scale(1.08)}
+  body[data-scene="4"] .node.policy{transform:scale(1.08)}
+
+  .explainerGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+  .mini{
+    border-radius:22px;background:var(--card);border:1px solid rgba(255,255,255,.10);padding:18px;min-height:180px;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .mini:hover{transform:translateY(-4px);background:var(--card2)}
+  .miniIcon{font-size:2rem;line-height:1;margin-bottom:12px}.mini h3{margin:0 0 8px;font-size:1.06rem}.mini p{margin:0;color:var(--muted);line-height:1.45;font-size:.95rem}
+
+  .section{margin-top:28px;padding:28px;border-radius:var(--radius);background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);box-shadow:var(--shadow)}
+  .section h2{margin:0 0 14px;font-size:clamp(1.65rem,3vw,3.2rem);letter-spacing:-.04em}.section p{color:var(--muted);line-height:1.58}
+  .statGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+  .statCard{padding:22px;border-radius:24px;background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.10)}
+  .statCard .statNum{font-weight:950;font-size:clamp(2.2rem,4vw,4.4rem);letter-spacing:-.06em;line-height:.95;background:linear-gradient(90deg,var(--cyan),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .statCard .statText{margin-top:12px;color:#dce9ff;font-weight:800;line-height:1.35}.statCard .statSub{font-size:.88rem;color:var(--muted);line-height:1.42;margin-top:8px}
+
+  .timeline{display:grid;gap:14px;margin-top:20px}
+  .timeItem{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;padding:16px;border-radius:22px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09)}
+  .timeYear{font-size:1.8rem;font-weight:950;color:var(--gold);letter-spacing:-.05em}.timeItem p{margin:0;color:#d8e6f6}
+  .sources{font-size:.9rem;color:var(--muted);line-height:1.55}.sources ol{padding-left:1.25rem}.sources li{margin:10px 0}.sourceTag{display:inline-block;color:#08111f;background:var(--gold);font-weight:950;border-radius:999px;padding:1px 8px;margin-right:5px;font-size:.76rem}
+  .footerNote{margin-top:18px;color:var(--muted);font-size:.85rem;line-height:1.45}
+
+  @media (max-width: 980px){
+    .hero{grid-template-columns:1fr}.story,.visual{min-height:unset}.visual{min-height:650px}.explainerGrid,.statGrid{grid-template-columns:1fr 1fr}.sceneTabs{margin-left:0}.bigMetric{grid-template-columns:1fr 1fr}.node{font-size:.88rem;min-width:106px}.decision{width:142px;height:142px}.decision .year{font-size:1.8rem}.barRow{grid-template-columns:64px 1fr 86px}
+  }
+  @media (max-width: 640px){
+    .wrap{padding:16px 10px 32px}.story{padding:24px 18px}.visual{padding:14px;min-height:620px}.bigMetric{grid-template-columns:1fr}.explainerGrid,.statGrid{grid-template-columns:1fr}.captionCard{padding:16px}.controls{align-items:stretch}.sceneTabs{width:100%}.sceneTab{flex:1;text-align:center}.moneyStage{min-height:380px}.node{padding:9px;min-width:88px;font-size:.78rem}.node.donors{left:2%;top:25%}.node.dark{left:31%;top:8%}.node.super{left:31%;bottom:9%}.node.ads{right:2%;top:16%}.node.policy{right:2%;bottom:10%}.decision{width:120px;height:120px}.megaPhone{right:10%;top:42%;transform:scale(.75)}.barRow{grid-template-columns:55px 1fr 70px;gap:8px}.metric .number{font-size:3rem}.timeItem{grid-template-columns:1fr}.timeYear{font-size:1.55rem}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:0.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:0.001ms!important}
+  }
+</style>
+</head>
+<body data-scene="0">
+  <div class="wrap">
+    <main class="hero" aria-label="Animated infographic about money in politics after Citizens United">
+      <section class="panel story">
+        <div>
+          <div class="eyebrow"><span class="pulse-dot"></span> Animated infographic</div>
+          <h1>Money in politics <span class="grad">got a bigger megaphone.</span></h1>
+          <p class="subtitle">The key shift after <b>Citizens United</b> was not that money first entered politics. It was that <b>outside groups could scale up independent election spending</b>, while super PACs and dark-money vehicles made the money flow larger, faster, and harder to trace.</p>
+          <div class="captionCard" aria-live="polite">
+            <div class="captionKicker" id="captionKicker">Scene 1 / 5</div>
+            <p class="caption" id="captionText">Before 2010, wealthy donors and interest groups already mattered — but the big “outside spending” channel was much smaller.</p>
+          </div>
+          <div class="controls">
+            <button id="playPause" type="button" aria-label="Pause animation">Pause</button>
+            <button id="restart" type="button" aria-label="Restart animation">Restart</button>
+            <div class="sceneTabs" aria-label="Jump to animation scene">
+              <button class="sceneTab" data-i="0" type="button">Before</button>
+              <button class="sceneTab" data-i="1" type="button">2010</button>
+              <button class="sceneTab" data-i="2" type="button">Turbocharge</button>
+              <button class="sceneTab" data-i="3" type="button">Secrecy</button>
+              <button class="sceneTab" data-i="4" type="button">Effect</button>
+            </div>
+          </div>
+          <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+        </div>
+        <div class="explainerGrid">
+          <article class="mini"><div class="miniIcon">📣</div><h3>Amplification</h3><p>More money buys more ads, digital targeting, mail, canvassing, polling, and opposition research.</p></article>
+          <article class="mini"><div class="miniIcon">🔁</div><h3>Dependence loop</h3><p>Candidates spend more time courting large funders, and outside groups can become campaign infrastructure.</p></article>
+          <article class="mini"><div class="miniIcon">🕳️</div><h3>Opacity</h3><p>Dark-money nonprofits and shell companies can hide original donors while routing funds to super PACs.</p></article>
+          <article class="mini"><div class="miniIcon">⚖️</div><h3>Public trust</h3><p>Most Americans say campaign donors and special interests have too much influence in Congress.</p></article>
+        </div>
+      </section>
+
+      <section class="panel visual" aria-label="Animated money flow and spending metrics">
+        <div class="bigMetric">
+          <div class="metric hot">
+            <div class="number"><span class="counter" data-kind="text" data-final="29×">29×</span></div>
+            <div class="label">Outside spending growth, 2008 → 2024</div>
+          </div>
+          <div class="metric cool">
+            <div class="number"><span class="counter" data-kind="money" data-final="1.9" data-prefix="$" data-suffix="B">$1.9B</span></div>
+            <div class="label">Identified dark money in 2024 federal races</div>
+          </div>
+        </div>
+
+        <div class="moneyStage">
+          <svg class="flow" viewBox="0 0 800 430" preserveAspectRatio="none" aria-hidden="true">
+            <path class="p1" d="M80,150 C190,120 245,80 348,86" />
+            <path class="p2" d="M84,230 C175,296 258,330 348,336" />
+            <path class="p3" d="M430,100 C546,98 600,100 705,135" />
+            <path class="p4" d="M430,325 C548,300 600,225 704,178" />
+            <path class="p5" d="M690,172 C732,224 732,290 696,340" />
+          </svg>
+          <div class="coin c1"></div><div class="coin c2"></div><div class="coin c3"></div><div class="coin c4"></div><div class="coin c5"></div>
+          <div class="node donors">Big funders<small>wealthy donors, corporations, unions, interests</small></div>
+          <div class="node dark">Dark money<small>nonprofits / shell companies</small></div>
+          <div class="node super">Super PACs<small>unlimited independent spending</small></div>
+          <div class="node ads">Political media<small>ads, digital targeting, canvassing</small></div>
+          <div class="node policy">Influence loop<small>access, agenda, perceived responsiveness</small></div>
+          <div class="decision" aria-label="Citizens United decision in 2010">
+            <div><div class="year">2010</div><div class="text">Citizens United<br/>+ SpeechNow</div></div>
+          </div>
+          <div class="megaPhone" aria-hidden="true">
+            <div class="sound s1"></div><div class="sound s2"></div><div class="sound s3"></div>
+            <div class="cone"></div><div class="mouth"></div><div class="handle"></div>
+          </div>
+        </div>
+
+        <div class="barBox" aria-label="Outside spending comparison bar chart">
+          <div class="barRow">
+            <div class="barLabel">2008</div>
+            <div class="barTrack"><div class="bar y2008"></div></div>
+            <div class="barVal">$144M</div>
+          </div>
+          <div class="barRow">
+            <div class="barLabel">2024</div>
+            <div class="barTrack"><div class="bar y2024"></div></div>
+            <div class="barVal">$4.2B+</div>
+          </div>
+          <div class="barNote">The bars visualize reported outside-spending growth. Because the 2024 figure is so much larger, the 2008 bar is intentionally tiny.</div>
+        </div>
+      </section>
+    </main>
+
+    <section class="section" aria-label="What changed after Citizens United">
+      <h2>What changed: the channel became scalable.</h2>
+      <p>Citizens United struck down restrictions on corporate and union independent expenditures, while preserving the ban on direct corporate contributions to candidates. SpeechNow then applied that logic to contribution limits for independent-expenditure-only groups, helping create the modern super PAC era.</p>
+      <div class="timeline">
+        <div class="timeItem"><div class="timeYear">2008</div><p>Outside spending was already present, but comparatively small: about <b>$144 million</b> in the final pre-Citizens United presidential cycle used in this infographic.</p></div>
+        <div class="timeItem"><div class="timeYear">2010</div><p><b>Citizens United</b> removed limits on independent expenditures by corporations and unions. <b>SpeechNow</b> cleared the way for unlimited contributions to groups that only make independent expenditures.</p></div>
+        <div class="timeItem"><div class="timeYear">2024</div><p>Outside spending exceeded <b>$4.2 billion</b>; FEC-reported independent expenditures for the 2023–2024 federal cycle totaled <b>$4.4 billion</b>.</p></div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Key numbers on money in politics">
+      <h2>The effect in four numbers</h2>
+      <div class="statGrid">
+        <article class="statCard"><div class="statNum">$5.1B</div><div class="statText">Raised by independent expenditure-only political committees in 2023–2024.</div><div class="statSub">These committees may receive unlimited contributions for independent political activity.</div></article>
+        <article class="statCard"><div class="statNum">$1.3B</div><div class="statText">Dark-money contributions to super PACs in 2024.</div><div class="statSub">Brennan Center found this was more than in the previous two cycles combined.</div></article>
+        <article class="statCard"><div class="statNum">80%</div><div class="statText">U.S. adults saying campaign donors have too much influence over Congress.</div><div class="statSub">Pew also found 72% favor campaign-spending limits.</div></article>
+      </div>
+      <p class="footerNote">Nuance: money does not guarantee electoral victory. Its main political effect is amplification — who gets heard, who gets access, what gets prioritized, and how accountable spending is to voters.</p>
+    </section>
+
+    <section class="section sources" aria-label="Sources and notes">
+      <h2>Sources and notes</h2>
+      <ol>
+        <li><span class="sourceTag">FEC</span> Citizens United v. FEC summary: ruling issued January 21, 2010; corporate independent-expenditure restrictions and electioneering-communication restrictions struck down; direct corporate contribution ban unaffected. <a href="https://www.fec.gov/legal-resources/court-cases/citizens-united-v-fec/">fec.gov</a></li>
+        <li><span class="sourceTag">FEC</span> SpeechNow.org v. FEC summary: March 26, 2010 appeals ruling that contribution limits to an independent-expenditure group violated the First Amendment as applied. <a href="https://www.fec.gov/legal-resources/court-cases/speechnoworg-v-fec/">fec.gov</a></li>
+        <li><span class="sourceTag">CAP / OpenSecrets</span> Outside spending comparison: more than 28-fold growth from $144 million in 2008 to more than $4.2 billion in 2024. <a href="https://www.americanprogress.org/article/undoing-citizens-united-and-reining-in-super-pacs/">americanprogress.org</a></li>
+        <li><span class="sourceTag">FEC</span> 2023–2024 campaign finance summary: independent expenditures totaled $4.4265 billion; independent expenditure-only PACs raised about $5.0969 billion and spent about $5.013 billion. <a href="https://www.fec.gov/updates/statistical-summary-of-24-month-campaign-activity-of-the-2023-2024-election-cycle/">fec.gov</a></li>
+        <li><span class="sourceTag">Brennan Center</span> 2024 dark-money analysis: more than $1.9 billion in dark money in federal races, at least $4.3 billion since Citizens United, and $1.3 billion from opaque nonprofits/shell companies to super PACs in 2024. <a href="https://www.brennancenter.org/our-work/research-reports/dark-money-hit-record-high-19-billion-2024-federal-races">brennancenter.org</a></li>
+        <li><span class="sourceTag">Pew</span> Public opinion: 72% favor limits on campaign spending; 80% say campaign donors have too much influence on members of Congress; 84% say special interests/lobbyists have too much say; 85% say campaign costs make it hard for good people to run. <a href="https://www.pewresearch.org/short-reads/2023/10/23/7-facts-about-americans-views-of-money-in-politics/">pewresearch.org</a></li>
+      </ol>
+    </section>
+  </div>
+
+<script>
+(function(){
+  const scenes = [
+    {k:"Scene 1 / 5", t:"Before 2010, wealthy donors and interest groups already mattered — but the big “outside spending” channel was much smaller."},
+    {k:"Scene 2 / 5", t:"In 2010, Citizens United removed limits on independent spending by corporations and unions; SpeechNow helped unlock unlimited contributions to independent-only groups."},
+    {k:"Scene 3 / 5", t:"That created a scalable money channel: super PACs could raise and spend huge sums outside formal campaign limits."},
+    {k:"Scene 4 / 5", t:"Dark money turbocharged the opacity: nonprofits and shell companies can route funds to super PACs while keeping original donors hidden."},
+    {k:"Scene 5 / 5", t:"The political effect is amplification: more paid speech, more access for large funders, more pressure on candidates, and less transparency for voters."}
+  ];
+  const body = document.body;
+  const kicker = document.getElementById('captionKicker');
+  const caption = document.getElementById('captionText');
+  const progress = document.getElementById('progressBar');
+  const playPause = document.getElementById('playPause');
+  const restart = document.getElementById('restart');
+  const tabs = document.querySelectorAll('.sceneTab');
+  let scene = 0, playing = true, timer;
+  const interval = 4200;
+
+  function setScene(i){
+    scene = (i + scenes.length) % scenes.length;
+    body.setAttribute('data-scene', String(scene));
+    kicker.textContent = scenes[scene].k;
+    caption.textContent = scenes[scene].t;
+    progress.style.width = (((scene + 1) / scenes.length) * 100) + '%';
+  }
+  function tick(){ if(!playing) return; setScene(scene + 1); }
+  function schedule(){ clearInterval(timer); timer = setInterval(tick, interval); }
+  playPause.addEventListener('click', () => {
+    playing = !playing;
+    playPause.textContent = playing ? 'Pause' : 'Play';
+    playPause.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
+  });
+  restart.addEventListener('click', () => { setScene(0); playing = true; playPause.textContent = 'Pause'; schedule(); animateCounters(true); });
+  tabs.forEach(tab => tab.addEventListener('click', () => { setScene(Number(tab.dataset.i)); schedule(); }));
+  setScene(0); schedule();
+
+  function animateCounters(force){
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(el => {
+      if(el.dataset.kind === 'text') return;
+      if(el.dataset.done && !force) return;
+      el.dataset.done = '1';
+      const end = Number(el.dataset.final || '0');
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      let start = null;
+      const duration = 1600;
+      function frame(ts){
+        if(!start) start = ts;
+        const p = Math.min(1, (ts - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = end * eased;
+        el.textContent = prefix + val.toFixed(1) + suffix;
+        if(p < 1) requestAnimationFrame(frame);
+        else el.textContent = prefix + end.toFixed(1) + suffix;
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+  animateCounters(false);
+})();
+</script>
+</body>
+</html>
