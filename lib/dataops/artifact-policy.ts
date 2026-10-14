@@ -49,9 +49,13 @@ export const REQUIRED_RELEASE_FILES = ["accountability-graph-runtime.json", "eve
 
 export type ArtifactEntry = { path: string; sha256: string; bytes: number; objectKey: string };
 export type CivicManifest = { schemaVersion: 1; kind: "worker" | "release"; id: string; createdAt: string; sourceCommit: string; sourceDirty?: boolean; files: ArtifactEntry[]; metrics: Record<string, number>; coverageComplete: boolean };
+// The persistent worker archive is growing as public evidence is recovered.
+// Keep a finite bound, but leave room for a full refresh without dropping
+// records merely because the manifest crossed the former 50k ceiling.
+export const MAX_CIVIC_MANIFEST_FILES = 100_000;
 
 export function validateManifest(value: CivicManifest, kind: CivicManifest["kind"]) {
-  if (value.schemaVersion !== 1 || value.kind !== kind || !/^[a-f0-9]{64}$/.test(value.id) || !Number.isFinite(Date.parse(value.createdAt)) || !Array.isArray(value.files) || !value.files.length || value.files.length > 50_000) throw new Error("invalid_civic_manifest");
+  if (value.schemaVersion !== 1 || value.kind !== kind || !/^[a-f0-9]{64}$/.test(value.id) || !Number.isFinite(Date.parse(value.createdAt)) || !Array.isArray(value.files) || !value.files.length || value.files.length > MAX_CIVIC_MANIFEST_FILES) throw new Error("invalid_civic_manifest");
   if (!/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/.test(value.sourceCommit) || (value.sourceDirty !== undefined && typeof value.sourceDirty !== "boolean") || typeof value.coverageComplete !== "boolean" || !value.metrics || Array.isArray(value.metrics) || Object.values(value.metrics).some(metric => !Number.isSafeInteger(metric) || metric < 0)) throw new Error("invalid_manifest_provenance_or_metrics");
   if (value.id !== civicManifestId(value)) throw new Error("manifest_identity_mismatch");
   const paths = new Set<string>();

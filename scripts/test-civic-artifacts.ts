@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, readFile, readdir, rename, rm, statfs, symlink, writeFi
 import os from "node:os";
 import path from "node:path";
 import { get, put, head } from "@vercel/blob";
-import { REQUIRED_RELEASE_FILES, civicManifestId, releaseArtifactAllowed, validateManifest, workerArtifactAllowed, type ArtifactEntry, type CivicManifest } from "@/lib/dataops/artifact-policy";
+import { MAX_CIVIC_MANIFEST_FILES, REQUIRED_RELEASE_FILES, civicManifestId, releaseArtifactAllowed, validateManifest, workerArtifactAllowed, type ArtifactEntry, type CivicManifest } from "@/lib/dataops/artifact-policy";
 import { assertArtifactSnapshot, describeArtifacts, mapBounded, readManifest, restoreManifest, saveManifest, selectArtifactPaths, uploadArtifact } from "@/lib/dataops/blob-checkpoint";
 import { copyPreparedRelease, releaseGateAt, trustedCivicAutomation } from "./civic-artifacts";
 import { applyReportingPolicy } from "./apply-reporting-policy";
@@ -146,6 +146,9 @@ async function main() {
     const valid = entry("events-runtime.json", "[]");
     const original = manifest([valid]);
     validateManifest(original, "worker");
+    const expandedArchive = manifest(Array.from({ length: 50_001 }, (_, index) => ({ ...valid, path: `data/generated/events-runtime-${index}.json`, sha256: hash(String(index)), objectKey: `civic-data/objects/${hash(String(index))}` })));
+    validateManifest(expandedArchive, "worker");
+    assert(MAX_CIVIC_MANIFEST_FILES >= expandedArchive.files.length, "Worker manifest ceiling must accommodate the recovered archive growth");
     for (const change of [{ createdAt: new Date(at + 1000).toISOString() }, { metrics: { meetings: 1 } }, { coverageComplete: true }, { sourceCommit: "c".repeat(40) }, { sourceDirty: true }, { files: [{ ...valid, objectKey: `public-meeting-cache/sha256/${valid.sha256.slice(0, 2)}/${valid.sha256}` }] }]) {
       assert.throws(() => validateManifest({ ...original, ...change }, "worker"), /identity_mismatch/);
     }

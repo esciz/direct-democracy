@@ -1,3 +1,0 @@
-*.pdf filter=lfs diff=lfs merge=lfs -text
-data/generated/accountability-graph.json filter=lfs diff=lfs merge=lfs -text
-data/generated/public-meeting-items.json filter=lfs diff=lfs merge=lfs -text
