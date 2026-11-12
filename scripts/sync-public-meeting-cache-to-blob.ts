@@ -1,4 +1,7 @@
 import "@/lib/env/load-local-env";
+import { archiveBackend } from "@/lib/dataops/archive-store";
+
+if (archiveBackend() === "r2") throw new Error("legacy_blob_sync_disabled_use_dataops_checkpoint_with_r2");
 import { spawnSync } from "node:child_process";
 import { lookup } from "node:dns/promises";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
