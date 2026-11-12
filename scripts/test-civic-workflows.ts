@@ -4,6 +4,7 @@ import { execFileSync } from "node:child_process";
 
 const civic = readFileSync(".github/workflows/civic-data-production.yml", "utf8");
 const application = readFileSync(".github/workflows/application-build.yml", "utf8");
+assert.deepEqual([...civic.matchAll(/- cron: "([^"]+)"/g)].map(match => match[1]), ["17 6 * * *"], "Prelaunch collection restores the archive only once daily");
 const collection = civic.split("\n  publish:")[0];
 const publication = civic.split("\n  publish:")[1].split("\n  source-coverage:")[0];
 
