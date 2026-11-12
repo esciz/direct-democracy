@@ -75,6 +75,7 @@ jobs:
           node --import tsx scripts/test-historical-identity-test-resolution.ts
           node --import tsx scripts/test-reporting-policy.ts
           node --import tsx scripts/test-civic-workflows.ts
+          node --import tsx scripts/test-civic-archive-store.ts
       - name: Typecheck application
         run: npm run typecheck
       - name: Build application
