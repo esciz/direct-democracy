@@ -4,7 +4,7 @@ import { lstat, mkdir, mkdtemp, readFile, readdir, rename, rm, stat, statfs, wri
 import path from "node:path";
 import { Readable, Transform } from "node:stream";
 import { pipeline } from "node:stream/promises";
-import { get, head, list, put } from "@vercel/blob";
+import { archiveGet as get, archiveHead as head, archiveList as list, archivePut as put } from "./archive-store";
 import { releaseArtifactAllowed, safeArtifactPath, validateManifest, workerArtifactAllowed, type ArtifactEntry, type CivicManifest } from "./artifact-policy";
 
 export async function fileHash(file: string) {
