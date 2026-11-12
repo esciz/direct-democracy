@@ -49,6 +49,15 @@ concurrency:
 permissions:
   contents: read
 
+# Switch only after the migration workflow verifies both manifests in R2.
+# Missing R2 credentials fail closed; the adapter never falls back to Blob.
+env:
+  CIVIC_ARCHIVE_BACKEND: ${{ vars.CIVIC_ARCHIVE_BACKEND || 'vercel_blob' }}
+  CIVIC_R2_ACCOUNT_ID: ${{ vars.CIVIC_R2_ACCOUNT_ID }}
+  CIVIC_R2_BUCKET: ${{ vars.CIVIC_R2_BUCKET }}
+  CIVIC_R2_ACCESS_KEY_ID: ${{ secrets.CIVIC_R2_ACCESS_KEY_ID }}
+  CIVIC_R2_SECRET_ACCESS_KEY: ${{ secrets.CIVIC_R2_SECRET_ACCESS_KEY }}
+
 jobs:
   refresh:
     name: Collect and validate civic data
@@ -98,7 +107,7 @@ jobs:
           npx playwright install --with-deps chromium
           node -e 'const {chromium}=require("playwright");(async()=>{const browser=await chromium.launch({headless:true});await browser.close()})().catch(()=>{console.error("Public-source browser failed to launch");process.exit(1)})'
       - name: Verify worker credentials
-        run: node -e 'for (const key of ["BLOB_READ_WRITE_TOKEN","DATABASE_URL"]) if (!process.env[key]) throw Error("Missing worker setting " + key)'
+        run: node --import tsx scripts/check-civic-archive-config.ts --database
       - name: Restore persistent collection state and evidence
         run: npm run dataops:checkpoint:restore
       - name: Refresh civic sources
@@ -132,6 +141,7 @@ jobs:
           node --import tsx scripts/test-native-agenda-packets.ts
           node --import tsx scripts/test-reporting-policy.ts
           node --import tsx scripts/test-civic-workflows.ts
+          node --import tsx scripts/test-civic-archive-store.ts
           node --import tsx scripts/test-carson-public-calendar.ts
           node --import tsx scripts/test-current-election-questions.ts
           node --import tsx scripts/test-civic-database-refresh.ts
