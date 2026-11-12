@@ -19,11 +19,9 @@ on:
       - 'scripts/run-dataops-pipeline.ts'
       - '.github/workflows/civic-data-production.yml'
   schedule:
-    # A daily run carries the full civic refresh and the failure notification.
+    # Prelaunch cost budget: restore the evidence archive once daily, not four
+    # times daily. Manual catch-up remains available without changing cadence.
     - cron: "17 6 * * *"
-    # Meeting-only checks still run every six hours without repeating the same
-    # source-coverage failure email four times a day.
-    - cron: "17 0,12,18 * * *"
   workflow_dispatch:
     inputs:
       full_refresh:
