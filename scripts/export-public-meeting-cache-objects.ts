@@ -3,6 +3,9 @@ import { createHash } from "node:crypto";
 import { createReadStream, copyFileSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { head, put } from "@vercel/blob";
+import { archiveBackend } from "@/lib/dataops/archive-store";
+
+if (archiveBackend() === "r2") throw new Error("legacy_blob_export_disabled_use_dataops_checkpoint_with_r2");
 
 const GENERATED_DIR = path.join(process.cwd(), "data", "generated");
 const INDEX_PATH = path.join(GENERATED_DIR, "public-meeting-document-cache-index.json");
