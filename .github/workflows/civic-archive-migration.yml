@@ -1,0 +1,47 @@
+name: Civic Archive R2 Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      copy:
+        description: Copy and hash-verify the current archive (false only inventories it)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# Prevent collection from changing the source while it is being migrated.
+concurrency:
+  group: civic-data-production
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: production
+    timeout-minutes: 360
+    env:
+      CIVIC_ARCHIVE_BACKEND: r2
+      CIVIC_R2_ACCOUNT_ID: ${{ vars.CIVIC_R2_ACCOUNT_ID }}
+      CIVIC_R2_BUCKET: ${{ vars.CIVIC_R2_BUCKET }}
+      CIVIC_R2_ACCESS_KEY_ID: ${{ secrets.CIVIC_R2_ACCESS_KEY_ID }}
+      CIVIC_R2_SECRET_ACCESS_KEY: ${{ secrets.CIVIC_R2_SECRET_ACCESS_KEY }}
+      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Inventory or migrate with end-to-end hash verification
+        env:
+          COPY_ARCHIVE: ${{ inputs.copy }}
+        run: |
+          args=()
+          if [[ "$COPY_ARCHIVE" == "true" ]]; then args+=(--copy); fi
+          node --import tsx scripts/migrate-civic-archive-to-r2.ts "${args[@]}"
