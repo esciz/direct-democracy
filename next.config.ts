@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { PACKED_CIVIC_FILES, packedCivicPath } from "./lib/dataops/packed-runtime";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -9,10 +10,11 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingRoot: process.cwd(),
   outputFileTracingIncludes: {
-    "/*": ["./data/seed/public-meeting-sources.json", "./data/generated/civic-data-release.json", "./data/generated/public-meeting-votes-runtime.json.gz", "./data/generated/nevada-community-relationships-runtime.json.gz", "./data/generated/voting-cards-runtime.json.gz", "./data/generated/nevada-political-ads-runtime.json.gz", "./data/generated/projects-runtime-runtime.json.gz", "./data/generated/public-cases-runtime-runtime.json.gz"],
+    "/*": ["./data/seed/public-meeting-sources.json", "./data/generated/civic-data-release.json", ...PACKED_CIVIC_FILES.map(name => `./data/generated/${packedCivicPath(name)}`)],
   },
   outputFileTracingExcludes: {
     "/*": [
+      ...PACKED_CIVIC_FILES.map(name => `./data/generated/${name}`),
       "./data/generated/.*",
       "./data/manual-sources/**/*",
       "./data/raw/**/*",
