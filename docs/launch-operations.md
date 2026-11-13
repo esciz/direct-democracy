@@ -44,6 +44,10 @@ The archive adapter in `lib/dataops/archive-store.ts` supports `CIVIC_ARCHIVE_BA
 
 R2 requires `CIVIC_R2_ACCOUNT_ID`, `CIVIC_R2_BUCKET`, `CIVIC_R2_ACCESS_KEY_ID` and `CIVIC_R2_SECRET_ACCESS_KEY`. Use a private Standard-storage bucket, a bucket-scoped Object Read & Write credential for GitHub collection/publication, and a separate bucket-scoped Object Read only credential for Vercel release restoration. Store secrets in the services' encrypted settings, never repository files. GitHub uses repository variables for the backend/account/bucket and repository secrets for the two credential fields; Vercel uses environment settings with the same names. Do not place these names in the old `CIVIC_WORKER_ENV` bundle, which has a separate allowlist.
 
+Prelaunch Vercel previews use `CIVIC_DATA_RELEASE_ENABLED=false` and packaged repository data, avoiding a paid archive restore on every development push. Production keeps the release overlay enabled and receives the R2 read-only credential. The team on-demand alert budget is $10 (notifications at 50%, 75%, and 100%); production auto-pause is off. This is an alert above the plan's included credit, not a hard cap or a refund of incurred charges.
+
+The deployment-size fix also packs `public-meeting-retrieval-queue.json` and `public-meeting-source-completeness.json` losslessly. Operations readers support the compressed copies; workers retain the original JSON. The November 12 production deployment passed after previous deployments exceeded Vercel's 250 MB function limit.
+
 Migration sequence:
 
 1. Configure R2 credentials without switching `CIVIC_ARCHIVE_BACKEND` in production. Run `Civic Archive R2 Migration` with `copy=false` to inventory the latest complete worker and public release. It shares the production concurrency lock.
