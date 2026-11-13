@@ -8,6 +8,7 @@ import { gunzipSync } from "node:zlib";
 export const PACKED_CIVIC_FILES = [
   "public-meeting-votes.json", "nevada-community-relationships.json", "voting-cards.json",
   "nevada-political-ads.json", "projects-runtime.json", "public-cases-runtime.json",
+  "public-meeting-retrieval-queue.json", "public-meeting-source-completeness.json",
 ] as const;
 export const packedCivicPath = (file: string) => file.replace(/\.json$/, "-runtime.json.gz");
 
