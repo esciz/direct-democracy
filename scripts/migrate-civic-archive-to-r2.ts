@@ -47,7 +47,9 @@ async function main() {
     return true;
   }
   try {
-    await mapBounded([...files.values()], 3, async entry => {
+    // Stream through disk with bounded multipart buffers. Twelve concurrent
+    // objects fit the runner while avoiding serial latency on small documents.
+    await mapBounded([...files.values()], 12, async entry => {
       if (!await verifyR2(entry)) {
         const staged = path.join(directory, createHash("sha256").update(entry.objectKey).digest("hex"));
         let local = path.join(process.cwd(), entry.path);
