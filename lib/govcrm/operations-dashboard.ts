@@ -1,5 +1,4 @@
-import { existsSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { civicJsonPath, readCivicJson } from "@/lib/dataops/packed-runtime";
 import path from "node:path";
 
 type GeneratedArtifact<T> = {
@@ -202,8 +201,8 @@ export type StakeholderAnalyticsRecord = {
 };
 
 async function readGeneratedArtifact<T>(relativePath: string): Promise<GeneratedArtifact<T>> {
-  const filePath = path.join(process.cwd(), relativePath);
-  if (!existsSync(filePath)) {
+  const filePath = civicJsonPath(path.join(process.cwd(), relativePath));
+  if (!filePath) {
     return { available: false, path: relativePath, data: null };
   }
 
@@ -211,7 +210,7 @@ async function readGeneratedArtifact<T>(relativePath: string): Promise<Generated
     return {
       available: true,
       path: relativePath,
-      data: JSON.parse(await readFile(filePath, "utf8")) as T,
+      data: await readCivicJson<T>(filePath),
     };
   } catch {
     return { available: false, path: relativePath, data: null };
