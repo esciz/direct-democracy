@@ -47,9 +47,7 @@ async function main() {
     return true;
   }
   try {
-    // Stream through disk with bounded multipart buffers. Twelve concurrent
-    // objects fit the runner while avoiding serial latency on small documents.
-    await mapBounded([...files.values()], 12, async entry => {
+    const copyEntry = async (entry: ArtifactEntry) => {
       if (!await verifyR2(entry)) {
         const staged = path.join(directory, createHash("sha256").update(entry.objectKey).digest("hex"));
         let local = path.join(process.cwd(), entry.path);
@@ -75,7 +73,12 @@ async function main() {
       }
       verified++;
       if (verified % 100 === 0) console.log(JSON.stringify({ verified, total: files.size, copied, sourceBytes }));
-    });
+    };
+    // Bound staging disk and multipart memory for large evidence, while hiding
+    // request latency for small text files (at most 512 MiB staged at once).
+    const entries = [...files.values()];
+    await mapBounded(entries.filter(entry => entry.bytes > 8 * 1024 * 1024), 4, copyEntry);
+    await mapBounded(entries.filter(entry => entry.bytes <= 8 * 1024 * 1024), 64, copyEntry);
     // A stale migration cannot quietly replace a newer collection. The workflow
     // also shares the production single-writer lock across the full operation.
     for (const manifest of [worker, release]) {
